@@ -1,8 +1,16 @@
+---
+title: RZXCalibrationBuilder
+description: API reference for qiskit.transpiler.passes.RZXCalibrationBuilder
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.RZXCalibrationBuilder
+---
+
 # qiskit.transpiler.passes.RZXCalibrationBuilder
 
+<span id="qiskit.transpiler.passes.RZXCalibrationBuilder" />
 
-
-`RZXCalibrationBuilder(backend)`
+`RZXCalibrationBuilder(backend)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/transpiler/passes/scheduling/calibration_creators.py "view source code")
 
 Creates calibrations for RZXGate(theta) by stretching and compressing Gaussian square pulses in the CX gate. This is done by retrieving (for a given pair of qubits) the CX schedule in the instruction schedule map of the backend defaults. The CX schedule must be an echoed cross-resonance gate optionally with rotary tones. The cross-resonance drive tones and rotary pulses must be Gaussian square pulses. The width of the Gaussian square pulse is adjusted so as to match the desired rotation angle. If the rotation angle is small such that the width disappears then the amplitude of the zero width Gaussian square pulse (i.e. a Gaussian) is reduced to reach the target rotation angle. Additional details can be found in [https://arxiv.org/abs/2012.11660](https://arxiv.org/abs/2012.11660).
 
@@ -16,7 +24,9 @@ Initializes a RZXGate calibration builder.
 
 **QiskitError** – if open pulse is not supported by the backend.
 
+### \_\_init\_\_
 
+<span id="qiskit.transpiler.passes.RZXCalibrationBuilder.__init__" />
 
 `__init__(backend)`
 
@@ -48,7 +58,9 @@ Initializes a RZXGate calibration builder.
 | [`is_analysis_pass`](#qiskit.transpiler.passes.RZXCalibrationBuilder.is_analysis_pass "qiskit.transpiler.passes.RZXCalibrationBuilder.is_analysis_pass")                   | Check if the pass is an analysis pass.      |
 | [`is_transformation_pass`](#qiskit.transpiler.passes.RZXCalibrationBuilder.is_transformation_pass "qiskit.transpiler.passes.RZXCalibrationBuilder.is_transformation_pass") | Check if the pass is a transformation pass. |
 
+### get\_calibration
 
+<span id="qiskit.transpiler.passes.RZXCalibrationBuilder.get_calibration" />
 
 `get_calibration(params, qubits)`
 
@@ -69,7 +81,9 @@ schedule
 
 **QiskitError** – if the control and target qubits cannot be identified or the backend does not support cx between the qubits.
 
+### is\_analysis\_pass
 
+<span id="qiskit.transpiler.passes.RZXCalibrationBuilder.is_analysis_pass" />
 
 `property is_analysis_pass`
 
@@ -77,7 +91,9 @@ Check if the pass is an analysis pass.
 
 If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
 
+### is\_transformation\_pass
 
+<span id="qiskit.transpiler.passes.RZXCalibrationBuilder.is_transformation_pass" />
 
 `property is_transformation_pass`
 
@@ -85,13 +101,17 @@ Check if the pass is a transformation pass.
 
 If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
 
+### name
 
+<span id="qiskit.transpiler.passes.RZXCalibrationBuilder.name" />
 
 `name()`
 
 Return the name of the pass.
 
+### rescale\_cr\_inst
 
+<span id="qiskit.transpiler.passes.RZXCalibrationBuilder.rescale_cr_inst" />
 
 `static rescale_cr_inst(instruction, theta, sample_mult=16)`
 
@@ -109,13 +129,15 @@ GaussianSquare pulse.
 
 **Return type**
 
-[qiskit.pulse.Play](qiskit.pulse.Play#qiskit.pulse.Play "qiskit.pulse.Play")
+[qiskit.pulse.Play](qiskit.pulse.Play "qiskit.pulse.Play")
 
 **Raises**
 
 **QiskitError** – if the pulses are not GaussianSquare.
 
+### run
 
+<span id="qiskit.transpiler.passes.RZXCalibrationBuilder.run" />
 
 `run(dag)`
 
@@ -123,7 +145,7 @@ Run the calibration adder pass on dag.
 
 **Parameters**
 
-**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – DAG to schedule.
+**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – DAG to schedule.
 
 **Returns**
 
@@ -131,9 +153,11 @@ A DAG with calibrations added to it.
 
 **Return type**
 
-[DAGCircuit](qiskit.dagcircuit.DAGCircuit#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+[DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
 
+### supported
 
+<span id="qiskit.transpiler.passes.RZXCalibrationBuilder.supported" />
 
 `supported(node_op)`
 
@@ -148,3 +172,4 @@ True if the node is a RZXGate.
 **Return type**
 
 match
+

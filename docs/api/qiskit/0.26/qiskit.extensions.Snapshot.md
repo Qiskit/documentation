@@ -1,8 +1,16 @@
+---
+title: Snapshot
+description: API reference for qiskit.extensions.Snapshot
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.extensions.Snapshot
+---
+
 # qiskit.extensions.Snapshot
 
+<span id="qiskit.extensions.Snapshot" />
 
-
-`Snapshot(label, snapshot_type='statevector', num_qubits=0, num_clbits=0, params=None)`
+`Snapshot(label, snapshot_type='statevector', num_qubits=0, num_clbits=0, params=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/extensions/simulator/snapshot.py "view source code")
 
 Simulator snapshot instruction.
 
@@ -20,7 +28,9 @@ Create new snapshot instruction.
 
 **ExtensionError** – if snapshot label is invalid.
 
+### \_\_init\_\_
 
+<span id="qiskit.extensions.Snapshot.__init__" />
 
 `__init__(label, snapshot_type='statevector', num_qubits=0, num_clbits=0, params=None)`
 
@@ -69,19 +79,25 @@ Create new snapshot instruction.
 | [`snapshot_type`](#qiskit.extensions.Snapshot.snapshot_type "qiskit.extensions.Snapshot.snapshot_type")    | Return snapshot type                                                          |
 | [`unit`](#qiskit.extensions.Snapshot.unit "qiskit.extensions.Snapshot.unit")                               | Get the time unit of duration.                                                |
 
+### add\_decomposition
 
+<span id="qiskit.extensions.Snapshot.add_decomposition" />
 
 `add_decomposition(decomposition)`
 
 Add a decomposition of the instruction to the SessionEquivalenceLibrary.
 
+### assemble
 
+<span id="qiskit.extensions.Snapshot.assemble" />
 
 `assemble()`
 
 Assemble a QasmQobjInstruction
 
+### broadcast\_arguments
 
+<span id="qiskit.extensions.Snapshot.broadcast_arguments" />
 
 `broadcast_arguments(qargs, cargs)`
 
@@ -100,13 +116,17 @@ Validation of the arguments.
 
 **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
 
+### c\_if
 
+<span id="qiskit.extensions.Snapshot.c_if" />
 
 `c_if(classical, val)`
 
 Add classical condition on register classical and value val.
 
+### copy
 
+<span id="qiskit.extensions.Snapshot.copy" />
 
 `copy(name=None)`
 
@@ -124,45 +144,59 @@ updated if it was provided
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
+### decompositions
 
+<span id="qiskit.extensions.Snapshot.decompositions" />
 
 `property decompositions`
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
+### definition
 
+<span id="qiskit.extensions.Snapshot.definition" />
 
 `property definition`
 
 Return definition in terms of other basic gates.
 
+### duration
 
+<span id="qiskit.extensions.Snapshot.duration" />
 
 `property duration`
 
 Get the duration.
 
+### inverse
 
+<span id="qiskit.extensions.Snapshot.inverse" />
 
 `inverse()`
 
 Special case. Return self.
 
+### is\_parameterized
 
+<span id="qiskit.extensions.Snapshot.is_parameterized" />
 
 `is_parameterized()`
 
 Return True .IFF. instruction is parameterized else False
 
+### label
 
+<span id="qiskit.extensions.Snapshot.label" />
 
 `property label`
 
 Return snapshot label
 
+### mirror
 
+<span id="qiskit.extensions.Snapshot.mirror" />
 
 `mirror()`
 
@@ -176,15 +210,19 @@ reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
+### params
 
+<span id="qiskit.extensions.Snapshot.params" />
 
 `property params`
 
 return instruction params.
 
+### qasm
 
+<span id="qiskit.extensions.Snapshot.qasm" />
 
 `qasm()`
 
@@ -192,7 +230,9 @@ Return a default OpenQASM string for the instruction.
 
 Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
 
+### repeat
 
+<span id="qiskit.extensions.Snapshot.repeat" />
 
 `repeat(n)`
 
@@ -208,13 +248,15 @@ Containing the definition.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
 **Raises**
 
 **CircuitError** – If n \< 1.
 
+### reverse\_ops
 
+<span id="qiskit.extensions.Snapshot.reverse_ops" />
 
 `reverse_ops()`
 
@@ -230,15 +272,19 @@ sub-instructions reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
+### snapshot\_type
 
+<span id="qiskit.extensions.Snapshot.snapshot_type" />
 
 `property snapshot_type`
 
 Return snapshot type
 
+### soft\_compare
 
+<span id="qiskit.extensions.Snapshot.soft_compare" />
 
 `soft_compare(other)`
 
@@ -256,14 +302,19 @@ are self and other equal up to parameter expressions.
 
 bool
 
+### unit
 
+<span id="qiskit.extensions.Snapshot.unit" />
 
 `property unit`
 
 Get the time unit of duration.
 
+### validate\_parameter
 
+<span id="qiskit.extensions.Snapshot.validate_parameter" />
 
 `validate_parameter(parameter)`
 
 Instruction parameters has no validation or normalization.
+

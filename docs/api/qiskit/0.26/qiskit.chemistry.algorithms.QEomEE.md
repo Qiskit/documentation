@@ -1,8 +1,16 @@
+---
+title: QEomEE
+description: API reference for qiskit.chemistry.algorithms.QEomEE
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.algorithms.QEomEE
+---
+
 # qiskit.chemistry.algorithms.QEomEE
 
+<span id="qiskit.chemistry.algorithms.QEomEE" />
 
-
-`QEomEE(operator, num_orbitals, num_particles, qubit_mapping='parity', two_qubit_reduction=True, active_occupied=None, active_unoccupied=None, is_eom_matrix_symmetric=True, se_list=None, de_list=None, z2_symmetries=None, untapered_op=None, aux_operators=None)`
+`QEomEE(operator, num_orbitals, num_particles, qubit_mapping='parity', two_qubit_reduction=True, active_occupied=None, active_unoccupied=None, is_eom_matrix_symmetric=True, se_list=None, de_list=None, z2_symmetries=None, untapered_op=None, aux_operators=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/eigen_solvers/q_eom_ee.py "view source code")
 
 QEomEE algorithm (classical)
 
@@ -26,7 +34,9 @@ QEomEE algorithm (classical)
 
 **ValueError** – invalid parameter
 
+### \_\_init\_\_
 
+<span id="qiskit.chemistry.algorithms.QEomEE.__init__" />
 
 `__init__(operator, num_orbitals, num_particles, qubit_mapping='parity', two_qubit_reduction=True, active_occupied=None, active_unoccupied=None, is_eom_matrix_symmetric=True, se_list=None, de_list=None, z2_symmetries=None, untapered_op=None, aux_operators=None)`
 
@@ -68,7 +78,9 @@ QEomEE algorithm (classical)
 | [`operator`](#qiskit.chemistry.algorithms.QEomEE.operator "qiskit.chemistry.algorithms.QEomEE.operator")                         | Return the operator.                |
 | [`random`](#qiskit.chemistry.algorithms.QEomEE.random "qiskit.chemistry.algorithms.QEomEE.random")                               | Return a numpy random.              |
 
+### aux\_operators
 
+<span id="qiskit.chemistry.algorithms.QEomEE.aux_operators" />
 
 `property aux_operators`
 
@@ -78,7 +90,9 @@ Returns the auxiliary operators.
 
 `Optional`\[`List`\[`Optional`\[`OperatorBase`]]]
 
+### compute\_minimum\_eigenvalue
 
+<span id="qiskit.chemistry.algorithms.QEomEE.compute_minimum_eigenvalue" />
 
 `compute_minimum_eigenvalue(operator=None, aux_operators=None)`
 
@@ -97,7 +111,9 @@ Computes minimum eigenvalue. Operator and aux\_operators can be supplied here an
 
 MinimumEigensolverResult
 
+### filter\_criterion
 
+<span id="qiskit.chemistry.algorithms.QEomEE.filter_criterion" />
 
 `property filter_criterion`
 
@@ -107,7 +123,9 @@ returns the filter criterion if set
 
 `Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]
 
+### operator
 
+<span id="qiskit.chemistry.algorithms.QEomEE.operator" />
 
 `property operator`
 
@@ -117,13 +135,17 @@ Return the operator.
 
 `Optional`\[`OperatorBase`]
 
+### random
 
+<span id="qiskit.chemistry.algorithms.QEomEE.random" />
 
 `property random`
 
 Return a numpy random.
 
+### run
 
+<span id="qiskit.chemistry.algorithms.QEomEE.run" />
 
 `run()`
 
@@ -137,7 +159,9 @@ results of an algorithm.
 
 dict
 
+### supports\_aux\_operators
 
+<span id="qiskit.chemistry.algorithms.QEomEE.supports_aux_operators" />
 
 `classmethod supports_aux_operators()`
 
@@ -152,3 +176,4 @@ If the minimum eigensolver computes an eigenstate of the main operator then it c
 **Returns**
 
 True if aux\_operator expectations can be evaluated, False otherwise
+

@@ -1,8 +1,16 @@
+---
+title: SnapshotExpectationValue
+description: API reference for qiskit.providers.aer.extensions.SnapshotExpectationValue
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.aer.extensions.SnapshotExpectationValue
+---
+
 # qiskit.providers.aer.extensions.SnapshotExpectationValue
 
+<span id="qiskit.providers.aer.extensions.SnapshotExpectationValue" />
 
-
-`SnapshotExpectationValue(label, op, single_shot=False, variance=False)`
+`SnapshotExpectationValue(label, op, single_shot=False, variance=False)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/extensions/snapshot_expectation_value.py "view source code")
 
 Snapshot instruction for supported methods of Qasm simulator.
 
@@ -11,7 +19,7 @@ Create an expectation value snapshot instruction.
 **Parameters**
 
 *   **label** (*str*) – the snapshot label.
-*   **op** ([*Operator*](qiskit.quantum_info.Operator#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – operator to snapshot.
+*   **op** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – operator to snapshot.
 *   **single\_shot** (*bool*) – return list for each shot rather than average \[Default: False]
 *   **variance** (*bool*) – compute variance of values \[Default: False]
 
@@ -20,10 +28,12 @@ Create an expectation value snapshot instruction.
 **ExtensionError** – if snapshot is invalid.
 
 <Admonition title="Note" type="note">
-  This instruction will be deprecated after the qiskit-aer 0.8 release. It has been superseded by the [`qiskit.providers.aer.library.SaveExpectationValue`](qiskit.providers.aer.library.SaveExpectationValue#qiskit.providers.aer.library.SaveExpectationValue "qiskit.providers.aer.library.SaveExpectationValue") and [`qiskit.providers.aer.library.SaveExpectationValueVariance`](qiskit.providers.aer.library.SaveExpectationValueVariance#qiskit.providers.aer.library.SaveExpectationValueVariance "qiskit.providers.aer.library.SaveExpectationValueVariance") instructions.
+  This instruction will be deprecated after the qiskit-aer 0.8 release. It has been superseded by the [`qiskit.providers.aer.library.SaveExpectationValue`](qiskit.providers.aer.library.SaveExpectationValue "qiskit.providers.aer.library.SaveExpectationValue") and [`qiskit.providers.aer.library.SaveExpectationValueVariance`](qiskit.providers.aer.library.SaveExpectationValueVariance "qiskit.providers.aer.library.SaveExpectationValueVariance") instructions.
 </Admonition>
 
+### \_\_init\_\_
 
+<span id="qiskit.providers.aer.extensions.SnapshotExpectationValue.__init__" />
 
 `__init__(label, op, single_shot=False, variance=False)`
 
@@ -32,7 +42,7 @@ Create an expectation value snapshot instruction.
 **Parameters**
 
 *   **label** (*str*) – the snapshot label.
-*   **op** ([*Operator*](qiskit.quantum_info.Operator#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – operator to snapshot.
+*   **op** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – operator to snapshot.
 *   **single\_shot** (*bool*) – return list for each shot rather than average \[Default: False]
 *   **variance** (*bool*) – compute variance of values \[Default: False]
 
@@ -41,7 +51,7 @@ Create an expectation value snapshot instruction.
 **ExtensionError** – if snapshot is invalid.
 
 <Admonition title="Note" type="note">
-  This instruction will be deprecated after the qiskit-aer 0.8 release. It has been superseded by the [`qiskit.providers.aer.library.SaveExpectationValue`](qiskit.providers.aer.library.SaveExpectationValue#qiskit.providers.aer.library.SaveExpectationValue "qiskit.providers.aer.library.SaveExpectationValue") and [`qiskit.providers.aer.library.SaveExpectationValueVariance`](qiskit.providers.aer.library.SaveExpectationValueVariance#qiskit.providers.aer.library.SaveExpectationValueVariance "qiskit.providers.aer.library.SaveExpectationValueVariance") instructions.
+  This instruction will be deprecated after the qiskit-aer 0.8 release. It has been superseded by the [`qiskit.providers.aer.library.SaveExpectationValue`](qiskit.providers.aer.library.SaveExpectationValue "qiskit.providers.aer.library.SaveExpectationValue") and [`qiskit.providers.aer.library.SaveExpectationValueVariance`](qiskit.providers.aer.library.SaveExpectationValueVariance "qiskit.providers.aer.library.SaveExpectationValueVariance") instructions.
 </Admonition>
 
 ## Methods
@@ -76,19 +86,25 @@ Create an expectation value snapshot instruction.
 | [`snapshot_type`](#qiskit.providers.aer.extensions.SnapshotExpectationValue.snapshot_type "qiskit.providers.aer.extensions.SnapshotExpectationValue.snapshot_type")    | Return snapshot type                                                          |
 | [`unit`](#qiskit.providers.aer.extensions.SnapshotExpectationValue.unit "qiskit.providers.aer.extensions.SnapshotExpectationValue.unit")                               | Get the time unit of duration.                                                |
 
+### add\_decomposition
 
+<span id="qiskit.providers.aer.extensions.SnapshotExpectationValue.add_decomposition" />
 
 `add_decomposition(decomposition)`
 
 Add a decomposition of the instruction to the SessionEquivalenceLibrary.
 
+### assemble
 
+<span id="qiskit.providers.aer.extensions.SnapshotExpectationValue.assemble" />
 
 `assemble()`
 
 Assemble a QasmQobjInstruction for snapshot\_expectation\_value.
 
+### broadcast\_arguments
 
+<span id="qiskit.providers.aer.extensions.SnapshotExpectationValue.broadcast_arguments" />
 
 `broadcast_arguments(qargs, cargs)`
 
@@ -107,13 +123,17 @@ Validation of the arguments.
 
 **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
 
+### c\_if
 
+<span id="qiskit.providers.aer.extensions.SnapshotExpectationValue.c_if" />
 
 `c_if(classical, val)`
 
 Add classical condition on register classical and value val.
 
+### copy
 
+<span id="qiskit.providers.aer.extensions.SnapshotExpectationValue.copy" />
 
 `copy(name=None)`
 
@@ -131,51 +151,67 @@ updated if it was provided
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
+### decompositions
 
+<span id="qiskit.providers.aer.extensions.SnapshotExpectationValue.decompositions" />
 
 `property decompositions`
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
+### define\_snapshot\_register
 
+<span id="qiskit.providers.aer.extensions.SnapshotExpectationValue.define_snapshot_register" />
 
 `static define_snapshot_register(circuit, label=None, qubits=None)`
 
 Defines qubits to snapshot for all snapshot methods
 
+### definition
 
+<span id="qiskit.providers.aer.extensions.SnapshotExpectationValue.definition" />
 
 `property definition`
 
 Return definition in terms of other basic gates.
 
+### duration
 
+<span id="qiskit.providers.aer.extensions.SnapshotExpectationValue.duration" />
 
 `property duration`
 
 Get the duration.
 
+### inverse
 
+<span id="qiskit.providers.aer.extensions.SnapshotExpectationValue.inverse" />
 
 `inverse()`
 
 Special case. Return self.
 
+### is\_parameterized
 
+<span id="qiskit.providers.aer.extensions.SnapshotExpectationValue.is_parameterized" />
 
 `is_parameterized()`
 
 Return True .IFF. instruction is parameterized else False
 
+### label
 
+<span id="qiskit.providers.aer.extensions.SnapshotExpectationValue.label" />
 
 `property label`
 
 Return snapshot label
 
+### mirror
 
+<span id="qiskit.providers.aer.extensions.SnapshotExpectationValue.mirror" />
 
 `mirror()`
 
@@ -189,15 +225,19 @@ reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
+### params
 
+<span id="qiskit.providers.aer.extensions.SnapshotExpectationValue.params" />
 
 `property params`
 
 return instruction params.
 
+### qasm
 
+<span id="qiskit.providers.aer.extensions.SnapshotExpectationValue.qasm" />
 
 `qasm()`
 
@@ -205,7 +245,9 @@ Return a default OpenQASM string for the instruction.
 
 Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
 
+### repeat
 
+<span id="qiskit.providers.aer.extensions.SnapshotExpectationValue.repeat" />
 
 `repeat(n)`
 
@@ -221,13 +263,15 @@ Containing the definition.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
 **Raises**
 
 **CircuitError** – If n \< 1.
 
+### reverse\_ops
 
+<span id="qiskit.providers.aer.extensions.SnapshotExpectationValue.reverse_ops" />
 
 `reverse_ops()`
 
@@ -243,15 +287,19 @@ sub-instructions reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
+### snapshot\_type
 
+<span id="qiskit.providers.aer.extensions.SnapshotExpectationValue.snapshot_type" />
 
 `property snapshot_type`
 
 Return snapshot type
 
+### soft\_compare
 
+<span id="qiskit.providers.aer.extensions.SnapshotExpectationValue.soft_compare" />
 
 `soft_compare(other)`
 
@@ -269,14 +317,19 @@ are self and other equal up to parameter expressions.
 
 bool
 
+### unit
 
+<span id="qiskit.providers.aer.extensions.SnapshotExpectationValue.unit" />
 
 `property unit`
 
 Get the time unit of duration.
 
+### validate\_parameter
 
+<span id="qiskit.providers.aer.extensions.SnapshotExpectationValue.validate_parameter" />
 
 `validate_parameter(parameter)`
 
 Instruction parameters has no validation or normalization.
+
