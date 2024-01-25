@@ -42,9 +42,25 @@ for backend in service.backends():
 
 Select any system on the [Compute resources](https://quantum.ibm.com/services/resources) tab. The default gates for that system are listed under Details. Note that the non-unitary operations are not listed here; use the method in Qiskit described above to see all native gates and operations for a system.
 
-## Table of gates and operations
+## Tables of gates and operations, by processor family
 
-### Eagle processor family
+### Heron
+
+| Name |  Notes |
+| :--- | :--- |
+| [CZ](/api/qiskit/qiskit.circuit.library.CZGate) | two-qubit gate |
+| [RZ](/api/qiskit/qiskit.circuit.library.RZGate) | single-qubit gate |
+| [SX](/api/qiskit/qiskit.circuit.library.SXGate)  |single-qubit gate |
+| [X](/api/qiskit/qiskit.circuit.library.XGate)  | single-qubit gate |
+| [ID](/api/qiskit/qiskit.circuit.library.IGate) | single-qubit gate wait cycle |
+| [reset](/api/qiskit/qiskit.circuit.library.Reset)  | single-qubit gate, non-unitary; not the same as the initialization done at the start of a circuit to prepare the all 0's state |
+| [if_else](/api/qiskit/qiskit.circuit.IfElseOp) | control flow for classical feedforward |
+| [for_loop](/api/qiskit/qiskit.circuit.ForLoopOp) | control flow for classical feedforward |
+| [switch_case](/api/qiskit/qiskit.circuit.SwitchCaseOp) | control flow for classical feedforward |
+| [measure](/api/qiskit/qiskit.circuit.library.Measure) | |
+| [delay](/api/qiskit/qiskit.circuit.Delay) |  |
+
+### Eagle
 
 | Name |  Notes |
 | :--- | :--- |
@@ -60,28 +76,12 @@ Select any system on the [Compute resources](https://quantum.ibm.com/services/re
 | [measure](/api/qiskit/qiskit.circuit.library.Measure) | |
 | [delay](/api/qiskit/qiskit.circuit.Delay) |  |
 
-### Falcon processor family
+### Falcon
 
 | Name |  Notes |
 | :--- | :--- |
 | [CX](/api/qiskit/qiskit.circuit.library.CXGate)  | two-qubit gate |
 | [RZ](/api/qiskit/qiskit.circuit.library.RZGate) | single-qubit gate |
-| [ID](/api/qiskit/qiskit.circuit.library.IGate) | single-qubit gate wait cycle |
-| [reset](/api/qiskit/qiskit.circuit.library.Reset)  | single-qubit gate, non-unitary; not the same as the initialization done at the start of a circuit to prepare the all 0's state |
-| [if_else](/api/qiskit/qiskit.circuit.IfElseOp) | control flow for classical feedforward |
-| [for_loop](/api/qiskit/qiskit.circuit.ForLoopOp) | control flow for classical feedforward |
-| [switch_case](/api/qiskit/qiskit.circuit.SwitchCaseOp) | control flow for classical feedforward |
-| [measure](/api/qiskit/qiskit.circuit.library.Measure) | |
-| [delay](/api/qiskit/qiskit.circuit.Delay) |  |
-
-### Heron processor family
-
-| Name |  Notes |
-| :--- | :--- |
-| [CZ](/api/qiskit/qiskit.circuit.library.CZGate) | two-qubit gate |
-| [RZ](/api/qiskit/qiskit.circuit.library.RZGate) | single-qubit gate |
-| [SX](/api/qiskit/qiskit.circuit.library.SXGate)  |single-qubit gate |
-| [X](/api/qiskit/qiskit.circuit.library.XGate)  | single-qubit gate |
 | [ID](/api/qiskit/qiskit.circuit.library.IGate) | single-qubit gate wait cycle |
 | [reset](/api/qiskit/qiskit.circuit.library.Reset)  | single-qubit gate, non-unitary; not the same as the initialization done at the start of a circuit to prepare the all 0's state |
 | [if_else](/api/qiskit/qiskit.circuit.IfElseOp) | control flow for classical feedforward |
