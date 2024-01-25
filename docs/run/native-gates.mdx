@@ -44,26 +44,56 @@ Select any system on the [Compute resources](https://quantum.ibm.com/services/re
 
 ## Table of gates and operations
 
+### Eagle processor family
 
-| Name | Processor family | Notes |
-| :--- | :--- | :--- |
-| [ECR](/api/qiskit/qiskit.circuit.library.ECRGate) | Eagle | two-qubit gate |
-| [CX](/api/qiskit/qiskit.circuit.library.CXGate) | Falcon | two-qubit gate |
-| [CZ](/api/qiskit/qiskit.circuit.library.CZGate) | Heron | two-qubit gate |
-| [RZ](/api/qiskit/qiskit.circuit.library.RZGate) | Eagle, Falcon, Heron | single-qubit gate |
-| [SX](/api/qiskit/qiskit.circuit.library.SXGate) (1Q) | Eagle, Heron | single-qubit gate |
-| [X](/api/qiskit/qiskit.circuit.library.XGate) (1Q) | Eagle, Heron | single-qubit gate |
-| [ID](/api/qiskit/qiskit.circuit.library.IGate) | Eagle, Falcon, Heron | single-qubit gate wait cycle |
-| [reset](/api/qiskit/qiskit.circuit.library.Reset) |  Eagle, Falcon, Heron | single-qubit gate, non-unitary; not the same as the initialization done at the start of a circuit to prepare the all 0's state |
-| [if_else](/api/qiskit/qiskit.circuit.IfElseOp) | Eagle, Falcon, Heron | operation |
-| [for_loop](/api/qiskit/qiskit.circuit.ForLoopOp) | Eagle, Falcon, Heron | operation |
-| [switch_case](/api/qiskit/qiskit.circuit.SwitchCaseOp) | Eagle, Falcon, Heron | operation |
-| [measure](/api/qiskit/qiskit.circuit.library.Measure) | Eagle, Falcon, Heron | operation |
-| [delay](/api/qiskit/qiskit.circuit.Delay) | Eagle, Falcon, Heron | operation |
+| Name |  Notes |
+| :--- | :--- |
+| [ECR](/api/qiskit/qiskit.circuit.library.ECRGate) | two-qubit gate |
+| [RZ](/api/qiskit/qiskit.circuit.library.RZGate) | single-qubit gate |
+| [SX](/api/qiskit/qiskit.circuit.library.SXGate)  |single-qubit gate |
+| [X](/api/qiskit/qiskit.circuit.library.XGate)  | single-qubit gate |
+| [ID](/api/qiskit/qiskit.circuit.library.IGate) | single-qubit gate wait cycle |
+| [reset](/api/qiskit/qiskit.circuit.library.Reset)  | single-qubit gate, non-unitary; not the same as the initialization done at the start of a circuit to prepare the all 0's state |
+| [if_else](/api/qiskit/qiskit.circuit.IfElseOp) | control flow for classical feedforward |
+| [for_loop](/api/qiskit/qiskit.circuit.ForLoopOp) | control flow for classical feedforward |
+| [switch_case](/api/qiskit/qiskit.circuit.SwitchCaseOp) | control flow for classical feedforward |
+| [measure](/api/qiskit/qiskit.circuit.library.Measure) | |
+| [delay](/api/qiskit/qiskit.circuit.Delay) |  |
+
+### Falcon processor family
+
+| Name |  Notes |
+| :--- | :--- |
+| [CX](/api/qiskit/qiskit.circuit.library.CXGate)  | two-qubit gate |
+| [RZ](/api/qiskit/qiskit.circuit.library.RZGate) | single-qubit gate |
+| [ID](/api/qiskit/qiskit.circuit.library.IGate) | single-qubit gate wait cycle |
+| [reset](/api/qiskit/qiskit.circuit.library.Reset)  | single-qubit gate, non-unitary; not the same as the initialization done at the start of a circuit to prepare the all 0's state |
+| [if_else](/api/qiskit/qiskit.circuit.IfElseOp) | control flow for classical feedforward |
+| [for_loop](/api/qiskit/qiskit.circuit.ForLoopOp) | control flow for classical feedforward |
+| [switch_case](/api/qiskit/qiskit.circuit.SwitchCaseOp) | control flow for classical feedforward |
+| [measure](/api/qiskit/qiskit.circuit.library.Measure) | |
+| [delay](/api/qiskit/qiskit.circuit.Delay) |  |
+
+### Heron processor family
+
+| Name |  Notes |
+| :--- | :--- |
+| [CZ](/api/qiskit/qiskit.circuit.library.CZGate) | two-qubit gate |
+| [RZ](/api/qiskit/qiskit.circuit.library.RZGate) | single-qubit gate |
+| [SX](/api/qiskit/qiskit.circuit.library.SXGate)  |single-qubit gate |
+| [X](/api/qiskit/qiskit.circuit.library.XGate)  | single-qubit gate |
+| [ID](/api/qiskit/qiskit.circuit.library.IGate) | single-qubit gate wait cycle |
+| [reset](/api/qiskit/qiskit.circuit.library.Reset)  | single-qubit gate, non-unitary; not the same as the initialization done at the start of a circuit to prepare the all 0's state |
+| [if_else](/api/qiskit/qiskit.circuit.IfElseOp) | control flow for classical feedforward |
+| [for_loop](/api/qiskit/qiskit.circuit.ForLoopOp) | control flow for classical feedforward |
+| [switch_case](/api/qiskit/qiskit.circuit.SwitchCaseOp) | control flow for classical feedforward |
+| [measure](/api/qiskit/qiskit.circuit.library.Measure) | |
+| [delay](/api/qiskit/qiskit.circuit.Delay) |  |
+
 
 <Admonition type="tip" title="The init_qubits flag">
 
-By default, the `init_qubits` flag is set to True. If the `init_qubits` flag is set to False, you must insert [resets](/api/qiskit/qiskit.circuit.library.Reset) at the start of your circuit to start your qubits in the ground state. Otherwise, qubits will begin in their state from the previous shot.
+By default, the `init_qubits` flag is set to True. If the `init_qubits` flag is set to False, you must insert [resets](/api/qiskit/qiskit.circuit.library.Reset) at the start of your circuit to start your qubits in the ground state. Otherwise, if your job consists of multiple circuits, the qubits will begin in their state from the previous shot. (If a job consists of multiple circuits, the shots will be executed in a "round-robin" fashion. That is, one shot will be collected from every circuit, and then the next shot will be collected from every circuit, and so on.)
 </Admonition>
 
 ## Next steps
