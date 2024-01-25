@@ -18,7 +18,7 @@ Translate parameterized gates to a supported basis set.
 
 Once a parameterized instruction is found that is not in the `supported_gates` list, the instruction is decomposed one level and the parameterized sub-blocks are recursively decomposed. The recursion is stopped once all parameterized gates are in `supported_gates`, or if a gate has no definition and a translation to the basis is attempted (this might happen e.g. for the `UGate` if it’s not in the specified gate list).
 
-## Example
+**Example**
 
 The following, multiply nested circuit:
 

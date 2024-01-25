@@ -16,7 +16,7 @@ Bases: [`Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse
 
 A blocking instruction with no other effect. The delay is used for aligning and scheduling other instructions.
 
-## Example
+**Example**
 
 To schedule an instruction at time = 10, on a channel assigned to the variable `channel`, the following could be used:
 

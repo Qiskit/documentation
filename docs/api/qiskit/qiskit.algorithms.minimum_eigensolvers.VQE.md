@@ -108,7 +108,7 @@ A callback that can access the intermediate data at each optimization step. Thes
 
 Callable\[\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)"), np.ndarray, [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)"), [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)"), Any]], None] | None
 
-## References
+**References**
 
 **\[1]: Peruzzo, A., et al, “A variational eigenvalue solver on a quantum processor”**
 

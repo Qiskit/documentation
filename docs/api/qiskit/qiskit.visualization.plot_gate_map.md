@@ -46,7 +46,7 @@ Figure
 *   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if tried to pass a simulator, or if the backend is None, but one of num\_qubits, mpl\_data, or cmap is None.
 *   [**MissingOptionalLibraryError**](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") – if matplotlib not installed.
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumCircuit, execute

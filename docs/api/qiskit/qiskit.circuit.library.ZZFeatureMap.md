@@ -30,7 +30,7 @@ For 3 qubits and 1 repetition and linear entanglement the circuit is represented
 
 where $\varphi$ is a classical non-linear function, which defaults to $\varphi(x) = x$ if and $\varphi(x,y) = (\pi - x)(\pi - y)$.
 
-## Examples
+**Examples**
 
 ```python
 >>> from qiskit.circuit.library import ZZFeatureMap
@@ -278,7 +278,7 @@ The parameters used in the underlying circuit.
 
 This includes float values and duplicates.
 
-## Examples
+**Examples**
 
 ```python
 >>> # prepare circuit ...

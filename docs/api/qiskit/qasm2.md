@@ -30,6 +30,8 @@ Qiskit has support for interoperation with OpenQASM 2.0 programs, both [parsing 
 
 This module contains two public functions, both of which create a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") from an OpenQASM 2 program. [`load()`](#qiskit.qasm2.load "qiskit.qasm2.load") takes a filename, while [`loads()`](#qiskit.qasm2.loads "qiskit.qasm2.loads") takes the program itself as a string. Their internals are very similar, so both offer almost the same API.
 
+### load
+
 <span id="qiskit.qasm2.load" />
 
 `qiskit.qasm2.load(filename, *, include_path=('.',), include_input_directory='append', custom_instructions=(), custom_classical=(), strict=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/qasm2/__init__.py "view source code")
@@ -52,6 +54,8 @@ A circuit object representing the same OpenQASM 2 program.
 **Return type**
 
 [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+
+### loads
 
 <span id="qiskit.qasm2.loads" />
 
@@ -121,6 +125,8 @@ Both of the loader functions have an optional “strict” mode. By default, thi
 
 Similar to other serialisation modules in Python, this module offers two public functions: [`dump()`](#qiskit.qasm2.dump "qiskit.qasm2.dump") and [`dumps()`](#qiskit.qasm2.dumps "qiskit.qasm2.dumps"), which take a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") and write out a representative OpenQASM 2 program to a file-like object or return a string, respectively.
 
+### dump
+
 <span id="qiskit.qasm2.dump" />
 
 `qiskit.qasm2.dump(circuit, filename_or_stream, /)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/qasm2/export.py "view source code")
@@ -135,6 +141,8 @@ Dump a circuit as an OpenQASM 2 program to a file or stream.
 **Raises**
 
 [**QASM2ExportError**](#qiskit.qasm2.QASM2ExportError "qiskit.qasm2.QASM2ExportError") – if the circuit cannot be represented by OpenQASM 2.
+
+### dumps
 
 <span id="qiskit.qasm2.dumps" />
 

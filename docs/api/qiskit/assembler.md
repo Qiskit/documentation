@@ -20,6 +20,8 @@ python_api_name: qiskit.assembler
 
 ## Circuit Assembler
 
+### assemble\_circuits
+
 <span id="qiskit.assembler.assemble_circuits" />
 
 `qiskit.assembler.assemble_circuits(circuits, run_config, qobj_id, qobj_header)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/assembler/assemble_circuits.py "view source code")
@@ -41,7 +43,7 @@ The qobj to be run on the backends
 
 [*QasmQobj*](qiskit.qobj.QasmQobj "qiskit.qobj.qasm_qobj.QasmQobj")
 
-## Examples
+**Examples**
 
 ```python
 from qiskit.circuit import QuantumRegister, ClassicalRegister, QuantumCircuit
@@ -62,6 +64,8 @@ qobj = assemble_circuits(circuits=[qc],
 ```
 
 ## Schedule Assembler
+
+### assemble\_schedules
 
 <span id="qiskit.assembler.assemble_schedules" />
 
@@ -88,7 +92,7 @@ The Qobj to be run on the backends.
 
 [*PulseQobj*](qiskit.qobj.PulseQobj "qiskit.qobj.pulse_qobj.PulseQobj")
 
-## Examples
+**Examples**
 
 ```python
 from qiskit import pulse
@@ -127,6 +131,8 @@ pulseQobj = assemble_schedules(schedules=[schedule],
 
 ## Disassembler
 
+### disassemble
+
 <span id="qiskit.assembler.disassemble" />
 
 `qiskit.assembler.disassemble(qobj)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/assembler/disassemble.py "view source code")
@@ -153,7 +159,7 @@ The disassembled program which consists of:
 
 Union\[CircuitModule, PulseModule]
 
-## Examples
+**Examples**
 
 ```python
 from qiskit.circuit import QuantumRegister, ClassicalRegister, QuantumCircuit

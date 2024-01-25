@@ -213,6 +213,8 @@ Utility classes used by algorithms (mainly for type-hinting purposes).
 
 Utility functions used by algorithms.
 
+### eval\_observables
+
 <span id="qiskit.algorithms.eval_observables" />
 
 `qiskit.algorithms.eval_observables(quantum_instance, quantum_state, observables, expectation, threshold=1e-12)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/aux_ops_evaluator.py "view source code")
@@ -244,6 +246,8 @@ A list or a dictionary of tuples (mean, standard deviation).
 **Return type**
 
 ListOrDict\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)"), [complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")]]
+
+### estimate\_observables
 
 <span id="qiskit.algorithms.estimate_observables" />
 
