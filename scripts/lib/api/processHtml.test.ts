@@ -351,7 +351,8 @@ describe("processMembersAndSetMeta()", () => {
 </ul>
 </dd>`;
     const doc = Doc.load(html);
-    processMembersAndSetMeta(doc.$, doc.$main, {});
+    const meta: Metadata = {};
+    processMembersAndSetMeta(doc.$, doc.$main, meta);
     doc.expectHtml(`      <h1>Circuit Converters</h1>
 <div><h3>circuit_to_dag</h3><span class="target" id="qiskit.converters.circuit_to_dag"><p><code>
 <span class="sig-prename descclassname"><span class="pre">qiskit.converters.</span></span><span class="sig-name descname"><span class="pre">circuit_to_dag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">circuit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy_operations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qubit_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clbit_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#qiskit.converters.circuit_to_dag" title="Permalink to this definition">¶</a></code><a href="../_modules/qiskit/converters/circuit_to_dag.html#circuit_to_dag" title="view source code">GitHub</a></p>
@@ -363,6 +364,10 @@ describe("processMembersAndSetMeta()", () => {
 <li><p><strong>copy_operations</strong> – Deep copy the operation objects in the QuantumCircuit for the output DAGCircuit.</p></li>
 </ul>
 </dd></dl></div></span></div>`);
+    expect(meta).toEqual({
+      apiType: "function",
+      apiName: "qiskit.converters.circuit_to_dag",
+    });
   });
 
   test("function without added heading", () => {
@@ -393,7 +398,8 @@ backends may not have this attribute.</p>
 </dd></dl>
 `;
     const doc = Doc.load(html);
-    processMembersAndSetMeta(doc.$, doc.$main, {});
+    const meta: Metadata = {};
+    processMembersAndSetMeta(doc.$, doc.$main, meta);
     doc.expectHtml(`<h1>least_busy</h1>
 <div><span class=\"target\" id=\"qiskit_ibm_provider.least_busy\"><p><code>
 <span class=\"sig-name descname\"><span class=\"pre\">least_busy</span></span><span class=\"sig-paren\">(</span><em class=\"sig-param\"><span class=\"n\"><span class=\"pre\">backends</span></span></em><span class=\"sig-paren\">)</span><a class=\"headerlink\" href=\"#qiskit_ibm_provider.least_busy\" title=\"Link to this definition\">¶</a></code><a href=\"../_modules/qiskit_ibm_provider.html#least_busy\" title=\"view source code\">GitHub</a></p>
@@ -418,5 +424,9 @@ backends may not have this attribute.</p>
 </dd>
 </dl>
 </div></span></div>`);
+    expect(meta).toEqual({
+      apiType: "function",
+      apiName: "qiskit_ibm_provider.least_busy",
+    });
   });
 });
