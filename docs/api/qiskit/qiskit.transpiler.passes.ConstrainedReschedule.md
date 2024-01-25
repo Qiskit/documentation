@@ -40,7 +40,7 @@ c: 1/════════════════════════╩
                              0
 ```
 
-## Notes
+**Notes**
 
 Your backend may execute circuits violating these alignment constraints. However, you may obtain erroneous measurement result because of the untracked phase originating in the instruction misalignment.
 

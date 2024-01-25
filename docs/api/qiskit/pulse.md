@@ -2064,7 +2064,7 @@ None
 
 [*AlignmentKind*](#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.alignments.AlignmentKind")
 
-## Notes
+**Notes**
 
 The scheduling is performed for sub-schedules within the context rather than channel-wise. If you want to apply the equispaced context for each channel, you should use the context independently for channels.
 
@@ -2118,7 +2118,7 @@ None
 
 [*AlignmentKind*](#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.alignments.AlignmentKind")
 
-## Notes
+**Notes**
 
 The scheduling is performed for sub-schedules within the context rather than channel-wise. If you want to apply the numerical context for each channel, you need to apply the context independently to channels.
 

@@ -1255,7 +1255,7 @@ Depth of circuit.
 
 [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
 
-## Notes
+**Notes**
 
 The circuit depth and the DAG depth need not be the same.
 
@@ -1414,7 +1414,7 @@ contains the index at which the `Bit` can be found (in either [`qubits`](#qiskit
 
 namedtuple([int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)"), List\[Tuple([Register](qiskit.circuit.Register "qiskit.circuit.Register"), [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)"))])
 
-## Notes
+**Notes**
 
 The circuit index of an [`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.AncillaQubit") will be its index in [`qubits`](#qiskit.circuit.QuantumCircuit.qubits "qiskit.circuit.QuantumCircuit.qubits"), not [`ancillas`](#qiskit.circuit.QuantumCircuit.ancillas "qiskit.circuit.QuantumCircuit.ancillas").
 
@@ -2432,7 +2432,7 @@ Conditional nonlocal gates are also included.
 
 Computes the number of tensor factors in the unitary (quantum) part of the circuit only.
 
-## Notes
+**Notes**
 
 This is here for backwards compatibility, and will be removed in a future release of Qiskit. You should call num\_unitary\_factors instead.
 

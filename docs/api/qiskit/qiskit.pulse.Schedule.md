@@ -81,7 +81,7 @@ Returns channels that this schedule uses.
 
 Return the child schedule components of this `Schedule` in the order they were added to the schedule.
 
-## Notes
+**Notes**
 
 Nested schedules are returned as-is. If you want to collect only instructions, use py:meth:\~Schedule.instructions instead.
 

@@ -50,7 +50,7 @@ c: 1/════════════════════════╩
 
 This pass always inserts a positive delay before measurements rather than reducing other delays.
 
-## Notes
+**Notes**
 
 The Backend may allow users to execute circuits violating the alignment constraint. However, it may return meaningless measurement data mainly due to the phase error.
 
