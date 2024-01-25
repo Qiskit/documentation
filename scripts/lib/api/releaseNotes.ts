@@ -11,7 +11,7 @@
 // that they have been altered from the originals.
 
 import { parse } from "path";
-import { readFile, writeFile, readdir } from "fs/promises";
+import { readFile, writeFile, readdir, access } from "fs/promises";
 
 import { $ } from "zx";
 
@@ -108,12 +108,17 @@ export async function updateHistoricalTocFiles(pkg: Pkg): Promise<void> {
   ).filter((file) => file.isDirectory() && file.name.match(/[0-9].*/));
 
   for (let folder of historicalFolders) {
-    let tocFile = await readFile(
-      `${getRoot()}/docs/api/${pkg.name}/${folder.name}/_toc.json`,
-      {
-        encoding: "utf8",
-      },
-    );
+    const tocFilePath = `${getRoot()}/docs/api/${pkg.name}/${
+      folder.name
+    }/_toc.json`;
+    try {
+      await access(tocFilePath);
+    } catch {
+      continue;
+    }
+    let tocFile = await readFile(tocFilePath, {
+      encoding: "utf8",
+    });
 
     let jsonData = JSON.parse(tocFile);
 
