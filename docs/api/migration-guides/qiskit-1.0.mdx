@@ -8,7 +8,7 @@ description: Adapt to changes in Qiskit 1.0
 
 ## Packaging changes
 
-Qiskit 1.0 uses a different packaging structure to previous Qiskits, and may cause problems in environments using packages that are not ready for Qiskit 1.0.
+Qiskit 1.0 uses a different packaging structure to previous Qiskit versions, and may cause problems in environments using packages that are not ready for Qiskit 1.0.
 
 <Admonition type="caution">
 We **do not** recommend attempting to upgrade an existing Python virtual environment from Qiskit 0.45 or before to Qiskit 1.0 in place.
@@ -112,7 +112,7 @@ There are several strategies you can try, in approximate order of preference (mo
 
 <Admonition type="danger">
 This is *deliberately* creating an invalid environment, and any test using it is less valid because of it.
-Things might appear to work, but this does not *guarantee* that you are compatible with Qiskit 1.0, because the environment is not self-consistent, and there could be files around that would not exist with a proper environment, or the behaviour of an overridden package might change with Qiskit 1.0.
+Things might appear to work, but this does not *guarantee* that you are compatible with Qiskit 1.0, because the environment is not self-consistent, and there could be files around that would not exist with a proper environment, or the behavior of an overridden package might change with Qiskit 1.0.
 </Admonition>
 
 <Admonition type="note">
@@ -480,7 +480,7 @@ This is not your fault, but the error message is still correct, and Qiskit canno
 </Admonition>
 
 The error means that Qiskit is installed in an invalid environment, which includes both Qiskit 1.0 and a version from before 1.0.
-This is characterised by the `qiskit-terra` distribution being installed alongside Qiskit 1.0.
+This is characterized by the `qiskit-terra` distribution being installed alongside Qiskit 1.0.
 You can check what distributions are installed by running `pip list`, but you cannot fix this by simply uninstalling `qiskit-terra`.
 
 Unfortunately, `qiskit>=1.0` and `qiskit-terra` are conflicting distributions, and cannot both be installed together.
@@ -539,12 +539,12 @@ Seeing a dependency on `qiskit-terra` can mean one of a few things:
 * The dependent is an old package, and will not be updated to support Qiskit 1.0.
 
   If this is the case, there is no chance of using the package with Qiskit 1.0, and you will need to continue using a previous version.
-  Typically this is characterised by the dependent being at its latest version (assuming the environment is new, and you didn't pin it lower), and it having a direct requirement on `qiskit-terra`.
+  Typically this is characterized by the dependent being at its latest version (assuming the environment is new, and you didn't pin it lower), and it having a direct requirement on `qiskit-terra`.
 
 * The dependent is a package that is actively maintained, but does not yet support Qiskit 1.0.
 
   If this is the case, you will need to wait for the developers to release a compatible version—please be patient!
-  Typically this is characterised by the installed distribution *not* being at its latest version, despite your installation command not specifying a version.
+  Typically this is characterized by the installed distribution *not* being at its latest version, despite your installation command not specifying a version.
   You can check the latest release version of the distribution by finding its page on https://pypi.org.
 
   `pip` will likely have searched old versions of the package until it found one (possibly from months or years ago) that depended only on `qiskit-terra`.
@@ -582,7 +582,7 @@ You can also use the `pipdeptree` commands in [the previous section about Qiskit
 
 First off: you must be *absolutely* certain that your environments are correct.
 The test that Qiskit uses to determine a broken environment is quite robust; specifically, it queries `importlib.metadata` for distribution information on installed packages, and checks the version numbers returned.
-The Qiskit 1.0 side of the test also checks for sentinel files that were present in old Qiskits and not Qiskit 1.0.
+The Qiskit 1.0 side of the test also checks for sentinel files that were present in old Qiskit versions and not Qiskit 1.0.
 
 If you are a Qiskit developer, it's possible that you have old `qiskit.egg-info` or `qiskit-terra.egg-info` (or `*.dist-info`) directories present on your meta path (see `sys.meta_path`), left over from old editable installations.
 In particular, check your working directory for any `*.egg-info` and `*.dist-info` directories.
