@@ -254,19 +254,19 @@ test("convertRubricsToHeaders()", () => {
     <p class="rubric">Examples</p>
     <p class="rubric">References</p>
     <p class="rubric">Reference</p>
-    <p class="rubric">Attributes</p>
-    <p class="rubric">Methods</p>
     <p class="rubric">Simple examples</p>
-    <p class="rubric">Example code</p>`);
+    <p class="rubric">Example code</p>
+    <p class="rubric">Attributes</p>
+    <p class="rubric">Methods</p>`);
   convertRubricsToHeaders(doc.$, doc.$main);
   doc.expectHtml(`<strong>Example</strong>
     <strong>Examples</strong>
     <strong>References</strong>
-    <h2>Reference</h2>
+    <strong>Reference</strong>
+    <strong>Simple examples</strong>
+    <strong>Example code</strong>
     <h2>Attributes</h2>
-    <h2>Methods</h2>
-    <h2>Simple examples</h2>
-    <h2>Example code</h2>`);
+    <h2>Methods</h2>`);
 });
 
 describe("maybeSetModuleMetadata()", () => {
