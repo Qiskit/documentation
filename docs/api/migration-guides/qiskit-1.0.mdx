@@ -24,30 +24,37 @@ It is very tricky and error-prone to upgrade an existing installation in-place t
 This section will use the `venv` module that is part of the Python standard library in its examples.
 If you use a different tool (such as `virtualenv` or `conda`), you should consult its documentation if you are unsure of how the commands line up.
 
-The examples will assume a `bash`-like shell for non-Python command-line inputs.
+For Linux and macOS commands, we will use a bash-like syntax for the command-line syntax.
+For Windows we will use PowerShell.
 </Admonition>
 
 <span id="creating-a-venv"></span>
 #### Creating the new environment
 
-1. Create a new virtual environment, using your preferred (supported!) version of Python 3:
+1. Create a new virtual environment, using your preferred version of Python 3.8 or higher:
 
+   Linux and macOS:
    ```bash
-   python3 -m venv ~/qiskit-1.0-venv
+   python3 -m venv /path/to/qiskit-1.0-venv
    ```
 
-   You can use any path you like in place of `~/qiskit-1.0-venv`.
+   Windows with PowerShell:
+   ```powershell
+   python3 -m venv C:\path\to\qiskit-1.0-venv
+   ```
+
+   You can use any path you like in place of `/path/to/qiskit-1.0-venv`.
 
 2. Activate the environment.
 
-   On Linux and macOS:
+   Linux and macOS:
    ```bash
    source ~/qiskit-1.0-venv/bin/activate
    ```
 
-   On Windows:
-   ```bash
-   source ~\qiskit-1.0-venv\Scripts\activate
+   Windows with PowerShell:
+   ```powershell
+   C:\path\to\qiskit-1.0-venv\Scripts\activate.ps1
    ```
 
 3. Install all the packages you want to install.
@@ -62,6 +69,19 @@ The examples will assume a `bash`-like shell for non-Python command-line inputs.
    ```bash
    pip install 'qiskit>=1' jupyterlab pandas matplotlib
    ```
+
+   <Admonition type="tip">
+   Qiskit 1.0 includes breaking changes, and several packages will have marked themselves as not-yet-compatible with it, so you might see errors from `pip` when running this until they have new versions.
+   Old versions of packages may also depend on the legacy `qiskit-terra` package, which might not immediately error out during this command, but might raise an error when running `import qiskit`.
+
+   If you know of any packages that are not yet compatible with Qiskit 1.0, you will have to not install those yet, and wait until the packages are updated.
+   You can use a separate virtual environment with Qiskit 0.45 or 0.46 for those packages.
+
+   If you encounter issues, consult [the troubleshooting section](#troubleshooting) below, ask on [the Qiskit Slack](https://qisk.it/join-slack/), or if you think there is a Qiskit bug you can [file an issue against Qiskit](https://github.com/Qiskit/qiskit/issues/new).
+
+   The Qiskit team are working with the greater ecosystem to help other developers prepare their packages, and we hope that any problems will lessen over time.
+   </Admonition>
+
 
 4. If you are not planning to use the environment immediately, use the `deactivate` command to leave it.
 
@@ -337,7 +357,7 @@ The *search path* is not only a search over directories—that is only one compo
 These complications aren't necessary to understand the problems of this section, so you can use the model described above.
 </Admonition>
 
-Historically, Qiskit comprised of many Python distributions: `qiskit-terra`, the compiler core; `qiskit-aer`, the high-performance simulator; the original IBM Quantum provider; and several now-obsolete packages providing particular exploratory algorithmic or error-mitigation features.
+Historically, Qiskit comprised of many Python distributions: `qiskit-terra`, the compiler core; `qiskit-aer`, the high-performance simulator; the original IBM Quantum provider; and several now-obsolete packages providing particular exploratory algorithmic or experiment-running features.
 For user ease, we also provided a Python distribution called `qiskit`, which contained no code of its own, but caused all the other components to be installed.
 We called this the "metapackage", by analogy to similar concepts in other package managers.
 The *code* of the core of Qiskit lived in `qiskit-terra`, which was the owner of the root of the Python package `qiskit` (in other words, it controlled what happened when you ran `import qiskit`).
@@ -366,6 +386,7 @@ We removed the last of the Qiskit-family use of the hooks in non-obsolete packag
 Starting from Qiskit 1.0, we have completely removed the ability for packages to extend any `qiskit` namespace, meaning that `pip uninstall` on the correct distribution in a valid environment will work as expected.
 
 
+<span id="troubleshooting"></span>
 ### Troubleshooting
 
 The packaging changes around Qiskit 1.0 are tricky, and Python's standard tool `pip` is not rich enough in some ways for us to communicate the changes in the distribution structures before and after Qiskit 1.0 to it, which unfortunately can cause issues for users.
