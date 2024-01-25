@@ -25,8 +25,8 @@ python_api_name: qiskit.algorithms.eigensolvers
 |                                                                                                                                                  |                                              |
 | ------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------- |
 | [`Eigensolver`](qiskit.algorithms.eigensolvers.Eigensolver "qiskit.algorithms.eigensolvers.Eigensolver")()                                       | The eigensolver interface.                   |
-| [`NumPyEigensolver`](qiskit.algorithms.eigensolvers.NumPyEigensolver "qiskit.algorithms.eigensolvers.NumPyEigensolver")(\[k, filter\_criterion]) | The NumPy eigensolver algorithm.             |
-| [`VQD`](qiskit.algorithms.eigensolvers.VQD "qiskit.algorithms.eigensolvers.VQD")(estimator, fidelity, ansatz, optimizer, \*)                     | The Variational Quantum Deflation algorithm. |
+| [`NumPyEigensolver`](qiskit.algorithms.eigensolvers.NumPyEigensolver "qiskit.algorithms.eigensolvers.NumPyEigensolver")(\[k, filter\_criterion]) | The NumPy eigensolver algorithm.             |
+| [`VQD`](qiskit.algorithms.eigensolvers.VQD "qiskit.algorithms.eigensolvers.VQD")(estimator, fidelity, ansatz, optimizer, \*)                     | The Variational Quantum Deflation algorithm. |
 
 ### Results
 

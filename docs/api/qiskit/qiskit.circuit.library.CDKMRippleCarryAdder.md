@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CDKMRippleCarryAdder
 
 <span id="qiskit.circuit.library.CDKMRippleCarryAdder" />
 
-`qiskit.circuit.library.CDKMRippleCarryAdder(num_state_qubits, kind='full', name='CDKMRippleCarryAdder')`
+`qiskit.circuit.library.CDKMRippleCarryAdder(num_state_qubits, kind='full', name='CDKMRippleCarryAdder')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/arithmetic/adders/cdkm_ripple_carry_adder.py "view source code")
 
 Bases: `Adder`
 
@@ -138,7 +138,7 @@ Return the global phase of the current circuit scope in radians.
 
 ### instances
 
-`= 198`
+`= 167`
 
 <span id="qiskit.circuit.library.CDKMRippleCarryAdder.layout" />
 

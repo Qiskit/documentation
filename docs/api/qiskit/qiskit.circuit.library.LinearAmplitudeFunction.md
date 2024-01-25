@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.LinearAmplitudeFunction
 
 <span id="qiskit.circuit.library.LinearAmplitudeFunction" />
 
-`qiskit.circuit.library.LinearAmplitudeFunction(num_state_qubits, slope, offset, domain, image, rescaling_factor=1, breakpoints=None, name='F')`
+`qiskit.circuit.library.LinearAmplitudeFunction(num_state_qubits, slope, offset, domain, image, rescaling_factor=1, breakpoints=None, name='F')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/arithmetic/linear_amplitude_function.py "view source code")
 
 Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
@@ -126,7 +126,7 @@ Return the global phase of the current circuit scope in radians.
 
 ### instances
 
-`= 219`
+`= 181`
 
 <span id="qiskit.circuit.library.LinearAmplitudeFunction.layout" />
 

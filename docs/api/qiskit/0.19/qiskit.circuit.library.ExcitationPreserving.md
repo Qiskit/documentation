@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.ExcitationPreserving
 
 <span id="qiskit.circuit.library.ExcitationPreserving" />
 
-`ExcitationPreserving(num_qubits=None, mode='iswap', entanglement='full', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None)`
+`ExcitationPreserving(num_qubits=None, mode='iswap', entanglement='full', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/n_local/excitation_preserving.py "view source code")
 
 The heurisitic excitation-preserving wave function ansatz.
 

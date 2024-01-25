@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.PolynomialPauliRotations
 
 <span id="qiskit.circuit.library.PolynomialPauliRotations" />
 
-`qiskit.circuit.library.PolynomialPauliRotations(num_state_qubits=None, coeffs=None, basis='Y', name='poly')`
+`qiskit.circuit.library.PolynomialPauliRotations(num_state_qubits=None, coeffs=None, basis='Y', name='poly')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/arithmetic/polynomial_pauli_rotations.py "view source code")
 
 Bases: [`FunctionalPauliRotations`](qiskit.circuit.library.FunctionalPauliRotations "qiskit.circuit.library.arithmetic.functional_pauli_rotations.FunctionalPauliRotations")
 
@@ -134,7 +134,7 @@ Return the global phase of the current circuit scope in radians.
 
 ### instances
 
-`= 309`
+`= 271`
 
 <span id="qiskit.circuit.library.PolynomialPauliRotations.layout" />
 

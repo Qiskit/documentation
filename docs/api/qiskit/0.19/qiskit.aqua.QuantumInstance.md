@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.QuantumInstance
 
 <span id="qiskit.aqua.QuantumInstance" />
 
-`QuantumInstance(backend, shots=1024, seed_simulator=None, max_credits=10, basis_gates=None, coupling_map=None, initial_layout=None, pass_manager=None, seed_transpiler=None, optimization_level=None, backend_options=None, noise_model=None, timeout=None, wait=5, skip_qobj_validation=True, measurement_error_mitigation_cls=None, cals_matrix_refresh_period=30, measurement_error_mitigation_shots=None, job_callback=None)`
+`QuantumInstance(backend, shots=1024, seed_simulator=None, max_credits=10, basis_gates=None, coupling_map=None, initial_layout=None, pass_manager=None, seed_transpiler=None, optimization_level=None, backend_options=None, noise_model=None, timeout=None, wait=5, skip_qobj_validation=True, measurement_error_mitigation_cls=None, cals_matrix_refresh_period=30, measurement_error_mitigation_shots=None, job_callback=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/quantum_instance.py "view source code")
 
 Quantum Backend including execution setting.
 
@@ -46,11 +46,47 @@ Quantum Instance holds a Qiskit Terra backend as well as configuration for circu
 
 ## Attributes
 
+### BACKEND\_CONFIG
+
+<span id="qiskit.aqua.QuantumInstance.BACKEND_CONFIG" />
+
+`= ['basis_gates', 'coupling_map']`
+
+### BACKEND\_OPTIONS
+
+<span id="qiskit.aqua.QuantumInstance.BACKEND_OPTIONS" />
+
+`= ['initial_statevector', 'chop_threshold', 'max_parallel_threads', 'max_parallel_experiments', 'statevector_parallel_threshold', 'statevector_hpc_gate_opt', 'statevector_sample_measure_opt', 'max_parallel_shots']`
+
 ### BACKEND\_OPTIONS\_QASM\_ONLY
 
 <span id="qiskit.aqua.QuantumInstance.BACKEND_OPTIONS_QASM_ONLY" />
 
 `= ['statevector_sample_measure_opt', 'max_parallel_shots']`
+
+### COMPILE\_CONFIG
+
+<span id="qiskit.aqua.QuantumInstance.COMPILE_CONFIG" />
+
+`= ['pass_manager', 'initial_layout', 'seed_transpiler', 'optimization_level']`
+
+### NOISE\_CONFIG
+
+<span id="qiskit.aqua.QuantumInstance.NOISE_CONFIG" />
+
+`= ['noise_model']`
+
+### QJOB\_CONFIG
+
+<span id="qiskit.aqua.QuantumInstance.QJOB_CONFIG" />
+
+`= ['timeout', 'wait']`
+
+### RUN\_CONFIG
+
+<span id="qiskit.aqua.QuantumInstance.RUN_CONFIG" />
+
+`= ['shots', 'max_credits', 'memory', 'seed_simulator']`
 
 ### backend
 
@@ -122,7 +158,7 @@ checks if skip qobj validation
 
 <span id="qiskit.aqua.QuantumInstance.assemble" />
 
-`QuantumInstance.assemble(circuits)`
+`QuantumInstance.assemble(circuits)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/quantum_instance.py "view source code")
 
 assemble circuits
 
@@ -130,7 +166,7 @@ assemble circuits
 
 <span id="qiskit.aqua.QuantumInstance.cals_matrix" />
 
-`QuantumInstance.cals_matrix(qubit_index=None)`
+`QuantumInstance.cals_matrix(qubit_index=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/quantum_instance.py "view source code")
 
 Get the stored calibration matrices and its timestamp.
 
@@ -154,7 +190,7 @@ tuple(np.ndarray, int)
 
 <span id="qiskit.aqua.QuantumInstance.execute" />
 
-`QuantumInstance.execute(circuits, had_transpiled=False)`
+`QuantumInstance.execute(circuits, had_transpiled=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/quantum_instance.py "view source code")
 
 A wrapper to interface with quantum backend.
 
@@ -179,7 +215,7 @@ assembling to the qobj.
 
 <span id="qiskit.aqua.QuantumInstance.maybe_refresh_cals_matrix" />
 
-`QuantumInstance.maybe_refresh_cals_matrix(timestamp=None)`
+`QuantumInstance.maybe_refresh_cals_matrix(timestamp=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/quantum_instance.py "view source code")
 
 Calculate the time difference from the query of last time.
 
@@ -195,7 +231,7 @@ bool
 
 <span id="qiskit.aqua.QuantumInstance.set_config" />
 
-`QuantumInstance.set_config(**kwargs)`
+`QuantumInstance.set_config(**kwargs)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/quantum_instance.py "view source code")
 
 Set configurations for the quantum instance.
 
@@ -203,7 +239,7 @@ Set configurations for the quantum instance.
 
 <span id="qiskit.aqua.QuantumInstance.transpile" />
 
-`QuantumInstance.transpile(circuits)`
+`QuantumInstance.transpile(circuits)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/quantum_instance.py "view source code")
 
 A wrapper to transpile circuits to allow algorithm access the transpiled circuits. :param circuits: circuits to transpile :type circuits: QuantumCircuit or list\[QuantumCircuit]
 

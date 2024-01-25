@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.multiclass_extensions.MulticlassExtensio
 
 <span id="qiskit.aqua.components.multiclass_extensions.MulticlassExtension" />
 
-`MulticlassExtension`
+`MulticlassExtension`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/multiclass_extensions/multiclass_extension.py "view source code")
 
 Base class for multiclass extension.
 
@@ -22,7 +22,7 @@ This method should initialize the module and use an exception if a component of 
 
 <span id="qiskit.aqua.components.multiclass_extensions.MulticlassExtension.predict" />
 
-`abstract MulticlassExtension.predict(x)`
+`abstract MulticlassExtension.predict(x)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/multiclass_extensions/multiclass_extension.py "view source code")
 
 Applying multiple estimators for prediction.
 
@@ -34,7 +34,7 @@ Applying multiple estimators for prediction.
 
 <span id="qiskit.aqua.components.multiclass_extensions.MulticlassExtension.set_estimator" />
 
-`MulticlassExtension.set_estimator(estimator_cls, params=None)`
+`MulticlassExtension.set_estimator(estimator_cls, params=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/multiclass_extensions/multiclass_extension.py "view source code")
 
 Called internally to set `Estimator` and parameters :type estimator\_cls: `Callable`\[\[`List`], `Estimator`] :param estimator\_cls: An `Estimator` class :type params: `Optional`\[`List`] :param params: Parameters for the estimator
 
@@ -46,7 +46,7 @@ Called internally to set `Estimator` and parameters :type estimator\_cls: `Calla
 
 <span id="qiskit.aqua.components.multiclass_extensions.MulticlassExtension.test" />
 
-`abstract MulticlassExtension.test(x, y)`
+`abstract MulticlassExtension.test(x, y)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/multiclass_extensions/multiclass_extension.py "view source code")
 
 Testing multiple estimators each for distinguishing a pair of classes.
 
@@ -59,7 +59,7 @@ Testing multiple estimators each for distinguishing a pair of classes.
 
 <span id="qiskit.aqua.components.multiclass_extensions.MulticlassExtension.train" />
 
-`abstract MulticlassExtension.train(x, y)`
+`abstract MulticlassExtension.train(x, y)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/multiclass_extensions/multiclass_extension.py "view source code")
 
 Training multiple estimators each for distinguishing a pair of classes.
 

@@ -12,15 +12,17 @@ python_api_name: qiskit.pulse.library.gaussian_square_echo
 
 <span id="qiskit.pulse.library.gaussian_square_echo" />
 
-`qiskit.pulse.library.gaussian_square_echo(duration, amp, sigma, width=None, angle=0.0, active_amp=0.0, active_angle=0.0, risefall_sigma_ratio=None, name=None, limit_amplitude=None)`
+`qiskit.pulse.library.gaussian_square_echo(duration, amp, sigma, width=None, angle=0.0, active_amp=0.0, active_angle=0.0, risefall_sigma_ratio=None, name=None, limit_amplitude=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/pulse/library/symbolic_pulses.py "view source code")
 
 An echoed Gaussian square pulse with an active tone overlaid on it.
 
 The Gaussian Square Echo pulse is composed of three pulses. First, a Gaussian Square pulse $f_{echo}(x)$ with amplitude `amp` and phase `angle` playing for half duration, followed by a second Gaussian Square pulse $-f_{echo}(x)$ with opposite amplitude and same phase playing for the rest of the duration. Third a Gaussian Square pulse $f_{active}(x)$ with amplitude `active_amp` and phase `active_angle` playing for the entire duration. The Gaussian Square Echo pulse $g_e()$ can be written as:
 
 $$
-\begin{split}g_e(x) &= \begin{cases}            f_{\text{active}} + f_{\text{echo}}(x)                & x < \frac{\text{duration}}{2}\\
-    f_{\text{active}} - f_{\text{echo}}(x)                & \frac{\text{duration}}{2} < x        \end{cases}\\\end{split}
+\begin{aligned}
+g_e(x) &= \begin{cases}            f_{\text{active}} + f_{\text{echo}}(x)                & x < \frac{\text{duration}}{2}\\
+    f_{\text{active}} - f_{\text{echo}}(x)                & \frac{\text{duration}}{2} < x        \end{cases}\\
+\end{aligned}
 $$
 
 One case where this pulse can be used is when implementing a direct CNOT gate with a cross-resonance superconducting qubit architecture. When applying this pulse to the target qubit, the active portion can be used to cancel IX terms from the cross-resonance drive while the echo portion can reduce the impact of a static ZZ coupling.
@@ -30,14 +32,18 @@ Exactly one of the `risefall_sigma_ratio` and `width` parameters has to be speci
 If `risefall_sigma_ratio` is not `None` and `width` is `None`:
 
 $$
-\begin{split}\text{risefall} &= \text{risefall_sigma_ratio} \times \text{sigma}\\
-\text{width} &= \text{duration} - 2 \times \text{risefall}\end{split}
+\begin{aligned}
+\text{risefall} &= \text{risefall\_sigma\_ratio} \times \text{sigma}\\
+\text{width} &= \text{duration} - 2 \times \text{risefall}
+\end{aligned}
 $$
 
 If `width` is not None and `risefall_sigma_ratio` is None:
 
 $$
 \text{risefall} = \frac{\text{duration} - \text{width}}{2}
+
+
 $$
 
 **References**

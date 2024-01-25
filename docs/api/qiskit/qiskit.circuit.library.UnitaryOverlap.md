@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.UnitaryOverlap
 
 <span id="qiskit.circuit.library.UnitaryOverlap" />
 
-`qiskit.circuit.library.UnitaryOverlap(unitary1, unitary2, prefix1='p1', prefix2='p2')`
+`qiskit.circuit.library.UnitaryOverlap(unitary1, unitary2, prefix1='p1', prefix2='p2')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/overlap.py "view source code")
 
 Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
@@ -121,7 +121,7 @@ Return the global phase of the current circuit scope in radians.
 
 ### instances
 
-`= 293`
+`= 159`
 
 <span id="qiskit.circuit.library.UnitaryOverlap.layout" />
 

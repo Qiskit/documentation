@@ -10,13 +10,13 @@ python_api_name: qiskit.transpiler.passes.ResetAfterMeasureSimplification
 
 <span id="qiskit.transpiler.passes.ResetAfterMeasureSimplification" />
 
-`qiskit.transpiler.passes.ResetAfterMeasureSimplification(*args, **kwargs)`
+`qiskit.transpiler.passes.ResetAfterMeasureSimplification(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/optimization/reset_after_measure_simplification.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
 This pass replaces reset after measure with a conditional X gate.
 
-This optimization is suitable for use on IBM Quantum systems where the reset operation is performed by a measurement followed by a conditional x-gate. It might not be desireable on other backends if reset is implemented differently.
+This optimization is suitable for use on IBM Quantum systems where the reset operation is performed by a measurement followed by a conditional x-gate. It might not be desirable on other backends if reset is implemented differently.
 
 ## Attributes
 

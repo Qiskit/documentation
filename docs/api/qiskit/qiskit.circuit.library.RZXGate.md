@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.RZXGate
 
 <span id="qiskit.circuit.library.RZXGate" />
 
-`qiskit.circuit.library.RZXGate(theta, label=None, *, duration=None, unit='dt')`
+`qiskit.circuit.library.RZXGate(theta, label=None, *, duration=None, unit='dt')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/rzx.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -35,13 +35,15 @@ q_1: ┤1        ├
 **Matrix Representation:**
 
 $$
- \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}R_{ZX}(\theta)\ q_0, q_1 = \exp\left(-i \frac{\theta}{2} X{\otimes}Z\right) =
+\newcommand{\rotationangle}{\frac{\theta}{2}}
+
+R_{ZX}(\theta)\ q_0, q_1 = \exp\left(-i \frac{\theta}{2} X{\otimes}Z\right) =
     \begin{pmatrix}
-        \cos\left(\th\right)   & 0          & -i\sin\left(\th\right)  & 0          \\
-        0           & \cos\left(\th\right)  & 0            & i\sin\left(\th\right) \\
-        -i\sin\left(\th\right) & 0          & \cos\left(\th\right)    & 0          \\
-        0           & i\sin\left(\th\right) & 0            & \cos\left(\th\right)
-    \end{pmatrix}\end{split}\end{aligned}\end{align} 
+        \cos\left(\rotationangle\right) & 0 & -i\sin\left(\rotationangle\right) & 0 \\
+        0 & \cos\left(\rotationangle\right) & 0 & i\sin\left(\rotationangle\right) \\
+        -i\sin\left(\rotationangle\right) & 0 & \cos\left(\rotationangle\right) & 0 \\
+        0 & i\sin\left(\rotationangle\right) & 0 & \cos\left(\rotationangle\right)
+    \end{pmatrix}
 $$
 
 <Admonition title="Note" type="note">
@@ -56,23 +58,25 @@ $$
   ```
 
   $$
-   \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}R_{ZX}(\theta)\ q_1, q_0 = exp(-i \frac{\theta}{2} Z{\otimes}X) =
+  \newcommand{\rotationangle}{\frac{\theta}{2}}
+
+  R_{ZX}(\theta)\ q_1, q_0 = exp(-i \frac{\theta}{2} Z{\otimes}X) =
       \begin{pmatrix}
-          \cos(\th)   & -i\sin(\th) & 0           & 0          \\
-          -i\sin(\th) & \cos(\th)   & 0           & 0          \\
-          0           & 0           & \cos(\th)   & i\sin(\th) \\
-          0           & 0           & i\sin(\th)  & \cos(\th)
-      \end{pmatrix}\end{split}\end{aligned}\end{align} 
+          \cos(\rotationangle)   & -i\sin(\rotationangle) & 0           & 0          \\
+          -i\sin(\rotationangle) & \cos(\rotationangle)   & 0           & 0          \\
+          0           & 0           & \cos(\rotationangle)   & i\sin(\rotationangle) \\
+          0           & 0           & i\sin(\rotationangle)  & \cos(\rotationangle)
+      \end{pmatrix}
   $$
 
   This is a direct sum of RX rotations, so this gate is equivalent to a uniformly controlled (multiplexed) RX gate:
 
   $$
-  \begin{split}R_{ZX}(\theta)\ q_1, q_0 =
+  R_{ZX}(\theta)\ q_1, q_0 =
       \begin{pmatrix}
           RX(\theta) & 0 \\
           0 & RX(-\theta)
-      \end{pmatrix}\end{split}
+      \end{pmatrix}
   $$
 </Admonition>
 
@@ -91,13 +95,13 @@ $$
 > $$
 >
 > $$
-> \begin{split}RZX(\theta = \frac{\pi}{2}) = \frac{1}{\sqrt{2}}
+> RZX(\theta = \frac{\pi}{2}) = \frac{1}{\sqrt{2}}
 >                         \begin{pmatrix}
 >                             1  & 0 & -i & 0 \\
 >                             0  & 1 & 0  & i \\
 >                             -i & 0 & 1  & 0 \\
 >                             0  & i & 0  & 1
->                         \end{pmatrix}\end{split}
+>                         \end{pmatrix}
 > $$
 
 Create new RZX gate.

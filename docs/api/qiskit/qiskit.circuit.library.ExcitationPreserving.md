@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.ExcitationPreserving
 
 <span id="qiskit.circuit.library.ExcitationPreserving" />
 
-`qiskit.circuit.library.ExcitationPreserving(num_qubits=None, mode='iswap', entanglement='full', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='ExcitationPreserving', flatten=None)`
+`qiskit.circuit.library.ExcitationPreserving(num_qubits=None, mode='iswap', entanglement='full', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='ExcitationPreserving', flatten=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/n_local/excitation_preserving.py "view source code")
 
 Bases: [`TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.n_local.two_local.TwoLocal")
 
@@ -19,12 +19,14 @@ The heuristic excitation-preserving wave function ansatz.
 The `ExcitationPreserving` circuit preserves the ratio of $|00\rangle$, $|01\rangle + |10\rangle$ and $|11\rangle$ states. To this end, this circuit uses two-qubit interactions of the form
 
 $$
- \begin{align}\begin{aligned}\newcommand{\th}{\theta/2}\\\begin{split}\begin{pmatrix}
+\newcommand{\rotationangle}{\theta/2}
+
+\begin{pmatrix}
 1 & 0 & 0 & 0 \\
-0 & \cos\left(\th\right) & -i\sin\left(\th\right) & 0 \\
-0 & -i\sin\left(\th\right) & \cos\left(\th\right) & 0 \\
+0 & \cos\left(\rotationangle\right) & -i\sin\left(\rotationangle\right) & 0 \\
+0 & -i\sin\left(\rotationangle\right) & \cos\left(\rotationangle\right) & 0 \\
 0 & 0 & 0 & e^{-i\phi}
-\end{pmatrix}\end{split}\end{aligned}\end{align} 
+\end{pmatrix}
 $$
 
 for the mode `'fsim'` or with $e^{-i\phi} = 1$ for the mode `'iswap'`.
@@ -85,7 +87,6 @@ q_2: ┤ RZ(θ[2]) ├─░─┤1           ├┤1           ├─■──�
 *   **entanglement** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]] | Callable\[\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*],* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]]*) – Specifies the entanglement structure. Can be a string (‘full’, ‘linear’ or ‘sca’), a list of integer-pairs specifying the indices of qubits entangled with one another, or a callable returning such a list provided with the index of the entanglement layer. See the Examples section of [`TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.TwoLocal") for more detail.
 *   **initial\_state** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| None*) – A QuantumCircuit object to prepend to the circuit.
 *   **skip\_unentangled\_qubits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, the single qubit gates are only applied to qubits that are entangled with another qubit. If False, the single qubit gates are applied to each qubit in the Ansatz. Defaults to False.
-*   **skip\_unentangled\_qubits** – If True, the single qubit gates are only applied to qubits that are entangled with another qubit. If False, the single qubit gates are applied to each qubit in the Ansatz. Defaults to False.
 *   **skip\_final\_rotation\_layer** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, a rotation layer is added at the end of the ansatz. If False, no rotation layer is added. Defaults to True.
 *   **parameter\_prefix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The parameterized gates require a parameter to be defined, for which we use [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector").
 *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, barriers are inserted in between each layer. If False, no barriers are inserted.
@@ -189,7 +190,7 @@ If barriers are inserted in between the layers or not.
 
 ### instances
 
-`= 159`
+`= 167`
 
 <span id="qiskit.circuit.library.ExcitationPreserving.layout" />
 

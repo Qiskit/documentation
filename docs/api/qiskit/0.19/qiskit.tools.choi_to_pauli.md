@@ -10,7 +10,7 @@ python_api_name: qiskit.tools.choi_to_pauli
 
 <span id="qiskit.tools.choi_to_pauli" />
 
-`choi_to_pauli(choi, order=1)`
+`choi_to_pauli(choi, order=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/tools/qi/qi.py "view source code")
 
 Convert a Choi-matrix to a Pauli-basis superoperator.
 
