@@ -42,11 +42,13 @@ For Windows we will use PowerShell.
 1. Create a new virtual environment, using your preferred version of Python 3.8 or higher:
 
    Linux and macOS:
+
    ```bash
    python3 -m venv /path/to/qiskit-1.0-venv
    ```
 
    Windows with PowerShell:
+
    ```powershell
    python3 -m venv C:\path\to\qiskit-1.0-venv
    ```
@@ -56,11 +58,13 @@ For Windows we will use PowerShell.
 2. Activate the environment.
 
    Linux and macOS:
+
    ```bash
-   source ~/qiskit-1.0-venv/bin/activate
+   source /path/to/qiskit-1.0-venv/bin/activate
    ```
 
    Windows with PowerShell:
+
    ```powershell
    C:\path\to\qiskit-1.0-venv\Scripts\activate.ps1
    ```
@@ -314,7 +318,7 @@ commands_pre =
 ```
 
 
-<span id="why-did-this-happen"></id>
+<span id="why-did-this-happen"></span>
 ### Why these changes happened
 
 This section contains more detailed information on the state of pre-1.0 Qiskit packaging, and why we made the breaking packaging change.
@@ -322,12 +326,9 @@ This section contains more detailed information on the state of pre-1.0 Qiskit p
 We know that this is a breaking packaging change and that it is inconvenient, and we are sorry about that.
 Our hope is that by making this break now, we can restore Qiskit to the simple package structure that most Python packages use, and that this will be far easier for users, developers, and library authors into the future, once the Qiskit 1.0 transition is complete.
 
-<!-- It'd be good if this could be folded up by default. -->
 <Admonition type="info" title="Python packaging terminology">
 This section uses some Python-packaging jargon to better explain what was happening.
 The following words have special meanings:
-
-<!-- I wanted this to be a definition list (HTML's <dd>), but I didn't know how to do it well in MDX. -->
 
 * *module*: A single Python file.
 
@@ -571,6 +572,7 @@ The outputs might look something like:
 qiskit-terra==0.45.2
 └── qiskit-dynamics==0.4.2 [requires: qiskit-terra>=0.23.0]
 ```
+
 ```text
 qiskit==1.0.0
 ├── qiskit-aer==0.13.2 [requires: qiskit>=0.45.0]
