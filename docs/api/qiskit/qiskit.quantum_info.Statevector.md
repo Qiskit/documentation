@@ -141,7 +141,7 @@ Return a visualization of the Statevector.
 
 [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – when an invalid output method is selected.
 
-## Examples
+**Examples**
 
 Plot one of the Bell states
 
@@ -420,7 +420,7 @@ The Numpy vector array of probabilities.
 
 np.array
 
-## Examples
+**Examples**
 
 Consider a 2-qubit product state $|\psi\rangle=|+\rangle\otimes|0\rangle$.
 
@@ -657,7 +657,7 @@ the dictionary form of the Statevector.
 
 [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
 
-## Example
+**Example**
 
 The ket-form of a 2-qubit statevector $|\psi\rangle = |-\rangle\otimes |0\rangle$
 

@@ -34,6 +34,8 @@ Container for information needed to schedule a QuantumCircuit into a pulse Sched
 *   **meas\_map** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]]*) – A list of groups of qubits which have to be measured together.
 *   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Sample duration.
 
+### schedule\_circuit
+
 <span id="qiskit.scheduler.schedule_circuit.schedule_circuit" />
 
 `qiskit.scheduler.schedule_circuit.schedule_circuit(circuit, schedule_config, method=None, backend=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/scheduler/schedule_circuit.py "view source code")
@@ -68,6 +70,8 @@ Schedule corresponding to the input circuit.
 
 Pulse scheduling methods.
 
+### as\_soon\_as\_possible
+
 <span id="qiskit.scheduler.methods.as_soon_as_possible" />
 
 `qiskit.scheduler.methods.as_soon_as_possible(circuit, schedule_config, backend=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/scheduler/methods/basic.py "view source code")
@@ -89,6 +93,8 @@ A schedule corresponding to the input `circuit` with pulses occurring as early a
 **Return type**
 
 [*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
+
+### as\_late\_as\_possible
 
 <span id="qiskit.scheduler.methods.as_late_as_possible" />
 

@@ -46,7 +46,7 @@ $$
 
 $$
 
-## References
+**References**
 
 1.  [*Jurcevic, P., Javadi-Abhari, A., Bishop, L. S., Lauer, I., Bogorin, D. F., Brink, M., Capelluto, L., G\{“u}nl\{“u}k, O., Itoko, T., Kanazawa, N. & others Demonstration of quantum volume 64 on a superconducting quantum computing system. (Section V)*](https://iopscience.iop.org/article/10.1088/2058-9565/abe519)
 
