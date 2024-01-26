@@ -113,6 +113,8 @@ Convert the circuit to OpenQASM 3, returning the result as a string.
 
 All of these interfaces will raise [`QASM3ExporterError`](#qiskit.qasm3.QASM3ExporterError "qiskit.qasm3.QASM3ExporterError") on failure.
 
+### QASM3ExporterError
+
 <span id="qiskit.qasm3.QASM3ExporterError" />
 
 `qiskit.qasm3.QASM3ExporterError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/qasm3/exceptions.py "view source code")
@@ -233,6 +235,8 @@ a circuit representation of the OpenQASM 3 program.
 [**QASM3ImporterError**](#qiskit.qasm3.QASM3ImporterError "qiskit.qasm3.QASM3ImporterError") – if the OpenQASM 3 file is invalid, or cannot be represented by a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
 
 Both of these two functions raise [`QASM3ImporterError`](#qiskit.qasm3.QASM3ImporterError "qiskit.qasm3.QASM3ImporterError") on failure.
+
+### QASM3ImporterError
 
 <span id="qiskit.qasm3.QASM3ImporterError" />
 

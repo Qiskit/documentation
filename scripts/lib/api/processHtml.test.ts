@@ -429,4 +429,65 @@ backends may not have this attribute.</p>
       apiName: "qiskit_ibm_provider.least_busy",
     });
   });
+
+  test("exception with added heading", () => {
+    const html = `<span class="target" id="module-qiskit.exceptions"><span id="qiskit-exceptions"></span></span><section id="top-level-exceptions-qiskit-exceptions">
+<h1>Top-level exceptions (<a class="reference internal" href="#module-qiskit.exceptions" title="qiskit.exceptions"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qiskit.exceptions</span></code></a>)<a class="headerlink" href="#top-level-exceptions-qiskit-exceptions" title="Permalink to this heading">¶</a></h1>
+<p>All Qiskit-related errors raised by Qiskit are subclasses of the base:</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="qiskit.exceptions.QiskitError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qiskit.exceptions.</span></span><span class="sig-name descname"><span class="pre">QiskitError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qiskit/exceptions.html#QiskitError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qiskit.exceptions.QiskitError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for errors raised by Qiskit.</p>
+<p>Set the error message.</p>
+</dd></dl>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Errors that are just general programming errors, such as incorrect typing, may still raise
+standard Python errors such as <code class="docutils literal notranslate"><span class="pre">TypeError</span></code>.  <a class="reference internal" href="#qiskit.exceptions.QiskitError" title="qiskit.exceptions.QiskitError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">QiskitError</span></code></a> is generally for errors raised
+in usage that is particular to Qiskit.</p>
+</div>
+<p>Many of the Qiskit subpackages define their own more granular error, to help in catching only the
+subset of errors you care about.  For example, <a class="reference internal" href="circuit.html#module-qiskit.circuit" title="qiskit.circuit"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qiskit.circuit</span></code></a> almost exclusively uses
+<a class="reference internal" href="circuit.html#qiskit.circuit.CircuitError" title="qiskit.circuit.CircuitError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">CircuitError</span></code></a>, while both <a class="reference internal" href="qasm2.html#qiskit.qasm2.QASM2ExportError" title="qiskit.qasm2.QASM2ExportError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">QASM2ExportError</span></code></a> and <a class="reference internal" href="qasm2.html#qiskit.qasm2.QASM2ParseError" title="qiskit.qasm2.QASM2ParseError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">QASM2ParseError</span></code></a> derive from
+<a class="reference internal" href="qasm2.html#qiskit.qasm2.QASM2Error" title="qiskit.qasm2.QASM2Error"><code class="xref py py-exc docutils literal notranslate"><span class="pre">QASM2Error</span></code></a> in <a class="reference internal" href="qasm2.html#module-qiskit.qasm2" title="qiskit.qasm2"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qiskit.qasm2</span></code></a>, which is in turn a type of <a class="reference internal" href="#qiskit.exceptions.QiskitError" title="qiskit.exceptions.QiskitError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">QiskitError</span></code></a>.</p>
+<p>Qiskit has several optional features that depend on other packages that are not required for a
+minimal install.  You can read more about those, and ways to check for their presence, in
+<a class="reference internal" href="utils.html#module-qiskit.utils.optionals" title="qiskit.utils.optionals"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qiskit.utils.optionals</span></code></a>.  Trying to use a feature that requires an optional extra will raise a
+particular error, which subclasses both <a class="reference internal" href="#qiskit.exceptions.QiskitError" title="qiskit.exceptions.QiskitError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">QiskitError</span></code></a> and the Python built-in <code class="docutils literal notranslate"><span class="pre">ImportError</span></code>.</p>
+</section>
+`;
+    const doc = Doc.load(html);
+    const meta: Metadata = {};
+    processMembersAndSetMeta(doc.$, doc.$main, meta);
+    doc.expectHtml(`<span class="target" id="module-qiskit.exceptions"><span id="qiskit-exceptions"></span></span><section id="top-level-exceptions-qiskit-exceptions">
+<h1>Top-level exceptions (<a class="reference internal" href="#module-qiskit.exceptions" title="qiskit.exceptions"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qiskit.exceptions</span></code></a>)<a class="headerlink" href="#top-level-exceptions-qiskit-exceptions" title="Permalink to this heading">¶</a></h1>
+<p>All Qiskit-related errors raised by Qiskit are subclasses of the base:</p>
+<div><h3>QiskitError</h3><span class="target" id="qiskit.exceptions.QiskitError"><p><code>
+<span class="sig-prename descclassname"><span class="pre">qiskit.exceptions.</span></span><span class="sig-name descname"><span class="pre">QiskitError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#qiskit.exceptions.QiskitError" title="Permalink to this definition">¶</a></code><a href="../_modules/qiskit/exceptions.html#QiskitError" title="view source code">GitHub</a></p>
+<div><p>Base class for errors raised by Qiskit.</p>
+<p>Set the error message.</p>
+</div></span></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Errors that are just general programming errors, such as incorrect typing, may still raise
+standard Python errors such as <code class="docutils literal notranslate"><span class="pre">TypeError</span></code>.  <a class="reference internal" href="#qiskit.exceptions.QiskitError" title="qiskit.exceptions.QiskitError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">QiskitError</span></code></a> is generally for errors raised
+in usage that is particular to Qiskit.</p>
+</div>
+<p>Many of the Qiskit subpackages define their own more granular error, to help in catching only the
+subset of errors you care about.  For example, <a class="reference internal" href="circuit.html#module-qiskit.circuit" title="qiskit.circuit"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qiskit.circuit</span></code></a> almost exclusively uses
+<a class="reference internal" href="circuit.html#qiskit.circuit.CircuitError" title="qiskit.circuit.CircuitError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">CircuitError</span></code></a>, while both <a class="reference internal" href="qasm2.html#qiskit.qasm2.QASM2ExportError" title="qiskit.qasm2.QASM2ExportError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">QASM2ExportError</span></code></a> and <a class="reference internal" href="qasm2.html#qiskit.qasm2.QASM2ParseError" title="qiskit.qasm2.QASM2ParseError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">QASM2ParseError</span></code></a> derive from
+<a class="reference internal" href="qasm2.html#qiskit.qasm2.QASM2Error" title="qiskit.qasm2.QASM2Error"><code class="xref py py-exc docutils literal notranslate"><span class="pre">QASM2Error</span></code></a> in <a class="reference internal" href="qasm2.html#module-qiskit.qasm2" title="qiskit.qasm2"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qiskit.qasm2</span></code></a>, which is in turn a type of <a class="reference internal" href="#qiskit.exceptions.QiskitError" title="qiskit.exceptions.QiskitError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">QiskitError</span></code></a>.</p>
+<p>Qiskit has several optional features that depend on other packages that are not required for a
+minimal install.  You can read more about those, and ways to check for their presence, in
+<a class="reference internal" href="utils.html#module-qiskit.utils.optionals" title="qiskit.utils.optionals"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qiskit.utils.optionals</span></code></a>.  Trying to use a feature that requires an optional extra will raise a
+particular error, which subclasses both <a class="reference internal" href="#qiskit.exceptions.QiskitError" title="qiskit.exceptions.QiskitError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">QiskitError</span></code></a> and the Python built-in <code class="docutils literal notranslate"><span class="pre">ImportError</span></code>.</p>
+</section>
+`);
+    expect(meta).toEqual({
+      apiName: "qiskit.exceptions.QiskitError",
+      apiType: "exception",
+    });
+  });
 });
