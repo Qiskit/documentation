@@ -170,6 +170,8 @@ An OpenQASM 2 string representing the circuit.
 
 This module defines a generic error type that derives from [`QiskitError`](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") that can be used as a catch when you care about failures emitted by the interoperation layer specifically.
 
+### QASM2Error
+
 <span id="qiskit.qasm2.QASM2Error" />
 
 `qiskit.qasm2.QASM2Error(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/qasm2/exceptions.py "view source code")
@@ -180,6 +182,8 @@ Set the error message.
 
 In cases where the lexer or parser fails due to an invalid OpenQASM 2 file, the conversion functions will raise a more specific error with a message explaining what the failure is, and where in the file it occurred.
 
+### QASM2ParseError
+
 <span id="qiskit.qasm2.QASM2ParseError" />
 
 `qiskit.qasm2.QASM2ParseError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/qasm2/exceptions.py "view source code")
@@ -189,6 +193,8 @@ An error raised because of a failure to parse an OpenQASM 2 file.
 Set the error message.
 
 When the exporters fail to export a circuit, likely because it has structure that cannot be represented by OpenQASM 2.0, they will also emit a custom error.
+
+### QASM2ExportError
 
 <span id="qiskit.qasm2.QASM2ExportError" />
 

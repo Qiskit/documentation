@@ -156,6 +156,8 @@ Which will save the qpy serialized circuit to the provided file.
 
 These functions will raise a custom subclass of [`QiskitError`](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") if they encounter problems during serialization or deserialization.
 
+### QpyError
+
 <span id="qiskit.qpy.QpyError" />
 
 `qiskit.qpy.QpyError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/qpy/exceptions.py "view source code")
