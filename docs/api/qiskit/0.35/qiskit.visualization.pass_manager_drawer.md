@@ -1,8 +1,16 @@
+---
+title: pass_manager_drawer
+description: API reference for qiskit.visualization.pass_manager_drawer
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.visualization.pass_manager_drawer
+---
+
 # qiskit.visualization.pass\_manager\_drawer
 
+<span id="qiskit.visualization.pass_manager_drawer" />
 
-
-`pass_manager_drawer(pass_manager, filename=None, style=None, raw=False)`
+`pass_manager_drawer(pass_manager, filename=None, style=None, raw=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/visualization/pass_manager_visualization.py "view source code")
 
 Draws the pass manager.
 
@@ -10,7 +18,7 @@ This function needs pydot \<[https://github.com/erocarrera/pydot](https://github
 
 **Parameters**
 
-*   **pass\_manager** ([*PassManager*](qiskit.transpiler.PassManager#qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")) – the pass manager to be drawn
+*   **pass\_manager** ([*PassManager*](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")) – the pass manager to be drawn
 *   **filename** (*str*) – file path to save image to
 *   **style** (*dict or OrderedDict*) – keys are the pass classes and the values are the colors to make them. An example can be seen in the DEFAULT\_STYLE. An ordered dict can be used to ensure a priority coloring when pass falls into multiple categories. Any values not included in the provided dict will be filled in from the default dict
 *   **raw** (*Bool*) – True if you want to save the raw Dot output not an image. The default is False.
@@ -26,7 +34,7 @@ PIL.Image or None
 **Raises**
 
 *   **MissingOptionalLibraryError** – when nxpd or pydot not installed.
-*   [**VisualizationError**](qiskit.visualization.VisualizationError#qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – If raw=True and filename=None.
+*   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – If raw=True and filename=None.
 
 ## Example
 
@@ -49,3 +57,4 @@ new_circ.draw(output='mpl')
 
 pass_manager_drawer(pm, "passmanager.jpg")
 ```
+

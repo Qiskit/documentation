@@ -1,14 +1,22 @@
+---
+title: IBMQRandomService
+description: API reference for qiskit.providers.ibmq.random.IBMQRandomService
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.ibmq.random.IBMQRandomService
+---
+
 <span id="qiskit-providers-ibmq-random-ibmqrandomservice" />
 
 # qiskit.providers.ibmq.random.IBMQRandomService
 
+<span id="qiskit.providers.ibmq.random.IBMQRandomService" />
 
-
-`IBMQRandomService(provider, access_token)`
+`IBMQRandomService(provider, access_token)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.12/qiskit/providers/ibmq/random/ibmqrandomservice.py "view source code")
 
 Random number services for an IBM Quantum Experience account provider.
 
-Represent a namespace for random number services available to this provider. An instance of this class is used as an attribute to the [`AccountProvider`](qiskit.providers.ibmq.AccountProvider#qiskit.providers.ibmq.AccountProvider "qiskit.providers.ibmq.AccountProvider") class. This allows a convenient way to query for all services or to access a specific one:
+Represent a namespace for random number services available to this provider. An instance of this class is used as an attribute to the [`AccountProvider`](qiskit.providers.ibmq.AccountProvider "qiskit.providers.ibmq.AccountProvider") class. This allows a convenient way to query for all services or to access a specific one:
 
 ```python
 random_services = provider.random.services()
@@ -23,7 +31,9 @@ IBMQRandomService constructor.
 *   **provider** (`AccountProvider`) – IBM Quantum Experience account provider.
 *   **access\_token** (`str`) – IBM Quantum Experience access token.
 
+### \_\_init\_\_
 
+<span id="qiskit.providers.ibmq.random.IBMQRandomService.__init__" />
 
 `__init__(provider, access_token)`
 
@@ -42,7 +52,9 @@ IBMQRandomService constructor.
 | [`get_service`](#qiskit.providers.ibmq.random.IBMQRandomService.get_service "qiskit.providers.ibmq.random.IBMQRandomService.get_service")(name)           | Return the random number service with the given name.        |
 | [`services`](#qiskit.providers.ibmq.random.IBMQRandomService.services "qiskit.providers.ibmq.random.IBMQRandomService.services")()                        | Return all random number services available to this account. |
 
+### get\_service
 
+<span id="qiskit.providers.ibmq.random.IBMQRandomService.get_service" />
 
 `get_service(name)`
 
@@ -62,9 +74,11 @@ Service with the given name.
 
 **Raises**
 
-[**IBMQError**](qiskit.providers.ibmq.IBMQError#qiskit.providers.ibmq.IBMQError "qiskit.providers.ibmq.IBMQError") – If the service cannot be found.
+[**IBMQError**](qiskit.providers.ibmq.IBMQError "qiskit.providers.ibmq.IBMQError") – If the service cannot be found.
 
+### services
 
+<span id="qiskit.providers.ibmq.random.IBMQRandomService.services" />
 
 `services()`
 
@@ -73,3 +87,4 @@ Return all random number services available to this account.
 **Return type**
 
 `List`\[`BaseRandomService`]
+

@@ -10,18 +10,18 @@ python_api_name: qiskit.pulse.transforms.target_qobj_transform
 
 <span id="qiskit.pulse.transforms.target_qobj_transform" />
 
-`target_qobj_transform(sched, remove_directives=True)`
+`target_qobj_transform(sched, remove_directives=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/transforms/base_transforms.py "view source code")
 
 A basic pulse program transformation for OpenPulse API execution.
 
 **Parameters**
 
-*   **sched** (`Union`\[[`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock"), [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule"), `Tuple`\[`int`, [`Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")], [`Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction"), `Iterable`\[`Union`\[`Tuple`\[`int`, [`Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")], [`Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")]]]) – Input program to transform.
+*   **sched** (`Union`\[`ScheduleBlock`, `Schedule`, `Tuple`\[`int`, `Instruction`], `Instruction`, `Iterable`\[`Union`\[`Tuple`\[`int`, `Instruction`], `Instruction`]]]) – Input program to transform.
 *   **remove\_directives** (`bool`) – Set True to remove compiler directives.
 
 **Return type**
 
-[`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
+`Schedule`
 
 **Returns**
 

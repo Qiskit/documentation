@@ -10,9 +10,9 @@ python_api_name: qiskit.transpiler.passes.UnrollCustomDefinitions
 
 <span id="qiskit.transpiler.passes.UnrollCustomDefinitions" />
 
-`UnrollCustomDefinitions(*args, **kwargs)`
+`UnrollCustomDefinitions(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/basis/unroll_custom_definitions.py "view source code")
 
-Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
+Bases: `qiskit.transpiler.basepasses.TransformationPass`
 
 Unrolls instructions with custom definitions.
 
@@ -37,7 +37,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.UnrollCustomDefinitions.run" />
 
-`UnrollCustomDefinitions.run(dag)`
+`UnrollCustomDefinitions.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/basis/unroll_custom_definitions.py "view source code")
 
 Run the UnrollCustomDefinitions pass on dag.
 

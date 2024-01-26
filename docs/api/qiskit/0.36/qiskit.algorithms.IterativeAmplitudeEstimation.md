@@ -10,9 +10,9 @@ python_api_name: qiskit.algorithms.IterativeAmplitudeEstimation
 
 <span id="qiskit.algorithms.IterativeAmplitudeEstimation" />
 
-`IterativeAmplitudeEstimation(epsilon_target, alpha, confint_method='beta', min_ratio=2, quantum_instance=None)`
+`IterativeAmplitudeEstimation(epsilon_target, alpha, confint_method='beta', min_ratio=2, quantum_instance=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/amplitude_estimators/iae.py "view source code")
 
-Bases: [`qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimator`](qiskit.algorithms.AmplitudeEstimator "qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimator")
+Bases: `qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimator`
 
 The Iterative Amplitude Estimation algorithm.
 
@@ -38,7 +38,7 @@ The output of the algorithm is an estimate for the amplitude a, that with at lea
 *   **alpha** (`float`) – Confidence level, the target probability is 1 - alpha, has values between 0 and 1
 *   **confint\_method** (`str`) – Statistical method used to estimate the confidence intervals in each iteration, can be ‘chernoff’ for the Chernoff intervals or ‘beta’ for the Clopper-Pearson intervals (default)
 *   **min\_ratio** (`float`) – Minimal q-ratio ($K_{i+1} / K_i$) for FindNextK
-*   **quantum\_instance** (`Union`\[[`Backend`](qiskit.providers.Backend "qiskit.providers.backend.Backend"), [`QuantumInstance`](qiskit.utils.QuantumInstance "qiskit.utils.quantum_instance.QuantumInstance"), `None`]) – Quantum Instance or Backend
+*   **quantum\_instance** (`Union`\[`Backend`, `BaseBackend`, `QuantumInstance`, `None`]) – Quantum Instance or Backend
 
 **Raises**
 
@@ -53,7 +53,7 @@ The output of the algorithm is an estimate for the amplitude a, that with at lea
 
 <span id="qiskit.algorithms.IterativeAmplitudeEstimation.construct_circuit" />
 
-`IterativeAmplitudeEstimation.construct_circuit(estimation_problem, k=0, measurement=False)`
+`IterativeAmplitudeEstimation.construct_circuit(estimation_problem, k=0, measurement=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/amplitude_estimators/iae.py "view source code")
 
 Construct the circuit $\mathcal{Q}^k \mathcal{A} |0\rangle$.
 
@@ -61,13 +61,13 @@ The A operator is the unitary specifying the QAE problem and Q the associated Gr
 
 **Parameters**
 
-*   **estimation\_problem** ([`EstimationProblem`](qiskit.algorithms.EstimationProblem "qiskit.algorithms.amplitude_estimators.estimation_problem.EstimationProblem")) – The estimation problem for which to construct the QAE circuit.
+*   **estimation\_problem** (`EstimationProblem`) – The estimation problem for which to construct the QAE circuit.
 *   **k** (`int`) – The power of the Q operator.
 *   **measurement** (`bool`) – Boolean flag to indicate if measurements should be included in the circuits.
 
 **Return type**
 
-[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+`QuantumCircuit`
 
 **Returns**
 
@@ -77,17 +77,17 @@ The circuit implementing $\mathcal{Q}^k \mathcal{A} |0\rangle$.
 
 <span id="qiskit.algorithms.IterativeAmplitudeEstimation.estimate" />
 
-`IterativeAmplitudeEstimation.estimate(estimation_problem)`
+`IterativeAmplitudeEstimation.estimate(estimation_problem)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/amplitude_estimators/iae.py "view source code")
 
 Run the amplitude estimation algorithm.
 
 **Parameters**
 
-**estimation\_problem** ([`EstimationProblem`](qiskit.algorithms.EstimationProblem "qiskit.algorithms.amplitude_estimators.estimation_problem.EstimationProblem")) – An `EstimationProblem` containing all problem-relevant information such as the state preparation and the objective qubits.
+**estimation\_problem** (`EstimationProblem`) – An `EstimationProblem` containing all problem-relevant information such as the state preparation and the objective qubits.
 
 **Return type**
 
-[`IterativeAmplitudeEstimationResult`](qiskit.algorithms.IterativeAmplitudeEstimationResult "qiskit.algorithms.amplitude_estimators.iae.IterativeAmplitudeEstimationResult")
+`IterativeAmplitudeEstimationResult`
 
 ## Attributes
 
@@ -113,7 +113,7 @@ Get the quantum instance.
 
 **Return type**
 
-`Optional`\[[`QuantumInstance`](qiskit.utils.QuantumInstance "qiskit.utils.quantum_instance.QuantumInstance")]
+`Optional`\[`QuantumInstance`]
 
 **Returns**
 

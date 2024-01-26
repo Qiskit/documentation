@@ -1,8 +1,16 @@
+---
+title: inline_subroutines
+description: API reference for qiskit.pulse.transforms.inline_subroutines
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.transforms.inline_subroutines
+---
+
 # qiskit.pulse.transforms.inline\_subroutines
 
+<span id="qiskit.pulse.transforms.inline_subroutines" />
 
-
-`inline_subroutines(program)`
+`inline_subroutines(program)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/transforms/canonicalization.py "view source code")
 
 Recursively remove call instructions and inline the respective subroutine instructions.
 
@@ -23,3 +31,4 @@ A schedule without subroutine.
 **Raises**
 
 [**PulseError**](pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When input program is not valid data format.
+

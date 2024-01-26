@@ -10,9 +10,9 @@ python_api_name: qiskit.algorithms.optimizers.IMFIL
 
 <span id="qiskit.algorithms.optimizers.IMFIL" />
 
-`IMFIL(maxiter=1000)`
+`IMFIL(maxiter=1000)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/imfil.py "view source code")
 
-Bases: [`qiskit.algorithms.optimizers.optimizer.Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.optimizer.Optimizer")
+Bases: `qiskit.algorithms.optimizers.optimizer.Optimizer`
 
 IMplicit FILtering algorithm.
 
@@ -34,7 +34,7 @@ Uses skquant.opt installed with pip install scikit-quant. For further detail, pl
 
 <span id="qiskit.algorithms.optimizers.IMFIL.get_support_level" />
 
-`IMFIL.get_support_level()`
+`IMFIL.get_support_level()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/imfil.py "view source code")
 
 Returns support level dictionary.
 
@@ -65,7 +65,7 @@ grad
 
 <span id="qiskit.algorithms.optimizers.IMFIL.minimize" />
 
-`IMFIL.minimize(fun, x0, jac=None, bounds=None)`
+`IMFIL.minimize(fun, x0, jac=None, bounds=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/imfil.py "view source code")
 
 Minimize the scalar function.
 
@@ -78,11 +78,19 @@ Minimize the scalar function.
 
 **Return type**
 
-[`OptimizerResult`](qiskit.algorithms.optimizers.OptimizerResult "qiskit.algorithms.optimizers.optimizer.OptimizerResult")
+`OptimizerResult`
 
 **Returns**
 
 The result of the optimization, containing e.g. the result as attribute `x`.
+
+### optimize
+
+<span id="qiskit.algorithms.optimizers.IMFIL.optimize" />
+
+`IMFIL.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/imfil.py "view source code")
+
+Runs the optimization.
 
 ### print\_options
 

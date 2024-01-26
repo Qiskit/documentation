@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.channels.SnapshotChannel
 
 <span id="qiskit.pulse.channels.SnapshotChannel" />
 
-`SnapshotChannel(*args, **kwargs)`
+`SnapshotChannel(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/channels.py "view source code")
 
 Bases: [`qiskit.pulse.channels.Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")
 
@@ -42,7 +42,7 @@ Return the index of this channel. The index is a label for a control signal line
 
 **Return type**
 
-`Union`\[`int`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]
+`Union`\[`int`, `ParameterExpression`]
 
 <span id="qiskit.pulse.channels.SnapshotChannel.name" />
 
@@ -68,9 +68,5 @@ Parameters which determine the channel index.
 
 ### prefix
 
-`Optional[str]`
-
 `= 's'`
-
-A shorthand string prefix for characterizing the channel type.
 

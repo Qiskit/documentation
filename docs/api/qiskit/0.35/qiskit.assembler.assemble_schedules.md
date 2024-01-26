@@ -1,8 +1,16 @@
+---
+title: assemble_schedules
+description: API reference for qiskit.assembler.assemble_schedules
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.assembler.assemble_schedules
+---
+
 # qiskit.assembler.assemble\_schedules
 
+<span id="qiskit.assembler.assemble_schedules" />
 
-
-`assemble_schedules(schedules, qobj_id, qobj_header, run_config)`
+`assemble_schedules(schedules, qobj_id, qobj_header, run_config)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/assembler/assemble_schedules.py "view source code")
 
 Assembles a list of schedules into a qobj that can be run on the backend.
 
@@ -24,3 +32,4 @@ The Qobj to be run on the backends.
 **Raises**
 
 **QiskitError** – when frequency settings are not supplied.
+

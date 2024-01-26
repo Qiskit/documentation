@@ -1,8 +1,16 @@
+---
+title: Options
+description: API reference for qiskit.providers.Options
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.Options
+---
+
 # Options
 
+<span id="qiskit.providers.Options" />
 
-
-`Options(**kwargs)`
+`Options(**kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/options.py "view source code")
 
 Bases: `object`
 
@@ -12,14 +20,52 @@ This class is the abstract class that all backend options are based on. The prop
 
 ## Methods
 
-|                                                                                                                                               |                                                      |
-| --------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
-| [`get`](qiskit.providers.Options.get#qiskit.providers.Options.get "qiskit.providers.Options.get")                                             | Get an option value for a given key.                 |
-| [`set_validator`](qiskit.providers.Options.set_validator#qiskit.providers.Options.set_validator "qiskit.providers.Options.set_validator")     | Set an optional validator for a field in the options |
-| [`update_options`](qiskit.providers.Options.update_options#qiskit.providers.Options.update_options "qiskit.providers.Options.update_options") | Update options with kwargs                           |
+### get
+
+<span id="qiskit.providers.Options.get" />
+
+`Options.get(field, default=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/options.py "view source code")
+
+Get an option value for a given key.
+
+### set\_validator
+
+<span id="qiskit.providers.Options.set_validator" />
+
+`Options.set_validator(field, validator_value)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/options.py "view source code")
+
+Set an optional validator for a field in the options
+
+Setting a validator enables changes to an options values to be validated for correctness when [`update_options()`](qiskit.providers.Options#update_options "qiskit.providers.Options.update_options") is called. For example if you have a numeric field like `shots` you can specify a bounds tuple that set an upper and lower bound on the value such as:
+
+```python
+options.set_validator("shots", (1, 4096))
+```
+
+In this case whenever the `"shots"` option is updated by the user it will enforce that the value is >=1 and \<=4096. A `ValueError` will be raised if it’s outside those bounds. If a validator is already present for the specified field it will be silently overriden.
+
+**Parameters**
+
+*   **field** (*str*) – The field name to set the validator on
+*   **validator\_value** (*list or tuple or type*) – The value to use for the validator depending on the type indicates on how the value for a field is enforced. If a tuple is passed in it must have a length of two and will enforce the min and max value (inclusive) for an integer or float value option. If it’s a list it will list the valid values for a field. If it’s a `type` the validator will just enforce the value is of a certain type.
+
+**Raises**
+
+*   **KeyError** – If field is not present in the options object
+*   **ValueError** – If the `validator_value` has an invalid value for a given type
+*   **TypeError** – If `validator_value` is not a valid type
+
+### update\_options
+
+<span id="qiskit.providers.Options.update_options" />
+
+`Options.update_options(**fields)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/options.py "view source code")
+
+Update options with kwargs
 
 ## Attributes
 
-
+<span id="qiskit.providers.Options.validator" />
 
 ### validator
+

@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.models.GateConfig
 
 <span id="qiskit.providers.models.GateConfig" />
 
-`GateConfig(name, parameters, qasm_def, coupling_map=None, latency_map=None, conditional=None, description=None)`
+`GateConfig(name, parameters, qasm_def, coupling_map=None, latency_map=None, conditional=None, description=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/models/backendconfiguration.py "view source code")
 
 Bases: `object`
 
@@ -52,7 +52,7 @@ Initialize a GateConfig object
 
 <span id="qiskit.providers.models.GateConfig.from_dict" />
 
-`classmethod GateConfig.from_dict(data)`
+`classmethod GateConfig.from_dict(data)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/models/backendconfiguration.py "view source code")
 
 Create a new GateConfig object from a dictionary.
 
@@ -72,7 +72,7 @@ The GateConfig from the input dictionary.
 
 <span id="qiskit.providers.models.GateConfig.to_dict" />
 
-`GateConfig.to_dict()`
+`GateConfig.to_dict()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/models/backendconfiguration.py "view source code")
 
 Return a dictionary format representation of the GateConfig.
 

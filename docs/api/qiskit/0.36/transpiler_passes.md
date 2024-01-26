@@ -34,14 +34,13 @@ python_api_name: qiskit.transpiler.passes
 
 ## Routing
 
-|                                                                                                                                               |                                                                                        |
-| --------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| [`BasicSwap`](qiskit.transpiler.passes.BasicSwap "qiskit.transpiler.passes.BasicSwap")(\*args, \*\*kwargs)                                    | Map (with minimum effort) a DAGCircuit onto a coupling\_map adding swap gates.         |
-| [`LookaheadSwap`](qiskit.transpiler.passes.LookaheadSwap "qiskit.transpiler.passes.LookaheadSwap")(\*args, \*\*kwargs)                        | Map input circuit onto a backend topology via insertion of SWAPs.                      |
-| [`StochasticSwap`](qiskit.transpiler.passes.StochasticSwap "qiskit.transpiler.passes.StochasticSwap")(\*args, \*\*kwargs)                     | Map a DAGCircuit onto a coupling\_map adding swap gates.                               |
-| [`SabreSwap`](qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap")(\*args, \*\*kwargs)                                    | Map input circuit onto a backend topology via insertion of SWAPs.                      |
-| [`BIPMapping`](qiskit.transpiler.passes.BIPMapping "qiskit.transpiler.passes.BIPMapping")(\*args, \*\*kwargs)                                 | Map a DAGCircuit onto a given `coupling_map`, allocating qubits and adding swap gates. |
-| [`Commuting2qGateRouter`](qiskit.transpiler.passes.Commuting2qGateRouter "qiskit.transpiler.passes.Commuting2qGateRouter")(\[swap\_strategy]) | A class to swap route one or more commuting gates to the coupling map.                 |
+|                                                                                                                           |                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| [`BasicSwap`](qiskit.transpiler.passes.BasicSwap "qiskit.transpiler.passes.BasicSwap")(\*args, \*\*kwargs)                | Map (with minimum effort) a DAGCircuit onto a coupling\_map adding swap gates.         |
+| [`LookaheadSwap`](qiskit.transpiler.passes.LookaheadSwap "qiskit.transpiler.passes.LookaheadSwap")(\*args, \*\*kwargs)    | Map input circuit onto a backend topology via insertion of SWAPs.                      |
+| [`StochasticSwap`](qiskit.transpiler.passes.StochasticSwap "qiskit.transpiler.passes.StochasticSwap")(\*args, \*\*kwargs) | Map a DAGCircuit onto a coupling\_map adding swap gates.                               |
+| [`SabreSwap`](qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap")(\*args, \*\*kwargs)                | Map input circuit onto a backend topology via insertion of SWAPs.                      |
+| [`BIPMapping`](qiskit.transpiler.passes.BIPMapping "qiskit.transpiler.passes.BIPMapping")(\*args, \*\*kwargs)             | Map a DAGCircuit onto a given `coupling_map`, allocating qubits and adding swap gates. |
 
 ## Basis Change
 
@@ -78,11 +77,11 @@ python_api_name: qiskit.transpiler.passes
 
 ## Calibration
 
-|                                                                                                                                                      |                                                                                                              |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| [`PulseGates`](qiskit.transpiler.passes.PulseGates "qiskit.transpiler.passes.PulseGates")(inst\_map)                                                 | Pulse gate adding pass.                                                                                      |
-| [`RZXCalibrationBuilder`](qiskit.transpiler.passes.RZXCalibrationBuilder "qiskit.transpiler.passes.RZXCalibrationBuilder")(\[...])                   | Creates calibrations for RZXGate(theta) by stretching and compressing Gaussian square pulses in the CX gate. |
-| [`RZXCalibrationBuilderNoEcho`](qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho "qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho")(\[...]) | Creates calibrations for RZXGate(theta) by stretching and compressing Gaussian square pulses in the CX gate. |
+|                                                                                                                                                             |                                                                                                              |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| [`PulseGates`](qiskit.transpiler.passes.PulseGates "qiskit.transpiler.passes.PulseGates")(inst\_map)                                                        | Pulse gate adding pass.                                                                                      |
+| [`RZXCalibrationBuilder`](qiskit.transpiler.passes.RZXCalibrationBuilder "qiskit.transpiler.passes.RZXCalibrationBuilder")(\[backend, …])                   | Creates calibrations for RZXGate(theta) by stretching and compressing Gaussian square pulses in the CX gate. |
+| [`RZXCalibrationBuilderNoEcho`](qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho "qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho")(\[backend, …]) | Creates calibrations for RZXGate(theta) by stretching and compressing Gaussian square pulses in the CX gate. |
 
 ## Scheduling
 
@@ -93,11 +92,11 @@ python_api_name: qiskit.transpiler.passes
 | [`ASAPScheduleAnalysis`](qiskit.transpiler.passes.ASAPScheduleAnalysis "qiskit.transpiler.passes.ASAPScheduleAnalysis")(durations)                     | ASAP Scheduling pass, which schedules the start time of instructions as early as possible..                             |
 | [`PadDynamicalDecoupling`](qiskit.transpiler.passes.PadDynamicalDecoupling "qiskit.transpiler.passes.PadDynamicalDecoupling")(durations, dd\_sequence) | Dynamical decoupling insertion pass.                                                                                    |
 | [`PadDelay`](qiskit.transpiler.passes.PadDelay "qiskit.transpiler.passes.PadDelay")(\[fill\_very\_end])                                                | Padding idle time with Delay instructions.                                                                              |
-| [`ConstrainedReschedule`](qiskit.transpiler.passes.ConstrainedReschedule "qiskit.transpiler.passes.ConstrainedReschedule")(\[acquire\_alignment, ...]) | Rescheduler pass that updates node start times to conform to the hardware alignments.                                   |
+| [`ConstrainedReschedule`](qiskit.transpiler.passes.ConstrainedReschedule "qiskit.transpiler.passes.ConstrainedReschedule")(\[acquire\_alignment, …])   | Rescheduler pass that updates node start times to conform to the hardware alignments.                                   |
 | [`AlignMeasures`](qiskit.transpiler.passes.AlignMeasures "qiskit.transpiler.passes.AlignMeasures")(\[alignment])                                       | Measurement alignment.                                                                                                  |
 | [`ValidatePulseGates`](qiskit.transpiler.passes.ValidatePulseGates "qiskit.transpiler.passes.ValidatePulseGates")(\[granularity, min\_length])         | Check custom gate length.                                                                                               |
-| [`InstructionDurationCheck`](qiskit.transpiler.passes.InstructionDurationCheck "qiskit.transpiler.passes.InstructionDurationCheck")(\[...])            | Duration validation pass for reschedule.                                                                                |
-| [`SetIOLatency`](qiskit.transpiler.passes.SetIOLatency "qiskit.transpiler.passes.SetIOLatency")(\[clbit\_write\_latency, ...])                         | Set IOLatency information to the input circuit.                                                                         |
+| [`InstructionDurationCheck`](qiskit.transpiler.passes.InstructionDurationCheck "qiskit.transpiler.passes.InstructionDurationCheck")(\[…])              | Duration validation pass for reschedule.                                                                                |
+| [`SetIOLatency`](qiskit.transpiler.passes.SetIOLatency "qiskit.transpiler.passes.SetIOLatency")(\[clbit\_write\_latency, …])                           | Set IOLatency information to the input circuit.                                                                         |
 | [`ALAPSchedule`](qiskit.transpiler.passes.ALAPSchedule "qiskit.transpiler.passes.ALAPSchedule")(\*args, \*\*kwargs)                                    | ALAP Scheduling pass, which schedules the **stop** time of instructions as late as possible.                            |
 | [`ASAPSchedule`](qiskit.transpiler.passes.ASAPSchedule "qiskit.transpiler.passes.ASAPSchedule")(\*args, \*\*kwargs)                                    | ASAP Scheduling pass, which schedules the start time of instructions as early as possible..                             |
 | [`DynamicalDecoupling`](qiskit.transpiler.passes.DynamicalDecoupling "qiskit.transpiler.passes.DynamicalDecoupling")(\*args, \*\*kwargs)               | Dynamical decoupling insertion pass.                                                                                    |
@@ -118,15 +117,9 @@ python_api_name: qiskit.transpiler.passes
 
 |                                                                                                                                                                        |                                                          |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
-| [`UnitarySynthesis`](qiskit.transpiler.passes.UnitarySynthesis "qiskit.transpiler.passes.UnitarySynthesis")(\[basis\_gates, ...])                                      | Synthesize gates according to their basis gates.         |
+| [`UnitarySynthesis`](qiskit.transpiler.passes.UnitarySynthesis "qiskit.transpiler.passes.UnitarySynthesis")(\[basis\_gates, …])                                        | Synthesize gates according to their basis gates.         |
 | [`LinearFunctionsSynthesis`](qiskit.transpiler.passes.LinearFunctionsSynthesis "qiskit.transpiler.passes.LinearFunctionsSynthesis")(\*args, \*\*kwargs)                | Synthesize linear functions.                             |
 | [`LinearFunctionsToPermutations`](qiskit.transpiler.passes.LinearFunctionsToPermutations "qiskit.transpiler.passes.LinearFunctionsToPermutations")(\*args, \*\*kwargs) | Promotes linear functions to permutations when possible. |
-
-## Post Layout (Post transpile qubit selection)
-
-|                                                                                                                        |                                                                                                                                          |
-| ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| [`VF2PostLayout`](qiskit.transpiler.passes.VF2PostLayout "qiskit.transpiler.passes.VF2PostLayout")(\*args, \*\*kwargs) | A pass for choosing a Layout after transpilation of a circuit onto a Coupling graph, as a subgraph isomorphism problem, solved by VF2++. |
 
 ## Additional Passes
 

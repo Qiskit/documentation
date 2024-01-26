@@ -10,9 +10,9 @@ python_api_name: qiskit.providers.aer.jobs.AerJobSet
 
 <span id="qiskit.providers.aer.jobs.AerJobSet" />
 
-`AerJobSet(backend, job_id, fn, experiments, executor=None)`
+`AerJobSet(backend, job_id, fn, experiments, executor=None)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/jobs/aerjobset.py "view source code")
 
-Bases: [`qiskit.providers.job.JobV1`](qiskit.providers.JobV1 "qiskit.providers.job.JobV1")
+Bases: `qiskit.providers.job.JobV1`
 
 A set of [`AerJob`](qiskit.providers.aer.jobs.AerJob "qiskit.providers.aer.jobs.AerJob") classes for Qiskit Aer simulators.
 
@@ -40,13 +40,13 @@ Return the backend where this job was executed.
 
 **Return type**
 
-[`Backend`](qiskit.providers.Backend "qiskit.providers.backend.Backend")
+`Backend`
 
 ### cancel
 
 <span id="qiskit.providers.aer.jobs.AerJobSet.cancel" />
 
-`AerJobSet.cancel()`
+`AerJobSet.cancel()`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/jobs/aerjobset.py "view source code")
 
 Cancel all jobs in this job set.
 
@@ -82,7 +82,7 @@ Return whether the job has successfully run.
 
 <span id="qiskit.providers.aer.jobs.AerJobSet.executor" />
 
-`AerJobSet.executor()`
+`AerJobSet.executor()`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/jobs/aerjobset.py "view source code")
 
 Return the executor for this job
 
@@ -102,13 +102,13 @@ Return whether the job is in a final job state such as `DONE` or `ERROR`.
 
 <span id="qiskit.providers.aer.jobs.AerJobSet.job" />
 
-`AerJobSet.job(experiment)`
+`AerJobSet.job(experiment)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/jobs/aerjobset.py "view source code")
 
 Retrieve the job used to submit the specified experiment and its index.
 
 **Parameters**
 
-**experiment** (`Union`\[`str`, [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")]) –
+**experiment** (`Union`\[`str`, `QuantumCircuit`, `Schedule`]) –
 
 Retrieve the job used to submit this experiment. Several types are accepted for convenience:
 
@@ -118,7 +118,7 @@ Retrieve the job used to submit this experiment. Several types are accepted for 
 
 **Return type**
 
-`Tuple`\[[`AerJob`](qiskit.providers.aer.jobs.AerJob "qiskit.providers.aer.jobs.aerjob.AerJob"), `int`]
+`Tuple`\[`AerJob`, `int`]
 
 **Returns**
 
@@ -144,7 +144,7 @@ Return a unique id identifying the job.
 
 <span id="qiskit.providers.aer.jobs.AerJobSet.result" />
 
-`AerJobSet.result(timeout=None)`
+`AerJobSet.result(timeout=None)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/jobs/aerjobset.py "view source code")
 
 Return the results of the jobs as a single Result object.
 
@@ -182,7 +182,7 @@ Return whether the job is actively running.
 
 <span id="qiskit.providers.aer.jobs.AerJobSet.status" />
 
-`AerJobSet.status(worker)`
+`AerJobSet.status(worker)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/jobs/aerjobset.py "view source code")
 
 Return the status of each job in this set.
 
@@ -192,7 +192,7 @@ worker: Worker id. When None, all workers’ statuses are returned.
 
 **Return type**
 
-`Union`\[[`JobStatus`](qiskit.providers.JobStatus "qiskit.providers.jobstatus.JobStatus"), `List`\[[`JobStatus`](qiskit.providers.JobStatus "qiskit.providers.jobstatus.JobStatus")]]
+`Union`\[`JobStatus`, `List`\[`JobStatus`]]
 
 **Returns**
 
@@ -202,7 +202,7 @@ A list of job statuses.
 
 <span id="qiskit.providers.aer.jobs.AerJobSet.submit" />
 
-`AerJobSet.submit()`
+`AerJobSet.submit()`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/jobs/aerjobset.py "view source code")
 
 Execute this set of jobs on an executor.
 
@@ -246,13 +246,13 @@ Poll the job status until it progresses to a final state such as `DONE` or `ERRO
 
 <span id="qiskit.providers.aer.jobs.AerJobSet.worker" />
 
-`AerJobSet.worker(experiment)`
+`AerJobSet.worker(experiment)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/jobs/aerjobset.py "view source code")
 
 Retrieve the index of job.
 
 **Parameters**
 
-**experiment** (`Union`\[`str`, [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")]) –
+**experiment** (`Union`\[`str`, `QuantumCircuit`, `Schedule`]) –
 
 Retrieve the job used to submit this experiment. Several types are accepted for convenience:
 
@@ -276,7 +276,7 @@ list or integer value of the job id
 
 <span id="qiskit.providers.aer.jobs.AerJobSet.worker_job" />
 
-`AerJobSet.worker_job(worker)`
+`AerJobSet.worker_job(worker)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/jobs/aerjobset.py "view source code")
 
 Retrieve the job specified with job’s id
 
@@ -286,7 +286,7 @@ Retrieve the job specified with job’s id
 
 **Return type**
 
-`Union`\[[`AerJob`](qiskit.providers.aer.jobs.AerJob "qiskit.providers.aer.jobs.aerjob.AerJob"), `List`\[[`AerJob`](qiskit.providers.aer.jobs.AerJob "qiskit.providers.aer.jobs.aerjob.AerJob")]]
+`Union`\[`AerJob`, `List`\[`AerJob`]]
 
 **Returns**
 
@@ -300,7 +300,7 @@ A list of `AerJob` instances that represents the submitted jobs.
 
 <span id="qiskit.providers.aer.jobs.AerJobSet.worker_results" />
 
-`AerJobSet.worker_results(worker, timeout=None)`
+`AerJobSet.worker_results(worker, timeout=None)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/jobs/aerjobset.py "view source code")
 
 Return the result of the jobs specified with worker\_id.
 

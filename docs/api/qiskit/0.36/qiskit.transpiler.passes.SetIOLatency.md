@@ -10,9 +10,9 @@ python_api_name: qiskit.transpiler.passes.SetIOLatency
 
 <span id="qiskit.transpiler.passes.SetIOLatency" />
 
-`SetIOLatency(clbit_write_latency=0, conditional_latency=0)`
+`SetIOLatency(clbit_write_latency=0, conditional_latency=0)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/scheduling/scheduling/set_io_latency.py "view source code")
 
-Bases: [`qiskit.transpiler.basepasses.AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
+Bases: `qiskit.transpiler.basepasses.AnalysisPass`
 
 Set IOLatency information to the input circuit.
 
@@ -41,13 +41,13 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.SetIOLatency.run" />
 
-`SetIOLatency.run(dag)`
+`SetIOLatency.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/scheduling/scheduling/set_io_latency.py "view source code")
 
 Add IO latency information.
 
 **Parameters**
 
-**dag** ([`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")) – Input DAG circuit.
+**dag** (`DAGCircuit`) – Input DAG circuit.
 
 ## Attributes
 

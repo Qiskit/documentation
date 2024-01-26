@@ -1,12 +1,22 @@
+---
+title: ChemistryOperator
+description: API reference for qiskit.chemistry.core.ChemistryOperator
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.core.ChemistryOperator
+---
+
 # qiskit.chemistry.core.ChemistryOperator
 
+<span id="qiskit.chemistry.core.ChemistryOperator" />
 
-
-`ChemistryOperator`
+`ChemistryOperator`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/core/chemistry_operator.py "view source code")
 
 Base class for ChemistryOperator.
 
+### \_\_init\_\_
 
+<span id="qiskit.chemistry.core.ChemistryOperator.__init__" />
 
 `abstract __init__()`
 
@@ -30,13 +40,17 @@ Initialize self. See help(type(self)) for accurate signature.
 | `INFO_Z2SYMMETRIES`                                                                                                               |                       |
 | [`molecule_info`](#qiskit.chemistry.core.ChemistryOperator.molecule_info "qiskit.chemistry.core.ChemistryOperator.molecule_info") | returns molecule info |
 
+### molecule\_info
 
+<span id="qiskit.chemistry.core.ChemistryOperator.molecule_info" />
 
 `property molecule_info`
 
 returns molecule info
 
+### process\_algorithm\_result
 
+<span id="qiskit.chemistry.core.ChemistryOperator.process_algorithm_result" />
 
 `process_algorithm_result(algo_result)`
 
@@ -54,7 +68,9 @@ Takes the algorithm result and processes it as required, e.g. by combination of 
 
 Final chemistry result computed from the algorithm result
 
+### run
 
+<span id="qiskit.chemistry.core.ChemistryOperator.run" />
 
 `abstract run(qmolecule)`
 
@@ -62,7 +78,7 @@ Convert the qmolecule, according to the ChemistryOperator, into an Operator that
 
 **Parameters**
 
-**qmolecule** ([*QMolecule*](qiskit.chemistry.QMolecule#qiskit.chemistry.QMolecule "qiskit.chemistry.QMolecule")) – from a chemistry driver
+**qmolecule** ([*QMolecule*](qiskit.chemistry.QMolecule "qiskit.chemistry.QMolecule")) – from a chemistry driver
 
 **Returns**
 
@@ -71,3 +87,4 @@ Convert the qmolecule, according to the ChemistryOperator, into an Operator that
 **Return type**
 
 Tuple
+

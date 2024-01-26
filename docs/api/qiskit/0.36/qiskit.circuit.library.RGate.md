@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.library.RGate
 
 <span id="qiskit.circuit.library.RGate" />
 
-`RGate(theta, phi, label=None)`
+`RGate(theta, phi, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/r.py "view source code")
 
-Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+Bases: `qiskit.circuit.gate.Gate`
 
 Rotation θ around the cos(φ)x + sin(φ)y axis.
 
@@ -27,7 +27,7 @@ q_0: ┤ R(ϴ) ├
 **Matrix Representation:**
 
 $$
- \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}R(\theta, \phi) = e^{-i \th \left(\cos{\phi} x + \sin{\phi} y\right)} =
+ \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}R(\theta, \phi) = e^{-i \th (\cos{\phi} x + \sin{\phi} y)} =
     \begin{pmatrix}
         \cos{\th} & -i e^{-i \phi} \sin{\th} \\
         -i e^{i \phi} \sin{\th} & \cos{\th}
@@ -42,7 +42,7 @@ Create new r single-qubit gate.
 
 <span id="qiskit.circuit.library.RGate.inverse" />
 
-`RGate.inverse()`
+`RGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/r.py "view source code")
 
 Invert this gate.
 
@@ -58,7 +58,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.library.RGate.decompositions" />
 

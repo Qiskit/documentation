@@ -1,8 +1,16 @@
+---
+title: plot_bloch_vector
+description: API reference for qiskit.visualization.plot_bloch_vector
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.visualization.plot_bloch_vector
+---
+
 # qiskit.visualization.plot\_bloch\_vector
 
+<span id="qiskit.visualization.plot_bloch_vector" />
 
-
-`plot_bloch_vector(bloch, title='', ax=None, figsize=None, coord_type='cartesian')`
+`plot_bloch_vector(bloch, title='', ax=None, figsize=None, coord_type='cartesian')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/visualization/state_visualization.py "view source code")
 
 Plot the Bloch sphere.
 
@@ -38,3 +46,4 @@ plot_bloch_vector([0,1,0], title="New Bloch Sphere")
 ```
 
 ![../\_images/qiskit.visualization.plot\_bloch\_vector\_0\_0.png](/images/api/qiskit/0.35/qiskit.visualization.plot_bloch_vector_0_0.png)
+

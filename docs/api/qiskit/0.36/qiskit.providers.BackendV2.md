@@ -10,9 +10,9 @@ python_api_name: qiskit.providers.BackendV2
 
 <span id="qiskit.providers.BackendV2" />
 
-`BackendV2(provider=None, name=None, description=None, online_date=None, backend_version=None, **fields)`
+`BackendV2(provider=None, name=None, description=None, online_date=None, backend_version=None, **fields)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/backend.py "view source code")
 
-Bases: [`qiskit.providers.backend.Backend`](qiskit.providers.Backend "qiskit.providers.backend.Backend"), `abc.ABC`
+Bases: `qiskit.providers.backend.Backend`, `abc.ABC`
 
 Abstract class for Backends
 
@@ -20,13 +20,13 @@ This abstract class is to be used for all Backend objects created by a provider.
 
 The `options` attribute of the backend is used to contain the dynamic user configurable options of the backend. It should be used more for runtime options that configure how the backend is used. For example, something like a `shots` field for a backend that runs experiments which would contain an int for how many shots to execute.
 
-If migrating a provider from [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1") or `BaseBackend` one thing to keep in mind is for backwards compatibility you might need to add a configuration method that will build a [`BackendConfiguration`](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration") object and [`BackendProperties`](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") from the attributes defined in this class for backwards compatibility.
+If migrating a provider from [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1") or [`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.BaseBackend") one thing to keep in mind is for backwards compatibility you might need to add a configuration method that will build a [`BackendConfiguration`](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration") object and [`BackendProperties`](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") from the attributes defined in this class for backwards compatibility.
 
 Initialize a BackendV2 based backend
 
 **Parameters**
 
-*   **provider** (`Optional`\[[`Provider`](qiskit.providers.Provider "qiskit.providers.provider.Provider")]) – An optional backwards reference to the [`Provider`](qiskit.providers.Provider "qiskit.providers.Provider") object that the backend is from
+*   **provider** (`Optional`\[`Provider`]) – An optional backwards reference to the [`Provider`](qiskit.providers.Provider "qiskit.providers.Provider") object that the backend is from
 *   **name** (`Optional`\[`str`]) – An optional name for the backend
 *   **description** (`Optional`\[`str`]) – An optional description of the backend
 *   **online\_date** (`Optional`\[`datetime`]) – An optional datetime the backend was brought online
@@ -43,7 +43,7 @@ Initialize a BackendV2 based backend
 
 <span id="qiskit.providers.BackendV2.acquire_channel" />
 
-`BackendV2.acquire_channel(qubit)`
+`BackendV2.acquire_channel(qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/backend.py "view source code")
 
 Return the acquisition channel for the given qubit.
 
@@ -65,7 +65,7 @@ The Qubit measurement acquisition line.
 
 <span id="qiskit.providers.BackendV2.control_channel" />
 
-`BackendV2.control_channel(qubits)`
+`BackendV2.control_channel(qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/backend.py "view source code")
 
 Return the secondary drive channel for the given qubit
 
@@ -93,7 +93,7 @@ List\[[ControlChannel](qiskit.pulse.channels.ControlChannel "qiskit.pulse.channe
 
 <span id="qiskit.providers.BackendV2.drive_channel" />
 
-`BackendV2.drive_channel(qubit)`
+`BackendV2.drive_channel(qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/backend.py "view source code")
 
 Return the drive channel for the given qubit.
 
@@ -115,7 +115,7 @@ The Qubit drive channel
 
 <span id="qiskit.providers.BackendV2.measure_channel" />
 
-`BackendV2.measure_channel(qubit)`
+`BackendV2.measure_channel(qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/backend.py "view source code")
 
 Return the measure stimulus channel for the given qubit.
 
@@ -137,7 +137,7 @@ The Qubit measurement stimulus line
 
 <span id="qiskit.providers.BackendV2.qubit_properties" />
 
-`BackendV2.qubit_properties(qubit)`
+`BackendV2.qubit_properties(qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/backend.py "view source code")
 
 Return QubitProperties for a given qubit.
 
@@ -163,11 +163,11 @@ qubit\_properties
 
 <span id="qiskit.providers.BackendV2.run" />
 
-`abstract BackendV2.run(run_input, **options)`
+`abstract BackendV2.run(run_input, **options)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/backend.py "view source code")
 
 Run on the backend.
 
-This method returns a [`Job`](qiskit.providers.Job "qiskit.providers.Job") object that runs circuits. Depending on the backend this may be either an async or sync call. It is at the discretion of the provider to decide whether running should block until the execution is finished or not: the Job class can handle either situation.
+This method that will return a [`Job`](qiskit.providers.Job "qiskit.providers.Job") object that run circuits. Depending on the backend this may be either an async or sync call. It is the discretion of the provider to decide whether running should block until the execution is finished or not. The Job class can handle either situation.
 
 **Parameters**
 
@@ -186,7 +186,7 @@ The job object for the run
 
 <span id="qiskit.providers.BackendV2.set_options" />
 
-`BackendV2.set_options(**fields)`
+`BackendV2.set_options(**fields)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/backend.py "view source code")
 
 Set the options fields for the backend
 
@@ -262,7 +262,7 @@ A list of Instruction tuples on the backend of the form `(instruction, (qubits)`
 
 **Return type**
 
-`List`\[`Tuple`\[[`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction"), `Tuple`\[`int`]]]
+`List`\[`Tuple`\[`Instruction`, `Tuple`\[`int`]]]
 
 <span id="qiskit.providers.BackendV2.max_circuits" />
 
@@ -320,7 +320,7 @@ A list of [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction
 
 **Return type**
 
-`List`\[[`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")]
+`List`\[`Instruction`]
 
 <span id="qiskit.providers.BackendV2.options" />
 

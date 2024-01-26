@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.classicalfunction.BooleanExpression
 
 <span id="qiskit.circuit.classicalfunction.BooleanExpression" />
 
-`BooleanExpression(expression, name=None)`
+`BooleanExpression(expression, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/classicalfunction/boolean_expression.py "view source code")
 
 Bases: `qiskit.circuit.classicalfunction.classical_element.ClassicalElement`
 
@@ -158,7 +158,7 @@ updated if it was provided
 
 <span id="qiskit.circuit.classicalfunction.BooleanExpression.from_dimacs_file" />
 
-`classmethod BooleanExpression.from_dimacs_file(filename)`
+`classmethod BooleanExpression.from_dimacs_file(filename)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/classicalfunction/boolean_expression.py "view source code")
 
 Create a BooleanExpression from the string in the DIMACS format. :type filename: `str` :param filename: A file in DIMACS format.
 
@@ -288,7 +288,7 @@ sub-instructions reversed.
 
 <span id="qiskit.circuit.classicalfunction.BooleanExpression.simulate" />
 
-`BooleanExpression.simulate(bitstring)`
+`BooleanExpression.simulate(bitstring)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/classicalfunction/boolean_expression.py "view source code")
 
 Evaluate the expression on a bitstring.
 
@@ -330,14 +330,14 @@ bool
 
 <span id="qiskit.circuit.classicalfunction.BooleanExpression.synth" />
 
-`BooleanExpression.synth(registerless=True, synthesizer=None)`
+`BooleanExpression.synth(registerless=True, synthesizer=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/classicalfunction/boolean_expression.py "view source code")
 
 Synthesis the logic network into a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
 
 **Parameters**
 
 *   **registerless** (`bool`) – Default `True`. If `False` uses the parameter names to create registers with those names. Otherwise, creates a circuit with a flat quantum register.
-*   **synthesizer** (`Optional`\[`Callable`\[\[[`BooleanExpression`](qiskit.circuit.classicalfunction.BooleanExpression "qiskit.circuit.classicalfunction.boolean_expression.BooleanExpression")], [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]]) – A callable that takes self and returns a Tweedledum circuit.
+*   **synthesizer** (`Optional`\[`Callable`\[\[`BooleanExpression`], `QuantumCircuit`]]) – A callable that takes self and returns a Tweedledum circuit.
 
 **Returns**
 
@@ -385,7 +385,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.classicalfunction.BooleanExpression.decompositions" />
 

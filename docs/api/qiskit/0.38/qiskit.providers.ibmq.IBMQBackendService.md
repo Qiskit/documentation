@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.IBMQBackendService
 
 <span id="qiskit.providers.ibmq.IBMQBackendService" />
 
-`IBMQBackendService(provider)`
+`IBMQBackendService(provider)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/ibmqbackendservice.py "view source code")
 
 Bases: `object`
 
@@ -47,7 +47,7 @@ IBMQBackendService constructor.
 
 <span id="qiskit.providers.ibmq.IBMQBackendService.backends" />
 
-`IBMQBackendService.backends(name=None, filters=None, timeout=None, min_num_qubits=None, input_allowed=None, **kwargs)`
+`IBMQBackendService.backends(name=None, filters=None, timeout=None, min_num_qubits=None, input_allowed=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/ibmqbackendservice.py "view source code")
 
 Return all backends accessible via this provider, subject to optional filtering.
 
@@ -90,7 +90,7 @@ The list of available backends that match the filter.
 
 <span id="qiskit.providers.ibmq.IBMQBackendService.job_ids" />
 
-`IBMQBackendService.job_ids(limit=10, skip=0, backend_name=None, status=None, job_name=None, start_datetime=None, end_datetime=None, job_tags=None, job_tags_operator='OR', descending=True)`
+`IBMQBackendService.job_ids(limit=10, skip=0, backend_name=None, status=None, job_name=None, start_datetime=None, end_datetime=None, job_tags=None, job_tags_operator='OR', descending=True)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/ibmqbackendservice.py "view source code")
 
 Return a list of job IDs, subject to optional filtering.
 
@@ -140,7 +140,7 @@ A list of `IBMJob` instances.
 
 <span id="qiskit.providers.ibmq.IBMQBackendService.jobs" />
 
-`IBMQBackendService.jobs(limit=10, skip=0, backend_name=None, status=None, job_name=None, start_datetime=None, end_datetime=None, job_tags=None, job_tags_operator='OR', experiment_id=None, descending=True, db_filter=None)`
+`IBMQBackendService.jobs(limit=10, skip=0, backend_name=None, status=None, job_name=None, start_datetime=None, end_datetime=None, job_tags=None, job_tags_operator='OR', experiment_id=None, descending=True, db_filter=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/ibmqbackendservice.py "view source code")
 
 Return a list of jobs, subject to optional filtering.
 
@@ -209,7 +209,7 @@ A list of `IBMQJob` instances.
 
 <span id="qiskit.providers.ibmq.IBMQBackendService.my_reservations" />
 
-`IBMQBackendService.my_reservations()`
+`IBMQBackendService.my_reservations()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/ibmqbackendservice.py "view source code")
 
 Return your upcoming reservations.
 
@@ -225,7 +225,7 @@ A list of your upcoming reservations.
 
 <span id="qiskit.providers.ibmq.IBMQBackendService.retrieve_job" />
 
-`IBMQBackendService.retrieve_job(job_id)`
+`IBMQBackendService.retrieve_job(job_id)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/ibmqbackendservice.py "view source code")
 
 Return a single job.
 

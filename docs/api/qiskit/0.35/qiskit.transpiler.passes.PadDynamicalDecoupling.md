@@ -1,8 +1,16 @@
+---
+title: PadDynamicalDecoupling
+description: API reference for qiskit.transpiler.passes.PadDynamicalDecoupling
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.PadDynamicalDecoupling
+---
+
 # PadDynamicalDecoupling
 
+<span id="qiskit.transpiler.passes.PadDynamicalDecoupling" />
 
-
-`PadDynamicalDecoupling(durations, dd_sequence, qubits=None, spacing=None, skip_reset_qubits=True, pulse_alignment=1, extra_slack_distribution='middle')`
+`PadDynamicalDecoupling(durations, dd_sequence, qubits=None, spacing=None, skip_reset_qubits=True, pulse_alignment=1, extra_slack_distribution='middle')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/scheduling/padding/dynamical_decoupling.py "view source code")
 
 Bases: `qiskit.transpiler.passes.scheduling.padding.base_padding.BasePadding`
 
@@ -96,19 +104,46 @@ Dynamical decoupling initializer.
 
 **Raises**
 
-*   [**TranspilerError**](qiskit.transpiler.TranspilerError#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – When invalid DD sequence is specified.
-*   [**TranspilerError**](qiskit.transpiler.TranspilerError#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – When pulse gate with the duration which is non-multiple of the alignment constraint value is found.
+*   [**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – When invalid DD sequence is specified.
+*   [**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – When pulse gate with the duration which is non-multiple of the alignment constraint value is found.
 
 ## Methods
 
-|                                                                                                                                                                            |                                |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
-| [`name`](qiskit.transpiler.passes.PadDynamicalDecoupling.name#qiskit.transpiler.passes.PadDynamicalDecoupling.name "qiskit.transpiler.passes.PadDynamicalDecoupling.name") | Return the name of the pass.   |
-| [`run`](qiskit.transpiler.passes.PadDynamicalDecoupling.run#qiskit.transpiler.passes.PadDynamicalDecoupling.run "qiskit.transpiler.passes.PadDynamicalDecoupling.run")     | Run the padding pass on `dag`. |
+### name
+
+<span id="qiskit.transpiler.passes.PadDynamicalDecoupling.name" />
+
+`PadDynamicalDecoupling.name()`
+
+Return the name of the pass.
+
+### run
+
+<span id="qiskit.transpiler.passes.PadDynamicalDecoupling.run" />
+
+`PadDynamicalDecoupling.run(dag)`
+
+Run the padding pass on `dag`.
+
+**Parameters**
+
+**dag** (`DAGCircuit`) – DAG to be checked.
+
+**Returns**
+
+DAG with idle time filled with instructions.
+
+**Return type**
+
+[DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+
+**Raises**
+
+[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – When a particular node is not scheduled, likely some transform pass is inserted before this node is called.
 
 ## Attributes
 
-
+<span id="qiskit.transpiler.passes.PadDynamicalDecoupling.is_analysis_pass" />
 
 ### is\_analysis\_pass
 
@@ -116,10 +151,11 @@ Check if the pass is an analysis pass.
 
 If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
 
-
+<span id="qiskit.transpiler.passes.PadDynamicalDecoupling.is_transformation_pass" />
 
 ### is\_transformation\_pass
 
 Check if the pass is a transformation pass.
 
 If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+

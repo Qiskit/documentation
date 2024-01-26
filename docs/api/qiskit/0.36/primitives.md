@@ -86,13 +86,6 @@ with Estimator([psi1, psi2], [H1, H2, H3], [params1, params2]) as e:
     #             <psi1(theta3)|H3|psi1(theta3)> ]
     result5 = e([0, 1, 0], [0, 1, 2], [theta1, theta2, theta3])
     print(result5)
-
-    # Objects can be passed instead of indices.
-    # calculate [ <psi2(theta2)|H2|psi2(theta2)> ]
-    # Note that passing objects has an overhead
-    # since the corresponding indices need to be searched.
-    result6 = e([psi2], [H2], [theta2])
-    print(result6)
 ```
 
 <span id="module-qiskit.primitives.base_sampler" />
@@ -136,14 +129,6 @@ with Sampler([bell]*3, [[]] * 3) as sampler:
     result = sampler([0, 1, 2], [[]]*3)
     print([q.binary_probabilities() for q in result.quasi_dists])
 
-# executes three Bell circuits with objects.
-# Objects can be passed instead of indices.
-# Note that passing objects has an overhead
-# since the corresponding indices need to be searched.
-with Sampler([bell]) as sampler:
-    result = sampler([bell, bell, bell])
-    print([q.binary_probabilities() for q in result.quasi_dists])
-
 # parameterized circuit
 pqc = RealAmplitudes(num_qubits=2, reps=2)
 pqc.measure_all()
@@ -169,10 +154,10 @@ with Sampler(circuits=[pqc, pqc2], parameters=[pqc.parameters, pqc2.parameters])
 
 ## Estimator
 
-|                                                                                                                     |                       |
-| ------------------------------------------------------------------------------------------------------------------- | --------------------- |
-| [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator")(circuits, observables\[, ...]) | Estimator base class. |
-| [`Estimator`](qiskit.primitives.Estimator "qiskit.primitives.Estimator")(circuits, observables\[, parameters])      | Estimator class       |
+|                                                                                                                   |                       |
+| ----------------------------------------------------------------------------------------------------------------- | --------------------- |
+| [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator")(circuits, observables\[, …]) | Estimator base class. |
+| [`Estimator`](qiskit.primitives.Estimator "qiskit.primitives.Estimator")(circuits, observables\[, parameters])    | Estimator class       |
 
 ## Sampler
 
@@ -183,8 +168,8 @@ with Sampler(circuits=[pqc, pqc2], parameters=[pqc.parameters, pqc2.parameters])
 
 ## Results
 
-|                                                                                                              |                      |
-| ------------------------------------------------------------------------------------------------------------ | -------------------- |
-| [`EstimatorResult`](qiskit.primitives.EstimatorResult "qiskit.primitives.EstimatorResult")(values, metadata) | Result of Estimator. |
-| [`SamplerResult`](qiskit.primitives.SamplerResult "qiskit.primitives.SamplerResult")(quasi\_dists, metadata) | Result of Sampler.   |
+|                                                                                                              |                     |
+| ------------------------------------------------------------------------------------------------------------ | ------------------- |
+| [`EstimatorResult`](qiskit.primitives.EstimatorResult "qiskit.primitives.EstimatorResult")(values, metadata) | Result of Estimator |
+| [`SamplerResult`](qiskit.primitives.SamplerResult "qiskit.primitives.SamplerResult")(quasi\_dists, metadata) | Result of Sampler   |
 

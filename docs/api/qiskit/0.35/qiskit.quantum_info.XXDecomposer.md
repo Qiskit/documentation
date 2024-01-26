@@ -1,8 +1,16 @@
+---
+title: XXDecomposer
+description: API reference for qiskit.quantum_info.XXDecomposer
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.quantum_info.XXDecomposer
+---
+
 # XXDecomposer
 
+<span id="qiskit.quantum_info.XXDecomposer" />
 
-
-`XXDecomposer(euler_basis='U', embodiments=None, backup_optimizer=None)`
+`XXDecomposer(euler_basis='U', embodiments=None, backup_optimizer=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/synthesis/xx_decompose/decomposer.py "view source code")
 
 Bases: `object`
 
@@ -20,6 +28,13 @@ A class for optimal decomposition of 2-qubit unitaries into 2-qubit basis gates 
 
 ## Methods
 
-|                                                                                                                                                                           |                                                                       |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [`num_basis_gates`](qiskit.quantum_info.XXDecomposer.num_basis_gates#qiskit.quantum_info.XXDecomposer.num_basis_gates "qiskit.quantum_info.XXDecomposer.num_basis_gates") | Counts the number of gates that would be emitted during re-synthesis. |
+### num\_basis\_gates
+
+<span id="qiskit.quantum_info.XXDecomposer.num_basis_gates" />
+
+`XXDecomposer.num_basis_gates(unitary)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/synthesis/xx_decompose/decomposer.py "view source code")
+
+Counts the number of gates that would be emitted during re-synthesis.
+
+NOTE: Used by ConsolidateBlocks.
+

@@ -1,8 +1,16 @@
+---
+title: ast_to_dag
+description: API reference for qiskit.converters.ast_to_dag
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.converters.ast_to_dag
+---
+
 # qiskit.converters.ast\_to\_dag
 
+<span id="qiskit.converters.ast_to_dag" />
 
-
-`ast_to_dag(ast)`
+`ast_to_dag(ast)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/converters/ast_to_dag.py "view source code")
 
 Build a `DAGCircuit` object from an AST `Node` object.
 
@@ -16,7 +24,7 @@ the DAG representing an OpenQASM’s AST
 
 **Return type**
 
-[DAGCircuit](qiskit.dagcircuit.DAGCircuit#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+[DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
 
 **Raises**
 
@@ -44,3 +52,4 @@ dag_drawer(dag)
 ```
 
 ![../\_images/qiskit.converters.ast\_to\_dag\_0\_0.png](/images/api/qiskit/0.35/qiskit.converters.ast_to_dag_0_0.png)
+

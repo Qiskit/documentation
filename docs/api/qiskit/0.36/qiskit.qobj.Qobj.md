@@ -10,9 +10,9 @@ python_api_name: qiskit.qobj.Qobj
 
 <span id="qiskit.qobj.Qobj" />
 
-`Qobj(qobj_id=None, config=None, experiments=None, header=None)`
+`Qobj(qobj_id=None, config=None, experiments=None, header=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/qobj/__init__.py "view source code")
 
-Bases: [`qiskit.qobj.qasm_qobj.QasmQobj`](qiskit.qobj.QasmQobj "qiskit.qobj.qasm_qobj.QasmQobj")
+Bases: `qiskit.qobj.qasm_qobj.QasmQobj`
 
 A backwards compat alias for QasmQobj.
 

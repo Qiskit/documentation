@@ -1,8 +1,16 @@
+---
+title: AlignMeasures
+description: API reference for qiskit.transpiler.passes.AlignMeasures
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.AlignMeasures
+---
+
 # AlignMeasures
 
+<span id="qiskit.transpiler.passes.AlignMeasures" />
 
-
-`AlignMeasures(alignment=1)`
+`AlignMeasures(alignment=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/scheduling/alignments/align_measures.py "view source code")
 
 Bases: `qiskit.transpiler.basepasses.TransformationPass`
 
@@ -16,7 +24,7 @@ In a typical hardware implementation of superconducting quantum processors, a si
 
 Measurement alignment is required if a backend only allows triggering `measure` instructions at a certain multiple value of this pulse granularity. This value is usually provided by `backend.configuration().timing_constraints`.
 
-In Qiskit SDK, the duration of delay can take arbitrary value in units of `dt`, thus circuits involving delays may violate the above alignment constraint (i.e. misalignment). This pass shifts measurement instructions to a new time position to fix the misalignment, by inserting extra delay right before the measure instructions. The input of this pass should be scheduled [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit"), thus one should select one of the scheduling passes ([`ALAPSchedule`](qiskit.transpiler.passes.ALAPSchedule#qiskit.transpiler.passes.ALAPSchedule "qiskit.transpiler.passes.ALAPSchedule") or `ASAPSchedule`) before calling this.
+In Qiskit SDK, the duration of delay can take arbitrary value in units of `dt`, thus circuits involving delays may violate the above alignment constraint (i.e. misalignment). This pass shifts measurement instructions to a new time position to fix the misalignment, by inserting extra delay right before the measure instructions. The input of this pass should be scheduled [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit"), thus one should select one of the scheduling passes ([`ALAPSchedule`](qiskit.transpiler.passes.ALAPSchedule "qiskit.transpiler.passes.ALAPSchedule") or `ASAPSchedule`) before calling this.
 
 ## Examples
 
@@ -54,14 +62,41 @@ Create new pass.
 
 ## Methods
 
-|                                                                                                                                                 |                                            |
-| ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
-| [`name`](qiskit.transpiler.passes.AlignMeasures.name#qiskit.transpiler.passes.AlignMeasures.name "qiskit.transpiler.passes.AlignMeasures.name") | Return the name of the pass.               |
-| [`run`](qiskit.transpiler.passes.AlignMeasures.run#qiskit.transpiler.passes.AlignMeasures.run "qiskit.transpiler.passes.AlignMeasures.run")     | Run the measurement alignment pass on dag. |
+### name
+
+<span id="qiskit.transpiler.passes.AlignMeasures.name" />
+
+`AlignMeasures.name()`
+
+Return the name of the pass.
+
+### run
+
+<span id="qiskit.transpiler.passes.AlignMeasures.run" />
+
+`AlignMeasures.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/scheduling/alignments/align_measures.py "view source code")
+
+Run the measurement alignment pass on dag.
+
+**Parameters**
+
+**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – DAG to be checked.
+
+**Returns**
+
+DAG with consistent timing and op nodes annotated with duration.
+
+**Return type**
+
+[DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+
+**Raises**
+
+[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – If circuit is not scheduled.
 
 ## Attributes
 
-
+<span id="qiskit.transpiler.passes.AlignMeasures.is_analysis_pass" />
 
 ### is\_analysis\_pass
 
@@ -69,10 +104,11 @@ Check if the pass is an analysis pass.
 
 If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
 
-
+<span id="qiskit.transpiler.passes.AlignMeasures.is_transformation_pass" />
 
 ### is\_transformation\_pass
 
 Check if the pass is a transformation pass.
 
 If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+

@@ -10,9 +10,9 @@ python_api_name: qiskit.opflow.expectations.PauliExpectation
 
 <span id="qiskit.opflow.expectations.PauliExpectation" />
 
-`PauliExpectation(group_paulis=True)`
+`PauliExpectation(group_paulis=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/expectations/pauli_expectation.py "view source code")
 
-Bases: [`qiskit.opflow.expectations.expectation_base.ExpectationBase`](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.expectation_base.ExpectationBase")
+Bases: `qiskit.opflow.expectations.expectation_base.ExpectationBase`
 
 An Expectation converter for Pauli-basis observables by changing Pauli measurements to a diagonal (\{Z, I}^n) basis and appending circuit post-rotations to the measured state function. Optionally groups the Paulis with the same post-rotations (those that commute with one another, or form Abelian groups) into single measurements to reduce circuit execution overhead.
 
@@ -26,13 +26,13 @@ An Expectation converter for Pauli-basis observables by changing Pauli measureme
 
 <span id="qiskit.opflow.expectations.PauliExpectation.compute_variance" />
 
-`PauliExpectation.compute_variance(exp_op)`
+`PauliExpectation.compute_variance(exp_op)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/expectations/pauli_expectation.py "view source code")
 
 Compute the variance of the expectation estimator.
 
 **Parameters**
 
-**exp\_op** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The full expectation value Operator after sampling.
+**exp\_op** (`OperatorBase`) – The full expectation value Operator after sampling.
 
 **Return type**
 
@@ -46,17 +46,17 @@ The variances or lists thereof (if exp\_op contains ListOps) of the expectation 
 
 <span id="qiskit.opflow.expectations.PauliExpectation.convert" />
 
-`PauliExpectation.convert(operator)`
+`PauliExpectation.convert(operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/expectations/pauli_expectation.py "view source code")
 
 Accepts an Operator and returns a new Operator with the Pauli measurements replaced by diagonal Pauli post-rotation based measurements so they can be evaluated by sampling and averaging.
 
 **Parameters**
 
-**operator** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The operator to convert.
+**operator** (`OperatorBase`) – The operator to convert.
 
 **Return type**
 
-[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+`OperatorBase`
 
 **Returns**
 

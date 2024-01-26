@@ -10,9 +10,9 @@ python_api_name: qiskit.opflow.gradients.CircuitQFI
 
 <span id="qiskit.opflow.gradients.CircuitQFI" />
 
-`CircuitQFI`
+`CircuitQFI`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/gradients/circuit_qfis/circuit_qfi.py "view source code")
 
-Bases: [`qiskit.opflow.converters.converter_base.ConverterBase`](qiskit.opflow.converters.ConverterBase "qiskit.opflow.converters.converter_base.ConverterBase")
+Bases: `qiskit.opflow.converters.converter_base.ConverterBase`
 
 Circuit to Quantum Fisher Information operator converter.
 
@@ -28,16 +28,16 @@ CircuitQFI - uses quantum techniques to get the QFI of circuits DerivativeBase -
 
 <span id="qiskit.opflow.gradients.CircuitQFI.convert" />
 
-`abstract CircuitQFI.convert(operator, params)`
+`abstract CircuitQFI.convert(operator, params)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/gradients/circuit_qfis/circuit_qfi.py "view source code")
 
 **Parameters**
 
-*   **operator** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The operator corresponding to the quantum state $|\psi(\omega)\rangle$ for which we compute the QFI.
-*   **params** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.parametervector.ParameterVector"), `List`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]]) – The parameters $\omega$ with respect to which we are computing the QFI.
+*   **operator** (`OperatorBase`) – The operator corresponding to the quantum state $|\psi(\omega)\rangle$ for which we compute the QFI.
+*   **params** (`Union`\[`ParameterExpression`, `ParameterVector`, `List`\[`ParameterExpression`]]) – The parameters $\omega$ with respect to which we are computing the QFI.
 
 **Return type**
 
-[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+`OperatorBase`
 
 **Returns**
 

@@ -1,8 +1,16 @@
+---
+title: random_unitary
+description: API reference for qiskit.aqua.utils.random_unitary
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.aqua.utils.random_unitary
+---
+
 # qiskit.aqua.utils.random\_unitary
 
+<span id="qiskit.aqua.utils.random_unitary" />
 
-
-`random_unitary(N)`
+`random_unitary(N)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/utils/random_matrix_generator.py "view source code")
 
 Generate a random unitary matrix with size NxN.
 
@@ -17,3 +25,4 @@ a 2-D matrix with complex data type.
 **Return type**
 
 np.ndarray
+

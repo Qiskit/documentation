@@ -1,8 +1,16 @@
+---
+title: EvolvedOperatorAnsatz
+description: API reference for qiskit.circuit.library.EvolvedOperatorAnsatz
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.EvolvedOperatorAnsatz
+---
+
 # EvolvedOperatorAnsatz
 
+<span id="qiskit.circuit.library.EvolvedOperatorAnsatz" />
 
-
-`EvolvedOperatorAnsatz(operators=None, reps=1, evolution=None, insert_barriers=False, name='EvolvedOps', parameter_prefix='t', initial_state=None)`
+`EvolvedOperatorAnsatz(operators=None, reps=1, evolution=None, insert_barriers=False, name='EvolvedOps', parameter_prefix='t', initial_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/evolved_operator_ansatz.py "view source code")
 
 Bases: `qiskit.circuit.library.n_local.n_local.NLocal`
 
@@ -10,9 +18,9 @@ The evolved operator ansatz.
 
 **Parameters**
 
-*   **operators** (*Optional\[Union\[*[*OperatorBase*](qiskit.opflow.OperatorBase#qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")*,* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*, list]*) – The operators to evolve. If a circuit is passed, we assume it implements an already evolved operator and thus the circuit is not evolved again. Can be a single operator (circuit) or a list of operators (and circuits).
+*   **operators** (*Optional\[Union\[*[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")*,* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*, list]*) – The operators to evolve. If a circuit is passed, we assume it implements an already evolved operator and thus the circuit is not evolved again. Can be a single operator (circuit) or a list of operators (and circuits).
 *   **reps** (`int`) – The number of times to repeat the evolved operators.
-*   **evolution** (*Optional\[*[*EvolutionBase*](qiskit.opflow.evolutions.EvolutionBase#qiskit.opflow.evolutions.EvolutionBase "qiskit.opflow.evolutions.EvolutionBase")*]*) – An opflow converter object to construct the evolution. Defaults to Trotterization.
+*   **evolution** (*Optional\[*[*EvolutionBase*](qiskit.opflow.evolutions.EvolutionBase "qiskit.opflow.evolutions.EvolutionBase")*]*) – An opflow converter object to construct the evolution. Defaults to Trotterization.
 *   **insert\_barriers** (`bool`) – Whether to insert barriers in between each evolution.
 *   **name** (`str`) – The name of the circuit.
 *   **parameter\_prefix** (`Union`\[`str`, `List`\[`str`]]) – Set the names of the circuit parameters. If a string, the same prefix will be used for each parameters. Can also be a list to specify a prefix per operator.
@@ -20,7 +28,7 @@ The evolved operator ansatz.
 
 ## Attributes
 
-
+<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.ancillas" />
 
 ### ancillas
 
@@ -30,7 +38,7 @@ Returns a list of ancilla bits in the order that the registers were added.
 
 `List`\[`AncillaQubit`]
 
-
+<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.calibrations" />
 
 ### calibrations
 
@@ -44,7 +52,7 @@ Return calibration dictionary.
 
 `dict`
 
-
+<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.clbits" />
 
 ### clbits
 
@@ -54,11 +62,11 @@ Returns a list of classical bits in the order that the registers were added.
 
 `List`\[`Clbit`]
 
-
+<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.data" />
 
 ### data
 
-
+<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.entanglement" />
 
 ### entanglement
 
@@ -72,7 +80,7 @@ Get the entanglement strategy.
 
 The entanglement strategy, see `get_entangler_map()` for more detail on how the format is interpreted.
 
-
+<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.entanglement_blocks" />
 
 ### entanglement\_blocks
 
@@ -86,7 +94,7 @@ The blocks in the entanglement layers.
 
 The blocks in the entanglement layers.
 
-
+<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.evolution" />
 
 ### evolution
 
@@ -98,15 +106,15 @@ The evolution converter used to compute the evolution.
 
 **Return type**
 
-[EvolutionBase](qiskit.opflow.evolutions.EvolutionBase#qiskit.opflow.evolutions.EvolutionBase "qiskit.opflow.evolutions.EvolutionBase")
+[EvolutionBase](qiskit.opflow.evolutions.EvolutionBase "qiskit.opflow.evolutions.EvolutionBase")
 
-
+<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.extension_lib" />
 
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
 
-
+<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.global_phase" />
 
 ### global\_phase
 
@@ -116,13 +124,13 @@ Return the global phase of the circuit in radians.
 
 `Union`\[`ParameterExpression`, `float`]
 
-
+<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.header" />
 
 ### header
 
 `= 'OPENQASM 2.0;'`
 
-
+<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.initial_state" />
 
 ### initial\_state
 
@@ -136,7 +144,7 @@ Return the initial state that is added in front of the n-local circuit.
 
 The initial state.
 
-
+<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.insert_barriers" />
 
 ### insert\_barriers
 
@@ -150,13 +158,13 @@ If barriers are inserted in between the layers or not.
 
 True, if barriers are inserted in between the layers, False if not.
 
-
+<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.instances" />
 
 ### instances
 
 `= 9`
 
-
+<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.metadata" />
 
 ### metadata
 
@@ -168,7 +176,7 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 
 `dict`
 
-
+<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.num_ancillas" />
 
 ### num\_ancillas
 
@@ -178,7 +186,7 @@ Return the number of ancilla qubits.
 
 `int`
 
-
+<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.num_clbits" />
 
 ### num\_clbits
 
@@ -188,7 +196,7 @@ Return number of classical bits.
 
 `int`
 
-
+<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.num_layers" />
 
 ### num\_layers
 
@@ -202,7 +210,7 @@ Return the number of layers in the n-local circuit.
 
 The number of layers in the circuit.
 
-
+<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.num_parameters" />
 
 ### num\_parameters
 
@@ -210,13 +218,13 @@ The number of layers in the circuit.
 
 `int`
 
-
+<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.num_parameters_settable" />
 
 ### num\_parameters\_settable
 
 The number of total parameters that can be set to distinct values.
 
-This does not change when the parameters are bound or exchanged for same parameters, and therefore is different from `num_parameters` which counts the number of unique [`Parameter`](qiskit.circuit.Parameter#qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects currently in the circuit.
+This does not change when the parameters are bound or exchanged for same parameters, and therefore is different from `num_parameters` which counts the number of unique [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects currently in the circuit.
 
 **Return type**
 
@@ -230,7 +238,7 @@ The number of parameters originally available in the circuit.
   This quantity does not require the circuit to be built yet.
 </Admonition>
 
-
+<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.num_qubits" />
 
 ### num\_qubits
 
@@ -238,7 +246,7 @@ The number of parameters originally available in the circuit.
 
 `int`
 
-
+<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.operators" />
 
 ### operators
 
@@ -252,7 +260,7 @@ The operators to be evolved (and circuits) contained in this ansatz.
 
 list
 
-
+<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.ordered_parameters" />
 
 ### ordered\_parameters
 
@@ -282,7 +290,7 @@ q_0: ┤ Ry(1) ├┤ Ry(θ[1]) ├┤ Ry(θ[1]) ├┤ Ry(θ[3]) ├
 
 The parameters objects used in the circuit.
 
-
+<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.parameter_bounds" />
 
 ### parameter\_bounds
 
@@ -296,7 +304,7 @@ The parameter bounds for the unbound parameters in the circuit.
 
 A list of pairs indicating the bounds, as (lower, upper). None indicates an unbounded parameter in the corresponding direction. If None is returned, problem is fully unbounded.
 
-
+<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.parameters" />
 
 ### parameters
 
@@ -304,25 +312,25 @@ A list of pairs indicating the bounds, as (lower, upper). None indicates an unbo
 
 `ParameterView`
 
-
+<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.preferred_init_points" />
 
 ### preferred\_init\_points
 
 Getter of preferred initial points based on the given initial state.
 
-
+<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.prefix" />
 
 ### prefix
 
 `= 'circuit'`
 
-
+<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.qregs" />
 
 ### qregs
 
 A list of the quantum registers associated with the circuit.
 
-
+<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.qubits" />
 
 ### qubits
 
@@ -332,7 +340,7 @@ Returns a list of quantum bits in the order that the registers were added.
 
 `List`\[`Qubit`]
 
-
+<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.reps" />
 
 ### reps
 
@@ -346,7 +354,7 @@ The number of times rotation and entanglement block are repeated.
 
 The number of repetitions.
 
-
+<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.rotation_blocks" />
 
 ### rotation\_blocks
 
@@ -359,3 +367,4 @@ The blocks in the rotation layers.
 **Returns**
 
 The blocks in the rotation layers.
+

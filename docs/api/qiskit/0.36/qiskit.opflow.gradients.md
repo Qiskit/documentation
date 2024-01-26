@@ -103,9 +103,9 @@ The derivative classes come with a gradient\_wrapper() function which returns th
 
 ### Derivatives
 
-|                                                                                                                                           |                                                             |
-| ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
-| [`Gradient`](qiskit.opflow.gradients.Gradient "qiskit.opflow.gradients.Gradient")(\[grad\_method])                                        | Convert an operator expression to the first-order gradient. |
-| [`Hessian`](qiskit.opflow.gradients.Hessian "qiskit.opflow.gradients.Hessian")(\[hess\_method])                                           | Compute the Hessian of an expected value.                   |
-| [`NaturalGradient`](qiskit.opflow.gradients.NaturalGradient "qiskit.opflow.gradients.NaturalGradient")(\[grad\_method, qfi\_method, ...]) | Convert an operator expression to the first-order gradient. |
-| [`QFI`](qiskit.opflow.gradients.QFI "qiskit.opflow.gradients.QFI")(\[qfi\_method])                                                        | Compute the Quantum Fisher Information (QFI).               |
+|                                                                                                                                         |                                                             |
+| --------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| [`Gradient`](qiskit.opflow.gradients.Gradient "qiskit.opflow.gradients.Gradient")(\[grad\_method])                                      | Convert an operator expression to the first-order gradient. |
+| [`Hessian`](qiskit.opflow.gradients.Hessian "qiskit.opflow.gradients.Hessian")(\[hess\_method])                                         | Compute the Hessian of an expected value.                   |
+| [`NaturalGradient`](qiskit.opflow.gradients.NaturalGradient "qiskit.opflow.gradients.NaturalGradient")(\[grad\_method, qfi\_method, …]) | Convert an operator expression to the first-order gradient. |
+| [`QFI`](qiskit.opflow.gradients.QFI "qiskit.opflow.gradients.QFI")(\[qfi\_method])                                                      | Compute the Quantum Fisher Information (QFI).               |

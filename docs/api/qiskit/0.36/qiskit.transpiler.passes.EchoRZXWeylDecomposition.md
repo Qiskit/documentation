@@ -10,9 +10,9 @@ python_api_name: qiskit.transpiler.passes.EchoRZXWeylDecomposition
 
 <span id="qiskit.transpiler.passes.EchoRZXWeylDecomposition" />
 
-`EchoRZXWeylDecomposition(*args, **kwargs)`
+`EchoRZXWeylDecomposition(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/optimization/echo_rzx_weyl_decomposition.py "view source code")
 
-Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
+Bases: `qiskit.transpiler.basepasses.TransformationPass`
 
 Rewrite two-qubit gates using the Weyl decomposition.
 
@@ -38,7 +38,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.EchoRZXWeylDecomposition.run" />
 
-`EchoRZXWeylDecomposition.run(dag)`
+`EchoRZXWeylDecomposition.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/optimization/echo_rzx_weyl_decomposition.py "view source code")
 
 Run the EchoRZXWeylDecomposition pass on dag.
 

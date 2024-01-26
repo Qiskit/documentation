@@ -1,8 +1,16 @@
+---
+title: CVaRExpectation
+description: API reference for qiskit.opflow.expectations.CVaRExpectation
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.opflow.expectations.CVaRExpectation
+---
+
 # qiskit.opflow\.expectations.CVaRExpectation
 
+<span id="qiskit.opflow.expectations.CVaRExpectation" />
 
-
-`CVaRExpectation(alpha, expectation=None)`
+`CVaRExpectation(alpha, expectation=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/expectations/cvar_expectation.py "view source code")
 
 Compute the Conditional Value at Risk (CVaR) expectation value.
 
@@ -29,7 +37,9 @@ Let $\alpha$ be a real number in $[0,1]$ which specifies the fraction of best ob
 
 **NotImplementedError** – If the `expectation` is an AerPauliExpecation.
 
+### \_\_init\_\_
 
+<span id="qiskit.opflow.expectations.CVaRExpectation.__init__" />
 
 `__init__(alpha, expectation=None)`
 
@@ -50,7 +60,9 @@ Let $\alpha$ be a real number in $[0,1]$ which specifies the fraction of best ob
 | [`compute_variance`](#qiskit.opflow.expectations.CVaRExpectation.compute_variance "qiskit.opflow.expectations.CVaRExpectation.compute_variance")(exp\_op) | Returns the variance of the CVaR calculation                                 |
 | [`convert`](#qiskit.opflow.expectations.CVaRExpectation.convert "qiskit.opflow.expectations.CVaRExpectation.convert")(operator)                           | Return an expression that computes the CVaR expectation upon calling `eval`. |
 
+### compute\_variance
 
+<span id="qiskit.opflow.expectations.CVaRExpectation.compute_variance" />
 
 `compute_variance(exp_op)`
 
@@ -74,7 +86,9 @@ exp\_op.
 
 **ValueError** – If the exp\_op does not correspond to an expectation value.
 
+### convert
 
+<span id="qiskit.opflow.expectations.CVaRExpectation.convert" />
 
 `convert(operator)`
 
@@ -87,3 +101,4 @@ Return an expression that computes the CVaR expectation upon calling `eval`. :ty
 **Returns**
 
 The converted operator.
+

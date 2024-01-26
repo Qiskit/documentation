@@ -1,8 +1,16 @@
+---
+title: CRYGate
+description: API reference for qiskit.circuit.library.CRYGate
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.CRYGate
+---
+
 # CRYGate
 
+<span id="qiskit.circuit.library.CRYGate" />
 
-
-`CRYGate(theta, label=None, ctrl_state=None)`
+`CRYGate(theta, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/ry.py "view source code")
 
 Bases: `qiskit.circuit.controlledgate.ControlledGate`
 
@@ -56,13 +64,17 @@ Create new CRY gate.
 
 ## Methods Defined Here
 
-|                                                                                                                                     |                               |
-| ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
-| [`inverse`](qiskit.circuit.library.CRYGate.inverse#qiskit.circuit.library.CRYGate.inverse "qiskit.circuit.library.CRYGate.inverse") | Return inverse CRY gate (i.e. |
+### inverse
+
+<span id="qiskit.circuit.library.CRYGate.inverse" />
+
+`CRYGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/ry.py "view source code")
+
+Return inverse CRY gate (i.e. with the negative rotation angle).
 
 ## Attributes
 
-
+<span id="qiskit.circuit.library.CRYGate.condition_bits" />
 
 ### condition\_bits
 
@@ -72,7 +84,7 @@ Get Clbits in condition.
 
 `List`\[`Clbit`]
 
-
+<span id="qiskit.circuit.library.CRYGate.ctrl_state" />
 
 ### ctrl\_state
 
@@ -82,13 +94,13 @@ Return the control state of the gate as a decimal integer.
 
 `int`
 
-
+<span id="qiskit.circuit.library.CRYGate.decompositions" />
 
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
-
+<span id="qiskit.circuit.library.CRYGate.definition" />
 
 ### definition
 
@@ -98,13 +110,13 @@ Return definition in terms of other basic gates. If the gate has open controls, 
 
 `List`
 
-
+<span id="qiskit.circuit.library.CRYGate.duration" />
 
 ### duration
 
 Get the duration.
 
-
+<span id="qiskit.circuit.library.CRYGate.label" />
 
 ### label
 
@@ -114,7 +126,7 @@ Return instruction label
 
 `str`
 
-
+<span id="qiskit.circuit.library.CRYGate.name" />
 
 ### name
 
@@ -128,13 +140,13 @@ where \<original\_name> is the gate name for the default case of closed control 
 
 `str`
 
-
+<span id="qiskit.circuit.library.CRYGate.num_clbits" />
 
 ### num\_clbits
 
 Return the number of clbits.
 
-
+<span id="qiskit.circuit.library.CRYGate.num_ctrl_qubits" />
 
 ### num\_ctrl\_qubits
 
@@ -148,13 +160,13 @@ The number of control qubits for the gate.
 
 int
 
-
+<span id="qiskit.circuit.library.CRYGate.num_qubits" />
 
 ### num\_qubits
 
 Return the number of qubits.
 
-
+<span id="qiskit.circuit.library.CRYGate.params" />
 
 ### params
 
@@ -172,8 +184,9 @@ list
 
 **CircuitError** – Controlled gate does not define a base gate
 
-
+<span id="qiskit.circuit.library.CRYGate.unit" />
 
 ### unit
 
 Get the time unit of duration.
+

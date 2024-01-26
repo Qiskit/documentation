@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.preset_passmanagers.level_2_pass_manager
 
 <span id="qiskit.transpiler.preset_passmanagers.level_2_pass_manager" />
 
-`level_2_pass_manager(pass_manager_config)`
+`level_2_pass_manager(pass_manager_config)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/preset_passmanagers/level2.py "view source code")
 
 Level 2 pass manager: medium optimization by initial layout selection and gate cancellation using commutativity rules.
 
@@ -18,13 +18,17 @@ This pass manager applies the user-given initial layout. If none is given, a sea
 
 The pass manager then transforms the circuit to match the coupling constraints. It is then unrolled to the basis, and any flipped cx directions are fixed. Finally, optimizations in the form of commutative gate cancellation and redundant reset removal are performed.
 
+<Admonition title="Note" type="note">
+  In simulators where `coupling_map=None`, only the unrolling and optimization stages are done.
+</Admonition>
+
 **Parameters**
 
-**pass\_manager\_config** ([`PassManagerConfig`](qiskit.transpiler.PassManagerConfig "qiskit.transpiler.passmanager_config.PassManagerConfig")) – configuration of the pass manager.
+**pass\_manager\_config** (`PassManagerConfig`) – configuration of the pass manager.
 
 **Return type**
 
-[`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.passmanager.StagedPassManager")
+`PassManager`
 
 **Returns**
 

@@ -10,9 +10,9 @@ python_api_name: qiskit.opflow.gradients.QFIBase
 
 <span id="qiskit.opflow.gradients.QFIBase" />
 
-`QFIBase(qfi_method='lin_comb_full')`
+`QFIBase(qfi_method='lin_comb_full')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/gradients/qfi_base.py "view source code")
 
-Bases: [`qiskit.opflow.gradients.derivative_base.DerivativeBase`](qiskit.opflow.gradients.DerivativeBase "qiskit.opflow.gradients.derivative_base.DerivativeBase")
+Bases: `qiskit.opflow.gradients.derivative_base.DerivativeBase`
 
 Base class for Quantum Fisher Information (QFI).
 
@@ -24,7 +24,7 @@ The QFI is:
 
 **Parameters**
 
-**qfi\_method** (`Union`\[`str`, [`CircuitQFI`](qiskit.opflow.gradients.CircuitQFI "qiskit.opflow.gradients.circuit_qfis.circuit_qfi.CircuitQFI")]) – The method used to compute the state/probability gradient. Can be either a [`CircuitQFI`](qiskit.opflow.gradients.CircuitQFI "qiskit.opflow.gradients.CircuitQFI") instance or one of the following pre-defined strings `'lin_comb_full'`, `` 'overlap_diag'` `` or `` 'overlap_block_diag'` ``.
+**qfi\_method** (`Union`\[`str`, `CircuitQFI`]) – The method used to compute the state/probability gradient. Can be either a [`CircuitQFI`](qiskit.opflow.gradients.CircuitQFI "qiskit.opflow.gradients.CircuitQFI") instance or one of the following pre-defined strings `'lin_comb_full'`, `` 'overlap_diag'` `` or `` 'overlap_block_diag'` ``.
 
 **Raises**
 
@@ -40,7 +40,7 @@ Returns `CircuitQFI`.
 
 **Return type**
 
-[`CircuitQFI`](qiskit.opflow.gradients.CircuitQFI "qiskit.opflow.gradients.circuit_qfis.circuit_qfi.CircuitQFI")
+`CircuitQFI`
 
 **Returns**
 

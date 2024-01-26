@@ -1,8 +1,16 @@
+---
+title: save_probabilities_dict
+description: API reference for qiskit.providers.aer.library.save_probabilities_dict
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.providers.aer.library.save_probabilities_dict
+---
+
 # qiskit.providers.aer.library.save\_probabilities\_dict
 
+<span id="qiskit.providers.aer.library.save_probabilities_dict" />
 
-
-`save_probabilities_dict(self, qubits=None, label='probabilities', unnormalized=False, pershot=False, conditional=False)`
+`save_probabilities_dict(self, qubits=None, label='probabilities', unnormalized=False, pershot=False, conditional=False)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/library/save_instructions/save_probabilities.py "view source code")
 
 Save measurement outcome probabilities vector.
 
@@ -20,4 +28,5 @@ with attached instruction.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+

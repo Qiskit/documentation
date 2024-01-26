@@ -1,8 +1,16 @@
+---
+title: LookupRotation
+description: API reference for qiskit.aqua.components.reciprocals.LookupRotation
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.components.reciprocals.LookupRotation
+---
+
 # qiskit.aqua.components.reciprocals.LookupRotation
 
+<span id="qiskit.aqua.components.reciprocals.LookupRotation" />
 
-
-`LookupRotation(pat_length=None, subpat_length=None, scale=0, negative_evals=False, evo_time=None, lambda_min=None)`
+`LookupRotation(pat_length=None, subpat_length=None, scale=0, negative_evals=False, evo_time=None, lambda_min=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/reciprocals/lookup_rotation.py "view source code")
 
 The Lookup Rotation for Reciprocals.
 
@@ -19,7 +27,9 @@ A calculation of reciprocals of eigenvalues is performed and controlled rotation
 *   **evo\_time** (`Optional`\[`float`]) – The evolution time. This parameter scales the Eigenvalues in the phase estimation onto the range (0,1] ( (-0.5,0.5] for negative Eigenvalues ).
 *   **lambda\_min** (`Optional`\[`float`]) – The smallest expected eigenvalue
 
+### \_\_init\_\_
 
+<span id="qiskit.aqua.components.reciprocals.LookupRotation.__init__" />
 
 `__init__(pat_length=None, subpat_length=None, scale=0, negative_evals=False, evo_time=None, lambda_min=None)`
 
@@ -40,7 +50,9 @@ A calculation of reciprocals of eigenvalues is performed and controlled rotation
 | [`construct_circuit`](#qiskit.aqua.components.reciprocals.LookupRotation.construct_circuit "qiskit.aqua.components.reciprocals.LookupRotation.construct_circuit")(mode, inreg)   | Construct the Lookup Rotation circuit. |
 | [`sv_to_resvec`](#qiskit.aqua.components.reciprocals.LookupRotation.sv_to_resvec "qiskit.aqua.components.reciprocals.LookupRotation.sv_to_resvec")(statevector, num\_q)          | Convert statevector to result vector.  |
 
+### construct\_circuit
 
+<span id="qiskit.aqua.components.reciprocals.LookupRotation.construct_circuit" />
 
 `construct_circuit(mode, inreg)`
 
@@ -49,7 +61,7 @@ Construct the Lookup Rotation circuit.
 **Parameters**
 
 *   **mode** (*str*) – construction mode, ‘matrix’ not supported
-*   **inreg** ([*QuantumRegister*](qiskit.circuit.QuantumRegister#qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – input register, typically output register of Eigenvalues
+*   **inreg** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – input register, typically output register of Eigenvalues
 
 **Returns**
 
@@ -63,7 +75,9 @@ QuantumCircuit
 
 NotImplementedError: mode not supported
 
+### sv\_to\_resvec
 
+<span id="qiskit.aqua.components.reciprocals.LookupRotation.sv_to_resvec" />
 
 `sv_to_resvec(statevector, num_q)`
 
@@ -77,3 +91,4 @@ Convert statevector to result vector.
 **Returns**
 
 The result vector.
+

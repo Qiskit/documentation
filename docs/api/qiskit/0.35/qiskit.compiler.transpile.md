@@ -1,8 +1,16 @@
+---
+title: transpile
+description: API reference for qiskit.compiler.transpile
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.compiler.transpile
+---
+
 # qiskit.compiler.transpile
 
+<span id="qiskit.compiler.transpile" />
 
-
-`transpile(circuits, backend=None, basis_gates=None, inst_map=None, coupling_map=None, backend_properties=None, initial_layout=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, instruction_durations=None, dt=None, approximation_degree=None, timing_constraints=None, seed_transpiler=None, optimization_level=None, callback=None, output_name=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None, target=None)`
+`transpile(circuits, backend=None, basis_gates=None, inst_map=None, coupling_map=None, backend_properties=None, initial_layout=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, instruction_durations=None, dt=None, approximation_degree=None, timing_constraints=None, seed_transpiler=None, optimization_level=None, callback=None, output_name=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None, target=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/compiler/transpiler.py "view source code")
 
 Transpile one or more circuits, according to some desired transpilation targets.
 
@@ -121,7 +129,7 @@ Transpilation is done in parallel using multiprocessing.
 
 *   **unitary\_synthesis\_plugin\_config** (`Optional`\[`dict`]) – An optional configuration dictionary that will be passed directly to the unitary synthesis plugin. By default this setting will have no effect as the default unitary synthesis method does not take custom configuration. This should only be necessary when a unitary synthesis plugin is specified with the `unitary_synthesis` argument. As this is custom for each unitary synthesis plugin refer to the plugin documentation for how to use this option.
 
-*   **target** (`Optional`\[`Target`]) – A backend transpiler target. Normally this is specified as part of the `backend` argument, but if you have manually constructed a [`Target`](qiskit.transpiler.Target#qiskit.transpiler.Target "qiskit.transpiler.Target") object you can specify it manually here. This will override the target from `backend`.
+*   **target** (`Optional`\[`Target`]) – A backend transpiler target. Normally this is specified as part of the `backend` argument, but if you have manually constructed a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") object you can specify it manually here. This will override the target from `backend`.
 
 **Return type**
 
@@ -133,4 +141,5 @@ The transpiled circuit(s).
 
 **Raises**
 
-[**TranspilerError**](qiskit.transpiler.TranspilerError#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – in case of bad inputs to transpiler (like conflicting parameters) or errors in passes
+[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – in case of bad inputs to transpiler (like conflicting parameters) or errors in passes
+

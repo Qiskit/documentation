@@ -10,9 +10,9 @@ python_api_name: qiskit.algorithms.linear_solvers.NumPyLinearSolver
 
 <span id="qiskit.algorithms.linear_solvers.NumPyLinearSolver" />
 
-`NumPyLinearSolver`
+`NumPyLinearSolver`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/linear_solvers/numpy_linear_solver.py "view source code")
 
-Bases: [`qiskit.algorithms.linear_solvers.linear_solver.LinearSolver`](qiskit.algorithms.linear_solvers.LinearSolver "qiskit.algorithms.linear_solvers.linear_solver.LinearSolver")
+Bases: `qiskit.algorithms.linear_solvers.linear_solver.LinearSolver`
 
 The Numpy Linear Solver algorithm (classical).
 
@@ -42,21 +42,21 @@ result = solution.observable
 
 <span id="qiskit.algorithms.linear_solvers.NumPyLinearSolver.solve" />
 
-`NumPyLinearSolver.solve(matrix, vector, observable=None, observable_circuit=None, post_processing=None)`
+`NumPyLinearSolver.solve(matrix, vector, observable=None, observable_circuit=None, post_processing=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/linear_solvers/numpy_linear_solver.py "view source code")
 
 Solve classically the linear system and compute the observable(s)
 
 **Parameters**
 
-*   **matrix** (`Union`\[`ndarray`, [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]) – The matrix specifying the system, i.e. A in Ax=b.
-*   **vector** (`Union`\[`ndarray`, [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]) – The vector specifying the right hand side of the equation in Ax=b.
-*   **observable** (`Union`\[[`LinearSystemObservable`](qiskit.algorithms.linear_solvers.LinearSystemObservable "qiskit.algorithms.linear_solvers.observables.linear_system_observable.LinearSystemObservable"), `BaseOperator`, `List`\[`BaseOperator`], `None`]) – Optional information to be extracted from the solution. Default is the probability of success of the algorithm.
-*   **observable\_circuit** (`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), `List`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")], `None`]) – Optional circuit to be applied to the solution to extract information. Default is `None`.
+*   **matrix** (`Union`\[`ndarray`, `QuantumCircuit`]) – The matrix specifying the system, i.e. A in Ax=b.
+*   **vector** (`Union`\[`ndarray`, `QuantumCircuit`]) – The vector specifying the right hand side of the equation in Ax=b.
+*   **observable** (`Union`\[`LinearSystemObservable`, `BaseOperator`, `List`\[`BaseOperator`], `None`]) – Optional information to be extracted from the solution. Default is the probability of success of the algorithm.
+*   **observable\_circuit** (`Union`\[`QuantumCircuit`, `List`\[`QuantumCircuit`], `None`]) – Optional circuit to be applied to the solution to extract information. Default is `None`.
 *   **post\_processing** (`Optional`\[`Callable`\[\[`Union`\[`float`, `List`\[`float`]]], `Union`\[`float`, `List`\[`float`]]]]) – Optional function to compute the value of the observable. Default is the raw value of measuring the observable.
 
 **Return type**
 
-[`LinearSolverResult`](qiskit.algorithms.linear_solvers.LinearSolverResult "qiskit.algorithms.linear_solvers.linear_solver.LinearSolverResult")
+`LinearSolverResult`
 
 **Returns**
 

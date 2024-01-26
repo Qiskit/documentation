@@ -1,14 +1,24 @@
+---
+title: Layout
+description: API reference for qiskit.transpiler.Layout
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.Layout
+---
+
 # qiskit.transpiler.Layout
 
+<span id="qiskit.transpiler.Layout" />
 
-
-`Layout(input_dict=None)`
+`Layout(input_dict=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/layout.py "view source code")
 
 Two-ways dict to represent a Layout.
 
 construct a Layout from a bijective dictionary, mapping virtual qubits to physical qubits
 
+### \_\_init\_\_
 
+<span id="qiskit.transpiler.Layout.__init__" />
 
 `__init__(input_dict=None)`
 
@@ -34,7 +44,9 @@ construct a Layout from a bijective dictionary, mapping virtual qubits to physic
 | [`reorder_bits`](#qiskit.transpiler.Layout.reorder_bits "qiskit.transpiler.Layout.reorder_bits")(bits)                                       | Given an ordered list of bits, reorder them according to this layout.                                                                              |
 | [`swap`](#qiskit.transpiler.Layout.swap "qiskit.transpiler.Layout.swap")(left, right)                                                        | Swaps the map between left and right.                                                                                                              |
 
+### add
 
+<span id="qiskit.transpiler.Layout.add" />
 
 `add(virtual_bit, physical_bit=None)`
 
@@ -45,7 +57,9 @@ Adds a map element between bit and physical\_bit. If physical\_bit is not define
 *   **virtual\_bit** (*tuple*) – A (qu)bit. For example, (QuantumRegister(3, ‘qr’), 2).
 *   **physical\_bit** (*int*) – A physical bit. For example, 3.
 
+### add\_register
 
+<span id="qiskit.transpiler.Layout.add_register" />
 
 `add_register(reg)`
 
@@ -55,7 +69,9 @@ Adds at the end physical\_qubits that map each bit in reg.
 
 **reg** (*Register*) – A (qu)bit Register. For example, QuantumRegister(3, ‘qr’).
 
+### combine\_into\_edge\_map
 
+<span id="qiskit.transpiler.Layout.combine_into_edge_map" />
 
 `combine_into_edge_map(another_layout)`
 
@@ -88,13 +104,17 @@ dict
 
 **LayoutError** – another\_layout can be bigger than self, but not smaller. Otherwise, raises.
 
+### copy
 
+<span id="qiskit.transpiler.Layout.copy" />
 
 `copy()`
 
 Returns a copy of a Layout instance.
 
+### from\_dict
 
+<span id="qiskit.transpiler.Layout.from_dict" />
 
 `from_dict(input_dict)`
 
@@ -128,7 +148,9 @@ Can be written more concisely as follows:
      2: qr[2]}
 ```
 
+### from\_intlist
 
+<span id="qiskit.transpiler.Layout.from_intlist" />
 
 `static from_intlist(int_list, *qregs)`
 
@@ -151,7 +173,9 @@ The corresponding Layout object.
 
 **LayoutError** – Invalid input layout.
 
+### from\_qubit\_list
 
+<span id="qiskit.transpiler.Layout.from_qubit_list" />
 
 `static from_qubit_list(qubit_list, *qregs)`
 
@@ -174,7 +198,9 @@ the corresponding Layout object
 
 **LayoutError** – If the elements are not Qubit or None
 
+### generate\_trivial\_layout
 
+<span id="qiskit.transpiler.Layout.generate_trivial_layout" />
 
 `static generate_trivial_layout(*regs)`
 
@@ -192,31 +218,41 @@ A layout with all the regs in the given order.
 
 [Layout](#qiskit.transpiler.Layout "qiskit.transpiler.Layout")
 
+### get\_physical\_bits
 
+<span id="qiskit.transpiler.Layout.get_physical_bits" />
 
 `get_physical_bits()`
 
 Returns the dictionary where the keys are physical (qu)bits and the values are virtual (qu)bits.
 
+### get\_registers
 
+<span id="qiskit.transpiler.Layout.get_registers" />
 
 `get_registers()`
 
 Returns the registers in the layout \[QuantumRegister(2, ‘qr0’), QuantumRegister(3, ‘qr1’)] :returns: A set of Registers in the layout :rtype: Set
 
+### get\_virtual\_bits
 
+<span id="qiskit.transpiler.Layout.get_virtual_bits" />
 
 `get_virtual_bits()`
 
 Returns the dictionary where the keys are virtual (qu)bits and the values are physical (qu)bits.
 
+### order\_based\_on\_type
 
+<span id="qiskit.transpiler.Layout.order_based_on_type" />
 
 `static order_based_on_type(value1, value2)`
 
 decides which one is physical/virtual based on the type. Returns (virtual, physical)
 
+### reorder\_bits
 
+<span id="qiskit.transpiler.Layout.reorder_bits" />
 
 `reorder_bits(bits)`
 
@@ -236,7 +272,9 @@ ordered bits.
 
 List
 
+### swap
 
+<span id="qiskit.transpiler.Layout.swap" />
 
 `swap(left, right)`
 
@@ -250,3 +288,4 @@ Swaps the map between left and right.
 **Raises**
 
 **LayoutError** – If left and right have not the same type.
+

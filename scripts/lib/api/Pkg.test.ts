@@ -82,6 +82,18 @@ test("Pkg.determineGithubUrlFn()", () => {
   expect(historicalQiskit("qiskit/aqua/foo")).toEqual(
     "https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/foo.py",
   );
+  expect(historicalQiskit("qiskit/chemistry/foo")).toEqual(
+    "https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/foo.py",
+  );
+  expect(historicalQiskit("qiskit/finance/foo")).toEqual(
+    "https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/finance/foo.py",
+  );
+  expect(historicalQiskit("qiskit/ml/foo")).toEqual(
+    "https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/ml/foo.py",
+  );
+  expect(historicalQiskit("qiskit/optimization/foo")).toEqual(
+    "https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/foo.py",
+  );
   expect(historicalQiskit("qiskit/aer/foo")).toEqual(
     "https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/aer/foo.py",
   );

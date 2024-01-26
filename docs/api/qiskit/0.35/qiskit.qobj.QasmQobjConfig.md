@@ -1,8 +1,16 @@
+---
+title: QasmQobjConfig
+description: API reference for qiskit.qobj.QasmQobjConfig
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.qobj.QasmQobjConfig
+---
+
 # QasmQobjConfig
 
+<span id="qiskit.qobj.QasmQobjConfig" />
 
-
-`QasmQobjConfig(shots=None, max_credits=None, seed_simulator=None, memory=None, parameter_binds=None, meas_level=None, meas_return=None, memory_slots=None, n_qubits=None, pulse_library=None, calibrations=None, rep_delay=None, qubit_lo_freq=None, meas_lo_freq=None, **kwargs)`
+`QasmQobjConfig(shots=None, max_credits=None, seed_simulator=None, memory=None, parameter_binds=None, meas_level=None, meas_return=None, memory_slots=None, n_qubits=None, pulse_library=None, calibrations=None, rep_delay=None, qubit_lo_freq=None, meas_lo_freq=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/qobj/qasm_qobj.py "view source code")
 
 Bases: `types.SimpleNamespace`
 
@@ -21,8 +29,8 @@ Model for RunConfig.
 *   **meas\_return** (*str*) – For measurement level \< 2, whether single or avg shots are returned
 *   **memory\_slots** (*int*) – The number of memory slots on the device
 *   **n\_qubits** (*int*) – The number of qubits on the device
-*   **pulse\_library** (*list*) – List of [`PulseLibraryItem`](qiskit.qobj.PulseLibraryItem#qiskit.qobj.PulseLibraryItem "qiskit.qobj.PulseLibraryItem").
-*   **calibrations** ([*QasmExperimentCalibrations*](qiskit.qobj.QasmExperimentCalibrations#qiskit.qobj.QasmExperimentCalibrations "qiskit.qobj.QasmExperimentCalibrations")) – Information required for Pulse gates.
+*   **pulse\_library** (*list*) – List of [`PulseLibraryItem`](qiskit.qobj.PulseLibraryItem "qiskit.qobj.PulseLibraryItem").
+*   **calibrations** ([*QasmExperimentCalibrations*](qiskit.qobj.QasmExperimentCalibrations "qiskit.qobj.QasmExperimentCalibrations")) – Information required for Pulse gates.
 *   **rep\_delay** (*float*) – Delay between programs in sec. Only supported on certain backends (`backend.configuration().dynamic_reprate_enabled` ). Must be from the range supplied by the backend (`backend.configuration().rep_delay_range`). Default is `backend.configuration().default_rep_delay`.
 *   **qubit\_lo\_freq** (*list*) – List of frequencies (as floats) for the qubit driver LO’s in GHz.
 *   **meas\_lo\_freq** (*list*) – List of frequencies (as floats) for the measurement driver LO’s in GHz.
@@ -30,7 +38,39 @@ Model for RunConfig.
 
 ## Methods
 
-|                                                                                                                                 |                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
-| [`from_dict`](qiskit.qobj.QasmQobjConfig.from_dict#qiskit.qobj.QasmQobjConfig.from_dict "qiskit.qobj.QasmQobjConfig.from_dict") | Create a new QasmQobjConfig object from a dictionary.              |
-| [`to_dict`](qiskit.qobj.QasmQobjConfig.to_dict#qiskit.qobj.QasmQobjConfig.to_dict "qiskit.qobj.QasmQobjConfig.to_dict")         | Return a dictionary format representation of the QASM Qobj config. |
+### from\_dict
+
+<span id="qiskit.qobj.QasmQobjConfig.from_dict" />
+
+`classmethod QasmQobjConfig.from_dict(data)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/qobj/qasm_qobj.py "view source code")
+
+Create a new QasmQobjConfig object from a dictionary.
+
+**Parameters**
+
+**data** (*dict*) – A dictionary for the config
+
+**Returns**
+
+The object from the input dictionary.
+
+**Return type**
+
+[QasmQobjConfig](qiskit.qobj.QasmQobjConfig "qiskit.qobj.QasmQobjConfig")
+
+### to\_dict
+
+<span id="qiskit.qobj.QasmQobjConfig.to_dict" />
+
+`QasmQobjConfig.to_dict()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/qobj/qasm_qobj.py "view source code")
+
+Return a dictionary format representation of the QASM Qobj config.
+
+**Returns**
+
+The dictionary form of the QasmQobjConfig.
+
+**Return type**
+
+dict
+

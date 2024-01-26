@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.library.RXXGate
 
 <span id="qiskit.circuit.library.RXXGate" />
 
-`RXXGate(theta, label=None)`
+`RXXGate(theta, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/rxx.py "view source code")
 
-Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+Bases: `qiskit.circuit.gate.Gate`
 
 A parametric 2-qubit $X \otimes X$ interaction (rotation about XX).
 
@@ -31,12 +31,12 @@ q_1: ┤0        ├
 **Matrix Representation:**
 
 $$
- \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}R_{XX}(\theta) = \exp\left(-i \th X{\otimes}X\right) =
+ \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}R_{XX}(\theta) = exp(-i \th X{\otimes}X) =
     \begin{pmatrix}
-        \cos\left(\th\right)   & 0           & 0           & -i\sin\left(\th\right) \\
-        0           & \cos\left(\th\right)   & -i\sin\left(\th\right) & 0 \\
-        0           & -i\sin\left(\th\right) & \cos\left(\th\right)   & 0 \\
-        -i\sin\left(\th\right) & 0           & 0           & \cos\left(\th\right)
+        \cos(\th)   & 0           & 0           & -i\sin(\th) \\
+        0           & \cos(\th)   & -i\sin(\th) & 0 \\
+        0           & -i\sin(\th) & \cos(\th)   & 0 \\
+        -i\sin(\th) & 0           & 0           & \cos(\th)
     \end{pmatrix}\end{split}\end{aligned}\end{align} 
 $$
 
@@ -51,7 +51,7 @@ $$
 > $$
 >
 > $$
-> \begin{split}R_{XX}\left(\theta = \frac{\pi}{2}\right) = \frac{1}{\sqrt{2}}
+> \begin{split}R_{XX}(\theta = \frac{\pi}{2}) = \frac{1}{\sqrt{2}}
 >                         \begin{pmatrix}
 >                             1  & 0  & 0  & -i \\
 >                             0  & 1  & -i & 0 \\
@@ -68,7 +68,7 @@ Create new RXX gate.
 
 <span id="qiskit.circuit.library.RXXGate.inverse" />
 
-`RXXGate.inverse()`
+`RXXGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/rxx.py "view source code")
 
 Return inverse RXX gate (i.e. with the negative rotation angle).
 
@@ -82,7 +82,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.library.RXXGate.decompositions" />
 

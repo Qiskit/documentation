@@ -10,9 +10,9 @@ python_api_name: qiskit.transpiler.passes.FullAncillaAllocation
 
 <span id="qiskit.transpiler.passes.FullAncillaAllocation" />
 
-`FullAncillaAllocation(*args, **kwargs)`
+`FullAncillaAllocation(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/layout/full_ancilla_allocation.py "view source code")
 
-Bases: [`qiskit.transpiler.basepasses.AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
+Bases: `qiskit.transpiler.basepasses.AnalysisPass`
 
 Allocate all idle nodes from the coupling map as ancilla on the layout.
 
@@ -42,7 +42,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.FullAncillaAllocation.run" />
 
-`FullAncillaAllocation.run(dag)`
+`FullAncillaAllocation.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/layout/full_ancilla_allocation.py "view source code")
 
 Run the FullAncillaAllocation pass on dag.
 
@@ -70,7 +70,7 @@ returns the same dag circuit, unmodified
 
 <span id="qiskit.transpiler.passes.FullAncillaAllocation.validate_layout" />
 
-`static FullAncillaAllocation.validate_layout(layout_qubits, dag_qubits)`
+`static FullAncillaAllocation.validate_layout(layout_qubits, dag_qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/layout/full_ancilla_allocation.py "view source code")
 
 Checks if all the qregs in layout\_qregs already exist in dag\_qregs. Otherwise, raise.
 

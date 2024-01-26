@@ -10,9 +10,9 @@ python_api_name: qiskit.transpiler.passes.MergeAdjacentBarriers
 
 <span id="qiskit.transpiler.passes.MergeAdjacentBarriers" />
 
-`MergeAdjacentBarriers(*args, **kwargs)`
+`MergeAdjacentBarriers(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/utils/merge_adjacent_barriers.py "view source code")
 
-Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
+Bases: `qiskit.transpiler.basepasses.TransformationPass`
 
 Return a circuit with any adjacent barriers merged together.
 
@@ -67,7 +67,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.MergeAdjacentBarriers.run" />
 
-`MergeAdjacentBarriers.run(dag)`
+`MergeAdjacentBarriers.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/utils/merge_adjacent_barriers.py "view source code")
 
 Run the MergeAdjacentBarriers pass on dag.
 

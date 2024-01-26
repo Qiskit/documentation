@@ -52,7 +52,7 @@ q_2: ──────────┤ X ├
 
 ## Supplementary Information
 
-### Quantum Circuit Properties
+Quantum Circuit Properties
 
 When constructing quantum circuits, there are several properties that help quantify the “size” of the circuits, and their ability to be run on a noisy quantum device. Some of these, like number of qubits, are straightforward to understand, while others like depth and number of tensor components require a bit more explanation. Here we will explain all of these properties, and, in preparation for understanding how circuits change when run on actual devices, highlight the conditions under which they change.
 
@@ -169,36 +169,38 @@ qc.depth()
 
 ### Quantum Circuit Construction
 
-|                                                                                                                             |                                                                                                                                                                 |
-| --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")(\*regs\[, name, global\_phase, ...])      | Create a new circuit.                                                                                                                                           |
-| [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")(\[size, name, bits])                   | Implement a quantum register.                                                                                                                                   |
-| [`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.Qubit")(\[register, index])                                                  | Implement a quantum bit.                                                                                                                                        |
-| [`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")(\[size, name, bits])             | Implement a classical register.                                                                                                                                 |
-| [`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.Clbit")(\[register, index])                                                  | Implement a classical bit.                                                                                                                                      |
-| [`AncillaRegister`](qiskit.circuit.AncillaRegister "qiskit.circuit.AncillaRegister")(\[size, name, bits])                   | Implement an ancilla register.                                                                                                                                  |
-| [`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.AncillaQubit")(\[register, index])                             | A qubit used as ancillary qubit.                                                                                                                                |
-| [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")(operation\[, qubits, clbits]) | A single instruction in a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), comprised of the `operation` and various operands. |
+|                                                                                                                      |                                  |
+| -------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
+| [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")(\*regs\[, name, global\_phase, …]) | Create a new circuit.            |
+| [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")(\[size, name, bits])            | Implement a quantum register.    |
+| [`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.Qubit")(\[register, index])                                           | Implement a quantum bit.         |
+| [`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")(\[size, name, bits])      | Implement a classical register.  |
+| [`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.Clbit")(\[register, index])                                           | Implement a classical bit.       |
+| [`AncillaRegister`](qiskit.circuit.AncillaRegister "qiskit.circuit.AncillaRegister")(\[size, name, bits])            | Implement an ancilla register.   |
+| [`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.AncillaQubit")(\[register, index])                      | A qubit used as ancillary qubit. |
 
 ### Gates and Instructions
 
-|                                                                                                                      |                                                                                                        |
-| -------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate")(name, num\_qubits, params\[, label])                             | Unitary gate.                                                                                          |
-| [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")(name, num\_qubits, params\[, ...]) | Controlled unitary gate.                                                                               |
-| [`Delay`](qiskit.circuit.Delay "qiskit.circuit.Delay")(duration\[, unit])                                            | Do nothing and just delay/wait/idle for a specified duration.                                          |
-| [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction")(name, num\_qubits, num\_clbits, params)     | Generic quantum instruction.                                                                           |
-| [`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")(\[circuit\_cregs, ...])            | Instruction collection, and their contexts.                                                            |
-| [`EquivalenceLibrary`](qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary")(\*\[, base])           | A library providing a one-way mapping of Gates to their equivalent implementations as QuantumCircuits. |
+|                                                                                                                    |                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate")(name, num\_qubits, params\[, label])                           | Unitary gate.                                                                                          |
+| [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")(name, num\_qubits, params\[, …]) | Controlled unitary gate.                                                                               |
+| [`Delay`](qiskit.circuit.Delay "qiskit.circuit.Delay")(duration\[, unit])                                          | Do nothing and just delay/wait/idle for a specified duration.                                          |
+| [`Barrier`](qiskit.circuit.Barrier "qiskit.circuit.Barrier")(num\_qubits)                                          | Barrier instruction.                                                                                   |
+| [`Measure`](qiskit.circuit.Measure "qiskit.circuit.Measure")()                                                     | Quantum measurement in the computational basis.                                                        |
+| [`Reset`](qiskit.circuit.Reset "qiskit.circuit.Reset")()                                                           | Qubit reset.                                                                                           |
+| [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction")(name, num\_qubits, num\_clbits, params)   | Generic quantum instruction.                                                                           |
+| [`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")(\[circuit\_cregs, …])            | Instruction collection, and their contexts.                                                            |
+| [`EquivalenceLibrary`](qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary")(\*\[, base])         | A library providing a one-way mapping of Gates to their equivalent implementations as QuantumCircuits. |
 
 ### Control Flow Operations
 
 |                                                                                                                       |                                                                                                                                                                                        |
 | --------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp")(name, num\_qubits, num\_clbits, ...)   | Abstract class to encapsulate all control flow operations.                                                                                                                             |
-| [`IfElseOp`](qiskit.circuit.IfElseOp "qiskit.circuit.IfElseOp")(condition, true\_body\[, false\_body, ...])           | A circuit operation which executes a program (`true_body`) if a provided condition (`condition`) evaluates to true, and optionally evaluates another program (`false_body`) otherwise. |
+| [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp")(name, num\_qubits, num\_clbits, …)     | Abstract class to encapsulate all control flow operations.                                                                                                                             |
+| [`IfElseOp`](qiskit.circuit.IfElseOp "qiskit.circuit.IfElseOp")(condition, true\_body\[, false\_body, …])             | A circuit operation which executes a program (`true_body`) if a provided condition (`condition`) evaluates to true, and optionally evaluates another program (`false_body`) otherwise. |
 | [`WhileLoopOp`](qiskit.circuit.WhileLoopOp "qiskit.circuit.WhileLoopOp")(condition, body\[, label])                   | A circuit operation which repeatedly executes a subcircuit (`body`) until a condition (`condition`) evaluates as False.                                                                |
-| [`ForLoopOp`](qiskit.circuit.ForLoopOp "qiskit.circuit.ForLoopOp")(indexset, loop\_parameter, body\[, ...])           | A circuit operation which repeatedly executes a subcircuit (`body`) parameterized by a parameter `loop_parameter` through the set of integer values provided in `indexset`.            |
+| [`ForLoopOp`](qiskit.circuit.ForLoopOp "qiskit.circuit.ForLoopOp")(indexset, loop\_parameter, body\[, …])             | A circuit operation which repeatedly executes a subcircuit (`body`) parameterized by a parameter `loop_parameter` through the set of integer values provided in `indexset`.            |
 | [`BreakLoopOp`](qiskit.circuit.BreakLoopOp "qiskit.circuit.BreakLoopOp")(num\_qubits, num\_clbits\[, label])          | A circuit operation which, when encountered, jumps to the end of the nearest enclosing loop.                                                                                           |
 | [`ContinueLoopOp`](qiskit.circuit.ContinueLoopOp "qiskit.circuit.ContinueLoopOp")(num\_qubits, num\_clbits\[, label]) | A circuit operation which, when encountered, moves to the next iteration of the nearest enclosing loop.                                                                                |
 
@@ -212,7 +214,7 @@ qc.depth()
 
 ### Random Circuits
 
-|                                                                                                                                    |                                                     |
-| ---------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
-| [`random.random_circuit`](qiskit.circuit.random.random_circuit "qiskit.circuit.random.random_circuit")(num\_qubits, depth\[, ...]) | Generate random circuit of arbitrary size and form. |
+|                                                                                                                                  |                                                     |
+| -------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
+| [`random.random_circuit`](qiskit.circuit.random.random_circuit "qiskit.circuit.random.random_circuit")(num\_qubits, depth\[, …]) | Generate random circuit of arbitrary size and form. |
 

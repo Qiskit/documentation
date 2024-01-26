@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.iSwapGate
 
 <span id="qiskit.circuit.library.iSwapGate" />
 
-`iSwapGate`
+`iSwapGate`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/iswap.py "view source code")
 
 iSWAP gate.
 
@@ -338,7 +338,7 @@ Containing the definition.
 
 <span id="qiskit.circuit.library.iSwapGate.to_matrix" />
 
-`iSwapGate.to_matrix()`
+`iSwapGate.to_matrix()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/iswap.py "view source code")
 
 Return a numpy.array for the iSWAP gate.
 

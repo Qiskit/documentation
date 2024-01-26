@@ -38,7 +38,7 @@ The error map figure.
 *   **VisualizationValueError** – If an invalid input is received.
 *   **VisualizationTypeError** – If the specified backend is a simulator.
 
-## Example
+**Example**
 
 ```python
 from qiskit_ibm_provider import IBMProvider

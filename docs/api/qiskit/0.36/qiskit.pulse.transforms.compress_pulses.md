@@ -10,17 +10,17 @@ python_api_name: qiskit.pulse.transforms.compress_pulses
 
 <span id="qiskit.pulse.transforms.compress_pulses" />
 
-`compress_pulses(schedules)`
+`compress_pulses(schedules)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/transforms/canonicalization.py "view source code")
 
 Optimization pass to replace identical pulses.
 
 **Parameters**
 
-**schedules** (`List`\[[`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")]) – Schedules to compress.
+**schedules** (`List`\[`Schedule`]) – Schedules to compress.
 
 **Return type**
 
-`List`\[[`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")]
+`List`\[`Schedule`]
 
 **Returns**
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.instructions.SetFrequency
 
 <span id="qiskit.pulse.instructions.SetFrequency" />
 
-`qiskit.pulse.instructions.SetFrequency(frequency, channel, name=None)`
+`qiskit.pulse.instructions.SetFrequency(frequency, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/pulse/instructions/frequency.py "view source code")
 
 Bases: [`Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")
 
@@ -18,6 +18,8 @@ Set the channel frequency. This instruction operates on `PulseChannel` s. A `Pul
 
 $$
 Re[\exp(i 2\pi f jdt + \phi) d_j].
+
+
 $$
 
 Here, $f$ is the frequency of the channel. The instruction `SetFrequency` allows the user to set the value of $f$. All pulses that are played on a channel after SetFrequency has been called will have the corresponding frequency.

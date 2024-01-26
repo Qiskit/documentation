@@ -10,9 +10,9 @@ python_api_name: qiskit.opflow.expectations.CVaRExpectation
 
 <span id="qiskit.opflow.expectations.CVaRExpectation" />
 
-`CVaRExpectation(alpha, expectation=None)`
+`CVaRExpectation(alpha, expectation=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/expectations/cvar_expectation.py "view source code")
 
-Bases: [`qiskit.opflow.expectations.expectation_base.ExpectationBase`](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.expectation_base.ExpectationBase")
+Bases: `qiskit.opflow.expectations.expectation_base.ExpectationBase`
 
 Compute the Conditional Value at Risk (CVaR) expectation value.
 
@@ -33,7 +33,7 @@ Let $\alpha$ be a real number in $[0,1]$ which specifies the fraction of best ob
 **Parameters**
 
 *   **alpha** (`float`) – The alpha value describing the quantile considered in the expectation value.
-*   **expectation** (`Optional`\[[`ExpectationBase`](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.expectation_base.ExpectationBase")]) – An expectation object to compute the expectation value. Defaults to the PauliExpectation calculation.
+*   **expectation** (`Optional`\[`ExpectationBase`]) – An expectation object to compute the expectation value. Defaults to the PauliExpectation calculation.
 
 **Raises**
 
@@ -45,13 +45,13 @@ Let $\alpha$ be a real number in $[0,1]$ which specifies the fraction of best ob
 
 <span id="qiskit.opflow.expectations.CVaRExpectation.compute_variance" />
 
-`CVaRExpectation.compute_variance(exp_op)`
+`CVaRExpectation.compute_variance(exp_op)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/expectations/cvar_expectation.py "view source code")
 
 Returns the variance of the CVaR calculation
 
 **Parameters**
 
-**exp\_op** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The operator whose evaluation yields an expectation of some StateFn against a diagonal observable.
+**exp\_op** (`OperatorBase`) – The operator whose evaluation yields an expectation of some StateFn against a diagonal observable.
 
 **Return type**
 
@@ -71,13 +71,13 @@ exp\_op.
 
 <span id="qiskit.opflow.expectations.CVaRExpectation.convert" />
 
-`CVaRExpectation.convert(operator)`
+`CVaRExpectation.convert(operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/expectations/cvar_expectation.py "view source code")
 
-Return an expression that computes the CVaR expectation upon calling `eval`. :type operator: [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase") :param operator: The operator to convert.
+Return an expression that computes the CVaR expectation upon calling `eval`. :type operator: `OperatorBase` :param operator: The operator to convert.
 
 **Return type**
 
-[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+`OperatorBase`
 
 **Returns**
 

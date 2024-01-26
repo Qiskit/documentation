@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.verification.ProcessTomographyFitter
 
 <span id="qiskit.ignis.verification.ProcessTomographyFitter" />
 
-`ProcessTomographyFitter(result, circuits, meas_basis='Pauli', prep_basis='Pauli')`
+`ProcessTomographyFitter(result, circuits, meas_basis='Pauli', prep_basis='Pauli')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/tomography/fitters/process_fitter.py "view source code")
 
 Maximum-Likelihood estimation process tomography fitter.
 
@@ -56,7 +56,7 @@ Add tomography data from a Qiskit Result object.
 
 <span id="qiskit.ignis.verification.ProcessTomographyFitter.fit" />
 
-`ProcessTomographyFitter.fit(method='auto', standard_weights=True, beta=0.5, **kwargs)`
+`ProcessTomographyFitter.fit(method='auto', standard_weights=True, beta=0.5, **kwargs)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/tomography/fitters/process_fitter.py "view source code")
 
 Reconstruct a quantum channel using CVXPY convex optimization.
 

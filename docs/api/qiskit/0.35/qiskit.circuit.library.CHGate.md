@@ -1,8 +1,16 @@
+---
+title: CHGate
+description: API reference for qiskit.circuit.library.CHGate
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.CHGate
+---
+
 # CHGate
 
+<span id="qiskit.circuit.library.CHGate" />
 
-
-`CHGate(label=None, ctrl_state=None)`
+`CHGate(label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/h.py "view source code")
 
 Bases: `qiskit.circuit.controlledgate.ControlledGate`
 
@@ -58,13 +66,17 @@ Create new CH gate.
 
 ## Methods Defined Here
 
-|                                                                                                                                  |                                   |
-| -------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
-| [`inverse`](qiskit.circuit.library.CHGate.inverse#qiskit.circuit.library.CHGate.inverse "qiskit.circuit.library.CHGate.inverse") | Return inverted CH gate (itself). |
+### inverse
+
+<span id="qiskit.circuit.library.CHGate.inverse" />
+
+`CHGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/h.py "view source code")
+
+Return inverted CH gate (itself).
 
 ## Attributes
 
-
+<span id="qiskit.circuit.library.CHGate.condition_bits" />
 
 ### condition\_bits
 
@@ -74,7 +86,7 @@ Get Clbits in condition.
 
 `List`\[`Clbit`]
 
-
+<span id="qiskit.circuit.library.CHGate.ctrl_state" />
 
 ### ctrl\_state
 
@@ -84,13 +96,13 @@ Return the control state of the gate as a decimal integer.
 
 `int`
 
-
+<span id="qiskit.circuit.library.CHGate.decompositions" />
 
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
-
+<span id="qiskit.circuit.library.CHGate.definition" />
 
 ### definition
 
@@ -100,13 +112,13 @@ Return definition in terms of other basic gates. If the gate has open controls, 
 
 `List`
 
-
+<span id="qiskit.circuit.library.CHGate.duration" />
 
 ### duration
 
 Get the duration.
 
-
+<span id="qiskit.circuit.library.CHGate.label" />
 
 ### label
 
@@ -116,7 +128,7 @@ Return instruction label
 
 `str`
 
-
+<span id="qiskit.circuit.library.CHGate.name" />
 
 ### name
 
@@ -130,13 +142,13 @@ where \<original\_name> is the gate name for the default case of closed control 
 
 `str`
 
-
+<span id="qiskit.circuit.library.CHGate.num_clbits" />
 
 ### num\_clbits
 
 Return the number of clbits.
 
-
+<span id="qiskit.circuit.library.CHGate.num_ctrl_qubits" />
 
 ### num\_ctrl\_qubits
 
@@ -150,13 +162,13 @@ The number of control qubits for the gate.
 
 int
 
-
+<span id="qiskit.circuit.library.CHGate.num_qubits" />
 
 ### num\_qubits
 
 Return the number of qubits.
 
-
+<span id="qiskit.circuit.library.CHGate.params" />
 
 ### params
 
@@ -174,8 +186,9 @@ list
 
 **CircuitError** – Controlled gate does not define a base gate
 
-
+<span id="qiskit.circuit.library.CHGate.unit" />
 
 ### unit
 
 Get the time unit of duration.
+

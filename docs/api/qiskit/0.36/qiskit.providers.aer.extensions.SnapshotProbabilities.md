@@ -10,9 +10,9 @@ python_api_name: qiskit.providers.aer.extensions.SnapshotProbabilities
 
 <span id="qiskit.providers.aer.extensions.SnapshotProbabilities" />
 
-`SnapshotProbabilities(label, num_qubits, variance=False)`
+`SnapshotProbabilities(label, num_qubits, variance=False)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/extensions/snapshot_probabilities.py "view source code")
 
-Bases: [`qiskit.providers.aer.extensions.snapshot.Snapshot`](qiskit.providers.aer.extensions.Snapshot "qiskit.providers.aer.extensions.snapshot.Snapshot")
+Bases: `qiskit.providers.aer.extensions.snapshot.Snapshot`
 
 Snapshot instruction for all methods of Qasm simulator.
 
@@ -221,7 +221,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.providers.aer.extensions.SnapshotProbabilities.decompositions" />
 

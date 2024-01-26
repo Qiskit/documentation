@@ -10,15 +10,13 @@ python_api_name: qiskit.transpiler.passes.ApplyLayout
 
 <span id="qiskit.transpiler.passes.ApplyLayout" />
 
-`ApplyLayout(*args, **kwargs)`
+`ApplyLayout(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/layout/apply_layout.py "view source code")
 
-Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
+Bases: `qiskit.transpiler.basepasses.TransformationPass`
 
 Transform a circuit with virtual qubits into a circuit with physical qubits.
 
 Transforms a DAGCircuit with virtual qubits into a DAGCircuit with physical qubits by applying the Layout given in property\_set. Requires either of passes to set/select Layout, e.g. SetLayout, TrivialLayout. Assumes the Layout has full physical qubits.
-
-If a post layout pass is run and sets the `post_layout` property set field with a new layout to use after `ApplyLayout` has already run once this pass will compact the layouts so that we apply `original_virtual` -> `existing_layout` -> `new_layout` -> `new_physical` so that the output circuit and layout combination become: `original_virtual` -> `new_physical`
 
 ## Methods
 
@@ -34,7 +32,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.ApplyLayout.run" />
 
-`ApplyLayout.run(dag)`
+`ApplyLayout.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/layout/apply_layout.py "view source code")
 
 Run the ApplyLayout pass on dag.
 

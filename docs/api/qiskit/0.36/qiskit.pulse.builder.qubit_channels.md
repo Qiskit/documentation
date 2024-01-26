@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.builder.qubit_channels
 
 <span id="qiskit.pulse.builder.qubit_channels" />
 
-`qubit_channels(qubit)`
+`qubit_channels(qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/builder.py "view source code")
 
 Returns the set of channels associated with a qubit.
 
@@ -18,7 +18,7 @@ Examples:
 
 ```python
 from qiskit import pulse
-from qiskit.providers.fake_provider import FakeOpenPulse2Q
+from qiskit.test.mock import FakeOpenPulse2Q
 
 backend = FakeOpenPulse2Q()
 
@@ -27,7 +27,7 @@ with pulse.build(backend):
 ```
 
 ```python
-{ControlChannel(1), AcquireChannel(0), ControlChannel(0), DriveChannel(0), MeasureChannel(0)}
+{ControlChannel(1), MeasureChannel(0), ControlChannel(0), DriveChannel(0), AcquireChannel(0)}
 ```
 
 <Admonition title="Note" type="note">

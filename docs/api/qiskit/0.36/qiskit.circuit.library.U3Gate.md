@@ -10,11 +10,18 @@ python_api_name: qiskit.circuit.library.U3Gate
 
 <span id="qiskit.circuit.library.U3Gate" />
 
-`U3Gate(theta, phi, lam, label=None)`
+`U3Gate(theta, phi, lam, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/u3.py "view source code")
 
-Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+Bases: `qiskit.circuit.gate.Gate`
 
 Generic single-qubit rotation gate with 3 Euler angles.
+
+Implemented using two X90 pulses on IBM Quantum systems:
+
+$$
+U3(\theta, \phi, \lambda) =
+    RZ(\phi) RX(-\pi/2) RZ(\theta) RX(\pi/2) RZ(\lambda)
+$$
 
 **Circuit symbol:**
 
@@ -29,19 +36,15 @@ q_0: ┤ U3(ϴ,φ,λ) ├
 $$
  \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}U3(\theta, \phi, \lambda) =
     \begin{pmatrix}
-        \cos\left(\th\right)          & -e^{i\lambda}\sin\left(\th\right) \\
-        e^{i\phi}\sin\left(\th\right) & e^{i(\phi+\lambda)}\cos\left(\th\right)
+        \cos(\th)          & -e^{i\lambda}\sin(\th) \\
+        e^{i\phi}\sin(\th) & e^{i(\phi+\lambda)}\cos(\th)
     \end{pmatrix}\end{split}\end{aligned}\end{align} 
 $$
-
-<Admonition title="Note" type="note">
-  The matrix representation shown here differs from the [OpenQASM 2.0 specification](https://doi.org/10.48550/arXiv.1707.03429) by a global phase of $e^{i(\phi+\lambda)/2}$.
-</Admonition>
 
 **Examples:**
 
 $$
-U3\left(\theta, -\frac{\pi}{2}, \frac{\pi}{2}\right) = RX(\theta)
+U3(\theta, -\frac{\pi}{2}, \frac{\pi}{2}) = RX(\theta)
 $$
 
 $$
@@ -56,7 +59,7 @@ Create new U3 gate.
 
 <span id="qiskit.circuit.library.U3Gate.control" />
 
-`U3Gate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+`U3Gate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/u3.py "view source code")
 
 Return a (multi-)controlled-U3 gate.
 
@@ -78,7 +81,7 @@ controlled version of this gate.
 
 <span id="qiskit.circuit.library.U3Gate.inverse" />
 
-`U3Gate.inverse()`
+`U3Gate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/u3.py "view source code")
 
 Return inverted U3 gate.
 
@@ -94,7 +97,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.library.U3Gate.decompositions" />
 

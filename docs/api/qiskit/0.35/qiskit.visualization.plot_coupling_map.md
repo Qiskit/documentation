@@ -1,8 +1,16 @@
+---
+title: plot_coupling_map
+description: API reference for qiskit.visualization.plot_coupling_map
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.visualization.plot_coupling_map
+---
+
 # qiskit.visualization.plot\_coupling\_map
 
+<span id="qiskit.visualization.plot_coupling_map" />
 
-
-`plot_coupling_map(num_qubits, qubit_coordinates, coupling_map, figsize=None, plot_directed=False, label_qubits=True, qubit_size=None, line_width=4, font_size=None, qubit_color=None, qubit_labels=None, line_color=None, font_color='w', ax=None, filename=None)`
+`plot_coupling_map(num_qubits, qubit_coordinates, coupling_map, figsize=None, plot_directed=False, label_qubits=True, qubit_size=None, line_width=4, font_size=None, qubit_color=None, qubit_labels=None, line_color=None, font_color='w', ax=None, filename=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/visualization/gate_map.py "view source code")
 
 Plots an arbitrary coupling map of qubits (embedded in a plane).
 
@@ -50,3 +58,4 @@ plot_coupling_map(num_qubits, coupling_map, qubit_coordinates)
 ```
 
 ![../\_images/qiskit.visualization.plot\_coupling\_map\_0\_0.png](/images/api/qiskit/0.35/qiskit.visualization.plot_coupling_map_0_0.png)
+

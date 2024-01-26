@@ -10,7 +10,7 @@ python_api_name: qiskit.primitives.BaseSampler
 
 <span id="qiskit.primitives.BaseSampler" />
 
-`BaseSampler(circuits: Iterable[QuantumCircuit] | QuantumCircuit, *args, parameters: Iterable[Iterable[Parameter]] | None = None, **kwargs)`
+`BaseSampler(circuits, parameters=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/primitives/base_sampler.py "view source code")
 
 Bases: `abc.ABC`
 
@@ -20,12 +20,12 @@ Base class of Sampler that calculates quasi-probabilities of bitstrings from qua
 
 **Parameters**
 
-*   **circuits** – Quantum circuits to be executed.
-*   **parameters** – Parameters of each of the quantum circuits. Defaults to `[circ.parameters for circ in circuits]`.
+*   **circuits** – quantum circuits to be executed
+*   **parameters** – parameters of quantum circuits Defaults to `[circ.parameters for circ in circuits]`
 
 **Raises**
 
-**QiskitError** – For mismatch of circuits and parameters list.
+**QiskitError** – for mismatch of circuits and parameters list.
 
 ## Methods
 
@@ -33,7 +33,7 @@ Base class of Sampler that calculates quasi-probabilities of bitstrings from qua
 
 <span id="qiskit.primitives.BaseSampler.close" />
 
-`abstract BaseSampler.close()`
+`abstract BaseSampler.close()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/primitives/base_sampler.py "view source code")
 
 Close the session and free resources
 
@@ -43,19 +43,19 @@ Close the session and free resources
 
 ### circuits
 
-Quantum circuits to be sampled.
+Quantum circuits
 
 **Returns**
 
-The quantum circuits to be sampled.
+quantum circuits
 
 <span id="qiskit.primitives.BaseSampler.parameters" />
 
 ### parameters
 
-Parameters of quantum circuits.
+Parameters of quantum circuits
 
 **Returns**
 
-List of the parameters in each quantum circuit.
+Parameter list of the quantum circuits
 

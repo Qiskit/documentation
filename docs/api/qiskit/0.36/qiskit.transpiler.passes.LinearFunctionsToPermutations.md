@@ -10,9 +10,9 @@ python_api_name: qiskit.transpiler.passes.LinearFunctionsToPermutations
 
 <span id="qiskit.transpiler.passes.LinearFunctionsToPermutations" />
 
-`LinearFunctionsToPermutations(*args, **kwargs)`
+`LinearFunctionsToPermutations(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/synthesis/linear_functions_synthesis.py "view source code")
 
-Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
+Bases: `qiskit.transpiler.basepasses.TransformationPass`
 
 Promotes linear functions to permutations when possible.
 
@@ -30,13 +30,13 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.LinearFunctionsToPermutations.run" />
 
-`LinearFunctionsToPermutations.run(dag)`
+`LinearFunctionsToPermutations.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/synthesis/linear_functions_synthesis.py "view source code")
 
-Run the LinearFunctionsToPermutations pass on dag. :type dag: [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit") :param dag: input dag.
+Run the LinearFunctionsToPermutations pass on dag. :type dag: `DAGCircuit` :param dag: input dag.
 
 **Return type**
 
-[`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")
+`DAGCircuit`
 
 **Returns**
 

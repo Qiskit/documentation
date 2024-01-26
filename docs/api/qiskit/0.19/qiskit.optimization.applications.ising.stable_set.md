@@ -22,7 +22,7 @@ Convert stable set instances into Pauli list. We read instances in the Gset form
 
 <span id="qiskit.optimization.applications.ising.stable_set.get_graph_solution" />
 
-`get_graph_solution(x)`
+`get_graph_solution(x)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/applications/ising/stable_set.py "view source code")
 
 Get graph solution from binary string.
 
@@ -40,7 +40,7 @@ numpy.ndarray
 
 <span id="qiskit.optimization.applications.ising.stable_set.get_operator" />
 
-`get_operator(w)`
+`get_operator(w)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/applications/ising/stable_set.py "view source code")
 
 Generate Hamiltonian for the maximum stable set in a graph.
 
@@ -58,7 +58,7 @@ tuple([WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator
 
 <span id="qiskit.optimization.applications.ising.stable_set.stable_set_value" />
 
-`stable_set_value(x, w)`
+`stable_set_value(x, w)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/applications/ising/stable_set.py "view source code")
 
 Compute the value of a stable set, and its feasibility.
 

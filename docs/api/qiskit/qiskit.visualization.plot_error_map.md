@@ -12,7 +12,7 @@ python_api_name: qiskit.visualization.plot_error_map
 
 <span id="qiskit.visualization.plot_error_map" />
 
-`qiskit.visualization.plot_error_map(backend, figsize=(15, 12), show_title=True, qubit_coordinates=None)`
+`qiskit.visualization.plot_error_map(backend, figsize=(15, 12), show_title=True, qubit_coordinates=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/visualization/gate_map.py "view source code")
 
 Plots the error map of a given backend.
 
@@ -36,7 +36,7 @@ Figure
 *   [**VisualizationError**](visualization#qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – The backend does not provide gate errors for the ‘sx’ gate.
 *   [**MissingOptionalLibraryError**](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") – If matplotlib or seaborn is not installed.
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumCircuit, execute

@@ -20,23 +20,23 @@ A selection of providers for financial data. These may be backed by an external 
 
 # Data Provider Base Class
 
-|                                                                                                                                                                      |                                                                                    |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| [`BaseDataProvider`](qiskit.finance.data_providers.BaseDataProvider#qiskit.finance.data_providers.BaseDataProvider "qiskit.finance.data_providers.BaseDataProvider") | The abstract base class for data\_provider modules within Qiskit’s finance module. |
+|                                                                                                                       |                                                                                    |
+| --------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| [`BaseDataProvider`](qiskit.finance.data_providers.BaseDataProvider "qiskit.finance.data_providers.BaseDataProvider") | The abstract base class for data\_provider modules within Qiskit’s finance module. |
 
 # Data Provider Types
 
-|                                                                                                                                                  |                   |
-| ------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------- |
-| [`StockMarket`](qiskit.finance.data_providers.StockMarket#qiskit.finance.data_providers.StockMarket "qiskit.finance.data_providers.StockMarket") | Stock Market enum |
+|                                                                                                        |                   |
+| ------------------------------------------------------------------------------------------------------ | ----------------- |
+| [`StockMarket`](qiskit.finance.data_providers.StockMarket "qiskit.finance.data_providers.StockMarket") | Stock Market enum |
 
 # Data Providers
 
-|                                                                                                                                                                                          |                                                            |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| [`DataOnDemandProvider`](qiskit.finance.data_providers.DataOnDemandProvider#qiskit.finance.data_providers.DataOnDemandProvider "qiskit.finance.data_providers.DataOnDemandProvider")     | NASDAQ Data on Demand data provider.                       |
-| [`ExchangeDataProvider`](qiskit.finance.data_providers.ExchangeDataProvider#qiskit.finance.data_providers.ExchangeDataProvider "qiskit.finance.data_providers.ExchangeDataProvider")     | Exchange data provider.                                    |
-| [`WikipediaDataProvider`](qiskit.finance.data_providers.WikipediaDataProvider#qiskit.finance.data_providers.WikipediaDataProvider "qiskit.finance.data_providers.WikipediaDataProvider") | Wikipedia data provider.                                   |
-| [`YahooDataProvider`](qiskit.finance.data_providers.YahooDataProvider#qiskit.finance.data_providers.YahooDataProvider "qiskit.finance.data_providers.YahooDataProvider")                 | Yahoo data provider.                                       |
-| [`RandomDataProvider`](qiskit.finance.data_providers.RandomDataProvider#qiskit.finance.data_providers.RandomDataProvider "qiskit.finance.data_providers.RandomDataProvider")             | Pseudo-randomly generated mock stock-market data provider. |
+|                                                                                                                                      |                                                            |
+| ------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------- |
+| [`DataOnDemandProvider`](qiskit.finance.data_providers.DataOnDemandProvider "qiskit.finance.data_providers.DataOnDemandProvider")    | NASDAQ Data on Demand data provider.                       |
+| [`ExchangeDataProvider`](qiskit.finance.data_providers.ExchangeDataProvider "qiskit.finance.data_providers.ExchangeDataProvider")    | Exchange data provider.                                    |
+| [`WikipediaDataProvider`](qiskit.finance.data_providers.WikipediaDataProvider "qiskit.finance.data_providers.WikipediaDataProvider") | Wikipedia data provider.                                   |
+| [`YahooDataProvider`](qiskit.finance.data_providers.YahooDataProvider "qiskit.finance.data_providers.YahooDataProvider")             | Yahoo data provider.                                       |
+| [`RandomDataProvider`](qiskit.finance.data_providers.RandomDataProvider "qiskit.finance.data_providers.RandomDataProvider")          | Pseudo-randomly generated mock stock-market data provider. |
 

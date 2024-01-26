@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.library.CRZGate
 
 <span id="qiskit.circuit.library.CRZGate" />
 
-`CRZGate(theta, label=None, ctrl_state=None)`
+`CRZGate(theta, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/rz.py "view source code")
 
-Bases: [`qiskit.circuit.controlledgate.ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
+Bases: `qiskit.circuit.controlledgate.ControlledGate`
 
 Controlled-RZ gate.
 
@@ -74,7 +74,7 @@ Create new CRZ gate.
 
 <span id="qiskit.circuit.library.CRZGate.inverse" />
 
-`CRZGate.inverse()`
+`CRZGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/rz.py "view source code")
 
 Return inverse CRZ gate (i.e. with the negative rotation angle).
 
@@ -88,7 +88,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.library.CRZGate.ctrl_state" />
 

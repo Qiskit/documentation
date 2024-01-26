@@ -1,14 +1,24 @@
+---
+title: LinearsolverResult
+description: API reference for qiskit.aqua.algorithms.LinearsolverResult
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.algorithms.LinearsolverResult
+---
+
 <span id="qiskit-aqua-algorithms-linearsolverresult" />
 
 # qiskit.aqua.algorithms.LinearsolverResult
 
+<span id="qiskit.aqua.algorithms.LinearsolverResult" />
 
-
-`LinearsolverResult(a_dict=None)`
+`LinearsolverResult(a_dict=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/linear_solvers/linear_solver_result.py "view source code")
 
 Linear solver Result.
 
+### \_\_init\_\_
 
+<span id="qiskit.aqua.algorithms.LinearsolverResult.__init__" />
 
 `__init__(a_dict=None)`
 
@@ -39,7 +49,9 @@ Initialize self. See help(type(self)) for accurate signature.
 | ---------------------------------------------------------------------------------------------------------------------- | --------------- |
 | [`solution`](#qiskit.aqua.algorithms.LinearsolverResult.solution "qiskit.aqua.algorithms.LinearsolverResult.solution") | return solution |
 
+### clear
 
+<span id="qiskit.aqua.algorithms.LinearsolverResult.clear" />
 
 `clear()`
 
@@ -47,7 +59,9 @@ Initialize self. See help(type(self)) for accurate signature.
 
 `None`
 
+### combine
 
+<span id="qiskit.aqua.algorithms.LinearsolverResult.combine" />
 
 `combine(result)`
 
@@ -61,7 +75,9 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 `None`
 
+### from\_dict
 
+<span id="qiskit.aqua.algorithms.LinearsolverResult.from_dict" />
 
 `static from_dict(a_dict)`
 
@@ -71,19 +87,27 @@ create new object from a dictionary
 
 `LinearsolverResult`
 
+### get
 
+<span id="qiskit.aqua.algorithms.LinearsolverResult.get" />
 
 `get(k[, d]) → D[k] if k in D, else d. d defaults to None.`
 
+### items
 
+<span id="qiskit.aqua.algorithms.LinearsolverResult.items" />
 
 `items() → a set-like object providing a view on D’s items`
 
+### keys
 
+<span id="qiskit.aqua.algorithms.LinearsolverResult.keys" />
 
 `keys() → a set-like object providing a view on D’s keys`
 
+### pop
 
+<span id="qiskit.aqua.algorithms.LinearsolverResult.pop" />
 
 `pop(key, default=None)`
 
@@ -93,7 +117,9 @@ If key is not found, d is returned if given, otherwise KeyError is raised.
 
 `object`
 
+### popitem
 
+<span id="qiskit.aqua.algorithms.LinearsolverResult.popitem" />
 
 `popitem()`
 
@@ -103,11 +129,15 @@ as a 2-tuple; but raise KeyError if D is empty.
 
 `Tuple`\[`object`, `object`]
 
+### setdefault
 
+<span id="qiskit.aqua.algorithms.LinearsolverResult.setdefault" />
 
 `setdefault(k[, d]) → D.get(k,d), also set D[k]=d if k not in D`
 
+### solution
 
+<span id="qiskit.aqua.algorithms.LinearsolverResult.solution" />
 
 `property solution`
 
@@ -117,7 +147,9 @@ return solution
 
 `ndarray`
 
+### update
 
+<span id="qiskit.aqua.algorithms.LinearsolverResult.update" />
 
 `update(*args, **kwargs)`
 
@@ -127,6 +159,9 @@ If E present and has a .keys() method, does: for k in E: D\[k] = E\[k] If E pres
 
 `None`
 
+### values
 
+<span id="qiskit.aqua.algorithms.LinearsolverResult.values" />
 
 `values() → an object providing a view on D’s values`
+

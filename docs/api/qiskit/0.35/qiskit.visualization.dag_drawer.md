@@ -1,8 +1,16 @@
+---
+title: dag_drawer
+description: API reference for qiskit.visualization.dag_drawer
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.visualization.dag_drawer
+---
+
 # qiskit.visualization.dag\_drawer
 
+<span id="qiskit.visualization.dag_drawer" />
 
-
-`dag_drawer(dag, scale=0.7, filename=None, style='color')`
+`dag_drawer(dag, scale=0.7, filename=None, style='color')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/visualization/dag_visualization.py "view source code")
 
 Plot the directed acyclic graph (dag) to represent operation dependencies in a quantum circuit.
 
@@ -12,7 +20,7 @@ The current release of Graphviz can be downloaded here: \<[https://graphviz.gitl
 
 **Parameters**
 
-*   **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – The dag to draw.
+*   **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – The dag to draw.
 *   **scale** (*float*) – scaling factor
 *   **filename** (*str*) – file path to save image to (format inferred from name)
 *   **style** (*str*) – ‘plain’: B\&W graph ‘color’ (default): color input/output/op nodes
@@ -29,7 +37,7 @@ PIL.Image
 
 **Raises**
 
-*   [**VisualizationError**](qiskit.visualization.VisualizationError#qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – when style is not recognized.
+*   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – when style is not recognized.
 *   **MissingOptionalLibraryError** – when pydot or pillow are not installed.
 *   **InvalidFileError** – when filename provided is not valid
 
@@ -55,3 +63,4 @@ dag_drawer(dag)
 ```
 
 ![../\_images/qiskit.visualization.dag\_drawer\_0\_0.png](/images/api/qiskit/0.35/qiskit.visualization.dag_drawer_0_0.png)
+

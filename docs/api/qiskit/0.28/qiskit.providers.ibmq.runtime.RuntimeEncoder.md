@@ -1,8 +1,16 @@
+---
+title: RuntimeEncoder
+description: API reference for qiskit.providers.ibmq.runtime.RuntimeEncoder
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.ibmq.runtime.RuntimeEncoder
+---
+
 # qiskit.providers.ibmq.runtime.RuntimeEncoder
 
+<span id="qiskit.providers.ibmq.runtime.RuntimeEncoder" />
 
-
-`RuntimeEncoder(*, skipkeys=False, ensure_ascii=True, check_circular=True, allow_nan=True, sort_keys=False, indent=None, separators=None, default=None)`
+`RuntimeEncoder(*, skipkeys=False, ensure_ascii=True, check_circular=True, allow_nan=True, sort_keys=False, indent=None, separators=None, default=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.15/qiskit/providers/ibmq/runtime/utils.py "view source code")
 
 JSON Encoder used by runtime service.
 
@@ -24,7 +32,9 @@ If specified, separators should be an (item\_separator, key\_separator) tuple. T
 
 If specified, default is a function that gets called for objects that can’t otherwise be serialized. It should return a JSON encodable version of the object or raise a `TypeError`.
 
+### \_\_init\_\_
 
+<span id="qiskit.providers.ibmq.runtime.RuntimeEncoder.__init__" />
 
 `__init__(*, skipkeys=False, ensure_ascii=True, check_circular=True, allow_nan=True, sort_keys=False, indent=None, separators=None, default=None)`
 
@@ -62,7 +72,9 @@ If specified, default is a function that gets called for objects that can’t ot
 | `item_separator` |   |
 | `key_separator`  |   |
 
+### default
 
+<span id="qiskit.providers.ibmq.runtime.RuntimeEncoder.default" />
 
 `default(obj)`
 
@@ -86,7 +98,9 @@ def default(self, o):
 
 `Any`
 
+### encode
 
+<span id="qiskit.providers.ibmq.runtime.RuntimeEncoder.encode" />
 
 `encode(o)`
 
@@ -98,7 +112,9 @@ Return a JSON string representation of a Python data structure.
 '{"foo": ["bar", "baz"]}'
 ```
 
+### iterencode
 
+<span id="qiskit.providers.ibmq.runtime.RuntimeEncoder.iterencode" />
 
 `iterencode(o, _one_shot=False)`
 
@@ -110,3 +126,4 @@ For example:
 for chunk in JSONEncoder().iterencode(bigobject):
     mysocket.write(chunk)
 ```
+

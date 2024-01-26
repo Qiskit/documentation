@@ -10,13 +10,13 @@ python_api_name: qiskit.transpiler.passes.CommutationAnalysis
 
 <span id="qiskit.transpiler.passes.CommutationAnalysis" />
 
-`qiskit.transpiler.passes.CommutationAnalysis(*args, **kwargs)`
+`qiskit.transpiler.passes.CommutationAnalysis(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/optimization/commutation_analysis.py "view source code")
 
 Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
 Analysis pass to find commutation relations between DAG nodes.
 
-Property\_set\[‘commutation\_set’] is a dictionary that describes the commutation relations on a given wire, all the gates on a wire are grouped into a set of gates that commute.
+`property_set['commutation_set']` is a dictionary that describes the commutation relations on a given wire, all the gates on a wire are grouped into a set of gates that commute.
 
 ## Attributes
 
@@ -80,7 +80,7 @@ Name of the pass.
 
 Run the CommutationAnalysis pass on dag.
 
-Run the pass on the DAG, and write the discovered commutation relations into the property\_set.
+Run the pass on the DAG, and write the discovered commutation relations into the `property_set`.
 
 ### update\_status
 

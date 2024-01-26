@@ -1,8 +1,16 @@
+---
+title: AerSimulator
+description: API reference for qiskit.providers.aer.AerSimulator
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.aer.AerSimulator
+---
+
 # AerSimulator
 
+<span id="qiskit.providers.aer.AerSimulator" />
 
-
-`AerSimulator(configuration=None, properties=None, provider=None, **backend_options)`
+`AerSimulator(configuration=None, properties=None, provider=None, **backend_options)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/backends/aer_simulator.py "view source code")
 
 Bases: `qiskit.providers.aer.backends.aerbackend.AerBackend`
 
@@ -10,9 +18,9 @@ Noisy quantum circuit simulator backend.
 
 **Configurable Options**
 
-The AerSimulator supports multiple simulation methods and configurable options for each simulation method. These may be set using the appropriate kwargs during initialization. They can also be set of updated using the [`set_options()`](qiskit.providers.aer.AerSimulator.set_options#qiskit.providers.aer.AerSimulator.set_options "qiskit.providers.aer.AerSimulator.set_options") method.
+The AerSimulator supports multiple simulation methods and configurable options for each simulation method. These may be set using the appropriate kwargs during initialization. They can also be set of updated using the [`set_options()`](qiskit.providers.aer.AerSimulator#set_options "qiskit.providers.aer.AerSimulator.set_options") method.
 
-Run-time options may also be specified as kwargs using the [`run()`](qiskit.providers.aer.AerSimulator.run#qiskit.providers.aer.AerSimulator.run "qiskit.providers.aer.AerSimulator.run") method. These will not be stored in the backend and will only apply to that execution. They will also override any previously set options.
+Run-time options may also be specified as kwargs using the [`run()`](qiskit.providers.aer.AerSimulator#run "qiskit.providers.aer.AerSimulator.run") method. These will not be stored in the backend and will only apply to that execution. They will also override any previously set options.
 
 For example, to configure a density matrix simulator with a custom noise model to use for every execution
 
@@ -24,7 +32,7 @@ backend = AerSimulator(method='density_matrix',
 
 **Simulating an IBMQ Backend**
 
-The simulator can be automatically configured to mimic an IBMQ backend using the [`from_backend()`](qiskit.providers.aer.AerSimulator.from_backend#qiskit.providers.aer.AerSimulator.from_backend "qiskit.providers.aer.AerSimulator.from_backend") method. This will configure the simulator to use the basic device `NoiseModel` for that backend, and the same basis gates and coupling map.
+The simulator can be automatically configured to mimic an IBMQ backend using the [`from_backend()`](qiskit.providers.aer.AerSimulator#from_backend "qiskit.providers.aer.AerSimulator.from_backend") method. This will configure the simulator to use the basic device `NoiseModel` for that backend, and the same basis gates and coupling map.
 
 ```python
 backend = AerSimulator.from_backend(backend)
@@ -32,11 +40,11 @@ backend = AerSimulator.from_backend(backend)
 
 **Returning the Final State**
 
-The final state of the simulator can be saved to the returned `Result` object by appending the [`save_state()`](qiskit.providers.aer.library.save_state#qiskit.providers.aer.library.save_state "qiskit.providers.aer.library.save_state") instruction to a quantum circuit. The format of the final state will depend on the simulation method used. Additional simulation data may also be saved using the other save instructions in `qiskit.provider.aer.library`.
+The final state of the simulator can be saved to the returned `Result` object by appending the [`save_state()`](qiskit.providers.aer.library.save_state "qiskit.providers.aer.library.save_state") instruction to a quantum circuit. The format of the final state will depend on the simulation method used. Additional simulation data may also be saved using the other save instructions in `qiskit.provider.aer.library`.
 
 **Simulation Method Option**
 
-The simulation method is set using the `method` kwarg. A list supported simulation methods can be returned using [`available_methods()`](qiskit.providers.aer.AerSimulator.available_methods#qiskit.providers.aer.AerSimulator.available_methods "qiskit.providers.aer.AerSimulator.available_methods"), these are
+The simulation method is set using the `method` kwarg. A list supported simulation methods can be returned using [`available_methods()`](qiskit.providers.aer.AerSimulator#available_methods "qiskit.providers.aer.AerSimulator.available_methods"), these are
 
 *   `"automatic"`: Default simulation method. Select the simulation method automatically based on the circuit and noise model.
 *   `"statevector"`: A dense statevector simulation that can sample measurement outcomes from *ideal* circuits with all measurements at end of the circuit. For noisy simulations each shot samples a randomly sampled noisy circuit from the noise model.
@@ -62,15 +70,15 @@ By default all simulation methods run on the CPU, however select methods also su
 | `unitary`              | Yes           |
 | `superop`              | No            |
 
-Running a GPU simulation is done using `device="GPU"` kwarg during initialization or with [`set_options()`](qiskit.providers.aer.AerSimulator.set_options#qiskit.providers.aer.AerSimulator.set_options "qiskit.providers.aer.AerSimulator.set_options"). The list of supported devices for the current system can be returned using [`available_devices()`](qiskit.providers.aer.AerSimulator.available_devices#qiskit.providers.aer.AerSimulator.available_devices "qiskit.providers.aer.AerSimulator.available_devices").
+Running a GPU simulation is done using `device="GPU"` kwarg during initialization or with [`set_options()`](qiskit.providers.aer.AerSimulator#set_options "qiskit.providers.aer.AerSimulator.set_options"). The list of supported devices for the current system can be returned using [`available_devices()`](qiskit.providers.aer.AerSimulator#available_devices "qiskit.providers.aer.AerSimulator.available_devices").
 
 **Additional Backend Options**
 
 The following simulator specific backend options are supported
 
-*   `method` (str): Set the simulation method (Default: `"automatic"`). Use [`available_methods()`](qiskit.providers.aer.AerSimulator.available_methods#qiskit.providers.aer.AerSimulator.available_methods "qiskit.providers.aer.AerSimulator.available_methods") to return a list of all availabe methods.
+*   `method` (str): Set the simulation method (Default: `"automatic"`). Use [`available_methods()`](qiskit.providers.aer.AerSimulator#available_methods "qiskit.providers.aer.AerSimulator.available_methods") to return a list of all availabe methods.
 
-*   `device` (str): Set the simulation device (Default: `"CPU"`). Use [`available_devices()`](qiskit.providers.aer.AerSimulator.available_devices#qiskit.providers.aer.AerSimulator.available_devices "qiskit.providers.aer.AerSimulator.available_devices") to return a list of devices supported on the current system.
+*   `device` (str): Set the simulation device (Default: `"CPU"`). Use [`available_devices()`](qiskit.providers.aer.AerSimulator#available_devices "qiskit.providers.aer.AerSimulator.available_devices") to return a list of devices supported on the current system.
 
 *   `precision` (str): Set the floating point precision for certain simulation methods to either `"single"` or `"double"` precision (default: `"double"`).
 
@@ -161,46 +169,228 @@ This method should initialize the module and its configuration, and raise an exc
 
 **Parameters**
 
-*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration#qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration.
-*   **properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties#qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") *or None*) – Optional, backend properties.
-*   **defaults** ([*PulseDefaults*](qiskit.providers.models.PulseDefaults#qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults") *or None*) – Optional, backend pulse defaults.
-*   **provider** ([*Provider*](qiskit.providers.Provider#qiskit.providers.Provider "qiskit.providers.Provider")) – Optional, provider responsible for this backend.
+*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration.
+*   **properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") *or None*) – Optional, backend properties.
+*   **defaults** ([*PulseDefaults*](qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults") *or None*) – Optional, backend pulse defaults.
+*   **provider** ([*Provider*](qiskit.providers.Provider "qiskit.providers.Provider")) – Optional, provider responsible for this backend.
 *   **backend\_options** (*dict or None*) – Optional set custom backend options.
 
 **Raises**
 
-[**AerError**](qiskit.providers.aer.AerError#qiskit.providers.aer.AerError "qiskit.providers.aer.AerError") – if there is no name in the configuration
+[**AerError**](qiskit.providers.aer.AerError "qiskit.providers.aer.AerError") – if there is no name in the configuration
 
 ## Methods
 
-|                                                                                                                                                                                      |                                                 |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------- |
-| [`available_devices`](qiskit.providers.aer.AerSimulator.available_devices#qiskit.providers.aer.AerSimulator.available_devices "qiskit.providers.aer.AerSimulator.available_devices") | Return the available simulation methods.        |
-| [`available_methods`](qiskit.providers.aer.AerSimulator.available_methods#qiskit.providers.aer.AerSimulator.available_methods "qiskit.providers.aer.AerSimulator.available_methods") | Return the available simulation methods.        |
-| [`clear_options`](qiskit.providers.aer.AerSimulator.clear_options#qiskit.providers.aer.AerSimulator.clear_options "qiskit.providers.aer.AerSimulator.clear_options")                 | Reset the simulator options to default values.  |
-| [`configuration`](qiskit.providers.aer.AerSimulator.configuration#qiskit.providers.aer.AerSimulator.configuration "qiskit.providers.aer.AerSimulator.configuration")                 | Return the simulator backend configuration.     |
-| [`defaults`](qiskit.providers.aer.AerSimulator.defaults#qiskit.providers.aer.AerSimulator.defaults "qiskit.providers.aer.AerSimulator.defaults")                                     | Return the simulator backend pulse defaults.    |
-| [`from_backend`](qiskit.providers.aer.AerSimulator.from_backend#qiskit.providers.aer.AerSimulator.from_backend "qiskit.providers.aer.AerSimulator.from_backend")                     | Initialize simulator from backend.              |
-| [`name`](qiskit.providers.aer.AerSimulator.name#qiskit.providers.aer.AerSimulator.name "qiskit.providers.aer.AerSimulator.name")                                                     | Format backend name string for simulator        |
-| [`properties`](qiskit.providers.aer.AerSimulator.properties#qiskit.providers.aer.AerSimulator.properties "qiskit.providers.aer.AerSimulator.properties")                             | Return the simulator backend properties if set. |
-| [`provider`](qiskit.providers.aer.AerSimulator.provider#qiskit.providers.aer.AerSimulator.provider "qiskit.providers.aer.AerSimulator.provider")                                     | Return the backend Provider.                    |
-| [`run`](qiskit.providers.aer.AerSimulator.run#qiskit.providers.aer.AerSimulator.run "qiskit.providers.aer.AerSimulator.run")                                                         | Run a qobj on the backend.                      |
-| [`set_option`](qiskit.providers.aer.AerSimulator.set_option#qiskit.providers.aer.AerSimulator.set_option "qiskit.providers.aer.AerSimulator.set_option")                             | Special handling for setting backend options.   |
-| [`set_options`](qiskit.providers.aer.AerSimulator.set_options#qiskit.providers.aer.AerSimulator.set_options "qiskit.providers.aer.AerSimulator.set_options")                         | Set the simulator options                       |
-| [`status`](qiskit.providers.aer.AerSimulator.status#qiskit.providers.aer.AerSimulator.status "qiskit.providers.aer.AerSimulator.status")                                             | Return backend status.                          |
+### available\_devices
+
+<span id="qiskit.providers.aer.AerSimulator.available_devices" />
+
+`AerSimulator.available_devices()`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/backends/aer_simulator.py "view source code")
+
+Return the available simulation methods.
+
+### available\_methods
+
+<span id="qiskit.providers.aer.AerSimulator.available_methods" />
+
+`AerSimulator.available_methods()`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/backends/aer_simulator.py "view source code")
+
+Return the available simulation methods.
+
+### clear\_options
+
+<span id="qiskit.providers.aer.AerSimulator.clear_options" />
+
+`AerSimulator.clear_options()`
+
+Reset the simulator options to default values.
+
+### configuration
+
+<span id="qiskit.providers.aer.AerSimulator.configuration" />
+
+`AerSimulator.configuration()`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/backends/aer_simulator.py "view source code")
+
+Return the simulator backend configuration.
+
+**Returns**
+
+the configuration for the backend.
+
+**Return type**
+
+[BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+
+### defaults
+
+<span id="qiskit.providers.aer.AerSimulator.defaults" />
+
+`AerSimulator.defaults()`
+
+Return the simulator backend pulse defaults.
+
+**Returns**
+
+**The backend pulse defaults or `None` if the**
+
+backend does not support pulse.
+
+**Return type**
+
+[PulseDefaults](qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults")
+
+### from\_backend
+
+<span id="qiskit.providers.aer.AerSimulator.from_backend" />
+
+`classmethod AerSimulator.from_backend(backend, **options)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/backends/aer_simulator.py "view source code")
+
+Initialize simulator from backend.
+
+### name
+
+<span id="qiskit.providers.aer.AerSimulator.name" />
+
+`AerSimulator.name()`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/backends/aer_simulator.py "view source code")
+
+Format backend name string for simulator
+
+### properties
+
+<span id="qiskit.providers.aer.AerSimulator.properties" />
+
+`AerSimulator.properties()`
+
+Return the simulator backend properties if set.
+
+**Returns**
+
+**The backend properties or `None` if the**
+
+backend does not have properties set.
+
+**Return type**
+
+[BackendProperties](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
+
+### provider
+
+<span id="qiskit.providers.aer.AerSimulator.provider" />
+
+`AerSimulator.provider()`
+
+Return the backend Provider.
+
+**Returns**
+
+the Provider responsible for the backend.
+
+**Return type**
+
+[Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+
+### run
+
+<span id="qiskit.providers.aer.AerSimulator.run" />
+
+`AerSimulator.run(circuits, validate=False, parameter_binds=None, **run_options)`
+
+Run a qobj on the backend.
+
+**Parameters**
+
+*   **circuits** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *or list*) – The QuantumCircuit (or list of QuantumCircuit objects) to run
+*   **validate** (*bool*) – validate the Qobj before running (default: False).
+*   **parameter\_binds** (*list*) – A list of parameter binding dictionaries. See additional information (default: None).
+*   **run\_options** (*kwargs*) – additional run time backend options.
+
+**Returns**
+
+The simulation job.
+
+**Return type**
+
+[AerJob](qiskit.providers.aer.jobs.AerJob "qiskit.providers.aer.jobs.AerJob")
+
+**Raises**
+
+[**AerError**](qiskit.providers.aer.AerError "qiskit.providers.aer.AerError") – If `parameter_binds` is specified with a qobj input or has a length mismatch with the number of circuits.
+
+#### Additional Information:
+
+*   Each parameter binding dictionary is of the form:
+
+    ```python
+    {
+        param_a: [val_1, val_2],
+        param_b: [val_3, val_1],
+    }
+    ```
+
+    for all parameters in that circuit. The length of the value list must be the same for all parameters, and the number of parameter dictionaries in the list must match the length of `circuits` (if `circuits` is a single `QuantumCircuit` object it should a list of length 1).
+
+*   kwarg options specified in `run_options` will temporarily override any set options of the same name for the current run.
+
+**Raises**
+
+**ValueError** – if run is not implemented
+
+### set\_option
+
+<span id="qiskit.providers.aer.AerSimulator.set_option" />
+
+`AerSimulator.set_option(key, value)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/backends/aer_simulator.py "view source code")
+
+Special handling for setting backend options.
+
+This method should be extended by sub classes to update special option values.
+
+**Parameters**
+
+*   **key** (*str*) – key to update
+*   **value** (*any*) – value to update.
+
+**Raises**
+
+[**AerError**](qiskit.providers.aer.AerError "qiskit.providers.aer.AerError") – if key is ‘method’ and val isn’t in available methods.
+
+### set\_options
+
+<span id="qiskit.providers.aer.AerSimulator.set_options" />
+
+`AerSimulator.set_options(**fields)`
+
+Set the simulator options
+
+### status
+
+<span id="qiskit.providers.aer.AerSimulator.status" />
+
+`AerSimulator.status()`
+
+Return backend status.
+
+**Returns**
+
+the status of the backend.
+
+**Return type**
+
+[BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
 
 ## Attributes
 
-
+<span id="qiskit.providers.aer.AerSimulator.options" />
 
 ### options
 
 Return the options for the backend
 
-The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit.providers.aer.AerSimulator.run#qiskit.providers.aer.AerSimulator.run "qiskit.providers.aer.AerSimulator.run") method.
+The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit.providers.aer.AerSimulator#run "qiskit.providers.aer.AerSimulator.run") method.
 
-
+<span id="qiskit.providers.aer.AerSimulator.version" />
 
 ### version
 
 `= 1`
+

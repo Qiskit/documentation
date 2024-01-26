@@ -10,9 +10,9 @@ python_api_name: qiskit.transpiler.passes.CheckMap
 
 <span id="qiskit.transpiler.passes.CheckMap" />
 
-`CheckMap(*args, **kwargs)`
+`CheckMap(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/utils/check_map.py "view source code")
 
-Bases: [`qiskit.transpiler.basepasses.AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
+Bases: `qiskit.transpiler.basepasses.AnalysisPass`
 
 Check if a DAG circuit is already mapped to a coupling map.
 
@@ -38,7 +38,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.CheckMap.run" />
 
-`CheckMap.run(dag)`
+`CheckMap.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/utils/check_map.py "view source code")
 
 Run the CheckMap pass on dag.
 

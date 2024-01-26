@@ -1,10 +1,18 @@
+---
+title: Experiment
+description: API reference for qiskit.providers.ibmq.experiment.Experiment
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.ibmq.experiment.Experiment
+---
+
 <span id="qiskit-providers-ibmq-experiment-experiment" />
 
 # qiskit.providers.ibmq.experiment.Experiment
 
+<span id="qiskit.providers.ibmq.experiment.Experiment" />
 
-
-`Experiment(provider, backend_name, experiment_type, extra=None, tags=None, start_datetime=None, end_datetime=None, experiment_uuid=None, plot_names=None, analysis_results=None, hub=None, group=None, project=None, share_level=None, owner=None)`
+`Experiment(provider, backend_name, experiment_type, extra=None, tags=None, start_datetime=None, end_datetime=None, experiment_uuid=None, plot_names=None, analysis_results=None, hub=None, group=None, project=None, share_level=None, owner=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.12/qiskit/providers/ibmq/experiment/experiment.py "view source code")
 
 Class representing an experiment.
 
@@ -54,7 +62,9 @@ Experiment constructor.
 
 **ExperimentError** – If the provider does not offer experiment services.
 
+### \_\_init\_\_
 
+<span id="qiskit.providers.ibmq.experiment.Experiment.__init__" />
 
 `__init__(provider, backend_name, experiment_type, extra=None, tags=None, start_datetime=None, end_datetime=None, experiment_uuid=None, plot_names=None, analysis_results=None, hub=None, group=None, project=None, share_level=None, owner=None)`
 
@@ -131,7 +141,9 @@ Experiment constructor.
 | [`updated_datetime`](#qiskit.providers.ibmq.experiment.Experiment.updated_datetime "qiskit.providers.ibmq.experiment.Experiment.updated_datetime")    | Return the timestamp when the experiment was last updated. |
 | [`uuid`](#qiskit.providers.ibmq.experiment.Experiment.uuid "qiskit.providers.ibmq.experiment.Experiment.uuid")                                        | Return the experiment’s uuid.                              |
 
+### analysis\_results
 
+<span id="qiskit.providers.ibmq.experiment.Experiment.analysis_results" />
 
 `property analysis_results`
 
@@ -141,7 +153,9 @@ Return analysis results associated with this experiment.
 
 `List`
 
+### backend\_name
 
+<span id="qiskit.providers.ibmq.experiment.Experiment.backend_name" />
 
 `property backend_name`
 
@@ -151,7 +165,9 @@ Return the experiment’s backend name.
 
 `str`
 
+### creation\_datetime
 
+<span id="qiskit.providers.ibmq.experiment.Experiment.creation_datetime" />
 
 `property creation_datetime`
 
@@ -161,7 +177,9 @@ Return the timestamp when the experiment was created.
 
 `Optional`\[`datetime`]
 
+### end\_datetime
 
+<span id="qiskit.providers.ibmq.experiment.Experiment.end_datetime" />
 
 `property end_datetime`
 
@@ -171,7 +189,9 @@ Return the timestamp when the experiment ended.
 
 `Optional`\[`datetime`]
 
+### from\_remote\_data
 
+<span id="qiskit.providers.ibmq.experiment.Experiment.from_remote_data" />
 
 `classmethod from_remote_data(provider, remote_data)`
 
@@ -190,7 +210,9 @@ Create an instance of this class from remote data.
 
 An instance of this class.
 
+### group
 
+<span id="qiskit.providers.ibmq.experiment.Experiment.group" />
 
 `property group`
 
@@ -200,7 +222,9 @@ Return the experiment’s group.
 
 `str`
 
+### hub
 
+<span id="qiskit.providers.ibmq.experiment.Experiment.hub" />
 
 `property hub`
 
@@ -210,7 +234,9 @@ Return the experiment’s hub.
 
 `str`
 
+### owner
 
+<span id="qiskit.providers.ibmq.experiment.Experiment.owner" />
 
 `property owner`
 
@@ -220,7 +246,9 @@ Return the experiment’s owner.
 
 `str`
 
+### plot\_names
 
+<span id="qiskit.providers.ibmq.experiment.Experiment.plot_names" />
 
 `property plot_names`
 
@@ -230,7 +258,9 @@ Return names of plots associated with this experiment.
 
 `List`
 
+### project
 
+<span id="qiskit.providers.ibmq.experiment.Experiment.project" />
 
 `property project`
 
@@ -240,7 +270,9 @@ Return the experiment’s project.
 
 `str`
 
+### refresh
 
+<span id="qiskit.providers.ibmq.experiment.Experiment.refresh" />
 
 `refresh()`
 
@@ -250,7 +282,9 @@ Update this experiment instance with remote data.
 
 `None`
 
+### share\_level
 
+<span id="qiskit.providers.ibmq.experiment.Experiment.share_level" />
 
 `property share_level`
 
@@ -260,7 +294,9 @@ Return the experiment share\_level.
 
 `Optional`\[`ExperimentShareLevel`]
 
+### start\_datetime
 
+<span id="qiskit.providers.ibmq.experiment.Experiment.start_datetime" />
 
 `property start_datetime`
 
@@ -270,7 +306,9 @@ Return the timestamp when the experiment started.
 
 `datetime`
 
+### update\_from\_remote\_data
 
+<span id="qiskit.providers.ibmq.experiment.Experiment.update_from_remote_data" />
 
 `update_from_remote_data(remote_data)`
 
@@ -284,7 +322,9 @@ Update the attributes of this instance using remote data.
 
 `None`
 
+### updated\_datetime
 
+<span id="qiskit.providers.ibmq.experiment.Experiment.updated_datetime" />
 
 `property updated_datetime`
 
@@ -294,7 +334,9 @@ Return the timestamp when the experiment was last updated.
 
 `Optional`\[`datetime`]
 
+### uuid
 
+<span id="qiskit.providers.ibmq.experiment.Experiment.uuid" />
 
 `property uuid`
 
@@ -303,3 +345,4 @@ Return the experiment’s uuid.
 **Return type**
 
 `str`
+

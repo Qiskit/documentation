@@ -1,8 +1,16 @@
+---
+title: DefaultStyle
+description: API reference for qiskit.visualization.qcstyle.DefaultStyle
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.visualization.qcstyle.DefaultStyle
+---
+
 # DefaultStyle
 
+<span id="qiskit.visualization.qcstyle.DefaultStyle" />
 
-
-`DefaultStyle`
+`DefaultStyle`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/visualization/qcstyle.py "view source code")
 
 Bases: `object`
 
@@ -150,3 +158,4 @@ the form (gate\_color, text\_color). Colors can also be entered without the text
     'measure': ('#000000', '#FFFFFF'),
 }
 ```
+
