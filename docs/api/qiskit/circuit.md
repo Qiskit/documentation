@@ -344,6 +344,8 @@ constructed circuit
 
 Almost all circuit functions and methods will raise a [`CircuitError`](#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") when encountering an error that is particular to usage of Qiskit (as opposed to regular typing or indexing problems, which will typically raise the corresponding standard Python error).
 
+### CircuitError
+
 <span id="qiskit.circuit.CircuitError" />
 
 `qiskit.circuit.CircuitError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/exceptions.py "view source code")

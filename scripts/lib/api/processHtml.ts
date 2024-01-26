@@ -357,23 +357,18 @@ export function processMembersAndSetMeta(
           return output.join("\n");
         }
 
-        if (apiType === "function") {
-          findByText($, $main, "em.property", "function").remove();
-          const funcDescription = `<span class="target" id="${id}"/><p><code>${$child.html()}</code>${github}</p>`;
+        if (apiType === "function" || apiType === "exception") {
+          findByText($, $main, "em.property", apiType).remove();
+          const descriptionHtml = `<span class="target" id="${id}"/><p><code>${$child.html()}</code>${github}</p>`;
 
           const pageHeading = $dl.siblings("h1").text();
           if (id.endsWith(pageHeading) && pageHeading != "") {
-            // Page is already dedicated to function; no heading needed
-            return funcDescription;
+            // Page is already dedicated to apiType; no heading needed
+            return descriptionHtml;
           }
 
-          const funcName = id.split(".").slice(-1)[0];
-          return `<h3>${funcName}</h3>${funcDescription}`;
-        }
-
-        if (apiType === "exception") {
-          findByText($, $main, "em.property", "exception").remove();
-          return `<span class="target" id="${id}"/><p><code>${$child.html()}</code>${github}</p>`;
+          const apiName = id.split(".").slice(-1)[0];
+          return `<h3>${apiName}</h3>${descriptionHtml}`;
         }
 
         throw new Error(`Unhandled Python type: ${apiType}`);

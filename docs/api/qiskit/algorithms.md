@@ -193,6 +193,8 @@ Algorithms that compute the fidelity of pairs of quantum states.
 
 ### Exceptions
 
+### AlgorithmError
+
 <span id="qiskit.algorithms.AlgorithmError" />
 
 `qiskit.algorithms.AlgorithmError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/exceptions.py "view source code")

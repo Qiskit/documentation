@@ -2897,6 +2897,8 @@ The number of samples for the time to elapse
 
 ## Exceptions
 
+### PulseError
+
 <span id="qiskit.pulse.PulseError" />
 
 `qiskit.pulse.PulseError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/pulse/exceptions.py "view source code")
@@ -2904,6 +2906,8 @@ The number of samples for the time to elapse
 Errors raised by the pulse module.
 
 Set the error message.
+
+### BackendNotSet
 
 <span id="qiskit.pulse.BackendNotSet" />
 
@@ -2913,6 +2917,8 @@ Raised if the builder context does not have a backend.
 
 Set the error message.
 
+### NoActiveBuilder
+
 <span id="qiskit.pulse.NoActiveBuilder" />
 
 `qiskit.pulse.NoActiveBuilder(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/pulse/exceptions.py "view source code")
@@ -2921,6 +2927,8 @@ Raised if no builder context is active.
 
 Set the error message.
 
+### UnassignedDurationError
+
 <span id="qiskit.pulse.UnassignedDurationError" />
 
 `qiskit.pulse.UnassignedDurationError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/pulse/exceptions.py "view source code")
@@ -2928,6 +2936,8 @@ Set the error message.
 Raised if instruction duration is unassigned.
 
 Set the error message.
+
+### UnassignedReferenceError
 
 <span id="qiskit.pulse.UnassignedReferenceError" />
 

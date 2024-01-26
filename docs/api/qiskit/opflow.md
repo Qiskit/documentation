@@ -198,6 +198,8 @@ the double commutator
 
 ## Exceptions
 
+### OpflowError
+
 <span id="qiskit.opflow.OpflowError" />
 
 `qiskit.opflow.OpflowError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/exceptions.py "view source code")
