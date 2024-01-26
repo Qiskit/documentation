@@ -506,7 +506,7 @@ The safest choice is to begin a new virtual environment (or more than one, if th
 
 When setting up virtual environments, be sure to run only one `pip install` command, which includes all the dependencies you need.
 This is the most reliable way to get `pip` to find a properly resolved environment with no conflicts.
-If you keep having problems with conflicts after setting up environments, you should strongly avoid running any further `pip install` or `pip uninstall` commands; `pip` does not guarantee to keep the environment coherent on subsequent commands; `pip` does not guarantee to keep the environment coherent on subsequent commands.
+If you keep having problems with conflicts after setting up environments, you should strongly avoid running any further `pip install` or `pip uninstall` commands; `pip` does not guarantee to keep the environment coherent on subsequent commands.
 
 Don't be scared of having multiple virtual environments.
 Python development and use often involves several virtual environments, and it's common and good practice to create new ones to work on separate projects.
@@ -535,12 +535,12 @@ You can check what distributions are installed by running `pip list`, but you ca
 Unfortunately, `qiskit>=1.0` and `qiskit-terra` are conflicting distributions, and cannot both be installed together.
 Even more unfortunately, *we cannot communicate this conflict to `pip`* because of limitations in its metadata system.
 
-This situation most frequently arises in one of two situations:
+This error most frequently arises in one of two situations:
 
 1. You ran something like `pip install 'qiskit>=1' something-else`, and `something-else` has a requirement on `qiskit-terra`.
 2. You tried to run `pip install -U qiskit` in an existing environment.
 
-In both of these situations, there is no guarantee that `pip` will complain, because we could not tell it about the conflict.
+In both of these cases, there is no guarantee that `pip` will complain, because we could not tell it about the conflict.
 
 
 <span id="debug-venv-for-1.0"></span>
