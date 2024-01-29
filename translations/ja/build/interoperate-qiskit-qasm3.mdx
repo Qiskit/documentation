@@ -1,35 +1,37 @@
 ---
-title: OpenQASM 3 and Qiskit
-description: Convert code between OpenQASM 3 and Qiskit
+title: OpenQASM 3 と Qiskit
+description: OpenQASM 3 と Qiskit 間でのコード変換
 ---
 
-# OpenQASM 3 and Qiskit
+# OpenQASM 3 と Qiskit
 
-Qiskit provides some tools for converting between OpenQASM representations of quantum programs, and the QuantumCircuit class. Note these tools are still in an exploratory phase of development and will continue to evolve as Qiskit’s support for dynamic circuit capabilities expressed by OpenQASM 3 increases.
+Qiskit には、量子プログラムの OpenQASM 表現と QuantumCircuit クラスを変換するためのツールが備わっています。 これらのツールは開発の探索フェーズにあり、OpenQASM 3 で表現される動的回路機能に対する Qiskit のサポートが高まるにつれて進化し続ける予定であることに注意してください。
 
 <Admonition type="note">
-This function is still in the exploratory phase.  Therefore, it is likely that the syntax and capabilities will evolve.
+この関数はまだ探索段階にあります。  したがって、構文と機能が今後変化する可能性があります。
 </Admonition>
 
-## Import an OpenQASM 3 program into Qiskit
+## Qiskit への OpenQASM 3 プログラムのインポート
 
-Currently two high-level functions are available for importing from OpenQASM 3 into Qiskit. These functions are `load()`, which takes a file name, and `loads()`, which takes the program itself as a string: 
-
-```python
-qiskit.qasm3.load(file_name)
-```
-
-```python
-qiskit.qasm3.loads(program-string)
-```
-
-You must install the package `qiskit_qasm3_import ` to use this function.  For example:  
+この関数を使用するには、パッケージ `qiskit_qasm3_import ` をインストールする必要があります。 以下のコマンドを使ってインストールします。
 
 ```python
 pip install qiskit-qasm3-import
 ```
 
-In this example, we define a quantum program using OpenQASM 3, and use `loads()` to directly convert it into a QuantumCircuit:
+現在、OpenQASM 3 から Qiskit にインポートするために使用できる高レベル関数には 2 つあります。 ファイル名を取る `load()` 関数と、プログラム自体を文字列として取る `loads()` 関数です。 
+
+```python
+import qiskit.qasm3
+qiskit.qasm3.load(file_name)
+```
+
+```python
+import qiskit.qasm3
+qiskit.qasm3.loads(program-string)
+```
+
+この例では、OpenQASM 3 を使って量子プログラムを定義し、`loads()` を使って直接これを QuantumCircuit に変換しています。
 
 ```python
 import qiskit.qasm3
@@ -78,13 +80,13 @@ circuit = qiskit.qasm3.loads(program)
 circuit.draw("mpl")
 ```
 
-![output](/images/build/interoperate-qiskit-qasm3/qasm3circ.png)
+![出力](/images/build/interoperate-qiskit-qasm3/qasm3circ.png)
 
-## Export to OpenQASM 3
+## OpenQASM 3 へのエクスポート
 
-You can export Qiskit code to OpenQASM 3 with `dumps()`, which exports to a string, or `dump()`, which exports to a file. 
+文字列にエクスポートする `dumps()` またはファイルにエクスポートする `dump()` を使用して、Qiskit コードを OpenQASM 3 にエクスポートできます。 
 
-### Example with `dumps()`
+### `dumps()` の使用例
 
 ```python
 from qiskit import QuantumCircuit
@@ -98,11 +100,11 @@ qc.measure_all()
 dumps(qc)
 ```
 
-Output:
+出力:
 
 `'OPENQASM 3;\ninclude "stdgates.inc";\nbit[2] meas;\nqubit[2] q;\nh q[0];\ncx q[0], q[1];\nbarrier q[0], q[1];\nmeas[0] = measure q[0];\nmeas[1] = measure q[1];\n'`
 
-### Example with `dump()`
+### `dump()` の使用例
 
 ```python
 from qiskit import QuantumCircuit
@@ -118,13 +120,13 @@ dump(qc, f)
 f.close()
 ```
 
-For more information, see the [Exporting to OpenQASM 3](/api/qiskit/qasm3#exporting-to-openqasm-3) section of the API reference.
+詳細については、API リファレンスの [OpenQASM 3 へのエクスポート](/api/qiskit/qasm3#exporting-to-openqasm-3)のセクションをご覧ください。
 
-## Next steps
+## 次のステップ
 
 <Admonition type="tip" title="Recommendations">
-    - Learn how to generate OpenQASM code in the [Explore gates and circuits with the Quantum Composer](https://learning.quantum.ibm.com/tutorial/explore-gates-and-circuits-with-the-quantum-composer) tutorial.
-    - Review the [OpenQASM 3 Qiskit API](/api/qiskit/qasm3) reference.
-    - Visit the [Verify your program](../verify/) topic.
-    - Review the [OpenQASM Live Specification](https://openqasm.com/).
+    - [Explore gates and circuits with the Quantum Composer（Quantum Composer によるゲートと回路の探索）](https://learning.quantum.ibm.com/tutorial/explore-gates-and-circuits-with-the-quantum-composer)チュートリアルで、OpenQASM コードを生成する方法を学習します。
+    - [OpenQASM 3 Qiskit API](/api/qiskit/qasm3) リファレンスをご覧ください。
+    - [プログラムの検証](../verify/)のトピックをご覧ください。
+    - [OpenQASM Live Specification（OpenQASM の公開仕様）](https://openqasm.com/)をご覧ください。
 </Admonition>
