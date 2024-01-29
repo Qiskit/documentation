@@ -210,6 +210,19 @@ described in more detail below.
   </summary>
 </details>
 
+A tentative release schedule is included below:
+
+![Tentative Qiskit release schedule](/images/start/install/release_schedule.png)
+
+For an up-to-date release schedule, refer to the Qiskit Github project's [milestones list](https://github.com/Qiskit/qiskit/milestones), which will always contain the current release plan.
+
+With the release of a new major version, the previous major version is supported for at least six months; only bug and security fixes will be accepted during this time and only patch releases will be published for this major version. A final patch version will be published when support is dropped, and that release will also document the end of support for that major version series. A longer
+support window is needed for the previous major version as this gives downstream consumers of Qiskit a chance to migrate not only their code but also their users. We do not recommended for a downstream library that depends on Qiskit to bump its minimum Qiskit version to a new major version release immediately because its user base will also need a chance to migrate to the new API changes. Having an extended support window for the previous major Qiskit version gives downstream projects time to fix compatibility with the next major version. Downstream projects can provide
+support for two release series at a time to give their users a migration path.
+
+For the purposes of semantic versioning, the Qiskit public API is considered any documented module, class, function, or method that is not marked as private (with a `_` prefix). However, there can be explicit exceptions made in the case of specific documented APIs. In such cases these APIs will be clearly documented as not being considered stable interfaces yet, and a user-visible warning will be actively emitted on any use of these unstable interfaces.  dditionally, in some situations an interface marked as private will be considered part of the public API. Typically this only occurs in two cases: either an abstract interface definition where subclasses are intended to override/implement a private method as part of  efining an implementation of the interface, or advanced-usage low-level methods that have stable interfaces but are not  onsidered safe to use, as the burden is on the user to uphold the class/safety invariants themselves (the canonical example of this is the `QuantumCircuit._append` method).
+
+The supported Python versions, minimum supported Rust version (for building Qiskit from source), and any Python package dependencies (including the minimum supported versions of dependencies) used by Qiskit are not part of the backwards compatibility guarantees and may change during any release. Only minor or major version releases will raise minimum requirements for using or building Qiskit (including adding new dependencies), but patch fixes might include support for new versions of Python or other dependencies. Usually the minimum version of a dependency is only increased when older dependency versions go out of support or when it is not possible to maintain compatibility with the latest release of the dependency and the older version. 
 
 <details>
   <summary id="upgrade-strategy">
