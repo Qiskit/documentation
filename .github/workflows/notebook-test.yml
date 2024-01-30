@@ -73,7 +73,15 @@ jobs:
           path: ".tox"
           key: ${{ hashFiles('scripts/nb-tester/requirements.txt') }}
 
-      - name: Run tox
+      - name: Check lint
+        shell: python
+        run: |
+          import subprocess
+          files = """${{ steps.all-changed-files.outputs.all_changed_files }}"""
+          args = ["tox", "-e", "lint", "--"] + files.split("\n")
+          subprocess.run(args, check=True)
+
+      - name: Execute notebooks
         shell: python
         run: |
           import subprocess
