@@ -1,6 +1,6 @@
 # DeviceComponent
 
-<span id="undefined" />
+
 
 `DeviceComponent`
 

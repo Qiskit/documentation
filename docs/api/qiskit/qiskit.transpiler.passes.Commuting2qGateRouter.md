@@ -10,13 +10,13 @@ python_api_name: qiskit.transpiler.passes.Commuting2qGateRouter
 
 <span id="qiskit.transpiler.passes.Commuting2qGateRouter" />
 
-`qiskit.transpiler.passes.Commuting2qGateRouter(*args, **kwargs)`
+`qiskit.transpiler.passes.Commuting2qGateRouter(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/routing/commuting_2q_gate_routing/commuting_2q_gate_router.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
 A class to swap route one or more commuting gates to the coupling map.
 
-This pass routes blocks of commuting two-qubit gates encapsulated as `Commuting2qBlock` instructions. This pass will not apply to other instructions. The mapping to the coupling map is done using swap strategies, see `SwapStrategy`. The swap strategy should suit the problem and the coupling map. This transpiler pass should ideally be executed before the quantum circuit is enlarged with any idle ancilla qubits. Otherwise we may swap qubits outside of the portion of the chip we want to use. Therefore, the swap strategy and its associated coupling map do not represent physical qubits. Instead, they represent an intermediate mapping that corresponds to the physical qubits once the initial layout is applied. The example below shows how to map a four qubit [`PauliEvolutionGate`](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate") to qubits 0, 1, 3, and 4 of the five qubit device with the coupling map
+This pass routes blocks of commuting two-qubit gates encapsulated as `Commuting2qBlock` instructions. This pass will not apply to other instructions. The mapping to the coupling map is done using swap strategies, see `SwapStrategy`. The swap strategy should suit the problem and the coupling map. This transpiler pass should ideally be executed before the quantum circuit is enlarged with any idle ancilla qubits. Otherwise, we may swap qubits outside the portion of the chip we want to use. Therefore, the swap strategy and its associated coupling map do not represent physical qubits. Instead, they represent an intermediate mapping that corresponds to the physical qubits once the initial layout is applied. The example below shows how to map a four qubit [`PauliEvolutionGate`](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate") to qubits 0, 1, 3, and 4 of the five qubit device with the coupling map
 
 ```python
 0 -- 1 -- 2
@@ -75,7 +75,7 @@ This pass manager relies on the `current_layout` which corresponds to the qubit 
 
 **Parameters**
 
-*   **swap\_strategy** – An instance of a `SwapStrategy` that holds the swap layers that are used, and the order in which to apply them, to map the instruction to the hardware. If this field is not given if should be contained in the property set of the pass. This allows other passes to determine the most appropriate swap strategy at run-time.
+*   **swap\_strategy** – An instance of a `SwapStrategy` that holds the swap layers that are used, and the order in which to apply them, to map the instruction to the hardware. If this field is not given, it should be contained in the property set of the pass. This allows other passes to determine the most appropriate swap strategy at run-time.
 *   **edge\_coloring** – An optional edge coloring of the coupling map (I.e. no two edges that share a node have the same color). If the edge coloring is given then the commuting gates that can be simultaneously applied given the current qubit permutation are grouped according to the edge coloring and applied according to this edge coloring. Here, a color is an int which is used as the index to define and access the groups of commuting gates that can be applied simultaneously. If the edge coloring is not given then the sets will be built-up using a greedy algorithm. The edge coloring is useful to position gates such as `RZZGate`s next to swap gates to exploit CX cancellations.
 
 ## Attributes

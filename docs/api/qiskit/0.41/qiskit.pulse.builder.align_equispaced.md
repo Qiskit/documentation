@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.pulse.builder.align_equispaced
 ---
 
-# qiskit.pulse.builder.align\_equispaced[¶](#qiskit-pulse-builder-align-equispaced "Permalink to this headline")
+# qiskit.pulse.builder.align\_equispaced
 
 <span id="qiskit.pulse.builder.align_equispaced" />
 
-`align_equispaced(duration)`
+`align_equispaced(duration)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/builder.py "view source code")
 
 Equispaced alignment pulse scheduling context.
 

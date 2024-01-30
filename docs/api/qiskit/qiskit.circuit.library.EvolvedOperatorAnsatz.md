@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.EvolvedOperatorAnsatz
 
 <span id="qiskit.circuit.library.EvolvedOperatorAnsatz" />
 
-`qiskit.circuit.library.EvolvedOperatorAnsatz(operators=None, reps=1, evolution=None, insert_barriers=False, name='EvolvedOps', parameter_prefix='t', initial_state=None, flatten=None)`
+`qiskit.circuit.library.EvolvedOperatorAnsatz(operators=None, reps=1, evolution=None, insert_barriers=False, name='EvolvedOps', parameter_prefix='t', initial_state=None, flatten=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/evolved_operator_ansatz.py "view source code")
 
 Bases: [`NLocal`](qiskit.circuit.library.NLocal "qiskit.circuit.library.n_local.n_local.NLocal")
 
@@ -135,7 +135,7 @@ If barriers are inserted in between the layers or not.
 
 ### instances
 
-`= 159`
+`= 167`
 
 <span id="qiskit.circuit.library.EvolvedOperatorAnsatz.layout" />
 
@@ -239,7 +239,7 @@ The parameters used in the underlying circuit.
 
 This includes float values and duplicates.
 
-## Examples
+**Examples**
 
 ```python
 >>> # prepare circuit ...

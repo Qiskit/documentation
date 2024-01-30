@@ -1,10 +1,18 @@
+---
+title: ManagedJob
+description: API reference for qiskit.providers.ibmq.managed.ManagedJob
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.ibmq.managed.ManagedJob
+---
+
 <span id="qiskit-providers-ibmq-managed-managedjob" />
 
 # qiskit.providers.ibmq.managed.ManagedJob
 
-<span id="undefined" />
+<span id="qiskit.providers.ibmq.managed.ManagedJob" />
 
-`ManagedJob(start_index, experiments_count, job=None)`
+`ManagedJob(start_index, experiments_count, job=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.12/qiskit/providers/ibmq/managed/managedjob.py "view source code")
 
 Job managed by the Job Manager.
 
@@ -16,7 +24,9 @@ ManagedJob constructor.
 *   **experiments\_count** (`int`) – Number of experiments.
 *   **job** (`Optional`\[`IBMQJob`]) – Job to be managed, or `None` if not already known.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.providers.ibmq.managed.ManagedJob.__init__" />
 
 `__init__(start_index, experiments_count, job=None)`
 
@@ -40,7 +50,9 @@ ManagedJob constructor.
 | [`status`](#qiskit.providers.ibmq.managed.ManagedJob.status "qiskit.providers.ibmq.managed.ManagedJob.status")()                                               | Query the server for job status.             |
 | [`submit`](#qiskit.providers.ibmq.managed.ManagedJob.submit "qiskit.providers.ibmq.managed.ManagedJob.submit")(qobj, job\_name, backend, executor, …)          | Submit the job.                              |
 
-<span id="undefined" />
+### cancel
+
+<span id="qiskit.providers.ibmq.managed.ManagedJob.cancel" />
 
 `cancel()`
 
@@ -50,7 +62,9 @@ Attempt to cancel the job.
 
 `None`
 
-<span id="undefined" />
+### error\_message
+
+<span id="qiskit.providers.ibmq.managed.ManagedJob.error_message" />
 
 `error_message()`
 
@@ -64,7 +78,9 @@ Provide details about the reason of failure.
 
 An error report if the job failed or `None` otherwise.
 
-<span id="undefined" />
+### qobj
+
+<span id="qiskit.providers.ibmq.managed.ManagedJob.qobj" />
 
 `qobj()`
 
@@ -78,7 +94,9 @@ Return the Qobj for this job.
 
 The Qobj for this job or `None` if the Qobj could not be retrieved.
 
-<span id="undefined" />
+### result
+
+<span id="qiskit.providers.ibmq.managed.ManagedJob.result" />
 
 `result(timeout=None, partial=False, refresh=False)`
 
@@ -100,9 +118,11 @@ Job result or `None` if result could not be retrieved.
 
 **Raises**
 
-[**IBMQJobTimeoutError**](qiskit.providers.ibmq.job.IBMQJobTimeoutError#qiskit.providers.ibmq.job.IBMQJobTimeoutError "qiskit.providers.ibmq.job.IBMQJobTimeoutError") – If the job does not return results before a specified timeout.
+[**IBMQJobTimeoutError**](qiskit.providers.ibmq.job.IBMQJobTimeoutError "qiskit.providers.ibmq.job.IBMQJobTimeoutError") – If the job does not return results before a specified timeout.
 
-<span id="undefined" />
+### status
+
+<span id="qiskit.providers.ibmq.managed.ManagedJob.status" />
 
 `status()`
 
@@ -116,7 +136,9 @@ Query the server for job status.
 
 Current job status, or `None` if an error occurred.
 
-<span id="undefined" />
+### submit
+
+<span id="qiskit.providers.ibmq.managed.ManagedJob.submit" />
 
 `submit(qobj, job_name, backend, executor, submit_lock, job_share_level, job_tags=None)`
 
@@ -135,3 +157,4 @@ Submit the job.
 **Return type**
 
 `None`
+

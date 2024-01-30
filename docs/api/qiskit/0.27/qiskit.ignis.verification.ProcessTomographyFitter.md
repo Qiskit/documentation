@@ -1,8 +1,16 @@
+---
+title: ProcessTomographyFitter
+description: API reference for qiskit.ignis.verification.ProcessTomographyFitter
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.ignis.verification.ProcessTomographyFitter
+---
+
 # qiskit.ignis.verification.ProcessTomographyFitter
 
-<span id="undefined" />
+<span id="qiskit.ignis.verification.ProcessTomographyFitter" />
 
-`ProcessTomographyFitter(result, circuits, meas_basis='Pauli', prep_basis='Pauli')`
+`ProcessTomographyFitter(result, circuits, meas_basis='Pauli', prep_basis='Pauli')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/tomography/fitters/process_fitter.py "view source code")
 
 Maximum-Likelihood estimation process tomography fitter.
 
@@ -15,7 +23,9 @@ Initialize tomography fitter with experimental data.
 *   **meas\_basis** (`Union`\[`TomographyBasis`, `str`]) – (default: ‘Pauli’) A function to return measurement operators corresponding to measurement outcomes. See Additional Information.
 *   **prep\_basis** (`Union`\[`TomographyBasis`, `str`]) – (default: ‘Pauli’) A function to return preparation operators. See Additional Information
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.ignis.verification.ProcessTomographyFitter.__init__" />
 
 `__init__(result, circuits, meas_basis='Pauli', prep_basis='Pauli')`
 
@@ -46,7 +56,9 @@ Initialize tomography fitter with experimental data.
 | [`measure_basis`](#qiskit.ignis.verification.ProcessTomographyFitter.measure_basis "qiskit.ignis.verification.ProcessTomographyFitter.measure_basis")             | Return the tomography measurement basis. |
 | [`preparation_basis`](#qiskit.ignis.verification.ProcessTomographyFitter.preparation_basis "qiskit.ignis.verification.ProcessTomographyFitter.preparation_basis") | Return the tomography preparation basis. |
 
-<span id="undefined" />
+### add\_data
+
+<span id="qiskit.ignis.verification.ProcessTomographyFitter.add_data" />
 
 `add_data(results, circuits)`
 
@@ -61,13 +73,17 @@ Add tomography data from a Qiskit Result object.
 
 **QiskitError** – In case some of the tomography data is not found in the results
 
-<span id="undefined" />
+### data
+
+<span id="qiskit.ignis.verification.ProcessTomographyFitter.data" />
 
 `property data`
 
 Return tomography data
 
-<span id="undefined" />
+### fit
+
+<span id="qiskit.ignis.verification.ProcessTomographyFitter.fit" />
 
 `fit(method='auto', standard_weights=True, beta=0.5, **kwargs)`
 
@@ -137,21 +153,27 @@ The fitted Choi-matrix J for the channel that maximizes $||\text{basis_matrix} \
 
 **Return type**
 
-[Choi](qiskit.quantum_info.Choi#qiskit.quantum_info.Choi "qiskit.quantum_info.Choi")
+[Choi](qiskit.quantum_info.Choi "qiskit.quantum_info.Choi")
 
-<span id="undefined" />
+### measure\_basis
+
+<span id="qiskit.ignis.verification.ProcessTomographyFitter.measure_basis" />
 
 `property measure_basis`
 
 Return the tomography measurement basis.
 
-<span id="undefined" />
+### preparation\_basis
+
+<span id="qiskit.ignis.verification.ProcessTomographyFitter.preparation_basis" />
 
 `property preparation_basis`
 
 Return the tomography preparation basis.
 
-<span id="undefined" />
+### set\_measure\_basis
+
+<span id="qiskit.ignis.verification.ProcessTomographyFitter.set_measure_basis" />
 
 `set_measure_basis(basis)`
 
@@ -165,7 +187,9 @@ Set the measurement basis
 
 **QiskitError** – In case of invalid measurement or preparation basis.
 
-<span id="undefined" />
+### set\_preparation\_basis
+
+<span id="qiskit.ignis.verification.ProcessTomographyFitter.set_preparation_basis" />
 
 `set_preparation_basis(basis)`
 
@@ -178,3 +202,4 @@ Set the preparation basis function
 **Raises**
 
 **QiskitError** – in case the basis has no preperation data
+

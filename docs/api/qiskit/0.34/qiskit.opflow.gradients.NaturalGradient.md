@@ -1,6 +1,6 @@
 # NaturalGradient
 
-<span id="undefined" />
+
 
 `NaturalGradient(grad_method='lin_comb', qfi_method='lin_comb_full', regularization=None, **kwargs)`
 
@@ -34,7 +34,7 @@ where R(x) represents the penalization term.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### grad\_method
 
@@ -48,7 +48,7 @@ Returns `CircuitGradient`.
 
 `CircuitGradient`.
 
-<span id="undefined" />
+
 
 ### qfi\_method
 
@@ -60,7 +60,7 @@ Returns: `CircuitQFI`.
 
 `CircuitQFI`
 
-<span id="undefined" />
+
 
 ### regularization
 

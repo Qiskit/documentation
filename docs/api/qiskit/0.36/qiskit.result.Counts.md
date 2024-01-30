@@ -10,7 +10,7 @@ python_api_name: qiskit.result.Counts
 
 <span id="qiskit.result.Counts" />
 
-`Counts(data, time_taken=None, creg_sizes=None, memory_slots=None)`
+`Counts(data, time_taken=None, creg_sizes=None, memory_slots=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/result/counts.py "view source code")
 
 Bases: `dict`
 
@@ -46,7 +46,7 @@ Build a counts object
 
 <span id="qiskit.result.Counts.clear" />
 
-`Counts.clear() → None.  Remove all items from D.`
+`Counts.clear() → None. Remove all items from D.`
 
 ### copy
 
@@ -74,7 +74,7 @@ Return the value for key if key is in the dictionary, else default.
 
 <span id="qiskit.result.Counts.hex_outcomes" />
 
-`Counts.hex_outcomes()`
+`Counts.hex_outcomes()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/result/counts.py "view source code")
 
 Return a counts dictionary with hexadecimal string keys
 
@@ -96,7 +96,7 @@ dict
 
 <span id="qiskit.result.Counts.int_outcomes" />
 
-`Counts.int_outcomes()`
+`Counts.int_outcomes()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/result/counts.py "view source code")
 
 Build a counts dictionary with integer keys instead of count strings
 
@@ -116,19 +116,19 @@ dict
 
 <span id="qiskit.result.Counts.items" />
 
-`Counts.items() → a set-like object providing a view on D's items`
+`Counts.items() → a set-like object providing a view on D’s items`
 
 ### keys
 
 <span id="qiskit.result.Counts.keys" />
 
-`Counts.keys() → a set-like object providing a view on D's keys`
+`Counts.keys() → a set-like object providing a view on D’s keys`
 
 ### most\_frequent
 
 <span id="qiskit.result.Counts.most_frequent" />
 
-`Counts.most_frequent()`
+`Counts.most_frequent()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/result/counts.py "view source code")
 
 Return the most frequent count
 
@@ -176,7 +176,7 @@ Return the value for key if key is in the dictionary, else default.
 
 <span id="qiskit.result.Counts.shots" />
 
-`Counts.shots()`
+`Counts.shots()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/result/counts.py "view source code")
 
 Return the number of shots
 
@@ -184,7 +184,7 @@ Return the number of shots
 
 <span id="qiskit.result.Counts.update" />
 
-`Counts.update([E, ]**F) → None.  Update D from dict/iterable E and F.`
+`Counts.update([E, ]**F) → None. Update D from dict/iterable E and F.`
 
 If E is present and has a .keys() method, then does: for k in E: D\[k] = E\[k] If E is present and lacks a .keys() method, then does: for k, v in E: D\[k] = v In either case, this is followed by: for k in F: D\[k] = F\[k]
 
@@ -192,7 +192,7 @@ If E is present and has a .keys() method, then does: for k in E: D\[k] = E\[k] I
 
 <span id="qiskit.result.Counts.values" />
 
-`Counts.values() → an object providing a view on D's values`
+`Counts.values() → an object providing a view on D’s values`
 
 ## Attributes
 

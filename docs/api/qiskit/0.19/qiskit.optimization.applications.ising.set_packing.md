@@ -22,13 +22,13 @@ set packing module
 
 <span id="qiskit.optimization.applications.ising.set_packing.check_disjoint" />
 
-`check_disjoint(sol, list_of_subsets)`
+`check_disjoint(sol, list_of_subsets)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/applications/ising/set_packing.py "view source code")
 
 check disjoint
 
 <span id="qiskit.optimization.applications.ising.set_packing.get_operator" />
 
-`get_operator(list_of_subsets)`
+`get_operator(list_of_subsets)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/applications/ising/set_packing.py "view source code")
 
 Construct the Hamiltonian for the set packing.
 
@@ -58,7 +58,7 @@ tuple([WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator
 
 <span id="qiskit.optimization.applications.ising.set_packing.get_solution" />
 
-`get_solution(x)`
+`get_solution(x)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/applications/ising/set_packing.py "view source code")
 
 **Parameters**
 

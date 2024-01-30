@@ -1,8 +1,16 @@
+---
+title: MeasureChannel
+description: API reference for qiskit.pulse.MeasureChannel
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.pulse.MeasureChannel
+---
+
 # qiskit.pulse.MeasureChannel
 
-<span id="undefined" />
+<span id="qiskit.pulse.MeasureChannel" />
 
-`MeasureChannel(index)`
+`MeasureChannel(index)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/channels.py "view source code")
 
 Measure channels transmit measurement stimulus pulses for readout.
 
@@ -12,7 +20,9 @@ Channel class.
 
 **index** (`int`) – Index of channel.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.pulse.MeasureChannel.__init__" />
 
 `__init__(index)`
 
@@ -39,7 +49,9 @@ Channel class.
 | [`parameters`](#qiskit.pulse.MeasureChannel.parameters "qiskit.pulse.MeasureChannel.parameters") | Parameters which determine the channel index.                                      |
 | `prefix`                                                                                         |                                                                                    |
 
-<span id="undefined" />
+### assign
+
+<span id="qiskit.pulse.MeasureChannel.assign" />
 
 `assign(parameter, value)`
 
@@ -60,9 +72,11 @@ A new channel with updated parameters.
 
 **Raises**
 
-[**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
+[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
 
-<span id="undefined" />
+### index
+
+<span id="qiskit.pulse.MeasureChannel.index" />
 
 `property index`
 
@@ -72,7 +86,9 @@ Return the index of this channel. The index is a label for a control signal line
 
 `Union`\[`int`, `ParameterExpression`]
 
-<span id="undefined" />
+### is\_parameterized
+
+<span id="qiskit.pulse.MeasureChannel.is_parameterized" />
 
 `is_parameterized()`
 
@@ -82,7 +98,9 @@ Return True iff the channel is parameterized.
 
 `bool`
 
-<span id="undefined" />
+### name
+
+<span id="qiskit.pulse.MeasureChannel.name" />
 
 `property name`
 
@@ -92,7 +110,9 @@ Return the shorthand alias for this channel, which is based on its type and inde
 
 `str`
 
-<span id="undefined" />
+### parameters
+
+<span id="qiskit.pulse.MeasureChannel.parameters" />
 
 `property parameters`
 
@@ -101,3 +121,4 @@ Parameters which determine the channel index.
 **Return type**
 
 `Set`
+

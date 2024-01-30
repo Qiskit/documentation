@@ -1,10 +1,18 @@
+---
+title: PCAExtrapolator
+description: API reference for qiskit.chemistry.algorithms.pes_samplers.PCAExtrapolator
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.algorithms.pes_samplers.PCAExtrapolator
+---
+
 <span id="qiskit-chemistry-algorithms-pes-samplers-pcaextrapolator" />
 
 # qiskit.chemistry.algorithms.pes\_samplers.PCAExtrapolator
 
-<span id="undefined" />
+<span id="qiskit.chemistry.algorithms.pes_samplers.PCAExtrapolator" />
 
-`PCAExtrapolator(extrapolator=None, kernel=None, window=2)`
+`PCAExtrapolator(extrapolator=None, kernel=None, window=2)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/algorithms/pes_samplers/extrapolator.py "view source code")
 
 A wrapper extrapolator which reduces the points’ dimensionality with PCA, performs extrapolation in the transformed pca space, and inverse transforms the results before returning. A user specifies the kernel within how the PCA transformation should be done.
 
@@ -18,9 +26,11 @@ Constructor.
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if kernel is not defined in sklearn module.
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if kernel is not defined in sklearn module.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.chemistry.algorithms.pes_samplers.PCAExtrapolator.__init__" />
 
 `__init__(extrapolator=None, kernel=None, window=2)`
 
@@ -34,7 +44,7 @@ Constructor.
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if kernel is not defined in sklearn module.
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if kernel is not defined in sklearn module.
 
 ## Methods
 
@@ -44,7 +54,9 @@ Constructor.
 | [`extrapolate`](#qiskit.chemistry.algorithms.pes_samplers.PCAExtrapolator.extrapolate "qiskit.chemistry.algorithms.pes_samplers.PCAExtrapolator.extrapolate")(points, param\_dict)    | Extrapolate at specified point of interest given a set of variational parameters. |
 | [`factory`](#qiskit.chemistry.algorithms.pes_samplers.PCAExtrapolator.factory "qiskit.chemistry.algorithms.pes_samplers.PCAExtrapolator.factory")(mode, \*\*kwargs)                   | Factory method for constructing extrapolators.                                    |
 
-<span id="undefined" />
+### extrapolate
+
+<span id="qiskit.chemistry.algorithms.pes_samplers.PCAExtrapolator.extrapolate" />
 
 `extrapolate(points, param_dict)`
 
@@ -64,7 +76,9 @@ Extrapolate at specified point of interest given a set of variational parameters
 
 Dictionary of variational parameters for extrapolated point(s).
 
-<span id="undefined" />
+### factory
+
+<span id="qiskit.chemistry.algorithms.pes_samplers.PCAExtrapolator.factory" />
 
 `static factory(mode, **kwargs)`
 
@@ -85,4 +99,5 @@ A newly created extrapolator instance.
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if specified mode is unknown.
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if specified mode is unknown.
+

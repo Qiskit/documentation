@@ -10,9 +10,9 @@ python_api_name: qiskit.transpiler.passes.AlignMeasures
 
 <span id="qiskit.transpiler.passes.AlignMeasures" />
 
-`AlignMeasures(alignment=1)`
+`AlignMeasures(alignment=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/scheduling/alignments/align_measures.py "view source code")
 
-Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
+Bases: `qiskit.transpiler.basepasses.TransformationPass`
 
 Measurement alignment.
 
@@ -74,7 +74,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.AlignMeasures.run" />
 
-`AlignMeasures.run(dag)`
+`AlignMeasures.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/scheduling/alignments/align_measures.py "view source code")
 
 Run the measurement alignment pass on dag.
 

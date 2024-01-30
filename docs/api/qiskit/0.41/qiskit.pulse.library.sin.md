@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.pulse.library.sin
 ---
 
-# qiskit.pulse.library.sin[¶](#qiskit-pulse-library-sin "Permalink to this headline")
+# qiskit.pulse.library.sin
 
 <span id="qiskit.pulse.library.sin" />
 
-`sin(duration, amp, freq=None, phase=0, name=None)`
+`sin(duration, amp, freq=None, phase=0, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/library/discrete.py "view source code")
 
 Generates sine wave [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform").
 

@@ -1,12 +1,22 @@
+---
+title: GroverResult
+description: API reference for qiskit.algorithms.GroverResult
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.algorithms.GroverResult
+---
+
 # qiskit.algorithms.GroverResult
 
-<span id="undefined" />
+<span id="qiskit.algorithms.GroverResult" />
 
-`GroverResult`
+`GroverResult`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/amplitude_amplifiers/grover.py "view source code")
 
 Grover Result.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.algorithms.GroverResult.__init__" />
 
 `__init__()`
 
@@ -30,7 +40,9 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`oracle_evaluation`](#qiskit.algorithms.GroverResult.oracle_evaluation "qiskit.algorithms.GroverResult.oracle_evaluation") | Whether the classical oracle evaluation of the top measurement was True or False. |
 | [`top_measurement`](#qiskit.algorithms.GroverResult.top_measurement "qiskit.algorithms.GroverResult.top_measurement")       | The most frequently measured output as bitstring.                                 |
 
-<span id="undefined" />
+### assignment
+
+<span id="qiskit.algorithms.GroverResult.assignment" />
 
 `property assignment`
 
@@ -44,7 +56,9 @@ The post-processed value of the most likely bitstring.
 
 The output of the `post_processing` function of the respective `AmplificationProblem`, where the input is the `top_measurement`. The type is the same as the return type of the post-processing function.
 
-<span id="undefined" />
+### circuit\_results
+
+<span id="qiskit.algorithms.GroverResult.circuit_results" />
 
 `property circuit_results`
 
@@ -54,7 +68,9 @@ Return the circuit results. Can be a statevector or counts dictionary.
 
 `Union`\[`List`\[`ndarray`], `List`\[`Dict`\[`str`, `int`]], `None`]
 
-<span id="undefined" />
+### combine
+
+<span id="qiskit.algorithms.GroverResult.combine" />
 
 `combine(result)`
 
@@ -68,7 +84,9 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 `None`
 
-<span id="undefined" />
+### iterations
+
+<span id="qiskit.algorithms.GroverResult.iterations" />
 
 `property iterations`
 
@@ -82,7 +100,9 @@ All the powers of the Grover operator that have been tried.
 
 The powers of the Grover operator tested.
 
-<span id="undefined" />
+### max\_probability
+
+<span id="qiskit.algorithms.GroverResult.max_probability" />
 
 `property max_probability`
 
@@ -92,7 +112,9 @@ Return the maximum sampling probability.
 
 `float`
 
-<span id="undefined" />
+### oracle\_evaluation
+
+<span id="qiskit.algorithms.GroverResult.oracle_evaluation" />
 
 `property oracle_evaluation`
 
@@ -106,7 +128,9 @@ Whether the classical oracle evaluation of the top measurement was True or False
 
 The classical oracle evaluation of the top measurement.
 
-<span id="undefined" />
+### top\_measurement
+
+<span id="qiskit.algorithms.GroverResult.top_measurement" />
 
 `property top_measurement`
 
@@ -119,3 +143,4 @@ The most frequently measured output as bitstring.
 **Returns**
 
 The most frequently measured output state.
+

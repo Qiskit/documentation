@@ -1,14 +1,22 @@
+---
+title: MCMTVChain
+description: API reference for qiskit.circuit.library.MCMTVChain
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.MCMTVChain
+---
+
 # MCMTVChain
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.MCMTVChain" />
 
-`MCMTVChain(gate, num_ctrl_qubits, num_target_qubits, label=None)`
+`MCMTVChain(gate, num_ctrl_qubits, num_target_qubits, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/generalized_gates/mcmt.py "view source code")
 
 Bases: `qiskit.circuit.library.generalized_gates.mcmt.MCMT`
 
 The MCMT implementation using the CCX V-chain.
 
-This implementation requires ancillas but is decomposed into a much shallower circuit than the default implementation in [`MCMT`](qiskit.circuit.library.MCMT#qiskit.circuit.library.MCMT "qiskit.circuit.library.MCMT").
+This implementation requires ancillas but is decomposed into a much shallower circuit than the default implementation in [`MCMT`](qiskit.circuit.library.MCMT "qiskit.circuit.library.MCMT").
 
 **Expanded Circuit:**
 
@@ -63,19 +71,23 @@ Create a new multi-control multi-target gate.
 
 ## Methods Defined Here
 
-|                                                                                                                                              |                                                   |
-| -------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
-| [`inverse`](qiskit.circuit.library.MCMTVChain.inverse#qiskit.circuit.library.MCMTVChain.inverse "qiskit.circuit.library.MCMTVChain.inverse") | Return the inverse MCMT circuit, which is itself. |
+### inverse
+
+<span id="qiskit.circuit.library.MCMTVChain.inverse" />
+
+`MCMTVChain.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/generalized_gates/mcmt.py "view source code")
+
+Return the inverse MCMT circuit, which is itself.
 
 ## Attributes
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.MCMTVChain.ancillas" />
 
 ### ancillas
 
 Returns a list of ancilla bits in the order that the registers were added.
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.MCMTVChain.calibrations" />
 
 ### calibrations
 
@@ -85,13 +97,13 @@ Return calibration dictionary.
 
 \{‘gate\_name’: \{(qubits, params): schedule}}
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.MCMTVChain.clbits" />
 
 ### clbits
 
 Returns a list of classical bits in the order that the registers were added.
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.MCMTVChain.data" />
 
 ### data
 
@@ -107,31 +119,31 @@ Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is 
 
 QuantumCircuitData
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.MCMTVChain.extension_lib" />
 
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.MCMTVChain.global_phase" />
 
 ### global\_phase
 
 Return the global phase of the circuit in radians.
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.MCMTVChain.header" />
 
 ### header
 
 `= 'OPENQASM 2.0;'`
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.MCMTVChain.instances" />
 
 ### instances
 
 `= 16`
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.MCMTVChain.metadata" />
 
 ### metadata
 
@@ -139,50 +151,51 @@ The user provided metadata associated with the circuit
 
 The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.MCMTVChain.num_ancilla_qubits" />
 
 ### num\_ancilla\_qubits
 
 Return the number of ancilla qubits required.
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.MCMTVChain.num_ancillas" />
 
 ### num\_ancillas
 
 Return the number of ancilla qubits.
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.MCMTVChain.num_clbits" />
 
 ### num\_clbits
 
 Return number of classical bits.
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.MCMTVChain.num_parameters" />
 
 ### num\_parameters
 
 Convenience function to get the number of parameter objects in the circuit.
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.MCMTVChain.num_qubits" />
 
 ### num\_qubits
 
 Return number of qubits.
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.MCMTVChain.parameters" />
 
 ### parameters
 
 Convenience function to get the parameters defined in the parameter table.
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.MCMTVChain.prefix" />
 
 ### prefix
 
 `= 'circuit'`
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.MCMTVChain.qubits" />
 
 ### qubits
 
 Returns a list of quantum bits in the order that the registers were added.
+

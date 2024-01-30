@@ -13,7 +13,7 @@ There are several ways to set up and use [sessions](sessions).  It is recommende
 Before starting a session, you must [set up Qiskit Runtime](../start/install) and initialize it as a service:
 
 ``` python
-from qiskit_ibm_runtime import QiskitRuntimeService
+from qiskit_ibm_runtime import QiskitRuntimeService, Session, Sampler, Estimator
 
 service = QiskitRuntimeService()
 ```
@@ -31,6 +31,8 @@ class. The session starts when its first job begins execution.
 **Session class**
 
 ``` python
+from qiskit_ibm_runtime import Session, Sampler, Estimator
+
 session = Session(service=service, backend="ibmq_qasm_simulator")
 estimator = Estimator(session=session)
 sampler = Sampler(session=session)
@@ -46,9 +48,9 @@ with Session(service=service, backend="ibmq_qasm_simulator"):
   sampler = Sampler()
 ```
 
-When you start a session,  you must specify a backend. This can be done by specifying its name or by passing a backend object. 
+When you start a session,  you must specify a system or simulator. This can be done by specifying its name or by passing a `backend` object. 
 
-**Specify a backend by name**
+**Specify a system or simulator by name**
 
 ``` python
 service = QiskitRuntimeService()
@@ -56,7 +58,7 @@ with Session(service=service, backend="ibmq_qasm_simulator"):
     ...
 ```
 
-**Pass a backend object** 
+**Pass a `backend` object** 
 
 ``` python
 backend = service.get_backend("ibmq_qasm_simulator")
@@ -171,4 +173,11 @@ with Session(service=service, backend="ibmq_qasm_simulator") as session:
     print(session.details())
 ```
 
- You can also view session details on the [Quantum Platform Jobs page](https://quantum-computing.ibm.com/jobs) or on the IBM Cloud Jobs page, which you access from your [Instances page](https://cloud.ibm.com/quantum/instances). 
+ You can also view session details on the [Quantum Platform Jobs page](https://quantum.ibm.com/jobs) or on the IBM Cloud Jobs page, which you access from your [Instances page](https://cloud.ibm.com/quantum/instances). 
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+  - Try an example in the [Quantum approximate optimization algorithm (QAOA)](https://learning.quantum.ibm.com/tutorial/quantum-approximate-optimization-algorithm) tutorial. 
+  - Review the [Session API](https://docs.quantum.ibm.com/api/qiskit-ibm-runtime/qiskit_ibm_runtime.Session) reference.
+</Admonition>

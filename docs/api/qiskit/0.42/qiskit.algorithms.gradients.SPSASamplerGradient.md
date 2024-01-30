@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.gradients.SPSASamplerGradient
 ---
 
-# SPSASamplerGradient[¶](#spsasamplergradient "Permalink to this headline")
+# SPSASamplerGradient
 
 <span id="qiskit.algorithms.gradients.SPSASamplerGradient" />
 
-`SPSASamplerGradient(sampler, epsilon, batch_size=1, seed=None, options=None)`
+`SPSASamplerGradient(sampler, epsilon, batch_size=1, seed=None, options=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/gradients/spsa_sampler_gradient.py "view source code")
 
 Bases: [`qiskit.algorithms.gradients.base_sampler_gradient.BaseSamplerGradient`](qiskit.algorithms.gradients.BaseSamplerGradient "qiskit.algorithms.gradients.base_sampler_gradient.BaseSamplerGradient")
 

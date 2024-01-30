@@ -1,10 +1,18 @@
+---
+title: MissingOptionalLibraryError
+description: API reference for qiskit.aqua.MissingOptionalLibraryError
+in_page_toc_min_heading_level: 1
+python_api_type: exception
+python_api_name: qiskit.aqua.MissingOptionalLibraryError
+---
+
 <span id="qiskit-aqua-missingoptionallibraryerror" />
 
 # qiskit.aqua.MissingOptionalLibraryError
 
-<span id="undefined" />
+<span id="qiskit.aqua.MissingOptionalLibraryError" />
 
-`MissingOptionalLibraryError(libname, name, pip_install=None, msg=None)`
+`MissingOptionalLibraryError(libname, name, pip_install=None, msg=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/missing_optional_library_error.py "view source code")
 
 Raised when an optional library is missing.
 
@@ -17,8 +25,11 @@ Set the error message.
 *   **pip\_install** (`Optional`\[`str`]) – pip install command, if any
 *   **msg** (`Optional`\[`str`]) – Descriptive message, if any
 
-<span id="undefined" />
+### with\_traceback
+
+<span id="qiskit.aqua.MissingOptionalLibraryError.with_traceback" />
 
 `with_traceback()`
 
 Exception.with\_traceback(tb) – set self.\_\_traceback\_\_ to tb and return self.
+

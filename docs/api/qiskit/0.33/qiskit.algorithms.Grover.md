@@ -1,8 +1,16 @@
+---
+title: Grover
+description: API reference for qiskit.algorithms.Grover
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.algorithms.Grover
+---
+
 # Grover
 
-<span id="undefined" />
+<span id="qiskit.algorithms.Grover" />
 
-`Grover(iterations=None, growth_rate=None, sample_from_iterations=False, quantum_instance=None)`
+`Grover(iterations=None, growth_rate=None, sample_from_iterations=False, quantum_instance=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/algorithms/amplitude_amplifiers/grover.py "view source code")
 
 Bases: `qiskit.algorithms.amplitude_amplifiers.amplitude_amplifier.AmplitudeAmplifier`
 
@@ -22,7 +30,7 @@ $$
 
 i.e. it flips the phase of the state $|x\rangle$ if $x$ is a hit. The details of how $S_f$ works are unimportant to the algorithm; Grover’s search algorithm treats the oracle as a black box.
 
-This class supports oracles in form of a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
+This class supports oracles in form of a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
 
 With the given oracle, Grover’s Search constructs the Grover operator to amplify the amplitudes of the good states:
 
@@ -41,7 +49,7 @@ $$
 \mathcal{Q} = \mathcal{A} \mathcal{S}_0 \mathcal{A}^\dagger \mathcal{S}_f.
 $$
 
-For more information, see the [`GroverOperator`](qiskit.circuit.library.GroverOperator#qiskit.circuit.library.GroverOperator "qiskit.circuit.library.GroverOperator") in the circuit library.
+For more information, see the [`GroverOperator`](qiskit.circuit.library.GroverOperator "qiskit.circuit.library.GroverOperator") in the circuit library.
 
 ## References
 
@@ -59,7 +67,7 @@ Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://
 
 **Parameters**
 
-*   **iterations** (`Union`\[`List`\[`int`], `Iterator`\[`int`], `int`, `None`]) – Specify the number of iterations/power of Grover’s operator to be checked. \* If an int, only one circuit is run with that power of the Grover operator. If the number of solutions is known, this option should be used with the optimal power. The optimal power can be computed with `Grover.optimal_num_iterations`. \* If a list, all the powers in the list are run in the specified order. \* If an iterator, the powers yielded by the iterator are checked, until a maximum number of iterations or maximum power is reached. \* If `None`, the [`AmplificationProblem`](qiskit.algorithms.AmplificationProblem#qiskit.algorithms.AmplificationProblem "qiskit.algorithms.AmplificationProblem") provided must have an `is_good_state`, and circuits are run until that good state is reached.
+*   **iterations** (`Union`\[`List`\[`int`], `Iterator`\[`int`], `int`, `None`]) – Specify the number of iterations/power of Grover’s operator to be checked. \* If an int, only one circuit is run with that power of the Grover operator. If the number of solutions is known, this option should be used with the optimal power. The optimal power can be computed with `Grover.optimal_num_iterations`. \* If a list, all the powers in the list are run in the specified order. \* If an iterator, the powers yielded by the iterator are checked, until a maximum number of iterations or maximum power is reached. \* If `None`, the [`AmplificationProblem`](qiskit.algorithms.AmplificationProblem "qiskit.algorithms.AmplificationProblem") provided must have an `is_good_state`, and circuits are run until that good state is reached.
 *   **growth\_rate** (`Optional`\[`float`]) – If specified, the iterator is set to increasing powers of `growth_rate`, i.e. to `int(growth_rate ** 1), int(growth_rate ** 2), ...` until a maximum number of iterations is reached.
 *   **sample\_from\_iterations** (`bool`) – If True, instead of taking the values in `iterations` as powers of the Grover operator, a random integer sample between 0 and smaller value than the iteration is used as a power, see \[1], Section 4.
 *   **quantum\_instance** (`Union`\[`Backend`, `BaseBackend`, `QuantumInstance`, `None`]) – A Quantum Instance or Backend to run the circuits.
@@ -77,16 +85,83 @@ Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://
 
 ## Methods
 
-|                                                                                                                                                                               |                                                                               |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| [`amplify`](qiskit.algorithms.Grover.amplify#qiskit.algorithms.Grover.amplify "qiskit.algorithms.Grover.amplify")                                                             | Run the Grover algorithm.                                                     |
-| [`construct_circuit`](qiskit.algorithms.Grover.construct_circuit#qiskit.algorithms.Grover.construct_circuit "qiskit.algorithms.Grover.construct_circuit")                     | Construct the circuit for Grover’s algorithm with `power` Grover operators.   |
-| [`optimal_num_iterations`](qiskit.algorithms.Grover.optimal_num_iterations#qiskit.algorithms.Grover.optimal_num_iterations "qiskit.algorithms.Grover.optimal_num_iterations") | Return the optimal number of iterations, if the number of solutions is known. |
+### amplify
+
+<span id="qiskit.algorithms.Grover.amplify" />
+
+`Grover.amplify(amplification_problem)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/algorithms/amplitude_amplifiers/grover.py "view source code")
+
+Run the Grover algorithm.
+
+**Parameters**
+
+**amplification\_problem** (`AmplificationProblem`) – The amplification problem.
+
+**Return type**
+
+`GroverResult`
+
+**Returns**
+
+The result as a `GroverResult`, where e.g. the most likely state can be queried as `result.top_measurement`.
+
+**Raises**
+
+*   **TypeError** – If `is_good_state` is not provided and is required (i.e. when iterations
+*   **is None**\*\* or ****a list****)\*\* –
+
+### construct\_circuit
+
+<span id="qiskit.algorithms.Grover.construct_circuit" />
+
+`Grover.construct_circuit(problem, power=None, measurement=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/algorithms/amplitude_amplifiers/grover.py "view source code")
+
+Construct the circuit for Grover’s algorithm with `power` Grover operators.
+
+**Parameters**
+
+*   **problem** (`AmplificationProblem`) – The amplification problem for the algorithm.
+*   **power** (`Optional`\[`int`]) – The number of times the Grover operator is repeated. If None, this argument is set to the first item in `iterations`.
+*   **measurement** (`bool`) – Boolean flag to indicate if measurement should be included in the circuit.
+
+**Returns**
+
+the QuantumCircuit object for the constructed circuit
+
+**Return type**
+
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+
+**Raises**
+
+**ValueError** – If no power is passed and the iterations are not an integer.
+
+### optimal\_num\_iterations
+
+<span id="qiskit.algorithms.Grover.optimal_num_iterations" />
+
+`static Grover.optimal_num_iterations(num_solutions, num_qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/algorithms/amplitude_amplifiers/grover.py "view source code")
+
+Return the optimal number of iterations, if the number of solutions is known.
+
+**Parameters**
+
+*   **num\_solutions** (`int`) – The number of solutions.
+*   **num\_qubits** (`int`) – The number of qubits used to encode the states.
+
+**Return type**
+
+`int`
+
+**Returns**
+
+The optimal number of iterations for Grover’s algorithm to succeed.
 
 ## Attributes
 
-<span id="undefined" />
+<span id="qiskit.algorithms.Grover.quantum_instance" />
 
 ### quantum\_instance
 
 Get the quantum instance. :rtype: `Optional`\[`QuantumInstance`] :returns: The quantum instance used to run this algorithm.
+

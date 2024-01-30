@@ -1,6 +1,6 @@
 # CNOTUnitObjective
 
-<span id="undefined" />
+
 
 `CNOTUnitObjective(num_qubits, cnots)`
 
@@ -15,19 +15,19 @@ A base class for a problem definition based on CNOT unit. This class may have di
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### num\_cnots
 
 Returns: A number of CNOT units to be used by the approximate circuit.
 
-<span id="undefined" />
+
 
 ### num\_thetas
 
 Returns: Number of parameters (angles) of rotation gates in this circuit.
 
-<span id="undefined" />
+
 
 ### target\_matrix
 

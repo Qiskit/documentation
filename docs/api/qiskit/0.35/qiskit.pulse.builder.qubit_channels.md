@@ -1,8 +1,16 @@
+---
+title: qubit_channels
+description: API reference for qiskit.pulse.builder.qubit_channels
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.builder.qubit_channels
+---
+
 # qiskit.pulse.builder.qubit\_channels
 
-<span id="undefined" />
+<span id="qiskit.pulse.builder.qubit_channels" />
 
-`qubit_channels(qubit)`
+`qubit_channels(qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/builder.py "view source code")
 
 Returns the set of channels associated with a qubit.
 
@@ -19,7 +27,7 @@ with pulse.build(backend):
 ```
 
 ```python
-{ControlChannel(1), MeasureChannel(0), ControlChannel(0), DriveChannel(0), AcquireChannel(0)}
+{ControlChannel(0), DriveChannel(0), MeasureChannel(0), AcquireChannel(0), ControlChannel(1)}
 ```
 
 <Admonition title="Note" type="note">
@@ -33,3 +41,4 @@ with pulse.build(backend):
 **Return type**
 
 `Set`\[[`Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]
+

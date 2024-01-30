@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.library.LinearPauliRotations
 
 <span id="qiskit.circuit.library.LinearPauliRotations" />
 
-`LinearPauliRotations(num_state_qubits=None, slope=1, offset=0, basis='Y', name='LinRot')`
+`LinearPauliRotations(num_state_qubits=None, slope=1, offset=0, basis='Y', name='LinRot')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/arithmetic/linear_pauli_rotations.py "view source code")
 
-Bases: [`qiskit.circuit.library.arithmetic.functional_pauli_rotations.FunctionalPauliRotations`](qiskit.circuit.library.FunctionalPauliRotations "qiskit.circuit.library.arithmetic.functional_pauli_rotations.FunctionalPauliRotations")
+Bases: `qiskit.circuit.library.arithmetic.functional_pauli_rotations.FunctionalPauliRotations`
 
 Linearly-controlled X, Y or Z rotation.
 
@@ -57,7 +57,7 @@ Returns a list of ancilla bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.quantumregister.AncillaQubit")]
+`List`\[`AncillaQubit`]
 
 <span id="qiskit.circuit.library.LinearPauliRotations.basis" />
 
@@ -97,7 +97,7 @@ Returns a list of classical bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.library.LinearPauliRotations.data" />
 
@@ -117,7 +117,7 @@ Return the global phase of the circuit in radians.
 
 **Return type**
 
-`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]
+`Union`\[`ParameterExpression`, `float`]
 
 <span id="qiskit.circuit.library.LinearPauliRotations.header" />
 
@@ -129,7 +129,7 @@ Return the global phase of the circuit in radians.
 
 ### instances
 
-`= 87`
+`= 9`
 
 <span id="qiskit.circuit.library.LinearPauliRotations.metadata" />
 
@@ -225,26 +225,6 @@ Before applying the controlled rotations, a single rotation of angle `offset` is
 
 The offset angle.
 
-<span id="qiskit.circuit.library.LinearPauliRotations.op_start_times" />
-
-### op\_start\_times
-
-Return a list of operation start times.
-
-This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
-
-**Return type**
-
-`List`\[`int`]
-
-**Returns**
-
-List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
-
-**Raises**
-
-**AttributeError** – When circuit is not scheduled.
-
 <span id="qiskit.circuit.library.LinearPauliRotations.parameters" />
 
 ### parameters
@@ -273,7 +253,7 @@ Returns a list of quantum bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")]
+`List`\[`Qubit`]
 
 <span id="qiskit.circuit.library.LinearPauliRotations.slope" />
 

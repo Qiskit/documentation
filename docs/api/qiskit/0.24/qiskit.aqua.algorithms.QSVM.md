@@ -1,10 +1,18 @@
+---
+title: QSVM
+description: API reference for qiskit.aqua.algorithms.QSVM
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.algorithms.QSVM
+---
+
 <span id="qiskit-aqua-algorithms-qsvm" />
 
 # qiskit.aqua.algorithms.QSVM
 
-<span id="undefined" />
+<span id="qiskit.aqua.algorithms.QSVM" />
 
-`QSVM(feature_map, training_dataset=None, test_dataset=None, datapoints=None, multiclass_extension=None, lambda2=0.001, quantum_instance=None)`
+`QSVM(feature_map, training_dataset=None, test_dataset=None, datapoints=None, multiclass_extension=None, lambda2=0.001, quantum_instance=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/classifiers/qsvm/qsvm.py "view source code")
 
 Quantum SVM algorithm.
 
@@ -28,9 +36,11 @@ See also [https://arxiv.org/abs/1804.11326](https://arxiv.org/abs/1804.11326)
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Multiclass extension not supplied when number of classes > 2
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Multiclass extension not supplied when number of classes > 2
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.aqua.algorithms.QSVM.__init__" />
 
 `__init__(feature_map, training_dataset=None, test_dataset=None, datapoints=None, multiclass_extension=None, lambda2=0.001, quantum_instance=None)`
 
@@ -46,7 +56,7 @@ See also [https://arxiv.org/abs/1804.11326](https://arxiv.org/abs/1804.11326)
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Multiclass extension not supplied when number of classes > 2
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Multiclass extension not supplied when number of classes > 2
 
 ## Methods
 
@@ -77,7 +87,9 @@ See also [https://arxiv.org/abs/1804.11326](https://arxiv.org/abs/1804.11326)
 | [`random`](#qiskit.aqua.algorithms.QSVM.random "qiskit.aqua.algorithms.QSVM.random")                               | Return a numpy random.    |
 | [`ret`](#qiskit.aqua.algorithms.QSVM.ret "qiskit.aqua.algorithms.QSVM.ret")                                        | returns result            |
 
-<span id="undefined" />
+### backend
+
+<span id="qiskit.aqua.algorithms.QSVM.backend" />
 
 `property backend`
 
@@ -87,7 +99,9 @@ Returns backend.
 
 `Union`\[`Backend`, `BaseBackend`]
 
-<span id="undefined" />
+### construct\_circuit
+
+<span id="qiskit.aqua.algorithms.QSVM.construct_circuit" />
 
 `construct_circuit(x1, x2, measurement=False)`
 
@@ -107,9 +121,11 @@ constructed circuit
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-<span id="undefined" />
+### construct\_kernel\_matrix
+
+<span id="qiskit.aqua.algorithms.QSVM.construct_kernel_matrix" />
 
 `construct_kernel_matrix(x1_vec, x2_vec=None, quantum_instance=None)`
 
@@ -123,7 +139,7 @@ When using statevector\_simulator, we only build the circuits for Psi(x1)|0> rat
 
 *   **x1\_vec** (*numpy.ndarray*) – data points, 2-D array, N1xD, where N1 is the number of data, D is the feature dimension
 *   **x2\_vec** (*numpy.ndarray*) – data points, 2-D array, N2xD, where N2 is the number of data, D is the feature dimension
-*   **quantum\_instance** ([*QuantumInstance*](qiskit.aqua.QuantumInstance#qiskit.aqua.QuantumInstance "qiskit.aqua.QuantumInstance")) – quantum backend with all settings
+*   **quantum\_instance** ([*QuantumInstance*](qiskit.aqua.QuantumInstance "qiskit.aqua.QuantumInstance")) – quantum backend with all settings
 
 **Returns**
 
@@ -135,9 +151,11 @@ numpy.ndarray
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Quantum instance is not present.
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Quantum instance is not present.
 
-<span id="undefined" />
+### get\_kernel\_matrix
+
+<span id="qiskit.aqua.algorithms.QSVM.get_kernel_matrix" />
 
 `static get_kernel_matrix(quantum_instance, feature_map, x1_vec, x2_vec=None, enforce_psd=True)`
 
@@ -149,8 +167,8 @@ When using statevector\_simulator, we only build the circuits for Psi(x1)|0> rat
 
 **Parameters**
 
-*   **quantum\_instance** ([*QuantumInstance*](qiskit.aqua.QuantumInstance#qiskit.aqua.QuantumInstance "qiskit.aqua.QuantumInstance")) – quantum backend with all settings
-*   **feature\_map** ([*FeatureMap*](qiskit.aqua.components.feature_maps.FeatureMap#qiskit.aqua.components.feature_maps.FeatureMap "qiskit.aqua.components.feature_maps.FeatureMap")) – a feature map that maps data to feature space
+*   **quantum\_instance** ([*QuantumInstance*](qiskit.aqua.QuantumInstance "qiskit.aqua.QuantumInstance")) – quantum backend with all settings
+*   **feature\_map** ([*FeatureMap*](qiskit.aqua.components.feature_maps.FeatureMap "qiskit.aqua.components.feature_maps.FeatureMap")) – a feature map that maps data to feature space
 *   **x1\_vec** (*numpy.ndarray*) – data points, 2-D array, N1xD, where N1 is the number of data, D is the feature dimension
 *   **x2\_vec** (*numpy.ndarray*) – data points, 2-D array, N2xD, where N2 is the number of data, D is the feature dimension
 *   **enforce\_psd** (*bool*) – enforces that the kernel matrix is positive semi-definite by setting negative eigenvalues to zero. This is only applied in the symmetric case, i.e., if x2\_vec == None.
@@ -163,7 +181,9 @@ When using statevector\_simulator, we only build the circuits for Psi(x1)|0> rat
 
 numpy.ndarray
 
-<span id="undefined" />
+### load\_model
+
+<span id="qiskit.aqua.algorithms.QSVM.load_model" />
 
 `load_model(file_path)`
 
@@ -173,7 +193,9 @@ Load a model from a file path.
 
 **file\_path** (*str*) – the path of the saved model.
 
-<span id="undefined" />
+### predict
+
+<span id="qiskit.aqua.algorithms.QSVM.predict" />
 
 `predict(data, quantum_instance=None)`
 
@@ -182,7 +204,7 @@ Predict using the svm.
 **Parameters**
 
 *   **data** (*numpy.ndarray*) – NxD array, where N is the number of data, D is the feature dimension.
-*   **quantum\_instance** ([*QuantumInstance*](qiskit.aqua.QuantumInstance#qiskit.aqua.QuantumInstance "qiskit.aqua.QuantumInstance")) – quantum backend with all setting
+*   **quantum\_instance** ([*QuantumInstance*](qiskit.aqua.QuantumInstance "qiskit.aqua.QuantumInstance")) – quantum backend with all setting
 
 **Returns**
 
@@ -194,9 +216,11 @@ numpy.ndarray
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Quantum instance is not present.
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Quantum instance is not present.
 
-<span id="undefined" />
+### quantum\_instance
+
+<span id="qiskit.aqua.algorithms.QSVM.quantum_instance" />
 
 `property quantum_instance`
 
@@ -206,19 +230,25 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-<span id="undefined" />
+### random
+
+<span id="qiskit.aqua.algorithms.QSVM.random" />
 
 `property random`
 
 Return a numpy random.
 
-<span id="undefined" />
+### ret
+
+<span id="qiskit.aqua.algorithms.QSVM.ret" />
 
 `property ret`
 
 returns result
 
-<span id="undefined" />
+### run
+
+<span id="qiskit.aqua.algorithms.QSVM.run" />
 
 `run(quantum_instance=None, **kwargs)`
 
@@ -239,9 +269,11 @@ dict
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
 
-<span id="undefined" />
+### save\_model
+
+<span id="qiskit.aqua.algorithms.QSVM.save_model" />
 
 `save_model(file_path)`
 
@@ -251,7 +283,9 @@ Save the model to a file path.
 
 **file\_path** (*str*) – a path to save the model.
 
-<span id="undefined" />
+### set\_backend
+
+<span id="qiskit.aqua.algorithms.QSVM.set_backend" />
 
 `set_backend(backend, **kwargs)`
 
@@ -261,7 +295,9 @@ Sets backend with configuration.
 
 `None`
 
-<span id="undefined" />
+### setup\_datapoint
+
+<span id="qiskit.aqua.algorithms.QSVM.setup_datapoint" />
 
 `setup_datapoint(datapoints)`
 
@@ -271,7 +307,9 @@ Setup data points, if the data were there, they would be overwritten.
 
 **datapoints** (*numpy.ndarray*) – prediction dataset.
 
-<span id="undefined" />
+### setup\_test\_data
+
+<span id="qiskit.aqua.algorithms.QSVM.setup_test_data" />
 
 `setup_test_data(test_dataset)`
 
@@ -281,7 +319,9 @@ Setup test data, if the data were there, they would be overwritten.
 
 **test\_dataset** (*dict*) – test dataset.
 
-<span id="undefined" />
+### setup\_training\_data
+
+<span id="qiskit.aqua.algorithms.QSVM.setup_training_data" />
 
 `setup_training_data(training_dataset)`
 
@@ -291,7 +331,9 @@ Setup training data, if the data were there, they would be overwritten.
 
 **training\_dataset** (*dict*) – training dataset.
 
-<span id="undefined" />
+### test
+
+<span id="qiskit.aqua.algorithms.QSVM.test" />
 
 `test(data, labels, quantum_instance=None)`
 
@@ -301,7 +343,7 @@ Test the svm.
 
 *   **data** (*numpy.ndarray*) – NxD array, where N is the number of data, D is the feature dimension.
 *   **labels** (*numpy.ndarray*) – Nx1 array, where N is the number of data
-*   **quantum\_instance** ([*QuantumInstance*](qiskit.aqua.QuantumInstance#qiskit.aqua.QuantumInstance "qiskit.aqua.QuantumInstance")) – quantum backend with all setting
+*   **quantum\_instance** ([*QuantumInstance*](qiskit.aqua.QuantumInstance "qiskit.aqua.QuantumInstance")) – quantum backend with all setting
 
 **Returns**
 
@@ -313,9 +355,11 @@ float
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Quantum instance is not present.
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Quantum instance is not present.
 
-<span id="undefined" />
+### train
+
+<span id="qiskit.aqua.algorithms.QSVM.train" />
 
 `train(data, labels, quantum_instance=None)`
 
@@ -325,8 +369,9 @@ Train the svm.
 
 *   **data** (*numpy.ndarray*) – NxD array, where N is the number of data, D is the feature dimension.
 *   **labels** (*numpy.ndarray*) – Nx1 array, where N is the number of data
-*   **quantum\_instance** ([*QuantumInstance*](qiskit.aqua.QuantumInstance#qiskit.aqua.QuantumInstance "qiskit.aqua.QuantumInstance")) – quantum backend with all setting
+*   **quantum\_instance** ([*QuantumInstance*](qiskit.aqua.QuantumInstance "qiskit.aqua.QuantumInstance")) – quantum backend with all setting
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Quantum instance is not present.
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Quantum instance is not present.
+

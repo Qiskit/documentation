@@ -1,8 +1,16 @@
+---
+title: FermionicTransformation
+description: API reference for qiskit.chemistry.transformations.FermionicTransformation
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.transformations.FermionicTransformation
+---
+
 # FermionicTransformation
 
-<span id="undefined" />
+<span id="qiskit.chemistry.transformations.FermionicTransformation" />
 
-`FermionicTransformation(transformation=<FermionicTransformationType.FULL: 'full'>, qubit_mapping=<FermionicQubitMappingType.PARITY: 'parity'>, two_qubit_reduction=True, freeze_core=False, orbital_reduction=None, z2symmetry_reduction=None)`
+`FermionicTransformation(transformation=<FermionicTransformationType.FULL: 'full'>, qubit_mapping=<FermionicQubitMappingType.PARITY: 'parity'>, two_qubit_reduction=True, freeze_core=False, orbital_reduction=None, z2symmetry_reduction=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/transformations/fermionic_transformation.py "view source code")
 
 Bases: `qiskit.chemistry.transformations.transformation.Transformation`
 
@@ -19,20 +27,88 @@ A transformation from a fermionic problem, represented by a driver, to a qubit o
 
 **Raises**
 
-[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError#qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid symmetry reduction
+[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid symmetry reduction
 
 ## Methods
 
-|                                                                                                                                                                                                                                                                                                       |                                                                                                   |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| [`build_hopping_operators`](qiskit.chemistry.transformations.FermionicTransformation.build_hopping_operators#qiskit.chemistry.transformations.FermionicTransformation.build_hopping_operators "qiskit.chemistry.transformations.FermionicTransformation.build_hopping_operators")                     | Builds the product of raising and lowering operators (basic excitation operators)                 |
-| [`get_default_filter_criterion`](qiskit.chemistry.transformations.FermionicTransformation.get_default_filter_criterion#qiskit.chemistry.transformations.FermionicTransformation.get_default_filter_criterion "qiskit.chemistry.transformations.FermionicTransformation.get_default_filter_criterion") | Returns a default filter criterion method to filter the eigenvalues computed by the eigen solver. |
-| [`interpret`](qiskit.chemistry.transformations.FermionicTransformation.interpret#qiskit.chemistry.transformations.FermionicTransformation.interpret "qiskit.chemistry.transformations.FermionicTransformation.interpret")                                                                             | Interprets an EigenstateResult in the context of this transformation.                             |
-| [`transform`](qiskit.chemistry.transformations.FermionicTransformation.transform#qiskit.chemistry.transformations.FermionicTransformation.transform "qiskit.chemistry.transformations.FermionicTransformation.transform")                                                                             | Transformation from the `driver` to a qubit operator.                                             |
+### build\_hopping\_operators
+
+<span id="qiskit.chemistry.transformations.FermionicTransformation.build_hopping_operators" />
+
+`FermionicTransformation.build_hopping_operators(excitations='sd')`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/transformations/fermionic_transformation.py "view source code")
+
+Builds the product of raising and lowering operators (basic excitation operators)
+
+**Parameters**
+
+**excitations** (`Union`\[`str`, `List`\[`List`\[`int`]]]) – The excitations to be included in the eom pseudo-eigenvalue problem. If a string (‘s’, ‘d’ or ‘sd’) then all excitations of the given type will be used. Otherwise a list of custom excitations can directly be provided.
+
+**Return type**
+
+`Tuple`\[`Dict`\[`str`, `WeightedPauliOperator`], `Dict`\[`str`, `List`\[`bool`]], `Dict`\[`str`, `List`\[`Any`]]]
+
+**Returns**
+
+A tuple containing the hopping operators, the types of commutativities and the excitation indices.
+
+### get\_default\_filter\_criterion
+
+<span id="qiskit.chemistry.transformations.FermionicTransformation.get_default_filter_criterion" />
+
+`FermionicTransformation.get_default_filter_criterion()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/transformations/fermionic_transformation.py "view source code")
+
+Returns a default filter criterion method to filter the eigenvalues computed by the eigen solver. For more information see also aqua.algorithms.eigen\_solvers.NumPyEigensolver.filter\_criterion.
+
+In the fermionic case the default filter ensures that the number of particles is being preserved.
+
+**Return type**
+
+`Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]
+
+### interpret
+
+<span id="qiskit.chemistry.transformations.FermionicTransformation.interpret" />
+
+`FermionicTransformation.interpret(raw_result)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/transformations/fermionic_transformation.py "view source code")
+
+Interprets an EigenstateResult in the context of this transformation.
+
+**Parameters**
+
+**raw\_result** (`Union`\[`EigenstateResult`, `EigensolverResult`, `MinimumEigensolverResult`]) – an eigenstate result object.
+
+**Return type**
+
+`ElectronicStructureResult`
+
+**Returns**
+
+An electronic structure result.
+
+### transform
+
+<span id="qiskit.chemistry.transformations.FermionicTransformation.transform" />
+
+`FermionicTransformation.transform(driver, aux_operators=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/transformations/fermionic_transformation.py "view source code")
+
+Transformation from the `driver` to a qubit operator.
+
+**Parameters**
+
+*   **driver** (`BaseDriver`) – A driver encoding the molecule information.
+*   **aux\_operators** (`Optional`\[`List`\[`FermionicOperator`]]) – Additional auxiliary `FermionicOperator` instances to evaluate.
+
+**Return type**
+
+`Tuple`\[`OperatorBase`, `List`\[`OperatorBase`]]
+
+**Returns**
+
+A qubit operator and a dictionary of auxiliary operators.
 
 ## Attributes
 
-<span id="undefined" />
+<span id="qiskit.chemistry.transformations.FermionicTransformation.commutation_rule" />
 
 ### commutation\_rule
 
@@ -42,7 +118,7 @@ Getter of the commutation rule
 
 `bool`
 
-<span id="undefined" />
+<span id="qiskit.chemistry.transformations.FermionicTransformation.molecule_info" />
 
 ### molecule\_info
 
@@ -52,7 +128,7 @@ Getter of the molecule information.
 
 `Dict`\[`str`, `Any`]
 
-<span id="undefined" />
+<span id="qiskit.chemistry.transformations.FermionicTransformation.qubit_mapping" />
 
 ### qubit\_mapping
 
@@ -62,8 +138,9 @@ Getter of the qubit mapping.
 
 `str`
 
-<span id="undefined" />
+<span id="qiskit.chemistry.transformations.FermionicTransformation.untapered_qubit_op" />
 
 ### untapered\_qubit\_op
 
 Getter for the untapered qubit operator
+

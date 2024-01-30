@@ -10,17 +10,17 @@ python_api_name: qiskit.visualization.pulse_v2.draw
 
 <span id="qiskit.visualization.pulse_v2.draw" />
 
-`draw(program, style=None, backend=None, time_range=None, time_unit='dt', disable_channels=None, show_snapshot=True, show_framechange=True, show_waveform_info=True, show_barrier=True, plotter='mpl2d', axis=None)`
+`draw(program, style=None, backend=None, time_range=None, time_unit='dt', disable_channels=None, show_snapshot=True, show_framechange=True, show_waveform_info=True, show_barrier=True, plotter='mpl2d', axis=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/visualization/pulse_v2/interface.py "view source code")
 
 Generate visualization data for pulse programs.
 
 **Parameters**
 
-*   **program** (`Union`\[[`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.waveform.Waveform"), [`ParametricPulse`](qiskit.pulse.library.ParametricPulse "qiskit.pulse.library.parametric_pulses.ParametricPulse"), [`SymbolicPulse`](qiskit.pulse.library.SymbolicPulse "qiskit.pulse.library.symbolic_pulses.SymbolicPulse"), [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule"), [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")]) – Program to visualize. This program can be arbitrary Qiskit Pulse program, such as `Waveform`, `ParametricPulse`, `SymbolicPulse`, [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") and [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock").
+*   **program** (`Union`\[`Waveform`, `ParametricPulse`, `Schedule`, `ScheduleBlock`]) – Program to visualize. This program can be arbitrary Qiskit Pulse program, such as `Waveform`, `ParametricPulse`, and [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule").
 
 *   **style** (`Optional`\[`Dict`\[`str`, `Any`]]) – Stylesheet options. This can be dictionary or preset stylesheet classes. See `IQXStandard`, `IQXSimple`, and `IQXDebugging` for details of preset stylesheets. See also the stylesheet section for details of configuration keys.
 
-*   **backend** (`Optional`\[[`Backend`](qiskit.providers.Backend "qiskit.providers.backend.Backend")]) – Backend object to play the input pulse program. If provided, the plotter may use to make the visualization hardware aware.
+*   **backend** (`Optional`\[`BaseBackend`]) – Backend object to play the input pulse program. If provided, the plotter may use to make the visualization hardware aware.
 
 *   **time\_range** (`Optional`\[`Tuple`\[`int`, `int`]]) – Set horizontal axis limit. Tuple `(tmin, tmax)`.
 
@@ -245,7 +245,7 @@ Drawing with the default stylesheet.
 ```python
 from qiskit import QuantumCircuit, transpile, schedule
 from qiskit.visualization.pulse_v2 import draw
-from qiskit.providers.fake_provider import FakeAlmaden
+from qiskit.test.mock import FakeAlmaden
 
 qc = QuantumCircuit(2)
 qc.h(0)
@@ -264,7 +264,7 @@ Drawing with the stylesheet suited for publication.
 ```python
 from qiskit import QuantumCircuit, transpile, schedule
 from qiskit.visualization.pulse_v2 import draw, IQXSimple
-from qiskit.providers.fake_provider import FakeAlmaden
+from qiskit.test.mock import FakeAlmaden
 
 qc = QuantumCircuit(2)
 qc.h(0)
@@ -283,7 +283,7 @@ Drawing with the stylesheet suited for program debugging.
 ```python
 from qiskit import QuantumCircuit, transpile, schedule
 from qiskit.visualization.pulse_v2 import draw, IQXDebugging
-from qiskit.providers.fake_provider import FakeAlmaden
+from qiskit.test.mock import FakeAlmaden
 
 qc = QuantumCircuit(2)
 qc.h(0)

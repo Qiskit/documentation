@@ -1,10 +1,18 @@
+---
+title: GroverOptimizer
+description: API reference for qiskit.optimization.algorithms.GroverOptimizer
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.optimization.algorithms.GroverOptimizer
+---
+
 <span id="qiskit-optimization-algorithms-groveroptimizer" />
 
 # qiskit.optimization.algorithms.GroverOptimizer
 
-<span id="undefined" />
+<span id="qiskit.optimization.algorithms.GroverOptimizer" />
 
-`GroverOptimizer(num_value_qubits, num_iterations=3, quantum_instance=None, converters=None, penalty=None)`
+`GroverOptimizer(num_value_qubits, num_iterations=3, quantum_instance=None, converters=None, penalty=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/algorithms/grover_optimizer.py "view source code")
 
 Uses Grover Adaptive Search (GAS) to find the minimum of a QUBO function.
 
@@ -13,14 +21,16 @@ Uses Grover Adaptive Search (GAS) to find the minimum of a QUBO function.
 *   **num\_value\_qubits** (`int`) – The number of value qubits.
 *   **num\_iterations** (`int`) – The number of iterations the algorithm will search with no improvement.
 *   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – Instance of selected backend, defaults to Aer’s statevector simulator.
-*   **converters** (`Union`\[`QuadraticProgramConverter`, `List`\[`QuadraticProgramConverter`], `None`]) – The converters to use for converting a problem into a different form. By default, when None is specified, an internally created instance of [`QuadraticProgramToQubo`](qiskit.optimization.converters.QuadraticProgramToQubo#qiskit.optimization.converters.QuadraticProgramToQubo "qiskit.optimization.converters.QuadraticProgramToQubo") will be used.
-*   **penalty** (`Optional`\[`float`]) – The penalty factor used in the default [`QuadraticProgramToQubo`](qiskit.optimization.converters.QuadraticProgramToQubo#qiskit.optimization.converters.QuadraticProgramToQubo "qiskit.optimization.converters.QuadraticProgramToQubo") converter
+*   **converters** (`Union`\[`QuadraticProgramConverter`, `List`\[`QuadraticProgramConverter`], `None`]) – The converters to use for converting a problem into a different form. By default, when None is specified, an internally created instance of [`QuadraticProgramToQubo`](qiskit.optimization.converters.QuadraticProgramToQubo "qiskit.optimization.converters.QuadraticProgramToQubo") will be used.
+*   **penalty** (`Optional`\[`float`]) – The penalty factor used in the default [`QuadraticProgramToQubo`](qiskit.optimization.converters.QuadraticProgramToQubo "qiskit.optimization.converters.QuadraticProgramToQubo") converter
 
 **Raises**
 
 **TypeError** – When there one of converters is an invalid type.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.optimization.algorithms.GroverOptimizer.__init__" />
 
 `__init__(num_value_qubits, num_iterations=3, quantum_instance=None, converters=None, penalty=None)`
 
@@ -29,8 +39,8 @@ Uses Grover Adaptive Search (GAS) to find the minimum of a QUBO function.
 *   **num\_value\_qubits** (`int`) – The number of value qubits.
 *   **num\_iterations** (`int`) – The number of iterations the algorithm will search with no improvement.
 *   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – Instance of selected backend, defaults to Aer’s statevector simulator.
-*   **converters** (`Union`\[`QuadraticProgramConverter`, `List`\[`QuadraticProgramConverter`], `None`]) – The converters to use for converting a problem into a different form. By default, when None is specified, an internally created instance of [`QuadraticProgramToQubo`](qiskit.optimization.converters.QuadraticProgramToQubo#qiskit.optimization.converters.QuadraticProgramToQubo "qiskit.optimization.converters.QuadraticProgramToQubo") will be used.
-*   **penalty** (`Optional`\[`float`]) – The penalty factor used in the default [`QuadraticProgramToQubo`](qiskit.optimization.converters.QuadraticProgramToQubo#qiskit.optimization.converters.QuadraticProgramToQubo "qiskit.optimization.converters.QuadraticProgramToQubo") converter
+*   **converters** (`Union`\[`QuadraticProgramConverter`, `List`\[`QuadraticProgramConverter`], `None`]) – The converters to use for converting a problem into a different form. By default, when None is specified, an internally created instance of [`QuadraticProgramToQubo`](qiskit.optimization.converters.QuadraticProgramToQubo "qiskit.optimization.converters.QuadraticProgramToQubo") will be used.
+*   **penalty** (`Optional`\[`float`]) – The penalty factor used in the default [`QuadraticProgramToQubo`](qiskit.optimization.converters.QuadraticProgramToQubo "qiskit.optimization.converters.QuadraticProgramToQubo") converter
 
 **Raises**
 
@@ -51,7 +61,9 @@ Uses Grover Adaptive Search (GAS) to find the minimum of a QUBO function.
 | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
 | [`quantum_instance`](#qiskit.optimization.algorithms.GroverOptimizer.quantum_instance "qiskit.optimization.algorithms.GroverOptimizer.quantum_instance") | The quantum instance to run the circuits. |
 
-<span id="undefined" />
+### get\_compatibility\_msg
+
+<span id="qiskit.optimization.algorithms.GroverOptimizer.get_compatibility_msg" />
 
 `get_compatibility_msg(problem)`
 
@@ -71,7 +83,9 @@ Checks whether the given problem is compatible, i.e., whether the problem can be
 
 A message describing the incompatibility.
 
-<span id="undefined" />
+### is\_compatible
+
+<span id="qiskit.optimization.algorithms.GroverOptimizer.is_compatible" />
 
 `is_compatible(problem)`
 
@@ -89,7 +103,9 @@ Checks whether a given problem can be solved with the optimizer implementing thi
 
 Returns True if the problem is compatible, False otherwise.
 
-<span id="undefined" />
+### quantum\_instance
+
+<span id="qiskit.optimization.algorithms.GroverOptimizer.quantum_instance" />
 
 `property quantum_instance`
 
@@ -103,7 +119,9 @@ The quantum instance to run the circuits.
 
 The quantum instance used in the algorithm.
 
-<span id="undefined" />
+### solve
+
+<span id="qiskit.optimization.algorithms.GroverOptimizer.solve" />
 
 `solve(problem)`
 
@@ -126,4 +144,5 @@ The result of the optimizer applied to the problem.
 **Raises**
 
 *   **AttributeError** – If the quantum instance has not been set.
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If the problem is incompatible with the optimizer.
+*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If the problem is incompatible with the optimizer.
+

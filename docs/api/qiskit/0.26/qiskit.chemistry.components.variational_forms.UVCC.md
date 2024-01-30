@@ -1,8 +1,16 @@
+---
+title: UVCC
+description: API reference for qiskit.chemistry.components.variational_forms.UVCC
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.components.variational_forms.UVCC
+---
+
 # qiskit.chemistry.components.variational\_forms.UVCC
 
-<span id="undefined" />
+<span id="qiskit.chemistry.components.variational_forms.UVCC" />
 
-`UVCC(num_qubits, basis, degrees, reps=1, excitations=None, initial_state=None, qubit_mapping='direct', num_time_slices=1, shallow_circuit_concat=True)`
+`UVCC(num_qubits, basis, degrees, reps=1, excitations=None, initial_state=None, qubit_mapping='direct', num_time_slices=1, shallow_circuit_concat=True)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/components/variational_forms/uvcc.py "view source code")
 
 This trial wavefunction is a Unitary Vibrational Coupled-Cluster Single and Double excitations variational form. For more information, see Ollitrault Pauline J., Chemical science 11 (2020): 6842-6855.
 
@@ -18,7 +26,9 @@ This trial wavefunction is a Unitary Vibrational Coupled-Cluster Single and Doub
 *   **num\_time\_slices** (`int`) – parameters for dynamics.
 *   **shallow\_circuit\_concat** (`bool`) – indicate whether to use shallow (cheap) mode for circuit concatenation
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.chemistry.components.variational_forms.UVCC.__init__" />
 
 `__init__(num_qubits, basis, degrees, reps=1, excitations=None, initial_state=None, qubit_mapping='direct', num_time_slices=1, shallow_circuit_concat=True)`
 
@@ -56,7 +66,9 @@ This trial wavefunction is a Unitary Vibrational Coupled-Cluster Single and Doub
 | [`setting`](#qiskit.chemistry.components.variational_forms.UVCC.setting "qiskit.chemistry.components.variational_forms.UVCC.setting")                                                                   |                                                             |
 | [`support_parameterized_circuit`](#qiskit.chemistry.components.variational_forms.UVCC.support_parameterized_circuit "qiskit.chemistry.components.variational_forms.UVCC.support_parameterized_circuit") | Whether or not the sub-class support parameterized circuit. |
 
-<span id="undefined" />
+### compute\_excitation\_lists
+
+<span id="qiskit.chemistry.components.variational_forms.UVCC.compute_excitation_lists" />
 
 `static compute_excitation_lists(basis, degrees)`
 
@@ -79,7 +91,9 @@ List of excitation indexes in terms of modes and modals
 
 **ValueError** – If excitation degree is greater than size of basis
 
-<span id="undefined" />
+### construct\_circuit
+
+<span id="qiskit.chemistry.components.variational_forms.UVCC.construct_circuit" />
 
 `construct_circuit(parameters, q=None)`
 
@@ -103,7 +117,9 @@ Quantum Circuit a quantum circuit with given parameters
 *   **ValueError** – the number of parameters is incorrect.
 *   **ValueError** – if num\_qubits has not been set and is still None
 
-<span id="undefined" />
+### excitations\_in\_qubit\_format
+
+<span id="qiskit.chemistry.components.variational_forms.UVCC.excitations_in_qubit_format" />
 
 `excitations_in_qubit_format()`
 
@@ -119,13 +135,17 @@ than in modes and modals
 
 List of excitation indexes
 
-<span id="undefined" />
+### get\_entangler\_map
+
+<span id="qiskit.chemistry.components.variational_forms.UVCC.get_entangler_map" />
 
 `static get_entangler_map(map_type, num_qubits, offset=0)`
 
 returns entangler map
 
-<span id="undefined" />
+### num\_parameters
+
+<span id="qiskit.chemistry.components.variational_forms.UVCC.num_parameters" />
 
 `property num_parameters`
 
@@ -139,7 +159,9 @@ An integer indicating the number of parameters.
 
 int
 
-<span id="undefined" />
+### num\_qubits
+
+<span id="qiskit.chemistry.components.variational_forms.UVCC.num_qubits" />
 
 `property num_qubits`
 
@@ -153,7 +175,9 @@ An integer indicating the number of qubits.
 
 int
 
-<span id="undefined" />
+### parameter\_bounds
+
+<span id="qiskit.chemistry.components.variational_forms.UVCC.parameter_bounds" />
 
 `property parameter_bounds`
 
@@ -167,7 +191,9 @@ A list of pairs indicating the bounds, as (lower, upper). None indicates an unbo
 
 list
 
-<span id="undefined" />
+### preferred\_init\_points
+
+<span id="qiskit.chemistry.components.variational_forms.UVCC.preferred_init_points" />
 
 `property preferred_init_points`
 
@@ -175,11 +201,15 @@ Return preferred init points.
 
 If an initial state is provided then the variational form may provide back this set of parameters which when used on the variational form should result in the overall state being that defined by the initial state
 
-<span id="undefined" />
+### setting
+
+<span id="qiskit.chemistry.components.variational_forms.UVCC.setting" />
 
 `property setting`
 
-<span id="undefined" />
+### support\_parameterized\_circuit
+
+<span id="qiskit.chemistry.components.variational_forms.UVCC.support_parameterized_circuit" />
 
 `property support_parameterized_circuit`
 
@@ -193,8 +223,11 @@ indicate the sub-class support parameterized circuit
 
 boolean
 
-<span id="undefined" />
+### validate\_entangler\_map
+
+<span id="qiskit.chemistry.components.variational_forms.UVCC.validate_entangler_map" />
 
 `static validate_entangler_map(entangler_map, num_qubits)`
 
 validate entangler map
+

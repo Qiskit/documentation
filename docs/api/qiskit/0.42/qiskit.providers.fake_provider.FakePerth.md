@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.providers.fake_provider.FakePerth
 ---
 
-# FakePerth[¶](#fakeperth "Permalink to this headline")
+# FakePerth
 
 <span id="qiskit.providers.fake_provider.FakePerth" />
 
-`FakePerth`
+`FakePerth`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/fake_provider/backends/perth/fake_perth.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_backend.FakeBackendV2`
 

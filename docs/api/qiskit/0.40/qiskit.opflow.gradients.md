@@ -1,8 +1,8 @@
 <span id="qiskit-opflow-gradients" />
 
-# qiskit.opflow\.gradients[¶](#module-qiskit.opflow.gradients "Permalink to this headline")
+# qiskit.opflow\.gradients
 
-## Gradients ([`qiskit.opflow.gradients`](#module-qiskit.opflow.gradients "qiskit.opflow.gradients"))[¶](#gradients-qiskit-opflow-gradients "Permalink to this headline")
+## Gradients ([`qiskit.opflow.gradients`](#module-qiskit.opflow.gradients "qiskit.opflow.gradients"))
 
 Given an operator that represents either a quantum state resp. an expectation value, the gradient framework enables the evaluation of gradients, natural gradients, Hessians, as well as the Quantum Fisher Information.
 
@@ -85,7 +85,7 @@ nat_grad = NaturalGradient(grad_method='lin_comb,
 
 The derivative classes come with a gradient\_wrapper() function which returns the corresponding callable and are thus compatible with the optimizers.
 
-### Base Classes[¶](#base-classes "Permalink to this headline")
+### Base Classes
 
 |                                                                                                                |                                                  |
 | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
@@ -94,14 +94,14 @@ The derivative classes come with a gradient\_wrapper() function which returns th
 | [`HessianBase`](qiskit.opflow.gradients.HessianBase "qiskit.opflow.gradients.HessianBase")(\[hess\_method])    | Base class for the Hessian of an expected value. |
 | [`QFIBase`](qiskit.opflow.gradients.QFIBase "qiskit.opflow.gradients.QFIBase")(\[qfi\_method])                 | Base class for Quantum Fisher Information (QFI). |
 
-### Converters[¶](#converters "Permalink to this headline")
+### Converters
 
 |                                                                                                          |                                                           |
 | -------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
 | [`CircuitGradient`](qiskit.opflow.gradients.CircuitGradient "qiskit.opflow.gradients.CircuitGradient")() | Circuit to gradient operator converter.                   |
 | [`CircuitQFI`](qiskit.opflow.gradients.CircuitQFI "qiskit.opflow.gradients.CircuitQFI")()                | Circuit to Quantum Fisher Information operator converter. |
 
-### Derivatives[¶](#derivatives "Permalink to this headline")
+### Derivatives
 
 |                                                                                                                                           |                                                             |
 | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |

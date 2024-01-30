@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.VF2PostLayout
 
 <span id="qiskit.transpiler.passes.VF2PostLayout" />
 
-`qiskit.transpiler.passes.VF2PostLayout(*args, **kwargs)`
+`qiskit.transpiler.passes.VF2PostLayout(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/layout/vf2_post_layout.py "view source code")
 
 Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
@@ -24,7 +24,7 @@ If a solution is found that means there is a lower error layout available for th
 > *   `"nonexistent solution"`: If no solution was found.
 > *   `">2q gates in basis"`: If VF2PostLayout can’t work with basis
 
-By default this pass will construct a heuristic scoring map based on the the error rates in the provided `target` (or `properties` if `target` is not provided). However, analysis passes can be run prior to this pass and set `vf2_avg_error_map` in the property set with a `ErrorMap` instance. If a value is `NaN` that is treated as an ideal edge For example if an error map is created as:
+By default, this pass will construct a heuristic scoring map based on the error rates in the provided `target` (or `properties` if `target` is not provided). However, analysis passes can be run prior to this pass and set `vf2_avg_error_map` in the property set with a `ErrorMap` instance. If a value is `NaN` that is treated as an ideal edge For example if an error map is created as:
 
 ```python
 from qiskit.transpiler.passes.layout.vf2_utils import ErrorMap

@@ -1,8 +1,16 @@
+---
+title: name_args
+description: API reference for qiskit.aqua.utils.name_args
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.aqua.utils.name_args
+---
+
 # qiskit.aqua.utils.name\_args
 
-<span id="undefined" />
+<span id="qiskit.aqua.utils.name_args" />
 
-`name_args(mapping, skip=0)`
+`name_args(mapping, skip=0)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/utils/name_unnamed_args.py "view source code")
 
 Decorator to convert unnamed arguments to named ones.
 
@@ -27,3 +35,4 @@ def new_f(a: TypeA, d: TypeD, b: TypeB=None, c: TypeC=None):
     if c is not None:
         # raise warning, this is deprecated!
 ```
+

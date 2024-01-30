@@ -1,10 +1,18 @@
+---
+title: QasmQobjConfig
+description: API reference for qiskit.qobj.QasmQobjConfig
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.qobj.QasmQobjConfig
+---
+
 <span id="qiskit-qobj-qasmqobjconfig" />
 
 # qiskit.qobj.QasmQobjConfig
 
-<span id="undefined" />
+<span id="qiskit.qobj.QasmQobjConfig" />
 
-`QasmQobjConfig(shots=None, max_credits=None, seed_simulator=None, memory=None, parameter_binds=None, memory_slots=None, n_qubits=None, pulse_library=None, calibrations=None, rep_delay=None, **kwargs)`
+`QasmQobjConfig(shots=None, max_credits=None, seed_simulator=None, memory=None, parameter_binds=None, memory_slots=None, n_qubits=None, pulse_library=None, calibrations=None, rep_delay=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/qobj/qasm_qobj.py "view source code")
 
 A configuration for a QASM Qobj.
 
@@ -19,12 +27,14 @@ Model for RunConfig.
 *   **parameter\_binds** (*list\[dict]*) – List of parameter bindings
 *   **memory\_slots** (*int*) – The number of memory slots on the device
 *   **n\_qubits** (*int*) – The number of qubits on the device
-*   **pulse\_library** (*list*) – List of [`PulseLibraryItem`](qiskit.qobj.PulseLibraryItem#qiskit.qobj.PulseLibraryItem "qiskit.qobj.PulseLibraryItem").
-*   **calibrations** ([*QasmExperimentCalibrations*](qiskit.qobj.QasmExperimentCalibrations#qiskit.qobj.QasmExperimentCalibrations "qiskit.qobj.QasmExperimentCalibrations")) – Information required for Pulse gates.
+*   **pulse\_library** (*list*) – List of [`PulseLibraryItem`](qiskit.qobj.PulseLibraryItem "qiskit.qobj.PulseLibraryItem").
+*   **calibrations** ([*QasmExperimentCalibrations*](qiskit.qobj.QasmExperimentCalibrations "qiskit.qobj.QasmExperimentCalibrations")) – Information required for Pulse gates.
 *   **rep\_delay** (*float*) – Delay between programs in sec. Only supported on certain backends (`backend.configuration().dynamic_reprate_enabled` ). Must be from the range supplied by the backend (`backend.configuration().rep_delay_range`). Default is `backend.configuration().default_rep_delay`.
 *   **kwargs** – Additional free form key value fields to add to the configuration.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.qobj.QasmQobjConfig.__init__" />
 
 `__init__(shots=None, max_credits=None, seed_simulator=None, memory=None, parameter_binds=None, memory_slots=None, n_qubits=None, pulse_library=None, calibrations=None, rep_delay=None, **kwargs)`
 
@@ -39,8 +49,8 @@ Model for RunConfig.
 *   **parameter\_binds** (*list\[dict]*) – List of parameter bindings
 *   **memory\_slots** (*int*) – The number of memory slots on the device
 *   **n\_qubits** (*int*) – The number of qubits on the device
-*   **pulse\_library** (*list*) – List of [`PulseLibraryItem`](qiskit.qobj.PulseLibraryItem#qiskit.qobj.PulseLibraryItem "qiskit.qobj.PulseLibraryItem").
-*   **calibrations** ([*QasmExperimentCalibrations*](qiskit.qobj.QasmExperimentCalibrations#qiskit.qobj.QasmExperimentCalibrations "qiskit.qobj.QasmExperimentCalibrations")) – Information required for Pulse gates.
+*   **pulse\_library** (*list*) – List of [`PulseLibraryItem`](qiskit.qobj.PulseLibraryItem "qiskit.qobj.PulseLibraryItem").
+*   **calibrations** ([*QasmExperimentCalibrations*](qiskit.qobj.QasmExperimentCalibrations "qiskit.qobj.QasmExperimentCalibrations")) – Information required for Pulse gates.
 *   **rep\_delay** (*float*) – Delay between programs in sec. Only supported on certain backends (`backend.configuration().dynamic_reprate_enabled` ). Must be from the range supplied by the backend (`backend.configuration().rep_delay_range`). Default is `backend.configuration().default_rep_delay`.
 *   **kwargs** – Additional free form key value fields to add to the configuration.
 
@@ -52,7 +62,9 @@ Model for RunConfig.
 | [`from_dict`](#qiskit.qobj.QasmQobjConfig.from_dict "qiskit.qobj.QasmQobjConfig.from_dict")(data)                   | Create a new QasmQobjConfig object from a dictionary.              |
 | [`to_dict`](#qiskit.qobj.QasmQobjConfig.to_dict "qiskit.qobj.QasmQobjConfig.to_dict")()                             | Return a dictionary format representation of the QASM Qobj config. |
 
-<span id="undefined" />
+### from\_dict
+
+<span id="qiskit.qobj.QasmQobjConfig.from_dict" />
 
 `classmethod from_dict(data)`
 
@@ -70,7 +82,9 @@ The object from the input dictionary.
 
 [QasmQobjConfig](#qiskit.qobj.QasmQobjConfig "qiskit.qobj.QasmQobjConfig")
 
-<span id="undefined" />
+### to\_dict
+
+<span id="qiskit.qobj.QasmQobjConfig.to_dict" />
 
 `to_dict()`
 
@@ -83,3 +97,4 @@ The dictionary form of the QasmQobjConfig.
 **Return type**
 
 dict
+

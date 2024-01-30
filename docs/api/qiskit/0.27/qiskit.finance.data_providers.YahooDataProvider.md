@@ -1,8 +1,16 @@
+---
+title: YahooDataProvider
+description: API reference for qiskit.finance.data_providers.YahooDataProvider
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.finance.data_providers.YahooDataProvider
+---
+
 # qiskit.finance.data\_providers.YahooDataProvider
 
-<span id="undefined" />
+<span id="qiskit.finance.data_providers.YahooDataProvider" />
 
-`YahooDataProvider(tickers=None, start=datetime.datetime(2016, 1, 1, 0, 0), end=datetime.datetime(2016, 1, 30, 0, 0))`
+`YahooDataProvider(tickers=None, start=datetime.datetime(2016, 1, 1, 0, 0), end=datetime.datetime(2016, 1, 30, 0, 0))`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/finance/data_providers/yahoo_data_provider.py "view source code")
 
 Yahoo data provider.
 
@@ -12,9 +20,11 @@ Initializer :type tickers: `Union`\[`str`, `List`\[`str`], `None`] :param ticker
 
 **Raises**
 
-[**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError#qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – YFinance not installed
+[**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – YFinance not installed
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.finance.data_providers.YahooDataProvider.__init__" />
 
 `__init__(tickers=None, start=datetime.datetime(2016, 1, 1, 0, 0), end=datetime.datetime(2016, 1, 30, 0, 0))`
 
@@ -22,7 +32,7 @@ Initializer :type tickers: `Union`\[`str`, `List`\[`str`], `None`] :param ticker
 
 **Raises**
 
-[**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError#qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – YFinance not installed
+[**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – YFinance not installed
 
 ## Methods
 
@@ -37,7 +47,9 @@ Initializer :type tickers: `Union`\[`str`, `List`\[`str`], `None`] :param ticker
 | [`get_similarity_matrix`](#qiskit.finance.data_providers.YahooDataProvider.get_similarity_matrix "qiskit.finance.data_providers.YahooDataProvider.get_similarity_matrix")()                                           | Returns time-series similarity matrix computed using dynamic time warping.                                                                                                             |
 | [`run`](#qiskit.finance.data_providers.YahooDataProvider.run "qiskit.finance.data_providers.YahooDataProvider.run")()                                                                                                 | Loads data, thus enabling get\_similarity\_matrix and get\_covariance\_matrix methods in the base class.                                                                               |
 
-<span id="undefined" />
+### get\_coordinates
+
+<span id="qiskit.finance.data_providers.YahooDataProvider.get_coordinates" />
 
 `get_coordinates()`
 
@@ -47,7 +59,9 @@ Returns random coordinates for visualisation purposes.
 
 `Tuple`\[`ndarray`, `ndarray`]
 
-<span id="undefined" />
+### get\_covariance\_matrix
+
+<span id="qiskit.finance.data_providers.YahooDataProvider.get_covariance_matrix" />
 
 `get_covariance_matrix()`
 
@@ -63,9 +77,11 @@ an asset-to-asset covariance matrix.
 
 **Raises**
 
-[**QiskitFinanceError**](qiskit.finance.QiskitFinanceError#qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
+[**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
 
-<span id="undefined" />
+### get\_mean\_vector
+
+<span id="qiskit.finance.data_providers.YahooDataProvider.get_mean_vector" />
 
 `get_mean_vector()`
 
@@ -81,9 +97,11 @@ a per-asset mean vector.
 
 **Raises**
 
-[**QiskitFinanceError**](qiskit.finance.QiskitFinanceError#qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
+[**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
 
-<span id="undefined" />
+### get\_period\_return\_covariance\_matrix
+
+<span id="qiskit.finance.data_providers.YahooDataProvider.get_period_return_covariance_matrix" />
 
 `get_period_return_covariance_matrix()`
 
@@ -99,9 +117,11 @@ a per-asset mean vector.
 
 **Raises**
 
-[**QiskitFinanceError**](qiskit.finance.QiskitFinanceError#qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
+[**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
 
-<span id="undefined" />
+### get\_period\_return\_mean\_vector
+
+<span id="qiskit.finance.data_providers.YahooDataProvider.get_period_return_mean_vector" />
 
 `get_period_return_mean_vector()`
 
@@ -117,9 +137,11 @@ a per-asset mean vector.
 
 **Raises**
 
-[**QiskitFinanceError**](qiskit.finance.QiskitFinanceError#qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
+[**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
 
-<span id="undefined" />
+### get\_similarity\_matrix
+
+<span id="qiskit.finance.data_providers.YahooDataProvider.get_similarity_matrix" />
 
 `get_similarity_matrix()`
 
@@ -135,9 +157,11 @@ an asset-to-asset similarity matrix.
 
 **Raises**
 
-[**QiskitFinanceError**](qiskit.finance.QiskitFinanceError#qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
+[**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
 
-<span id="undefined" />
+### run
+
+<span id="qiskit.finance.data_providers.YahooDataProvider.run" />
 
 `run()`
 
@@ -146,3 +170,4 @@ Loads data, thus enabling get\_similarity\_matrix and get\_covariance\_matrix me
 **Return type**
 
 `None`
+

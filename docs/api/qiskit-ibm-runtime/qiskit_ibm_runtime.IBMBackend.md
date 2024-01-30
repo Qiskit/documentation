@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
 <span id="qiskit_ibm_runtime.IBMBackend" />
 
-`IBMBackend(configuration, service, api_client, instance=None)`
+`IBMBackend(configuration, service, api_client, instance=None)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.17/qiskit_ibm_runtime/ibm_backend.py "view source code")
 
 Backend class interfacing with an IBM Quantum backend.
 

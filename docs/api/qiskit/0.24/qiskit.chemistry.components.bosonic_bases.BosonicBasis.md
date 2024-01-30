@@ -1,14 +1,24 @@
+---
+title: BosonicBasis
+description: API reference for qiskit.chemistry.components.bosonic_bases.BosonicBasis
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.components.bosonic_bases.BosonicBasis
+---
+
 <span id="qiskit-chemistry-components-bosonic-bases-bosonicbasis" />
 
 # qiskit.chemistry.components.bosonic\_bases.BosonicBasis
 
-<span id="undefined" />
+<span id="qiskit.chemistry.components.bosonic_bases.BosonicBasis" />
 
-`BosonicBasis`
+`BosonicBasis`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/components/bosonic_bases/bosonic_basis.py "view source code")
 
 Basis to express a second quantization Bosonic Hamiltonian.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.chemistry.components.bosonic_bases.BosonicBasis.__init__" />
 
 `__init__()`
 
@@ -21,7 +31,9 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`__init__`](#qiskit.chemistry.components.bosonic_bases.BosonicBasis.__init__ "qiskit.chemistry.components.bosonic_bases.BosonicBasis.__init__")()          | Initialize self.                                                                                  |
 | [`convert`](#qiskit.chemistry.components.bosonic_bases.BosonicBasis.convert "qiskit.chemistry.components.bosonic_bases.BosonicBasis.convert")(\[threshold]) | This prepares an array object representing a bosonic hamiltonian expressed in the harmonic basis. |
 
-<span id="undefined" />
+### convert
+
+<span id="qiskit.chemistry.components.bosonic_bases.BosonicBasis.convert" />
 
 `convert(threshold=1e-06)`
 
@@ -42,3 +54,4 @@ List of modes for input to creation of a bosonic hamiltonian in the harmonic bas
 **Raises**
 
 **ValueError** – If problem with order value from computed modes
+

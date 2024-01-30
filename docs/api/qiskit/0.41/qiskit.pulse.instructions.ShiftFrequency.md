@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.pulse.instructions.ShiftFrequency
 ---
 
-# ShiftFrequency[¶](#shiftfrequency "Permalink to this headline")
+# ShiftFrequency
 
 <span id="qiskit.pulse.instructions.ShiftFrequency" />
 
-`ShiftFrequency(frequency, channel, name=None)`
+`ShiftFrequency(frequency, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/instructions/frequency.py "view source code")
 
 Bases: [`qiskit.pulse.instructions.instruction.Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")
 

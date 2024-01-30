@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.PauliTwoDesign
 ---
 
-# PauliTwoDesign[¶](#paulitwodesign "Permalink to this headline")
+# PauliTwoDesign
 
 <span id="qiskit.circuit.library.PauliTwoDesign" />
 
-`PauliTwoDesign(num_qubits=None, reps=3, seed=None, insert_barriers=False, name='PauliTwoDesign')`
+`PauliTwoDesign(num_qubits=None, reps=3, seed=None, insert_barriers=False, name='PauliTwoDesign')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/n_local/pauli_two_design.py "view source code")
 
 Bases: [`qiskit.circuit.library.n_local.two_local.TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.n_local.two_local.TwoLocal")
 

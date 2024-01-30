@@ -1,8 +1,16 @@
+---
+title: BooleanExpression
+description: API reference for qiskit.circuit.classicalfunction.BooleanExpression
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.classicalfunction.BooleanExpression
+---
+
 # qiskit.circuit.classicalfunction.BooleanExpression
 
-<span id="undefined" />
+<span id="qiskit.circuit.classicalfunction.BooleanExpression" />
 
-`BooleanExpression(expression, name=None)`
+`BooleanExpression(expression, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/classicalfunction/boolean_expression.py "view source code")
 
 The Boolean Expression gate.
 
@@ -13,9 +21,11 @@ The Boolean Expression gate.
 
 **Raises**
 
-[**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError#qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – If tweedledum is not installed. Tweedledum is required.
+[**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – If tweedledum is not installed. Tweedledum is required.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.circuit.classicalfunction.BooleanExpression.__init__" />
 
 `__init__(expression, name=None)`
 
@@ -26,32 +36,32 @@ The Boolean Expression gate.
 
 **Raises**
 
-[**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError#qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – If tweedledum is not installed. Tweedledum is required.
+[**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – If tweedledum is not installed. Tweedledum is required.
 
 ## Methods
 
-|                                                                                                                                                                                         |                                                                                                                                                     |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.circuit.classicalfunction.BooleanExpression.__init__ "qiskit.circuit.classicalfunction.BooleanExpression.__init__")(expression\[, name])                           | **type expression**`str`                                                                                                                            |
-| [`add_decomposition`](#qiskit.circuit.classicalfunction.BooleanExpression.add_decomposition "qiskit.circuit.classicalfunction.BooleanExpression.add_decomposition")(decomposition)      | Add a decomposition of the instruction to the SessionEquivalenceLibrary.                                                                            |
-| [`assemble`](#qiskit.circuit.classicalfunction.BooleanExpression.assemble "qiskit.circuit.classicalfunction.BooleanExpression.assemble")()                                              | Assemble a QasmQobjInstruction                                                                                                                      |
-| [`broadcast_arguments`](#qiskit.circuit.classicalfunction.BooleanExpression.broadcast_arguments "qiskit.circuit.classicalfunction.BooleanExpression.broadcast_arguments")(qargs, cargs) | Validation and handling of the arguments and its relationship.                                                                                      |
-| [`c_if`](#qiskit.circuit.classicalfunction.BooleanExpression.c_if "qiskit.circuit.classicalfunction.BooleanExpression.c_if")(classical, val)                                            | Add classical condition on register classical and value val.                                                                                        |
-| [`control`](#qiskit.circuit.classicalfunction.BooleanExpression.control "qiskit.circuit.classicalfunction.BooleanExpression.control")(\[num\_ctrl\_qubits, label, ctrl\_state])         | Return controlled version of gate.                                                                                                                  |
-| [`copy`](#qiskit.circuit.classicalfunction.BooleanExpression.copy "qiskit.circuit.classicalfunction.BooleanExpression.copy")(\[name])                                                   | Copy of the instruction.                                                                                                                            |
-| [`from_dimacs_file`](#qiskit.circuit.classicalfunction.BooleanExpression.from_dimacs_file "qiskit.circuit.classicalfunction.BooleanExpression.from_dimacs_file")(filename)              | Create a BooleanExpression from the string in the DIMACS format.                                                                                    |
-| [`inverse`](#qiskit.circuit.classicalfunction.BooleanExpression.inverse "qiskit.circuit.classicalfunction.BooleanExpression.inverse")()                                                 | Invert this instruction.                                                                                                                            |
-| [`is_parameterized`](#qiskit.circuit.classicalfunction.BooleanExpression.is_parameterized "qiskit.circuit.classicalfunction.BooleanExpression.is_parameterized")()                      | Return True .IFF.                                                                                                                                   |
-| [`mirror`](#qiskit.circuit.classicalfunction.BooleanExpression.mirror "qiskit.circuit.classicalfunction.BooleanExpression.mirror")()                                                    | DEPRECATED: use instruction.reverse\_ops().                                                                                                         |
-| [`power`](#qiskit.circuit.classicalfunction.BooleanExpression.power "qiskit.circuit.classicalfunction.BooleanExpression.power")(exponent)                                               | Creates a unitary gate as gate^exponent.                                                                                                            |
-| [`qasm`](#qiskit.circuit.classicalfunction.BooleanExpression.qasm "qiskit.circuit.classicalfunction.BooleanExpression.qasm")()                                                          | Return a default OpenQASM string for the instruction.                                                                                               |
-| [`repeat`](#qiskit.circuit.classicalfunction.BooleanExpression.repeat "qiskit.circuit.classicalfunction.BooleanExpression.repeat")(n)                                                   | Creates an instruction with gate repeated n amount of times.                                                                                        |
-| [`reverse_ops`](#qiskit.circuit.classicalfunction.BooleanExpression.reverse_ops "qiskit.circuit.classicalfunction.BooleanExpression.reverse_ops")()                                     | For a composite instruction, reverse the order of sub-instructions.                                                                                 |
-| [`simulate`](#qiskit.circuit.classicalfunction.BooleanExpression.simulate "qiskit.circuit.classicalfunction.BooleanExpression.simulate")(bitstring)                                     | Evaluate the expression on a bitstring.                                                                                                             |
-| [`soft_compare`](#qiskit.circuit.classicalfunction.BooleanExpression.soft_compare "qiskit.circuit.classicalfunction.BooleanExpression.soft_compare")(other)                             | Soft comparison between gates.                                                                                                                      |
-| [`synth`](#qiskit.circuit.classicalfunction.BooleanExpression.synth "qiskit.circuit.classicalfunction.BooleanExpression.synth")(\[registerless, synthesizer])                           | Synthesis the logic network into a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"). |
-| [`to_matrix`](#qiskit.circuit.classicalfunction.BooleanExpression.to_matrix "qiskit.circuit.classicalfunction.BooleanExpression.to_matrix")()                                           | Return a Numpy.array for the gate unitary matrix.                                                                                                   |
-| [`validate_parameter`](#qiskit.circuit.classicalfunction.BooleanExpression.validate_parameter "qiskit.circuit.classicalfunction.BooleanExpression.validate_parameter")(parameter)       | Gate parameters should be int, float, or ParameterExpression                                                                                        |
+|                                                                                                                                                                                         |                                                                                                                       |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| [`__init__`](#qiskit.circuit.classicalfunction.BooleanExpression.__init__ "qiskit.circuit.classicalfunction.BooleanExpression.__init__")(expression\[, name])                           | **type expression**`str`                                                                                              |
+| [`add_decomposition`](#qiskit.circuit.classicalfunction.BooleanExpression.add_decomposition "qiskit.circuit.classicalfunction.BooleanExpression.add_decomposition")(decomposition)      | Add a decomposition of the instruction to the SessionEquivalenceLibrary.                                              |
+| [`assemble`](#qiskit.circuit.classicalfunction.BooleanExpression.assemble "qiskit.circuit.classicalfunction.BooleanExpression.assemble")()                                              | Assemble a QasmQobjInstruction                                                                                        |
+| [`broadcast_arguments`](#qiskit.circuit.classicalfunction.BooleanExpression.broadcast_arguments "qiskit.circuit.classicalfunction.BooleanExpression.broadcast_arguments")(qargs, cargs) | Validation and handling of the arguments and its relationship.                                                        |
+| [`c_if`](#qiskit.circuit.classicalfunction.BooleanExpression.c_if "qiskit.circuit.classicalfunction.BooleanExpression.c_if")(classical, val)                                            | Add classical condition on register classical and value val.                                                          |
+| [`control`](#qiskit.circuit.classicalfunction.BooleanExpression.control "qiskit.circuit.classicalfunction.BooleanExpression.control")(\[num\_ctrl\_qubits, label, ctrl\_state])         | Return controlled version of gate.                                                                                    |
+| [`copy`](#qiskit.circuit.classicalfunction.BooleanExpression.copy "qiskit.circuit.classicalfunction.BooleanExpression.copy")(\[name])                                                   | Copy of the instruction.                                                                                              |
+| [`from_dimacs_file`](#qiskit.circuit.classicalfunction.BooleanExpression.from_dimacs_file "qiskit.circuit.classicalfunction.BooleanExpression.from_dimacs_file")(filename)              | Create a BooleanExpression from the string in the DIMACS format.                                                      |
+| [`inverse`](#qiskit.circuit.classicalfunction.BooleanExpression.inverse "qiskit.circuit.classicalfunction.BooleanExpression.inverse")()                                                 | Invert this instruction.                                                                                              |
+| [`is_parameterized`](#qiskit.circuit.classicalfunction.BooleanExpression.is_parameterized "qiskit.circuit.classicalfunction.BooleanExpression.is_parameterized")()                      | Return True .IFF.                                                                                                     |
+| [`mirror`](#qiskit.circuit.classicalfunction.BooleanExpression.mirror "qiskit.circuit.classicalfunction.BooleanExpression.mirror")()                                                    | DEPRECATED: use instruction.reverse\_ops().                                                                           |
+| [`power`](#qiskit.circuit.classicalfunction.BooleanExpression.power "qiskit.circuit.classicalfunction.BooleanExpression.power")(exponent)                                               | Creates a unitary gate as gate^exponent.                                                                              |
+| [`qasm`](#qiskit.circuit.classicalfunction.BooleanExpression.qasm "qiskit.circuit.classicalfunction.BooleanExpression.qasm")()                                                          | Return a default OpenQASM string for the instruction.                                                                 |
+| [`repeat`](#qiskit.circuit.classicalfunction.BooleanExpression.repeat "qiskit.circuit.classicalfunction.BooleanExpression.repeat")(n)                                                   | Creates an instruction with gate repeated n amount of times.                                                          |
+| [`reverse_ops`](#qiskit.circuit.classicalfunction.BooleanExpression.reverse_ops "qiskit.circuit.classicalfunction.BooleanExpression.reverse_ops")()                                     | For a composite instruction, reverse the order of sub-instructions.                                                   |
+| [`simulate`](#qiskit.circuit.classicalfunction.BooleanExpression.simulate "qiskit.circuit.classicalfunction.BooleanExpression.simulate")(bitstring)                                     | Evaluate the expression on a bitstring.                                                                               |
+| [`soft_compare`](#qiskit.circuit.classicalfunction.BooleanExpression.soft_compare "qiskit.circuit.classicalfunction.BooleanExpression.soft_compare")(other)                             | Soft comparison between gates.                                                                                        |
+| [`synth`](#qiskit.circuit.classicalfunction.BooleanExpression.synth "qiskit.circuit.classicalfunction.BooleanExpression.synth")(\[registerless, synthesizer])                           | Synthesis the logic network into a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"). |
+| [`to_matrix`](#qiskit.circuit.classicalfunction.BooleanExpression.to_matrix "qiskit.circuit.classicalfunction.BooleanExpression.to_matrix")()                                           | Return a Numpy.array for the gate unitary matrix.                                                                     |
+| [`validate_parameter`](#qiskit.circuit.classicalfunction.BooleanExpression.validate_parameter "qiskit.circuit.classicalfunction.BooleanExpression.validate_parameter")(parameter)       | Gate parameters should be int, float, or ParameterExpression                                                          |
 
 ## Attributes
 
@@ -64,13 +74,17 @@ The Boolean Expression gate.
 | [`params`](#qiskit.circuit.classicalfunction.BooleanExpression.params "qiskit.circuit.classicalfunction.BooleanExpression.params")                         | return instruction params.                                                    |
 | [`unit`](#qiskit.circuit.classicalfunction.BooleanExpression.unit "qiskit.circuit.classicalfunction.BooleanExpression.unit")                               | Get the time unit of duration.                                                |
 
-<span id="undefined" />
+### add\_decomposition
+
+<span id="qiskit.circuit.classicalfunction.BooleanExpression.add_decomposition" />
 
 `add_decomposition(decomposition)`
 
 Add a decomposition of the instruction to the SessionEquivalenceLibrary.
 
-<span id="undefined" />
+### assemble
+
+<span id="qiskit.circuit.classicalfunction.BooleanExpression.assemble" />
 
 `assemble()`
 
@@ -80,7 +94,9 @@ Assemble a QasmQobjInstruction
 
 `Instruction`
 
-<span id="undefined" />
+### broadcast\_arguments
+
+<span id="qiskit.circuit.classicalfunction.BooleanExpression.broadcast_arguments" />
 
 `broadcast_arguments(qargs, cargs)`
 
@@ -133,17 +149,21 @@ A tuple with single arguments.
 
 **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
 
-<span id="undefined" />
+### c\_if
+
+<span id="qiskit.circuit.classicalfunction.BooleanExpression.c_if" />
 
 `c_if(classical, val)`
 
 Add classical condition on register classical and value val.
 
-<span id="undefined" />
+### control
+
+<span id="qiskit.circuit.classicalfunction.BooleanExpression.control" />
 
 `control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
-Return controlled version of gate. See [`ControlledGate`](qiskit.circuit.ControlledGate#qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") for usage.
+Return controlled version of gate. See [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") for usage.
 
 **Parameters**
 
@@ -157,13 +177,15 @@ Controlled version of gate. This default algorithm uses num\_ctrl\_qubits-1 anci
 
 **Return type**
 
-[qiskit.circuit.ControlledGate](qiskit.circuit.ControlledGate#qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+[qiskit.circuit.ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
 
 **Raises**
 
 **QiskitError** – unrecognized mode or invalid ctrl\_state
 
-<span id="undefined" />
+### copy
+
+<span id="qiskit.circuit.classicalfunction.BooleanExpression.copy" />
 
 `copy(name=None)`
 
@@ -181,27 +203,35 @@ updated if it was provided
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+### decompositions
+
+<span id="qiskit.circuit.classicalfunction.BooleanExpression.decompositions" />
 
 `property decompositions`
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
-<span id="undefined" />
+### definition
+
+<span id="qiskit.circuit.classicalfunction.BooleanExpression.definition" />
 
 `property definition`
 
 Return definition in terms of other basic gates.
 
-<span id="undefined" />
+### duration
+
+<span id="qiskit.circuit.classicalfunction.BooleanExpression.duration" />
 
 `property duration`
 
 Get the duration.
 
-<span id="undefined" />
+### from\_dimacs\_file
+
+<span id="qiskit.circuit.classicalfunction.BooleanExpression.from_dimacs_file" />
 
 `classmethod from_dimacs_file(filename)`
 
@@ -217,10 +247,12 @@ A gate for the input string
 
 **Raises**
 
-*   [**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError#qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – If tweedledum is not installed. Tweedledum is required.
+*   [**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – If tweedledum is not installed. Tweedledum is required.
 *   **FileNotFoundError** – If filename is not found.
 
-<span id="undefined" />
+### inverse
+
+<span id="qiskit.circuit.classicalfunction.BooleanExpression.inverse" />
 
 `inverse()`
 
@@ -236,19 +268,23 @@ a fresh instruction for the inverse
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
 **Raises**
 
 **CircuitError** – if the instruction is not composite and an inverse has not been implemented for it.
 
-<span id="undefined" />
+### is\_parameterized
+
+<span id="qiskit.circuit.classicalfunction.BooleanExpression.is_parameterized" />
 
 `is_parameterized()`
 
 Return True .IFF. instruction is parameterized else False
 
-<span id="undefined" />
+### label
+
+<span id="qiskit.circuit.classicalfunction.BooleanExpression.label" />
 
 `property label`
 
@@ -258,7 +294,9 @@ Return gate label
 
 `str`
 
-<span id="undefined" />
+### mirror
+
+<span id="qiskit.circuit.classicalfunction.BooleanExpression.mirror" />
 
 `mirror()`
 
@@ -272,15 +310,19 @@ reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+### params
+
+<span id="qiskit.circuit.classicalfunction.BooleanExpression.params" />
 
 `property params`
 
 return instruction params.
 
-<span id="undefined" />
+### power
+
+<span id="qiskit.circuit.classicalfunction.BooleanExpression.power" />
 
 `power(exponent)`
 
@@ -296,13 +338,15 @@ To which to\_matrix is self.to\_matrix^exponent.
 
 **Return type**
 
-[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate#qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
+[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
 
 **Raises**
 
 **CircuitError** – If Gate is not unitary
 
-<span id="undefined" />
+### qasm
+
+<span id="qiskit.circuit.classicalfunction.BooleanExpression.qasm" />
 
 `qasm()`
 
@@ -310,7 +354,9 @@ Return a default OpenQASM string for the instruction.
 
 Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
 
-<span id="undefined" />
+### repeat
+
+<span id="qiskit.circuit.classicalfunction.BooleanExpression.repeat" />
 
 `repeat(n)`
 
@@ -326,13 +372,15 @@ Containing the definition.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
 **Raises**
 
 **CircuitError** – If n \< 1.
 
-<span id="undefined" />
+### reverse\_ops
+
+<span id="qiskit.circuit.classicalfunction.BooleanExpression.reverse_ops" />
 
 `reverse_ops()`
 
@@ -348,9 +396,11 @@ sub-instructions reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+### simulate
+
+<span id="qiskit.circuit.classicalfunction.BooleanExpression.simulate" />
 
 `simulate(bitstring)`
 
@@ -370,7 +420,9 @@ result of the evaluation.
 
 bool
 
-<span id="undefined" />
+### soft\_compare
+
+<span id="qiskit.circuit.classicalfunction.BooleanExpression.soft_compare" />
 
 `soft_compare(other)`
 
@@ -388,11 +440,13 @@ are self and other equal up to parameter expressions.
 
 bool
 
-<span id="undefined" />
+### synth
+
+<span id="qiskit.circuit.classicalfunction.BooleanExpression.synth" />
 
 `synth(registerless=True, synthesizer=None)`
 
-Synthesis the logic network into a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
+Synthesis the logic network into a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
 
 **Parameters**
 
@@ -405,9 +459,11 @@ A circuit implementing the logic network.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-<span id="undefined" />
+### to\_matrix
+
+<span id="qiskit.circuit.classicalfunction.BooleanExpression.to_matrix" />
 
 `to_matrix()`
 
@@ -425,14 +481,19 @@ np.ndarray
 
 **CircuitError** – If a Gate subclass does not implement this method an exception will be raised when this base class method is called.
 
-<span id="undefined" />
+### unit
+
+<span id="qiskit.circuit.classicalfunction.BooleanExpression.unit" />
 
 `property unit`
 
 Get the time unit of duration.
 
-<span id="undefined" />
+### validate\_parameter
+
+<span id="qiskit.circuit.classicalfunction.BooleanExpression.validate_parameter" />
 
 `validate_parameter(parameter)`
 
 Gate parameters should be int, float, or ParameterExpression
+

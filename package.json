@@ -1,16 +1,16 @@
 {
   "name": "docs",
   "version": "0.1.0",
-  "description": "The documentation content home for https://docs.quantum-computing.ibm.com.",
+  "description": "The documentation content home for https://docs.quantum.ibm.com.",
   "author": "Qiskit Development Team",
   "license": "Apache-2.0",
   "scripts": {
-    "check": "npm run check:metadata && npm run check:spelling && npm run check:links && npm run check:fmt && npm run check:release-notes",
+    "check": "npm run check:metadata && npm run check:spelling && npm run check:links && npm run check:fmt",
     "check:metadata": "node -r esbuild-register scripts/commands/checkMetadata.ts",
     "check:links": "node -r esbuild-register scripts/commands/checkLinks.ts",
-    "check:release-notes": "node -r esbuild-register scripts/commands/validateReleaseNotesSync.ts",
     "check:spelling": "cspell --relative --no-progress docs/**/*.md* docs/api/**/*.md*",
     "check:fmt": "prettier --check .",
+    "check-pages-render": "node -r esbuild-register scripts/commands/checkPagesRender.ts",
     "fmt": "prettier --write .",
     "test": "jest",
     "typecheck": "tsc",
@@ -38,7 +38,6 @@
     "mdast": "^3.0.0",
     "mkdirp": "^3.0.1",
     "p-map": "^6.0.0",
-    "p-queue": "^7.4.1",
     "prettier": "^3.0.3",
     "rehype-parse": "^8.0.0",
     "rehype-remark": "^9.1.2",
@@ -54,7 +53,7 @@
     "zx": "^7.2.3"
   },
   "dependencies": {
-    "esbuild": "^0.19.5",
+    "esbuild": "^0.19.11",
     "fast-levenshtein": "^3.0.0",
     "markdown-link-extractor": "^3.1.0",
     "transform-markdown-links": "^2.1.0"

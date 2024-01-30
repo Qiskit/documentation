@@ -1,8 +1,16 @@
+---
+title: PySCFDriver
+description: API reference for qiskit.chemistry.drivers.PySCFDriver
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.drivers.PySCFDriver
+---
+
 # PySCFDriver
 
-<span id="undefined" />
+<span id="qiskit.chemistry.drivers.PySCFDriver" />
 
-`PySCFDriver(atom='H 0.0 0.0 0.0; H 0.0 0.0 0.735', unit=<UnitsType.ANGSTROM: 'Angstrom'>, charge=0, spin=0, basis='sto3g', hf_method=<HFMethodType.RHF: 'rhf'>, conv_tol=1e-09, max_cycle=50, init_guess=<InitialGuess.MINAO: 'minao'>, max_memory=None, molecule=None)`
+`PySCFDriver(atom='H 0.0 0.0 0.0; H 0.0 0.0 0.735', unit=<UnitsType.ANGSTROM: 'Angstrom'>, charge=0, spin=0, basis='sto3g', hf_method=<HFMethodType.RHF: 'rhf'>, conv_tol=1e-09, max_cycle=50, init_guess=<InitialGuess.MINAO: 'minao'>, max_memory=None, molecule=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/pyscfd/pyscfdriver.py "view source code")
 
 Bases: `qiskit.chemistry.drivers.fermionic_driver.FermionicDriver`
 
@@ -26,17 +34,29 @@ See [https://sunqm.github.io/pyscf/](https://sunqm.github.io/pyscf/)
 
 **Raises**
 
-[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError#qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid Input
+[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid Input
 
 ## Methods
 
-|                                                                                                                                       |                                            |
-| ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
-| [`run`](qiskit.chemistry.drivers.PySCFDriver.run#qiskit.chemistry.drivers.PySCFDriver.run "qiskit.chemistry.drivers.PySCFDriver.run") | Runs driver to produce a QMolecule output. |
+### run
+
+<span id="qiskit.chemistry.drivers.PySCFDriver.run" />
+
+`PySCFDriver.run()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/pyscfd/pyscfdriver.py "view source code")
+
+Runs driver to produce a QMolecule output.
+
+**Return type**
+
+`QMolecule`
+
+**Returns**
+
+A QMolecule containing the molecular data.
 
 ## Attributes
 
-<span id="undefined" />
+<span id="qiskit.chemistry.drivers.PySCFDriver.basis" />
 
 ### basis
 
@@ -46,7 +66,7 @@ return basis
 
 `str`
 
-<span id="undefined" />
+<span id="qiskit.chemistry.drivers.PySCFDriver.hf_method" />
 
 ### hf\_method
 
@@ -56,7 +76,7 @@ return Hartree-Fock method
 
 `str`
 
-<span id="undefined" />
+<span id="qiskit.chemistry.drivers.PySCFDriver.molecule" />
 
 ### molecule
 
@@ -66,7 +86,7 @@ return molecule
 
 `Optional`\[`Molecule`]
 
-<span id="undefined" />
+<span id="qiskit.chemistry.drivers.PySCFDriver.supports_molecule" />
 
 ### supports\_molecule
 
@@ -79,3 +99,4 @@ True for derived classes that support Molecule.
 **Returns**
 
 True if Molecule is supported.
+

@@ -1,8 +1,16 @@
+---
+title: CSwapGate
+description: API reference for qiskit.circuit.library.CSwapGate
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.CSwapGate
+---
+
 # CSwapGate
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.CSwapGate" />
 
-`CSwapGate(label=None, ctrl_state=None)`
+`CSwapGate(label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/swap.py "view source code")
 
 Bases: `qiskit.circuit.controlledgate.ControlledGate`
 
@@ -75,13 +83,17 @@ Create new CSWAP gate.
 
 ## Methods Defined Here
 
-|                                                                                                                                           |                                     |
-| ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
-| [`inverse`](qiskit.circuit.library.CSwapGate.inverse#qiskit.circuit.library.CSwapGate.inverse "qiskit.circuit.library.CSwapGate.inverse") | Return inverse CSwap gate (itself). |
+### inverse
+
+<span id="qiskit.circuit.library.CSwapGate.inverse" />
+
+`CSwapGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/swap.py "view source code")
+
+Return inverse CSwap gate (itself).
 
 ## Attributes
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.CSwapGate.ctrl_state" />
 
 ### ctrl\_state
 
@@ -91,13 +103,13 @@ Return the control state of the gate as a decimal integer.
 
 `int`
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.CSwapGate.decompositions" />
 
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.CSwapGate.definition" />
 
 ### definition
 
@@ -107,13 +119,13 @@ Return definition in terms of other basic gates. If the gate has open controls, 
 
 `List`
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.CSwapGate.duration" />
 
 ### duration
 
 Get the duration.
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.CSwapGate.label" />
 
 ### label
 
@@ -123,7 +135,7 @@ Return instruction label
 
 `str`
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.CSwapGate.name" />
 
 ### name
 
@@ -137,7 +149,7 @@ where \<original\_name> is the gate name for the default case of closed control 
 
 `str`
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.CSwapGate.num_ctrl_qubits" />
 
 ### num\_ctrl\_qubits
 
@@ -151,7 +163,7 @@ The number of control qubits for the gate.
 
 int
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.CSwapGate.params" />
 
 ### params
 
@@ -169,8 +181,9 @@ list
 
 **CircuitError** – Controlled gate does not define a base gate
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.CSwapGate.unit" />
 
 ### unit
 
 Get the time unit of duration.
+

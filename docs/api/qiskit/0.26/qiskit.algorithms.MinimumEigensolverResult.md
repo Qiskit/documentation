@@ -1,12 +1,22 @@
+---
+title: MinimumEigensolverResult
+description: API reference for qiskit.algorithms.MinimumEigensolverResult
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.algorithms.MinimumEigensolverResult
+---
+
 # qiskit.algorithms.MinimumEigensolverResult
 
-<span id="undefined" />
+<span id="qiskit.algorithms.MinimumEigensolverResult" />
 
-`MinimumEigensolverResult`
+`MinimumEigensolverResult`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/minimum_eigen_solvers/minimum_eigen_solver.py "view source code")
 
 Minimum Eigensolver Result.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.algorithms.MinimumEigensolverResult.__init__" />
 
 `__init__()`
 
@@ -27,7 +37,9 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`eigenstate`](#qiskit.algorithms.MinimumEigensolverResult.eigenstate "qiskit.algorithms.MinimumEigensolverResult.eigenstate")                                           | return eigen state               |
 | [`eigenvalue`](#qiskit.algorithms.MinimumEigensolverResult.eigenvalue "qiskit.algorithms.MinimumEigensolverResult.eigenvalue")                                           | returns eigen value              |
 
-<span id="undefined" />
+### aux\_operator\_eigenvalues
+
+<span id="qiskit.algorithms.MinimumEigensolverResult.aux_operator_eigenvalues" />
 
 `property aux_operator_eigenvalues`
 
@@ -37,7 +49,9 @@ return aux operator eigen values
 
 `Optional`\[`ndarray`]
 
-<span id="undefined" />
+### combine
+
+<span id="qiskit.algorithms.MinimumEigensolverResult.combine" />
 
 `combine(result)`
 
@@ -51,7 +65,9 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 `None`
 
-<span id="undefined" />
+### eigenstate
+
+<span id="qiskit.algorithms.MinimumEigensolverResult.eigenstate" />
 
 `property eigenstate`
 
@@ -61,7 +77,9 @@ return eigen state
 
 `Optional`\[`ndarray`]
 
-<span id="undefined" />
+### eigenvalue
+
+<span id="qiskit.algorithms.MinimumEigensolverResult.eigenvalue" />
 
 `property eigenvalue`
 
@@ -70,3 +88,4 @@ returns eigen value
 **Return type**
 
 `Optional`\[`complex`]
+

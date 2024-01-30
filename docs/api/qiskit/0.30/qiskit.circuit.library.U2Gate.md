@@ -1,8 +1,16 @@
+---
+title: U2Gate
+description: API reference for qiskit.circuit.library.U2Gate
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.U2Gate
+---
+
 # U2Gate
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.U2Gate" />
 
-`U2Gate(phi, lam, label=None)`
+`U2Gate(phi, lam, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/u2.py "view source code")
 
 Bases: `qiskit.circuit.gate.Gate`
 
@@ -48,31 +56,37 @@ Create new U2 gate.
 
 ## Methods Defined Here
 
-|                                                                                                                                  |                          |
-| -------------------------------------------------------------------------------------------------------------------------------- | ------------------------ |
-| [`inverse`](qiskit.circuit.library.U2Gate.inverse#qiskit.circuit.library.U2Gate.inverse "qiskit.circuit.library.U2Gate.inverse") | Return inverted U2 gate. |
+### inverse
+
+<span id="qiskit.circuit.library.U2Gate.inverse" />
+
+`U2Gate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/u2.py "view source code")
+
+Return inverted U2 gate.
+
+$U2(\phi, \lambda)^{\dagger} =U2(-\lambda-\pi, -\phi+\pi)$)
 
 ## Attributes
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.U2Gate.decompositions" />
 
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.U2Gate.definition" />
 
 ### definition
 
 Return definition in terms of other basic gates.
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.U2Gate.duration" />
 
 ### duration
 
 Get the duration.
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.U2Gate.label" />
 
 ### label
 
@@ -82,14 +96,15 @@ Return instruction label
 
 `str`
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.U2Gate.params" />
 
 ### params
 
 return instruction params.
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.U2Gate.unit" />
 
 ### unit
 
 Get the time unit of duration.
+

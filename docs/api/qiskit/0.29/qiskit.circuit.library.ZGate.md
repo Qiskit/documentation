@@ -1,8 +1,16 @@
+---
+title: ZGate
+description: API reference for qiskit.circuit.library.ZGate
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.ZGate
+---
+
 # ZGate
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.ZGate" />
 
-`ZGate(label=None)`
+`ZGate(label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/z.py "view source code")
 
 Bases: `qiskit.circuit.gate.Gate`
 
@@ -50,32 +58,59 @@ Create new Z gate.
 
 ## Methods Defined Here
 
-|                                                                                                                               |                                     |
-| ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
-| [`control`](qiskit.circuit.library.ZGate.control#qiskit.circuit.library.ZGate.control "qiskit.circuit.library.ZGate.control") | Return a (multi-)controlled-Z gate. |
-| [`inverse`](qiskit.circuit.library.ZGate.inverse#qiskit.circuit.library.ZGate.inverse "qiskit.circuit.library.ZGate.inverse") | Return inverted Z gate (itself).    |
+### control
+
+<span id="qiskit.circuit.library.ZGate.control" />
+
+`ZGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/z.py "view source code")
+
+Return a (multi-)controlled-Z gate.
+
+One control returns a CZ gate.
+
+**Parameters**
+
+*   **num\_ctrl\_qubits** (*int*) – number of control qubits.
+*   **label** (*str or None*) – An optional label for the gate \[Default: None]
+*   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
+
+**Returns**
+
+controlled version of this gate.
+
+**Return type**
+
+[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+
+### inverse
+
+<span id="qiskit.circuit.library.ZGate.inverse" />
+
+`ZGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/z.py "view source code")
+
+Return inverted Z gate (itself).
 
 ## Attributes
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.ZGate.decompositions" />
 
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.ZGate.definition" />
 
 ### definition
 
 Return definition in terms of other basic gates.
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.ZGate.duration" />
 
 ### duration
 
 Get the duration.
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.ZGate.label" />
 
 ### label
 
@@ -85,14 +120,15 @@ Return instruction label
 
 `str`
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.ZGate.params" />
 
 ### params
 
 return instruction params.
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.ZGate.unit" />
 
 ### unit
 
 Get the time unit of duration.
+

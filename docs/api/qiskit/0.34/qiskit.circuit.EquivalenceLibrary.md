@@ -1,6 +1,6 @@
 # EquivalenceLibrary
 
-<span id="undefined" />
+
 
 `EquivalenceLibrary(*, base=None)`
 

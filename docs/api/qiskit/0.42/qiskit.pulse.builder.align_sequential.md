@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.pulse.builder.align_sequential
 ---
 
-# qiskit.pulse.builder.align\_sequential[¶](#qiskit-pulse-builder-align-sequential "Permalink to this headline")
+# qiskit.pulse.builder.align\_sequential
 
 <span id="qiskit.pulse.builder.align_sequential" />
 
-`align_sequential()`
+`align_sequential()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/builder.py "view source code")
 
 Sequential alignment pulse scheduling context.
 

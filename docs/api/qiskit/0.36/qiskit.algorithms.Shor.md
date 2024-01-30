@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.Shor
 
 <span id="qiskit.algorithms.Shor" />
 
-`Shor(quantum_instance=None)`
+`Shor(quantum_instance=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/factorizers/shor.py "view source code")
 
 Bases: `object`
 
@@ -24,7 +24,7 @@ See also [https://arxiv.org/abs/quant-ph/0205095](https://arxiv.org/abs/quant-ph
 
 **Parameters**
 
-**quantum\_instance** (`Union`\[[`Backend`](qiskit.providers.Backend "qiskit.providers.backend.Backend"), [`QuantumInstance`](qiskit.utils.QuantumInstance "qiskit.utils.quantum_instance.QuantumInstance"), `None`]) – Quantum Instance or Backend
+**quantum\_instance** (`Union`\[`Backend`, `BaseBackend`, `QuantumInstance`, `None`]) – Quantum Instance or Backend
 
 ## Methods
 
@@ -32,7 +32,7 @@ See also [https://arxiv.org/abs/quant-ph/0205095](https://arxiv.org/abs/quant-ph
 
 <span id="qiskit.algorithms.Shor.construct_circuit" />
 
-`Shor.construct_circuit(N, a=2, measurement=False)`
+`Shor.construct_circuit(N, a=2, measurement=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/factorizers/shor.py "view source code")
 
 Construct quantum part of the algorithm.
 
@@ -44,7 +44,7 @@ Construct quantum part of the algorithm.
 
 **Return type**
 
-[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+`QuantumCircuit`
 
 **Returns**
 
@@ -54,7 +54,7 @@ Quantum circuit.
 
 <span id="qiskit.algorithms.Shor.factor" />
 
-`Shor.factor(N, a=2)`
+`Shor.factor(N, a=2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/factorizers/shor.py "view source code")
 
 Execute the algorithm.
 
@@ -82,7 +82,7 @@ results of the algorithm.
 
 <span id="qiskit.algorithms.Shor.modinv" />
 
-`static Shor.modinv(a, m)`
+`static Shor.modinv(a, m)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/factorizers/shor.py "view source code")
 
 Returns the modular multiplicative inverse of a with respect to the modulus m.
 
@@ -100,5 +100,5 @@ Returns quantum instance.
 
 **Return type**
 
-`Optional`\[[`QuantumInstance`](qiskit.utils.QuantumInstance "qiskit.utils.quantum_instance.QuantumInstance")]
+`Optional`\[`QuantumInstance`]
 

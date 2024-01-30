@@ -1,16 +1,24 @@
+---
+title: align_measures
+description: API reference for qiskit.pulse.transforms.align_measures
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.transforms.align_measures
+---
+
 # qiskit.pulse.transforms.align\_measures
 
-<span id="undefined" />
+<span id="qiskit.pulse.transforms.align_measures" />
 
-`align_measures(schedules, inst_map=None, cal_gate='u3', max_calibration_duration=None, align_time=None, align_all=True)`
+`align_measures(schedules, inst_map=None, cal_gate='u3', max_calibration_duration=None, align_time=None, align_all=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/transforms/canonicalization.py "view source code")
 
 Return new schedules where measurements occur at the same physical time.
 
-This transformation will align the first [`qiskit.pulse.Acquire`](qiskit.pulse.Acquire#qiskit.pulse.Acquire "qiskit.pulse.Acquire") on every channel to occur at the same time.
+This transformation will align the first [`qiskit.pulse.Acquire`](qiskit.pulse.Acquire "qiskit.pulse.Acquire") on every channel to occur at the same time.
 
 Minimum measurement wait time (to allow for calibration pulses) is enforced and may be set with `max_calibration_duration`.
 
-By default only instructions containing a [`AcquireChannel`](qiskit.pulse.AcquireChannel#qiskit.pulse.AcquireChannel "qiskit.pulse.AcquireChannel") or [`MeasureChannel`](qiskit.pulse.MeasureChannel#qiskit.pulse.MeasureChannel "qiskit.pulse.MeasureChannel") will be shifted. If you wish to keep the relative timing of all instructions in the schedule set `align_all=True`.
+By default only instructions containing a [`AcquireChannel`](qiskit.pulse.AcquireChannel "qiskit.pulse.AcquireChannel") or [`MeasureChannel`](qiskit.pulse.MeasureChannel "qiskit.pulse.MeasureChannel") will be shifted. If you wish to keep the relative timing of all instructions in the schedule set `align_all=True`.
 
 This method assumes that `MeasureChannel(i)` and `AcquireChannel(i)` correspond to the same qubit and the acquire/play instructions should be shifted together on these channels.
 
@@ -61,4 +69,5 @@ The input list of schedules transformed to have their measurements aligned.
 
 **Raises**
 
-[**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the provided alignment time is negative.
+[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the provided alignment time is negative.
+

@@ -18,15 +18,11 @@ python_api_name: qiskit.providers.ibmq.job
 
 <span id="module-qiskit.providers.ibmq.job" />
 
-`qiskit.providers.ibmq.job¶`
+`qiskit.providers.ibmq.job`
 
 Modules representing IBM Quantum Experience jobs.
 
 ## Classes
-
-<span id="module-qiskit.providers.ibmq.job" />
-
-`¶`
 
 |                                                                                                                                |                                                                             |
 | ------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------- |
@@ -35,19 +31,11 @@ Modules representing IBM Quantum Experience jobs.
 
 ## Functions
 
-<span id="module-qiskit.providers.ibmq.job" />
-
-`¶`
-
 |                                                                                                                          |                                              |
 | ------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------- |
 | [`job_monitor`](qiskit.providers.ibmq.job.job_monitor "qiskit.providers.ibmq.job.job_monitor")(job\[, interval, output]) | Monitor the status of an `IBMQJob` instance. |
 
 ## Exception
-
-<span id="module-qiskit.providers.ibmq.job" />
-
-`¶`
 
 |                                                                                                                                                  |                                                                     |
 | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------- |

@@ -1,3 +1,11 @@
+---
+title: get_operator
+description: API reference for qiskit.optimization.applications.ising.knapsack.get_operator
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.optimization.applications.ising.knapsack.get_operator
+---
+
 <span id="qiskit-optimization-applications-ising-knapsack" />
 
 # qiskit.optimization.applications.ising.knapsack
@@ -16,9 +24,9 @@ If we have the weights w\[i], the values v\[i] and the maximum weight W\_max. We
 | [`get_solution`](#qiskit.optimization.applications.ising.knapsack.get_solution "qiskit.optimization.applications.ising.knapsack.get_solution")(x, values)                                            | Get the solution to the knapsack problem from the bitstring that represents to the ground state of the Hamiltonian |
 | [`knapsack_value_weight`](#qiskit.optimization.applications.ising.knapsack.knapsack_value_weight "qiskit.optimization.applications.ising.knapsack.knapsack_value_weight")(solution, values, weights) | Get the total wight and value of the items taken in the knapsack.                                                  |
 
-<span id="undefined" />
+<span id="qiskit.optimization.applications.ising.knapsack.get_operator" />
 
-`get_operator(values, weights, max_weight)`
+`get_operator(values, weights, max_weight)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/knapsack.py "view source code")
 
 Generate Hamiltonian for the knapsack problem.
 
@@ -44,7 +52,7 @@ operator for the Hamiltonian float: a constant shift for the obj function.
 
 **Return type**
 
-[WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator#qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
+[WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
 
 **Raises**
 
@@ -53,9 +61,9 @@ operator for the Hamiltonian float: a constant shift for the obj function.
 *   **ValueError** – All values are zero
 *   **ValueError** – max\_weight is negative
 
-<span id="undefined" />
+<span id="qiskit.optimization.applications.ising.knapsack.get_solution" />
 
-`get_solution(x, values)`
+`get_solution(x, values)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/knapsack.py "view source code")
 
 Get the solution to the knapsack problem from the bitstring that represents to the ground state of the Hamiltonian
 
@@ -74,9 +82,9 @@ corresponding to values that have been taken in the knapsack. i.e. if the soluti
 
 numpy.ndarray
 
-<span id="undefined" />
+<span id="qiskit.optimization.applications.ising.knapsack.knapsack_value_weight" />
 
-`knapsack_value_weight(solution, values, weights)`
+`knapsack_value_weight(solution, values, weights)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/knapsack.py "view source code")
 
 Get the total wight and value of the items taken in the knapsack.
 
@@ -93,3 +101,4 @@ the total value and weight of the items in the knapsack
 **Return type**
 
 tuple
+

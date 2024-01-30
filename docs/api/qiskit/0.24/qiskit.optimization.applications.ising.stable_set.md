@@ -22,9 +22,9 @@ Convert stable set instances into Pauli list. We read instances in the Gset form
 | [`get_operator`](#qiskit.optimization.applications.ising.stable_set.get_operator "qiskit.optimization.applications.ising.stable_set.get_operator")(w)                   | Generate Hamiltonian for the maximum stable set in a graph. |
 | [`stable_set_value`](#qiskit.optimization.applications.ising.stable_set.stable_set_value "qiskit.optimization.applications.ising.stable_set.stable_set_value")(x, w)    | Compute the value of a stable set, and its feasibility.     |
 
-<span id="undefined" />
+<span id="qiskit.optimization.applications.ising.stable_set.get_graph_solution" />
 
-`get_graph_solution(x)`
+`get_graph_solution(x)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/stable_set.py "view source code")
 
 Get graph solution from binary string.
 
@@ -40,9 +40,9 @@ graph solution as binary numpy array.
 
 numpy.ndarray
 
-<span id="undefined" />
+<span id="qiskit.optimization.applications.ising.stable_set.get_operator" />
 
-`get_operator(w)`
+`get_operator(w)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/stable_set.py "view source code")
 
 Generate Hamiltonian for the maximum stable set in a graph.
 
@@ -56,11 +56,11 @@ operator for the Hamiltonian and a constant shift for the obj function.
 
 **Return type**
 
-tuple([WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator#qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator"), float)
+tuple([WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator"), float)
 
-<span id="undefined" />
+<span id="qiskit.optimization.applications.ising.stable_set.stable_set_value" />
 
-`stable_set_value(x, w)`
+`stable_set_value(x, w)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/stable_set.py "view source code")
 
 Compute the value of a stable set, and its feasibility.
 

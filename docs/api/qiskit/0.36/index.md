@@ -23,7 +23,7 @@ python_api_name: qiskit
 *   [Providers Interface (`qiskit.providers`)](providers)
 *   [Writing a New Provider](providers#writing-a-new-provider)
 *   [Migrating between Backend API Versions](providers#migrating-between-backend-api-versions)
-*   [Fake Provider (`qiskit.providers.fake_provider`)](providers_fake_provider)
+*   [Legacy Provider Interface Base Objects (`qiskit.providers`)](providers#legacy-provider-interface-base-objects-qiskit-providers)
 *   [Backend Objects (`qiskit.providers.models`)](providers_models)
 *   [Pulse (`qiskit.pulse`)](pulse)
 *   [Circuit Scheduler (`qiskit.scheduler`)](scheduler)

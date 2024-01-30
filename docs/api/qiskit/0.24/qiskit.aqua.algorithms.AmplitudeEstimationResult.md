@@ -1,14 +1,24 @@
+---
+title: AmplitudeEstimationResult
+description: API reference for qiskit.aqua.algorithms.AmplitudeEstimationResult
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.algorithms.AmplitudeEstimationResult
+---
+
 <span id="qiskit-aqua-algorithms-amplitudeestimationresult" />
 
 # qiskit.aqua.algorithms.AmplitudeEstimationResult
 
-<span id="undefined" />
+<span id="qiskit.aqua.algorithms.AmplitudeEstimationResult" />
 
-`AmplitudeEstimationResult(a_dict=None)`
+`AmplitudeEstimationResult(a_dict=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/amplitude_estimators/ae.py "view source code")
 
 AmplitudeEstimation Result.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.aqua.algorithms.AmplitudeEstimationResult.__init__" />
 
 `__init__(a_dict=None)`
 
@@ -52,7 +62,9 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`shots`](#qiskit.aqua.algorithms.AmplitudeEstimationResult.shots "qiskit.aqua.algorithms.AmplitudeEstimationResult.shots")                                           | return shots                |
 | [`y_measurements`](#qiskit.aqua.algorithms.AmplitudeEstimationResult.y_measurements "qiskit.aqua.algorithms.AmplitudeEstimationResult.y_measurements")                | return y\_measurements      |
 
-<span id="undefined" />
+### a\_estimation
+
+<span id="qiskit.aqua.algorithms.AmplitudeEstimationResult.a_estimation" />
 
 `property a_estimation`
 
@@ -62,7 +74,9 @@ return a\_estimation
 
 `float`
 
-<span id="undefined" />
+### a\_samples
+
+<span id="qiskit.aqua.algorithms.AmplitudeEstimationResult.a_samples" />
 
 `property a_samples`
 
@@ -72,7 +86,9 @@ return a\_samples
 
 `List`\[`Tuple`\[`float`, `float`]]
 
-<span id="undefined" />
+### circuit\_result
+
+<span id="qiskit.aqua.algorithms.AmplitudeEstimationResult.circuit_result" />
 
 `property circuit_result`
 
@@ -82,7 +98,9 @@ return circuit result
 
 `Union`\[`ndarray`, `Dict`\[`str`, `int`], `None`]
 
-<span id="undefined" />
+### clear
+
+<span id="qiskit.aqua.algorithms.AmplitudeEstimationResult.clear" />
 
 `clear()`
 
@@ -90,7 +108,9 @@ return circuit result
 
 `None`
 
-<span id="undefined" />
+### combine
+
+<span id="qiskit.aqua.algorithms.AmplitudeEstimationResult.combine" />
 
 `combine(result)`
 
@@ -104,7 +124,9 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 `None`
 
-<span id="undefined" />
+### confidence\_interval
+
+<span id="qiskit.aqua.algorithms.AmplitudeEstimationResult.confidence_interval" />
 
 `property confidence_interval`
 
@@ -114,7 +136,9 @@ return confidence\_interval
 
 `List`\[`float`]
 
-<span id="undefined" />
+### estimation
+
+<span id="qiskit.aqua.algorithms.AmplitudeEstimationResult.estimation" />
 
 `property estimation`
 
@@ -124,7 +148,9 @@ return estimation
 
 `float`
 
-<span id="undefined" />
+### from\_dict
+
+<span id="qiskit.aqua.algorithms.AmplitudeEstimationResult.from_dict" />
 
 `static from_dict(a_dict)`
 
@@ -134,19 +160,27 @@ create new object from a dictionary
 
 `AmplitudeEstimationResult`
 
-<span id="undefined" />
+### get
+
+<span id="qiskit.aqua.algorithms.AmplitudeEstimationResult.get" />
 
 `get(k[, d]) → D[k] if k in D, else d. d defaults to None.`
 
-<span id="undefined" />
+### items
+
+<span id="qiskit.aqua.algorithms.AmplitudeEstimationResult.items" />
 
 `items() → a set-like object providing a view on D’s items`
 
-<span id="undefined" />
+### keys
+
+<span id="qiskit.aqua.algorithms.AmplitudeEstimationResult.keys" />
 
 `keys() → a set-like object providing a view on D’s keys`
 
-<span id="undefined" />
+### mapped\_a\_samples
+
+<span id="qiskit.aqua.algorithms.AmplitudeEstimationResult.mapped_a_samples" />
 
 `property mapped_a_samples`
 
@@ -156,7 +190,9 @@ return mapped\_a\_samples
 
 `List`\[`float`]
 
-<span id="undefined" />
+### mapped\_values
+
+<span id="qiskit.aqua.algorithms.AmplitudeEstimationResult.mapped_values" />
 
 `property mapped_values`
 
@@ -166,7 +202,9 @@ return mapped\_values
 
 `List`\[`float`]
 
-<span id="undefined" />
+### max\_probability
+
+<span id="qiskit.aqua.algorithms.AmplitudeEstimationResult.max_probability" />
 
 `property max_probability`
 
@@ -176,7 +214,9 @@ return max\_probability
 
 `float`
 
-<span id="undefined" />
+### ml\_value
+
+<span id="qiskit.aqua.algorithms.AmplitudeEstimationResult.ml_value" />
 
 `property ml_value`
 
@@ -186,7 +226,9 @@ returns ml\_value
 
 `float`
 
-<span id="undefined" />
+### mle
+
+<span id="qiskit.aqua.algorithms.AmplitudeEstimationResult.mle" />
 
 `property mle`
 
@@ -196,7 +238,9 @@ return mle
 
 `float`
 
-<span id="undefined" />
+### num\_oracle\_queries
+
+<span id="qiskit.aqua.algorithms.AmplitudeEstimationResult.num_oracle_queries" />
 
 `property num_oracle_queries`
 
@@ -206,7 +250,9 @@ return num\_oracle\_queries
 
 `int`
 
-<span id="undefined" />
+### pop
+
+<span id="qiskit.aqua.algorithms.AmplitudeEstimationResult.pop" />
 
 `pop(key, default=None)`
 
@@ -216,7 +262,9 @@ If key is not found, d is returned if given, otherwise KeyError is raised.
 
 `object`
 
-<span id="undefined" />
+### popitem
+
+<span id="qiskit.aqua.algorithms.AmplitudeEstimationResult.popitem" />
 
 `popitem()`
 
@@ -226,7 +274,9 @@ as a 2-tuple; but raise KeyError if D is empty.
 
 `Tuple`\[`object`, `object`]
 
-<span id="undefined" />
+### probabilities
+
+<span id="qiskit.aqua.algorithms.AmplitudeEstimationResult.probabilities" />
 
 `property probabilities`
 
@@ -236,11 +286,15 @@ return probabilities
 
 `List`\[`float`]
 
-<span id="undefined" />
+### setdefault
+
+<span id="qiskit.aqua.algorithms.AmplitudeEstimationResult.setdefault" />
 
 `setdefault(k[, d]) → D.get(k,d), also set D[k]=d if k not in D`
 
-<span id="undefined" />
+### shots
+
+<span id="qiskit.aqua.algorithms.AmplitudeEstimationResult.shots" />
 
 `property shots`
 
@@ -250,7 +304,9 @@ return shots
 
 `int`
 
-<span id="undefined" />
+### update
+
+<span id="qiskit.aqua.algorithms.AmplitudeEstimationResult.update" />
 
 `update(*args, **kwargs)`
 
@@ -260,11 +316,15 @@ If E present and has a .keys() method, does: for k in E: D\[k] = E\[k] If E pres
 
 `None`
 
-<span id="undefined" />
+### values
+
+<span id="qiskit.aqua.algorithms.AmplitudeEstimationResult.values" />
 
 `values() → an object providing a view on D’s values`
 
-<span id="undefined" />
+### y\_measurements
+
+<span id="qiskit.aqua.algorithms.AmplitudeEstimationResult.y_measurements" />
 
 `property y_measurements`
 
@@ -273,3 +333,4 @@ return y\_measurements
 **Return type**
 
 `List`\[`Tuple`\[`int`, `float`]]
+

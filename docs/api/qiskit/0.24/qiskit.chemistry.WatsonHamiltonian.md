@@ -1,10 +1,18 @@
+---
+title: WatsonHamiltonian
+description: API reference for qiskit.chemistry.WatsonHamiltonian
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.WatsonHamiltonian
+---
+
 <span id="qiskit-chemistry-watsonhamiltonian" />
 
 # qiskit.chemistry.WatsonHamiltonian
 
-<span id="undefined" />
+<span id="qiskit.chemistry.WatsonHamiltonian" />
 
-`WatsonHamiltonian(data, num_modes)`
+`WatsonHamiltonian(data, num_modes)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/watson_hamiltonian.py "view source code")
 
 Watson Hamiltonian class containing the results of a driver’s anharmonic calculation
 
@@ -13,7 +21,9 @@ Watson Hamiltonian class containing the results of a driver’s anharmonic calcu
 *   **data** (`List`\[`List`\[`Union`\[`int`, `float`]]]) – Hamiltonian matrix elements
 *   **num\_modes** (`int`) – number of modes
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.chemistry.WatsonHamiltonian.__init__" />
 
 `__init__(data, num_modes)`
 
@@ -35,7 +45,9 @@ Watson Hamiltonian class containing the results of a driver’s anharmonic calcu
 | [`data`](#qiskit.chemistry.WatsonHamiltonian.data "qiskit.chemistry.WatsonHamiltonian.data")                | Returns the matrix elements of the Hamiltonian |
 | [`num_modes`](#qiskit.chemistry.WatsonHamiltonian.num_modes "qiskit.chemistry.WatsonHamiltonian.num_modes") | Returns the number of modes                    |
 
-<span id="undefined" />
+### data
+
+<span id="qiskit.chemistry.WatsonHamiltonian.data" />
 
 `property data`
 
@@ -45,7 +57,9 @@ Returns the matrix elements of the Hamiltonian
 
 `List`\[`List`\[`Union`\[`int`, `float`]]]
 
-<span id="undefined" />
+### num\_modes
+
+<span id="qiskit.chemistry.WatsonHamiltonian.num_modes" />
 
 `property num_modes`
 
@@ -54,3 +68,4 @@ Returns the number of modes
 **Return type**
 
 `int`
+

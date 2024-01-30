@@ -1,8 +1,16 @@
+---
+title: GSLS
+description: API reference for qiskit.algorithms.optimizers.GSLS
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.algorithms.optimizers.GSLS
+---
+
 # qiskit.algorithms.optimizers.GSLS
 
-<span id="undefined" />
+<span id="qiskit.algorithms.optimizers.GSLS" />
 
-`GSLS(maxiter=10000, max_eval=10000, disp=False, sampling_radius=1e-06, sample_size_factor=1, initial_step_size=0.01, min_step_size=1e-10, step_size_multiplier=0.4, armijo_parameter=0.1, min_gradient_norm=1e-08, max_failed_rejection_sampling=50)`
+`GSLS(maxiter=10000, max_eval=10000, disp=False, sampling_radius=1e-06, sample_size_factor=1, initial_step_size=0.01, min_step_size=1e-10, step_size_multiplier=0.4, armijo_parameter=0.1, min_gradient_norm=1e-08, max_failed_rejection_sampling=50)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/optimizers/gsls.py "view source code")
 
 Gaussian-smoothed Line Search.
 
@@ -22,7 +30,9 @@ An implementation of the line search algorithm described in [https://arxiv.org/p
 *   **min\_gradient\_norm** (`float`) – If the gradient norm is below this threshold, the algorithm stops.
 *   **max\_failed\_rejection\_sampling** (`int`) – Maximum number of attempts to sample points within bounds.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.algorithms.optimizers.GSLS.__init__" />
 
 `__init__(maxiter=10000, max_eval=10000, disp=False, sampling_radius=1e-06, sample_size_factor=1, initial_step_size=0.01, min_step_size=1e-10, step_size_multiplier=0.4, armijo_parameter=0.1, min_gradient_norm=1e-08, max_failed_rejection_sampling=50)`
 
@@ -75,13 +85,17 @@ An implementation of the line search algorithm described in [https://arxiv.org/p
 | [`is_initial_point_supported`](#qiskit.algorithms.optimizers.GSLS.is_initial_point_supported "qiskit.algorithms.optimizers.GSLS.is_initial_point_supported")    | Returns is initial point supported  |
 | [`setting`](#qiskit.algorithms.optimizers.GSLS.setting "qiskit.algorithms.optimizers.GSLS.setting")                                                             | Return setting                      |
 
-<span id="undefined" />
+### bounds\_support\_level
+
+<span id="qiskit.algorithms.optimizers.GSLS.bounds_support_level" />
 
 `property bounds_support_level`
 
 Returns bounds support level
 
-<span id="undefined" />
+### get\_support\_level
+
+<span id="qiskit.algorithms.optimizers.GSLS.get_support_level" />
 
 `get_support_level()`
 
@@ -95,7 +109,9 @@ Return support level dictionary.
 
 A dictionary containing the support levels for different options.
 
-<span id="undefined" />
+### gradient\_approximation
+
+<span id="qiskit.algorithms.optimizers.GSLS.gradient_approximation" />
 
 `gradient_approximation(n, x, x_value, directions, sample_set_x, sample_set_y)`
 
@@ -118,7 +134,9 @@ Construct gradient approximation from given sample.
 
 Gradient approximation at x, as a 1D array.
 
-<span id="undefined" />
+### gradient\_num\_diff
+
+<span id="qiskit.algorithms.optimizers.GSLS.gradient_num_diff" />
 
 `static gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)`
 
@@ -139,73 +157,97 @@ the gradient computed
 
 grad
 
-<span id="undefined" />
+### gradient\_support\_level
+
+<span id="qiskit.algorithms.optimizers.GSLS.gradient_support_level" />
 
 `property gradient_support_level`
 
 Returns gradient support level
 
-<span id="undefined" />
+### initial\_point\_support\_level
+
+<span id="qiskit.algorithms.optimizers.GSLS.initial_point_support_level" />
 
 `property initial_point_support_level`
 
 Returns initial point support level
 
-<span id="undefined" />
+### is\_bounds\_ignored
+
+<span id="qiskit.algorithms.optimizers.GSLS.is_bounds_ignored" />
 
 `property is_bounds_ignored`
 
 Returns is bounds ignored
 
-<span id="undefined" />
+### is\_bounds\_required
+
+<span id="qiskit.algorithms.optimizers.GSLS.is_bounds_required" />
 
 `property is_bounds_required`
 
 Returns is bounds required
 
-<span id="undefined" />
+### is\_bounds\_supported
+
+<span id="qiskit.algorithms.optimizers.GSLS.is_bounds_supported" />
 
 `property is_bounds_supported`
 
 Returns is bounds supported
 
-<span id="undefined" />
+### is\_gradient\_ignored
+
+<span id="qiskit.algorithms.optimizers.GSLS.is_gradient_ignored" />
 
 `property is_gradient_ignored`
 
 Returns is gradient ignored
 
-<span id="undefined" />
+### is\_gradient\_required
+
+<span id="qiskit.algorithms.optimizers.GSLS.is_gradient_required" />
 
 `property is_gradient_required`
 
 Returns is gradient required
 
-<span id="undefined" />
+### is\_gradient\_supported
+
+<span id="qiskit.algorithms.optimizers.GSLS.is_gradient_supported" />
 
 `property is_gradient_supported`
 
 Returns is gradient supported
 
-<span id="undefined" />
+### is\_initial\_point\_ignored
+
+<span id="qiskit.algorithms.optimizers.GSLS.is_initial_point_ignored" />
 
 `property is_initial_point_ignored`
 
 Returns is initial point ignored
 
-<span id="undefined" />
+### is\_initial\_point\_required
+
+<span id="qiskit.algorithms.optimizers.GSLS.is_initial_point_required" />
 
 `property is_initial_point_required`
 
 Returns is initial point required
 
-<span id="undefined" />
+### is\_initial\_point\_supported
+
+<span id="qiskit.algorithms.optimizers.GSLS.is_initial_point_supported" />
 
 `property is_initial_point_supported`
 
 Returns is initial point supported
 
-<span id="undefined" />
+### ls\_optimize
+
+<span id="qiskit.algorithms.optimizers.GSLS.ls_optimize" />
 
 `ls_optimize(n, obj_fun, initial_point, var_lb, var_ub)`
 
@@ -231,7 +273,9 @@ Final iterate as a vector, corresponding objective function value, number of eva
 
 **ValueError** – If the number of dimensions mismatches the size of the initial point or the length of the lower or upper bound.
 
-<span id="undefined" />
+### optimize
+
+<span id="qiskit.algorithms.optimizers.GSLS.optimize" />
 
 `optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
@@ -259,13 +303,17 @@ point: is a 1D numpy.ndarray\[float] containing the solution value: is a float w
 
 **ValueError** – invalid input
 
-<span id="undefined" />
+### print\_options
+
+<span id="qiskit.algorithms.optimizers.GSLS.print_options" />
 
 `print_options()`
 
 Print algorithm-specific options.
 
-<span id="undefined" />
+### sample\_points
+
+<span id="qiskit.algorithms.optimizers.GSLS.sample_points" />
 
 `sample_points(n, x, num_points)`
 
@@ -287,7 +335,9 @@ The radius of the sphere is `self._options['sampling_radius']`.
 
 A tuple containing the sampling points and the directions.
 
-<span id="undefined" />
+### sample\_set
+
+<span id="qiskit.algorithms.optimizers.GSLS.sample_set" />
 
 `sample_set(n, x, var_lb, var_ub, num_points)`
 
@@ -313,13 +363,17 @@ Matrices of (unit-norm) sample directions and sample points, one per row. Both m
 
 **RuntimeError** – If not enough samples could be generated within the bounds.
 
-<span id="undefined" />
+### set\_max\_evals\_grouped
+
+<span id="qiskit.algorithms.optimizers.GSLS.set_max_evals_grouped" />
 
 `set_max_evals_grouped(limit)`
 
 Set max evals grouped
 
-<span id="undefined" />
+### set\_options
+
+<span id="qiskit.algorithms.optimizers.GSLS.set_options" />
 
 `set_options(**kwargs)`
 
@@ -331,13 +385,17 @@ The options dictionary may be used internally by a given optimizer to pass addit
 
 **kwargs** (*dict*) – options, given as name=value.
 
-<span id="undefined" />
+### setting
+
+<span id="qiskit.algorithms.optimizers.GSLS.setting" />
 
 `property setting`
 
 Return setting
 
-<span id="undefined" />
+### wrap\_function
+
+<span id="qiskit.algorithms.optimizers.GSLS.wrap_function" />
 
 `static wrap_function(function, args)`
 
@@ -355,3 +413,4 @@ wrapper
 **Return type**
 
 function\_wrapper
+

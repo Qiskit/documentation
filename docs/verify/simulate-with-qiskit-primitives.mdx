@@ -41,7 +41,7 @@ observable = SparsePauliOp(["II", "XX", "YY", "ZZ"], coeffs=[1, 1, -1, 1])
 
 ### Initialize QuantumCircuit
 
-Next, create the [`qiskit.circuit.QuantumCircuit`](../api/qiskit/qiskit.circuit.QuantumCircuit)s for which you want to obtain the expected value.
+Next, create the [`qiskit.circuit.QuantumCircuit`](../api/qiskit/qiskit.circuit.QuantumCircuit) for which you want to obtain the expected value.
 
 ```python
 from qiskit import QuantumCircuit
@@ -52,7 +52,7 @@ qc.cx(0,1)
 qc.draw("mpl")
 ```
 
-![Initial QuantumCircuit](/images/verify/simulate-with-qiskit-primitives/estimator-initialize.png)
+![Initial QuantumCircuit](/images/verify/simulate-with-qiskit-primitives/estimator-initialize.png "Initial QuantumCircuit")
 
 <Admonition type="note">
   The [`qiskit.circuit.QuantumCircuit`](../api/qiskit/qiskit.circuit.QuantumCircuit) you pass to [`qiskit.primitives.Estimator`](../api/qiskit/qiskit.primitives.Estimator) must not include any measurements.
@@ -270,7 +270,7 @@ qc.measure_all()
 qc.draw("mpl")
 ```
 
-![Initial QuantumCircuit](/images/verify/simulate-with-qiskit-primitives/sampler-initialize.png)
+![Initial QuantumCircuit](/images/verify/simulate-with-qiskit-primitives/sampler-initialize.png "Initial QuantumCircuit")
 
 <Admonition type="note">
 The [`qiskit.circuit.QuantumCircuit`](../api/qiskit/qiskit.circuit.QuantumCircuit) you pass to [`qiskit.primitives.Sampler`](../api/qiskit/qiskit.primitives.Sampler) must include measurements.
@@ -451,3 +451,13 @@ print(result)
 ```python
 SamplerResult(quasi_dists=[{0: 0.5205078125, 3: 0.4794921875}], metadata=[{'shots': 2048}])
 ```
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+  - For higher-performance simulation that can handle larger circuits, or to incorporate noise models into your simulation, see [Exact and noisy simulation with Qiskit Aer primitives](simulate-with-qiskit-aer).
+  - To learn how to use Quantum Composer for simulation, try the [Explore gates and circuits with the Quantum Composer](https://learning.quantum.ibm.com/tutorial/explore-gates-and-circuits-with-the-quantum-composer) tutorial.
+  - Read the [Qiskit Estimator API](/api/qiskit/qiskit.primitives.Estimator) reference.
+  - Read the [Qiskit Sampler API](/api/qiskit/qiskit.primitives.Sampler) reference.
+  - Learn how to run on a physical system in the [Run](../run) section.
+</Admonition>

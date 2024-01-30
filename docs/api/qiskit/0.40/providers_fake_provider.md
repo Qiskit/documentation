@@ -14,21 +14,13 @@ python_api_name: qiskit.providers.fake_provider
 
 <span id="module-qiskit.providers.fake_provider" />
 
-`qiskit.providers.fake_provider¶`
+`qiskit.providers.fake_provider`
 
 ## Overview
-
-<span id="module-qiskit.providers.fake_provider" />
-
-`¶`
 
 The fake provider module contains fake providers and fake backends classes. The fake backends are built to mimic the behaviors of IBM Quantum systems using system snapshots. The system snapshots contain important information about the quantum system such as coupling map, basis gates, qubit properties (T1, T2, error rate, etc.) which are useful for testing the transpiler and performing noisy simulation of the system.
 
 ## Example Usage
-
-<span id="module-qiskit.providers.fake_provider" />
-
-`¶`
 
 Here is an example of using a fake backend for transpilation and simulation.
 
@@ -92,10 +84,6 @@ Fig. 20 ([png](providers_fake_provider-1_02.png), [hires.png](providers_fake_pro
 
 ## Fake Providers
 
-<span id="module-qiskit.providers.fake_provider" />
-
-`¶`
-
 Fake providers provide access to a list of fake backends.
 
 |                                                                                                                                                   |                                            |
@@ -105,11 +93,7 @@ Fake providers provide access to a list of fake backends.
 
 ## Fake Backends
 
-<span id="module-qiskit.providers.fake_provider" />
-
-`¶`
-
-### Fake V2 Backends[¶](#fake-v2-backends "Permalink to this headline")
+### Fake V2 Backends
 
 Fake V2 backends are fake backends with IBM Quantum systems snapshots implemented with [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.backend.BackendV2") interface.
 
@@ -162,7 +146,7 @@ Fake V2 backends are fake backends with IBM Quantum systems snapshots implemente
 | [`FakeWashingtonV2`](qiskit.providers.fake_provider.FakeWashingtonV2 "qiskit.providers.fake_provider.FakeWashingtonV2")()       | A fake 127 qubit backend.       |
 | [`FakeYorktownV2`](qiskit.providers.fake_provider.FakeYorktownV2 "qiskit.providers.fake_provider.FakeYorktownV2")()             | A fake 5 qubit backend.         |
 
-### Fake V1 Backends[¶](#fake-v1-backends "Permalink to this headline")
+### Fake V1 Backends
 
 Fake V1 backends are fake backends with IBM Quantum systems snapshots implemented with [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.backend.BackendV1") interface.
 
@@ -213,10 +197,6 @@ Fake V1 backends are fake backends with IBM Quantum systems snapshots implemente
 | [`FakeYorktown`](qiskit.providers.fake_provider.FakeYorktown "qiskit.providers.fake_provider.FakeYorktown")()             | A fake 5 qubit backend.      |
 
 ## Special Fake Backends
-
-<span id="module-qiskit.providers.fake_provider" />
-
-`¶`
 
 Special fake backends are fake backends that were created for special testing purposes.
 

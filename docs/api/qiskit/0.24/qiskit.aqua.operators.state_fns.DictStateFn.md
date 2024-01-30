@@ -1,10 +1,18 @@
+---
+title: DictStateFn
+description: API reference for qiskit.aqua.operators.state_fns.DictStateFn
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.operators.state_fns.DictStateFn
+---
+
 <span id="qiskit-aqua-operators-state-fns-dictstatefn" />
 
 # qiskit.aqua.operators.state\_fns.DictStateFn
 
-<span id="undefined" />
+<span id="qiskit.aqua.operators.state_fns.DictStateFn" />
 
-`DictStateFn(primitive=None, coeff=1.0, is_measurement=False)`
+`DictStateFn(primitive=None, coeff=1.0, is_measurement=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/state_fns/dict_state_fn.py "view source code")
 
 A class for state functions and measurements which are defined by a lookup table, stored in a dict.
 
@@ -18,7 +26,9 @@ A class for state functions and measurements which are defined by a lookup table
 
 **TypeError** – invalid parameters.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.aqua.operators.state_fns.DictStateFn.__init__" />
 
 `__init__(primitive=None, coeff=1.0, is_measurement=False)`
 
@@ -72,7 +82,9 @@ A class for state functions and measurements which are defined by a lookup table
 | [`parameters`](#qiskit.aqua.operators.state_fns.DictStateFn.parameters "qiskit.aqua.operators.state_fns.DictStateFn.parameters")             | Return a set of Parameter objects contained in the Operator.               |
 | [`primitive`](#qiskit.aqua.operators.state_fns.DictStateFn.primitive "qiskit.aqua.operators.state_fns.DictStateFn.primitive")                | The primitive which defines the behavior of the underlying State function. |
 
-<span id="undefined" />
+### add
+
+<span id="qiskit.aqua.operators.state_fns.DictStateFn.add" />
 
 `add(other)`
 
@@ -90,7 +102,9 @@ Return Operator addition of self and other, overloaded by `+`.
 
 An `OperatorBase` equivalent to the sum of self and other.
 
-<span id="undefined" />
+### adjoint
+
+<span id="qiskit.aqua.operators.state_fns.DictStateFn.adjoint" />
 
 `adjoint()`
 
@@ -104,7 +118,9 @@ Return a new Operator equal to the Operator’s adjoint (conjugate transpose), o
 
 An `OperatorBase` equivalent to the adjoint of self.
 
-<span id="undefined" />
+### assign\_parameters
+
+<span id="qiskit.aqua.operators.state_fns.DictStateFn.assign_parameters" />
 
 `assign_parameters(param_dict)`
 
@@ -122,7 +138,9 @@ Binds scalar values to any Terra `Parameters` in the coefficients or primitives 
 
 The `OperatorBase` with the `Parameters` in self replaced by the values or `Parameters` in param\_dict. If param\_dict contains parameterization lists, this `OperatorBase` is an `OpList`.
 
-<span id="undefined" />
+### bind\_parameters
+
+<span id="qiskit.aqua.operators.state_fns.DictStateFn.bind_parameters" />
 
 `bind_parameters(param_dict)`
 
@@ -132,7 +150,9 @@ Same as assign\_parameters, but maintained for consistency with QuantumCircuit i
 
 `OperatorBase`
 
-<span id="undefined" />
+### coeff
+
+<span id="qiskit.aqua.operators.state_fns.DictStateFn.coeff" />
 
 `property coeff`
 
@@ -142,7 +162,9 @@ A coefficient by which the state function is multiplied.
 
 `Union`\[`int`, `float`, `complex`, `ParameterExpression`]
 
-<span id="undefined" />
+### compose
+
+<span id="qiskit.aqua.operators.state_fns.DictStateFn.compose" />
 
 `compose(other, permutation=None, front=False)`
 
@@ -166,7 +188,9 @@ An Operator equivalent to the function composition of self and other.
 
 **ValueError** – If self is not a measurement, it cannot be composed from the right.
 
-<span id="undefined" />
+### equals
+
+<span id="qiskit.aqua.operators.state_fns.DictStateFn.equals" />
 
 `equals(other)`
 
@@ -184,7 +208,9 @@ Evaluate Equality between Operators, overloaded by `==`. Only returns True if se
 
 A bool equal to the equality of self and other.
 
-<span id="undefined" />
+### eval
+
+<span id="qiskit.aqua.operators.state_fns.DictStateFn.eval" />
 
 `eval(front=None)`
 
@@ -204,7 +230,9 @@ If `front` is None, the matrix-representation of the operator is returned.
 
 The output of the Operator’s evaluation function. If self is a `StateFn`, the result is a float or complex. If self is an Operator (`PrimitiveOp, ComposedOp, SummedOp, EvolvedOp,` etc.), the result is a StateFn. If `front` is None, the matrix-representation of the operator is returned, which is a `MatrixOp` for the operators and a `VectorStateFn` for state-functions. If either self or front contain proper `ListOps` (not ListOp subclasses), the result is an n-dimensional list of complex or StateFn results, resulting from the recursive evaluation by each OperatorBase in the ListOps.
 
-<span id="undefined" />
+### is\_measurement
+
+<span id="qiskit.aqua.operators.state_fns.DictStateFn.is_measurement" />
 
 `property is_measurement`
 
@@ -214,7 +242,9 @@ Whether the StateFn object is a measurement Operator.
 
 `bool`
 
-<span id="undefined" />
+### mul
+
+<span id="qiskit.aqua.operators.state_fns.DictStateFn.mul" />
 
 `mul(scalar)`
 
@@ -232,7 +262,9 @@ Returns the scalar multiplication of the Operator, overloaded by `*`, including 
 
 An `OperatorBase` equivalent to product of self and scalar.
 
-<span id="undefined" />
+### neg
+
+<span id="qiskit.aqua.operators.state_fns.DictStateFn.neg" />
 
 `neg()`
 
@@ -246,7 +278,9 @@ Return the Operator’s negation, effectively just multiplying by -1.0, overload
 
 An `OperatorBase` equivalent to the negation of self.
 
-<span id="undefined" />
+### num\_qubits
+
+<span id="qiskit.aqua.operators.state_fns.DictStateFn.num_qubits" />
 
 `property num_qubits`
 
@@ -260,13 +294,17 @@ The number of qubits over which the Operator is defined. If `op.num_qubits == 5`
 
 The number of qubits accepted by the Operator’s underlying function.
 
-<span id="undefined" />
+### parameters
+
+<span id="qiskit.aqua.operators.state_fns.DictStateFn.parameters" />
 
 `property parameters`
 
 Return a set of Parameter objects contained in the Operator.
 
-<span id="undefined" />
+### permute
+
+<span id="qiskit.aqua.operators.state_fns.DictStateFn.permute" />
 
 `permute(permutation)`
 
@@ -284,7 +322,9 @@ Permute the qubits of the state function.
 
 A new StateFn containing the permuted primitive.
 
-<span id="undefined" />
+### power
+
+<span id="qiskit.aqua.operators.state_fns.DictStateFn.power" />
 
 `power(exponent)`
 
@@ -302,13 +342,17 @@ Compose with Self Multiple Times, undefined for StateFns.
 
 `OperatorBase`
 
-<span id="undefined" />
+### primitive
+
+<span id="qiskit.aqua.operators.state_fns.DictStateFn.primitive" />
 
 `property primitive`
 
 The primitive which defines the behavior of the underlying State function.
 
-<span id="undefined" />
+### primitive\_strings
+
+<span id="qiskit.aqua.operators.state_fns.DictStateFn.primitive_strings" />
 
 `primitive_strings()`
 
@@ -322,7 +366,9 @@ Return a set of strings describing the primitives contained in the Operator. For
 
 A set of strings describing the primitives contained within the Operator.
 
-<span id="undefined" />
+### reduce
+
+<span id="qiskit.aqua.operators.state_fns.DictStateFn.reduce" />
 
 `reduce()`
 
@@ -336,7 +382,9 @@ Try collapsing the Operator structure, usually after some type of conversion, e.
 
 The reduced `OperatorBase`.
 
-<span id="undefined" />
+### sample
+
+<span id="qiskit.aqua.operators.state_fns.DictStateFn.sample" />
 
 `sample(shots=1024, massive=False, reverse_endianness=False)`
 
@@ -356,7 +404,9 @@ Sample the state function as a normalized probability distribution. Returns dict
 
 A dict containing pairs sampled strings from the State function and sampling frequency divided by shots.
 
-<span id="undefined" />
+### tensor
+
+<span id="qiskit.aqua.operators.state_fns.DictStateFn.tensor" />
 
 `tensor(other)`
 
@@ -378,7 +428,9 @@ Because Terra prints circuits and results with qubit 0 at the end of the string 
 
 An `OperatorBase` equivalent to the tensor product of self and other.
 
-<span id="undefined" />
+### tensorpower
+
+<span id="qiskit.aqua.operators.state_fns.DictStateFn.tensorpower" />
 
 `tensorpower(other)`
 
@@ -396,7 +448,9 @@ Return tensor product with self multiple times, overloaded by `^`.
 
 An `OperatorBase` equivalent to the tensorpower of self by other.
 
-<span id="undefined" />
+### to\_circuit\_op
+
+<span id="qiskit.aqua.operators.state_fns.DictStateFn.to_circuit_op" />
 
 `to_circuit_op()`
 
@@ -406,7 +460,9 @@ Return `StateFnCircuit` corresponding to this StateFn.
 
 `OperatorBase`
 
-<span id="undefined" />
+### to\_density\_matrix
+
+<span id="qiskit.aqua.operators.state_fns.DictStateFn.to_density_matrix" />
 
 `to_density_matrix(massive=False)`
 
@@ -428,7 +484,9 @@ The NumPy array representing the density matrix of the State function.
 
 **ValueError** – If massive is set to False, and exponentially large computation is needed.
 
-<span id="undefined" />
+### to\_legacy\_op
+
+<span id="qiskit.aqua.operators.state_fns.DictStateFn.to_legacy_op" />
 
 `to_legacy_op(massive=False)`
 
@@ -448,7 +506,9 @@ The `LegacyBaseOperator` representing this Operator.
 
 **TypeError** – self is an Operator which cannot be represented by a `LegacyBaseOperator`, such as `StateFn`, proper (non-subclass) `ListOp`, or an Operator with an unbound coeff Parameter.
 
-<span id="undefined" />
+### to\_matrix
+
+<span id="qiskit.aqua.operators.state_fns.DictStateFn.to_matrix" />
 
 `to_matrix(massive=False)`
 
@@ -462,7 +522,9 @@ Return NumPy representation of the Operator. Represents the evaluation of the Op
 
 The NumPy `ndarray` equivalent to this Operator.
 
-<span id="undefined" />
+### to\_matrix\_op
+
+<span id="qiskit.aqua.operators.state_fns.DictStateFn.to_matrix_op" />
 
 `to_matrix_op(massive=False)`
 
@@ -480,7 +542,9 @@ Return a `VectorStateFn` for this `StateFn`.
 
 A VectorStateFn equivalent to self.
 
-<span id="undefined" />
+### to\_spmatrix
+
+<span id="qiskit.aqua.operators.state_fns.DictStateFn.to_spmatrix" />
 
 `to_spmatrix()`
 
@@ -498,7 +562,9 @@ CSR sparse matrix representation of the State function.
 
 **ValueError** – invalid parameters.
 
-<span id="undefined" />
+### traverse
+
+<span id="qiskit.aqua.operators.state_fns.DictStateFn.traverse" />
 
 `traverse(convert_fn, coeff=None)`
 
@@ -516,3 +582,4 @@ Apply the convert\_fn to the internal primitive if the primitive is an Operator 
 **Returns**
 
 The converted StateFn.
+

@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.BasicSwap
 ---
 
-# BasicSwap[¶](#basicswap "Permalink to this headline")
+# BasicSwap
 
 <span id="qiskit.transpiler.passes.BasicSwap" />
 
-`BasicSwap(*args, **kwargs)`
+`BasicSwap(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/routing/basic_swap.py "view source code")
 
 Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -39,7 +39,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.BasicSwap.run" />
 
-`BasicSwap.run(dag)`
+`BasicSwap.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/routing/basic_swap.py "view source code")
 
 Run the BasicSwap pass on dag.
 

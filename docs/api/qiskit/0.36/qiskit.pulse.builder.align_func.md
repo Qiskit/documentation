@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.builder.align_func
 
 <span id="qiskit.pulse.builder.align_func" />
 
-`align_func(duration, func)`
+`align_func(duration, func)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/builder.py "view source code")
 
 Callback defined alignment pulse scheduling context.
 
@@ -45,7 +45,7 @@ udd_sched.draw()
 
 **Parameters**
 
-*   **duration** (`Union`\[`int`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]) – Duration of context. This should be larger than the schedule duration.
+*   **duration** (`Union`\[`int`, `ParameterExpression`]) – Duration of context. This should be larger than the schedule duration.
 *   **func** (`Callable`\[\[`int`], `float`]) – A function that takes an index of sub-schedule and returns the fractional coordinate of of that sub-schedule. The returned value should be defined within \[0, 1]. The pulse index starts from 1.
 
 **Yields**
@@ -58,5 +58,5 @@ The scheduling is performed for sub-schedules within the context rather than cha
 
 **Return type**
 
-[`AlignmentKind`](pulse#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.alignments.AlignmentKind")
+`AlignmentKind`
 

@@ -1,8 +1,16 @@
+---
+title: DictToCircuitSum
+description: API reference for qiskit.aqua.operators.converters.DictToCircuitSum
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.operators.converters.DictToCircuitSum
+---
+
 # DictToCircuitSum
 
-<span id="undefined" />
+<span id="qiskit.aqua.operators.converters.DictToCircuitSum" />
 
-`DictToCircuitSum(traverse=True, convert_dicts=True, convert_vectors=True)`
+`DictToCircuitSum(traverse=True, convert_dicts=True, convert_vectors=True)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/converters/dict_to_circuit_sum.py "view source code")
 
 Bases: `qiskit.aqua.operators.converters.converter_base.ConverterBase`
 
@@ -16,6 +24,23 @@ Converts `DictStateFns` or `VectorStateFns` to equivalent `CircuitStateFns` or s
 
 ## Methods
 
-|                                                                                                                                                                                              |                                                                               |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| [`convert`](qiskit.aqua.operators.converters.DictToCircuitSum.convert#qiskit.aqua.operators.converters.DictToCircuitSum.convert "qiskit.aqua.operators.converters.DictToCircuitSum.convert") | Convert the Operator to `CircuitStateFns`, recursively if `traverse` is True. |
+### convert
+
+<span id="qiskit.aqua.operators.converters.DictToCircuitSum.convert" />
+
+`DictToCircuitSum.convert(operator)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/converters/dict_to_circuit_sum.py "view source code")
+
+Convert the Operator to `CircuitStateFns`, recursively if `traverse` is True.
+
+**Parameters**
+
+**operator** (`OperatorBase`) – The Operator to convert
+
+**Return type**
+
+`OperatorBase`
+
+**Returns**
+
+The converted Operator.
+

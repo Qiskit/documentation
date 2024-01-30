@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.dagcircuit.BlockCollapser
 ---
 
-# BlockCollapser[¶](#blockcollapser "Permalink to this headline")
+# BlockCollapser
 
 <span id="qiskit.dagcircuit.BlockCollapser" />
 
-`BlockCollapser(dag)`
+`BlockCollapser(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/dagcircuit/collect_blocks.py "view source code")
 
 Bases: `object`
 
@@ -28,7 +28,7 @@ This class implements various strategies of consolidating blocks of nodes in a D
 
 <span id="qiskit.dagcircuit.BlockCollapser.collapse_to_operation" />
 
-`BlockCollapser.collapse_to_operation(blocks, collapse_fn)`
+`BlockCollapser.collapse_to_operation(blocks, collapse_fn)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/dagcircuit/collect_blocks.py "view source code")
 
 For each block, constructs a quantum circuit containing instructions in the block, then uses collapse\_fn to collapse this circuit into a single operation.
 

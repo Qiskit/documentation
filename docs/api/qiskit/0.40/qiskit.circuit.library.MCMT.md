@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.MCMT
 ---
 
-# MCMT[¶](#mcmt "Permalink to this headline")
+# MCMT
 
 <span id="qiskit.circuit.library.MCMT" />
 
-`MCMT(gate, num_ctrl_qubits, num_target_qubits)`
+`MCMT(gate, num_ctrl_qubits, num_target_qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/generalized_gates/mcmt.py "view source code")
 
 Bases: [`qiskit.circuit.quantumcircuit.QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
@@ -52,7 +52,7 @@ Create a new multi-control multi-target gate.
 
 <span id="qiskit.circuit.library.MCMT.control" />
 
-`MCMT.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+`MCMT.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/generalized_gates/mcmt.py "view source code")
 
 Return the controlled version of the MCMT circuit.
 
@@ -60,7 +60,7 @@ Return the controlled version of the MCMT circuit.
 
 <span id="qiskit.circuit.library.MCMT.inverse" />
 
-`MCMT.inverse()`
+`MCMT.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/generalized_gates/mcmt.py "view source code")
 
 Return the inverse MCMT circuit, which is itself.
 

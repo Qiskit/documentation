@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.extensions.UCRXGate
 ---
 
-# UCRXGate[¶](#ucrxgate "Permalink to this headline")
+# UCRXGate
 
 <span id="qiskit.extensions.UCRXGate" />
 
-`UCRXGate(angle_list)`
+`UCRXGate(angle_list)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/extensions/quantum_initializer/ucrx.py "view source code")
 
 Bases: [`qiskit.extensions.quantum_initializer.uc_pauli_rot.UCPauliRotGate`](qiskit.extensions.UCPauliRotGate "qiskit.extensions.quantum_initializer.uc_pauli_rot.UCPauliRotGate")
 

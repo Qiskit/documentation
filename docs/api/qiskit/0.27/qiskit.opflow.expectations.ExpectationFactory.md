@@ -1,12 +1,22 @@
+---
+title: ExpectationFactory
+description: API reference for qiskit.opflow.expectations.ExpectationFactory
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.opflow.expectations.ExpectationFactory
+---
+
 # qiskit.opflow\.expectations.ExpectationFactory
 
-<span id="undefined" />
+<span id="qiskit.opflow.expectations.ExpectationFactory" />
 
-`ExpectationFactory`
+`ExpectationFactory`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/expectations/expectation_factory.py "view source code")
 
 A factory class for convenient automatic selection of an Expectation based on the Operator to be converted and backend used to sample the expectation value.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.opflow.expectations.ExpectationFactory.__init__" />
 
 `__init__()`
 
@@ -19,7 +29,9 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`__init__`](#qiskit.opflow.expectations.ExpectationFactory.__init__ "qiskit.opflow.expectations.ExpectationFactory.__init__")()                             | Initialize self.                                                                                                                                              |
 | [`build`](#qiskit.opflow.expectations.ExpectationFactory.build "qiskit.opflow.expectations.ExpectationFactory.build")(operator\[, backend, include\_custom]) | A factory method for convenient automatic selection of an Expectation based on the Operator to be converted and backend used to sample the expectation value. |
 
-<span id="undefined" />
+### build
+
+<span id="qiskit.opflow.expectations.ExpectationFactory.build" />
 
 `static build(operator, backend=None, include_custom=True)`
 
@@ -42,3 +54,4 @@ The expectation algorithm which best fits the Operator and backend.
 **Raises**
 
 **ValueError** – If operator is not of a composition for which we know the best Expectation method.
+

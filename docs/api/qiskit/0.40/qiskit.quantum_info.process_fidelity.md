@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.quantum_info.process_fidelity
 ---
 
-# qiskit.quantum\_info.process\_fidelity[¶](#qiskit-quantum-info-process-fidelity "Permalink to this headline")
+# qiskit.quantum\_info.process\_fidelity
 
 <span id="qiskit.quantum_info.process_fidelity" />
 
-`process_fidelity(channel, target=None, require_cp=True, require_tp=True)`
+`process_fidelity(channel, target=None, require_cp=True, require_tp=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/operators/measures.py "view source code")
 
 Return the process fidelity of a noisy quantum channel.
 

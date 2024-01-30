@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.Acquire
 
 <span id="qiskit.pulse.Acquire" />
 
-`Acquire(duration, channel=None, mem_slot=None, reg_slots=None, mem_slots=None, reg_slot=None, kernel=None, discriminator=None, name=None)`
+`Acquire(duration, channel=None, mem_slot=None, reg_slots=None, mem_slots=None, reg_slot=None, kernel=None, discriminator=None, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/instructions/acquire.py "view source code")
 
 The Acquire instruction is used to trigger the ADC associated with a particular qubit; e.g. instantiated with AcquireChannel(0), the Acquire command will trigger data collection for the channel associated with qubit 0 readout. This instruction also provides acquisition metadata:
 
@@ -274,7 +274,7 @@ Occupied time slots by this instruction.
 
 <span id="qiskit.pulse.Acquire.__call__" />
 
-`Acquire.__call__(channel=None, mem_slot=None, reg_slots=None, mem_slots=None, reg_slot=None, kernel=None, discriminator=None, name=None)`
+`Acquire.__call__(channel=None, mem_slot=None, reg_slots=None, mem_slots=None, reg_slot=None, kernel=None, discriminator=None, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/instructions/acquire.py "view source code")
 
 Return new `Acquire` that is fully instantiated with its channels.
 

@@ -10,11 +10,11 @@ python_api_name: qiskit.providers.ibmq.managed.IBMQJobManagerError
   The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
 </Admonition>
 
-# qiskit.providers.ibmq.managed.IBMQJobManagerError[¶](#qiskit-providers-ibmq-managed-ibmqjobmanagererror "Permalink to this headline")
+# qiskit.providers.ibmq.managed.IBMQJobManagerError
 
 <span id="qiskit.providers.ibmq.managed.IBMQJobManagerError" />
 
-`IBMQJobManagerError(*message)`
+`IBMQJobManagerError(*message)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/managed/exceptions.py "view source code")
 
 Base class for errors raise by the Job Manager.
 

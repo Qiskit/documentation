@@ -1,8 +1,16 @@
+---
+title: LinearEqualityToPenalty
+description: API reference for qiskit.optimization.converters.LinearEqualityToPenalty
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.optimization.converters.LinearEqualityToPenalty
+---
+
 # qiskit.optimization.converters.LinearEqualityToPenalty
 
-<span id="undefined" />
+<span id="qiskit.optimization.converters.LinearEqualityToPenalty" />
 
-`LinearEqualityToPenalty(penalty=None)`
+`LinearEqualityToPenalty(penalty=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/converters/linear_equality_to_penalty.py "view source code")
 
 Convert a problem with only equality constraints to unconstrained with penalty terms.
 
@@ -10,7 +18,9 @@ Convert a problem with only equality constraints to unconstrained with penalty t
 
 **penalty** (`Optional`\[`float`]) – Penalty factor to scale equality constraints that are added to objective. If None is passed, penalty factor will be automatically calculated.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.optimization.converters.LinearEqualityToPenalty.__init__" />
 
 `__init__(penalty=None)`
 
@@ -32,7 +42,9 @@ Convert a problem with only equality constraints to unconstrained with penalty t
 | --------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
 | [`penalty`](#qiskit.optimization.converters.LinearEqualityToPenalty.penalty "qiskit.optimization.converters.LinearEqualityToPenalty.penalty") | Returns the penalty factor used in conversion. |
 
-<span id="undefined" />
+### convert
+
+<span id="qiskit.optimization.converters.LinearEqualityToPenalty.convert" />
 
 `convert(problem)`
 
@@ -52,9 +64,11 @@ The converted problem, that is an unconstrained problem.
 
 **Raises**
 
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If an inequality constraint exists.
+[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If an inequality constraint exists.
 
-<span id="undefined" />
+### interpret
+
+<span id="qiskit.optimization.converters.LinearEqualityToPenalty.interpret" />
 
 `interpret(x)`
 
@@ -74,9 +88,11 @@ The result of the original problem.
 
 **Raises**
 
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the number of variables in the result differs from that of the original problem.
+[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the number of variables in the result differs from that of the original problem.
 
-<span id="undefined" />
+### penalty
+
+<span id="qiskit.optimization.converters.LinearEqualityToPenalty.penalty" />
 
 `property penalty`
 
@@ -89,3 +105,4 @@ Returns the penalty factor used in conversion.
 **Returns**
 
 The penalty factor used in conversion.
+

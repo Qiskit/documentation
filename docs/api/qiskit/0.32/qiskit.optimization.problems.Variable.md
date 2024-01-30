@@ -1,8 +1,16 @@
+---
+title: Variable
+description: API reference for qiskit.optimization.problems.Variable
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.optimization.problems.Variable
+---
+
 # Variable
 
-<span id="undefined" />
+<span id="qiskit.optimization.problems.Variable" />
 
-`Variable(quadratic_program, name, lowerbound=0, upperbound=1e+20, vartype=<VarType.CONTINUOUS: 0>)`
+`Variable(quadratic_program, name, lowerbound=0, upperbound=1e+20, vartype=<VarType.CONTINUOUS: 0>)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/variable.py "view source code")
 
 Bases: `qiskit.optimization.problems.quadratic_program_element.QuadraticProgramElement`
 
@@ -22,17 +30,29 @@ The variables is exposed by the top-level QuadraticProgram class in QuadraticPro
 
 **Raises**
 
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if lowerbound is greater than upperbound.
+[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if lowerbound is greater than upperbound.
 
 ## Methods
 
-|                                                                                                                                                              |                                                 |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------- |
-| [`as_tuple`](qiskit.optimization.problems.Variable.as_tuple#qiskit.optimization.problems.Variable.as_tuple "qiskit.optimization.problems.Variable.as_tuple") | Returns a tuple corresponding to this variable. |
+### as\_tuple
+
+<span id="qiskit.optimization.problems.Variable.as_tuple" />
+
+`Variable.as_tuple()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/variable.py "view source code")
+
+Returns a tuple corresponding to this variable.
+
+**Return type**
+
+`Tuple`\[`str`, `Union`\[`float`, `int`], `Union`\[`float`, `int`], `VarType`]
+
+**Returns**
+
+A tuple corresponding to this variable consisting of name, lowerbound, upperbound and variable type.
 
 ## Attributes
 
-<span id="undefined" />
+<span id="qiskit.optimization.problems.Variable.lowerbound" />
 
 ### lowerbound
 
@@ -46,7 +66,7 @@ Returns the lowerbound of the variable.
 
 The lower bound of the variable.
 
-<span id="undefined" />
+<span id="qiskit.optimization.problems.Variable.name" />
 
 ### name
 
@@ -60,7 +80,7 @@ Returns the name of the variable.
 
 The name of the variable.
 
-<span id="undefined" />
+<span id="qiskit.optimization.problems.Variable.quadratic_program" />
 
 ### quadratic\_program
 
@@ -74,7 +94,7 @@ Returns the parent QuadraticProgram.
 
 The parent QuadraticProgram.
 
-<span id="undefined" />
+<span id="qiskit.optimization.problems.Variable.upperbound" />
 
 ### upperbound
 
@@ -88,7 +108,7 @@ Returns the upperbound of the variable.
 
 The upperbound of the variable.
 
-<span id="undefined" />
+<span id="qiskit.optimization.problems.Variable.vartype" />
 
 ### vartype
 
@@ -101,3 +121,4 @@ Returns the type of the variable.
 **Returns**
 
 The variable type.
+

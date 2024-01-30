@@ -25,9 +25,9 @@ common module
 | [`read_numbers_from_file`](#qiskit.optimization.applications.ising.common.read_numbers_from_file "qiskit.optimization.applications.ising.common.read_numbers_from_file")(filename)   | Read numbers from a file                                    |
 | [`sample_most_likely`](#qiskit.optimization.applications.ising.common.sample_most_likely "qiskit.optimization.applications.ising.common.sample_most_likely")(state\_vector)          | Compute the most likely binary string from state vector.    |
 
-<span id="undefined" />
+<span id="qiskit.optimization.applications.ising.common.get_gset_result" />
 
-`get_gset_result(x)`
+`get_gset_result(x)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/common.py "view source code")
 
 Get graph solution in Gset format from binary string.
 
@@ -43,9 +43,9 @@ graph solution in Gset format.
 
 Dict\[int, int]
 
-<span id="undefined" />
+<span id="qiskit.optimization.applications.ising.common.parse_gset_format" />
 
-`parse_gset_format(filename)`
+`parse_gset_format(filename)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/common.py "view source code")
 
 Read graph in Gset format from file.
 
@@ -61,9 +61,9 @@ adjacency matrix as a 2D numpy array.
 
 numpy.ndarray
 
-<span id="undefined" />
+<span id="qiskit.optimization.applications.ising.common.random_graph" />
 
-`random_graph(n, weight_range=10, edge_prob=0.3, negative_weight=True, savefile=None, seed=None)`
+`random_graph(n, weight_range=10, edge_prob=0.3, negative_weight=True, savefile=None, seed=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/common.py "view source code")
 
 Generate random Erdos-Renyi graph.
 
@@ -84,9 +84,9 @@ adjacency matrix (with weights).
 
 numpy.ndarray
 
-<span id="undefined" />
+<span id="qiskit.optimization.applications.ising.common.random_number_list" />
 
-`random_number_list(n, weight_range=100, savefile=None, seed=None)`
+`random_number_list(n, weight_range=100, savefile=None, seed=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/common.py "view source code")
 
 Generate a set of positive integers within the given range.
 
@@ -105,9 +105,9 @@ the list of integer numbers.
 
 numpy.ndarray
 
-<span id="undefined" />
+<span id="qiskit.optimization.applications.ising.common.read_numbers_from_file" />
 
-`read_numbers_from_file(filename)`
+`read_numbers_from_file(filename)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/common.py "view source code")
 
 Read numbers from a file
 
@@ -123,9 +123,9 @@ list of numbers as a numpy.ndarray.
 
 numpy.ndarray
 
-<span id="undefined" />
+<span id="qiskit.optimization.applications.ising.common.sample_most_likely" />
 
-`sample_most_likely(state_vector)`
+`sample_most_likely(state_vector)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/common.py "view source code")
 
 Compute the most likely binary string from state vector. :param state\_vector: state vector or counts. :type state\_vector: numpy.ndarray or dict
 

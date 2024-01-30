@@ -10,9 +10,9 @@ python_api_name: qiskit.transpiler.passes.CXDirection
 
 <span id="qiskit.transpiler.passes.CXDirection" />
 
-`CXDirection(*args, **kwargs)`
+`CXDirection(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/utils/cx_direction.py "view source code")
 
-Bases: [`qiskit.transpiler.passes.utils.gate_direction.GateDirection`](qiskit.transpiler.passes.GateDirection "qiskit.transpiler.passes.utils.gate_direction.GateDirection")
+Bases: `qiskit.transpiler.passes.utils.gate_direction.GateDirection`
 
 Deprecated: use [`qiskit.transpiler.passes.GateDirection`](qiskit.transpiler.passes.GateDirection "qiskit.transpiler.passes.GateDirection") pass instead.
 

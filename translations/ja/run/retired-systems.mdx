@@ -1,0 +1,91 @@
+---
+title: Retired systems
+description: A list of IBM Quantum systems that are now retired
+---
+
+# Retired systems
+
+The following systems have been retired. For the full list of available systems, see the [Compute resources page.](https://quantum.ibm.com/services/resources?services=systems) By default, the information is shown in the card view, but you can use the view switchers (![view-switcher](/images/migration/view-switcher1.png)) at the top right to change to a sortable table view.
+
+<Admonition type="note">
+    To retrieve jobs from a retired system, see [these instructions.](#retrieve)
+</Admonition>
+
+| System name       | Qubit count | Retirement date (Year - month - day) |
+| ----------------- | ----------- | ------------------------------------ |
+| ibm_nairobi       | **7**       | 2023-11-28                           |
+| ibm_lagos         | **7**       | 2023-11-28                           |
+| ibm_perth         | **7**       | 2023-11-28                           |
+| ibm_auckland      | **27**      | 2023-11-09                           |
+| ibmq_guadalupe    | **16**      | 2023-10-27                           |
+| ibmq_lima         | **5**       | 2023-09-26                           |
+| ibmq_belem        | **5**       | 2023-09-26                           |
+| ibmq_quito        | **5**       | 2023-09-26                           |
+| ibmq_manila       | **5**       | 2023-09-26                           |
+| ibmq_jakarta      | **7**       | 2023-09-26                           |
+| ibm_seattle       | **433**     | 2023-09-07                           |
+| ibm_washington    | **127**     | 2023-06-03                           |
+| ibmq_oslo         | **7**       | 2023-05-04                           |
+| ibmq_geneva       | **27**      | 2023-05-04                           |
+| ibmq_montreal     | **27**      | 2023-04-11                           |
+| ibmq_toronto      | **27**      | 2023-04-11                           |
+| ibmq_armonk       | **1**       | 2022-07-07                           |
+| ibmq_brooklyn     | **65**      | 2022-06-28                           |
+| ibmq_bogota       | **5**       | 2022-06-17                           |
+| ibmq_santiago     | **5**       | 2022-06-17                           |
+| ibmq_casablanca   | **7**       | 2022-03-02                           |
+| ibmq_sydney       | **27**      | 2022-01-11                           |
+| ibmq_dublin       | **27**      | 2021-11-16                           |
+| ibmq_manhattan    | **65**      | 2021-09-22                           |
+| ibmq_5_yorktown   | **5**       | 2021-08-09                           |
+| ibmq_16_melbourne | **15**      | 2021-08-09                           |
+| ibmq_paris        | **27**      | 2021-06-30                           |
+| ibmq_rome         | **5**       | 2021-06-30                           |
+| ibmq_athens       | **5**       | 2021-06-30                           |
+| ibmq_berlin       | **27**      | 2020-12-31                           |
+| ibmq_boeblingen   | **20**      | 2021-01-31                           |
+| ibmq_ourense      | **5**       | 2021-01-15                           |
+| ibmq_vigo         | **5**       | 2021-01-15                           |
+| ibmq_valencia     | **5**       | 2021-01-15                           |
+| ibmq_rochester    | **53**      | 2020-10-31                           |
+| ibmq_cambridge    | **28**      | 2020-10-31                           |
+| ibmq_almaden      | **20**      | 2020-08-31                           |
+| ibmq_singapore    | **20**      | 2020-08-31                           |
+| ibmq_johannesburg | **20**      | 2020-08-31                           |
+| ibmq_essex        | **5**       | 2020-08-31                           |
+| ibmq_burlington   | **5**       | 2020-08-31                           |
+| ibmq_london       | **5**       | 2020-08-31                           |
+
+<span id="retrieve"></span>
+## Retrieve a job from a retired system
+
+To retrieve jobs from a retired system, you can use code similar to this, depending on the provider from which the job was sent:
+
+### For a job run from IBM Provider
+
+```python
+from qiskit_ibm_provider import IBMProvider
+
+provider = IBMProvider(instance="hub/group/project")
+
+#If you want to retrieve a list of jobs
+jobs = provider.backend.jobs(backend_name=<backend_name>)
+
+#If you want to retrieve a specific job you have the id for
+job = provider.backend.retrieve_job(<job_id>)
+```
+
+### For a job run from Qiskit Runtime
+
+```python
+from qiskit_ibm_runtime import QiskitRuntimeService
+
+# Load your IBM Quantum account(s). Replace "hub/group/project" with your desired instance
+service = QiskitRuntimeService(channel="ibm_quantum", instance="hub/group/project")
+
+# Retrieve a single job by id
+job = service.job(<job_id>)
+
+# Retrieve a batch of jobs. Filtering options can be found in the QiskitRuntimeService.jobs api reference
+jobs = service.jobs(backend_name=<backend_name>)
+```

@@ -9,7 +9,7 @@ description: An overview of sessions and when to use them.
 A session is a Qiskit Runtime feature that lets you efficiently run multi-job iterative workloads on quantum computers. Using sessions helps avoid delays caused by queuing each job separately, which can be particularly useful for iterative tasks that require frequent communication between classical and quantum resources.
 
 <Admonition type="note">
-The queuing time does not decrease for the first job submitted within a session. Therefore, a session does not provide any benefits when running a single job.
+The queuing time does not decrease for the first job submitted within a session. Therefore, a session does not provide any benefits when running a single job. Additionally, sessions do not work on simulators because simulators do not have a queue.
 </Admonition>
 
 ## Advantages of using sessions
@@ -28,6 +28,10 @@ The basic workflow for sessions is as follows:
 2. Subsequent jobs within the session are prioritized over others, reducing wait times.
 3. The _interactive timeout_ runs between the jobs in a session. Every session has an interactive timeout value (ITTL, or interactive time to live). If there are no session jobs queued within the ITTL window, the session is temporarily deactivated and normal job selection resumes. A deactivated session can be resumed for the next job<sup>*</sup> if the session has not reached its maximum timeout value.
 3. If the maximum timeout value is reached, the sessions end and any remaining queued jobs fail.
+
+<video title="A line of users is shown. The one in the current session becomes larger than the rest and has rotating arrows around them, indicating that they are the priority. Boxes (jobs) are seen being sent to the QPU (represented by a chandelier) from the current user. Other users begin to pop up during the animation and their jobs appear beneath them as they wait for the prioritized user's session to end. A progress bar appears above the prioritized user to represent the interactive TTL. After the prioritized user's session finishes, the line moves ahead toward the system, and the next person's jobs can begin processing." className="max-w-auto h-auto" controls>
+  <source src="/videos/run/sessions/demo.mp4" type="video/mp4"></source>
+</video>
 
 <Admonition type="note">
 * The job must go through the normal queue to reactivate the session.
@@ -73,3 +77,10 @@ res = minimize(cost_func, x0, args=(ansatz, hamiltonian, estimator), method="cob
 # Close the session because we didn't use a context manager.
 session.close()
 ```
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+  - Try an example in the [Quantum approximate optimization algorithm (QAOA)](https://learning.quantum.ibm.com/tutorial/quantum-approximate-optimization-algorithm) tutorial. 
+  - Review the [Session API](https://docs.quantum.ibm.com/api/qiskit-ibm-runtime/qiskit_ibm_runtime.Session) reference.
+</Admonition>

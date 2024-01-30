@@ -14,13 +14,9 @@ python_api_name: qiskit.circuit.classicalfunction
 
 <span id="module-qiskit.circuit.classicalfunction" />
 
-`qiskit.circuit.classicalfunction¶`
+`qiskit.circuit.classicalfunction`
 
 ## Overview
-
-<span id="module-qiskit.circuit.classicalfunction" />
-
-`¶`
 
 The classical function compiler provides the necessary tools to map a classical irreversible functions into quantum circuits. Below is a simple example of how to synthesize a simple boolean function defined using Python into a QuantumCircuit:
 
@@ -39,10 +35,6 @@ Following Qiskit’s little-endian bit ordering convention, the left-most bit (a
 
 ## Supplementary Information
 
-<span id="module-qiskit.circuit.classicalfunction" />
-
-`¶`
-
 **Tweedledum**
 
 Tweedledum is a C++-17 header-only library that implements a large set of reversible (and quantum) synthesis, optimization, and mapping algorithms. The classical function compiler relies on it and its dependencies to both represent logic networks and synthesize them into quantum circuits.
@@ -55,22 +47,18 @@ The type `Int1` means the classical function will only operate at bit level.
 
 ## ClassicalFunction compiler API
 
-<span id="module-qiskit.circuit.classicalfunction" />
-
-`¶`
-
-### classical\_function[¶](#classical-function "Permalink to this headline")
+### classical\_function
 
 Decorator for a classical function that returns a ClassicalFunction object.
 
-### ClassicalFunction[¶](#classicalfunction "Permalink to this headline")
+### ClassicalFunction
 
 |                                                                                                                                                     |                                                                |
 | --------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
 | [`ClassicalFunction`](qiskit.circuit.classicalfunction.ClassicalFunction "qiskit.circuit.classicalfunction.ClassicalFunction")(source\[, name])     | Represent a classical function function and its logic network. |
 | [`BooleanExpression`](qiskit.circuit.classicalfunction.BooleanExpression "qiskit.circuit.classicalfunction.BooleanExpression")(expression\[, name]) | The Boolean Expression gate.                                   |
 
-### Exceptions[¶](#exceptions "Permalink to this headline")
+### Exceptions
 
 |                                                                                                                                                                                              |                                         |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |

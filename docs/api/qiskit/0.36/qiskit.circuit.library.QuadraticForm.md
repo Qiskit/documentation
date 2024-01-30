@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.library.QuadraticForm
 
 <span id="qiskit.circuit.library.QuadraticForm" />
 
-`QuadraticForm(num_result_qubits=None, quadratic=None, linear=None, offset=None, little_endian=True)`
+`QuadraticForm(num_result_qubits=None, quadratic=None, linear=None, offset=None, little_endian=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/arithmetic/quadratic_form.py "view source code")
 
-Bases: [`qiskit.circuit.quantumcircuit.QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+Bases: `qiskit.circuit.quantumcircuit.QuantumCircuit`
 
 Implements a quadratic form on binary variables encoded in qubit registers.
 
@@ -45,9 +45,9 @@ The implementation of this circuit is discussed in \[1], Fig. 6.
 **Parameters**
 
 *   **num\_result\_qubits** (`Optional`\[`int`]) – The number of qubits to encode the result. Called $m$ in the class documentation.
-*   **quadratic** (`Union`\[`ndarray`, `List`\[`List`\[`Union`\[`float`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]]], `None`]) – A matrix containing the quadratic coefficients, $A$.
-*   **linear** (`Union`\[`ndarray`, `List`\[`Union`\[`float`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]], `None`]) – An array containing the linear coefficients, $b$.
-*   **offset** (`Union`\[`float`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `None`]) – A constant offset, $c$.
+*   **quadratic** (`Union`\[`ndarray`, `List`\[`List`\[`Union`\[`float`, `ParameterExpression`]]], `None`]) – A matrix containing the quadratic coefficients, $A$.
+*   **linear** (`Union`\[`ndarray`, `List`\[`Union`\[`float`, `ParameterExpression`]], `None`]) – An array containing the linear coefficients, $b$.
+*   **offset** (`Union`\[`float`, `ParameterExpression`, `None`]) – A constant offset, $c$.
 *   **little\_endian** (`bool`) – Encode the result in little endianness.
 
 **Raises**
@@ -61,7 +61,7 @@ The implementation of this circuit is discussed in \[1], Fig. 6.
 
 <span id="qiskit.circuit.library.QuadraticForm.required_result_qubits" />
 
-`static QuadraticForm.required_result_qubits(quadratic, linear, offset)`
+`static QuadraticForm.required_result_qubits(quadratic, linear, offset)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/arithmetic/quadratic_form.py "view source code")
 
 Get the number of required result qubits.
 
@@ -89,7 +89,7 @@ Returns a list of ancilla bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.quantumregister.AncillaQubit")]
+`List`\[`AncillaQubit`]
 
 <span id="qiskit.circuit.library.QuadraticForm.calibrations" />
 
@@ -113,7 +113,7 @@ Returns a list of classical bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.library.QuadraticForm.data" />
 
@@ -123,7 +123,9 @@ Return the circuit data (instructions and context).
 
 **Returns**
 
-a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
+a list-like object containing the tuples for the circuit’s data.
+
+Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is an Instruction (or subclass) object, qargs is a list of Qubit objects, and cargs is a list of Clbit objects.
 
 **Return type**
 
@@ -143,7 +145,7 @@ Return the global phase of the circuit in radians.
 
 **Return type**
 
-`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]
+`Union`\[`ParameterExpression`, `float`]
 
 <span id="qiskit.circuit.library.QuadraticForm.header" />
 
@@ -155,7 +157,7 @@ Return the global phase of the circuit in radians.
 
 ### instances
 
-`= 87`
+`= 9`
 
 <span id="qiskit.circuit.library.QuadraticForm.metadata" />
 
@@ -209,26 +211,6 @@ Return number of qubits.
 
 `int`
 
-<span id="qiskit.circuit.library.QuadraticForm.op_start_times" />
-
-### op\_start\_times
-
-Return a list of operation start times.
-
-This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
-
-**Return type**
-
-`List`\[`int`]
-
-**Returns**
-
-List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
-
-**Raises**
-
-**AttributeError** – When circuit is not scheduled.
-
 <span id="qiskit.circuit.library.QuadraticForm.parameters" />
 
 ### parameters
@@ -253,5 +235,5 @@ Returns a list of quantum bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")]
+`List`\[`Qubit`]
 

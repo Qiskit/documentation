@@ -1,6 +1,6 @@
 # qiskit.qasm3.dump
 
-<span id="undefined" />
+
 
 `dump(circuit, stream, **kwargs)`
 

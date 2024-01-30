@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.Optimizer
 
 <span id="qiskit.algorithms.optimizers.Optimizer" />
 
-`Optimizer`
+`Optimizer`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/optimizer.py "view source code")
 
 Bases: `abc.ABC`
 
@@ -24,7 +24,7 @@ Initialize the optimization algorithm, setting the support level for \_gradient\
 
 <span id="qiskit.algorithms.optimizers.Optimizer.get_support_level" />
 
-`abstract Optimizer.get_support_level()`
+`abstract Optimizer.get_support_level()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/optimizer.py "view source code")
 
 Return support level dictionary
 
@@ -32,7 +32,7 @@ Return support level dictionary
 
 <span id="qiskit.algorithms.optimizers.Optimizer.gradient_num_diff" />
 
-`static Optimizer.gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)`
+`static Optimizer.gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/optimizer.py "view source code")
 
 We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
 
@@ -55,7 +55,7 @@ grad
 
 <span id="qiskit.algorithms.optimizers.Optimizer.minimize" />
 
-`abstract Optimizer.minimize(fun, x0, jac=None, bounds=None)`
+`Optimizer.minimize(fun, x0, jac=None, bounds=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/optimizer.py "view source code")
 
 Minimize the scalar function.
 
@@ -68,17 +68,43 @@ Minimize the scalar function.
 
 **Return type**
 
-[`OptimizerResult`](qiskit.algorithms.optimizers.OptimizerResult "qiskit.algorithms.optimizers.optimizer.OptimizerResult")
+`OptimizerResult`
 
 **Returns**
 
 The result of the optimization, containing e.g. the result as attribute `x`.
 
+### optimize
+
+<span id="qiskit.algorithms.optimizers.Optimizer.optimize" />
+
+`Optimizer.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/optimizer.py "view source code")
+
+Perform optimization.
+
+**Parameters**
+
+*   **num\_vars** (*int*) – Number of parameters to be optimized.
+*   **objective\_function** (*callable*) – A function that computes the objective function.
+*   **gradient\_function** (*callable*) – A function that computes the gradient of the objective function, or None if not available.
+*   **variable\_bounds** (*list\[(float, float)]*) – List of variable bounds, given as pairs (lower, upper). None means unbounded.
+*   **initial\_point** (*numpy.ndarray\[float]*) – Initial point.
+
+**Returns**
+
+**point, value, nfev**
+
+point: is a 1D numpy.ndarray\[float] containing the solution value: is a float with the objective function value nfev: number of objective function calls made if available or None
+
+**Raises**
+
+**ValueError** – invalid input
+
 ### print\_options
 
 <span id="qiskit.algorithms.optimizers.Optimizer.print_options" />
 
-`Optimizer.print_options()`
+`Optimizer.print_options()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/optimizer.py "view source code")
 
 Print algorithm-specific options.
 
@@ -86,7 +112,7 @@ Print algorithm-specific options.
 
 <span id="qiskit.algorithms.optimizers.Optimizer.set_max_evals_grouped" />
 
-`Optimizer.set_max_evals_grouped(limit)`
+`Optimizer.set_max_evals_grouped(limit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/optimizer.py "view source code")
 
 Set max evals grouped
 
@@ -94,7 +120,7 @@ Set max evals grouped
 
 <span id="qiskit.algorithms.optimizers.Optimizer.set_options" />
 
-`Optimizer.set_options(**kwargs)`
+`Optimizer.set_options(**kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/optimizer.py "view source code")
 
 Sets or updates values in the options dictionary.
 
@@ -108,7 +134,7 @@ The options dictionary may be used internally by a given optimizer to pass addit
 
 <span id="qiskit.algorithms.optimizers.Optimizer.wrap_function" />
 
-`static Optimizer.wrap_function(function, args)`
+`static Optimizer.wrap_function(function, args)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/optimizer.py "view source code")
 
 Wrap the function to implicitly inject the args at the call of the function.
 

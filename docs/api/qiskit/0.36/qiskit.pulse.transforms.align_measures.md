@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.transforms.align_measures
 
 <span id="qiskit.pulse.transforms.align_measures" />
 
-`align_measures(schedules, inst_map=None, cal_gate='u3', max_calibration_duration=None, align_time=None, align_all=True)`
+`align_measures(schedules, inst_map=None, cal_gate='u3', max_calibration_duration=None, align_time=None, align_all=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/transforms/canonicalization.py "view source code")
 
 Return new schedules where measurements occur at the same physical time.
 
@@ -56,8 +56,8 @@ assert aligned_sched != aligned_sched_shifted
 
 **Parameters**
 
-*   **schedules** (`Iterable`\[`Union`\[[`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule"), [`Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")]]) – Collection of schedules to be aligned together
-*   **inst\_map** (`Optional`\[[`InstructionScheduleMap`](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.instruction_schedule_map.InstructionScheduleMap")]) – Mapping of circuit operations to pulse schedules
+*   **schedules** (`Iterable`\[`Union`\[`Schedule`, `Instruction`]]) – Collection of schedules to be aligned together
+*   **inst\_map** (`Optional`\[`InstructionScheduleMap`]) – Mapping of circuit operations to pulse schedules
 *   **cal\_gate** (`str`) – The name of the gate to inspect for the calibration time
 *   **max\_calibration\_duration** (`Optional`\[`int`]) – If provided, inst\_map and cal\_gate will be ignored
 *   **align\_time** (`Optional`\[`int`]) – If provided, this will be used as final align time.
@@ -65,7 +65,7 @@ assert aligned_sched != aligned_sched_shifted
 
 **Return type**
 
-`List`\[[`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")]
+`List`\[`Schedule`]
 
 **Returns**
 

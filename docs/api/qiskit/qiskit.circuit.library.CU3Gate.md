@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CU3Gate
 
 <span id="qiskit.circuit.library.CU3Gate" />
 
-`qiskit.circuit.library.CU3Gate(theta, phi, lam, label=None, ctrl_state=None, *, duration=None, unit='dt', _base_label=None)`
+`qiskit.circuit.library.CU3Gate(theta, phi, lam, label=None, ctrl_state=None, *, duration=None, unit='dt', _base_label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/u3.py "view source code")
 
 Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 
@@ -30,15 +30,17 @@ q_1: ┤ U3(ϴ,φ,λ) ├
 **Matrix representation:**
 
 $$
- \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}CU3(\theta, \phi, \lambda)\ q_0, q_1 =
+\newcommand{\rotationangle}{\frac{\theta}{2}}
+
+CU3(\theta, \phi, \lambda)\ q_0, q_1 =
     I \otimes |0\rangle\langle 0| +
     U3(\theta,\phi,\lambda) \otimes |1\rangle\langle 1| =
     \begin{pmatrix}
         1 & 0                   & 0 & 0 \\
-        0 & \cos(\th)           & 0 & -e^{i\lambda}\sin(\th) \\
+        0 & \cos(\rotationangle)           & 0 & -e^{i\lambda}\sin(\rotationangle) \\
         0 & 0                   & 1 & 0 \\
-        0 & e^{i\phi}\sin(\th)  & 0 & e^{i(\phi+\lambda)}\cos(\th)
-    \end{pmatrix}\end{split}\end{aligned}\end{align} 
+        0 & e^{i\phi}\sin(\rotationangle)  & 0 & e^{i(\phi+\lambda)}\cos(\rotationangle)
+    \end{pmatrix}
 $$
 
 <Admonition title="Note" type="note">
@@ -52,15 +54,17 @@ $$
   ```
 
   $$
-  \begin{split}CU3(\theta, \phi, \lambda)\ q_1, q_0 =
+  \newcommand{\rotationangle}{\frac{\theta}{2}}
+
+  CU3(\theta, \phi, \lambda)\ q_1, q_0 =
       |0\rangle\langle 0| \otimes I +
       |1\rangle\langle 1| \otimes U3(\theta,\phi,\lambda) =
       \begin{pmatrix}
           1 & 0   & 0                  & 0 \\
           0 & 1   & 0                  & 0 \\
-          0 & 0   & \cos(\th)          & -e^{i\lambda}\sin(\th) \\
-          0 & 0   & e^{i\phi}\sin(\th) & e^{i(\phi+\lambda)}\cos(\th)
-      \end{pmatrix}\end{split}
+          0 & 0   & \cos(\rotationangle)          & -e^{i\lambda}\sin(\rotationangle) \\
+          0 & 0   & e^{i\phi}\sin(\rotationangle) & e^{i(\phi+\lambda)}\cos(\rotationangle)
+      \end{pmatrix}
   $$
 </Admonition>
 

@@ -20,9 +20,9 @@ QuantumCircuit to Pulse scheduler.
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | [`schedule_circuit`](#qiskit.scheduler.schedule_circuit.schedule_circuit "qiskit.scheduler.schedule_circuit.schedule_circuit")(circuit, schedule\_config\[, …]) | Basic scheduling pass from a circuit to a pulse Schedule, using the backend. |
 
-<span id="undefined" />
+<span id="qiskit.scheduler.schedule_circuit.schedule_circuit" />
 
-`schedule_circuit(circuit, schedule_config, method=None)`
+`schedule_circuit(circuit, schedule_config, method=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/scheduler/schedule_circuit.py "view source code")
 
 Basic scheduling pass from a circuit to a pulse Schedule, using the backend. If no method is specified, then a basic, as late as possible scheduling pass is performed, i.e. pulses are scheduled to occur as late as possible.
 

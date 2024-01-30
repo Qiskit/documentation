@@ -1,10 +1,18 @@
+---
+title: IgnisLogging
+description: API reference for qiskit.ignis.logging.IgnisLogging
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.ignis.logging.IgnisLogging
+---
+
 <span id="qiskit-ignis-logging-ignislogging" />
 
 # qiskit.ignis.logging.IgnisLogging
 
-<span id="undefined" />
+<span id="qiskit.ignis.logging.IgnisLogging" />
 
-`IgnisLogging(log_config_path=None)`
+`IgnisLogging(log_config_path=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/logging/ignis_logging.py "view source code")
 
 Singleton class to configure file logging via IgnisLogger
 
@@ -22,7 +30,9 @@ max\_size: \<# bytes> - maximum size limit for a given log file. If not specifie
 
 max\_rotations: \<count> - maximum number of log files to rotate (oldest file is deleted in case count is reached)
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.ignis.logging.IgnisLogging.__init__" />
 
 `__init__()`
 
@@ -38,7 +48,9 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`get_log_file`](#qiskit.ignis.logging.IgnisLogging.get_log_file "qiskit.ignis.logging.IgnisLogging.get_log_file")()                         | Get the name of the log file                                  |
 | [`get_logger`](#qiskit.ignis.logging.IgnisLogging.get_logger "qiskit.ignis.logging.IgnisLogging.get_logger")(name)                           | Return an IgnisLogger object                                  |
 
-<span id="undefined" />
+### default\_datetime\_fmt
+
+<span id="qiskit.ignis.logging.IgnisLogging.default_datetime_fmt" />
 
 `default_datetime_fmt()`
 
@@ -52,7 +64,9 @@ Get the default date time format used for writing log entries
 
 Default date time format
 
-<span id="undefined" />
+### get\_file\_handler
+
+<span id="qiskit.ignis.logging.IgnisLogging.get_file_handler" />
 
 `get_file_handler()`
 
@@ -66,7 +80,9 @@ The configured RotatingFileHandler object
 
 RotatingFileHandler
 
-<span id="undefined" />
+### get\_log\_file
+
+<span id="qiskit.ignis.logging.IgnisLogging.get_log_file" />
 
 `get_log_file()`
 
@@ -80,7 +96,9 @@ Get the name of the log file
 
 Name of the log file
 
-<span id="undefined" />
+### get\_logger
+
+<span id="qiskit.ignis.logging.IgnisLogging.get_logger" />
 
 `get_logger(name)`
 
@@ -99,3 +117,4 @@ To be used in by the code which needs logging.
 **Returns**
 
 An IgnisLogger object
+

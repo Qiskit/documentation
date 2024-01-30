@@ -1,16 +1,24 @@
+---
+title: marginal_counts
+description: API reference for qiskit.result.marginal_counts
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.result.marginal_counts
+---
+
 <span id="qiskit-result-marginal-counts" />
 
 # qiskit.result.marginal\_counts
 
-<span id="undefined" />
+<span id="qiskit.result.marginal_counts" />
 
-`marginal_counts(result, indices=None, inplace=False)`
+`marginal_counts(result, indices=None, inplace=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/result/utils.py "view source code")
 
 Marginalize counts from an experiment over some indices of interest.
 
 **Parameters**
 
-*   **result** (*dict or* [*Result*](qiskit.result.Result#qiskit.result.Result "qiskit.result.Result")) – result to be marginalized (a Result object or a dict of counts).
+*   **result** (*dict or* [*Result*](qiskit.result.Result "qiskit.result.Result")) – result to be marginalized (a Result object or a dict of counts).
 *   **indices** (*list(int) or None*) – The bit positions of interest to marginalize over. If `None` (default), do not marginalize at all.
 *   **inplace** (*bool*) – Default: False. Operates on the original Result argument if True, leading to loss of original Job Result. It has no effect if `result` is a dict.
 
@@ -20,8 +28,9 @@ a dictionary with the observed counts, marginalized to only account for frequenc
 
 **Return type**
 
-[Result](qiskit.result.Result#qiskit.result.Result "qiskit.result.Result") or dict\[str, int]
+[Result](qiskit.result.Result "qiskit.result.Result") or dict\[str, int]
 
 **Raises**
 
 **QiskitError** – in case of invalid indices to marginalize over.
+

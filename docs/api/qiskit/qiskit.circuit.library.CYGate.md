@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CYGate
 
 <span id="qiskit.circuit.library.CYGate" />
 
-`qiskit.circuit.library.CYGate(*args, _force_mutable=False, **kwargs)`
+`qiskit.circuit.library.CYGate(*args, _force_mutable=False, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/y.py "view source code")
 
 Bases: [`SingletonControlledGate`](circuit_singleton#qiskit.circuit.singleton.SingletonControlledGate "qiskit.circuit.singleton.SingletonControlledGate")
 
@@ -30,14 +30,14 @@ q_1: ┤ Y ├
 **Matrix representation:**
 
 $$
-\begin{split}CY\ q_0, q_1 =
+CY\ q_0, q_1 =
 I \otimes |0 \rangle\langle 0| + Y \otimes |1 \rangle\langle 1|  =
     \begin{pmatrix}
         1 & 0 & 0 & 0 \\
         0 & 0 & 0 & -i \\
         0 & 0 & 1 & 0 \\
         0 & i & 0 & 0
-    \end{pmatrix}\end{split}
+    \end{pmatrix}
 $$
 
 <Admonition title="Note" type="note">
@@ -51,14 +51,14 @@ $$
   ```
 
   $$
-  \begin{split}CY\ q_1, q_0 =
+  CY\ q_1, q_0 =
       |0 \rangle\langle 0| \otimes I + |1 \rangle\langle 1| \otimes Y =
       \begin{pmatrix}
           1 & 0 & 0 & 0 \\
           0 & 1 & 0 & 0 \\
           0 & 0 & 0 & -i \\
           0 & 0 & i & 0
-      \end{pmatrix}\end{split}
+      \end{pmatrix}
   $$
 </Admonition>
 

@@ -1,23 +1,31 @@
+---
+title: AccountProvider
+description: API reference for qiskit.providers.ibmq.AccountProvider
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.ibmq.AccountProvider
+---
+
 <span id="qiskit-providers-ibmq-accountprovider" />
 
 # qiskit.providers.ibmq.AccountProvider
 
-<span id="undefined" />
+<span id="qiskit.providers.ibmq.AccountProvider" />
 
-`AccountProvider(credentials, access_token)`
+`AccountProvider(credentials, access_token)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.12/qiskit/providers/ibmq/accountprovider.py "view source code")
 
 Provider for a single IBM Quantum Experience account.
 
 The account provider class provides access to the IBM Quantum Experience services available to this account.
 
-You can access a provider by enabling an account with the [`IBMQ.enable_account()`](qiskit.providers.ibmq.IBMQFactory#qiskit.providers.ibmq.IBMQFactory.enable_account "qiskit.providers.ibmq.IBMQFactory.enable_account") method, which returns the default provider you have access to:
+You can access a provider by enabling an account with the [`IBMQ.enable_account()`](qiskit.providers.ibmq.IBMQFactory#enable_account "qiskit.providers.ibmq.IBMQFactory.enable_account") method, which returns the default provider you have access to:
 
 ```python
 from qiskit import IBMQ
 provider = IBMQ.enable_account(<INSERT_IBM_QUANTUM_EXPERIENCE_TOKEN>)
 ```
 
-To select a different provider, use the [`IBMQ.get_provider()`](qiskit.providers.ibmq.IBMQFactory#qiskit.providers.ibmq.IBMQFactory.get_provider "qiskit.providers.ibmq.IBMQFactory.get_provider") method and specify the hub, group, or project name of the desired provider.
+To select a different provider, use the [`IBMQ.get_provider()`](qiskit.providers.ibmq.IBMQFactory#get_provider "qiskit.providers.ibmq.IBMQFactory.get_provider") method and specify the hub, group, or project name of the desired provider.
 
 Each provider may offer different services. The main service, `IBMQBackendService`, is available to all providers and gives access to IBM Quantum Experience devices and simulators.
 
@@ -59,7 +67,9 @@ AccountProvider constructor.
 *   **credentials** (`Credentials`) – IBM Quantum Experience credentials.
 *   **access\_token** (`str`) – IBM Quantum Experience access token.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.providers.ibmq.AccountProvider.__init__" />
 
 `__init__(credentials, access_token)`
 
@@ -89,7 +99,9 @@ AccountProvider constructor.
 | [`random`](#qiskit.providers.ibmq.AccountProvider.random "qiskit.providers.ibmq.AccountProvider.random")             | Return the random number service. |
 | `version`                                                                                                            |                                   |
 
-<span id="undefined" />
+### backend
+
+<span id="qiskit.providers.ibmq.AccountProvider.backend" />
 
 `property backend`
 
@@ -103,7 +115,9 @@ Return the backend service.
 
 The backend service instance.
 
-<span id="undefined" />
+### backends
+
+<span id="qiskit.providers.ibmq.AccountProvider.backends" />
 
 `backends(name=None, filters=None, **kwargs)`
 
@@ -137,7 +151,9 @@ Return all backends accessible via this provider, subject to optional filtering.
 
 The list of available backends that match the filter.
 
-<span id="undefined" />
+### experiment
+
+<span id="qiskit.providers.ibmq.AccountProvider.experiment" />
 
 `property experiment`
 
@@ -155,7 +171,9 @@ The experiment service instance.
 
 **IBMQNotAuthorizedError** – If the account is not authorized to use the experiment service.
 
-<span id="undefined" />
+### get\_backend
+
+<span id="qiskit.providers.ibmq.AccountProvider.get_backend" />
 
 `get_backend(name=None, **kwargs)`
 
@@ -172,13 +190,15 @@ a backend matching the filtering.
 
 **Return type**
 
-[Backend](qiskit.providers.Backend#qiskit.providers.Backend "qiskit.providers.Backend")
+[Backend](qiskit.providers.Backend "qiskit.providers.Backend")
 
 **Raises**
 
-[**QiskitBackendNotFoundError**](qiskit.providers.QiskitBackendNotFoundError#qiskit.providers.QiskitBackendNotFoundError "qiskit.providers.QiskitBackendNotFoundError") – if no backend could be found or more than one backend matches the filtering criteria.
+[**QiskitBackendNotFoundError**](qiskit.providers.QiskitBackendNotFoundError "qiskit.providers.QiskitBackendNotFoundError") – if no backend could be found or more than one backend matches the filtering criteria.
 
-<span id="undefined" />
+### random
+
+<span id="qiskit.providers.ibmq.AccountProvider.random" />
 
 `property random`
 
@@ -196,7 +216,9 @@ The random number service instance.
 
 **IBMQNotAuthorizedError** – If the account is not authorized to use the service.
 
-<span id="undefined" />
+### service
+
+<span id="qiskit.providers.ibmq.AccountProvider.service" />
 
 `service(name)`
 
@@ -219,7 +241,9 @@ The specified service.
 *   **IBMQInputValueError** – If an unknown service name is specified.
 *   **IBMQNotAuthorizedError** – If the account is not authorized to use the service.
 
-<span id="undefined" />
+### services
+
+<span id="qiskit.providers.ibmq.AccountProvider.services" />
 
 `services()`
 
@@ -232,3 +256,4 @@ Return all available services.
 **Returns**
 
 All services available to this provider.
+

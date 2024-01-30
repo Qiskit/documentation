@@ -10,9 +10,9 @@ python_api_name: qiskit.transpiler.passes.ContainsInstruction
 
 <span id="qiskit.transpiler.passes.ContainsInstruction" />
 
-`ContainsInstruction(*args, **kwargs)`
+`ContainsInstruction(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/utils/contains_instruction.py "view source code")
 
-Bases: [`qiskit.transpiler.basepasses.AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
+Bases: `qiskit.transpiler.basepasses.AnalysisPass`
 
 An analysis pass to detect if the DAG contains a specific instruction.
 
@@ -38,7 +38,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.ContainsInstruction.run" />
 
-`ContainsInstruction.run(dag)`
+`ContainsInstruction.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/utils/contains_instruction.py "view source code")
 
 Run the ContainsInstruction pass on dag.
 

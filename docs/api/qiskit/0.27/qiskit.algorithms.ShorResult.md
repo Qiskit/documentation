@@ -1,12 +1,22 @@
+---
+title: ShorResult
+description: API reference for qiskit.algorithms.ShorResult
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.algorithms.ShorResult
+---
+
 # qiskit.algorithms.ShorResult
 
-<span id="undefined" />
+<span id="qiskit.algorithms.ShorResult" />
 
-`ShorResult`
+`ShorResult`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/factorizers/shor.py "view source code")
 
 Shor Result.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.algorithms.ShorResult.__init__" />
 
 `__init__()`
 
@@ -27,7 +37,9 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`successful_counts`](#qiskit.algorithms.ShorResult.successful_counts "qiskit.algorithms.ShorResult.successful_counts") | returns successful counts |
 | [`total_counts`](#qiskit.algorithms.ShorResult.total_counts "qiskit.algorithms.ShorResult.total_counts")                | returns total counts      |
 
-<span id="undefined" />
+### combine
+
+<span id="qiskit.algorithms.ShorResult.combine" />
 
 `combine(result)`
 
@@ -41,7 +53,9 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 `None`
 
-<span id="undefined" />
+### factors
+
+<span id="qiskit.algorithms.ShorResult.factors" />
 
 `property factors`
 
@@ -51,7 +65,9 @@ returns factors
 
 `List`\[`List`\[`int`]]
 
-<span id="undefined" />
+### successful\_counts
+
+<span id="qiskit.algorithms.ShorResult.successful_counts" />
 
 `property successful_counts`
 
@@ -61,7 +77,9 @@ returns successful counts
 
 `int`
 
-<span id="undefined" />
+### total\_counts
+
+<span id="qiskit.algorithms.ShorResult.total_counts" />
 
 `property total_counts`
 
@@ -70,3 +88,4 @@ returns total counts
 **Return type**
 
 `int`
+

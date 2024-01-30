@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.compiler.schedule
 ---
 
-# qiskit.compiler.schedule[¶](#qiskit-compiler-schedule "Permalink to this headline")
+# qiskit.compiler.schedule
 
 <span id="qiskit.compiler.schedule" />
 
-`schedule(circuits, backend=None, inst_map=None, meas_map=None, dt=None, method=None)`
+`schedule(circuits, backend=None, inst_map=None, meas_map=None, dt=None, method=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/compiler/scheduler.py "view source code")
 
 Schedule a circuit to a pulse `Schedule`, using the backend, according to any specified methods. Supported methods are documented in [`qiskit.scheduler.schedule_circuit`](qiskit.scheduler.schedule_circuit#module-qiskit.scheduler.schedule_circuit "qiskit.scheduler.schedule_circuit").
 

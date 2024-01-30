@@ -1,10 +1,18 @@
+---
+title: PulseQobjExperimentConfig
+description: API reference for qiskit.qobj.PulseQobjExperimentConfig
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.qobj.PulseQobjExperimentConfig
+---
+
 <span id="qiskit-qobj-pulseqobjexperimentconfig" />
 
 # qiskit.qobj.PulseQobjExperimentConfig
 
-<span id="undefined" />
+<span id="qiskit.qobj.PulseQobjExperimentConfig" />
 
-`PulseQobjExperimentConfig(qubit_lo_freq=None, meas_lo_freq=None, **kwargs)`
+`PulseQobjExperimentConfig(qubit_lo_freq=None, meas_lo_freq=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/qobj/pulse_qobj.py "view source code")
 
 A config for a single Pulse experiment in the qobj.
 
@@ -16,7 +24,9 @@ Instantiate a PulseQobjExperimentConfig object.
 *   **meas\_lo\_freq** (*list*) – List of frequencies (as floats) for the’ measurement driver LO’s in GHz.
 *   **kwargs** – Additional free form key value fields to add to the configuration
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.qobj.PulseQobjExperimentConfig.__init__" />
 
 `__init__(qubit_lo_freq=None, meas_lo_freq=None, **kwargs)`
 
@@ -36,7 +46,9 @@ Instantiate a PulseQobjExperimentConfig object.
 | [`from_dict`](#qiskit.qobj.PulseQobjExperimentConfig.from_dict "qiskit.qobj.PulseQobjExperimentConfig.from_dict")(data)                            | Create a new QobjHeader object from a dictionary.           |
 | [`to_dict`](#qiskit.qobj.PulseQobjExperimentConfig.to_dict "qiskit.qobj.PulseQobjExperimentConfig.to_dict")()                                      | Return a dictionary format representation of the QASM Qobj. |
 
-<span id="undefined" />
+### from\_dict
+
+<span id="qiskit.qobj.PulseQobjExperimentConfig.from_dict" />
 
 `classmethod from_dict(data)`
 
@@ -54,7 +66,9 @@ The QobjDictField from the input dictionary.
 
 QobjDictFieldr
 
-<span id="undefined" />
+### to\_dict
+
+<span id="qiskit.qobj.PulseQobjExperimentConfig.to_dict" />
 
 `to_dict()`
 
@@ -67,3 +81,4 @@ The dictionary form of the QobjHeader.
 **Return type**
 
 dict
+

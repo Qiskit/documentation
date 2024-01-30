@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.Operation
 ---
 
-# Operation[¶](#operation "Permalink to this headline")
+# Operation
 
 <span id="qiskit.circuit.Operation" />
 
-`Operation`
+`Operation`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/operation.py "view source code")
 
 Bases: `abc.ABC`
 

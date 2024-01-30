@@ -1,12 +1,20 @@
+---
+title: JobStatus
+description: API reference for qiskit.providers.models.JobStatus
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.models.JobStatus
+---
+
 # qiskit.providers.models.JobStatus
 
-<span id="undefined" />
+<span id="qiskit.providers.models.JobStatus" />
 
-`JobStatus(job_id, status, status_msg, **kwargs)`
+`JobStatus(job_id, status, status_msg, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/providers/models/jobstatus.py "view source code")
 
 Model for JobStatus.
 
-<span id="undefined" />
+<span id="qiskit.providers.models.JobStatus.job_id" />
 
 ### job\_id
 
@@ -16,7 +24,7 @@ backend job\_id.
 
 str
 
-<span id="undefined" />
+<span id="qiskit.providers.models.JobStatus.status" />
 
 ### status
 
@@ -26,7 +34,7 @@ status of the job.
 
 str
 
-<span id="undefined" />
+<span id="qiskit.providers.models.JobStatus.status_msg" />
 
 ### status\_msg
 
@@ -36,7 +44,9 @@ status message.
 
 str
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.providers.models.JobStatus.__init__" />
 
 `__init__(job_id, status, status_msg, **kwargs)`
 
@@ -50,7 +60,9 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`from_dict`](#qiskit.providers.models.JobStatus.from_dict "qiskit.providers.models.JobStatus.from_dict")(data)                                  | Create a new JobStatus object from a dictionary.            |
 | [`to_dict`](#qiskit.providers.models.JobStatus.to_dict "qiskit.providers.models.JobStatus.to_dict")()                                            | Return a dictionary format representation of the JobStatus. |
 
-<span id="undefined" />
+### from\_dict
+
+<span id="qiskit.providers.models.JobStatus.from_dict" />
 
 `classmethod from_dict(data)`
 
@@ -70,7 +82,9 @@ dictionary.
 
 qiskit.providers.model.JobStatus
 
-<span id="undefined" />
+### to\_dict
+
+<span id="qiskit.providers.models.JobStatus.to_dict" />
 
 `to_dict()`
 
@@ -83,3 +97,4 @@ The dictionary form of the JobStatus.
 **Return type**
 
 dict
+

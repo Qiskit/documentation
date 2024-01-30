@@ -1,16 +1,24 @@
+---
+title: CompleteExpvalMeasMitigator
+description: API reference for qiskit.ignis.mitigation.CompleteExpvalMeasMitigator
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.ignis.mitigation.CompleteExpvalMeasMitigator
+---
+
 <span id="qiskit-ignis-mitigation-completeexpvalmeasmitigator" />
 
 # qiskit.ignis.mitigation.CompleteExpvalMeasMitigator
 
-<span id="undefined" />
+<span id="qiskit.ignis.mitigation.CompleteExpvalMeasMitigator" />
 
-`CompleteExpvalMeasMitigator(amat)`
+`CompleteExpvalMeasMitigator(amat)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/mitigation/expval/complete_mitigator.py "view source code")
 
 N-qubit measurement error mitigator.
 
-This class can be used with the [`qiskit.ignis.mitigation.expectation_value()`](qiskit.ignis.mitigation.expectation_value#qiskit.ignis.mitigation.expectation_value "qiskit.ignis.mitigation.expectation_value") function to apply measurement error mitigation of general N-qubit measurement errors when calculating expectation values from counts. Expectation values can also be computed directly using the [`expectation_value()`](qiskit.ignis.mitigation.expectation_value#qiskit.ignis.mitigation.expectation_value "qiskit.ignis.mitigation.expectation_value") method.
+This class can be used with the [`qiskit.ignis.mitigation.expectation_value()`](qiskit.ignis.mitigation.expectation_value "qiskit.ignis.mitigation.expectation_value") function to apply measurement error mitigation of general N-qubit measurement errors when calculating expectation values from counts. Expectation values can also be computed directly using the [`expectation_value()`](qiskit.ignis.mitigation.expectation_value "qiskit.ignis.mitigation.expectation_value") method.
 
-For measurement mitigation to be applied the mitigator should be calibrated using the [`qiskit.ignis.mitigation.expval_meas_mitigator_circuits()`](qiskit.ignis.mitigation.expval_meas_mitigator_circuits#qiskit.ignis.mitigation.expval_meas_mitigator_circuits "qiskit.ignis.mitigation.expval_meas_mitigator_circuits") function and [`qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter`](qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter#qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter "qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter") class with the `'complete'` mitigation method.
+For measurement mitigation to be applied the mitigator should be calibrated using the [`qiskit.ignis.mitigation.expval_meas_mitigator_circuits()`](qiskit.ignis.mitigation.expval_meas_mitigator_circuits "qiskit.ignis.mitigation.expval_meas_mitigator_circuits") function and [`qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter`](qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter "qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter") class with the `'complete'` mitigation method.
 
 Initialize a TensorMeasurementMitigator
 
@@ -18,7 +26,9 @@ Initialize a TensorMeasurementMitigator
 
 **amat** (*np.array*) – readout error assignment matrix.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.ignis.mitigation.CompleteExpvalMeasMitigator.__init__" />
 
 `__init__(amat)`
 
@@ -43,7 +53,9 @@ Initialize a TensorMeasurementMitigator
 | [`required_shots`](#qiskit.ignis.mitigation.CompleteExpvalMeasMitigator.required_shots "qiskit.ignis.mitigation.CompleteExpvalMeasMitigator.required_shots")(delta\[, qubits])                      | Return the number of shots required for expectation value estimation. |
 | [`stddev_upper_bound`](#qiskit.ignis.mitigation.CompleteExpvalMeasMitigator.stddev_upper_bound "qiskit.ignis.mitigation.CompleteExpvalMeasMitigator.stddev_upper_bound")(\[shots, qubits])          | Return an upper bound on standard deviation of expval estimator.      |
 
-<span id="undefined" />
+### assignment\_fidelity
+
+<span id="qiskit.ignis.mitigation.CompleteExpvalMeasMitigator.assignment_fidelity" />
 
 `assignment_fidelity(qubits=None)`
 
@@ -63,7 +75,9 @@ the assignment fidelity.
 
 float
 
-<span id="undefined" />
+### assignment\_matrix
+
+<span id="qiskit.ignis.mitigation.CompleteExpvalMeasMitigator.assignment_matrix" />
 
 `assignment_matrix(qubits=None)`
 
@@ -83,7 +97,9 @@ the assignment matrix A.
 
 np.ndarray
 
-<span id="undefined" />
+### expectation\_value
+
+<span id="qiskit.ignis.mitigation.CompleteExpvalMeasMitigator.expectation_value" />
 
 `expectation_value(counts, diagonal=None, qubits=None, clbits=None)`
 
@@ -116,7 +132,9 @@ The diagonal observable $O$ is input using the `diagonal` kwarg as a list or Num
 
 The `clbits` kwarg is used to marginalize the input counts dictionary over the specified bit-values, and the `qubits` kwarg is used to specify which physical qubits these bit-values correspond to as `circuit.measure(qubits, clbits)`.
 
-<span id="undefined" />
+### mitigation\_matrix
+
+<span id="qiskit.ignis.mitigation.CompleteExpvalMeasMitigator.mitigation_matrix" />
 
 `mitigation_matrix(qubits=None)`
 
@@ -136,7 +154,9 @@ the measurement error mitigation matrix $A^{-1}$.
 
 np.ndarray
 
-<span id="undefined" />
+### mitigation\_overhead
+
+<span id="qiskit.ignis.mitigation.CompleteExpvalMeasMitigator.mitigation_overhead" />
 
 `mitigation_overhead(qubits=None)`
 
@@ -156,7 +176,9 @@ the mitigation overhead factor.
 
 int
 
-<span id="undefined" />
+### plot\_assignment\_matrix
+
+<span id="qiskit.ignis.mitigation.CompleteExpvalMeasMitigator.plot_assignment_matrix" />
 
 `plot_assignment_matrix(qubits=None, ax=None)`
 
@@ -179,7 +201,9 @@ plt.axes
 
 **ImportError** – if matplotlib is not installed.
 
-<span id="undefined" />
+### plot\_mitigation\_matrix
+
+<span id="qiskit.ignis.mitigation.CompleteExpvalMeasMitigator.plot_mitigation_matrix" />
 
 `plot_mitigation_matrix(qubits=None, ax=None)`
 
@@ -202,7 +226,9 @@ plt.axes
 
 **ImportError** – if matplotlib is not installed.
 
-<span id="undefined" />
+### required\_shots
+
+<span id="qiskit.ignis.mitigation.CompleteExpvalMeasMitigator.required_shots" />
 
 `required_shots(delta, qubits=None)`
 
@@ -223,7 +249,9 @@ the required shots.
 
 int
 
-<span id="undefined" />
+### stddev\_upper\_bound
+
+<span id="qiskit.ignis.mitigation.CompleteExpvalMeasMitigator.stddev_upper_bound" />
 
 `stddev_upper_bound(shots=1, qubits=None)`
 
@@ -241,3 +269,4 @@ the standard deviation upper bound.
 **Return type**
 
 float
+

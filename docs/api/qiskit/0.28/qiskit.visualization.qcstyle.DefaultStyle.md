@@ -1,8 +1,16 @@
+---
+title: DefaultStyle
+description: API reference for qiskit.visualization.qcstyle.DefaultStyle
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.visualization.qcstyle.DefaultStyle
+---
+
 # qiskit.visualization.qcstyle.DefaultStyle
 
-<span id="undefined" />
+<span id="qiskit.visualization.qcstyle.DefaultStyle" />
 
-`DefaultStyle`
+`DefaultStyle`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/visualization/qcstyle.py "view source code")
 
 Creates a Default Style dictionary
 
@@ -149,7 +157,9 @@ the form (gate\_color, text\_color). Colors can also be entered without the text
 }
 ```
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.visualization.qcstyle.DefaultStyle.__init__" />
 
 `__init__()`
 
@@ -160,3 +170,4 @@ Initialize self. See help(type(self)) for accurate signature.
 |                                                                                                                          |                  |
 | ------------------------------------------------------------------------------------------------------------------------ | ---------------- |
 | [`__init__`](#qiskit.visualization.qcstyle.DefaultStyle.__init__ "qiskit.visualization.qcstyle.DefaultStyle.__init__")() | Initialize self. |
+

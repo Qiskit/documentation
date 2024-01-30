@@ -1,10 +1,18 @@
+---
+title: state_tomography_circuits
+description: API reference for qiskit.ignis.verification.state_tomography_circuits
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.ignis.verification.state_tomography_circuits
+---
+
 <span id="qiskit-ignis-verification-state-tomography-circuits" />
 
 # qiskit.ignis.verification.state\_tomography\_circuits
 
-<span id="undefined" />
+<span id="qiskit.ignis.verification.state_tomography_circuits" />
 
-`state_tomography_circuits(circuit, measured_qubits, meas_labels='Pauli', meas_basis='Pauli')`
+`state_tomography_circuits(circuit, measured_qubits, meas_labels='Pauli', meas_basis='Pauli')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/tomography/basis/circuits.py "view source code")
 
 Return a list of quantum state tomography circuits.
 
@@ -30,3 +38,4 @@ A list containing copies of the original circuit with state tomography measureme
 The returned circuits are named by the measurement basis.
 
 To perform tomography measurement in a custom basis, or to generate a subset of state tomography circuits for a partial tomography experiment use the general function tomography\_circuits.
+

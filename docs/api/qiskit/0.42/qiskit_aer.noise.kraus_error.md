@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit_aer.noise.kraus_error
 ---
 
-# qiskit\_aer.noise.kraus\_error[¶](#qiskit-aer-noise-kraus-error "Permalink to this headline")
+# qiskit\_aer.noise.kraus\_error
 
 <span id="qiskit_aer.noise.kraus_error" />
 
-`kraus_error(noise_ops, canonical_kraus=False)`
+`kraus_error(noise_ops, canonical_kraus=False)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/noise/errors/standard_errors.py "view source code")
 
 Return a Kraus quantum error channel.
 

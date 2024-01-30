@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.CommutationAnalysis
 ---
 
-# CommutationAnalysis[¶](#commutationanalysis "Permalink to this headline")
+# CommutationAnalysis
 
 <span id="qiskit.transpiler.passes.CommutationAnalysis" />
 
-`CommutationAnalysis(*args, **kwargs)`
+`CommutationAnalysis(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/optimization/commutation_analysis.py "view source code")
 
 Bases: [`qiskit.transpiler.basepasses.AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
@@ -34,7 +34,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.CommutationAnalysis.run" />
 
-`CommutationAnalysis.run(dag)`
+`CommutationAnalysis.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/optimization/commutation_analysis.py "view source code")
 
 Run the CommutationAnalysis pass on dag.
 

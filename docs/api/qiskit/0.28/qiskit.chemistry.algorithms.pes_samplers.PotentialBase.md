@@ -1,12 +1,22 @@
+---
+title: PotentialBase
+description: API reference for qiskit.chemistry.algorithms.pes_samplers.PotentialBase
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.algorithms.pes_samplers.PotentialBase
+---
+
 # qiskit.chemistry.algorithms.pes\_samplers.PotentialBase
 
-<span id="undefined" />
+<span id="qiskit.chemistry.algorithms.pes_samplers.PotentialBase" />
 
-`PotentialBase(molecule)`
+`PotentialBase(molecule)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/potentials/potential_base.py "view source code")
 
 Class to hold prescribed 1D potentials (e.g. Morse/Harmonic) over a degree of freedom.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.chemistry.algorithms.pes_samplers.PotentialBase.__init__" />
 
 `__init__(molecule)`
 
@@ -28,7 +38,9 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`update_molecule`](#qiskit.chemistry.algorithms.pes_samplers.PotentialBase.update_molecule "qiskit.chemistry.algorithms.pes_samplers.PotentialBase.update_molecule")(molecule)                              | Wipe state if molecule changes, and check validity of molecule for potential.                                              |
 | [`vibrational_energy_level`](#qiskit.chemistry.algorithms.pes_samplers.PotentialBase.vibrational_energy_level "qiskit.chemistry.algorithms.pes_samplers.PotentialBase.vibrational_energy_level")(n)          | Returns the n-th vibrational energy level for a given mode.                                                                |
 
-<span id="undefined" />
+### dissociation\_energy
+
+<span id="qiskit.chemistry.algorithms.pes_samplers.PotentialBase.dissociation_energy" />
 
 `abstract dissociation_energy(scaling=1.0)`
 
@@ -38,7 +50,9 @@ Returns the dissociation energy (scaled by ‘scaling’)
 
 `float`
 
-<span id="undefined" />
+### eval
+
+<span id="qiskit.chemistry.algorithms.pes_samplers.PotentialBase.eval" />
 
 `abstract eval(x)`
 
@@ -56,7 +70,9 @@ After fitting the data to the fit function, predict the energy at a point x.
 
 value of surface in point x
 
-<span id="undefined" />
+### fit
+
+<span id="qiskit.chemistry.algorithms.pes_samplers.PotentialBase.fit" />
 
 `abstract fit(xdata, ydata, initial_vals=None, bounds_list=None)`
 
@@ -73,7 +89,9 @@ Fits surface to data
 
 `None`
 
-<span id="undefined" />
+### get\_equilibrium\_geometry
+
+<span id="qiskit.chemistry.algorithms.pes_samplers.PotentialBase.get_equilibrium_geometry" />
 
 `abstract get_equilibrium_geometry(scaling=1.0)`
 
@@ -93,7 +111,9 @@ Returns the geometry for the minimal energy (scaled by ‘scaling’) Default un
 
 equilibrium geometry
 
-<span id="undefined" />
+### get\_maximum\_trusted\_level
+
+<span id="qiskit.chemistry.algorithms.pes_samplers.PotentialBase.get_maximum_trusted_level" />
 
 `get_maximum_trusted_level(n=0)`
 
@@ -111,7 +131,9 @@ Returns the maximum energy level for which the particular implementation still p
 
 maximum\_trusted\_level setted
 
-<span id="undefined" />
+### get\_minimal\_energy
+
+<span id="qiskit.chemistry.algorithms.pes_samplers.PotentialBase.get_minimal_energy" />
 
 `abstract get_minimal_energy(scaling=1.0)`
 
@@ -131,7 +153,9 @@ Returns the value of the minimal energy (scaled by ‘scaling’) Default units 
 
 minimum energy
 
-<span id="undefined" />
+### get\_num\_modes
+
+<span id="qiskit.chemistry.algorithms.pes_samplers.PotentialBase.get_num_modes" />
 
 `get_num_modes()`
 
@@ -141,7 +165,9 @@ This (1D) potential represents a single vibrational mode
 
 `int`
 
-<span id="undefined" />
+### get\_trust\_region
+
+<span id="qiskit.chemistry.algorithms.pes_samplers.PotentialBase.get_trust_region" />
 
 `get_trust_region()`
 
@@ -151,7 +177,9 @@ The potential will usually be well-defined (even if not useful) for arbitrary x 
 
 `Tuple`\[`float`, `float`]
 
-<span id="undefined" />
+### update\_molecule
+
+<span id="qiskit.chemistry.algorithms.pes_samplers.PotentialBase.update_molecule" />
 
 `update_molecule(molecule)`
 
@@ -169,7 +197,9 @@ Wipe state if molecule changes, and check validity of molecule for potential.
 
 molecule used
 
-<span id="undefined" />
+### vibrational\_energy\_level
+
+<span id="qiskit.chemistry.algorithms.pes_samplers.PotentialBase.vibrational_energy_level" />
 
 `abstract vibrational_energy_level(n)`
 
@@ -186,3 +216,4 @@ Returns the n-th vibrational energy level for a given mode.
 **Returns**
 
 n-th vibrational energy level for a given mode
+

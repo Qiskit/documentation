@@ -22,9 +22,9 @@ Convert max-cut instances into Pauli list Deal with Gset format. See [https://we
 | [`get_operator`](#qiskit.optimization.applications.ising.max_cut.get_operator "qiskit.optimization.applications.ising.max_cut.get_operator")(weight\_matrix)      | Generate Hamiltonian for the max-cut problem of a graph. |
 | [`max_cut_value`](#qiskit.optimization.applications.ising.max_cut.max_cut_value "qiskit.optimization.applications.ising.max_cut.max_cut_value")(x, w)             | Compute the value of a cut.                              |
 
-<span id="undefined" />
+<span id="qiskit.optimization.applications.ising.max_cut.get_graph_solution" />
 
-`get_graph_solution(x)`
+`get_graph_solution(x)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/max_cut.py "view source code")
 
 Get graph solution from binary string.
 
@@ -40,9 +40,9 @@ graph solution as binary numpy array.
 
 numpy.ndarray
 
-<span id="undefined" />
+<span id="qiskit.optimization.applications.ising.max_cut.get_operator" />
 
-`get_operator(weight_matrix)`
+`get_operator(weight_matrix)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/max_cut.py "view source code")
 
 Generate Hamiltonian for the max-cut problem of a graph.
 
@@ -56,11 +56,11 @@ operator for the Hamiltonian float: a constant shift for the obj function.
 
 **Return type**
 
-[WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator#qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
+[WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
 
-<span id="undefined" />
+<span id="qiskit.optimization.applications.ising.max_cut.max_cut_value" />
 
-`max_cut_value(x, w)`
+`max_cut_value(x, w)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/max_cut.py "view source code")
 
 Compute the value of a cut.
 

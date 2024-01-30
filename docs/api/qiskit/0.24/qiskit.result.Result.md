@@ -1,14 +1,22 @@
+---
+title: Result
+description: API reference for qiskit.result.Result
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.result.Result
+---
+
 <span id="qiskit-result-result" />
 
 # qiskit.result.Result
 
-<span id="undefined" />
+<span id="qiskit.result.Result" />
 
-`Result(backend_name, backend_version, qobj_id, job_id, success, results, date=None, status=None, header=None, **kwargs)`
+`Result(backend_name, backend_version, qobj_id, job_id, success, results, date=None, status=None, header=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/result/result.py "view source code")
 
 Model for Results.
 
-<span id="undefined" />
+<span id="qiskit.result.Result.backend_name" />
 
 ### backend\_name
 
@@ -18,7 +26,7 @@ backend name.
 
 str
 
-<span id="undefined" />
+<span id="qiskit.result.Result.backend_version" />
 
 ### backend\_version
 
@@ -28,7 +36,7 @@ backend version, in the form X.Y.Z.
 
 str
 
-<span id="undefined" />
+<span id="qiskit.result.Result.qobj_id" />
 
 ### qobj\_id
 
@@ -38,7 +46,7 @@ user-generated Qobj id.
 
 str
 
-<span id="undefined" />
+<span id="qiskit.result.Result.job_id" />
 
 ### job\_id
 
@@ -48,7 +56,7 @@ unique execution id from the backend.
 
 str
 
-<span id="undefined" />
+<span id="qiskit.result.Result.success" />
 
 ### success
 
@@ -58,7 +66,7 @@ True if complete input qobj executed correctly. (Implies each experiment success
 
 bool
 
-<span id="undefined" />
+<span id="qiskit.result.Result.results" />
 
 ### results
 
@@ -68,7 +76,9 @@ corresponding results for array of experiments of the input qobj
 
 list\[ExperimentResult]
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.result.Result.__init__" />
 
 `__init__(backend_name, backend_version, qobj_id, job_id, success, results, date=None, status=None, header=None, **kwargs)`
 
@@ -87,7 +97,9 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`get_unitary`](#qiskit.result.Result.get_unitary "qiskit.result.Result.get_unitary")(\[experiment, decimals])             | Get the final unitary of an experiment.                                                                                                                                                  |
 | [`to_dict`](#qiskit.result.Result.to_dict "qiskit.result.Result.to_dict")()                                                | Return a dictionary format representation of the Result                                                                                                                                  |
 
-<span id="undefined" />
+### data
+
+<span id="qiskit.result.Result.data" />
 
 `data(experiment=None)`
 
@@ -97,7 +109,7 @@ Note this data will be a single classical and quantum register and in a format r
 
 **Parameters**
 
-**experiment** (*str or* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule") *or int or None*) – the index of the experiment. Several types are accepted for convenience:: \* str: the name of the experiment. \* QuantumCircuit: the name of the circuit instance will be used. \* Schedule: the name of the schedule instance will be used. \* int: the position of the experiment. \* None: if there is only one experiment, returns it.
+**experiment** (*str or* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule") *or int or None*) – the index of the experiment. Several types are accepted for convenience:: \* str: the name of the experiment. \* QuantumCircuit: the name of the circuit instance will be used. \* Schedule: the name of the schedule instance will be used. \* int: the position of the experiment. \* None: if there is only one experiment, returns it.
 
 **Returns**
 
@@ -119,7 +131,9 @@ dict
 
 **QiskitError** – if data for the experiment could not be retrieved.
 
-<span id="undefined" />
+### from\_dict
+
+<span id="qiskit.result.Result.from_dict" />
 
 `classmethod from_dict(data)`
 
@@ -137,7 +151,9 @@ The `Result` object from the input dictionary.
 
 [Result](#qiskit.result.Result "qiskit.result.Result")
 
-<span id="undefined" />
+### get\_counts
+
+<span id="qiskit.result.Result.get_counts" />
 
 `get_counts(experiment=None)`
 
@@ -145,7 +161,7 @@ Get the histogram data of an experiment.
 
 **Parameters**
 
-**experiment** (*str or* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule") *or int or None*) – the index of the experiment, as specified by `get_data()`.
+**experiment** (*str or* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule") *or int or None*) – the index of the experiment, as specified by `get_data()`.
 
 **Returns**
 
@@ -161,7 +177,9 @@ dict\[str
 
 **QiskitError** – if there are no counts for the experiment.
 
-<span id="undefined" />
+### get\_memory
+
+<span id="qiskit.result.Result.get_memory" />
 
 `get_memory(experiment=None)`
 
@@ -169,7 +187,7 @@ Get the sequence of memory states (readouts) for each shot The data from the exp
 
 **Parameters**
 
-**experiment** (*str or* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule") *or int or None*) – the index of the experiment, as specified by `data()`.
+**experiment** (*str or* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule") *or int or None*) – the index of the experiment, as specified by `data()`.
 
 **Returns**
 
@@ -193,7 +211,9 @@ List\[str] or np.ndarray
 
 **QiskitError** – if there is no memory data for the circuit.
 
-<span id="undefined" />
+### get\_statevector
+
+<span id="qiskit.result.Result.get_statevector" />
 
 `get_statevector(experiment=None, decimals=None)`
 
@@ -201,7 +221,7 @@ Get the final statevector of an experiment.
 
 **Parameters**
 
-*   **experiment** (*str or* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule") *or int or None*) – the index of the experiment, as specified by `data()`.
+*   **experiment** (*str or* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule") *or int or None*) – the index of the experiment, as specified by `data()`.
 *   **decimals** (*int*) – the number of decimals in the statevector. If None, does not round.
 
 **Returns**
@@ -216,7 +236,9 @@ list\[complex]
 
 **QiskitError** – if there is no statevector for the experiment.
 
-<span id="undefined" />
+### get\_unitary
+
+<span id="qiskit.result.Result.get_unitary" />
 
 `get_unitary(experiment=None, decimals=None)`
 
@@ -224,7 +246,7 @@ Get the final unitary of an experiment.
 
 **Parameters**
 
-*   **experiment** (*str or* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule") *or int or None*) – the index of the experiment, as specified by `data()`.
+*   **experiment** (*str or* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule") *or int or None*) – the index of the experiment, as specified by `data()`.
 *   **decimals** (*int*) – the number of decimals in the unitary. If None, does not round.
 
 **Returns**
@@ -241,7 +263,9 @@ list\[list\[complex]]
 
 **QiskitError** – if there is no unitary for the experiment.
 
-<span id="undefined" />
+### to\_dict
+
+<span id="qiskit.result.Result.to_dict" />
 
 `to_dict()`
 
@@ -254,3 +278,4 @@ The dictionary form of the Result
 **Return type**
 
 dict
+

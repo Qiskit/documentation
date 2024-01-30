@@ -1,8 +1,16 @@
+---
+title: get_feature_dimension
+description: API reference for qiskit.aqua.utils.get_feature_dimension
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.aqua.utils.get_feature_dimension
+---
+
 # qiskit.aqua.utils.get\_feature\_dimension
 
-<span id="undefined" />
+<span id="qiskit.aqua.utils.get_feature_dimension" />
 
-`get_feature_dimension(dataset)`
+`get_feature_dimension(dataset)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/utils/dataset_helper.py "view source code")
 
 Check feature dimension of a given dataset
 
@@ -21,3 +29,4 @@ int
 **Raises**
 
 **TypeError** – invalid data set
+

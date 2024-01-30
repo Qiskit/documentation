@@ -6,13 +6,13 @@ python_api_type: class
 python_api_name: qiskit.pulse.library.Gaussian
 ---
 
-# Gaussian[¶](#gaussian "Permalink to this headline")
+# Gaussian
 
 <span id="qiskit.pulse.library.Gaussian" />
 
-`Gaussian(duration, amp, sigma, name=None, limit_amplitude=None)`
+`Gaussian(duration, amp, sigma, name=None, limit_amplitude=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/library/parametric_pulses.py "view source code")
 
-Bases: [`qiskit.pulse.library.symbolic_pulses.SymbolicPulse`](qiskit.pulse.library.SymbolicPulse "qiskit.pulse.library.symbolic_pulses.SymbolicPulse")
+Bases: `qiskit.pulse.library.parametric_pulses.ParametricPulse`
 
 A lifted and truncated pulse envelope shaped according to the Gaussian function whose mean is centered at the center of the pulse (duration / 2):
 
@@ -23,13 +23,15 @@ $$
 
 where $f'(x)$ is the gaussian waveform without lifting or amplitude scaling.
 
-Create new pulse instance.
+This pulse would be more accurately named as `LiftedGaussian`, however, for historical and practical DSP reasons it has the name `Gaussian`.
+
+Initialize the gaussian pulse.
 
 **Parameters**
 
-*   **duration** (`Union`\[`int`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]) – Pulse length in terms of the sampling period dt.
-*   **amp** (`Union`\[`complex`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]) – The amplitude of the Gaussian envelope.
-*   **sigma** (`Union`\[`float`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]) – A measure of how wide or narrow the Gaussian peak is; described mathematically in the class docstring.
+*   **duration** (`Union`\[`int`, `ParameterExpression`]) – Pulse length in terms of the the sampling period dt.
+*   **amp** (`Union`\[`complex`, `ParameterExpression`]) – The amplitude of the Gaussian envelope.
+*   **sigma** (`Union`\[`float`, `ParameterExpression`]) – A measure of how wide or narrow the Gaussian peak is; described mathematically in the class docstring.
 *   **name** (`Optional`\[`str`]) – Display name for this pulse envelope.
 *   **limit\_amplitude** (`Optional`\[`bool`]) – If `True`, then limit the amplitude of the waveform to 1. The default is `True` and the amplitude is constrained to 1.
 
@@ -47,7 +49,7 @@ Plot the interpolated envelope of pulse.
 
 *   **style** (`Optional`\[`Dict`\[`str`, `Any`]]) – Stylesheet options. This can be dictionary or preset stylesheet classes. See `IQXStandard`, `IQXSimple`, and `IQXDebugging` for details of preset stylesheets.
 
-*   **backend** (*Optional\[BaseBackend]*) – Backend object to play the input pulse program. If provided, the plotter may use to make the visualization hardware aware.
+*   **backend** (*Optional\[*[*BaseBackend*](qiskit.providers.BaseBackend "qiskit.providers.BaseBackend")*]*) – Backend object to play the input pulse program. If provided, the plotter may use to make the visualization hardware aware.
 
 *   **time\_range** (`Optional`\[`Tuple`\[`int`, `int`]]) – Set horizontal axis limit. Tuple `(tmin, tmax)`.
 
@@ -77,28 +79,13 @@ Visualization output data. The returned data type depends on the `plotter`. If m
 
 <span id="qiskit.pulse.library.Gaussian.get_waveform" />
 
-`Gaussian.get_waveform()`
+`Gaussian.get_waveform()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/library/parametric_pulses.py "view source code")
 
 Return a Waveform with samples filled according to the formula that the pulse represents and the parameter values it contains.
 
-Since the returned array is a discretized time series of the continuous function, this method uses a midpoint sampler. For `duration`, return:
-
-$$
-\{f(t+0.5) \in \mathbb{C} | t \in \mathbb{Z} \wedge  0<=t<\texttt{duration}\}
-$$
-
 **Return type**
 
-[`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.waveform.Waveform")
-
-**Returns**
-
-A waveform representation of this pulse.
-
-**Raises**
-
-*   [**PulseError**](pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When parameters are not assigned.
-*   [**PulseError**](pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When expression for pulse envelope is not assigned.
+`Waveform`
 
 ### is\_parameterized
 
@@ -116,7 +103,7 @@ Return True iff the instruction is parameterized.
 
 <span id="qiskit.pulse.library.Gaussian.validate_parameters" />
 
-`Gaussian.validate_parameters()`
+`Gaussian.validate_parameters()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/library/parametric_pulses.py "view source code")
 
 Validate parameters.
 
@@ -130,29 +117,15 @@ Validate parameters.
 
 ## Attributes
 
-<span id="qiskit.pulse.library.Gaussian.constraints" />
+<span id="qiskit.pulse.library.Gaussian.amp" />
 
-### constraints
+### amp
 
-Return symbolic expression for the pulse parameter constraints.
-
-**Return type**
-
-`Expr`
-
-<span id="qiskit.pulse.library.Gaussian.duration" />
-
-### duration
-
-<span id="qiskit.pulse.library.Gaussian.envelope" />
-
-### envelope
-
-Return symbolic expression for the pulse envelope.
+The Gaussian amplitude.
 
 **Return type**
 
-`Expr`
+`Union`\[`complex`, `ParameterExpression`]
 
 <span id="qiskit.pulse.library.Gaussian.id" />
 
@@ -170,10 +143,6 @@ Unique identifier for this pulse.
 
 `= True`
 
-<span id="qiskit.pulse.library.Gaussian.name" />
-
-### name
-
 <span id="qiskit.pulse.library.Gaussian.parameters" />
 
 ### parameters
@@ -182,23 +151,13 @@ Unique identifier for this pulse.
 
 `Dict`\[`str`, `Any`]
 
-<span id="qiskit.pulse.library.Gaussian.pulse_type" />
+<span id="qiskit.pulse.library.Gaussian.sigma" />
 
-### pulse\_type
+### sigma
 
-Return display name of the pulse shape.
-
-**Return type**
-
-`str`
-
-<span id="qiskit.pulse.library.Gaussian.valid_amp_conditions" />
-
-### valid\_amp\_conditions
-
-Return symbolic expression for the pulse amplitude constraints.
+The Gaussian standard deviation of the pulse width.
 
 **Return type**
 
-`Expr`
+`Union`\[`float`, `ParameterExpression`]
 

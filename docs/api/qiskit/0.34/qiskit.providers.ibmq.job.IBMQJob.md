@@ -1,6 +1,6 @@
 # IBMQJob
 
-<span id="undefined" />
+
 
 `IBMQJob(backend, api_client, job_id, creation_date, status, kind=None, name=None, time_per_step=None, result=None, qobj=None, error=None, tags=None, run_mode=None, share_level=None, client_info=None, experiment_id=None, **kwargs)`
 
@@ -100,7 +100,7 @@ IBMQJob constructor.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### client\_version
 
@@ -116,7 +116,7 @@ Return version of the client used for this job.
 
 of the client and the value is the version.
 
-<span id="undefined" />
+
 
 ### experiment\_id
 
@@ -130,7 +130,7 @@ Return the experiment ID.
 
 ID of the experiment this job is part of.
 
-<span id="undefined" />
+
 
 ### version
 

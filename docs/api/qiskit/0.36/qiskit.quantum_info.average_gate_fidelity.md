@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.average_gate_fidelity
 
 <span id="qiskit.quantum_info.average_gate_fidelity" />
 
-`average_gate_fidelity(channel, target=None, require_cp=True, require_tp=False)`
+`average_gate_fidelity(channel, target=None, require_cp=True, require_tp=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/measures.py "view source code")
 
 Return the average gate fidelity of a noisy quantum channel.
 

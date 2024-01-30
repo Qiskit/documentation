@@ -10,9 +10,9 @@ python_api_name: qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult
 
 <span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult" />
 
-`MaximumLikelihoodAmplitudeEstimationResult`
+`MaximumLikelihoodAmplitudeEstimationResult`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/amplitude_estimators/mlae.py "view source code")
 
-Bases: [`qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimatorResult`](qiskit.algorithms.AmplitudeEstimatorResult "qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimatorResult")
+Bases: `qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimatorResult`
 
 The `MaximumLikelihoodAmplitudeEstimation` result object.
 

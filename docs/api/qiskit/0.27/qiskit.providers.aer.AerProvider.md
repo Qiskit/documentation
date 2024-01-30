@@ -1,12 +1,22 @@
+---
+title: AerProvider
+description: API reference for qiskit.providers.aer.AerProvider
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.aer.AerProvider
+---
+
 # qiskit.providers.aer.AerProvider
 
-<span id="undefined" />
+<span id="qiskit.providers.aer.AerProvider" />
 
-`AerProvider`
+`AerProvider`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/aerprovider.py "view source code")
 
 Provider for Qiskit Aer backends.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.providers.aer.AerProvider.__init__" />
 
 `__init__()`
 
@@ -26,7 +36,9 @@ Initialize self. See help(type(self)) for accurate signature.
 | --------- | - |
 | `version` |   |
 
-<span id="undefined" />
+### backends
+
+<span id="qiskit.providers.aer.AerProvider.backends" />
 
 `backends(name=None, filters=None, **kwargs)`
 
@@ -45,9 +57,11 @@ criteria.
 
 **Return type**
 
-list\[[Backend](qiskit.providers.Backend#qiskit.providers.Backend "qiskit.providers.Backend")]
+list\[[Backend](qiskit.providers.Backend "qiskit.providers.Backend")]
 
-<span id="undefined" />
+### get\_backend
+
+<span id="qiskit.providers.aer.AerProvider.get_backend" />
 
 `get_backend(name=None, **kwargs)`
 
@@ -64,8 +78,9 @@ a backend matching the filtering.
 
 **Return type**
 
-[Backend](qiskit.providers.Backend#qiskit.providers.Backend "qiskit.providers.Backend")
+[Backend](qiskit.providers.Backend "qiskit.providers.Backend")
 
 **Raises**
 
-[**QiskitBackendNotFoundError**](qiskit.providers.QiskitBackendNotFoundError#qiskit.providers.QiskitBackendNotFoundError "qiskit.providers.QiskitBackendNotFoundError") – if no backend could be found or more than one backend matches the filtering criteria.
+[**QiskitBackendNotFoundError**](qiskit.providers.QiskitBackendNotFoundError "qiskit.providers.QiskitBackendNotFoundError") – if no backend could be found or more than one backend matches the filtering criteria.
+

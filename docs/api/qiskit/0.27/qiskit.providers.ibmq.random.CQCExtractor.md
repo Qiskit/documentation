@@ -1,8 +1,16 @@
+---
+title: CQCExtractor
+description: API reference for qiskit.providers.ibmq.random.CQCExtractor
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.ibmq.random.CQCExtractor
+---
+
 # qiskit.providers.ibmq.random.CQCExtractor
 
-<span id="undefined" />
+<span id="qiskit.providers.ibmq.random.CQCExtractor" />
 
-`CQCExtractor(name, provider, client, methods)`
+`CQCExtractor(name, provider, client, methods)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.14/qiskit/providers/ibmq/random/cqcextractor.py "view source code")
 
 Class for interfacing with a CQC remote extractor.
 
@@ -33,7 +41,9 @@ BaseRandomService constructor.
 *   **client** (`RandomClient`) – Client used to communicate with the server.
 *   **methods** (`List`) – Service methods.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.providers.ibmq.random.CQCExtractor.__init__" />
 
 `__init__(name, provider, client, methods)`
 
@@ -56,7 +66,9 @@ BaseRandomService constructor.
 | [`run_async_ext1`](#qiskit.providers.ibmq.random.CQCExtractor.run_async_ext1 "qiskit.providers.ibmq.random.CQCExtractor.run_async_ext1")(ext1\_input\_num\_bits, …) | Run the first extractor asynchronously.  |
 | [`run_async_ext2`](#qiskit.providers.ibmq.random.CQCExtractor.run_async_ext2 "qiskit.providers.ibmq.random.CQCExtractor.run_async_ext2")(ext2\_seed, …\[, …])       | Run the second extractor asynchronously. |
 
-<span id="undefined" />
+### retrieve\_job
+
+<span id="qiskit.providers.ibmq.random.CQCExtractor.retrieve_job" />
 
 `retrieve_job(job_id)`
 
@@ -74,7 +86,9 @@ Retrieve a previously submitted job.
 
 A `CQCExtractorJob` instance.
 
-<span id="undefined" />
+### run
+
+<span id="qiskit.providers.ibmq.random.CQCExtractor.run" />
 
 `run(ext1_input_num_bits, ext1_output_num_bits, ext1_raw_bytes, ext1_wsr_bytes, ext2_seed_num_bits, ext2_wsr_multiplier, ext2_wsr_generator=None)`
 
@@ -98,7 +112,9 @@ Process input data synchronously.
 
 An instance of `CQCExtractorJob` which can be used to retrieve the results later.
 
-<span id="undefined" />
+### run\_async\_ext1
+
+<span id="qiskit.providers.ibmq.random.CQCExtractor.run_async_ext1" />
 
 `run_async_ext1(ext1_input_num_bits, ext1_output_num_bits, ext1_raw_bytes, ext1_wsr_bytes)`
 
@@ -123,7 +139,9 @@ An instance of `CQCExtractorJob` which can be used to retrieve the results later
 
 **ValueError** – If an invalid argument values are specified.
 
-<span id="undefined" />
+### run\_async\_ext2
+
+<span id="qiskit.providers.ibmq.random.CQCExtractor.run_async_ext2" />
 
 `run_async_ext2(ext2_seed, ext2_seed_num_bits, ext2_wsr_multiplier, ext2_wsr_generator=None)`
 
@@ -147,3 +165,4 @@ An instance of `CQCExtractorJob` which can be used to retrieve the results later
 **Raises**
 
 **ValueError** – If an invalid argument values are specified.
+

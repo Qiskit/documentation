@@ -1,10 +1,18 @@
+---
+title: Hamiltonian
+description: API reference for qiskit.chemistry.core.Hamiltonian
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.core.Hamiltonian
+---
+
 <span id="qiskit-chemistry-core-hamiltonian" />
 
 # qiskit.chemistry.core.Hamiltonian
 
-<span id="undefined" />
+<span id="qiskit.chemistry.core.Hamiltonian" />
 
-`Hamiltonian(transformation=<TransformationType.FULL: 'full'>, qubit_mapping=<QubitMappingType.PARITY: 'parity'>, two_qubit_reduction=True, freeze_core=False, orbital_reduction=None, z2symmetry_reduction=None)`
+`Hamiltonian(transformation=<TransformationType.FULL: 'full'>, qubit_mapping=<QubitMappingType.PARITY: 'parity'>, two_qubit_reduction=True, freeze_core=False, orbital_reduction=None, z2symmetry_reduction=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/core/hamiltonian.py "view source code")
 
 A molecular Hamiltonian operator, representing the energy of the electrons and nuclei in a molecule.
 
@@ -19,9 +27,11 @@ A molecular Hamiltonian operator, representing the energy of the electrons and n
 
 **Raises**
 
-[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError#qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid symmetry reduction
+[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid symmetry reduction
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.chemistry.core.Hamiltonian.__init__" />
 
 `__init__(transformation=<TransformationType.FULL: 'full'>, qubit_mapping=<QubitMappingType.PARITY: 'parity'>, two_qubit_reduction=True, freeze_core=False, orbital_reduction=None, z2symmetry_reduction=None)`
 
@@ -36,7 +46,7 @@ A molecular Hamiltonian operator, representing the energy of the electrons and n
 
 **Raises**
 
-[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError#qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid symmetry reduction
+[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid symmetry reduction
 
 ## Methods
 
@@ -56,13 +66,17 @@ A molecular Hamiltonian operator, representing the energy of the electrons and n
 | `INFO_Z2SYMMETRIES`                                                                                                   |                       |
 | [`molecule_info`](#qiskit.chemistry.core.Hamiltonian.molecule_info "qiskit.chemistry.core.Hamiltonian.molecule_info") | returns molecule info |
 
-<span id="undefined" />
+### molecule\_info
+
+<span id="qiskit.chemistry.core.Hamiltonian.molecule_info" />
 
 `property molecule_info`
 
 returns molecule info
 
-<span id="undefined" />
+### process\_algorithm\_result
+
+<span id="qiskit.chemistry.core.Hamiltonian.process_algorithm_result" />
 
 `process_algorithm_result(algo_result)`
 
@@ -80,7 +94,9 @@ Takes the algorithm result and processes it as required, e.g. by combination of 
 
 Final chemistry result computed from the algorithm result
 
-<span id="undefined" />
+### run
+
+<span id="qiskit.chemistry.core.Hamiltonian.run" />
 
 `run(qmolecule)`
 
@@ -89,3 +105,4 @@ run method
 **Return type**
 
 `Tuple`\[`WeightedPauliOperator`, `List`\[`WeightedPauliOperator`]]
+

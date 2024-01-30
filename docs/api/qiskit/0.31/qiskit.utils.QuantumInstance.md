@@ -1,8 +1,16 @@
+---
+title: QuantumInstance
+description: API reference for qiskit.utils.QuantumInstance
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.utils.QuantumInstance
+---
+
 # QuantumInstance
 
-<span id="undefined" />
+<span id="qiskit.utils.QuantumInstance" />
 
-`QuantumInstance(backend, shots=None, seed_simulator=None, max_credits=10, basis_gates=None, coupling_map=None, initial_layout=None, pass_manager=None, seed_transpiler=None, optimization_level=None, backend_options=None, noise_model=None, timeout=None, wait=5.0, skip_qobj_validation=True, measurement_error_mitigation_cls=None, cals_matrix_refresh_period=30, measurement_error_mitigation_shots=None, job_callback=None, mit_pattern=None)`
+`QuantumInstance(backend, shots=None, seed_simulator=None, max_credits=10, basis_gates=None, coupling_map=None, initial_layout=None, pass_manager=None, seed_transpiler=None, optimization_level=None, backend_options=None, noise_model=None, timeout=None, wait=5.0, skip_qobj_validation=True, measurement_error_mitigation_cls=None, cals_matrix_refresh_period=30, measurement_error_mitigation_shots=None, job_callback=None, mit_pattern=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/utils/quantum_instance.py "view source code")
 
 Bases: `object`
 
@@ -41,115 +49,226 @@ Quantum Instance holds a Qiskit Terra backend as well as configuration for circu
 
 ## Methods
 
-|                                                                                                                                                                                                       |                                                                                    |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| [`assemble`](qiskit.utils.QuantumInstance.assemble#qiskit.utils.QuantumInstance.assemble "qiskit.utils.QuantumInstance.assemble")                                                                     | assemble circuits                                                                  |
-| [`cals_matrix`](qiskit.utils.QuantumInstance.cals_matrix#qiskit.utils.QuantumInstance.cals_matrix "qiskit.utils.QuantumInstance.cals_matrix")                                                         | Get the stored calibration matrices and its timestamp.                             |
-| [`execute`](qiskit.utils.QuantumInstance.execute#qiskit.utils.QuantumInstance.execute "qiskit.utils.QuantumInstance.execute")                                                                         | A wrapper to interface with quantum backend.                                       |
-| [`maybe_refresh_cals_matrix`](qiskit.utils.QuantumInstance.maybe_refresh_cals_matrix#qiskit.utils.QuantumInstance.maybe_refresh_cals_matrix "qiskit.utils.QuantumInstance.maybe_refresh_cals_matrix") | Calculate the time difference from the query of last time.                         |
-| [`reset_execution_results`](qiskit.utils.QuantumInstance.reset_execution_results#qiskit.utils.QuantumInstance.reset_execution_results "qiskit.utils.QuantumInstance.reset_execution_results")         | Reset execution results                                                            |
-| [`set_config`](qiskit.utils.QuantumInstance.set_config#qiskit.utils.QuantumInstance.set_config "qiskit.utils.QuantumInstance.set_config")                                                             | Set configurations for the quantum instance.                                       |
-| [`transpile`](qiskit.utils.QuantumInstance.transpile#qiskit.utils.QuantumInstance.transpile "qiskit.utils.QuantumInstance.transpile")                                                                 | A wrapper to transpile circuits to allow algorithm access the transpiled circuits. |
+### assemble
+
+<span id="qiskit.utils.QuantumInstance.assemble" />
+
+`QuantumInstance.assemble(circuits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/utils/quantum_instance.py "view source code")
+
+assemble circuits
+
+**Return type**
+
+[`Qobj`](qiskit.qobj.Qobj "qiskit.qobj.Qobj")
+
+### cals\_matrix
+
+<span id="qiskit.utils.QuantumInstance.cals_matrix" />
+
+`QuantumInstance.cals_matrix(qubit_index=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/utils/quantum_instance.py "view source code")
+
+Get the stored calibration matrices and its timestamp.
+
+**Parameters**
+
+**qubit\_index** (`Optional`\[`List`\[`int`]]) – the qubit index of corresponding calibration matrix. If None, return all stored calibration matrices.
+
+**Return type**
+
+`Union`\[`Tuple`\[`ndarray`, `float`], `Dict`\[`str`, `Tuple`\[`ndarray`, `float`]], `None`]
+
+**Returns**
+
+The calibration matrix and the creation timestamp if qubit\_index is not None otherwise, return all matrices and their timestamp in a dictionary.
+
+### execute
+
+<span id="qiskit.utils.QuantumInstance.execute" />
+
+`QuantumInstance.execute(circuits, had_transpiled=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/utils/quantum_instance.py "view source code")
+
+A wrapper to interface with quantum backend.
+
+**Parameters**
+
+*   **circuits** (*Union\['QuantumCircuit', List\['QuantumCircuit']]*) – circuits to execute
+*   **had\_transpiled** (`bool`) – whether or not circuits had been transpiled
+
+**Raises**
+
+*   **QiskitError** – Invalid error mitigation fitter class
+*   **QiskitError** – TensoredMeasFitter class doesn’t support subset fitter
+*   [**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – Ignis not installed
+
+**Returns**
+
+result object
+
+**Return type**
+
+[Result](qiskit.result.Result "qiskit.result.Result")
+
+#### TODO: Maybe we can combine the circuits for the main ones and calibration circuits before
+
+assembling to the qobj.
+
+### maybe\_refresh\_cals\_matrix
+
+<span id="qiskit.utils.QuantumInstance.maybe_refresh_cals_matrix" />
+
+`QuantumInstance.maybe_refresh_cals_matrix(timestamp=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/utils/quantum_instance.py "view source code")
+
+Calculate the time difference from the query of last time.
+
+**Parameters**
+
+**timestamp** (`Optional`\[`float`]) – timestamp
+
+**Return type**
+
+`bool`
+
+**Returns**
+
+Whether or not refresh the cals\_matrix
+
+### reset\_execution\_results
+
+<span id="qiskit.utils.QuantumInstance.reset_execution_results" />
+
+`QuantumInstance.reset_execution_results()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/utils/quantum_instance.py "view source code")
+
+Reset execution results
+
+**Return type**
+
+`None`
+
+### set\_config
+
+<span id="qiskit.utils.QuantumInstance.set_config" />
+
+`QuantumInstance.set_config(**kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/utils/quantum_instance.py "view source code")
+
+Set configurations for the quantum instance.
+
+### transpile
+
+<span id="qiskit.utils.QuantumInstance.transpile" />
+
+`QuantumInstance.transpile(circuits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/utils/quantum_instance.py "view source code")
+
+A wrapper to transpile circuits to allow algorithm access the transpiled circuits. :param circuits: circuits to transpile :type circuits: Union\[‘QuantumCircuit’, List\[‘QuantumCircuit’]]
+
+**Returns**
+
+**The transpiled circuits, it is always a list even though**
+
+the length is one.
+
+**Return type**
+
+List\[‘QuantumCircuit’]
 
 ## Attributes
 
-<span id="undefined" />
+<span id="qiskit.utils.QuantumInstance.backend" />
 
 ### backend
 
 Return BaseBackend backend object.
 
-<span id="undefined" />
+<span id="qiskit.utils.QuantumInstance.backend_config" />
 
 ### backend\_config
 
 Getter of backend\_config.
 
-<span id="undefined" />
+<span id="qiskit.utils.QuantumInstance.backend_name" />
 
 ### backend\_name
 
 Return backend name.
 
-<span id="undefined" />
+<span id="qiskit.utils.QuantumInstance.backend_options" />
 
 ### backend\_options
 
 Getter of backend\_options.
 
-<span id="undefined" />
+<span id="qiskit.utils.QuantumInstance.cals_matrix_refresh_period" />
 
 ### cals\_matrix\_refresh\_period
 
 returns matrix refresh period
 
-<span id="undefined" />
+<span id="qiskit.utils.QuantumInstance.circuit_summary" />
 
 ### circuit\_summary
 
 Getter of circuit summary.
 
-<span id="undefined" />
+<span id="qiskit.utils.QuantumInstance.compile_config" />
 
 ### compile\_config
 
 Getter of compile\_config.
 
-<span id="undefined" />
+<span id="qiskit.utils.QuantumInstance.is_local" />
 
 ### is\_local
 
 Return True if backend is a local backend.
 
-<span id="undefined" />
+<span id="qiskit.utils.QuantumInstance.is_simulator" />
 
 ### is\_simulator
 
 Return True if backend is a simulator.
 
-<span id="undefined" />
+<span id="qiskit.utils.QuantumInstance.is_statevector" />
 
 ### is\_statevector
 
 Return True if backend is a statevector-type simulator.
 
-<span id="undefined" />
+<span id="qiskit.utils.QuantumInstance.measurement_error_mitigation_cls" />
 
 ### measurement\_error\_mitigation\_cls
 
 returns measurement error mitigation cls
 
-<span id="undefined" />
+<span id="qiskit.utils.QuantumInstance.measurement_error_mitigation_shots" />
 
 ### measurement\_error\_mitigation\_shots
 
 returns measurement error mitigation shots
 
-<span id="undefined" />
+<span id="qiskit.utils.QuantumInstance.noise_config" />
 
 ### noise\_config
 
 Getter of noise\_config.
 
-<span id="undefined" />
+<span id="qiskit.utils.QuantumInstance.qjob_config" />
 
 ### qjob\_config
 
 Getter of qjob\_config.
 
-<span id="undefined" />
+<span id="qiskit.utils.QuantumInstance.run_config" />
 
 ### run\_config
 
 Getter of run\_config.
 
-<span id="undefined" />
+<span id="qiskit.utils.QuantumInstance.skip_qobj_validation" />
 
 ### skip\_qobj\_validation
 
 checks if skip qobj validation
 
-<span id="undefined" />
+<span id="qiskit.utils.QuantumInstance.time_taken" />
 
 ### time\_taken
 
@@ -158,3 +277,4 @@ Accumulated time taken for execution.
 **Return type**
 
 `float`
+

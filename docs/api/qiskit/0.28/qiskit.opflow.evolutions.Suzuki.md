@@ -1,8 +1,16 @@
+---
+title: Suzuki
+description: API reference for qiskit.opflow.evolutions.Suzuki
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.opflow.evolutions.Suzuki
+---
+
 # qiskit.opflow\.evolutions.Suzuki
 
-<span id="undefined" />
+<span id="qiskit.opflow.evolutions.Suzuki" />
 
-`Suzuki(reps=1, order=2)`
+`Suzuki(reps=1, order=2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/evolutions/trotterizations/suzuki.py "view source code")
 
 Suzuki Trotter expansion, composing the evolution circuits of each Operator in the sum together by a recursive “bookends” strategy, repeating the whole composed circuit `reps` times.
 
@@ -13,7 +21,9 @@ Detailed in [https://arxiv.org/pdf/quant-ph/0508139.pdf](https://arxiv.org/pdf/q
 *   **reps** (`int`) – The number of times to repeat the expansion circuit.
 *   **order** (`int`) – The order of the expansion to perform.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.opflow.evolutions.Suzuki.__init__" />
 
 `__init__(reps=1, order=2)`
 
@@ -36,7 +46,9 @@ Detailed in [https://arxiv.org/pdf/quant-ph/0508139.pdf](https://arxiv.org/pdf/q
 | [`order`](#qiskit.opflow.evolutions.Suzuki.order "qiskit.opflow.evolutions.Suzuki.order") | returns order                                                                                 |
 | [`reps`](#qiskit.opflow.evolutions.Suzuki.reps "qiskit.opflow.evolutions.Suzuki.reps")    | The number of repetitions to use in the Trotterization, improving the approximation accuracy. |
 
-<span id="undefined" />
+### convert
+
+<span id="qiskit.opflow.evolutions.Suzuki.convert" />
 
 `convert(operator)`
 
@@ -58,7 +70,9 @@ The Operator approximating op\_sum’s evolution.
 
 **TypeError** – A non-SummedOps Operator is passed into `convert`.
 
-<span id="undefined" />
+### order
+
+<span id="qiskit.opflow.evolutions.Suzuki.order" />
 
 `property order`
 
@@ -68,7 +82,9 @@ returns order
 
 `int`
 
-<span id="undefined" />
+### reps
+
+<span id="qiskit.opflow.evolutions.Suzuki.reps" />
 
 `property reps`
 
@@ -77,3 +93,4 @@ The number of repetitions to use in the Trotterization, improving the approximat
 **Return type**
 
 `int`
+

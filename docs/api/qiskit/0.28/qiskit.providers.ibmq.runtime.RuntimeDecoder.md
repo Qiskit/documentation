@@ -1,8 +1,16 @@
+---
+title: RuntimeDecoder
+description: API reference for qiskit.providers.ibmq.runtime.RuntimeDecoder
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.ibmq.runtime.RuntimeDecoder
+---
+
 # qiskit.providers.ibmq.runtime.RuntimeDecoder
 
-<span id="undefined" />
+<span id="qiskit.providers.ibmq.runtime.RuntimeDecoder" />
 
-`RuntimeDecoder(*args, **kwargs)`
+`RuntimeDecoder(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.15/qiskit/providers/ibmq/runtime/utils.py "view source code")
 
 JSON Decoder used by runtime service.
 
@@ -18,7 +26,9 @@ JSON Decoder used by runtime service.
 
 If `strict` is false (true is the default), then control characters will be allowed inside strings. Control characters in this context are those with character codes in the 0-31 range, including `'\t'` (tab), `'\n'`, `'\r'` and `'\0'`.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.providers.ibmq.runtime.RuntimeDecoder.__init__" />
 
 `__init__(*args, **kwargs)`
 
@@ -43,13 +53,17 @@ If `strict` is false (true is the default), then control characters will be allo
 | [`object_hook`](#qiskit.providers.ibmq.runtime.RuntimeDecoder.object_hook "qiskit.providers.ibmq.runtime.RuntimeDecoder.object_hook")(obj)       | Called to decode object.                                                                                                                                                  |
 | [`raw_decode`](#qiskit.providers.ibmq.runtime.RuntimeDecoder.raw_decode "qiskit.providers.ibmq.runtime.RuntimeDecoder.raw_decode")(s\[, idx])    | Decode a JSON document from `s` (a `str` beginning with a JSON document) and return a 2-tuple of the Python representation and the index in `s` where the document ended. |
 
-<span id="undefined" />
+### decode
+
+<span id="qiskit.providers.ibmq.runtime.RuntimeDecoder.decode" />
 
 `decode(s, _w=<built-in method match of re.Pattern object>)`
 
 Return the Python representation of `s` (a `str` instance containing a JSON document).
 
-<span id="undefined" />
+### object\_hook
+
+<span id="qiskit.providers.ibmq.runtime.RuntimeDecoder.object_hook" />
 
 `object_hook(obj)`
 
@@ -59,10 +73,13 @@ Called to decode object.
 
 `Any`
 
-<span id="undefined" />
+### raw\_decode
+
+<span id="qiskit.providers.ibmq.runtime.RuntimeDecoder.raw_decode" />
 
 `raw_decode(s, idx=0)`
 
 Decode a JSON document from `s` (a `str` beginning with a JSON document) and return a 2-tuple of the Python representation and the index in `s` where the document ended.
 
 This can be used to decode a JSON document from a string that may have extraneous data at the end.
+

@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.RuntimeJob
 
 <span id="qiskit_ibm_runtime.RuntimeJob" />
 
-`RuntimeJob(backend, api_client, client_params, job_id, program_id, service, params=None, creation_date=None, user_callback=None, result_decoder=None, image='', session_id=None, tags=None)`
+`RuntimeJob(backend, api_client, client_params, job_id, program_id, service, params=None, creation_date=None, user_callback=None, result_decoder=None, image='', session_id=None, tags=None)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.17/qiskit_ibm_runtime/runtime_job.py "view source code")
 
 Representation of a runtime program execution.
 
@@ -334,6 +334,26 @@ Job metrics, which includes timestamp information.
 **Raises**
 
 **IBMRuntimeError** – If a network error occurred.
+
+### properties
+
+<span id="qiskit_ibm_runtime.RuntimeJob.properties" />
+
+`properties(refresh=False)`
+
+Return the backend properties for this job.
+
+**Parameters**
+
+**refresh** (`bool`) – If `True`, re-query the server for the backend properties. Otherwise, return a cached version.
+
+**Return type**
+
+`Optional`\[`BackendProperties`]
+
+**Returns**
+
+The backend properties used for this job, at the time the job was run, or `None` if properties are not available.
 
 ### result
 

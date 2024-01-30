@@ -1,16 +1,26 @@
+---
+title: Qasm
+description: API reference for qiskit.qasm.Qasm
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.qasm.Qasm
+---
+
 <span id="qiskit-qasm-qasm" />
 
 # qiskit.qasm.Qasm
 
-<span id="undefined" />
+<span id="qiskit.qasm.Qasm" />
 
-`Qasm(filename=None, data=None)`
+`Qasm(filename=None, data=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/qasm/qasm.py "view source code")
 
 OPENQASM circuit object.
 
 Create an OPENQASM circuit object.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.qasm.Qasm.__init__" />
 
 `__init__(filename=None, data=None)`
 
@@ -25,20 +35,27 @@ Create an OPENQASM circuit object.
 | [`parse`](#qiskit.qasm.Qasm.parse "qiskit.qasm.Qasm.parse")()                               | Parse the data.                    |
 | [`return_filename`](#qiskit.qasm.Qasm.return_filename "qiskit.qasm.Qasm.return_filename")() | Return the filename.               |
 
-<span id="undefined" />
+### generate\_tokens
+
+<span id="qiskit.qasm.Qasm.generate_tokens" />
 
 `generate_tokens()`
 
 Returns a generator of the tokens.
 
-<span id="undefined" />
+### parse
+
+<span id="qiskit.qasm.Qasm.parse" />
 
 `parse()`
 
 Parse the data.
 
-<span id="undefined" />
+### return\_filename
+
+<span id="qiskit.qasm.Qasm.return_filename" />
 
 `return_filename()`
 
 Return the filename.
+

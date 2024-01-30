@@ -10,9 +10,9 @@ python_api_name: qiskit.transpiler.passes.Collect1qRuns
 
 <span id="qiskit.transpiler.passes.Collect1qRuns" />
 
-`Collect1qRuns(*args, **kwargs)`
+`Collect1qRuns(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/optimization/collect_1q_runs.py "view source code")
 
-Bases: [`qiskit.transpiler.basepasses.AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
+Bases: `qiskit.transpiler.basepasses.AnalysisPass`
 
 Collect one-qubit subcircuits.
 
@@ -30,7 +30,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.Collect1qRuns.run" />
 
-`Collect1qRuns.run(dag)`
+`Collect1qRuns.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/optimization/collect_1q_runs.py "view source code")
 
 Run the Collect1qBlocks pass on dag.
 

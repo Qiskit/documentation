@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.PassManagerConfig
 
 <span id="qiskit.transpiler.PassManagerConfig" />
 
-`PassManagerConfig(initial_layout=None, basis_gates=None, coupling_map=None, layout_method=None, routing_method=None, backend_properties=None, seed_transpiler=None)`
+`PassManagerConfig(initial_layout=None, basis_gates=None, coupling_map=None, layout_method=None, routing_method=None, backend_properties=None, seed_transpiler=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/transpiler/passmanager_config.py "view source code")
 
 Pass Manager Configuration.
 
@@ -27,4 +27,7 @@ Initialize a PassManagerConfig object
 *   **seed\_transpiler** (*int*) – Sets random seed for the stochastic parts of the transpiler.
 
 ## Methods
+
+|   |
+| - |
 

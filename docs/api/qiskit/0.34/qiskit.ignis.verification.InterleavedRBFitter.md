@@ -1,6 +1,6 @@
 # InterleavedRBFitter
 
-<span id="undefined" />
+
 
 `InterleavedRBFitter(original_result, interleaved_result, cliff_lengths, rb_pattern=None)`
 
@@ -30,61 +30,61 @@ Contains two RBFitter objects: the original RBFitter and the interleaved RBFitte
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### cliff\_lengths
 
 Return clifford lengths.
 
-<span id="undefined" />
+
 
 ### fit
 
 Return fit as a 2 element list.
 
-<span id="undefined" />
+
 
 ### fit\_int
 
 Return interleaved fit parameters.
 
-<span id="undefined" />
+
 
 ### raw\_data
 
 Return raw\_data as a 2 element list.
 
-<span id="undefined" />
+
 
 ### rb\_fit\_fun
 
 Return the fit function rb\_fit\_fun.
 
-<span id="undefined" />
+
 
 ### rbfit\_int
 
 Return the interleaved RB fitter.
 
-<span id="undefined" />
+
 
 ### rbfit\_std
 
 Return the original RB fitter.
 
-<span id="undefined" />
+
 
 ### results
 
 Return all the results as a 2 element list.
 
-<span id="undefined" />
+
 
 ### seeds
 
 Return the number of loaded seeds as a 2 element list.
 
-<span id="undefined" />
+
 
 ### ydata
 

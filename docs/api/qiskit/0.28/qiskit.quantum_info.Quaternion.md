@@ -1,12 +1,22 @@
+---
+title: Quaternion
+description: API reference for qiskit.quantum_info.Quaternion
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.quantum_info.Quaternion
+---
+
 # qiskit.quantum\_info.Quaternion
 
-<span id="undefined" />
+<span id="qiskit.quantum_info.Quaternion" />
 
-`Quaternion(data)`
+`Quaternion(data)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/synthesis/quaternion.py "view source code")
 
 A class representing a Quaternion.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.quantum_info.Quaternion.__init__" />
 
 `__init__(data)`
 
@@ -24,7 +34,9 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`to_matrix`](#qiskit.quantum_info.Quaternion.to_matrix "qiskit.quantum_info.Quaternion.to_matrix")()                                       | Converts a unit-length quaternion to a rotation matrix.                        |
 | [`to_zyz`](#qiskit.quantum_info.Quaternion.to_zyz "qiskit.quantum_info.Quaternion.to_zyz")()                                                | Converts a unit-length quaternion to a sequence of ZYZ Euler angles.           |
 
-<span id="undefined" />
+### from\_axis\_rotation
+
+<span id="qiskit.quantum_info.Quaternion.from_axis_rotation" />
 
 `classmethod from_axis_rotation(angle, axis)`
 
@@ -47,7 +59,9 @@ Quaternion for axis rotation.
 
 **ValueError** – Invalid input axis.
 
-<span id="undefined" />
+### from\_euler
+
+<span id="qiskit.quantum_info.Quaternion.from_euler" />
 
 `classmethod from_euler(angles, order='yzy')`
 
@@ -66,13 +80,17 @@ Quaternion representation of Euler rotation.
 
 [Quaternion](#qiskit.quantum_info.Quaternion "qiskit.quantum_info.Quaternion")
 
-<span id="undefined" />
+### norm
+
+<span id="qiskit.quantum_info.Quaternion.norm" />
 
 `norm()`
 
 Norm of quaternion.
 
-<span id="undefined" />
+### normalize
+
+<span id="qiskit.quantum_info.Quaternion.normalize" />
 
 `normalize(inplace=False)`
 
@@ -90,7 +108,9 @@ Normalized quaternion.
 
 [Quaternion](#qiskit.quantum_info.Quaternion "qiskit.quantum_info.Quaternion")
 
-<span id="undefined" />
+### to\_matrix
+
+<span id="qiskit.quantum_info.Quaternion.to_matrix" />
 
 `to_matrix()`
 
@@ -104,7 +124,9 @@ Rotation matrix.
 
 ndarray
 
-<span id="undefined" />
+### to\_zyz
+
+<span id="qiskit.quantum_info.Quaternion.to_zyz" />
 
 `to_zyz()`
 
@@ -117,3 +139,4 @@ Array of Euler angles.
 **Return type**
 
 ndarray
+

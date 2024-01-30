@@ -1,14 +1,22 @@
+---
+title: QuantumGenerator
+description: API reference for qiskit.aqua.components.neural_networks.QuantumGenerator
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.components.neural_networks.QuantumGenerator
+---
+
 <span id="qiskit-aqua-components-neural-networks-quantumgenerator" />
 
 # qiskit.aqua.components.neural\_networks.QuantumGenerator
 
-<span id="undefined" />
+<span id="qiskit.aqua.components.neural_networks.QuantumGenerator" />
 
-`QuantumGenerator(bounds, num_qubits, generator_circuit=None, init_params=None, optimizer=None, snapshot_dir=None)`
+`QuantumGenerator(bounds, num_qubits, generator_circuit=None, init_params=None, optimizer=None, snapshot_dir=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/neural_networks/quantum_generator.py "view source code")
 
 Quantum Generator.
 
-The quantum generator is a parametrized quantum circuit which can be trained with the [`QGAN`](qiskit.aqua.algorithms.QGAN#qiskit.aqua.algorithms.QGAN "qiskit.aqua.algorithms.QGAN") algorithm to generate a quantum state which approximates the probability distribution of given training data. At the beginning of the training the parameters will be set randomly, thus, the output will is random. Throughout the training the quantum generator learns to represent the target distribution. Eventually, the trained generator can be used for state preparation e.g. in QAE.
+The quantum generator is a parametrized quantum circuit which can be trained with the [`QGAN`](qiskit.aqua.algorithms.QGAN "qiskit.aqua.algorithms.QGAN") algorithm to generate a quantum state which approximates the probability distribution of given training data. At the beginning of the training the parameters will be set randomly, thus, the output will is random. Throughout the training the quantum generator learns to represent the target distribution. Eventually, the trained generator can be used for state preparation e.g. in QAE.
 
 **Parameters**
 
@@ -21,9 +29,11 @@ The quantum generator is a parametrized quantum circuit which can be trained wit
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Set multivariate variational distribution to represent multivariate data
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Set multivariate variational distribution to represent multivariate data
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.aqua.components.neural_networks.QuantumGenerator.__init__" />
 
 `__init__(bounds, num_qubits, generator_circuit=None, init_params=None, optimizer=None, snapshot_dir=None)`
 
@@ -38,7 +48,7 @@ The quantum generator is a parametrized quantum circuit which can be trained wit
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Set multivariate variational distribution to represent multivariate data
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Set multivariate variational distribution to represent multivariate data
 
 ## Methods
 
@@ -52,7 +62,9 @@ The quantum generator is a parametrized quantum circuit which can be trained wit
 | [`set_seed`](#qiskit.aqua.components.neural_networks.QuantumGenerator.set_seed "qiskit.aqua.components.neural_networks.QuantumGenerator.set_seed")(seed)                                      | Set seed.                                                      |
 | [`train`](#qiskit.aqua.components.neural_networks.QuantumGenerator.train "qiskit.aqua.components.neural_networks.QuantumGenerator.train")(\[quantum\_instance, shots])                        | Perform one training step w\.r.t to the generator’s parameters |
 
-<span id="undefined" />
+### construct\_circuit
+
+<span id="qiskit.aqua.components.neural_networks.QuantumGenerator.construct_circuit" />
 
 `construct_circuit(params=None)`
 
@@ -68,9 +80,11 @@ construct the quantum circuit and return as gate
 
 **Return type**
 
-[Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+### get\_output
+
+<span id="qiskit.aqua.components.neural_networks.QuantumGenerator.get_output" />
 
 `get_output(quantum_instance, params=None, shots=None)`
 
@@ -78,7 +92,7 @@ Get classical data samples from the generator. Running the quantum generator cir
 
 **Parameters**
 
-*   **quantum\_instance** ([*QuantumInstance*](qiskit.aqua.QuantumInstance#qiskit.aqua.QuantumInstance "qiskit.aqua.QuantumInstance")) – Quantum Instance, used to run the generator circuit.
+*   **quantum\_instance** ([*QuantumInstance*](qiskit.aqua.QuantumInstance "qiskit.aqua.QuantumInstance")) – Quantum Instance, used to run the generator circuit.
 *   **params** (*numpy.ndarray*) – array or None, parameters which should be used to run the generator, if None use self.\_params
 *   **shots** (*int*) – if not None use a number of shots that is different from the number set in quantum\_instance
 
@@ -90,7 +104,9 @@ generated samples, array: sample occurrence in percentage
 
 list
 
-<span id="undefined" />
+### loss
+
+<span id="qiskit.aqua.components.neural_networks.QuantumGenerator.loss" />
 
 `loss(x, weights)`
 
@@ -109,7 +125,9 @@ loss function
 
 float
 
-<span id="undefined" />
+### set\_discriminator
+
+<span id="qiskit.aqua.components.neural_networks.QuantumGenerator.set_discriminator" />
 
 `set_discriminator(discriminator)`
 
@@ -119,7 +137,9 @@ Set discriminator network.
 
 **discriminator** (*Discriminator*) – Discriminator used to compute the loss function.
 
-<span id="undefined" />
+### set\_seed
+
+<span id="qiskit.aqua.components.neural_networks.QuantumGenerator.set_seed" />
 
 `set_seed(seed)`
 
@@ -129,7 +149,9 @@ Set seed.
 
 **seed** (*int*) – seed
 
-<span id="undefined" />
+### train
+
+<span id="qiskit.aqua.components.neural_networks.QuantumGenerator.train" />
 
 `train(quantum_instance=None, shots=None)`
 
@@ -137,7 +159,7 @@ Perform one training step w\.r.t to the generator’s parameters
 
 **Parameters**
 
-*   **quantum\_instance** ([*QuantumInstance*](qiskit.aqua.QuantumInstance#qiskit.aqua.QuantumInstance "qiskit.aqua.QuantumInstance")) – used to run the generator circuit.
+*   **quantum\_instance** ([*QuantumInstance*](qiskit.aqua.QuantumInstance "qiskit.aqua.QuantumInstance")) – used to run the generator circuit.
 *   **shots** (*int*) – Number of shots for hardware or qasm execution.
 
 **Returns**
@@ -147,3 +169,4 @@ generator loss(float) and updated parameters (array).
 **Return type**
 
 dict
+

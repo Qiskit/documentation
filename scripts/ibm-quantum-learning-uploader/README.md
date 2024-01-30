@@ -1,7 +1,7 @@
 # Upload to IBM Quantum Learning
 
 This script uploads lessons to [IBM Quantum
-Learning](learning.quantum-computing.ibm.com).
+Learning](learning.quantum.ibm.com).
 
 Lessons to be uploaded must be a directory containing a single notebook and any
 images it uses (the API can't handle image attachments inside the notebooks).

@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.Operator
 
 <span id="qiskit.quantum_info.Operator" />
 
-`Operator(data, input_dims=None, output_dims=None)`
+`Operator(data, input_dims=None, output_dims=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/operator.py "view source code")
 
 Bases: `qiskit.quantum_info.operators.linear_op.LinearOp`
 
@@ -32,7 +32,7 @@ Initialize an operator object.
 
 **Parameters**
 
-*   **or** (*data (*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – Instruction or BaseOperator or matrix): data to initialize operator.
+*   \*\*(\*\***QuantumCircuit or** (*data*) – Instruction or BaseOperator or matrix): data to initialize operator.
 *   **input\_dims** (*tuple*) – the input subsystem dimensions. \[Default: None]
 *   **output\_dims** (*tuple*) – the output subsystem dimensions. \[Default: None]
 
@@ -58,7 +58,7 @@ Return the adjoint of the Operator.
 
 <span id="qiskit.quantum_info.Operator.compose" />
 
-`Operator.compose(other, qargs=None, front=False)`
+`Operator.compose(other, qargs=None, front=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/operator.py "view source code")
 
 Return the operator composition with another Operator.
 
@@ -81,7 +81,7 @@ The composed Operator.
 **QiskitError** – if other cannot be converted to an operator, or has incompatible dimensions for specified subsystems.
 
 <Admonition title="Note" type="note">
-  Composition (`&`) by default is defined as left matrix multiplication for matrix operators, while `@` (equivalent to [`dot()`](qiskit.quantum_info.Operator#dot "qiskit.quantum_info.Operator.dot")) is defined as right matrix multiplication. That is that `A & B == A.compose(B)` is equivalent to `B @ A == B.dot(A)` when `A` and `B` are of the same type.
+  Composition (`&`) by default is defined as left matrix multiplication for matrix operators, while [`dot()`](qiskit.quantum_info.Operator#dot "qiskit.quantum_info.Operator.dot") is defined as right matrix multiplication. That is that `A & B == A.compose(B)` is equivalent to `B.dot(A)` when `A` and `B` are of the same type.
 
   Setting the `front=True` kwarg changes this to right matrix multiplication and is equivalent to the [`dot()`](qiskit.quantum_info.Operator#dot "qiskit.quantum_info.Operator.dot") method `A.dot(B) == A.compose(B, front=True)`.
 </Admonition>
@@ -90,7 +90,7 @@ The composed Operator.
 
 <span id="qiskit.quantum_info.Operator.conjugate" />
 
-`Operator.conjugate()`
+`Operator.conjugate()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/operator.py "view source code")
 
 Return the conjugate of the Operator.
 
@@ -123,15 +123,11 @@ The right matrix multiplied Operator.
 
 [Operator](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")
 
-<Admonition title="Note" type="note">
-  The dot product can be obtained using the `@` binary operator. Hence `a.dot(b)` is equivalent to `a @ b`.
-</Admonition>
-
 ### equiv
 
 <span id="qiskit.quantum_info.Operator.equiv" />
 
-`Operator.equiv(other, rtol=None, atol=None)`
+`Operator.equiv(other, rtol=None, atol=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/operator.py "view source code")
 
 Return True if operators are equivalent up to global phase.
 
@@ -153,7 +149,7 @@ bool
 
 <span id="qiskit.quantum_info.Operator.expand" />
 
-`Operator.expand(other)`
+`Operator.expand(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/operator.py "view source code")
 
 Return the reverse-order tensor product with another Operator.
 
@@ -175,7 +171,7 @@ is the current Operator, and $b$ is the other Operator.
 
 <span id="qiskit.quantum_info.Operator.from_circuit" />
 
-`classmethod Operator.from_circuit(circuit, ignore_set_layout=False, layout=None)`
+`classmethod Operator.from_circuit(circuit, ignore_set_layout=False, layout=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/operator.py "view source code")
 
 Create a new Operator object from a :class\`.QuantumCircuit\`
 
@@ -201,7 +197,7 @@ An operator representing the input circuit
 
 <span id="qiskit.quantum_info.Operator.from_label" />
 
-`classmethod Operator.from_label(label)`
+`classmethod Operator.from_label(label)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/operator.py "view source code")
 
 Return a tensor product of single-qubit operators.
 
@@ -237,7 +233,7 @@ Return tuple of input dimension for specified subsystems.
 
 <span id="qiskit.quantum_info.Operator.is_unitary" />
 
-`Operator.is_unitary(atol=None, rtol=None)`
+`Operator.is_unitary(atol=None, rtol=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/operator.py "view source code")
 
 Return True if operator is a unitary matrix.
 
@@ -253,7 +249,7 @@ Return tuple of output dimension for specified subsystems.
 
 <span id="qiskit.quantum_info.Operator.power" />
 
-`Operator.power(n)`
+`Operator.power(n)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/operator.py "view source code")
 
 Return the matrix power of the operator.
 
@@ -303,7 +299,7 @@ BaseOperator
 
 <span id="qiskit.quantum_info.Operator.reverse_qargs" />
 
-`Operator.reverse_qargs()`
+`Operator.reverse_qargs()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/operator.py "view source code")
 
 Return an Operator with reversed subsystem ordering.
 
@@ -321,7 +317,7 @@ the operator with reversed subsystem order.
 
 <span id="qiskit.quantum_info.Operator.tensor" />
 
-`Operator.tensor(other)`
+`Operator.tensor(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/operator.py "view source code")
 
 Return the tensor product with another Operator.
 
@@ -347,7 +343,7 @@ is the current Operator, and $b$ is the other Operator.
 
 <span id="qiskit.quantum_info.Operator.to_instruction" />
 
-`Operator.to_instruction()`
+`Operator.to_instruction()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/operator.py "view source code")
 
 Convert to a UnitaryGate instruction.
 
@@ -355,7 +351,7 @@ Convert to a UnitaryGate instruction.
 
 <span id="qiskit.quantum_info.Operator.to_operator" />
 
-`Operator.to_operator()`
+`Operator.to_operator()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/operator.py "view source code")
 
 Convert operator to matrix operator class
 
@@ -363,7 +359,7 @@ Convert operator to matrix operator class
 
 <span id="qiskit.quantum_info.Operator.transpose" />
 
-`Operator.transpose()`
+`Operator.transpose()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/operator.py "view source code")
 
 Return the transpose of the Operator.
 

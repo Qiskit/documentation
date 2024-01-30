@@ -1,10 +1,18 @@
+---
+title: AccreditationCircuits
+description: API reference for qiskit.ignis.verification.AccreditationCircuits
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.ignis.verification.AccreditationCircuits
+---
+
 <span id="qiskit-ignis-verification-accreditationcircuits" />
 
 # qiskit.ignis.verification.AccreditationCircuits
 
-<span id="undefined" />
+<span id="qiskit.ignis.verification.AccreditationCircuits" />
 
-`AccreditationCircuits(target_circ, two_qubit_gate='cx', coupling_map=None, seed=None)`
+`AccreditationCircuits(target_circ, two_qubit_gate='cx', coupling_map=None, seed=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/accreditation/circuits.py "view source code")
 
 This class generates accreditation circuits from a target.
 
@@ -14,12 +22,14 @@ Initialize the circuit generation class parse into layers
 
 **Parameters**
 
-*   **target\_circ** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – a qiskit circuit to accredit
+*   **target\_circ** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – a qiskit circuit to accredit
 *   **two\_qubit\_gate** (*string*) – a flag as to which 2 qubit gate to compile with, can be cx or cz
 *   **coupling\_map** (*list*) – some particular device topology as list of list (e.g. \[\[0,1],\[1,2],\[2,0]])
 *   **seed** (*int*) – seed to the random number generator
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.ignis.verification.AccreditationCircuits.__init__" />
 
 `__init__(target_circ, two_qubit_gate='cx', coupling_map=None, seed=None)`
 
@@ -27,7 +37,7 @@ Initialize the circuit generation class parse into layers
 
 **Parameters**
 
-*   **target\_circ** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – a qiskit circuit to accredit
+*   **target\_circ** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – a qiskit circuit to accredit
 *   **two\_qubit\_gate** (*string*) – a flag as to which 2 qubit gate to compile with, can be cx or cz
 *   **coupling\_map** (*list*) – some particular device topology as list of list (e.g. \[\[0,1],\[1,2],\[2,0]])
 *   **seed** (*int*) – seed to the random number generator
@@ -40,7 +50,9 @@ Initialize the circuit generation class parse into layers
 | [`generate_circuits`](#qiskit.ignis.verification.AccreditationCircuits.generate_circuits "qiskit.ignis.verification.AccreditationCircuits.generate_circuits")(num\_trap) | Generate quantum circuits for accreditation               |
 | [`target_circuit`](#qiskit.ignis.verification.AccreditationCircuits.target_circuit "qiskit.ignis.verification.AccreditationCircuits.target_circuit")(target\_circ\[, …]) | Load target circuit in to class, and parse into layers    |
 
-<span id="undefined" />
+### generate\_circuits
+
+<span id="qiskit.ignis.verification.AccreditationCircuits.generate_circuits" />
 
 `generate_circuits(num_trap)`
 
@@ -60,7 +72,9 @@ Generate quantum circuits for accreditation
 
 tuple
 
-<span id="undefined" />
+### target\_circuit
+
+<span id="qiskit.ignis.verification.AccreditationCircuits.target_circuit" />
 
 `target_circuit(target_circ, two_qubit_gate='cx', coupling_map=None)`
 
@@ -68,6 +82,7 @@ Load target circuit in to class, and parse into layers
 
 **Parameters**
 
-*   **target\_circ** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – a qiskit circuit to accredit
+*   **target\_circ** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – a qiskit circuit to accredit
 *   **two\_qubit\_gate** (*string*) – a flag as to which 2 qubit gate to compile with, can be cx or cz
 *   **coupling\_map** (*list*) – some particular device topology as list of list (e.g. \[\[0,1],\[1,2],\[2,0]])
+

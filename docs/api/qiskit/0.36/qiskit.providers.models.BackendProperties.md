@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.models.BackendProperties
 
 <span id="qiskit.providers.models.BackendProperties" />
 
-`BackendProperties(backend_name, backend_version, last_update_date, qubits, gates, general, **kwargs)`
+`BackendProperties(backend_name, backend_version, last_update_date, qubits, gates, general, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/models/backendproperties.py "view source code")
 
 Bases: `object`
 
@@ -36,7 +36,7 @@ Initialize a BackendProperties instance.
 
 <span id="qiskit.providers.models.BackendProperties.faulty_gates" />
 
-`BackendProperties.faulty_gates()`
+`BackendProperties.faulty_gates()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/models/backendproperties.py "view source code")
 
 Return a list of faulty gates.
 
@@ -44,7 +44,7 @@ Return a list of faulty gates.
 
 <span id="qiskit.providers.models.BackendProperties.faulty_qubits" />
 
-`BackendProperties.faulty_qubits()`
+`BackendProperties.faulty_qubits()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/models/backendproperties.py "view source code")
 
 Return a list of faulty qubits.
 
@@ -52,7 +52,7 @@ Return a list of faulty qubits.
 
 <span id="qiskit.providers.models.BackendProperties.frequency" />
 
-`BackendProperties.frequency(qubit)`
+`BackendProperties.frequency(qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/models/backendproperties.py "view source code")
 
 Return the frequency of the given qubit.
 
@@ -72,7 +72,7 @@ Frequency of the given qubit.
 
 <span id="qiskit.providers.models.BackendProperties.from_dict" />
 
-`classmethod BackendProperties.from_dict(data)`
+`classmethod BackendProperties.from_dict(data)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/models/backendproperties.py "view source code")
 
 Create a new BackendProperties object from a dictionary.
 
@@ -94,7 +94,7 @@ dictionary.
 
 <span id="qiskit.providers.models.BackendProperties.gate_error" />
 
-`BackendProperties.gate_error(gate, qubits)`
+`BackendProperties.gate_error(gate, qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/models/backendproperties.py "view source code")
 
 Return gate error estimates from backend properties.
 
@@ -115,7 +115,7 @@ Gate error of the given gate and qubit(s).
 
 <span id="qiskit.providers.models.BackendProperties.gate_length" />
 
-`BackendProperties.gate_length(gate, qubits)`
+`BackendProperties.gate_length(gate, qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/models/backendproperties.py "view source code")
 
 Return the duration of the gate in units of seconds.
 
@@ -136,7 +136,7 @@ Gate length of the given gate and qubit(s).
 
 <span id="qiskit.providers.models.BackendProperties.gate_property" />
 
-`BackendProperties.gate_property(gate, qubits=None, name=None)`
+`BackendProperties.gate_property(gate, qubits=None, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/models/backendproperties.py "view source code")
 
 Return the property of the given gate.
 
@@ -162,7 +162,7 @@ Gate property as a tuple of the value and the time it was measured.
 
 <span id="qiskit.providers.models.BackendProperties.is_gate_operational" />
 
-`BackendProperties.is_gate_operational(gate, qubits=None)`
+`BackendProperties.is_gate_operational(gate, qubits=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/models/backendproperties.py "view source code")
 
 Return the operational status of the given gate.
 
@@ -183,7 +183,7 @@ bool
 
 <span id="qiskit.providers.models.BackendProperties.is_qubit_operational" />
 
-`BackendProperties.is_qubit_operational(qubit)`
+`BackendProperties.is_qubit_operational(qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/models/backendproperties.py "view source code")
 
 Return the operational status of the given qubit.
 
@@ -203,7 +203,7 @@ Operational status of the given qubit.
 
 <span id="qiskit.providers.models.BackendProperties.qubit_property" />
 
-`BackendProperties.qubit_property(qubit, name=None)`
+`BackendProperties.qubit_property(qubit, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/models/backendproperties.py "view source code")
 
 Return the property of the given qubit.
 
@@ -228,7 +228,7 @@ Qubit property as a tuple of the value and the time it was measured.
 
 <span id="qiskit.providers.models.BackendProperties.readout_error" />
 
-`BackendProperties.readout_error(qubit)`
+`BackendProperties.readout_error(qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/models/backendproperties.py "view source code")
 
 Return the readout error of the given qubit.
 
@@ -248,7 +248,7 @@ Readout error of the given qubit.
 
 <span id="qiskit.providers.models.BackendProperties.readout_length" />
 
-`BackendProperties.readout_length(qubit)`
+`BackendProperties.readout_length(qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/models/backendproperties.py "view source code")
 
 Return the readout length \[sec] of the given qubit.
 
@@ -268,7 +268,7 @@ Readout length of the given qubit.
 
 <span id="qiskit.providers.models.BackendProperties.t1" />
 
-`BackendProperties.t1(qubit)`
+`BackendProperties.t1(qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/models/backendproperties.py "view source code")
 
 Return the T1 time of the given qubit.
 
@@ -288,7 +288,7 @@ T1 time of the given qubit.
 
 <span id="qiskit.providers.models.BackendProperties.t2" />
 
-`BackendProperties.t2(qubit)`
+`BackendProperties.t2(qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/models/backendproperties.py "view source code")
 
 Return the T2 time of the given qubit.
 
@@ -308,7 +308,7 @@ T2 time of the given qubit.
 
 <span id="qiskit.providers.models.BackendProperties.to_dict" />
 
-`BackendProperties.to_dict()`
+`BackendProperties.to_dict()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/models/backendproperties.py "view source code")
 
 Return a dictionary format representation of the BackendProperties.
 

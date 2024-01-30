@@ -1,10 +1,18 @@
+---
+title: HarmonicBasis
+description: API reference for qiskit.chemistry.components.bosonic_bases.HarmonicBasis
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.components.bosonic_bases.HarmonicBasis
+---
+
 <span id="qiskit-chemistry-components-bosonic-bases-harmonicbasis" />
 
 # qiskit.chemistry.components.bosonic\_bases.HarmonicBasis
 
-<span id="undefined" />
+<span id="qiskit.chemistry.components.bosonic_bases.HarmonicBasis" />
 
-`HarmonicBasis(watson_hamiltonian, basis, truncation_order=3)`
+`HarmonicBasis(watson_hamiltonian, basis, truncation_order=3)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/components/bosonic_bases/harmonic_basis.py "view source code")
 
 Basis in which the Watson Hamiltonian is expressed.
 
@@ -20,7 +28,9 @@ This class uses the Hermite polynomials (eigenstates of the harmonic oscillator)
 *   **basis** (`List`\[`int`]) – Is a list defining the number of modals per mode. E.g. for a 3 modes system with 4 modals per mode `basis = [4, 4, 4]`.
 *   **truncation\_order** (`int`) – where is the Hamiltonian expansion truncation (1 for having only 1-body terms, 2 for having on 1- and 2-body terms…)
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.chemistry.components.bosonic_bases.HarmonicBasis.__init__" />
 
 `__init__(watson_hamiltonian, basis, truncation_order=3)`
 
@@ -37,7 +47,9 @@ This class uses the Hermite polynomials (eigenstates of the harmonic oscillator)
 | [`__init__`](#qiskit.chemistry.components.bosonic_bases.HarmonicBasis.__init__ "qiskit.chemistry.components.bosonic_bases.HarmonicBasis.__init__")(watson\_hamiltonian, basis\[, …]) | **type watson\_hamiltonian**`WatsonHamiltonian`                                                   |
 | [`convert`](#qiskit.chemistry.components.bosonic_bases.HarmonicBasis.convert "qiskit.chemistry.components.bosonic_bases.HarmonicBasis.convert")(\[threshold])                        | This prepares an array object representing a bosonic hamiltonian expressed in the harmonic basis. |
 
-<span id="undefined" />
+### convert
+
+<span id="qiskit.chemistry.components.bosonic_bases.HarmonicBasis.convert" />
 
 `convert(threshold=1e-06)`
 
@@ -58,3 +70,4 @@ List of modes for input to creation of a bosonic hamiltonian in the harmonic bas
 **Raises**
 
 **ValueError** – If problem with order value from computed modes
+

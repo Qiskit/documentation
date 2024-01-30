@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.RuntimeDecoder
 
 <span id="qiskit_ibm_runtime.RuntimeDecoder" />
 
-`RuntimeDecoder(*args, **kwargs)`
+`RuntimeDecoder(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.17/qiskit_ibm_runtime/utils/json.py "view source code")
 
 JSON Decoder used by runtime service.
 

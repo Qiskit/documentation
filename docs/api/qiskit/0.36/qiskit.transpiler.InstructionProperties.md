@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.InstructionProperties
 
 <span id="qiskit.transpiler.InstructionProperties" />
 
-`InstructionProperties(duration=None, error=None, calibration=None)`
+`InstructionProperties(duration=None, error=None, calibration=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/target.py "view source code")
 
 Bases: `object`
 
@@ -28,6 +28,10 @@ Create a new `InstructionProperties` object
 
 ## Attributes
 
+<span id="qiskit.transpiler.InstructionProperties.calibration" />
+
+### calibration
+
 <span id="qiskit.transpiler.InstructionProperties.duration" />
 
 ### duration
@@ -35,8 +39,4 @@ Create a new `InstructionProperties` object
 <span id="qiskit.transpiler.InstructionProperties.error" />
 
 ### error
-
-<span id="qiskit.transpiler.InstructionProperties.calibration" />
-
-### calibration
 

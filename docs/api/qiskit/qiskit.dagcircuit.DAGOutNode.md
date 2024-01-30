@@ -10,7 +10,7 @@ python_api_name: qiskit.dagcircuit.DAGOutNode
 
 <span id="qiskit.dagcircuit.DAGOutNode" />
 
-`qiskit.dagcircuit.DAGOutNode(wire)`
+`qiskit.dagcircuit.DAGOutNode(wire)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/dagcircuit/dagnode.py "view source code")
 
 Bases: [`DAGNode`](qiskit.dagcircuit.DAGNode "qiskit.dagcircuit.dagnode.DAGNode")
 
@@ -36,7 +36,7 @@ Create an outgoing node
 
 `static semantic_eq(node1, node2, bit_indices1, bit_indices2)`
 
-Check if DAG nodes are considered equivalent, e.g., as a node\_match for [`rustworkx.is_isomorphic_node_match()`](https://qiskit.org/ecosystem/rustworkx/apiref/rustworkx.is_isomorphic_node_match.html#rustworkx.is_isomorphic_node_match "(in rustworkx v0.13.2)").
+Check if DAG nodes are considered equivalent, e.g., as a node\_match for [`rustworkx.is_isomorphic_node_match()`](https://www.rustworkx.org/apiref/rustworkx.is_isomorphic_node_match.html#rustworkx.is_isomorphic_node_match "(in rustworkx v0.13.2)").
 
 **Parameters**
 

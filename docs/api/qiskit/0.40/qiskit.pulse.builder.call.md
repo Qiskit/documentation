@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.pulse.builder.call
 ---
 
-# qiskit.pulse.builder.call[¶](#qiskit-pulse-builder-call "Permalink to this headline")
+# qiskit.pulse.builder.call
 
 <span id="qiskit.pulse.builder.call" />
 
-`call(target, name=None, value_dict=None, **kw_params)`
+`call(target, name=None, value_dict=None, **kw_params)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/builder.py "view source code")
 
 Call the subroutine within the currently active builder context with arbitrary parameters which will be assigned to the target program.
 

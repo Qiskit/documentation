@@ -1,6 +1,6 @@
 # qiskit.dagcircuit.DAGCircuitError
 
-<span id="undefined" />
+
 
 `DAGCircuitError(*msg)`
 

@@ -1,10 +1,18 @@
+---
+title: PyTorchDiscriminator
+description: API reference for qiskit.aqua.components.neural_networks.PyTorchDiscriminator
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.components.neural_networks.PyTorchDiscriminator
+---
+
 <span id="qiskit-aqua-components-neural-networks-pytorchdiscriminator" />
 
 # qiskit.aqua.components.neural\_networks.PyTorchDiscriminator
 
-<span id="undefined" />
+<span id="qiskit.aqua.components.neural_networks.PyTorchDiscriminator" />
 
-`PyTorchDiscriminator(n_features=1, n_out=1)`
+`PyTorchDiscriminator(n_features=1, n_out=1)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/neural_networks/pytorch_discriminator.py "view source code")
 
 Discriminator based on PyTorch
 
@@ -15,9 +23,11 @@ Discriminator based on PyTorch
 
 **Raises**
 
-[**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError#qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – Pytorch not installed
+[**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – Pytorch not installed
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.aqua.components.neural_networks.PyTorchDiscriminator.__init__" />
 
 `__init__(n_features=1, n_out=1)`
 
@@ -28,7 +38,7 @@ Discriminator based on PyTorch
 
 **Raises**
 
-[**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError#qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – Pytorch not installed
+[**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – Pytorch not installed
 
 ## Methods
 
@@ -49,7 +59,9 @@ Discriminator based on PyTorch
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
 | [`discriminator_net`](#qiskit.aqua.components.neural_networks.PyTorchDiscriminator.discriminator_net "qiskit.aqua.components.neural_networks.PyTorchDiscriminator.discriminator_net") | Get discriminator |
 
-<span id="undefined" />
+### discriminator\_net
+
+<span id="qiskit.aqua.components.neural_networks.PyTorchDiscriminator.discriminator_net" />
 
 `property discriminator_net`
 
@@ -63,7 +75,9 @@ discriminator object
 
 object
 
-<span id="undefined" />
+### get\_label
+
+<span id="qiskit.aqua.components.neural_networks.PyTorchDiscriminator.get_label" />
 
 `get_label(x, detach=False)`
 
@@ -82,7 +96,9 @@ Discriminator output, i.e. data label
 
 torch.Tensor
 
-<span id="undefined" />
+### gradient\_penalty
+
+<span id="qiskit.aqua.components.neural_networks.PyTorchDiscriminator.gradient_penalty" />
 
 `gradient_penalty(x, lambda_=5.0, k=0.01, c=1.0)`
 
@@ -103,7 +119,9 @@ Gradient penalty.
 
 torch.Tensor
 
-<span id="undefined" />
+### load\_model
+
+<span id="qiskit.aqua.components.neural_networks.PyTorchDiscriminator.load_model" />
 
 `load_model(load_dir)`
 
@@ -113,7 +131,9 @@ Load discriminator model
 
 **load\_dir** (`str`) – file with stored pytorch discriminator model to be loaded
 
-<span id="undefined" />
+### loss
+
+<span id="qiskit.aqua.components.neural_networks.PyTorchDiscriminator.loss" />
 
 `loss(x, y, weights=None)`
 
@@ -133,7 +153,9 @@ Loss w\.r.t to the generated data points.
 
 torch.Tensor
 
-<span id="undefined" />
+### save\_model
+
+<span id="qiskit.aqua.components.neural_networks.PyTorchDiscriminator.save_model" />
 
 `save_model(snapshot_dir)`
 
@@ -143,7 +165,9 @@ Save discriminator model
 
 **snapshot\_dir** (`str`) – directory path for saving the model
 
-<span id="undefined" />
+### set\_seed
+
+<span id="qiskit.aqua.components.neural_networks.PyTorchDiscriminator.set_seed" />
 
 `set_seed(seed)`
 
@@ -153,7 +177,9 @@ Set seed.
 
 **seed** (`int`) – seed
 
-<span id="undefined" />
+### train
+
+<span id="qiskit.aqua.components.neural_networks.PyTorchDiscriminator.train" />
 
 `train(data, weights, penalty=True, quantum_instance=None, shots=None)`
 
@@ -164,7 +190,7 @@ Perform one training step w\.r.t. to the discriminator’s parameters
 *   **data** (*tuple*) – real\_batch: torch.Tensor, Training data batch. generated\_batch: numpy array, Generated data batch.
 *   **weights** (*tuple*) – real problem, generated problem
 *   **penalty** (*bool*) – Indicate whether or not penalty function is applied to the loss function.
-*   **quantum\_instance** ([*QuantumInstance*](qiskit.aqua.QuantumInstance#qiskit.aqua.QuantumInstance "qiskit.aqua.QuantumInstance")) – Quantum Instance (depreciated)
+*   **quantum\_instance** ([*QuantumInstance*](qiskit.aqua.QuantumInstance "qiskit.aqua.QuantumInstance")) – Quantum Instance (depreciated)
 *   **shots** (*int*) – Number of shots for hardware or qasm execution. Not used for classical network (only quantum ones)
 
 **Returns**
@@ -174,3 +200,4 @@ with Discriminator loss (torch.Tensor) and updated parameters (array).
 **Return type**
 
 dict
+

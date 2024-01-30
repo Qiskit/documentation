@@ -1,18 +1,28 @@
+---
+title: CTMPExpvalMeasMitigator
+description: API reference for qiskit.ignis.mitigation.CTMPExpvalMeasMitigator
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.ignis.mitigation.CTMPExpvalMeasMitigator
+---
+
 # qiskit.ignis.mitigation.CTMPExpvalMeasMitigator
 
-<span id="undefined" />
+<span id="qiskit.ignis.mitigation.CTMPExpvalMeasMitigator" />
 
-`CTMPExpvalMeasMitigator(generators, rates, num_qubits=None, seed=None)`
+`CTMPExpvalMeasMitigator(generators, rates, num_qubits=None, seed=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/mitigation/expval/ctmp_mitigator.py "view source code")
 
 N-qubit CTMP measurement error mitigator.
 
-This class can be used with the [`qiskit.ignis.mitigation.expectation_value()`](qiskit.ignis.mitigation.expectation_value#qiskit.ignis.mitigation.expectation_value "qiskit.ignis.mitigation.expectation_value") function to apply measurement error mitigation of N-qubit measurement errors caused by one and two-body error generators. Expectation values can also be computed directly using the [`expectation_value()`](qiskit.ignis.mitigation.expectation_value#qiskit.ignis.mitigation.expectation_value "qiskit.ignis.mitigation.expectation_value") method.
+This class can be used with the [`qiskit.ignis.mitigation.expectation_value()`](qiskit.ignis.mitigation.expectation_value "qiskit.ignis.mitigation.expectation_value") function to apply measurement error mitigation of N-qubit measurement errors caused by one and two-body error generators. Expectation values can also be computed directly using the [`expectation_value()`](qiskit.ignis.mitigation.expectation_value "qiskit.ignis.mitigation.expectation_value") method.
 
-For measurement mitigation to be applied the mitigator should be calibrated using the [`qiskit.ignis.mitigation.expval_meas_mitigator_circuits()`](qiskit.ignis.mitigation.expval_meas_mitigator_circuits#qiskit.ignis.mitigation.expval_meas_mitigator_circuits "qiskit.ignis.mitigation.expval_meas_mitigator_circuits") function and [`qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter`](qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter#qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter "qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter") class with the `'CTMP'` mitigation method.
+For measurement mitigation to be applied the mitigator should be calibrated using the [`qiskit.ignis.mitigation.expval_meas_mitigator_circuits()`](qiskit.ignis.mitigation.expval_meas_mitigator_circuits "qiskit.ignis.mitigation.expval_meas_mitigator_circuits") function and [`qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter`](qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter "qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter") class with the `'CTMP'` mitigation method.
 
 Initialize a TensorMeasurementMitigator
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.ignis.mitigation.CTMPExpvalMeasMitigator.__init__" />
 
 `__init__(generators, rates, num_qubits=None, seed=None)`
 
@@ -36,7 +46,9 @@ Initialize a TensorMeasurementMitigator
 | [`seed`](#qiskit.ignis.mitigation.CTMPExpvalMeasMitigator.seed "qiskit.ignis.mitigation.CTMPExpvalMeasMitigator.seed")(\[value])                                                            | Set the seed for the quantum state RNG.                               |
 | [`stddev_upper_bound`](#qiskit.ignis.mitigation.CTMPExpvalMeasMitigator.stddev_upper_bound "qiskit.ignis.mitigation.CTMPExpvalMeasMitigator.stddev_upper_bound")(\[shots, qubits])          | Return an upper bound on standard deviation of expval estimator.      |
 
-<span id="undefined" />
+### assignment\_fidelity
+
+<span id="qiskit.ignis.mitigation.CTMPExpvalMeasMitigator.assignment_fidelity" />
 
 `assignment_fidelity(qubits=None)`
 
@@ -56,7 +68,9 @@ the assignment fidelity.
 
 float
 
-<span id="undefined" />
+### assignment\_matrix
+
+<span id="qiskit.ignis.mitigation.CTMPExpvalMeasMitigator.assignment_matrix" />
 
 `assignment_matrix(qubits=None)`
 
@@ -76,7 +90,9 @@ the assignment matrix A.
 
 np.ndarray
 
-<span id="undefined" />
+### expectation\_value
+
+<span id="qiskit.ignis.mitigation.CTMPExpvalMeasMitigator.expectation_value" />
 
 `expectation_value(counts, diagonal=None, qubits=None, clbits=None)`
 
@@ -105,7 +121,9 @@ The diagonal observable $O$ is input using the `diagonal` kwarg as a list or Num
 
 The `clbits` kwarg is used to marginalize the input counts dictionary over the specified bit-values, and the `qubits` kwarg is used to specify which physical qubits these bit-values correspond to as `circuit.measure(qubits, clbits)`.
 
-<span id="undefined" />
+### generator\_matrix
+
+<span id="qiskit.ignis.mitigation.CTMPExpvalMeasMitigator.generator_matrix" />
 
 `generator_matrix(qubits=None)`
 
@@ -125,7 +143,9 @@ the generator matrix $G$.
 
 sps.coo\_matrix
 
-<span id="undefined" />
+### mitigation\_matrix
+
+<span id="qiskit.ignis.mitigation.CTMPExpvalMeasMitigator.mitigation_matrix" />
 
 `mitigation_matrix(qubits=None)`
 
@@ -145,7 +165,9 @@ the measurement error mitigation matrix $A^{-1}$.
 
 np.ndarray
 
-<span id="undefined" />
+### mitigation\_overhead
+
+<span id="qiskit.ignis.mitigation.CTMPExpvalMeasMitigator.mitigation_overhead" />
 
 `mitigation_overhead(qubits=None)`
 
@@ -165,7 +187,9 @@ the mitigation overhead factor.
 
 int
 
-<span id="undefined" />
+### noise\_strength
+
+<span id="qiskit.ignis.mitigation.CTMPExpvalMeasMitigator.noise_strength" />
 
 `noise_strength(qubits=None)`
 
@@ -175,7 +199,9 @@ Return the noise strength $gamma$ on the specified qubits
 
 `float`
 
-<span id="undefined" />
+### plot\_assignment\_matrix
+
+<span id="qiskit.ignis.mitigation.CTMPExpvalMeasMitigator.plot_assignment_matrix" />
 
 `plot_assignment_matrix(qubits=None, ax=None)`
 
@@ -198,7 +224,9 @@ plt.axes
 
 **ImportError** – if matplotlib is not installed.
 
-<span id="undefined" />
+### plot\_mitigation\_matrix
+
+<span id="qiskit.ignis.mitigation.CTMPExpvalMeasMitigator.plot_mitigation_matrix" />
 
 `plot_mitigation_matrix(qubits=None, ax=None)`
 
@@ -221,7 +249,9 @@ plt.axes
 
 **ImportError** – if matplotlib is not installed.
 
-<span id="undefined" />
+### required\_shots
+
+<span id="qiskit.ignis.mitigation.CTMPExpvalMeasMitigator.required_shots" />
 
 `required_shots(delta, qubits=None)`
 
@@ -242,13 +272,17 @@ the required shots.
 
 int
 
-<span id="undefined" />
+### seed
+
+<span id="qiskit.ignis.mitigation.CTMPExpvalMeasMitigator.seed" />
 
 `seed(value=None)`
 
 Set the seed for the quantum state RNG.
 
-<span id="undefined" />
+### stddev\_upper\_bound
+
+<span id="qiskit.ignis.mitigation.CTMPExpvalMeasMitigator.stddev_upper_bound" />
 
 `stddev_upper_bound(shots=1, qubits=None)`
 
@@ -266,3 +300,4 @@ the standard deviation upper bound.
 **Return type**
 
 float
+

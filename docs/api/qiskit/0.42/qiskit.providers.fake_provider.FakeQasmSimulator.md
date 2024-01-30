@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.providers.fake_provider.FakeQasmSimulator
 ---
 
-# FakeQasmSimulator[¶](#fakeqasmsimulator "Permalink to this headline")
+# FakeQasmSimulator
 
 <span id="qiskit.providers.fake_provider.FakeQasmSimulator" />
 
-`FakeQasmSimulator`
+`FakeQasmSimulator`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/fake_provider/fake_qasm_simulator.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_backend.FakeBackend`
 
@@ -61,7 +61,7 @@ str
 
 <span id="qiskit.providers.fake_provider.FakeQasmSimulator.properties" />
 
-`FakeQasmSimulator.properties()`
+`FakeQasmSimulator.properties()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/fake_provider/fake_qasm_simulator.py "view source code")
 
 Return backend properties
 

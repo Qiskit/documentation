@@ -1,10 +1,18 @@
+---
+title: random_unitary
+description: API reference for qiskit.quantum_info.random_unitary
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.quantum_info.random_unitary
+---
+
 <span id="qiskit-quantum-info-random-unitary" />
 
 # qiskit.quantum\_info.random\_unitary
 
-<span id="undefined" />
+<span id="qiskit.quantum_info.random_unitary" />
 
-`random_unitary(dims, seed=None)`
+`random_unitary(dims, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/quantum_info/operators/random.py "view source code")
 
 Return a random unitary Operator.
 
@@ -21,4 +29,5 @@ a unitary operator.
 
 **Return type**
 
-[Operator](qiskit.quantum_info.Operator#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")
+[Operator](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")
+

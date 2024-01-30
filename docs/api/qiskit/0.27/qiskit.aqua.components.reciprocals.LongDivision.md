@@ -1,8 +1,16 @@
+---
+title: LongDivision
+description: API reference for qiskit.aqua.components.reciprocals.LongDivision
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.components.reciprocals.LongDivision
+---
+
 # qiskit.aqua.components.reciprocals.LongDivision
 
-<span id="undefined" />
+<span id="qiskit.aqua.components.reciprocals.LongDivision" />
 
-`LongDivision(scale=0, precision=None, negative_evals=False, evo_time=None, lambda_min=None)`
+`LongDivision(scale=0, precision=None, negative_evals=False, evo_time=None, lambda_min=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/reciprocals/long_division.py "view source code")
 
 The Long Division Rotation for Reciprocals.
 
@@ -20,7 +28,9 @@ It finds the reciprocal with long division method and rotates the ancillary qubi
 *   **evo\_time** (`Optional`\[`float`]) – The evolution time. This parameter scales the Eigenvalues in the phase estimation onto the range (0,1] ( (-0.5,0.5] for negative Eigenvalues ).
 *   **lambda\_min** (`Optional`\[`float`]) – The smallest expected eigenvalue
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.aqua.components.reciprocals.LongDivision.__init__" />
 
 `__init__(scale=0, precision=None, negative_evals=False, evo_time=None, lambda_min=None)`
 
@@ -40,7 +50,9 @@ It finds the reciprocal with long division method and rotates the ancillary qubi
 | [`construct_circuit`](#qiskit.aqua.components.reciprocals.LongDivision.construct_circuit "qiskit.aqua.components.reciprocals.LongDivision.construct_circuit")(mode\[, register, circuit]) | Construct the Long Division Rotation circuit. |
 | [`sv_to_resvec`](#qiskit.aqua.components.reciprocals.LongDivision.sv_to_resvec "qiskit.aqua.components.reciprocals.LongDivision.sv_to_resvec")(statevector, num\_q)                       | Convert statevector to result vector.         |
 
-<span id="undefined" />
+### construct\_circuit
+
+<span id="qiskit.aqua.components.reciprocals.LongDivision.construct_circuit" />
 
 `construct_circuit(mode, register=None, circuit=None)`
 
@@ -49,8 +61,8 @@ Construct the Long Division Rotation circuit.
 **Parameters**
 
 *   **mode** (*str*) – construction mode, ‘matrix’ not supported
-*   **register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister#qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – input register, typically output register of Eigenvalues
-*   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – Quantum Circuit or None
+*   **register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – input register, typically output register of Eigenvalues
+*   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – Quantum Circuit or None
 
 **Returns**
 
@@ -58,13 +70,15 @@ containing the Long Division Rotation circuit.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
 **NotImplementedError** – mode not supported
 
-<span id="undefined" />
+### sv\_to\_resvec
+
+<span id="qiskit.aqua.components.reciprocals.LongDivision.sv_to_resvec" />
 
 `sv_to_resvec(statevector, num_q)`
 
@@ -78,3 +92,4 @@ Convert statevector to result vector.
 **Returns**
 
 The result vector.
+

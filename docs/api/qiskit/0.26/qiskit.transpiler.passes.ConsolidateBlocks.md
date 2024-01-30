@@ -1,8 +1,16 @@
+---
+title: ConsolidateBlocks
+description: API reference for qiskit.transpiler.passes.ConsolidateBlocks
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.ConsolidateBlocks
+---
+
 # qiskit.transpiler.passes.ConsolidateBlocks
 
-<span id="undefined" />
+<span id="qiskit.transpiler.passes.ConsolidateBlocks" />
 
-`ConsolidateBlocks(*args, **kwargs)`
+`ConsolidateBlocks(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/transpiler/passes/optimization/consolidate_blocks.py "view source code")
 
 Replace each block of consecutive gates by a single Unitary node.
 
@@ -16,11 +24,13 @@ ConsolidateBlocks initializer.
 
 **Parameters**
 
-*   **kak\_basis\_gate** ([*Gate*](qiskit.circuit.Gate#qiskit.circuit.Gate "qiskit.circuit.Gate")) – Basis gate for KAK decomposition.
+*   **kak\_basis\_gate** ([*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")) – Basis gate for KAK decomposition.
 *   **force\_consolidate** (*bool*) – Force block consolidation
 *   **basis\_gates** (*List(str)*) – Basis gates from which to choose a KAK gate.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.transpiler.passes.ConsolidateBlocks.__init__" />
 
 `__init__(kak_basis_gate=None, force_consolidate=False, basis_gates=None)`
 
@@ -28,7 +38,7 @@ ConsolidateBlocks initializer.
 
 **Parameters**
 
-*   **kak\_basis\_gate** ([*Gate*](qiskit.circuit.Gate#qiskit.circuit.Gate "qiskit.circuit.Gate")) – Basis gate for KAK decomposition.
+*   **kak\_basis\_gate** ([*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")) – Basis gate for KAK decomposition.
 *   **force\_consolidate** (*bool*) – Force block consolidation
 *   **basis\_gates** (*List(str)*) – Basis gates from which to choose a KAK gate.
 
@@ -47,7 +57,9 @@ ConsolidateBlocks initializer.
 | [`is_analysis_pass`](#qiskit.transpiler.passes.ConsolidateBlocks.is_analysis_pass "qiskit.transpiler.passes.ConsolidateBlocks.is_analysis_pass")                   | Check if the pass is an analysis pass.      |
 | [`is_transformation_pass`](#qiskit.transpiler.passes.ConsolidateBlocks.is_transformation_pass "qiskit.transpiler.passes.ConsolidateBlocks.is_transformation_pass") | Check if the pass is a transformation pass. |
 
-<span id="undefined" />
+### is\_analysis\_pass
+
+<span id="qiskit.transpiler.passes.ConsolidateBlocks.is_analysis_pass" />
 
 `property is_analysis_pass`
 
@@ -55,7 +67,9 @@ Check if the pass is an analysis pass.
 
 If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
 
-<span id="undefined" />
+### is\_transformation\_pass
+
+<span id="qiskit.transpiler.passes.ConsolidateBlocks.is_transformation_pass" />
 
 `property is_transformation_pass`
 
@@ -63,16 +77,21 @@ Check if the pass is a transformation pass.
 
 If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
 
-<span id="undefined" />
+### name
+
+<span id="qiskit.transpiler.passes.ConsolidateBlocks.name" />
 
 `name()`
 
 Return the name of the pass.
 
-<span id="undefined" />
+### run
+
+<span id="qiskit.transpiler.passes.ConsolidateBlocks.run" />
 
 `run(dag)`
 
 Run the ConsolidateBlocks pass on dag.
 
 Iterate over each block and replace it with an equivalent Unitary on the same wires.
+

@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.gradients.QGTResult
 ---
 
-# QGTResult[¶](#qgtresult "Permalink to this headline")
+# QGTResult
 
 <span id="qiskit.algorithms.gradients.QGTResult" />
 
-`QGTResult(qgts, derivative_type, metadata, options)`
+`QGTResult(qgts, derivative_type, metadata, options)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/gradients/qgt_result.py "view source code")
 
 Bases: `object`
 

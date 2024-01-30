@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CHGate
 
 <span id="qiskit.circuit.library.CHGate" />
 
-`CHGate(label=None, ctrl_state=None)`
+`CHGate(label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/standard_gates/h.py "view source code")
 
 Bases: [`qiskit.circuit.controlledgate.ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 
@@ -72,7 +72,7 @@ Create new CH gate.
 
 <span id="qiskit.circuit.library.CHGate.inverse" />
 
-`CHGate.inverse()`
+`CHGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/standard_gates/h.py "view source code")
 
 Return inverted CH gate (itself).
 

@@ -1,10 +1,18 @@
+---
+title: CircuitQFI
+description: API reference for qiskit.aqua.operators.gradients.CircuitQFI
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.operators.gradients.CircuitQFI
+---
+
 <span id="qiskit-aqua-operators-gradients-circuitqfi" />
 
 # qiskit.aqua.operators.gradients.CircuitQFI
 
-<span id="undefined" />
+<span id="qiskit.aqua.operators.gradients.CircuitQFI" />
 
-`CircuitQFI`
+`CircuitQFI`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/gradients/circuit_qfis/circuit_qfi.py "view source code")
 
 Circuit to Quantum Fisher Information operator converter.
 
@@ -14,7 +22,9 @@ This is distinct from DerivativeBase converters which take gradients of composit
 
 CircuitQFI - uses quantum techniques to get the QFI of circuits DerivativeBase - uses classical techniques to differentiate opflow data structures
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.aqua.operators.gradients.CircuitQFI.__init__" />
 
 `__init__()`
 
@@ -27,7 +37,9 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`__init__`](#qiskit.aqua.operators.gradients.CircuitQFI.__init__ "qiskit.aqua.operators.gradients.CircuitQFI.__init__")()                 | Initialize self.                |
 | [`convert`](#qiskit.aqua.operators.gradients.CircuitQFI.convert "qiskit.aqua.operators.gradients.CircuitQFI.convert")(operator\[, params]) | **type operator**`OperatorBase` |
 
-<span id="undefined" />
+### convert
+
+<span id="qiskit.aqua.operators.gradients.CircuitQFI.convert" />
 
 `abstract convert(operator, params=None)`
 
@@ -47,3 +59,4 @@ An operator whose evaluation yields the QFI metric tensor.
 **Raises**
 
 **ValueError** – If `params` contains a parameter not present in `operator`.
+

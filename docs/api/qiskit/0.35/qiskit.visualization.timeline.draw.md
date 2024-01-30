@@ -1,8 +1,16 @@
+---
+title: draw
+description: API reference for qiskit.visualization.timeline.draw
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.visualization.timeline.draw
+---
+
 # qiskit.visualization.timeline.draw
 
-<span id="undefined" />
+<span id="qiskit.visualization.timeline.draw" />
 
-`draw(program, style=None, time_range=None, disable_bits=None, show_clbits=None, show_idle=None, show_barriers=None, show_delays=None, show_labels=True, plotter='mpl', axis=None, filename=None)`
+`draw(program, style=None, time_range=None, disable_bits=None, show_clbits=None, show_idle=None, show_barriers=None, show_delays=None, show_labels=True, plotter='mpl', axis=None, filename=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/visualization/timeline/interface.py "view source code")
 
 Generate visualization data for scheduled circuit programs.
 
@@ -51,7 +59,7 @@ The returned data type depends on the plotter. If matplotlib family is specified
 **Raises**
 
 *   **MissingOptionalLibraryError** – When required visualization package is not installed.
-*   [**VisualizationError**](qiskit.visualization.VisualizationError#qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – When invalid plotter API is specified.
+*   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – When invalid plotter API is specified.
 
 **Style Dict Details**
 
@@ -258,7 +266,7 @@ qc = transpile(qc, FakeAlmaden(), scheduling_method='alap', layout_method='trivi
 draw(qc)
 ```
 
-![../\_images/qiskit.visualization.timeline.draw\_0\_0.png](/images/api/qiskit/0.35/qiskit.visualization.timeline.draw_0_0.png)
+![../\_images/qiskit.visualization.timeline.draw\_0\_1.png](/images/api/qiskit/0.35/qiskit.visualization.timeline.draw_0_1.png)
 
 Drawing with the simple stylesheet.
 
@@ -308,3 +316,4 @@ draw(qc, style=style)
 ```
 
 In the same way as above, you can create custom generator or layout functions and update existing stylesheet with custom functions. This feature enables you to control the most of appearance of the output image without modifying the codebase of the scheduled circuit drawer.
+

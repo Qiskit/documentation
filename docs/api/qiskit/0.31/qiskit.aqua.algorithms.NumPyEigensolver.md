@@ -1,8 +1,16 @@
+---
+title: NumPyEigensolver
+description: API reference for qiskit.aqua.algorithms.NumPyEigensolver
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.algorithms.NumPyEigensolver
+---
+
 # NumPyEigensolver
 
-<span id="undefined" />
+<span id="qiskit.aqua.algorithms.NumPyEigensolver" />
 
-`NumPyEigensolver(operator=None, k=1, aux_operators=None, filter_criterion=None)`
+`NumPyEigensolver(operator=None, k=1, aux_operators=None, filter_criterion=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/eigen_solvers/numpy_eigen_solver.py "view source code")
 
 Bases: `qiskit.aqua.algorithms.classical_algorithm.ClassicalAlgorithm`, `qiskit.aqua.algorithms.eigen_solvers.eigen_solver.Eigensolver`
 
@@ -23,15 +31,62 @@ NumPy Eigensolver computes up to the first $k$ eigenvalues of a complex-valued s
 
 ## Methods
 
-|                                                                                                                                                                                                                            |                                                                              |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| [`compute_eigenvalues`](qiskit.aqua.algorithms.NumPyEigensolver.compute_eigenvalues#qiskit.aqua.algorithms.NumPyEigensolver.compute_eigenvalues "qiskit.aqua.algorithms.NumPyEigensolver.compute_eigenvalues")             | Computes eigenvalues.                                                        |
-| [`run`](qiskit.aqua.algorithms.NumPyEigensolver.run#qiskit.aqua.algorithms.NumPyEigensolver.run "qiskit.aqua.algorithms.NumPyEigensolver.run")                                                                             | Execute the classical algorithm.                                             |
-| [`supports_aux_operators`](qiskit.aqua.algorithms.NumPyEigensolver.supports_aux_operators#qiskit.aqua.algorithms.NumPyEigensolver.supports_aux_operators "qiskit.aqua.algorithms.NumPyEigensolver.supports_aux_operators") | Whether computing the expectation value of auxiliary operators is supported. |
+### compute\_eigenvalues
+
+<span id="qiskit.aqua.algorithms.NumPyEigensolver.compute_eigenvalues" />
+
+`NumPyEigensolver.compute_eigenvalues(operator=None, aux_operators=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/eigen_solvers/numpy_eigen_solver.py "view source code")
+
+Computes eigenvalues. Operator and aux\_operators can be supplied here and if not None will override any already set into algorithm so it can be reused with different operators. While an operator is required by algorithms, aux\_operators are optional. To ‘remove’ a previous aux\_operators array use an empty list here.
+
+**Parameters**
+
+*   **operator** (`Union`\[`OperatorBase`, `LegacyBaseOperator`, `None`]) – If not None replaces operator in algorithm
+*   **aux\_operators** (`Optional`\[`List`\[`Union`\[`OperatorBase`, `LegacyBaseOperator`, `None`]]]) – If not None replaces aux\_operators in algorithm
+
+**Return type**
+
+`EigensolverResult`
+
+**Returns**
+
+EigensolverResult
+
+### run
+
+<span id="qiskit.aqua.algorithms.NumPyEigensolver.run" />
+
+`NumPyEigensolver.run()`
+
+Execute the classical algorithm.
+
+**Returns**
+
+results of an algorithm.
+
+**Return type**
+
+dict
+
+### supports\_aux\_operators
+
+<span id="qiskit.aqua.algorithms.NumPyEigensolver.supports_aux_operators" />
+
+`classmethod NumPyEigensolver.supports_aux_operators()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/eigen_solvers/numpy_eigen_solver.py "view source code")
+
+Whether computing the expectation value of auxiliary operators is supported.
+
+**Return type**
+
+`bool`
+
+**Returns**
+
+True if aux\_operator expectations can be evaluated, False otherwise
 
 ## Attributes
 
-<span id="undefined" />
+<span id="qiskit.aqua.algorithms.NumPyEigensolver.aux_operators" />
 
 ### aux\_operators
 
@@ -39,7 +94,7 @@ NumPy Eigensolver computes up to the first $k$ eigenvalues of a complex-valued s
 
 `Optional`\[`List`\[`Optional`\[`OperatorBase`]]]
 
-<span id="undefined" />
+<span id="qiskit.aqua.algorithms.NumPyEigensolver.filter_criterion" />
 
 ### filter\_criterion
 
@@ -49,7 +104,7 @@ returns the filter criterion if set
 
 `Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]
 
-<span id="undefined" />
+<span id="qiskit.aqua.algorithms.NumPyEigensolver.k" />
 
 ### k
 
@@ -59,7 +114,7 @@ returns k (number of eigenvalues requested)
 
 `int`
 
-<span id="undefined" />
+<span id="qiskit.aqua.algorithms.NumPyEigensolver.operator" />
 
 ### operator
 
@@ -67,8 +122,9 @@ returns k (number of eigenvalues requested)
 
 `Optional`\[`OperatorBase`]
 
-<span id="undefined" />
+<span id="qiskit.aqua.algorithms.NumPyEigensolver.random" />
 
 ### random
 
 Return a numpy random.
+

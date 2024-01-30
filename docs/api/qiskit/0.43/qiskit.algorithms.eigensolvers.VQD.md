@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.eigensolvers.VQD
 
 <span id="qiskit.algorithms.eigensolvers.VQD" />
 
-`VQD(estimator, fidelity, ansatz, optimizer, *, k=2, betas=None, initial_point=None, callback=None)`
+`VQD(estimator, fidelity, ansatz, optimizer, *, k=2, betas=None, initial_point=None, callback=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/eigensolvers/vqd.py "view source code")
 
 Bases: `VariationalAlgorithm`, [`Eigensolver`](qiskit.algorithms.eigensolvers.Eigensolver "qiskit.algorithms.eigensolvers.eigensolver.Eigensolver")
 
@@ -68,8 +68,6 @@ A classical optimizer or a list of optimizers,
 
 [Optimizer](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer") | Sequence\[[Optimizer](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer")]
 
-<span id="undefined" />
-
 ### one for every k-th eigenvalue. Can either be a Qiskit optimizer or a callable
 
 that takes an array as input and returns a Qiskit or SciPy optimization result.
@@ -93,8 +91,6 @@ Beta parameters in the VQD paper. Should have length k - 1, with k the number of
 **Type**
 
 list\[float]
-
-<span id="undefined" />
 
 ### initial point
 
@@ -134,7 +130,7 @@ Callable\[\[int, np.ndarray, float, dict\[str, Any]], None] | None
 
 <span id="qiskit.algorithms.eigensolvers.VQD.compute_eigenvalues" />
 
-`VQD.compute_eigenvalues(operator, aux_operators=None)`
+`VQD.compute_eigenvalues(operator, aux_operators=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/eigensolvers/vqd.py "view source code")
 
 Computes the minimum eigenvalue. The `operator` and `aux_operators` are supplied here. While an `operator` is required by algorithms, `aux_operators` are optional.
 
@@ -157,7 +153,7 @@ An eigensolver result.
 
 <span id="qiskit.algorithms.eigensolvers.VQD.supports_aux_operators" />
 
-`classmethod VQD.supports_aux_operators()`
+`classmethod VQD.supports_aux_operators()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/eigensolvers/vqd.py "view source code")
 
 Whether computing the expectation value of auxiliary operators is supported.
 

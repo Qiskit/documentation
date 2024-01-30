@@ -1,6 +1,6 @@
 # AQC
 
-<span id="undefined" />
+
 
 `AQC(optimizer=None, seed=None)`
 

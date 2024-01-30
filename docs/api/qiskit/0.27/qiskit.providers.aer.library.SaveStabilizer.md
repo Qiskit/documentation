@@ -1,8 +1,16 @@
+---
+title: SaveStabilizer
+description: API reference for qiskit.providers.aer.library.SaveStabilizer
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.aer.library.SaveStabilizer
+---
+
 # qiskit.providers.aer.library.SaveStabilizer
 
-<span id="undefined" />
+<span id="qiskit.providers.aer.library.SaveStabilizer" />
 
-`SaveStabilizer(num_qubits, label='stabilizer', pershot=False, conditional=False)`
+`SaveStabilizer(num_qubits, label='stabilizer', pershot=False, conditional=False)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/library/save_instructions/save_stabilizer.py "view source code")
 
 Save Stabilizer instruction
 
@@ -19,7 +27,9 @@ Create new instruction to save the stabilizer simulator state.
   This save instruction must always be performed on the full width of qubits in a circuit, otherwise an exception will be raised during simulation.
 </Admonition>
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.providers.aer.library.SaveStabilizer.__init__" />
 
 `__init__(num_qubits, label='stabilizer', pershot=False, conditional=False)`
 
@@ -65,19 +75,25 @@ Create new instruction to save the stabilizer simulator state.
 | [`params`](#qiskit.providers.aer.library.SaveStabilizer.params "qiskit.providers.aer.library.SaveStabilizer.params")                         | return instruction params.                                                    |
 | [`unit`](#qiskit.providers.aer.library.SaveStabilizer.unit "qiskit.providers.aer.library.SaveStabilizer.unit")                               | Get the time unit of duration.                                                |
 
-<span id="undefined" />
+### add\_decomposition
+
+<span id="qiskit.providers.aer.library.SaveStabilizer.add_decomposition" />
 
 `add_decomposition(decomposition)`
 
 Add a decomposition of the instruction to the SessionEquivalenceLibrary.
 
-<span id="undefined" />
+### assemble
+
+<span id="qiskit.providers.aer.library.SaveStabilizer.assemble" />
 
 `assemble()`
 
 Return the QasmQobjInstruction for the intructions.
 
-<span id="undefined" />
+### broadcast\_arguments
+
+<span id="qiskit.providers.aer.library.SaveStabilizer.broadcast_arguments" />
 
 `broadcast_arguments(qargs, cargs)`
 
@@ -96,13 +112,17 @@ Validation of the arguments.
 
 **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
 
-<span id="undefined" />
+### c\_if
+
+<span id="qiskit.providers.aer.library.SaveStabilizer.c_if" />
 
 `c_if(classical, val)`
 
 Add classical condition on register classical and value val.
 
-<span id="undefined" />
+### copy
+
+<span id="qiskit.providers.aer.library.SaveStabilizer.copy" />
 
 `copy(name=None)`
 
@@ -120,39 +140,51 @@ updated if it was provided
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+### decompositions
+
+<span id="qiskit.providers.aer.library.SaveStabilizer.decompositions" />
 
 `property decompositions`
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
-<span id="undefined" />
+### definition
+
+<span id="qiskit.providers.aer.library.SaveStabilizer.definition" />
 
 `property definition`
 
 Return definition in terms of other basic gates.
 
-<span id="undefined" />
+### duration
+
+<span id="qiskit.providers.aer.library.SaveStabilizer.duration" />
 
 `property duration`
 
 Get the duration.
 
-<span id="undefined" />
+### inverse
+
+<span id="qiskit.providers.aer.library.SaveStabilizer.inverse" />
 
 `inverse()`
 
 Special case. Return self.
 
-<span id="undefined" />
+### is\_parameterized
+
+<span id="qiskit.providers.aer.library.SaveStabilizer.is_parameterized" />
 
 `is_parameterized()`
 
 Return True .IFF. instruction is parameterized else False
 
-<span id="undefined" />
+### mirror
+
+<span id="qiskit.providers.aer.library.SaveStabilizer.mirror" />
 
 `mirror()`
 
@@ -166,15 +198,19 @@ reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+### params
+
+<span id="qiskit.providers.aer.library.SaveStabilizer.params" />
 
 `property params`
 
 return instruction params.
 
-<span id="undefined" />
+### qasm
+
+<span id="qiskit.providers.aer.library.SaveStabilizer.qasm" />
 
 `qasm()`
 
@@ -182,7 +218,9 @@ Return a default OpenQASM string for the instruction.
 
 Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
 
-<span id="undefined" />
+### repeat
+
+<span id="qiskit.providers.aer.library.SaveStabilizer.repeat" />
 
 `repeat(n)`
 
@@ -198,13 +236,15 @@ Containing the definition.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
 **Raises**
 
 **CircuitError** – If n \< 1.
 
-<span id="undefined" />
+### reverse\_ops
+
+<span id="qiskit.providers.aer.library.SaveStabilizer.reverse_ops" />
 
 `reverse_ops()`
 
@@ -220,9 +260,11 @@ sub-instructions reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+### soft\_compare
+
+<span id="qiskit.providers.aer.library.SaveStabilizer.soft_compare" />
 
 `soft_compare(other)`
 
@@ -240,14 +282,19 @@ are self and other equal up to parameter expressions.
 
 bool
 
-<span id="undefined" />
+### unit
+
+<span id="qiskit.providers.aer.library.SaveStabilizer.unit" />
 
 `property unit`
 
 Get the time unit of duration.
 
-<span id="undefined" />
+### validate\_parameter
+
+<span id="qiskit.providers.aer.library.SaveStabilizer.validate_parameter" />
 
 `validate_parameter(parameter)`
 
 Instruction parameters has no validation or normalization.
+

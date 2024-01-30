@@ -1,8 +1,16 @@
+---
+title: NFT
+description: API reference for qiskit.algorithms.optimizers.NFT
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.algorithms.optimizers.NFT
+---
+
 # qiskit.algorithms.optimizers.NFT
 
-<span id="undefined" />
+<span id="qiskit.algorithms.optimizers.NFT" />
 
-`NFT(maxiter=None, maxfev=1024, disp=False, reset_interval=32)`
+`NFT(maxiter=None, maxfev=1024, disp=False, reset_interval=32)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/optimizers/nft.py "view source code")
 
 Nakanishi-Fujii-Todo algorithm.
 
@@ -27,7 +35,9 @@ In this optimization method, the optimization function have to satisfy three con
 
 K. M. Nakanishi, K. Fujii, and S. Todo. 2019. Sequential minimal optimization for quantum-classical hybrid algorithms. arXiv preprint arXiv:1903.12166.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.algorithms.optimizers.NFT.__init__" />
 
 `__init__(maxiter=None, maxfev=1024, disp=False, reset_interval=32)`
 
@@ -81,19 +91,25 @@ K. M. Nakanishi, K. Fujii, and S. Todo. 2019. Sequential minimal optimization fo
 | [`is_initial_point_supported`](#qiskit.algorithms.optimizers.NFT.is_initial_point_supported "qiskit.algorithms.optimizers.NFT.is_initial_point_supported")    | Returns is initial point supported  |
 | [`setting`](#qiskit.algorithms.optimizers.NFT.setting "qiskit.algorithms.optimizers.NFT.setting")                                                             | Return setting                      |
 
-<span id="undefined" />
+### bounds\_support\_level
+
+<span id="qiskit.algorithms.optimizers.NFT.bounds_support_level" />
 
 `property bounds_support_level`
 
 Returns bounds support level
 
-<span id="undefined" />
+### get\_support\_level
+
+<span id="qiskit.algorithms.optimizers.NFT.get_support_level" />
 
 `get_support_level()`
 
 return support level dictionary
 
-<span id="undefined" />
+### gradient\_num\_diff
+
+<span id="qiskit.algorithms.optimizers.NFT.gradient_num_diff" />
 
 `static gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)`
 
@@ -114,73 +130,97 @@ the gradient computed
 
 grad
 
-<span id="undefined" />
+### gradient\_support\_level
+
+<span id="qiskit.algorithms.optimizers.NFT.gradient_support_level" />
 
 `property gradient_support_level`
 
 Returns gradient support level
 
-<span id="undefined" />
+### initial\_point\_support\_level
+
+<span id="qiskit.algorithms.optimizers.NFT.initial_point_support_level" />
 
 `property initial_point_support_level`
 
 Returns initial point support level
 
-<span id="undefined" />
+### is\_bounds\_ignored
+
+<span id="qiskit.algorithms.optimizers.NFT.is_bounds_ignored" />
 
 `property is_bounds_ignored`
 
 Returns is bounds ignored
 
-<span id="undefined" />
+### is\_bounds\_required
+
+<span id="qiskit.algorithms.optimizers.NFT.is_bounds_required" />
 
 `property is_bounds_required`
 
 Returns is bounds required
 
-<span id="undefined" />
+### is\_bounds\_supported
+
+<span id="qiskit.algorithms.optimizers.NFT.is_bounds_supported" />
 
 `property is_bounds_supported`
 
 Returns is bounds supported
 
-<span id="undefined" />
+### is\_gradient\_ignored
+
+<span id="qiskit.algorithms.optimizers.NFT.is_gradient_ignored" />
 
 `property is_gradient_ignored`
 
 Returns is gradient ignored
 
-<span id="undefined" />
+### is\_gradient\_required
+
+<span id="qiskit.algorithms.optimizers.NFT.is_gradient_required" />
 
 `property is_gradient_required`
 
 Returns is gradient required
 
-<span id="undefined" />
+### is\_gradient\_supported
+
+<span id="qiskit.algorithms.optimizers.NFT.is_gradient_supported" />
 
 `property is_gradient_supported`
 
 Returns is gradient supported
 
-<span id="undefined" />
+### is\_initial\_point\_ignored
+
+<span id="qiskit.algorithms.optimizers.NFT.is_initial_point_ignored" />
 
 `property is_initial_point_ignored`
 
 Returns is initial point ignored
 
-<span id="undefined" />
+### is\_initial\_point\_required
+
+<span id="qiskit.algorithms.optimizers.NFT.is_initial_point_required" />
 
 `property is_initial_point_required`
 
 Returns is initial point required
 
-<span id="undefined" />
+### is\_initial\_point\_supported
+
+<span id="qiskit.algorithms.optimizers.NFT.is_initial_point_supported" />
 
 `property is_initial_point_supported`
 
 Returns is initial point supported
 
-<span id="undefined" />
+### optimize
+
+<span id="qiskit.algorithms.optimizers.NFT.optimize" />
 
 `optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
@@ -204,19 +244,25 @@ point: is a 1D numpy.ndarray\[float] containing the solution value: is a float w
 
 **ValueError** – invalid input
 
-<span id="undefined" />
+### print\_options
+
+<span id="qiskit.algorithms.optimizers.NFT.print_options" />
 
 `print_options()`
 
 Print algorithm-specific options.
 
-<span id="undefined" />
+### set\_max\_evals\_grouped
+
+<span id="qiskit.algorithms.optimizers.NFT.set_max_evals_grouped" />
 
 `set_max_evals_grouped(limit)`
 
 Set max evals grouped
 
-<span id="undefined" />
+### set\_options
+
+<span id="qiskit.algorithms.optimizers.NFT.set_options" />
 
 `set_options(**kwargs)`
 
@@ -228,13 +274,17 @@ The options dictionary may be used internally by a given optimizer to pass addit
 
 **kwargs** (*dict*) – options, given as name=value.
 
-<span id="undefined" />
+### setting
+
+<span id="qiskit.algorithms.optimizers.NFT.setting" />
 
 `property setting`
 
 Return setting
 
-<span id="undefined" />
+### wrap\_function
+
+<span id="qiskit.algorithms.optimizers.NFT.wrap_function" />
 
 `static wrap_function(function, args)`
 
@@ -252,3 +302,4 @@ wrapper
 **Return type**
 
 function\_wrapper
+

@@ -18,15 +18,11 @@ python_api_name: qiskit.providers.ibmq.managed
 
 <span id="module-qiskit.providers.ibmq.managed" />
 
-`qiskit.providers.ibmq.managed¶`
+`qiskit.providers.ibmq.managed`
 
 High level mechanism for handling jobs.
 
 ## Classes
-
-<span id="module-qiskit.providers.ibmq.managed" />
-
-`¶`
 
 |                                                                                                                                                   |                                         |
 | ------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
@@ -36,10 +32,6 @@ High level mechanism for handling jobs.
 | [`ManagedResults`](qiskit.providers.ibmq.managed.ManagedResults "qiskit.providers.ibmq.managed.ManagedResults")(job\_set, backend\_name, success) | Results managed by the Job Manager.     |
 
 ## Exceptions
-
-<span id="module-qiskit.providers.ibmq.managed" />
-
-`¶`
 
 |                                                                                                                                                                                     |                                                                 |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |

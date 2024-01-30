@@ -1,0 +1,145 @@
+---
+title: OpenQASM 2 and Qiskit
+description: Convert code between OpenQASM 2 and Qiskit
+---
+
+# OpenQASM 2 and Qiskit
+
+Qiskit provides some tools for converting between OpenQASM representations of quantum programs, and the [QuantumCircuit](../api/qiskit/qiskit.circuit.QuantumCircuit) class.
+
+## Import an OpenQASM 2 program into Qiskit
+
+Currently two high-level functions are available for importing from OpenQASM 2 into Qiskit. These functions are `qasm2.load()`, which takes a file name, and `qasm2.loads()`, which takes the program itself as a string. 
+
+```python
+qiskit.qasm2.load(filename, *, include_path=('.',), include_input_directory='append', custom_instructions=(), custom_classical=(), strict=False)
+```
+
+See the [OpenQASM 2 Qiskit API](/api/qiskit/qasm2) for more information. 
+
+### Example: import an OpenQASM 2 program as a string
+
+Use `qasm2.loads()` to import an OpenQASM 2 program as a string into a QuantumCircuit:
+
+```python
+import qiskit.qasm2
+program = '''
+    OPENQASM 2.0;
+    include "qelib1.inc";
+    qreg q[2];
+    creg c[2];
+
+    h q[0];
+    cx q[0], q[1];
+
+    measure q -> c;
+'''
+circuit = qiskit.qasm2.loads(program)
+circuit.draw()
+```
+
+![output](/images/build/qasm2.png)
+
+### Example: import an OpenQASM 2 program from a file
+
+Use `load()` to import an OpenQASM 2 program from a file into a QuantumCircuit:
+
+```python
+import qiskit.qasm2
+circuit = qiskit.qasm2.load("myfile.qasm")
+```
+
+<span id="custom-instructions"></span>
+## Custom quantum instructions
+
+You can extend the quantum components of the OpenQASM 2 language by passing an iterable of information on custom instructions as the argument `custom_instructions`. In files that have compatible definitions for these instructions, the given constructor will be used in place of whatever other handling `qiskit.qasm2` would have done.  You cannot provide a custom instruction that has a different number of parameters or qubits from a defined instruction in a parsed program. Each element of the argument iterable should be a particular data class as follows:
+
+#### `qiskit.qasm2.CustomInstruction(name, num_params, num_qubits, constructor, builtin=False)`
+
+The CustomInstruction class gives information about a custom instruction that should be defined during the parse.
+
+The `constructor` field should be a callable object with signature `*args -> Instruction`, where each of the `num_params` args is a floating-point value. Most of the built-in Qiskit gate classes have this form.
+
+The `builtin` field is optional. If set to `true`, the instruction will be defined and available within the parsing, even if there is no definition in any included OpenQASM 2 file. Instructions marked as `builtin` do not require an opaque or gate declaration, but they will silently ignore a compatible declaration.
+
+### Example: use custom quantum instructions
+
+Use `qasm2.loads()` to import an OpenQASM 2 program as a string into a QuantumCircuit, but use a custom quantum instruction.  Sometimes you might  want to influence the gate objects that the importer emits for given named instructions. Gates that are defined by the statement `include "qelib1.inc"` are automatically associated with a suitable Qiskit circuit-library gate, but you can extend this:
+
+```python
+from qiskit.circuit import Gate
+from qiskit import qasm2
+
+class MyGate(Gate):
+    def __init__(self, theta):
+        super().__init__("my", 2, [theta])
+
+class Builtin(Gate):
+    def __init__(self):
+        super().__init__("builtin", 1, [])
+
+program = '''
+    opaque my(theta) q1, q2;
+    qreg q[2];
+    my(0.5) q[0], q[1];
+    builtin q[0];
+    '''
+customs = [
+    qasm2.CustomInstruction(name="my", num_params=1, num_qubits=2, constructor=MyGate),
+    # Setting 'builtin=True' means the instruction doesn't require a declaration to be usable.
+    qasm2.CustomInstruction("builtin", 0, 1, Builtin, builtin=True),
+]
+circuit = qasm2.loads(program, custom_instructions=customs)
+```
+
+<span id="custom-classical"></span>
+## Custom classical functions
+
+You can extend the processing done to classical expressions (arguments to gates) by passing an iterable to the argument `custom_classical`. This needs the name (a valid OpenQASM 2 identifier), the number of parameters it takes (num_params), and a Python callable that implements the function. The Python callable must be able to accept `num_params` positional floating-point arguments, and must return a float or integer (which will be converted to a float). Built-in functions cannot be overridden. 
+
+#### `qiskit.qasm2.CustomClassical`
+
+The `CustomClassical` class gives information about a custom classical function that should be defined in mathematical expressions.
+
+The given `callable` must be a Python function that takes `num_params` floats, and returns a float. The `name` is the identifier that refers to it in the OpenQASM 2 program. This cannot clash with any defined gates.
+
+### Example: use custom classical instructions
+
+Use `qasm2.loads()` to import an OpenQASM 2 program as a string into a QuantumCircuit, but use a custom classical instruction.  You can add new classical functions used during the description of arguments to gates, both in the main body of the program (which come out constant-folded) and within the bodies of defined gates (which are computed on demand). Here we provide a Python version of `atan2(y, x)`, which mathematically is $\\atan(y/x)$, but correctly handles angle quadrants and infinities, and a custom `add_one` function:
+
+```python
+import math
+from qiskit.qasm2 
+
+program = '''
+    include "qelib1.inc";
+    qreg q[2];
+    rx(atan2(pi, 3 + add_one(0.2))) q[0];
+    cx q[0], q[1];
+'''
+
+def add_one(x):
+    return x + 1
+
+customs = [
+    # `atan2` takes two parameters, and `math.atan2` implements it.
+    qasm2.CustomClassical("atan2", 2, math.atan2),
+    # Our `add_one` takes only one parameter.
+    qasm2.CustomClassical("add_one", 1, add_one),
+]
+circuit = qasm2.loads(program, custom_classical=customs)
+```
+
+<span id="strict"></span>
+## Strict mode
+
+By default, this parser is a little bit more relaxed than the official specification. It allows trailing commas in parameter lists; unnecessary (empty-statement) semicolons; the `OPENQASM 2.0;` version statement to be omitted; and a couple of other quality-of-life improvements without emitting any errors. However, you can use the "letter-of-the-spec" mode with `strict=True`.
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+    - Learn how to generate OpenQASM code in the [Explore gates and circuits with the Quantum Composer](https://learning.quantum.ibm.com/tutorial/explore-gates-and-circuits-with-the-quantum-composer) tutorial.
+    - See the [OpenQASM 2 Qiskit API](/api/qiskit/qasm2) reference.
+    - Review the [Verify your program](../verify/) topic.
+    - Visit the [OpenQASM Live Specification](https://openqasm.com/).
+</Admonition>

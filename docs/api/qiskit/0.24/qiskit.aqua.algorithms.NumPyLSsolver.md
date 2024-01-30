@@ -1,23 +1,33 @@
+---
+title: NumPyLSsolver
+description: API reference for qiskit.aqua.algorithms.NumPyLSsolver
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.algorithms.NumPyLSsolver
+---
+
 <span id="qiskit-aqua-algorithms-numpylssolver" />
 
 # qiskit.aqua.algorithms.NumPyLSsolver
 
-<span id="undefined" />
+<span id="qiskit.aqua.algorithms.NumPyLSsolver" />
 
-`NumPyLSsolver(matrix, vector)`
+`NumPyLSsolver(matrix, vector)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/linear_solvers/numpy_ls_solver.py "view source code")
 
 The Numpy LinearSystem algorithm (classical).
 
 This linear system solver computes the eigenvalues of a complex-valued square matrix $A$ of dimension $n \times n$ and the solution to the systems of linear equations defined by $A\overrightarrow{x}=\overrightarrow{b}$ with input vector $\overrightarrow{b}$.
 
-This is a classical counterpart to the [`HHL`](qiskit.aqua.algorithms.HHL#qiskit.aqua.algorithms.HHL "qiskit.aqua.algorithms.HHL") algorithm.
+This is a classical counterpart to the [`HHL`](qiskit.aqua.algorithms.HHL "qiskit.aqua.algorithms.HHL") algorithm.
 
 **Parameters**
 
 *   **matrix** (`Union`\[`List`\[`List`\[`float`]], `ndarray`]) – The input matrix of linear system of equations
 *   **vector** (`Union`\[`List`\[`float`], `ndarray`]) – The input vector of linear system of equations
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.aqua.algorithms.NumPyLSsolver.__init__" />
 
 `__init__(matrix, vector)`
 
@@ -39,13 +49,17 @@ This is a classical counterpart to the [`HHL`](qiskit.aqua.algorithms.HHL#qiskit
 | ------------------------------------------------------------------------------------------------------ | ---------------------- |
 | [`random`](#qiskit.aqua.algorithms.NumPyLSsolver.random "qiskit.aqua.algorithms.NumPyLSsolver.random") | Return a numpy random. |
 
-<span id="undefined" />
+### random
+
+<span id="qiskit.aqua.algorithms.NumPyLSsolver.random" />
 
 `property random`
 
 Return a numpy random.
 
-<span id="undefined" />
+### run
+
+<span id="qiskit.aqua.algorithms.NumPyLSsolver.run" />
 
 `run()`
 
@@ -58,3 +72,4 @@ results of an algorithm.
 **Return type**
 
 dict
+

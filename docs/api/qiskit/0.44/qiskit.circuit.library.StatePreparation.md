@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.StatePreparation
 
 <span id="qiskit.circuit.library.StatePreparation" />
 
-`qiskit.circuit.library.StatePreparation(params, num_qubits=None, inverse=False, label=None, normalize=False)`
+`qiskit.circuit.library.StatePreparation(params, num_qubits=None, inverse=False, label=None, normalize=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/data_preparation/state_preparation.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 

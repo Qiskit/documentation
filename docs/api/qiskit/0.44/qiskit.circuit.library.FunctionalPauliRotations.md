@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.FunctionalPauliRotations
 
 <span id="qiskit.circuit.library.FunctionalPauliRotations" />
 
-`qiskit.circuit.library.FunctionalPauliRotations(num_state_qubits=None, basis='Y', name='F')`
+`qiskit.circuit.library.FunctionalPauliRotations(num_state_qubits=None, basis='Y', name='F')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/arithmetic/functional_pauli_rotations.py "view source code")
 
 Bases: `BlueprintCircuit`, [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 

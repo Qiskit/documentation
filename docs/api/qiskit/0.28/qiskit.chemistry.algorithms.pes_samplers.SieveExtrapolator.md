@@ -1,8 +1,16 @@
+---
+title: SieveExtrapolator
+description: API reference for qiskit.chemistry.algorithms.pes_samplers.SieveExtrapolator
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.algorithms.pes_samplers.SieveExtrapolator
+---
+
 # qiskit.chemistry.algorithms.pes\_samplers.SieveExtrapolator
 
-<span id="undefined" />
+<span id="qiskit.chemistry.algorithms.pes_samplers.SieveExtrapolator" />
 
-`SieveExtrapolator(extrapolator=None, window=2, filter_before=True, filter_after=True)`
+`SieveExtrapolator(extrapolator=None, window=2, filter_before=True, filter_after=True)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/extrapolator.py "view source code")
 
 A wrapper extrapolator which clusters the parameter values - either before extrapolation, after, or both - into two large and small clusters, and sets the small clusters’ parameters to zero.
 
@@ -15,7 +23,9 @@ Constructor.
 *   **filter\_before** (`bool`) – Keyword to perform clustering before extrapolation.
 *   **filter\_after** (`bool`) – Keyword to perform clustering after extrapolation.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.chemistry.algorithms.pes_samplers.SieveExtrapolator.__init__" />
 
 `__init__(extrapolator=None, window=2, filter_before=True, filter_after=True)`
 
@@ -36,7 +46,9 @@ Constructor.
 | [`extrapolate`](#qiskit.chemistry.algorithms.pes_samplers.SieveExtrapolator.extrapolate "qiskit.chemistry.algorithms.pes_samplers.SieveExtrapolator.extrapolate")(points, param\_dict) | Extrapolate at specified point of interest given a set of variational parameters. |
 | [`factory`](#qiskit.chemistry.algorithms.pes_samplers.SieveExtrapolator.factory "qiskit.chemistry.algorithms.pes_samplers.SieveExtrapolator.factory")(mode, \*\*kwargs)                | Factory method for constructing extrapolators.                                    |
 
-<span id="undefined" />
+### extrapolate
+
+<span id="qiskit.chemistry.algorithms.pes_samplers.SieveExtrapolator.extrapolate" />
 
 `extrapolate(points, param_dict)`
 
@@ -55,7 +67,9 @@ Extrapolate at specified point of interest given a set of variational parameters
 
 Dictionary of variational parameters for extrapolated point(s).
 
-<span id="undefined" />
+### factory
+
+<span id="qiskit.chemistry.algorithms.pes_samplers.SieveExtrapolator.factory" />
 
 `static factory(mode, **kwargs)`
 
@@ -76,4 +90,5 @@ A newly created extrapolator instance.
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if specified mode is unknown.
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if specified mode is unknown.
+

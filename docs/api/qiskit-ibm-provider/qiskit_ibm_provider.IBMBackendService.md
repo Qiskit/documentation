@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_provider.IBMBackendService
 
 <span id="qiskit_ibm_provider.IBMBackendService" />
 
-`IBMBackendService(provider, hgp)`
+`IBMBackendService(provider, hgp)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_backend_service.py "view source code")
 
 Backend namespace for an IBM Quantum account.
 
@@ -48,7 +48,7 @@ IBMBackendService constructor.
 
 <span id="qiskit_ibm_provider.IBMBackendService.backends" />
 
-`IBMBackendService.backends(name=None, filters=None, min_num_qubits=None, instance=None, dynamic_circuits=None, **kwargs)`
+`IBMBackendService.backends(name=None, filters=None, min_num_qubits=None, instance=None, dynamic_circuits=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_backend_service.py "view source code")
 
 Return all backends accessible via this account, subject to optional filtering.
 
@@ -107,7 +107,7 @@ The list of available backends that match the filter.
 
 <span id="qiskit_ibm_provider.IBMBackendService.jobs" />
 
-`IBMBackendService.jobs(limit=10, skip=0, backend_name=None, status=None, start_datetime=None, end_datetime=None, job_tags=None, descending=True, instance=None, legacy=False)`
+`IBMBackendService.jobs(limit=10, skip=0, backend_name=None, status=None, start_datetime=None, end_datetime=None, job_tags=None, descending=True, instance=None, legacy=False)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_backend_service.py "view source code")
 
 Return a list of jobs, subject to optional filtering.
 
@@ -118,7 +118,7 @@ Retrieve jobs that match the given filters and paginate the results if desired. 
 *   **limit** (`Optional`\[`int`]) – Number of jobs to retrieve. `None` means no limit. Note that the number of sub-jobs within a composite job count towards the limit.
 *   **skip** (`int`) – Starting index for the job retrieval.
 *   **backend\_name** (`Optional`\[`str`]) – Name of the backend to retrieve jobs from.
-*   **status** (`Union`\[`Literal`\[‘pending’, ‘completed’], `List`\[`Union`\[[`JobStatus`](/api/qiskit/qiskit.providers.JobStatus "(in Qiskit v0.44)"), `str`]], [`JobStatus`](/api/qiskit/qiskit.providers.JobStatus "(in Qiskit v0.44)"), `str`, `None`]) – Filter jobs with either “pending” or “completed” status. You can also specify by
+*   **status** (`Union`\[`Literal`\[‘pending’, ‘completed’], `List`\[`Union`\[[`JobStatus`](/api/qiskit/qiskit.providers.JobStatus "(in Qiskit v0.45)"), `str`]], [`JobStatus`](/api/qiskit/qiskit.providers.JobStatus "(in Qiskit v0.45)"), `str`, `None`]) – Filter jobs with either “pending” or “completed” status. You can also specify by
 *   **example** (*exact status. For*) – or status=\[“RUNNING”, “ERROR”].
 *   **status="RUNNING"** (*status=JobStatus.RUNNING or*) – or status=\[“RUNNING”, “ERROR”].
 *   **start\_datetime** (`Optional`\[`datetime`]) – Filter by the given start date, in local time. This is used to find jobs whose creation dates are after (greater than or equal to) this local date/time.
@@ -149,7 +149,7 @@ A list of `IBMJob` instances.
 
 <span id="qiskit_ibm_provider.IBMBackendService.retrieve_job" />
 
-`IBMBackendService.retrieve_job(job_id)`
+`IBMBackendService.retrieve_job(job_id)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_backend_service.py "view source code")
 
 Return a single job.
 

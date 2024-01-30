@@ -1,8 +1,16 @@
+---
+title: CSXGate
+description: API reference for qiskit.circuit.library.CSXGate
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.CSXGate
+---
+
 # qiskit.circuit.library.CSXGate
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.CSXGate" />
 
-`CSXGate(label=None, ctrl_state=None)`
+`CSXGate(label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/sx.py "view source code")
 
 Controlled-√X gate.
 
@@ -52,7 +60,9 @@ $$
 
 Create new CSX gate.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.circuit.library.CSXGate.__init__" />
 
 `__init__(label=None, ctrl_state=None)`
 
@@ -94,19 +104,25 @@ Create new CSX gate.
 | [`params`](#qiskit.circuit.library.CSXGate.params "qiskit.circuit.library.CSXGate.params")                            | Get parameters from base\_gate.                                               |
 | [`unit`](#qiskit.circuit.library.CSXGate.unit "qiskit.circuit.library.CSXGate.unit")                                  | Get the time unit of duration.                                                |
 
-<span id="undefined" />
+### add\_decomposition
+
+<span id="qiskit.circuit.library.CSXGate.add_decomposition" />
 
 `add_decomposition(decomposition)`
 
 Add a decomposition of the instruction to the SessionEquivalenceLibrary.
 
-<span id="undefined" />
+### assemble
+
+<span id="qiskit.circuit.library.CSXGate.assemble" />
 
 `assemble()`
 
 Assemble a QasmQobjInstruction
 
-<span id="undefined" />
+### broadcast\_arguments
+
+<span id="qiskit.circuit.library.CSXGate.broadcast_arguments" />
 
 `broadcast_arguments(qargs, cargs)`
 
@@ -159,17 +175,21 @@ A tuple with single arguments.
 
 **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
 
-<span id="undefined" />
+### c\_if
+
+<span id="qiskit.circuit.library.CSXGate.c_if" />
 
 `c_if(classical, val)`
 
 Add classical condition on register or cbit classical and value val.
 
-<span id="undefined" />
+### control
+
+<span id="qiskit.circuit.library.CSXGate.control" />
 
 `control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
-Return controlled version of gate. See [`ControlledGate`](qiskit.circuit.ControlledGate#qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") for usage.
+Return controlled version of gate. See [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") for usage.
 
 **Parameters**
 
@@ -183,13 +203,15 @@ Controlled version of gate. This default algorithm uses num\_ctrl\_qubits-1 anci
 
 **Return type**
 
-[qiskit.circuit.ControlledGate](qiskit.circuit.ControlledGate#qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+[qiskit.circuit.ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
 
 **Raises**
 
 **QiskitError** – unrecognized mode or invalid ctrl\_state
 
-<span id="undefined" />
+### copy
+
+<span id="qiskit.circuit.library.CSXGate.copy" />
 
 `copy(name=None)`
 
@@ -207,9 +229,11 @@ updated if it was provided
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+### ctrl\_state
+
+<span id="qiskit.circuit.library.CSXGate.ctrl_state" />
 
 `property ctrl_state`
 
@@ -219,13 +243,17 @@ Return the control state of the gate as a decimal integer.
 
 `int`
 
-<span id="undefined" />
+### decompositions
+
+<span id="qiskit.circuit.library.CSXGate.decompositions" />
 
 `property decompositions`
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
-<span id="undefined" />
+### definition
+
+<span id="qiskit.circuit.library.CSXGate.definition" />
 
 `property definition`
 
@@ -235,13 +263,17 @@ Return definition in terms of other basic gates. If the gate has open controls, 
 
 `List`
 
-<span id="undefined" />
+### duration
+
+<span id="qiskit.circuit.library.CSXGate.duration" />
 
 `property duration`
 
 Get the duration.
 
-<span id="undefined" />
+### inverse
+
+<span id="qiskit.circuit.library.CSXGate.inverse" />
 
 `inverse()`
 
@@ -251,13 +283,17 @@ Invert this gate by calling inverse on the base gate.
 
 `ControlledGate`
 
-<span id="undefined" />
+### is\_parameterized
+
+<span id="qiskit.circuit.library.CSXGate.is_parameterized" />
 
 `is_parameterized()`
 
 Return True .IFF. instruction is parameterized else False
 
-<span id="undefined" />
+### label
+
+<span id="qiskit.circuit.library.CSXGate.label" />
 
 `property label`
 
@@ -267,7 +303,9 @@ Return instruction label
 
 `str`
 
-<span id="undefined" />
+### mirror
+
+<span id="qiskit.circuit.library.CSXGate.mirror" />
 
 `mirror()`
 
@@ -281,9 +319,11 @@ reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+### name
+
+<span id="qiskit.circuit.library.CSXGate.name" />
 
 `property name`
 
@@ -297,7 +337,9 @@ where \<original\_name> is the gate name for the default case of closed control 
 
 `str`
 
-<span id="undefined" />
+### num\_ctrl\_qubits
+
+<span id="qiskit.circuit.library.CSXGate.num_ctrl_qubits" />
 
 `property num_ctrl_qubits`
 
@@ -311,7 +353,9 @@ The number of control qubits for the gate.
 
 int
 
-<span id="undefined" />
+### params
+
+<span id="qiskit.circuit.library.CSXGate.params" />
 
 `property params`
 
@@ -329,7 +373,9 @@ list
 
 **CircuitError** – Controlled gate does not define a base gate
 
-<span id="undefined" />
+### power
+
+<span id="qiskit.circuit.library.CSXGate.power" />
 
 `power(exponent)`
 
@@ -345,13 +391,15 @@ To which to\_matrix is self.to\_matrix^exponent.
 
 **Return type**
 
-[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate#qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
+[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
 
 **Raises**
 
 **CircuitError** – If Gate is not unitary
 
-<span id="undefined" />
+### qasm
+
+<span id="qiskit.circuit.library.CSXGate.qasm" />
 
 `qasm()`
 
@@ -359,7 +407,9 @@ Return a default OpenQASM string for the instruction.
 
 Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
 
-<span id="undefined" />
+### repeat
+
+<span id="qiskit.circuit.library.CSXGate.repeat" />
 
 `repeat(n)`
 
@@ -375,13 +425,15 @@ Containing the definition.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
 **Raises**
 
 **CircuitError** – If n \< 1.
 
-<span id="undefined" />
+### reverse\_ops
+
+<span id="qiskit.circuit.library.CSXGate.reverse_ops" />
 
 `reverse_ops()`
 
@@ -397,9 +449,11 @@ sub-instructions reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+### soft\_compare
+
+<span id="qiskit.circuit.library.CSXGate.soft_compare" />
 
 `soft_compare(other)`
 
@@ -417,7 +471,9 @@ are self and other equal up to parameter expressions.
 
 bool
 
-<span id="undefined" />
+### to\_matrix
+
+<span id="qiskit.circuit.library.CSXGate.to_matrix" />
 
 `to_matrix()`
 
@@ -435,14 +491,19 @@ np.ndarray
 
 **CircuitError** – If a Gate subclass does not implement this method an exception will be raised when this base class method is called.
 
-<span id="undefined" />
+### unit
+
+<span id="qiskit.circuit.library.CSXGate.unit" />
 
 `property unit`
 
 Get the time unit of duration.
 
-<span id="undefined" />
+### validate\_parameter
+
+<span id="qiskit.circuit.library.CSXGate.validate_parameter" />
 
 `validate_parameter(parameter)`
 
 Gate parameters should be int, float, or ParameterExpression
+

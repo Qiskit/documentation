@@ -1,8 +1,16 @@
+---
+title: TwoQubitReduction
+description: API reference for qiskit.opflow.converters.TwoQubitReduction
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.opflow.converters.TwoQubitReduction
+---
+
 # qiskit.opflow\.converters.TwoQubitReduction
 
-<span id="undefined" />
+<span id="qiskit.opflow.converters.TwoQubitReduction" />
 
-`TwoQubitReduction(num_particles)`
+`TwoQubitReduction(num_particles)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/converters/two_qubit_reduction.py "view source code")
 
 Two qubit reduction converter which eliminates the central and last qubit in a list of Pauli that has diagonal operators (Z,I) at those positions.
 
@@ -12,7 +20,9 @@ Chemistry specific method: It can be used to taper two qubits in parity and bina
 
 **num\_particles** (`Union`\[`int`, `List`\[`int`], `Tuple`\[`int`, `int`]]) – number of particles, if it is a list, the first number is alpha and the second number if beta.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.opflow.converters.TwoQubitReduction.__init__" />
 
 `__init__(num_particles)`
 
@@ -27,7 +37,9 @@ Chemistry specific method: It can be used to taper two qubits in parity and bina
 | [`__init__`](#qiskit.opflow.converters.TwoQubitReduction.__init__ "qiskit.opflow.converters.TwoQubitReduction.__init__")(num\_particles) | **type num\_particles**`Union`\[`int`, `List`\[`int`], `Tuple`\[`int`, `int`]] |
 | [`convert`](#qiskit.opflow.converters.TwoQubitReduction.convert "qiskit.opflow.converters.TwoQubitReduction.convert")(operator)          | Converts the Operator to tapered one by Z2 symmetries.                         |
 
-<span id="undefined" />
+### convert
+
+<span id="qiskit.opflow.converters.TwoQubitReduction.convert" />
 
 `convert(operator)`
 
@@ -44,3 +56,4 @@ Converts the Operator to tapered one by Z2 symmetries.
 **Returns**
 
 A new operator whose qubit number is reduced by 2.
+

@@ -1,10 +1,18 @@
+---
+title: HGate
+description: API reference for qiskit.circuit.library.HGate
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.HGate
+---
+
 <span id="qiskit-circuit-library-hgate" />
 
 # qiskit.circuit.library.HGate
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.HGate" />
 
-`HGate(label=None)`
+`HGate(label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/standard_gates/h.py "view source code")
 
 Single-qubit Hadamard gate.
 
@@ -30,7 +38,9 @@ $$
 
 Create new H gate.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.circuit.library.HGate.__init__" />
 
 `__init__(label=None)`
 
@@ -68,13 +78,17 @@ Create new H gate.
 | [`params`](#qiskit.circuit.library.HGate.params "qiskit.circuit.library.HGate.params")                         | return instruction params.                                                    |
 | [`unit`](#qiskit.circuit.library.HGate.unit "qiskit.circuit.library.HGate.unit")                               | Get the time unit of duration.                                                |
 
-<span id="undefined" />
+### add\_decomposition
+
+<span id="qiskit.circuit.library.HGate.add_decomposition" />
 
 `add_decomposition(decomposition)`
 
 Add a decomposition of the instruction to the SessionEquivalenceLibrary.
 
-<span id="undefined" />
+### assemble
+
+<span id="qiskit.circuit.library.HGate.assemble" />
 
 `assemble()`
 
@@ -84,7 +98,9 @@ Assemble a QasmQobjInstruction
 
 `Instruction`
 
-<span id="undefined" />
+### broadcast\_arguments
+
+<span id="qiskit.circuit.library.HGate.broadcast_arguments" />
 
 `broadcast_arguments(qargs, cargs)`
 
@@ -137,13 +153,17 @@ A tuple with single arguments.
 
 **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
 
-<span id="undefined" />
+### c\_if
+
+<span id="qiskit.circuit.library.HGate.c_if" />
 
 `c_if(classical, val)`
 
 Add classical condition on register classical and value val.
 
-<span id="undefined" />
+### control
+
+<span id="qiskit.circuit.library.HGate.control" />
 
 `control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
@@ -163,9 +183,11 @@ controlled version of this gate.
 
 **Return type**
 
-[ControlledGate](qiskit.circuit.ControlledGate#qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
 
-<span id="undefined" />
+### copy
+
+<span id="qiskit.circuit.library.HGate.copy" />
 
 `copy(name=None)`
 
@@ -183,39 +205,51 @@ updated if it was provided
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+### decompositions
+
+<span id="qiskit.circuit.library.HGate.decompositions" />
 
 `property decompositions`
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
-<span id="undefined" />
+### definition
+
+<span id="qiskit.circuit.library.HGate.definition" />
 
 `property definition`
 
 Return definition in terms of other basic gates.
 
-<span id="undefined" />
+### duration
+
+<span id="qiskit.circuit.library.HGate.duration" />
 
 `property duration`
 
 Get the duration.
 
-<span id="undefined" />
+### inverse
+
+<span id="qiskit.circuit.library.HGate.inverse" />
 
 `inverse()`
 
 Return inverted H gate (itself).
 
-<span id="undefined" />
+### is\_parameterized
+
+<span id="qiskit.circuit.library.HGate.is_parameterized" />
 
 `is_parameterized()`
 
 Return True .IFF. instruction is parameterized else False
 
-<span id="undefined" />
+### label
+
+<span id="qiskit.circuit.library.HGate.label" />
 
 `property label`
 
@@ -225,7 +259,9 @@ Return gate label
 
 `str`
 
-<span id="undefined" />
+### mirror
+
+<span id="qiskit.circuit.library.HGate.mirror" />
 
 `mirror()`
 
@@ -239,15 +275,19 @@ reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+### params
+
+<span id="qiskit.circuit.library.HGate.params" />
 
 `property params`
 
 return instruction params.
 
-<span id="undefined" />
+### power
+
+<span id="qiskit.circuit.library.HGate.power" />
 
 `power(exponent)`
 
@@ -263,13 +303,15 @@ To which to\_matrix is self.to\_matrix^exponent.
 
 **Return type**
 
-[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate#qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
+[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
 
 **Raises**
 
 **CircuitError** – If Gate is not unitary
 
-<span id="undefined" />
+### qasm
+
+<span id="qiskit.circuit.library.HGate.qasm" />
 
 `qasm()`
 
@@ -277,7 +319,9 @@ Return a default OpenQASM string for the instruction.
 
 Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
 
-<span id="undefined" />
+### repeat
+
+<span id="qiskit.circuit.library.HGate.repeat" />
 
 `repeat(n)`
 
@@ -293,13 +337,15 @@ Containing the definition.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
 **Raises**
 
 **CircuitError** – If n \< 1.
 
-<span id="undefined" />
+### reverse\_ops
+
+<span id="qiskit.circuit.library.HGate.reverse_ops" />
 
 `reverse_ops()`
 
@@ -315,22 +361,29 @@ sub-instructions reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+### to\_matrix
+
+<span id="qiskit.circuit.library.HGate.to_matrix" />
 
 `to_matrix()`
 
 Return a Numpy.array for the H gate.
 
-<span id="undefined" />
+### unit
+
+<span id="qiskit.circuit.library.HGate.unit" />
 
 `property unit`
 
 Get the time unit of duration.
 
-<span id="undefined" />
+### validate\_parameter
+
+<span id="qiskit.circuit.library.HGate.validate_parameter" />
 
 `validate_parameter(parameter)`
 
 Gate parameters should be int, float, or ParameterExpression
+

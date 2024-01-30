@@ -10,9 +10,9 @@ python_api_name: qiskit.providers.ibmq.AccountProvider
 
 <span id="qiskit.providers.ibmq.AccountProvider" />
 
-`AccountProvider(credentials, factory)`
+`AccountProvider(credentials, factory)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/accountprovider.py "view source code")
 
-Bases: [`qiskit.providers.provider.ProviderV1`](qiskit.providers.ProviderV1 "qiskit.providers.provider.ProviderV1")
+Bases: `qiskit.providers.provider.ProviderV1`
 
 Provider for a single IBM Quantum Experience account.
 
@@ -27,7 +27,7 @@ provider = IBMQ.enable_account(<INSERT_IBM_QUANTUM_EXPERIENCE_TOKEN>)
 
 To select a different provider, use the [`IBMQ.get_provider()`](qiskit.providers.ibmq.IBMQFactory#get_provider "qiskit.providers.ibmq.IBMQFactory.get_provider") method and specify the hub, group, or project name of the desired provider.
 
-Each provider may offer different services. The main service, [`IBMQBackendService`](qiskit.providers.ibmq.IBMQBackendService "qiskit.providers.ibmq.ibmqbackendservice.IBMQBackendService"), is available to all providers and gives access to IBM Quantum Experience devices and simulators.
+Each provider may offer different services. The main service, `IBMQBackendService`, is available to all providers and gives access to IBM Quantum Experience devices and simulators.
 
 You can obtain an instance of a service using the [`service()`](qiskit.providers.ibmq.AccountProvider#service "qiskit.providers.ibmq.AccountProvider.service") method or as an attribute of this `AccountProvider` instance. For example:
 
@@ -36,7 +36,7 @@ backend_service = provider.service('backend')
 backend_service = provider.service.backend
 ```
 
-Since [`IBMQBackendService`](qiskit.providers.ibmq.IBMQBackendService "qiskit.providers.ibmq.ibmqbackendservice.IBMQBackendService") is the main service, some of the backend-related methods are available through this class for convenience.
+Since `IBMQBackendService` is the main service, some of the backend-related methods are available through this class for convenience.
 
 The [`backends()`](qiskit.providers.ibmq.AccountProvider#backends "qiskit.providers.ibmq.AccountProvider.backends") method returns all the backends available to this account:
 
@@ -64,8 +64,8 @@ AccountProvider constructor.
 
 **Parameters**
 
-*   **credentials** ([`Credentials`](qiskit.providers.ibmq.credentials.Credentials "qiskit.providers.ibmq.credentials.credentials.Credentials")) – IBM Quantum Experience credentials.
-*   **factory** ([`IBMQFactory`](qiskit.providers.ibmq.IBMQFactory "qiskit.providers.ibmq.ibmqfactory.IBMQFactory")) – IBM Quantum account.
+*   **credentials** (`Credentials`) – IBM Quantum Experience credentials.
+*   **factory** (`IBMQFactory`) – IBM Quantum account.
 
 ## Methods
 
@@ -73,7 +73,7 @@ AccountProvider constructor.
 
 <span id="qiskit.providers.ibmq.AccountProvider.backends" />
 
-`AccountProvider.backends(name=None, filters=None, **kwargs)`
+`AccountProvider.backends(name=None, filters=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/accountprovider.py "view source code")
 
 Return all backends accessible via this provider, subject to optional filtering.
 
@@ -81,7 +81,7 @@ Return all backends accessible via this provider, subject to optional filtering.
 
 *   **name** (`Optional`\[`str`]) – Backend name to filter by.
 
-*   **filters** (`Optional`\[`Callable`\[\[`List`\[[`IBMQBackend`](qiskit.providers.ibmq.IBMQBackend "qiskit.providers.ibmq.ibmqbackend.IBMQBackend")]], `bool`]]) –
+*   **filters** (`Optional`\[`Callable`\[\[`List`\[`IBMQBackend`]], `bool`]]) –
 
     More complex filters, such as lambda functions. For example:
 
@@ -99,7 +99,7 @@ Return all backends accessible via this provider, subject to optional filtering.
 
 **Return type**
 
-`List`\[[`IBMQBackend`](qiskit.providers.ibmq.IBMQBackend "qiskit.providers.ibmq.ibmqbackend.IBMQBackend")]
+`List`\[`IBMQBackend`]
 
 **Returns**
 
@@ -134,7 +134,7 @@ a backend matching the filtering.
 
 <span id="qiskit.providers.ibmq.AccountProvider.has_service" />
 
-`AccountProvider.has_service(name)`
+`AccountProvider.has_service(name)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/accountprovider.py "view source code")
 
 Check if this provider has access to the service.
 
@@ -158,7 +158,7 @@ Whether the provider has access to the service.
 
 <span id="qiskit.providers.ibmq.AccountProvider.run_circuits" />
 
-`AccountProvider.run_circuits(circuits, backend_name, shots=None, initial_layout=None, layout_method=None, routing_method=None, translation_method=None, seed_transpiler=None, optimization_level=1, init_qubits=True, rep_delay=None, transpiler_options=None, measurement_error_mitigation=False, use_measure_esp=None, **run_config)`
+`AccountProvider.run_circuits(circuits, backend_name, shots=None, initial_layout=None, layout_method=None, routing_method=None, translation_method=None, seed_transpiler=None, optimization_level=1, init_qubits=True, rep_delay=None, transpiler_options=None, measurement_error_mitigation=False, use_measure_esp=None, **run_config)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/accountprovider.py "view source code")
 
 Execute the input circuit(s) on a backend using the runtime service.
 
@@ -168,10 +168,10 @@ Execute the input circuit(s) on a backend using the runtime service.
 
 **Parameters**
 
-*   **circuits** (`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), `List`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]]) – Circuit(s) to execute.
+*   **circuits** (`Union`\[`QuantumCircuit`, `List`\[`QuantumCircuit`]]) – Circuit(s) to execute.
 *   **backend\_name** (`str`) – Name of the backend to execute circuits on. Transpiler options are automatically grabbed from backend configuration and properties unless otherwise specified.
 *   **shots** (`Optional`\[`int`]) – Number of repetitions of each circuit, for sampling. If not specified, the backend default is used.
-*   **initial\_layout** (`Union`\[[`Layout`](qiskit.transpiler.Layout "qiskit.transpiler.layout.Layout"), `Dict`, `List`, `None`]) – Initial position of virtual qubits on physical qubits.
+*   **initial\_layout** (`Union`\[`Layout`, `Dict`, `List`, `None`]) – Initial position of virtual qubits on physical qubits.
 *   **layout\_method** (`Optional`\[`str`]) – Name of layout selection pass (‘trivial’, ‘dense’, ‘noise\_adaptive’, ‘sabre’). Sometimes a perfect layout can be available in which case the layout\_method may not run.
 *   **routing\_method** (`Optional`\[`str`]) – Name of routing pass (‘basic’, ‘lookahead’, ‘stochastic’, ‘sabre’)
 *   **translation\_method** (`Optional`\[`str`]) – Name of translation pass (‘unroller’, ‘translator’, ‘synthesis’)
@@ -186,7 +186,7 @@ Execute the input circuit(s) on a backend using the runtime service.
 
 **Return type**
 
-[`RuntimeJob`](qiskit.providers.ibmq.runtime.RuntimeJob "qiskit.providers.ibmq.runtime.runtime_job.RuntimeJob")
+`RuntimeJob`
 
 **Returns**
 
@@ -196,7 +196,7 @@ Runtime job.
 
 <span id="qiskit.providers.ibmq.AccountProvider.service" />
 
-`AccountProvider.service(name)`
+`AccountProvider.service(name)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/accountprovider.py "view source code")
 
 Return the specified service.
 
@@ -221,7 +221,7 @@ The specified service.
 
 <span id="qiskit.providers.ibmq.AccountProvider.services" />
 
-`AccountProvider.services()`
+`AccountProvider.services()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/accountprovider.py "view source code")
 
 Return all available services.
 
@@ -243,7 +243,7 @@ Return the backend service.
 
 **Return type**
 
-[`IBMQBackendService`](qiskit.providers.ibmq.IBMQBackendService "qiskit.providers.ibmq.ibmqbackendservice.IBMQBackendService")
+`IBMQBackendService`
 
 **Returns**
 
@@ -257,7 +257,7 @@ Return the experiment service.
 
 **Return type**
 
-[`IBMExperimentService`](qiskit.providers.ibmq.experiment.IBMExperimentService "qiskit.providers.ibmq.experiment.ibm_experiment_service.IBMExperimentService")
+`IBMExperimentService`
 
 **Returns**
 
@@ -275,7 +275,7 @@ Return the runtime service.
 
 **Return type**
 
-[`IBMRuntimeService`](qiskit.providers.ibmq.runtime.IBMRuntimeService "qiskit.providers.ibmq.runtime.ibm_runtime_service.IBMRuntimeService")
+`IBMRuntimeService`
 
 **Returns**
 

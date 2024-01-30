@@ -1,8 +1,16 @@
+---
+title: PauliSumOp
+description: API reference for qiskit.opflow.primitive_ops.PauliSumOp
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.opflow.primitive_ops.PauliSumOp
+---
+
 # qiskit.opflow\.primitive\_ops.PauliSumOp
 
-<span id="undefined" />
+<span id="qiskit.opflow.primitive_ops.PauliSumOp" />
 
-`PauliSumOp(primitive, coeff=1.0, grouping_type='None')`
+`PauliSumOp(primitive, coeff=1.0, grouping_type='None')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/primitive_ops/pauli_sum_op.py "view source code")
 
 Class for Operators backend by Terra’s `SparsePauliOp` class.
 
@@ -16,7 +24,9 @@ Class for Operators backend by Terra’s `SparsePauliOp` class.
 
 **TypeError** – invalid parameters.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.opflow.primitive_ops.PauliSumOp.__init__" />
 
 `__init__(primitive, coeff=1.0, grouping_type='None')`
 
@@ -77,7 +87,9 @@ Class for Operators backend by Terra’s `SparsePauliOp` class.
 | [`parameters`](#qiskit.opflow.primitive_ops.PauliSumOp.parameters "qiskit.opflow.primitive_ops.PauliSumOp.parameters")          | Return a set of Parameter objects contained in the Operator.    |
 | [`primitive`](#qiskit.opflow.primitive_ops.PauliSumOp.primitive "qiskit.opflow.primitive_ops.PauliSumOp.primitive")             | The primitive defining the underlying function of the Operator. |
 
-<span id="undefined" />
+### add
+
+<span id="qiskit.opflow.primitive_ops.PauliSumOp.add" />
 
 `add(other)`
 
@@ -95,7 +107,9 @@ Return Operator addition of self and other, overloaded by `+`.
 
 An `OperatorBase` equivalent to the sum of self and other.
 
-<span id="undefined" />
+### adjoint
+
+<span id="qiskit.opflow.primitive_ops.PauliSumOp.adjoint" />
 
 `adjoint()`
 
@@ -109,7 +123,9 @@ Return a new Operator equal to the Operator’s adjoint (conjugate transpose), o
 
 An `OperatorBase` equivalent to the adjoint of self.
 
-<span id="undefined" />
+### assign\_parameters
+
+<span id="qiskit.opflow.primitive_ops.PauliSumOp.assign_parameters" />
 
 `assign_parameters(param_dict)`
 
@@ -127,7 +143,9 @@ Binds scalar values to any Terra `Parameters` in the coefficients or primitives 
 
 The `OperatorBase` with the `Parameters` in self replaced by the values or `Parameters` in param\_dict. If param\_dict contains parameterization lists, this `OperatorBase` is an `OpList`.
 
-<span id="undefined" />
+### bind\_parameters
+
+<span id="qiskit.opflow.primitive_ops.PauliSumOp.bind_parameters" />
 
 `bind_parameters(param_dict)`
 
@@ -137,7 +155,9 @@ Same as assign\_parameters, but maintained for consistency with QuantumCircuit i
 
 `OperatorBase`
 
-<span id="undefined" />
+### coeff
+
+<span id="qiskit.opflow.primitive_ops.PauliSumOp.coeff" />
 
 `property coeff`
 
@@ -151,13 +171,17 @@ The scalar coefficient multiplying the Operator.
 
 The coefficient.
 
-<span id="undefined" />
+### coeffs
+
+<span id="qiskit.opflow.primitive_ops.PauliSumOp.coeffs" />
 
 `property coeffs`
 
 Return the Pauli coefficients.
 
-<span id="undefined" />
+### compose
+
+<span id="qiskit.opflow.primitive_ops.PauliSumOp.compose" />
 
 `compose(other, permutation=None, front=False)`
 
@@ -183,7 +207,9 @@ Because Terra prints circuits with the initial state at the left side of the cir
 
 An `OperatorBase` equivalent to the function composition of self and other.
 
-<span id="undefined" />
+### copy
+
+<span id="qiskit.opflow.primitive_ops.PauliSumOp.copy" />
 
 `copy()`
 
@@ -193,7 +219,9 @@ Return a deep copy of the Operator.
 
 `OperatorBase`
 
-<span id="undefined" />
+### equals
+
+<span id="qiskit.opflow.primitive_ops.PauliSumOp.equals" />
 
 `equals(other)`
 
@@ -211,7 +239,9 @@ Evaluate Equality between Operators, overloaded by `==`. Only returns True if se
 
 A bool equal to the equality of self and other.
 
-<span id="undefined" />
+### eval
+
+<span id="qiskit.opflow.primitive_ops.PauliSumOp.eval" />
 
 `eval(front=None)`
 
@@ -231,7 +261,9 @@ If `front` is None, the matrix-representation of the operator is returned.
 
 The output of the Operator’s evaluation function. If self is a `StateFn`, the result is a float or complex. If self is an Operator (`PrimitiveOp, ComposedOp, SummedOp, EvolvedOp,` etc.), the result is a StateFn. If `front` is None, the matrix-representation of the operator is returned, which is a `MatrixOp` for the operators and a `VectorStateFn` for state-functions. If either self or front contain proper `ListOps` (not ListOp subclasses), the result is an n-dimensional list of complex or StateFn results, resulting from the recursive evaluation by each OperatorBase in the ListOps.
 
-<span id="undefined" />
+### exp\_i
+
+<span id="qiskit.opflow.primitive_ops.PauliSumOp.exp_i" />
 
 `exp_i()`
 
@@ -241,7 +273,9 @@ Return a `CircuitOp` equivalent to e^-iH for this operator H.
 
 `OperatorBase`
 
-<span id="undefined" />
+### from\_list
+
+<span id="qiskit.opflow.primitive_ops.PauliSumOp.from_list" />
 
 `classmethod from_list(pauli_list, coeff=1.0)`
 
@@ -260,7 +294,9 @@ Construct from a pauli\_list with the form \[(pauli\_str, coeffs)]
 
 The PauliSumOp constructed from the pauli\_list.
 
-<span id="undefined" />
+### grouping\_type
+
+<span id="qiskit.opflow.primitive_ops.PauliSumOp.grouping_type" />
 
 `property grouping_type`
 
@@ -274,7 +310,9 @@ Returns
 
 `str`
 
-<span id="undefined" />
+### instance\_id
+
+<span id="qiskit.opflow.primitive_ops.PauliSumOp.instance_id" />
 
 `property instance_id`
 
@@ -284,7 +322,9 @@ Return the unique instance id.
 
 `int`
 
-<span id="undefined" />
+### is\_zero
+
+<span id="qiskit.opflow.primitive_ops.PauliSumOp.is_zero" />
 
 `is_zero()`
 
@@ -294,7 +334,9 @@ Return this operator is zero operator or not.
 
 `bool`
 
-<span id="undefined" />
+### log\_i
+
+<span id="qiskit.opflow.primitive_ops.PauliSumOp.log_i" />
 
 `log_i(massive=False)`
 
@@ -304,7 +346,9 @@ Return a `MatrixOp` equivalent to log(H)/-i for this operator H. This function i
 
 `OperatorBase`
 
-<span id="undefined" />
+### matrix\_iter
+
+<span id="qiskit.opflow.primitive_ops.PauliSumOp.matrix_iter" />
 
 `matrix_iter(sparse=False)`
 
@@ -324,7 +368,9 @@ matrix iterator object for the PauliTable.
 
 MatrixIterator
 
-<span id="undefined" />
+### mul
+
+<span id="qiskit.opflow.primitive_ops.PauliSumOp.mul" />
 
 `mul(scalar)`
 
@@ -342,7 +388,9 @@ Returns the scalar multiplication of the Operator, overloaded by `*`, including 
 
 An `OperatorBase` equivalent to product of self and scalar.
 
-<span id="undefined" />
+### neg
+
+<span id="qiskit.opflow.primitive_ops.PauliSumOp.neg" />
 
 `neg()`
 
@@ -356,7 +404,9 @@ Return the Operator’s negation, effectively just multiplying by -1.0, overload
 
 An `OperatorBase` equivalent to the negation of self.
 
-<span id="undefined" />
+### num\_qubits
+
+<span id="qiskit.opflow.primitive_ops.PauliSumOp.num_qubits" />
 
 `property num_qubits`
 
@@ -370,13 +420,17 @@ The number of qubits over which the Operator is defined. If `op.num_qubits == 5`
 
 The number of qubits accepted by the Operator’s underlying function.
 
-<span id="undefined" />
+### parameters
+
+<span id="qiskit.opflow.primitive_ops.PauliSumOp.parameters" />
 
 `property parameters`
 
 Return a set of Parameter objects contained in the Operator.
 
-<span id="undefined" />
+### permute
+
+<span id="qiskit.opflow.primitive_ops.PauliSumOp.permute" />
 
 `permute(permutation)`
 
@@ -396,9 +450,11 @@ A new PauliSumOp representing the permuted operator. For operator (X ^ Y ^ Z) an
 
 **Raises**
 
-[**OpflowError**](qiskit.opflow.OpflowError#qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – if indices do not define a new index for each qubit.
+[**OpflowError**](qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – if indices do not define a new index for each qubit.
 
-<span id="undefined" />
+### power
+
+<span id="qiskit.opflow.primitive_ops.PauliSumOp.power" />
 
 `power(exponent)`
 
@@ -416,7 +472,9 @@ Return Operator composed with self multiple times, overloaded by `**`.
 
 An `OperatorBase` equivalent to self composed with itself exponent times.
 
-<span id="undefined" />
+### primitive
+
+<span id="qiskit.opflow.primitive_ops.PauliSumOp.primitive" />
 
 `property primitive`
 
@@ -430,7 +488,9 @@ The primitive defining the underlying function of the Operator.
 
 The primitive object.
 
-<span id="undefined" />
+### primitive\_strings
+
+<span id="qiskit.opflow.primitive_ops.PauliSumOp.primitive_strings" />
 
 `primitive_strings()`
 
@@ -444,7 +504,9 @@ Return a set of strings describing the primitives contained in the Operator. For
 
 A set of strings describing the primitives contained within the Operator.
 
-<span id="undefined" />
+### reduce
+
+<span id="qiskit.opflow.primitive_ops.PauliSumOp.reduce" />
 
 `reduce(atol=None, rtol=None)`
 
@@ -463,7 +525,9 @@ Simplify the primitive `SparsePauliOp`.
 
 The simplified `PauliSumOp`.
 
-<span id="undefined" />
+### tensor
+
+<span id="qiskit.opflow.primitive_ops.PauliSumOp.tensor" />
 
 `tensor(other)`
 
@@ -485,7 +549,9 @@ Because Terra prints circuits and results with qubit 0 at the end of the string 
 
 An `OperatorBase` equivalent to the tensor product of self and other.
 
-<span id="undefined" />
+### tensorpower
+
+<span id="qiskit.opflow.primitive_ops.PauliSumOp.tensorpower" />
 
 `tensorpower(other)`
 
@@ -503,7 +569,9 @@ Return tensor product with self multiple times, overloaded by `^`.
 
 An `OperatorBase` equivalent to the tensorpower of self by other.
 
-<span id="undefined" />
+### to\_circuit
+
+<span id="qiskit.opflow.primitive_ops.PauliSumOp.to_circuit" />
 
 `to_circuit()`
 
@@ -513,7 +581,9 @@ Returns a `QuantumCircuit` equivalent to this Operator.
 
 `QuantumCircuit`
 
-<span id="undefined" />
+### to\_circuit\_op
+
+<span id="qiskit.opflow.primitive_ops.PauliSumOp.to_circuit_op" />
 
 `to_circuit_op()`
 
@@ -523,7 +593,9 @@ Returns a `CircuitOp` equivalent to this Operator.
 
 `OperatorBase`
 
-<span id="undefined" />
+### to\_instruction
+
+<span id="qiskit.opflow.primitive_ops.PauliSumOp.to_instruction" />
 
 `to_instruction()`
 
@@ -533,7 +605,9 @@ Returns an `Instruction` equivalent to this Operator.
 
 `Instruction`
 
-<span id="undefined" />
+### to\_matrix
+
+<span id="qiskit.opflow.primitive_ops.PauliSumOp.to_matrix" />
 
 `to_matrix(massive=False)`
 
@@ -547,7 +621,9 @@ Return NumPy representation of the Operator. Represents the evaluation of the Op
 
 The NumPy `ndarray` equivalent to this Operator.
 
-<span id="undefined" />
+### to\_matrix\_op
+
+<span id="qiskit.opflow.primitive_ops.PauliSumOp.to_matrix_op" />
 
 `to_matrix_op(massive=False)`
 
@@ -557,7 +633,9 @@ Returns a `MatrixOp` equivalent to this Operator.
 
 `OperatorBase`
 
-<span id="undefined" />
+### to\_pauli\_op
+
+<span id="qiskit.opflow.primitive_ops.PauliSumOp.to_pauli_op" />
 
 `to_pauli_op(massive=False)`
 
@@ -567,7 +645,9 @@ Returns a sum of `PauliOp` s equivalent to this Operator.
 
 `Union`\[`PauliOp`, `SummedOp`]
 
-<span id="undefined" />
+### to\_spmatrix
+
+<span id="qiskit.opflow.primitive_ops.PauliSumOp.to_spmatrix" />
 
 `to_spmatrix()`
 
@@ -584,3 +664,4 @@ CSR sparse matrix representation of the `PauliSumOp`.
 **Raises**
 
 **ValueError** – invalid parameters.
+

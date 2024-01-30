@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.EstimationProblem
 
 <span id="qiskit.algorithms.EstimationProblem" />
 
-`EstimationProblem(state_preparation, objective_qubits, grover_operator=None, post_processing=None, is_good_state=None)`
+`EstimationProblem(state_preparation, objective_qubits, grover_operator=None, post_processing=None, is_good_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/amplitude_estimators/estimation_problem.py "view source code")
 
 Bases: `object`
 
@@ -20,9 +20,9 @@ This class contains all problem-specific information required to run an amplitud
 
 **Parameters**
 
-*   **state\_preparation** ([`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – A circuit preparing the input state, referred to as $\mathcal{A}$.
+*   **state\_preparation** (`QuantumCircuit`) – A circuit preparing the input state, referred to as $\mathcal{A}$.
 *   **objective\_qubits** (`Union`\[`int`, `List`\[`int`]]) – A single qubit index or a list of qubit indices to specify which qubits to measure. The `is_good_state` function is applied on the bitstring of these objective qubits.
-*   **grover\_operator** (`Optional`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]) – The Grover operator $\mathcal{Q}$ used as unitary in the phase estimation circuit.
+*   **grover\_operator** (`Optional`\[`QuantumCircuit`]) – The Grover operator $\mathcal{Q}$ used as unitary in the phase estimation circuit.
 *   **post\_processing** (`Optional`\[`Callable`\[\[`float`], `float`]]) – A mapping applied to the result of the algorithm $0 \leq a \leq 1$, usually used to map the estimate to a target interval. Defaults to the identity.
 *   **is\_good\_state** (`Optional`\[`Callable`\[\[`str`], `bool`]]) – A function to check whether a string represents a good state. Defaults to all objective qubits being in state $|1\rangle$.
 
@@ -32,7 +32,7 @@ This class contains all problem-specific information required to run an amplitud
 
 <span id="qiskit.algorithms.EstimationProblem.rescale" />
 
-`EstimationProblem.rescale(scaling_factor)`
+`EstimationProblem.rescale(scaling_factor)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/amplitude_estimators/estimation_problem.py "view source code")
 
 Rescale the good state amplitude in the estimation problem.
 
@@ -42,7 +42,7 @@ Rescale the good state amplitude in the estimation problem.
 
 **Return type**
 
-[`EstimationProblem`](qiskit.algorithms.EstimationProblem "qiskit.algorithms.amplitude_estimators.estimation_problem.EstimationProblem")
+`EstimationProblem`
 
 **Returns**
 
@@ -60,7 +60,7 @@ If the Grover operator is not set, we try to build it from the $\mathcal{A}$ ope
 
 **Return type**
 
-`Optional`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]
+`Optional`\[`QuantumCircuit`]
 
 **Returns**
 
@@ -116,7 +116,7 @@ Get the $\mathcal{A}$ operator encoding the amplitude $a$.
 
 **Return type**
 
-`Optional`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]
+`Optional`\[`QuantumCircuit`]
 
 **Returns**
 

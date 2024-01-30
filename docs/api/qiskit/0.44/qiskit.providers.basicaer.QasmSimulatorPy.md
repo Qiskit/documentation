@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.basicaer.QasmSimulatorPy
 
 <span id="qiskit.providers.basicaer.QasmSimulatorPy" />
 
-`qiskit.providers.basicaer.QasmSimulatorPy(configuration=None, provider=None, **fields)`
+`qiskit.providers.basicaer.QasmSimulatorPy(configuration=None, provider=None, **fields)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/providers/basicaer/qasm_simulator.py "view source code")
 
 Bases: [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.backend.BackendV1")
 
@@ -29,8 +29,6 @@ Initialize a backend class
 [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – if input field not a valid options
 
 In addition to the public abstract methods, subclasses should also implement the following private methods:
-
-<span id="undefined" />
 
 `classmethod _default_options()`
 

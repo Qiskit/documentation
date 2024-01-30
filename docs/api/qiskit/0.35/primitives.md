@@ -26,17 +26,17 @@ An estimator object is initialized with multiple quantum circuits and observable
 
 An estimator is initialized with the following elements.
 
-*   quantum circuits ($\psi_i(\theta)$): list of (parameterized) quantum circuits (a list of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")))
-*   observables ($H_j$): a list of [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp").
+*   quantum circuits ($\psi_i(\theta)$): list of (parameterized) quantum circuits (a list of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")))
+*   observables ($H_j$): a list of [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp").
 
 The estimator is called with the following inputs.
 
 *   circuit indexes: a list of indexes of the quantum circuits.
 *   observable indexes: a list of indexes of the observables.
-*   parameters: a list of parameters of the quantum circuits. (`ParameterView` or a list of [`Parameter`](qiskit.circuit.Parameter#qiskit.circuit.Parameter "qiskit.circuit.Parameter")).
+*   parameters: a list of parameters of the quantum circuits. (`ParameterView` or a list of [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter")).
 *   parameter values ($\theta_k$): list of sets of values to be bound to the parameters of the quantum circuits. (list of list of float)
 
-The output is an [`EstimatorResult`](qiskit.primitives.EstimatorResult#qiskit.primitives.EstimatorResult "qiskit.primitives.EstimatorResult") which contains a list of expectation values plus optional metadata like confidence intervals for the estimation.
+The output is an [`EstimatorResult`](qiskit.primitives.EstimatorResult "qiskit.primitives.EstimatorResult") which contains a list of expectation values plus optional metadata like confidence intervals for the estimation.
 
 $$
 \langle\psi_i(\theta_k)|H_j|\psi_i(\theta_k)\rangle
@@ -96,15 +96,15 @@ Sampler class calculates probabilities or quasi-probabilities of bitstrings from
 
 A sampler is initialized with the following elements.
 
-*   quantum circuits ($\psi_i(\theta)$): list of (parameterized) quantum circuits. (a list of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")))
-*   parameters: a list of parameters of the quantum circuits. (`ParameterView` or a list of [`Parameter`](qiskit.circuit.Parameter#qiskit.circuit.Parameter "qiskit.circuit.Parameter")).
+*   quantum circuits ($\psi_i(\theta)$): list of (parameterized) quantum circuits. (a list of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")))
+*   parameters: a list of parameters of the quantum circuits. (`ParameterView` or a list of [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter")).
 
 The sampler is run with the following inputs.
 
 *   circuit indexes: a list of indices of the circuits to evaluate.
 *   parameter values ($\theta_k$): list of sets of parameter values to be bound to the parameters of the quantum circuits. (list of list of float)
 
-The output is a [`SamplerResult`](qiskit.primitives.SamplerResult#qiskit.primitives.SamplerResult "qiskit.primitives.SamplerResult") which contains probabilities or quasi-probabilities of bitstrings, plus optional metadata like error bars in the samples.
+The output is a [`SamplerResult`](qiskit.primitives.SamplerResult "qiskit.primitives.SamplerResult") which contains probabilities or quasi-probabilities of bitstrings, plus optional metadata like error bars in the samples.
 
 The sampler object is expected to be closed after use or accessed within “with” context and the objects are called with parameter values and run options (e.g., `shots` or number of shots).
 
@@ -154,22 +154,22 @@ with Sampler(circuits=[pqc, pqc2], parameters=[pqc.parameters, pqc2.parameters])
 
 ## Estimator
 
-|                                                                                                                                                   |                       |
-| ------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
-| [`BaseEstimator`](qiskit.primitives.BaseEstimator#qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator")(circuits, observables\[, …]) | Estimator base class. |
-| [`Estimator`](qiskit.primitives.Estimator#qiskit.primitives.Estimator "qiskit.primitives.Estimator")(circuits, observables\[, parameters])        | Estimator class       |
+|                                                                                                                   |                       |
+| ----------------------------------------------------------------------------------------------------------------- | --------------------- |
+| [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator")(circuits, observables\[, …]) | Estimator base class. |
+| [`Estimator`](qiskit.primitives.Estimator "qiskit.primitives.Estimator")(circuits, observables\[, parameters])    | Estimator class       |
 
 ## Sampler
 
-|                                                                                                                                       |                    |
-| ------------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
-| [`BaseSampler`](qiskit.primitives.BaseSampler#qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler")(circuits\[, parameters]) | Sampler base class |
-| [`Sampler`](qiskit.primitives.Sampler#qiskit.primitives.Sampler "qiskit.primitives.Sampler")(circuits\[, parameters])                 | Sampler class      |
+|                                                                                                         |                    |
+| ------------------------------------------------------------------------------------------------------- | ------------------ |
+| [`BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler")(circuits\[, parameters]) | Sampler base class |
+| [`Sampler`](qiskit.primitives.Sampler "qiskit.primitives.Sampler")(circuits\[, parameters])             | Sampler class      |
 
 ## Results
 
-|                                                                                                                                                |                     |
-| ---------------------------------------------------------------------------------------------------------------------------------------------- | ------------------- |
-| [`EstimatorResult`](qiskit.primitives.EstimatorResult#qiskit.primitives.EstimatorResult "qiskit.primitives.EstimatorResult")(values, metadata) | Result of Estimator |
-| [`SamplerResult`](qiskit.primitives.SamplerResult#qiskit.primitives.SamplerResult "qiskit.primitives.SamplerResult")(quasi\_dists, metadata)   | Result of Sampler   |
+|                                                                                                              |                     |
+| ------------------------------------------------------------------------------------------------------------ | ------------------- |
+| [`EstimatorResult`](qiskit.primitives.EstimatorResult "qiskit.primitives.EstimatorResult")(values, metadata) | Result of Estimator |
+| [`SamplerResult`](qiskit.primitives.SamplerResult "qiskit.primitives.SamplerResult")(quasi\_dists, metadata) | Result of Sampler   |
 

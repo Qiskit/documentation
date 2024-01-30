@@ -1,0 +1,122 @@
+---
+title: Processor types
+description: Information on IBM Quantum hardware and features of different processors
+---
+
+# Processor types
+
+Processor types are named for the general technology qualities that go into builds, consisting of the family and revision. Family (e.g., Falcon) refers to the size and scale of circuits possible on the chip. This is primarily determined by the number of qubits and the connectivity graph. Revisions (e.g., r1) are design variants within a given family, often leading to performance improvements or tradeoffs. Segments are comprised of chip sub-sections, and are defined within a given family. For instance, segment H of a Falcon consists of seven qubits arranged as seen in the illustration below. Segment H on a Hummingbird, if implemented, could be entirely different.
+
+![../../../\_images/seg-h.png](/images/migration/seg-h.png)
+
+Illustration of segment H on a Falcon processor.
+
+## Heron
+
+![Heron processor icon](/images/run/processor-types/heron.svg)
+
+Quantum volume: 512
+
+At 133 qubits, Heron is an [Eagle](#eagle)-sized upgrade to [Egret](#egret) that pulls in substantial innovations in signal delivery that were previously deployed in [Osprey](#osprey). The signals required to enable the fast, high-fidelity two-qubit and single-qubit control are delivered with high-density flex cabling.
+
+-   [View available Heron systems](https://quantum.ibm.com/services/resources?tab=systems&type=Heron)
+
+## Osprey
+
+![Osprey processor icon](/images/migration/osprey.svg)
+
+Osprey is nearly quadruple the size of Eagle at 433 qubits. The larger chip sizes have required further enhancements to device packaging, as well as custom flex cabling in the cryostat to fit the greater I/O requirements within the same wiring footprint.
+
+-   [View available Osprey systems](https://quantum.ibm.com/services/resources?tab=systems&type=Osprey)
+
+## Eagle
+
+![Eagle processor icon](/images/migration/eagle.svg)
+
+Quantum volume: 128
+
+At 127 qubits, the Eagle processor family incorporates more scalable packaging technologies than previous generations. In particular, signals pass through multiple chip layers so as to allow for high-density I/O without sacrificing performance.
+
+See [this blog post](https://research.ibm.com/blog/127-qubit-quantum-processor-eagle) for more about the Eagle processor family.
+
+-   [View available Eagle systems](https://quantum.ibm.com/services/resources?tab=systems&type=Eagle)
+
+<Admonition type="info" title="Revisions">
+  `r3` (December 2022) Eagle r3 is a version of the 127-qubit processor with enhanced coherence properties but otherwise similar design parameters to Eagle r1.
+
+  `r1` (December 2021) At the qubit level, Eagle r1 uses similar design elements and parameters to Falcon r5.11, enabling similarly fast readout. Gate speeds and error rates should also be similar.
+
+</Admonition>
+
+## Hummingbird
+
+![Hummingbird processor icon](/images/migration/hummingbird.svg)
+
+Quantum volume: 128
+
+Using a heavy-hexagonal qubit layout, the Hummingbird family allows up to 65 qubits.
+
+-   [View available Hummingbird systems](https://quantum.ibm.com/services/resources?tab=systems&type=Hummingbird)
+
+<Admonition type="info" title="Revisions">
+  `r3` (December 2021) This version of Hummingbird with 65 qubits has enhanced coherence properties.
+
+  `r2` (August 2020) Released in 3Q 2020, this revision contains 65 qubits. Improvements previously demonstrated on Falcons, like readout multiplexing, space-efficient qubit-qubit couplers, and flip-chip technology enhanced the capabilities of the Hummingbird family and led to a scalable 65Q design.
+
+  `r1` (October 2019) This revision is the first attempt at supporting a large (>50) number of qubits on a chip.
+
+</Admonition>
+
+## Egret
+
+![Egret processor icon](/images/migration/egret.svg)
+
+Quantum volume: 512
+
+Egret brings the innovations of tunable couplers onto a 33-qubit platform, resulting in faster and higher-fidelity two-qubit gates.
+
+-   [View available Egret systems](https://quantum.ibm.com/services/resources?tab=systems&type=Egret)
+
+<Admonition type="info" title="Revisions">
+  `r1` (December 2022) The first realization of the Egret processor has demonstrated the highest Quantum Volume among IBM Quantum systems and a substantial improvement in two-qubit gate error rates ([https://research.ibm.com/blog/quantum-volume-256](https://research.ibm.com/blog/quantum-volume-256)). This new quantum processor boasts a substantial speedup and fidelity improvement (many gates approaching 99.9%) in two-qubit gates while reducing spectator errors.
+</Admonition>
+
+## Falcon
+
+![Falcon processor icon](/images/migration/falcon.svg)
+
+Quantum volume: 128 
+
+The Falcon family of devices offers a valuable platform for medium-scale circuits, and also serves as a valuable platform for demonstrating performance and scalability improvements before they’re pushed onto the larger devices.
+
+-   [View available Falcon systems](https://quantum.ibm.com/services/resources?tab=systems&type=Falcon)
+
+<Admonition type="info" title="Revisions">
+  `r8` (September 2021) In addition to the features of r5.11, Falcon r8 has enhanced coherence properties.
+
+  `r5.11` (January 2021) In addition to the filtering in r5.10, design improvements target speed-ups in qubit state readout. An essential requirement for quantum error correction demonstrations is fast readout. To enable this, the paradoxical requirements of stronger readout coupling yet protection from qubit relaxation is accomplished with advanced filtering techniques and fine tuning of various components’ couplings on-chip. This revision, combined with the latest in control electronics, enables mid-circuit measurements.
+
+  `r5.10` (December 2020) This revision pioneered advanced on-chip filtering techniques that eventually led to the faster qubit state readout in r5.11. The filters reduce qubit relaxation and preserve lifetime. Additionally, space-saving “direct-couplers” are used to couple qubits together, essential for scaling to larger bird families.
+
+  `r4` (April 2020) Adding to the capabilities of r1, the r4 is the first revision in the large birds to deploy multiplexed readout. Previous designs required an independent signal pathway on the chip, as well as in the dilution refrigerator and control electronics for qubit state readout.
+
+  `r1` (February 2020) The first generation of the Falcon family, r1 is a 28Q offering independent readout, contrasting to the multiplexed configurations in the other revisions. The flip-chip technology allowed scaling to a larger number of qubits. The heavy-hex connectivity graph is employed for the first time here, optimal for our two-qubit gate of choice, cross-resonance.
+
+</Admonition>
+
+## Canary
+
+![Canary processor icon](/images/migration/canary.svg)
+
+The Canary family comprises small designs containing anywhere from 5 to 16 qubits. It uses an optimized 2D lattice.  That is, all of the qubits and readout resonators are on the same layer.
+
+-   [View available Canary systems](https://quantum.ibm.com/services/resources?tab=systems&type=Canary)
+
+<Admonition type="info" title="Revisions">
+  `r1.3` (December 2019) A stripped-down offering containing only a single qubit.
+
+  `r1.1` (May 2017) Using the similar design processes to r1, r1.1 extends the design to include 16 qubits.
+
+  `r1` (January 2017) Initial 5Q design with resonators and qubits all on a single lithography layer.
+
+</Admonition>

@@ -1,6 +1,6 @@
 # qiskit.pulse.transforms.inline\_subroutines
 
-<span id="undefined" />
+
 
 `inline_subroutines(program)`
 

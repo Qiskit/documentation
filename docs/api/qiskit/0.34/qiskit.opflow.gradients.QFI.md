@@ -1,6 +1,6 @@
 # QFI
 
-<span id="undefined" />
+
 
 `QFI(qfi_method='lin_comb_full')`
 
@@ -31,7 +31,7 @@ $$
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### qfi\_method
 

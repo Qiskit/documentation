@@ -1,12 +1,20 @@
+---
+title: ManagedJobSet
+description: API reference for qiskit.providers.ibmq.managed.ManagedJobSet
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.ibmq.managed.ManagedJobSet
+---
+
 # qiskit.providers.ibmq.managed.ManagedJobSet
 
-<span id="undefined" />
+<span id="qiskit.providers.ibmq.managed.ManagedJobSet" />
 
-`ManagedJobSet(name=None, short_id=None)`
+`ManagedJobSet(name=None, short_id=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.14/qiskit/providers/ibmq/managed/managedjobset.py "view source code")
 
 A set of managed jobs.
 
-An instance of this class is returned when you submit experiments using [`IBMQJobManager.run()`](qiskit.providers.ibmq.managed.IBMQJobManager#qiskit.providers.ibmq.managed.IBMQJobManager.run "qiskit.providers.ibmq.managed.IBMQJobManager.run"). It provides methods that allow you to interact with the jobs as a single entity. For example, you can retrieve the results for all of the jobs using [`results()`](#qiskit.providers.ibmq.managed.ManagedJobSet.results "qiskit.providers.ibmq.managed.ManagedJobSet.results") and cancel all jobs using [`cancel()`](#qiskit.providers.ibmq.managed.ManagedJobSet.cancel "qiskit.providers.ibmq.managed.ManagedJobSet.cancel").
+An instance of this class is returned when you submit experiments using [`IBMQJobManager.run()`](qiskit.providers.ibmq.managed.IBMQJobManager#run "qiskit.providers.ibmq.managed.IBMQJobManager.run"). It provides methods that allow you to interact with the jobs as a single entity. For example, you can retrieve the results for all of the jobs using [`results()`](#qiskit.providers.ibmq.managed.ManagedJobSet.results "qiskit.providers.ibmq.managed.ManagedJobSet.results") and cancel all jobs using [`cancel()`](#qiskit.providers.ibmq.managed.ManagedJobSet.cancel "qiskit.providers.ibmq.managed.ManagedJobSet.cancel").
 
 ManagedJobSet constructor.
 
@@ -15,7 +23,9 @@ ManagedJobSet constructor.
 *   **name** (`Optional`\[`str`]) – Name for this set of jobs. If not specified, the current date and time is used.
 *   **short\_id** (`Optional`\[`str`]) – Short ID for this set of jobs.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.providers.ibmq.managed.ManagedJobSet.__init__" />
 
 `__init__(name=None, short_id=None)`
 
@@ -48,7 +58,9 @@ ManagedJobSet constructor.
 | [`update_name`](#qiskit.providers.ibmq.managed.ManagedJobSet.update_name "qiskit.providers.ibmq.managed.ManagedJobSet.update_name")(name)                       | Update the name of this job set.                                        |
 | [`update_tags`](#qiskit.providers.ibmq.managed.ManagedJobSet.update_tags "qiskit.providers.ibmq.managed.ManagedJobSet.update_tags")(\[replacement\_tags, …])    | Update the tags assigned to this job set.                               |
 
-<span id="undefined" />
+### cancel
+
+<span id="qiskit.providers.ibmq.managed.ManagedJobSet.cancel" />
 
 `cancel()`
 
@@ -58,7 +70,9 @@ Cancel all jobs in this job set.
 
 `None`
 
-<span id="undefined" />
+### error\_messages
+
+<span id="qiskit.providers.ibmq.managed.ManagedJobSet.error_messages" />
 
 `error_messages()`
 
@@ -74,13 +88,15 @@ This call will block until all jobs finish.
 
 An error report if one or more jobs failed or `None` otherwise.
 
-<span id="undefined" />
+### job
+
+<span id="qiskit.providers.ibmq.managed.ManagedJobSet.job" />
 
 `job(experiment)`
 
 Retrieve the job used to submit the specified experiment and its index.
 
-For example, if [`IBMQJobManager`](qiskit.providers.ibmq.managed.IBMQJobManager#qiskit.providers.ibmq.managed.IBMQJobManager "qiskit.providers.ibmq.managed.IBMQJobManager") is used to submit 1000 experiments, and [`IBMQJobManager`](qiskit.providers.ibmq.managed.IBMQJobManager#qiskit.providers.ibmq.managed.IBMQJobManager "qiskit.providers.ibmq.managed.IBMQJobManager") divides them into 2 jobs: job 1 has experiments 0-499, and job 2 has experiments 500-999. In this case `job_set.job(501)` will return `(job2, 1)`.
+For example, if [`IBMQJobManager`](qiskit.providers.ibmq.managed.IBMQJobManager "qiskit.providers.ibmq.managed.IBMQJobManager") is used to submit 1000 experiments, and [`IBMQJobManager`](qiskit.providers.ibmq.managed.IBMQJobManager "qiskit.providers.ibmq.managed.IBMQJobManager") divides them into 2 jobs: job 1 has experiments 0-499, and job 2 has experiments 500-999. In this case `job_set.job(501)` will return `(job2, 1)`.
 
 **Parameters**
 
@@ -103,9 +119,11 @@ A tuple of the job used to submit the experiment, or `None` if the job submit fa
 
 **Raises**
 
-[**IBMQJobManagerJobNotFound**](qiskit.providers.ibmq.managed.IBMQJobManagerJobNotFound#qiskit.providers.ibmq.managed.IBMQJobManagerJobNotFound "qiskit.providers.ibmq.managed.IBMQJobManagerJobNotFound") – If the job for the experiment could not be found.
+[**IBMQJobManagerJobNotFound**](qiskit.providers.ibmq.managed.IBMQJobManagerJobNotFound "qiskit.providers.ibmq.managed.IBMQJobManagerJobNotFound") – If the job for the experiment could not be found.
 
-<span id="undefined" />
+### job\_set\_id
+
+<span id="qiskit.providers.ibmq.managed.ManagedJobSet.job_set_id" />
 
 `job_set_id()`
 
@@ -119,7 +137,9 @@ Return the ID of this job set.
 
 ID of this job set.
 
-<span id="undefined" />
+### jobs
+
+<span id="qiskit.providers.ibmq.managed.ManagedJobSet.jobs" />
 
 `jobs()`
 
@@ -131,9 +151,11 @@ Return jobs in this job set.
 
 **Returns**
 
-A list of [`IBMQJob`](qiskit.providers.ibmq.job.IBMQJob#qiskit.providers.ibmq.job.IBMQJob "qiskit.providers.ibmq.job.IBMQJob") instances that represents the submitted jobs. An entry in the list is `None` if the job failed to be submitted.
+A list of [`IBMQJob`](qiskit.providers.ibmq.job.IBMQJob "qiskit.providers.ibmq.job.IBMQJob") instances that represents the submitted jobs. An entry in the list is `None` if the job failed to be submitted.
 
-<span id="undefined" />
+### managed\_jobs
+
+<span id="qiskit.providers.ibmq.managed.ManagedJobSet.managed_jobs" />
 
 `managed_jobs()`
 
@@ -147,7 +169,9 @@ Return the managed jobs in this set.
 
 A list of managed jobs.
 
-<span id="undefined" />
+### name
+
+<span id="qiskit.providers.ibmq.managed.ManagedJobSet.name" />
 
 `name()`
 
@@ -161,7 +185,9 @@ Return the name of this job set.
 
 Name of this job set.
 
-<span id="undefined" />
+### qobjs
+
+<span id="qiskit.providers.ibmq.managed.ManagedJobSet.qobjs" />
 
 `qobjs()`
 
@@ -175,7 +201,9 @@ Return the Qobjs for the jobs in this set.
 
 A list of Qobjs for the jobs. An entry in the list is `None` if the Qobj could not be retrieved.
 
-<span id="undefined" />
+### report
+
+<span id="qiskit.providers.ibmq.managed.ManagedJobSet.report" />
 
 `report(detailed=True)`
 
@@ -193,7 +221,9 @@ Return a report on current job statuses.
 
 A report on job statuses.
 
-<span id="undefined" />
+### results
+
+<span id="qiskit.providers.ibmq.managed.ManagedJobSet.results" />
 
 `results(timeout=None, partial=False, refresh=False)`
 
@@ -208,7 +238,7 @@ This call will block until all job results become available or the timeout is re
 </Admonition>
 
 <Admonition title="Note" type="note">
-  When partial=True, this method will attempt to retrieve partial results of failed jobs. In this case, precaution should be taken when accessing individual experiments, as doing so might cause an exception. The `success` attribute of the returned [`ManagedResults`](qiskit.providers.ibmq.managed.ManagedResults#qiskit.providers.ibmq.managed.ManagedResults "qiskit.providers.ibmq.managed.ManagedResults") instance can be used to verify whether it contains partial results.
+  When partial=True, this method will attempt to retrieve partial results of failed jobs. In this case, precaution should be taken when accessing individual experiments, as doing so might cause an exception. The `success` attribute of the returned [`ManagedResults`](qiskit.providers.ibmq.managed.ManagedResults "qiskit.providers.ibmq.managed.ManagedResults") instance can be used to verify whether it contains partial results.
 
   For example, if one of the experiments failed, trying to get the counts of the unsuccessful experiment would raise an exception since there are no counts to return:
 
@@ -232,13 +262,15 @@ This call will block until all job results become available or the timeout is re
 
 **Returns**
 
-A [`ManagedResults`](qiskit.providers.ibmq.managed.ManagedResults#qiskit.providers.ibmq.managed.ManagedResults "qiskit.providers.ibmq.managed.ManagedResults") instance that can be used to retrieve results for individual experiments.
+A [`ManagedResults`](qiskit.providers.ibmq.managed.ManagedResults "qiskit.providers.ibmq.managed.ManagedResults") instance that can be used to retrieve results for individual experiments.
 
 **Raises**
 
-[**IBMQJobManagerTimeoutError**](qiskit.providers.ibmq.managed.IBMQJobManagerTimeoutError#qiskit.providers.ibmq.managed.IBMQJobManagerTimeoutError "qiskit.providers.ibmq.managed.IBMQJobManagerTimeoutError") – if unable to retrieve all job results before the specified timeout.
+[**IBMQJobManagerTimeoutError**](qiskit.providers.ibmq.managed.IBMQJobManagerTimeoutError "qiskit.providers.ibmq.managed.IBMQJobManagerTimeoutError") – if unable to retrieve all job results before the specified timeout.
 
-<span id="undefined" />
+### retrieve\_jobs
+
+<span id="qiskit.providers.ibmq.managed.ManagedJobSet.retrieve_jobs" />
 
 `retrieve_jobs(provider, refresh=False)`
 
@@ -251,14 +283,16 @@ Retrieve previously submitted jobs in this set.
 
 **Raises**
 
-*   [**IBMQJobManagerUnknownJobSet**](qiskit.providers.ibmq.managed.IBMQJobManagerUnknownJobSet#qiskit.providers.ibmq.managed.IBMQJobManagerUnknownJobSet "qiskit.providers.ibmq.managed.IBMQJobManagerUnknownJobSet") – If the job set cannot be found.
-*   [**IBMQJobManagerInvalidStateError**](qiskit.providers.ibmq.managed.IBMQJobManagerInvalidStateError#qiskit.providers.ibmq.managed.IBMQJobManagerInvalidStateError "qiskit.providers.ibmq.managed.IBMQJobManagerInvalidStateError") – If jobs for this job set are found but have unexpected attributes.
+*   [**IBMQJobManagerUnknownJobSet**](qiskit.providers.ibmq.managed.IBMQJobManagerUnknownJobSet "qiskit.providers.ibmq.managed.IBMQJobManagerUnknownJobSet") – If the job set cannot be found.
+*   [**IBMQJobManagerInvalidStateError**](qiskit.providers.ibmq.managed.IBMQJobManagerInvalidStateError "qiskit.providers.ibmq.managed.IBMQJobManagerInvalidStateError") – If jobs for this job set are found but have unexpected attributes.
 
 **Return type**
 
 `None`
 
-<span id="undefined" />
+### run
+
+<span id="qiskit.providers.ibmq.managed.ManagedJobSet.run" />
 
 `run(experiment_list, backend, executor, job_share_level, job_tags=None, **run_config)`
 
@@ -271,17 +305,19 @@ Execute a list of circuits or pulse schedules on a backend.
 *   **executor** (`ThreadPoolExecutor`) – The thread pool used to submit jobs asynchronously.
 *   **job\_share\_level** (`ApiJobShareLevel`) – Job share level.
 *   **job\_tags** (`Optional`\[`List`\[`str`]]) – Tags to be assigned to the job.
-*   **run\_config** (`Any`) – Additional arguments used to configure the Qobj assembly. Refer to the [`qiskit.compiler.assemble()`](qiskit.compiler.assemble#qiskit.compiler.assemble "qiskit.compiler.assemble") documentation for details on these arguments.
+*   **run\_config** (`Any`) – Additional arguments used to configure the Qobj assembly. Refer to the [`qiskit.compiler.assemble()`](qiskit.compiler.assemble "qiskit.compiler.assemble") documentation for details on these arguments.
 
 **Raises**
 
-[**IBMQJobManagerInvalidStateError**](qiskit.providers.ibmq.managed.IBMQJobManagerInvalidStateError#qiskit.providers.ibmq.managed.IBMQJobManagerInvalidStateError "qiskit.providers.ibmq.managed.IBMQJobManagerInvalidStateError") – If the jobs were already submitted.
+[**IBMQJobManagerInvalidStateError**](qiskit.providers.ibmq.managed.IBMQJobManagerInvalidStateError "qiskit.providers.ibmq.managed.IBMQJobManagerInvalidStateError") – If the jobs were already submitted.
 
 **Return type**
 
 `None`
 
-<span id="undefined" />
+### statuses
+
+<span id="qiskit.providers.ibmq.managed.ManagedJobSet.statuses" />
 
 `statuses()`
 
@@ -295,7 +331,9 @@ Return the status of each job in this set.
 
 A list of job statuses. An entry in the list is `None` if the job status could not be retrieved due to a server error.
 
-<span id="undefined" />
+### tags
+
+<span id="qiskit.providers.ibmq.managed.ManagedJobSet.tags" />
 
 `tags()`
 
@@ -309,7 +347,9 @@ Return the tags assigned to this job set.
 
 Tags assigned to this job set.
 
-<span id="undefined" />
+### update\_name
+
+<span id="qiskit.providers.ibmq.managed.ManagedJobSet.update_name" />
 
 `update_name(name)`
 
@@ -327,7 +367,9 @@ Update the name of this job set.
 
 The new name associated with this job set.
 
-<span id="undefined" />
+### update\_tags
+
+<span id="qiskit.providers.ibmq.managed.ManagedJobSet.update_tags" />
 
 `update_tags(replacement_tags=None, additional_tags=None, removal_tags=None)`
 
@@ -362,4 +404,5 @@ The new tags associated with this job set.
 
 **Raises**
 
-[**IBMQJobManagerInvalidStateError**](qiskit.providers.ibmq.managed.IBMQJobManagerInvalidStateError#qiskit.providers.ibmq.managed.IBMQJobManagerInvalidStateError "qiskit.providers.ibmq.managed.IBMQJobManagerInvalidStateError") – If none of the input parameters are specified.
+[**IBMQJobManagerInvalidStateError**](qiskit.providers.ibmq.managed.IBMQJobManagerInvalidStateError "qiskit.providers.ibmq.managed.IBMQJobManagerInvalidStateError") – If none of the input parameters are specified.
+

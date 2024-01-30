@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.library.iSwapGate
 
 <span id="qiskit.circuit.library.iSwapGate" />
 
-`iSwapGate(label=None)`
+`iSwapGate(label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/iswap.py "view source code")
 
-Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+Bases: `qiskit.circuit.gate.Gate`
 
 iSWAP gate.
 
@@ -39,8 +39,8 @@ q_1: ┤ S ├─────┤ X ├──■──┤ H ├
 **Matrix Representation:**
 
 $$
-\begin{split}iSWAP = R_{XX+YY}\left(-\frac{\pi}{2}\right)
-  = \exp\left(i \frac{\pi}{4} \left(X{\otimes}X+Y{\otimes}Y\right)\right) =
+\begin{split}iSWAP = R_{XX+YY}(-\frac{\pi}{2})
+  = exp(i \frac{\pi}{4} (X{\otimes}X+Y{\otimes}Y)) =
     \begin{pmatrix}
         1 & 0 & 0 & 0 \\
         0 & 0 & i & 0 \\
@@ -79,7 +79,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.library.iSwapGate.decompositions" />
 

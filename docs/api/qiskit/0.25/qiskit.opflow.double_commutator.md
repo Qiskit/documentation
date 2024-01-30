@@ -1,8 +1,16 @@
+---
+title: double_commutator
+description: API reference for qiskit.opflow.double_commutator
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.opflow.double_commutator
+---
+
 # qiskit.opflow\.double\_commutator
 
-<span id="undefined" />
+<span id="qiskit.opflow.double_commutator" />
 
-`double_commutator(op_a, op_b, op_c, sign=False)`
+`double_commutator(op_a, op_b, op_c, sign=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/utils.py "view source code")
 
 Compute symmetric double commutator of op\_a, op\_b and op\_c. See McWeeny chapter 13.6 Equation of motion methods (page 479)
 
@@ -33,4 +41,5 @@ the double commutator
 
 **Return type**
 
-[OperatorBase](qiskit.aqua.operators.OperatorBase#qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.OperatorBase")
+[OperatorBase](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.OperatorBase")
+

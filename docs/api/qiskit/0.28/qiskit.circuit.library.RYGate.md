@@ -1,8 +1,16 @@
+---
+title: RYGate
+description: API reference for qiskit.circuit.library.RYGate
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.RYGate
+---
+
 # qiskit.circuit.library.RYGate
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.RYGate" />
 
-`RYGate(theta, label=None)`
+`RYGate(theta, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/ry.py "view source code")
 
 Single-qubit rotation about the Y axis.
 
@@ -26,7 +34,9 @@ $$
 
 Create new RY gate.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.circuit.library.RYGate.__init__" />
 
 `__init__(theta, label=None)`
 
@@ -65,19 +75,25 @@ Create new RY gate.
 | [`params`](#qiskit.circuit.library.RYGate.params "qiskit.circuit.library.RYGate.params")                         | return instruction params.                                                    |
 | [`unit`](#qiskit.circuit.library.RYGate.unit "qiskit.circuit.library.RYGate.unit")                               | Get the time unit of duration.                                                |
 
-<span id="undefined" />
+### add\_decomposition
+
+<span id="qiskit.circuit.library.RYGate.add_decomposition" />
 
 `add_decomposition(decomposition)`
 
 Add a decomposition of the instruction to the SessionEquivalenceLibrary.
 
-<span id="undefined" />
+### assemble
+
+<span id="qiskit.circuit.library.RYGate.assemble" />
 
 `assemble()`
 
 Assemble a QasmQobjInstruction
 
-<span id="undefined" />
+### broadcast\_arguments
+
+<span id="qiskit.circuit.library.RYGate.broadcast_arguments" />
 
 `broadcast_arguments(qargs, cargs)`
 
@@ -130,13 +146,17 @@ A tuple with single arguments.
 
 **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
 
-<span id="undefined" />
+### c\_if
+
+<span id="qiskit.circuit.library.RYGate.c_if" />
 
 `c_if(classical, val)`
 
 Add classical condition on register or cbit classical and value val.
 
-<span id="undefined" />
+### control
+
+<span id="qiskit.circuit.library.RYGate.control" />
 
 `control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
@@ -154,9 +174,11 @@ controlled version of this gate.
 
 **Return type**
 
-[ControlledGate](qiskit.circuit.ControlledGate#qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
 
-<span id="undefined" />
+### copy
+
+<span id="qiskit.circuit.library.RYGate.copy" />
 
 `copy(name=None)`
 
@@ -174,27 +196,35 @@ updated if it was provided
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+### decompositions
+
+<span id="qiskit.circuit.library.RYGate.decompositions" />
 
 `property decompositions`
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
-<span id="undefined" />
+### definition
+
+<span id="qiskit.circuit.library.RYGate.definition" />
 
 `property definition`
 
 Return definition in terms of other basic gates.
 
-<span id="undefined" />
+### duration
+
+<span id="qiskit.circuit.library.RYGate.duration" />
 
 `property duration`
 
 Get the duration.
 
-<span id="undefined" />
+### inverse
+
+<span id="qiskit.circuit.library.RYGate.inverse" />
 
 `inverse()`
 
@@ -202,13 +232,17 @@ Return inverted RY gate.
 
 $RY(\lambda){\dagger} = RY(-\lambda)$
 
-<span id="undefined" />
+### is\_parameterized
+
+<span id="qiskit.circuit.library.RYGate.is_parameterized" />
 
 `is_parameterized()`
 
 Return True .IFF. instruction is parameterized else False
 
-<span id="undefined" />
+### label
+
+<span id="qiskit.circuit.library.RYGate.label" />
 
 `property label`
 
@@ -218,7 +252,9 @@ Return instruction label
 
 `str`
 
-<span id="undefined" />
+### mirror
+
+<span id="qiskit.circuit.library.RYGate.mirror" />
 
 `mirror()`
 
@@ -232,15 +268,19 @@ reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+### params
+
+<span id="qiskit.circuit.library.RYGate.params" />
 
 `property params`
 
 return instruction params.
 
-<span id="undefined" />
+### power
+
+<span id="qiskit.circuit.library.RYGate.power" />
 
 `power(exponent)`
 
@@ -256,13 +296,15 @@ To which to\_matrix is self.to\_matrix^exponent.
 
 **Return type**
 
-[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate#qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
+[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
 
 **Raises**
 
 **CircuitError** – If Gate is not unitary
 
-<span id="undefined" />
+### qasm
+
+<span id="qiskit.circuit.library.RYGate.qasm" />
 
 `qasm()`
 
@@ -270,7 +312,9 @@ Return a default OpenQASM string for the instruction.
 
 Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
 
-<span id="undefined" />
+### repeat
+
+<span id="qiskit.circuit.library.RYGate.repeat" />
 
 `repeat(n)`
 
@@ -286,13 +330,15 @@ Containing the definition.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
 **Raises**
 
 **CircuitError** – If n \< 1.
 
-<span id="undefined" />
+### reverse\_ops
+
+<span id="qiskit.circuit.library.RYGate.reverse_ops" />
 
 `reverse_ops()`
 
@@ -308,9 +354,11 @@ sub-instructions reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+### soft\_compare
+
+<span id="qiskit.circuit.library.RYGate.soft_compare" />
 
 `soft_compare(other)`
 
@@ -328,7 +376,9 @@ are self and other equal up to parameter expressions.
 
 bool
 
-<span id="undefined" />
+### to\_matrix
+
+<span id="qiskit.circuit.library.RYGate.to_matrix" />
 
 `to_matrix()`
 
@@ -346,14 +396,19 @@ np.ndarray
 
 **CircuitError** – If a Gate subclass does not implement this method an exception will be raised when this base class method is called.
 
-<span id="undefined" />
+### unit
+
+<span id="qiskit.circuit.library.RYGate.unit" />
 
 `property unit`
 
 Get the time unit of duration.
 
-<span id="undefined" />
+### validate\_parameter
+
+<span id="qiskit.circuit.library.RYGate.validate_parameter" />
 
 `validate_parameter(parameter)`
 
 Gate parameters should be int, float, or ParameterExpression
+

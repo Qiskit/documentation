@@ -1,6 +1,6 @@
 # MatrixFunctional
 
-<span id="undefined" />
+
 
 `MatrixFunctional(main_diag, off_diag)`
 

@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.transpiler.FencedPropertySet
 ---
 
-# FencedPropertySet[¶](#fencedpropertyset "Permalink to this headline")
+# FencedPropertySet
 
 <span id="qiskit.transpiler.FencedPropertySet" />
 
-`FencedPropertySet(property_set_instance)`
+`FencedPropertySet(property_set_instance)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/fencedobjs.py "view source code")
 
 Bases: `qiskit.transpiler.fencedobjs.FencedObject`
 

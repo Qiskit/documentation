@@ -39,10 +39,10 @@ options = Options(transpilation={"initial_layout": [0, 1, 2, 3]})
 
 |                                                                                                                                                          |                                               |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
-| [`Options`](qiskit_ibm_runtime.options.Options "qiskit_ibm_runtime.options.Options")(\[optimization\_level, ...])                                        | Options for the primitives.                   |
-| [`TranspilationOptions`](qiskit_ibm_runtime.options.TranspilationOptions "qiskit_ibm_runtime.options.TranspilationOptions")(\[skip\_transpilation, ...]) | Transpilation options.                        |
-| [`ResilienceOptions`](qiskit_ibm_runtime.options.ResilienceOptions "qiskit_ibm_runtime.options.ResilienceOptions")(\[noise\_amplifier, ...])             | Resilience options.                           |
-| [`ExecutionOptions`](qiskit_ibm_runtime.options.ExecutionOptions "qiskit_ibm_runtime.options.ExecutionOptions")(\[shots, init\_qubits])                  | Execution options.                            |
-| [`EnvironmentOptions`](qiskit_ibm_runtime.options.EnvironmentOptions "qiskit_ibm_runtime.options.EnvironmentOptions")(\[log\_level, callback, ...])      | Options related to the execution environment. |
-| [`SimulatorOptions`](qiskit_ibm_runtime.options.SimulatorOptions "qiskit_ibm_runtime.options.SimulatorOptions")(\[noise\_model, ...])                    | Simulator options.                            |
+| [`Options`](qiskit_ibm_runtime.options.Options "qiskit_ibm_runtime.options.Options")(\[optimization\_level, ...])                                        | Options for the primitives.                   |
+| [`TranspilationOptions`](qiskit_ibm_runtime.options.TranspilationOptions "qiskit_ibm_runtime.options.TranspilationOptions")(\[skip\_transpilation, ...]) | Transpilation options.                        |
+| [`ResilienceOptions`](qiskit_ibm_runtime.options.ResilienceOptions "qiskit_ibm_runtime.options.ResilienceOptions")(\[noise\_amplifier, ...])             | Resilience options.                           |
+| [`ExecutionOptions`](qiskit_ibm_runtime.options.ExecutionOptions "qiskit_ibm_runtime.options.ExecutionOptions")(\[shots, init\_qubits])                  | Execution options.                            |
+| [`EnvironmentOptions`](qiskit_ibm_runtime.options.EnvironmentOptions "qiskit_ibm_runtime.options.EnvironmentOptions")(\[log\_level, callback, ...])      | Options related to the execution environment. |
+| [`SimulatorOptions`](qiskit_ibm_runtime.options.SimulatorOptions "qiskit_ibm_runtime.options.SimulatorOptions")(\[noise\_model, ...])                    | Simulator options.                            |
 

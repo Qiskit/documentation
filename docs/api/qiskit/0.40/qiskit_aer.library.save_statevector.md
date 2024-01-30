@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit_aer.library.save_statevector
 ---
 
-# qiskit\_aer.library.save\_statevector[¶](#qiskit-aer-library-save-statevector "Permalink to this headline")
+# qiskit\_aer.library.save\_statevector
 
 <span id="qiskit_aer.library.save_statevector" />
 
-`save_statevector(self, label='statevector', pershot=False, conditional=False)`
+`save_statevector(self, label='statevector', pershot=False, conditional=False)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/library/save_instructions/save_statevector.py "view source code")
 
 Save the current simulator quantum state as a statevector.
 

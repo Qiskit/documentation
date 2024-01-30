@@ -1,10 +1,18 @@
+---
+title: SNOBFIT
+description: API reference for qiskit.aqua.components.optimizers.SNOBFIT
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.components.optimizers.SNOBFIT
+---
+
 <span id="qiskit-aqua-components-optimizers-snobfit" />
 
 # qiskit.aqua.components.optimizers.SNOBFIT
 
-<span id="undefined" />
+<span id="qiskit.aqua.components.optimizers.SNOBFIT" />
 
-`SNOBFIT(maxiter=1000, maxfail=10, maxmp=None, verbose=False)`
+`SNOBFIT(maxiter=1000, maxfail=10, maxmp=None, verbose=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/optimizers/snobfit.py "view source code")
 
 Stable Noisy Optimization by Branch and FIT algorithm.
 
@@ -21,9 +29,11 @@ Uses skquant.opt installed with pip install scikit-quant. For further detail, pl
 
 **Raises**
 
-[**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError#qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – scikit-quant or SQSnobFit not installed
+[**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – scikit-quant or SQSnobFit not installed
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.aqua.components.optimizers.SNOBFIT.__init__" />
 
 `__init__(maxiter=1000, maxfail=10, maxmp=None, verbose=False)`
 
@@ -36,7 +46,7 @@ Uses skquant.opt installed with pip install scikit-quant. For further detail, pl
 
 **Raises**
 
-[**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError#qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – scikit-quant or SQSnobFit not installed
+[**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – scikit-quant or SQSnobFit not installed
 
 ## Methods
 
@@ -69,19 +79,25 @@ Uses skquant.opt installed with pip install scikit-quant. For further detail, pl
 | [`is_initial_point_supported`](#qiskit.aqua.components.optimizers.SNOBFIT.is_initial_point_supported "qiskit.aqua.components.optimizers.SNOBFIT.is_initial_point_supported")    | Returns is initial point supported  |
 | [`setting`](#qiskit.aqua.components.optimizers.SNOBFIT.setting "qiskit.aqua.components.optimizers.SNOBFIT.setting")                                                             | Return setting                      |
 
-<span id="undefined" />
+### bounds\_support\_level
+
+<span id="qiskit.aqua.components.optimizers.SNOBFIT.bounds_support_level" />
 
 `property bounds_support_level`
 
 Returns bounds support level
 
-<span id="undefined" />
+### get\_support\_level
+
+<span id="qiskit.aqua.components.optimizers.SNOBFIT.get_support_level" />
 
 `get_support_level()`
 
 Returns support level dictionary.
 
-<span id="undefined" />
+### gradient\_num\_diff
+
+<span id="qiskit.aqua.components.optimizers.SNOBFIT.gradient_num_diff" />
 
 `static gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)`
 
@@ -102,91 +118,121 @@ the gradient computed
 
 grad
 
-<span id="undefined" />
+### gradient\_support\_level
+
+<span id="qiskit.aqua.components.optimizers.SNOBFIT.gradient_support_level" />
 
 `property gradient_support_level`
 
 Returns gradient support level
 
-<span id="undefined" />
+### initial\_point\_support\_level
+
+<span id="qiskit.aqua.components.optimizers.SNOBFIT.initial_point_support_level" />
 
 `property initial_point_support_level`
 
 Returns initial point support level
 
-<span id="undefined" />
+### is\_bounds\_ignored
+
+<span id="qiskit.aqua.components.optimizers.SNOBFIT.is_bounds_ignored" />
 
 `property is_bounds_ignored`
 
 Returns is bounds ignored
 
-<span id="undefined" />
+### is\_bounds\_required
+
+<span id="qiskit.aqua.components.optimizers.SNOBFIT.is_bounds_required" />
 
 `property is_bounds_required`
 
 Returns is bounds required
 
-<span id="undefined" />
+### is\_bounds\_supported
+
+<span id="qiskit.aqua.components.optimizers.SNOBFIT.is_bounds_supported" />
 
 `property is_bounds_supported`
 
 Returns is bounds supported
 
-<span id="undefined" />
+### is\_gradient\_ignored
+
+<span id="qiskit.aqua.components.optimizers.SNOBFIT.is_gradient_ignored" />
 
 `property is_gradient_ignored`
 
 Returns is gradient ignored
 
-<span id="undefined" />
+### is\_gradient\_required
+
+<span id="qiskit.aqua.components.optimizers.SNOBFIT.is_gradient_required" />
 
 `property is_gradient_required`
 
 Returns is gradient required
 
-<span id="undefined" />
+### is\_gradient\_supported
+
+<span id="qiskit.aqua.components.optimizers.SNOBFIT.is_gradient_supported" />
 
 `property is_gradient_supported`
 
 Returns is gradient supported
 
-<span id="undefined" />
+### is\_initial\_point\_ignored
+
+<span id="qiskit.aqua.components.optimizers.SNOBFIT.is_initial_point_ignored" />
 
 `property is_initial_point_ignored`
 
 Returns is initial point ignored
 
-<span id="undefined" />
+### is\_initial\_point\_required
+
+<span id="qiskit.aqua.components.optimizers.SNOBFIT.is_initial_point_required" />
 
 `property is_initial_point_required`
 
 Returns is initial point required
 
-<span id="undefined" />
+### is\_initial\_point\_supported
+
+<span id="qiskit.aqua.components.optimizers.SNOBFIT.is_initial_point_supported" />
 
 `property is_initial_point_supported`
 
 Returns is initial point supported
 
-<span id="undefined" />
+### optimize
+
+<span id="qiskit.aqua.components.optimizers.SNOBFIT.optimize" />
 
 `optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
 Runs the optimization.
 
-<span id="undefined" />
+### print\_options
+
+<span id="qiskit.aqua.components.optimizers.SNOBFIT.print_options" />
 
 `print_options()`
 
 Print algorithm-specific options.
 
-<span id="undefined" />
+### set\_max\_evals\_grouped
+
+<span id="qiskit.aqua.components.optimizers.SNOBFIT.set_max_evals_grouped" />
 
 `set_max_evals_grouped(limit)`
 
 Set max evals grouped
 
-<span id="undefined" />
+### set\_options
+
+<span id="qiskit.aqua.components.optimizers.SNOBFIT.set_options" />
 
 `set_options(**kwargs)`
 
@@ -198,13 +244,17 @@ The options dictionary may be used internally by a given optimizer to pass addit
 
 **kwargs** (*dict*) – options, given as name=value.
 
-<span id="undefined" />
+### setting
+
+<span id="qiskit.aqua.components.optimizers.SNOBFIT.setting" />
 
 `property setting`
 
 Return setting
 
-<span id="undefined" />
+### wrap\_function
+
+<span id="qiskit.aqua.components.optimizers.SNOBFIT.wrap_function" />
 
 `static wrap_function(function, args)`
 
@@ -222,3 +272,4 @@ wrapper
 **Return type**
 
 function\_wrapper
+

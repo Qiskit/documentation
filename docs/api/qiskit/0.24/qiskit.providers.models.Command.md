@@ -1,14 +1,22 @@
+---
+title: Command
+description: API reference for qiskit.providers.models.Command
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.models.Command
+---
+
 <span id="qiskit-providers-models-command" />
 
 # qiskit.providers.models.Command
 
-<span id="undefined" />
+<span id="qiskit.providers.models.Command" />
 
-`Command(name, qubits=None, sequence=None, **kwargs)`
+`Command(name, qubits=None, sequence=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/providers/models/pulsedefaults.py "view source code")
 
 Class representing a Command.
 
-<span id="undefined" />
+<span id="qiskit.providers.models.Command.name" />
 
 ### name
 
@@ -20,10 +28,12 @@ Initialize a Command object
 
 *   **name** (*str*) – The name of the command
 *   **qubits** – The qubits for the command
-*   **sequence** ([*PulseQobjInstruction*](qiskit.qobj.PulseQobjInstruction#qiskit.qobj.PulseQobjInstruction "qiskit.qobj.PulseQobjInstruction")) – The sequence for the Command
+*   **sequence** ([*PulseQobjInstruction*](qiskit.qobj.PulseQobjInstruction "qiskit.qobj.PulseQobjInstruction")) – The sequence for the Command
 *   **kwargs** – Optional additional fields
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.providers.models.Command.__init__" />
 
 `__init__(name, qubits=None, sequence=None, **kwargs)`
 
@@ -33,7 +43,7 @@ Initialize a Command object
 
 *   **name** (*str*) – The name of the command
 *   **qubits** – The qubits for the command
-*   **sequence** ([*PulseQobjInstruction*](qiskit.qobj.PulseQobjInstruction#qiskit.qobj.PulseQobjInstruction "qiskit.qobj.PulseQobjInstruction")) – The sequence for the Command
+*   **sequence** ([*PulseQobjInstruction*](qiskit.qobj.PulseQobjInstruction "qiskit.qobj.PulseQobjInstruction")) – The sequence for the Command
 *   **kwargs** – Optional additional fields
 
 ## Methods
@@ -44,7 +54,9 @@ Initialize a Command object
 | [`from_dict`](#qiskit.providers.models.Command.from_dict "qiskit.providers.models.Command.from_dict")(data)                   | Create a new Command object from a dictionary.            |
 | [`to_dict`](#qiskit.providers.models.Command.to_dict "qiskit.providers.models.Command.to_dict")()                             | Return a dictionary format representation of the Command. |
 
-<span id="undefined" />
+### from\_dict
+
+<span id="qiskit.providers.models.Command.from_dict" />
 
 `classmethod from_dict(data)`
 
@@ -64,7 +76,9 @@ dictionary.
 
 qiskit.providers.model.Command
 
-<span id="undefined" />
+### to\_dict
+
+<span id="qiskit.providers.models.Command.to_dict" />
 
 `to_dict()`
 
@@ -77,3 +91,4 @@ The dictionary form of the Command.
 **Return type**
 
 dict
+

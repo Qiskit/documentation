@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.GraphState
 
 <span id="qiskit.circuit.library.GraphState" />
 
-`GraphState(adjacency_matrix)`
+`GraphState(adjacency_matrix)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/graph_state.py "view source code")
 
 Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 

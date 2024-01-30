@@ -1,8 +1,16 @@
+---
+title: CG
+description: API reference for qiskit.algorithms.optimizers.CG
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.algorithms.optimizers.CG
+---
+
 # qiskit.algorithms.optimizers.CG
 
-<span id="undefined" />
+<span id="qiskit.algorithms.optimizers.CG" />
 
-`CG(maxiter=20, disp=False, gtol=1e-05, tol=None, eps=1.4901161193847656e-08)`
+`CG(maxiter=20, disp=False, gtol=1e-05, tol=None, eps=1.4901161193847656e-08)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/optimizers/cg.py "view source code")
 
 Conjugate Gradient optimizer.
 
@@ -18,7 +26,9 @@ Uses scipy.optimize.minimize CG. For further detail, please refer to [https://do
 *   **tol** (`Optional`\[`float`]) – Tolerance for termination.
 *   **eps** (`float`) – If jac is approximated, use this value for the step size.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.algorithms.optimizers.CG.__init__" />
 
 `__init__(maxiter=20, disp=False, gtol=1e-05, tol=None, eps=1.4901161193847656e-08)`
 
@@ -61,19 +71,25 @@ Uses scipy.optimize.minimize CG. For further detail, please refer to [https://do
 | [`is_initial_point_supported`](#qiskit.algorithms.optimizers.CG.is_initial_point_supported "qiskit.algorithms.optimizers.CG.is_initial_point_supported")    | Returns is initial point supported  |
 | [`setting`](#qiskit.algorithms.optimizers.CG.setting "qiskit.algorithms.optimizers.CG.setting")                                                             | Return setting                      |
 
-<span id="undefined" />
+### bounds\_support\_level
+
+<span id="qiskit.algorithms.optimizers.CG.bounds_support_level" />
 
 `property bounds_support_level`
 
 Returns bounds support level
 
-<span id="undefined" />
+### get\_support\_level
+
+<span id="qiskit.algorithms.optimizers.CG.get_support_level" />
 
 `get_support_level()`
 
 Return support level dictionary
 
-<span id="undefined" />
+### gradient\_num\_diff
+
+<span id="qiskit.algorithms.optimizers.CG.gradient_num_diff" />
 
 `static gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)`
 
@@ -94,73 +110,97 @@ the gradient computed
 
 grad
 
-<span id="undefined" />
+### gradient\_support\_level
+
+<span id="qiskit.algorithms.optimizers.CG.gradient_support_level" />
 
 `property gradient_support_level`
 
 Returns gradient support level
 
-<span id="undefined" />
+### initial\_point\_support\_level
+
+<span id="qiskit.algorithms.optimizers.CG.initial_point_support_level" />
 
 `property initial_point_support_level`
 
 Returns initial point support level
 
-<span id="undefined" />
+### is\_bounds\_ignored
+
+<span id="qiskit.algorithms.optimizers.CG.is_bounds_ignored" />
 
 `property is_bounds_ignored`
 
 Returns is bounds ignored
 
-<span id="undefined" />
+### is\_bounds\_required
+
+<span id="qiskit.algorithms.optimizers.CG.is_bounds_required" />
 
 `property is_bounds_required`
 
 Returns is bounds required
 
-<span id="undefined" />
+### is\_bounds\_supported
+
+<span id="qiskit.algorithms.optimizers.CG.is_bounds_supported" />
 
 `property is_bounds_supported`
 
 Returns is bounds supported
 
-<span id="undefined" />
+### is\_gradient\_ignored
+
+<span id="qiskit.algorithms.optimizers.CG.is_gradient_ignored" />
 
 `property is_gradient_ignored`
 
 Returns is gradient ignored
 
-<span id="undefined" />
+### is\_gradient\_required
+
+<span id="qiskit.algorithms.optimizers.CG.is_gradient_required" />
 
 `property is_gradient_required`
 
 Returns is gradient required
 
-<span id="undefined" />
+### is\_gradient\_supported
+
+<span id="qiskit.algorithms.optimizers.CG.is_gradient_supported" />
 
 `property is_gradient_supported`
 
 Returns is gradient supported
 
-<span id="undefined" />
+### is\_initial\_point\_ignored
+
+<span id="qiskit.algorithms.optimizers.CG.is_initial_point_ignored" />
 
 `property is_initial_point_ignored`
 
 Returns is initial point ignored
 
-<span id="undefined" />
+### is\_initial\_point\_required
+
+<span id="qiskit.algorithms.optimizers.CG.is_initial_point_required" />
 
 `property is_initial_point_required`
 
 Returns is initial point required
 
-<span id="undefined" />
+### is\_initial\_point\_supported
+
+<span id="qiskit.algorithms.optimizers.CG.is_initial_point_supported" />
 
 `property is_initial_point_supported`
 
 Returns is initial point supported
 
-<span id="undefined" />
+### optimize
+
+<span id="qiskit.algorithms.optimizers.CG.optimize" />
 
 `optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
@@ -184,19 +224,25 @@ point: is a 1D numpy.ndarray\[float] containing the solution value: is a float w
 
 **ValueError** – invalid input
 
-<span id="undefined" />
+### print\_options
+
+<span id="qiskit.algorithms.optimizers.CG.print_options" />
 
 `print_options()`
 
 Print algorithm-specific options.
 
-<span id="undefined" />
+### set\_max\_evals\_grouped
+
+<span id="qiskit.algorithms.optimizers.CG.set_max_evals_grouped" />
 
 `set_max_evals_grouped(limit)`
 
 Set max evals grouped
 
-<span id="undefined" />
+### set\_options
+
+<span id="qiskit.algorithms.optimizers.CG.set_options" />
 
 `set_options(**kwargs)`
 
@@ -208,13 +254,17 @@ The options dictionary may be used internally by a given optimizer to pass addit
 
 **kwargs** (*dict*) – options, given as name=value.
 
-<span id="undefined" />
+### setting
+
+<span id="qiskit.algorithms.optimizers.CG.setting" />
 
 `property setting`
 
 Return setting
 
-<span id="undefined" />
+### wrap\_function
+
+<span id="qiskit.algorithms.optimizers.CG.wrap_function" />
 
 `static wrap_function(function, args)`
 
@@ -232,3 +282,4 @@ wrapper
 **Return type**
 
 function\_wrapper
+

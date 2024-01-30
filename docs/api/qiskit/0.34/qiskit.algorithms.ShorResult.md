@@ -1,6 +1,6 @@
 # ShorResult
 
-<span id="undefined" />
+
 
 `ShorResult`
 
@@ -16,7 +16,7 @@ Shor Result.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### factors
 
@@ -26,7 +26,7 @@ returns factors
 
 `List`\[`List`\[`int`]]
 
-<span id="undefined" />
+
 
 ### successful\_counts
 
@@ -36,7 +36,7 @@ returns successful counts
 
 `int`
 
-<span id="undefined" />
+
 
 ### total\_counts
 

@@ -1,8 +1,16 @@
+---
+title: acquire_channel
+description: API reference for qiskit.pulse.builder.acquire_channel
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.builder.acquire_channel
+---
+
 # qiskit.pulse.builder.acquire\_channel
 
-<span id="undefined" />
+<span id="qiskit.pulse.builder.acquire_channel" />
 
-`acquire_channel(qubit)`
+`acquire_channel(qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/builder.py "view source code")
 
 Return `AcquireChannel` for `qubit` on the active builder backend.
 
@@ -25,3 +33,4 @@ with pulse.build(backend):
 **Return type**
 
 [`AcquireChannel`](qiskit.pulse.channels#qiskit.pulse.channels.AcquireChannel "qiskit.pulse.channels.AcquireChannel")
+

@@ -1,8 +1,16 @@
+---
+title: HarmonicBasis
+description: API reference for qiskit.chemistry.components.bosonic_bases.HarmonicBasis
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.components.bosonic_bases.HarmonicBasis
+---
+
 # HarmonicBasis
 
-<span id="undefined" />
+<span id="qiskit.chemistry.components.bosonic_bases.HarmonicBasis" />
 
-`HarmonicBasis(watson_hamiltonian, basis, truncation_order=3)`
+`HarmonicBasis(watson_hamiltonian, basis, truncation_order=3)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/components/bosonic_bases/harmonic_basis.py "view source code")
 
 Bases: `qiskit.chemistry.components.bosonic_bases.bosonic_basis.BosonicBasis`
 
@@ -22,6 +30,27 @@ This class uses the Hermite polynomials (eigenstates of the harmonic oscillator)
 
 ## Methods
 
-|                                                                                                                                                                                                                |                                                                                                   |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| [`convert`](qiskit.chemistry.components.bosonic_bases.HarmonicBasis.convert#qiskit.chemistry.components.bosonic_bases.HarmonicBasis.convert "qiskit.chemistry.components.bosonic_bases.HarmonicBasis.convert") | This prepares an array object representing a bosonic hamiltonian expressed in the harmonic basis. |
+### convert
+
+<span id="qiskit.chemistry.components.bosonic_bases.HarmonicBasis.convert" />
+
+`HarmonicBasis.convert(threshold=1e-06)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/components/bosonic_bases/harmonic_basis.py "view source code")
+
+This prepares an array object representing a bosonic hamiltonian expressed in the harmonic basis. This object can directly be given to the BosonicOperator class to be mapped to a qubit hamiltonian.
+
+**Parameters**
+
+**threshold** (`float`) – the matrix elements of value below this threshold are discarded
+
+**Return type**
+
+`List`\[`List`\[`Tuple`\[`List`\[`List`\[`int`]], `float`]]]
+
+**Returns**
+
+List of modes for input to creation of a bosonic hamiltonian in the harmonic basis
+
+**Raises**
+
+**ValueError** – If problem with order value from computed modes
+

@@ -1,12 +1,20 @@
+---
+title: measure
+description: API reference for qiskit.pulse.builder.measure
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.builder.measure
+---
+
 # qiskit.pulse.builder.measure
 
-<span id="undefined" />
+<span id="qiskit.pulse.builder.measure" />
 
-`measure(qubits, registers=None)`
+`measure(qubits, registers=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/builder.py "view source code")
 
 Measure a qubit within the currently active builder context.
 
-At the pulse level a measurement is composed of both a stimulus pulse and an acquisition instruction which tells the systems measurement unit to acquire data and process it. We provide this measurement macro to automate the process for you, but if desired full control is still available with [`acquire()`](qiskit.pulse.builder.acquire#qiskit.pulse.builder.acquire "qiskit.pulse.builder.acquire") and [`play()`](qiskit.pulse.builder.play#qiskit.pulse.builder.play "qiskit.pulse.builder.play").
+At the pulse level a measurement is composed of both a stimulus pulse and an acquisition instruction which tells the systems measurement unit to acquire data and process it. We provide this measurement macro to automate the process for you, but if desired full control is still available with [`acquire()`](qiskit.pulse.builder.acquire "qiskit.pulse.builder.acquire") and [`play()`](qiskit.pulse.builder.play "qiskit.pulse.builder.play").
 
 To use the measurement it is as simple as specifying the qubit you wish to measure:
 
@@ -54,3 +62,4 @@ assert reg == mem0
 **Returns**
 
 The `register` the qubit measurement result will be stored in.
+

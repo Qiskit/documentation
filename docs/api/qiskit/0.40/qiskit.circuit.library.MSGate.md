@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.MSGate
 ---
 
-# MSGate[¶](#msgate "Permalink to this headline")
+# MSGate
 
 <span id="qiskit.circuit.library.MSGate" />
 
-`MSGate(num_qubits, theta, label=None)`
+`MSGate(num_qubits, theta, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/generalized_gates/gms.py "view source code")
 
 Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 

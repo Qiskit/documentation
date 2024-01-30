@@ -13,6 +13,8 @@
 import { stat } from "fs/promises";
 import { normalize } from "path";
 
+import { $ } from "zx/core";
+
 export function getRoot() {
   return normalize(`${__dirname}/../../`);
 }
@@ -25,4 +27,11 @@ export async function pathExists(path: string) {
     if (err && err.code === "ENOENT") return false;
     throw err;
   }
+}
+
+/**
+ * Deletes all the files in the folder, but preserves subfolders.
+ */
+export async function rmFilesInFolder(dir: string): Promise<void> {
+  await $`find ${dir}/* -maxdepth 0 -type f | xargs rm -f {}`;
 }

@@ -1,10 +1,18 @@
+---
+title: QasmSimulatorPy
+description: API reference for qiskit.providers.basicaer.QasmSimulatorPy
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.basicaer.QasmSimulatorPy
+---
+
 <span id="qiskit-providers-basicaer-qasmsimulatorpy" />
 
 # qiskit.providers.basicaer.QasmSimulatorPy
 
-<span id="undefined" />
+<span id="qiskit.providers.basicaer.QasmSimulatorPy" />
 
-`QasmSimulatorPy(configuration=None, provider=None)`
+`QasmSimulatorPy(configuration=None, provider=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/providers/basicaer/qasm_simulator.py "view source code")
 
 Python implementation of a qasm simulator.
 
@@ -14,14 +22,16 @@ This method should initialize the module and its configuration, and raise an exc
 
 **Parameters**
 
-*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration#qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
-*   **provider** ([*BaseProvider*](qiskit.providers.BaseProvider#qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")) – provider responsible for this backend
+*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
+*   **provider** ([*BaseProvider*](qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")) – provider responsible for this backend
 
 **Raises**
 
 **QiskitError** – if an error occurred when instantiating the backend.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.providers.basicaer.QasmSimulatorPy.__init__" />
 
 `__init__(configuration=None, provider=None)`
 
@@ -31,8 +41,8 @@ This method should initialize the module and its configuration, and raise an exc
 
 **Parameters**
 
-*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration#qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
-*   **provider** ([*BaseProvider*](qiskit.providers.BaseProvider#qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")) – provider responsible for this backend
+*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
+*   **provider** ([*BaseProvider*](qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")) – provider responsible for this backend
 
 **Raises**
 
@@ -61,7 +71,9 @@ This method should initialize the module and its configuration, and raise an exc
 | `MAX_QUBITS_MEMORY`     |   |
 | `SHOW_FINAL_STATE`      |   |
 
-<span id="undefined" />
+### configuration
+
+<span id="qiskit.providers.basicaer.QasmSimulatorPy.configuration" />
 
 `configuration()`
 
@@ -73,9 +85,11 @@ the configuration for the backend.
 
 **Return type**
 
-[BackendConfiguration](qiskit.providers.models.BackendConfiguration#qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+[BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
 
-<span id="undefined" />
+### name
+
+<span id="qiskit.providers.basicaer.QasmSimulatorPy.name" />
 
 `name()`
 
@@ -89,7 +103,9 @@ the name of the backend.
 
 str
 
-<span id="undefined" />
+### properties
+
+<span id="qiskit.providers.basicaer.QasmSimulatorPy.properties" />
 
 `properties()`
 
@@ -101,9 +117,11 @@ the configuration for the backend. If the backend does not support properties, i
 
 **Return type**
 
-[BackendProperties](qiskit.providers.models.BackendProperties#qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
+[BackendProperties](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
 
-<span id="undefined" />
+### provider
+
+<span id="qiskit.providers.basicaer.QasmSimulatorPy.provider" />
 
 `provider()`
 
@@ -115,9 +133,11 @@ the Provider responsible for the backend.
 
 **Return type**
 
-[BaseProvider](qiskit.providers.BaseProvider#qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")
+[BaseProvider](qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")
 
-<span id="undefined" />
+### run
+
+<span id="qiskit.providers.basicaer.QasmSimulatorPy.run" />
 
 `run(qobj, backend_options=None)`
 
@@ -125,7 +145,7 @@ Run qobj asynchronously.
 
 **Parameters**
 
-*   **qobj** ([*Qobj*](qiskit.qobj.Qobj#qiskit.qobj.Qobj "qiskit.qobj.Qobj")) – payload of the experiment
+*   **qobj** ([*Qobj*](qiskit.qobj.Qobj "qiskit.qobj.Qobj")) – payload of the experiment
 *   **backend\_options** (*dict*) – backend options
 
 **Returns**
@@ -134,7 +154,7 @@ derived from BaseJob
 
 **Return type**
 
-[BasicAerJob](qiskit.providers.basicaer.BasicAerJob#qiskit.providers.basicaer.BasicAerJob "qiskit.providers.basicaer.BasicAerJob")
+[BasicAerJob](qiskit.providers.basicaer.BasicAerJob "qiskit.providers.basicaer.BasicAerJob")
 
 **Additional Information:**
 
@@ -152,7 +172,9 @@ backend_options = {
 }
 ```
 
-<span id="undefined" />
+### run\_experiment
+
+<span id="qiskit.providers.basicaer.QasmSimulatorPy.run_experiment" />
 
 `run_experiment(experiment)`
 
@@ -188,9 +210,11 @@ dict
 
 **Raises**
 
-[**BasicAerError**](qiskit.providers.basicaer.BasicAerError#qiskit.providers.basicaer.BasicAerError "qiskit.providers.basicaer.BasicAerError") – if an error occurred.
+[**BasicAerError**](qiskit.providers.basicaer.BasicAerError "qiskit.providers.basicaer.BasicAerError") – if an error occurred.
 
-<span id="undefined" />
+### status
+
+<span id="qiskit.providers.basicaer.QasmSimulatorPy.status" />
 
 `status()`
 
@@ -202,9 +226,11 @@ the status of the backend.
 
 **Return type**
 
-[BackendStatus](qiskit.providers.models.BackendStatus#qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+[BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
 
-<span id="undefined" />
+### version
+
+<span id="qiskit.providers.basicaer.QasmSimulatorPy.version" />
 
 `version()`
 
@@ -217,3 +243,4 @@ the X.X.X version of the backend.
 **Return type**
 
 str
+

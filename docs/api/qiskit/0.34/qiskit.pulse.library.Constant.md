@@ -1,6 +1,6 @@
 # Constant
 
-<span id="undefined" />
+
 
 `Constant(duration, amp, name=None, limit_amplitude=None)`
 
@@ -33,7 +33,7 @@ Initialize the constant-valued pulse.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### amp
 
@@ -43,7 +43,7 @@ The constant value amplitude.
 
 `Union`\[`complex`, `ParameterExpression`]
 
-<span id="undefined" />
+
 
 ### id
 
@@ -53,13 +53,13 @@ Unique identifier for this pulse.
 
 `int`
 
-<span id="undefined" />
+
 
 ### limit\_amplitude
 
 `= True`
 
-<span id="undefined" />
+
 
 ### parameters
 
