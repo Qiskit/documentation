@@ -6,22 +6,22 @@ description: Introduction to primitives in Qiskit and Qiskit Runtime, and an exp
 
 # Introduction to primitives
 
-Computing systems are built upon multiple layers of **abstraction**. Abstractions allow to focus on a
+Computing systems are built upon multiple layers of abstraction. Abstractions allow to focus on a
 particular level of detail relevant to the task at hand. The closer you get to the hardware,
 the lower the level of abstraction you'll need (for example, you could
 want to manipulate electrical signals), and vice versa, the more complex the task you want to perform,
 the higher-level the abstractions will be (for example, you could be using a programming library to perform
 algebraic calculations).
 
-In this context, a **primitive** is the smallest processing instruction, the simplest building block from which
-one can create something **useful** for a given **abstraction** level.
+In this context, a _primitive_ is the smallest processing instruction, the simplest building block from which
+one can create something useful for a given abstraction level.
 
 The recent progress in quantum computing has increased the need to work at higher levels of abstraction.
 As we move towards larger systems and more complex workflows, the focus shifts from interacting with individual
 qubit signals to viewing quantum devices as systems that perform tasks we need.
 
 The two most common tasks quantum computers are used for are sampling quantum states and calculating expectation values.
-These tasks motivated the design of *the first two Qiskit primitives: Sampler and Estimator*.
+These tasks motivated the design of the Qiskit primitives: Sampler and Estimator.
 
 In short, the computational model introduced by the Qiskit primitives moves quantum programming one step closer
 to where classical programming is today, where the focus is less on the hardware details and more on the results
@@ -32,13 +32,13 @@ you are trying to achieve.
 The Qiskit primitives are defined by open-source primitive base-classes, from
 which different providers can derive their own Sampler and Estimator implementations. Among the implementations
 using Qiskit, you can find reference primitive implementations for local simulation in the `qiskit.primitives` module.
-Providers like IBM’s Qiskit Runtime enable access to appropriate systems through native implementations of
+Providers like IBM Qiskit Runtime enable access to appropriate systems through native implementations of
 their own primitives.
 
 ## Benefits of Qiskit primitives
 
-For Qiskit users, primitives allow you to write quantum code for a specific system without having to explicitly
-manage every detail. In addition, because of the additional layer of abstraction, you may be able to more easily
+For Qiskit users, primitives let you write quantum code for a specific system without having to explicitly
+manage every detail. In addition, because of the additional layer of abstraction, you might be able to more easily
 access advanced hardware capabilities of a given provider. For example, with Qiskit Runtime primitives,
 you can leverage the latest advancements in error mitigation and suppression by toggling options such as
 `optimization_level` and `resilience_level`, rather than building your own implementation of these techniques.
@@ -50,18 +50,44 @@ best capabilities.
 
 ## Estimator
 
-The Estimator primitive computes expectation values of observables with respect to states prepared by quantum circuits.
+The Estimator behaves differently, depending on what version you are using. 
+
+<Tabs>
+  <TabItem value="EstimatorV2" label="EstimatorV2">
+    EstimatorV2 computes expectation values of observables with respect to states prepared by quantum circuits.
+It receives one or more _primitive unified blocs_ (PUBs) as the inputs. Each PUB is a tuple that contains a single circuit and data broadcasted to that circuit. This lets you specify a single circuit and multiple observables and parameter value sets for that circuit. It returns the computed expectation values per pair, along with their
+variances, as `PubResult`s. Different Estimator implementations support various configuration options. The circuits
+can be parametrized, as long as the parameter values are also provided as input to the primitive.
+  </TabItem>
+
+  <TabItem value="EstimatorV1" label="Estimator (V1)">
+    The Estimator primitive computes expectation values of observables with respect to states prepared by quantum circuits.
 The Estimator receives circuit-observable pairs (with the observable expressed as a
 weighted sum of Pauli operators) as inputs, and returns the computed expectation values per pair, as well as their
 variances. Different Estimator implementations support various configuration options. The circuits
 can be parametrized, as long as the parameter values are also provided as input to the primitive.
+  </TabItem>
+</Tabs>
 
 ## Sampler
 
-The Sampler primitive samples from the classical output registers resulting from execution of quantum circuits.
+The Sampler behaves differently, depending on what version you are using. 
+
+<Tabs>
+  <TabItem value="SamplerV2" label="SamplerV2">
+    SamplerV2 samples from the classical output registers resulting from execution of quantum circuits.
+It receives one or more _primitive unified blocs_ (PUBs) as the inputs. Each PUB is a tuple that contains a single circuit and data broadcasted to that circuit. This lets you specify a single circuit and multiple parameter value sets for that circuit. It returns quasi-probabilities, and optionally counts or per-shot measurements, as `PubResult`s.  Quasi-probability distributions are similar to regular
+probabilities, except they might include negative values, which can occur when using certain error mitigation techniques. The circuits
+can be parametrized, as long as the parameter values are also provided as input to the primitive.
+  </TabItem>
+
+  <TabItem value="SamplerV1" label="Sampler (V1)">
+    The Sampler primitive samples from the classical output registers resulting from execution of quantum circuits.
 For this reason, the inputs to the Sampler are (parametrized) quantum circuits, for which it returns the corresponding
 quasi-probability distributions of sampled bitstrings. Quasi-probability distributions are similar to regular
-probabilities, except they may include negative values, which can occur when using certain error mitigation techniques.
+probabilities, except they might include negative values, which can occur when using certain error mitigation techniques.
+  </TabItem>
+</Tabs>
 
 
 ## How to use Qiskit primitives
@@ -72,7 +98,7 @@ for each primitive type:
 
 1. `Sampler` and `Estimator`
 
-These classes are reference implementations of both primitives and use Qiskit’s built-in simulator. They leverage Qiskit’s `quantum_info` module in the background, producing results based on ideal statevector simulations.
+These classes are reference implementations of both primitives and use the simulator built in to Qiskit. They leverage the Qiskit `quantum_info` module in the background, producing results based on ideal statevector simulations.
 
 2. `BaseSampler` and `BaseEstimator`
 
@@ -82,7 +108,7 @@ These are abstract base classes that define a common interface for implementing 
 
 If a provider does not support primitives natively, you can use these classes to “wrap” any system into a primitive. Users can write primitive-style code for providers that don’t yet have a primitives-based interface. These classes can be used just like the regular Sampler and Estimator, except they should be initialized with an additional `backend` argument for selecting which system to run on.
 
-The Qiskit Runtime primitives provide a more sophisticated implementation (such as with error mitigation) as a cloud-based service.
+The Qiskit Runtime primitives provide a more sophisticated implementation (for example, by including error mitigation) as a cloud-based service.
 
 ## Next steps
 
