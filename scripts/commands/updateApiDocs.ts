@@ -34,7 +34,7 @@ import { dedupeHtmlIdsFromResults } from "../lib/api/dedupeHtmlIds";
 import { Pkg } from "../lib/api/Pkg";
 import { zxMain } from "../lib/zx";
 import { pathExists, getRoot, rmFilesInFolder } from "../lib/fs";
-import { downloadCIArtifact } from "../lib/api/downloadCIArtifacts";
+import { loadCIArtifact } from "../lib/api/apiArtifacts";
 import {
   addNewReleaseNotes,
   generateReleaseNotesIndex,
@@ -47,7 +47,7 @@ interface Arguments {
   package: string;
   version: string;
   historical: boolean;
-  artifact: string;
+  artifact: string | undefined;
 }
 
 const readArgs = (): Arguments => {
@@ -74,7 +74,7 @@ const readArgs = (): Arguments => {
     .option("artifact", {
       alias: "a",
       type: "string",
-      demandOption: true,
+      demandOption: false,
       description:
         "The URL for the CI artifact to download. Must be from GitHub Actions.",
     })
@@ -100,11 +100,7 @@ zxMain(async () => {
   );
 
   const artifactFolder = pkg.ciArtifactFolder();
-  if (await pathExists(artifactFolder)) {
-    console.log(`Skip downloading sources for ${pkg.name}:${pkg.version}`);
-  } else {
-    await downloadCIArtifact(pkg.name, args.artifact, artifactFolder);
-  }
+  await loadCIArtifact(pkg, args.artifact, artifactFolder);
 
   const outputDir = pkg.outputDir(`${getRoot()}/docs`);
   if (pkg.historical && !(await pathExists(outputDir))) {
