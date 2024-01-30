@@ -71,6 +71,9 @@ async function generateMarkdownFile(
         const sufix = "\\)";
         if (value.startsWith(prefix) && value.endsWith(sufix)) {
           value = value.substring(prefix.length, value.length - sufix.length);
+          // We need to replace the single `|` characters for `\vert ` to avoid page crashes when
+          // they are used inside a table. For more information: https://github.com/Qiskit/documentation/issues/488
+          value = value.replace(/(?<!\\)\|/gm, "\\vert ");
         }
         return { type: "inlineMath", value };
       }
@@ -92,6 +95,9 @@ async function generateMarkdownFile(
         const sufix = "\\]";
         if (value.startsWith(prefix) && value.endsWith(sufix)) {
           value = value.substring(prefix.length, value.length - sufix.length);
+          // We need to replace the single `|` characters for `\vert ` to avoid page crashes when
+          // they are used inside a table. For more information: https://github.com/Qiskit/documentation/issues/488
+          value = value.replace(/(?<!\\)\|/gm, "\\vert ");
         }
         return { type: "math", value };
       }
