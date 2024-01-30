@@ -23,15 +23,15 @@ When you submit a job to a quantum system, it enters the scheduler for the speci
 
 A hub’s entitlement determines its proportional share of the IBM Quantum Premium Plan computational capacity. IBM Quantum assigns shares to hubs. Hub administrators then decide what portion of these shares to assign to each of their groups. Similarly, group administrators will decide what portion of shares to assign to each of their projects.
 
-![Administrator user interface.](/images/migration/admin-UI1.png)
+![Screenshot of the Administrator user interface.](/images/migration/admin-UI1.png "Administrator user interface")
 
 Hub administration user interface. This is used to assign shares to groups. The entire hub share pool is distributed to the underlying groups, and the hub administrator can control the percent distribution by specifying a share value for each group. In this example, Group 5 receives 2 shares of their hub share pool, over a total of 5 shares across all groups. That means that Group 5 receives 40% of the shares pool that the hub was granted.
 
 The fair-share algorithm takes into consideration how these shares are distributed across groups and projects to determine job prioritization.
 
-The scheduling algorithm combines a group’s shares with the shares of its hub, to determine the total fraction of computational power allocated to that group.
+The scheduling algorithm combines a group’s shares with the shares of its hub, to determine the total fraction of computational power allocated to that group. For example, assume you have set up the following allocations: 
 
-![Illustration of how allocation is computed.](/images/migration/allocation.png)
+![Two hubs are shown: A, and B.  Hub A has allocated 20% to Group A and 40% to group B.  Hub B has allocated 30% to group C and 10% to group D.](/images/migration/allocation.png "Allocation example")
 
 To compute the 60% for Hub-A, start with the 3 shares of Hub-A and divide between all the shares at the hub level (3 + 2 = 5 shares in total). This results in 3/5 = 0.6 = 60%. When computing the fraction per group, repeat the calculation inside each hub; the fractions for Group-A and Group-B would therefore be 33% and 67%, then apply these percentages to the Hub-A fraction, which results in 20% and 40%.
 
@@ -41,13 +41,13 @@ The fair-share scheduling algorithm select jobs to execute on a quantum system i
 
 In the following example, we have seven instances arranged between two different hubs. As jobs flow through the system, each group and project consumes some fraction of its effective allotted share. The first image below describes the state at time t1. In between brackets we report the consumption as a fraction of the allotted shares. The fair-share algorithm first identifies the group with the smallest number in between brackets, then the project with the least number in the brackets, and finally it selects the oldest job submitted by that project.
 
-![Fair-share queue example.](/images/migration/fairshare3.png)
+![This image shows how a job might flow through the queue. It shows Group A from Hub A being selected because it has (0.0), then Project B, which is part of Group A is selected because it also has (0.0), then the first job for that project is run. ](/images/migration/fairshare3.png "Fair-share queue example")
 
 A snapshot view of consumption (in brackets) relative to the assigned shares. This scenario has seven different H/G/Ps arranged into hubs, groups, and projects. The next selected group and or project is the one with the smallest consumed fraction of the assigned shares. In this example, the Hub-A/Group-1/Project-Y is selected, and the oldest job (first submitted) in the project is executed.
 
 When the system is ready for an additional job, it repeats the selection. In the following image we represent the state of the queue at time t2. Notice that Group A and Project B consumption were updated to account for the previous consumption accrued between t1 and t2.
 
-![Fair-share queue example two.](/images/migration/fairshare4.png)
+![This image shows how a job might flow through the queue. It shows Group D from Hub D being selected because it has (0.1), which is now the smallest value for the groups, then Project F, which is part of Group D is selected because it has (0.0), then the first job for that project is run.](/images/migration/fairshare4.png "Fair-share queue example 2")
 
 Recomputed fair-share priorities reflecting the previous job execution. A new H/G/P (Hub-B/Group-2/Project-N) is selected based on these updated values.
 

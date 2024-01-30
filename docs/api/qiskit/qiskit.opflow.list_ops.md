@@ -47,8 +47,8 @@ You’ll encounter the [`ListOp`](qiskit.opflow.list_ops.ListOp "qiskit.opflow.l
 
 |                                                                                                                      |                                                                                                                     |
 | -------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| [`ListOp`](qiskit.opflow.list_ops.ListOp "qiskit.opflow.list_ops.ListOp")(oplist\[, combo\_fn, coeff, abelian, ...]) | Deprecated: A Class for manipulating List Operators, and parent class to `SummedOp`, `ComposedOp` and `TensoredOp`. |
-| [`ComposedOp`](qiskit.opflow.list_ops.ComposedOp "qiskit.opflow.list_ops.ComposedOp")(oplist\[, coeff, abelian])     | Deprecated: A class for lazily representing compositions of Operators.                                              |
-| [`SummedOp`](qiskit.opflow.list_ops.SummedOp "qiskit.opflow.list_ops.SummedOp")(oplist\[, coeff, abelian])           | Deprecated: A class for lazily representing sums of Operators.                                                      |
-| [`TensoredOp`](qiskit.opflow.list_ops.TensoredOp "qiskit.opflow.list_ops.TensoredOp")(oplist\[, coeff, abelian])     | Deprecated: A class for lazily representing tensor products of Operators.                                           |
+| [`ListOp`](qiskit.opflow.list_ops.ListOp "qiskit.opflow.list_ops.ListOp")(oplist\[, combo\_fn, coeff, abelian, ...]) | Deprecated: A Class for manipulating List Operators, and parent class to `SummedOp`, `ComposedOp` and `TensoredOp`. |
+| [`ComposedOp`](qiskit.opflow.list_ops.ComposedOp "qiskit.opflow.list_ops.ComposedOp")(oplist\[, coeff, abelian])     | Deprecated: A class for lazily representing compositions of Operators.                                              |
+| [`SummedOp`](qiskit.opflow.list_ops.SummedOp "qiskit.opflow.list_ops.SummedOp")(oplist\[, coeff, abelian])           | Deprecated: A class for lazily representing sums of Operators.                                                      |
+| [`TensoredOp`](qiskit.opflow.list_ops.TensoredOp "qiskit.opflow.list_ops.TensoredOp")(oplist\[, coeff, abelian])     | Deprecated: A class for lazily representing tensor products of Operators.                                           |
 

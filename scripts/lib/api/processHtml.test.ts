@@ -24,7 +24,9 @@ import {
   removePermalinks,
   removeColonSpans,
   replaceViewcodeLinksWithGitHub,
+  convertRubricsToHeaders,
   prepareGitHubLink,
+  processMembersAndSetMeta,
 } from "./processHtml";
 import { Metadata } from "./Metadata";
 
@@ -247,6 +249,26 @@ test("replaceSourceLinksWithGitHub()", () => {
   );
 });
 
+test("convertRubricsToHeaders()", () => {
+  const doc = Doc.load(`<p class="rubric">Example</p>
+    <p class="rubric">Examples</p>
+    <p class="rubric">References</p>
+    <p class="rubric">Reference</p>
+    <p class="rubric">Simple examples</p>
+    <p class="rubric">Example code</p>
+    <p class="rubric">Attributes</p>
+    <p class="rubric">Methods</p>`);
+  convertRubricsToHeaders(doc.$, doc.$main);
+  doc.expectHtml(`<strong>Example</strong>
+    <strong>Examples</strong>
+    <strong>References</strong>
+    <strong>Reference</strong>
+    <strong>Simple examples</strong>
+    <strong>Example code</strong>
+    <h2>Attributes</h2>
+    <h2>Methods</h2>`);
+});
+
 describe("maybeSetModuleMetadata()", () => {
   test("not a module", () => {
     const html = `<h1>Hello</h1>`;
@@ -311,5 +333,161 @@ describe("prepareGitHubLink()", () => {
     doc.expectHtml(
       `<span class="pre">None</span><span class="sig-paren">)</span><a class="headerlink" href="#qiskit_ibm_runtime.IBMBackend" title="Link to this definition">#</a>`,
     );
+  });
+});
+
+describe("processMembersAndSetMeta()", () => {
+  test("function with added heading", () => {
+    const html = `<h1>Circuit Converters</h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="qiskit.converters.circuit_to_dag">
+<span class="sig-prename descclassname"><span class="pre">qiskit.converters.</span></span><span class="sig-name descname"><span class="pre">circuit_to_dag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">circuit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy_operations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qubit_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clbit_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qiskit/converters/circuit_to_dag.html#circuit_to_dag"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qiskit.converters.circuit_to_dag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build a <a class="reference internal" href="../stubs/qiskit.dagcircuit.DAGCircuit.html#qiskit.dagcircuit.DAGCircuit" title="qiskit.dagcircuit.DAGCircuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">DAGCircuit</span></code></a> object from a <a class="reference internal" href="../stubs/qiskit.circuit.QuantumCircuit.html#qiskit.circuit.QuantumCircuit" title="qiskit.circuit.QuantumCircuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">QuantumCircuit</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>circuit</strong> – the input circuit.</p></li>
+<li><p><strong>copy_operations</strong> – Deep copy the operation objects in the QuantumCircuit for the output DAGCircuit.</p></li>
+</ul>
+</dd>`;
+    const doc = Doc.load(html);
+    const meta: Metadata = {};
+    processMembersAndSetMeta(doc.$, doc.$main, meta);
+    doc.expectHtml(`      <h1>Circuit Converters</h1>
+<div><h3>circuit_to_dag</h3><span class="target" id="qiskit.converters.circuit_to_dag"><p><code>
+<span class="sig-prename descclassname"><span class="pre">qiskit.converters.</span></span><span class="sig-name descname"><span class="pre">circuit_to_dag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">circuit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy_operations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qubit_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clbit_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#qiskit.converters.circuit_to_dag" title="Permalink to this definition">¶</a></code><a href="../_modules/qiskit/converters/circuit_to_dag.html#circuit_to_dag" title="view source code">GitHub</a></p>
+<div><p>Build a <a class="reference internal" href="../stubs/qiskit.dagcircuit.DAGCircuit.html#qiskit.dagcircuit.DAGCircuit" title="qiskit.dagcircuit.DAGCircuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">DAGCircuit</span></code></a> object from a <a class="reference internal" href="../stubs/qiskit.circuit.QuantumCircuit.html#qiskit.circuit.QuantumCircuit" title="qiskit.circuit.QuantumCircuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">QuantumCircuit</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>circuit</strong> – the input circuit.</p></li>
+<li><p><strong>copy_operations</strong> – Deep copy the operation objects in the QuantumCircuit for the output DAGCircuit.</p></li>
+</ul>
+</dd></dl></div></span></div>`);
+    expect(meta).toEqual({
+      apiType: "function",
+      apiName: "qiskit.converters.circuit_to_dag",
+    });
+  });
+
+  test("function without added heading", () => {
+    const html = `<h1>least_busy</h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="qiskit_ibm_provider.least_busy">
+<span class="sig-name descname"><span class="pre">least_busy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backends</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qiskit_ibm_provider.html#least_busy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qiskit_ibm_provider.least_busy" title="Link to this definition">¶</a></dt>
+<dd><p>Return the least busy backend from a list.</p>
+<p>Return the least busy available backend for those that
+have a <code class="docutils literal notranslate"><span class="pre">pending_jobs</span></code> in their <code class="docutils literal notranslate"><span class="pre">status</span></code>. Note that local
+backends may not have this attribute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>backends</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.providers.Backend.html#qiskit.providers.Backend" title="(in Qiskit v0.45)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Backend</span></code></a>]) – The backends to choose from.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.providers.Backend.html#qiskit.providers.Backend" title="(in Qiskit v0.45)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Backend</span></code></a></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The backend with the fewest number of pending jobs.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="qiskit_ibm_provider.IBMError.html#qiskit_ibm_provider.IBMError" title="qiskit_ibm_provider.IBMError"><strong>IBMError</strong></a> – If the backends list is empty, or if none of the backends
+    is available, or if a backend in the list
+    does not have the <code class="docutils literal notranslate"><span class="pre">pending_jobs</span></code> attribute in its status.</p>
+</dd>
+</dl>
+</dd></dl>
+`;
+    const doc = Doc.load(html);
+    const meta: Metadata = {};
+    processMembersAndSetMeta(doc.$, doc.$main, meta);
+    doc.expectHtml(`<h1>least_busy</h1>
+<div><span class=\"target\" id=\"qiskit_ibm_provider.least_busy\"><p><code>
+<span class=\"sig-name descname\"><span class=\"pre\">least_busy</span></span><span class=\"sig-paren\">(</span><em class=\"sig-param\"><span class=\"n\"><span class=\"pre\">backends</span></span></em><span class=\"sig-paren\">)</span><a class=\"headerlink\" href=\"#qiskit_ibm_provider.least_busy\" title=\"Link to this definition\">¶</a></code><a href=\"../_modules/qiskit_ibm_provider.html#least_busy\" title=\"view source code\">GitHub</a></p>
+<div><p>Return the least busy backend from a list.</p>
+<p>Return the least busy available backend for those that
+have a <code class=\"docutils literal notranslate\"><span class=\"pre\">pending_jobs</span></code> in their <code class=\"docutils literal notranslate\"><span class=\"pre\">status</span></code>. Note that local
+backends may not have this attribute.</p>
+<dl class=\"field-list simple\">
+<dt class=\"field-odd\">Parameters<span class=\"colon\">:</span></dt>
+<dd class=\"field-odd\"><p><strong>backends</strong> (<code class=\"xref py py-class docutils literal notranslate\"><span class=\"pre\">List</span></code>[<a class=\"reference external\" href=\"https://qiskit.org/documentation/stubs/qiskit.providers.Backend.html#qiskit.providers.Backend\" title=\"(in Qiskit v0.45)\"><code class=\"xref py py-class docutils literal notranslate\"><span class=\"pre\">Backend</span></code></a>]) – The backends to choose from.</p>
+</dd>
+<dt class=\"field-even\">Return type<span class=\"colon\">:</span></dt>
+<dd class=\"field-even\"><p><a class=\"reference external\" href=\"https://qiskit.org/documentation/stubs/qiskit.providers.Backend.html#qiskit.providers.Backend\" title=\"(in Qiskit v0.45)\"><code class=\"xref py py-class docutils literal notranslate\"><span class=\"pre\">Backend</span></code></a></p>
+</dd>
+<dt class=\"field-odd\">Returns<span class=\"colon\">:</span></dt>
+<dd class=\"field-odd\"><p>The backend with the fewest number of pending jobs.</p>
+</dd>
+<dt class=\"field-even\">Raises<span class=\"colon\">:</span></dt>
+<dd class=\"field-even\"><p><a class=\"reference internal\" href=\"qiskit_ibm_provider.IBMError.html#qiskit_ibm_provider.IBMError\" title=\"qiskit_ibm_provider.IBMError\"><strong>IBMError</strong></a> – If the backends list is empty, or if none of the backends
+    is available, or if a backend in the list
+    does not have the <code class=\"docutils literal notranslate\"><span class=\"pre\">pending_jobs</span></code> attribute in its status.</p>
+</dd>
+</dl>
+</div></span></div>`);
+    expect(meta).toEqual({
+      apiType: "function",
+      apiName: "qiskit_ibm_provider.least_busy",
+    });
+  });
+
+  test("exception with added heading", () => {
+    const html = `<span class="target" id="module-qiskit.exceptions"><span id="qiskit-exceptions"></span></span><section id="top-level-exceptions-qiskit-exceptions">
+<h1>Top-level exceptions (<a class="reference internal" href="#module-qiskit.exceptions" title="qiskit.exceptions"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qiskit.exceptions</span></code></a>)<a class="headerlink" href="#top-level-exceptions-qiskit-exceptions" title="Permalink to this heading">¶</a></h1>
+<p>All Qiskit-related errors raised by Qiskit are subclasses of the base:</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="qiskit.exceptions.QiskitError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qiskit.exceptions.</span></span><span class="sig-name descname"><span class="pre">QiskitError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qiskit/exceptions.html#QiskitError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qiskit.exceptions.QiskitError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for errors raised by Qiskit.</p>
+<p>Set the error message.</p>
+</dd></dl>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Errors that are just general programming errors, such as incorrect typing, may still raise
+standard Python errors such as <code class="docutils literal notranslate"><span class="pre">TypeError</span></code>.  <a class="reference internal" href="#qiskit.exceptions.QiskitError" title="qiskit.exceptions.QiskitError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">QiskitError</span></code></a> is generally for errors raised
+in usage that is particular to Qiskit.</p>
+</div>
+<p>Many of the Qiskit subpackages define their own more granular error, to help in catching only the
+subset of errors you care about.  For example, <a class="reference internal" href="circuit.html#module-qiskit.circuit" title="qiskit.circuit"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qiskit.circuit</span></code></a> almost exclusively uses
+<a class="reference internal" href="circuit.html#qiskit.circuit.CircuitError" title="qiskit.circuit.CircuitError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">CircuitError</span></code></a>, while both <a class="reference internal" href="qasm2.html#qiskit.qasm2.QASM2ExportError" title="qiskit.qasm2.QASM2ExportError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">QASM2ExportError</span></code></a> and <a class="reference internal" href="qasm2.html#qiskit.qasm2.QASM2ParseError" title="qiskit.qasm2.QASM2ParseError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">QASM2ParseError</span></code></a> derive from
+<a class="reference internal" href="qasm2.html#qiskit.qasm2.QASM2Error" title="qiskit.qasm2.QASM2Error"><code class="xref py py-exc docutils literal notranslate"><span class="pre">QASM2Error</span></code></a> in <a class="reference internal" href="qasm2.html#module-qiskit.qasm2" title="qiskit.qasm2"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qiskit.qasm2</span></code></a>, which is in turn a type of <a class="reference internal" href="#qiskit.exceptions.QiskitError" title="qiskit.exceptions.QiskitError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">QiskitError</span></code></a>.</p>
+<p>Qiskit has several optional features that depend on other packages that are not required for a
+minimal install.  You can read more about those, and ways to check for their presence, in
+<a class="reference internal" href="utils.html#module-qiskit.utils.optionals" title="qiskit.utils.optionals"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qiskit.utils.optionals</span></code></a>.  Trying to use a feature that requires an optional extra will raise a
+particular error, which subclasses both <a class="reference internal" href="#qiskit.exceptions.QiskitError" title="qiskit.exceptions.QiskitError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">QiskitError</span></code></a> and the Python built-in <code class="docutils literal notranslate"><span class="pre">ImportError</span></code>.</p>
+</section>
+`;
+    const doc = Doc.load(html);
+    const meta: Metadata = {};
+    processMembersAndSetMeta(doc.$, doc.$main, meta);
+    doc.expectHtml(`<span class="target" id="module-qiskit.exceptions"><span id="qiskit-exceptions"></span></span><section id="top-level-exceptions-qiskit-exceptions">
+<h1>Top-level exceptions (<a class="reference internal" href="#module-qiskit.exceptions" title="qiskit.exceptions"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qiskit.exceptions</span></code></a>)<a class="headerlink" href="#top-level-exceptions-qiskit-exceptions" title="Permalink to this heading">¶</a></h1>
+<p>All Qiskit-related errors raised by Qiskit are subclasses of the base:</p>
+<div><h3>QiskitError</h3><span class="target" id="qiskit.exceptions.QiskitError"><p><code>
+<span class="sig-prename descclassname"><span class="pre">qiskit.exceptions.</span></span><span class="sig-name descname"><span class="pre">QiskitError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#qiskit.exceptions.QiskitError" title="Permalink to this definition">¶</a></code><a href="../_modules/qiskit/exceptions.html#QiskitError" title="view source code">GitHub</a></p>
+<div><p>Base class for errors raised by Qiskit.</p>
+<p>Set the error message.</p>
+</div></span></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Errors that are just general programming errors, such as incorrect typing, may still raise
+standard Python errors such as <code class="docutils literal notranslate"><span class="pre">TypeError</span></code>.  <a class="reference internal" href="#qiskit.exceptions.QiskitError" title="qiskit.exceptions.QiskitError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">QiskitError</span></code></a> is generally for errors raised
+in usage that is particular to Qiskit.</p>
+</div>
+<p>Many of the Qiskit subpackages define their own more granular error, to help in catching only the
+subset of errors you care about.  For example, <a class="reference internal" href="circuit.html#module-qiskit.circuit" title="qiskit.circuit"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qiskit.circuit</span></code></a> almost exclusively uses
+<a class="reference internal" href="circuit.html#qiskit.circuit.CircuitError" title="qiskit.circuit.CircuitError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">CircuitError</span></code></a>, while both <a class="reference internal" href="qasm2.html#qiskit.qasm2.QASM2ExportError" title="qiskit.qasm2.QASM2ExportError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">QASM2ExportError</span></code></a> and <a class="reference internal" href="qasm2.html#qiskit.qasm2.QASM2ParseError" title="qiskit.qasm2.QASM2ParseError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">QASM2ParseError</span></code></a> derive from
+<a class="reference internal" href="qasm2.html#qiskit.qasm2.QASM2Error" title="qiskit.qasm2.QASM2Error"><code class="xref py py-exc docutils literal notranslate"><span class="pre">QASM2Error</span></code></a> in <a class="reference internal" href="qasm2.html#module-qiskit.qasm2" title="qiskit.qasm2"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qiskit.qasm2</span></code></a>, which is in turn a type of <a class="reference internal" href="#qiskit.exceptions.QiskitError" title="qiskit.exceptions.QiskitError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">QiskitError</span></code></a>.</p>
+<p>Qiskit has several optional features that depend on other packages that are not required for a
+minimal install.  You can read more about those, and ways to check for their presence, in
+<a class="reference internal" href="utils.html#module-qiskit.utils.optionals" title="qiskit.utils.optionals"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qiskit.utils.optionals</span></code></a>.  Trying to use a feature that requires an optional extra will raise a
+particular error, which subclasses both <a class="reference internal" href="#qiskit.exceptions.QiskitError" title="qiskit.exceptions.QiskitError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">QiskitError</span></code></a> and the Python built-in <code class="docutils literal notranslate"><span class="pre">ImportError</span></code>.</p>
+</section>
+`);
+    expect(meta).toEqual({
+      apiName: "qiskit.exceptions.QiskitError",
+      apiType: "exception",
+    });
   });
 });

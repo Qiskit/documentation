@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.Parameter
 
 <span id="qiskit.circuit.Parameter" />
 
-`qiskit.circuit.Parameter(name, *, uuid=None)`
+`qiskit.circuit.Parameter(name, *, uuid=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/parameter.py "view source code")
 
 Bases: [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")
 
@@ -18,7 +18,7 @@ Parameter Class for variable parameters.
 
 A parameter is a variable value that is not required to be fixed at circuit definition.
 
-## Examples
+**Examples**
 
 Construct a variable-rotation X gate using circuit parameters.
 

@@ -39,7 +39,7 @@ Plots an interactive gate map of a device.
 
 The gate map figure.
 
-## Example
+**Example**
 
 ```python
 from qiskit_ibm_provider import IBMProvider

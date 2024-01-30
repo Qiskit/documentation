@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.C3SXGate
 
 <span id="qiskit.circuit.library.C3SXGate" />
 
-`qiskit.circuit.library.C3SXGate(*args, _force_mutable=False, **kwargs)`
+`qiskit.circuit.library.C3SXGate(*args, _force_mutable=False, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 Bases: [`SingletonControlledGate`](circuit_singleton#qiskit.circuit.singleton.SingletonControlledGate "qiskit.circuit.singleton.SingletonControlledGate")
 
@@ -18,7 +18,7 @@ The 3-qubit controlled sqrt-X gate.
 
 This implementation is based on Page 17 of \[1].
 
-## References
+**References**
 
 \[1] Barenco et al., 1995. [https://arxiv.org/pdf/quant-ph/9503016.pdf](https://arxiv.org/pdf/quant-ph/9503016.pdf)
 

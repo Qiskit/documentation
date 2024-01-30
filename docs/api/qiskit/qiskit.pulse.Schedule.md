@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.Schedule
 
 <span id="qiskit.pulse.Schedule" />
 
-`qiskit.pulse.Schedule(*schedules, name=None, metadata=None)`
+`qiskit.pulse.Schedule(*schedules, name=None, metadata=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/pulse/schedule.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
@@ -51,7 +51,7 @@ A [`PulseError`](pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError") is imm
 
 In the schedule representation, we cannot parametrize the duration of instructions. Thus we need to create a new schedule object for each duration. To parametrize an instruction’s duration, the [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") representation may be used instead.
 
-## References
+**References**
 
 \[1]: [https://arxiv.org/abs/2004.06755](https://arxiv.org/abs/2004.06755)
 
@@ -81,7 +81,7 @@ Returns channels that this schedule uses.
 
 Return the child schedule components of this `Schedule` in the order they were added to the schedule.
 
-## Notes
+**Notes**
 
 Nested schedules are returned as-is. If you want to collect only instructions, use py:meth:\~Schedule.instructions instead.
 

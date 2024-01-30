@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.RVGate
 
 <span id="qiskit.circuit.library.RVGate" />
 
-`qiskit.circuit.library.RVGate(v_x, v_y, v_z, basis='U')`
+`qiskit.circuit.library.RVGate(v_x, v_y, v_z, basis='U')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/generalized_gates/rv.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -29,15 +29,15 @@ q_0: ┤ RV(v_x,v_y,v_z) ├
 **Matrix Representation:**
 
 $$
-\begin{split}\newcommand{\th}{|\vec{v}|}
+\newcommand{\rotationangle}{|\vec{v}|}
 \newcommand{\sinc}{\text{sinc}}
     R(\vec{v}) = e^{-i \vec{v}\cdot\vec{\sigma}} =
         \begin{pmatrix}
-            \cos\left(\th\right) -i v_z \sinc\left(\th\right)
-            & -(i v_x + v_y) \sinc\left(\th\right) \\
-            -(i v_x - v_y) \sinc\left(\th\right)
-            & \cos\left(\th\right) + i v_z \sinc\left(\th\right)
-        \end{pmatrix}\end{split}
+            \cos\left(\rotationangle\right) -i v_z \sinc\left(\rotationangle\right)
+            & -(i v_x + v_y) \sinc\left(\rotationangle\right) \\
+            -(i v_x - v_y) \sinc\left(\rotationangle\right)
+            & \cos\left(\rotationangle\right) + i v_z \sinc\left(\rotationangle\right)
+        \end{pmatrix}
 $$
 
 Create new rv single-qubit gate.
