@@ -252,7 +252,7 @@ To check that formatting is valid without actually making changes, run `npm run 
    3. Click the "Summary" page at the top of the left navbar.
    4. Scroll down to "Artifacts" and look for the artifact related to documentation, such as `html_docs`.
    5. Copy the link by right-clicking on the artifact.
-5. Run `npm run gen-api -- -p <pkg-name> -v <version> -a <artifact-url>` to generate the API documentation downloading a new artifact and to store it in `/scripts/<pkg-name>/<versions-without-patch>/artifact.zip`,
+5. Run `npm run gen-api -- -p <pkg-name> -v <version> -a <artifact-url>` to generate the API documentation downloading a new artifact and to store it in `/scripts/api-artifacts/<pkg-name>/<versions-without-patch>/artifact.zip`,
    e.g. `npm run gen-api -- -p qiskit -v 0.45.0 -a https://github.com/Qiskit/qiskit/suites/17881600359/artifacts/1026798160`
 6. When opening your PR, include the CLI arguments you used. That helps us to know exactly how the docs have been generated over time.
 
@@ -264,7 +264,7 @@ In case you want to save the current version and convert it into a historical on
 
 ### How to modify the source HTML of an API
 
-The HTML used in the generation of the API docs can be found in `/scripts/<pkg-name>/<versions-without-patch>/artifact.zip`.
+The HTML used in the generation of the API docs can be found in `/scripts/api-artifacts/<pkg-name>/<versions-without-patch>/artifact.zip`.
 
 To make changes to it, you can:
 
