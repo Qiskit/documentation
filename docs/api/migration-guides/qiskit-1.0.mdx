@@ -1,14 +1,14 @@
 ---
-title: Qiskit 1.0 Installation and Packaging Changes
+title: Qiskit 1.0 installation and packagingchanges
 description: Adapt to changes in installing and depending on Qiskit 1.0
 ---
 
-# Qiskit 1.0 Packaging Changes
+# Qiskit 1.0 packaging changes
 
 Qiskit 1.0 uses a different packaging structure than previous Qiskit versions and might cause problems in environments that use packages that are not ready for Qiskit 1.0.
 
 <Admonition type="caution">
-Do not try to upgrade an existing Python virtual environment to Qiskit 1.0 in place.
+Do not try to upgrade an existing Python virtual environment to Qiskit 1.0 in-place.
 </Admonition>
 
 This guide is divided into the following sections.  You only need to review the sections that are relevant to you. 
@@ -34,7 +34,7 @@ PowerShell is used for Windows commands.
 </Admonition>
 
 <span id="creating-a-venv"></span>
-### Creating the new environment
+### Create the new environment
 
 1. Create a new virtual environment, using your preferred version of Python 3.8 or later. Use any path you choose in place of `/path/to/qiskit-1.0-venv`.
 
@@ -102,7 +102,7 @@ PowerShell is used for Windows commands.
 
    If you have an existing environment, you can use [`pipdeptree`](https://github.com/tox-dev/pipdeptree/blob/main/README.md#pipdeptree) to query the requirements of your installed packages to see if they require `qiskit<1`.  For any that require `qiskit<1>`, check for updates that make it compatible with Qiskit 1.0. 
 
-   If you encounter issues, consult the [troubleshooting](#troubleshooting) section, ask on [Qiskit Slack](https://qisk.it/join-slack), or if you think there is a Qiskit bug you can [create an issue against Qiskit](https://github.com/Qiskit/qiskit/issues/new/choose).
+   If you encounter issues, consult the [troubleshooting](#troubleshooting) section, or ask on [Qiskit Slack](https://qisk.it/join-slack). If you think there is a bug, you can [create an issue against Qiskit](https://github.com/Qiskit/qiskit/issues/new/choose).
 
 
 4. If you are not planning to use the environment immediately, use the `deactivate` command to leave it.
@@ -144,7 +144,7 @@ If you maintain a package that depends on Qiskit, use this information to learn 
 We recommend that your package requires `qiskit>=0.45,<1` (or other appropriate lower bound) if you are not certain whether the package is compatible with Qiskit 1.0.
 This is [the same recommendation being made for NumPy 2.0 compatibility.](https://github.com/numpy/numpy/issues/24300)
 
-A Qiskit 1.0 release candidate, version 1.0.0rc1, will be released on 1 February, 2024. 
+A Qiskit 1.0 release candidate, version 1.0.0rc1, will be released on 1 February 2024. 
 You should test your package against this, and as soon as possible, release a new (compatible) version of your package with its upper requirement unpinned.
 
 ### Recommendations for testing against Qiskit 1.0
@@ -154,7 +154,7 @@ These recommendations apply to testing proactively against the Qiskit `main` bra
 We do not recommend initially branch-protecting on CI success against the Qiskit `main` branch because Qiskit changes could prevent you from merging PRs.
 After the release of Qiskit release candidates, and after all of your package's dependencies support Qiskit 1.0, we *do* recommend branch-protecting on success against the latest release candidate, to ensure that the package remains compatible with Qiskit 1.0.
 
-If neither your package, nor any of its transitive dependencies, have a requirement pin on `qiskit<1`, you should create a testing virtual environment as you normally would, in a single `pip install` command, and directly specify `qiskit==1.0.0rc1` or `qiskit==git+https://github.com/Qiskit/qiskit.git@main` as appropriate.
+If neither your package, nor any of its transitive dependencies, has a requirement pin on `qiskit<1`, you should create a testing virtual environment as you normally would, in a single `pip install` command, and directly specify `qiskit==1.0.0rc1` or `qiskit==git+https://github.com/Qiskit/qiskit.git@main` as appropriate.
 This is the most reliable way to ensure that you have a completely valid environment.
 
 If the only component of your package's dependency graph that has a requirement pin on `qiskit<1` is your own package, you might want to have your CI suite first temporarily patch your requirements file to allow Qiskit 1.0, and then install the environment in a single step as before.
@@ -170,7 +170,7 @@ There are several strategies to try, in approximate order of preference (most pr
 #### Manually upgrade an existing environment
 
 <Admonition type="caution">
-This process deliberately creates an invalid environment.  Therefore, any test using it is less valid. Tests might appear to pass, but this does not guarantee that the package is compatible with Qiskit 1.0.  This could happen because the environment is not self-consistent and there could be files in it that do not exist in a valid environment, or the behavior of an overridden package might change with Qiskit 1.0.
+This process deliberately creates an invalid environment.  Therefore, any test using it is less valid. Tests might appear to pass, but this does not guarantee that the package is compatible with Qiskit 1.0.  This could happen because the environment is not self-consistent and could contain files that do not exist in a valid environment, or the behavior of an overridden package might change with Qiskit 1.0.
 </Admonition>
 
 <Admonition type="note">
@@ -202,7 +202,7 @@ To upgrade an environment in situ, follow these steps:
     ```bash
     pip install 'qiskit==1.0.0rc1'
     ```
-  * For a `main`-branch dependency (or substitute whatever `git` revision identifier you like after the `@`).
+  * For a `main`-branch dependency (or substitute whatever `git` revision identifier you prefer after the `@`).
     ```bash
     pip install 'git+https://github.com/Qiskit/qiskit.git@main'
     ```
@@ -245,7 +245,7 @@ jobs:
         run: pytest
 ```
 
-For a package that has unavoidable transitive dependencies that pin `qiskit<1`, we have to build an invalid environment:
+For a package that has unavoidable transitive dependencies that pin `qiskit<1`, build an invalid environment:
 
 ```yaml
 on:
@@ -339,7 +339,7 @@ commands_pre =
 
 This section contains detailed information about pre-1.0 Qiskit packaging and why we made the breaking packaging change.
 
-We know that this is inconvenient, but this allows us to restore Qiskit to the simple package structure that most Python packages use, which will be easier for users, developers, and library authors after the Qiskit 1.0 transition is complete.
+We know that the change is inconvenient, but this restores Qiskit to the simple package structure that most Python packages use, which will be easier for users, developers, and library authors after the Qiskit 1.0 transition is complete.
 
 <Admonition type="info" title="Python packaging terminology">
 This section uses some Python-packaging jargon to better explain what was happening.
@@ -349,13 +349,13 @@ The following words have special meanings:
 
 * *package*: A directory containing an `__init__.py` and other files or packages that Python can read.
   This is the actual code as installed on your system, and is what executes when you run `import something`.
-  Python considers any directory that is on the search path to be something you can import (and will import quite a few additional items).
+  Python considers any directory that is on the search path to be something you can import (and will import many additional items).
 
   This is not the same object that you `pip install` (which is a *distribution*), but typically what you `pip install` and what you `import` have the same name.
 
-* *submodule*, *subpackage*: These are somewhat imprecise terms, but are commonly used.
-  The _sub_ part just means "contained inside a package".
-  A submodule is just a module and a subpackage is just a package, but they are part of a larger package.
+* *submodule*, *subpackage*: These are imprecise terms, but are commonly used.
+  The _sub_ part means "contained inside a package".
+  A submodule is a module and a subpackage is a package, but they are part of a larger package.
 
 * *namespace package*: A package that can have submodules or subpackages installed into it by other _distributions_.
   Critically, no one distribution contributing to a namespace package necessarily owns all the installed files, so it can be tricky to completely uninstall
@@ -367,18 +367,18 @@ The following words have special meanings:
 
   If you are familiar with "package managers" outside the context of Python, such as `apt` from Debian/Ubuntu or Homebrew on macOS, then what they call a "package", Python calls a distribution, and there is no exact match for what Python calls a package.
 
-  Most sources talking about Python packaging use the term _package_ to mean both distributions and packages, and you have to understand from context what is meant.
-  In general, if you `import` it, the source means "package" and if you `pip install` it, the source means "distribution".
+  Most sources talking about Python packaging use the term _package_ to mean both distributions and packages, and you must refer to the context to understand what is meant.
+  In general, if you `import` it, the source means "package", and if you `pip install` it, the source means "distribution".
 
 * *search path*: When trying to `import something`, Python searches a predefined list of places for a module or package called `something`.
   The list of places is the _search path_.
   You can see and modify the search path in `sys.path`.
 
 * *requirement*: A distribution contains information on other distributions it depends on when installed.
-  Any other distribution that is necessary is a requirement, and the package manager (usually `pip` or `conda`) should ensure that all requirements are installed with compatible versions.
+  Any other distribution that is necessary is a _requirement_, and the package manager (usually `pip` or `conda`) should ensure that all requirements are installed with compatible versions.
 
-Python is highly dynamic, and it's actually possible for a module or package to not correspond to files on disk, or to be compiled extensions, or many other things.
-The search path is not only a search over directories, but files on disk are all that matters for this discussion.
+Python is highly dynamic, and many complexities can arise; for example, it's possible that a module or package does not correspond to files on disk, or that they are compiled extensions.
+The search path is not only a search over directories, but for this discussion, only files on disk are relevant.
 Further complications aren't necessary to understand the problems described in this section, so you can use the model described above.
 </Admonition>
 
@@ -435,11 +435,11 @@ This is a one-time event, at the release of Qiskit 1.0, specifically so that our
 
 The packaging changes around Qiskit 1.0 are tricky, and Python's standard tool `pip` is not rich enough in some ways for us to communicate the changes in the distribution structures to it, which unfortunately might cause issues for users.
 We have tried to make Qiskit fail quickly and loudly if it detects an invalid environment, without false positives.
-In our experience, while it's annoying to get the error message, it's much better to be aware of the problem right away than for things to silently look like they're working, only to fail in subtle ways further down the line.
+We understand that users might find it annoying to get the error message, but in our experience, it's much better to be aware of the problem right away than for things to appear to be working on the surface, only to fail in subtle ways in the future.
 
 This section contains packaging errors that you might see, and describes how to resolve them.
 
-Most of these problems are not unique to Qiskit, so the advice here is likely relevant even if the problematic parts are not related to Qiskit.
+Most of these problems are not unique to Qiskit, so the advice is likely relevant, even if the problematic parts are not related to Qiskit.
 
 ### `import qiskit` says "ModuleNotFoundError: No module named 'qiskit'"
 
@@ -449,7 +449,7 @@ If you definitely installed Qiskit, then you probably do not have the correct vi
 See the [section on activating a virtual environment](#activating-a-venv) for instructions.
 
 If you are using Jupyter and see this, ensure that Jupyter is installed into the same virtual environment as Qiskit.
-Close out of Jupyter, activate the Qiskit virtual environment on the command line, then run `pip install jupyterlab` (or whichever notebook interface you use), then reopen Jupyter.
+Exit Jupyter, activate the Qiskit virtual environment on the command line, run `pip install jupyterlab` (or whichever notebook interface you use), then reopen Jupyter.
 
 
 ### `import qiskit` succeeds, but trying to do anything returns "AttributeError: module 'qiskit' has no attribute '...'"
@@ -458,7 +458,7 @@ This likely means that your environment had an old version of Qiskit in it along
 The easiest thing to do is to start a new virtual environment, and only install recent, non-obsolete packages into it.
 
 If you have just started a new virtual environment, or you're sure that legacy packages are not the problem, make sure that your current working directory (the directory your shell session was in when you launched Python / Jupyter) does not contain a folder called `qiskit`.
-Python's default rules search the current working directory very early in the search path when trying to `import` a module, so having a directory with the same name can cause import problems.
+Python's default rules search the current working directory very early in the search path when trying to `import` a module, so a directory with a duplicate name can cause import problems.
 
 
 <span id="pip-resolution-impossible"></span>
@@ -482,11 +482,11 @@ ERROR: ResolutionImpossible: for help visit https://pip.pypa.io/en/latest/topics
 
 This describes a true resolution conflict; there is no valid way to install all of these distributions at the same time.
 
-In the context of Qiskit 1.0, this is likely because one of the distribution you are trying to install contains a requirement like `qiskit<1.0`.
+In the context of Qiskit 1.0, this is likely because one of the distributions you are trying to install contains a requirement like `qiskit<1.0`.
 This means that the developers of that distribution have marked it as not (yet) compatible with Qiskit 1.0.
 
 You can (politely) ask those developers when they will release a new version of their package that is compatible with Qiskit 1.0, but first check that they have no open issue or pull request already asking for this wherever they accept comments.
-Please be mindful that this takes time; we're happy you're excited about Qiskit 1.0, but please give the developers a month or so to prepare new versions of their distributions!
+Be mindful that this takes time; please give the developers a month or so to prepare new versions of their distributions!
 Until then, you cannot install that distribution alongside Qiskit 1.0.
 To continue using that distribution, create a new virtual environment and use Qiskit 0.45 or 0.46 (or whichever version it supports) alongside that other package.
 
@@ -501,21 +501,19 @@ You can also read [the documentation from the Python packaging authority about c
 
 ### `pip` succeeds but prints errors after running `pip install` commands
 
-You might see an error in the output of `pip` such as the following: 
+You might see an error in the output of `pip`, such as the following: 
 
 ```text
-ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behavior is the source of the following dependency conflicts.
 some-distribution 0.4.4 requires qiskit>=0.44,<1, but you have qiskit 1.0.0 which is incompatible.
 ```
 
 The top line usually appears verbatim (as of `pip` 23.3), but second line changes depending on the exact problem, and there may be several lines like it.
-`pip` is likely to then claim that it did whatever you wanted successfully, despite the error message.
-
-This is an actual problem.
+`pip` is likely to then indicate that it did whatever you wanted successfully, despite the error message.
 
 This means that the environment is in conflict and you cannot be sure that it will work correctly.
 To solve the problem, examine the list of messages from `pip` and determine if you need all of the packages that have conflicting requirements.
-Sometimes there will be true conflicts between dependencies and you might need multiple virtual environments to separate out dependencies that have incompatible requirements.
+Sometimes there will be true conflicts between dependencies; you might need multiple virtual environments to separate out dependencies that have incompatible requirements.
 
 The safest choice is to begin a new virtual environment (or more than one, if there are true conflicts), then delete the one in conflict.
 
@@ -524,9 +522,8 @@ This is the most reliable way for `pip` to find a properly resolved environment 
 If you keep having problems with conflicts after setting up environments, avoid running any further `pip install` or `pip uninstall` commands; `pip` does not guarantee to keep the environment coherent on subsequent commands.
 
 <Admonition type="note">
-Don't worry about having multiple virtual environments.
-Python development and use often involves several virtual environments, and it's common and good practice to create new ones to work on separate projects.
-When you're done with a virtual environment, you can simply delete its directory; you don't need to have several environments that stay around forever.
+If you are concerned about working with multiple virtual environments, rest assured that Python development and use often involve several virtual environments. It's common and good practice to create new ones to work on separate projects.
+When you're done with a virtual environment, you can simply delete its directory; there is no reason to keep multiple environments permanently.
 </Admonition>
 
 
@@ -557,13 +554,13 @@ This error most frequently arises in one of two situations:
 *  You ran something like `pip install 'qiskit>=1' something-else`, and `something-else` has a requirement on `qiskit-terra`.
 *  You tried to run `pip install -U qiskit` in an existing environment.
 
-In both of these cases, there is no guarantee that `pip` will complain, because we could not tell it about the conflict.
+In both of these cases, there is no guarantee that `pip` will return a helpful message to you.
 
 
 <span id="debug-venv-for-1.0"></span>
-#### Getting a working environment for Qiskit 1.0
+#### Create a working environment for Qiskit 1.0
 
-No matter how this happened, it will be much easier to make a new virtual environment.
+No matter how this happened, it is much easier to make a new virtual environment.
 
 First, we need to find out which packages are introducing a dependency on `qiskit-terra`.
 Using the broken environment, install `pipdeptree` from PyPI. This is a tool for generating dependency graphs:
@@ -597,9 +594,9 @@ qiskit==1.0.0
 In the above example, we have two distributions that have declared themselves compatible with Qiskit 1.0 (`qiskit-aer` and `qiskit-ibm-provider`), and one that still has a dependency on `qiskit-terra`.
 
 <Admonition type="tip">
-This example is a quite flat dependency structure.
+This example is a flat dependency structure.
 You might see a much deeper tree than this.
-The packages that are directly dependent on `qiskit-terra` (lowest indentation) are most likely to be the problematic ones, but one further down the tree could be problematic if it depends on a specific old version of some other package that has already been updated.
+The packages that are directly dependent on `qiskit-terra` (lowest indentation) are most likely to be the problematic ones, but one farther down the tree could be problematic if it depends on a specific old version of some other package that has already been updated.
 </Admonition>
 
 Seeing a dependency on `qiskit-terra` can mean one of a few things:
@@ -612,38 +609,38 @@ Seeing a dependency on `qiskit-terra` can mean one of a few things:
 * The dependent is a package that is actively maintained, but does not yet support Qiskit 1.0.
 
   In this case, you will need to wait for the developers to release a compatible version - please be patient!
-  Typically this is characterized by the installed distribution *not* being at its latest version even though your installation command did not specify a version.
+  Typically this is characterized by the installed distribution *not* being at its latest version, even though your installation command did not specify a version.
   You can check the latest release version of the distribution by finding its page on https://pypi.org/.
 
   `pip` likely searched old versions of the package until it found one (possibly from months or years ago) that depended only on `qiskit-terra`.
 
   This is what has happened in the example above.  At the time this document was created, `qiskit-dynamics==0.4.4` was the latest release version.
 
-If you constructed this environment out of several `pip install` commands (such as if the environment is old and has been updated), when you build a new environment, first try to install all of your packages by using a single `pip install` command.
+If you constructed this environment out of several `pip install` commands (such as if the environment is old and has been updated), first try to install all of your packages by using a single `pip install` command when you build a new environment.
 If the problem persists, at least one of the packages you want likely does not support Qiskit 1.0 yet, and `pip` is finding an old version that it believes will work because it doesn't know about the `qiskit>=1`/`qiskit-terra` conflict.
 
 Instead, use the `pipdeptree` commands to identify which dependencies do not yet support Qiskit 1.0.
-Assuming you have at least one package that does not yet support Qiskit 1.0, you will have to exclude that package when constructing a Qiskit 1.0 environment, or  continue to use a prior version of Qiskit.
+Exclude any packages that do not yet support Qiskit 1.0 when constructing a Qiskit 1.0 environment, or continue to use a prior version of Qiskit.
 See [Creating the new environment](#creating-a-venv) for instructions.
 
 <Admonition type="note">
 The example in this section was generated before Qiskit 1.0 was released.
 
 The "old" distribution in question (`qiskit-dynamics`) was behaving correctly; it was not known to support Qiskit 1.0 yet, so it marked that in its requirements.
-It's not possible to backdate requirements changes to previously released versions, and `pip` will search arbitrarily far back trying to find something that works when building an environment.
+It's not possible to backdate requirements changes to previously released versions, and `pip` will search arbitrarily far back to locate something that works when building an environment.
 </Admonition>
 
 
 
 <span id="debug-venv-for-0.45"></span>
-#### Getting a working environment for Qiskit 0.45 or 0.46
+#### Create a working environment for Qiskit 0.45 or 0.46
 
-If you have a broken environment, but you were only trying to install Qiskit 0.45 or 0.46, the most likely situation is that `pip` installed Qiskit 1.0 because it tried to pick the latest versions of packages, even though it was not required.
-The easiest way to fix this is to create a new virtual environment, then run a single `pip install` command that has all the packages you desire plus an explicit `'qiskit<1'` entry.
+If you have a broken environment after trying to install Qiskit 0.45 or 0.46, the most likely situation is that `pip` installed Qiskit 1.0 because it tried to pick the latest versions of packages, even though it was not required.
+The easiest way to fix this is to create a new virtual environment, then run a single `pip install` command that has all the packages you need, plus an explicit `'qiskit<1'` entry.
 If `pip` successfully resolves this dependency graph, you should have a working virtual environment.
 If at least one distribution requires Qiskit 1.0 or greater, `pip` should give you an error message explaining this, which looks like the one in [the section on failed resolutions](#pip-resolution-impossible).
 
-You can also use the `pipdeptree` commands listed in [Getting a working environment for Qiskit 1.0](#debug-venv-for-1.0) from within the broken environment to determine which distributions have an explicit requirement on `qiskit>=1`.
+You can also use the `pipdeptree` commands listed in [Create a working environment for Qiskit 1.0](#debug-venv-for-1.0) from within the broken environment to determine which distributions have an explicit requirement on `qiskit>=1`.
 
 
 #### I'm a developer, my environments are definitely right, and I'm still getting the error
