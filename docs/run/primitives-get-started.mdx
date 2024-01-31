@@ -35,33 +35,33 @@ You need at least one circuit and one observable as inputs to the `Estimator` pr
 <Tabs>
   <TabItem value="EstimatorV2" label="EstimatorV2">
     ```python
-#this is V1.  Just checking how the indentation behaves.
-import numpy as np
-from qiskit.circuit.library import IQP
-from qiskit.quantum_info import SparsePauliOp, random_hermitian
+    #this is V1.  Just checking how the indentation behaves.
+    import numpy as np
+    from qiskit.circuit.library import IQP
+    from qiskit.quantum_info import SparsePauliOp, random_hermitian
 
-n_qubits = 127
+    n_qubits = 127
 
-mat = np.real(random_hermitian(n_qubits, seed=1234))
-circuit = IQP(mat)
-observable = SparsePauliOp("Z" * n_qubits)
-print(f">>> Observable: {observable.paulis}")
-```
+    mat = np.real(random_hermitian(n_qubits, seed=1234))
+    circuit = IQP(mat)
+    observable = SparsePauliOp("Z" * n_qubits)
+    print(f">>> Observable: {observable.paulis}")
+    ```
   </TabItem>
 
   <TabItem value="EstimatorV1" label="Estimator (V1)">
     ```python
-import numpy as np
-from qiskit.circuit.library import IQP
-from qiskit.quantum_info import SparsePauliOp, random_hermitian
+    import numpy as np
+    from qiskit.circuit.library import IQP
+    from qiskit.quantum_info import SparsePauliOp, random_hermitian
 
-n_qubits = 127
+    n_qubits = 127
 
-mat = np.real(random_hermitian(n_qubits, seed=1234))
-circuit = IQP(mat)
-observable = SparsePauliOp("Z" * n_qubits)
-print(f">>> Observable: {observable.paulis}")
-```
+    mat = np.real(random_hermitian(n_qubits, seed=1234))
+    circuit = IQP(mat)
+    observable = SparsePauliOp("Z" * n_qubits)
+    print(f">>> Observable: {observable.paulis}")
+    ```
   </TabItem>
 </Tabs>
 
