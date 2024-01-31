@@ -59,7 +59,7 @@ zxMain(async () => {
   if (currentBranch == "main\n") {
     console.error(`
         Please create a dedicated branch to regenerate the API docs correctly.
-        Use 'git checkout -b <name-branch>' to continue)`);
+        Use 'git checkout -b <name-branch>' to continue`);
     process.exit(1);
   }
 
