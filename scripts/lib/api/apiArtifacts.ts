@@ -11,75 +11,56 @@
 // that they have been altered from the originals.
 
 import { $ } from "zx";
+import { createWriteStream } from "node:fs";
+import { finished } from "stream/promises";
+import { Readable } from "stream";
+import fs from "fs";
+
 import { pathExists, getRoot } from "../fs";
 import { mkdirp } from "mkdirp";
 import { Pkg } from "./Pkg";
 
-export function getArtifactID(url: string) {
-  return url.replace(/.*\//, "");
-}
-
-export async function downloadAndStoreCIArtifact(
+export async function downloadCIArtifact(
   pkgName: string,
   artifactUrl: string,
-  artifactStorage: string,
   destination: string,
 ) {
-  const artifactId = getArtifactID(artifactUrl);
-
-  await $`gh api \
-    -H "Accept: application/vnd.github+json" \
-    -H "X-GitHub-Api-Version: 2022-11-28" \
-    /repos/Qiskit/${pkgName}/actions/artifacts/${artifactId}/zip > ${destination}/artifact.zip`;
-
-  await $`cp -a ${destination}/artifact.zip ${artifactStorage}/artifact.zip`;
+  const response = await fetch(artifactUrl);
+  if (response.ok) {
+    const stream = createWriteStream(destination);
+    await finished(Readable.fromWeb(response.body as any).pipe(stream));
+  } else {
+    throw new Error(`Error downloading the ${pkgName} artifact from Box.`);
+  }
 }
 
-export async function getStoredCIArtifact(
-  pkgName: string,
-  pkgVersionWithoutPatch: string,
-  artifactStorage: string,
-  destination: string,
-) {
-  if (!(await pathExists(artifactStorage))) {
+export async function loadCIArtifact(pkg: Pkg, artifactFolder: string) {
+  if (await pathExists(artifactFolder)) {
+    await $`rm -rf ${artifactFolder}/*`;
+  } else {
+    await mkdirp(artifactFolder);
+  }
+
+  const artifactJson = JSON.parse(
+    fs.readFileSync(
+      `${getRoot()}/scripts/lib/api/api-html-artifacts.json`,
+      "utf-8",
+    ),
+  );
+
+  if (!(`${pkg.versionWithoutPatch}` in artifactJson[`${pkg.name}`])) {
     throw new Error(
-      `Package ${pkgName} version ${pkgVersionWithoutPatch} doesn't have an artifact stored. You can download one using the '-a <artifact-url>' argument.`,
+      `Package ${pkg.name} version ${pkg.versionWithoutPatch} doesn't have an artifact stored. You can add one to https://ibm.ent.box.com/folder/246867452622`,
     );
   }
 
-  await $`cp -a ${artifactStorage}/artifact.zip ${destination}/artifact.zip`;
-}
+  const artifactUrl = artifactJson[`${pkg.name}`][`${pkg.versionWithoutPatch}`];
 
-export async function loadCIArtifact(
-  pkg: Pkg,
-  artifactUrl: string | undefined,
-  destination: string,
-) {
-  if (await pathExists(destination)) {
-    await $`rm -rf ${destination}/*`;
-  } else {
-    await mkdirp(destination);
-  }
+  await downloadCIArtifact(
+    pkg.name,
+    artifactUrl,
+    `${artifactFolder}/artifact.zip`,
+  );
 
-  const artifactStorage = `${getRoot()}/scripts/api-artifacts/${pkg.name}/${
-    pkg.versionWithoutPatch
-  }`;
-
-  if (artifactUrl) {
-    await downloadAndStoreCIArtifact(
-      pkg.name,
-      artifactUrl,
-      artifactStorage,
-      destination,
-    );
-  } else {
-    await getStoredCIArtifact(
-      pkg.name,
-      pkg.versionWithoutPatch,
-      artifactStorage,
-      destination,
-    );
-  }
-
-  await $`unzip -qqo ${destination}/artifact.zip -d ${destination}/artifact`;
+  await $`unzip -qqo ${artifactFolder}/artifact.zip -d ${artifactFolder}/artifact`;
 }

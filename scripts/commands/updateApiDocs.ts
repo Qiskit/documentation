@@ -47,7 +47,6 @@ interface Arguments {
   package: string;
   version: string;
   historical: boolean;
-  artifact: string | undefined;
 }
 
 const readArgs = (): Arguments => {
@@ -71,13 +70,6 @@ const readArgs = (): Arguments => {
       default: false,
       description: "Is this a prior release?",
     })
-    .option("artifact", {
-      alias: "a",
-      type: "string",
-      demandOption: false,
-      description:
-        "The URL for the CI artifact to download. Must be from GitHub Actions.",
-    })
     .parseSync();
 };
 
@@ -100,7 +92,7 @@ zxMain(async () => {
   );
 
   const artifactFolder = pkg.ciArtifactFolder();
-  await loadCIArtifact(pkg, args.artifact, artifactFolder);
+  await loadCIArtifact(pkg, artifactFolder);
 
   const outputDir = pkg.outputDir(`${getRoot()}/docs`);
   if (pkg.historical && !(await pathExists(outputDir))) {
