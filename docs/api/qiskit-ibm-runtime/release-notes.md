@@ -6,15 +6,45 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes" />
 
-# Qiskit Runtime IBM Client 0.17 release notes
+# Qiskit Runtime IBM Client 0.18 release notes
+
+<span id="release-notes-0-18-0" />
+
+<span id="id1" />
+
+## 0.18.0
+
+<span id="release-notes-0-18-0-new-features" />
+
+### New Features
+
+*   Added a new parameter, dynamic\_circuits to [`backends()`](qiskit_ibm_runtime.QiskitRuntimeService#backends "qiskit_ibm_runtime.QiskitRuntimeService.backends") to allow filtering of backends that support dynamic circuits.
+
+*   Added `max_time` parameter to `IBMBackend.open_session()`.
+
+*   Added a method `RuntimeJob.queue_info()` to get the queue information from the backend. This feature was transferred from `qiskit_ibm_provider`.
+
+<span id="release-notes-0-18-0-deprecation-notes" />
+
+### Deprecation Notes
+
+*   [`runtime()`](qiskit_ibm_runtime.QiskitRuntimeService#runtime "qiskit_ibm_runtime.QiskitRuntimeService.runtime") has been deprecated.
+
+<span id="release-notes-0-18-0-bug-fixes" />
+
+### Bug Fixes
+
+*   Many methods in [`RuntimeJob`](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.RuntimeJob") require retrieving the job data from the API with `job_get()`. This API call will now exclude the `params` field by default because they are only necessary in [`qiskit_ibm_runtime.RuntimeJob.inputs()`](qiskit_ibm_runtime.RuntimeJob#inputs "qiskit_ibm_runtime.RuntimeJob.inputs").
 
 <span id="release-notes-0-17-0" />
 
-<span id="id1" />
+<span id="id2" />
 
 ## 0.17.0
 
 <span id="release-notes-0-17-0-new-features" />
+
+<span id="id3" />
 
 ### New Features
 
@@ -23,6 +53,8 @@ in_page_toc_max_heading_level: 2
 *   [`details()`](qiskit_ibm_runtime.Session#details "qiskit_ibm_runtime.Session.details") has a new field, activated\_at, which is the timestamp of when the session was changed to active.
 
 <span id="release-notes-0-17-0-bug-fixes" />
+
+<span id="id4" />
 
 ### Bug Fixes
 
@@ -42,7 +74,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-16-0" />
 
-<span id="id2" />
+<span id="id5" />
 
 ## 0.16.0
 
@@ -54,7 +86,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-16-0-new-features" />
 
-<span id="id3" />
+<span id="id6" />
 
 ### New Features
 
@@ -68,7 +100,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-16-0-bug-fixes" />
 
-<span id="id4" />
+<span id="id7" />
 
 ### Bug Fixes
 
@@ -76,13 +108,13 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-15-1" />
 
-<span id="id5" />
+<span id="id8" />
 
 ## 0.15.1
 
 <span id="release-notes-0-15-1-bug-fixes" />
 
-<span id="id6" />
+<span id="id9" />
 
 ### Bug Fixes
 
@@ -90,17 +122,17 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-15-0" />
 
-<span id="id7" />
+<span id="id10" />
 
 ## 0.15.0
 
 <span id="release-notes-0-15-0-new-features" />
 
-<span id="id8" />
+<span id="id11" />
 
 ### New Features
 
-*   A new module `qiskit_ibm_runtime.fake_provider`, has been added to provide access to a series of fake backends derived from snapshots of IBM Quantum devices. This functionality was originally provided by the `qiskit.providers.fake_provider` module, but will soon be deprecated in favor of `qiskit_ibm_runtime.fake_provider`.
+*   A new module [`qiskit_ibm_runtime.fake_provider`](fake_provider#module-qiskit_ibm_runtime.fake_provider "qiskit_ibm_runtime.fake_provider"), has been added to provide access to a series of fake backends derived from snapshots of IBM Quantum devices. This functionality was originally provided by the `qiskit.providers.fake_provider` module, but will soon be deprecated in favor of [`qiskit_ibm_runtime.fake_provider`](fake_provider#module-qiskit_ibm_runtime.fake_provider "qiskit_ibm_runtime.fake_provider").
 
     The snapshots provided by the fake backends are useful for local testing of the transpiler and performing local noisy simulations of the system before running on real devices. Here is an example of using a fake backend for transpilation and simulation:
 
@@ -135,13 +167,15 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-15-0-deprecation-notes" />
 
+<span id="id12" />
+
 ### Deprecation Notes
 
 *   Usage of the `~/.qiskit/qiskitrc.json` file for account information has been deprecated. Use `~/.qiskit/qiskit-ibm.json` instead.
 
 <span id="release-notes-0-15-0-bug-fixes" />
 
-<span id="id9" />
+<span id="id13" />
 
 ### Bug Fixes
 
@@ -161,13 +195,13 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-14-0" />
 
-<span id="id10" />
+<span id="id14" />
 
 ## 0.14.0
 
 <span id="release-notes-0-14-0-new-features" />
 
-<span id="id11" />
+<span id="id15" />
 
 ### New Features
 
@@ -177,7 +211,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-14-0-deprecation-notes" />
 
-<span id="id12" />
+<span id="id16" />
 
 ### Deprecation Notes
 
@@ -185,13 +219,13 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-13-0" />
 
-<span id="id13" />
+<span id="id17" />
 
 ## 0.13.0
 
 <span id="release-notes-0-13-0-new-features" />
 
-<span id="id14" />
+<span id="id18" />
 
 ### New Features
 
@@ -203,7 +237,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-13-0-upgrade-notes" />
 
-<span id="id15" />
+<span id="id19" />
 
 ### Upgrade Notes
 
@@ -213,7 +247,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-13-0-bug-fixes" />
 
-<span id="id16" />
+<span id="id20" />
 
 ### Bug Fixes
 
@@ -223,13 +257,13 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-12-2" />
 
-<span id="id17" />
+<span id="id21" />
 
 ## 0.12.2
 
 <span id="release-notes-0-12-2-new-features" />
 
-<span id="id18" />
+<span id="id22" />
 
 ### New Features
 
@@ -243,7 +277,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-12-2-upgrade-notes" />
 
-<span id="id19" />
+<span id="id23" />
 
 ### Upgrade Notes
 
@@ -251,13 +285,13 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-12-1" />
 
-<span id="id20" />
+<span id="id24" />
 
 ## 0.12.1
 
 <span id="release-notes-0-12-1-new-features" />
 
-<span id="id21" />
+<span id="id25" />
 
 ### New Features
 
@@ -269,7 +303,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-12-1-bug-fixes" />
 
-<span id="id22" />
+<span id="id26" />
 
 ### Bug Fixes
 
@@ -283,13 +317,13 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-12-0" />
 
-<span id="id23" />
+<span id="id27" />
 
 ## 0.12.0
 
 <span id="release-notes-0-12-0-new-features" />
 
-<span id="id24" />
+<span id="id28" />
 
 ### New Features
 
@@ -310,7 +344,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-12-0-upgrade-notes" />
 
-<span id="id25" />
+<span id="id29" />
 
 ### Upgrade Notes
 
@@ -318,7 +352,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-12-0-deprecation-notes" />
 
-<span id="id26" />
+<span id="id30" />
 
 ### Deprecation Notes
 
@@ -326,7 +360,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-12-0-bug-fixes" />
 
-<span id="id27" />
+<span id="id31" />
 
 ### Bug Fixes
 
@@ -338,13 +372,13 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-11-3" />
 
-<span id="id28" />
+<span id="id32" />
 
 ## 0.11.3
 
 <span id="release-notes-0-11-3-new-features" />
 
-<span id="id29" />
+<span id="id33" />
 
 ### New Features
 
@@ -360,13 +394,13 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-11-2" />
 
-<span id="id30" />
+<span id="id34" />
 
 ## 0.11.2
 
 <span id="release-notes-0-11-2-new-features" />
 
-<span id="id31" />
+<span id="id35" />
 
 ### New Features
 
@@ -389,7 +423,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-11-2-bug-fixes" />
 
-<span id="id32" />
+<span id="id36" />
 
 ### Bug Fixes
 
@@ -399,13 +433,13 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-11-1" />
 
-<span id="id33" />
+<span id="id37" />
 
 ## 0.11.1
 
 <span id="release-notes-0-11-1-deprecation-notes" />
 
-<span id="id34" />
+<span id="id38" />
 
 ### Deprecation Notes
 
@@ -413,13 +447,13 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-11-0" />
 
-<span id="id35" />
+<span id="id39" />
 
 ## 0.11.0
 
 <span id="release-notes-0-11-0-new-features" />
 
-<span id="id36" />
+<span id="id40" />
 
 ### New Features
 
@@ -441,7 +475,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-11-0-upgrade-notes" />
 
-<span id="id37" />
+<span id="id41" />
 
 ### Upgrade Notes
 
@@ -451,7 +485,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-11-0-deprecation-notes" />
 
-<span id="id38" />
+<span id="id42" />
 
 ### Deprecation Notes
 
@@ -459,13 +493,13 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-10-0" />
 
-<span id="id39" />
+<span id="id43" />
 
 ## 0.10.0
 
 <span id="release-notes-0-10-0-new-features" />
 
-<span id="id40" />
+<span id="id44" />
 
 ### New Features
 
@@ -473,7 +507,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-10-0-upgrade-notes" />
 
-<span id="id41" />
+<span id="id45" />
 
 ### Upgrade Notes
 
@@ -481,7 +515,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-10-0-bug-fixes" />
 
-<span id="id42" />
+<span id="id46" />
 
 ### Bug Fixes
 
@@ -491,13 +525,13 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-9-4" />
 
-<span id="id44" />
+<span id="id48" />
 
 ## 0.9.4
 
 <span id="release-notes-0-9-4-new-features" />
 
-<span id="id45" />
+<span id="id49" />
 
 ### New Features
 
@@ -505,7 +539,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-9-4-upgrade-notes" />
 
-<span id="id46" />
+<span id="id50" />
 
 ### Upgrade Notes
 
@@ -513,7 +547,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-9-4-deprecation-notes" />
 
-<span id="id47" />
+<span id="id51" />
 
 ### Deprecation Notes
 
@@ -527,7 +561,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-9-4-bug-fixes" />
 
-<span id="id48" />
+<span id="id52" />
 
 ### Bug Fixes
 
@@ -535,13 +569,13 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-9-3" />
 
-<span id="id49" />
+<span id="id53" />
 
 ## 0.9.3
 
 <span id="release-notes-0-9-3-upgrade-notes" />
 
-<span id="id50" />
+<span id="id54" />
 
 ### Upgrade Notes
 
@@ -551,7 +585,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-9-3-bug-fixes" />
 
-<span id="id51" />
+<span id="id55" />
 
 ### Bug Fixes
 
@@ -559,13 +593,13 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-9-2" />
 
-<span id="id52" />
+<span id="id56" />
 
 ## 0.9.2
 
 <span id="release-notes-0-9-2-new-features" />
 
-<span id="id53" />
+<span id="id57" />
 
 ### New Features
 
@@ -575,7 +609,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-9-2-upgrade-notes" />
 
-<span id="id54" />
+<span id="id58" />
 
 ### Upgrade Notes
 
@@ -587,7 +621,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-9-2-bug-fixes" />
 
-<span id="id55" />
+<span id="id59" />
 
 ### Bug Fixes
 
@@ -601,13 +635,13 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-9-1" />
 
-<span id="id56" />
+<span id="id60" />
 
 ## 0.9.1
 
 <span id="release-notes-0-9-1-upgrade-notes" />
 
-<span id="id57" />
+<span id="id61" />
 
 ### Upgrade Notes
 
@@ -627,7 +661,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-9-1-deprecation-notes" />
 
-<span id="id58" />
+<span id="id62" />
 
 ### Deprecation Notes
 
@@ -635,7 +669,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-9-1-bug-fixes" />
 
-<span id="id59" />
+<span id="id63" />
 
 ### Bug Fixes
 
@@ -643,7 +677,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-9-1-other-notes" />
 
-<span id="id60" />
+<span id="id64" />
 
 ### Other Notes
 
