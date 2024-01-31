@@ -46,15 +46,15 @@ def filter_paths(paths: list[Path], submit_jobs: bool) -> Iterator[Path]:
             continue
 
         if any(path.match(glob) for glob in NOTEBOOKS_EXCLUDE):
-            this_file = Path(__file__).relative_to(Path(".").resolve())
+            this_file = Path(__file__).resolve()
             print(
                 f"ℹ️ Skipping {path}; to run it, edit `NOTEBOOKS_EXCLUDE` in {this_file}."
             )
             continue
 
         if (
-            any(path.match(glob) for glob in NOTEBOOKS_THAT_SUBMIT_JOBS)
-            and not submit_jobs
+            not submit_jobs
+            and any(path.match(glob) for glob in NOTEBOOKS_THAT_SUBMIT_JOBS)
         ):
             print(
                 f"ℹ️ Skipping {path} as it submits jobs; use the --submit-jobs flag to run it."
