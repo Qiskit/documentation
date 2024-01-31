@@ -42,12 +42,13 @@ jobs:
           # Add your notebook to this list if it needs latex to run
           files: |
             docs/build/circuit-visualization.ipynb
+            docs/transpile/transpiler-stages.ipynb
 
-      - name: Install LaTeX dependencies
+      - name: Install Linux dependencies
         if: steps.latex-changed-files.outputs.any_changed == 'true'
         run: |
           sudo apt-get update
-          sudo apt-get install texlive-pictures texlive-latex-extra poppler-utils
+          sudo apt-get install texlive-pictures texlive-latex-extra poppler-utils graphviz
 
       - name: Install Python packages
         # This is to save our account in the next step. Note that the
