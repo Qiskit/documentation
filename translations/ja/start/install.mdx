@@ -11,9 +11,9 @@ description: Qiskit および Qiskit Runtime を様々なオペレーティン�
 <span id="local"></span>
 ## Install and set up Qiskit with the Qiskit Runtime client
 
-1.  Python をインストールします。 どのバージョンの Python がサポートされているかを判別するには、[setup.py](https://github.com/Qiskit/qiskit/blob/main/setup.py) ファイルで要件を確認してください。  ダウンロード手順については、[Python Beginners Guide](https://wiki.python.org/moin/BeginnersGuide/Download) をご覧ください。
+1.  Python をインストールします。 どのバージョンの Python がサポートされているかを判別するには、[setup.py](https://github.com/Qiskit/qiskit/blob/main/setup.py) ファイルで要件を確認してください。  ダウンロード手順については、[Python Beginners Guide（Python 初心者ガイド）](https://wiki.python.org/moin/BeginnersGuide/Download) をご覧ください。
 
-    Qiskit と他のアプリケーションを分離するには、[Python virtual environments](https://docs.python.org/3.10/tutorial/venv.html) を使用することをお勧めします。  また、Qiskit の操作には、[Jupyter](https://jupyter.org/install) 開発環境の使用をお勧めします。
+    Qiskit と他のアプリケーションを分離するには、[Python 仮想環境](https://docs.python.org/3.10/tutorial/venv.html) を使用することをお勧めします。  また、Qiskit の操作には、[Jupyter](https://jupyter.org/install) 開発環境の使用をお勧めします。
 
     1.  Python だけがインストールされた最小環境を作ります。
 
@@ -59,12 +59,12 @@ description: Qiskit および Qiskit Runtime を様々なオペレーティン�
            </TabItem>
          </OperatingSystemTabs>
 
-2.  [Install pip](https://pip.pypa.io/en/stable/installation/) します。
+2.  [pip をインストール](https://pip.pypa.io/en/stable/installation/) します。
 
 3.  以下のパッケージをインストールします。
 
     <Admonition type="note">
-          常に最新のバージョンを維持するには、以下のコマンドを定期的に実行し直すか、[Qiskit release notes](../api/qiskit/release-notes) および [Qiskit Runtime release notes](../api/qiskit-ibm-runtime/release-notes) を確認してください。
+          常に最新のバージョンを維持するには、以下のコマンドを定期的に実行し直すか、[Qiskit リリースノート](../api/qiskit/release-notes) および [Qiskit Runtime リリースノート](../api/qiskit-ibm-runtime/release-notes) を確認してください。
       </Admonition>
 
     ```shell
@@ -89,7 +89,7 @@ description: Qiskit および Qiskit Runtime を様々なオペレーティン�
     pip install 'qiskit[visualization]'
     ```
 
-ローカルで作業し、Qiskit に組み込まれたシミュレーターを使用する予定である場合は、インストールはこれで完了です。 IBM 量子システムでジョブを実行する場合は、次に[select an access channel](setup-channel)してセットアップを完了させます。
+ローカルで作業し、Qiskit に組み込まれたシミュレーターを使用する予定である場合は、インストールはこれで完了です。 IBM 量子システムでジョブを実行する場合は、次に[アクセスチャンネルを選択](setup-channel)してセットアップを完了させます。
 
 ## トラブルシューティング
 
@@ -100,7 +100,7 @@ description: Qiskit および Qiskit Runtime を様々なオペレーティン�
   ``pip install qiskit`` を使い、Anaconda に仮想環境をセットアップしている場合、
   Jupyter Notebook でチュートリアルを実行する際に、``No Module 'qiskit'`` エラーが
   発生する場合があります。 Qiskit のインストールまたは仮想環境のセットアップ
-  を完了していない場合は、[installation](#qiskit-install) の手順を実行してください。
+  を完了していない場合は、[インストール](#qiskit-install) の手順を実行してください。
 
   このエラーは、Qiskit がインストールされていない環境に Qiskit パッケージ
   をインポートしようとした場合に発生します。 Jupyter Notebook を Anaconda-Navigator から
@@ -122,7 +122,7 @@ description: Qiskit および Qiskit Runtime を様々なオペレーティン�
   多数のオープンソース Python パッケージに依存しています。 お使いのシステムの
   プラットフォームと Python バージョンによっては、特定のパッケージから
   そのシステム用に事前にビルドされたバイナリーが提供されない可能性があります。 Qiskit がサポートしている
-  プラットフォームのリストについては、[Operating system support](#operating-system-support) をご覧ください。
+  プラットフォームのリストについては、[オペレーティングシステムのサポート](#operating-system-support) をご覧ください。
   一部には追加のコンパイラーが必要な場合があります。 プリコンパイルされたバイナリーを
   使用できない場合、``pip`` はソースからパッケージのコンパイルを試みるため、
   手動によるインストールが必要な追加の依存関係が必要となる場合が
@@ -192,7 +192,7 @@ Qiskit はできるだけ多くのオペレーティングシステムをサポ�
 
 ## Qiskit バージョン管理
 
-Qiskit のバージョン番号は [Semantic Versioning](https://semver.org/)に従います。
+Qiskit のバージョン番号は[セマンティックバージョニング](https://semver.org/)に従います。
 The version number is comprised of three primary components: the major, minor, and
 patch versions. For example, in version number `X.Y.Z`, `X` is the major version,
 `Y` is the minor version, and `Z` is the patch version.
@@ -211,52 +211,6 @@ described in more detail below.
   <summary  id="release-schedule">
   Release schedule
   </summary>
-A tentative release schedule is included below:
-
-![](/images/start/install/release_schedule.png)
-
-For an up-to-date release schedule, refer to the Qiskit Github project's
-[milestones list](https://github.com/Qiskit/qiskit/milestones), which always contains the current release plan.
-
-With the release of a new major version, the previous major version is supported
-for at least six months; only bug and security fixes are accepted during this time and only patch releases are published for this major version. A final
-patch version is published when support is dropped, and that release 
-also documents the end of support for that major version series. A longer
-support window is needed for the previous major version as this gives downstream
-Qiskit consumers and their users a chance to migrate their code.
-Downstream libraries that 
-depend on Qiskit should not raise their minimum required Qiskit version to a new
-major version immediately after its release because the library's user base needs time 
-to migrate to the new API changes. Having an extended support window
-for the previous major Qiskit version gives downstream projects time to ensure
-compatibility with the next major version. Downstream projects can provide
-support for two release series at a time to give their users a migration path.
-
-For the purposes of semantic versioning, the Qiskit public API is considered
-any documented module, class, function, or method that is not marked as private
-(with an underscore `_` prefix). However, there can be explicit exceptions made for
-specific documented APIs. In such cases, these APIs will be clearly documented
-as not being considered stable interfaces yet, and a user-visible warning will be
-actively emitted on any use of these unstable interfaces. Additionally, in some
-situations, an interface marked as private is considered part of the public
-API. Typically this only occurs in two cases: either an abstract interface
-definition where subclasses are intended to override/implement a private method
-as part of defining an implementation of the interface, or advanced-usage
-low-level methods that have stable interfaces but are not considered safe to use,
-as the burden is on the user to uphold the class/safety invariants themselves
-(the canonical example of this is the `QuantumCircuit._append` method).
-
-The supported Python versions, minimum supported Rust version (for building
-Qiskit from source), and any Python package dependencies (including the minimum
-supported versions of dependencies) used by Qiskit are not part of the backwards
-compatibility guarantees and may change during any release. Only minor or major
-version releases will raise minimum requirements for using or building Qiskit
-(including adding new dependencies), but patch fixes might include support for
-new versions of Python or other dependencies. Usually the minimum version of a
-dependency is only increased when older dependency versions go out of support or
-when it is not possible to maintain compatibility with the latest release of the
-dependency and the older version.
-
 </details>
 
 <details>
@@ -327,8 +281,8 @@ release had some issue with the sdist package publishing, and a post-release
 ## 次のステップ
 
 <Admonition type="tip" title="Recommendations">
-  -  [Select and set up an IBM Quantum channel](setup-channel)を行います。
-  -  [Configure Qiskit locally](configure-qiskit-local)します。
-  -  [Hello world](hello-world) の手順に従って、量子プログラムを作成して実行します。
-  - [workflow example tutorials](https://learning.quantum.ibm.com/catalog/tutorials?category=workflow-example)の 1 つを試します。
+  -  [IBM 量子チャンネルの選択とセットアップ](setup-channel)を行います。
+  -  [Qiskit をローカルで構成](configure-qiskit-local)します。
+  -  [Hello World](hello-world) の手順に従って、量子プログラムを作成して実行します。
+  - [ワークフローのサンプルチュートリアル](https://learning.quantum.ibm.com/catalog/tutorials?category=workflow-example)の 1 つを試します。
 </Admonition>
