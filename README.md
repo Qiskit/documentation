@@ -252,29 +252,13 @@ To check that formatting is valid without actually making changes, run `npm run 
    3. Click the "Summary" page at the top of the left navbar.
    4. Scroll down to "Artifacts" and look for the artifact related to documentation, such as `html_docs`.
    5. Copy the link by right-clicking on the artifact.
-5. Run `npm run gen-api -- -p <pkg-name> -v <version> -a <artifact-url>` to generate the API documentation downloading a new artifact and to store it in `/scripts/api-artifacts/<pkg-name>/<versions-without-patch>/artifact.zip`,
+5. Run `npm run gen-api -- -p <pkg-name> -v <version> -a <artifact-url>`,
    e.g. `npm run gen-api -- -p qiskit -v 0.45.0 -a https://github.com/Qiskit/qiskit/suites/17881600359/artifacts/1026798160`
 6. When opening your PR, include the CLI arguments you used. That helps us to know exactly how the docs have been generated over time.
-
-Alternatively, you can generate the API docs using the last artifact downloaded for a particular version by not using the `-a <artifact-url>` argument, e.g. `npm run gen-api -- -p qiskit -v 0.45.0`.
 
 If the version is not for the latest stable minor release series, then add `--historical` to the arguments. For example, use `--historical` if the latest stable release is 0.45.\* but you're generating docs for the patch release 0.44.3.
 
 In case you want to save the current version and convert it into a historical one, you can run `npm run make-historical -- -p <pkg-name>` beforehand.
-
-### How to modify the source HTML of an API
-
-The HTML used in the generation of the API docs can be found in `/scripts/api-artifacts/<pkg-name>/<versions-without-patch>/artifact.zip`.
-
-To make changes to it, you can:
-
-1. Uncompress the zip file
-2. Modify the source HTML with your favorite editor
-3. Re-compress the HTML in a zip file called `artifact.zip`.
-
-**Important**: Avoid re-compressing the HTML inside a folder called artifact that might be created when uncompressing the zip file in step 1. All the artifact content (`apidoc/`, `stubs/`, `release-notes.html`, etc) should be on the root of the zip file.
-
-Manual changes to the HTML should only be done for historical API docs. When possible, it's better to fix the original source repository rather than change the file in the `qiskit/documentation` repo.
 
 # How to write the documentation
 
