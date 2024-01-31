@@ -1,8 +1,16 @@
+---
+title: TensoredMeasFitter
+description: API reference for qiskit.ignis.mitigation.TensoredMeasFitter
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.ignis.mitigation.TensoredMeasFitter
+---
+
 # qiskit.ignis.mitigation.TensoredMeasFitter
 
+<span id="qiskit.ignis.mitigation.TensoredMeasFitter" />
 
-
-`TensoredMeasFitter(results, mit_pattern, substate_labels_list=None, circlabel='')`
+`TensoredMeasFitter(results, mit_pattern, substate_labels_list=None, circlabel='')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/mitigation/measurement/fitters.py "view source code")
 
 Measurement correction fitter for a tensored calibration.
 
@@ -19,7 +27,9 @@ Initialize a measurement calibration matrix from the results of running the circ
 
 **ValueError** – if the mit\_pattern doesn’t match the substate\_labels\_list
 
+### \_\_init\_\_
 
+<span id="qiskit.ignis.mitigation.TensoredMeasFitter.__init__" />
 
 `__init__(results, mit_pattern, substate_labels_list=None, circlabel='')`
 
@@ -54,7 +64,9 @@ Initialize a measurement calibration matrix from the results of running the circ
 | [`nqubits`](#qiskit.ignis.mitigation.TensoredMeasFitter.nqubits "qiskit.ignis.mitigation.TensoredMeasFitter.nqubits")                                        | Return \_qubit\_list\_sizes.                        |
 | [`substate_labels_list`](#qiskit.ignis.mitigation.TensoredMeasFitter.substate_labels_list "qiskit.ignis.mitigation.TensoredMeasFitter.substate_labels_list") | Return \_substate\_labels\_list.                    |
 
+### add\_data
 
+<span id="qiskit.ignis.mitigation.TensoredMeasFitter.add_data" />
 
 `add_data(new_results, rebuild_cal_matrix=True)`
 
@@ -62,28 +74,36 @@ Add measurement calibration data
 
 **Parameters**
 
-*   **new\_results** (*list or* [*qiskit.result.Result*](qiskit.result.Result#qiskit.result.Result "qiskit.result.Result")) – a single result or list of Result objects.
+*   **new\_results** (*list or* [*qiskit.result.Result*](qiskit.result.Result "qiskit.result.Result")) – a single result or list of Result objects.
 *   **rebuild\_cal\_matrix** (*bool*) – rebuild the calibration matrix
 
+### cal\_matrices
 
+<span id="qiskit.ignis.mitigation.TensoredMeasFitter.cal_matrices" />
 
 `property cal_matrices`
 
 Return cal\_matrices.
 
+### filter
 
+<span id="qiskit.ignis.mitigation.TensoredMeasFitter.filter" />
 
 `property filter`
 
 Return a measurement filter using the cal matrices.
 
+### nqubits
 
+<span id="qiskit.ignis.mitigation.TensoredMeasFitter.nqubits" />
 
 `property nqubits`
 
 Return \_qubit\_list\_sizes.
 
+### plot\_calibration
 
+<span id="qiskit.ignis.mitigation.TensoredMeasFitter.plot_calibration" />
 
 `plot_calibration(cal_index=0, ax=None, show_plot=True)`
 
@@ -100,7 +120,9 @@ Plot one of the calibration matrices (2D color grid plot).
 *   **QiskitError** – if \_cal\_matrices was not set.
 *   **ImportError** – if matplotlib was not installed.
 
+### readout\_fidelity
 
+<span id="qiskit.ignis.mitigation.TensoredMeasFitter.readout_fidelity" />
 
 `readout_fidelity(cal_index=0, label_list=None)`
 
@@ -127,8 +149,11 @@ numpy.array
 
 The on-diagonal elements of the calibration matrices are the probabilities of measuring state ‘x’ given preparation of state ‘x’.
 
+### substate\_labels\_list
 
+<span id="qiskit.ignis.mitigation.TensoredMeasFitter.substate_labels_list" />
 
 `property substate_labels_list`
 
 Return \_substate\_labels\_list.
+

@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.InverseCancellation
 
 <span id="qiskit.transpiler.passes.InverseCancellation" />
 
-`qiskit.transpiler.passes.InverseCancellation(*args, **kwargs)`
+`qiskit.transpiler.passes.InverseCancellation(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/optimization/inverse_cancellation.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -20,11 +20,11 @@ Initialize InverseCancellation pass.
 
 **Parameters**
 
-**gates\_to\_cancel** – list of gates to cancel
+**gates\_to\_cancel** – List describing the gates to cancel. Each element of the list is either a single gate or a pair of gates. If a single gate, then it should be self-inverse. If a pair of gates, then the gates in the pair should be inverses of each other.
 
 **Raises**
 
-[**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – Initialization raises an error when the input is not a self-inverse gate or a two-tuple of inverse gates.
+[**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – Input is not a self-inverse gate or a pair of inverse gates.
 
 ## Attributes
 

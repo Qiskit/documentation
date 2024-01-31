@@ -1,8 +1,16 @@
+---
+title: HartreeFock
+description: API reference for qiskit.chemistry.components.initial_states.HartreeFock
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.components.initial_states.HartreeFock
+---
+
 # qiskit.chemistry.components.initial\_states.HartreeFock
 
+<span id="qiskit.chemistry.components.initial_states.HartreeFock" />
 
-
-`HartreeFock(num_orbitals, num_particles, qubit_mapping='parity', two_qubit_reduction=True, sq_list=None)`
+`HartreeFock(num_orbitals, num_particles, qubit_mapping='parity', two_qubit_reduction=True, sq_list=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/components/initial_states/hartree_fock.py "view source code")
 
 A Hartree-Fock initial state.
 
@@ -19,7 +27,9 @@ A Hartree-Fock initial state.
 *   **ValueError** – wrong setting in num\_particles and num\_orbitals.
 *   **ValueError** – wrong setting for computed num\_qubits and supplied num\_qubits.
 
+### \_\_init\_\_
 
+<span id="qiskit.chemistry.components.initial_states.HartreeFock.__init__" />
 
 `__init__(num_orbitals, num_particles, qubit_mapping='parity', two_qubit_reduction=True, sq_list=None)`
 
@@ -49,13 +59,17 @@ A Hartree-Fock initial state.
 | ------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------- |
 | [`bitstr`](#qiskit.chemistry.components.initial_states.HartreeFock.bitstr "qiskit.chemistry.components.initial_states.HartreeFock.bitstr") | Getter of the bit string represented the statevector. |
 
+### bitstr
 
+<span id="qiskit.chemistry.components.initial_states.HartreeFock.bitstr" />
 
 `property bitstr`
 
 Getter of the bit string represented the statevector.
 
+### construct\_circuit
 
+<span id="qiskit.chemistry.components.initial_states.HartreeFock.construct_circuit" />
 
 `construct_circuit(mode='circuit', register=None)`
 
@@ -64,7 +78,7 @@ Construct the statevector of desired initial state.
 **Parameters**
 
 *   **mode** (*string*) – vector or circuit. The vector mode produces the vector. While the circuit constructs the quantum circuit corresponding that vector.
-*   **register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister#qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – register for circuit construction.
+*   **register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – register for circuit construction.
 
 **Returns**
 
@@ -72,8 +86,9 @@ statevector.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or numpy.ndarray
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or numpy.ndarray
 
 **Raises**
 
 **ValueError** – when mode is not ‘vector’ or ‘circuit’.
+

@@ -1,10 +1,18 @@
+---
+title: VQE
+description: API reference for qiskit.aqua.algorithms.VQE
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.algorithms.VQE
+---
+
 <span id="qiskit-aqua-algorithms-vqe" />
 
 # qiskit.aqua.algorithms.VQE
 
+<span id="qiskit.aqua.algorithms.VQE" />
 
-
-`VQE(operator=None, var_form=None, optimizer=None, initial_point=None, gradient=None, expectation=None, include_custom=False, max_evals_grouped=1, aux_operators=None, callback=None, quantum_instance=None)`
+`VQE(operator=None, var_form=None, optimizer=None, initial_point=None, gradient=None, expectation=None, include_custom=False, max_evals_grouped=1, aux_operators=None, callback=None, quantum_instance=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/minimum_eigen_solvers/vqe.py "view source code")
 
 The Variational Quantum Eigensolver algorithm.
 
@@ -27,14 +35,16 @@ The length of the *initial\_point* list value must match the number of the param
 *   **optimizer** (`Optional`\[`Optimizer`]) – A classical optimizer.
 *   **initial\_point** (`Optional`\[`ndarray`]) – An optional initial point (i.e. initial parameter values) for the optimizer. If `None` then VQE will look to the variational form for a preferred point and if not will simply compute a random one.
 *   **gradient** (`Union`\[`GradientBase`, `Callable`, `None`]) – An optional gradient function or operator for optimizer.
-*   **expectation** (`Optional`\[`ExpectationBase`]) – The Expectation converter for taking the average value of the Observable over the var\_form state function. When `None` (the default) an [`ExpectationFactory`](qiskit.aqua.operators.expectations.ExpectationFactory#qiskit.aqua.operators.expectations.ExpectationFactory "qiskit.aqua.operators.expectations.ExpectationFactory") is used to select an appropriate expectation based on the operator and backend. When using Aer qasm\_simulator backend, with paulis, it is however much faster to leverage custom Aer function for the computation but, although VQE performs much faster with it, the outcome is ideal, with no shot noise, like using a state vector simulator. If you are just looking for the quickest performance when choosing Aer qasm\_simulator and the lack of shot noise is not an issue then set include\_custom parameter here to `True` (defaults to `False`).
+*   **expectation** (`Optional`\[`ExpectationBase`]) – The Expectation converter for taking the average value of the Observable over the var\_form state function. When `None` (the default) an [`ExpectationFactory`](qiskit.aqua.operators.expectations.ExpectationFactory "qiskit.aqua.operators.expectations.ExpectationFactory") is used to select an appropriate expectation based on the operator and backend. When using Aer qasm\_simulator backend, with paulis, it is however much faster to leverage custom Aer function for the computation but, although VQE performs much faster with it, the outcome is ideal, with no shot noise, like using a state vector simulator. If you are just looking for the quickest performance when choosing Aer qasm\_simulator and the lack of shot noise is not an issue then set include\_custom parameter here to `True` (defaults to `False`).
 *   **include\_custom** (`bool`) – When expectation parameter here is None setting this to `True` will allow the factory to include the custom Aer pauli expectation.
 *   **max\_evals\_grouped** (`int`) – Max number of evaluations performed simultaneously. Signals the given optimizer that more than one set of parameters can be supplied so that potentially the expectation values can be computed in parallel. Typically this is possible when a finite difference gradient is used by the optimizer such that multiple points to compute the gradient can be passed and if computed in parallel improve overall execution time. Deprecated if a gradient operator or function is given.
 *   **aux\_operators** (`Optional`\[`List`\[`Union`\[`OperatorBase`, `LegacyBaseOperator`, `None`]]]) – Optional list of auxiliary operators to be evaluated with the eigenstate of the minimum eigenvalue main result and their expectation values returned. For instance in chemistry these can be dipole operators, total particle count operators so we can get values for these at the ground state.
 *   **callback** (`Optional`\[`Callable`\[\[`int`, `ndarray`, `float`, `float`], `None`]]) – a callback that can access the intermediate data during the optimization. Four parameter values are passed to the callback as follows during each evaluation by the optimizer for its current set of parameters as it works towards the minimum. These are: the evaluation count, the optimizer parameters for the variational form, the evaluated mean and the evaluated standard deviation.\`
 *   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – Quantum Instance or Backend
 
+### \_\_init\_\_
 
+<span id="qiskit.aqua.algorithms.VQE.__init__" />
 
 `__init__(operator=None, var_form=None, optimizer=None, initial_point=None, gradient=None, expectation=None, include_custom=False, max_evals_grouped=1, aux_operators=None, callback=None, quantum_instance=None)`
 
@@ -45,7 +55,7 @@ The length of the *initial\_point* list value must match the number of the param
 *   **optimizer** (`Optional`\[`Optimizer`]) – A classical optimizer.
 *   **initial\_point** (`Optional`\[`ndarray`]) – An optional initial point (i.e. initial parameter values) for the optimizer. If `None` then VQE will look to the variational form for a preferred point and if not will simply compute a random one.
 *   **gradient** (`Union`\[`GradientBase`, `Callable`, `None`]) – An optional gradient function or operator for optimizer.
-*   **expectation** (`Optional`\[`ExpectationBase`]) – The Expectation converter for taking the average value of the Observable over the var\_form state function. When `None` (the default) an [`ExpectationFactory`](qiskit.aqua.operators.expectations.ExpectationFactory#qiskit.aqua.operators.expectations.ExpectationFactory "qiskit.aqua.operators.expectations.ExpectationFactory") is used to select an appropriate expectation based on the operator and backend. When using Aer qasm\_simulator backend, with paulis, it is however much faster to leverage custom Aer function for the computation but, although VQE performs much faster with it, the outcome is ideal, with no shot noise, like using a state vector simulator. If you are just looking for the quickest performance when choosing Aer qasm\_simulator and the lack of shot noise is not an issue then set include\_custom parameter here to `True` (defaults to `False`).
+*   **expectation** (`Optional`\[`ExpectationBase`]) – The Expectation converter for taking the average value of the Observable over the var\_form state function. When `None` (the default) an [`ExpectationFactory`](qiskit.aqua.operators.expectations.ExpectationFactory "qiskit.aqua.operators.expectations.ExpectationFactory") is used to select an appropriate expectation based on the operator and backend. When using Aer qasm\_simulator backend, with paulis, it is however much faster to leverage custom Aer function for the computation but, although VQE performs much faster with it, the outcome is ideal, with no shot noise, like using a state vector simulator. If you are just looking for the quickest performance when choosing Aer qasm\_simulator and the lack of shot noise is not an issue then set include\_custom parameter here to `True` (defaults to `False`).
 *   **include\_custom** (`bool`) – When expectation parameter here is None setting this to `True` will allow the factory to include the custom Aer pauli expectation.
 *   **max\_evals\_grouped** (`int`) – Max number of evaluations performed simultaneously. Signals the given optimizer that more than one set of parameters can be supplied so that potentially the expectation values can be computed in parallel. Typically this is possible when a finite difference gradient is used by the optimizer such that multiple points to compute the gradient can be passed and if computed in parallel improve overall execution time. Deprecated if a gradient operator or function is given.
 *   **aux\_operators** (`Optional`\[`List`\[`Union`\[`OperatorBase`, `LegacyBaseOperator`, `None`]]]) – Optional list of auxiliary operators to be evaluated with the eigenstate of the minimum eigenvalue main result and their expectation values returned. For instance in chemistry these can be dipole operators, total particle count operators so we can get values for these at the ground state.
@@ -88,7 +98,9 @@ The length of the *initial\_point* list value must match the number of the param
 | [`setting`](#qiskit.aqua.algorithms.VQE.setting "qiskit.aqua.algorithms.VQE.setting")                            | Prepare the setting of VQE as a string.                                                            |
 | [`var_form`](#qiskit.aqua.algorithms.VQE.var_form "qiskit.aqua.algorithms.VQE.var_form")                         | Returns variational form                                                                           |
 
+### aux\_operators
 
+<span id="qiskit.aqua.algorithms.VQE.aux_operators" />
 
 `property aux_operators`
 
@@ -98,7 +110,9 @@ Returns aux operators
 
 `Optional`\[`List`\[`Optional`\[`OperatorBase`]]]
 
+### backend
 
+<span id="qiskit.aqua.algorithms.VQE.backend" />
 
 `property backend`
 
@@ -108,13 +122,17 @@ Returns backend.
 
 `Union`\[`Backend`, `BaseBackend`]
 
+### cleanup\_parameterized\_circuits
 
+<span id="qiskit.aqua.algorithms.VQE.cleanup_parameterized_circuits" />
 
 `cleanup_parameterized_circuits()`
 
 set parameterized circuits to None
 
+### compute\_minimum\_eigenvalue
 
+<span id="qiskit.aqua.algorithms.VQE.compute_minimum_eigenvalue" />
 
 `compute_minimum_eigenvalue(operator=None, aux_operators=None)`
 
@@ -133,7 +151,9 @@ Computes minimum eigenvalue. Operator and aux\_operators can be supplied here an
 
 MinimumEigensolverResult
 
+### construct\_circuit
 
+<span id="qiskit.aqua.algorithms.VQE.construct_circuit" />
 
 `construct_circuit(parameter)`
 
@@ -151,7 +171,9 @@ Return the circuits used to compute the expectation value.
 
 A list of the circuits used to compute the expectation value.
 
+### construct\_expectation
 
+<span id="qiskit.aqua.algorithms.VQE.construct_expectation" />
 
 `construct_expectation(parameter)`
 
@@ -171,9 +193,11 @@ The Operator equalling the measurement of the ansatz `StateFn` by the Observable
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If no operator has been provided.
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If no operator has been provided.
 
+### expectation
 
+<span id="qiskit.aqua.algorithms.VQE.expectation" />
 
 `property expectation`
 
@@ -183,7 +207,9 @@ The expectation value algorithm used to construct the expectation measurement fr
 
 `ExpectationBase`
 
+### find\_minimum
 
+<span id="qiskit.aqua.algorithms.VQE.find_minimum" />
 
 `find_minimum(initial_point=None, var_form=None, cost_fn=None, optimizer=None, gradient_fn=None)`
 
@@ -209,7 +235,9 @@ dict
 
 **ValueError** – invalid input
 
+### get\_optimal\_circuit
 
+<span id="qiskit.aqua.algorithms.VQE.get_optimal_circuit" />
 
 `get_optimal_circuit()`
 
@@ -219,7 +247,9 @@ Get the circuit with the optimal parameters.
 
 `QuantumCircuit`
 
+### get\_optimal\_cost
 
+<span id="qiskit.aqua.algorithms.VQE.get_optimal_cost" />
 
 `get_optimal_cost()`
 
@@ -229,7 +259,9 @@ Get the minimal cost or energy found by the VQE.
 
 `float`
 
+### get\_optimal\_vector
 
+<span id="qiskit.aqua.algorithms.VQE.get_optimal_vector" />
 
 `get_optimal_vector()`
 
@@ -239,19 +271,25 @@ Get the simulation outcome of the optimal circuit.
 
 `Union`\[`List`\[`float`], `Dict`\[`str`, `int`]]
 
+### get\_prob\_vector\_for\_params
 
+<span id="qiskit.aqua.algorithms.VQE.get_prob_vector_for_params" />
 
 `get_prob_vector_for_params(construct_circuit_fn, params_s, quantum_instance, construct_circuit_args=None)`
 
 Helper function to get probability vectors for a set of params
 
+### get\_probabilities\_for\_counts
 
+<span id="qiskit.aqua.algorithms.VQE.get_probabilities_for_counts" />
 
 `get_probabilities_for_counts(counts)`
 
 get probabilities for counts
 
+### initial\_point
 
+<span id="qiskit.aqua.algorithms.VQE.initial_point" />
 
 `property initial_point`
 
@@ -261,7 +299,9 @@ Returns initial point
 
 `Optional`\[`ndarray`]
 
+### operator
 
+<span id="qiskit.aqua.algorithms.VQE.operator" />
 
 `property operator`
 
@@ -271,7 +311,9 @@ Returns operator
 
 `Optional`\[`OperatorBase`]
 
+### optimal\_params
 
+<span id="qiskit.aqua.algorithms.VQE.optimal_params" />
 
 `property optimal_params`
 
@@ -281,7 +323,9 @@ The optimal parameters for the variational form.
 
 `List`\[`float`]
 
+### optimizer
 
+<span id="qiskit.aqua.algorithms.VQE.optimizer" />
 
 `property optimizer`
 
@@ -291,7 +335,9 @@ Returns optimizer
 
 `Optional`\[`Optimizer`]
 
+### print\_settings
 
+<span id="qiskit.aqua.algorithms.VQE.print_settings" />
 
 `print_settings()`
 
@@ -305,7 +351,9 @@ the formatted setting of VQE
 
 str
 
+### quantum\_instance
 
+<span id="qiskit.aqua.algorithms.VQE.quantum_instance" />
 
 `property quantum_instance`
 
@@ -315,13 +363,17 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
+### random
 
+<span id="qiskit.aqua.algorithms.VQE.random" />
 
 `property random`
 
 Return a numpy random.
 
+### run
 
+<span id="qiskit.aqua.algorithms.VQE.run" />
 
 `run(quantum_instance=None, **kwargs)`
 
@@ -342,9 +394,11 @@ dict
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
 
+### set\_backend
 
+<span id="qiskit.aqua.algorithms.VQE.set_backend" />
 
 `set_backend(backend, **kwargs)`
 
@@ -354,13 +408,17 @@ Sets backend with configuration.
 
 `None`
 
+### setting
 
+<span id="qiskit.aqua.algorithms.VQE.setting" />
 
 `property setting`
 
 Prepare the setting of VQE as a string.
 
+### supports\_aux\_operators
 
+<span id="qiskit.aqua.algorithms.VQE.supports_aux_operators" />
 
 `classmethod supports_aux_operators()`
 
@@ -376,7 +434,9 @@ If the minimum eigensolver computes an eigenstate of the main operator then it c
 
 True if aux\_operator expectations can be evaluated, False otherwise
 
+### var\_form
 
+<span id="qiskit.aqua.algorithms.VQE.var_form" />
 
 `property var_form`
 
@@ -385,3 +445,4 @@ Returns variational form
 **Return type**
 
 `Union`\[`QuantumCircuit`, `VariationalForm`, `None`]
+

@@ -34,7 +34,7 @@ qc = EfficientSU2(12, entanglement='circular', reps=1)
 qc.decompose(reps=1).draw('mpl', style='iqp')
 ```
 
-![The 12-qubit test circuit](/images/transpile/representing_quantum_computers/qc-circular.png)
+![The 12-qubit test circuit](/images/transpile/representing_quantum_computers/qc-circular.png "Test circuit")
 
 ### Transpile the circuit to `backend` target
 
@@ -45,7 +45,7 @@ qc_t_target = transpile(qc, target=target, seed_transpiler=12345)
 qc_t_target.draw('mpl', style='iqp', idle_wires=False)
 ```
 
-![The transpiled 12-qubit ansatz using Target information](/images/transpile/representing_quantum_computers/qc_t_target.png)
+![The transpiled 12-qubit ansatz using Target information](/images/transpile/representing_quantum_computers/qc_t_target.png "Circuit transpiled with optimization level 1")
 
 This example is used in later sections of this topic to illustrate that the coupling map and basis gates are the essential pieces of information to pass to the transpiler for optimal circuit construction. The system can usually select default settings for other information that is not passed in, such as timing and scheduling.
 
@@ -70,7 +70,7 @@ qc_t_cm_lv0 = transpile(qc, coupling_map=coupling_map, optimization_level=0, see
 qc_t_cm_lv0.draw('mpl', style='iqp', idle_wires=False)
 ```
 
-![Ansatz transpiled to coupling map with optimization level 0](/images/transpile/representing_quantum_computers/qc_t_cm_lv0.png)
+![Ansatz transpiled to coupling map with optimization level 0](/images/transpile/representing_quantum_computers/qc_t_cm_lv0.png "Circuit transpiled with a coupling map")
 
 As shown above, several SWAP gates were inserted (each consisting of three CX gates), which will cause a lot of errors on current devices. To see which qubits are selected on the actual qubit topology, use `plot_circuit_layout` from Qiskit Visualizations:
 
@@ -80,7 +80,7 @@ from qiskit.visualization import plot_circuit_layout
 plot_circuit_layout(qc_t_cm_lv0, backend, view='physical')
 ```
 
-![Circuit Layout for optimization level 0](/images/transpile/representing_quantum_computers/circ_layout_lv0.png)
+![Circuit Layout for optimization level 0](/images/transpile/representing_quantum_computers/circ_layout_lv0.png "Circuit layout for optimization level 0")
 
 This shows that our virtual qubits 0-11 were trivially mapped to the line of physical qubits 0-11. Let's return to the default (`optimization_level=1`), which uses `VF2Layout` if any routing is required.
 
@@ -89,7 +89,7 @@ qc_t_cm_lv1 = transpile(qc, coupling_map=coupling_map, seed_transpiler=11)
 qc_t_cm_lv1.draw('mpl', style='iqp', idle_wires=False)
 ```
 
-![Ansatz transpiled to coupling map with optimization level 1](/images/transpile/representing_quantum_computers/qc_t_cm_lv1.png)
+![Ansatz transpiled to coupling map with optimization level 1](/images/transpile/representing_quantum_computers/qc_t_cm_lv1.png "Ansatz transpiled to coupling map with optimization level 1")
 
 Now there are no SWAP gates inserted and the physical qubits selected are the same when using the `target` class.
 
@@ -99,7 +99,7 @@ from qiskit.visualization import plot_circuit_layout
 plot_circuit_layout(qc_t_cm_lv1, backend, view='physical')
 ```
 
-![Circuit Layout for default optimization level](/images/transpile/representing_quantum_computers/circ_layout_lv1.png)
+![Circuit Layout for default optimization level](/images/transpile/representing_quantum_computers/circ_layout_lv1.png "Circuit Layout for default optimization level")
 
 Now the layout is in a ring.  Because this layout respects the circuit's connectivity, there are no SWAP gates, providing a much better circuit for execution.
 
@@ -127,7 +127,7 @@ qc_t_cm_bg = transpile(qc, coupling_map=coupling_map, basis_gates=basis_gates, s
 qc_t_cm_bg.draw('mpl', style='iqp', fold=-1, idle_wires=False)
 ```
 
-![Ansatz transpiled to coupling map and basis gates](/images/transpile/representing_quantum_computers/qc_t_cm_bg_lv1.png)
+![Ansatz transpiled to coupling map and basis gates](/images/transpile/representing_quantum_computers/qc_t_cm_bg_lv1.png "Ansatz transpiled to coupling map and basis gates")
 
 Note that the `CXGate`s have been decomposed to `ecr` gates and single-qubit basis gates.
 
@@ -163,7 +163,7 @@ qc_t_cm_bg_et = transpile(qc, target=err_targ, seed_transpiler=11)
 qc_t_cm_bg_et.draw('mpl', style='iqp', fold=-1, idle_wires=False)
 ```
 
-![Ansatz transpiled to our target model](/images/transpile/representing_quantum_computers/qc_t_cm_bg_et_lv1.png)
+![Ansatz transpiled to our target model](/images/transpile/representing_quantum_computers/qc_t_cm_bg_et_lv1.png "Ansatz transpiled to our target model")
 
 Note that by including the error information, the `VF2PostLayout` pass tries to find the optimal qubits to use, resulting in the same circuit that we found originally with the same physical qubits.
 

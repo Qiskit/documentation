@@ -1,10 +1,18 @@
+---
+title: AnalysisResult
+description: API reference for qiskit.providers.ibmq.experiment.AnalysisResult
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.ibmq.experiment.AnalysisResult
+---
+
 <span id="qiskit-providers-ibmq-experiment-analysisresult" />
 
 # qiskit.providers.ibmq.experiment.AnalysisResult
 
+<span id="qiskit.providers.ibmq.experiment.AnalysisResult" />
 
-
-`AnalysisResult(experiment_uuid, device_components, fit, result_type, chisq=None, quality=<ResultQuality.NO_INFORMATION: 'No Information'>, tags=None, result_uuid=None, backend_name=None)`
+`AnalysisResult(experiment_uuid, device_components, fit, result_type, chisq=None, quality=<ResultQuality.NO_INFORMATION: 'No Information'>, tags=None, result_uuid=None, backend_name=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.12/qiskit/providers/ibmq/experiment/analysis_result.py "view source code")
 
 Class representing an analysis result for an experiment.
 
@@ -26,7 +34,9 @@ AnalysisResult constructor.
 
 **IBMQInputValueError** – If an input argument is invalid.
 
+### \_\_init\_\_
 
+<span id="qiskit.providers.ibmq.experiment.AnalysisResult.__init__" />
 
 `__init__(experiment_uuid, device_components, fit, result_type, chisq=None, quality=<ResultQuality.NO_INFORMATION: 'No Information'>, tags=None, result_uuid=None, backend_name=None)`
 
@@ -66,7 +76,9 @@ AnalysisResult constructor.
 | [`updated_datetime`](#qiskit.providers.ibmq.experiment.AnalysisResult.updated_datetime "qiskit.providers.ibmq.experiment.AnalysisResult.updated_datetime")    | Return the timestamp when the experiment was last updated. |
 | [`uuid`](#qiskit.providers.ibmq.experiment.AnalysisResult.uuid "qiskit.providers.ibmq.experiment.AnalysisResult.uuid")                                        | Return UUID of this analysis result.                       |
 
+### creation\_datetime
 
+<span id="qiskit.providers.ibmq.experiment.AnalysisResult.creation_datetime" />
 
 `property creation_datetime`
 
@@ -76,7 +88,9 @@ Return the timestamp when the experiment was created.
 
 `datetime`
 
+### fit
 
+<span id="qiskit.providers.ibmq.experiment.AnalysisResult.fit" />
 
 `property fit`
 
@@ -86,7 +100,9 @@ Return the fit value for the experiment.
 
 `Fit`
 
+### from\_remote\_data
 
+<span id="qiskit.providers.ibmq.experiment.AnalysisResult.from_remote_data" />
 
 `classmethod from_remote_data(remote_data)`
 
@@ -104,7 +120,9 @@ Create an instance of this class from remote data.
 
 An instance of this class.
 
+### quality
 
+<span id="qiskit.providers.ibmq.experiment.AnalysisResult.quality" />
 
 `property quality`
 
@@ -114,7 +132,9 @@ Return the analysis result quality.
 
 `ResultQuality`
 
+### update\_from\_remote\_data
 
+<span id="qiskit.providers.ibmq.experiment.AnalysisResult.update_from_remote_data" />
 
 `update_from_remote_data(remote_data)`
 
@@ -128,7 +148,9 @@ Update the attributes of this instance using remote data.
 
 `None`
 
+### updated\_datetime
 
+<span id="qiskit.providers.ibmq.experiment.AnalysisResult.updated_datetime" />
 
 `property updated_datetime`
 
@@ -138,7 +160,9 @@ Return the timestamp when the experiment was last updated.
 
 `datetime`
 
+### uuid
 
+<span id="qiskit.providers.ibmq.experiment.AnalysisResult.uuid" />
 
 `property uuid`
 
@@ -147,3 +171,4 @@ Return UUID of this analysis result.
 **Return type**
 
 `str`
+

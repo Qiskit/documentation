@@ -1,12 +1,22 @@
+---
+title: OpenQASMLexer
+description: API reference for qiskit.qasm.OpenQASMLexer
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.qasm.OpenQASMLexer
+---
+
 # qiskit.qasm.OpenQASMLexer
 
+<span id="qiskit.qasm.OpenQASMLexer" />
 
-
-`OpenQASMLexer(*args, **kwds)`
+`OpenQASMLexer(*args, **kwds)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/qasm/pygments/lexer.py "view source code")
 
 A pygments lexer for OpenQasm.
 
+### \_\_init\_\_
 
+<span id="qiskit.qasm.OpenQASMLexer.__init__" />
 
 `__init__(**options)`
 
@@ -36,13 +46,17 @@ Initialize self. See help(type(self)) for accurate signature.
 | `priority`        |   |
 | `tokens`          |   |
 
+### add\_filter
 
+<span id="qiskit.qasm.OpenQASMLexer.add_filter" />
 
 `add_filter(filter_, **options)`
 
 Add a new stream filter to this lexer.
 
+### analyse\_text
 
+<span id="qiskit.qasm.OpenQASMLexer.analyse_text" />
 
 `static analyse_text(text)`
 
@@ -50,7 +64,9 @@ Has to return a float between `0` and `1` that indicates if a lexer wants to hig
 
 The LexerMeta metaclass automatically wraps this function so that it works like a static method (no `self` or `cls` parameter) and the return value is automatically converted to float. If the return value is an object that is boolean False it’s the same as if the return values was `0.0`.
 
+### get\_tokens
 
+<span id="qiskit.qasm.OpenQASMLexer.get_tokens" />
 
 `get_tokens(text, unfiltered=False)`
 
@@ -58,10 +74,13 @@ Return an iterable of (tokentype, value) pairs generated from text. If unfiltere
 
 Also preprocess the text, i.e. expand tabs and strip it if wanted and applies registered filters.
 
+### get\_tokens\_unprocessed
 
+<span id="qiskit.qasm.OpenQASMLexer.get_tokens_unprocessed" />
 
 `get_tokens_unprocessed(text, stack=('root'))`
 
 Split `text` into (tokentype, text) pairs.
 
 `stack` is the inital stack (default: `['root']`)
+

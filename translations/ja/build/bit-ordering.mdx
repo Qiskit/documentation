@@ -5,8 +5,8 @@ description: Qiskit の順序付け規則とその規則を選択した理由に
 
 # Qiskit でのビット順序
 
-$n$ ビット（または量子ビット）のセットがある場合、通常。各ビットに $0
-\\rightarrow n-1$ とラベル付けします。 それぞれのソフトウェアやリソースは、コンピューターメモリ内と画面上に表示されるときにこれらのビットをどのように順序付けるかを選択する必要があります。
+$n$ ビット（または量子ビット）のセットがある場合、通常、各ビットに $0
+\\rightarrow n-1$ とラベル付けします。 それぞれのソフトウェアやリソースは、コンピューターメモリー内と画面上に表示されるときにこれらのビットをどのように順序付けるかを選択する必要があります。
 
 ## Qiskit の規則
 
@@ -27,10 +27,9 @@ qc.qubits[0]  # qubit "0"
 Qubit(QuantumRegister(2, 'q'), 0)
 ```
 
-### 回路ダイアグラム
+### 回路図
 
-回路ダイアグラムでは、量子ビット $0$ が最上位の量子ビットであり、量子ビット $n$ が最下位の量子ビットです。 これは `QuantumCircuit.draw` の `reverse_bits` 引数で変更できます（[Change ordering in
-Qiskit](#change-ordering-in-qiskit) をご覧ください）。
+回路図では、量子ビット $0$ が最上位の量子ビットであり、量子ビット $n$ が最下位の量子ビットです。 これは `QuantumCircuit.draw` の `reverse_bits` 引数で変更できます（[Qiskit での順序の変更](#change-ordering-in-qiskit)をご覧ください）。
 
 ```python
 qc.x(1)
@@ -63,7 +62,7 @@ Sampler().run(qc).result().quasi_dists[0]
 
 ### 文字列
 
-ビット（または量子ビット）のリストを文字列として表示または解釈する場合、ビット $n$ は左端のビット、$0$ は右端のビットとなります。 これは通常、最上位の桁を左に数字を書くためであり、Qiksit ではビット $n$ が最上位ビットとして解釈されるためです。
+ビット（または量子ビット）のリストを文字列として表示または解釈する場合、ビット $n$ は左端のビット、$0$ は右端のビットとなります。 これは通常、最上位の桁を左に数字を書くためであり、Qiskit ではビット $n$ が最上位ビットとして解釈されるためです。
 
 例えば、次のセルは、単一量子ビット状態の文字列から `Statevector` 
 を定義しています。 この場合、量子ビット $0$ は状態 $|{+}\\rangle$ であり、
@@ -129,7 +128,7 @@ $$
 
 ## Qiskit での順序の変更
 
-量子ビットを使って逆順で回路を描画するには（量子ビット $0$ を下）、`reverse_bits` 引数を使用します。 これは生成されたダイアグラムのみに影響し、回路には影響しないため、X-gate はそのまま量子ビット $0$ に対して動作します。
+量子ビットを使って逆順で回路を描画するには（量子ビット $0$ を下）、`reverse_bits` 引数を使用します。 これは生成された図のみに影響し、回路には影響しないため、X-gate はそのまま量子ビット $0$ に対して動作します。
 
 ```python
 from qiskit import QuantumCircuit
@@ -163,6 +162,6 @@ q_1: ┤ X ├
 ## 次のステップ
 
 <Admonition type="tip" title="Recommendations">
-  -  [Grover's Algorithm](https://learning.quantum.ibm.com/tutorial/grovers-algorithm) チュートリアルで、回路の使用例をご覧ください。
+  -  [Grover's Algorithm（グローバーのアルゴリズム）](https://learning.quantum.ibm.com/tutorial/grovers-algorithm)チュートリアルで、回路の使用例をご覧ください。
   -  [QuantumCircuit API](/api/qiskit/qiskit.circuit.QuantumCircuit#quantumcircuit) リファレンスを詳しくご覧ください。
 </Admonition>

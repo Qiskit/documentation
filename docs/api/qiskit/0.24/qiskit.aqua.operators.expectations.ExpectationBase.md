@@ -1,14 +1,24 @@
+---
+title: ExpectationBase
+description: API reference for qiskit.aqua.operators.expectations.ExpectationBase
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.operators.expectations.ExpectationBase
+---
+
 <span id="qiskit-aqua-operators-expectations-expectationbase" />
 
 # qiskit.aqua.operators.expectations.ExpectationBase
 
+<span id="qiskit.aqua.operators.expectations.ExpectationBase" />
 
-
-`ExpectationBase`
+`ExpectationBase`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/expectations/expectation_base.py "view source code")
 
 A base for Expectation value converters. Expectations are converters which enable the computation of the expectation value of an Observable with respect to some state function. They traverse an Operator tree, replacing OperatorStateFn measurements with equivalent measurements which are more amenable to computation on quantum or classical hardware. For example, if one would like to measure the expectation value of an Operator `o` expressed as a sum of Paulis with respect to some state function, but only has access to diagonal measurements on Quantum hardware, we can create a measurement \~StateFn(o), use a `PauliExpectation` to convert it to a diagonal measurement and circuit pre-rotations to a append to the state, and sample this circuit on Quantum hardware with a CircuitSampler. All in all, this would be: `my_sampler.convert(my_expect.convert(~StateFn(o)) @ my_state).eval()`.
 
+### \_\_init\_\_
 
+<span id="qiskit.aqua.operators.expectations.ExpectationBase.__init__" />
 
 `__init__()`
 
@@ -22,7 +32,9 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`compute_variance`](#qiskit.aqua.operators.expectations.ExpectationBase.compute_variance "qiskit.aqua.operators.expectations.ExpectationBase.compute_variance")(exp\_op) | Compute the variance of the expectation estimator.                                                                                 |
 | [`convert`](#qiskit.aqua.operators.expectations.ExpectationBase.convert "qiskit.aqua.operators.expectations.ExpectationBase.convert")(operator)                           | Accept an Operator and return a new Operator with the measurements replaced by alternate methods to compute the expectation value. |
 
+### compute\_variance
 
+<span id="qiskit.aqua.operators.expectations.ExpectationBase.compute_variance" />
 
 `abstract compute_variance(exp_op)`
 
@@ -40,7 +52,9 @@ Compute the variance of the expectation estimator.
 
 The variances or lists thereof (if exp\_op contains ListOps) of the expectation value estimation.
 
+### convert
 
+<span id="qiskit.aqua.operators.expectations.ExpectationBase.convert" />
 
 `abstract convert(operator)`
 
@@ -57,3 +71,4 @@ Accept an Operator and return a new Operator with the measurements replaced by a
 **Returns**
 
 The converted operator.
+

@@ -1,12 +1,20 @@
+---
+title: HamiltonianPhaseEstimation
+description: API reference for qiskit.algorithms.HamiltonianPhaseEstimation
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.algorithms.HamiltonianPhaseEstimation
+---
+
 # qiskit.algorithms.HamiltonianPhaseEstimation
 
+<span id="qiskit.algorithms.HamiltonianPhaseEstimation" />
 
-
-`HamiltonianPhaseEstimation(num_evaluation_qubits, quantum_instance=None)`
+`HamiltonianPhaseEstimation(num_evaluation_qubits, quantum_instance=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/phase_estimators/hamiltonian_phase_estimation.py "view source code")
 
 Run the Quantum Phase Estimation algorithm to find the eigenvalues of a Hermitian operator.
 
-This class is nearly the same as [`PhaseEstimation`](qiskit.algorithms.PhaseEstimation#qiskit.algorithms.PhaseEstimation "qiskit.algorithms.PhaseEstimation"), differing only in that the input in that class is a unitary operator, whereas here the input is a Hermitian operator from which a unitary will be obtained by scaling and exponentiating. The scaling is performed in order to prevent the phases from wrapping around $2\pi$. The problem of estimating eigenvalues $\lambda_j$ of the Hermitian operator $H$ is solved by running a circuit representing
+This class is nearly the same as [`PhaseEstimation`](qiskit.algorithms.PhaseEstimation "qiskit.algorithms.PhaseEstimation"), differing only in that the input in that class is a unitary operator, whereas here the input is a Hermitian operator from which a unitary will be obtained by scaling and exponentiating. The scaling is performed in order to prevent the phases from wrapping around $2\pi$. The problem of estimating eigenvalues $\lambda_j$ of the Hermitian operator $H$ is solved by running a circuit representing
 
 $$
 \exp(i b H) |\psi\rangle = \sum_j \exp(i b \lambda_j) c_j |\lambda_j\rangle,
@@ -24,7 +32,7 @@ Here, $b$ is a scaling factor sufficiently large to map positive $\lambda$ to $[
 
 If $H$ is a Pauli sum, the bound $b$ is computed from the sum of the absolute values of the coefficients of the terms. There is no way to reliably recover eigenvalues from phases very near the endpoints of these intervals. Because of this you should be aware that for degenerate cases, such as $H=Z$, the eigenvalues $\pm 1$ will be mapped to the same phase, $\pi$, and so cannot be distinguished. In this case, you need to specify a larger bound as an argument to the method `estimate`.
 
-This class uses and works together with [`PhaseEstimationScale`](qiskit.algorithms.PhaseEstimationScale#qiskit.algorithms.PhaseEstimationScale "qiskit.algorithms.PhaseEstimationScale") to manage scaling the Hamiltonian and the phases that are obtained by the QPE algorithm. This includes setting, or computing, a bound on the eigenvalues of the operator, using this bound to obtain a scale factor, scaling the operator, and shifting and scaling the measured phases to recover the eigenvalues.
+This class uses and works together with [`PhaseEstimationScale`](qiskit.algorithms.PhaseEstimationScale "qiskit.algorithms.PhaseEstimationScale") to manage scaling the Hamiltonian and the phases that are obtained by the QPE algorithm. This includes setting, or computing, a bound on the eigenvalues of the operator, using this bound to obtain a scale factor, scaling the operator, and shifting and scaling the measured phases to recover the eigenvalues.
 
 Note that, although we speak of “evolving” the state according the the Hamiltonian, in the present algorithm, we are not actually considering time evolution. Rather, the role of time is played by the scaling factor, which is chosen to best extract the eigenvalues of the Hamiltonian.
 
@@ -41,7 +49,9 @@ T.E. O’Brien, B. Tarasinski, B.M. Terhal [arXiv:1809.09697](https://arxiv.org/
 *   **num\_evaluation\_qubits** (`int`) – The number of qubits used in estimating the phase. The phase will be estimated as a binary string with this many bits.
 *   **quantum\_instance** (`Union`\[`QuantumInstance`, `BaseBackend`, `None`]) – The quantum instance on which the circuit will be run.
 
+### \_\_init\_\_
 
+<span id="qiskit.algorithms.HamiltonianPhaseEstimation.__init__" />
 
 `__init__(num_evaluation_qubits, quantum_instance=None)`
 
@@ -57,7 +67,9 @@ T.E. O’Brien, B. Tarasinski, B.M. Terhal [arXiv:1809.09697](https://arxiv.org/
 | [`__init__`](#qiskit.algorithms.HamiltonianPhaseEstimation.__init__ "qiskit.algorithms.HamiltonianPhaseEstimation.__init__")(num\_evaluation\_qubits\[, …])         | **type num\_evaluation\_qubits**`int`           |
 | [`estimate`](#qiskit.algorithms.HamiltonianPhaseEstimation.estimate "qiskit.algorithms.HamiltonianPhaseEstimation.estimate")(hamiltonian\[, state\_preparation, …]) | Run the Hamiltonian phase estimation algorithm. |
 
+### estimate
 
+<span id="qiskit.algorithms.HamiltonianPhaseEstimation.estimate" />
 
 `estimate(hamiltonian, state_preparation=None, evolution=None, bound=None)`
 
@@ -82,3 +94,4 @@ HamiltonianPhaseEstimationResult instance containing the result of the estimatio
 
 *   **ValueError** – If `bound` is `None` and `hamiltonian` is not a Pauli sum, i.e. a `PauliSumOp` or a `SummedOp` whose terms are of type `PauliOp`.
 *   **TypeError** – If `evolution` is not of type `EvolutionBase`.
+

@@ -1,12 +1,22 @@
+---
+title: IterativeAmplitudeEstimationResult
+description: API reference for qiskit.algorithms.IterativeAmplitudeEstimationResult
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.algorithms.IterativeAmplitudeEstimationResult
+---
+
 # qiskit.algorithms.IterativeAmplitudeEstimationResult
 
+<span id="qiskit.algorithms.IterativeAmplitudeEstimationResult" />
 
-
-`IterativeAmplitudeEstimationResult`
+`IterativeAmplitudeEstimationResult`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/amplitude_estimators/iae.py "view source code")
 
 The `IterativeAmplitudeEstimation` result object.
 
+### \_\_init\_\_
 
+<span id="qiskit.algorithms.IterativeAmplitudeEstimationResult.__init__" />
 
 `__init__()`
 
@@ -40,7 +50,9 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`shots`](#qiskit.algorithms.IterativeAmplitudeEstimationResult.shots "qiskit.algorithms.IterativeAmplitudeEstimationResult.shots")                                                                         | Return the number of shots used.                                                    |
 | [`theta_intervals`](#qiskit.algorithms.IterativeAmplitudeEstimationResult.theta_intervals "qiskit.algorithms.IterativeAmplitudeEstimationResult.theta_intervals")                                           | Return the confidence intervals for the angles in each iteration.                   |
 
+### alpha
 
+<span id="qiskit.algorithms.IterativeAmplitudeEstimationResult.alpha" />
 
 `property alpha`
 
@@ -50,7 +62,9 @@ Return the confidence level $\alpha$.
 
 `float`
 
+### circuit\_results
 
+<span id="qiskit.algorithms.IterativeAmplitudeEstimationResult.circuit_results" />
 
 `property circuit_results`
 
@@ -60,7 +74,9 @@ Return the circuit results. Can be a statevector or counts dictionary.
 
 `Union`\[`ndarray`, `Dict`\[`str`, `int`], `None`]
 
+### combine
 
+<span id="qiskit.algorithms.IterativeAmplitudeEstimationResult.combine" />
 
 `combine(result)`
 
@@ -74,7 +90,9 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 `None`
 
+### confidence\_interval
 
+<span id="qiskit.algorithms.IterativeAmplitudeEstimationResult.confidence_interval" />
 
 `property confidence_interval`
 
@@ -84,7 +102,9 @@ Return the confidence interval for the amplitude (95% interval by default).
 
 `Tuple`\[`float`, `float`]
 
+### confidence\_interval\_processed
 
+<span id="qiskit.algorithms.IterativeAmplitudeEstimationResult.confidence_interval_processed" />
 
 `property confidence_interval_processed`
 
@@ -94,7 +114,9 @@ Return the post-processed confidence interval.
 
 `Tuple`\[`float`, `float`]
 
+### epsilon\_estimated
 
+<span id="qiskit.algorithms.IterativeAmplitudeEstimationResult.epsilon_estimated" />
 
 `property epsilon_estimated`
 
@@ -104,7 +126,9 @@ Return the estimated half-width of the confidence interval.
 
 `float`
 
+### epsilon\_estimated\_processed
 
+<span id="qiskit.algorithms.IterativeAmplitudeEstimationResult.epsilon_estimated_processed" />
 
 `property epsilon_estimated_processed`
 
@@ -114,7 +138,9 @@ Return the post-processed estimated half-width of the confidence interval.
 
 `float`
 
+### epsilon\_target
 
+<span id="qiskit.algorithms.IterativeAmplitudeEstimationResult.epsilon_target" />
 
 `property epsilon_target`
 
@@ -124,7 +150,9 @@ Return the target half-width of the confidence interval.
 
 `float`
 
+### estimate\_intervals
 
+<span id="qiskit.algorithms.IterativeAmplitudeEstimationResult.estimate_intervals" />
 
 `property estimate_intervals`
 
@@ -134,7 +162,9 @@ Return the confidence intervals for the estimate in each iteration.
 
 `List`\[`List`\[`float`]]
 
+### estimation
 
+<span id="qiskit.algorithms.IterativeAmplitudeEstimationResult.estimation" />
 
 `property estimation`
 
@@ -144,7 +174,9 @@ Return the estimation for the amplitude in $[0, 1]$.
 
 `float`
 
+### estimation\_processed
 
+<span id="qiskit.algorithms.IterativeAmplitudeEstimationResult.estimation_processed" />
 
 `property estimation_processed`
 
@@ -154,7 +186,9 @@ Return the estimation for the amplitude after the post-processing has been appli
 
 `float`
 
+### num\_oracle\_queries
 
+<span id="qiskit.algorithms.IterativeAmplitudeEstimationResult.num_oracle_queries" />
 
 `property num_oracle_queries`
 
@@ -164,7 +198,9 @@ Return the number of Grover oracle queries.
 
 `int`
 
+### post\_processing
 
+<span id="qiskit.algorithms.IterativeAmplitudeEstimationResult.post_processing" />
 
 `property post_processing`
 
@@ -174,7 +210,9 @@ Return a handle to the post processing function.
 
 `Callable`\[\[`float`], `float`]
 
+### powers
 
+<span id="qiskit.algorithms.IterativeAmplitudeEstimationResult.powers" />
 
 `property powers`
 
@@ -184,7 +222,9 @@ Return the powers of the Grover operator in each iteration.
 
 `List`\[`int`]
 
+### ratios
 
+<span id="qiskit.algorithms.IterativeAmplitudeEstimationResult.ratios" />
 
 `property ratios`
 
@@ -194,7 +234,9 @@ Return the ratios $K_{i+1}/K_{i}$ for each iteration $i$.
 
 `List`\[`float`]
 
+### shots
 
+<span id="qiskit.algorithms.IterativeAmplitudeEstimationResult.shots" />
 
 `property shots`
 
@@ -204,7 +246,9 @@ Return the number of shots used. Is 1 for statevector-based simulations.
 
 `int`
 
+### theta\_intervals
 
+<span id="qiskit.algorithms.IterativeAmplitudeEstimationResult.theta_intervals" />
 
 `property theta_intervals`
 
@@ -213,3 +257,4 @@ Return the confidence intervals for the angles in each iteration.
 **Return type**
 
 `List`\[`List`\[`float`]]
+

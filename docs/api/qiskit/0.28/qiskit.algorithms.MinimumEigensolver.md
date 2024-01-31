@@ -1,14 +1,24 @@
+---
+title: MinimumEigensolver
+description: API reference for qiskit.algorithms.MinimumEigensolver
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.algorithms.MinimumEigensolver
+---
+
 # qiskit.algorithms.MinimumEigensolver
 
+<span id="qiskit.algorithms.MinimumEigensolver" />
 
-
-`MinimumEigensolver`
+`MinimumEigensolver`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/minimum_eigen_solvers/minimum_eigen_solver.py "view source code")
 
 The Minimum Eigensolver Interface.
 
 Algorithms that can compute a minimum eigenvalue for an operator may implement this interface to allow different algorithms to be used interchangeably.
 
+### \_\_init\_\_
 
+<span id="qiskit.algorithms.MinimumEigensolver.__init__" />
 
 `__init__()`
 
@@ -22,7 +32,9 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`compute_minimum_eigenvalue`](#qiskit.algorithms.MinimumEigensolver.compute_minimum_eigenvalue "qiskit.algorithms.MinimumEigensolver.compute_minimum_eigenvalue")(operator\[, …]) | Computes minimum eigenvalue.                                                 |
 | [`supports_aux_operators`](#qiskit.algorithms.MinimumEigensolver.supports_aux_operators "qiskit.algorithms.MinimumEigensolver.supports_aux_operators")()                           | Whether computing the expectation value of auxiliary operators is supported. |
 
+### compute\_minimum\_eigenvalue
 
+<span id="qiskit.algorithms.MinimumEigensolver.compute_minimum_eigenvalue" />
 
 `abstract compute_minimum_eigenvalue(operator, aux_operators=None)`
 
@@ -41,7 +53,9 @@ Computes minimum eigenvalue. Operator and aux\_operators can be supplied here an
 
 MinimumEigensolverResult
 
+### supports\_aux\_operators
 
+<span id="qiskit.algorithms.MinimumEigensolver.supports_aux_operators" />
 
 `classmethod supports_aux_operators()`
 
@@ -56,3 +70,4 @@ If the minimum eigensolver computes an eigenstate of the main operator then it c
 **Returns**
 
 True if aux\_operator expectations can be evaluated, False otherwise
+

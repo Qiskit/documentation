@@ -1,12 +1,22 @@
+---
+title: IterativeAmplitudeEstimationResult
+description: API reference for qiskit.aqua.algorithms.IterativeAmplitudeEstimationResult
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.algorithms.IterativeAmplitudeEstimationResult
+---
+
 # qiskit.aqua.algorithms.IterativeAmplitudeEstimationResult
 
+<span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimationResult" />
 
-
-`IterativeAmplitudeEstimationResult(a_dict=None)`
+`IterativeAmplitudeEstimationResult(a_dict=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_estimators/iqae.py "view source code")
 
 IterativeAmplitudeEstimation Result.
 
+### \_\_init\_\_
 
+<span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimationResult.__init__" />
 
 `__init__(a_dict=None)`
 
@@ -47,7 +57,9 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`theta_intervals`](#qiskit.aqua.algorithms.IterativeAmplitudeEstimationResult.theta_intervals "qiskit.aqua.algorithms.IterativeAmplitudeEstimationResult.theta_intervals")                               | return theta\_intervals            |
 | [`value_confidence_interval`](#qiskit.aqua.algorithms.IterativeAmplitudeEstimationResult.value_confidence_interval "qiskit.aqua.algorithms.IterativeAmplitudeEstimationResult.value_confidence_interval") | return value\_confidence\_interval |
 
+### a\_estimation
 
+<span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimationResult.a_estimation" />
 
 `property a_estimation`
 
@@ -57,7 +69,9 @@ return a\_estimation
 
 `float`
 
+### a\_intervals
 
+<span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimationResult.a_intervals" />
 
 `property a_intervals`
 
@@ -67,7 +81,9 @@ return a\_intervals
 
 `List`\[`List`\[`float`]]
 
+### actual\_epsilon
 
+<span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimationResult.actual_epsilon" />
 
 `property actual_epsilon`
 
@@ -77,7 +93,9 @@ return mle
 
 `float`
 
+### alpha
 
+<span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimationResult.alpha" />
 
 `property alpha`
 
@@ -87,7 +105,9 @@ return alpha
 
 `float`
 
+### clear
 
+<span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimationResult.clear" />
 
 `clear()`
 
@@ -95,7 +115,9 @@ return alpha
 
 `None`
 
+### combine
 
+<span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimationResult.combine" />
 
 `combine(result)`
 
@@ -109,7 +131,9 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 `None`
 
+### confidence\_interval
 
+<span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimationResult.confidence_interval" />
 
 `property confidence_interval`
 
@@ -119,7 +143,9 @@ return confidence\_interval
 
 `List`\[`float`]
 
+### estimation
 
+<span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimationResult.estimation" />
 
 `property estimation`
 
@@ -129,7 +155,9 @@ return estimation
 
 `float`
 
+### from\_dict
 
+<span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimationResult.from_dict" />
 
 `static from_dict(a_dict)`
 
@@ -139,19 +167,27 @@ create new object from a dictionary
 
 `IterativeAmplitudeEstimationResult`
 
+### get
 
+<span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimationResult.get" />
 
 `get(k[, d]) → D[k] if k in D, else d. d defaults to None.`
 
+### items
 
+<span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimationResult.items" />
 
 `items() → a set-like object providing a view on D’s items`
 
+### keys
 
+<span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimationResult.keys" />
 
 `keys() → a set-like object providing a view on D’s keys`
 
+### num\_oracle\_queries
 
+<span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimationResult.num_oracle_queries" />
 
 `property num_oracle_queries`
 
@@ -161,7 +197,9 @@ return num\_oracle\_queries
 
 `int`
 
+### pop
 
+<span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimationResult.pop" />
 
 `pop(key, default=None)`
 
@@ -171,7 +209,9 @@ If key is not found, d is returned if given, otherwise KeyError is raised.
 
 `object`
 
+### popitem
 
+<span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimationResult.popitem" />
 
 `popitem()`
 
@@ -181,7 +221,9 @@ as a 2-tuple; but raise KeyError if D is empty.
 
 `Tuple`\[`object`, `object`]
 
+### powers
 
+<span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimationResult.powers" />
 
 `property powers`
 
@@ -191,7 +233,9 @@ return powers
 
 `List`\[`int`]
 
+### ratios
 
+<span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimationResult.ratios" />
 
 `property ratios`
 
@@ -201,11 +245,15 @@ return ratios
 
 `List`\[`float`]
 
+### setdefault
 
+<span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimationResult.setdefault" />
 
 `setdefault(k[, d]) → D.get(k,d), also set D[k]=d if k not in D`
 
+### theta\_intervals
 
+<span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimationResult.theta_intervals" />
 
 `property theta_intervals`
 
@@ -215,7 +263,9 @@ return theta\_intervals
 
 `List`\[`List`\[`float`]]
 
+### update
 
+<span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimationResult.update" />
 
 `update(*args, **kwargs)`
 
@@ -225,7 +275,9 @@ If E present and has a .keys() method, does: for k in E: D\[k] = E\[k] If E pres
 
 `None`
 
+### value\_confidence\_interval
 
+<span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimationResult.value_confidence_interval" />
 
 `property value_confidence_interval`
 
@@ -235,6 +287,9 @@ return value\_confidence\_interval
 
 `List`\[`float`]
 
+### values
 
+<span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimationResult.values" />
 
 `values() → an object providing a view on D’s values`
+

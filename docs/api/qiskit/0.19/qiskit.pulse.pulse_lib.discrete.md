@@ -32,7 +32,7 @@ Note the sampling strategy use for all discrete pulses is midpoint.
 
 <span id="qiskit.pulse.pulse_lib.discrete.constant" />
 
-`constant(duration, amp, name=None)`
+`constant(duration, amp, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/discrete.py "view source code")
 
 Generates constant-sampled [`SamplePulse`](qiskit.pulse.SamplePulse "qiskit.pulse.SamplePulse").
 
@@ -54,7 +54,7 @@ $$
 
 <span id="qiskit.pulse.pulse_lib.discrete.cos" />
 
-`cos(duration, amp, freq=None, phase=0, name=None)`
+`cos(duration, amp, freq=None, phase=0, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/discrete.py "view source code")
 
 Generates cosine wave [`SamplePulse`](qiskit.pulse.SamplePulse "qiskit.pulse.SamplePulse").
 
@@ -78,7 +78,7 @@ $$
 
 <span id="qiskit.pulse.pulse_lib.discrete.drag" />
 
-`drag(duration, amp, sigma, beta, name=None, zero_ends=True)`
+`drag(duration, amp, sigma, beta, name=None, zero_ends=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/discrete.py "view source code")
 
 Generates Y-only correction DRAG [`SamplePulse`](qiskit.pulse.SamplePulse "qiskit.pulse.SamplePulse") for standard nonlinear oscillator (SNO) \[1].
 
@@ -111,7 +111,7 @@ If `zero_ends == True`, the samples from $g(x)$ are remapped as in [`gaussian()`
 
 <span id="qiskit.pulse.pulse_lib.discrete.gaussian" />
 
-`gaussian(duration, amp, sigma, name=None, zero_ends=True)`
+`gaussian(duration, amp, sigma, name=None, zero_ends=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/discrete.py "view source code")
 
 Generates unnormalized gaussian [`SamplePulse`](qiskit.pulse.SamplePulse "qiskit.pulse.SamplePulse").
 
@@ -147,7 +147,7 @@ Integrated area under the full curve is `amp * np.sqrt(2*np.pi*sigma**2)`
 
 <span id="qiskit.pulse.pulse_lib.discrete.gaussian_deriv" />
 
-`gaussian_deriv(duration, amp, sigma, name=None)`
+`gaussian_deriv(duration, amp, sigma, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/discrete.py "view source code")
 
 Generates unnormalized gaussian derivative [`SamplePulse`](qiskit.pulse.SamplePulse "qiskit.pulse.SamplePulse").
 
@@ -172,7 +172,7 @@ i.e. the derivative of the Gaussian function, with center $\mu=$ `duration/2`.
 
 <span id="qiskit.pulse.pulse_lib.discrete.gaussian_square" />
 
-`gaussian_square(duration, amp, sigma, risefall=None, width=None, name=None, zero_ends=True)`
+`gaussian_square(duration, amp, sigma, risefall=None, width=None, name=None, zero_ends=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/discrete.py "view source code")
 
 Generates gaussian square [`SamplePulse`](qiskit.pulse.SamplePulse "qiskit.pulse.SamplePulse").
 
@@ -210,7 +210,7 @@ If `zero_ends == True`, the samples for the Gaussian ramps are remapped as in [`
 
 <span id="qiskit.pulse.pulse_lib.discrete.sawtooth" />
 
-`sawtooth(duration, amp, freq=None, period=None, phase=0, name=None)`
+`sawtooth(duration, amp, freq=None, period=None, phase=0, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/discrete.py "view source code")
 
 Generates sawtooth wave [`SamplePulse`](qiskit.pulse.SamplePulse "qiskit.pulse.SamplePulse").
 
@@ -255,7 +255,7 @@ plt.plot(range(duration), sawtooth_wave)
 
 <span id="qiskit.pulse.pulse_lib.discrete.sech" />
 
-`sech(duration, amp, sigma, name=None, zero_ends=True)`
+`sech(duration, amp, sigma, name=None, zero_ends=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/discrete.py "view source code")
 
 Generates unnormalized sech [`SamplePulse`](qiskit.pulse.SamplePulse "qiskit.pulse.SamplePulse").
 
@@ -289,7 +289,7 @@ where $y^*$ is the value of the endpoint samples. This sets the endpoints to $0$
 
 <span id="qiskit.pulse.pulse_lib.discrete.sech_deriv" />
 
-`sech_deriv(duration, amp, sigma, name=None)`
+`sech_deriv(duration, amp, sigma, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/discrete.py "view source code")
 
 Generates unnormalized sech derivative [`SamplePulse`](qiskit.pulse.SamplePulse "qiskit.pulse.SamplePulse").
 
@@ -314,7 +314,7 @@ i.e. the derivative of $\text{sech}$.
 
 <span id="qiskit.pulse.pulse_lib.discrete.sin" />
 
-`sin(duration, amp, freq=None, phase=0, name=None)`
+`sin(duration, amp, freq=None, phase=0, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/discrete.py "view source code")
 
 Generates sine wave [`SamplePulse`](qiskit.pulse.SamplePulse "qiskit.pulse.SamplePulse").
 
@@ -338,7 +338,7 @@ $$
 
 <span id="qiskit.pulse.pulse_lib.discrete.square" />
 
-`square(duration, amp, freq=None, period=None, phase=0, name=None)`
+`square(duration, amp, freq=None, period=None, phase=0, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/discrete.py "view source code")
 
 Generates square wave [`SamplePulse`](qiskit.pulse.SamplePulse "qiskit.pulse.SamplePulse").
 
@@ -365,7 +365,7 @@ with the convention $\text{sign}(0) = 1$.
 
 <span id="qiskit.pulse.pulse_lib.discrete.triangle" />
 
-`triangle(duration, amp, freq=None, period=None, phase=0, name=None)`
+`triangle(duration, amp, freq=None, period=None, phase=0, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/discrete.py "view source code")
 
 Generates triangle wave [`SamplePulse`](qiskit.pulse.SamplePulse "qiskit.pulse.SamplePulse").
 
@@ -410,7 +410,7 @@ plt.plot(range(duration), triangle_wave)
 
 <span id="qiskit.pulse.pulse_lib.discrete.zero" />
 
-`zero(duration, name=None)`
+`zero(duration, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/discrete.py "view source code")
 
 Generates zero-sampled [`SamplePulse`](qiskit.pulse.SamplePulse "qiskit.pulse.SamplePulse").
 

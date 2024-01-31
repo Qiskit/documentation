@@ -1,12 +1,22 @@
+---
+title: BConfig
+description: API reference for qiskit.ignis.verification.BConfig
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.ignis.verification.BConfig
+---
+
 # qiskit.ignis.verification.BConfig
 
+<span id="qiskit.ignis.verification.BConfig" />
 
-
-`BConfig(backend, indicator=True)`
+`BConfig(backend, indicator=True)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/entanglement/parallelize.py "view source code")
 
 This class is used to create a GHZ circuit with parallellized CNOT gates to increase fidelity
 
+### \_\_init\_\_
 
+<span id="qiskit.ignis.verification.BConfig.__init__" />
 
 `__init__(backend, indicator=True)`
 
@@ -26,7 +36,9 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`get_measurement_circ`](#qiskit.ignis.verification.BConfig.get_measurement_circ "qiskit.ignis.verification.BConfig.get_measurement_circ")(n, qregname, cregname) | Creates a measurement circuit that can toggle between measuring the control qubit or measuring all qubits.                                                                                                                                                                                                                         |
 | [`get_tier_dict`](#qiskit.ignis.verification.BConfig.get_tier_dict "qiskit.ignis.verification.BConfig.get_tier_dict")()                                           | Take the nodes of the BConfig to create a Tier Dictionary, where keys are the steps in the process, and the values are the connections following pattern of: \[controlled qubit, NOT qubit].                                                                                                                                       |
 
+### get\_ghz\_layout
 
+<span id="qiskit.ignis.verification.BConfig.get_ghz_layout" />
 
 `get_ghz_layout(n, transpiled=True, barriered=True)`
 
@@ -40,7 +52,9 @@ Feeds the Tier Dict of the backend to create a basic qiskit GHZ circuit with no 
 
 A GHZ Circuit and its initial GHZ layout
 
+### get\_ghz\_mqc
 
+<span id="qiskit.ignis.verification.BConfig.get_ghz_mqc" />
 
 `get_ghz_mqc(n, delta, full_measurement=True)`
 
@@ -60,7 +74,9 @@ This function creates an MQC circuit with n qubits, where the middle phase rotat
 
 The MQC circuit and the initial GHZ layout
 
+### get\_ghz\_mqc\_para
 
+<span id="qiskit.ignis.verification.BConfig.get_ghz_mqc_para" />
 
 `get_ghz_mqc_para(n, full_measurement=True)`
 
@@ -79,7 +95,9 @@ Get a parametrized MQC circuit. Remember that get\_counts() method accepts an in
 
 The MQC circuit, its delta parameter, and the initial GHZ layout
 
+### get\_ghz\_po
 
+<span id="qiskit.ignis.verification.BConfig.get_ghz_po" />
 
 `get_ghz_po(n, delta)`
 
@@ -98,7 +116,9 @@ This function creates an Parity Oscillation circuit with n qubits, where the mid
 
 The Parity Oscillation circuit and the initial GHZ layout
 
+### get\_ghz\_po\_para
 
+<span id="qiskit.ignis.verification.BConfig.get_ghz_po_para" />
 
 `get_ghz_po_para(n)`
 
@@ -118,7 +138,9 @@ Get a parametrized PO circuit. Remember that get\_counts() method accepts an ind
 
 and the initial ghz layout
 
+### get\_ghz\_simple
 
+<span id="qiskit.ignis.verification.BConfig.get_ghz_simple" />
 
 `get_ghz_simple(n, full_measurement=True)`
 
@@ -137,7 +159,9 @@ Get simple GHZ circuit with measurement
 
 A GHZ Circuit, its measurement circle quantum register and the initial GHZ layout
 
+### get\_measurement\_circ
 
+<span id="qiskit.ignis.verification.BConfig.get_measurement_circ" />
 
 `get_measurement_circ(n, qregname, cregname, full_measurement=True)`
 
@@ -158,7 +182,9 @@ Creates a measurement circuit that can toggle between measuring the control qubi
 
 The measurement circuit
 
+### get\_tier\_dict
 
+<span id="qiskit.ignis.verification.BConfig.get_tier_dict" />
 
 `get_tier_dict()`
 
@@ -173,3 +199,4 @@ Take the nodes of the BConfig to create a Tier Dictionary, where keys are the st
 **Tier dictionary - \[step in process, control-target connection]**
 
 Facilitates parallelized GHZ circuits
+

@@ -1,10 +1,18 @@
+---
+title: align_left
+description: API reference for qiskit.pulse.builder.align_left
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.builder.align_left
+---
+
 <span id="qiskit-pulse-builder-align-left" />
 
 # qiskit.pulse.builder.align\_left
 
+<span id="qiskit.pulse.builder.align_left" />
 
-
-`align_left()`
+`align_left()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/builder.py "view source code")
 
 Left alignment pulse scheduling context.
 
@@ -31,3 +39,4 @@ assert pulse_prog.ch_start_time(d0) == pulse_prog.ch_start_time(d1)
 **Return type**
 
 `AbstractContextManager`\[`None`]
+

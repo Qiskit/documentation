@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.verification.process_tomography_circuits
 
 <span id="qiskit.ignis.verification.process_tomography_circuits" />
 
-`process_tomography_circuits(circuit, measured_qubits, prepared_qubits=None, meas_labels='Pauli', meas_basis='Pauli', prep_labels='Pauli', prep_basis='Pauli')`
+`process_tomography_circuits(circuit, measured_qubits, prepared_qubits=None, meas_labels='Pauli', meas_basis='Pauli', prep_labels='Pauli', prep_basis='Pauli')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/tomography/basis/circuits.py "view source code")
 
 Return a list of quantum process tomography circuits.
 

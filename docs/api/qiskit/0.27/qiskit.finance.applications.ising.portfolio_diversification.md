@@ -1,3 +1,11 @@
+---
+title: get_operator
+description: API reference for qiskit.finance.applications.ising.portfolio_diversification.get_operator
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.finance.applications.ising.portfolio_diversification.get_operator
+---
+
 <span id="qiskit-finance-applications-ising-portfolio-diversification" />
 
 # qiskit.finance.applications.ising.portfolio\_diversification
@@ -12,9 +20,9 @@ portfolio diversification
 | [`get_portfoliodiversification_solution`](#qiskit.finance.applications.ising.portfolio_diversification.get_portfoliodiversification_solution "qiskit.finance.applications.ising.portfolio_diversification.get_portfoliodiversification_solution")(rho, …) | Tries to obtain a feasible solution (in vector form) of an instance of portfolio diversification from the results dictionary. |
 | [`get_portfoliodiversification_value`](#qiskit.finance.applications.ising.portfolio_diversification.get_portfoliodiversification_value "qiskit.finance.applications.ising.portfolio_diversification.get_portfoliodiversification_value")(rho, n, …)       | Evaluates an objective function of an instance of portfolio diversification and its solution (in vector form).                |
 
+<span id="qiskit.finance.applications.ising.portfolio_diversification.get_operator" />
 
-
-`get_operator(rho, n, q)`
+`get_operator(rho, n, q)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/finance/applications/ising/portfolio_diversification.py "view source code")
 
 Converts an instance of portfolio optimization into a list of Paulis.
 
@@ -32,9 +40,9 @@ Converts an instance of portfolio optimization into a list of Paulis.
 
 operator for the Hamiltonian
 
+<span id="qiskit.finance.applications.ising.portfolio_diversification.get_portfoliodiversification_solution" />
 
-
-`get_portfoliodiversification_solution(rho, n, q, result)`
+`get_portfoliodiversification_solution(rho, n, q, result)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/finance/applications/ising/portfolio_diversification.py "view source code")
 
 Tries to obtain a feasible solution (in vector form) of an instance of portfolio diversification from the results dictionary.
 
@@ -53,9 +61,9 @@ Tries to obtain a feasible solution (in vector form) of an instance of portfolio
 
 a vector describing the solution.
 
+<span id="qiskit.finance.applications.ising.portfolio_diversification.get_portfoliodiversification_value" />
 
-
-`get_portfoliodiversification_value(rho, n, q, x_state)`
+`get_portfoliodiversification_value(rho, n, q, x_state)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/finance/applications/ising/portfolio_diversification.py "view source code")
 
 Evaluates an objective function of an instance of portfolio diversification and its solution (in vector form).
 
@@ -73,3 +81,4 @@ Evaluates an objective function of an instance of portfolio diversification and 
 **Returns**
 
 cost of the solution.
+

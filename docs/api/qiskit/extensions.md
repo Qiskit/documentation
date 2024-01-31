@@ -22,21 +22,23 @@ python_api_name: qiskit.extensions
 
 |                                                                                                                                    |                       |
 | ---------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
-| [`SingleQubitUnitary`](qiskit.extensions.SingleQubitUnitary "qiskit.extensions.SingleQubitUnitary")(unitary\_matrix\[, mode, ...]) | Single-qubit unitary. |
+| [`SingleQubitUnitary`](qiskit.extensions.SingleQubitUnitary "qiskit.extensions.SingleQubitUnitary")(unitary\_matrix\[, mode, ...]) | Single-qubit unitary. |
 
 ## Simulator Extensions
 
 |                                                                                                                   |                                 |
 | ----------------------------------------------------------------------------------------------------------------- | ------------------------------- |
-| [`Snapshot`](qiskit.extensions.Snapshot "qiskit.extensions.Snapshot")(label\[, snapshot\_type, num\_qubits, ...]) | Simulator snapshot instruction. |
+| [`Snapshot`](qiskit.extensions.Snapshot "qiskit.extensions.Snapshot")(label\[, snapshot\_type, num\_qubits, ...]) | Simulator snapshot instruction. |
 
 ## Exceptions
 
 The additional gates in this module will tend to raise a custom exception when they encounter problems.
 
+### ExtensionError
+
 <span id="qiskit.extensions.ExtensionError" />
 
-`qiskit.extensions.ExtensionError(*message)`
+`qiskit.extensions.ExtensionError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/extensions/exceptions.py "view source code")
 
 Base class for errors raised by extensions module.
 

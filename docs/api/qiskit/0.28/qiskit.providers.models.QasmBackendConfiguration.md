@@ -1,72 +1,80 @@
+---
+title: QasmBackendConfiguration
+description: API reference for qiskit.providers.models.QasmBackendConfiguration
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.models.QasmBackendConfiguration
+---
+
 # qiskit.providers.models.QasmBackendConfiguration
 
+<span id="qiskit.providers.models.QasmBackendConfiguration" />
 
-
-`QasmBackendConfiguration(backend_name, backend_version, n_qubits, basis_gates, gates, local, simulator, conditional, open_pulse, memory, max_shots, coupling_map, supported_instructions=None, dynamic_reprate_enabled=False, rep_delay_range=None, default_rep_delay=None, max_experiments=None, sample_name=None, n_registers=None, register_map=None, configurable=None, credits_required=None, online_date=None, display_name=None, description=None, tags=None, dt=None, dtm=None, processor_type=None, parametric_pulses=None, **kwargs)`
+`QasmBackendConfiguration(backend_name, backend_version, n_qubits, basis_gates, gates, local, simulator, conditional, open_pulse, memory, max_shots, coupling_map, supported_instructions=None, dynamic_reprate_enabled=False, rep_delay_range=None, default_rep_delay=None, max_experiments=None, sample_name=None, n_registers=None, register_map=None, configurable=None, credits_required=None, online_date=None, display_name=None, description=None, tags=None, dt=None, dtm=None, processor_type=None, parametric_pulses=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/providers/models/backendconfiguration.py "view source code")
 
 Class representing a Qasm Backend Configuration.
 
-
+<span id="qiskit.providers.models.QasmBackendConfiguration.backend_name" />
 
 ### backend\_name
 
 backend name.
 
-
+<span id="qiskit.providers.models.QasmBackendConfiguration.backend_version" />
 
 ### backend\_version
 
 backend version in the form X.Y.Z.
 
-
+<span id="qiskit.providers.models.QasmBackendConfiguration.n_qubits" />
 
 ### n\_qubits
 
 number of qubits.
 
-
+<span id="qiskit.providers.models.QasmBackendConfiguration.basis_gates" />
 
 ### basis\_gates
 
 list of basis gates names on the backend.
 
-
+<span id="qiskit.providers.models.QasmBackendConfiguration.gates" />
 
 ### gates
 
 list of basis gates on the backend.
 
-
+<span id="qiskit.providers.models.QasmBackendConfiguration.local" />
 
 ### local
 
 backend is local or remote.
 
-
+<span id="qiskit.providers.models.QasmBackendConfiguration.simulator" />
 
 ### simulator
 
 backend is a simulator.
 
-
+<span id="qiskit.providers.models.QasmBackendConfiguration.conditional" />
 
 ### conditional
 
 backend supports conditional operations.
 
-
+<span id="qiskit.providers.models.QasmBackendConfiguration.open_pulse" />
 
 ### open\_pulse
 
 backend supports open pulse.
 
-
+<span id="qiskit.providers.models.QasmBackendConfiguration.memory" />
 
 ### memory
 
 backend supports memory.
 
-
+<span id="qiskit.providers.models.QasmBackendConfiguration.max_shots" />
 
 ### max\_shots
 
@@ -144,7 +152,9 @@ Initialize a QasmBackendConfiguration Object
 
 *   **\*\*kwargs** – optional fields
 
+### \_\_init\_\_
 
+<span id="qiskit.providers.models.QasmBackendConfiguration.__init__" />
 
 `__init__(backend_name, backend_version, n_qubits, basis_gates, gates, local, simulator, conditional, open_pulse, memory, max_shots, coupling_map, supported_instructions=None, dynamic_reprate_enabled=False, rep_delay_range=None, default_rep_delay=None, max_experiments=None, sample_name=None, n_registers=None, register_map=None, configurable=None, credits_required=None, online_date=None, display_name=None, description=None, tags=None, dt=None, dtm=None, processor_type=None, parametric_pulses=None, **kwargs)`
 
@@ -234,7 +244,9 @@ Initialize a QasmBackendConfiguration Object
 | ------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------- |
 | [`num_qubits`](#qiskit.providers.models.QasmBackendConfiguration.num_qubits "qiskit.providers.models.QasmBackendConfiguration.num_qubits") | Returns the number of qubits. |
 
+### from\_dict
 
+<span id="qiskit.providers.models.QasmBackendConfiguration.from_dict" />
 
 `classmethod from_dict(data)`
 
@@ -250,9 +262,11 @@ The GateConfig from the input dictionary.
 
 **Return type**
 
-[GateConfig](qiskit.providers.models.GateConfig#qiskit.providers.models.GateConfig "qiskit.providers.models.GateConfig")
+[GateConfig](qiskit.providers.models.GateConfig "qiskit.providers.models.GateConfig")
 
+### num\_qubits
 
+<span id="qiskit.providers.models.QasmBackendConfiguration.num_qubits" />
 
 `property num_qubits`
 
@@ -260,7 +274,9 @@ Returns the number of qubits.
 
 In future, n\_qubits should be replaced in favor of num\_qubits for consistent use throughout Qiskit. Until this is properly refactored, this property serves as intermediate solution.
 
+### to\_dict
 
+<span id="qiskit.providers.models.QasmBackendConfiguration.to_dict" />
 
 `to_dict()`
 
@@ -273,3 +289,4 @@ The dictionary form of the GateConfig.
 **Return type**
 
 dict
+

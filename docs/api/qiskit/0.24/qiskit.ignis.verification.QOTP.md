@@ -1,10 +1,18 @@
+---
+title: QOTP
+description: API reference for qiskit.ignis.verification.QOTP
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.ignis.verification.QOTP
+---
+
 <span id="qiskit-ignis-verification-qotp" />
 
 # qiskit.ignis.verification.QOTP
 
+<span id="qiskit.ignis.verification.QOTP" />
 
-
-`QOTP(circ, num, two_qubit_gate='cx', coupling_map=None, seed=None)`
+`QOTP(circ, num, two_qubit_gate='cx', coupling_map=None, seed=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/accreditation/qotp.py "view source code")
 
 Performs a QOTP (or random compilation) on a generic circuit.
 
@@ -12,7 +20,7 @@ This is essentially the same protocol as used in randomized compiling, but follo
 
 **Parameters**
 
-*   **circ** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – A generic quantum circuit
+*   **circ** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – A generic quantum circuit
 *   **num** (*int*) – the number of one-time pads to return
 *   **two\_qubit\_gate** (*string*) – a flag as to which 2 qubit gate to compile with, can be cx or cz
 *   **coupling\_map** (*list*) – a particular device topology as a list of list (e.g. \[\[0,1],\[1,2],\[2,0]])
@@ -27,3 +35,4 @@ qotp\_circs (list): a list of circuits with qotp applied qotp\_postps (list): a 
 **Return type**
 
 tuple
+

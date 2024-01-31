@@ -1,10 +1,18 @@
+---
+title: Pauli
+description: API reference for qiskit.quantum_info.Pauli
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.quantum_info.Pauli
+---
+
 <span id="qiskit-quantum-info-pauli" />
 
 # qiskit.quantum\_info.Pauli
 
+<span id="qiskit.quantum_info.Pauli" />
 
-
-`Pauli(z=None, x=None, label=None)`
+`Pauli(z=None, x=None, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/quantum_info/operators/pauli.py "view source code")
 
 A simple class representing Pauli Operators.
 
@@ -36,7 +44,9 @@ Make the Pauli object.
 *   **x** (*numpy.ndarray*) – boolean, x vector
 *   **label** (*str*) – pauli label
 
+### \_\_init\_\_
 
+<span id="qiskit.quantum_info.Pauli.__init__" />
 
 `__init__(z=None, x=None, label=None)`
 
@@ -87,7 +97,9 @@ Make the Pauli object.
 | [`x`](#qiskit.quantum_info.Pauli.x "qiskit.quantum_info.Pauli.x")                            | Getter of x.      |
 | [`z`](#qiskit.quantum_info.Pauli.z "qiskit.quantum_info.Pauli.z")                            | Getter of z.      |
 
+### append\_paulis
 
+<span id="qiskit.quantum_info.Pauli.append_paulis" />
 
 `append_paulis(paulis=None, pauli_labels=None)`
 
@@ -106,7 +118,9 @@ self
 
 [Pauli](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
 
+### delete\_qubits
 
+<span id="qiskit.quantum_info.Pauli.delete_qubits" />
 
 `delete_qubits(indices)`
 
@@ -124,7 +138,9 @@ self
 
 [Pauli](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
 
+### from\_label
 
+<span id="qiskit.quantum_info.Pauli.from_label" />
 
 `classmethod from_label(label)`
 
@@ -148,7 +164,9 @@ the constructed pauli
 
 **QiskitError** – invalid character in the label
 
+### insert\_paulis
 
+<span id="qiskit.quantum_info.Pauli.insert_paulis" />
 
 `insert_paulis(indices=None, paulis=None, pauli_labels=None)`
 
@@ -178,7 +196,9 @@ self
 
 **QiskitError** – provide both paulis and pauli\_labels at the same time
 
+### kron
 
+<span id="qiskit.quantum_info.Pauli.kron" />
 
 `kron(other)`
 
@@ -198,13 +218,17 @@ self
 
 [Pauli](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
 
+### num\_qubits
 
+<span id="qiskit.quantum_info.Pauli.num_qubits" />
 
 `property num_qubits`
 
 Number of qubits.
 
+### pauli\_single
 
+<span id="qiskit.quantum_info.Pauli.pauli_single" />
 
 `classmethod pauli_single(num_qubits, index, pauli_label)`
 
@@ -224,7 +248,9 @@ single qubit pauli
 
 [Pauli](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
 
+### random
 
+<span id="qiskit.quantum_info.Pauli.random" />
 
 `classmethod random(num_qubits, seed=None)`
 
@@ -243,7 +269,9 @@ the random pauli
 
 [Pauli](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
 
+### sgn\_prod
 
+<span id="qiskit.quantum_info.Pauli.sgn_prod" />
 
 `static sgn_prod(p1, p2)`
 
@@ -264,13 +292,17 @@ the multiplied pauli complex: the sign of the multiplication, 1, -1, 1j or -1j
 
 [Pauli](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
 
+### to\_instruction
 
+<span id="qiskit.quantum_info.Pauli.to_instruction" />
 
 `to_instruction()`
 
 Convert to Pauli circuit instruction.
 
+### to\_label
 
+<span id="qiskit.quantum_info.Pauli.to_label" />
 
 `to_label()`
 
@@ -286,7 +318,9 @@ pauli label
 
 str
 
+### to\_matrix
 
+<span id="qiskit.quantum_info.Pauli.to_matrix" />
 
 `to_matrix()`
 
@@ -302,13 +336,17 @@ a matrix that represents the pauli.
 
 numpy.array
 
+### to\_operator
 
+<span id="qiskit.quantum_info.Pauli.to_operator" />
 
 `to_operator()`
 
 Convert to Operator object.
 
+### to\_spmatrix
 
+<span id="qiskit.quantum_info.Pauli.to_spmatrix" />
 
 `to_spmatrix()`
 
@@ -324,7 +362,9 @@ a sparse matrix with CSR format that represents the pauli.
 
 scipy.sparse.csr\_matrix
 
+### update\_x
 
+<span id="qiskit.quantum_info.Pauli.update_x" />
 
 `update_x(x, indices=None)`
 
@@ -347,7 +387,9 @@ self
 
 **QiskitError** – when updating whole x, the number of qubits must be the same.
 
+### update\_z
 
+<span id="qiskit.quantum_info.Pauli.update_z" />
 
 `update_z(z, indices=None)`
 
@@ -370,14 +412,19 @@ self
 
 **QiskitError** – when updating whole z, the number of qubits must be the same.
 
+### x
 
+<span id="qiskit.quantum_info.Pauli.x" />
 
 `property x`
 
 Getter of x.
 
+### z
 
+<span id="qiskit.quantum_info.Pauli.z" />
 
 `property z`
 
 Getter of z.
+

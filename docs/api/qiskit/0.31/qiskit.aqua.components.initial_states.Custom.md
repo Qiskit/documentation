@@ -1,8 +1,16 @@
+---
+title: Custom
+description: API reference for qiskit.aqua.components.initial_states.Custom
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.components.initial_states.Custom
+---
+
 # Custom
 
+<span id="qiskit.aqua.components.initial_states.Custom" />
 
-
-`Custom(num_qubits, state='zero', state_vector=None, circuit=None)`
+`Custom(num_qubits, state='zero', state_vector=None, circuit=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/initial_states/custom.py "view source code")
 
 Bases: `qiskit.aqua.components.initial_states.initial_state.InitialState`
 
@@ -12,7 +20,7 @@ A custom initial state can be created with this component. It allows a state to 
 
 Also *state* can be used having a few pre-defined initial states for convenience:
 
-*   ‘zero’: configures the state vector with the zero probability distribution, and is effectively equivalent to the [`Zero`](qiskit.aqua.components.initial_states.Zero#qiskit.aqua.components.initial_states.Zero "qiskit.aqua.components.initial_states.Zero") initial state.
+*   ‘zero’: configures the state vector with the zero probability distribution, and is effectively equivalent to the [`Zero`](qiskit.aqua.components.initial_states.Zero "qiskit.aqua.components.initial_states.Zero") initial state.
 *   ‘uniform’: This setting configures the state vector with the uniform probability distribution. All the qubits are set in superposition, each of them being initialized with a Hadamard gate, which means that a measurement will have equal probabilities to become $1$ or $0$.
 *   ‘random’: This setting assigns the elements of the state vector according to a random probability distribution.
 
@@ -27,16 +35,38 @@ The custom initial state will be set from the *circuit*, the *state\_vector*, or
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – invalid input
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – invalid input
 
 ## Methods
 
-|                                                                                                                                                                                                                       |                                                     |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
-| [`construct_circuit`](qiskit.aqua.components.initial_states.Custom.construct_circuit#qiskit.aqua.components.initial_states.Custom.construct_circuit "qiskit.aqua.components.initial_states.Custom.construct_circuit") | Construct the statevector of desired initial state. |
+### construct\_circuit
+
+<span id="qiskit.aqua.components.initial_states.Custom.construct_circuit" />
+
+`Custom.construct_circuit(mode='circuit', register=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/initial_states/custom.py "view source code")
+
+Construct the statevector of desired initial state.
+
+**Parameters**
+
+*   **mode** – vector or circuit. The vector mode produces the vector. While the circuit constructs the quantum circuit corresponding that vector.
+*   **register** – qubits for circuit construction.
+
+**Returns**
+
+statevector.
+
+**Return type**
+
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or numpy.ndarray
+
+**Raises**
+
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – when mode is not ‘vector’ or ‘circuit’.
 
 ## Attributes
 
-
+<span id="qiskit.aqua.components.initial_states.Custom.bitstr" />
 
 ### bitstr
+

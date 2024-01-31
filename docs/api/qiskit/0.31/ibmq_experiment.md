@@ -30,23 +30,23 @@ provider = IBMQ.load_account()
 experiments = provider.experiment.experiments()
 ```
 
-All the available functions can be invoked using the provider.experiment attribute, which is an instance of the [`IBMExperimentService`](qiskit.providers.ibmq.experiment.IBMExperimentService#qiskit.providers.ibmq.experiment.IBMExperimentService "qiskit.providers.ibmq.experiment.IBMExperimentService") class.
+All the available functions can be invoked using the provider.experiment attribute, which is an instance of the [`IBMExperimentService`](qiskit.providers.ibmq.experiment.IBMExperimentService "qiskit.providers.ibmq.experiment.IBMExperimentService") class.
 
 This service is intended to be used in conjunction with the `qiskit-experiments` package, which allows you to create different types of experiments (for example, `qiskit_experiments.library.characterization.T1`).
 
 ## Classes
 
-|                                                                                                                                                                                                         |                                              |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
-| [`IBMExperimentService`](qiskit.providers.ibmq.experiment.IBMExperimentService#qiskit.providers.ibmq.experiment.IBMExperimentService "qiskit.providers.ibmq.experiment.IBMExperimentService")(provider) | Provides experiment related services.        |
-| [`ResultQuality`](qiskit.providers.ibmq.experiment.ResultQuality#qiskit.providers.ibmq.experiment.ResultQuality "qiskit.providers.ibmq.experiment.ResultQuality")(value)                                | Possible values for analysis result quality. |
-| [`DeviceComponent`](qiskit.providers.ibmq.experiment.DeviceComponent#qiskit.providers.ibmq.experiment.DeviceComponent "qiskit.providers.ibmq.experiment.DeviceComponent")()                             | Class representing a device component.       |
+|                                                                                                                                                   |                                              |
+| ------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+| [`IBMExperimentService`](qiskit.providers.ibmq.experiment.IBMExperimentService "qiskit.providers.ibmq.experiment.IBMExperimentService")(provider) | Provides experiment related services.        |
+| [`ResultQuality`](qiskit.providers.ibmq.experiment.ResultQuality "qiskit.providers.ibmq.experiment.ResultQuality")(value)                         | Possible values for analysis result quality. |
+| [`DeviceComponent`](qiskit.providers.ibmq.experiment.DeviceComponent "qiskit.providers.ibmq.experiment.DeviceComponent")()                        | Class representing a device component.       |
 
 ## Exceptions
 
-|                                                                                                                                                                                                                                  |                                                                 |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
-| [`IBMExperimentError`](qiskit.providers.ibmq.experiment.IBMExperimentError#qiskit.providers.ibmq.experiment.IBMExperimentError "qiskit.providers.ibmq.experiment.IBMExperimentError")(\*message)                                 | Base class for errors raised by the experiment service modules. |
-| [`IBMExperimentEntryExists`](qiskit.providers.ibmq.experiment.IBMExperimentEntryExists#qiskit.providers.ibmq.experiment.IBMExperimentEntryExists "qiskit.providers.ibmq.experiment.IBMExperimentEntryExists")(\*message)         | Errors raised when an experiment entry already exists.          |
-| [`IBMExperimentEntryNotFound`](qiskit.providers.ibmq.experiment.IBMExperimentEntryNotFound#qiskit.providers.ibmq.experiment.IBMExperimentEntryNotFound "qiskit.providers.ibmq.experiment.IBMExperimentEntryNotFound")(\*message) | Errors raised when an experiment entry cannot be found.         |
+|                                                                                                                                                                      |                                                                 |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
+| [`IBMExperimentError`](qiskit.providers.ibmq.experiment.IBMExperimentError "qiskit.providers.ibmq.experiment.IBMExperimentError")(\*message)                         | Base class for errors raised by the experiment service modules. |
+| [`IBMExperimentEntryExists`](qiskit.providers.ibmq.experiment.IBMExperimentEntryExists "qiskit.providers.ibmq.experiment.IBMExperimentEntryExists")(\*message)       | Errors raised when an experiment entry already exists.          |
+| [`IBMExperimentEntryNotFound`](qiskit.providers.ibmq.experiment.IBMExperimentEntryNotFound "qiskit.providers.ibmq.experiment.IBMExperimentEntryNotFound")(\*message) | Errors raised when an experiment entry cannot be found.         |
 

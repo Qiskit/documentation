@@ -1,12 +1,22 @@
+---
+title: EigensolverResult
+description: API reference for qiskit.aqua.algorithms.EigensolverResult
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.algorithms.EigensolverResult
+---
+
 # qiskit.aqua.algorithms.EigensolverResult
 
+<span id="qiskit.aqua.algorithms.EigensolverResult" />
 
-
-`EigensolverResult(a_dict=None)`
+`EigensolverResult(a_dict=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/eigen_solvers/eigen_solver.py "view source code")
 
 Eigensolver Result.
 
+### \_\_init\_\_
 
+<span id="qiskit.aqua.algorithms.EigensolverResult.__init__" />
 
 `__init__(a_dict=None)`
 
@@ -39,7 +49,9 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`eigenstates`](#qiskit.aqua.algorithms.EigensolverResult.eigenstates "qiskit.aqua.algorithms.EigensolverResult.eigenstates")                                        | return eigen states              |
 | [`eigenvalues`](#qiskit.aqua.algorithms.EigensolverResult.eigenvalues "qiskit.aqua.algorithms.EigensolverResult.eigenvalues")                                        | returns eigen values             |
 
+### aux\_operator\_eigenvalues
 
+<span id="qiskit.aqua.algorithms.EigensolverResult.aux_operator_eigenvalues" />
 
 `property aux_operator_eigenvalues`
 
@@ -49,7 +61,9 @@ return aux operator eigen values
 
 `Optional`\[`ndarray`]
 
+### clear
 
+<span id="qiskit.aqua.algorithms.EigensolverResult.clear" />
 
 `clear()`
 
@@ -57,7 +71,9 @@ return aux operator eigen values
 
 `None`
 
+### combine
 
+<span id="qiskit.aqua.algorithms.EigensolverResult.combine" />
 
 `combine(result)`
 
@@ -71,7 +87,9 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 `None`
 
+### eigenstates
 
+<span id="qiskit.aqua.algorithms.EigensolverResult.eigenstates" />
 
 `property eigenstates`
 
@@ -81,7 +99,9 @@ return eigen states
 
 `Optional`\[`ndarray`]
 
+### eigenvalues
 
+<span id="qiskit.aqua.algorithms.EigensolverResult.eigenvalues" />
 
 `property eigenvalues`
 
@@ -91,7 +111,9 @@ returns eigen values
 
 `Optional`\[`ndarray`]
 
+### from\_dict
 
+<span id="qiskit.aqua.algorithms.EigensolverResult.from_dict" />
 
 `static from_dict(a_dict)`
 
@@ -101,19 +123,27 @@ create new object from a dictionary
 
 `EigensolverResult`
 
+### get
 
+<span id="qiskit.aqua.algorithms.EigensolverResult.get" />
 
 `get(k[, d]) → D[k] if k in D, else d. d defaults to None.`
 
+### items
 
+<span id="qiskit.aqua.algorithms.EigensolverResult.items" />
 
 `items() → a set-like object providing a view on D’s items`
 
+### keys
 
+<span id="qiskit.aqua.algorithms.EigensolverResult.keys" />
 
 `keys() → a set-like object providing a view on D’s keys`
 
+### pop
 
+<span id="qiskit.aqua.algorithms.EigensolverResult.pop" />
 
 `pop(key, default=None)`
 
@@ -123,7 +153,9 @@ If key is not found, d is returned if given, otherwise KeyError is raised.
 
 `object`
 
+### popitem
 
+<span id="qiskit.aqua.algorithms.EigensolverResult.popitem" />
 
 `popitem()`
 
@@ -133,11 +165,15 @@ as a 2-tuple; but raise KeyError if D is empty.
 
 `Tuple`\[`object`, `object`]
 
+### setdefault
 
+<span id="qiskit.aqua.algorithms.EigensolverResult.setdefault" />
 
 `setdefault(k[, d]) → D.get(k,d), also set D[k]=d if k not in D`
 
+### update
 
+<span id="qiskit.aqua.algorithms.EigensolverResult.update" />
 
 `update(*args, **kwargs)`
 
@@ -147,6 +183,9 @@ If E present and has a .keys() method, does: for k in E: D\[k] = E\[k] If E pres
 
 `None`
 
+### values
 
+<span id="qiskit.aqua.algorithms.EigensolverResult.values" />
 
 `values() → an object providing a view on D’s values`
+
