@@ -68,6 +68,9 @@ const SHOULD_BE_FIXED: FilesToIgnores = {
   "docs/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService.md": [
     "https://auth.quantum-computing.ibm.com/api",
   ],
+  "docs/api/qiskit-ibm-runtime/0.17/qiskit_ibm_runtime.QiskitRuntimeService.md": [
+    "https://auth.quantum-computing.ibm.com/api",
+  ],
   "docs/api/qiskit-ibm-runtime/0.14/qiskit_ibm_runtime.QiskitRuntimeService.md":
     ["https://auth.quantum-computing.ibm.com/api"],
   "docs/api/qiskit-ibm-runtime/0.15/qiskit_ibm_runtime.QiskitRuntimeService.md":
