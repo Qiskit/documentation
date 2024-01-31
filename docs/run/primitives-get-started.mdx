@@ -34,7 +34,7 @@ You need at least one circuit and one observable as inputs to the `Estimator` pr
 
 <Tabs>
   <TabItem value="EstimatorV2" label="EstimatorV2">
-    For EstimatorV2, the circuit, observable, and optional paramater value sets are input as _primitive unified bloc_ tuples. 
+    For EstimatorV2, the circuit, observable, and optional paramater value sets are input as _primitive unified bloc_ (PUB) tuples. 
   </TabItem>
 
   <TabItem value="EstimatorV1" label="Estimator (V1)">
@@ -59,15 +59,21 @@ We want to use Qiskit Runtime's implementation of the `Estimator`, so we initial
 
 When you initialize the `Estimator`, you must pass in the system or simulator you previously selected as the target device (or simulator).  You could also do this within the `session` parameter. 
 
-    <admonition type="note">
+
+<Tabs>
+  <TabItem value="EstimatorV2" label="EstimatorV2">
     When using EstimatorV2, for backward compatibility, you must explicitly import EstimatorV2. After V1 support ends, you can use either `import` command (`from qiskit_ibm_runtime import Estimator` or `from qiskit_ibm_runtime import EstimatorV2`) to import EstimatorV2. 
-    </admonition>
+  </TabItem>
 
-```python
-from qiskit_ibm_runtime import Estimator
+  <TabItem value="EstimatorV1" label="Estimator (V1)">
+    ```python
+    from qiskit_ibm_runtime import Estimator
 
-estimator = Estimator(backend=backend)
-```
+    estimator = Estimator(backend=backend)
+    ```
+  </TabItem>
+</Tabs>
+
 
 ### 4. Invoke the Estimator and get results
 

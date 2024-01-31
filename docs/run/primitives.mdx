@@ -61,11 +61,40 @@ Version 2 is first the major interface change since the introduction of Qiskit R
 
 The updated interface uses _primitive unified bloc_s (PUBs).  Each PUB is a tuple that contains a circuit and the data broadcasted to it. This greatly simplifies your ability to send complex data to a circuit.  Previously, you had to specify the same circuit multiple times to match the size of the data to be combined, as shown in the following table: 
 
-| Estimator V1                                                                                                                                                                                             | Estimator V2                                                                                                                                                                                |
-|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| * Takes three parameters: circuits, observables, and parameter_values. * Each parameter can be a single value or a list. * The length of the parameters must match. * Elements from each are aggregated. | * Takes one parameter - PUBs * Each PUB is a tuple containing the following:     - 1 circuit    - 1 or more observables for the circuit    - 0 or more parameter value sets for the circuit |
-| `estimator.run(    [circuit1, circuit2, ...],    [observable1, observable2, ...],    [param_values1, param_values2, ...] )`                                                                              | `estimator.run([    (circuit1, observable1, param_values1),    (circuit2, observable2, param_values2) ])`                                                                                   |
-
+<table>
+  <tbody>
+    <tr>
+      <th>Estimator V1</th>
+      <th>Estimator V2</th>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+          <li>Takes three parameters: circuits, observables, and parameter_values.</li>
+          <li>Each parameter can be a single value or a list.</li>
+          <li>The length of the parameters must match. </li>
+          <li>Elements from each are aggregated.</li>
+        </ul>
+      </td>  
+      <td>
+        <ul>
+          <li>Takes one parameter: PUBs</li>
+          <li>Each PUB is a tuple containing the following:</li>
+            <ul>
+            <li>One circuit</li>
+            <li>One or more observable for the circuit</li>
+            <li>Optional: one or more parameter value sets for the circuit</li>
+            </ul>
+          <li>Elements from each are aggregated.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>`estimator.run([circuit1, circuit2, ...],[observable1, observable2, ...],[param_values1, param_values2, ...] )`</td>
+      <td>`estimator.run([(circuit1, observable1, param_values1),(circuit2, observable2, param_values2) ])`</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Estimator
 
