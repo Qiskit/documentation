@@ -17,6 +17,7 @@ import textwrap
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
+from typing import Iterator
 
 import nbclient
 import nbconvert
@@ -35,11 +36,10 @@ NOTEBOOKS_THAT_SUBMIT_JOBS = [
 ]
 
 
-def filter_paths(paths: list[Path], submit_jobs: bool) -> list[Path]:
+def filter_paths(paths: list[Path], submit_jobs: bool) -> Iterator[Path]:
     """
     Filter out any paths we don't want to run, printing messages.
     """
-    good_paths = []
     for path in paths:
         if path.suffix != ".ipynb":
             print(f"ℹ️ Skipping {path}; file is not `.ipynb` format.")
@@ -61,8 +61,7 @@ def filter_paths(paths: list[Path], submit_jobs: bool) -> list[Path]:
             )
             continue
 
-        good_paths.append(path)
-    return good_paths
+        yield path
 
 
 @dataclass(frozen=True)
