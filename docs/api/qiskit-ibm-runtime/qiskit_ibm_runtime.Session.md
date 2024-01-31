@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.Session
 
 <span id="qiskit_ibm_runtime.Session" />
 
-`Session(service=None, backend=None, max_time=None)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.17/qiskit_ibm_runtime/session.py "view source code")
+`Session(service=None, backend=None, max_time=None)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.18/qiskit_ibm_runtime/session.py "view source code")
 
 Class for creating a flexible Qiskit Runtime session.
 
@@ -73,7 +73,7 @@ Return the session ID.
 
 **Returns**
 
-Session ID. None until a job runs in the session.
+Session ID. None until a job is submitted.
 
 ## Methods
 

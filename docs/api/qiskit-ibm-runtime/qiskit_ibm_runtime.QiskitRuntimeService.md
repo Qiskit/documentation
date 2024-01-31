@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
 <span id="qiskit_ibm_runtime.QiskitRuntimeService" />
 
-`QiskitRuntimeService(channel=None, token=None, url=None, filename=None, name=None, instance=None, proxies=None, verify=None, channel_strategy=None)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.17/qiskit_ibm_runtime/qiskit_runtime_service.py "view source code")
+`QiskitRuntimeService(channel=None, token=None, url=None, filename=None, name=None, instance=None, proxies=None, verify=None, channel_strategy=None)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.18/qiskit_ibm_runtime/qiskit_runtime_service.py "view source code")
 
 Class for interacting with the Qiskit Runtime service.
 
@@ -175,7 +175,7 @@ Backend
 
 <span id="qiskit_ibm_runtime.QiskitRuntimeService.backends" />
 
-`backends(name=None, min_num_qubits=None, instance=None, filters=None, **kwargs)`
+`backends(name=None, min_num_qubits=None, instance=None, dynamic_circuits=None, filters=None, **kwargs)`
 
 Return all backends accessible via this account, subject to optional filtering.
 
@@ -186,6 +186,8 @@ Return all backends accessible via this account, subject to optional filtering.
 *   **min\_num\_qubits** (`Optional`\[`int`]) – Minimum number of qubits the backend has to have.
 
 *   **instance** (`Optional`\[`str`]) – This is only supported for `ibm_quantum` runtime and is in the hub/group/project format.
+
+*   **dynamic\_circuits** (`Optional`\[`bool`]) – Filter by whether the backend supports dynamic circuits.
 
 *   **filters** (`Optional`\[`Callable`\[\[`List`\[[`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend")]], `bool`]]) –
 
