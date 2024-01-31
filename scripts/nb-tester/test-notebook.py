@@ -35,6 +35,36 @@ NOTEBOOKS_THAT_SUBMIT_JOBS = [
 ]
 
 
+def filter_paths(paths: list[Path], submit_jobs: bool) -> list[Path]:
+    """
+    Filter out any paths we don't want to run, printing messages.
+    """
+    good_paths = []
+    for path in paths:
+        if path.suffix != ".ipynb":
+            print(f"ℹ️ Skipping {path}; file is not `.ipynb` format.")
+            continue
+
+        if any(path.match(glob) for glob in NOTEBOOKS_EXCLUDE):
+            this_file = Path(__file__).relative_to(Path(".").resolve())
+            print(
+                f"ℹ️ Skipping {path}; to run it, edit `NOTEBOOKS_EXCLUDE` in {this_file}."
+            )
+            continue
+
+        if (
+            any(path.match(glob) for glob in NOTEBOOKS_THAT_SUBMIT_JOBS)
+            and not submit_jobs
+        ):
+            print(
+                f"ℹ️ Skipping {path} as it submits jobs; use the --submit-jobs flag to run it."
+            )
+            continue
+
+        good_paths.append(path)
+    return good_paths
+
+
 @dataclass(frozen=True)
 class ExecuteOptions:
     write: bool
@@ -214,15 +244,12 @@ if __name__ == "__main__":
     args = create_argument_parser().parse_args()
 
     paths = map(Path, args.filenames or find_notebooks(submit_jobs=args.submit_jobs))
-    if not args.submit_jobs:
-        paths = [path for path in paths if not any(path.match(glob) for glob in NOTEBOOKS_THAT_SUBMIT_JOBS)]
+    paths = filter_paths(paths, submit_jobs=args.submit_jobs)
 
     # Execute notebooks
     start_time = datetime.now()
     print("Executing notebooks:")
-    results = [
-        execute_notebook(path, args) for path in paths if path.suffix == ".ipynb"
-    ]
+    results = [execute_notebook(path, args) for path in paths]
     print("Checking for trailing jobs...")
     results.append(cancel_trailing_jobs(start_time))
     if not all(results):
