@@ -6,7 +6,7 @@ description: Introduction to primitives in Qiskit and Qiskit Runtime, and an exp
 
 # Introduction to primitives
 
-Computing systems are built upon multiple layers of abstraction. Abstractions allow to focus on a
+Computing systems are built on multiple layers of abstraction. Abstractions allow to focus on a
 particular level of detail relevant to the task at hand. The closer you get to the hardware,
 the lower the level of abstraction you'll need (for example, you could
 want to manipulate electrical signals), and vice versa, the more complex the task you want to perform,
@@ -46,6 +46,25 @@ you can leverage the latest advancements in error mitigation and suppression by 
 For hardware providers, implementing primitives natively means you can provide your users with a more “out-of-the-box”
 way to access your hardware features. It is therefore easier for your users to benefit from your hardware's
 best capabilities.
+
+## V2 primitives
+
+Version 2 is first the major interface change since the introduction of Qiskit Runtime primitives. Based on user feedback, the new version introduces the following major new functions:
+
+* A *new interface* that allows you to specify a single circuit and multiple observables (if using Estimator) and parameter value sets for that circuit. 
+* In addition to resilience levels, you can *turn on or off individual error mitigation and suppression methods*.
+* In addition to quasi-probabilities, you can choose to *get counts or per-shot measurements* from SamplerV2.
+* Due to scaling issues, SamplerV2 does not support specifying a resilience level, and EstimatorV2 supports only levels 0 - 2. 
+* To reduce the total execution time, v2 primitives only support *lightweight transpilation*. If you need more advanced transpilation, you can use the Qiskit transpiler or the AI transpilation service, as described in the [Runtime compilation section.](advanced-runtime-options#runtime-compilation)
+
+### Interface changes
+
+The updated interface uses _primitive unified bloc_s (PUBs).  Each PUB is a tuple that contains a circuit and the data broadcasted to it. This greatly simplifies your ability to send complex data to a circuit.  Previously, you had to specify the same circuit multiple times to match the size of the data to be combined, as shown in the following table: 
+
+| Estimator V1                                                                                                                                                                                             | Estimator V2                                                                                                                                                                                |
+|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| * Takes three parameters: circuits, observables, and parameter_values. * Each parameter can be a single value or a list. * The length of the parameters must match. * Elements from each are aggregated. | * Takes one parameter - PUBs * Each PUB is a tuple containing the following:     - 1 circuit    - 1 or more observables for the circuit    - 0 or more parameter value sets for the circuit |
+| `estimator.run(    [circuit1, circuit2, ...],    [observable1, observable2, ...],    [param_values1, param_values2, ...] )`                                                                              | `estimator.run([    (circuit1, observable1, param_values1),    (circuit2, observable2, param_values2) ])`                                                                                   |
 
 
 ## Estimator

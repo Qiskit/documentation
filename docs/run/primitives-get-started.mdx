@@ -34,14 +34,10 @@ You need at least one circuit and one observable as inputs to the `Estimator` pr
 
 <Tabs>
   <TabItem value="EstimatorV2" label="EstimatorV2">
-    xxx
+    For EstimatorV2, the circuit, observable, and optional paramater value sets are input as _primitive unified bloc_ tuples. 
   </TabItem>
 
   <TabItem value="EstimatorV1" label="Estimator (V1)">
-    xxx
-  </TabItem>
-</Tabs>
-
     ```python
     import numpy as np
     from qiskit.circuit.library import IQP
@@ -54,6 +50,8 @@ You need at least one circuit and one observable as inputs to the `Estimator` pr
     observable = SparsePauliOp("Z" * n_qubits)
     print(f">>> Observable: {observable.paulis}")
     ```
+  </TabItem>
+</Tabs>
 
 ### 3. Initialize Qiskit Runtime Estimator
 
@@ -64,16 +62,6 @@ When you initialize the `Estimator`, you must pass in the system or simulator yo
     <admonition type="note">
     When using EstimatorV2, for backward compatibility, you must explicitly import EstimatorV2. After V1 support ends, you can use either `import` command (`from qiskit_ibm_runtime import Estimator` or `from qiskit_ibm_runtime import EstimatorV2`) to import EstimatorV2. 
     </admonition>
-
-<Tabs>
-  <TabItem value="EstimatorV2_a" label="EstimatorV2">
-    xxx
-  </TabItem>
-
-  <TabItem value="EstimatorV1_a" label="Estimator (V1)">
-    xxx
-  </TabItem>
-</Tabs>
 
 ```python
 from qiskit_ibm_runtime import Estimator
