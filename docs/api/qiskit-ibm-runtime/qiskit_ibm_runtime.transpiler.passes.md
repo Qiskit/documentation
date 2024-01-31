@@ -12,14 +12,18 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes
 
 # qiskit\_ibm\_runtime.transpiler.passes
 
-<span id="transpiler-passes-qiskit-ibm-provider-transpiler-passes" />
+<span id="transpiler-passes-qiskit-ibm-runtime-transpiler-passes" />
 
-## Transpiler Passes (qiskit\_ibm\_provider.transpiler.passes)
+## Transpiler Passes
+
+<span id="module-qiskit_ibm_runtime.transpiler.passes" />
+
+`qiskit_ibm_runtime.transpiler.passes`
 
 A collection of transpiler passes for IBM backends.
 
-|                                                                                                                                                                             |                                                                 |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
-| [`basis`](qiskit_ibm_provider.transpiler.passes.basis#module-qiskit_ibm_provider.transpiler.passes.basis "qiskit_ibm_provider.transpiler.passes.basis")                     | Basis (qiskit\_ibm\_provider.transpiler.passes.basis)           |
-| [`scheduling`](qiskit_ibm_provider.transpiler.passes.scheduling#module-qiskit_ibm_provider.transpiler.passes.scheduling "qiskit_ibm_provider.transpiler.passes.scheduling") | Scheduling (qiskit\_ibm\_provider.transpiler.passes.scheduling) |
+|                                                                                                                                                                          |                                                                |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------- |
+| [`basis`](qiskit_ibm_runtime.transpiler.passes.basis#module-qiskit_ibm_runtime.transpiler.passes.basis "qiskit_ibm_runtime.transpiler.passes.basis")                     | Basis (qiskit\_ibm\_runtime.transpiler.passes.basis)           |
+| [`scheduling`](qiskit_ibm_runtime.transpiler.passes.scheduling#module-qiskit_ibm_runtime.transpiler.passes.scheduling "qiskit_ibm_runtime.transpiler.passes.scheduling") | Scheduling (qiskit\_ibm\_runtime.transpiler.passes.scheduling) |
 

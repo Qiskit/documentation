@@ -1,22 +1,22 @@
 ---
 title: scheduling
-description: API reference for qiskit_ibm_provider.transpiler.passes.scheduling
+description: API reference for qiskit_ibm_runtime.transpiler.passes.scheduling
 in_page_toc_min_heading_level: 1
 python_api_type: module
-python_api_name: qiskit_ibm_provider.transpiler.passes.scheduling
+python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling
 ---
 
-<span id="module-qiskit_ibm_provider.transpiler.passes.scheduling" />
+<span id="module-qiskit_ibm_runtime.transpiler.passes.scheduling" />
 
 # scheduling
 
-<span id="scheduling-qiskit-ibm-provider-transpiler-passes-scheduling" />
+<span id="scheduling-qiskit-ibm-runtime-transpiler-passes-scheduling" />
 
 ## Scheduling
 
-<span id="module-qiskit_ibm_provider.transpiler.passes.scheduling" />
+<span id="module-qiskit_ibm_runtime.transpiler.passes.scheduling" />
 
-`qiskit_ibm_provider.transpiler.passes.scheduling`
+`qiskit_ibm_runtime.transpiler.passes.scheduling`
 
 A collection of scheduling passes for working with IBM Quantum’s next-generation backends that support advanced “dynamic circuit” capabilities. Ie., circuits with support for classical control-flow/feedback based off of measurement results.
 
@@ -76,9 +76,9 @@ scheduled_teleport = pm.run(teleport)
 scheduled_teleport.draw(output="mpl", style="iqp")
 ```
 
-![../\_images/qiskit\_ibm\_provider.transpiler.passes.scheduling\_0\_0.png](/images/api/qiskit-ibm-runtime/qiskit_ibm_provider.transpiler.passes.scheduling_0_0.png)
+![../\_images/qiskit\_ibm\_runtime.transpiler.passes.scheduling\_0\_0.png](/images/api/qiskit-ibm-runtime/qiskit_ibm_runtime.transpiler.passes.scheduling_0_0.png)
 
-Instead of padding with delays we may also insert a dynamical decoupling sequence using the [`PadDynamicalDecoupling`](qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDecoupling "qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDecoupling") pass as shown below:
+Instead of padding with delays we may also insert a dynamical decoupling sequence using the [`PadDynamicalDecoupling`](qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling "qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling") pass as shown below:
 
 ```python
 from qiskit.circuit.library import XGate
@@ -101,7 +101,7 @@ dd_teleport = pm.run(teleport)
 dd_teleport.draw(output="mpl", style="iqp")
 ```
 
-![../\_images/qiskit\_ibm\_provider.transpiler.passes.scheduling\_1\_0.png](/images/api/qiskit-ibm-runtime/qiskit_ibm_provider.transpiler.passes.scheduling_1_0.png)
+![../\_images/qiskit\_ibm\_runtime.transpiler.passes.scheduling\_1\_0.png](/images/api/qiskit-ibm-runtime/qiskit_ibm_runtime.transpiler.passes.scheduling_1_0.png)
 
 When compiling a circuit with Qiskit, it is more efficient and more robust to perform all the transformations in a single transpilation. This has been done above by extending Qiskit’s preset pass managers. For example, Qiskit’s `transpile()` function internally builds its pass set by using `generate_preset_pass_manager()`. This returns instances of `StagedPassManager`, which can be extended.
 
@@ -117,7 +117,7 @@ qc_c_if.x(0).c_if(0, 1)
 qc_c_if.draw(output="mpl", style="iqp")
 ```
 
-![../\_images/qiskit\_ibm\_provider.transpiler.passes.scheduling\_2\_0.png](/images/api/qiskit-ibm-runtime/qiskit_ibm_provider.transpiler.passes.scheduling_2_0.png)
+![../\_images/qiskit\_ibm\_runtime.transpiler.passes.scheduling\_2\_0.png](/images/api/qiskit-ibm-runtime/qiskit_ibm_runtime.transpiler.passes.scheduling_2_0.png)
 
 The [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.IBMBackend") configures a translation plugin `IBMTranslationPlugin` to automatically apply transformations and optimizations for IBM hardware backends when invoking `transpile()`. This will automatically convert all old style `c_if` conditioned gates to new-style control-flow. We may then schedule the transpiled circuit without further modification.
 
@@ -137,7 +137,7 @@ qc_if_dd = pm.run(qc_c_if, backend)
 qc_if_dd.draw(output="mpl", style="iqp")
 ```
 
-![../\_images/qiskit\_ibm\_provider.transpiler.passes.scheduling\_3\_0.png](/images/api/qiskit-ibm-runtime/qiskit_ibm_provider.transpiler.passes.scheduling_3_0.png)
+![../\_images/qiskit\_ibm\_runtime.transpiler.passes.scheduling\_3\_0.png](/images/api/qiskit-ibm-runtime/qiskit_ibm_runtime.transpiler.passes.scheduling_3_0.png)
 
 If you are not using the transpiler plugin stages to work around this please manually run the pass `qiskit.transpiler.passes.ConvertConditionsToIfOps` prior to your scheduling pass.
 
@@ -157,7 +157,7 @@ qc_if_dd = pm.run(qc_c_if)
 qc_if_dd.draw(output="mpl", style="iqp")
 ```
 
-![../\_images/qiskit\_ibm\_provider.transpiler.passes.scheduling\_4\_0.png](/images/api/qiskit-ibm-runtime/qiskit_ibm_provider.transpiler.passes.scheduling_4_0.png)
+![../\_images/qiskit\_ibm\_runtime.transpiler.passes.scheduling\_4\_0.png](/images/api/qiskit-ibm-runtime/qiskit_ibm_runtime.transpiler.passes.scheduling_4_0.png)
 
 <span id="exploiting-ibm-backend-s-local-parallel-fast-path" />
 
@@ -180,7 +180,7 @@ with qc.if_test((1, 1)):
 qc.draw(output="mpl", style="iqp")
 ```
 
-![../\_images/qiskit\_ibm\_provider.transpiler.passes.scheduling\_5\_0.png](/images/api/qiskit-ibm-runtime/qiskit_ibm_provider.transpiler.passes.scheduling_5_0.png)
+![../\_images/qiskit\_ibm\_runtime.transpiler.passes.scheduling\_5\_0.png](/images/api/qiskit-ibm-runtime/qiskit_ibm_runtime.transpiler.passes.scheduling_5_0.png)
 
 The circuit below will not use the fast-path as the conditional gate is on a different qubit than the measurement qubit.
 
@@ -193,7 +193,7 @@ with qc.if_test((0, 1)):
 qc.draw(output="mpl", style="iqp")
 ```
 
-![../\_images/qiskit\_ibm\_provider.transpiler.passes.scheduling\_6\_0.png](/images/api/qiskit-ibm-runtime/qiskit_ibm_provider.transpiler.passes.scheduling_6_0.png)
+![../\_images/qiskit\_ibm\_runtime.transpiler.passes.scheduling\_6\_0.png](/images/api/qiskit-ibm-runtime/qiskit_ibm_runtime.transpiler.passes.scheduling_6_0.png)
 
 Similarly, the circuit below contains gates on multiple qubits and will not be performed using the fast-path.
 
@@ -207,7 +207,7 @@ with qc.if_test((0, 1)):
 qc.draw(output="mpl", style="iqp")
 ```
 
-![../\_images/qiskit\_ibm\_provider.transpiler.passes.scheduling\_7\_0.png](/images/api/qiskit-ibm-runtime/qiskit_ibm_provider.transpiler.passes.scheduling_7_0.png)
+![../\_images/qiskit\_ibm\_runtime.transpiler.passes.scheduling\_7\_0.png](/images/api/qiskit-ibm-runtime/qiskit_ibm_runtime.transpiler.passes.scheduling_7_0.png)
 
 A fast-path block may contain multiple gates as long as they are on the fast-path qubit. If there are multiple fast-path blocks being performed in parallel each block will be padded out to the duration of the longest block.
 
@@ -225,7 +225,7 @@ with qc.if_test((1, 1)):
 qc.draw(output="mpl", style="iqp")
 ```
 
-![../\_images/qiskit\_ibm\_provider.transpiler.passes.scheduling\_8\_0.png](/images/api/qiskit-ibm-runtime/qiskit_ibm_provider.transpiler.passes.scheduling_8_0.png)
+![../\_images/qiskit\_ibm\_runtime.transpiler.passes.scheduling\_8\_0.png](/images/api/qiskit-ibm-runtime/qiskit_ibm_runtime.transpiler.passes.scheduling_8_0.png)
 
 This behavior is also applied to the else condition of a fast-path eligible branch.
 
@@ -242,7 +242,7 @@ with else_:
 qc.draw(output="mpl", style="iqp")
 ```
 
-![../\_images/qiskit\_ibm\_provider.transpiler.passes.scheduling\_9\_0.png](/images/api/qiskit-ibm-runtime/qiskit_ibm_provider.transpiler.passes.scheduling_9_0.png)
+![../\_images/qiskit\_ibm\_runtime.transpiler.passes.scheduling\_9\_0.png](/images/api/qiskit-ibm-runtime/qiskit_ibm_runtime.transpiler.passes.scheduling_9_0.png)
 
 If a single measurement result is used with several conditional blocks, if there is a fast-path eligible block it will be applied followed by the non-fast-path blocks which will execute with the standard higher latency conditional branch.
 
@@ -260,7 +260,7 @@ with qc.if_test((0, 1)):
 qc.draw(output="mpl", style="iqp")
 ```
 
-![../\_images/qiskit\_ibm\_provider.transpiler.passes.scheduling\_10\_0.png](/images/api/qiskit-ibm-runtime/qiskit_ibm_provider.transpiler.passes.scheduling_10_0.png)
+![../\_images/qiskit\_ibm\_runtime.transpiler.passes.scheduling\_10\_0.png](/images/api/qiskit-ibm-runtime/qiskit_ibm_runtime.transpiler.passes.scheduling_10_0.png)
 
 If you wish to prevent the usage of the fast-path you may insert a barrier between the measurement and the conditional branch.
 
@@ -275,7 +275,7 @@ with qc.if_test((0, 1)):
 qc.draw(output="mpl", style="iqp")
 ```
 
-![../\_images/qiskit\_ibm\_provider.transpiler.passes.scheduling\_11\_0.png](/images/api/qiskit-ibm-runtime/qiskit_ibm_provider.transpiler.passes.scheduling_11_0.png)
+![../\_images/qiskit\_ibm\_runtime.transpiler.passes.scheduling\_11\_0.png](/images/api/qiskit-ibm-runtime/qiskit_ibm_runtime.transpiler.passes.scheduling_11_0.png)
 
 Conditional measurements are not eligible for the fast-path.
 
@@ -289,7 +289,7 @@ with qc.if_test((0, 1)):
 qc.draw(output="mpl", style="iqp")
 ```
 
-![../\_images/qiskit\_ibm\_provider.transpiler.passes.scheduling\_12\_0.png](/images/api/qiskit-ibm-runtime/qiskit_ibm_provider.transpiler.passes.scheduling_12_0.png)
+![../\_images/qiskit\_ibm\_runtime.transpiler.passes.scheduling\_12\_0.png](/images/api/qiskit-ibm-runtime/qiskit_ibm_runtime.transpiler.passes.scheduling_12_0.png)
 
 Similarly nested control-flow is not eligible.
 
@@ -305,7 +305,7 @@ with qc.if_test((0, 1)):
 qc.draw(output="mpl", style="iqp")
 ```
 
-![../\_images/qiskit\_ibm\_provider.transpiler.passes.scheduling\_13\_0.png](/images/api/qiskit-ibm-runtime/qiskit_ibm_provider.transpiler.passes.scheduling_13_0.png)
+![../\_images/qiskit\_ibm\_runtime.transpiler.passes.scheduling\_13\_0.png](/images/api/qiskit-ibm-runtime/qiskit_ibm_runtime.transpiler.passes.scheduling_13_0.png)
 
 The scheduler is aware of the fast-path behavior and will not insert delays on idle qubits in blocks that satisfy the fast-path conditions so as to avoid preventing the backend compiler from performing the necessary optimizations to utilize the fast-path. If there are fast-path blocks that will be performed in parallel they currently *will not* be padded out by the scheduler to ensure they are of the same duration in Qiskit
 
@@ -339,7 +339,7 @@ qc_dd = pm.run(qc)
 qc_dd.draw(output="mpl", style="iqp")
 ```
 
-![../\_images/qiskit\_ibm\_provider.transpiler.passes.scheduling\_14\_0.png](/images/api/qiskit-ibm-runtime/qiskit_ibm_provider.transpiler.passes.scheduling_14_0.png)
+![../\_images/qiskit\_ibm\_runtime.transpiler.passes.scheduling\_14\_0.png](/images/api/qiskit-ibm-runtime/qiskit_ibm_runtime.transpiler.passes.scheduling_14_0.png)
 
 <Admonition title="Note" type="note">
   If there are qubits that are *not* involved in a fast-path decision it is not currently possible to use them in a fast-path branch in parallel with the fast-path qubits resulting from a measurement. This will be revised in the future as we further improve these capabilities.
@@ -363,19 +363,19 @@ qc_dd.draw(output="mpl", style="iqp")
   qc.draw(output="mpl", style="iqp")
   ```
 
-  ![../\_images/qiskit\_ibm\_provider.transpiler.passes.scheduling\_15\_0.png](/images/api/qiskit-ibm-runtime/qiskit_ibm_provider.transpiler.passes.scheduling_15_0.png)
+  ![../\_images/qiskit\_ibm\_runtime.transpiler.passes.scheduling\_15\_0.png](/images/api/qiskit-ibm-runtime/qiskit_ibm_runtime.transpiler.passes.scheduling_15_0.png)
 </Admonition>
 
 <span id="scheduling-dynamical-decoupling" />
 
 #### Scheduling & Dynamical Decoupling
 
-|                                                                                                                                                                                                                           |                                                                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [`BlockBasePadder`](qiskit_ibm_provider.transpiler.passes.scheduling.BlockBasePadder "qiskit_ibm_provider.transpiler.passes.scheduling.BlockBasePadder")(\[schedule\_idle\_qubits])                                       | The base class of padding pass.                                                                                                                              |
-| [`ALAPScheduleAnalysis`](qiskit_ibm_provider.transpiler.passes.scheduling.ALAPScheduleAnalysis "qiskit_ibm_provider.transpiler.passes.scheduling.ALAPScheduleAnalysis")(durations)                                        | Dynamic circuits as-late-as-possible (ALAP) scheduling analysis pass.                                                                                        |
-| [`ASAPScheduleAnalysis`](qiskit_ibm_provider.transpiler.passes.scheduling.ASAPScheduleAnalysis "qiskit_ibm_provider.transpiler.passes.scheduling.ASAPScheduleAnalysis")(durations)                                        | Dynamic circuits as-soon-as-possible (ASAP) scheduling analysis pass.                                                                                        |
-| [`DynamicCircuitInstructionDurations`](qiskit_ibm_provider.transpiler.passes.scheduling.DynamicCircuitInstructionDurations "qiskit_ibm_provider.transpiler.passes.scheduling.DynamicCircuitInstructionDurations")(\[...]) | For dynamic circuits the IBM Qiskit backend currently reports instruction durations that differ compared with those required for the legacy Qobj-based path. |
-| [`PadDelay`](qiskit_ibm_provider.transpiler.passes.scheduling.PadDelay "qiskit_ibm_provider.transpiler.passes.scheduling.PadDelay")(\[fill\_very\_end, schedule\_idle\_qubits])                                           | Padding idle time with Delay instructions.                                                                                                                   |
-| [`PadDynamicalDecoupling`](qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDecoupling "qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDecoupling")(durations, dd\_sequences)                   | Dynamical decoupling insertion pass for IBM dynamic circuit backends.                                                                                        |
+|                                                                                                                                                                                                                         |                                                                                                                                                              |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [`BlockBasePadder`](qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder "qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder")(\[schedule\_idle\_qubits])                                       | The base class of padding pass.                                                                                                                              |
+| [`ALAPScheduleAnalysis`](qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAnalysis "qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAnalysis")(durations)                                        | Dynamic circuits as-late-as-possible (ALAP) scheduling analysis pass.                                                                                        |
+| [`ASAPScheduleAnalysis`](qiskit_ibm_runtime.transpiler.passes.scheduling.ASAPScheduleAnalysis "qiskit_ibm_runtime.transpiler.passes.scheduling.ASAPScheduleAnalysis")(durations)                                        | Dynamic circuits as-soon-as-possible (ASAP) scheduling analysis pass.                                                                                        |
+| [`DynamicCircuitInstructionDurations`](qiskit_ibm_runtime.transpiler.passes.scheduling.DynamicCircuitInstructionDurations "qiskit_ibm_runtime.transpiler.passes.scheduling.DynamicCircuitInstructionDurations")(\[...]) | For dynamic circuits the IBM Qiskit backend currently reports instruction durations that differ compared with those required for the legacy Qobj-based path. |
+| [`PadDelay`](qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay "qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay")(\[fill\_very\_end, schedule\_idle\_qubits])                                           | Padding idle time with Delay instructions.                                                                                                                   |
+| [`PadDynamicalDecoupling`](qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling "qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling")(durations, dd\_sequences)                   | Dynamical decoupling insertion pass for IBM dynamic circuit backends.                                                                                        |
 

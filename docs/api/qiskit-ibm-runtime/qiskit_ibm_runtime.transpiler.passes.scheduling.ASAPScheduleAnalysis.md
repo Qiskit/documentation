@@ -1,16 +1,16 @@
 ---
 title: ASAPScheduleAnalysis
-description: API reference for qiskit_ibm_provider.transpiler.passes.scheduling.ASAPScheduleAnalysis
+description: API reference for qiskit_ibm_runtime.transpiler.passes.scheduling.ASAPScheduleAnalysis
 in_page_toc_min_heading_level: 1
 python_api_type: class
-python_api_name: qiskit_ibm_provider.transpiler.passes.scheduling.ASAPScheduleAnalysis
+python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.ASAPScheduleAnalysis
 ---
 
 # ASAPScheduleAnalysis
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.ASAPScheduleAnalysis" />
+<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.ASAPScheduleAnalysis" />
 
-`ASAPScheduleAnalysis(durations)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.18/qiskit_ibm_provider/transpiler/passes/scheduling/scheduler.py "view source code")
+`ASAPScheduleAnalysis(durations)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.18/qiskit_ibm_runtime/transpiler/passes/scheduling/scheduler.py "view source code")
 
 Dynamic circuits as-soon-as-possible (ASAP) scheduling analysis pass.
 
@@ -36,7 +36,7 @@ Scheduler for dynamic circuit backends.
 
 ## Attributes
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.ASAPScheduleAnalysis.is_analysis_pass" />
+<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.ASAPScheduleAnalysis.is_analysis_pass" />
 
 ### is\_analysis\_pass
 
@@ -44,7 +44,7 @@ Check if the pass is an analysis pass.
 
 If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.ASAPScheduleAnalysis.is_transformation_pass" />
+<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.ASAPScheduleAnalysis.is_transformation_pass" />
 
 ### is\_transformation\_pass
 
@@ -56,7 +56,7 @@ If the pass is a TransformationPass, that means that the pass can manipulate the
 
 ### \_\_call\_\_
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.ASAPScheduleAnalysis.__call__" />
+<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.ASAPScheduleAnalysis.__call__" />
 
 `__call__(circuit, property_set=None)`
 
@@ -77,7 +77,7 @@ If on transformation pass, the resulting QuantumCircuit. If analysis pass, the i
 
 ### execute
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.ASAPScheduleAnalysis.execute" />
+<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.ASAPScheduleAnalysis.execute" />
 
 `execute(passmanager_ir, state, callback=None)`
 
@@ -99,7 +99,7 @@ Optimized Qiskit IR and state of the workflow.
 
 ### name
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.ASAPScheduleAnalysis.name" />
+<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.ASAPScheduleAnalysis.name" />
 
 `name()`
 
@@ -111,7 +111,7 @@ Name of the pass.
 
 ### run
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.ASAPScheduleAnalysis.run" />
+<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.ASAPScheduleAnalysis.run" />
 
 `run(dag)`
 
@@ -132,7 +132,7 @@ The scheduled DAGCircuit.
 
 ### update\_status
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.ASAPScheduleAnalysis.update_status" />
+<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.ASAPScheduleAnalysis.update_status" />
 
 `update_status(state, run_state)`
 

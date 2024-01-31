@@ -1,16 +1,16 @@
 ---
 title: BlockBasePadder
-description: API reference for qiskit_ibm_provider.transpiler.passes.scheduling.BlockBasePadder
+description: API reference for qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder
 in_page_toc_min_heading_level: 1
 python_api_type: class
-python_api_name: qiskit_ibm_provider.transpiler.passes.scheduling.BlockBasePadder
+python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder
 ---
 
 # BlockBasePadder
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.BlockBasePadder" />
+<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder" />
 
-`BlockBasePadder(schedule_idle_qubits=False)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.18/qiskit_ibm_provider/transpiler/passes/scheduling/block_base_padder.py "view source code")
+`BlockBasePadder(schedule_idle_qubits=False)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.18/qiskit_ibm_runtime/transpiler/passes/scheduling/block_base_padder.py "view source code")
 
 The base class of padding pass.
 
@@ -27,7 +27,7 @@ Any manipulation violating these constraints may prevent this base pass from cor
 
 ## Attributes
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.BlockBasePadder.is_analysis_pass" />
+<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder.is_analysis_pass" />
 
 ### is\_analysis\_pass
 
@@ -35,7 +35,7 @@ Check if the pass is an analysis pass.
 
 If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.BlockBasePadder.is_transformation_pass" />
+<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder.is_transformation_pass" />
 
 ### is\_transformation\_pass
 
@@ -47,7 +47,7 @@ If the pass is a TransformationPass, that means that the pass can manipulate the
 
 ### \_\_call\_\_
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.BlockBasePadder.__call__" />
+<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder.__call__" />
 
 `__call__(circuit, property_set=None)`
 
@@ -68,7 +68,7 @@ If on transformation pass, the resulting QuantumCircuit. If analysis pass, the i
 
 ### execute
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.BlockBasePadder.execute" />
+<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder.execute" />
 
 `execute(passmanager_ir, state, callback=None)`
 
@@ -90,7 +90,7 @@ Optimized Qiskit IR and state of the workflow.
 
 ### name
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.BlockBasePadder.name" />
+<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder.name" />
 
 `name()`
 
@@ -102,7 +102,7 @@ Name of the pass.
 
 ### run
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.BlockBasePadder.run" />
+<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder.run" />
 
 `run(dag)`
 
@@ -126,7 +126,7 @@ DAGCircuit
 
 ### update\_status
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.BlockBasePadder.update_status" />
+<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder.update_status" />
 
 `update_status(state, run_state)`
 

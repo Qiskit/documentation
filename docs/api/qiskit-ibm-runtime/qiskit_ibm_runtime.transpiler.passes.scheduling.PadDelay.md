@@ -1,16 +1,16 @@
 ---
 title: PadDelay
-description: API reference for qiskit_ibm_provider.transpiler.passes.scheduling.PadDelay
+description: API reference for qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay
 in_page_toc_min_heading_level: 1
 python_api_type: class
-python_api_name: qiskit_ibm_provider.transpiler.passes.scheduling.PadDelay
+python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay
 ---
 
 # PadDelay
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.PadDelay" />
+<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay" />
 
-`PadDelay(fill_very_end=True, schedule_idle_qubits=False)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.18/qiskit_ibm_provider/transpiler/passes/scheduling/pad_delay.py "view source code")
+`PadDelay(fill_very_end=True, schedule_idle_qubits=False)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.18/qiskit_ibm_runtime/transpiler/passes/scheduling/pad_delay.py "view source code")
 
 Padding idle time with Delay instructions.
 
@@ -28,7 +28,7 @@ q_1: ──────┤ X ├───────┤ X ├
 
 Note that the additional idle time of 60dt on the `q_0` wire coming from the duration difference between `Delay` of 100dt (`q_0`) and `XGate` of 160 dt (`q_1`) is absorbed in the delay instruction on the `q_0` wire, i.e. in total 160 dt.
 
-See [`BlockBasePadder`](qiskit_ibm_provider.transpiler.passes.scheduling.BlockBasePadder "qiskit_ibm_provider.transpiler.passes.scheduling.BlockBasePadder") pass for details.
+See [`BlockBasePadder`](qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder "qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder") pass for details.
 
 Create new padding delay pass.
 
@@ -39,7 +39,7 @@ Create new padding delay pass.
 
 ## Attributes
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.PadDelay.is_analysis_pass" />
+<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay.is_analysis_pass" />
 
 ### is\_analysis\_pass
 
@@ -47,7 +47,7 @@ Check if the pass is an analysis pass.
 
 If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.PadDelay.is_transformation_pass" />
+<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay.is_transformation_pass" />
 
 ### is\_transformation\_pass
 
@@ -59,7 +59,7 @@ If the pass is a TransformationPass, that means that the pass can manipulate the
 
 ### \_\_call\_\_
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.PadDelay.__call__" />
+<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay.__call__" />
 
 `__call__(circuit, property_set=None)`
 
@@ -80,7 +80,7 @@ If on transformation pass, the resulting QuantumCircuit. If analysis pass, the i
 
 ### execute
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.PadDelay.execute" />
+<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay.execute" />
 
 `execute(passmanager_ir, state, callback=None)`
 
@@ -102,7 +102,7 @@ Optimized Qiskit IR and state of the workflow.
 
 ### name
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.PadDelay.name" />
+<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay.name" />
 
 `name()`
 
@@ -114,7 +114,7 @@ Name of the pass.
 
 ### run
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.PadDelay.run" />
+<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay.run" />
 
 `run(dag)`
 
@@ -138,7 +138,7 @@ DAGCircuit
 
 ### update\_status
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.PadDelay.update_status" />
+<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay.update_status" />
 
 `update_status(state, run_state)`
 

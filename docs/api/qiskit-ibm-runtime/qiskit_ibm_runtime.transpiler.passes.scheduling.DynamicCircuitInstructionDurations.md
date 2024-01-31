@@ -1,16 +1,16 @@
 ---
 title: DynamicCircuitInstructionDurations
-description: API reference for qiskit_ibm_provider.transpiler.passes.scheduling.DynamicCircuitInstructionDurations
+description: API reference for qiskit_ibm_runtime.transpiler.passes.scheduling.DynamicCircuitInstructionDurations
 in_page_toc_min_heading_level: 1
 python_api_type: class
-python_api_name: qiskit_ibm_provider.transpiler.passes.scheduling.DynamicCircuitInstructionDurations
+python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.DynamicCircuitInstructionDurations
 ---
 
 # DynamicCircuitInstructionDurations
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.DynamicCircuitInstructionDurations" />
+<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.DynamicCircuitInstructionDurations" />
 
-`DynamicCircuitInstructionDurations(instruction_durations=None, dt=None, enable_patching=True)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.18/qiskit_ibm_provider/transpiler/passes/scheduling/utils.py "view source code")
+`DynamicCircuitInstructionDurations(instruction_durations=None, dt=None, enable_patching=True)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.18/qiskit_ibm_runtime/transpiler/passes/scheduling/utils.py "view source code")
 
 For dynamic circuits the IBM Qiskit backend currently reports instruction durations that differ compared with those required for the legacy Qobj-based path. For now we use this class to report updated InstructionDurations. TODO: This would be mitigated by a specialized Backend/Target for dynamic circuit backends.
 
@@ -18,13 +18,13 @@ Dynamic circuit instruction durations.
 
 ## Attributes
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.DynamicCircuitInstructionDurations.MEASURE_PATCH_CYCLES" />
+<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.DynamicCircuitInstructionDurations.MEASURE_PATCH_CYCLES" />
 
 ### MEASURE\_PATCH\_CYCLES
 
 `= 160`
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.DynamicCircuitInstructionDurations.MEASURE_PATCH_ODD_OFFSET" />
+<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.DynamicCircuitInstructionDurations.MEASURE_PATCH_ODD_OFFSET" />
 
 ### MEASURE\_PATCH\_ODD\_OFFSET
 
@@ -34,7 +34,7 @@ Dynamic circuit instruction durations.
 
 ### from\_backend
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.DynamicCircuitInstructionDurations.from_backend" />
+<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.DynamicCircuitInstructionDurations.from_backend" />
 
 `classmethod from_backend(backend)`
 
@@ -58,7 +58,7 @@ InstructionDurations
 
 ### get
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.DynamicCircuitInstructionDurations.get" />
+<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.DynamicCircuitInstructionDurations.get" />
 
 `get(inst, qubits, unit='dt', parameters=None)`
 
@@ -87,7 +87,7 @@ float|int
 
 ### units\_used
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.DynamicCircuitInstructionDurations.units_used" />
+<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.DynamicCircuitInstructionDurations.units_used" />
 
 `units_used()`
 
@@ -103,7 +103,7 @@ Set of units used in this instruction durations.
 
 ### update
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.DynamicCircuitInstructionDurations.update" />
+<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.DynamicCircuitInstructionDurations.update" />
 
 `update(inst_durations, dt=None)`
 

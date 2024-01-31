@@ -1,16 +1,16 @@
 ---
 title: PadDynamicalDecoupling
-description: API reference for qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDecoupling
+description: API reference for qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling
 in_page_toc_min_heading_level: 1
 python_api_type: class
-python_api_name: qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDecoupling
+python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling
 ---
 
 # PadDynamicalDecoupling
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDecoupling" />
+<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling" />
 
-`PadDynamicalDecoupling(durations, dd_sequences, qubits=None, spacings=None, skip_reset_qubits=True, pulse_alignment=16, extra_slack_distribution='middle', sequence_min_length_ratios=None, insert_multiple_cycles=False, coupling_map=None, alt_spacings=None, schedule_idle_qubits=False)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.18/qiskit_ibm_provider/transpiler/passes/scheduling/dynamical_decoupling.py "view source code")
+`PadDynamicalDecoupling(durations, dd_sequences, qubits=None, spacings=None, skip_reset_qubits=True, pulse_alignment=16, extra_slack_distribution='middle', sequence_min_length_ratios=None, insert_multiple_cycles=False, coupling_map=None, alt_spacings=None, schedule_idle_qubits=False)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.18/qiskit_ibm_runtime/transpiler/passes/scheduling/dynamical_decoupling.py "view source code")
 
 Dynamical decoupling insertion pass for IBM dynamic circuit backends.
 
@@ -130,7 +130,7 @@ meas: 4/════════════════════════
 ```
 
 <Admonition title="Note" type="note">
-  You need to call [`ALAPScheduleAnalysis`](qiskit_ibm_provider.transpiler.passes.scheduling.ALAPScheduleAnalysis "qiskit_ibm_provider.transpiler.passes.scheduling.ALAPScheduleAnalysis") before running dynamical decoupling to guarantee your circuit satisfies acquisition alignment constraints for dynamic circuit backends.
+  You need to call `ALAPScheduleAnalysis` before running dynamical decoupling to guarantee your circuit satisfies acquisition alignment constraints for dynamic circuit backends.
 </Admonition>
 
 Dynamical decoupling initializer.
@@ -174,7 +174,7 @@ Dynamical decoupling initializer.
 
 ## Attributes
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDecoupling.is_analysis_pass" />
+<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling.is_analysis_pass" />
 
 ### is\_analysis\_pass
 
@@ -182,7 +182,7 @@ Check if the pass is an analysis pass.
 
 If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDecoupling.is_transformation_pass" />
+<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling.is_transformation_pass" />
 
 ### is\_transformation\_pass
 
@@ -194,7 +194,7 @@ If the pass is a TransformationPass, that means that the pass can manipulate the
 
 ### \_\_call\_\_
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDecoupling.__call__" />
+<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling.__call__" />
 
 `__call__(circuit, property_set=None)`
 
@@ -215,7 +215,7 @@ If on transformation pass, the resulting QuantumCircuit. If analysis pass, the i
 
 ### execute
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDecoupling.execute" />
+<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling.execute" />
 
 `execute(passmanager_ir, state, callback=None)`
 
@@ -237,7 +237,7 @@ Optimized Qiskit IR and state of the workflow.
 
 ### name
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDecoupling.name" />
+<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling.name" />
 
 `name()`
 
@@ -249,7 +249,7 @@ Name of the pass.
 
 ### run
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDecoupling.run" />
+<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling.run" />
 
 `run(dag)`
 
@@ -273,7 +273,7 @@ DAGCircuit
 
 ### update\_status
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDecoupling.update_status" />
+<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling.update_status" />
 
 `update_status(state, run_state)`
 
