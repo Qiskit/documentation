@@ -34,22 +34,14 @@ You need at least one circuit and one observable as inputs to the `Estimator` pr
 
 <Tabs>
   <TabItem value="EstimatorV2" label="EstimatorV2">
-    ```python
-    #this is V1.  Just checking how the indentation behaves.
-    import numpy as np
-    from qiskit.circuit.library import IQP
-    from qiskit.quantum_info import SparsePauliOp, random_hermitian
-
-    n_qubits = 127
-
-    mat = np.real(random_hermitian(n_qubits, seed=1234))
-    circuit = IQP(mat)
-    observable = SparsePauliOp("Z" * n_qubits)
-    print(f">>> Observable: {observable.paulis}")
-    ```
+    xxx
   </TabItem>
 
   <TabItem value="EstimatorV1" label="Estimator (V1)">
+    xxx
+  </TabItem>
+</Tabs>
+
     ```python
     import numpy as np
     from qiskit.circuit.library import IQP
@@ -62,10 +54,8 @@ You need at least one circuit and one observable as inputs to the `Estimator` pr
     observable = SparsePauliOp("Z" * n_qubits)
     print(f">>> Observable: {observable.paulis}")
     ```
-  </TabItem>
-</Tabs>
-
-### 3. Initialize the Qiskit Runtime Estimator
+    
+### 3. Initialize Qiskit Runtime Estimator
 
 We want to use Qiskit Runtime's implementation of the `Estimator`, so we initialize an instance of `qiskit_ibm_runtime.Estimator` instead of `qiskit.primitives.Estimator`. 
 
@@ -73,7 +63,9 @@ When you initialize the `Estimator`, you must pass in the system or simulator yo
 
 <Tabs>
   <TabItem value="EstimatorV2" label="EstimatorV2">
-    xxx
+    <admonition type="note">
+    When using EstimatorV2, for backward compatibility, you must explicitly import EstimatorV2. After V1 support ends, you can use either `import` command (`from qiskit_ibm_runtime import Estimator` or `from qiskit_ibm_runtime import EstimatorV2`) to import EstimatorV2. 
+    </admonition>
   </TabItem>
 
   <TabItem value="EstimatorV1" label="Estimator (V1)">
