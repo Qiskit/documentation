@@ -243,12 +243,12 @@ if __name__ == "__main__":
     args = create_argument_parser().parse_args()
 
     paths = map(Path, args.filenames or find_notebooks(submit_jobs=args.submit_jobs))
-    paths = filter_paths(paths, submit_jobs=args.submit_jobs)
+    filtered_paths = filter_paths(paths, submit_jobs=args.submit_jobs)
 
     # Execute notebooks
     start_time = datetime.now()
     print("Executing notebooks:")
-    results = [execute_notebook(path, args) for path in paths]
+    results = [execute_notebook(path, args) for path in filtered_paths]
     print("Checking for trailing jobs...")
     results.append(cancel_trailing_jobs(start_time))
     if not all(results):
