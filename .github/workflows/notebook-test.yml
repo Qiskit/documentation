@@ -35,19 +35,20 @@ jobs:
           files: docs/**/*.ipynb
           separator: "\n"
 
-      - name: Check for notebooks that require LaTeX
-        id: latex-changed-files
+      - name: Check for notebooks that require Linux
+        id: linux-changed-files
         uses: tj-actions/changed-files@af2816c65436325c50621100d67f6e853cd1b0f1
         with:
-          # Add your notebook to this list if it needs latex to run
+          # Add your notebook to this list if it needs latex or graphviz to run
           files: |
             docs/build/circuit-visualization.ipynb
+            docs/transpile/transpiler-stages.ipynb
 
-      - name: Install LaTeX dependencies
-        if: steps.latex-changed-files.outputs.any_changed == 'true'
+      - name: Install Linux dependencies
+        if: steps.linux-changed-files.outputs.any_changed == 'true'
         run: |
           sudo apt-get update
-          sudo apt-get install texlive-pictures texlive-latex-extra poppler-utils
+          sudo apt-get install texlive-pictures texlive-latex-extra poppler-utils graphviz
 
       - name: Install Python packages
         # This is to save our account in the next step. Note that the
