@@ -19,10 +19,10 @@ Superoperator representation of a quantum channel.
 The Superoperator representation of a quantum channel $\mathcal{E}$ is a matrix $S$ such that the evolution of a [`DensityMatrix`](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") $\rho$ is given by
 
 $$
-|\mathcal{E}(\rho)\rangle\!\rangle = S |\rho\rangle\!\rangle
+\vert \mathcal{E}(\rho)\rangle\!\rangle = S \vert \rho\rangle\!\rangle
 $$
 
-where the double-ket notation $|A\rangle\!\rangle$ denotes a vector formed by stacking the columns of the matrix $A$ *(column-vectorization)*.
+where the double-ket notation $\vert A\rangle\!\rangle$ denotes a vector formed by stacking the columns of the matrix $A$ *(column-vectorization)*.
 
 See reference \[1] for further details.
 
