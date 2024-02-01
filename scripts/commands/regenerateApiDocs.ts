@@ -129,7 +129,7 @@ async function getPackageVersions(
     ).filter((file) => file.isDirectory() && file.name.match(/[0-9].*/));
 
     for (const folder of historicalFolders) {
-      const historicalVersion = await JSON.parse(
+      const historicalVersion = JSON.parse(
         await readFile(`${pkgDocsPath}/${folder.name}/_package.json`, "utf-8"),
       );
       historicalVersions.push(historicalVersion.version);
