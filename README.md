@@ -248,6 +248,8 @@ If the version is not for the latest stable minor release series, then add `--hi
 
 ## Generate new API docs
 
+This is useful when new docs content is published, usually corresponding to new releases or hotfixes for content issues.
+
 1. Choose which documentation you want to generate (`qiskit`, `qiskit-ibm-provider`, or `qiskit-ibm-runtime`) and its version.
 2. Determine the full version, such as by looking at https://github.com/Qiskit/qiskit/releases
 3. Download a CI artifact with the project's documentation. To find this:
