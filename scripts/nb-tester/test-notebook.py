@@ -94,7 +94,7 @@ def print_yellow(s: str, **kwargs):
     """
     Use ANSI escape codes to print yellow text
     """
-    print(f"\033[0;33m{str}\033[0m", **kwargs)
+    print(f"\033[0;33m{s}\033[0m", **kwargs)
 
 
 def extract_warnings(notebook: nbformat.NotebookNode) -> list[NotebookWarning]:
