@@ -13,7 +13,7 @@ want to manipulate electrical signals), and vice versa, the more complex the tas
 the higher-level the abstractions will be (for example, you could be using a programming library to perform
 algebraic calculations).
 
-In this context, a _primitive_ is the smallest processing instruction, the simplest building block from which
+In this context, a *primitive* is the smallest processing instruction, the simplest building block from which
 one can create something useful for a given abstraction level.
 
 The recent progress in quantum computing has increased the need to work at higher levels of abstraction.
@@ -51,45 +51,36 @@ best capabilities.
 
 Version 2 is first the major interface change since the introduction of Qiskit Runtime primitives. Based on user feedback, the new version introduces the following major new functions:
 
-* A *new interface* that allows you to specify a single circuit and multiple observables (if using Estimator) and parameter value sets for that circuit. 
-* In addition to resilience levels, you can *turn on or off individual error mitigation and suppression methods*.
-* In addition to quasi-probabilities, you can choose to *get counts or per-shot measurements* from SamplerV2.
+* A **new interface** that allows you to specify a single circuit and multiple observables (if using Estimator) and parameter value sets for that circuit. 
+* In addition to resilience levels, you can **turn on or off individual error mitigation and suppression methods**.
+* In addition to quasi-probabilities, you can choose to **get counts or per-shot measurements** from SamplerV2.
 * Due to scaling issues, SamplerV2 does not support specifying a resilience level, and EstimatorV2 supports only levels 0 - 2. 
-* To reduce the total execution time, v2 primitives only support *lightweight transpilation*. If you need more advanced transpilation, you can use the [Qiskit transpiler](advanced-runtime-options#runtime-compilation) (manually) or the [AI-driven transpilation service](../transpile/qiskit-transpiler-service).
+* To reduce the total execution time, v2 primitives only support **lightweight transpilation**. If you need more advanced transpilation, you can use the [Qiskit transpiler](advanced-runtime-options#runtime-compilation) (manually) or the [AI-driven transpilation service](../transpile/qiskit-transpiler-service).
 
 ### Interface changes
 
-The updated interface uses _primitive unified bloc_s (PUBs).  Each PUB is a tuple that contains a circuit and the data broadcasted to it. This greatly simplifies your ability to send complex data to a circuit.  Previously, you had to specify the same circuit multiple times to match the size of the data to be combined, as shown in the following table: 
+The updated interface uses *primitive unified bloc*s (PUBs).  Each PUB is a tuple that contains a circuit and the data broadcasted to it. This greatly simplifies your ability to send complex data to a circuit.  Previously, you had to specify the same circuit multiple times to match the size of the data to be combined, as shown below: 
 
-<table>
-  <tbody>
-    <tr>
-      <th style="width:50%">Estimator V1</th>
-      <th>Estimator V2</th>
-    </tr>
-    <tr>
-      <td>
-        <ul>
-          <li>Takes three parameters: circuits, observables, and parameter_values.</li>
-          <li>Each parameter can be a single value or a list.</li>
-          <li>The length of the parameters must match. </li>
-          <li>Elements from each are aggregated.</li>
-        </ul>
-      </td>  
-      <td>
-        <ul>
-          <li>Takes one parameter: PUBs.</li>
-          <li>Each PUB is a tuple containing one circuit, one or more observable for the circuit, and one or more parameter value sets for the circuit.</li>
-          <li>Elements from each are aggregated.</li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <td>`estimator.run([circuit1, circuit2, ...],[observable1, observable2, ...],[param_values1, param_values2, ...] )`</td>
-      <td>`estimator.run([(circuit1, observable1, param_values1),(circuit2, observable2, param_values2) ])`</td>
-    </tr>
-  </tbody>
-</table>
+#### Estimator V1
+
+* Takes three parameters: circuits, observables, and parameter values.
+* Each parameter can be a single value or a list.
+* The length of the parameters must match.
+* Elements from each are aggregated.
+
+```python
+estimator.run([circuit1, circuit2, ...],[observable1, observable2, ...],[param_values1, param_values2, ...] )
+```
+
+#### Estimator V2
+
+* Takes one parameter: PUBs.
+* Each PUB is a tuple containing one circuit, one or more observable for the circuit, and one or more parameter value sets for the circuit.
+* Elements from each are aggregated.
+
+```python
+estimator.run([(circuit1, observable1, param_values1),(circuit2, observable2, param_values2) ])
+```
 
 ## Estimator
 
