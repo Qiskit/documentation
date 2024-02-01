@@ -89,7 +89,7 @@ The Estimator behaves differently, depending on what version you are using.
 <Tabs>
   <TabItem value="EstimatorV2" label="EstimatorV2">
     EstimatorV2 computes expectation values of observables with respect to states prepared by quantum circuits.
-It receives one or more _primitive unified blocs_ (PUBs) as the inputs. Each PUB is a tuple that contains a single circuit and data broadcasted to that circuit. This lets you specify a single circuit and multiple observables and parameter value sets for that circuit. It returns the computed expectation values per pair, along with their
+It receives one or more PUBs as the inputs. It returns the computed expectation values per pair, along with their
 variances, as `PubResult`s. Different Estimator implementations support various configuration options. The circuits
 can be parametrized, as long as the parameter values are also provided as input to the primitive.
   </TabItem>
@@ -110,7 +110,7 @@ The Sampler behaves differently, depending on what version you are using.
 <Tabs>
   <TabItem value="SamplerV2" label="SamplerV2">
     SamplerV2 samples from the classical output registers resulting from execution of quantum circuits.
-It receives one or more _primitive unified blocs_ (PUBs) as the inputs. Each PUB is a tuple that contains a single circuit and data broadcasted to that circuit. This lets you specify a single circuit and multiple parameter value sets for that circuit. It returns quasi-probabilities, and optionally counts or per-shot measurements, as `PubResult`s.  Quasi-probability distributions are similar to regular
+It receives one or more PUBs as the inputs. This lets you specify a single circuit and multiple parameter value sets for that circuit. It returns quasi-probabilities, and optionally counts or per-shot measurements, as `PubResult`s.  Quasi-probability distributions are similar to regular
 probabilities, except they might include negative values, which can occur when using certain error mitigation techniques. The circuits
 can be parametrized, as long as the parameter values are also provided as input to the primitive.
   </TabItem>
