@@ -20,7 +20,7 @@ import { pathExists, getRoot } from "../fs";
 import { mkdirp } from "mkdirp";
 import { Pkg } from "./Pkg";
 
-export async function downloadCIArtifact(
+async function downloadFromBox(
   pkgName: string,
   artifactUrl: string,
   destination: string,
@@ -34,7 +34,7 @@ export async function downloadCIArtifact(
   }
 }
 
-export async function loadCIArtifact(pkg: Pkg, artifactFolder: string) {
+export async function downloadCIArtifact(pkg: Pkg, artifactFolder: string) {
   if (await pathExists(artifactFolder)) {
     await $`rm -rf ${artifactFolder}/*`;
   } else {
@@ -56,7 +56,7 @@ export async function loadCIArtifact(pkg: Pkg, artifactFolder: string) {
   }
   const artifactUrl = artifactJson[`${pkg.name}`][`${pkg.versionWithoutPatch}`];
 
-  await downloadCIArtifact(
+  await downloadFromBox(
     pkg.name,
     artifactUrl,
     `${artifactFolder}/artifact.zip`,

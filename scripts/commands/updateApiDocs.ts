@@ -34,7 +34,7 @@ import { dedupeHtmlIdsFromResults } from "../lib/api/dedupeHtmlIds";
 import { Pkg } from "../lib/api/Pkg";
 import { zxMain } from "../lib/zx";
 import { pathExists, getRoot, rmFilesInFolder } from "../lib/fs";
-import { loadCIArtifact } from "../lib/api/apiArtifacts";
+import { downloadCIArtifact } from "../lib/api/apiArtifacts";
 import {
   addNewReleaseNotes,
   generateReleaseNotesIndex,
@@ -92,7 +92,7 @@ zxMain(async () => {
   );
 
   const artifactFolder = pkg.ciArtifactFolder();
-  await loadCIArtifact(pkg, artifactFolder);
+  await downloadCIArtifact(pkg, artifactFolder);
 
   const outputDir = pkg.outputDir(`${getRoot()}/docs`);
   if (pkg.historical && !(await pathExists(outputDir))) {

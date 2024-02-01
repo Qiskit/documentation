@@ -238,7 +238,15 @@ If you're working on our support code in `scripts/`, run `npm run fmt` to automa
 
 To check that formatting is valid without actually making changes, run `npm run check:fmt` or `npm run check`.
 
-## Generate the API docs
+### Regenerate an existing API docs version
+
+1. Choose which documentation you want to generate (`qiskit`, `qiskit-ibm-provider`, or `qiskit-ibm-runtime`) and its version.
+2. Run `npm run gen-api -- -p <pkg-name> -v <version>`,
+   e.g. `npm run gen-api -- -p qiskit -v 0.45.0`
+
+If the version is not for the latest stable minor release series, then add `--historical` to the arguments. For example, use `--historical` if the latest stable release is 0.45.\* but you're generating docs for the patch release 0.44.3.
+
+## Generate new API docs
 
 1. Choose which documentation you want to generate (`qiskit`, `qiskit-ibm-provider`, or `qiskit-ibm-runtime`) and its version.
 2. Determine the current version of the published stable documentation, e.g. at https://github.com/Qiskit/qiskit/releases
@@ -262,14 +270,6 @@ To check that formatting is valid without actually making changes, run `npm run 
     e.g. `npm run gen-api -- -p qiskit -v 0.45.0`
 
 In case you want to save the current version and convert it into a historical one, you can run `npm run make-historical -- -p <pkg-name>` beforehand.
-
-### Regenerate an existing API docs version
-
-1. Choose which documentation you want to generate (`qiskit`, `qiskit-ibm-provider`, or `qiskit-ibm-runtime`) and its version.
-2. Run `npm run gen-api -- -p <pkg-name> -v <version>`,
-   e.g. `npm run gen-api -- -p qiskit -v 0.45.0`
-
-If the version is not for the latest stable minor release series, then add `--historical` to the arguments. For example, use `--historical` if the latest stable release is 0.45.\* but you're generating docs for the patch release 0.44.3.
 
 # How to write the documentation
 
