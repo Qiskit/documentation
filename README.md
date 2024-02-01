@@ -283,7 +283,7 @@ For example, if the current docs are for 0.45.2 but you want to generate 0.45.3.
 
 Follow the same process above for new API docs, other than:
 
-* When uploading the artifact, overwrite the existing file with the new one. Be careful to follow the above steps to change "Link Expiration"!
+- When uploading the artifact, overwrite the existing file with the new one. Be careful to follow the above steps to change "Link Expiration"!
 
 # How to write the documentation
 
