@@ -74,7 +74,7 @@ const readArgs = (): Arguments => {
     .option("skip-download", {
       type: "boolean",
       default: false,
-      description: "Skip the download of the artifact from Box?",
+      description: "Rather than downloading the artifact from Box, reuse what is already downloaded. This can save time, but it risks using an outdated version of the docs.",
     })
     .parseSync();
 };
