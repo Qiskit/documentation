@@ -80,6 +80,12 @@ zxMain(async () => {
     result.forEach((msg) => console.error(msg));
     console.log("");
   });
+
+  console.log(
+    `Each regenerated version has been saved as a distinct commit. If the changes are
+    too large for one single PR, consider splitting it up into multiple PRs by using
+    git cherry-pick or git rebase -i so each PR only has the commits it wants to target.`,
+  );
 });
 
 async function regenerateVersions(
