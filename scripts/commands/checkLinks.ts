@@ -126,6 +126,9 @@ async function determineCurrentDocsFileBatch(
     "docs/api/qiskit/0.44/{algorithms,opflow}.md",
     "docs/api/qiskit/0.44/qiskit.{algorithms,extensions,opflow}.*",
     "docs/api/qiskit/0.44/qiskit.utils.QuantumInstance.md",
+    "docs/api/qiskit/0.45/qiskit.quantum_info.{OneQubitEuler,TwoQubitBasis,XX}Decomposer.md",
+    "docs/api/qiskit/0.45/qiskit.transpiler.synthesis.aqc.AQC.md",
+    "docs/api/qiskit/0.45/{tools,quantum_info,synthesis_aqc}.md",
   ];
 
   if (!args.currentApis) {

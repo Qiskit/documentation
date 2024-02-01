@@ -10,41 +10,15 @@ python_api_name: qiskit.providers.basicaer.QasmSimulatorPy
 
 <span id="qiskit.providers.basicaer.QasmSimulatorPy" />
 
-`qiskit.providers.basicaer.QasmSimulatorPy(configuration=None, provider=None, **fields)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/basicaer/qasm_simulator.py "view source code")
+`qiskit.providers.basicaer.QasmSimulatorPy(configuration=None, provider=None, **fields)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/providers/basicaer/qasm_simulator.py "view source code")
 
 Bases: [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.backend.BackendV1")
 
 Python implementation of an OpenQASM 2 simulator.
 
-Initialize a backend class
-
-**Parameters**
-
-*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – A backend configuration object for the backend object.
-*   **provider** ([*qiskit.providers.Provider*](qiskit.providers.Provider "qiskit.providers.Provider")) – Optionally, the provider object that this Backend comes from.
-*   **fields** – kwargs for the values to use to override the default options.
-
-**Raises**
-
-[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – if input field not a valid options
-
-In addition to the public abstract methods, subclasses should also implement the following private methods:
-
-`classmethod _default_options()`
-
-Return the default options
-
-This method will return a [`qiskit.providers.Options`](qiskit.providers.Options "qiskit.providers.Options") subclass object that will be used for the default options. These should be the default parameters to use for the options of the backend.
-
-**Returns**
-
-**A options object with**
-
-default values set
-
-**Return type**
-
-[qiskit.providers.Options](qiskit.providers.Options "qiskit.providers.Options")
+<Admonition title="Deprecated since version 0.46.0" type="danger">
+  The class `qiskit.providers.basicaer.qasm_simulator.QasmSimulatorPy` is deprecated as of qiskit 0.46.0. It will be removed in Qiskit 1.0.0. The qiskit.providers.basicaer module has been superseded by qiskit.providers.basic\_provider. Use the new qiskit.providers.basic\_provider.BasicSimulator class instead.
+</Admonition>
 
 ## Attributes
 

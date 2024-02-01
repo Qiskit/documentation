@@ -10,14 +10,14 @@ python_api_name: qiskit.opflow.evolutions.TrotterizationBase
 
 <span id="qiskit.opflow.evolutions.TrotterizationBase" />
 
-`qiskit.opflow.evolutions.TrotterizationBase(reps=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/evolutions/trotterizations/trotterization_base.py "view source code")
+`qiskit.opflow.evolutions.TrotterizationBase(reps=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/opflow/evolutions/trotterizations/trotterization_base.py "view source code")
 
 Bases: [`EvolutionBase`](qiskit.opflow.evolutions.EvolutionBase "qiskit.opflow.evolutions.evolution_base.EvolutionBase")
 
 Deprecated: A base for Trotterization methods, algorithms for approximating exponentiations of operator sums by compositions of exponentiations.
 
 <Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.opflow.evolutions.trotterizations.trotterization_base.TrotterizationBase` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  The class `qiskit.opflow.evolutions.trotterizations.trotterization_base.TrotterizationBase` is deprecated as of qiskit-terra 0.24.0. It will be removed in the Qiskit 1.0 release. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
 </Admonition>
 
 ## Attributes

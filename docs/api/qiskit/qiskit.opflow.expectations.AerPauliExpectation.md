@@ -10,14 +10,14 @@ python_api_name: qiskit.opflow.expectations.AerPauliExpectation
 
 <span id="qiskit.opflow.expectations.AerPauliExpectation" />
 
-`qiskit.opflow.expectations.AerPauliExpectation`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/expectations/aer_pauli_expectation.py "view source code")
+`qiskit.opflow.expectations.AerPauliExpectation`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/opflow/expectations/aer_pauli_expectation.py "view source code")
 
 Bases: [`ExpectationBase`](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.expectation_base.ExpectationBase")
 
 An Expectation converter for using Aer’s operator snapshot to take expectations of quantum state circuits over Pauli observables.
 
 <Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.opflow.expectations.aer_pauli_expectation.AerPauliExpectation` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  The class `qiskit.opflow.expectations.aer_pauli_expectation.AerPauliExpectation` is deprecated as of qiskit-terra 0.24.0. It will be removed in the Qiskit 1.0 release. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
 </Admonition>
 
 ## Methods

@@ -12,12 +12,12 @@ python_api_name: qiskit.visualization.plot_histogram
 
 <span id="qiskit.visualization.plot_histogram" />
 
-`qiskit.visualization.plot_histogram(data, figsize=(7, 5), color=None, number_to_keep=None, sort='asc', target_string=None, legend=None, bar_labels=True, title=None, ax=None, filename=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/visualization/counts_visualization.py "view source code")
+`qiskit.visualization.plot_histogram(data, figsize=(7, 5), color=None, number_to_keep=None, sort='asc', target_string=None, legend=None, bar_labels=True, title=None, ax=None, filename=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/visualization/counts_visualization.py "view source code")
 
 Plot a histogram of input counts data.
 
-<Admonition title="Deprecated since version 0.22.0_pending" type="danger">
-  Using plot\_histogram() `data` argument with QuasiDistribution, ProbDistribution, or a distribution dictionary is pending deprecation as of qiskit-terra 0.22.0. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. Instead, use `plot_distribution()`.
+<Admonition title="Deprecated since version 0.22.0" type="danger">
+  Using plot\_histogram() `data` argument with QuasiDistribution, ProbDistribution, or a distribution dictionary is deprecated as of qiskit-terra 0.22.0. It will be removed no earlier than 3 months after the release date. Instead, use `plot_distribution()`.
 </Admonition>
 
 **Parameters**

@@ -10,7 +10,7 @@ python_api_name: qiskit.passmanager.FlowController
 
 <span id="qiskit.passmanager.FlowController" />
 
-`qiskit.passmanager.FlowController(options=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/passmanager/flow_controllers.py "view source code")
+`qiskit.passmanager.FlowController(options=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/passmanager/flow_controllers.py "view source code")
 
 Bases: [`BaseController`](qiskit.passmanager.BaseController "qiskit.passmanager.base_tasks.BaseController")
 
@@ -40,11 +40,9 @@ This creates a nested flow controller that runs when the value `x` in the [`Prop
   [`BaseController`](qiskit.passmanager.BaseController "qiskit.passmanager.BaseController") must be directly subclassed to define a custom flow controller. This class provides a controller factory method, which consumes a class variable [`registered_controllers`](#qiskit.passmanager.FlowController.registered_controllers "qiskit.passmanager.FlowController.registered_controllers"). Subclassing FlowController may cause unexpected behavior in the factory method. Note that factory method implicitly determines the priority of the builtin controllers when multiple controllers are called together, and the behavior of generated controller is hardly debugged.
 </Admonition>
 
-Create new flow controller.
-
-**Parameters**
-
-**options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*, Any] | None*) – Option for this flow controller.
+<Admonition title="Deprecated since version 0.46.0" type="danger">
+  The class `qiskit.passmanager.flow_controllers.FlowController` is deprecated as of qiskit 0.46.0. It will be removed in the 1.0 release. The base class of flow controller is now qiskit.passmanager.BaseController. This class exists only for the controller namespace used to map a controller name tothe corresponding class object, which is used to instantiate a controller with keyword argument in PassManager.append method. This pattern was also deprecated.
+</Admonition>
 
 ## Attributes
 
@@ -73,7 +71,7 @@ Create new flow controller.
 Adds a flow controller.
 
 <Admonition title="Deprecated since version 0.45.0" type="danger">
-  The method `qiskit.passmanager.flow_controllers.FlowController.add_flow_controller()` is deprecated as of qiskit 0.45.0. It will be removed no earlier than 3 months after the release date. Controller factory method is deprecated and managing the custom flow controllers with alias no longer helps building the task pipeline. Controllers must be explicitly instantiated and appended to the pipeline.
+  The method `qiskit.passmanager.flow_controllers.FlowController.add_flow_controller()` is deprecated as of qiskit 0.45.0. It will be removed in the 1.0 release. The controller factory method is deprecated and managing the custom flow controllers with aliases no longer helps building the task pipeline. Controllers must be explicitly instantiated and appended to the pipeline.
 </Admonition>
 
 **Parameters**
@@ -90,7 +88,7 @@ Adds a flow controller.
 Create a new flow controller with normalization.
 
 <Admonition title="Deprecated since version 0.45.0" type="danger">
-  The method `qiskit.passmanager.flow_controllers.FlowController.controller_factory()` is deprecated as of qiskit 0.45.0. It will be removed no earlier than 3 months after the release date. Controller object must be explicitly instantiated. Building controller with keyword arguments may yield race condition when multiple keyword arguments are provided together, which is likely unsafe.
+  The method `qiskit.passmanager.flow_controllers.FlowController.controller_factory()` is deprecated as of qiskit 0.45.0. It will be removed in the 1.0 release. FlowController objects must be explicitly instantiated. Building controllers with keyword arguments ignores the order when multiple keyword arguments are provided together, which is likely unsafe.
 </Admonition>
 
 **Parameters**
@@ -157,7 +155,7 @@ Controller subclass can consume the state to build a proper task pipeline. The u
 Removes a flow controller.
 
 <Admonition title="Deprecated since version 0.45.0" type="danger">
-  The method `qiskit.passmanager.flow_controllers.FlowController.remove_flow_controller()` is deprecated as of qiskit 0.45.0. It will be removed no earlier than 3 months after the release date. Controller factory method is deprecated and managing the custom flow controllers with alias no longer helps building the task pipeline. Controllers must be explicitly instantiated and appended to the pipeline.
+  The method `qiskit.passmanager.flow_controllers.FlowController.remove_flow_controller()` is deprecated as of qiskit 0.45.0. It will be removed in the 1.0 release. The controller factory method is deprecated and managing the custom flow controllers with aliases no longer helps building the task pipeline. Controllers must be explicitly instantiated and appended to the pipeline.
 </Admonition>
 
 **Parameters**

@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.LinearFunctionsSynthesis
 
 <span id="qiskit.transpiler.passes.LinearFunctionsSynthesis" />
 
-`qiskit.transpiler.passes.LinearFunctionsSynthesis(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/synthesis/linear_functions_synthesis.py "view source code")
+`qiskit.transpiler.passes.LinearFunctionsSynthesis(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/passes/synthesis/linear_functions_synthesis.py "view source code")
 
 Bases: [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.synthesis.high_level_synthesis.HighLevelSynthesis")
 
@@ -19,7 +19,7 @@ DEPRECATED: Synthesize linear functions.
 Under the hood, this runs the default high-level synthesis plugin for linear functions.
 
 <Admonition title="Deprecated since version 0.23.0" type="danger">
-  The class `qiskit.transpiler.passes.synthesis.linear_functions_synthesis.LinearFunctionsSynthesis` is deprecated as of qiskit-terra 0.23.0. It will be removed no earlier than 3 months after the release date. Instead, use [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis").
+  The class `qiskit.transpiler.passes.synthesis.linear_functions_synthesis.LinearFunctionsSynthesis` is deprecated as of qiskit-terra 0.23.0. It will be removed in the Qiskit 1.0 release. Instead, use [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis").
 </Admonition>
 
 ## Attributes

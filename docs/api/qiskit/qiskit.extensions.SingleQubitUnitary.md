@@ -10,7 +10,7 @@ python_api_name: qiskit.extensions.SingleQubitUnitary
 
 <span id="qiskit.extensions.SingleQubitUnitary" />
 
-`qiskit.extensions.SingleQubitUnitary(unitary_matrix, mode='ZYZ', up_to_diagonal=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/extensions/quantum_initializer/squ.py "view source code")
+`qiskit.extensions.SingleQubitUnitary(unitary_matrix, mode='ZYZ', up_to_diagonal=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/extensions/quantum_initializer/squ.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -25,7 +25,7 @@ Single-qubit unitary.
 Create a new single qubit gate based on the unitary `u`.
 
 <Admonition title="Deprecated since version 0.45.0" type="danger">
-  The class `qiskit.extensions.quantum_initializer.squ.SingleQubitUnitary` is deprecated as of qiskit 0.45.0. It will be removed no earlier than 3 months after the release date. Instead, you can use qiskit.circuit.library.UnitaryGate.
+  The class `qiskit.extensions.quantum_initializer.squ.SingleQubitUnitary` is deprecated as of qiskit 0.45.0. It will be removed in the Qiskit 1.0 release. Instead, you can use qiskit.circuit.library.UnitaryGate.
 </Admonition>
 
 ## Attributes
@@ -317,7 +317,7 @@ Return a default OpenQASM string for the instruction.
 Derived instructions may override this to print in a different format (e.g. `measure q[0] -> c[0];`).
 
 <Admonition title="Deprecated since version 0.25.0" type="danger">
-  The method `qiskit.circuit.instruction.Instruction.qasm()` is deprecated as of qiskit-terra 0.25.0. It will be removed no earlier than 3 months after the release date. Correct exporting to OpenQASM 2 is the responsibility of a larger exporter; it cannot safely be done on an object-by-object basis without context. No replacement will be provided, because the premise is wrong.
+  The method `qiskit.circuit.instruction.Instruction.qasm()` is deprecated as of qiskit-terra 0.25.0. It will be removed in the Qiskit 1.0 release. Correct exporting to OpenQASM 2 is the responsibility of a larger exporter; it cannot safely be done on an object-by-object basis without context. No replacement will be provided, because the premise is wrong.
 </Admonition>
 
 ### repeat

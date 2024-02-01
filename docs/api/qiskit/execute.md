@@ -22,11 +22,15 @@ python_api_name: qiskit.execute_function
 
 <span id="qiskit.execute_function.execute" />
 
-`qiskit.execute_function.execute(experiments, backend, basis_gates=None, coupling_map=None, backend_properties=None, initial_layout=None, seed_transpiler=None, optimization_level=None, pass_manager=None, shots=None, memory=None, seed_simulator=None, default_qubit_los=None, default_meas_los=None, qubit_lo_range=None, meas_lo_range=None, schedule_los=None, meas_level=None, meas_return=None, memory_slots=None, memory_slot_size=None, rep_time=None, rep_delay=None, parameter_binds=None, schedule_circuit=False, inst_map=None, meas_map=None, scheduling_method=None, init_qubits=None, **run_config)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/execute_function.py "view source code")
+`qiskit.execute_function.execute(experiments, backend, basis_gates=None, coupling_map=None, backend_properties=None, initial_layout=None, seed_transpiler=None, optimization_level=None, pass_manager=None, shots=None, memory=None, seed_simulator=None, default_qubit_los=None, default_meas_los=None, qubit_lo_range=None, meas_lo_range=None, schedule_los=None, meas_level=None, meas_return=None, memory_slots=None, memory_slot_size=None, rep_time=None, rep_delay=None, parameter_binds=None, schedule_circuit=False, inst_map=None, meas_map=None, scheduling_method=None, init_qubits=None, **run_config)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/execute_function.py "view source code")
 
 Execute a list of [`qiskit.circuit.QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or [`qiskit.pulse.Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") on a backend.
 
 The execution is asynchronous, and a handle to a job instance is returned.
+
+<Admonition title="Deprecated since version 0.46.0" type="danger">
+  The function `qiskit.execute_function.execute()` is deprecated as of qiskit 0.46.0. It will be removed in the Qiskit 1.0 release. This function combines `transpile` and `backend.run`, which is covered by `Sampler` [`primitives`](primitives#module-qiskit.primitives "qiskit.primitives"). Alternatively, you can also run [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") followed by `backend.run()`.
+</Admonition>
 
 **Parameters**
 

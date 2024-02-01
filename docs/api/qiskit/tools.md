@@ -16,63 +16,6 @@ python_api_name: qiskit.tools
 
 `qiskit.tools`
 
-## Parallel Routines
-
-A helper function for calling a custom function with python `ProcessPoolExecutor`. Tasks can be executed in parallel using this function. It has a built-in event publisher to show the progress of the parallel tasks.
-
-### parallel\_map
-
-<span id="qiskit.tools.parallel_map" />
-
-`qiskit.tools.parallel_map(task, values, task_args=(), task_kwargs={}, num_processes=2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/tools/parallel.py "view source code")
-
-Parallel execution of a mapping of values to the function task. This is functionally equivalent to:
-
-```python
-result = [task(value, *task_args, **task_kwargs) for value in values]
-```
-
-On Windows this function defaults to a serial implementation to avoid the overhead from spawning processes in Windows.
-
-**Parameters**
-
-*   **task** (*func*) – Function that is to be called for each value in `values`.
-*   **values** (*array\_like*) – List or array of values for which the `task` function is to be evaluated.
-*   **task\_args** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – Optional additional arguments to the `task` function.
-*   **task\_kwargs** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – Optional additional keyword argument to the `task` function.
-*   **num\_processes** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of processes to spawn.
-
-**Returns**
-
-**The result list contains the value of**
-
-**`task(value, *task_args, **task_kwargs)` for**
-
-each value in `values`.
-
-**Return type**
-
-result
-
-**Raises**
-
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – If user interrupts via keyboard.
-
-**Events:**
-
-terra.parallel.start: The collection of parallel tasks are about to start. terra.parallel.update: One of the parallel task has finished. terra.parallel.finish: All the parallel tasks have finished.
-
-**Examples**
-
-```python
-import time
-from qiskit.tools.parallel import parallel_map
-def func(_):
-        time.sleep(0.1)
-        return 0
-parallel_map(func, list(range(10)));
-```
-
 ## Monitoring
 
 A helper module to get IBM backend information and submitted job status.
@@ -81,7 +24,7 @@ A helper module to get IBM backend information and submitted job status.
 
 <span id="qiskit.tools.job_monitor" />
 
-`qiskit.tools.job_monitor(job, interval=None, quiet=False, output=<_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>, line_discipline='\r')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/tools/monitor/job_monitor.py "view source code")
+`qiskit.tools.job_monitor(job, interval=None, quiet=False, output=<_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>, line_discipline='\r')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/tools/monitor/job_monitor.py "view source code")
 
 Monitor the status of a IBMQJob instance.
 
@@ -115,7 +58,7 @@ job_monitor(job_sim)
 
 <span id="qiskit.tools.backend_monitor" />
 
-`qiskit.tools.backend_monitor(backend)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/tools/monitor/overview.py "view source code")
+`qiskit.tools.backend_monitor(backend)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/tools/monitor/overview.py "view source code")
 
 Monitor a single IBMQ backend.
 
@@ -136,7 +79,7 @@ Examples: .. code-block:: python
 
 <span id="qiskit.tools.backend_overview" />
 
-`qiskit.tools.backend_overview()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/tools/monitor/overview.py "view source code")
+`qiskit.tools.backend_overview()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/tools/monitor/overview.py "view source code")
 
 Gives overview information on all the IBMQ backends that are available.
 
@@ -159,7 +102,7 @@ A helper component for publishing and subscribing to events.
 
 <span id="qiskit.tools.events.TextProgressBar" />
 
-`qiskit.tools.events.TextProgressBar(output_handler=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/tools/events/progressbar.py "view source code")
+`qiskit.tools.events.TextProgressBar(output_handler=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/tools/events/progressbar.py "view source code")
 
 A simple text-based progress bar.
 
