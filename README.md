@@ -238,7 +238,6 @@ If you're working on our support code in `scripts/`, run `npm run fmt` to automa
 
 To check that formatting is valid without actually making changes, run `npm run check:fmt` or `npm run check`.
 
-
 ## Generate the API docs
 
 1. Choose which documentation you want to generate (`qiskit`, `qiskit-ibm-provider`, or `qiskit-ibm-runtime`) and its version.
@@ -260,7 +259,7 @@ To check that formatting is valid without actually making changes, run `npm run 
 9. Copy the direct link at the end of the `Shared Link Settings` tab.
 10. Modify the `scripts/lib/api/api-html-artifacts.json` file adding the new versions with the direct link from step 9.
 11. Run `npm run gen-api -- -p <pkg-name> -v <version>`,
-   e.g. `npm run gen-api -- -p qiskit -v 0.45.0`
+    e.g. `npm run gen-api -- -p qiskit -v 0.45.0`
 
 In case you want to save the current version and convert it into a historical one, you can run `npm run make-historical -- -p <pkg-name>` beforehand.
 

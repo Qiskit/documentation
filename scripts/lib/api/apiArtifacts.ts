@@ -50,10 +50,10 @@ export async function loadCIArtifact(pkg: Pkg, artifactFolder: string) {
 
   if (!(`${pkg.versionWithoutPatch}` in artifactJson[`${pkg.name}`])) {
     throw new Error(
-      `Package ${pkg.name} version ${pkg.versionWithoutPatch} doesn't have an artifact stored. You can add one to https://ibm.ent.box.com/folder/246867452622`,
+      `Package ${pkg.name} version ${pkg.versionWithoutPatch} doesn't have an artifact stored. You can add one to https://ibm.ent.box.com/folder/246867452622
+      following the steps detailed in the \`Generate the API docs\` section on the repo's README`,
     );
   }
-
   const artifactUrl = artifactJson[`${pkg.name}`][`${pkg.versionWithoutPatch}`];
 
   await downloadCIArtifact(
