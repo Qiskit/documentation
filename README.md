@@ -250,7 +250,7 @@ If the version is not for the latest stable minor release series, then add `--hi
 
 ## Generate new API docs
 
-This is useful when new docs content is published, usually corresponding to new releases or hotfixes for content issues.
+This is useful when new docs content is published, usually corresponding to new releases or hotfixes for content issues. If you're generating a patch release, also see the below subsection for additional steps.
 
 1. Choose which documentation you want to generate (`qiskit`, `qiskit-ibm-provider`, or `qiskit-ibm-runtime`) and its version.
 2. Determine the full version, such as by looking at https://github.com/Qiskit/qiskit/releases
@@ -274,8 +274,6 @@ This is useful when new docs content is published, usually corresponding to new 
     e.g. `npm run gen-api -- -p qiskit -v 0.45.0`
 
 In case you want to save the current version and convert it into a historical one, you can run `npm run make-historical -- -p <pkg-name>` beforehand.
-
-If you're generating a patch release, also see the below subsection for additional steps.
 
 ### Generate patch releases
 
