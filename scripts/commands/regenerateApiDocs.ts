@@ -136,7 +136,7 @@ async function getPackageVersions(
     }
   }
 
-  const currentVersion = await JSON.parse(
+  const currentVersion = JSON.parse(
     await readFile(`${pkgDocsPath}/_package.json`, "utf-8"),
   );
 
