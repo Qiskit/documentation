@@ -59,7 +59,7 @@ Version 2 is first the major interface change since the introduction of Qiskit R
 
 ### Interface changes
 
-The updated interface uses *primitive unified bloc*s (PUBs).  Each PUB is a tuple that contains a circuit and the data broadcasted to it. This greatly simplifies your ability to send complex data to a circuit.  Previously, you had to specify the same circuit multiple times to match the size of the data to be combined.  A summary of the changes to each primitive follows.  
+The updated interface uses a *primitive unified bloc* (PUB) for input.  Each PUB is a tuple that contains a circuit and the data broadcasted to it. This greatly simplifies your ability to send complex data to a circuit.  Previously, you had to specify the same circuit multiple times to match the size of the data to be combined.  A summary of the changes to each primitive follows.  
 
 #### Estimator V1
 
@@ -104,7 +104,7 @@ The Estimator behaves differently, depending on what version you are using.
   <TabItem value="EstimatorV2" label="EstimatorV2">
     EstimatorV2 computes expectation values of observables with respect to states prepared by quantum circuits.
 It receives one or more PUBs as the inputs and returns the computed expectation values per pair, along with their
-variances, as `PubResult`s. Different Estimator implementations support various configuration options. The circuits
+variances, in `PubResult` form. Different Estimator implementations support various configuration options. The circuits
 can be parametrized, as long as the parameter values are also provided as input to the primitive.
   </TabItem>
 
