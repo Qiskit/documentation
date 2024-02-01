@@ -507,7 +507,7 @@ Additionally, some companies require that they are listed in a special attributi
 
 
 <details>
-<summary>A (non-exhaustive) list of trademarked names found in our docs</summary>
+<summary>A (non-exhaustive) list of trademarked names found in our docs:</summary>
 
 - Debian
 - GitHub
