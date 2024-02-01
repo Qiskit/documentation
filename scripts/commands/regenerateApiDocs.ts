@@ -85,11 +85,17 @@ async function regenerateVersions(
   pkgName: string,
   versions: string[],
 ): Promise<string[]> {
-  const results = [];
+  const results: string[] = [];
 
-  for (const version of versions) {
+  for (const [index, version] of versions.entries()) {
     try {
-      await $`npm run gen-api -- -p ${pkgName} -v ${version}`;
+      if (index == versions.length - 1) {
+        // The last version is always the latest stable minor release
+        await $`npm run gen-api -- -p ${pkgName} -v ${version}`;
+      } else {
+        await $`npm run gen-api -- -p ${pkgName} -v ${version} --historical`;
+      }
+
       if ((await gitStatus()) !== "") {
         await gitCommit(`Regenerate ${pkgName} ${version}`);
         results.push(`✅ ${pkgName} ${version} regenerated correctly`);
