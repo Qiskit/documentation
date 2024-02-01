@@ -1,5 +1,5 @@
 ---
-title: Qiskit 1.0 installation and packagingchanges
+title: Qiskit 1.0 installation and packaging changes
 description: Adapt to changes in installing and depending on Qiskit 1.0
 ---
 
@@ -568,6 +568,19 @@ This error most frequently arises in one of two situations:
 *  You tried to run `pip install -U qiskit` in an existing environment.
 
 In both of these cases, there is no guarantee that `pip` will return a helpful message to you.
+
+<Admonition type="tip">
+One way to require `pip` to forbid `qiskit-terra` from individual `install` commands is to use [a constraints file](https://pip.pypa.io/en/stable/user_guide/#constraints-files) that requires that `qiskit-terra` is set to an impossible version.
+For example, a constraints file that includes the line `qiskit-terra>=1.0` will mean that if a dependency attempts to install `qiskit-terra`, no published versions will match the requirements.
+
+We have provided such a file in a GitHub Gist at [https://qisk.it/1-0-constraints](https://qisk.it/1-0-constraints), which you can use like this:
+
+```bash
+pip install -c https://qisk.it/1-0-constraints qiskit [other packages]
+```
+
+If a package requires `qiskit-terra`, you will see [a resolution failure](#pip-resolution-impossible).
+</Admonition>
 
 
 <span id="debug-venv-for-1.0"></span>
