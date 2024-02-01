@@ -264,12 +264,12 @@ This is useful when new docs content is published, usually corresponding to new 
    4. Scroll down to "Artifacts" and look for the artifact related to documentation, such as `html_docs`.
    5. Download the artifact by clicking on its name.
 4. Rename the downloaded zip file with its version number, e.g. `0.45.zip` for an artifact from `qiskit v0.45.2`.
-5. Upload the renamed zip file to https://ibm.ent.box.com/folder/246867649571
+5. Upload the renamed zip file to https://ibm.ent.box.com/folder/246867452622
 6. Share the file by clicking the `Copy shared link` button
 7. Select `People with the link` and go to `Link Settings`.
 8. Under `Link Expiration` select `Disable Shared Link on` and set an expiration date of ~10 years into the future.
 9. Copy the direct link at the end of the `Shared Link Settings` tab.
-10. Modify the `scripts/lib/api/api-html-artifacts.json` file adding the new versions with the direct link from step 9.
+10. Modify the `scripts/api-html-artifacts.json` file adding the new versions with the direct link from step 9.
 11. Run `npm run gen-api -- -p <pkg-name> -v <version>`,
     e.g. `npm run gen-api -- -p qiskit -v 0.45.0`
 
