@@ -238,7 +238,9 @@ If you're working on our support code in `scripts/`, run `npm run fmt` to automa
 
 To check that formatting is valid without actually making changes, run `npm run check:fmt` or `npm run check`.
 
-### Regenerate an existing API docs version
+## Regenerate an existing API docs version
+
+This is useful when we make improvements to the API generation script.
 
 1. Choose which documentation you want to generate (`qiskit`, `qiskit-ibm-provider`, or `qiskit-ibm-runtime`) and its version.
 2. Run `npm run gen-api -- -p <pkg-name> -v <version>`,
@@ -270,6 +272,16 @@ If the version is not for the latest stable minor release series, then add `--hi
     e.g. `npm run gen-api -- -p qiskit -v 0.45.0`
 
 In case you want to save the current version and convert it into a historical one, you can run `npm run make-historical -- -p <pkg-name>` beforehand.
+
+If the version is not for the latest stable minor release series, then add `--historical` to the arguments. For example, use `--historical` if the latest stable release is 0.45.\* but you're generating docs for the patch release 0.44.3.
+
+### Generate patch releases
+
+For example, if the current docs are for 0.45.2 but you want to generate 0.45.3.
+
+Follow the same process above for new API docs, other than:
+
+* When uploading the artifact, overwrite the existing file with the new one. Be careful to follow the above steps to change "Link Expiration"!
 
 # How to write the documentation
 
