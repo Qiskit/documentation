@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
 <span id="qiskit.quantum_info.DensityMatrix" />
 
-`qiskit.quantum_info.DensityMatrix(data, dims=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/quantum_info/states/densitymatrix.py "view source code")
+`qiskit.quantum_info.DensityMatrix(data, dims=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/quantum_info/states/densitymatrix.py "view source code")
 
 Bases: `QuantumState`, `TolerancesMixin`
 

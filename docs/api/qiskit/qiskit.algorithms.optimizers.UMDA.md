@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.UMDA
 
 <span id="qiskit.algorithms.optimizers.UMDA" />
 
-`qiskit.algorithms.optimizers.UMDA(maxiter=100, size_gen=20, alpha=0.5, callback=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/optimizers/umda.py "view source code")
+`qiskit.algorithms.optimizers.UMDA(maxiter=100, size_gen=20, alpha=0.5, callback=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/optimizers/umda.py "view source code")
 
 Bases: [`Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.optimizer.Optimizer")
 
@@ -38,7 +38,7 @@ This short example runs UMDA to optimize the parameters of a variational algorit
 
 ```python
 from qiskit.opflow import X, Z, I
-from qiskit import Aer
+from qiskit_aer import Aer
 from qiskit.algorithms.optimizers import UMDA
 from qiskit.algorithms import QAOA
 from qiskit.utils import QuantumInstance

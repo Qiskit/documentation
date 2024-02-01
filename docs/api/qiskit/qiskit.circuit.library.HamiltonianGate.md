@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.HamiltonianGate
 
 <span id="qiskit.circuit.library.HamiltonianGate" />
 
-`qiskit.circuit.library.HamiltonianGate(data, time, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/hamiltonian_gate.py "view source code")
+`qiskit.circuit.library.HamiltonianGate(data, time, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/hamiltonian_gate.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -160,7 +160,7 @@ Return the adjoint of the unitary.
 Raise an error, as QASM is not defined for the HamiltonianGate.
 
 <Admonition title="Deprecated since version 0.25.0" type="danger">
-  The method `qiskit.circuit.library.hamiltonian_gate.HamiltonianGate.qasm()` is deprecated as of qiskit-terra 0.25.0. It will be removed no earlier than 3 months after the release date.
+  The method `qiskit.circuit.library.hamiltonian_gate.HamiltonianGate.qasm()` is deprecated as of qiskit-terra 0.25.0. It will be removed in the Qiskit 1.0 release.
 </Admonition>
 
 ### transpose

@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.state_fns.SparseVectorStateFn
 
 <span id="qiskit.opflow.state_fns.SparseVectorStateFn" />
 
-`qiskit.opflow.state_fns.SparseVectorStateFn(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/state_fns/sparse_vector_state_fn.py "view source code")
+`qiskit.opflow.state_fns.SparseVectorStateFn(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/opflow/state_fns/sparse_vector_state_fn.py "view source code")
 
 Bases: [`StateFn`](qiskit.opflow.state_fns.StateFn "qiskit.opflow.state_fns.state_fn.StateFn")
 
@@ -19,7 +19,7 @@ Deprecated: A class for sparse state functions and measurements in vector repres
 This class uses `scipy.sparse.spmatrix` for the internal representation.
 
 <Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.opflow.state_fns.sparse_vector_state_fn.SparseVectorStateFn` is deprecated as of qiskit 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  The class `qiskit.opflow.state_fns.sparse_vector_state_fn.SparseVectorStateFn` is deprecated as of qiskit 0.24.0. It will be removed in the Qiskit 1.0 release. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
 </Admonition>
 
 **Parameters**

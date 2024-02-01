@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.ExcitationPreserving
 
 <span id="qiskit.circuit.library.ExcitationPreserving" />
 
-`qiskit.circuit.library.ExcitationPreserving(num_qubits=None, mode='iswap', entanglement='full', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='ExcitationPreserving', flatten=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/n_local/excitation_preserving.py "view source code")
+`qiskit.circuit.library.ExcitationPreserving(num_qubits=None, mode='iswap', entanglement='full', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='ExcitationPreserving', flatten=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/n_local/excitation_preserving.py "view source code")
 
 Bases: [`TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.n_local.two_local.TwoLocal")
 
@@ -190,7 +190,7 @@ If barriers are inserted in between the layers or not.
 
 ### instances
 
-`= 167`
+`= 159`
 
 <span id="qiskit.circuit.library.ExcitationPreserving.layout" />
 

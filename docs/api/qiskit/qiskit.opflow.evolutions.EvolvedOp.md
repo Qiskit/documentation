@@ -10,14 +10,14 @@ python_api_name: qiskit.opflow.evolutions.EvolvedOp
 
 <span id="qiskit.opflow.evolutions.EvolvedOp" />
 
-`qiskit.opflow.evolutions.EvolvedOp(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/evolutions/evolved_op.py "view source code")
+`qiskit.opflow.evolutions.EvolvedOp(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/opflow/evolutions/evolved_op.py "view source code")
 
 Bases: [`PrimitiveOp`](qiskit.opflow.primitive_ops.PrimitiveOp "qiskit.opflow.primitive_ops.primitive_op.PrimitiveOp")
 
 Deprecated: Class for wrapping Operator Evolutions for compilation (`convert`) by an EvolutionBase method later, essentially acting as a placeholder. Note that EvolvedOp is a weird case of PrimitiveOp. It happens to be that it fits into the PrimitiveOp interface nearly perfectly, and it essentially represents a placeholder for a PrimitiveOp later, even though it doesn’t actually hold a primitive object. We could have chosen for it to be an OperatorBase, but would have ended up copying and pasting a lot of code from PrimitiveOp.
 
 <Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.opflow.evolutions.evolved_op.EvolvedOp` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  The class `qiskit.opflow.evolutions.evolved_op.EvolvedOp` is deprecated as of qiskit-terra 0.24.0. It will be removed in the Qiskit 1.0 release. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
 </Admonition>
 
 **Parameters**

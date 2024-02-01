@@ -133,6 +133,7 @@ python_api_name: qiskit.transpiler.passes
 | [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis")(\*args, \*\*kwargs)                                  | Synthesize higher-level objects and unroll custom definitions.                           |
 | [`SolovayKitaev`](qiskit.transpiler.passes.SolovayKitaev "qiskit.transpiler.passes.SolovayKitaev")(\*args, \*\*kwargs)                                                 | Approximately decompose 1q gates to a discrete basis using the Solovay-Kitaev algorithm. |
 | [`SolovayKitaevSynthesis`](qiskit.transpiler.passes.SolovayKitaevSynthesis "qiskit.transpiler.passes.SolovayKitaevSynthesis")()                                        | A Solovay-Kitaev Qiskit unitary synthesis plugin.                                        |
+| [`AQCSynthesisPlugin`](qiskit.transpiler.passes.AQCSynthesisPlugin "qiskit.transpiler.passes.AQCSynthesisPlugin")()                                                    | An AQC-based Qiskit unitary synthesis plugin.                                            |
 
 ## Post Layout (Post transpile qubit selection)
 

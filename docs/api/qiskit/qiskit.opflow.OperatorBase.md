@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.OperatorBase
 
 <span id="qiskit.opflow.OperatorBase" />
 
-`qiskit.opflow.OperatorBase`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/operator_base.py "view source code")
+`qiskit.opflow.OperatorBase`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/opflow/operator_base.py "view source code")
 
 Bases: `StarAlgebraMixin`, `TensorMixin`, [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 
@@ -19,7 +19,7 @@ Deprecated: A base class for all Operators: PrimitiveOps, StateFns, ListOps, etc
 Operators can be used to construct complicated functions and computation, and serve as the building blocks for algorithms.
 
 <Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.opflow.operator_base.OperatorBase` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  The class `qiskit.opflow.operator_base.OperatorBase` is deprecated as of qiskit-terra 0.24.0. It will be removed in the Qiskit 1.0 release. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
 </Admonition>
 
 ## Attributes

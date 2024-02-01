@@ -10,13 +10,17 @@ python_api_name: qiskit.transpiler.passes.CrosstalkAdaptiveSchedule
 
 <span id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule" />
 
-`qiskit.transpiler.passes.CrosstalkAdaptiveSchedule(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/optimization/crosstalk_adaptive_schedule.py "view source code")
+`qiskit.transpiler.passes.CrosstalkAdaptiveSchedule(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/passes/optimization/crosstalk_adaptive_schedule.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
 Crosstalk mitigation through adaptive instruction scheduling.
 
 CrosstalkAdaptiveSchedule initializer.
+
+<Admonition title="Deprecated since version 0.46" type="danger">
+  The class `qiskit.transpiler.passes.optimization.crosstalk_adaptive_schedule.CrosstalkAdaptiveSchedule` is deprecated as of qiskit 0.46. It will be removed in the 1.0.0 release.
+</Admonition>
 
 **Parameters**
 

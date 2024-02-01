@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.expectations.CVaRExpectation
 
 <span id="qiskit.opflow.expectations.CVaRExpectation" />
 
-`qiskit.opflow.expectations.CVaRExpectation(alpha, expectation=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/expectations/cvar_expectation.py "view source code")
+`qiskit.opflow.expectations.CVaRExpectation(alpha, expectation=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/opflow/expectations/cvar_expectation.py "view source code")
 
 Bases: [`ExpectationBase`](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.expectation_base.ExpectationBase")
 
@@ -31,7 +31,7 @@ Let $\alpha$ be a real number in $[0,1]$ which specifies the fraction of best ob
 “Improving Variational Quantum Optimization using CVaR” [arXiv:1907.04769](https://arxiv.org/abs/1907.04769)
 
 <Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.opflow.expectations.cvar_expectation.CVaRExpectation` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  The class `qiskit.opflow.expectations.cvar_expectation.CVaRExpectation` is deprecated as of qiskit-terra 0.24.0. It will be removed in the Qiskit 1.0 release. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
 </Admonition>
 
 **Parameters**
