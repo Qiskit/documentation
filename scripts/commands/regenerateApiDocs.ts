@@ -23,7 +23,7 @@ import { zxMain } from "../lib/zx";
 interface Arguments {
   [x: string]: unknown;
   package?: string;
-  noHistorical: boolean;
+  currentApisOnly: boolean;
 }
 
 const readArgs = (): Arguments => {
@@ -36,7 +36,7 @@ const readArgs = (): Arguments => {
       demandOption: false,
       description: "Which package to update",
     })
-    .option("no-historical", {
+    .option("current-apis-only", {
       type: "boolean",
       default: false,
       description: "Regenerate only the current API docs?",
@@ -56,7 +56,7 @@ zxMain(async () => {
 
     const [historicalVersions, currentVersion] = await getPackageVersions(
       pkgName,
-      args.noHistorical,
+      args.currentApisOnly,
     );
     const result = await processVersions(
       pkgName,
@@ -118,12 +118,12 @@ async function regenerateVersion(
 
 async function getPackageVersions(
   pkgName: string,
-  noHistorical: boolean,
+  currentApisOnly: boolean,
 ): Promise<[string[], string]> {
   const pkgDocsPath = `docs/api/${pkgName}`;
   const historicalVersions: string[] = [];
 
-  if (!noHistorical) {
+  if (!currentApisOnly) {
     const historicalFolders = (
       await readdir(`${pkgDocsPath}`, { withFileTypes: true })
     ).filter((file) => file.isDirectory() && file.name.match(/[0-9].*/));
