@@ -517,7 +517,9 @@ Additionally, some companies require that they are listed in a special attributi
 - PowerShell
 - PyPI
 - Python
+- Python Package Index
 - Qiskit
+- Rust
 - Ubuntu
 
 </details>
