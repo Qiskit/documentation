@@ -47,6 +47,7 @@ interface Arguments {
   package: string;
   version: string;
   historical: boolean;
+  "skip-download": boolean;
 }
 
 const readArgs = (): Arguments => {
@@ -70,6 +71,11 @@ const readArgs = (): Arguments => {
       default: false,
       description: "Is this a prior release?",
     })
+    .option("skip-download", {
+      type: "boolean",
+      default: false,
+      description: "Skip the download of the artifact from Box?",
+    })
     .parseSync();
 };
 
@@ -92,7 +98,14 @@ zxMain(async () => {
   );
 
   const artifactFolder = pkg.ciArtifactFolder();
-  await downloadCIArtifact(pkg, artifactFolder);
+  if (
+    args["skip-download"] &&
+    (await pathExists(`${artifactFolder}/artifact`))
+  ) {
+    console.log(`Skip downloading sources for ${pkg.name}:${pkg.version}`);
+  } else {
+    await downloadCIArtifact(pkg, artifactFolder);
+  }
 
   const outputDir = pkg.outputDir(`${getRoot()}/docs`);
   if (pkg.historical && !(await pathExists(outputDir))) {
