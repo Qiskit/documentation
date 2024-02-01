@@ -275,7 +275,7 @@ This is useful when new docs content is published, usually corresponding to new 
 
 In case you want to save the current version and convert it into a historical one, you can run `npm run make-historical -- -p <pkg-name>` beforehand.
 
-If the version is not for the latest stable minor release series, then add `--historical` to the arguments. For example, use `--historical` if the latest stable release is 0.45.\* but you're generating docs for the patch release 0.44.3.
+If you're generating a patch release, also see the below subsection for additional steps.
 
 ### Generate patch releases
 
@@ -284,6 +284,8 @@ For example, if the current docs are for 0.45.2 but you want to generate 0.45.3.
 Follow the same process above for new API docs, other than:
 
 - When uploading the artifact, overwrite the existing file with the new one. Be careful to follow the above steps to change "Link Expiration"!
+
+If the version is not for the latest stable minor release series, then add `--historical` to the arguments. For example, use `--historical` if the latest stable release is 0.45.\* but you're generating docs for the patch release 0.44.3.
 
 # How to write the documentation
 
