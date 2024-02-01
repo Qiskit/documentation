@@ -12,7 +12,7 @@ Read on for more information about how to support this project:
 
 ### 1. Report bugs, inaccuracies or general content issues
 
-This is the quickest, easiest, and most helpful way to contribute to this project and improve the quality of Qiskit and IBM Quantum documentation. There are a few different ways to report issues, depending on where it was found:
+This is the quickest, easiest, and most helpful way to contribute to this project and improve the quality of Qiskit&reg; and IBM Quantum&reg; documentation. There are a few different ways to report issues, depending on where it was found:
 
 - For problems you've found in the [Qiskit API Reference](https://docs.quantum.ibm.com/api/qiskit) section, open an issue in the Qiskit repo [here](https://github.com/Qiskit/qiskit/issues/new/choose).
 - For problems you've found in the [Qiskit Runtime IBM Client](https://docs.quantum.ibm.com/api/qiskit-ibm-runtime) section, open an issue in the Qiskit IBM Runtime repo [here](https://github.com/Qiskit/qiskit-ibm-runtime/issues/new/choose).
@@ -511,6 +511,8 @@ Additionally, some companies require that they are listed in a special attributi
 - Debian
 - GitHub
 - IBM
+- IBM Cloud
+- IBM Quantum
 - Jupyter
 - Linux
 - macOS
@@ -523,6 +525,8 @@ Additionally, some companies require that they are listed in a special attributi
 - Ubuntu
 
 </details>
+
+See the Usage section of the IBM Quantum Experience Guide for guidance on when to use IBM and when to use IBM Quantum.
 
 ### Trademark symbols
 
