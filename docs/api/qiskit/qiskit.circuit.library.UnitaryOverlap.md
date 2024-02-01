@@ -26,7 +26,7 @@ This circuit is usually employed in computing the fidelity:
     \left|\langle 0| U_2^{\dag} U_1|0\rangle\right|^{2}
 ```
 
-by computing the probability of being in the all-zeros bit-string, or equivalently, the expectation value of projector $|0\rangle\langle 0|$.
+by computing the probability of being in the all-zeros bit-string, or equivalently, the expectation value of projector $\vert 0\rangle\langle 0\vert $.
 
 Example:
 

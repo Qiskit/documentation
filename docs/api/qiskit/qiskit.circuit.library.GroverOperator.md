@@ -40,7 +40,7 @@ This class allows setting a different state preparation, as in quantum amplitude
 The action of the phase oracle $\mathcal{S}_f$ is defined as
 
 $$
-\mathcal{S}_f: |x\rangle \mapsto (-1)^{f(x)}|x\rangle
+\mathcal{S}_f: \vert x\rangle \mapsto (-1)^{f(x)}\vert x\rangle
 
 
 $$
@@ -62,12 +62,12 @@ There is some flexibility in defining the oracle and $\mathcal{A}$ operator. Bef
 The zero reflection $\mathcal{S}_0$ is usually defined as
 
 $$
-\mathcal{S}_0 = 2 |0\rangle^{\otimes n} \langle 0|^{\otimes n} - \mathbb{I}_n
+\mathcal{S}_0 = 2 \vert 0\rangle^{\otimes n} \langle 0\vert ^{\otimes n} - \mathbb{I}_n
 
 
 $$
 
-where $\mathbb{I}_n$ is the identity on $n$ qubits. By default, this class implements the negative version $2 |0\rangle^{\otimes n} \langle 0|^{\otimes n} - \mathbb{I}_n$, since this can simply be implemented with a multi-controlled Z sandwiched by X gates on the target qubit and the introduced global phase does not matter for Grover’s algorithm.
+where $\mathbb{I}_n$ is the identity on $n$ qubits. By default, this class implements the negative version $2 \vert 0\rangle^{\otimes n} \langle 0\vert ^{\otimes n} - \mathbb{I}_n$, since this can simply be implemented with a multi-controlled Z sandwiched by X gates on the target qubit and the introduced global phase does not matter for Grover’s algorithm.
 
 **Examples**
 
