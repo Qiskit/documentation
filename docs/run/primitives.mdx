@@ -55,17 +55,17 @@ Version 2 is first the major interface change since the introduction of Qiskit R
 * In addition to resilience levels, you can *turn on or off individual error mitigation and suppression methods*.
 * In addition to quasi-probabilities, you can choose to *get counts or per-shot measurements* from SamplerV2.
 * Due to scaling issues, SamplerV2 does not support specifying a resilience level, and EstimatorV2 supports only levels 0 - 2. 
-* To reduce the total execution time, v2 primitives only support *lightweight transpilation*. If you need more advanced transpilation, you can use the Qiskit transpiler or the AI transpilation service, as described in the [Runtime compilation section.](advanced-runtime-options#runtime-compilation)
+* To reduce the total execution time, v2 primitives only support *lightweight transpilation*. If you need more advanced transpilation, you can use the [Qiskit transpiler](advanced-runtime-options#runtime-compilation) (manually) or the [AI-driven transpilation service](../transpile/qiskit-transpiler-service).
 
 ### Interface changes
 
 The updated interface uses _primitive unified bloc_s (PUBs).  Each PUB is a tuple that contains a circuit and the data broadcasted to it. This greatly simplifies your ability to send complex data to a circuit.  Previously, you had to specify the same circuit multiple times to match the size of the data to be combined, as shown in the following table: 
 
-<table>
+<table style="width:100%">
   <tbody>
     <tr>
-      <th>Estimator V1</th>
-      <th>Estimator V2</th>
+      <th style="width:50%">Estimator V1</th>
+      <th style="width:50%">Estimator V2</th>
     </tr>
     <tr>
       <td>
