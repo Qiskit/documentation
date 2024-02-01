@@ -34,7 +34,7 @@ import { dedupeHtmlIdsFromResults } from "../lib/api/dedupeHtmlIds";
 import { Pkg } from "../lib/api/Pkg";
 import { zxMain } from "../lib/zx";
 import { pathExists, getRoot, rmFilesInFolder } from "../lib/fs";
-import { downloadCIArtifact } from "../lib/api/downloadCIArtifacts";
+import { downloadCIArtifact } from "../lib/api/apiArtifacts";
 import {
   addNewReleaseNotes,
   generateReleaseNotesIndex,
@@ -47,7 +47,7 @@ interface Arguments {
   package: string;
   version: string;
   historical: boolean;
-  artifact: string;
+  skipDownload: boolean;
 }
 
 const readArgs = (): Arguments => {
@@ -71,12 +71,11 @@ const readArgs = (): Arguments => {
       default: false,
       description: "Is this a prior release?",
     })
-    .option("artifact", {
-      alias: "a",
-      type: "string",
-      demandOption: true,
+    .option("skip-download", {
+      type: "boolean",
+      default: false,
       description:
-        "The URL for the CI artifact to download. Must be from GitHub Actions.",
+        "Rather than downloading the artifact from Box, reuse what is already downloaded. This can save time, but it risks using an outdated version of the docs.",
     })
     .parseSync();
 };
@@ -100,10 +99,10 @@ zxMain(async () => {
   );
 
   const artifactFolder = pkg.ciArtifactFolder();
-  if (await pathExists(artifactFolder)) {
+  if (args.skipDownload && (await pathExists(`${artifactFolder}/artifact`))) {
     console.log(`Skip downloading sources for ${pkg.name}:${pkg.version}`);
   } else {
-    await downloadCIArtifact(pkg.name, args.artifact, artifactFolder);
+    await downloadCIArtifact(pkg, artifactFolder);
   }
 
   const outputDir = pkg.outputDir(`${getRoot()}/docs`);
