@@ -498,3 +498,25 @@ To display a qasm operation (like a not gate), you can use the `Operation` compo
 ```mdx
 <Operation name="x" />
 ```
+
+## Proper marking and attribution
+
+**All information needs to identify, mark, and attribute IBM and applicable third-party trademarks.** We do this the first time a trademark appears on each page. See the [Copyright and trademark information](https://www.ibm.com/legal/copyright-trademark) page for more details.
+
+Additionally, some companies require that they are listed in a special attribution notice. View a list of the companies to include in a special attribution notice at the [Special attributions](https://www.ibm.com/legal/copyright-trademark#special) section of the IBM Legal site.
+
+
+<details>
+<summary>A (non-exhaustive) list of trademarked names found in our docs</summary>
+
+- GitHub
+- IBM
+- Jupyter
+- Linux
+- macOS
+- PowerShell
+- PyPI
+- Python
+- Qiskit
+
+</details>
