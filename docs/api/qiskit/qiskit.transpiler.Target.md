@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.Target
 
 <span id="qiskit.transpiler.Target" />
 
-`qiskit.transpiler.Target(description=None, num_qubits=0, dt=None, granularity=1, min_length=1, pulse_alignment=1, acquire_alignment=1, qubit_properties=None, concurrent_measurements=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/target.py "view source code")
+`qiskit.transpiler.Target(description=None, num_qubits=0, dt=None, granularity=1, min_length=1, pulse_alignment=1, acquire_alignment=1, qubit_properties=None, concurrent_measurements=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/target.py "view source code")
 
 Bases: [`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping "(in Python v3.12)")
 
@@ -73,7 +73,7 @@ Then in the `target` object accessing by `rx_30` will get the fixed angle [`RXGa
 Create a new `Target` object
 
 <Admonition title="Deprecated since version 0.23.0" type="danger">
-  `qiskit.transpiler.target.Target.__init__()`’s argument `aquire_alignment` is deprecated as of qiskit-terra 0.23.0. It will be removed no earlier than 3 months after the release date. Instead, use the argument `acquire_alignment`, which behaves identically.
+  `qiskit.transpiler.target.Target.__init__()`’s argument `aquire_alignment` is deprecated as of qiskit-terra 0.23.0. It will be removed in the Qiskit 1.0 release. Instead, use the argument `acquire_alignment`, which behaves identically.
 </Admonition>
 
 **Parameters**
@@ -137,7 +137,7 @@ Create a new `Target` object
 Alias of deprecated name. This will be removed.
 
 <Admonition title="Deprecated since version 0.24.0" type="danger">
-  The property `qiskit.transpiler.target.Target.aquire_alignment` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. Use the property `acquire_alignment` instead.
+  The property `qiskit.transpiler.target.Target.aquire_alignment` is deprecated as of qiskit-terra 0.24.0. It will be removed in the Qiskit 1.0 release. Use the property `acquire_alignment` instead.
 </Admonition>
 
 <span id="qiskit.transpiler.Target.instructions" />

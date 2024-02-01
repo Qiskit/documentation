@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.PassManager
 
 <span id="qiskit.transpiler.PassManager" />
 
-`qiskit.transpiler.PassManager(passes=(), max_iteration=1000)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passmanager.py "view source code")
+`qiskit.transpiler.PassManager(passes=(), max_iteration=1000)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/passmanager.py "view source code")
 
 Bases: [`BasePassManager`](qiskit.passmanager.BasePassManager "qiskit.passmanager.passmanager.BasePassManager")
 
@@ -33,8 +33,12 @@ Initialize an empty pass manager object.
 
 Append a Pass Set to the schedule of passes.
 
-<Admonition title="Deprecated since version 0.25_pending" type="danger">
-  `qiskit.transpiler.passmanager.PassManager.append()`’s argument `max_iteration` is pending deprecation as of qiskit-terra 0.25. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. ‘max\_iteration’ can be set in the constructor.
+<Admonition title="Deprecated since version 0.45" type="danger">
+  Creating flow controllers with `flow_controller_conditions` keyword arguments was deprecated. Instead, you must explicitly instantiate a controller and set the controller to `passes` argument.
+</Admonition>
+
+<Admonition title="Deprecated since version 0.46" type="danger">
+  `qiskit.transpiler.passmanager.PassManager.append()`’s argument `max_iteration` is deprecated as of qiskit 0.46. It will be removed in the 1.0 release. ‘max\_iteration’ can be set in the constructor.
 </Admonition>
 
 **Parameters**
@@ -92,6 +96,10 @@ Optional\[[PassManager](#qiskit.transpiler.PassManager "qiskit.transpiler.PassMa
 
 Return a list structure of the appended passes and its options.
 
+<Admonition title="Deprecated since version 0.46" type="danger">
+  The method `qiskit.transpiler.passmanager.PassManager.passes()` is deprecated as of qiskit 0.46. It will be removed in the 1.0 release. Use .to\_flow\_controller().tasks instead. This returns a sequence of linearized base task instances in tuple format.
+</Admonition>
+
 **Returns**
 
 A list of pass sets, as defined in `append()`.
@@ -124,8 +132,12 @@ Removes a particular pass in the scheduler.
 
 Replace a particular pass in the scheduler.
 
-<Admonition title="Deprecated since version 0.25_pending" type="danger">
-  `qiskit.transpiler.passmanager.PassManager.replace()`’s argument `max_iteration` is pending deprecation as of qiskit-terra 0.25. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. ‘max\_iteration’ can be set in the constructor.
+<Admonition title="Deprecated since version 0.45" type="danger">
+  Creating flow controllers with `flow_controller_conditions` keyword arguments was deprecated. Instead, you must explicitly instantiate a controller and set the controller to `passes` argument.
+</Admonition>
+
+<Admonition title="Deprecated since version 0.46" type="danger">
+  `qiskit.transpiler.passmanager.PassManager.replace()`’s argument `max_iteration` is deprecated as of qiskit 0.46. It will be removed in the 1.0 release. ‘max\_iteration’ can be set in the constructor.
 </Admonition>
 
 **Parameters**

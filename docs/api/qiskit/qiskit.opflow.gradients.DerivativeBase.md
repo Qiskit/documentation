@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.gradients.DerivativeBase
 
 <span id="qiskit.opflow.gradients.DerivativeBase" />
 
-`qiskit.opflow.gradients.DerivativeBase`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/gradients/derivative_base.py "view source code")
+`qiskit.opflow.gradients.DerivativeBase`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/opflow/gradients/derivative_base.py "view source code")
 
 Bases: [`ConverterBase`](qiskit.opflow.converters.ConverterBase "qiskit.opflow.converters.converter_base.ConverterBase")
 
@@ -23,7 +23,7 @@ This is distinct from CircuitGradient converters which use quantum techniques su
 CircuitGradient - uses quantum techniques to get derivatives of circuits DerivativeBase - uses classical techniques to differentiate opflow data structures
 
 <Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.opflow.gradients.derivative_base.DerivativeBase` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  The class `qiskit.opflow.gradients.derivative_base.DerivativeBase` is deprecated as of qiskit-terra 0.24.0. It will be removed in the Qiskit 1.0 release. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
 </Admonition>
 
 ## Methods
@@ -84,7 +84,7 @@ Function to compute a gradient, Hessian or QFI. The function takes an iterable a
 Get the derivative of a parameter expression w\.r.t. the given parameter.
 
 <Admonition title="Deprecated since version 0.18.0" type="danger">
-  The method `qiskit.opflow.gradients.derivative_base.DerivativeBase.parameter_expression_grad()` is deprecated as of qiskit-terra 0.18.0. It will be removed no earlier than 3 months after the release date. Instead, use the ParameterExpression.gradient method.
+  The method `qiskit.opflow.gradients.derivative_base.DerivativeBase.parameter_expression_grad()` is deprecated as of qiskit-terra 0.18.0. It will be removed in the Qiskit 1.0 release. Instead, use the ParameterExpression.gradient method.
 </Admonition>
 
 **Parameters**

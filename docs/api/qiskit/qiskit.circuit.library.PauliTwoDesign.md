@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.PauliTwoDesign
 
 <span id="qiskit.circuit.library.PauliTwoDesign" />
 
-`qiskit.circuit.library.PauliTwoDesign(num_qubits=None, reps=3, seed=None, insert_barriers=False, name='PauliTwoDesign')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/n_local/pauli_two_design.py "view source code")
+`qiskit.circuit.library.PauliTwoDesign(num_qubits=None, reps=3, seed=None, insert_barriers=False, name='PauliTwoDesign')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/n_local/pauli_two_design.py "view source code")
 
 Bases: [`TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.n_local.two_local.TwoLocal")
 
@@ -155,7 +155,7 @@ If barriers are inserted in between the layers or not.
 
 ### instances
 
-`= 192`
+`= 174`
 
 <span id="qiskit.circuit.library.PauliTwoDesign.layout" />
 

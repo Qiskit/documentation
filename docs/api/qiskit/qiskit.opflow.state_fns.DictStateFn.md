@@ -10,14 +10,14 @@ python_api_name: qiskit.opflow.state_fns.DictStateFn
 
 <span id="qiskit.opflow.state_fns.DictStateFn" />
 
-`qiskit.opflow.state_fns.DictStateFn(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/state_fns/dict_state_fn.py "view source code")
+`qiskit.opflow.state_fns.DictStateFn(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/opflow/state_fns/dict_state_fn.py "view source code")
 
 Bases: [`StateFn`](qiskit.opflow.state_fns.StateFn "qiskit.opflow.state_fns.state_fn.StateFn")
 
 Deprecated: A class for state functions and measurements which are defined by a lookup table, stored in a dict.
 
 <Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.opflow.state_fns.dict_state_fn.DictStateFn` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  The class `qiskit.opflow.state_fns.dict_state_fn.DictStateFn` is deprecated as of qiskit-terra 0.24.0. It will be removed in the Qiskit 1.0 release. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
 </Admonition>
 
 **Parameters**

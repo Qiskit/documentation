@@ -10,7 +10,7 @@ python_api_name: qiskit.extensions.Snapshot
 
 <span id="qiskit.extensions.Snapshot" />
 
-`qiskit.extensions.Snapshot(label, snapshot_type='statevector', num_qubits=0, num_clbits=0, params=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/extensions/simulator/snapshot.py "view source code")
+`qiskit.extensions.Snapshot(label, snapshot_type='statevector', num_qubits=0, num_clbits=0, params=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/extensions/simulator/snapshot.py "view source code")
 
 Bases: [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 
@@ -19,7 +19,7 @@ Simulator snapshot instruction.
 Create new snapshot instruction.
 
 <Admonition title="Deprecated since version 0.45.0" type="danger">
-  The class `qiskit.extensions.simulator.snapshot.Snapshot` is deprecated as of qiskit 0.45.0. It will be removed no earlier than 3 months after the release date. The Snapshot instruction has been superseded by Qiskit Aer’s save instructions, see [https://qiskit.org/ecosystem/aer/apidocs/aer\_library.html#saving-simulator-data](https://qiskit.org/ecosystem/aer/apidocs/aer_library.html#saving-simulator-data).
+  The class `qiskit.extensions.simulator.snapshot.Snapshot` is deprecated as of qiskit 0.45.0. It will be removed in the Qiskit 1.0 release. The Snapshot instruction has been superseded by Qiskit Aer’s save instructions, see [https://qiskit.org/ecosystem/aer/apidocs/aer\_library.html#saving-simulator-data](https://qiskit.org/ecosystem/aer/apidocs/aer_library.html#saving-simulator-data).
 </Admonition>
 
 **Parameters**
@@ -235,7 +235,7 @@ Return a default OpenQASM string for the instruction.
 Derived instructions may override this to print in a different format (e.g. `measure q[0] -> c[0];`).
 
 <Admonition title="Deprecated since version 0.25.0" type="danger">
-  The method `qiskit.circuit.instruction.Instruction.qasm()` is deprecated as of qiskit-terra 0.25.0. It will be removed no earlier than 3 months after the release date. Correct exporting to OpenQASM 2 is the responsibility of a larger exporter; it cannot safely be done on an object-by-object basis without context. No replacement will be provided, because the premise is wrong.
+  The method `qiskit.circuit.instruction.Instruction.qasm()` is deprecated as of qiskit-terra 0.25.0. It will be removed in the Qiskit 1.0 release. Correct exporting to OpenQASM 2 is the responsibility of a larger exporter; it cannot safely be done on an object-by-object basis without context. No replacement will be provided, because the premise is wrong.
 </Admonition>
 
 ### repeat

@@ -10,13 +10,17 @@ python_api_name: qiskit.providers.fake_provider.FakeProvider
 
 <span id="qiskit.providers.fake_provider.FakeProvider" />
 
-`qiskit.providers.fake_provider.FakeProvider`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/fake_provider/fake_provider.py "view source code")
+`qiskit.providers.fake_provider.FakeProvider`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/providers/fake_provider/fake_provider.py "view source code")
 
 Bases: [`ProviderV1`](qiskit.providers.ProviderV1 "qiskit.providers.provider.ProviderV1")
 
 Fake provider containing fake V1 backends.
 
 Only filtering backends by name is implemented. This class contains all fake V1 backends available in the [`qiskit.providers.fake_provider`](providers_fake_provider#module-qiskit.providers.fake_provider "qiskit.providers.fake_provider").
+
+<Admonition title="Deprecated since version 0.46.0" type="danger">
+  The class `qiskit.providers.fake_provider.fake_provider.FakeProvider` is deprecated as of qiskit 0.46.0. It will be removed in qiskit 1.0. This class has been migrated to the qiskit\_ibm\_runtime package. To migrate your code, run pip install qiskit-ibm-runtime and use from qiskit\_ibm\_runtime.fake\_provider import FakeProviderExample instead of from qiskit.providers.fake\_provider import FakeProviderExample.
+</Admonition>
 
 ## Attributes
 

@@ -42,7 +42,7 @@ A pass manager is a wrapper of the flow controller, with responsibilities of
 
 This indicates that the flow controller itself is type-agnostic, and a developer must implement a subclass of the [`BasePassManager`](qiskit.passmanager.BasePassManager "qiskit.passmanager.BasePassManager") to manage the data conversion steps. This *veil of ignorance* allows us to choose the most efficient data representation for a particular pass manager task, while we can reuse the flow control machinery for different input and output types.
 
-A single flow controller always takes a single IR object, and returns a single IR object. Parallelism for multiple input objects is supported by the [`BasePassManager`](qiskit.passmanager.BasePassManager "qiskit.passmanager.BasePassManager") by broadcasting the flow controller via the [`qiskit.tools.parallel_map()`](tools#qiskit.tools.parallel_map "qiskit.tools.parallel_map") function.
+A single flow controller always takes a single IR object, and returns a single IR object. Parallelism for multiple input objects is supported by the [`BasePassManager`](qiskit.passmanager.BasePassManager "qiskit.passmanager.BasePassManager") by broadcasting the flow controller via the `qiskit.tools.parallel_map()` function.
 
 ## Examples
 
@@ -165,7 +165,7 @@ With the pass manager framework, a developer can flexibly customize the optimiza
 
 <span id="qiskit.passmanager.PassManagerError" />
 
-`qiskit.passmanager.PassManagerError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/passmanager/exceptions.py "view source code")
+`qiskit.passmanager.PassManagerError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/passmanager/exceptions.py "view source code")
 
 Pass manager error.
 
