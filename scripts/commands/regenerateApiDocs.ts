@@ -23,7 +23,7 @@ import { zxMain } from "../lib/zx";
 interface Arguments {
   [x: string]: unknown;
   package?: string;
-  historical: boolean;
+  currentApis: boolean;
 }
 
 const readArgs = (): Arguments => {
@@ -36,17 +36,114 @@ const readArgs = (): Arguments => {
       demandOption: false,
       description: "Which package to update",
     })
-    .option("historical", {
+    .option("current-apis", {
       type: "boolean",
       default: false,
-      description: "Regenerate prior releases?",
+      description: "Regenerate only the current API docs?",
     })
     .parseSync();
 };
 
 zxMain(async () => {
   const args = readArgs();
+  await validateGitStatus();
 
+  const results = new Map<string, string[]>();
+  for (const pkgName of Pkg.VALID_NAMES) {
+    if (args.package && pkgName != args.package) {
+      continue;
+    }
+
+    const [historicalVersions, currentVersion] = await getPackageVersions(
+      pkgName,
+      args.currentApis,
+    );
+    const result = await processVersions(
+      pkgName,
+      historicalVersions,
+      currentVersion,
+    );
+    results.set(pkgName, result);
+  }
+
+  console.log("");
+  results.forEach((result: string[], pkgName: string) => {
+    console.log(`Regeneration of ${pkgName}:`);
+    result.forEach((msg) => console.error(msg));
+    console.log("");
+  });
+
+  console.log(`Each regenerated version has been saved as a distinct commit. If the changes are
+too large for one single PR, consider splitting it up into multiple PRs by using
+git cherry-pick or git rebase -i so each PR only has the commits it wants to target.`);
+});
+
+async function processVersions(
+  pkgName: string,
+  historicalVersions: string[],
+  currentVersion: string,
+): Promise<string[]> {
+  const results: string[] = [];
+
+  for (const historicalVersion of historicalVersions) {
+    results.push(await regenerateVersion(pkgName, historicalVersion));
+  }
+  results.push(await regenerateVersion(pkgName, currentVersion, false));
+  return results;
+}
+
+async function regenerateVersion(
+  pkgName: string,
+  version: string,
+  historical: boolean = true,
+): Promise<string> {
+  try {
+    if (historical) {
+      await $`npm run gen-api -- -p ${pkgName} -v ${version} --historical`;
+    } else {
+      await $`npm run gen-api -- -p ${pkgName} -v ${version}`;
+    }
+
+    if ((await gitStatus()) !== "") {
+      await gitCommit(`Regenerate ${pkgName} ${version}`);
+      return `✅ ${pkgName} ${version} regenerated correctly`;
+    } else {
+      return `☑️ ${pkgName} ${version} is up-to-date`;
+    }
+  } catch (_) {
+    await gitRestore(".");
+    return `❌ ${pkgName} ${version} failed to regenerate`;
+  }
+}
+
+async function getPackageVersions(
+  pkgName: string,
+  currentApis: boolean,
+): Promise<[string[], string]> {
+  const pkgDocsPath = `docs/api/${pkgName}`;
+  const historicalVersions: string[] = [];
+
+  if (!currentApis) {
+    const historicalFolders = (
+      await readdir(`${pkgDocsPath}`, { withFileTypes: true })
+    ).filter((file) => file.isDirectory() && file.name.match(/[0-9].*/));
+
+    for (const folder of historicalFolders) {
+      const historicalVersion = await JSON.parse(
+        fs.readFileSync(`${pkgDocsPath}/${folder.name}/_package.json`, "utf-8"),
+      );
+      historicalVersions.push(historicalVersion.version);
+    }
+  }
+
+  const currentVersion = await JSON.parse(
+    fs.readFileSync(`${pkgDocsPath}/_package.json`, "utf-8"),
+  );
+
+  return [historicalVersions, currentVersion.version];
+}
+
+async function validateGitStatus(): Promise<void> {
   const initialStatus = await gitStatus();
   if (initialStatus !== "") {
     console.error(`
@@ -62,86 +159,6 @@ zxMain(async () => {
         Use 'git checkout -b <name-branch>' to continue`);
     process.exit(1);
   }
-
-  const results = new Map<string, string[]>();
-  for (const pkgName of Pkg.VALID_NAMES) {
-    if (args.package && pkgName != args.package) {
-      continue;
-    }
-
-    const pkgVersions = await getPackageVersions(pkgName, args.historical);
-    const result = await regenerateVersions(pkgName, pkgVersions);
-    results.set(pkgName, result);
-  }
-
-  console.log("");
-  results.forEach((result: string[], pkgName: string) => {
-    console.log(`Regeneration of ${pkgName}:`);
-    result.forEach((msg) => console.error(msg));
-    console.log("");
-  });
-
-  console.log(
-    `Each regenerated version has been saved as a distinct commit. If the changes are
-    too large for one single PR, consider splitting it up into multiple PRs by using
-    git cherry-pick or git rebase -i so each PR only has the commits it wants to target.`,
-  );
-});
-
-async function regenerateVersions(
-  pkgName: string,
-  versions: string[],
-): Promise<string[]> {
-  const results: string[] = [];
-
-  for (const [index, version] of versions.entries()) {
-    try {
-      if (index == versions.length - 1) {
-        // The last version is always the latest stable minor release
-        await $`npm run gen-api -- -p ${pkgName} -v ${version}`;
-      } else {
-        await $`npm run gen-api -- -p ${pkgName} -v ${version} --historical`;
-      }
-
-      if ((await gitStatus()) !== "") {
-        await gitCommit(`Regenerate ${pkgName} ${version}`);
-        results.push(`✅ ${pkgName} ${version} regenerated correctly`);
-      } else {
-        results.push(`☑️ ${pkgName} ${version} is up-to-date`);
-      }
-    } catch (_) {
-      await gitRestore(".");
-      results.push(`❌ ${pkgName} ${version} failed to regenerate`);
-    }
-  }
-
-  return results;
-}
-
-async function getPackageVersions(
-  pkgName: string,
-  historical: boolean,
-): Promise<string[]> {
-  const pkgDocsPath = `docs/api/${pkgName}`;
-  const historicalVersions: string[] = [];
-
-  if (historical) {
-    const historicalFolders = (
-      await readdir(`${pkgDocsPath}`, { withFileTypes: true })
-    ).filter((file) => file.isDirectory() && file.name.match(/[0-9].*/));
-
-    for (const folder of historicalFolders) {
-      const historicalVersion = JSON.parse(
-        fs.readFileSync(`${pkgDocsPath}/${folder.name}/_package.json`, "utf-8"),
-      );
-      historicalVersions.push(historicalVersion.version);
-    }
-  }
-
-  const currentVersion = JSON.parse(
-    fs.readFileSync(`${pkgDocsPath}/_package.json`, "utf-8"),
-  );
-  return [...historicalVersions, currentVersion.version];
 }
 
 async function gitStatus(): Promise<string> {
