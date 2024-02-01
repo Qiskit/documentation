@@ -69,11 +69,12 @@ zxMain(async () => {
       continue;
     }
 
-    const pkgVersions = await getPackageVersions(`${pkgName}`, args.historical);
+    const pkgVersions = await getPackageVersions(pkgName, args.historical);
     const result = await regenerateVersions(pkgName, pkgVersions);
-    results.set(`${pkgName}`, result);
+    results.set(pkgName, result);
   }
 
+  console.log("");
   results.forEach((result: string[], pkgName: string) => {
     console.log(`Regeneration of ${pkgName}:`);
     result.forEach((msg) => console.error(msg));
@@ -116,7 +117,7 @@ async function getPackageVersions(
   historical: boolean,
 ): Promise<string[]> {
   const pkgDocsPath = `docs/api/${pkgName}`;
-  const allVersions: string[] = [];
+  const historicalVersions: string[] = [];
 
   if (historical) {
     const historicalFolders = (
@@ -127,14 +128,14 @@ async function getPackageVersions(
       const historicalVersion = JSON.parse(
         fs.readFileSync(`${pkgDocsPath}/${folder.name}/_package.json`, "utf-8"),
       );
-      allVersions.push(historicalVersion.version);
+      historicalVersions.push(historicalVersion.version);
     }
   }
 
   const currentVersion = JSON.parse(
     fs.readFileSync(`${pkgDocsPath}/_package.json`, "utf-8"),
   );
-  return [...allVersions, currentVersion.version];
+  return [...historicalVersions, currentVersion.version];
 }
 
 async function gitStatus(): Promise<string> {
