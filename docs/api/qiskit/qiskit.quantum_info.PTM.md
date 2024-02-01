@@ -27,10 +27,10 @@ where $[P_0, P_1, ..., P_{4^{n}-1}]$ is the $n$-qubit Pauli basis in lexicograph
 Evolution of a [`DensityMatrix`](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") $\rho$ with respect to the PTM is given by
 
 $$
-|\mathcal{E}(\rho)\rangle\!\rangle_P = S_P |\rho\rangle\!\rangle_P
+\vert \mathcal{E}(\rho)\rangle\!\rangle_P = S_P \vert \rho\rangle\!\rangle_P
 $$
 
-where $|A\rangle\!\rangle_P$ denotes vectorization in the Pauli basis $\langle i | A\rangle\!\rangle_P = \sqrt{\frac{1}{2^n}} \mbox{Tr}[P_i A]$.
+where $\vert A\rangle\!\rangle_P$ denotes vectorization in the Pauli basis $\langle i \vert  A\rangle\!\rangle_P = \sqrt{\frac{1}{2^n}} \mbox{Tr}[P_i A]$.
 
 See reference \[1] for further details.
 

@@ -16,7 +16,7 @@ Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in P
 
 The Derivative Removal by Adiabatic Gate (DRAG) pulse is a standard Gaussian pulse with an additional Gaussian derivative component and lifting applied.
 
-It can be calibrated either to reduce the phase error due to virtual population of the $|2\rangle$ state during the pulse or to reduce the frequency spectrum of a standard Gaussian pulse near the $|1\rangle\leftrightarrow|2\rangle$ transition, reducing the chance of leakage to the $|2\rangle$ state.
+It can be calibrated either to reduce the phase error due to virtual population of the $\vert 2\rangle$ state during the pulse or to reduce the frequency spectrum of a standard Gaussian pulse near the $\vert 1\rangle\leftrightarrow\vert 2\rangle$ transition, reducing the chance of leakage to the $\vert 2\rangle$ state.
 
 $$
 \begin{aligned}

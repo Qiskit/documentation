@@ -52,8 +52,8 @@ Equivalent to a $\pi$ radian rotation about the Z axis.
 The gate is equivalent to a phase flip.
 
 $$
-|0\rangle \rightarrow |0\rangle \\
-|1\rangle \rightarrow -|1\rangle
+\vert 0\rangle \rightarrow \vert 0\rangle \\
+\vert 1\rangle \rightarrow -\vert 1\rangle
 $$
 
 Create new Z gate.

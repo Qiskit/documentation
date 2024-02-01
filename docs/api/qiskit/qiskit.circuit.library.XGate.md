@@ -52,8 +52,8 @@ Equivalent to a $\pi$ radian rotation about the X axis.
 The gate is equivalent to a classical bit flip.
 
 $$
-|0\rangle \rightarrow |1\rangle \\
-|1\rangle \rightarrow |0\rangle
+\vert 0\rangle \rightarrow \vert 1\rangle \\
+\vert 1\rangle \rightarrow \vert 0\rangle
 $$
 
 Create new X gate.
