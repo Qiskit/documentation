@@ -47,7 +47,7 @@ interface Arguments {
   package: string;
   version: string;
   historical: boolean;
-  "skip-download": boolean;
+  skipDownload: boolean;
 }
 
 const readArgs = (): Arguments => {
@@ -98,10 +98,7 @@ zxMain(async () => {
   );
 
   const artifactFolder = pkg.ciArtifactFolder();
-  if (
-    args["skip-download"] &&
-    (await pathExists(`${artifactFolder}/artifact`))
-  ) {
+  if (args.skipDownload && (await pathExists(`${artifactFolder}/artifact`))) {
     console.log(`Skip downloading sources for ${pkg.name}:${pkg.version}`);
   } else {
     await downloadCIArtifact(pkg, artifactFolder);

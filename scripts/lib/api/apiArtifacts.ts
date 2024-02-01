@@ -42,16 +42,15 @@ export async function downloadCIArtifact(pkg: Pkg, artifactFolder: string) {
   }
 
   const artifactJson = JSON.parse(
-    fs.readFileSync(
-      `${getRoot()}/scripts/lib/api/api-html-artifacts.json`,
-      "utf-8",
-    ),
+    fs.readFileSync(`${getRoot()}/scripts/api-html-artifacts.json`, "utf-8"),
   );
 
   if (!(`${pkg.versionWithoutPatch}` in artifactJson[`${pkg.name}`])) {
     throw new Error(
       `Package ${pkg.name} version ${pkg.versionWithoutPatch} doesn't have an artifact stored. You can add one to https://ibm.ent.box.com/folder/246867452622
-      following the steps detailed in the \`Generate the API docs\` section on the repo's README`,
+      following the steps detailed in the \`Generate the API docs\` section on the repo's README. If you are not an IBMer with access to the Box folder,
+      you can ask in your pull request for a maintainer to help you. In the meantime, you can use another URL in api-html-artifacts.json, such as GitHub or
+      even localhost for a server you start up; the URL needs to result in downloading the zip file.`,
     );
   }
   const artifactUrl = artifactJson[`${pkg.name}`][`${pkg.versionWithoutPatch}`];
