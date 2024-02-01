@@ -520,3 +520,15 @@ Additionally, some companies require that they are listed in a special attributi
 - Qiskit
 
 </details>
+
+### Trademark symbols
+
+To create the symbols in markdown:
+
+Use `&reg;` to get &reg; for registered trademarks.
+
+use `&trade;` to get &trade; for nonregistered trademarks.
+
+<Admonition type="caution">
+  Do not include trademarks in headings. The code will display rather than the symbol.
+</Admonition>
