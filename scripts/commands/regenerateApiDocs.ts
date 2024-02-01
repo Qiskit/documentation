@@ -10,7 +10,7 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { readdir } from "fs/promises";
+import { readFile, readdir } from "fs/promises";
 
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
@@ -130,14 +130,14 @@ async function getPackageVersions(
 
     for (const folder of historicalFolders) {
       const historicalVersion = await JSON.parse(
-        fs.readFileSync(`${pkgDocsPath}/${folder.name}/_package.json`, "utf-8"),
+        await readFile(`${pkgDocsPath}/${folder.name}/_package.json`, "utf-8"),
       );
       historicalVersions.push(historicalVersion.version);
     }
   }
 
   const currentVersion = await JSON.parse(
-    fs.readFileSync(`${pkgDocsPath}/_package.json`, "utf-8"),
+    await readFile(`${pkgDocsPath}/_package.json`, "utf-8"),
   );
 
   return [historicalVersions, currentVersion.version];
