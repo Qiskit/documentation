@@ -25,28 +25,9 @@ Class for a Real McLachlan’s Variational Principle. It aims to minimize the di
 
 [**AlgorithmError**](qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If the gradient instance does not contain an estimator.
 
-## Methods Defined Here
+**Methods Defined Here**
 
-### evolution\_gradient
-
-<span id="qiskit.algorithms.time_evolvers.variational.RealMcLachlanPrinciple.evolution_gradient" />
-
-`RealMcLachlanPrinciple.evolution_gradient(hamiltonian, ansatz, param_values, gradient_params=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/time_evolvers/variational/variational_principles/real_mc_lachlan_principle.py "view source code")
-
-Calculates an evolution gradient according to the rules of this variational principle.
-
-**Parameters**
-
-*   **hamiltonian** – Operator used for Variational Quantum Time Evolution.
-*   **ansatz** – Quantum state in the form of a parametrized quantum circuit.
-*   **param\_values** – Values of parameters to be bound.
-*   **gradient\_params** – List of parameters with respect to which gradients should be computed. If `None` given, gradients w\.r.t. all parameters will be computed.
-
-**Returns**
-
-An evolution gradient.
-
-**Raises**
-
-[**AlgorithmError**](qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If a gradient job fails.
+|                                                                                                                                                                                                       |                                                                                        |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| [`evolution_gradient`](qiskit.algorithms.time_evolvers.variational.RealMcLachlanPrinciple#evolution_gradient "qiskit.algorithms.time_evolvers.variational.RealMcLachlanPrinciple.evolution_gradient") | Calculates an evolution gradient according to the rules of this variational principle. |
 

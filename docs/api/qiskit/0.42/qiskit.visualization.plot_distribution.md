@@ -41,7 +41,7 @@ matplotlib.Figure
 *   **MissingOptionalLibraryError** – Matplotlib not available.
 *   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – When legend is provided and the length doesn’t match the input data.
 
-## Examples
+**Examples**
 
 ```python
 # Plot two counts in the same figure with legends and colors specified.

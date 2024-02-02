@@ -16,7 +16,7 @@ Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gat
 
 Single-qubit Hadamard gate.
 
-This gate is a pi rotation about the X+Z axis, and has the effect of changing computation basis from $|0\rangle,|1\rangle$ to $|+\rangle,|-\rangle$ and vice-versa.
+This gate is a pi rotation about the X+Z axis, and has the effect of changing computation basis from $\vert 0\rangle,\vert 1\rangle$ to $\vert +\rangle,\vert -\rangle$ and vice-versa.
 
 Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`h()`](qiskit.circuit.QuantumCircuit#h "qiskit.circuit.QuantumCircuit.h") method.
 
@@ -40,39 +40,12 @@ $$
 
 Create new H gate.
 
-## Methods Defined Here
+**Methods Defined Here**
 
-### control
-
-<span id="qiskit.circuit.library.HGate.control" />
-
-`HGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/h.py "view source code")
-
-Return a (multi-)controlled-H gate.
-
-One control qubit returns a CH gate.
-
-**Parameters**
-
-*   **num\_ctrl\_qubits** (*int*) – number of control qubits.
-*   **label** (*str or None*) – An optional label for the gate \[Default: None]
-*   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
-
-**Returns**
-
-controlled version of this gate.
-
-**Return type**
-
-[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
-
-### inverse
-
-<span id="qiskit.circuit.library.HGate.inverse" />
-
-`HGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/h.py "view source code")
-
-Return inverted H gate (itself).
+|                                                                                          |                                     |
+| ---------------------------------------------------------------------------------------- | ----------------------------------- |
+| [`control`](qiskit.circuit.library.HGate#control "qiskit.circuit.library.HGate.control") | Return a (multi-)controlled-H gate. |
+| [`inverse`](qiskit.circuit.library.HGate#inverse "qiskit.circuit.library.HGate.inverse") | Return inverted H gate (itself).    |
 
 ## Attributes
 

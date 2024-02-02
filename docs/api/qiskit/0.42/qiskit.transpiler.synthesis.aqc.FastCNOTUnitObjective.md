@@ -21,31 +21,12 @@ Implementation of objective function and gradient calculator, which is similar t
 *   **num\_qubits** (`int`) – number of qubits.
 *   **cnots** (`ndarray`) – a CNOT structure to be used in the optimization procedure.
 
-## Methods Defined Here
+**Methods Defined Here**
 
-### gradient
-
-<span id="qiskit.transpiler.synthesis.aqc.FastCNOTUnitObjective.gradient" />
-
-`FastCNOTUnitObjective.gradient(param_values)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/synthesis/aqc/fast_gradient/fast_gradient.py "view source code")
-
-Computes the gradient of objective function. See description of the base class method.
-
-**Return type**
-
-`ndarray`
-
-### objective
-
-<span id="qiskit.transpiler.synthesis.aqc.FastCNOTUnitObjective.objective" />
-
-`FastCNOTUnitObjective.objective(param_values)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/synthesis/aqc/fast_gradient/fast_gradient.py "view source code")
-
-Computes the objective function and some intermediate data for the subsequent gradient computation. See description of the base class method.
-
-**Return type**
-
-`float`
+|                                                                                                                                                  |                                                                                                     |
+| ------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------- |
+| [`gradient`](qiskit.transpiler.synthesis.aqc.FastCNOTUnitObjective#gradient "qiskit.transpiler.synthesis.aqc.FastCNOTUnitObjective.gradient")    | Computes the gradient of objective function.                                                        |
+| [`objective`](qiskit.transpiler.synthesis.aqc.FastCNOTUnitObjective#objective "qiskit.transpiler.synthesis.aqc.FastCNOTUnitObjective.objective") | Computes the objective function and some intermediate data for the subsequent gradient computation. |
 
 ## Attributes
 

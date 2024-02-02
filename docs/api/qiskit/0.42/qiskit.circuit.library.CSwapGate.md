@@ -32,8 +32,8 @@ q_2: ─X─
 
 $$
 \begin{split}CSWAP\ q_0, q_1, q_2 =
-    I \otimes I \otimes |0 \rangle \langle 0| +
-    SWAP \otimes |1 \rangle \langle 1| =
+    I \otimes I \otimes \vert 0 \rangle \langle 0\vert  +
+    SWAP \otimes \vert 1 \rangle \langle 1\vert  =
     \begin{pmatrix}
         1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
         0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
@@ -59,8 +59,8 @@ $$
 
   $$
   \begin{split}CSWAP\ q_2, q_1, q_0 =
-      |0 \rangle \langle 0| \otimes I \otimes I +
-      |1 \rangle \langle 1| \otimes SWAP =
+      \vert 0 \rangle \langle 0\vert  \otimes I \otimes I +
+      \vert 1 \rangle \langle 1\vert  \otimes SWAP =
       \begin{pmatrix}
           1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
           0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
@@ -74,24 +74,20 @@ $$
   $$
 </Admonition>
 
-In the computational basis, this gate swaps the states of the two target qubits if the control qubit is in the $|1\rangle$ state.
+In the computational basis, this gate swaps the states of the two target qubits if the control qubit is in the $\vert 1\rangle$ state.
 
 $$
-|0, b, c\rangle \rightarrow |0, b, c\rangle
-|1, b, c\rangle \rightarrow |1, c, b\rangle
+\vert 0, b, c\rangle \rightarrow \vert 0, b, c\rangle
+\vert 1, b, c\rangle \rightarrow \vert 1, c, b\rangle
 $$
 
 Create new CSWAP gate.
 
-## Methods Defined Here
+**Methods Defined Here**
 
-### inverse
-
-<span id="qiskit.circuit.library.CSwapGate.inverse" />
-
-`CSwapGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/swap.py "view source code")
-
-Return inverse CSwap gate (itself).
+|                                                                                                  |                                     |
+| ------------------------------------------------------------------------------------------------ | ----------------------------------- |
+| [`inverse`](qiskit.circuit.library.CSwapGate#inverse "qiskit.circuit.library.CSwapGate.inverse") | Return inverse CSwap gate (itself). |
 
 ## Attributes
 

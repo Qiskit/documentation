@@ -38,47 +38,13 @@ $$
 
 Create new RY gate.
 
-## Methods Defined Here
+**Methods Defined Here**
 
-### control
-
-<span id="qiskit.circuit.library.RYGate.control" />
-
-`RYGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/ry.py "view source code")
-
-Return a (multi-)controlled-RY gate.
-
-**Parameters**
-
-*   **num\_ctrl\_qubits** (*int*) – number of control qubits.
-*   **label** (*str or None*) – An optional label for the gate \[Default: None]
-*   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
-
-**Returns**
-
-controlled version of this gate.
-
-**Return type**
-
-[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
-
-### inverse
-
-<span id="qiskit.circuit.library.RYGate.inverse" />
-
-`RYGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/ry.py "view source code")
-
-Return inverted RY gate.
-
-$RY(\lambda){\dagger} = RY(-\lambda)$
-
-### power
-
-<span id="qiskit.circuit.library.RYGate.power" />
-
-`RYGate.power(exponent)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/ry.py "view source code")
-
-Raise gate to a power.
+|                                                                                            |                                      |
+| ------------------------------------------------------------------------------------------ | ------------------------------------ |
+| [`control`](qiskit.circuit.library.RYGate#control "qiskit.circuit.library.RYGate.control") | Return a (multi-)controlled-RY gate. |
+| [`inverse`](qiskit.circuit.library.RYGate#inverse "qiskit.circuit.library.RYGate.inverse") | Return inverted RY gate.             |
+| [`power`](qiskit.circuit.library.RYGate#power "qiskit.circuit.library.RYGate.power")       | Raise gate to a power.               |
 
 ## Attributes
 

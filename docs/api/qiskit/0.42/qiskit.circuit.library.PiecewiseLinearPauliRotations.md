@@ -38,27 +38,11 @@ Construct piecewise-linearly-controlled Pauli rotations.
 *   **basis** (`str`) – The type of Pauli rotation (`'X'`, `'Y'`, `'Z'`).
 *   **name** (`str`) – The name of the circuit.
 
-## Methods Defined Here
+**Methods Defined Here**
 
-### evaluate
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.evaluate" />
-
-`PiecewiseLinearPauliRotations.evaluate(x)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/arithmetic/piecewise_linear_pauli_rotations.py "view source code")
-
-Classically evaluate the piecewise linear rotation.
-
-**Parameters**
-
-**x** (`float`) – Value to be evaluated at.
-
-**Return type**
-
-`float`
-
-**Returns**
-
-Value of piecewise linear function at x.
+|                                                                                                                                             |                                                     |
+| ------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
+| [`evaluate`](qiskit.circuit.library.PiecewiseLinearPauliRotations#evaluate "qiskit.circuit.library.PiecewiseLinearPauliRotations.evaluate") | Classically evaluate the piecewise linear rotation. |
 
 ## Attributes
 
@@ -264,7 +248,7 @@ Return number of qubits.
 
 ### num\_state\_qubits
 
-The number of state qubits representing the state $|x\rangle$.
+The number of state qubits representing the state $\vert x\rangle$.
 
 **Return type**
 

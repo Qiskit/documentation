@@ -16,7 +16,7 @@ Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gat
 
 XX-YY interaction gate.
 
-A 2-qubit parameterized XX-YY interaction. Its action is to induce a coherent rotation by some angle between $|00\rangle$ and $|11\rangle$.
+A 2-qubit parameterized XX-YY interaction. Its action is to induce a coherent rotation by some angle between $\vert 00\rangle$ and $\vert 11\rangle$.
 
 **Circuit Symbol:**
 
@@ -72,23 +72,12 @@ Create new XX-YY gate.
 *   **beta** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – The phase angle.
 *   **label** (`Optional`\[`str`]) – The label of the gate.
 
-## Methods Defined Here
+**Methods Defined Here**
 
-### inverse
-
-<span id="qiskit.circuit.library.XXMinusYYGate.inverse" />
-
-`XXMinusYYGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/xx_minus_yy.py "view source code")
-
-Inverse gate.
-
-### power
-
-<span id="qiskit.circuit.library.XXMinusYYGate.power" />
-
-`XXMinusYYGate.power(exponent)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/xx_minus_yy.py "view source code")
-
-Raise gate to a power.
+|                                                                                                          |                        |
+| -------------------------------------------------------------------------------------------------------- | ---------------------- |
+| [`inverse`](qiskit.circuit.library.XXMinusYYGate#inverse "qiskit.circuit.library.XXMinusYYGate.inverse") | Inverse gate.          |
+| [`power`](qiskit.circuit.library.XXMinusYYGate#power "qiskit.circuit.library.XXMinusYYGate.power")       | Raise gate to a power. |
 
 ## Attributes
 
