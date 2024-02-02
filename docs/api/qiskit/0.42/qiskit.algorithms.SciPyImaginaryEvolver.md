@@ -16,7 +16,7 @@ Bases: [`qiskit.algorithms.time_evolvers.imaginary_time_evolver.ImaginaryTimeEvo
 
 Classical Evolver for imaginary time evolution.
 
-Evolves an initial state $|\Psi\rangle$ for an imaginary time $\tau = it$ under a Hamiltonian $H$, as provided in the `evolution_problem`. Note that the precision of the evolver does not depend on the number of timesteps taken.
+Evolves an initial state $\vert \Psi\rangle$ for an imaginary time $\tau = it$ under a Hamiltonian $H$, as provided in the `evolution_problem`. Note that the precision of the evolver does not depend on the number of timesteps taken.
 
 **Parameters**
 
@@ -34,9 +34,9 @@ Evolves an initial state $|\Psi\rangle$ for an imaginary time $\tau = it$ under 
 
 `SciPyImaginaryEvolver.evolve(evolution_problem)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/time_evolvers/classical_methods/scipy_imaginary_evolver.py "view source code")
 
-Perform imaginary time evolution $\exp(-\tau H)|\Psi\rangle$.
+Perform imaginary time evolution $\exp(-\tau H)\vert \Psi\rangle$.
 
-Evolves an initial state $|\Psi\rangle$ for an imaginary time $\tau$ under a Hamiltonian $H$, as provided in the `evolution_problem`.
+Evolves an initial state $\vert \Psi\rangle$ for an imaginary time $\tau$ under a Hamiltonian $H$, as provided in the `evolution_problem`.
 
 **Parameters**
 

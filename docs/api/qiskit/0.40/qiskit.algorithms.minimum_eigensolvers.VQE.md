@@ -20,10 +20,10 @@ VQE is a hybrid quantum-classical algorithm that uses a variational technique to
 
 The `VQE` algorithm is executed using an [`estimator`](#qiskit.algorithms.minimum_eigensolvers.VQE.estimator "qiskit.algorithms.minimum_eigensolvers.VQE.estimator") primitive, which computes expectation values of operators (observables).
 
-An instance of `VQE` also requires an [`ansatz`](#qiskit.algorithms.minimum_eigensolvers.VQE.ansatz "qiskit.algorithms.minimum_eigensolvers.VQE.ansatz"), a parameterized [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), to prepare the trial state $|\psi(\vec\theta)\rangle$. It also needs a classical [`optimizer`](#qiskit.algorithms.minimum_eigensolvers.VQE.optimizer "qiskit.algorithms.minimum_eigensolvers.VQE.optimizer") which varies the circuit parameters $\vec\theta$ such that the expectation value of the operator on the corresponding state approaches a minimum,
+An instance of `VQE` also requires an [`ansatz`](#qiskit.algorithms.minimum_eigensolvers.VQE.ansatz "qiskit.algorithms.minimum_eigensolvers.VQE.ansatz"), a parameterized [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), to prepare the trial state $\vert \psi(\vec\theta)\rangle$. It also needs a classical [`optimizer`](#qiskit.algorithms.minimum_eigensolvers.VQE.optimizer "qiskit.algorithms.minimum_eigensolvers.VQE.optimizer") which varies the circuit parameters $\vec\theta$ such that the expectation value of the operator on the corresponding state approaches a minimum,
 
 $$
-\min_{\vec\theta} \langle\psi(\vec\theta)|H|\psi(\vec\theta)\rangle.
+\min_{\vec\theta} \langle\psi(\vec\theta)\vert H\vert \psi(\vec\theta)\rangle.
 $$
 
 The [`estimator`](#qiskit.algorithms.minimum_eigensolvers.VQE.estimator "qiskit.algorithms.minimum_eigensolvers.VQE.estimator") is used to compute this expectation value for every optimization step.
@@ -108,7 +108,7 @@ A callback that can access the intermediate data at each optimization step. Thes
 
 Callable\[\[int, np.ndarray, float, dict\[str, Any]], None] | None
 
-## References
+**References**
 
 **\[1]: Peruzzo, A., et al, “A variational eigenvalue solver on a quantum processor”**
 

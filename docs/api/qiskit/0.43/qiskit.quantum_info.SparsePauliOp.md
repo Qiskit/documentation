@@ -22,7 +22,7 @@ It can be used for performing operator arithmetic for hundred of qubits if the n
 
 The Pauli basis components are stored as a [`PauliList`](qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList") object and can be accessed using the [`paulis`](#qiskit.quantum_info.SparsePauliOp.paulis "qiskit.quantum_info.SparsePauliOp.paulis") attribute. The coefficients are stored as a complex Numpy array vector and can be accessed using the [`coeffs`](#qiskit.quantum_info.SparsePauliOp.coeffs "qiskit.quantum_info.SparsePauliOp.coeffs") attribute.
 
-## Data type of coefficients
+**Data type of coefficients**
 
 The default `dtype` of the internal `coeffs` Numpy array is `complex128`. Users can configure this by passing `np.ndarray` with a different dtype. For example, a parameterized [`SparsePauliOp`](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp") can be made as follows:
 

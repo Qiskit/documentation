@@ -24,9 +24,9 @@ Interface for Quantum Imaginary Time Evolution.
 
 `abstract evolve(evolution_problem)`
 
-Perform imaginary time evolution $\exp(-\tau H)|\Psi\rangle$.
+Perform imaginary time evolution $\exp(-\tau H)\vert \Psi\rangle$.
 
-Evolves an initial state $|\Psi\rangle$ for an imaginary time $\tau$ under a Hamiltonian $H$, as provided in the `evolution_problem`.
+Evolves an initial state $\vert \Psi\rangle$ for an imaginary time $\tau$ under a Hamiltonian $H$, as provided in the `evolution_problem`.
 
 **Parameters**
 

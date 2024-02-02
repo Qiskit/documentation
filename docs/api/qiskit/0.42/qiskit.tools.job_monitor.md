@@ -24,7 +24,7 @@ Monitor the status of a IBMQJob instance.
 *   **line\_discipline** (*string*) – character emitted at start of a line of job monitor output,
 *   **r.** (*This defaults to*) –
 
-## Examples
+**Examples**
 
 ```python
 from qiskit import BasicAer, transpile

@@ -47,7 +47,7 @@ The double commutator
 
 *OperatorTypeT*
 
-## References
+**References**
 
 ## \[1]: R. McWeeny.
 

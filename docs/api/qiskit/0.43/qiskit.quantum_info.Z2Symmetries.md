@@ -38,7 +38,7 @@ The tolerance threshold for ignoring real and complex parts of a coefficient.
 
 float
 
-## References
+**References**
 
 **\[1]: Bravyi, S., et al, “Tapering off qubits to simulate fermionic Hamiltonians”**
 

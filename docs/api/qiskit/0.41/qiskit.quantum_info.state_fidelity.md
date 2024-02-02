@@ -20,7 +20,7 @@ $$
 F(\rho_1, \rho_2) = Tr[\sqrt{\sqrt{\rho_1}\rho_2\sqrt{\rho_1}}]^2.
 $$
 
-If one of the states is a pure state this simplifies to $F(\rho_1, \rho_2) = \langle\psi_1|\rho_2|\psi_1\rangle$, where $\rho_1 = |\psi_1\rangle\!\langle\psi_1|$.
+If one of the states is a pure state this simplifies to $F(\rho_1, \rho_2) = \langle\psi_1\vert \rho_2\vert \psi_1\rangle$, where $\rho_1 = \vert \psi_1\rangle\!\langle\psi_1\vert $.
 
 **Parameters**
 

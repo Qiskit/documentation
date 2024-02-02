@@ -19,7 +19,7 @@ Generates triangle wave [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse
 For $A=$ `amp`, $T=$ `period`, and $\phi=$ `phase`, applies the midpoint sampling strategy to generate a discrete pulse sampled from the continuous function:
 
 $$
-f(x) = A \left(-2\left|\text{sawtooth}(x, A, T, \phi)\right| + 1\right)
+f(x) = A \left(-2\left\vert \text{sawtooth}(x, A, T, \phi)\right\vert  + 1\right)
 $$
 
 This a non-sinusoidal wave with linear ramping.
@@ -36,7 +36,7 @@ This a non-sinusoidal wave with linear ramping.
 
 [*Waveform*](qiskit.pulse.library.Waveform "qiskit.pulse.library.waveform.Waveform")
 
-## Example
+**Example**
 
 ```python
 import matplotlib.pyplot as plt

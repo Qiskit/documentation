@@ -28,9 +28,9 @@ Compute the gradients of the expectation values by the parameter shift rule \[1]
 
     The type of derivative. Can be either `DerivativeType.REAL` `DerivativeType.IMAG`, or `DerivativeType.COMPLEX`.
 
-    > *   `DerivativeType.REAL` computes $2 \mathrm{Re}[⟨ψ(ω)|O(θ)|dω ψ(ω)〉]$.
-    > *   `DerivativeType.IMAG` computes $2 \mathrm{Im}[⟨ψ(ω)|O(θ)|dω ψ(ω)〉]$.
-    > *   `DerivativeType.COMPLEX` computes $2 ⟨ψ(ω)|O(θ)|dω ψ(ω)〉$.
+    > *   `DerivativeType.REAL` computes $2 \mathrm{Re}[⟨ψ(ω)\vert O(θ)\vert dω ψ(ω)〉]$.
+    > *   `DerivativeType.IMAG` computes $2 \mathrm{Im}[⟨ψ(ω)\vert O(θ)\vert dω ψ(ω)〉]$.
+    > *   `DerivativeType.COMPLEX` computes $2 ⟨ψ(ω)\vert O(θ)\vert dω ψ(ω)〉$.
 
     Defaults to `DerivativeType.REAL`, as this yields e.g. the commonly-used energy gradient and this type is the only supported type for function-level schemes like finite difference.
 

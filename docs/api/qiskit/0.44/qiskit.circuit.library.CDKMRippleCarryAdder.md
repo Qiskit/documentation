@@ -72,7 +72,7 @@ It has one less qubit than the full-adder since it doesn’t have the carry-out,
 
 **Parameters**
 
-*   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of qubits in either input register for state $|a\rangle$ or $|b\rangle$. The two input registers must have the same number of qubits.
+*   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of qubits in either input register for state $\vert a\rangle$ or $\vert b\rangle$. The two input registers must have the same number of qubits.
 *   **kind** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The kind of adder, can be `'full'` for a full adder, `'half'` for a half adder, or `'fixed'` for a fixed-sized adder. A full adder includes both carry-in and carry-out, a half only carry-out, and a fixed-sized adder neither carry-in nor carry-out.
 *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The name of the circuit object.
 
@@ -216,7 +216,7 @@ The parameters defined in the circuit.
 
 This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
 
-## Examples
+**Examples**
 
 The snippet below shows that insertion order of parameters does not matter.
 

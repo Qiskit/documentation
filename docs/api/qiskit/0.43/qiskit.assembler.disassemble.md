@@ -36,7 +36,7 @@ The disassembled program which consists of:
 
 Union\[CircuitModule, PulseModule]
 
-## Examples
+**Examples**
 
 ```python
 from qiskit.circuit import QuantumRegister, ClassicalRegister, QuantumCircuit

@@ -17,7 +17,7 @@ Bases: `ABC`
 An interface to calculate state fidelities (state overlaps) for pairs of (parametrized) quantum circuits. The calculation depends on the particular fidelity method implementation, but can be always defined as the state overlap:
 
 $$
-|\langle\psi(x)|\phi(y)\rangle|^2
+\vert \langle\psi(x)\vert \phi(y)\rangle\vert ^2
 $$
 
 where $x$ and $y$ are optional parametrizations of the states $\psi$ and $\phi$ prepared by the circuits `circuit_1` and `circuit_2`, respectively.
@@ -59,8 +59,8 @@ Runs asynchronously the state overlap (fidelity) calculation between two (parame
 
 **Parameters**
 
-*   **circuits\_1** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| Sequence\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – (Parametrized) quantum circuits preparing $|\psi\rangle$.
-*   **circuits\_2** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| Sequence\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – (Parametrized) quantum circuits preparing $|\phi\rangle$.
+*   **circuits\_1** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| Sequence\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – (Parametrized) quantum circuits preparing $\vert \psi\rangle$.
+*   **circuits\_2** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| Sequence\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – (Parametrized) quantum circuits preparing $\vert \phi\rangle$.
 *   **values\_1** (*Sequence\[float] | Sequence\[Sequence\[float]] | None*) – Numerical parameters to be bound to the first set of circuits.
 *   **values\_2** (*Sequence\[float] | Sequence\[Sequence\[float]] | None*) – Numerical parameters to be bound to the second set of circuits.
 *   **options** – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > fidelity’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting.

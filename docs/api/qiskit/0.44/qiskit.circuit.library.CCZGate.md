@@ -34,7 +34,7 @@ q_2: ─■─
 
 $$
 \begin{split}CCZ\ q_0, q_1, q_2 =
-    I \otimes I \otimes |0\rangle\langle 0| + CZ \otimes |1\rangle\langle 1| =
+    I \otimes I \otimes \vert 0\rangle\langle 0\vert  + CZ \otimes \vert 1\rangle\langle 1\vert  =
     \begin{pmatrix}
         1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
         0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
@@ -47,7 +47,7 @@ $$
     \end{pmatrix}\end{split}
 $$
 
-In the computational basis, this gate flips the phase of the target qubit if the control qubits are in the $|11\rangle$ state.
+In the computational basis, this gate flips the phase of the target qubit if the control qubits are in the $\vert 11\rangle$ state.
 
 Create new CCZ gate.
 

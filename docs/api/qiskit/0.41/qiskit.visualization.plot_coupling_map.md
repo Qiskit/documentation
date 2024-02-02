@@ -45,7 +45,7 @@ Figure
 *   **MissingOptionalLibraryError** – if matplotlib not installed.
 *   **QiskitError** – If length of qubit labels does not match number of qubits.
 
-## Example
+**Example**
 
 ```python
 from qiskit.visualization import plot_coupling_map

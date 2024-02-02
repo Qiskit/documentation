@@ -141,7 +141,7 @@ Return a visualization of the Statevector.
 
 [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – when an invalid output method is selected.
 
-## Examples
+**Examples**
 
 Plot one of the Bell states
 
@@ -258,7 +258,7 @@ the expectation value.
 
 Return the output statevector of an instruction.
 
-The statevector is initialized in the state $|{0,\ldots,0}\rangle$ of the same number of qubits as the input instruction or circuit, evolved by the input instruction, and the output statevector returned.
+The statevector is initialized in the state $\vert {0,\ldots,0}\rangle$ of the same number of qubits as the input instruction or circuit, evolved by the input instruction, and the output statevector returned.
 
 **Parameters**
 
@@ -291,7 +291,7 @@ Return a computational basis statevector.
 
 **Returns**
 
-The computational basis state $|i\rangle$.
+The computational basis state $\vert i\rangle$.
 
 **Return type**
 
@@ -343,7 +343,7 @@ The N-qubit basis state density matrix.
 
 `inner(other)`
 
-Return the inner product of self and other as $\langle self| other \rangle$.
+Return the inner product of self and other as $\langle self\vert  other \rangle$.
 
 **Parameters**
 
@@ -351,7 +351,7 @@ Return the inner product of self and other as $\langle self| other \rangle$.
 
 **Returns**
 
-the inner product of self and other, $\langle self| other \rangle$.
+the inner product of self and other, $\langle self\vert  other \rangle$.
 
 **Return type**
 
@@ -420,9 +420,9 @@ The Numpy vector array of probabilities.
 
 np.array
 
-## Examples
+**Examples**
 
-Consider a 2-qubit product state $|\psi\rangle=|+\rangle\otimes|0\rangle$.
+Consider a 2-qubit product state $\vert \psi\rangle=\vert +\rangle\otimes\vert 0\rangle$.
 
 ```python
 from qiskit.quantum_info import Statevector
@@ -539,7 +539,7 @@ If all subsystems are reset this will return the ground state on all subsystems.
 
 Return a Statevector with reversed subsystem ordering.
 
-For a tensor product state this is equivalent to reversing the order of tensor product subsystems. For a statevector $|\psi \rangle = |\psi_{n-1} \rangle \otimes ... \otimes |\psi_0 \rangle$ the returned statevector will be $|\psi_{0} \rangle \otimes ... \otimes |\psi_{n-1} \rangle$.
+For a tensor product state this is equivalent to reversing the order of tensor product subsystems. For a statevector $\vert \psi \rangle = \vert \psi_{n-1} \rangle \otimes ... \otimes \vert \psi_0 \rangle$ the returned statevector will be $\vert \psi_{0} \rangle \otimes ... \otimes \vert \psi_{n-1} \rangle$.
 
 **Returns**
 
@@ -657,9 +657,9 @@ the dictionary form of the Statevector.
 
 [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
 
-## Example
+**Example**
 
-The ket-form of a 2-qubit statevector $|\psi\rangle = |-\rangle\otimes |0\rangle$
+The ket-form of a 2-qubit statevector $\vert \psi\rangle = \vert -\rangle\otimes \vert 0\rangle$
 
 ```python
 from qiskit.quantum_info import Statevector

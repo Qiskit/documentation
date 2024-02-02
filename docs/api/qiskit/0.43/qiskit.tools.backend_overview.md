@@ -16,7 +16,7 @@ python_api_name: qiskit.tools.backend_overview
 
 Gives overview information on all the IBMQ backends that are available.
 
-## Examples
+**Examples**
 
 ```python
 from qiskit.providers.ibmq import IBMQ

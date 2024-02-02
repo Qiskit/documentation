@@ -36,7 +36,7 @@ where $g(x) = x/T + \phi/\pi$.
 
 [*Waveform*](qiskit.pulse.library.Waveform "qiskit.pulse.library.waveform.Waveform")
 
-## Example
+**Example**
 
 ```python
 import matplotlib.pyplot as plt

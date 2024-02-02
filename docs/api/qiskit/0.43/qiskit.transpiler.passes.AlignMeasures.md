@@ -26,7 +26,7 @@ Measurement alignment is required if a backend only allows triggering `measure` 
 
 In Qiskit SDK, the duration of delay can take arbitrary value in units of `dt`, thus circuits involving delays may violate the above alignment constraint (i.e. misalignment). This pass shifts measurement instructions to a new time position to fix the misalignment, by inserting extra delay right before the measure instructions. The input of this pass should be scheduled [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit"), thus one should select one of the scheduling passes ([`ALAPSchedule`](qiskit.transpiler.passes.ALAPSchedule "qiskit.transpiler.passes.ALAPSchedule") or `ASAPSchedule`) before calling this.
 
-## Examples
+**Examples**
 
 We assume executing the following circuit on a backend with `alignment=16`.
 
@@ -50,7 +50,7 @@ c: 1/════════════════════════╩
 
 This pass always inserts a positive delay before measurements rather than reducing other delays.
 
-## Notes
+**Notes**
 
 The Backend may allow users to execute circuits violating the alignment constraint. However, it may return meaningless measurement data mainly due to the phase error.
 

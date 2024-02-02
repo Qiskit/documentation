@@ -30,7 +30,7 @@ q_1: ─■──
 
 $$
 \begin{split}CU1(\lambda) =
-    I \otimes |0\rangle\langle 0| + U1 \otimes |1\rangle\langle 1| =
+    I \otimes \vert 0\rangle\langle 0\vert  + U1 \otimes \vert 1\rangle\langle 1\vert  =
     \begin{pmatrix}
         1 & 0 & 0 & 0 \\
         0 & 1 & 0 & 0 \\

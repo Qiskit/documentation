@@ -19,7 +19,7 @@ Circuit to prepare a graph state.
 Given a graph G = (V, E), with the set of vertices V and the set of edges E, the corresponding graph state is defined as
 
 $$
-|G\rangle = \prod_{(a,b) \in E} CZ_{(a,b)} {|+\rangle}^{\otimes V}
+\vert G\rangle = \prod_{(a,b) \in E} CZ_{(a,b)} {\vert +\rangle}^{\otimes V}
 $$
 
 Such a state can be prepared by first preparing all qubits in the $+$ state, then applying a $CZ$ gate for each corresponding graph edge.
@@ -208,7 +208,7 @@ The parameters defined in the circuit.
 
 This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
 
-## Examples
+**Examples**
 
 The snippet below shows that insertion order of parameters does not matter.
 
