@@ -17,7 +17,7 @@ Version 2 is first the major interface change since the introduction of Qiskit R
 * SamplerV2 no longer supports resilience levels.  Instead, it was simplified to focus on its core task of sampling the output register from running quantum circuits. It returns the samples, whose type is defined by the program, without weights. The result class, however, has methods to return weighted samples, such as counts and quasi-probabilities. 
 * EstimatorV2 does not support resilience level 3.  This is because resilience level 3 in V1 Estimator uses PEC, which is proven to give unbiased results at the cost of exponential processing time. To make this trade-off more obvious, resilience level 3 support was removed from EstimatorV2. You can, however, still use PEC as the error mitigation method by using the `pec_mitigation` option.
 * Both V2 primitives let you turn on or off individual error mitigation / suppression methods.
-* To reduce the total execution time, V2 primitives support only lightweight transpilation. You can use the [Qiskit transpiler](../run/advanced-runtime-options#runtime-compilation) or the [AI-driven transpilation service](../transpile/qiskit-transpiler-service) (premium users).
+* To reduce the total execution time, V2 primitives support only lightweight transpilation. You can use the [Qiskit transpiler](../../run/advanced-runtime-options#runtime-compilation) or the [AI-driven transpilation service](../../transpile/qiskit-transpiler-service) (premium users).
 
 ## Major changes
 
