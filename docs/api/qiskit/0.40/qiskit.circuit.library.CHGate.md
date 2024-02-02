@@ -16,7 +16,7 @@ Bases: [`qiskit.circuit.controlledgate.ControlledGate`](qiskit.circuit.Controlle
 
 Controlled-Hadamard gate.
 
-Applies a Hadamard on the target qubit if the control is in the $|1\rangle$ state.
+Applies a Hadamard on the target qubit if the control is in the $\vert 1\rangle$ state.
 
 Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`ch()`](qiskit.circuit.QuantumCircuit#ch "qiskit.circuit.QuantumCircuit.ch") method.
 
@@ -33,7 +33,7 @@ q_1: ┤ H ├
 
 $$
 \begin{split}CH\ q_0, q_1 =
-    I \otimes |0\rangle\langle 0| + H \otimes |1\rangle\langle 1| =
+    I \otimes \vert 0\rangle\langle 0\vert  + H \otimes \vert 1\rangle\langle 1\vert  =
     \begin{pmatrix}
         1 & 0 & 0 & 0 \\
         0 & \frac{1}{\sqrt{2}} & 0 & \frac{1}{\sqrt{2}} \\
@@ -54,7 +54,7 @@ $$
 
   $$
   \begin{split}CH\ q_1, q_0 =
-      |0\rangle\langle 0| \otimes I + |1\rangle\langle 1| \otimes H =
+      \vert 0\rangle\langle 0\vert  \otimes I + \vert 1\rangle\langle 1\vert  \otimes H =
       \begin{pmatrix}
           1 & 0 & 0 & 0 \\
           0 & 1 & 0 & 0 \\

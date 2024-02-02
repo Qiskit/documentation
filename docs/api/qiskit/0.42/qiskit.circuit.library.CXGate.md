@@ -31,7 +31,7 @@ q_1: ┤ X ├
 
 $$
 \begin{split}CX\ q_0, q_1 =
-    I \otimes |0\rangle\langle0| + X \otimes |1\rangle\langle1| =
+    I \otimes \vert 0\rangle\langle0\vert  + X \otimes \vert 1\rangle\langle1\vert  =
     \begin{pmatrix}
         1 & 0 & 0 & 0 \\
         0 & 0 & 0 & 1 \\
@@ -52,7 +52,7 @@ $$
 
   $$
   \begin{split}CX\ q_1, q_0 =
-      |0 \rangle\langle 0| \otimes I + |1 \rangle\langle 1| \otimes X =
+      \vert 0 \rangle\langle 0\vert  \otimes I + \vert 1 \rangle\langle 1\vert  \otimes X =
       \begin{pmatrix}
           1 & 0 & 0 & 0 \\
           0 & 1 & 0 & 0 \\
@@ -62,10 +62,10 @@ $$
   $$
 </Admonition>
 
-In the computational basis, this gate flips the target qubit if the control qubit is in the $|1\rangle$ state. In this sense it is similar to a classical XOR gate.
+In the computational basis, this gate flips the target qubit if the control qubit is in the $\vert 1\rangle$ state. In this sense it is similar to a classical XOR gate.
 
 $$
-`|a, b\rangle \rightarrow |a, a \oplus b\rangle`
+`\vert a, b\rangle \rightarrow \vert a, a \oplus b\rangle`
 $$
 
 Create new CX gate.

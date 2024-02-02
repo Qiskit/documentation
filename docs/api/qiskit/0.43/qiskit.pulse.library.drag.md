@@ -26,7 +26,7 @@ where $g(x)$ is the function sampled in [`gaussian()`](qiskit.pulse.library.gaus
 
 If `zero_ends == True`, the samples from $g(x)$ are remapped as in [`gaussian()`](qiskit.pulse.library.gaussian "qiskit.pulse.library.gaussian").
 
-## References
+**References**
 
 1.  [*Gambetta, J. M., Motzoi, F., Merkel, S. T. & Wilhelm, F. K. “Analytic control methods for high-fidelity unitary operations in a weakly nonlinear oscillator.” Phys. Rev. A 83, 012308 (2011).*](http://dx.doi.org/10.1103/PhysRevA.83.012308)
 

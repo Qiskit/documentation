@@ -17,7 +17,7 @@ Bases: [`BaseStateFidelity`](qiskit.algorithms.state_fidelities.BaseStateFidelit
 This class leverages the sampler primitive to calculate the state fidelity of two quantum circuits following the compute-uncompute method (see \[1] for further reference). The fidelity can be defined as the state overlap.
 
 $$
-|\langle\psi(x)|\phi(y)\rangle|^2
+\vert \langle\psi(x)\vert \phi(y)\rangle\vert ^2
 $$
 
 where $x$ and $y$ are optional parametrizations of the states $\psi$ and $\phi$ prepared by the circuits `circuit_1` and `circuit_2`, respectively.
@@ -35,10 +35,10 @@ where $x$ and $y$ are optional parametrizations of the states $\psi$ and $\phi$ 
     If set to `True`, the fidelity is averaged over single-qubit projectors
 
     $$
-    \hat{O} = \frac{1}{N}\sum_{i=1}^N|0_i\rangle\langle 0_i|,
+    \hat{O} = \frac{1}{N}\sum_{i=1}^N\vert 0_i\rangle\langle 0_i\vert ,
     $$
 
-    instead of the global projector $|0\rangle\langle 0|^{\otimes n}$. This coincides with the standard (global) fidelity in the limit of the fidelity approaching 1. Might be used to increase the variance to improve trainability in algorithms such as `PVQD`.
+    instead of the global projector $\vert 0\rangle\langle 0\vert ^{\otimes n}$. This coincides with the standard (global) fidelity in the limit of the fidelity approaching 1. Might be used to increase the variance to improve trainability in algorithms such as `PVQD`.
 
 **Raises**
 
@@ -81,8 +81,8 @@ Runs asynchronously the state overlap (fidelity) calculation between two (parame
 
 **Parameters**
 
-*   **circuits\_1** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| Sequence\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – (Parametrized) quantum circuits preparing $|\psi\rangle$.
-*   **circuits\_2** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| Sequence\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – (Parametrized) quantum circuits preparing $|\phi\rangle$.
+*   **circuits\_1** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| Sequence\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – (Parametrized) quantum circuits preparing $\vert \psi\rangle$.
+*   **circuits\_2** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| Sequence\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – (Parametrized) quantum circuits preparing $\vert \phi\rangle$.
 *   **values\_1** (*Sequence\[float] | Sequence\[Sequence\[float]] | None*) – Numerical parameters to be bound to the first set of circuits.
 *   **values\_2** (*Sequence\[float] | Sequence\[Sequence\[float]] | None*) – Numerical parameters to be bound to the second set of circuits.
 *   **options** – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > fidelity’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting.

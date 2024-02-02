@@ -33,7 +33,7 @@ The Qobj to be run on the backends.
 
 **QiskitError** – when frequency settings are not supplied.
 
-## Examples
+**Examples**
 
 ```python
 from qiskit import pulse

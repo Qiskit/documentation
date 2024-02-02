@@ -31,7 +31,7 @@ q_1: ┤ Sdg ├
 
 $$
 \begin{split}CS^\dagger \ q_0, q_1 =
-I \otimes |0 \rangle\langle 0| + S^\dagger \otimes |1 \rangle\langle 1|  =
+I \otimes \vert 0 \rangle\langle 0\vert  + S^\dagger \otimes \vert 1 \rangle\langle 1\vert   =
     \begin{pmatrix}
         1 & 0 & 0 & 0 \\
         0 & 1 & 0 & 0 \\

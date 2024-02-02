@@ -100,7 +100,7 @@ True, if other and self are equal, otherwise False.
 
 bool
 
-#### Examples
+**Examples**
 
 ```python
 >>> from qiskit.opflow import X, Z

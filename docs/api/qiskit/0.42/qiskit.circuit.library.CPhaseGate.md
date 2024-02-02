@@ -32,7 +32,7 @@ q_1: ─■──
 
 $$
 \begin{split}CPhase =
-    I \otimes |0\rangle\langle 0| + P \otimes |1\rangle\langle 1| =
+    I \otimes \vert 0\rangle\langle 0\vert  + P \otimes \vert 1\rangle\langle 1\vert  =
     \begin{pmatrix}
         1 & 0 & 0 & 0 \\
         0 & 1 & 0 & 0 \\

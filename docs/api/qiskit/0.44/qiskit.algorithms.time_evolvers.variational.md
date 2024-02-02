@@ -22,7 +22,7 @@ python_api_name: qiskit.algorithms.time_evolvers.variational
 
 Algorithms for performing Variational Quantum Time Evolution of quantum states, which can be tailored to near-term devices. `VarQTE` base class exposes an interface, compliant with the Quantum Time Evolution Framework in Qiskit Terra, that is implemented by [`VarQRTE`](qiskit.algorithms.VarQRTE "qiskit.algorithms.VarQRTE") and [`VarQITE`](qiskit.algorithms.VarQITE "qiskit.algorithms.VarQITE") classes for real and imaginary time evolution respectively. The variational approach is taken according to a variational principle chosen by a user.
 
-## Example
+**Example**
 
 ```python
 import numpy as np

@@ -20,6 +20,8 @@ python_api_name: qiskit.compiler
 
 ## Circuit and Pulse Compilation Functions
 
+### assemble
+
 <span id="qiskit.compiler.assemble" />
 
 `qiskit.compiler.assemble(experiments, backend=None, qobj_id=None, qobj_header=None, shots=None, memory=False, seed_simulator=None, qubit_lo_freq=None, meas_lo_freq=None, qubit_lo_range=None, meas_lo_range=None, schedule_los=None, meas_level=MeasLevel.CLASSIFIED, meas_return=MeasReturnType.AVERAGE, meas_map=None, memory_slot_size=100, rep_time=None, rep_delay=None, parameter_binds=None, parametric_pulses=None, init_qubits=True, **run_config)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/compiler/assembler.py "view source code")
@@ -101,6 +103,8 @@ A `Qobj` that can be run on a backend. Depending on the type of input, this will
 
 [*Qobj*](qiskit.qobj.Qobj "qiskit.qobj.Qobj")
 
+### schedule
+
 <span id="qiskit.compiler.schedule" />
 
 `qiskit.compiler.schedule(circuits, backend=None, inst_map=None, meas_map=None, dt=None, method=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/compiler/scheduler.py "view source code")
@@ -127,6 +131,8 @@ A pulse `Schedule` that implements the input circuit
 **Return type**
 
 [*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule") | [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")\[[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")]
+
+### transpile
 
 <span id="qiskit.compiler.transpile" />
 
@@ -273,6 +279,8 @@ The transpiled circuit(s).
 **Return type**
 
 *\_CircuitT*
+
+### sequence
 
 <span id="qiskit.compiler.sequence" />
 

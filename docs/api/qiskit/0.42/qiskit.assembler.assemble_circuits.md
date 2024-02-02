@@ -29,7 +29,7 @@ Assembles a list of circuits into a qobj that can be run on the backend.
 
 The qobj to be run on the backends
 
-## Examples
+**Examples**
 
 ```python
 from qiskit.circuit import QuantumRegister, ClassicalRegister, QuantumCircuit

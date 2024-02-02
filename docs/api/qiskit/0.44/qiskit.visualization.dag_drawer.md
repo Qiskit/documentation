@@ -40,7 +40,7 @@ PIL.Image
 *   [**VisualizationError**](visualization#qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – when style is not recognized.
 *   [**InvalidFileError**](exceptions#qiskit.exceptions.InvalidFileError "qiskit.exceptions.InvalidFileError") – when filename provided is not valid
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit

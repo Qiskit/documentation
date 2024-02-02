@@ -17,8 +17,8 @@ Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3
 Computes the Quantum Fisher Information (QFI) given a pure, parameterized quantum state. QFI is defined as:
 
 $$
-\mathrm{QFI}_{ij}= 4 \mathrm{Re}[\langle \partial_i \psi | \partial_j \psi \rangle
-- \langle\partial_i \psi | \psi \rangle \langle\psi | \partial_j \psi \rangle].
+\mathrm{QFI}_{ij}= 4 \mathrm{Re}[\langle \partial_i \psi \vert  \partial_j \psi \rangle
+- \langle\partial_i \psi \vert  \psi \rangle \langle\psi \vert  \partial_j \psi \rangle].
 $$
 
 **Parameters**

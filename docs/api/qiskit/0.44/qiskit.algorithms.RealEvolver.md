@@ -30,9 +30,9 @@ The RealEvolver interface has been superseded by the `qiskit.algorithms.time_evo
 
 `abstract evolve(evolution_problem)`
 
-Perform real time evolution $\exp(-i t H)|\Psi\rangle$.
+Perform real time evolution $\exp(-i t H)\vert \Psi\rangle$.
 
-Evolves an initial state $|\Psi\rangle$ for a time $t$ under a Hamiltonian $H$, as provided in the `evolution_problem`.
+Evolves an initial state $\vert \Psi\rangle$ for a time $t$ under a Hamiltonian $H$, as provided in the `evolution_problem`.
 
 **Parameters**
 
