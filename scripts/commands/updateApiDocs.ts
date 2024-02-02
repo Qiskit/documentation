@@ -245,8 +245,11 @@ async function convertHtmlToMarkdown(
     JSON.stringify(pkg_json, null, 2) + "\n",
   );
 
-  console.log("Saving images");
-  await saveImages(allImages, `${htmlPath}/_images`, pkg);
+  if (!pkg.historical || (await pathExists(`${htmlPath}/_images`))) {
+    // Some historical versions don't have the `_images` folder in the artifact store in Box (https://ibm.ent.box.com/folder/246867452622)
+    console.log("Saving images");
+    await saveImages(allImages, `${htmlPath}/_images`, pkg);
+  }
 }
 
 function urlToPath(url: string) {
