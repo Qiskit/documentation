@@ -38,25 +38,12 @@ $$
 
 Create new r single-qubit gate.
 
-## Methods Defined Here
+**Methods Defined Here**
 
-### inverse
-
-<span id="qiskit.circuit.library.RGate.inverse" />
-
-`RGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/r.py "view source code")
-
-Invert this gate.
-
-r(θ, φ)^dagger = r(-θ, φ)
-
-### power
-
-<span id="qiskit.circuit.library.RGate.power" />
-
-`RGate.power(exponent)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/r.py "view source code")
-
-Raise gate to a power.
+|                                                                                          |                        |
+| ---------------------------------------------------------------------------------------- | ---------------------- |
+| [`inverse`](qiskit.circuit.library.RGate#inverse "qiskit.circuit.library.RGate.inverse") | Invert this gate.      |
+| [`power`](qiskit.circuit.library.RGate#power "qiskit.circuit.library.RGate.power")       | Raise gate to a power. |
 
 ## Attributes
 

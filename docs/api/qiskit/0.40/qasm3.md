@@ -22,6 +22,8 @@ Qiskit provides some tools for converting between [OpenQASM 3](https://openqasm.
 
 The high-level functions are simply [`dump()`](#qiskit.qasm3.dump "qiskit.qasm3.dump") and [`dumps()`](#qiskit.qasm3.dumps "qiskit.qasm3.dumps"), which respectively export to a file (given as a filename) and to a Python string.
 
+### dump
+
 <span id="qiskit.qasm3.dump" />
 
 `dump(circuit, stream, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/qasm3/__init__.py "view source code")
@@ -37,6 +39,8 @@ Serialize a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.Qua
 **Return type**
 
 `None`
+
+### dumps
 
 <span id="qiskit.qasm3.dumps" />
 
@@ -91,6 +95,8 @@ Convert the circuit to QASM 3, returning the result as a string.
 
 All of these interfaces will raise [`QASM3ExporterError`](#qiskit.qasm3.QASM3ExporterError "qiskit.qasm3.QASM3ExporterError") on failure.
 
+### QASM3ExporterError
+
 <span id="qiskit.qasm3.QASM3ExporterError" />
 
 `QASM3ExporterError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/qasm3/exceptions.py "view source code")
@@ -113,6 +119,8 @@ Currently only two high-level functions are offered, as Qiskit support for impor
   We expect that this functionality will eventually be merged into core Terra, and no longer require an optional import, but we do not yet have a timeline for this.
 </Admonition>
 
+### load
+
 <span id="qiskit.qasm3.load" />
 
 `load(filename)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/qasm3/__init__.py "view source code")
@@ -134,6 +142,8 @@ a circuit representation of the OpenQASM 3 program.
 **Raises**
 
 [**QASM3ImporterError**](#qiskit.qasm3.QASM3ImporterError "qiskit.qasm3.QASM3ImporterError") – if the OpenQASM 3 file is invalid, or cannot be represented by a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
+
+### loads
 
 <span id="qiskit.qasm3.loads" />
 
@@ -158,6 +168,8 @@ a circuit representation of the OpenQASM 3 program.
 [**QASM3ImporterError**](#qiskit.qasm3.QASM3ImporterError "qiskit.qasm3.QASM3ImporterError") – if the OpenQASM 3 file is invalid, or cannot be represented by a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
 
 Both of these two functions raise [`QASM3ImporterError`](#qiskit.qasm3.QASM3ImporterError "qiskit.qasm3.QASM3ImporterError") on failure.
+
+### QASM3ImporterError
 
 <span id="qiskit.qasm3.QASM3ImporterError" />
 

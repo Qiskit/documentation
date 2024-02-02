@@ -20,23 +20,12 @@ Using a single ancilla qubit, the multi-controlled X gate is recursively split o
 
 Create new MCX gate.
 
-## Methods Defined Here
+**Methods Defined Here**
 
-### get\_num\_ancilla\_qubits
-
-<span id="qiskit.circuit.library.MCXRecursive.get_num_ancilla_qubits" />
-
-`static MCXRecursive.get_num_ancilla_qubits(num_ctrl_qubits, mode='recursion')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/x.py "view source code")
-
-Get the number of required ancilla qubits.
-
-### inverse
-
-<span id="qiskit.circuit.library.MCXRecursive.inverse" />
-
-`MCXRecursive.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/x.py "view source code")
-
-Invert this gate. The MCX is its own inverse.
+|                                                                                                                                                     |                                            |
+| --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
+| [`get_num_ancilla_qubits`](qiskit.circuit.library.MCXRecursive#get_num_ancilla_qubits "qiskit.circuit.library.MCXRecursive.get_num_ancilla_qubits") | Get the number of required ancilla qubits. |
+| [`inverse`](qiskit.circuit.library.MCXRecursive#inverse "qiskit.circuit.library.MCXRecursive.inverse")                                              | Invert this gate.                          |
 
 ## Attributes
 

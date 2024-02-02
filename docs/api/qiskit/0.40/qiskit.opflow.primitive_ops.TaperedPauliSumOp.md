@@ -26,27 +26,11 @@ Class for PauliSumOp after tapering
 
 **TypeError** – invalid parameters.
 
-## Methods Defined Here
+**Methods Defined Here**
 
-### assign\_parameters
-
-<span id="qiskit.opflow.primitive_ops.TaperedPauliSumOp.assign_parameters" />
-
-`TaperedPauliSumOp.assign_parameters(param_dict)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/primitive_ops/tapered_pauli_sum_op.py "view source code")
-
-Binds scalar values to any Terra `Parameters` in the coefficients or primitives of the Operator, or substitutes one `Parameter` for another. This method differs from Terra’s `assign_parameters` in that it also supports lists of values to assign for a give `Parameter`, in which case self will be copied for each parameterization in the binding list(s), and all the copies will be returned in an `OpList`. If lists of parameterizations are used, every `Parameter` in the param\_dict must have the same length list of parameterizations.
-
-**Parameters**
-
-**param\_dict** (`dict`) – The dictionary of `Parameters` to replace, and values or lists of values by which to replace them.
-
-**Return type**
-
-[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
-
-**Returns**
-
-The `OperatorBase` with the `Parameters` in self replaced by the values or `Parameters` in param\_dict. If param\_dict contains parameterization lists, this `OperatorBase` is an `OpList`.
+|                                                                                                                                                          |                                                                                                                                              |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`assign_parameters`](qiskit.opflow.primitive_ops.TaperedPauliSumOp#assign_parameters "qiskit.opflow.primitive_ops.TaperedPauliSumOp.assign_parameters") | Binds scalar values to any Terra `Parameters` in the coefficients or primitives of the Operator, or substitutes one `Parameter` for another. |
 
 ## Attributes
 

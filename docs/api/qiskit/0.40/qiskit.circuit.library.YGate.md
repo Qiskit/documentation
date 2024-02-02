@@ -52,45 +52,18 @@ Equivalent to a $\pi$ radian rotation about the Y axis.
 The gate is equivalent to a bit and phase flip.
 
 $$
-\begin{split}|0\rangle \rightarrow i|1\rangle \\
-|1\rangle \rightarrow -i|0\rangle\end{split}
+\begin{split}\vert 0\rangle \rightarrow i\vert 1\rangle \\
+\vert 1\rangle \rightarrow -i\vert 0\rangle\end{split}
 $$
 
 Create new Y gate.
 
-## Methods Defined Here
+**Methods Defined Here**
 
-### control
-
-<span id="qiskit.circuit.library.YGate.control" />
-
-`YGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/y.py "view source code")
-
-Return a (multi-)controlled-Y gate.
-
-One control returns a CY gate.
-
-**Parameters**
-
-*   **num\_ctrl\_qubits** (*int*) – number of control qubits.
-*   **label** (*str or None*) – An optional label for the gate \[Default: None]
-*   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
-
-**Returns**
-
-controlled version of this gate.
-
-**Return type**
-
-[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
-
-### inverse
-
-<span id="qiskit.circuit.library.YGate.inverse" />
-
-`YGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/y.py "view source code")
-
-Return inverted Y gate ($Y{\dagger} = Y$)
+|                                                                                          |                                           |
+| ---------------------------------------------------------------------------------------- | ----------------------------------------- |
+| [`control`](qiskit.circuit.library.YGate#control "qiskit.circuit.library.YGate.control") | Return a (multi-)controlled-Y gate.       |
+| [`inverse`](qiskit.circuit.library.YGate#inverse "qiskit.circuit.library.YGate.inverse") | Return inverted Y gate ($Y{\dagger} = Y$) |
 
 ## Attributes
 

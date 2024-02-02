@@ -72,15 +72,11 @@ Create a new multi-control multi-target gate.
 *   **AttributeError** – If the gate cannot be casted to a controlled gate.
 *   **AttributeError** – If the number of controls or targets is 0.
 
-## Methods Defined Here
+**Methods Defined Here**
 
-### inverse
-
-<span id="qiskit.circuit.library.MCMTVChain.inverse" />
-
-`MCMTVChain.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/generalized_gates/mcmt.py "view source code")
-
-Return the inverse MCMT circuit, which is itself.
+|                                                                                                    |                                                   |
+| -------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
+| [`inverse`](qiskit.circuit.library.MCMTVChain#inverse "qiskit.circuit.library.MCMTVChain.inverse") | Return the inverse MCMT circuit, which is itself. |
 
 ## Attributes
 
@@ -244,7 +240,7 @@ The parameters defined in the circuit.
 
 This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
 
-## Examples
+**Examples**
 
 The snippet below shows that insertion order of parameters does not matter.
 

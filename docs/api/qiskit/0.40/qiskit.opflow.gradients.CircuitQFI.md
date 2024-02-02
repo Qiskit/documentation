@@ -22,28 +22,9 @@ This is distinct from DerivativeBase converters which take gradients of composit
 
 CircuitQFI - uses quantum techniques to get the QFI of circuits DerivativeBase - uses classical techniques to differentiate opflow data structures
 
-## Methods Defined Here
+**Methods Defined Here**
 
-### convert
-
-<span id="qiskit.opflow.gradients.CircuitQFI.convert" />
-
-`abstract CircuitQFI.convert(operator, params)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/gradients/circuit_qfis/circuit_qfi.py "view source code")
-
-**Parameters**
-
-*   **operator** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The operator corresponding to the quantum state $|\psi(\omega)\rangle$ for which we compute the QFI.
-*   **params** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.parametervector.ParameterVector"), `List`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]]) – The parameters $\omega$ with respect to which we are computing the QFI.
-
-**Return type**
-
-[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
-
-**Returns**
-
-An operator whose evaluation yields the QFI metric tensor.
-
-**Raises**
-
-**ValueError** – If `params` contains a parameter not present in `operator`.
+|                                                                                                      |                                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| [`convert`](qiskit.opflow.gradients.CircuitQFI#convert "qiskit.opflow.gradients.CircuitQFI.convert") | **type operator**[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase") |
 

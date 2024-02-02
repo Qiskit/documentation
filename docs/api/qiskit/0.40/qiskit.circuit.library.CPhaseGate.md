@@ -32,7 +32,7 @@ q_1: ─■──
 
 $$
 \begin{split}CPhase =
-    I \otimes |0\rangle\langle 0| + P \otimes |1\rangle\langle 1| =
+    I \otimes \vert 0\rangle\langle 0\vert  + P \otimes \vert 1\rangle\langle 1\vert  =
     \begin{pmatrix}
         1 & 0 & 0 & 0 \\
         0 & 1 & 0 & 0 \\
@@ -47,45 +47,13 @@ $$
 
 Create new CPhase gate.
 
-## Methods Defined Here
+**Methods Defined Here**
 
-### control
-
-<span id="qiskit.circuit.library.CPhaseGate.control" />
-
-`CPhaseGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/p.py "view source code")
-
-Controlled version of this gate.
-
-**Parameters**
-
-*   **num\_ctrl\_qubits** (*int*) – number of control qubits.
-*   **label** (*str or None*) – An optional label for the gate \[Default: None]
-*   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
-
-**Returns**
-
-controlled version of this gate.
-
-**Return type**
-
-[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
-
-### inverse
-
-<span id="qiskit.circuit.library.CPhaseGate.inverse" />
-
-`CPhaseGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/p.py "view source code")
-
-Return inverted CPhase gate ($CPhase(\lambda){\dagger} = CPhase(-\lambda)$)
-
-### power
-
-<span id="qiskit.circuit.library.CPhaseGate.power" />
-
-`CPhaseGate.power(exponent)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/p.py "view source code")
-
-Raise gate to a power.
+|                                                                                                    |                                                                             |
+| -------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| [`control`](qiskit.circuit.library.CPhaseGate#control "qiskit.circuit.library.CPhaseGate.control") | Controlled version of this gate.                                            |
+| [`inverse`](qiskit.circuit.library.CPhaseGate#inverse "qiskit.circuit.library.CPhaseGate.inverse") | Return inverted CPhase gate ($CPhase(\lambda){\dagger} = CPhase(-\lambda)$) |
+| [`power`](qiskit.circuit.library.CPhaseGate#power "qiskit.circuit.library.CPhaseGate.power")       | Raise gate to a power.                                                      |
 
 ## Attributes
 
