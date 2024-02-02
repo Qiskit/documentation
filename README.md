@@ -242,11 +242,25 @@ To check that formatting is valid without actually making changes, run `npm run 
 
 This is useful when we make improvements to the API generation script.
 
+You can regenerate all API docs versions following these steps:
+
+1. Create a dedicated branch for the regeneration other than `main` using `git checkout -b <branch-name>`.
+2. Ensure there are no pending changes by running `git status` and creating a new commit for them if necessary.
+3. Run `npm run regen-apis` to regenerate all API docs versions for `qiskit`, `qiskit-ibm-provider`, and `qiskit-ibm-runtime`.
+
+Each regenerated version will be saved as a distinct commit. If the changes are too large for one single PR, consider splitting it up into multiple PRs by using `git cherry-pick` or `git rebase -i` so each PR only has the commits it wants to target.
+
+If you only want to regenerate the latest stable minor release of each package, then add `--current-apis-only` as an argument, and in case you only want to regenerate versions of one package, then you can use the `-p <pkg-name>` argument.
+
+Alternatively, you can also regenerate one specific version:
+
 1. Choose which documentation you want to generate (`qiskit`, `qiskit-ibm-provider`, or `qiskit-ibm-runtime`) and its version.
 2. Run `npm run gen-api -- -p <pkg-name> -v <version>`,
    e.g. `npm run gen-api -- -p qiskit -v 0.45.0`
 
 If the version is not for the latest stable minor release series, then add `--historical` to the arguments. For example, use `--historical` if the latest stable release is 0.45.\* but you're generating docs for the patch release 0.44.3.
+
+In this case, no commit will be automatically created.
 
 ## Generate new API docs
 
