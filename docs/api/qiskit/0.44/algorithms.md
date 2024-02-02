@@ -193,6 +193,8 @@ Algorithms that compute the fidelity of pairs of quantum states.
 
 ### Exceptions
 
+### AlgorithmError
+
 <span id="qiskit.algorithms.AlgorithmError" />
 
 `qiskit.algorithms.AlgorithmError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/exceptions.py "view source code")
@@ -212,6 +214,8 @@ Utility classes used by algorithms (mainly for type-hinting purposes).
 ### Utility functions
 
 Utility functions used by algorithms.
+
+### eval\_observables
 
 <span id="qiskit.algorithms.eval_observables" />
 
@@ -244,6 +248,8 @@ A list or a dictionary of tuples (mean, standard deviation).
 **Return type**
 
 ListOrDict\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)"), [complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")]]
+
+### estimate\_observables
 
 <span id="qiskit.algorithms.estimate_observables" />
 

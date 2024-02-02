@@ -30,8 +30,8 @@ Uses `scipy.optimize.fmin_l_bfgs_b`. For further detail, please refer to [https:
 
 *   **maxfun** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Maximum number of function evaluations.
 *   **maxiter** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Maximum number of iterations.
-*   **ftol** (*SupportsFloat*) – The iteration stops when $(f^k - f^{k+1}) / \max\{|f^k|, |f^{k+1}|,1\} \leq \text{ftol}$.
-*   **iprint** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Controls the frequency of output. `iprint < 0` means no output; `iprint = 0` print only one line at the last iteration; `0 < iprint < 99` print also $f$ and $|\text{proj} g|$ every iprint iterations; `iprint = 99` print details of every iteration except n-vectors; `iprint = 100` print also the changes of active set and final $x$; `iprint > 100` print details of every iteration including $x$ and $g$.
+*   **ftol** (*SupportsFloat*) – The iteration stops when $(f^k - f^{k+1}) / \max\{\vert f^k\vert , \vert f^{k+1}\vert ,1\} \leq \text{ftol}$.
+*   **iprint** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Controls the frequency of output. `iprint < 0` means no output; `iprint = 0` print only one line at the last iteration; `0 < iprint < 99` print also $f$ and $\vert \text{proj} g\vert $ every iprint iterations; `iprint = 99` print details of every iteration except n-vectors; `iprint = 100` print also the changes of active set and final $x$; `iprint > 100` print details of every iteration including $x$ and $g$.
 *   **eps** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – If jac is approximated, use this value for the step size.
 *   **options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)") *| None*) – A dictionary of solver options.
 *   **max\_evals\_grouped** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Max number of default gradient evaluations performed simultaneously.

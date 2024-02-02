@@ -36,7 +36,7 @@ Figure
 *   [**VisualizationError**](visualization#qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – The backend does not provide gate errors for the ‘sx’ gate.
 *   [**MissingOptionalLibraryError**](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") – If seaborn is not installed
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumCircuit, execute

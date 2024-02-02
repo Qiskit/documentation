@@ -46,7 +46,7 @@ The matplotlib.Figure of the visualization if the `ax_real` and `ax_imag` kwargs
 *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – When ‘color’ is not a list of len=2.
 *   [**VisualizationError**](visualization#qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – if input is not a valid N-qubit state.
 
-## Examples
+**Examples**
 
 ```python
 # You can choose different colors for the real and imaginary parts of the density matrix.

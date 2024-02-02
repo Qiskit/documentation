@@ -20,7 +20,7 @@ The Faster Amplitude Estimation (FAE) \[1] algorithm is a variant of Quantum Amp
 
 Due to the iterative version of the QPE, this algorithm does not require any additional qubits, as the originally proposed QAE \[3] and thus the resulting circuits are less complex.
 
-## References
+**References**
 
 **\[1]: K. Nakaji. Faster Amplitude Estimation, 2020;**
 
@@ -84,7 +84,7 @@ The sampler primitive to evaluate the circuits.
 
 `construct_circuit(estimation_problem, k, measurement=False)`
 
-Construct the circuit $Q^k X |0\rangle>$.
+Construct the circuit $Q^k X \vert 0\rangle>$.
 
 The A operator is the unitary specifying the QAE problem and Q the associated Grover operator.
 
@@ -96,7 +96,7 @@ The A operator is the unitary specifying the QAE problem and Q the associated Gr
 
 **Returns**
 
-The circuit $Q^k X |0\rangle$.
+The circuit $Q^k X \vert 0\rangle$.
 
 **Return type**
 

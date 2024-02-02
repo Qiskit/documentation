@@ -39,7 +39,7 @@ A matplotlib figure instance if `ax = None`.
 
 [**MissingOptionalLibraryError**](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") – Requires matplotlib.
 
-## Examples
+**Examples**
 
 ```python
 from qiskit.visualization import plot_bloch_vector

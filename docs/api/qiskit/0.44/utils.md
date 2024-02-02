@@ -18,6 +18,8 @@ python_api_name: qiskit.utils
 
 `qiskit.utils`
 
+### add\_deprecation\_to\_docstring
+
 <span id="qiskit.utils.add_deprecation_to_docstring" />
 
 `qiskit.utils.add_deprecation_to_docstring(func, msg, *, since, pending)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/utils/deprecation.py "view source code")
@@ -30,6 +32,8 @@ Dynamically insert the deprecation message into `func`’s docstring.
 *   **msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The full deprecation message.
 *   **since** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – The version the deprecation started at.
 *   **pending** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Is the deprecation still pending?
+
+### deprecate\_arg
 
 <span id="qiskit.utils.deprecate_arg" />
 
@@ -59,6 +63,8 @@ The decorated callable.
 
 Callable
 
+### deprecate\_arguments
+
 <span id="qiskit.utils.deprecate_arguments" />
 
 `qiskit.utils.deprecate_arguments(kwarg_map, category=<class 'DeprecationWarning'>, *, since=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/utils/deprecation.py "view source code")
@@ -78,6 +84,8 @@ The decorated callable.
 **Return type**
 
 Callable
+
+### deprecate\_func
 
 <span id="qiskit.utils.deprecate_func" />
 
@@ -106,6 +114,8 @@ The decorated callable.
 
 Callable
 
+### deprecate\_function
+
 <span id="qiskit.utils.deprecate_function" />
 
 `qiskit.utils.deprecate_function(msg, stacklevel=2, category=<class 'DeprecationWarning'>, *, since=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/utils/deprecation.py "view source code")
@@ -127,6 +137,8 @@ The decorated, deprecated callable.
 
 Callable
 
+### local\_hardware\_info
+
 <span id="qiskit.utils.local_hardware_info" />
 
 `qiskit.utils.local_hardware_info()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/utils/multiprocessing.py "view source code")
@@ -143,11 +155,15 @@ The hardware information.
 
 [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
 
+### is\_main\_process
+
 <span id="qiskit.utils.is_main_process" />
 
 `qiskit.utils.is_main_process()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/utils/multiprocessing.py "view source code")
 
 Checks whether the current process is the main one
+
+### apply\_prefix
 
 <span id="qiskit.utils.apply_prefix" />
 
@@ -180,6 +196,8 @@ Converted value.
 
 [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
 
+### detach\_prefix
+
 <span id="qiskit.utils.detach_prefix" />
 
 `qiskit.utils.detach_prefix(value, decimal=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/utils/units.py "view source code")
@@ -188,7 +206,7 @@ Given a SI unit value, find the most suitable prefix to scale the value.
 
 For example, the `value = 1.3e8` will be converted into a tuple of `(130.0, "M")`, which represents a scaled value and auxiliary unit that may be used to display the value. In above example, that value might be displayed as `130 MHz` (unit is arbitrary here).
 
-## Example
+**Example**
 
 ```python
 >>> value, prefix = detach_prefix(1e4)
@@ -222,6 +240,8 @@ A tuple of scaled value and prefix.
 
 [*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.12)")\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)"), [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")]
 
+### wrap\_method
+
 <span id="qiskit.utils.wrap_method" />
 
 `qiskit.utils.wrap_method(cls, name, *, before=None, after=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/utils/classtools.py "view source code")
@@ -244,6 +264,8 @@ If either `before` or `after` are given, they should be callables with a compati
 [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – if the named method is not defined on the class or any parent class.
 
 ## Algorithm Utilities
+
+### summarize\_circuits
 
 <span id="qiskit.utils.summarize_circuits" />
 
@@ -271,6 +293,8 @@ a formatted string records the summary
 
 [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
 
+### get\_entangler\_map
+
 <span id="qiskit.utils.get_entangler_map" />
 
 `qiskit.utils.get_entangler_map(map_type, num_qubits, offset=0)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/utils/entangler_map.py "view source code")
@@ -294,6 +318,8 @@ A map of qubit index to an array of indexes to which this should be entangled
 **Raises**
 
 [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – if map\_type is not valid.
+
+### validate\_entangler\_map
 
 <span id="qiskit.utils.validate_entangler_map" />
 
@@ -321,6 +347,8 @@ Validated/converted map
 *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – the index of entangler map is out of range
 *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – the qubits are cross-entangled.
 
+### has\_ibmq
+
 <span id="qiskit.utils.has_ibmq" />
 
 `qiskit.utils.has_ibmq()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/utils/backend_utils.py "view source code")
@@ -331,6 +359,8 @@ Check if IBMQ is installed.
   The function `qiskit.utils.backend_utils.has_ibmq()` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/qi\_migration](https://qisk.it/qi_migration).
 </Admonition>
 
+### has\_aer
+
 <span id="qiskit.utils.has_aer" />
 
 `qiskit.utils.has_aer()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/utils/backend_utils.py "view source code")
@@ -340,6 +370,8 @@ Check if Aer is installed.
 <Admonition title="Deprecated since version 0.24.0" type="danger">
   The function `qiskit.utils.backend_utils.has_aer()` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/qi\_migration](https://qisk.it/qi_migration).
 </Admonition>
+
+### name\_args
 
 <span id="qiskit.utils.name_args" />
 

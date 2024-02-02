@@ -16,7 +16,7 @@ Bases: [`FunctionalPauliRotations`](qiskit.circuit.library.FunctionalPauliRotati
 
 Linearly-controlled X, Y or Z rotation.
 
-For a register of state qubits $|x\rangle$, a target qubit $|0\rangle$ and the basis `'Y'` this circuit acts as:
+For a register of state qubits $\vert x\rangle$, a target qubit $\vert 0\rangle$ and the basis `'Y'` this circuit acts as:
 
 ```python
     q_0: ─────────────────────────■───────── ... ──────────────────────
@@ -32,7 +32,7 @@ q_(n-1): ───────────────────────�
 This can for example be used to approximate linear functions, with $a =$ `slope`$/2$ and $b =$ `offset`$/2$ and the basis `'Y'`:
 
 $$
-|x\rangle |0\rangle \mapsto \cos(ax + b)|x\rangle|0\rangle + \sin(ax + b)|x\rangle |1\rangle
+\vert x\rangle \vert 0\rangle \mapsto \cos(ax + b)\vert x\rangle\vert 0\rangle + \sin(ax + b)\vert x\rangle \vert 1\rangle
 $$
 
 Since for small arguments $\sin(x) \approx x$ this operator can be used to approximate linear functions.
@@ -41,7 +41,7 @@ Create a new linear rotation circuit.
 
 **Parameters**
 
-*   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The number of qubits representing the state $|x\rangle$.
+*   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The number of qubits representing the state $\vert x\rangle$.
 *   **slope** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The slope of the controlled rotation.
 *   **offset** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The offset of the controlled rotation.
 *   **basis** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The type of Pauli rotation (‘X’, ‘Y’, ‘Z’).
@@ -163,7 +163,7 @@ Return number of qubits.
 
 ### num\_state\_qubits
 
-The number of state qubits representing the state $|x\rangle$.
+The number of state qubits representing the state $\vert x\rangle$.
 
 **Returns**
 
