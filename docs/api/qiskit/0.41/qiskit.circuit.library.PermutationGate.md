@@ -34,31 +34,13 @@ Return a permutation gate.
 
 ![../\_images/qiskit-circuit-library-PermutationGate-2.png](/images/api/qiskit/0.41/qiskit-circuit-library-PermutationGate-2.png)
 
-## Methods Defined Here
+**Methods Defined Here**
 
-### inverse
-
-<span id="qiskit.circuit.library.PermutationGate.inverse" />
-
-`PermutationGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/generalized_gates/permutation.py "view source code")
-
-Returns the inverse of the permutation.
-
-### qasm
-
-<span id="qiskit.circuit.library.PermutationGate.qasm" />
-
-`PermutationGate.qasm()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/generalized_gates/permutation.py "view source code")
-
-The qasm for a permutation.
-
-### validate\_parameter
-
-<span id="qiskit.circuit.library.PermutationGate.validate_parameter" />
-
-`PermutationGate.validate_parameter(parameter)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/generalized_gates/permutation.py "view source code")
-
-Parameter validation.
+|                                                                                                                                               |                                         |
+| --------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
+| [`inverse`](qiskit.circuit.library.PermutationGate#inverse "qiskit.circuit.library.PermutationGate.inverse")                                  | Returns the inverse of the permutation. |
+| [`qasm`](qiskit.circuit.library.PermutationGate#qasm "qiskit.circuit.library.PermutationGate.qasm")                                           | The qasm for a permutation.             |
+| [`validate_parameter`](qiskit.circuit.library.PermutationGate#validate_parameter "qiskit.circuit.library.PermutationGate.validate_parameter") | Parameter validation.                   |
 
 ## Attributes
 

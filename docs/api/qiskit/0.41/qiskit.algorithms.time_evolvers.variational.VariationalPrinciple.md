@@ -41,45 +41,10 @@ Instance of a class used to compute the state gradient.
 *   **qgt** ([`BaseQGT`](qiskit.algorithms.gradients.BaseQGT "qiskit.algorithms.gradients.base_qgt.BaseQGT")) – Instance of a class used to compute the GQT.
 *   **gradient** ([`BaseEstimatorGradient`](qiskit.algorithms.gradients.BaseEstimatorGradient "qiskit.algorithms.gradients.base_estimator_gradient.BaseEstimatorGradient")) – Instance of a class used to compute the state gradient.
 
-## Methods Defined Here
+**Methods Defined Here**
 
-### evolution\_gradient
-
-<span id="qiskit.algorithms.time_evolvers.variational.VariationalPrinciple.evolution_gradient" />
-
-`abstract VariationalPrinciple.evolution_gradient(hamiltonian, ansatz, param_values, gradient_params=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/time_evolvers/variational/variational_principles/variational_principle.py "view source code")
-
-Calculates an evolution gradient according to the rules of this variational principle.
-
-**Parameters**
-
-*   **hamiltonian** – Operator used for Variational Quantum Time Evolution.
-*   **ansatz** – Quantum state in the form of a parametrized quantum circuit.
-*   **param\_values** – Values of parameters to be bound.
-*   **gradient\_params** – List of parameters with respect to which gradients should be computed. If `None` given, gradients w\.r.t. all parameters will be computed.
-
-**Returns**
-
-An evolution gradient.
-
-### metric\_tensor
-
-<span id="qiskit.algorithms.time_evolvers.variational.VariationalPrinciple.metric_tensor" />
-
-`VariationalPrinciple.metric_tensor(ansatz, param_values)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/time_evolvers/variational/variational_principles/variational_principle.py "view source code")
-
-Calculates a metric tensor according to the rules of this variational principle.
-
-**Parameters**
-
-*   **ansatz** – Quantum state in the form of a parametrized quantum circuit.
-*   **param\_values** – Values of parameters to be bound.
-
-**Returns**
-
-Metric tensor.
-
-**Raises**
-
-[**AlgorithmError**](qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If a QFI job fails.
+|                                                                                                                                                                                                   |                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| [`evolution_gradient`](qiskit.algorithms.time_evolvers.variational.VariationalPrinciple#evolution_gradient "qiskit.algorithms.time_evolvers.variational.VariationalPrinciple.evolution_gradient") | Calculates an evolution gradient according to the rules of this variational principle. |
+| [`metric_tensor`](qiskit.algorithms.time_evolvers.variational.VariationalPrinciple#metric_tensor "qiskit.algorithms.time_evolvers.variational.VariationalPrinciple.metric_tensor")                | Calculates a metric tensor according to the rules of this variational principle.       |
 

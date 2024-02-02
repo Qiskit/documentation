@@ -31,7 +31,7 @@ q_1: ┤ Y ├
 
 $$
 \begin{split}CY\ q_0, q_1 =
-I \otimes |0 \rangle\langle 0| + Y \otimes |1 \rangle\langle 1|  =
+I \otimes \vert 0 \rangle\langle 0\vert  + Y \otimes \vert 1 \rangle\langle 1\vert   =
     \begin{pmatrix}
         1 & 0 & 0 & 0 \\
         0 & 0 & 0 & -i \\
@@ -52,7 +52,7 @@ $$
 
   $$
   \begin{split}CY\ q_1, q_0 =
-      |0 \rangle\langle 0| \otimes I + |1 \rangle\langle 1| \otimes Y =
+      \vert 0 \rangle\langle 0\vert  \otimes I + \vert 1 \rangle\langle 1\vert  \otimes Y =
       \begin{pmatrix}
           1 & 0 & 0 & 0 \\
           0 & 1 & 0 & 0 \\
@@ -64,15 +64,11 @@ $$
 
 Create new CY gate.
 
-## Methods Defined Here
+**Methods Defined Here**
 
-### inverse
-
-<span id="qiskit.circuit.library.CYGate.inverse" />
-
-`CYGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/y.py "view source code")
-
-Return inverted CY gate (itself).
+|                                                                                            |                                   |
+| ------------------------------------------------------------------------------------------ | --------------------------------- |
+| [`inverse`](qiskit.circuit.library.CYGate#inverse "qiskit.circuit.library.CYGate.inverse") | Return inverted CY gate (itself). |
 
 ## Attributes
 

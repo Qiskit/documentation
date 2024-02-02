@@ -20,31 +20,11 @@ The QDrift Trotterization method, which selects each each term in the Trotteriza
 
 **reps** (`int`) – The number of times to repeat the Trotterization circuit.
 
-## Methods Defined Here
+**Methods Defined Here**
 
-### convert
-
-<span id="qiskit.opflow.evolutions.QDrift.convert" />
-
-`QDrift.convert(operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/evolutions/trotterizations/qdrift.py "view source code")
-
-Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`.
-
-**Parameters**
-
-**operator** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The `SummedOp` to evolve.
-
-**Return type**
-
-[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
-
-**Returns**
-
-The Operator approximating op\_sum’s evolution.
-
-**Raises**
-
-**TypeError** – A non-SummedOps Operator is passed into `convert`.
+|                                                                                                |                                                                                                                 |
+| ---------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| [`convert`](qiskit.opflow.evolutions.QDrift#convert "qiskit.opflow.evolutions.QDrift.convert") | Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`. |
 
 ## Attributes
 

@@ -31,23 +31,12 @@ Create a new gate.
 *   **params** – A list of parameters.
 *   **label** – An optional label for the gate.
 
-## Methods Defined Here
+**Methods Defined Here**
 
-### inverse
-
-<span id="qiskit.circuit.library.PauliGate.inverse" />
-
-`PauliGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/generalized_gates/pauli.py "view source code")
-
-Return inverted pauli gate (itself).
-
-### validate\_parameter
-
-<span id="qiskit.circuit.library.PauliGate.validate_parameter" />
-
-`PauliGate.validate_parameter(parameter)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/generalized_gates/pauli.py "view source code")
-
-Gate parameters should be int, float, or ParameterExpression
+|                                                                                                                                   |                                                              |
+| --------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| [`inverse`](qiskit.circuit.library.PauliGate#inverse "qiskit.circuit.library.PauliGate.inverse")                                  | Return inverted pauli gate (itself).                         |
+| [`validate_parameter`](qiskit.circuit.library.PauliGate#validate_parameter "qiskit.circuit.library.PauliGate.validate_parameter") | Gate parameters should be int, float, or ParameterExpression |
 
 ## Attributes
 

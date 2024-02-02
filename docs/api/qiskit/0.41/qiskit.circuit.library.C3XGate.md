@@ -20,37 +20,12 @@ This implementation uses $\sqrt{T}$ and 14 CNOT gates.
 
 Create a new 3-qubit controlled X gate.
 
-## Methods Defined Here
+**Methods Defined Here**
 
-### control
-
-<span id="qiskit.circuit.library.C3XGate.control" />
-
-`C3XGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/x.py "view source code")
-
-Controlled version of this gate.
-
-**Parameters**
-
-*   **num\_ctrl\_qubits** (*int*) – number of control qubits.
-*   **label** (*str or None*) – An optional label for the gate \[Default: None]
-*   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
-
-**Returns**
-
-controlled version of this gate.
-
-**Return type**
-
-[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
-
-### inverse
-
-<span id="qiskit.circuit.library.C3XGate.inverse" />
-
-`C3XGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/x.py "view source code")
-
-Invert this gate. The C4X is its own inverse.
+|                                                                                              |                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------- |
+| [`control`](qiskit.circuit.library.C3XGate#control "qiskit.circuit.library.C3XGate.control") | Controlled version of this gate. |
+| [`inverse`](qiskit.circuit.library.C3XGate#inverse "qiskit.circuit.library.C3XGate.inverse") | Invert this gate.                |
 
 ## Attributes
 

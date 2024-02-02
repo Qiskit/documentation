@@ -52,53 +52,19 @@ Equivalent to a $\pi$ radian rotation about the Z axis.
 The gate is equivalent to a phase flip.
 
 $$
-\begin{split}|0\rangle \rightarrow |0\rangle \\
-|1\rangle \rightarrow -|1\rangle\end{split}
+\begin{split}\vert 0\rangle \rightarrow \vert 0\rangle \\
+\vert 1\rangle \rightarrow -\vert 1\rangle\end{split}
 $$
 
 Create new Z gate.
 
-## Methods Defined Here
+**Methods Defined Here**
 
-### control
-
-<span id="qiskit.circuit.library.ZGate.control" />
-
-`ZGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/z.py "view source code")
-
-Return a (multi-)controlled-Z gate.
-
-One control returns a CZ gate.
-
-**Parameters**
-
-*   **num\_ctrl\_qubits** (*int*) – number of control qubits.
-*   **label** (*str or None*) – An optional label for the gate \[Default: None]
-*   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
-
-**Returns**
-
-controlled version of this gate.
-
-**Return type**
-
-[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
-
-### inverse
-
-<span id="qiskit.circuit.library.ZGate.inverse" />
-
-`ZGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/z.py "view source code")
-
-Return inverted Z gate (itself).
-
-### power
-
-<span id="qiskit.circuit.library.ZGate.power" />
-
-`ZGate.power(exponent)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/z.py "view source code")
-
-Raise gate to a power.
+|                                                                                          |                                     |
+| ---------------------------------------------------------------------------------------- | ----------------------------------- |
+| [`control`](qiskit.circuit.library.ZGate#control "qiskit.circuit.library.ZGate.control") | Return a (multi-)controlled-Z gate. |
+| [`inverse`](qiskit.circuit.library.ZGate#inverse "qiskit.circuit.library.ZGate.inverse") | Return inverted Z gate (itself).    |
+| [`power`](qiskit.circuit.library.ZGate#power "qiskit.circuit.library.ZGate.power")       | Raise gate to a power.              |
 
 ## Attributes
 
