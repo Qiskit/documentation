@@ -10,11 +10,15 @@ python_api_name: qiskit.providers.basicaer.BasicAerProvider
 
 <span id="qiskit.providers.basicaer.BasicAerProvider" />
 
-`qiskit.providers.basicaer.BasicAerProvider`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/basicaer/basicaerprovider.py "view source code")
+`qiskit.providers.basicaer.BasicAerProvider`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/providers/basicaer/basicaerprovider.py "view source code")
 
 Bases: [`ProviderV1`](qiskit.providers.ProviderV1 "qiskit.providers.provider.ProviderV1")
 
 Provider for Basic Aer backends.
+
+<Admonition title="Deprecated since version 0.46.0" type="danger">
+  The class `qiskit.providers.basicaer.basicaerprovider.BasicAerProvider` is deprecated as of qiskit 0.46.0. It will be removed in Qiskit 1.0.0. The qiskit.providers.basicaer module has been superseded by qiskit.providers.basic\_provider, and all its classes have been renamed to follow a new naming convention. Use the new qiskit.providers.basic\_provider.BasicProvider class instead.
+</Admonition>
 
 ## Attributes
 

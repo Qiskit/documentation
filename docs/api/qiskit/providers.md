@@ -79,7 +79,7 @@ It’s worth pointing out that Terra’s version support policy doesn’t mean p
 
 <span id="qiskit.providers.QiskitBackendNotFoundError" />
 
-`qiskit.providers.QiskitBackendNotFoundError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/exceptions.py "view source code")
+`qiskit.providers.QiskitBackendNotFoundError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/providers/exceptions.py "view source code")
 
 Base class for errors raised while looking for a backend.
 
@@ -89,7 +89,7 @@ Set the error message.
 
 <span id="qiskit.providers.BackendPropertyError" />
 
-`qiskit.providers.BackendPropertyError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/exceptions.py "view source code")
+`qiskit.providers.BackendPropertyError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/providers/exceptions.py "view source code")
 
 Base class for errors raised while looking for a backend property.
 
@@ -99,7 +99,7 @@ Set the error message.
 
 <span id="qiskit.providers.JobError" />
 
-`qiskit.providers.JobError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/exceptions.py "view source code")
+`qiskit.providers.JobError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/providers/exceptions.py "view source code")
 
 Base class for errors raised by Jobs.
 
@@ -109,7 +109,7 @@ Set the error message.
 
 <span id="qiskit.providers.JobTimeoutError" />
 
-`qiskit.providers.JobTimeoutError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/exceptions.py "view source code")
+`qiskit.providers.JobTimeoutError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/providers/exceptions.py "view source code")
 
 Base class for timeout errors raised by jobs.
 
@@ -119,7 +119,7 @@ Set the error message.
 
 <span id="qiskit.providers.BackendConfigurationError" />
 
-`qiskit.providers.BackendConfigurationError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/exceptions.py "view source code")
+`qiskit.providers.BackendConfigurationError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/providers/exceptions.py "view source code")
 
 Base class for errors raised by the BackendConfiguration.
 
@@ -317,7 +317,7 @@ The key piece of the [`Backend`](qiskit.providers.Backend "qiskit.providers.Back
 
     You will want this to be run on import so that as soon as the provider’s package is imported it will be run. This will ensure that any time the [`BasisTranslator`](qiskit.transpiler.passes.BasisTranslator "qiskit.transpiler.passes.BasisTranslator") pass is run with the custom gates the equivalence rules are defined.
 
-    It’s also worth noting that depending on the basis you’re using, some optimization passes in the transpiler, such as [`Optimize1qGatesDecomposition`](qiskit.transpiler.passes.Optimize1qGatesDecomposition "qiskit.transpiler.passes.Optimize1qGatesDecomposition"), may not be able to operate with your custom basis. For our `SYGate` example, the [`Optimize1qGatesDecomposition`](qiskit.transpiler.passes.Optimize1qGatesDecomposition "qiskit.transpiler.passes.Optimize1qGatesDecomposition") will not be able to simplify runs of single qubit gates into the SY basis. This is because the [`OneQubitEulerDecomposer`](qiskit.quantum_info.OneQubitEulerDecomposer "qiskit.quantum_info.OneQubitEulerDecomposer") class does not know how to work in the SY basis. To solve this the `SYGate` class would need to be added to Qiskit and [`OneQubitEulerDecomposer`](qiskit.quantum_info.OneQubitEulerDecomposer "qiskit.quantum_info.OneQubitEulerDecomposer") updated to support decomposing to the `SYGate`. Longer term that is likely a better direction for custom basis gates and contributing the definitions and support in the transpiler will ensure that it continues to be well supported by Qiskit moving forward.
+    It’s also worth noting that depending on the basis you’re using, some optimization passes in the transpiler, such as [`Optimize1qGatesDecomposition`](qiskit.transpiler.passes.Optimize1qGatesDecomposition "qiskit.transpiler.passes.Optimize1qGatesDecomposition"), may not be able to operate with your custom basis. For our `SYGate` example, the [`Optimize1qGatesDecomposition`](qiskit.transpiler.passes.Optimize1qGatesDecomposition "qiskit.transpiler.passes.Optimize1qGatesDecomposition") will not be able to simplify runs of single qubit gates into the SY basis. This is because the `OneQubitEulerDecomposer` class does not know how to work in the SY basis. To solve this the `SYGate` class would need to be added to Qiskit and `OneQubitEulerDecomposer` updated to support decomposing to the `SYGate`. Longer term that is likely a better direction for custom basis gates and contributing the definitions and support in the transpiler will ensure that it continues to be well supported by Qiskit moving forward.
 
 <span id="custom-transpiler-backend" />
 

@@ -22,7 +22,7 @@ python_api_name: qiskit.utils
 
 <span id="qiskit.utils.add_deprecation_to_docstring" />
 
-`qiskit.utils.add_deprecation_to_docstring(func, msg, *, since, pending)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/utils/deprecation.py "view source code")
+`qiskit.utils.add_deprecation_to_docstring(func, msg, *, since, pending)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/utils/deprecation.py "view source code")
 
 Dynamically insert the deprecation message into `func`’s docstring.
 
@@ -37,7 +37,7 @@ Dynamically insert the deprecation message into `func`’s docstring.
 
 <span id="qiskit.utils.deprecate_arg" />
 
-`qiskit.utils.deprecate_arg(name, *, since, additional_msg=None, deprecation_description=None, pending=False, package_name='qiskit', new_alias=None, predicate=None, removal_timeline='no earlier than 3 months after the release date')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/utils/deprecation.py "view source code")
+`qiskit.utils.deprecate_arg(name, *, since, additional_msg=None, deprecation_description=None, pending=False, package_name='qiskit', new_alias=None, predicate=None, removal_timeline='no earlier than 3 months after the release date')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/utils/deprecation.py "view source code")
 
 Decorator to indicate an argument has been deprecated in some way.
 
@@ -67,7 +67,7 @@ Callable
 
 <span id="qiskit.utils.deprecate_arguments" />
 
-`qiskit.utils.deprecate_arguments(kwarg_map, category=<class 'DeprecationWarning'>, *, since=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/utils/deprecation.py "view source code")
+`qiskit.utils.deprecate_arguments(kwarg_map, category=<class 'DeprecationWarning'>, *, since=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/utils/deprecation.py "view source code")
 
 Deprecated. Instead, use @deprecate\_arg.
 
@@ -89,7 +89,7 @@ Callable
 
 <span id="qiskit.utils.deprecate_func" />
 
-`qiskit.utils.deprecate_func(*, since, additional_msg=None, pending=False, package_name='qiskit', removal_timeline='no earlier than 3 months after the release date', is_property=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/utils/deprecation.py "view source code")
+`qiskit.utils.deprecate_func(*, since, additional_msg=None, pending=False, package_name='qiskit', removal_timeline='no earlier than 3 months after the release date', is_property=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/utils/deprecation.py "view source code")
 
 Decorator to indicate a function has been deprecated.
 
@@ -118,7 +118,7 @@ Callable
 
 <span id="qiskit.utils.deprecate_function" />
 
-`qiskit.utils.deprecate_function(msg, stacklevel=2, category=<class 'DeprecationWarning'>, *, since=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/utils/deprecation.py "view source code")
+`qiskit.utils.deprecate_function(msg, stacklevel=2, category=<class 'DeprecationWarning'>, *, since=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/utils/deprecation.py "view source code")
 
 Deprecated. Instead, use @deprecate\_func.
 
@@ -141,7 +141,7 @@ Callable
 
 <span id="qiskit.utils.local_hardware_info" />
 
-`qiskit.utils.local_hardware_info()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/utils/multiprocessing.py "view source code")
+`qiskit.utils.local_hardware_info()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/utils/multiprocessing.py "view source code")
 
 Basic hardware information about the local machine.
 
@@ -159,7 +159,7 @@ The hardware information.
 
 <span id="qiskit.utils.is_main_process" />
 
-`qiskit.utils.is_main_process()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/utils/multiprocessing.py "view source code")
+`qiskit.utils.is_main_process()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/utils/multiprocessing.py "view source code")
 
 Checks whether the current process is the main one
 
@@ -167,7 +167,7 @@ Checks whether the current process is the main one
 
 <span id="qiskit.utils.apply_prefix" />
 
-`qiskit.utils.apply_prefix(value, unit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/utils/units.py "view source code")
+`qiskit.utils.apply_prefix(value, unit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/utils/units.py "view source code")
 
 Given a SI unit prefix and value, apply the prefix to convert to standard SI unit.
 
@@ -200,7 +200,7 @@ Converted value.
 
 <span id="qiskit.utils.detach_prefix" />
 
-`qiskit.utils.detach_prefix(value, decimal=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/utils/units.py "view source code")
+`qiskit.utils.detach_prefix(value, decimal=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/utils/units.py "view source code")
 
 Given a SI unit value, find the most suitable prefix to scale the value.
 
@@ -244,7 +244,7 @@ A tuple of scaled value and prefix.
 
 <span id="qiskit.utils.wrap_method" />
 
-`qiskit.utils.wrap_method(cls, name, *, before=None, after=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/utils/classtools.py "view source code")
+`qiskit.utils.wrap_method(cls, name, *, before=None, after=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/utils/classtools.py "view source code")
 
 Wrap the functionality the instance- or class method `cls.name` with additional behaviour `before` and `after`.
 
@@ -269,7 +269,7 @@ If either `before` or `after` are given, they should be callables with a compati
 
 <span id="qiskit.utils.summarize_circuits" />
 
-`qiskit.utils.summarize_circuits(circuits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/utils/circuit_utils.py "view source code")
+`qiskit.utils.summarize_circuits(circuits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/utils/circuit_utils.py "view source code")
 
 **Summarize circuits based on QuantumCircuit, and five metrics are summarized.**
 
@@ -280,6 +280,10 @@ If either `before` or `after` are given, they should be callables with a compati
 *   Counts of different gate operations
 
 The average statistic of the first four is provided if multiple circuits are provided.
+
+> <Admonition title="Deprecated since version 0.46.0" type="danger">
+>   The function `qiskit.utils.circuit_utils.summarize_circuits()` is deprecated as of qiskit 0.46.0. It will be removed in the Qiskit 1.0 release. This function was only used in the context of qiskit.opflow/qiskit.algorithms, two modules deprecated and planned to be removed in Qiskit 1.0.
+> </Admonition>
 
 **Parameters**
 
@@ -297,9 +301,13 @@ a formatted string records the summary
 
 <span id="qiskit.utils.get_entangler_map" />
 
-`qiskit.utils.get_entangler_map(map_type, num_qubits, offset=0)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/utils/entangler_map.py "view source code")
+`qiskit.utils.get_entangler_map(map_type, num_qubits, offset=0)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/utils/entangler_map.py "view source code")
 
 Utility method to get an entangler map among qubits.
+
+<Admonition title="Deprecated since version 0.46.0" type="danger">
+  The function `qiskit.utils.entangler_map.get_entangler_map()` is deprecated as of qiskit 0.46.0. It will be removed in the Qiskit 1.0 release. This function was only used in the context of qiskit.opflow/qiskit.algorithms, two modules deprecated and planned to be removed in Qiskit 1.0.
+</Admonition>
 
 **Parameters**
 
@@ -323,9 +331,13 @@ A map of qubit index to an array of indexes to which this should be entangled
 
 <span id="qiskit.utils.validate_entangler_map" />
 
-`qiskit.utils.validate_entangler_map(entangler_map, num_qubits, allow_double_entanglement=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/utils/entangler_map.py "view source code")
+`qiskit.utils.validate_entangler_map(entangler_map, num_qubits, allow_double_entanglement=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/utils/entangler_map.py "view source code")
 
 Validate a user supplied entangler map and converts entries to ints.
+
+<Admonition title="Deprecated since version 0.46.0" type="danger">
+  The function `qiskit.utils.entangler_map.validate_entangler_map()` is deprecated as of qiskit 0.46.0. It will be removed in the Qiskit 1.0 release. This function was only used in the context of qiskit.opflow/qiskit.algorithms, two modules deprecated and planned to be removed in Qiskit 1.0.
+</Admonition>
 
 **Parameters**
 
@@ -351,31 +363,31 @@ Validated/converted map
 
 <span id="qiskit.utils.has_ibmq" />
 
-`qiskit.utils.has_ibmq()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/utils/backend_utils.py "view source code")
+`qiskit.utils.has_ibmq()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/utils/backend_utils.py "view source code")
 
 Check if IBMQ is installed.
 
 <Admonition title="Deprecated since version 0.24.0" type="danger">
-  The function `qiskit.utils.backend_utils.has_ibmq()` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/qi\_migration](https://qisk.it/qi_migration).
+  The function `qiskit.utils.backend_utils.has_ibmq()` is deprecated as of qiskit-terra 0.24.0. It will be removed in the Qiskit 1.0 release. For code migration guidelines, visit [https://qisk.it/qi\_migration](https://qisk.it/qi_migration).
 </Admonition>
 
 ### has\_aer
 
 <span id="qiskit.utils.has_aer" />
 
-`qiskit.utils.has_aer()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/utils/backend_utils.py "view source code")
+`qiskit.utils.has_aer()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/utils/backend_utils.py "view source code")
 
 Check if Aer is installed.
 
 <Admonition title="Deprecated since version 0.24.0" type="danger">
-  The function `qiskit.utils.backend_utils.has_aer()` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/qi\_migration](https://qisk.it/qi_migration).
+  The function `qiskit.utils.backend_utils.has_aer()` is deprecated as of qiskit-terra 0.24.0. It will be removed in the Qiskit 1.0 release. For code migration guidelines, visit [https://qisk.it/qi\_migration](https://qisk.it/qi_migration).
 </Admonition>
 
 ### name\_args
 
 <span id="qiskit.utils.name_args" />
 
-`qiskit.utils.name_args(mapping, skip=0)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/utils/name_unnamed_args.py "view source code")
+`qiskit.utils.name_args(mapping, skip=0)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/utils/name_unnamed_args.py "view source code")
 
 Decorator to convert unnamed arguments to named ones.
 
@@ -401,6 +413,10 @@ def new_f(a: TypeA, d: TypeD, b: TypeB=None, c: TypeC=None):
         # raise warning, this is deprecated!
 ```
 
+<Admonition title="Deprecated since version 0.46.0" type="danger">
+  The function `qiskit.utils.name_unnamed_args.name_args()` is deprecated as of qiskit 0.46.0. It will be removed in the Qiskit 1.0 release. This function was only used in the context of qiskit.opflow/qiskit.algorithms, two modules deprecated and planned to be removed in Qiskit 1.0.
+</Admonition>
+
 **qiskit.utils.algorithm\_globals *= \<qiskit.utils.algorithm\_globals.QiskitAlgorithmGlobals object>***
 
 Class for global properties.
@@ -410,6 +426,63 @@ Class for global properties.
 | [`QuantumInstance`](qiskit.utils.QuantumInstance "qiskit.utils.QuantumInstance") | Deprecated: Quantum Backend including execution setting. |
 
 A QuantumInstance holds the Qiskit backend as well as a number of compile and runtime parameters controlling circuit compilation and execution. Quantum [`algorithms`](algorithms#module-qiskit.algorithms "qiskit.algorithms") are run on a device or simulator by passing a QuantumInstance setup with the desired backend etc.
+
+### Parallel Routines
+
+A helper function for calling a custom function with python `ProcessPoolExecutor`. Tasks can be executed in parallel using this function. It has a built-in event publisher to show the progress of the parallel tasks.
+
+### parallel\_map
+
+<span id="qiskit.utils.parallel_map" />
+
+`qiskit.utils.parallel_map(task, values, task_args=(), task_kwargs={}, num_processes=2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/utils/parallel.py "view source code")
+
+Parallel execution of a mapping of values to the function task. This is functionally equivalent to:
+
+```python
+result = [task(value, *task_args, **task_kwargs) for value in values]
+```
+
+On Windows this function defaults to a serial implementation to avoid the overhead from spawning processes in Windows.
+
+**Parameters**
+
+*   **task** (*func*) – Function that is to be called for each value in `values`.
+*   **values** (*array\_like*) – List or array of values for which the `task` function is to be evaluated.
+*   **task\_args** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – Optional additional arguments to the `task` function.
+*   **task\_kwargs** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – Optional additional keyword argument to the `task` function.
+*   **num\_processes** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of processes to spawn.
+
+**Returns**
+
+**The result list contains the value of**
+
+**`task(value, *task_args, **task_kwargs)` for**
+
+each value in `values`.
+
+**Return type**
+
+result
+
+**Raises**
+
+[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – If user interrupts via keyboard.
+
+**Events:**
+
+terra.parallel.start: The collection of parallel tasks are about to start. terra.parallel.update: One of the parallel task has finished. terra.parallel.finish: All the parallel tasks have finished.
+
+**Examples**
+
+```python
+import time
+from qiskit.tools.parallel import parallel_map
+def func(_):
+        time.sleep(0.1)
+        return 0
+parallel_map(func, list(range(10)));
+```
 
 <span id="module-qiskit.utils.optionals" />
 
@@ -429,9 +502,9 @@ Qiskit has several features that are enabled only if certain *optional* dependen
 
 |                                       |                                                                                                                                                                               |
 | ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **qiskit.utils.optionals.HAS\_AER**   | `Qiskit Aer` provides high-performance simulators for the quantum circuits constructed within Qiskit.                                                                         |
-| **qiskit.utils.optionals.HAS\_IBMQ**  | The `Qiskit IBMQ Provider` is used for accessing IBM Quantum hardware in the IBM cloud.                                                                                       |
-| **qiskit.utils.optionals.HAS\_IGNIS** | `Qiskit Ignis` provides tools for quantum hardware verification, noise characterization, and error correction.                                                                |
+| **qiskit.utils.optionals.HAS\_AER**   | [Qiskit Aer](https://qiskit.org/ecosystem/aer/) provides high-performance simulators for the quantum circuits constructed within Qiskit.                                      |
+| **qiskit.utils.optionals.HAS\_IBMQ**  | The Qiskit IBMQ Provider was historically used for accessing IBM Quantum hardware in the IBM cloud, but is now deprecated.                                                    |
+| **qiskit.utils.optionals.HAS\_IGNIS** | Qiskit Ignis provided tools for quantum hardware verification, noise characterization, and error correction, but is now deprecated.                                           |
 | **qiskit.utils.optionals.HAS\_TOQM**  | [Qiskit TOQM](https://github.com/qiskit-toqm/qiskit-toqm) provides transpiler passes for the [Time-optimal Qubit mapping algorithm](https://doi.org/10.1145/3445814.3446706). |
 
 #### External Python Libraries
@@ -482,7 +555,7 @@ from qiskit.utils import LazyImportTester
 
 <span id="qiskit.utils.LazyDependencyManager" />
 
-`qiskit.utils.LazyDependencyManager(*, name=None, callback=None, install=None, msg=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/utils/lazy_tester.py "view source code")
+`qiskit.utils.LazyDependencyManager(*, name=None, callback=None, install=None, msg=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/utils/lazy_tester.py "view source code")
 
 A mananger for some optional features that are expensive to import, or to verify the existence of.
 
@@ -611,7 +684,7 @@ Eagerly attempt to import the dependencies in this object, and raise an exceptio
 
 <span id="qiskit.utils.LazyImportTester" />
 
-`qiskit.utils.LazyImportTester(name_map_or_modules, *, name=None, callback=None, install=None, msg=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/utils/lazy_tester.py "view source code")
+`qiskit.utils.LazyImportTester(name_map_or_modules, *, name=None, callback=None, install=None, msg=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/utils/lazy_tester.py "view source code")
 
 A lazy dependency tester for importable Python modules. Any required objects will only be imported at the point that this object is tested for its Boolean value.
 
@@ -625,7 +698,7 @@ A lazy dependency tester for importable Python modules. Any required objects wil
 
 <span id="qiskit.utils.LazySubprocessTester" />
 
-`qiskit.utils.LazySubprocessTester(command, *, name=None, callback=None, install=None, msg=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/utils/lazy_tester.py "view source code")
+`qiskit.utils.LazySubprocessTester(command, *, name=None, callback=None, install=None, msg=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/utils/lazy_tester.py "view source code")
 
 A lazy checker that a command-line tool is available. The command will only be run once, at the point that this object is checked for its Boolean value.
 

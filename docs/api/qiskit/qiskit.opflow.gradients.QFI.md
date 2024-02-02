@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.gradients.QFI
 
 <span id="qiskit.opflow.gradients.QFI" />
 
-`qiskit.opflow.gradients.QFI(qfi_method='lin_comb_full')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/gradients/qfi.py "view source code")
+`qiskit.opflow.gradients.QFI(qfi_method='lin_comb_full')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/opflow/gradients/qfi.py "view source code")
 
 Bases: [`QFIBase`](qiskit.opflow.gradients.QFIBase "qiskit.opflow.gradients.qfi_base.QFIBase")
 
@@ -19,12 +19,12 @@ Deprecated: Compute the Quantum Fisher Information (QFI).
 Computes the QFI given a pure, parameterized quantum state, where QFI is:
 
 $$
-\mathrm{QFI}_{kl}= 4 \mathrm{Re}[\langle \partial_k \psi | \partial_l \psi \rangle
-    − \langle\partial_k \psi | \psi \rangle \langle\psi | \partial_l \psi \rangle].
+\mathrm{QFI}_{kl}= 4 \mathrm{Re}[\langle \partial_k \psi \vert  \partial_l \psi \rangle
+    − \langle\partial_k \psi \vert  \psi \rangle \langle\psi \vert  \partial_l \psi \rangle].
 $$
 
 <Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.opflow.gradients.qfi.QFI` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  The class `qiskit.opflow.gradients.qfi.QFI` is deprecated as of qiskit-terra 0.24.0. It will be removed in the Qiskit 1.0 release. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
 </Admonition>
 
 ## Attributes

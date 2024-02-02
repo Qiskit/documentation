@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.evolutions.PauliTrotterEvolution
 
 <span id="qiskit.opflow.evolutions.PauliTrotterEvolution" />
 
-`qiskit.opflow.evolutions.PauliTrotterEvolution(trotter_mode='trotter', reps=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/evolutions/pauli_trotter_evolution.py "view source code")
+`qiskit.opflow.evolutions.PauliTrotterEvolution(trotter_mode='trotter', reps=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/opflow/evolutions/pauli_trotter_evolution.py "view source code")
 
 Bases: [`EvolutionBase`](qiskit.opflow.evolutions.EvolutionBase "qiskit.opflow.evolutions.evolution_base.EvolutionBase")
 
@@ -19,7 +19,7 @@ Deprecated: An Evolution algorithm replacing exponentiated sums of Paulis by cha
 More specifically, we compute basis change circuits for each Pauli into a single-qubit Z, evolve the Z by the desired evolution time with an rZ gate, and change the basis back using the adjoint of the original basis change circuit. For sums of Paulis, the individual Pauli evolution circuits are composed together by Trotterization scheme.
 
 <Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.opflow.evolutions.pauli_trotter_evolution.PauliTrotterEvolution` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  The class `qiskit.opflow.evolutions.pauli_trotter_evolution.PauliTrotterEvolution` is deprecated as of qiskit-terra 0.24.0. It will be removed in the Qiskit 1.0 release. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
 </Admonition>
 
 **Parameters**

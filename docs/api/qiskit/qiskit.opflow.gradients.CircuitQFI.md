@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.gradients.CircuitQFI
 
 <span id="qiskit.opflow.gradients.CircuitQFI" />
 
-`qiskit.opflow.gradients.CircuitQFI`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/gradients/circuit_qfis/circuit_qfi.py "view source code")
+`qiskit.opflow.gradients.CircuitQFI`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/opflow/gradients/circuit_qfis/circuit_qfi.py "view source code")
 
 Bases: [`ConverterBase`](qiskit.opflow.converters.ConverterBase "qiskit.opflow.converters.converter_base.ConverterBase")
 
@@ -23,7 +23,7 @@ This is distinct from DerivativeBase converters which take gradients of composit
 CircuitQFI - uses quantum techniques to get the QFI of circuits DerivativeBase - uses classical techniques to differentiate opflow data structures
 
 <Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.opflow.gradients.circuit_qfis.circuit_qfi.CircuitQFI` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  The class `qiskit.opflow.gradients.circuit_qfis.circuit_qfi.CircuitQFI` is deprecated as of qiskit-terra 0.24.0. It will be removed in the Qiskit 1.0 release. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
 </Admonition>
 
 ## Methods
@@ -36,7 +36,7 @@ CircuitQFI - uses quantum techniques to get the QFI of circuits DerivativeBase -
 
 **Parameters**
 
-*   **operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The operator corresponding to the quantum state $|\psi(\omega)\rangle$ for which we compute the QFI.
+*   **operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The operator corresponding to the quantum state $\vert \psi(\omega)\rangle$ for which we compute the QFI.
 *   **params** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*ParameterVector*](qiskit.circuit.ParameterVector "qiskit.circuit.parametervector.ParameterVector")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")*]*) – The parameters $\omega$ with respect to which we are computing the QFI.
 
 **Returns**

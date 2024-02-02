@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.converters.TwoQubitReduction
 
 <span id="qiskit.opflow.converters.TwoQubitReduction" />
 
-`qiskit.opflow.converters.TwoQubitReduction(num_particles)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/converters/two_qubit_reduction.py "view source code")
+`qiskit.opflow.converters.TwoQubitReduction(num_particles)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/opflow/converters/two_qubit_reduction.py "view source code")
 
 Bases: [`ConverterBase`](qiskit.opflow.converters.ConverterBase "qiskit.opflow.converters.converter_base.ConverterBase")
 
@@ -19,7 +19,7 @@ Deprecated: Two qubit reduction converter which eliminates the central and last 
 Chemistry specific method: It can be used to taper two qubits in parity and binary-tree mapped fermionic Hamiltonians when the spin orbitals are ordered in two spin sectors, (block spin order) according to the number of particles in the system.
 
 <Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.opflow.converters.two_qubit_reduction.TwoQubitReduction` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  The class `qiskit.opflow.converters.two_qubit_reduction.TwoQubitReduction` is deprecated as of qiskit-terra 0.24.0. It will be removed in the Qiskit 1.0 release. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
 </Admonition>
 
 **Parameters**

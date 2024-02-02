@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.primitive_ops.PrimitiveOp
 
 <span id="qiskit.opflow.primitive_ops.PrimitiveOp" />
 
-`qiskit.opflow.primitive_ops.PrimitiveOp(primitive, coeff=1.0)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/primitive_ops/primitive_op.py "view source code")
+`qiskit.opflow.primitive_ops.PrimitiveOp(primitive, coeff=1.0)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/opflow/primitive_ops/primitive_op.py "view source code")
 
 Bases: [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
 
@@ -19,7 +19,7 @@ Deprecated: A class for representing basic Operators, backed by Operator primiti
 Note that all mathematical methods are not in-place, meaning that they return a new object, but the underlying primitives are not copied.
 
 <Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.opflow.primitive_ops.primitive_op.PrimitiveOp` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  The class `qiskit.opflow.primitive_ops.primitive_op.PrimitiveOp` is deprecated as of qiskit-terra 0.24.0. It will be removed in the Qiskit 1.0 release. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
 </Admonition>
 
 **Parameters**

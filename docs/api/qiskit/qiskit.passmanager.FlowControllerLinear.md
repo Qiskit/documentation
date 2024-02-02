@@ -10,7 +10,7 @@ python_api_name: qiskit.passmanager.FlowControllerLinear
 
 <span id="qiskit.passmanager.FlowControllerLinear" />
 
-`qiskit.passmanager.FlowControllerLinear(tasks=(), *, options=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/passmanager/flow_controllers.py "view source code")
+`qiskit.passmanager.FlowControllerLinear(tasks=(), *, options=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/passmanager/flow_controllers.py "view source code")
 
 Bases: [`BaseController`](qiskit.passmanager.BaseController "qiskit.passmanager.base_tasks.BaseController")
 
@@ -41,7 +41,7 @@ Alias of tasks for backward compatibility.
 Add new task to pipeline.
 
 <Admonition title="Deprecated since version 0.45.0" type="danger">
-  The method `qiskit.passmanager.flow_controllers.FlowControllerLinear.append()` is deprecated as of qiskit 0.45.0. It will be removed no earlier than 3 months after the release date. All tasks must be provided at construction time of the controller object.
+  The method `qiskit.passmanager.flow_controllers.FlowControllerLinear.append()` is deprecated as of qiskit 0.45.0. It will be removed in the Qiskit 1.0 release. All tasks must be provided at construction time of the controller object.
 </Admonition>
 
 **Parameters**

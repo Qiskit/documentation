@@ -18,6 +18,10 @@ python_api_name: qiskit.providers.basicaer
 
 `qiskit.providers.basicaer`
 
+<Admonition title="Deprecated since version 0.46.0" type="danger">
+  The [`qiskit.providers.basicaer`](#module-qiskit.providers.basicaer "qiskit.providers.basicaer") module is deprecated as of Qiskit 0.46 and will be removed in Qiskit 1.0. Its functionality has been replaced by the new [`qiskit.providers.basic_provider`](providers_basic_provider#module-qiskit.providers.basic_provider "qiskit.providers.basic_provider") module and the [`qiskit.quantum_info`](quantum_info#module-qiskit.quantum_info "qiskit.quantum_info") module.
+</Admonition>
+
 A module of Python-based quantum simulators. Simulators are accessed via the BasicAer provider, e.g.:
 
 ```python

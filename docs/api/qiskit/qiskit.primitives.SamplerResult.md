@@ -10,9 +10,9 @@ python_api_name: qiskit.primitives.SamplerResult
 
 <span id="qiskit.primitives.SamplerResult" />
 
-`qiskit.primitives.SamplerResult(quasi_dists, metadata)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/primitives/base/sampler_result.py "view source code")
+`qiskit.primitives.SamplerResult(quasi_dists, metadata)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/primitives/base/sampler_result.py "view source code")
 
-Bases: `BasePrimitiveResult`
+Bases: `_BasePrimitiveResult`
 
 Result of Sampler.
 
@@ -35,11 +35,19 @@ where the i-th elements of `result` correspond to the circuit given by `circuits
 
 Experiment data dicts in any inheriting result dataclass.
 
+<Admonition title="Deprecated since version 0.46.0" type="danger">
+  The property `qiskit.primitives.base.base_result._BasePrimitiveResult.experiments` is deprecated as of qiskit 0.46.0. It will be removed in the Qiskit 1.0 release.
+</Admonition>
+
 <span id="qiskit.primitives.SamplerResult.num_experiments" />
 
 ### num\_experiments
 
 Number of experiments in any inheriting result dataclass.
+
+<Admonition title="Deprecated since version 0.46.0" type="danger">
+  The property `qiskit.primitives.base.base_result._BasePrimitiveResult.num_experiments` is deprecated as of qiskit 0.46.0. It will be removed in the Qiskit 1.0 release.
+</Admonition>
 
 <span id="qiskit.primitives.SamplerResult.quasi_dists" />
 
@@ -63,7 +71,11 @@ Number of experiments in any inheriting result dataclass.
 
 Generate single experiment result objects from self.
 
+<Admonition title="Deprecated since version 0.46.0" type="danger">
+  The method `qiskit.primitives.base.base_result._BasePrimitiveResult.decompose()` is deprecated as of qiskit 0.46.0. It will be removed in the Qiskit 1.0 release.
+</Admonition>
+
 **Return type**
 
-[*Iterator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator "(in Python v3.12)")\[*BasePrimitiveResult*]
+[*Iterator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator "(in Python v3.12)")\[*\_BasePrimitiveResult*]
 

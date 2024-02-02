@@ -10,19 +10,15 @@ python_api_name: qiskit.providers.basicaer.BasicAerJob
 
 <span id="qiskit.providers.basicaer.BasicAerJob" />
 
-`qiskit.providers.basicaer.BasicAerJob(backend, job_id, result)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/basicaer/basicaerjob.py "view source code")
+`qiskit.providers.basicaer.BasicAerJob(backend, job_id, result)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/providers/basicaer/basicaerjob.py "view source code")
 
 Bases: [`JobV1`](qiskit.providers.JobV1 "qiskit.providers.job.JobV1")
 
 BasicAerJob class.
 
-Initializes the asynchronous job.
-
-**Parameters**
-
-*   **backend** – the backend used to run the job.
-*   **job\_id** – a unique id in the context of the backend used to run the job.
-*   **kwargs** – Any key value metadata to associate with this job.
+<Admonition title="Deprecated since version 0.46.0" type="danger">
+  The class `qiskit.providers.basicaer.basicaerjob.BasicAerJob` is deprecated as of qiskit 0.46.0. It will be removed in Qiskit 1.0.0. The qiskit.providers.basicaer module has been superseded by qiskit.providers.basic\_provider, and all its classes have been renamed to follow a new naming convention. Use the new qiskit.providers.basic\_provider.BasicProviderJob class instead.
+</Admonition>
 
 ## Attributes
 

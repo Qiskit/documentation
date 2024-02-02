@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.instructions.TimeBlockade
 
 <span id="qiskit.pulse.instructions.TimeBlockade" />
 
-`qiskit.pulse.instructions.TimeBlockade(duration, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/pulse/instructions/directives.py "view source code")
+`qiskit.pulse.instructions.TimeBlockade(duration, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/pulse/instructions/directives.py "view source code")
 
 Bases: `Directive`
 
@@ -197,7 +197,7 @@ Return maximum start time for supplied channels.
 Plot the instruction.
 
 <Admonition title="Deprecated since version 0.23.0" type="danger">
-  The method `qiskit.pulse.instructions.instruction.Instruction.draw()` is deprecated as of qiskit-terra 0.23.0. It will be removed no earlier than 3 months after the release date. No direct alternative is being provided to drawing individual pulses. But, instructions can be visualized as part of a complete schedule using `qiskit.visualization.pulse_drawer`.
+  The method `qiskit.pulse.instructions.instruction.Instruction.draw()` is deprecated as of qiskit-terra 0.23.0. It will be removed in the Qiskit 1.0 release. No direct alternative is being provided to drawing individual pulses. But, instructions can be visualized as part of a complete schedule using `qiskit.visualization.pulse_drawer`.
 </Admonition>
 
 **Parameters**
