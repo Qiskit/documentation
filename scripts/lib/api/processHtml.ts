@@ -199,7 +199,11 @@ export function convertRubricsToHeaders(
   // <strong>
   function appropriateHtmlTag(html: string | null) {
     html = String(html);
-    return html == "Methods" || html == "Attributes" ? "h2" : "strong";
+    return html == "Methods" ||
+      html == "Methods Defined Here" ||
+      html == "Attributes"
+      ? "h2"
+      : "strong";
   }
 
   $main.find(".rubric").each((_, el) => {
