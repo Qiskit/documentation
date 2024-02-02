@@ -1,0 +1,80 @@
+---
+title: Migrate to using the V2 primitives
+description: Migrate from using the original primitives (Estimator and Sampler) to using the updated V2 primitives (EstimatorV2 and SamplerV2)
+
+---
+
+<span id="v2-primitives"></span>
+# Migrate to using the V2 primitives
+
+This guide describes what changed in the V2 primitives and why, describes each new primitve in detail, and gives examples to help you migrate code from using the legacy primitives to using the V2 primitives.  The examples in the guide all use the Qiskit Runtime primitives, but, in general, the same changes apply to the other primitive implementations.  The functions unique to Qiskit Runtime such as error mitigation remain unique to Qiskit Runtime. 
+
+## Overview
+
+Version 2 is first the major interface change since the introduction of Qiskit Runtime primitives. Based on user feedback, this version introduces the following major new functions:
+
+* A new interface that lets you specify a single circuit and multiple observables (if using Estimator) and parameter value sets for that circuit. Previously, you had to specify the  same circuit multiple times to match the size of the data to be combined.
+* SamplerV2 no longer supports resilience levels.  Instead, it was simplified to focus on its core task of sampling the output register from running quantum circuits. It returns the samples, whose type is defined by the program, without weights. The result class, however, has methods to return weighted samples, such as counts and quasi-probabilities. 
+* EstimatorV2 does not support resilience level 3.  This is because resilience level 3 in V1 Estimator uses PEC, which is proven to give unbiased results at the cost of exponential processing time. To make this trade-off more obvious, resilience level 3 support was removed from EstimatorV2. You can, however, still use PEC as the error mitigation method by using the `pec_mitigation` option.
+* Both V2 primitives let you turn on or off individual error mitigation / suppression methods.
+* To reduce the total execution time, V2 primitives support only lightweight transpilation. You can use the [Qiskit transpiler](../run/advanced-runtime-options#runtime-compilation) or the [AI-driven transpilation service](../transpile/qiskit-transpiler-service) (premium users).
+
+## Major changes
+
+### Input
+
+Both `SamplerV2` and `EstimatorV2` take one or more *primitive unified blocs* (PUBs) as the input. Each PUB is a tuple that contains a single circuit and the data broadcasted to that circuit.
+
+* SamplerV2 PUB format: (`<circuit>`, `<parameter values>`, `<shots>`)
+* EstimatorV2 PUB format: (`<circuit>`, `<observables>`, `<parameter values>`, `<precision>`)
+    Numpy [broadcasting rules](https://numpy.org/doc/stable/user/basics.broadcasting.html) are used when combining observables and parameter values.
+
+### Output
+
+The output is now in the `PubResult` format.
+
+* EstimatorV2 continues to return expectation values.
+* SamplerV2 now returns per-shot measurements as a bitstring.
+
+### Error mitigation
+
+* SamplerV2 no longer supports `resilience_level`. You can, however, apply dynamical decoupling and gate / measurement twirling to your circuits using the `dynamical_decoupling` and `twirling`
+* EstimatorV2 now supports `resilience_level` 0-2, as described in the following table. You can also explicitly turn on / off individual error mitigation / suppression methods, including dynamical decoupling, gate and measurement twirling, measurement error mitigation, and ZNE.
+
+    | Level 1                   | Level 2                   |
+    |---------------------------|---------------------------|
+    | Measurement twirling      | Measurement twirling      |
+    | Readout error mititgation | Readout error mititgation |
+    |                           | Gate twirling             |
+    |                           | ZNE                       |
+
+### Transpilation
+
+V2 primitives support only lightweight transpilation, which has the following implications:
+
+* Both primitives support only `optimization_level` 0 and 1. 
+* Dynamical decoupling is no longer added by default for `optimization_level` > 0. You can, however, enable it by using the `dynamical_decoupling` option.
+* These transpilation options are no longer supported: `initial_layout`, `layout_method`, `routing_method`, and `approximation_degree`.
+
+## Migrate to EstimatorV2
+
+### Inputs and outputs
+
+
+### New options
+
+### Examples
+
+CAN WE REDO THE EXAMPLES FROM https://docs.quantum.ibm.com/run/primitives-examples ? 
+
+Estimator examples
+* Run a single experiment
+* Run multiple experiments in a single job
+* Run parameterized circuits
+* Use sessions and advanced options
+
+Sampler examples
+* Run a single experiment
+* Run multiple experiments in a single job
+* Run parameterized circuits
+* Use sessions and advanced options
