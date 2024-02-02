@@ -27,11 +27,21 @@ A class that represents an approximate circuit based on CNOT unit blocks.
 
 **ValueError** – if an unsupported parameter is passed.
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                                                          |                                                                                          |
-| ------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------- |
-| [`build`](qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit#build "qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit.build") | Constructs a Qiskit quantum circuit out of the parameters (angles) of this circuit. If a |
+### build
+
+<span id="qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit.build" />
+
+`CNOTUnitCircuit.build(thetas)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/synthesis/aqc/cnot_unit_circuit.py "view source code")
+
+#### Constructs a Qiskit quantum circuit out of the parameters (angles) of this circuit. If a
+
+parameter value is less in absolute value than the specified tolerance then the corresponding rotation gate will be skipped in the circuit.
+
+**Return type**
+
+`None`
 
 ## Attributes
 

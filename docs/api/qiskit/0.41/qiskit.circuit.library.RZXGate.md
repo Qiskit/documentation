@@ -102,12 +102,23 @@ $$
 
 Create new RZX gate.
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                              |                               |
-| -------------------------------------------------------------------------------------------- | ----------------------------- |
-| [`inverse`](qiskit.circuit.library.RZXGate#inverse "qiskit.circuit.library.RZXGate.inverse") | Return inverse RZX gate (i.e. |
-| [`power`](qiskit.circuit.library.RZXGate#power "qiskit.circuit.library.RZXGate.power")       | Raise gate to a power.        |
+### inverse
+
+<span id="qiskit.circuit.library.RZXGate.inverse" />
+
+`RZXGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/rzx.py "view source code")
+
+Return inverse RZX gate (i.e. with the negative rotation angle).
+
+### power
+
+<span id="qiskit.circuit.library.RZXGate.power" />
+
+`RZXGate.power(exponent)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/rzx.py "view source code")
+
+Raise gate to a power.
 
 ## Attributes
 

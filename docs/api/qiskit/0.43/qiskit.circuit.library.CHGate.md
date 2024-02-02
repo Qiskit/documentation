@@ -66,11 +66,17 @@ $$
 
 Create new CH gate.
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                            |                                   |
-| ------------------------------------------------------------------------------------------ | --------------------------------- |
-| [`inverse`](qiskit.circuit.library.CHGate#inverse "qiskit.circuit.library.CHGate.inverse") | Return inverted CH gate (itself). |
+<span id="qiskit-circuit-library-chgate-inverse" />
+
+### inverse
+
+<span id="qiskit.circuit.library.CHGate.inverse" />
+
+`CHGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/h.py "view source code")
+
+Return inverted CH gate (itself).
 
 ## Attributes
 

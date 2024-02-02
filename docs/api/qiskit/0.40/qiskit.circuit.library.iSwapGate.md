@@ -71,11 +71,15 @@ $$
 
 Create new iSwap gate.
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                            |                        |
-| ------------------------------------------------------------------------------------------ | ---------------------- |
-| [`power`](qiskit.circuit.library.iSwapGate#power "qiskit.circuit.library.iSwapGate.power") | Raise gate to a power. |
+### power
+
+<span id="qiskit.circuit.library.iSwapGate.power" />
+
+`iSwapGate.power(exponent)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/iswap.py "view source code")
+
+Raise gate to a power.
 
 ## Attributes
 

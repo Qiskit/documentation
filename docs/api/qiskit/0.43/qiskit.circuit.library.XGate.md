@@ -58,12 +58,43 @@ $$
 
 Create new X gate.
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                          |                                     |
-| ---------------------------------------------------------------------------------------- | ----------------------------------- |
-| [`control`](qiskit.circuit.library.XGate#control "qiskit.circuit.library.XGate.control") | Return a (multi-)controlled-X gate. |
-| [`inverse`](qiskit.circuit.library.XGate#inverse "qiskit.circuit.library.XGate.inverse") | Return inverted X gate (itself).    |
+<span id="qiskit-circuit-library-xgate-control" />
+
+### control
+
+<span id="qiskit.circuit.library.XGate.control" />
+
+`XGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/x.py "view source code")
+
+Return a (multi-)controlled-X gate.
+
+One control returns a CX gate. Two controls returns a CCX gate.
+
+**Parameters**
+
+*   **num\_ctrl\_qubits** (*int*) – number of control qubits.
+*   **label** (*str or None*) – An optional label for the gate \[Default: None]
+*   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
+
+**Returns**
+
+controlled version of this gate.
+
+**Return type**
+
+[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+
+<span id="qiskit-circuit-library-xgate-inverse" />
+
+### inverse
+
+<span id="qiskit.circuit.library.XGate.inverse" />
+
+`XGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/x.py "view source code")
+
+Return inverted X gate (itself).
 
 ## Attributes
 

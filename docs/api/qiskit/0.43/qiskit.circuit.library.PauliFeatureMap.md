@@ -112,12 +112,27 @@ Create a new Pauli expansion circuit.
 *   **parameter\_prefix** (*str*) – The prefix used if default parameters are generated.
 *   **insert\_barriers** (*bool*) – If True, barriers are inserted in between the evolution instructions and hadamard layers.
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                                                                      |                                                     |
-| ------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------- |
-| [`pauli_block`](qiskit.circuit.library.PauliFeatureMap#pauli_block "qiskit.circuit.library.PauliFeatureMap.pauli_block")             | Get the Pauli block for the feature map circuit.    |
-| [`pauli_evolution`](qiskit.circuit.library.PauliFeatureMap#pauli_evolution "qiskit.circuit.library.PauliFeatureMap.pauli_evolution") | Get the evolution block for the given pauli string. |
+<span id="qiskit-circuit-library-paulifeaturemap-pauli-block" />
+
+### pauli\_block
+
+<span id="qiskit.circuit.library.PauliFeatureMap.pauli_block" />
+
+`PauliFeatureMap.pauli_block(pauli_string)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/data_preparation/pauli_feature_map.py "view source code")
+
+Get the Pauli block for the feature map circuit.
+
+<span id="qiskit-circuit-library-paulifeaturemap-pauli-evolution" />
+
+### pauli\_evolution
+
+<span id="qiskit.circuit.library.PauliFeatureMap.pauli_evolution" />
+
+`PauliFeatureMap.pauli_evolution(pauli_string, time)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/data_preparation/pauli_feature_map.py "view source code")
+
+Get the evolution block for the given pauli string.
 
 ## Attributes
 

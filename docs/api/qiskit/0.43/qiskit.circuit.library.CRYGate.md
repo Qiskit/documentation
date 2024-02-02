@@ -64,11 +64,17 @@ $$
 
 Create new CRY gate.
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                              |                               |
-| -------------------------------------------------------------------------------------------- | ----------------------------- |
-| [`inverse`](qiskit.circuit.library.CRYGate#inverse "qiskit.circuit.library.CRYGate.inverse") | Return inverse CRY gate (i.e. |
+<span id="qiskit-circuit-library-crygate-inverse" />
+
+### inverse
+
+<span id="qiskit.circuit.library.CRYGate.inverse" />
+
+`CRYGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/ry.py "view source code")
+
+Return inverse CRY gate (i.e. with the negative rotation angle).
 
 ## Attributes
 

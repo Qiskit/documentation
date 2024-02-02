@@ -83,11 +83,17 @@ $$
 
 Create new CSWAP gate.
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                                  |                                     |
-| ------------------------------------------------------------------------------------------------ | ----------------------------------- |
-| [`inverse`](qiskit.circuit.library.CSwapGate#inverse "qiskit.circuit.library.CSwapGate.inverse") | Return inverse CSwap gate (itself). |
+<span id="qiskit-circuit-library-cswapgate-inverse" />
+
+### inverse
+
+<span id="qiskit.circuit.library.CSwapGate.inverse" />
+
+`CSwapGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/swap.py "view source code")
+
+Return inverse CSwap gate (itself).
 
 ## Attributes
 

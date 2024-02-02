@@ -128,11 +128,19 @@ Construct a new two-local circuit.
 *   **insert\_barriers** (`bool`) – If `True`, barriers are inserted in between each layer. If `False`, no barriers are inserted. Defaults to `False`.
 *   **initial\_state** (`Optional`\[`Any`]) – A [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object to prepend to the circuit.
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                                                              |                                                                                       |
-| ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| [`get_entangler_map`](qiskit.circuit.library.TwoLocal#get_entangler_map "qiskit.circuit.library.TwoLocal.get_entangler_map") | Overloading to handle the special case of 1 qubit where the entanglement are ignored. |
+### get\_entangler\_map
+
+<span id="qiskit.circuit.library.TwoLocal.get_entangler_map" />
+
+`TwoLocal.get_entangler_map(rep_num, block_num, num_block_qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/n_local/two_local.py "view source code")
+
+Overloading to handle the special case of 1 qubit where the entanglement are ignored.
+
+**Return type**
+
+`List`\[`List`\[`int`]]
 
 ## Attributes
 

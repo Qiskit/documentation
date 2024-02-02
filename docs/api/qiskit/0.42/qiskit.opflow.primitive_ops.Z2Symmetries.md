@@ -28,17 +28,139 @@ Z2 Symmetries
 
 [**OpflowError**](qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – Invalid paulis
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                                                                                      |                                                                                            |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| [`consistent_tapering`](qiskit.opflow.primitive_ops.Z2Symmetries#consistent_tapering "qiskit.opflow.primitive_ops.Z2Symmetries.consistent_tapering") | Tapering the operator with the same manner of how this tapered operator is created.        |
-| [`convert_clifford`](qiskit.opflow.primitive_ops.Z2Symmetries#convert_clifford "qiskit.opflow.primitive_ops.Z2Symmetries.convert_clifford")          | This method operates the first part of the tapering.                                       |
-| [`copy`](qiskit.opflow.primitive_ops.Z2Symmetries#copy "qiskit.opflow.primitive_ops.Z2Symmetries.copy")                                              | Get a copy of self.                                                                        |
-| [`find_Z2_symmetries`](qiskit.opflow.primitive_ops.Z2Symmetries#find_z2_symmetries "qiskit.opflow.primitive_ops.Z2Symmetries.find_Z2_symmetries")    | Finds Z2 Pauli-type symmetries of an Operator.                                             |
-| [`is_empty`](qiskit.opflow.primitive_ops.Z2Symmetries#is_empty "qiskit.opflow.primitive_ops.Z2Symmetries.is_empty")                                  | Check the z2\_symmetries is empty or not.                                                  |
-| [`taper`](qiskit.opflow.primitive_ops.Z2Symmetries#taper "qiskit.opflow.primitive_ops.Z2Symmetries.taper")                                           | Taper an operator based on the z2\_symmetries info and sector defined by tapering\_values. |
-| [`taper_clifford`](qiskit.opflow.primitive_ops.Z2Symmetries#taper_clifford "qiskit.opflow.primitive_ops.Z2Symmetries.taper_clifford")                | This method operates the second part of the tapering.                                      |
+### consistent\_tapering
+
+<span id="qiskit.opflow.primitive_ops.Z2Symmetries.consistent_tapering" />
+
+`Z2Symmetries.consistent_tapering(operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/primitive_ops/tapered_pauli_sum_op.py "view source code")
+
+Tapering the operator with the same manner of how this tapered operator is created. i.e., using the same Cliffords and tapering values.
+
+**Parameters**
+
+**operator** ([`PauliSumOp`](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.pauli_sum_op.PauliSumOp")) – the to-be-tapered operator
+
+**Return type**
+
+[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+
+**Returns**
+
+The tapered operator
+
+**Raises**
+
+[**OpflowError**](qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – The given operator does not commute with the symmetry
+
+### convert\_clifford
+
+<span id="qiskit.opflow.primitive_ops.Z2Symmetries.convert_clifford" />
+
+`Z2Symmetries.convert_clifford(operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/primitive_ops/tapered_pauli_sum_op.py "view source code")
+
+This method operates the first part of the tapering. It converts the operator by composing it with the clifford unitaries defined in the current symmetry.
+
+**Parameters**
+
+**operator** ([`PauliSumOp`](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.pauli_sum_op.PauliSumOp")) – to-be-tapered operator
+
+**Return type**
+
+[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+
+**Returns**
+
+[`PauliSumOp`](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp") corresponding to the converted operator.
+
+**Raises**
+
+[**OpflowError**](qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – Z2 symmetries, single qubit pauli and single qubit list cannot be empty
+
+### copy
+
+<span id="qiskit.opflow.primitive_ops.Z2Symmetries.copy" />
+
+`Z2Symmetries.copy()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/primitive_ops/tapered_pauli_sum_op.py "view source code")
+
+Get a copy of self. :rtype: [`Z2Symmetries`](qiskit.opflow.primitive_ops.Z2Symmetries "qiskit.opflow.primitive_ops.tapered_pauli_sum_op.Z2Symmetries") :returns: copy
+
+### find\_Z2\_symmetries
+
+<span id="qiskit.opflow.primitive_ops.Z2Symmetries.find_Z2_symmetries" />
+
+`classmethod Z2Symmetries.find_Z2_symmetries(operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/primitive_ops/tapered_pauli_sum_op.py "view source code")
+
+Finds Z2 Pauli-type symmetries of an Operator.
+
+**Return type**
+
+[`Z2Symmetries`](qiskit.opflow.primitive_ops.Z2Symmetries "qiskit.opflow.primitive_ops.tapered_pauli_sum_op.Z2Symmetries")
+
+**Returns**
+
+a z2\_symmetries object contains symmetries, single-qubit X, single-qubit list.
+
+### is\_empty
+
+<span id="qiskit.opflow.primitive_ops.Z2Symmetries.is_empty" />
+
+`Z2Symmetries.is_empty()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/primitive_ops/tapered_pauli_sum_op.py "view source code")
+
+Check the z2\_symmetries is empty or not. :rtype: `bool` :returns: Empty or not
+
+### taper
+
+<span id="qiskit.opflow.primitive_ops.Z2Symmetries.taper" />
+
+`Z2Symmetries.taper(operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/primitive_ops/tapered_pauli_sum_op.py "view source code")
+
+Taper an operator based on the z2\_symmetries info and sector defined by tapering\_values. The tapering\_values will be stored into the resulted operator for a record.
+
+The tapering is a two-step algorithm which first converts the operator into a [`PauliSumOp`](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp") with same eigenvalues but where some qubits are only acted upon with the Pauli operators I or X. The number M of these redundant qubits is equal to the number M of identified symmetries.
+
+The second step of the reduction consists in replacing these qubits with the possible eigenvalues of the corresponding Pauli X, giving 2^M new operators with M less qubits. If an eigenvalue sector was previously identified for the solution, then this reduces to 1 new operator with M less qubits.
+
+**Parameters**
+
+**operator** ([`PauliSumOp`](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.pauli_sum_op.PauliSumOp")) – the to-be-tapered operator
+
+**Returns**
+
+\[[`PauliSumOp`](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")]; otherwise, [`PauliSumOp`](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")
+
+**Return type**
+
+If tapering\_values is None
+
+**Raises**
+
+[**OpflowError**](qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – Z2 symmetries, single qubit pauli and single qubit list cannot be empty
+
+### taper\_clifford
+
+<span id="qiskit.opflow.primitive_ops.Z2Symmetries.taper_clifford" />
+
+`Z2Symmetries.taper_clifford(operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/primitive_ops/tapered_pauli_sum_op.py "view source code")
+
+This method operates the second part of the tapering. This function assumes that the input operators have already been transformed using [`convert_clifford()`](qiskit.opflow.primitive_ops.Z2Symmetries#convert_clifford "qiskit.opflow.primitive_ops.Z2Symmetries.convert_clifford"). The redundant qubits due to the symmetries are dropped and replaced by their two possible eigenvalues. The tapering\_values will be stored into the resulted operator for a record.
+
+**Parameters**
+
+**operator** ([`PauliSumOp`](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.pauli_sum_op.PauliSumOp")) – Partially tapered operator resulting from a call to [`convert_clifford()`](qiskit.opflow.primitive_ops.Z2Symmetries#convert_clifford "qiskit.opflow.primitive_ops.Z2Symmetries.convert_clifford")
+
+**Returns**
+
+\[[`PauliSumOp`](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")]; otherwise, [`PauliSumOp`](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")
+
+**Return type**
+
+If tapering\_values is None
+
+**Raises**
+
+[**OpflowError**](qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – Z2 symmetries, single qubit pauli and single qubit list cannot be empty
 
 ## Attributes
 

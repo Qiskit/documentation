@@ -72,11 +72,15 @@ Create a new multi-control multi-target gate.
 *   **AttributeError** – If the gate cannot be casted to a controlled gate.
 *   **AttributeError** – If the number of controls or targets is 0.
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                                    |                                                   |
-| -------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
-| [`inverse`](qiskit.circuit.library.MCMTVChain#inverse "qiskit.circuit.library.MCMTVChain.inverse") | Return the inverse MCMT circuit, which is itself. |
+### inverse
+
+<span id="qiskit.circuit.library.MCMTVChain.inverse" />
+
+`MCMTVChain.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/generalized_gates/mcmt.py "view source code")
+
+Return the inverse MCMT circuit, which is itself.
 
 ## Attributes
 

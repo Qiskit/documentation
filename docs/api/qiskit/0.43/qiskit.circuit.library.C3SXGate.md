@@ -29,11 +29,19 @@ Create a new 3-qubit controlled sqrt-X gate.
 *   **label** (*str or None*) – An optional label for the gate \[Default: None]
 *   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                       |                                                       |
-| ------------------------------------------------------------------------------------- | ----------------------------------------------------- |
-| [`qasm`](qiskit.circuit.library.C3SXGate#qasm "qiskit.circuit.library.C3SXGate.qasm") | Return a default OpenQASM string for the instruction. |
+<span id="qiskit-circuit-library-c3sxgate-qasm" />
+
+### qasm
+
+<span id="qiskit.circuit.library.C3SXGate.qasm" />
+
+`C3SXGate.qasm()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/x.py "view source code")
+
+Return a default OpenQASM string for the instruction.
+
+Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
 
 ## Attributes
 

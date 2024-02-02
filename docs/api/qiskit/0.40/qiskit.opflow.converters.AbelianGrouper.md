@@ -22,10 +22,49 @@ Meaning, it will traverse the Operator, and when it finds a SummedOp, it will ev
 
 **traverse** (`bool`) – Whether to convert only the Operator passed to `convert`, or traverse down that Operator.
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                                                               |                                                                                                                                                                                                         |
-| ----------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`convert`](qiskit.opflow.converters.AbelianGrouper#convert "qiskit.opflow.converters.AbelianGrouper.convert")                | Check if operator is a SummedOp, in which case covert it into a sum of mutually commuting sums, or if the Operator contains sub-Operators and `traverse` is True, attempt to convert any sub-Operators. |
-| [`group_subops`](qiskit.opflow.converters.AbelianGrouper#group_subops "qiskit.opflow.converters.AbelianGrouper.group_subops") | Given a ListOp, attempt to group into Abelian ListOps of the same type.                                                                                                                                 |
+### convert
+
+<span id="qiskit.opflow.converters.AbelianGrouper.convert" />
+
+`AbelianGrouper.convert(operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/converters/abelian_grouper.py "view source code")
+
+Check if operator is a SummedOp, in which case covert it into a sum of mutually commuting sums, or if the Operator contains sub-Operators and `traverse` is True, attempt to convert any sub-Operators.
+
+**Parameters**
+
+**operator** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The Operator to attempt to convert.
+
+**Return type**
+
+[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+
+**Returns**
+
+The converted Operator.
+
+### group\_subops
+
+<span id="qiskit.opflow.converters.AbelianGrouper.group_subops" />
+
+`classmethod AbelianGrouper.group_subops(list_op)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/converters/abelian_grouper.py "view source code")
+
+Given a ListOp, attempt to group into Abelian ListOps of the same type.
+
+**Parameters**
+
+**list\_op** (`Union`\[[`ListOp`](qiskit.opflow.list_ops.ListOp "qiskit.opflow.list_ops.list_op.ListOp"), [`PauliSumOp`](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.pauli_sum_op.PauliSumOp")]) – The Operator to group into Abelian groups
+
+**Return type**
+
+[`ListOp`](qiskit.opflow.list_ops.ListOp "qiskit.opflow.list_ops.list_op.ListOp")
+
+**Returns**
+
+The grouped Operator.
+
+**Raises**
+
+[**OpflowError**](qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – If any of list\_op’s sub-ops is not `PauliOp`.
 

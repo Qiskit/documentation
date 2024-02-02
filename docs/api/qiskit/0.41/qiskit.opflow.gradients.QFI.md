@@ -31,11 +31,30 @@ $$
 
 **ValueError** – if `qfi_method` is neither a `CircuitQFI` object nor one of the predefined strings.
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                        |                                                                                                                                       |
-| -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| [`convert`](qiskit.opflow.gradients.QFI#convert "qiskit.opflow.gradients.QFI.convert") | **type operator**[`CircuitStateFn`](qiskit.opflow.state_fns.CircuitStateFn "qiskit.opflow.state_fns.circuit_state_fn.CircuitStateFn") |
+### convert
+
+<span id="qiskit.opflow.gradients.QFI.convert" />
+
+`QFI.convert(operator, params=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/gradients/qfi.py "view source code")
+
+**Parameters**
+
+*   **operator** ([`CircuitStateFn`](qiskit.opflow.state_fns.CircuitStateFn "qiskit.opflow.state_fns.circuit_state_fn.CircuitStateFn")) – The operator corresponding to the quantum state |ψ(ω)〉for which we compute the QFI
+*   **params** (`Union`\[[`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.parametervector.ParameterVector"), [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `List`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")], `None`]) – The parameters we are computing the QFI wrt: ω If not explicitly passed, they are inferred from the operator and sorted by name.
+
+**Return type**
+
+[`ListOp`](qiskit.opflow.list_ops.ListOp "qiskit.opflow.list_ops.list_op.ListOp")
+
+**Returns**
+
+ListOp\[ListOp] where the operator at position k,l corresponds to QFI\_kl
+
+**Raises**
+
+**ValueError** – If operator is not parameterized.
 
 ## Attributes
 

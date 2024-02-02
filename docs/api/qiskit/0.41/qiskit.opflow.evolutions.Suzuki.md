@@ -23,11 +23,31 @@ Detailed in [https://arxiv.org/pdf/quant-ph/0508139.pdf](https://arxiv.org/pdf/q
 *   **reps** (`int`) – The number of times to repeat the expansion circuit.
 *   **order** (`int`) – The order of the expansion to perform.
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                                |                                                                                                                 |
-| ---------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| [`convert`](qiskit.opflow.evolutions.Suzuki#convert "qiskit.opflow.evolutions.Suzuki.convert") | Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`. |
+### convert
+
+<span id="qiskit.opflow.evolutions.Suzuki.convert" />
+
+`Suzuki.convert(operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/evolutions/trotterizations/suzuki.py "view source code")
+
+Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`.
+
+**Parameters**
+
+**operator** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The `SummedOp` to evolve.
+
+**Return type**
+
+[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+
+**Returns**
+
+The Operator approximating op\_sum’s evolution.
+
+**Raises**
+
+**TypeError** – A non-SummedOps Operator is passed into `convert`.
 
 ## Attributes
 

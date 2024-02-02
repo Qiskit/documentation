@@ -47,12 +47,23 @@ Create new rv single-qubit gate.
 *   **v\_z** (*float*) – z-component
 *   **basis** (*str, optional*) – basis (see [`OneQubitEulerDecomposer`](qiskit.quantum_info.OneQubitEulerDecomposer "qiskit.quantum_info.synthesis.one_qubit_decompose.OneQubitEulerDecomposer"))
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                                  |                                         |
-| ------------------------------------------------------------------------------------------------ | --------------------------------------- |
-| [`inverse`](qiskit.circuit.library.RVGate#inverse "qiskit.circuit.library.RVGate.inverse")       | Invert this gate.                       |
-| [`to_matrix`](qiskit.circuit.library.RVGate#to_matrix "qiskit.circuit.library.RVGate.to_matrix") | Return a numpy.array for the R(v) gate. |
+### inverse
+
+<span id="qiskit.circuit.library.RVGate.inverse" />
+
+`RVGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/generalized_gates/rv.py "view source code")
+
+Invert this gate.
+
+### to\_matrix
+
+<span id="qiskit.circuit.library.RVGate.to_matrix" />
+
+`RVGate.to_matrix()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/generalized_gates/rv.py "view source code")
+
+Return a numpy.array for the R(v) gate.
 
 ## Attributes
 

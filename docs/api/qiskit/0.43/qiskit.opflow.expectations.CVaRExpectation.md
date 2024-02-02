@@ -43,10 +43,51 @@ Let $\alpha$ be a real number in $[0,1]$ which specifies the fraction of best ob
 
 **NotImplementedError** – If the `expectation` is an AerPauliExpecation.
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                                                                                 |                                                                              |
-| ----------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| [`compute_variance`](qiskit.opflow.expectations.CVaRExpectation#compute_variance "qiskit.opflow.expectations.CVaRExpectation.compute_variance") | Returns the variance of the CVaR calculation                                 |
-| [`convert`](qiskit.opflow.expectations.CVaRExpectation#convert "qiskit.opflow.expectations.CVaRExpectation.convert")                            | Return an expression that computes the CVaR expectation upon calling `eval`. |
+<span id="qiskit-opflow-expectations-cvarexpectation-compute-variance" />
+
+### compute\_variance
+
+<span id="qiskit.opflow.expectations.CVaRExpectation.compute_variance" />
+
+`CVaRExpectation.compute_variance(exp_op)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/expectations/cvar_expectation.py "view source code")
+
+Returns the variance of the CVaR calculation
+
+**Parameters**
+
+**exp\_op** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The operator whose evaluation yields an expectation of some StateFn against a diagonal observable.
+
+**Returns**
+
+**The variance of the CVaR estimate corresponding to the converted**
+
+exp\_op.
+
+**Raises**
+
+**ValueError** – If the exp\_op does not correspond to an expectation value.
+
+**Return type**
+
+list | float
+
+<span id="qiskit-opflow-expectations-cvarexpectation-convert" />
+
+### convert
+
+<span id="qiskit.opflow.expectations.CVaRExpectation.convert" />
+
+`CVaRExpectation.convert(operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/expectations/cvar_expectation.py "view source code")
+
+Return an expression that computes the CVaR expectation upon calling `eval`. :param operator: The operator to convert.
+
+**Returns**
+
+The converted operator.
+
+**Return type**
+
+[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
 

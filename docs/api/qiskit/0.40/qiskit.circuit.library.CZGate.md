@@ -45,11 +45,15 @@ In the computational basis, this gate flips the phase of the target qubit if the
 
 Create new CZ gate.
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                            |                                   |
-| ------------------------------------------------------------------------------------------ | --------------------------------- |
-| [`inverse`](qiskit.circuit.library.CZGate#inverse "qiskit.circuit.library.CZGate.inverse") | Return inverted CZ gate (itself). |
+### inverse
+
+<span id="qiskit.circuit.library.CZGate.inverse" />
+
+`CZGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/z.py "view source code")
+
+Return inverted CZ gate (itself).
 
 ## Attributes
 

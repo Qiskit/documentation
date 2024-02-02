@@ -57,14 +57,59 @@ Create a new linear function.
 
 **CircuitError** – if the input is invalid: either a matrix is non \{square, invertible}, or a quantum circuit contains non-linear gates.
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                                                                                |                                                                                                                                          |
-| ---------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| [`is_permutation`](qiskit.circuit.library.LinearFunction#is_permutation "qiskit.circuit.library.LinearFunction.is_permutation")                | Returns whether this linear function is a permutation, that is whether every row and every column of the n x n matrix has exactly one 1. |
-| [`permutation_pattern`](qiskit.circuit.library.LinearFunction#permutation_pattern "qiskit.circuit.library.LinearFunction.permutation_pattern") | This method first checks if a linear function is a permutation and raises a qiskit.circuit.exceptions.CircuitError if not.               |
-| [`synthesize`](qiskit.circuit.library.LinearFunction#synthesize "qiskit.circuit.library.LinearFunction.synthesize")                            | Synthesizes the linear function into a quantum circuit.                                                                                  |
-| [`validate_parameter`](qiskit.circuit.library.LinearFunction#validate_parameter "qiskit.circuit.library.LinearFunction.validate_parameter")    | Parameter validation                                                                                                                     |
+<span id="qiskit-circuit-library-linearfunction-is-permutation" />
+
+### is\_permutation
+
+<span id="qiskit.circuit.library.LinearFunction.is_permutation" />
+
+`LinearFunction.is_permutation()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/generalized_gates/linear_function.py "view source code")
+
+Returns whether this linear function is a permutation, that is whether every row and every column of the n x n matrix has exactly one 1.
+
+**Return type**
+
+bool
+
+<span id="qiskit-circuit-library-linearfunction-permutation-pattern" />
+
+### permutation\_pattern
+
+<span id="qiskit.circuit.library.LinearFunction.permutation_pattern" />
+
+`LinearFunction.permutation_pattern()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/generalized_gates/linear_function.py "view source code")
+
+This method first checks if a linear function is a permutation and raises a qiskit.circuit.exceptions.CircuitError if not. In the case that this linear function is a permutation, returns the permutation pattern.
+
+<span id="qiskit-circuit-library-linearfunction-synthesize" />
+
+### synthesize
+
+<span id="qiskit.circuit.library.LinearFunction.synthesize" />
+
+`LinearFunction.synthesize()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/generalized_gates/linear_function.py "view source code")
+
+Synthesizes the linear function into a quantum circuit.
+
+**Returns**
+
+A circuit implementing the evolution.
+
+**Return type**
+
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+
+<span id="qiskit-circuit-library-linearfunction-validate-parameter" />
+
+### validate\_parameter
+
+<span id="qiskit.circuit.library.LinearFunction.validate_parameter" />
+
+`LinearFunction.validate_parameter(parameter)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/generalized_gates/linear_function.py "view source code")
+
+Parameter validation
 
 ## Attributes
 

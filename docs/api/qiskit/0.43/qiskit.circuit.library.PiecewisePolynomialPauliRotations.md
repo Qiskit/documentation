@@ -82,11 +82,29 @@ Enhancing the Quantum Linear Systems Algorithm using Richardson Extrapolation. [
 *   **basis** (*str*) – The type of Pauli rotation (`'X'`, `'Y'`, `'Z'`).
 *   **name** (*str*) – The name of the circuit.
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                                                                                     |                                                         |
-| --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
-| [`evaluate`](qiskit.circuit.library.PiecewisePolynomialPauliRotations#evaluate "qiskit.circuit.library.PiecewisePolynomialPauliRotations.evaluate") | Classically evaluate the piecewise polynomial rotation. |
+<span id="qiskit-circuit-library-piecewisepolynomialpaulirotations-evaluate" />
+
+### evaluate
+
+<span id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.evaluate" />
+
+`PiecewisePolynomialPauliRotations.evaluate(x)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/arithmetic/piecewise_polynomial_pauli_rotations.py "view source code")
+
+Classically evaluate the piecewise polynomial rotation.
+
+**Parameters**
+
+**x** (*float*) – Value to be evaluated at.
+
+**Returns**
+
+Value of piecewise polynomial function at x.
+
+**Return type**
+
+float
 
 ## Attributes
 

@@ -41,13 +41,74 @@ When a Statevector argument is passed the state is prepared using a recursive in
 
 **References:** \[1] Shende, Bullock, Markov. Synthesis of Quantum Logic Circuits (2004) \[[https://arxiv.org/abs/quant-ph/0406176v5](https://arxiv.org/abs/quant-ph/0406176v5)]
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                                                                                    |                                                                             |
-| -------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| [`broadcast_arguments`](qiskit.circuit.library.StatePreparation#broadcast_arguments "qiskit.circuit.library.StatePreparation.broadcast_arguments") | Validation and handling of the arguments and its relationship.              |
-| [`inverse`](qiskit.circuit.library.StatePreparation#inverse "qiskit.circuit.library.StatePreparation.inverse")                                     | Return inverted StatePreparation                                            |
-| [`validate_parameter`](qiskit.circuit.library.StatePreparation#validate_parameter "qiskit.circuit.library.StatePreparation.validate_parameter")    | StatePreparation instruction parameter can be str, int, float, and complex. |
+### broadcast\_arguments
+
+<span id="qiskit.circuit.library.StatePreparation.broadcast_arguments" />
+
+`StatePreparation.broadcast_arguments(qargs, cargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/data_preparation/state_preparation.py "view source code")
+
+Validation and handling of the arguments and its relationship.
+
+For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
+
+```python
+in: [[q[0],q[1]], q[2]],[]
+outs: [q[0], q[2]], []
+      [q[1], q[2]], []
+```
+
+The general broadcasting rules are:
+
+> *   If len(qargs) == 1:
+>
+>     ```python
+>     [q[0], q[1]] -> [q[0]],[q[1]]
+>     ```
+>
+> *   If len(qargs) == 2:
+>
+>     ```python
+>     [[q[0], q[1]], [r[0], r[1]]] -> [q[0], r[0]], [q[1], r[1]]
+>     [[q[0]], [r[0], r[1]]]       -> [q[0], r[0]], [q[0], r[1]]
+>     [[q[0], q[1]], [r[0]]]       -> [q[0], r[0]], [q[1], r[0]]
+>     ```
+>
+> *   If len(qargs) >= 3:
+>
+>     ```python
+>     [q[0], q[1]], [r[0], r[1]],  ...] -> [q[0], r[0], ...], [q[1], r[1], ...]
+>     ```
+
+**Parameters**
+
+*   **qargs** – List of quantum bit arguments.
+*   **cargs** – List of classical bit arguments.
+
+**Returns**
+
+A tuple with single arguments.
+
+**Raises**
+
+**CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+
+### inverse
+
+<span id="qiskit.circuit.library.StatePreparation.inverse" />
+
+`StatePreparation.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/data_preparation/state_preparation.py "view source code")
+
+Return inverted StatePreparation
+
+### validate\_parameter
+
+<span id="qiskit.circuit.library.StatePreparation.validate_parameter" />
+
+`StatePreparation.validate_parameter(parameter)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/data_preparation/state_preparation.py "view source code")
+
+StatePreparation instruction parameter can be str, int, float, and complex.
 
 ## Attributes
 

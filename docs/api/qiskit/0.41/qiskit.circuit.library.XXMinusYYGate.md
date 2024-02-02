@@ -72,12 +72,23 @@ Create new XX-YY gate.
 *   **beta** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – The phase angle.
 *   **label** (`Optional`\[`str`]) – The label of the gate.
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                                          |                        |
-| -------------------------------------------------------------------------------------------------------- | ---------------------- |
-| [`inverse`](qiskit.circuit.library.XXMinusYYGate#inverse "qiskit.circuit.library.XXMinusYYGate.inverse") | Inverse gate.          |
-| [`power`](qiskit.circuit.library.XXMinusYYGate#power "qiskit.circuit.library.XXMinusYYGate.power")       | Raise gate to a power. |
+### inverse
+
+<span id="qiskit.circuit.library.XXMinusYYGate.inverse" />
+
+`XXMinusYYGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/xx_minus_yy.py "view source code")
+
+Inverse gate.
+
+### power
+
+<span id="qiskit.circuit.library.XXMinusYYGate.power" />
+
+`XXMinusYYGate.power(exponent)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/xx_minus_yy.py "view source code")
+
+Raise gate to a power.
 
 ## Attributes
 

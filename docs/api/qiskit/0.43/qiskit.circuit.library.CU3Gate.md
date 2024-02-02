@@ -66,11 +66,19 @@ $$
 
 Create new CU3 gate.
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                              |                           |
-| -------------------------------------------------------------------------------------------- | ------------------------- |
-| [`inverse`](qiskit.circuit.library.CU3Gate#inverse "qiskit.circuit.library.CU3Gate.inverse") | Return inverted CU3 gate. |
+<span id="qiskit-circuit-library-cu3gate-inverse" />
+
+### inverse
+
+<span id="qiskit.circuit.library.CU3Gate.inverse" />
+
+`CU3Gate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/u3.py "view source code")
+
+Return inverted CU3 gate.
+
+$CU3(\theta,\phi,\lambda)^{\dagger} =CU3(-\theta,-\phi,-\lambda)$)
 
 ## Attributes
 

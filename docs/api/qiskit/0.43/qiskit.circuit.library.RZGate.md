@@ -50,13 +50,53 @@ $$
 
 Create new RZ gate.
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                            |                                      |
-| ------------------------------------------------------------------------------------------ | ------------------------------------ |
-| [`control`](qiskit.circuit.library.RZGate#control "qiskit.circuit.library.RZGate.control") | Return a (multi-)controlled-RZ gate. |
-| [`inverse`](qiskit.circuit.library.RZGate#inverse "qiskit.circuit.library.RZGate.inverse") | Return inverted RZ gate              |
-| [`power`](qiskit.circuit.library.RZGate#power "qiskit.circuit.library.RZGate.power")       | Raise gate to a power.               |
+<span id="qiskit-circuit-library-rzgate-control" />
+
+### control
+
+<span id="qiskit.circuit.library.RZGate.control" />
+
+`RZGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/rz.py "view source code")
+
+Return a (multi-)controlled-RZ gate.
+
+**Parameters**
+
+*   **num\_ctrl\_qubits** (*int*) – number of control qubits.
+*   **label** (*str or None*) – An optional label for the gate \[Default: None]
+*   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
+
+**Returns**
+
+controlled version of this gate.
+
+**Return type**
+
+[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+
+<span id="qiskit-circuit-library-rzgate-inverse" />
+
+### inverse
+
+<span id="qiskit.circuit.library.RZGate.inverse" />
+
+`RZGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/rz.py "view source code")
+
+Return inverted RZ gate
+
+$RZ(\lambda)^{\dagger} = RZ(-\lambda)$
+
+<span id="qiskit-circuit-library-rzgate-power" />
+
+### power
+
+<span id="qiskit.circuit.library.RZGate.power" />
+
+`RZGate.power(exponent)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/rz.py "view source code")
+
+Raise gate to a power.
 
 ## Attributes
 

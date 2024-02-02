@@ -68,11 +68,19 @@ q_1: ┤1                         ├
 *   **label** (`Optional`\[`str`]) – A label for the gate to display in visualizations. Per default, the label is set to `exp(-it <operators>)` where `<operators>` is the sum of the Paulis. Note that the label does not include any coefficients of the Paulis. See the class docstring for an example.
 *   **synthesis** (`Optional`\[[`EvolutionSynthesis`](qiskit.synthesis.EvolutionSynthesis "qiskit.synthesis.evolution.evolution_synthesis.EvolutionSynthesis")]) – A synthesis strategy. If None, the default synthesis is the Lie-Trotter product formula with a single repetition.
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                                                                                     |                                                              |
-| --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| [`validate_parameter`](qiskit.circuit.library.PauliEvolutionGate#validate_parameter "qiskit.circuit.library.PauliEvolutionGate.validate_parameter") | Gate parameters should be int, float, or ParameterExpression |
+### validate\_parameter
+
+<span id="qiskit.circuit.library.PauliEvolutionGate.validate_parameter" />
+
+`PauliEvolutionGate.validate_parameter(parameter)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/pauli_evolution.py "view source code")
+
+Gate parameters should be int, float, or ParameterExpression
+
+**Return type**
+
+`Union`\[`float`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]
 
 ## Attributes
 

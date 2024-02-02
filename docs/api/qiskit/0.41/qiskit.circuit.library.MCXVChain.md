@@ -18,12 +18,23 @@ Implement the multi-controlled X gate using a V-chain of CX gates.
 
 Create new MCX gate.
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                                                                               |                                            |
-| --------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
-| [`get_num_ancilla_qubits`](qiskit.circuit.library.MCXVChain#get_num_ancilla_qubits "qiskit.circuit.library.MCXVChain.get_num_ancilla_qubits") | Get the number of required ancilla qubits. |
-| [`inverse`](qiskit.circuit.library.MCXVChain#inverse "qiskit.circuit.library.MCXVChain.inverse")                                              | Invert this gate.                          |
+### get\_num\_ancilla\_qubits
+
+<span id="qiskit.circuit.library.MCXVChain.get_num_ancilla_qubits" />
+
+`static MCXVChain.get_num_ancilla_qubits(num_ctrl_qubits, mode='v-chain')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/x.py "view source code")
+
+Get the number of required ancilla qubits.
+
+### inverse
+
+<span id="qiskit.circuit.library.MCXVChain.inverse" />
+
+`MCXVChain.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/x.py "view source code")
+
+Invert this gate. The MCX is its own inverse.
 
 ## Attributes
 

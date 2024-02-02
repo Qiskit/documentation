@@ -68,12 +68,43 @@ $$
 
 Create new U3 gate.
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                            |                                      |
-| ------------------------------------------------------------------------------------------ | ------------------------------------ |
-| [`control`](qiskit.circuit.library.U3Gate#control "qiskit.circuit.library.U3Gate.control") | Return a (multi-)controlled-U3 gate. |
-| [`inverse`](qiskit.circuit.library.U3Gate#inverse "qiskit.circuit.library.U3Gate.inverse") | Return inverted U3 gate.             |
+<span id="qiskit-circuit-library-u3gate-control" />
+
+### control
+
+<span id="qiskit.circuit.library.U3Gate.control" />
+
+`U3Gate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/u3.py "view source code")
+
+Return a (multi-)controlled-U3 gate.
+
+**Parameters**
+
+*   **num\_ctrl\_qubits** (*int*) – number of control qubits.
+*   **label** (*str or None*) – An optional label for the gate \[Default: None]
+*   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
+
+**Returns**
+
+controlled version of this gate.
+
+**Return type**
+
+[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+
+<span id="qiskit-circuit-library-u3gate-inverse" />
+
+### inverse
+
+<span id="qiskit.circuit.library.U3Gate.inverse" />
+
+`U3Gate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/u3.py "view source code")
+
+Return inverted U3 gate.
+
+$U3(\theta,\phi,\lambda)^{\dagger} =U3(-\theta,-\lambda,-\phi)$)
 
 ## Attributes
 

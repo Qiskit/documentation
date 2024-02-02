@@ -55,11 +55,29 @@ The implementation of this circuit is discussed in \[1], Fig. 6.
 *   **ValueError** – If `linear` and `quadratic` have mismatching sizes.
 *   **ValueError** – If `num_result_qubits` is unspecified but cannot be determined because some values of the quadratic form are parameterized.
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                                                                                       |                                           |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
-| [`required_result_qubits`](qiskit.circuit.library.QuadraticForm#required_result_qubits "qiskit.circuit.library.QuadraticForm.required_result_qubits") | Get the number of required result qubits. |
+### required\_result\_qubits
+
+<span id="qiskit.circuit.library.QuadraticForm.required_result_qubits" />
+
+`static QuadraticForm.required_result_qubits(quadratic, linear, offset)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/arithmetic/quadratic_form.py "view source code")
+
+Get the number of required result qubits.
+
+**Parameters**
+
+*   **quadratic** (`Union`\[`ndarray`, `List`\[`List`\[`float`]]]) – A matrix containing the quadratic coefficients.
+*   **linear** (`Union`\[`ndarray`, `List`\[`float`]]) – An array containing the linear coefficients.
+*   **offset** (`float`) – A constant offset.
+
+**Return type**
+
+`int`
+
+**Returns**
+
+The number of qubits needed to represent the value of the quadratic form in twos complement.
 
 ## Attributes
 

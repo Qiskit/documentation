@@ -66,11 +66,15 @@ $$
 
 Create new ECR gate.
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                                    |                                        |
-| -------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| [`to_matrix`](qiskit.circuit.library.ECRGate#to_matrix "qiskit.circuit.library.ECRGate.to_matrix") | Return a numpy.array for the ECR gate. |
+### to\_matrix
+
+<span id="qiskit.circuit.library.ECRGate.to_matrix" />
+
+`ECRGate.to_matrix()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/ecr.py "view source code")
+
+Return a numpy.array for the ECR gate.
 
 ## Attributes
 

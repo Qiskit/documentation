@@ -27,11 +27,32 @@ $$
   The class `qiskit.opflow.gradients.qfi.QFI` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
 </Admonition>
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                        |                                                                                               |
-| -------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| [`convert`](qiskit.opflow.gradients.QFI#convert "qiskit.opflow.gradients.QFI.convert") | **param operator**The operator corresponding to the quantum state \|ψ(ω)〉for which we compute |
+<span id="qiskit-opflow-gradients-qfi-convert" />
+
+### convert
+
+<span id="qiskit.opflow.gradients.QFI.convert" />
+
+`QFI.convert(operator, params=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/gradients/qfi.py "view source code")
+
+**Parameters**
+
+*   **operator** ([*CircuitStateFn*](qiskit.opflow.state_fns.CircuitStateFn "qiskit.opflow.state_fns.circuit_state_fn.CircuitStateFn")) – The operator corresponding to the quantum state |ψ(ω)〉for which we compute the QFI
+*   **params** ([*ParameterVector*](qiskit.circuit.ParameterVector "qiskit.circuit.parametervector.ParameterVector")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression") *| List\[*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")*] | None*) – The parameters we are computing the QFI wrt: ω If not explicitly passed, they are inferred from the operator and sorted by name.
+
+**Returns**
+
+ListOp\[ListOp] where the operator at position k,l corresponds to QFI\_kl
+
+**Raises**
+
+**ValueError** – If operator is not parameterized.
+
+**Return type**
+
+[*ListOp*](qiskit.opflow.list_ops.ListOp "qiskit.opflow.list_ops.list_op.ListOp")
 
 ## Attributes
 

@@ -68,11 +68,27 @@ Quantum-Enhanced Simulation-Based Optimization. [arXiv:2005.10780](http://arxiv.
 *   **breakpoints** (`Optional`\[`List`\[`float`]]) – The breakpoints if the function is piecewise linear. If None, the function is not piecewise.
 *   **name** (`str`) – Name of the circuit.
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                                                                                      |                                                              |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| [`post_processing`](qiskit.circuit.library.LinearAmplitudeFunction#post_processing "qiskit.circuit.library.LinearAmplitudeFunction.post_processing") | Map the function value of the approximated $\hat{f}$ to $f$. |
+### post\_processing
+
+<span id="qiskit.circuit.library.LinearAmplitudeFunction.post_processing" />
+
+`LinearAmplitudeFunction.post_processing(scaled_value)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/arithmetic/linear_amplitude_function.py "view source code")
+
+Map the function value of the approximated $\hat{f}$ to $f$.
+
+**Parameters**
+
+**scaled\_value** (`float`) – A function value from the Taylor expansion of $\hat{f}(x)$.
+
+**Return type**
+
+`float`
+
+**Returns**
+
+The `scaled_value` mapped back to the domain of $f$, by first inverting the transformation used for the Taylor approximation and then mapping back from $[0, 1]$ to the original domain.
 
 ## Attributes
 

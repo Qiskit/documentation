@@ -42,12 +42,27 @@ $$
 
 Create new CS gate.
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                            |                                      |
-| ------------------------------------------------------------------------------------------ | ------------------------------------ |
-| [`inverse`](qiskit.circuit.library.CSGate#inverse "qiskit.circuit.library.CSGate.inverse") | Return inverse of CSGate (CSdgGate). |
-| [`power`](qiskit.circuit.library.CSGate#power "qiskit.circuit.library.CSGate.power")       | Raise gate to a power.               |
+<span id="qiskit-circuit-library-csgate-inverse" />
+
+### inverse
+
+<span id="qiskit.circuit.library.CSGate.inverse" />
+
+`CSGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/s.py "view source code")
+
+Return inverse of CSGate (CSdgGate).
+
+<span id="qiskit-circuit-library-csgate-power" />
+
+### power
+
+<span id="qiskit.circuit.library.CSGate.power" />
+
+`CSGate.power(exponent)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/s.py "view source code")
+
+Raise gate to a power.
 
 ## Attributes
 

@@ -64,12 +64,23 @@ $$
 
 Create new RXX gate.
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                              |                               |
-| -------------------------------------------------------------------------------------------- | ----------------------------- |
-| [`inverse`](qiskit.circuit.library.RXXGate#inverse "qiskit.circuit.library.RXXGate.inverse") | Return inverse RXX gate (i.e. |
-| [`power`](qiskit.circuit.library.RXXGate#power "qiskit.circuit.library.RXXGate.power")       | Raise gate to a power.        |
+### inverse
+
+<span id="qiskit.circuit.library.RXXGate.inverse" />
+
+`RXXGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/rxx.py "view source code")
+
+Return inverse RXX gate (i.e. with the negative rotation angle).
+
+### power
+
+<span id="qiskit.circuit.library.RXXGate.power" />
+
+`RXXGate.power(exponent)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/rxx.py "view source code")
+
+Raise gate to a power.
 
 ## Attributes
 

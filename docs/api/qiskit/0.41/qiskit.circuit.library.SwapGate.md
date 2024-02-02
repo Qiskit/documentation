@@ -48,12 +48,39 @@ $$
 
 Create new SWAP gate.
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                                |                                        |
-| ---------------------------------------------------------------------------------------------- | -------------------------------------- |
-| [`control`](qiskit.circuit.library.SwapGate#control "qiskit.circuit.library.SwapGate.control") | Return a (multi-)controlled-SWAP gate. |
-| [`inverse`](qiskit.circuit.library.SwapGate#inverse "qiskit.circuit.library.SwapGate.inverse") | Return inverse Swap gate (itself).     |
+### control
+
+<span id="qiskit.circuit.library.SwapGate.control" />
+
+`SwapGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/swap.py "view source code")
+
+Return a (multi-)controlled-SWAP gate.
+
+One control returns a CSWAP (Fredkin) gate.
+
+**Parameters**
+
+*   **num\_ctrl\_qubits** (*int*) – number of control qubits.
+*   **label** (*str or None*) – An optional label for the gate \[Default: None]
+*   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
+
+**Returns**
+
+controlled version of this gate.
+
+**Return type**
+
+[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+
+### inverse
+
+<span id="qiskit.circuit.library.SwapGate.inverse" />
+
+`SwapGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/swap.py "view source code")
+
+Return inverse Swap gate (itself).
 
 ## Attributes
 

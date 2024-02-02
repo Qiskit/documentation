@@ -21,11 +21,23 @@ A base class that represents an approximate circuit.
 *   **num\_qubits** (*int*) – number of qubit this circuit will span.
 *   **name** (*str | None*) – a name of the circuit.
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                                                                |                                                                                            |
-| ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| [`build`](qiskit.transpiler.synthesis.aqc.ApproximateCircuit#build "qiskit.transpiler.synthesis.aqc.ApproximateCircuit.build") | Constructs this circuit out of the parameters(thetas). Parameter values must be set before |
+<span id="qiskit-transpiler-synthesis-aqc-approximatecircuit-build" />
+
+### build
+
+<span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.build" />
+
+`abstract ApproximateCircuit.build(thetas)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/synthesis/aqc/approximate.py "view source code")
+
+#### Constructs this circuit out of the parameters(thetas). Parameter values must be set before
+
+constructing the circuit.
+
+**Parameters**
+
+**thetas** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)")) – a vector of parameters to be set in this circuit.
 
 ## Attributes
 

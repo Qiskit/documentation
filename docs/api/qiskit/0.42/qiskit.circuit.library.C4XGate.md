@@ -24,12 +24,37 @@ This implementation is based on Page 21, Lemma 7.5, of \[1], with the use of the
 
 Create a new 4-qubit controlled X gate.
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                              |                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------- |
-| [`control`](qiskit.circuit.library.C4XGate#control "qiskit.circuit.library.C4XGate.control") | Controlled version of this gate. |
-| [`inverse`](qiskit.circuit.library.C4XGate#inverse "qiskit.circuit.library.C4XGate.inverse") | Invert this gate.                |
+### control
+
+<span id="qiskit.circuit.library.C4XGate.control" />
+
+`C4XGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/x.py "view source code")
+
+Controlled version of this gate.
+
+**Parameters**
+
+*   **num\_ctrl\_qubits** (*int*) – number of control qubits.
+*   **label** (*str or None*) – An optional label for the gate \[Default: None]
+*   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
+
+**Returns**
+
+controlled version of this gate.
+
+**Return type**
+
+[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+
+### inverse
+
+<span id="qiskit.circuit.library.C4XGate.inverse" />
+
+`C4XGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/x.py "view source code")
+
+Invert this gate. The C4X is its own inverse.
 
 ## Attributes
 

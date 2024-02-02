@@ -16,9 +16,30 @@ Bases: `object`
 
 A factory for conveniently creating TrotterizationBase instances.
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                                                        |                                                                   |
-| ---------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| [`build`](qiskit.opflow.evolutions.TrotterizationFactory#build "qiskit.opflow.evolutions.TrotterizationFactory.build") | A factory for conveniently creating TrotterizationBase instances. |
+### build
+
+<span id="qiskit.opflow.evolutions.TrotterizationFactory.build" />
+
+`static TrotterizationFactory.build(mode='trotter', reps=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/evolutions/trotterizations/trotterization_factory.py "view source code")
+
+A factory for conveniently creating TrotterizationBase instances.
+
+**Parameters**
+
+*   **mode** (`str`) – One of ‘trotter’, ‘suzuki’, ‘qdrift’
+*   **reps** (`int`) – The number of times to repeat the Trotterization circuit.
+
+**Return type**
+
+[`TrotterizationBase`](qiskit.opflow.evolutions.TrotterizationBase "qiskit.opflow.evolutions.trotterizations.trotterization_base.TrotterizationBase")
+
+**Returns**
+
+The desired TrotterizationBase instance.
+
+**Raises**
+
+**ValueError** – A string not in \[‘trotter’, ‘suzuki’, ‘qdrift’] is given for mode.
 

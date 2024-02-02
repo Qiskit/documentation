@@ -20,11 +20,17 @@ This delegates the implementation to the MCU1 gate, since $X = H \cdot U1(\pi) \
 
 Create new MCX gate.
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                                      |                   |
-| ---------------------------------------------------------------------------------------------------- | ----------------- |
-| [`inverse`](qiskit.circuit.library.MCXGrayCode#inverse "qiskit.circuit.library.MCXGrayCode.inverse") | Invert this gate. |
+<span id="qiskit-circuit-library-mcxgraycode-inverse" />
+
+### inverse
+
+<span id="qiskit.circuit.library.MCXGrayCode.inverse" />
+
+`MCXGrayCode.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/x.py "view source code")
+
+Invert this gate. The MCX is its own inverse.
 
 ## Attributes
 

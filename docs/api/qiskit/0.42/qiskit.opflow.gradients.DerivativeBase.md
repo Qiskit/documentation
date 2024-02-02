@@ -22,11 +22,73 @@ This is distinct from CircuitGradient converters which use quantum techniques su
 
 CircuitGradient - uses quantum techniques to get derivatives of circuits DerivativeBase - uses classical techniques to differentiate opflow data structures
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                                                                                                    |                                                                                                            |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- |
-| [`convert`](qiskit.opflow.gradients.DerivativeBase#convert "qiskit.opflow.gradients.DerivativeBase.convert")                                                       | **type operator**[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")   |
-| [`gradient_wrapper`](qiskit.opflow.gradients.DerivativeBase#gradient_wrapper "qiskit.opflow.gradients.DerivativeBase.gradient_wrapper")                            | Get a callable function which provides the respective gradient, Hessian or QFI for given parameter values. |
-| [`parameter_expression_grad`](qiskit.opflow.gradients.DerivativeBase#parameter_expression_grad "qiskit.opflow.gradients.DerivativeBase.parameter_expression_grad") | Get the derivative of a parameter expression w\.r.t.                                                       |
+### convert
+
+<span id="qiskit.opflow.gradients.DerivativeBase.convert" />
+
+`abstract DerivativeBase.convert(operator, params=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/gradients/derivative_base.py "view source code")
+
+**Parameters**
+
+*   **operator** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The operator we are taking the gradient, Hessian or QFI of
+*   **params** (`Union`\[[`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.parametervector.ParameterVector"), [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `List`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")], `None`]) – The parameters we are taking the gradient, Hessian or QFI with respect to.
+
+**Return type**
+
+[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+
+**Returns**
+
+An operator whose evaluation yields the gradient, Hessian or QFI.
+
+**Raises**
+
+**ValueError** – If `params` contains a parameter not present in `operator`.
+
+### gradient\_wrapper
+
+<span id="qiskit.opflow.gradients.DerivativeBase.gradient_wrapper" />
+
+`DerivativeBase.gradient_wrapper(operator, bind_params, grad_params=None, backend=None, expectation=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/gradients/derivative_base.py "view source code")
+
+Get a callable function which provides the respective gradient, Hessian or QFI for given parameter values. This callable can be used as gradient function for optimizers.
+
+**Parameters**
+
+*   **operator** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The operator for which we want to get the gradient, Hessian or QFI.
+*   **bind\_params** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.parametervector.ParameterVector"), `List`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]]) – The operator parameters to which the parameter values are assigned.
+*   **grad\_params** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.parametervector.ParameterVector"), `List`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")], `Tuple`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")], `List`\[`Tuple`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]], `None`]) – The parameters with respect to which we are taking the gradient, Hessian or QFI. If grad\_params = None, then grad\_params = bind\_params
+*   **backend** (`Union`\[[`Backend`](qiskit.providers.Backend "qiskit.providers.backend.Backend"), [`QuantumInstance`](qiskit.utils.QuantumInstance "qiskit.utils.quantum_instance.QuantumInstance"), `None`]) – The quantum backend or QuantumInstance to use to evaluate the gradient, Hessian or QFI.
+*   **expectation** (`Optional`\[[`ExpectationBase`](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.expectation_base.ExpectationBase")]) – The expectation converter to be used. If none is set then PauliExpectation() is used.
+
+**Return type**
+
+`Callable`\[\[`Iterable`], `ndarray`]
+
+**Returns**
+
+Function to compute a gradient, Hessian or QFI. The function takes an iterable as argument which holds the parameter values.
+
+### parameter\_expression\_grad
+
+<span id="qiskit.opflow.gradients.DerivativeBase.parameter_expression_grad" />
+
+`static DerivativeBase.parameter_expression_grad(param_expr, param)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/gradients/derivative_base.py "view source code")
+
+Get the derivative of a parameter expression w\.r.t. the given parameter.
+
+**Parameters**
+
+*   **param\_expr** ([`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – The Parameter Expression for which we compute the derivative
+*   **param** ([`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – Parameter w\.r.t. which we want to take the derivative
+
+**Return type**
+
+`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]
+
+**Returns**
+
+ParameterExpression representing the gradient of param\_expr w\.r.t. param
 

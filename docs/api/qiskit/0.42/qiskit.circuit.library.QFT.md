@@ -49,12 +49,39 @@ Construct a new QFT circuit.
 *   **insert\_barriers** (`bool`) – If True, barriers are inserted as visualization improvement.
 *   **name** (`Optional`\[`str`]) – The name of the circuit.
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                               |                                                       |
-| --------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
-| [`inverse`](qiskit.circuit.library.QFT#inverse "qiskit.circuit.library.QFT.inverse")          | Invert this circuit.                                  |
-| [`is_inverse`](qiskit.circuit.library.QFT#is_inverse "qiskit.circuit.library.QFT.is_inverse") | Whether the inverse Fourier transform is implemented. |
+### inverse
+
+<span id="qiskit.circuit.library.QFT.inverse" />
+
+`QFT.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/basis_change/qft.py "view source code")
+
+Invert this circuit.
+
+**Return type**
+
+[`QFT`](qiskit.circuit.library.QFT "qiskit.circuit.library.basis_change.qft.QFT")
+
+**Returns**
+
+The inverted circuit.
+
+### is\_inverse
+
+<span id="qiskit.circuit.library.QFT.is_inverse" />
+
+`QFT.is_inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/basis_change/qft.py "view source code")
+
+Whether the inverse Fourier transform is implemented.
+
+**Return type**
+
+`bool`
+
+**Returns**
+
+True, if the inverse Fourier transform is implemented, False otherwise.
 
 ## Attributes
 

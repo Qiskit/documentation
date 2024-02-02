@@ -64,11 +64,17 @@ $$
 
 Create new CRX gate.
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                              |                               |
-| -------------------------------------------------------------------------------------------- | ----------------------------- |
-| [`inverse`](qiskit.circuit.library.CRXGate#inverse "qiskit.circuit.library.CRXGate.inverse") | Return inverse CRX gate (i.e. |
+<span id="qiskit-circuit-library-crxgate-inverse" />
+
+### inverse
+
+<span id="qiskit.circuit.library.CRXGate.inverse" />
+
+`CRXGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/rx.py "view source code")
+
+Return inverse CRX gate (i.e. with the negative rotation angle).
 
 ## Attributes
 

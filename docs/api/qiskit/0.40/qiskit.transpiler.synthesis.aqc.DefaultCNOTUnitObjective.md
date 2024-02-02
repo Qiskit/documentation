@@ -21,12 +21,47 @@ A naive implementation of the objective function based on CNOT units.
 *   **num\_qubits** (`int`) – number of qubits.
 *   **cnots** (`ndarray`) – a CNOT structure to be used in the optimization procedure.
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                                                                                        |                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------- |
-| [`gradient`](qiskit.transpiler.synthesis.aqc.DefaultCNOTUnitObjective#gradient "qiskit.transpiler.synthesis.aqc.DefaultCNOTUnitObjective.gradient")    | Computes a gradient with respect to parameters given a vector of parameter values. |
-| [`objective`](qiskit.transpiler.synthesis.aqc.DefaultCNOTUnitObjective#objective "qiskit.transpiler.synthesis.aqc.DefaultCNOTUnitObjective.objective") | Computes a value of the objective function given a vector of parameter values.     |
+### gradient
+
+<span id="qiskit.transpiler.synthesis.aqc.DefaultCNOTUnitObjective.gradient" />
+
+`DefaultCNOTUnitObjective.gradient(param_values)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/synthesis/aqc/cnot_unit_objective.py "view source code")
+
+Computes a gradient with respect to parameters given a vector of parameter values.
+
+**Parameters**
+
+**param\_values** (`ndarray`) – a vector of parameter values for the optimization problem.
+
+**Return type**
+
+`ndarray`
+
+**Returns**
+
+an array of gradient values.
+
+### objective
+
+<span id="qiskit.transpiler.synthesis.aqc.DefaultCNOTUnitObjective.objective" />
+
+`DefaultCNOTUnitObjective.objective(param_values)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/synthesis/aqc/cnot_unit_objective.py "view source code")
+
+Computes a value of the objective function given a vector of parameter values.
+
+**Parameters**
+
+**param\_values** (`ndarray`) – a vector of parameter values for the optimization problem.
+
+**Return type**
+
+`float`
+
+**Returns**
+
+a float value of the objective function.
 
 ## Attributes
 

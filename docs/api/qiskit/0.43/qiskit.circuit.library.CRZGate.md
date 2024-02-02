@@ -70,11 +70,17 @@ $$
 
 Create new CRZ gate.
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                              |                               |
-| -------------------------------------------------------------------------------------------- | ----------------------------- |
-| [`inverse`](qiskit.circuit.library.CRZGate#inverse "qiskit.circuit.library.CRZGate.inverse") | Return inverse CRZ gate (i.e. |
+<span id="qiskit-circuit-library-crzgate-inverse" />
+
+### inverse
+
+<span id="qiskit.circuit.library.CRZGate.inverse" />
+
+`CRZGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/rz.py "view source code")
+
+Return inverse CRZ gate (i.e. with the negative rotation angle).
 
 ## Attributes
 

@@ -16,12 +16,51 @@ Bases: `ABC`
 
 A base class for an optimization problem definition. An implementing class must provide at least an implementation of the `objective` method. In such case only gradient free optimizers can be used. Both method, `objective` and `gradient`, preferable to have in an implementation.
 
-**Methods Defined Here**
+## Methods Defined Here
 
-|                                                                                                                                                    |                                                                                    |
-| -------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| [`gradient`](qiskit.transpiler.synthesis.aqc.ApproximatingObjective#gradient "qiskit.transpiler.synthesis.aqc.ApproximatingObjective.gradient")    | Computes a gradient with respect to parameters given a vector of parameter values. |
-| [`objective`](qiskit.transpiler.synthesis.aqc.ApproximatingObjective#objective "qiskit.transpiler.synthesis.aqc.ApproximatingObjective.objective") | Computes a value of the objective function given a vector of parameter values.     |
+<span id="qiskit-transpiler-synthesis-aqc-approximatingobjective-gradient" />
+
+### gradient
+
+<span id="qiskit.transpiler.synthesis.aqc.ApproximatingObjective.gradient" />
+
+`abstract ApproximatingObjective.gradient(param_values)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/synthesis/aqc/approximate.py "view source code")
+
+Computes a gradient with respect to parameters given a vector of parameter values.
+
+**Parameters**
+
+**param\_values** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)")) – a vector of parameter values for the optimization problem.
+
+**Returns**
+
+an array of gradient values.
+
+**Return type**
+
+[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)")
+
+<span id="qiskit-transpiler-synthesis-aqc-approximatingobjective-objective" />
+
+### objective
+
+<span id="qiskit.transpiler.synthesis.aqc.ApproximatingObjective.objective" />
+
+`abstract ApproximatingObjective.objective(param_values)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/synthesis/aqc/approximate.py "view source code")
+
+Computes a value of the objective function given a vector of parameter values.
+
+**Parameters**
+
+**param\_values** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)")) – a vector of parameter values for the optimization problem.
+
+**Returns**
+
+a float value of the objective function.
+
+**Return type**
+
+float
 
 ## Attributes
 
