@@ -36,7 +36,7 @@ qc.cp(theta,0,1)
 qc.h(0)
 qc.measure(0,0)
 
-qc.draw('mpl')
+qc.draw('mpl', style="iqp")
 ```
 
 ![](/images/qiskit-ibm-runtime/noisy-sim-circuit.png)
@@ -109,7 +109,7 @@ The Estimator binds single-qubit rotations to get Hamiltonians before it returns
 
 ``` python
 qc_no_meas = qc.remove_final_measurements(inplace=False)
-qc_no_meas.draw('mpl')
+qc_no_meas.draw('mpl', style="iqp")
 ```
 
 ![](/images/qiskit-ibm-runtime/noisy-sim-estimator-circuit.png)

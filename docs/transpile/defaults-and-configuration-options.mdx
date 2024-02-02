@@ -32,7 +32,7 @@ qc = qc.compose(GroverOperator(oracle))
 qc.measure_all()
 
 # View the circuit
-qc.draw(output='mpl')
+qc.draw(output='mpl', style="iqp")
 ```
 
 ![Original circuit](/images/transpile/defaults-and-configuration-options/original-circuit.png "Original circuit")
@@ -47,7 +47,7 @@ backend = FakeSherbrooke()
 transpiled_circ = transpile(qc, backend)
 
 # View the transpiled circuit
-transpiled_circ.draw(output='mpl')
+transpiled_circ.draw(output='mpl', style="iqp")
 ```
 
 ![Transpiled circuit](/images/transpile/defaults-and-configuration-options/transpiled-circuit.png "Transpiled circuit")
