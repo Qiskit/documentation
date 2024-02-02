@@ -26,27 +26,9 @@ Deprecated: Converts `DictStateFns` or `VectorStateFns` to equivalent `CircuitSt
 *   **convert\_dicts** (*bool*) – Whether to convert VectorStateFn.
 *   **convert\_vectors** (*bool*) – Whether to convert DictStateFns.
 
-## Methods Defined Here
+**Methods Defined Here**
 
-<span id="qiskit-opflow-converters-dicttocircuitsum-convert" />
-
-### convert
-
-<span id="qiskit.opflow.converters.DictToCircuitSum.convert" />
-
-`DictToCircuitSum.convert(operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/converters/dict_to_circuit_sum.py "view source code")
-
-Convert the Operator to `CircuitStateFns`, recursively if `traverse` is True.
-
-**Parameters**
-
-**operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The Operator to convert
-
-**Returns**
-
-The converted Operator.
-
-**Return type**
-
-[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+|                                                                                                                    |                                                                               |
+| ------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- |
+| [`convert`](qiskit.opflow.converters.DictToCircuitSum#convert "qiskit.opflow.converters.DictToCircuitSum.convert") | Convert the Operator to `CircuitStateFns`, recursively if `traverse` is True. |
 

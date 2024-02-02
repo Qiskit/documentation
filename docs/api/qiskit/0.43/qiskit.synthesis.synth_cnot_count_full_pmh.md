@@ -35,7 +35,7 @@ a CX-only circuit implementing the linear transformation.
 
 **QiskitError** – when variable “state” isn’t of type numpy.ndarray
 
-## References
+**References**
 
 1.  Patel, Ketan N., Igor L. Markov, and John P. Hayes, *Optimal synthesis of linear reversible circuits*, Quantum Information & Computation 8.3 (2008): 282-294. [arXiv:quant-ph/0302002 \[quant-ph\]](https://arxiv.org/abs/quant-ph/0302002)
 

@@ -66,27 +66,12 @@ $$
 
 Create new ECR gate.
 
-## Methods Defined Here
+**Methods Defined Here**
 
-<span id="qiskit-circuit-library-ecrgate-inverse" />
-
-### inverse
-
-<span id="qiskit.circuit.library.ECRGate.inverse" />
-
-`ECRGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/ecr.py "view source code")
-
-Return inverse ECR gate (itself).
-
-<span id="qiskit-circuit-library-ecrgate-to-matrix" />
-
-### to\_matrix
-
-<span id="qiskit.circuit.library.ECRGate.to_matrix" />
-
-`ECRGate.to_matrix()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/ecr.py "view source code")
-
-Return a numpy.array for the ECR gate.
+|                                                                                                    |                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| [`inverse`](qiskit.circuit.library.ECRGate#inverse "qiskit.circuit.library.ECRGate.inverse")       | Return inverse ECR gate (itself).      |
+| [`to_matrix`](qiskit.circuit.library.ECRGate#to_matrix "qiskit.circuit.library.ECRGate.to_matrix") | Return a numpy.array for the ECR gate. |
 
 ## Attributes
 

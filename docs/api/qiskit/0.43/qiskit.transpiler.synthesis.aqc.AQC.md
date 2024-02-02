@@ -26,22 +26,9 @@ A generic implementation of Approximate Quantum Compiler. This implementation is
 *   **optimizer** ([*Optimizer*](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.optimizer.Optimizer") *| None*) – an optimizer to be used in the optimization procedure of the search for the best approximate circuit. By default, [`L_BFGS_B`](qiskit.algorithms.optimizers.L_BFGS_B "qiskit.algorithms.optimizers.L_BFGS_B") is used with max iterations set to 1000.
 *   **seed** (*int | None*) – a seed value to be user by a random number generator.
 
-## Methods Defined Here
+**Methods Defined Here**
 
-<span id="qiskit-transpiler-synthesis-aqc-aqc-compile-unitary" />
-
-### compile\_unitary
-
-<span id="qiskit.transpiler.synthesis.aqc.AQC.compile_unitary" />
-
-`AQC.compile_unitary(target_matrix, approximate_circuit, approximating_objective, initial_point=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/synthesis/aqc/aqc.py "view source code")
-
-Approximately compiles a circuit represented as a unitary matrix by solving an optimization problem defined by `approximating_objective` and using `approximate_circuit` as a template for the approximate circuit.
-
-**Parameters**
-
-*   **target\_matrix** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)")) – a unitary matrix to approximate.
-*   **approximate\_circuit** ([*ApproximateCircuit*](qiskit.transpiler.synthesis.aqc.ApproximateCircuit "qiskit.transpiler.synthesis.aqc.approximate.ApproximateCircuit")) – a template circuit that will be filled with the parameter values obtained in the optimization procedure.
-*   **approximating\_objective** ([*ApproximatingObjective*](qiskit.transpiler.synthesis.aqc.ApproximatingObjective "qiskit.transpiler.synthesis.aqc.approximate.ApproximatingObjective")) – a definition of the optimization problem.
-*   **initial\_point** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)") *| None*) – initial values of angles/parameters to start optimization from.
+|                                                                                                                                |                                                                                                                                                                                                                     |
+| ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`compile_unitary`](qiskit.transpiler.synthesis.aqc.AQC#compile_unitary "qiskit.transpiler.synthesis.aqc.AQC.compile_unitary") | Approximately compiles a circuit represented as a unitary matrix by solving an optimization problem defined by `approximating_objective` and using `approximate_circuit` as a template for the approximate circuit. |
 

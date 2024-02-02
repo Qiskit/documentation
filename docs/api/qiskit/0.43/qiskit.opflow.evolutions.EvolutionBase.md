@@ -20,27 +20,9 @@ Deprecated: A base for Evolution converters. Evolutions are converters which tra
   The class `qiskit.opflow.evolutions.evolution_base.EvolutionBase` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
 </Admonition>
 
-## Methods Defined Here
+**Methods Defined Here**
 
-<span id="qiskit-opflow-evolutions-evolutionbase-convert" />
-
-### convert
-
-<span id="qiskit.opflow.evolutions.EvolutionBase.convert" />
-
-`abstract EvolutionBase.convert(operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/evolutions/evolution_base.py "view source code")
-
-Traverse the operator, replacing any `EvolutionOps` with their equivalent evolution `CircuitOps`.
-
-> #### Args:
->
-> operator: The Operator to convert.
-
-**Returns**
-
-The converted Operator, with `EvolutionOps` replaced by `CircuitOps`.
-
-**Return type**
-
-[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+|                                                                                                              |                                                                                                   |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------- |
+| [`convert`](qiskit.opflow.evolutions.EvolutionBase#convert "qiskit.opflow.evolutions.EvolutionBase.convert") | Traverse the operator, replacing any `EvolutionOps` with their equivalent evolution `CircuitOps`. |
 

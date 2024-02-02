@@ -31,8 +31,8 @@ q_1: ┤ U3(ϴ,φ,λ) ├
 
 $$
  \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}CU3(\theta, \phi, \lambda)\ q_0, q_1 =
-    I \otimes |0\rangle\langle 0| +
-    U3(\theta,\phi,\lambda) \otimes |1\rangle\langle 1| =
+    I \otimes \vert 0\rangle\langle 0\vert  +
+    U3(\theta,\phi,\lambda) \otimes \vert 1\rangle\langle 1\vert  =
     \begin{pmatrix}
         1 & 0                   & 0 & 0 \\
         0 & \cos(\th)           & 0 & -e^{i\lambda}\sin(\th) \\
@@ -53,8 +53,8 @@ $$
 
   $$
   \begin{split}CU3(\theta, \phi, \lambda)\ q_1, q_0 =
-      |0\rangle\langle 0| \otimes I +
-      |1\rangle\langle 1| \otimes U3(\theta,\phi,\lambda) =
+      \vert 0\rangle\langle 0\vert  \otimes I +
+      \vert 1\rangle\langle 1\vert  \otimes U3(\theta,\phi,\lambda) =
       \begin{pmatrix}
           1 & 0   & 0                  & 0 \\
           0 & 1   & 0                  & 0 \\
@@ -66,19 +66,11 @@ $$
 
 Create new CU3 gate.
 
-## Methods Defined Here
+**Methods Defined Here**
 
-<span id="qiskit-circuit-library-cu3gate-inverse" />
-
-### inverse
-
-<span id="qiskit.circuit.library.CU3Gate.inverse" />
-
-`CU3Gate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/u3.py "view source code")
-
-Return inverted CU3 gate.
-
-$CU3(\theta,\phi,\lambda)^{\dagger} =CU3(-\theta,-\phi,-\lambda)$)
+|                                                                                              |                           |
+| -------------------------------------------------------------------------------------------- | ------------------------- |
+| [`inverse`](qiskit.circuit.library.CU3Gate#inverse "qiskit.circuit.library.CU3Gate.inverse") | Return inverted CU3 gate. |
 
 ## Attributes
 

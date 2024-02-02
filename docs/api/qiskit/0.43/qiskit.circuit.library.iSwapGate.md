@@ -16,7 +16,7 @@ Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
 iSWAP gate.
 
-A 2-qubit XX+YY interaction. This is a Clifford and symmetric gate. Its action is to swap two qubit states and phase the $|01\rangle$ and $|10\rangle$ amplitudes by i.
+A 2-qubit XX+YY interaction. This is a Clifford and symmetric gate. Its action is to swap two qubit states and phase the $\vert 01\rangle$ and $\vert 10\rangle$ amplitudes by i.
 
 Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`iswap()`](qiskit.circuit.QuantumCircuit#iswap "qiskit.circuit.QuantumCircuit.iswap") method.
 
@@ -71,17 +71,11 @@ $$
 
 Create new iSwap gate.
 
-## Methods Defined Here
+**Methods Defined Here**
 
-<span id="qiskit-circuit-library-iswapgate-power" />
-
-### power
-
-<span id="qiskit.circuit.library.iSwapGate.power" />
-
-`iSwapGate.power(exponent)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/iswap.py "view source code")
-
-Raise gate to a power.
+|                                                                                            |                        |
+| ------------------------------------------------------------------------------------------ | ---------------------- |
+| [`power`](qiskit.circuit.library.iSwapGate#power "qiskit.circuit.library.iSwapGate.power") | Raise gate to a power. |
 
 ## Attributes
 

@@ -20,27 +20,9 @@ Deprecated: Converters take an Operator and return a new Operator, generally iso
   The class `qiskit.opflow.converters.converter_base.ConverterBase` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
 </Admonition>
 
-## Methods Defined Here
+**Methods Defined Here**
 
-<span id="qiskit-opflow-converters-converterbase-convert" />
-
-### convert
-
-<span id="qiskit.opflow.converters.ConverterBase.convert" />
-
-`abstract ConverterBase.convert(operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/converters/converter_base.py "view source code")
-
-Accept the Operator and return the converted Operator
-
-**Parameters**
-
-**operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The Operator to convert.
-
-**Returns**
-
-The converted Operator.
-
-**Return type**
-
-[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+|                                                                                                              |                                                       |
+| ------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------- |
+| [`convert`](qiskit.opflow.converters.ConverterBase#convert "qiskit.opflow.converters.ConverterBase.convert") | Accept the Operator and return the converted Operator |
 

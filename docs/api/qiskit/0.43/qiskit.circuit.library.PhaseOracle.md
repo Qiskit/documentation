@@ -30,69 +30,12 @@ Creates a PhaseOracle object
 *   **synthesizer** (*Optional\[Callable\[\[*[*BooleanExpression*](qiskit.circuit.classicalfunction.BooleanExpression "qiskit.circuit.classicalfunction.BooleanExpression")*],* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]]*) – Optional. A function to convert a BooleanExpression into a QuantumCircuit If None is provided, Tweedledum’s pkrm\_synth with phase\_esop will be used.
 *   **var\_order** (*list*) – A list with the order in which variables will be created. (default: by appearance)
 
-## Methods Defined Here
+**Methods Defined Here**
 
-<span id="qiskit-circuit-library-phaseoracle-evaluate-bitstring" />
-
-### evaluate\_bitstring
-
-<span id="qiskit.circuit.library.PhaseOracle.evaluate_bitstring" />
-
-`PhaseOracle.evaluate_bitstring(bitstring)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/phase_oracle.py "view source code")
-
-Evaluate the oracle on a bitstring. This evaluation is done classically without any quantum circuit.
-
-**Parameters**
-
-**bitstring** (*str*) – The bitstring for which to evaluate. The input bitstring is expected to be in little-endian order.
-
-**Returns**
-
-True if the bitstring is a good state, False otherwise.
-
-**Return type**
-
-bool
-
-<span id="qiskit-circuit-library-phaseoracle-from-dimacs-file" />
-
-### from\_dimacs\_file
-
-<span id="qiskit.circuit.library.PhaseOracle.from_dimacs_file" />
-
-`classmethod PhaseOracle.from_dimacs_file(filename)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/phase_oracle.py "view source code")
-
-Create a PhaseOracle from the string in the DIMACS format.
-
-It is possible to build a PhaseOracle from a file in [DIMACS CNF format](http://www.satcompetition.org/2009/format-benchmarks2009.html), which is the standard format for specifying SATisfiability (SAT) problem instances in [Conjunctive Normal Form (CNF)](https://en.wikipedia.org/wiki/Conjunctive_normal_form), which is a conjunction of one or more clauses, where a clause is a disjunction of one or more literals.
-
-The following is an example of a CNF expressed in the DIMACS format:
-
-```python
-c DIMACS CNF file with 3 satisfying assignments: 1 -2 3, -1 -2 -3, 1 2 -3.
-p cnf 3 5
--1 -2 -3 0
-1 -2 3 0
-1 2 -3 0
-1 -2 -3 0
--1 2 3 0
-```
-
-The first line, following the c character, is a comment. The second line specifies that the CNF is over three boolean variables — let us call them $x_1, x_2, x_3$, and contains five clauses. The five clauses, listed afterwards, are implicitly joined by the logical AND operator, $\land$, while the variables in each clause, represented by their indices, are implicitly disjoined by the logical OR operator, $lor$. The $-$ symbol preceding a boolean variable index corresponds to the logical NOT operator, $lnot$. Character 0 (zero) marks the end of each clause. Essentially, the code above corresponds to the following CNF:
-
-$(\lnot x_1 \lor \lnot x_2 \lor \lnot x_3) \land (x_1 \lor \lnot x_2 \lor x_3) \land (x_1 \lor x_2 \lor \lnot x_3) \land (x_1 \lor \lnot x_2 \lor \lnot x_3) \land (\lnot x_1 \lor x_2 \lor x_3)$.
-
-**Parameters**
-
-**filename** (*str*) – A file in DIMACS format.
-
-**Returns**
-
-A quantum circuit with a phase oracle.
-
-**Return type**
-
-[PhaseOracle](qiskit.circuit.library.PhaseOracle "qiskit.circuit.library.PhaseOracle")
+|                                                                                                                                       |                                                            |
+| ------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| [`evaluate_bitstring`](qiskit.circuit.library.PhaseOracle#evaluate_bitstring "qiskit.circuit.library.PhaseOracle.evaluate_bitstring") | Evaluate the oracle on a bitstring.                        |
+| [`from_dimacs_file`](qiskit.circuit.library.PhaseOracle#from_dimacs_file "qiskit.circuit.library.PhaseOracle.from_dimacs_file")       | Create a PhaseOracle from the string in the DIMACS format. |
 
 ## Attributes
 
@@ -220,7 +163,7 @@ The parameters defined in the circuit.
 
 This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
 
-## Examples
+**Examples**
 
 The snippet below shows that insertion order of parameters does not matter.
 

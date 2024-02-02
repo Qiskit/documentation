@@ -32,19 +32,11 @@ $$
 *   **phase** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression") *| float*) – The value of phase it takes.
 *   **label** (*str | None*) – An optional label for the gate.
 
-## Methods Defined Here
+**Methods Defined Here**
 
-<span id="qiskit-circuit-library-globalphasegate-inverse" />
-
-### inverse
-
-<span id="qiskit.circuit.library.GlobalPhaseGate.inverse" />
-
-`GlobalPhaseGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/global_phase.py "view source code")
-
-Return inverted GLobalPhaseGate gate.
-
-$\text{GlobalPhaseGate}(\lambda)^{\dagger} = \text{GlobalPhaseGate}(-\lambda)$
+|                                                                                                              |                                       |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------- |
+| [`inverse`](qiskit.circuit.library.GlobalPhaseGate#inverse "qiskit.circuit.library.GlobalPhaseGate.inverse") | Return inverted GLobalPhaseGate gate. |
 
 ## Attributes
 

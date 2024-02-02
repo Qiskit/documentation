@@ -43,27 +43,12 @@ Equivalent to a $\pi/4$ radian rotation about the Z axis.
 
 Create new T gate.
 
-## Methods Defined Here
+**Methods Defined Here**
 
-<span id="qiskit-circuit-library-tgate-inverse" />
-
-### inverse
-
-<span id="qiskit.circuit.library.TGate.inverse" />
-
-`TGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/t.py "view source code")
-
-Return inverse T gate (i.e. Tdg).
-
-<span id="qiskit-circuit-library-tgate-power" />
-
-### power
-
-<span id="qiskit.circuit.library.TGate.power" />
-
-`TGate.power(exponent)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/t.py "view source code")
-
-Raise gate to a power.
+|                                                                                          |                             |
+| ---------------------------------------------------------------------------------------- | --------------------------- |
+| [`inverse`](qiskit.circuit.library.TGate#inverse "qiskit.circuit.library.TGate.inverse") | Return inverse T gate (i.e. |
+| [`power`](qiskit.circuit.library.TGate#power "qiskit.circuit.library.TGate.power")       | Raise gate to a power.      |
 
 ## Attributes
 

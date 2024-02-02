@@ -37,61 +37,12 @@ where R(x) represents the penalization term.
 *   **regularization** (*str | None*) – Use the following regularization with a least square method to solve the underlying system of linear equations Can be either None or `'ridge'` or `'lasso'` or `'perturb_diag'` `'ridge'` and `'lasso'` use an automatic optimal parameter search If regularization is None but the metric is ill-conditioned or singular then a least square solver is used without regularization
 *   **kwargs** (*dict*) – Optional parameters for a CircuitGradient
 
-## Methods Defined Here
+**Methods Defined Here**
 
-<span id="qiskit-opflow-gradients-naturalgradient-convert" />
-
-### convert
-
-<span id="qiskit.opflow.gradients.NaturalGradient.convert" />
-
-`NaturalGradient.convert(operator, params=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/gradients/natural_gradient.py "view source code")
-
-**Parameters**
-
-*   **operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The operator we are taking the gradient of.
-*   **params** ([*ParameterVector*](qiskit.circuit.ParameterVector "qiskit.circuit.parametervector.ParameterVector")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression") *| List\[*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")*] | None*) – The parameters we are taking the gradient with respect to. If not explicitly passed, they are inferred from the operator and sorted by name.
-
-**Returns**
-
-An operator whose evaluation yields the NaturalGradient.
-
-**Raises**
-
-*   **TypeError** – If `operator` does not represent an expectation value or the quantum state is not `CircuitStateFn`.
-*   **ValueError** – If `params` contains a parameter not present in `operator`.
-*   **ValueError** – If `operator` is not parameterized.
-
-**Return type**
-
-[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
-
-<span id="qiskit-opflow-gradients-naturalgradient-nat-grad-combo-fn" />
-
-### nat\_grad\_combo\_fn
-
-<span id="qiskit.opflow.gradients.NaturalGradient.nat_grad_combo_fn" />
-
-`static NaturalGradient.nat_grad_combo_fn(x, regularization=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/gradients/natural_gradient.py "view source code")
-
-Natural Gradient Function Implementation.
-
-**Parameters**
-
-*   **x** (*tuple*) – Iterable consisting of Gradient, Quantum Fisher Information.
-*   **regularization** (*str | None*) – Regularization method.
-
-**Returns**
-
-Natural Gradient.
-
-**Raises**
-
-**ValueError** – If the gradient has imaginary components that are non-negligible.
-
-**Return type**
-
-[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)")
+|                                                                                                                                              |                                                               |
+| -------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| [`convert`](qiskit.opflow.gradients.NaturalGradient#convert "qiskit.opflow.gradients.NaturalGradient.convert")                               | **param operator**The operator we are taking the gradient of. |
+| [`nat_grad_combo_fn`](qiskit.opflow.gradients.NaturalGradient#nat_grad_combo_fn "qiskit.opflow.gradients.NaturalGradient.nat_grad_combo_fn") | Natural Gradient Function Implementation.                     |
 
 ## Attributes
 

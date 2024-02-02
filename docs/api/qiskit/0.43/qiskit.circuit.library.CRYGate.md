@@ -31,7 +31,7 @@ q_1: ┤ Ry(ϴ) ├
 
 $$
  \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}CRY(\theta)\ q_0, q_1 =
-    I \otimes |0\rangle\langle 0| + RY(\theta) \otimes |1\rangle\langle 1| =
+    I \otimes \vert 0\rangle\langle 0\vert  + RY(\theta) \otimes \vert 1\rangle\langle 1\vert  =
     \begin{pmatrix}
         1 & 0         & 0 & 0 \\
         0 & \cos\left(\th\right) & 0 & -\sin\left(\th\right) \\
@@ -52,7 +52,7 @@ $$
 
   $$
    \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}CRY(\theta)\ q_1, q_0 =
-  |0\rangle\langle 0| \otimes I + |1\rangle\langle 1| \otimes RY(\theta) =
+  \vert 0\rangle\langle 0\vert  \otimes I + \vert 1\rangle\langle 1\vert  \otimes RY(\theta) =
       \begin{pmatrix}
           1 & 0 & 0 & 0 \\
           0 & 1 & 0 & 0 \\
@@ -64,17 +64,11 @@ $$
 
 Create new CRY gate.
 
-## Methods Defined Here
+**Methods Defined Here**
 
-<span id="qiskit-circuit-library-crygate-inverse" />
-
-### inverse
-
-<span id="qiskit.circuit.library.CRYGate.inverse" />
-
-`CRYGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/ry.py "view source code")
-
-Return inverse CRY gate (i.e. with the negative rotation angle).
+|                                                                                              |                               |
+| -------------------------------------------------------------------------------------------- | ----------------------------- |
+| [`inverse`](qiskit.circuit.library.CRYGate#inverse "qiskit.circuit.library.CRYGate.inverse") | Return inverse CRY gate (i.e. |
 
 ## Attributes
 

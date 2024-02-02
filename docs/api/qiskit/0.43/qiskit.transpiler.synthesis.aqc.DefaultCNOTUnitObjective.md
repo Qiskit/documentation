@@ -21,51 +21,12 @@ A naive implementation of the objective function based on CNOT units.
 *   **num\_qubits** (*int*) – number of qubits.
 *   **cnots** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)")) – a CNOT structure to be used in the optimization procedure.
 
-## Methods Defined Here
+**Methods Defined Here**
 
-<span id="qiskit-transpiler-synthesis-aqc-defaultcnotunitobjective-gradient" />
-
-### gradient
-
-<span id="qiskit.transpiler.synthesis.aqc.DefaultCNOTUnitObjective.gradient" />
-
-`DefaultCNOTUnitObjective.gradient(param_values)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/synthesis/aqc/cnot_unit_objective.py "view source code")
-
-Computes a gradient with respect to parameters given a vector of parameter values.
-
-**Parameters**
-
-**param\_values** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)")) – a vector of parameter values for the optimization problem.
-
-**Returns**
-
-an array of gradient values.
-
-**Return type**
-
-[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)")
-
-<span id="qiskit-transpiler-synthesis-aqc-defaultcnotunitobjective-objective" />
-
-### objective
-
-<span id="qiskit.transpiler.synthesis.aqc.DefaultCNOTUnitObjective.objective" />
-
-`DefaultCNOTUnitObjective.objective(param_values)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/synthesis/aqc/cnot_unit_objective.py "view source code")
-
-Computes a value of the objective function given a vector of parameter values.
-
-**Parameters**
-
-**param\_values** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)")) – a vector of parameter values for the optimization problem.
-
-**Returns**
-
-a float value of the objective function.
-
-**Return type**
-
-float
+|                                                                                                                                                        |                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------- |
+| [`gradient`](qiskit.transpiler.synthesis.aqc.DefaultCNOTUnitObjective#gradient "qiskit.transpiler.synthesis.aqc.DefaultCNOTUnitObjective.gradient")    | Computes a gradient with respect to parameters given a vector of parameter values. |
+| [`objective`](qiskit.transpiler.synthesis.aqc.DefaultCNOTUnitObjective#objective "qiskit.transpiler.synthesis.aqc.DefaultCNOTUnitObjective.objective") | Computes a value of the objective function given a vector of parameter values.     |
 
 ## Attributes
 

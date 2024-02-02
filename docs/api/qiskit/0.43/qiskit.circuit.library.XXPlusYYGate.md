@@ -16,7 +16,7 @@ Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
 XX+YY interaction gate.
 
-A 2-qubit parameterized XX+YY interaction, also known as an XY gate. Its action is to induce a coherent rotation by some angle between $|01\rangle$ and $|10\rangle$.
+A 2-qubit parameterized XX+YY interaction, also known as an XY gate. Its action is to induce a coherent rotation by some angle between $\vert 01\rangle$ and $\vert 10\rangle$.
 
 **Circuit Symbol:**
 
@@ -72,27 +72,12 @@ Create new XX+YY gate.
 *   **beta** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression") *| float*) – The phase angle.
 *   **label** (*str | None*) – The label of the gate.
 
-## Methods Defined Here
+**Methods Defined Here**
 
-<span id="qiskit-circuit-library-xxplusyygate-inverse" />
-
-### inverse
-
-<span id="qiskit.circuit.library.XXPlusYYGate.inverse" />
-
-`XXPlusYYGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/xx_plus_yy.py "view source code")
-
-Return inverse XX+YY gate (i.e. with the negative rotation angle and same phase angle).
-
-<span id="qiskit-circuit-library-xxplusyygate-power" />
-
-### power
-
-<span id="qiskit.circuit.library.XXPlusYYGate.power" />
-
-`XXPlusYYGate.power(exponent)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/xx_plus_yy.py "view source code")
-
-Raise gate to a power.
+|                                                                                                        |                                 |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------- |
+| [`inverse`](qiskit.circuit.library.XXPlusYYGate#inverse "qiskit.circuit.library.XXPlusYYGate.inverse") | Return inverse XX+YY gate (i.e. |
+| [`power`](qiskit.circuit.library.XXPlusYYGate#power "qiskit.circuit.library.XXPlusYYGate.power")       | Raise gate to a power.          |
 
 ## Attributes
 

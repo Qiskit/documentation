@@ -20,49 +20,10 @@ Deprecated: A base for Expectation value converters. Expectations are converters
   The class `qiskit.opflow.expectations.expectation_base.ExpectationBase` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
 </Admonition>
 
-## Methods Defined Here
+**Methods Defined Here**
 
-<span id="qiskit-opflow-expectations-expectationbase-compute-variance" />
-
-### compute\_variance
-
-<span id="qiskit.opflow.expectations.ExpectationBase.compute_variance" />
-
-`abstract ExpectationBase.compute_variance(exp_op)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/expectations/expectation_base.py "view source code")
-
-Compute the variance of the expectation estimator.
-
-**Parameters**
-
-**exp\_op** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The full expectation value Operator after sampling.
-
-**Returns**
-
-The variances or lists thereof (if exp\_op contains ListOps) of the expectation value estimation.
-
-**Return type**
-
-list | complex | [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)")
-
-<span id="qiskit-opflow-expectations-expectationbase-convert" />
-
-### convert
-
-<span id="qiskit.opflow.expectations.ExpectationBase.convert" />
-
-`abstract ExpectationBase.convert(operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/expectations/expectation_base.py "view source code")
-
-Accept an Operator and return a new Operator with the measurements replaced by alternate methods to compute the expectation value.
-
-**Parameters**
-
-**operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The operator to convert.
-
-**Returns**
-
-The converted operator.
-
-**Return type**
-
-[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+|                                                                                                                                                 |                                                                                                                                    |
+| ----------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| [`compute_variance`](qiskit.opflow.expectations.ExpectationBase#compute_variance "qiskit.opflow.expectations.ExpectationBase.compute_variance") | Compute the variance of the expectation estimator.                                                                                 |
+| [`convert`](qiskit.opflow.expectations.ExpectationBase#convert "qiskit.opflow.expectations.ExpectationBase.convert")                            | Accept an Operator and return a new Operator with the measurements replaced by alternate methods to compute the expectation value. |
 

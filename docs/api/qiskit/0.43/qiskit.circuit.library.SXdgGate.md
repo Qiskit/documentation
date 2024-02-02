@@ -39,17 +39,11 @@ $$
 
 Create new SXdg gate.
 
-## Methods Defined Here
+**Methods Defined Here**
 
-<span id="qiskit-circuit-library-sxdggate-inverse" />
-
-### inverse
-
-<span id="qiskit.circuit.library.SXdgGate.inverse" />
-
-`SXdgGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/sx.py "view source code")
-
-Return inverse SXdg gate (i.e. SX).
+|                                                                                                |                                |
+| ---------------------------------------------------------------------------------------------- | ------------------------------ |
+| [`inverse`](qiskit.circuit.library.SXdgGate#inverse "qiskit.circuit.library.SXdgGate.inverse") | Return inverse SXdg gate (i.e. |
 
 ## Attributes
 

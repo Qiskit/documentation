@@ -31,7 +31,7 @@ q_1: ┤ S ├
 
 $$
 \begin{split}CS \ q_0, q_1 =
-I \otimes |0 \rangle\langle 0| + S \otimes |1 \rangle\langle 1|  =
+I \otimes \vert 0 \rangle\langle 0\vert  + S \otimes \vert 1 \rangle\langle 1\vert   =
     \begin{pmatrix}
         1 & 0 & 0 & 0 \\
         0 & 1 & 0 & 0 \\
@@ -42,27 +42,12 @@ $$
 
 Create new CS gate.
 
-## Methods Defined Here
+**Methods Defined Here**
 
-<span id="qiskit-circuit-library-csgate-inverse" />
-
-### inverse
-
-<span id="qiskit.circuit.library.CSGate.inverse" />
-
-`CSGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/s.py "view source code")
-
-Return inverse of CSGate (CSdgGate).
-
-<span id="qiskit-circuit-library-csgate-power" />
-
-### power
-
-<span id="qiskit.circuit.library.CSGate.power" />
-
-`CSGate.power(exponent)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/s.py "view source code")
-
-Raise gate to a power.
+|                                                                                            |                                      |
+| ------------------------------------------------------------------------------------------ | ------------------------------------ |
+| [`inverse`](qiskit.circuit.library.CSGate#inverse "qiskit.circuit.library.CSGate.inverse") | Return inverse of CSGate (CSdgGate). |
+| [`power`](qiskit.circuit.library.CSGate#power "qiskit.circuit.library.CSGate.power")       | Raise gate to a power.               |
 
 ## Attributes
 

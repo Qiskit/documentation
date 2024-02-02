@@ -76,19 +76,11 @@ $$
 
 Create new U2 gate.
 
-## Methods Defined Here
+**Methods Defined Here**
 
-<span id="qiskit-circuit-library-u2gate-inverse" />
-
-### inverse
-
-<span id="qiskit.circuit.library.U2Gate.inverse" />
-
-`U2Gate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/u2.py "view source code")
-
-Return inverted U2 gate.
-
-$U2(\phi, \lambda)^{\dagger} =U2(-\lambda-\pi, -\phi+\pi)$)
+|                                                                                            |                          |
+| ------------------------------------------------------------------------------------------ | ------------------------ |
+| [`inverse`](qiskit.circuit.library.U2Gate#inverse "qiskit.circuit.library.U2Gate.inverse") | Return inverted U2 gate. |
 
 ## Attributes
 

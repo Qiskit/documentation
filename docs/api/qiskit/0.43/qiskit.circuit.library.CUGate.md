@@ -33,8 +33,8 @@ q_1: ┤ U(ϴ,φ,λ,γ) ├
 
 $$
  \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}CU(\theta, \phi, \lambda, \gamma)\ q_0, q_1 =
-    I \otimes |0\rangle\langle 0| +
-    e^{i\gamma} U(\theta,\phi,\lambda) \otimes |1\rangle\langle 1| =
+    I \otimes \vert 0\rangle\langle 0\vert  +
+    e^{i\gamma} U(\theta,\phi,\lambda) \otimes \vert 1\rangle\langle 1\vert  =
     \begin{pmatrix}
         1 & 0                           & 0 & 0 \\
         0 & e^{i\gamma}\cos(\th)        & 0 & -e^{i(\gamma + \lambda)}\sin(\th) \\
@@ -55,8 +55,8 @@ $$
 
   $$
   \begin{split}CU(\theta, \phi, \lambda, \gamma)\ q_1, q_0 =
-      |0\rangle\langle 0| \otimes I +
-      e^{i\gamma}|1\rangle\langle 1| \otimes U(\theta,\phi,\lambda) =
+      \vert 0\rangle\langle 0\vert  \otimes I +
+      e^{i\gamma}\vert 1\rangle\langle 1\vert  \otimes U(\theta,\phi,\lambda) =
       \begin{pmatrix}
           1 & 0 & 0                             & 0 \\
           0 & 1 & 0                             & 0 \\
@@ -68,19 +68,11 @@ $$
 
 Create new CU gate.
 
-## Methods Defined Here
+**Methods Defined Here**
 
-<span id="qiskit-circuit-library-cugate-inverse" />
-
-### inverse
-
-<span id="qiskit.circuit.library.CUGate.inverse" />
-
-`CUGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/u.py "view source code")
-
-Return inverted CU gate.
-
-$CU(\theta,\phi,\lambda,\gamma)^{\dagger} = CU(-\theta,-\phi,-\lambda,-\gamma)$)
+|                                                                                            |                          |
+| ------------------------------------------------------------------------------------------ | ------------------------ |
+| [`inverse`](qiskit.circuit.library.CUGate#inverse "qiskit.circuit.library.CUGate.inverse") | Return inverted CU gate. |
 
 ## Attributes
 

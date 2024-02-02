@@ -28,7 +28,7 @@ Here, $S$ is a set of qubit indices that describes the connections in the featur
 $$
 \begin{split}\phi_S(\vec{x}) = \begin{cases}
     x_i \text{ if } S = \{i\} \\
-    \prod_{j \in S} (\pi - x_j) \text{ if } |S| > 1
+    \prod_{j \in S} (\pi - x_j) \text{ if } \vert S\vert  > 1
     \end{cases}.\end{split}
 $$
 
@@ -52,7 +52,7 @@ The circuit contains `reps` repetitions of this transformation.
 
 Please refer to [`ZFeatureMap`](qiskit.circuit.library.ZFeatureMap "qiskit.circuit.library.ZFeatureMap") for the case of single-qubit Pauli-$Z$ rotations and to [`ZZFeatureMap`](qiskit.circuit.library.ZZFeatureMap "qiskit.circuit.library.ZZFeatureMap") for the single- and two-qubit Pauli-$Z$ rotations.
 
-## Examples
+**Examples**
 
 ```python
 >>> prep = PauliFeatureMap(2, reps=1, paulis=['ZZ'])
@@ -112,27 +112,12 @@ Create a new Pauli expansion circuit.
 *   **parameter\_prefix** (*str*) – The prefix used if default parameters are generated.
 *   **insert\_barriers** (*bool*) – If True, barriers are inserted in between the evolution instructions and hadamard layers.
 
-## Methods Defined Here
+**Methods Defined Here**
 
-<span id="qiskit-circuit-library-paulifeaturemap-pauli-block" />
-
-### pauli\_block
-
-<span id="qiskit.circuit.library.PauliFeatureMap.pauli_block" />
-
-`PauliFeatureMap.pauli_block(pauli_string)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/data_preparation/pauli_feature_map.py "view source code")
-
-Get the Pauli block for the feature map circuit.
-
-<span id="qiskit-circuit-library-paulifeaturemap-pauli-evolution" />
-
-### pauli\_evolution
-
-<span id="qiskit.circuit.library.PauliFeatureMap.pauli_evolution" />
-
-`PauliFeatureMap.pauli_evolution(pauli_string, time)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/data_preparation/pauli_feature_map.py "view source code")
-
-Get the evolution block for the given pauli string.
+|                                                                                                                                      |                                                     |
+| ------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------- |
+| [`pauli_block`](qiskit.circuit.library.PauliFeatureMap#pauli_block "qiskit.circuit.library.PauliFeatureMap.pauli_block")             | Get the Pauli block for the feature map circuit.    |
+| [`pauli_evolution`](qiskit.circuit.library.PauliFeatureMap#pauli_evolution "qiskit.circuit.library.PauliFeatureMap.pauli_evolution") | Get the evolution block for the given pauli string. |
 
 ## Attributes
 
@@ -322,7 +307,7 @@ The parameters used in the underlying circuit.
 
 This includes float values and duplicates.
 
-## Examples
+**Examples**
 
 ```python
 >>> # prepare circuit ...

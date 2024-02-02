@@ -19,7 +19,7 @@ Quantum Fourier Transform Circuit.
 The Quantum Fourier Transform (QFT) on $n$ qubits is the operation
 
 $$
-|j\rangle \mapsto \frac{1}{2^{n/2}} \sum_{k=0}^{2^n - 1} e^{2\pi ijk / 2^n} |k\rangle
+\vert j\rangle \mapsto \frac{1}{2^{n/2}} \sum_{k=0}^{2^n - 1} e^{2\pi ijk / 2^n} \vert k\rangle
 $$
 
 The circuit that implements this transformation can be implemented using Hadamard gates on each qubit, a series of controlled-U1 (or Z, depending on the phase) gates and a layer of Swap gates. The layer of Swap gates can in principle be dropped if the QFT appears at the end of the circuit, since then the re-ordering can be done classically. They can be turned off using the `do_swaps` attribute.
@@ -49,43 +49,12 @@ Construct a new QFT circuit.
 *   **insert\_barriers** (*bool*) – If True, barriers are inserted as visualization improvement.
 *   **name** (*str | None*) – The name of the circuit.
 
-## Methods Defined Here
+**Methods Defined Here**
 
-<span id="qiskit-circuit-library-qft-inverse" />
-
-### inverse
-
-<span id="qiskit.circuit.library.QFT.inverse" />
-
-`QFT.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/basis_change/qft.py "view source code")
-
-Invert this circuit.
-
-**Returns**
-
-The inverted circuit.
-
-**Return type**
-
-[*QFT*](qiskit.circuit.library.QFT "qiskit.circuit.library.basis_change.qft.QFT")
-
-<span id="qiskit-circuit-library-qft-is-inverse" />
-
-### is\_inverse
-
-<span id="qiskit.circuit.library.QFT.is_inverse" />
-
-`QFT.is_inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/basis_change/qft.py "view source code")
-
-Whether the inverse Fourier transform is implemented.
-
-**Returns**
-
-True, if the inverse Fourier transform is implemented, False otherwise.
-
-**Return type**
-
-bool
+|                                                                                               |                                                       |
+| --------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| [`inverse`](qiskit.circuit.library.QFT#inverse "qiskit.circuit.library.QFT.inverse")          | Invert this circuit.                                  |
+| [`is_inverse`](qiskit.circuit.library.QFT#is_inverse "qiskit.circuit.library.QFT.is_inverse") | Whether the inverse Fourier transform is implemented. |
 
 ## Attributes
 

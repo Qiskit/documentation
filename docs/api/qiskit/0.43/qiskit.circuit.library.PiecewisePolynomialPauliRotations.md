@@ -33,7 +33,7 @@ where if given the same number of breakpoints as polynomials, we implicitly assu
   Note the $1/2$ factor in the coefficients of $f(x)$, this is consistent with Qiskit’s Pauli rotations.
 </Admonition>
 
-## Examples
+**Examples**
 
 ```python
 >>> from qiskit import QuantumCircuit
@@ -62,7 +62,7 @@ q_5: ─────┤5         ├
           └──────────┘
 ```
 
-## References
+**References**
 
 **\[1]: Haener, T., Roetteler, M., & Svore, K. M. (2018).**
 
@@ -82,29 +82,11 @@ Enhancing the Quantum Linear Systems Algorithm using Richardson Extrapolation. [
 *   **basis** (*str*) – The type of Pauli rotation (`'X'`, `'Y'`, `'Z'`).
 *   **name** (*str*) – The name of the circuit.
 
-## Methods Defined Here
+**Methods Defined Here**
 
-<span id="qiskit-circuit-library-piecewisepolynomialpaulirotations-evaluate" />
-
-### evaluate
-
-<span id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.evaluate" />
-
-`PiecewisePolynomialPauliRotations.evaluate(x)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/arithmetic/piecewise_polynomial_pauli_rotations.py "view source code")
-
-Classically evaluate the piecewise polynomial rotation.
-
-**Parameters**
-
-**x** (*float*) – Value to be evaluated at.
-
-**Returns**
-
-Value of piecewise polynomial function at x.
-
-**Return type**
-
-float
+|                                                                                                                                                     |                                                         |
+| --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| [`evaluate`](qiskit.circuit.library.PiecewisePolynomialPauliRotations#evaluate "qiskit.circuit.library.PiecewisePolynomialPauliRotations.evaluate") | Classically evaluate the piecewise polynomial rotation. |
 
 ## Attributes
 
@@ -264,7 +246,7 @@ Return number of qubits.
 
 ### num\_state\_qubits
 
-The number of state qubits representing the state $|x\rangle$.
+The number of state qubits representing the state $\vert x\rangle$.
 
 **Returns**
 

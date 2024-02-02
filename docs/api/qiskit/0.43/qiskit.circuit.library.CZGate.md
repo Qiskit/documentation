@@ -32,7 +32,7 @@ q_1: ─■─
 
 $$
 \begin{split}CZ\ q_0, q_1 =
-    I \otimes |0\rangle\langle 0| + Z \otimes |1\rangle\langle 1| =
+    I \otimes \vert 0\rangle\langle 0\vert  + Z \otimes \vert 1\rangle\langle 1\vert  =
     \begin{pmatrix}
         1 & 0 & 0 & 0 \\
         0 & 1 & 0 & 0 \\
@@ -41,21 +41,15 @@ $$
     \end{pmatrix}\end{split}
 $$
 
-In the computational basis, this gate flips the phase of the target qubit if the control qubit is in the $|1\rangle$ state.
+In the computational basis, this gate flips the phase of the target qubit if the control qubit is in the $\vert 1\rangle$ state.
 
 Create new CZ gate.
 
-## Methods Defined Here
+**Methods Defined Here**
 
-<span id="qiskit-circuit-library-czgate-inverse" />
-
-### inverse
-
-<span id="qiskit.circuit.library.CZGate.inverse" />
-
-`CZGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/z.py "view source code")
-
-Return inverted CZ gate (itself).
+|                                                                                            |                                   |
+| ------------------------------------------------------------------------------------------ | --------------------------------- |
+| [`inverse`](qiskit.circuit.library.CZGate#inverse "qiskit.circuit.library.CZGate.inverse") | Return inverted CZ gate (itself). |
 
 ## Attributes
 

@@ -43,27 +43,12 @@ Equivalent to a $\pi/2$ radian rotation about the Z axis.
 
 Create new S gate.
 
-## Methods Defined Here
+**Methods Defined Here**
 
-<span id="qiskit-circuit-library-sgate-inverse" />
-
-### inverse
-
-<span id="qiskit.circuit.library.SGate.inverse" />
-
-`SGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/s.py "view source code")
-
-Return inverse of S (SdgGate).
-
-<span id="qiskit-circuit-library-sgate-power" />
-
-### power
-
-<span id="qiskit.circuit.library.SGate.power" />
-
-`SGate.power(exponent)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/s.py "view source code")
-
-Raise gate to a power.
+|                                                                                          |                                |
+| ---------------------------------------------------------------------------------------- | ------------------------------ |
+| [`inverse`](qiskit.circuit.library.SGate#inverse "qiskit.circuit.library.SGate.inverse") | Return inverse of S (SdgGate). |
+| [`power`](qiskit.circuit.library.SGate#power "qiskit.circuit.library.SGate.power")       | Raise gate to a power.         |
 
 ## Attributes
 

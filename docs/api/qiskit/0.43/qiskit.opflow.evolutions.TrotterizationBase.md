@@ -20,33 +20,11 @@ Deprecated: A base for Trotterization methods, algorithms for approximating expo
   The class `qiskit.opflow.evolutions.trotterizations.trotterization_base.TrotterizationBase` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
 </Admonition>
 
-## Methods Defined Here
+**Methods Defined Here**
 
-<span id="qiskit-opflow-evolutions-trotterizationbase-convert" />
-
-### convert
-
-<span id="qiskit.opflow.evolutions.TrotterizationBase.convert" />
-
-`abstract TrotterizationBase.convert(operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/evolutions/trotterizations/trotterization_base.py "view source code")
-
-Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`.
-
-**Parameters**
-
-**operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The `SummedOp` to evolve.
-
-**Returns**
-
-The Operator approximating op\_sum’s evolution.
-
-**Raises**
-
-**TypeError** – A non-SummedOps Operator is passed into `convert`.
-
-**Return type**
-
-[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+|                                                                                                                        |                                                                                                                 |
+| ---------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| [`convert`](qiskit.opflow.evolutions.TrotterizationBase#convert "qiskit.opflow.evolutions.TrotterizationBase.convert") | Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`. |
 
 ## Attributes
 

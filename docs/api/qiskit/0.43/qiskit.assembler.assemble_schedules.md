@@ -35,7 +35,7 @@ The Qobj to be run on the backends.
 
 [*PulseQobj*](qiskit.qobj.PulseQobj "qiskit.qobj.pulse_qobj.PulseQobj")
 
-## Examples
+**Examples**
 
 ```python
 from qiskit import pulse

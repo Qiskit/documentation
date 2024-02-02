@@ -20,7 +20,7 @@ A simple text-based progress bar.
 
 is sys.stdout, another option is sys.stderr
 
-## Examples
+**Examples**
 
 The progress bar can be used to track the progress of a parallel\_map.
 
