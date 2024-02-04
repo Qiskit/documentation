@@ -27,7 +27,7 @@ List of dictionaries with the parameters for the DRAG
 
 list
 
-## Notes
+**Notes**
 
 Deprecated once parameterized pulses are supported
 

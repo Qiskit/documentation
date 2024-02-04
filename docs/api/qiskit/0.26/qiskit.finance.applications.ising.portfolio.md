@@ -12,7 +12,7 @@ python_api_name: qiskit.finance.applications.ising.portfolio.get_operator
 
 Convert portfolio optimization instances into Pauli list
 
-## Functions
+**Functions**
 
 |                                                                                                                                                                                   |                                                                       |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
@@ -22,11 +22,15 @@ Convert portfolio optimization instances into Pauli list
 | [`portfolio_variance`](#qiskit.finance.applications.ising.portfolio.portfolio_variance "qiskit.finance.applications.ising.portfolio.portfolio_variance")(x, sigma)                | returns portfolio variance                                            |
 | [`random_model`](#qiskit.finance.applications.ising.portfolio.random_model "qiskit.finance.applications.ising.portfolio.random_model")(n\[, seed])                                | Generate random model (mu, sigma) for portfolio optimization problem. |
 
+### get\_operator
+
 <span id="qiskit.finance.applications.ising.portfolio.get_operator" />
 
 `get_operator(mu, sigma, q, budget, penalty)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/finance/applications/ising/portfolio.py "view source code")
 
 get qubit op
+
+### portfolio\_expected\_value
 
 <span id="qiskit.finance.applications.ising.portfolio.portfolio_expected_value" />
 
@@ -34,17 +38,23 @@ get qubit op
 
 returns portfolio expected value
 
+### portfolio\_value
+
 <span id="qiskit.finance.applications.ising.portfolio.portfolio_value" />
 
 `portfolio_value(x, mu, sigma, q, budget, penalty)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/finance/applications/ising/portfolio.py "view source code")
 
 returns portfolio value
 
+### portfolio\_variance
+
 <span id="qiskit.finance.applications.ising.portfolio.portfolio_variance" />
 
 `portfolio_variance(x, sigma)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/finance/applications/ising/portfolio.py "view source code")
 
 returns portfolio variance
+
+### random\_model
 
 <span id="qiskit.finance.applications.ising.portfolio.random_model" />
 

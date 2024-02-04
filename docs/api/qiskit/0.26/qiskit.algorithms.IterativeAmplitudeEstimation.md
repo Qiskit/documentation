@@ -18,7 +18,7 @@ This class implements the Iterative Quantum Amplitude Estimation (IQAE) algorith
 
 It differs from the original QAE algorithm proposed by Brassard \[2] in that it does not rely on Quantum Phase Estimation, but is only based on Grover’s algorithm. IQAE iteratively applies carefully selected Grover iterations to find an estimate for the target amplitude.
 
-## References
+**References**
 
 **\[1]: Grinko, D., Gacon, J., Zoufal, C., & Woerner, S. (2019).**
 
@@ -70,11 +70,11 @@ The output of the algorithm is an estimate for the amplitude a, that with at lea
 
 ## Methods
 
-|                                                                                                                                                                                           |                                                                                                                                   |             |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| [`__init__`](#qiskit.algorithms.IterativeAmplitudeEstimation.__init__ "qiskit.algorithms.IterativeAmplitudeEstimation.__init__")(epsilon\_target, alpha\[, …])                            | The output of the algorithm is an estimate for the amplitude a, that with at least probability 1 - alpha has an error of epsilon. |             |
-| [`construct_circuit`](#qiskit.algorithms.IterativeAmplitudeEstimation.construct_circuit "qiskit.algorithms.IterativeAmplitudeEstimation.construct_circuit")(estimation\_problem\[, k, …]) | Construct the circuit $\mathcal{Q}^k \mathcal{A} \vert0\rangle$. |
-| [`estimate`](#qiskit.algorithms.IterativeAmplitudeEstimation.estimate "qiskit.algorithms.IterativeAmplitudeEstimation.estimate")(estimation\_problem)                                     | Run the amplitude estimation algorithm.                                                                                           |             |
+|                                                                                                                                                                                           |                                                                                                                                   |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| [`__init__`](#qiskit.algorithms.IterativeAmplitudeEstimation.__init__ "qiskit.algorithms.IterativeAmplitudeEstimation.__init__")(epsilon\_target, alpha\[, …])                            | The output of the algorithm is an estimate for the amplitude a, that with at least probability 1 - alpha has an error of epsilon. |
+| [`construct_circuit`](#qiskit.algorithms.IterativeAmplitudeEstimation.construct_circuit "qiskit.algorithms.IterativeAmplitudeEstimation.construct_circuit")(estimation\_problem\[, k, …]) | Construct the circuit $\mathcal{Q}^k \mathcal{A} \vert 0\rangle$.                                                                 |
+| [`estimate`](#qiskit.algorithms.IterativeAmplitudeEstimation.estimate "qiskit.algorithms.IterativeAmplitudeEstimation.estimate")(estimation\_problem)                                     | Run the amplitude estimation algorithm.                                                                                           |
 
 ## Attributes
 
@@ -89,7 +89,7 @@ The output of the algorithm is an estimate for the amplitude a, that with at lea
 
 `construct_circuit(estimation_problem, k=0, measurement=False)`
 
-Construct the circuit $\mathcal{Q}^k \mathcal{A} \vert0\rangle$.
+Construct the circuit $\mathcal{Q}^k \mathcal{A} \vert 0\rangle$.
 
 The A operator is the unitary specifying the QAE problem and Q the associated Grover operator.
 
@@ -105,7 +105,7 @@ The A operator is the unitary specifying the QAE problem and Q the associated Gr
 
 **Returns**
 
-The circuit implementing $\mathcal{Q}^k \mathcal{A} \vert0\rangle$.
+The circuit implementing $\mathcal{Q}^k \mathcal{A} \vert 0\rangle$.
 
 ### epsilon\_target
 

@@ -28,7 +28,7 @@ SPSA is a descent method capable of finding global minima, sharing this property
 
 The optimization process can includes a calibration phase if neither the `learning_rate` nor `perturbation` is provided, which requires additional functional evaluations. (Note that either both or none must be set.) For further details on the automatic calibration, please refer to the supplementary information section IV. of \[2].
 
-## References
+**References**
 
 \[1]: J. C. Spall (1998). An Overview of the Simultaneous Perturbation Method for Efficient Optimization, Johns Hopkins APL Technical Digest, 19(4), 482–492. [Online.](https://www.jhuapl.edu/SPSA/PDF-SPSA/Spall_An_Overview.PDF)
 

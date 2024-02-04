@@ -14,10 +14,10 @@ python_api_name: qiskit.circuit.library.PolynomialPauliRotations
 
 A circuit implementing polynomial Pauli rotations.
 
-For a polynomial :math\`p(x)\`, a basis state $|i\rangle$ and a target qubit $|0\rangle$ this operator acts as:
+For a polynomial :math\`p(x)\`, a basis state $\vert i\rangle$ and a target qubit $\vert 0\rangle$ this operator acts as:
 
 $$
-|i\rangle |0\rangle \mapsto \cos(p(i)) |i\rangle |0\rangle + \sin(p(i)) |i\rangle |1\rangle
+\vert i\rangle \vert 0\rangle \mapsto \cos(p(i)) \vert i\rangle \vert 0\rangle + \sin(p(i)) \vert i\rangle \vert 1\rangle
 $$
 
 Let n be the number of qubits representing the state, d the degree of p(x) and q\_i the qubits, where q\_0 is the least significant qubit. Then for
@@ -211,31 +211,31 @@ Prepare an approximation to a state with amplitudes specified by a polynomial.
 
 ## Attributes
 
-|                                                                                                                                                                  |                                                                                    |             |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ----------- |
-| [`ancillas`](#qiskit.circuit.library.PolynomialPauliRotations.ancillas "qiskit.circuit.library.PolynomialPauliRotations.ancillas")                               | Returns a list of ancilla bits in the order that the registers were added.         |             |
-| [`basis`](#qiskit.circuit.library.PolynomialPauliRotations.basis "qiskit.circuit.library.PolynomialPauliRotations.basis")                                        | The kind of Pauli rotation to be used.                                             |             |
-| [`calibrations`](#qiskit.circuit.library.PolynomialPauliRotations.calibrations "qiskit.circuit.library.PolynomialPauliRotations.calibrations")                   | Return calibration dictionary.                                                     |             |
-| [`clbits`](#qiskit.circuit.library.PolynomialPauliRotations.clbits "qiskit.circuit.library.PolynomialPauliRotations.clbits")                                     | Returns a list of classical bits in the order that the registers were added.       |             |
-| [`coeffs`](#qiskit.circuit.library.PolynomialPauliRotations.coeffs "qiskit.circuit.library.PolynomialPauliRotations.coeffs")                                     | The multiplicative factor in the rotation angle of the controlled rotations.       |             |
-| [`data`](#qiskit.circuit.library.PolynomialPauliRotations.data "qiskit.circuit.library.PolynomialPauliRotations.data")                                           | Return the circuit data (instructions and context).                                |             |
-| [`degree`](#qiskit.circuit.library.PolynomialPauliRotations.degree "qiskit.circuit.library.PolynomialPauliRotations.degree")                                     | Return the degree of the polynomial, equals to the number of coefficients minus 1. |             |
-| `extension_lib`                                                                                                                                                  |                                                                                    |             |
-| [`global_phase`](#qiskit.circuit.library.PolynomialPauliRotations.global_phase "qiskit.circuit.library.PolynomialPauliRotations.global_phase")                   | Return the global phase of the circuit in radians.                                 |             |
-| `header`                                                                                                                                                         |                                                                                    |             |
-| `instances`                                                                                                                                                      |                                                                                    |             |
-| [`metadata`](#qiskit.circuit.library.PolynomialPauliRotations.metadata "qiskit.circuit.library.PolynomialPauliRotations.metadata")                               | The user provided metadata associated with the circuit                             |             |
-| [`num_ancilla_qubits`](#qiskit.circuit.library.PolynomialPauliRotations.num_ancilla_qubits "qiskit.circuit.library.PolynomialPauliRotations.num_ancilla_qubits") | Deprecated.                                                                        |             |
-| [`num_ancillas`](#qiskit.circuit.library.PolynomialPauliRotations.num_ancillas "qiskit.circuit.library.PolynomialPauliRotations.num_ancillas")                   | Return the number of ancilla qubits.                                               |             |
-| [`num_clbits`](#qiskit.circuit.library.PolynomialPauliRotations.num_clbits "qiskit.circuit.library.PolynomialPauliRotations.num_clbits")                         | Return number of classical bits.                                                   |             |
-| [`num_parameters`](#qiskit.circuit.library.PolynomialPauliRotations.num_parameters "qiskit.circuit.library.PolynomialPauliRotations.num_parameters")             | Convenience function to get the number of parameter objects in the circuit.        |             |
-| [`num_qubits`](#qiskit.circuit.library.PolynomialPauliRotations.num_qubits "qiskit.circuit.library.PolynomialPauliRotations.num_qubits")                         | Return number of qubits.                                                           |             |
-| [`num_state_qubits`](#qiskit.circuit.library.PolynomialPauliRotations.num_state_qubits "qiskit.circuit.library.PolynomialPauliRotations.num_state_qubits")       | The number of state qubits representing the state \$                               | x\rangle\$. |
-| [`parameters`](#qiskit.circuit.library.PolynomialPauliRotations.parameters "qiskit.circuit.library.PolynomialPauliRotations.parameters")                         | Convenience function to get the parameters defined in the parameter table.         |             |
-| `prefix`                                                                                                                                                         |                                                                                    |             |
-| [`qregs`](#qiskit.circuit.library.PolynomialPauliRotations.qregs "qiskit.circuit.library.PolynomialPauliRotations.qregs")                                        | A list of the quantum registers associated with the circuit.                       |             |
-| [`qubits`](#qiskit.circuit.library.PolynomialPauliRotations.qubits "qiskit.circuit.library.PolynomialPauliRotations.qubits")                                     | Returns a list of quantum bits in the order that the registers were added.         |             |
-| [`reverse`](#qiskit.circuit.library.PolynomialPauliRotations.reverse "qiskit.circuit.library.PolynomialPauliRotations.reverse")                                  | Whether to apply the rotations on the reversed list of qubits.                     |             |
+|                                                                                                                                                                  |                                                                                    |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| [`ancillas`](#qiskit.circuit.library.PolynomialPauliRotations.ancillas "qiskit.circuit.library.PolynomialPauliRotations.ancillas")                               | Returns a list of ancilla bits in the order that the registers were added.         |
+| [`basis`](#qiskit.circuit.library.PolynomialPauliRotations.basis "qiskit.circuit.library.PolynomialPauliRotations.basis")                                        | The kind of Pauli rotation to be used.                                             |
+| [`calibrations`](#qiskit.circuit.library.PolynomialPauliRotations.calibrations "qiskit.circuit.library.PolynomialPauliRotations.calibrations")                   | Return calibration dictionary.                                                     |
+| [`clbits`](#qiskit.circuit.library.PolynomialPauliRotations.clbits "qiskit.circuit.library.PolynomialPauliRotations.clbits")                                     | Returns a list of classical bits in the order that the registers were added.       |
+| [`coeffs`](#qiskit.circuit.library.PolynomialPauliRotations.coeffs "qiskit.circuit.library.PolynomialPauliRotations.coeffs")                                     | The multiplicative factor in the rotation angle of the controlled rotations.       |
+| [`data`](#qiskit.circuit.library.PolynomialPauliRotations.data "qiskit.circuit.library.PolynomialPauliRotations.data")                                           | Return the circuit data (instructions and context).                                |
+| [`degree`](#qiskit.circuit.library.PolynomialPauliRotations.degree "qiskit.circuit.library.PolynomialPauliRotations.degree")                                     | Return the degree of the polynomial, equals to the number of coefficients minus 1. |
+| `extension_lib`                                                                                                                                                  |                                                                                    |
+| [`global_phase`](#qiskit.circuit.library.PolynomialPauliRotations.global_phase "qiskit.circuit.library.PolynomialPauliRotations.global_phase")                   | Return the global phase of the circuit in radians.                                 |
+| `header`                                                                                                                                                         |                                                                                    |
+| `instances`                                                                                                                                                      |                                                                                    |
+| [`metadata`](#qiskit.circuit.library.PolynomialPauliRotations.metadata "qiskit.circuit.library.PolynomialPauliRotations.metadata")                               | The user provided metadata associated with the circuit                             |
+| [`num_ancilla_qubits`](#qiskit.circuit.library.PolynomialPauliRotations.num_ancilla_qubits "qiskit.circuit.library.PolynomialPauliRotations.num_ancilla_qubits") | Deprecated.                                                                        |
+| [`num_ancillas`](#qiskit.circuit.library.PolynomialPauliRotations.num_ancillas "qiskit.circuit.library.PolynomialPauliRotations.num_ancillas")                   | Return the number of ancilla qubits.                                               |
+| [`num_clbits`](#qiskit.circuit.library.PolynomialPauliRotations.num_clbits "qiskit.circuit.library.PolynomialPauliRotations.num_clbits")                         | Return number of classical bits.                                                   |
+| [`num_parameters`](#qiskit.circuit.library.PolynomialPauliRotations.num_parameters "qiskit.circuit.library.PolynomialPauliRotations.num_parameters")             | Convenience function to get the number of parameter objects in the circuit.        |
+| [`num_qubits`](#qiskit.circuit.library.PolynomialPauliRotations.num_qubits "qiskit.circuit.library.PolynomialPauliRotations.num_qubits")                         | Return number of qubits.                                                           |
+| [`num_state_qubits`](#qiskit.circuit.library.PolynomialPauliRotations.num_state_qubits "qiskit.circuit.library.PolynomialPauliRotations.num_state_qubits")       | The number of state qubits representing the state $\vert x\rangle$.                |
+| [`parameters`](#qiskit.circuit.library.PolynomialPauliRotations.parameters "qiskit.circuit.library.PolynomialPauliRotations.parameters")                         | Convenience function to get the parameters defined in the parameter table.         |
+| `prefix`                                                                                                                                                         |                                                                                    |
+| [`qregs`](#qiskit.circuit.library.PolynomialPauliRotations.qregs "qiskit.circuit.library.PolynomialPauliRotations.qregs")                                        | A list of the quantum registers associated with the circuit.                       |
+| [`qubits`](#qiskit.circuit.library.PolynomialPauliRotations.qubits "qiskit.circuit.library.PolynomialPauliRotations.qubits")                                     | Returns a list of quantum bits in the order that the registers were added.         |
+| [`reverse`](#qiskit.circuit.library.PolynomialPauliRotations.reverse "qiskit.circuit.library.PolynomialPauliRotations.reverse")                                  | Whether to apply the rotations on the reversed list of qubits.                     |
 
 ### add\_bits
 
@@ -336,7 +336,7 @@ A copy of the circuit with bound parameters, if `inplace` is True, otherwise Non
 
 Optional([QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"))
 
-## Examples
+**Examples**
 
 Create a parameterized circuit and assign the parameters in-place.
 
@@ -905,7 +905,7 @@ Depth of circuit.
 
 int
 
-## Notes
+**Notes**
 
 The circuit depth and the DAG depth need not be the same.
 
@@ -995,7 +995,7 @@ Draw the quantum circuit. Use the output parameter to choose the drawing format:
 *   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – when an invalid output method is selected
 *   **ImportError** – when the output methods requires non-installed libraries.
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
@@ -1162,7 +1162,7 @@ Apply [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate").
 
 Initialize qubits in a specific state.
 
-Qubit initialization is done by first resetting the qubits to $|0\rangle$ followed by an state preparing unitary. Both these steps are included in the Initialize instruction.
+Qubit initialization is done by first resetting the qubits to $\vert 0\rangle$ followed by an state preparing unitary. Both these steps are included in the Initialize instruction.
 
 **Parameters**
 
@@ -1191,9 +1191,9 @@ a handle to the instruction that was just initialized
 
 [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-## Examples
+**Examples**
 
-Prepare a qubit in the state $(|0\rangle - |1\rangle) / \sqrt{2}$.
+Prepare a qubit in the state $(\vert 0\rangle - \vert 1\rangle) / \sqrt{2}$.
 
 ```python
 import numpy as np
@@ -1294,7 +1294,7 @@ the inverted circuit
 
 **CircuitError** – if the circuit cannot be inverted.
 
-## Examples
+**Examples**
 
 **input:**
 
@@ -1647,7 +1647,7 @@ Return number of qubits.
 
 `property num_state_qubits`
 
-The number of state qubits representing the state $|x\rangle$.
+The number of state qubits representing the state $\vert x\rangle$.
 
 **Return type**
 
@@ -1665,7 +1665,7 @@ The number of state qubits.
 
 Computes the number of tensor factors in the unitary (quantum) part of the circuit only.
 
-## Notes
+**Notes**
 
 This is here for backwards compatibility, and will be removed in a future release of Qiskit. You should call num\_unitary\_factors instead.
 
@@ -1978,7 +1978,7 @@ the circuit with reversed bit order.
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-## Examples
+**Examples**
 
 **input:**
 
@@ -2022,7 +2022,7 @@ the reversed circuit.
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-## Examples
+**Examples**
 
 **input:**
 
@@ -2923,7 +2923,7 @@ q_0: ┤ bottom ├ ⊗ q_0: ┤ top ├  = q_0: ─┤ top ├──
 *   **other** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The other circuit to tensor this circuit with.
 *   **inplace** (*bool*) – If True, modify the object. Otherwise return composed circuit.
 
-## Examples
+**Examples**
 
 ```python
 from qiskit import QuantumCircuit
