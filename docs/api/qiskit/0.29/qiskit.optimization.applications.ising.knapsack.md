@@ -8,7 +8,7 @@ In the Knapsack Problem we are given a list of objects that each has a weight an
 
 If we have the weights w\[i], the values v\[i] and the maximum weight W\_max. We express the solution as a binary array x\[i] where we have a 1 for the items we take in the solution set. We need to maximize sum(x\[i]\*v\[i]) while respecting W\_max >= sum(x\[i]\*w\[i])
 
-## Functions
+**Functions**
 
 |                                                    |                                                                                                                    |
 | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
