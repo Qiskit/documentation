@@ -16,7 +16,7 @@ Replace each block of consecutive gates by a single Unitary node.
 
 Pass to consolidate sequences of uninterrupted gates acting on the same qubits into a Unitary node, to be resynthesized later, to a potentially more optimal subcircuit.
 
-## Notes
+**Notes**
 
 This pass assumes that the ‘blocks\_list’ property that it reads is given such that blocks are in topological order. The blocks are collected by a previous pass, such as Collect2qBlocks.
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.library.RVGate
 
 `RVGate(v_x, v_y, v_z, basis='U')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/generalized_gates/rv.py "view source code")
 
-Rotation around arbitrary rotation axis $v$ where $|v|$ is angle of rotation in radians.
+Rotation around arbitrary rotation axis $v$ where $\vert v\vert $ is angle of rotation in radians.
 
 **Circuit symbol:**
 
@@ -25,7 +25,7 @@ q_0: ┤ RV(v_x,v_y,v_z) ├
 **Matrix Representation:**
 
 $$
-\begin{split}\newcommand{\th}{|\vec{v}|}
+\begin{split}\newcommand{\th}{\vert \vec{v}\vert }
 \newcommand{\sinc}{\text{sinc}}
     R(\vec{v}) = e^{-i \vec{v}\cdot\vec{\sigma}} =
         \begin{pmatrix}

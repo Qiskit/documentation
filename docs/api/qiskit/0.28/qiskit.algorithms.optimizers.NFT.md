@@ -27,11 +27,11 @@ Built out using scipy framework, for details, please refer to [https://docs.scip
 *   **options** (`Optional`\[`dict`]) – A dictionary of solver options.
 *   **kwargs** – additional kwargs for scipy.optimize.minimize.
 
-## Notes
+**Notes**
 
 In this optimization method, the optimization function have to satisfy three conditions written in [\[1\]\_](#id5).
 
-## References
+**References**
 
 **1**
 
@@ -54,11 +54,11 @@ Built out using scipy framework, for details, please refer to [https://docs.scip
 *   **options** (`Optional`\[`dict`]) – A dictionary of solver options.
 *   **kwargs** – additional kwargs for scipy.optimize.minimize.
 
-## Notes
+**Notes**
 
 In this optimization method, the optimization function have to satisfy three conditions written in [\[1\]\_](#id6).
 
-## References
+**References**
 
 **1**
 
