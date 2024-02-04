@@ -41,7 +41,7 @@ $$
 The gate is equivalent to a state swap and is a classical logic gate.
 
 $$
-|a, b\rangle \rightarrow |b, a\rangle
+\vert a, b\rangle \rightarrow \vert b, a\rangle
 $$
 
 Create new SWAP gate.

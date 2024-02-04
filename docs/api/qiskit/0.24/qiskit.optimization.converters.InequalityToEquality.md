@@ -16,7 +16,7 @@ python_api_name: qiskit.optimization.converters.InequalityToEquality
 
 Convert inequality constraints into equality constraints by introducing slack variables.
 
-## Examples
+**Examples**
 
 ```python
 >>> from qiskit.optimization.problems import QuadraticProgram

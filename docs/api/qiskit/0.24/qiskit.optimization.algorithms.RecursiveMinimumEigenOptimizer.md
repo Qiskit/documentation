@@ -18,7 +18,7 @@ A meta-algorithm that applies a recursive optimization.
 
 The recursive minimum eigen optimizer applies a recursive optimization on top of [`MinimumEigenOptimizer`](qiskit.optimization.algorithms.MinimumEigenOptimizer "qiskit.optimization.algorithms.MinimumEigenOptimizer"). The algorithm is introduced in \[1].
 
-## Examples
+**Examples**
 
 Outline of how to use this class:
 
@@ -34,7 +34,7 @@ optimizer = RecursiveMinimumEigenOptimizer(qaoa)
 result = optimizer.solve(problem)
 ```
 
-## References
+**References**
 
 **\[1]: Bravyi et al. (2019), Obstacles to State Preparation and Variational Optimization**
 

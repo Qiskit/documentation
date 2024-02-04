@@ -21,7 +21,7 @@ Return a single-qubit thermal relaxation quantum error channel.
 *   **t1** (*double*) – the $T_1$ relaxation time constant.
 *   **t2** (*double*) – the $T_2$ relaxation time constant.
 *   **time** (*double*) – the gate time for relaxation error.
-*   **excited\_state\_population** (*double*) – the population of $|1\rangle$ state at equilibrium (default: 0).
+*   **excited\_state\_population** (*double*) – the population of $\vert 1\rangle$ state at equilibrium (default: 0).
 
 **Returns**
 

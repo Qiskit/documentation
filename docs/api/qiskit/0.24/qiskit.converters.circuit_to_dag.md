@@ -28,7 +28,7 @@ the DAG representing the input circuit.
 
 [DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit

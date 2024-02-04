@@ -131,7 +131,7 @@ constructed circuit
 
 Construct kernel matrix, if x2\_vec is None, self-innerproduct is conducted.
 
-## Notes
+**Notes**
 
 When using statevector\_simulator, we only build the circuits for Psi(x1)|0> rather than Psi(x2)^dagger Psi(x1)|0>, and then we perform the inner product classically. That is, for statevector\_simulator, the total number of circuits will be O(N) rather than O(N^2) for qasm\_simulator.
 
@@ -161,7 +161,7 @@ numpy.ndarray
 
 Construct kernel matrix, if x2\_vec is None, self-innerproduct is conducted.
 
-## Notes
+**Notes**
 
 When using statevector\_simulator, we only build the circuits for Psi(x1)|0> rather than Psi(x2)^dagger Psi(x1)|0>, and then we perform the inner product classically. That is, for statevector\_simulator, the total number of circuits will be O(N) rather than O(N^2) for qasm\_simulator.
 

@@ -16,7 +16,7 @@ python_api_name: qiskit.circuit.library.HGate
 
 Single-qubit Hadamard gate.
 
-This gate is a pi rotation about the X+Z axis, and has the effect of changing computation basis from $|0\rangle,|1\rangle$ to $|+\rangle,|-\rangle$ and vice-versa.
+This gate is a pi rotation about the X+Z axis, and has the effect of changing computation basis from $\vert 0\rangle,\vert 1\rangle$ to $\vert +\rangle,\vert -\rangle$ and vice-versa.
 
 **Circuit symbol:**
 

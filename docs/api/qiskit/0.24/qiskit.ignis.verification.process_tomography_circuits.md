@@ -18,10 +18,10 @@ Return a list of quantum process tomography circuits.
 
 ## This performs preparation in the minimial Pauli-basis eigenstates
 
-*   `"Z_p"`: $|0\rangle$
-*   `"Z_m"`: $|1\rangle$
-*   `"X_p"`: $|+\rangle$
-*   `"Y_m"`: $|+i\rangle$
+*   `"Z_p"`: $\vert 0\rangle$
+*   `"Z_m"`: $\vert 1\rangle$
+*   `"X_p"`: $\vert +\rangle$
+*   `"Y_m"`: $\vert +i\rangle$
 
 on each qubit, and measurement in the Pauli-basis X, Y, Z resulting in $4^n 3^n$ circuits for an n-qubit process tomography experiment.
 

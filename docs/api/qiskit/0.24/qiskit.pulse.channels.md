@@ -20,7 +20,7 @@ This module defines Pulse Channels. Channels include:
 
 Novel channel types can often utilize the `ControlChannel`, but if this is not sufficient, new channel types can be created. Then, they must be supported in the PulseQobj schema and the assembler.
 
-## Classes
+**Classes**
 
 |                                                                                                         |                                                                                                |
 | ------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |

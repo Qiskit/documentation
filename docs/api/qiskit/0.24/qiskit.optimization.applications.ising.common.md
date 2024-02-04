@@ -14,7 +14,7 @@ python_api_name: qiskit.optimization.applications.ising.common
 
 common module
 
-## Functions
+**Functions**
 
 |                                                                                                                                                                                      |                                                             |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------- |
@@ -24,6 +24,8 @@ common module
 | [`random_number_list`](#qiskit.optimization.applications.ising.common.random_number_list "qiskit.optimization.applications.ising.common.random_number_list")(n\[, weight\_range, …]) | Generate a set of positive integers within the given range. |
 | [`read_numbers_from_file`](#qiskit.optimization.applications.ising.common.read_numbers_from_file "qiskit.optimization.applications.ising.common.read_numbers_from_file")(filename)   | Read numbers from a file                                    |
 | [`sample_most_likely`](#qiskit.optimization.applications.ising.common.sample_most_likely "qiskit.optimization.applications.ising.common.sample_most_likely")(state\_vector)          | Compute the most likely binary string from state vector.    |
+
+### get\_gset\_result
 
 <span id="qiskit.optimization.applications.ising.common.get_gset_result" />
 
@@ -43,6 +45,8 @@ graph solution in Gset format.
 
 Dict\[int, int]
 
+### parse\_gset\_format
+
 <span id="qiskit.optimization.applications.ising.common.parse_gset_format" />
 
 `parse_gset_format(filename)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/common.py "view source code")
@@ -60,6 +64,8 @@ adjacency matrix as a 2D numpy array.
 **Return type**
 
 numpy.ndarray
+
+### random\_graph
 
 <span id="qiskit.optimization.applications.ising.common.random_graph" />
 
@@ -84,6 +90,8 @@ adjacency matrix (with weights).
 
 numpy.ndarray
 
+### random\_number\_list
+
 <span id="qiskit.optimization.applications.ising.common.random_number_list" />
 
 `random_number_list(n, weight_range=100, savefile=None, seed=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/common.py "view source code")
@@ -105,6 +113,8 @@ the list of integer numbers.
 
 numpy.ndarray
 
+### read\_numbers\_from\_file
+
 <span id="qiskit.optimization.applications.ising.common.read_numbers_from_file" />
 
 `read_numbers_from_file(filename)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/common.py "view source code")
@@ -122,6 +132,8 @@ list of numbers as a numpy.ndarray.
 **Return type**
 
 numpy.ndarray
+
+### sample\_most\_likely
 
 <span id="qiskit.optimization.applications.ising.common.sample_most_likely" />
 

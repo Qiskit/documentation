@@ -31,7 +31,7 @@ q_1: ┤ Rz(λ) ├
 
 $$
 \begin{split}CRZ(\lambda)\ q_0, q_1 =
-    I \otimes |0\rangle\langle 0| + RZ(\lambda) \otimes |1\rangle\langle 1| =
+    I \otimes \vert 0\rangle\langle 0\vert  + RZ(\lambda) \otimes \vert 1\rangle\langle 1\vert  =
     \begin{pmatrix}
         1 & 0 & 0 & 0 \\
         0 & e^{-i\frac{\lambda}{2}} & 0 & 0 \\
@@ -52,7 +52,7 @@ $$
 
   $$
   \begin{split}CRZ(\lambda)\ q_1, q_0 =
-      |0\rangle\langle 0| \otimes I + |1\rangle\langle 1| \otimes RZ(\lambda) =
+      \vert 0\rangle\langle 0\vert  \otimes I + \vert 1\rangle\langle 1\vert  \otimes RZ(\lambda) =
       \begin{pmatrix}
           1 & 0 & 0 & 0 \\
           0 & 1 & 0 & 0 \\

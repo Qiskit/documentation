@@ -18,7 +18,7 @@ The SciPy SLSQP optimizer wrapped as an Qiskit [`OptimizationAlgorithm`](qiskit.
 
 This class provides a wrapper for `scipy.optimize.fmin_slsqp` ([https://docs.scipy.org/doc/scipy-0.13.0/reference/generated/scipy.optimize.fmin\_slsqp.html](https://docs.scipy.org/doc/scipy-0.13.0/reference/generated/scipy.optimize.fmin_slsqp.html)) to be used within the optimization module. The arguments for `fmin_slsqp` are passed via the constructor.
 
-## Examples
+**Examples**
 
 ```python
 >>> from qiskit.optimization.problems import QuadraticProgram
