@@ -31,7 +31,7 @@ where if given the same number of breakpoints as polynomials, we implicitly assu
   Note the $1/2$ factor in the coefficients of $f(x)$, this is consistent with Qiskit’s Pauli rotations.
 </Admonition>
 
-## Examples
+**Examples**
 
 ```python
 >>> from qiskit import QuantumCircuit
@@ -62,7 +62,7 @@ q_5: ─────┤5         ├
           └──────────┘
 ```
 
-## References
+**References**
 
 **\[1]: Haener, T., Roetteler, M., & Svore, K. M. (2018).**
 
@@ -250,32 +250,32 @@ Enhancing the Quantum Linear Systems Algorithm using Richardson Extrapolation. [
 
 ## Attributes
 
-|                                                                                                                                                                                                      |                                                                                              |             |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | ----------- |
-| [`ancillas`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.ancillas "qiskit.circuit.library.PiecewisePolynomialPauliRotations.ancillas")                                                 | Returns a list of ancilla bits in the order that the registers were added.                   |             |
-| [`basis`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.basis "qiskit.circuit.library.PiecewisePolynomialPauliRotations.basis")                                                          | The kind of Pauli rotation to be used.                                                       |             |
-| [`breakpoints`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.breakpoints "qiskit.circuit.library.PiecewisePolynomialPauliRotations.breakpoints")                                        | The breakpoints of the piecewise polynomial function.                                        |             |
-| [`calibrations`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.calibrations "qiskit.circuit.library.PiecewisePolynomialPauliRotations.calibrations")                                     | Return calibration dictionary.                                                               |             |
-| [`clbits`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.clbits "qiskit.circuit.library.PiecewisePolynomialPauliRotations.clbits")                                                       | Returns a list of classical bits in the order that the registers were added.                 |             |
-| [`coeffs`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.coeffs "qiskit.circuit.library.PiecewisePolynomialPauliRotations.coeffs")                                                       | The coefficients of the polynomials.                                                         |             |
-| [`contains_zero_breakpoint`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.contains_zero_breakpoint "qiskit.circuit.library.PiecewisePolynomialPauliRotations.contains_zero_breakpoint") | Whether 0 is the first breakpoint.                                                           |             |
-| [`data`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.data "qiskit.circuit.library.PiecewisePolynomialPauliRotations.data")                                                             | Return the circuit data (instructions and context).                                          |             |
-| `extension_lib`                                                                                                                                                                                      |                                                                                              |             |
-| [`global_phase`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.global_phase "qiskit.circuit.library.PiecewisePolynomialPauliRotations.global_phase")                                     | Return the global phase of the circuit in radians.                                           |             |
-| `header`                                                                                                                                                                                             |                                                                                              |             |
-| `instances`                                                                                                                                                                                          |                                                                                              |             |
-| [`mapped_coeffs`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.mapped_coeffs "qiskit.circuit.library.PiecewisePolynomialPauliRotations.mapped_coeffs")                                  | The coefficients mapped to the internal representation, since we only compare x>=breakpoint. |             |
-| [`metadata`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.metadata "qiskit.circuit.library.PiecewisePolynomialPauliRotations.metadata")                                                 | The user provided metadata associated with the circuit                                       |             |
-| [`num_ancilla_qubits`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_ancilla_qubits "qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_ancilla_qubits")                   | The minimum number of ancilla qubits in the circuit.                                         |             |
-| [`num_ancillas`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_ancillas "qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_ancillas")                                     | Return the number of ancilla qubits.                                                         |             |
-| [`num_clbits`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_clbits "qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_clbits")                                           | Return number of classical bits.                                                             |             |
-| [`num_parameters`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_parameters "qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_parameters")                               | Convenience function to get the number of parameter objects in the circuit.                  |             |
-| [`num_qubits`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_qubits "qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_qubits")                                           | Return number of qubits.                                                                     |             |
-| [`num_state_qubits`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_state_qubits "qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_state_qubits")                         | The number of state qubits representing the state \$                                         | x\rangle\$. |
-| [`parameters`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.parameters "qiskit.circuit.library.PiecewisePolynomialPauliRotations.parameters")                                           | Convenience function to get the parameters defined in the parameter table.                   |             |
-| `prefix`                                                                                                                                                                                             |                                                                                              |             |
-| [`qregs`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.qregs "qiskit.circuit.library.PiecewisePolynomialPauliRotations.qregs")                                                          | A list of the quantum registers associated with the circuit.                                 |             |
-| [`qubits`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.qubits "qiskit.circuit.library.PiecewisePolynomialPauliRotations.qubits")                                                       | Returns a list of quantum bits in the order that the registers were added.                   |             |
+|                                                                                                                                                                                                      |                                                                                              |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| [`ancillas`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.ancillas "qiskit.circuit.library.PiecewisePolynomialPauliRotations.ancillas")                                                 | Returns a list of ancilla bits in the order that the registers were added.                   |
+| [`basis`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.basis "qiskit.circuit.library.PiecewisePolynomialPauliRotations.basis")                                                          | The kind of Pauli rotation to be used.                                                       |
+| [`breakpoints`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.breakpoints "qiskit.circuit.library.PiecewisePolynomialPauliRotations.breakpoints")                                        | The breakpoints of the piecewise polynomial function.                                        |
+| [`calibrations`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.calibrations "qiskit.circuit.library.PiecewisePolynomialPauliRotations.calibrations")                                     | Return calibration dictionary.                                                               |
+| [`clbits`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.clbits "qiskit.circuit.library.PiecewisePolynomialPauliRotations.clbits")                                                       | Returns a list of classical bits in the order that the registers were added.                 |
+| [`coeffs`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.coeffs "qiskit.circuit.library.PiecewisePolynomialPauliRotations.coeffs")                                                       | The coefficients of the polynomials.                                                         |
+| [`contains_zero_breakpoint`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.contains_zero_breakpoint "qiskit.circuit.library.PiecewisePolynomialPauliRotations.contains_zero_breakpoint") | Whether 0 is the first breakpoint.                                                           |
+| [`data`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.data "qiskit.circuit.library.PiecewisePolynomialPauliRotations.data")                                                             | Return the circuit data (instructions and context).                                          |
+| `extension_lib`                                                                                                                                                                                      |                                                                                              |
+| [`global_phase`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.global_phase "qiskit.circuit.library.PiecewisePolynomialPauliRotations.global_phase")                                     | Return the global phase of the circuit in radians.                                           |
+| `header`                                                                                                                                                                                             |                                                                                              |
+| `instances`                                                                                                                                                                                          |                                                                                              |
+| [`mapped_coeffs`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.mapped_coeffs "qiskit.circuit.library.PiecewisePolynomialPauliRotations.mapped_coeffs")                                  | The coefficients mapped to the internal representation, since we only compare x>=breakpoint. |
+| [`metadata`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.metadata "qiskit.circuit.library.PiecewisePolynomialPauliRotations.metadata")                                                 | The user provided metadata associated with the circuit                                       |
+| [`num_ancilla_qubits`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_ancilla_qubits "qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_ancilla_qubits")                   | The minimum number of ancilla qubits in the circuit.                                         |
+| [`num_ancillas`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_ancillas "qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_ancillas")                                     | Return the number of ancilla qubits.                                                         |
+| [`num_clbits`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_clbits "qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_clbits")                                           | Return number of classical bits.                                                             |
+| [`num_parameters`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_parameters "qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_parameters")                               | Convenience function to get the number of parameter objects in the circuit.                  |
+| [`num_qubits`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_qubits "qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_qubits")                                           | Return number of qubits.                                                                     |
+| [`num_state_qubits`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_state_qubits "qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_state_qubits")                         | The number of state qubits representing the state $\vert x\rangle$.                          |
+| [`parameters`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.parameters "qiskit.circuit.library.PiecewisePolynomialPauliRotations.parameters")                                           | Convenience function to get the parameters defined in the parameter table.                   |
+| `prefix`                                                                                                                                                                                             |                                                                                              |
+| [`qregs`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.qregs "qiskit.circuit.library.PiecewisePolynomialPauliRotations.qregs")                                                          | A list of the quantum registers associated with the circuit.                                 |
+| [`qubits`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.qubits "qiskit.circuit.library.PiecewisePolynomialPauliRotations.qubits")                                                       | Returns a list of quantum bits in the order that the registers were added.                   |
 
 ### add\_bits
 
@@ -376,7 +376,7 @@ A copy of the circuit with bound parameters, if `inplace` is True, otherwise Non
 
 Optional([QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"))
 
-## Examples
+**Examples**
 
 Create a parameterized circuit and assign the parameters in-place.
 
@@ -961,7 +961,7 @@ Depth of circuit.
 
 int
 
-## Notes
+**Notes**
 
 The circuit depth and the DAG depth need not be the same.
 
@@ -1051,7 +1051,7 @@ Draw the quantum circuit. Use the output parameter to choose the drawing format:
 *   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – when an invalid output method is selected
 *   **ImportError** – when the output methods requires non-installed libraries.
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
@@ -1238,7 +1238,7 @@ Apply [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate").
 
 Initialize qubits in a specific state.
 
-Qubit initialization is done by first resetting the qubits to $|0\rangle$ followed by an state preparing unitary. Both these steps are included in the Initialize instruction.
+Qubit initialization is done by first resetting the qubits to $\vert 0\rangle$ followed by an state preparing unitary. Both these steps are included in the Initialize instruction.
 
 **Parameters**
 
@@ -1267,9 +1267,9 @@ a handle to the instruction that was just initialized
 
 [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-## Examples
+**Examples**
 
-Prepare a qubit in the state $(|0\rangle - |1\rangle) / \sqrt{2}$.
+Prepare a qubit in the state $(\vert 0\rangle - \vert 1\rangle) / \sqrt{2}$.
 
 ```python
 import numpy as np
@@ -1370,7 +1370,7 @@ the inverted circuit
 
 **CircuitError** – if the circuit cannot be inverted.
 
-## Examples
+**Examples**
 
 **input:**
 
@@ -1747,7 +1747,7 @@ Return number of qubits.
 
 `property num_state_qubits`
 
-The number of state qubits representing the state $|x\rangle$.
+The number of state qubits representing the state $\vert x\rangle$.
 
 **Return type**
 
@@ -1765,7 +1765,7 @@ The number of state qubits.
 
 Computes the number of tensor factors in the unitary (quantum) part of the circuit only.
 
-## Notes
+**Notes**
 
 This is here for backwards compatibility, and will be removed in a future release of Qiskit. You should call num\_unitary\_factors instead.
 
@@ -2062,7 +2062,7 @@ the circuit with reversed bit order.
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-## Examples
+**Examples**
 
 **input:**
 
@@ -2106,7 +2106,7 @@ the reversed circuit.
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-## Examples
+**Examples**
 
 **input:**
 
@@ -3007,7 +3007,7 @@ q_0: ┤ bottom ├ ⊗ q_0: ┤ top ├  = q_0: ─┤ top ├──
 *   **other** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The other circuit to tensor this circuit with.
 *   **inplace** (*bool*) – If True, modify the object. Otherwise return composed circuit.
 
-## Examples
+**Examples**
 
 ```python
 from qiskit import QuantumCircuit

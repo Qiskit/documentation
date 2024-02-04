@@ -49,7 +49,7 @@ A `PulseError` is immediately raised when the overlap constraint is violated.
 
 In the schedule representation, we cannot parametrize the duration of instructions. Thus we need to create a new schedule object for each duration. To parametrize an instruction’s duration, the [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") representation may be used instead.
 
-## References
+**References**
 
 \[1]: [https://arxiv.org/abs/2004.06755](https://arxiv.org/abs/2004.06755)
 
@@ -128,7 +128,7 @@ Create an empty schedule.
 Return a new schedule with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`.
 
 $$
-t = \textrm{max}(\texttt{x.stop_time} |\texttt{x} \in
+t = \textrm{max}(\texttt{x.stop_time} \vert \texttt{x} \in
     \texttt{self.channels} \cap \texttt{schedule.channels})
 $$
 

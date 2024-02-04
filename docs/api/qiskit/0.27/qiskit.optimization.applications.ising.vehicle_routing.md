@@ -12,7 +12,7 @@ python_api_name: qiskit.optimization.applications.ising.vehicle_routing.get_oper
 
 Converts vehicle routing instances into a list of Paulis, and provides some related routines (extracting a solution, checking its objective function value).
 
-## Functions
+**Functions**
 
 |                                                                                                                                                                                                                              |                                                                              |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
@@ -20,6 +20,8 @@ Converts vehicle routing instances into a list of Paulis, and provides some rela
 | [`get_vehiclerouting_cost`](#qiskit.optimization.applications.ising.vehicle_routing.get_vehiclerouting_cost "qiskit.optimization.applications.ising.vehicle_routing.get_vehiclerouting_cost")(instance, n, K, x\_sol)        | Computes the cost of a solution to an instance of a vehicle routing problem. |
 | [`get_vehiclerouting_matrices`](#qiskit.optimization.applications.ising.vehicle_routing.get_vehiclerouting_matrices "qiskit.optimization.applications.ising.vehicle_routing.get_vehiclerouting_matrices")(instance, n, K)    | Constructs auxiliary matrices from a vehicle routing instance,               |
 | [`get_vehiclerouting_solution`](#qiskit.optimization.applications.ising.vehicle_routing.get_vehiclerouting_solution "qiskit.optimization.applications.ising.vehicle_routing.get_vehiclerouting_solution")(instance, n, K, …) | Tries to obtain a feasible solution (in vector form) of an instance          |
+
+### get\_operator
 
 <span id="qiskit.optimization.applications.ising.vehicle_routing.get_operator" />
 
@@ -40,6 +42,8 @@ Converts an instance of a vehicle routing problem into a list of Paulis.
 **Returns**
 
 operator for the Hamiltonian.
+
+### get\_vehiclerouting\_cost
 
 <span id="qiskit.optimization.applications.ising.vehicle_routing.get_vehiclerouting_cost" />
 
@@ -62,6 +66,8 @@ Computes the cost of a solution to an instance of a vehicle routing problem.
 
 objective function value.
 
+### get\_vehiclerouting\_matrices
+
 <span id="qiskit.optimization.applications.ising.vehicle_routing.get_vehiclerouting_matrices" />
 
 `get_vehiclerouting_matrices(instance, n, K)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/vehicle_routing.py "view source code")
@@ -83,6 +89,8 @@ which represent the encoding into a binary quadratic program. This is used in th
 **Returns**
 
 a matrix defining the interactions between variables. a matrix defining the contribution from the individual variables. the constant offset.
+
+### get\_vehiclerouting\_solution
 
 <span id="qiskit.optimization.applications.ising.vehicle_routing.get_vehiclerouting_solution" />
 
