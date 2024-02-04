@@ -32,7 +32,7 @@ CircuitQFI - uses quantum techniques to get the QFI of circuits DerivativeBase -
 
 **Parameters**
 
-*   **operator** (`OperatorBase`) – The operator corresponding to the quantum state $|\psi(\omega)\rangle$ for which we compute the QFI.
+*   **operator** (`OperatorBase`) – The operator corresponding to the quantum state $\vert \psi(\omega)\rangle$ for which we compute the QFI.
 *   **params** (`Union`\[`ParameterExpression`, `ParameterVector`, `List`\[`ParameterExpression`]]) – The parameters $\omega$ with respect to which we are computing the QFI.
 
 **Return type**

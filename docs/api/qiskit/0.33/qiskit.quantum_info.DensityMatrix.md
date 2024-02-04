@@ -173,7 +173,7 @@ complex
 
 Return the output density matrix of an instruction.
 
-The statevector is initialized in the state $|{0,\ldots,0}\rangle$ of the same number of qubits as the input instruction or circuit, evolved by the input instruction, and the output statevector returned.
+The statevector is initialized in the state $\vert {0,\ldots,0}\rangle$ of the same number of qubits as the input instruction or circuit, evolved by the input instruction, and the output statevector returned.
 
 **Parameters**
 
@@ -206,7 +206,7 @@ Return a computational basis state density matrix.
 
 **Returns**
 
-The computational basis state $|i\rangle\!\langle i|$.
+The computational basis state $\vert i\rangle\!\langle i\vert $.
 
 **Return type**
 
@@ -307,9 +307,9 @@ The Numpy vector array of probabilities.
 
 np.array
 
-#### Examples
+**Examples**
 
-Consider a 2-qubit product state $\rho=\rho_1\otimes\rho_0$ with $\rho_1=|+\rangle\!\langle+|$, $\rho_0=|0\rangle\!\langle0|$.
+Consider a 2-qubit product state $\rho=\rho_1\otimes\rho_0$ with $\rho_1=\vert +\rangle\!\langle+\vert $, $\rho_0=\vert 0\rangle\!\langle0\vert $.
 
 ```python
 from qiskit.quantum_info import DensityMatrix
@@ -540,9 +540,9 @@ the dictionary form of the DensityMatrix.
 
 dict
 
-#### Examples
+**Examples**
 
-The ket-form of a 2-qubit density matrix $rho = |-\rangle\!\langle -|\otimes |0\rangle\!\langle 0|$
+The ket-form of a 2-qubit density matrix $rho = \vert -\rangle\!\langle -\vert \otimes \vert 0\rangle\!\langle 0\vert $
 
 ```python
 from qiskit.quantum_info import DensityMatrix
