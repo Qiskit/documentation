@@ -19,10 +19,10 @@ Note that this function assumes that the Choi-matrix is defined in the standard 
 The resulting ‘rauli’ R acts on input states as
 
 $$
-|{\rho_{out}}_p\rangle = R \cdot |{\rho_{in}}_p\rangle.
+\vert {\rho_{out}}_p\rangle = R \cdot \vert {\rho_{in}}_p\rangle.
 $$
 
-where $|{\rho}\rangle =$ `vectorize(rho, method='pauli')` for order=1 and $|{\rho}\rangle =$ `vectorize(rho, method='pauli_weights')` for order=0.
+where $\vert {\rho}\rangle =$ `vectorize(rho, method='pauli')` for order=1 and $\vert {\rho}\rangle =$ `vectorize(rho, method='pauli_weights')` for order=0.
 
 **Parameters**
 

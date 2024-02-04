@@ -21,7 +21,7 @@ Graphical representation of the input array using a city style graph.
 *   **rho** (*array*) – State vector or density matrix.
 *   **figsize** (*tuple*) – The figure size in pixels.
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumCircuit, BasicAer, execute

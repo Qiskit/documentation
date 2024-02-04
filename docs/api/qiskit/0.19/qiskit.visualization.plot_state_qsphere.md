@@ -32,7 +32,7 @@ Figure
 
 **ImportError** – Requires matplotlib.
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumCircuit, BasicAer, execute

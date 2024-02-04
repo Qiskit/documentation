@@ -14,7 +14,7 @@ python_api_name: qiskit.circuit.library.CHGate
 
 Controlled-Hadamard gate.
 
-Applies a Hadamard on the target qubit if the control is in the $|1\rangle$ state.
+Applies a Hadamard on the target qubit if the control is in the $\vert 1\rangle$ state.
 
 **Circuit symbol:**
 
@@ -30,7 +30,7 @@ Applies a Hadamard on the target qubit if the control is in the $|1\rangle$ stat
 
 $$
 \begin{split}CH\ q_0, q_1 =
-    I \otimes |0\rangle\langle 0| + H \otimes |1\rangle\langle 1| =
+    I \otimes \vert 0\rangle\langle 0\vert  + H \otimes \vert 1\rangle\langle 1\vert  =
     \frac{1}{\sqrt{2}}
     \begin{pmatrix}
         1 & 0 & 0 & 0 \\
@@ -52,7 +52,7 @@ $$
 
   $$
   \begin{split}CH\ q_1, q_0 =
-      |0\rangle\langle 0| \otimes I + |1\rangle\langle 1| \otimes H =
+      \vert 0\rangle\langle 0\vert  \otimes I + \vert 1\rangle\langle 1\vert  \otimes H =
       \frac{1}{\sqrt{2}}
       \begin{pmatrix}
           1 & 0 & 0 & 0 \\

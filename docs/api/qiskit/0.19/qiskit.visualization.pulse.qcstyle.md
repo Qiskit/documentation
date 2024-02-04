@@ -10,7 +10,7 @@ python_api_name: qiskit.visualization.pulse.qcstyle.PulseStyle
 
 Style sheets for pulse visualization.
 
-## Classes
+**Classes**
 
 |                                                                                                                                                    |                                                   |
 | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
@@ -70,7 +70,7 @@ Create new style sheet.
 *   **vertical\_span** (`float`) – Spacing on top and bottom of pulse canvas.
 *   **axis\_formatter** (`Optional`\[`str`]) – Format of horizontal axis of the plot. This is convenient when you set `dt` option for the drawer. For example, formatter of `%.3e` gives you horizontal axis values in the scientific notation with 3 digits.
 
-## Example
+**Example**
 
 Height of the event table is decided by multiple parameters.:
 

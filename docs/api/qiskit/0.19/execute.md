@@ -16,6 +16,8 @@ python_api_name: qiskit.execute
 
 `qiskit.execute`
 
+### execute
+
 <span id="qiskit.execute.execute" />
 
 `execute(experiments, backend, basis_gates=None, coupling_map=None, backend_properties=None, initial_layout=None, seed_transpiler=None, optimization_level=None, pass_manager=None, qobj_id=None, qobj_header=None, shots=1024, memory=False, max_credits=10, seed_simulator=None, default_qubit_los=None, default_meas_los=None, schedule_los=None, meas_level=MeasLevel.CLASSIFIED, meas_return=MeasReturnType.AVERAGE, memory_slots=None, memory_slot_size=100, rep_time=None, parameter_binds=None, schedule_circuit=False, inst_map=None, meas_map=None, scheduling_method=None, **run_config)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/execute.py "view source code")
@@ -140,7 +142,7 @@ returns job instance derived from BaseJob
 
 **QiskitError** – if the execution cannot be interpreted as either circuits or schedules
 
-## Example
+**Example**
 
 Construct a 5-qubit GHZ circuit and execute 4321 shots on a backend.
 
