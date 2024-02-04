@@ -127,7 +127,7 @@ A copy of the circuit with bound parameters, if `inplace` is False, otherwise No
 
 Optional([QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"))
 
-#### Examples
+**Examples**
 
 Create a parameterized circuit and assign the parameters in-place.
 
@@ -984,7 +984,7 @@ Depth of circuit.
 
 int
 
-#### Notes
+**Notes**
 
 The circuit depth and the DAG depth need not be the same.
 
@@ -1074,7 +1074,7 @@ Draw the quantum circuit. Use the output parameter to choose the drawing format:
 *   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – when an invalid output method is selected
 *   **ImportError** – when the output methods requires non-installed libraries.
 
-#### Example
+**Example**
 
 ```python
 from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
@@ -1174,7 +1174,7 @@ contains the index at which the `Bit` can be found (in either `qubits`, `clbits`
 
 namedtuple(int, List\[Tuple(Register, int)])
 
-#### Notes
+**Notes**
 
 The circuit index of an `AncillaQubit` will be its index in `qubits`, not `ancillas`.
 
@@ -1532,15 +1532,15 @@ A handle to the instruction created.
 
 Initialize qubits in a specific state.
 
-Qubit initialization is done by first resetting the qubits to $|0\rangle$ followed by calling `qiskit.extensions.StatePreparation` class to prepare the qubits in a specified state. Both these steps are included in the [`qiskit.extensions.Initialize`](qiskit.extensions.Initialize "qiskit.extensions.Initialize") instruction.
+Qubit initialization is done by first resetting the qubits to $\vert 0\rangle$ followed by calling `qiskit.extensions.StatePreparation` class to prepare the qubits in a specified state. Both these steps are included in the [`qiskit.extensions.Initialize`](qiskit.extensions.Initialize "qiskit.extensions.Initialize") instruction.
 
 **Parameters**
 
 *   **params** (*str or list or int*) –
 
-    *   str: labels of basis states of the Pauli eigenstates Z, X, Y. See [`Statevector.from_label()`](qiskit.quantum_info.Statevector#from_label "qiskit.quantum_info.Statevector.from_label"). Notice the order of the labels is reversed with respect to the qubit index to be applied to. Example label ‘01’ initializes the qubit zero to $|1\rangle$ and the qubit one to $|0\rangle$.
+    *   str: labels of basis states of the Pauli eigenstates Z, X, Y. See [`Statevector.from_label()`](qiskit.quantum_info.Statevector#from_label "qiskit.quantum_info.Statevector.from_label"). Notice the order of the labels is reversed with respect to the qubit index to be applied to. Example label ‘01’ initializes the qubit zero to $\vert 1\rangle$ and the qubit one to $\vert 0\rangle$.
     *   list: vector of complex amplitudes to initialize to.
-    *   int: an integer that is used as a bitmap indicating which qubits to initialize to $|1\rangle$. Example: setting params to 5 would initialize qubit 0 and qubit 2 to $|1\rangle$ and qubit 1 to $|0\rangle$.
+    *   int: an integer that is used as a bitmap indicating which qubits to initialize to $\vert 1\rangle$. Example: setting params to 5 would initialize qubit 0 and qubit 2 to $\vert 1\rangle$ and qubit 1 to $\vert 0\rangle$.
 
 *   **qubits** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister") *or int*) –
 
@@ -1556,9 +1556,9 @@ a handle to the instruction that was just initialized
 
 [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-#### Examples
+**Examples**
 
-Prepare a qubit in the state $(|0\rangle - |1\rangle) / \sqrt{2}$.
+Prepare a qubit in the state $(\vert 0\rangle - \vert 1\rangle) / \sqrt{2}$.
 
 ```python
 import numpy as np
@@ -1583,7 +1583,7 @@ q_0: ┤ Initialize(0.70711,-0.70711) ├
      └──────────────────────────────┘
 ```
 
-Initialize from a string two qubits in the state $|10\rangle$. The order of the labels is reversed with respect to qubit index. More information about labels for basis states are in [`Statevector.from_label()`](qiskit.quantum_info.Statevector#from_label "qiskit.quantum_info.Statevector.from_label").
+Initialize from a string two qubits in the state $\vert 10\rangle$. The order of the labels is reversed with respect to qubit index. More information about labels for basis states are in [`Statevector.from_label()`](qiskit.quantum_info.Statevector#from_label "qiskit.quantum_info.Statevector.from_label").
 
 ```python
 import numpy as np
@@ -1655,7 +1655,7 @@ the inverted circuit
 
 **CircuitError** – if the circuit cannot be inverted.
 
-#### Examples
+**Examples**
 
 input:
 
@@ -2083,7 +2083,7 @@ Conditional nonlocal gates are also included.
 
 Computes the number of tensor factors in the unitary (quantum) part of the circuit only.
 
-#### Notes
+**Notes**
 
 This is here for backwards compatibility, and will be removed in a future release of Qiskit. You should call num\_unitary\_factors instead.
 
@@ -2183,9 +2183,9 @@ This class implements a state preparing unitary. Unlike [`qiskit.extensions.Init
 *   **state** (*str or list or int or* [*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")) –
 
     *   Statevector: Statevector to initialize to.
-    *   str: labels of basis states of the Pauli eigenstates Z, X, Y. See [`Statevector.from_label()`](qiskit.quantum_info.Statevector#from_label "qiskit.quantum_info.Statevector.from_label"). Notice the order of the labels is reversed with respect to the qubit index to be applied to. Example label ‘01’ initializes the qubit zero to $|1\rangle$ and the qubit one to $|0\rangle$.
+    *   str: labels of basis states of the Pauli eigenstates Z, X, Y. See [`Statevector.from_label()`](qiskit.quantum_info.Statevector#from_label "qiskit.quantum_info.Statevector.from_label"). Notice the order of the labels is reversed with respect to the qubit index to be applied to. Example label ‘01’ initializes the qubit zero to $\vert 1\rangle$ and the qubit one to $\vert 0\rangle$.
     *   list: vector of complex amplitudes to initialize to.
-    *   int: an integer that is used as a bitmap indicating which qubits to initialize to $|1\rangle$. Example: setting params to 5 would initialize qubit 0 and qubit 2 to $|1\rangle$ and qubit 1 to $|0\rangle$.
+    *   int: an integer that is used as a bitmap indicating which qubits to initialize to $\vert 1\rangle$. Example: setting params to 5 would initialize qubit 0 and qubit 2 to $\vert 1\rangle$ and qubit 1 to $\vert 0\rangle$.
 
 *   **qubits** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister") *or int*) –
 
@@ -2203,9 +2203,9 @@ a handle to the instruction that was just initialized
 
 [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-#### Examples
+**Examples**
 
-Prepare a qubit in the state $(|0\rangle - |1\rangle) / \sqrt{2}$.
+Prepare a qubit in the state $(\vert 0\rangle - \vert 1\rangle) / \sqrt{2}$.
 
 ```python
 import numpy as np
@@ -2230,7 +2230,7 @@ q_0: ┤ State Preparation(0.70711,-0.70711) ├
      └─────────────────────────────────────┘
 ```
 
-Prepare from a string two qubits in the state $|10\rangle$. The order of the labels is reversed with respect to qubit index. More information about labels for basis states are in [`Statevector.from_label()`](qiskit.quantum_info.Statevector#from_label "qiskit.quantum_info.Statevector.from_label").
+Prepare from a string two qubits in the state $\vert 10\rangle$. The order of the labels is reversed with respect to qubit index. More information about labels for basis states are in [`Statevector.from_label()`](qiskit.quantum_info.Statevector#from_label "qiskit.quantum_info.Statevector.from_label").
 
 ```python
 import numpy as np
@@ -2556,7 +2556,7 @@ the circuit with reversed bit order.
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-#### Examples
+**Examples**
 
 input:
 
@@ -2596,7 +2596,7 @@ the reversed circuit.
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-#### Examples
+**Examples**
 
 input:
 
@@ -2628,7 +2628,7 @@ Apply [`RVGate`](qiskit.circuit.library.RVGate "qiskit.circuit.library.RVGate").
 
 For the full matrix form of this gate, see the underlying gate documentation.
 
-Rotation around an arbitrary rotation axis $v$, where $|v|$ is the angle of rotation in radians.
+Rotation around an arbitrary rotation axis $v$, where $\vert v\vert $ is the angle of rotation in radians.
 
 **Parameters**
 
@@ -3750,7 +3750,7 @@ q_0: ┤ bottom ├ ⊗ q_0: ┤ top ├  = q_0: ─┤ top ├──
 *   **other** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The other circuit to tensor this circuit with.
 *   **inplace** (*bool*) – If True, modify the object. Otherwise return composed circuit.
 
-#### Examples
+**Examples**
 
 ```python
 from qiskit import QuantumCircuit
@@ -4326,7 +4326,7 @@ Return number of qubits.
 
 ### num\_state\_qubits
 
-The number of state qubits representing the state $|x\rangle$.
+The number of state qubits representing the state $\vert x\rangle$.
 
 **Return type**
 

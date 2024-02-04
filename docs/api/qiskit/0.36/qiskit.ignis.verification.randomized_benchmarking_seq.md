@@ -89,7 +89,7 @@ A tuple of different fields depending on the inputs. The different fields are:
 *   **ValueError** – if `length_multiplier` is not valid.
 *   **ValueError** – if `interleaved_elem` type is not valid.
 
-## Examples
+**Examples**
 
 1.  Generate simultaneous standard RB sequences.
 
