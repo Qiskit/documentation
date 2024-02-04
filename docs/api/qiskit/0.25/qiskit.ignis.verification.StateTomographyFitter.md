@@ -93,7 +93,7 @@ The `cvx` fitter method used CVXPY convex optimization package. The `lstsq` meth
 
 **Objective function**
 
-This fitter solves the constrained least-squares minimization: $minimize: ||a \cdot x - b ||_2$
+This fitter solves the constrained least-squares minimization: $minimize: \vert \vert a \cdot x - b \vert \vert _2$
 
 subject to:
 
@@ -141,7 +141,7 @@ References:
 
 **Returns**
 
-The fitted matrix rho that minimizes $||\text{basis_matrix} \cdot \text{vec}(\text{rho}) - \text{data}||_2$.
+The fitted matrix rho that minimizes $\vert \vert \text{basis_matrix} \cdot \text{vec}(\text{rho}) - \text{data}\vert \vert _2$.
 
 ### measure\_basis
 
