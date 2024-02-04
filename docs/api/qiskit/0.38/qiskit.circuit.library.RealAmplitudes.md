@@ -34,7 +34,7 @@ The entanglement can be set using the `entanglement` keyword as string or a list
 
 If some qubits are not entangled with other qubits it makes sense to not apply rotation gates on these qubits, since a sequence of $Y$ rotations can be reduced to a single $Y$ rotation with summed rotation angles.
 
-## Examples
+**Examples**
 
 ```python
 >>> ansatz = RealAmplitudes(3, reps=2)  # create the circuit on 3 qubits
@@ -345,7 +345,7 @@ The parameters used in the underlying circuit.
 
 This includes float values and duplicates.
 
-## Examples
+**Examples**
 
 ```python
 >>> # prepare circuit ...
