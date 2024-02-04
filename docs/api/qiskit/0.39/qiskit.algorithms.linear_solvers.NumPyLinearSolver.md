@@ -18,7 +18,7 @@ The deprecated Numpy Linear Solver algorithm (classical).
 
 This linear system solver computes the exact value of the given observable(s) or the full solution vector if no observable is specified.
 
-## Examples
+**Examples**
 
 ```python
 import warnings

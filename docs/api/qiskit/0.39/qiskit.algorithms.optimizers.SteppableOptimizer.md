@@ -20,7 +20,7 @@ This family of optimizers uses the [ask and tell interface](https://optuna.readt
 
 This interface is more customizable, and allows the user to have full control over the evaluation of the function.
 
-## Examples
+**Examples**
 
 An example where the evaluation of the function has a chance of failing. The user, with specific knowledge about his function can catch this errors and handle them before passing the result to the optimizer.
 

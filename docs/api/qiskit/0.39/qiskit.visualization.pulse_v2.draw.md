@@ -238,7 +238,7 @@ The stylesheet kwarg contains numerous options that define the style of the outp
 
 *   **layout.figure\_title** – Callback function that generates a string for the figure title. See `layout` for more details. No default layout is set.
 
-## Examples
+**Examples**
 
 To visualize a pulse program, you can call this function with set of control arguments. Most of appearance of the output image can be controlled by the stylesheet.
 

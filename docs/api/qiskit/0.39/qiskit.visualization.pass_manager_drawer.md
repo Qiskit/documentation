@@ -36,7 +36,7 @@ PIL.Image or None
 *   **MissingOptionalLibraryError** – when nxpd or pydot not installed.
 *   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – If raw=True and filename=None.
 
-## Example
+**Example**
 
 ```python
  %matplotlib inline

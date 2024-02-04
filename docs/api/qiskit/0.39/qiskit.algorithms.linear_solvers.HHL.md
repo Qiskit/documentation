@@ -22,7 +22,7 @@ The deprecated HHL is a quantum algorithm to estimate a function of the solution
 
 The HHL class is deprecated as of Qiskit Terra 0.22.0 and will be removed no sooner than 3 months after the release date. It is replaced by the tutorial at [HHL](https://qiskit.org/textbook/ch-applications/hhl_tutorial.html)
 
-## Examples
+**Examples**
 
 ```python
 import warnings
@@ -51,7 +51,7 @@ with warnings.catch_warnings():
 approx_result = solution.observable
 ```
 
-## References
+**References**
 
 **\[1]: Harrow, A. W., Hassidim, A., Lloyd, S. (2009).**
 
@@ -63,7 +63,7 @@ Enhancing the Quantum Linear Systems Algorithm Using Richardson Extrapolation. [
 
 **Parameters**
 
-*   **epsilon** (`float`) – Error tolerance of the approximation to the solution, i.e. if $x$ is the exact solution and $\tilde{x}$ the one calculated by the algorithm, then $||x - \tilde{x}|| \le epsilon$.
+*   **epsilon** (`float`) – Error tolerance of the approximation to the solution, i.e. if $x$ is the exact solution and $\tilde{x}$ the one calculated by the algorithm, then $\vert \vert x - \tilde{x}\vert \vert  \le epsilon$.
 *   **expectation** (`Optional`\[[`ExpectationBase`](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.expectation_base.ExpectationBase")]) – The expectation converter applied to the expectation values before evaluation. If None then PauliExpectation is used.
 *   **quantum\_instance** (`Union`\[[`Backend`](qiskit.providers.Backend "qiskit.providers.backend.Backend"), [`QuantumInstance`](qiskit.utils.QuantumInstance "qiskit.utils.quantum_instance.QuantumInstance"), `None`]) – Quantum Instance or Backend. If None, a Statevector calculation is done.
 

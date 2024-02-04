@@ -18,7 +18,7 @@ Call the subroutine within the currently active builder context with arbitrary p
   If the `target` program is a [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock"), then a [`Reference`](qiskit.pulse.instructions.Reference "qiskit.pulse.instructions.Reference") instruction will be created and appended to the current context. The `target` program will be immediately assigned to the current scope as a subroutine. If the `target` program is [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule"), it will be wrapped by the [`Call`](qiskit.pulse.instructions.Call "qiskit.pulse.instructions.Call") instruction and appended to the current context to avoid a mixed representation of [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") and [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule"). If the `target` program is a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") it will be scheduled and the new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") will be added as a [`Call`](qiskit.pulse.instructions.Call "qiskit.pulse.instructions.Call") instruction.
 </Admonition>
 
-## Examples
+**Examples**
 
 1.  Calling a schedule block (recommended)
 
