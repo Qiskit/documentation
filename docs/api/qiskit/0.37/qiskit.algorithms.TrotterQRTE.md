@@ -16,7 +16,7 @@ Bases: [`qiskit.algorithms.evolvers.real_evolver.RealEvolver`](qiskit.algorithms
 
 Quantum Real Time Evolution using Trotterization. Type of Trotterization is defined by a ProductFormula provided.
 
-## Examples
+**Examples**
 
 ```python
 from qiskit.opflow import X, Z, Zero

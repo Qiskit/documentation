@@ -32,7 +32,7 @@ q_1: ─■─
 
 $$
 \begin{split}CZ\ q_1, q_0 =
-    |0\rangle\langle 0| \otimes I + |1\rangle\langle 1| \otimes Z =
+    \vert 0\rangle\langle 0\vert  \otimes I + \vert 1\rangle\langle 1\vert  \otimes Z =
     \begin{pmatrix}
         1 & 0 & 0 & 0 \\
         0 & 1 & 0 & 0 \\
@@ -41,7 +41,7 @@ $$
     \end{pmatrix}\end{split}
 $$
 
-In the computational basis, this gate flips the phase of the target qubit if the control qubit is in the $|1\rangle$ state.
+In the computational basis, this gate flips the phase of the target qubit if the control qubit is in the $\vert 1\rangle$ state.
 
 Create new CZ gate.
 
