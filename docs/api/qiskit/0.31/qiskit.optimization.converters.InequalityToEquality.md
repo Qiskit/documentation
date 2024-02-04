@@ -16,7 +16,7 @@ Bases: `qiskit.optimization.converters.quadratic_program_converter.QuadraticProg
 
 Convert inequality constraints into equality constraints by introducing slack variables.
 
-## Examples
+**Examples**
 
 ```python
 >>> from qiskit.optimization.problems import QuadraticProgram

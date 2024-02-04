@@ -6,7 +6,7 @@ Convert clique instances into Pauli list
 
 Deal with Gset format. See [https://web.stanford.edu/\~yyye/yyye/Gset/](https://web.stanford.edu/~yyye/yyye/Gset/)
 
-## Functions
+**Functions**
 
 |                                   |                                        |
 | --------------------------------- | -------------------------------------- |
