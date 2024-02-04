@@ -18,7 +18,7 @@ This class generates accreditation circuits from a target.
 
 Implementation follows the methods from \[1]
 
-## References
+**References**
 
 1.  S. Ferracin, T. Kapourniotis, A. Datta. *Accrediting outputs of noisy intermediate-scale quantum computing devices*, New Journal of Physics, Volume 21, 113038. (2019). [NJP 113038](https://iopscience.iop.org/article/10.1088/1367-2630/ab4fd6)
 
