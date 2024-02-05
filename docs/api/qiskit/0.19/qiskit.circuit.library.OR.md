@@ -14,7 +14,7 @@ python_api_name: qiskit.circuit.library.OR
 
 A circuit implementing the logical OR operation on a number of qubits.
 
-For the OR operation the state $|1\rangle$ is interpreted as `True`. The result qubit is flipped, if the state of any variable qubit is `True`. The OR is implemented using a multi-open-controlled X gate (i.e. flips if the state is $|0\rangle$) and applying an X gate on the result qubit. Using a list of flags, qubits can be skipped or negated.
+For the OR operation the state $\vert 1\rangle$ is interpreted as `True`. The result qubit is flipped, if the state of any variable qubit is `True`. The OR is implemented using a multi-open-controlled X gate (i.e. flips if the state is $\vert 0\rangle$) and applying an X gate on the result qubit. Using a list of flags, qubits can be skipped or negated.
 
 The OR gate without special flags:
 
@@ -207,7 +207,7 @@ The keys of the parameter dictionary must be Parameter instances in the current 
 
 optional([QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"))
 
-#### Examples
+**Examples**
 
 ```python
 >>> from qiskit.circuit import QuantumCircuit, Parameter
@@ -403,7 +403,7 @@ the composed circuit (returns None if inplace==True).
 *   **CircuitError** – if composing on the front.
 *   **QiskitError** – if `other` is wider or there are duplicate edge mappings.
 
-#### Examples
+**Examples**
 
 ```python
 >>> lhs.compose(rhs, qubits=[3, 2], inplace=True)
@@ -574,7 +574,7 @@ Depth of circuit.
 
 int
 
-#### Notes
+**Notes**
 
 The circuit depth and the DAG depth need not be the same.
 
@@ -1240,7 +1240,7 @@ Conditional nonlocal gates are also included.
 
 Computes the number of tensor factors in the unitary (quantum) part of the circuit only.
 
-#### Notes
+**Notes**
 
 This is here for backwards compatibility, and will be removed in a future release of Qiskit. You should call num\_unitary\_factors instead.
 

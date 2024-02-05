@@ -40,7 +40,7 @@ tuple
 *   The `'tensored'` method will generate two input state circuits of the all 0 and all 1 states on number of qubits unless custom labels are specified. Ftting will return a [`TensoredExpvalMeasMitigator`](qiskit.ignis.mitigation.TensoredExpvalMeasMitigator "qiskit.ignis.mitigation.TensoredExpvalMeasMitigator"). This method assumes measurement errors are uncorrelated between qubits.
 *   The `'CTMP'` method will generate $n+2$ input state circuits unless custom labels are specified. The default input states are the all 0 state, the all 1 state, and the $n$ state with a single qubit in the 1 state and all others in the 0 state. Ftting will return a [`CTMPExpvalMeasMitigator`](qiskit.ignis.mitigation.CTMPExpvalMeasMitigator "qiskit.ignis.mitigation.CTMPExpvalMeasMitigator").
 
-## Example
+**Example**
 
 The following example shows calibrating a 5-qubit expectation value measurement error mitigator using the `'tensored'` method.
 

@@ -27,7 +27,7 @@ q_1: ┤ √X ├
 
 $$
 \begin{split}C\sqrt{X} \ q_0, q_1 =
-I \otimes |0 \rangle\langle 0| + \sqrt{X} \otimes |1 \rangle\langle 1|  =
+I \otimes \vert 0 \rangle\langle 0\vert  + \sqrt{X} \otimes \vert 1 \rangle\langle 1\vert   =
     \begin{pmatrix}
         1 & 0 & 0 & 0 \\
         0 & (1 + i) / 2 & 0 & (1 - i) / 2 \\
@@ -48,7 +48,7 @@ $$
 
   $$
   \begin{split}C\sqrt{X}\ q_1, q_0 =
-      |0 \rangle\langle 0| \otimes I + |1 \rangle\langle 1| \otimes \sqrt{X} =
+      \vert 0 \rangle\langle 0\vert  \otimes I + \vert 1 \rangle\langle 1\vert  \otimes \sqrt{X} =
       \begin{pmatrix}
           1 & 0 & 0 & 0 \\
           0 & 1 & 0 & 0 \\

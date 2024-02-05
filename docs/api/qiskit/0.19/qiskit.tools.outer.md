@@ -23,7 +23,7 @@ The second vector argument is optional, if absent the projector of the first vec
 
 **Returns**
 
-The matrix $|v1\rangle\langle{v2}|$.
+The matrix $\vert v1\rangle\langle{v2}\vert $.
 
 **Return type**
 

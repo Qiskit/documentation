@@ -16,7 +16,7 @@ Convert a [`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qi
 
 This bounded-coefficient encoding used in this converted is proposed in \[1], Eq. (5).
 
-## Examples
+**Examples**
 
 ```python
 >>> from qiskit.optimization.problems import QuadraticProgram
@@ -27,7 +27,7 @@ This bounded-coefficient encoding used in this converted is proposed in \[1], Eq
 >>> problem2 = conv.convert(problem)
 ```
 
-## References
+**References**
 
 **\[1]: Sahar Karimi, Pooya Ronagh (2017), Practical Integer-to-Binary Mapping for Quantum**
 

@@ -17,8 +17,8 @@ Choi-matrix representation of a Quantum Channel.
 The Choi-matrix representation of a quantum channel $\mathcal{E}$ is a matrix
 
 $$
-\Lambda = \sum_{i,j} |i\rangle\!\langle j|\otimes
-            \mathcal{E}\left(|i\rangle\!\langle j|\right)
+\Lambda = \sum_{i,j} \vert i\rangle\!\langle j\vert \otimes
+            \mathcal{E}\left(\vert i\rangle\!\langle j\vert \right)
 $$
 
 Evolution of a [`DensityMatrix`](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") $\rho$ with respect to the Choi-matrix is given by
@@ -32,7 +32,7 @@ where $\mbox{Tr}_1$ is the [`partial_trace()`](qiskit.quantum_info.partial_trace
 
 See reference \[1] for further details.
 
-## References
+**References**
 
 1.  C.J. Wood, J.D. Biamonte, D.G. Cory, *Tensor networks and graphical calculus for open quantum systems*, Quant. Inf. Comp. 15, 0579-0811 (2015). [arXiv:1111.6950 \[quant-ph\]](https://arxiv.org/abs/1111.6950)
 

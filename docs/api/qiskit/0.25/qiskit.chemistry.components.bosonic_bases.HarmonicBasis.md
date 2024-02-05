@@ -16,7 +16,7 @@ Basis in which the Watson Hamiltonian is expressed.
 
 This class uses the Hermite polynomials (eigenstates of the harmonic oscillator) as a modal basis for the expression of the Watson Hamiltonian or any bosonic operator.
 
-## References
+**References**
 
 \[1] Ollitrault Pauline J., Chemical science 11 (2020): 6842-6855.
 

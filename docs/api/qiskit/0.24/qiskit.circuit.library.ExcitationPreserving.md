@@ -16,7 +16,7 @@ python_api_name: qiskit.circuit.library.ExcitationPreserving
 
 The heurisitic excitation-preserving wave function ansatz.
 
-The `ExcitationPreserving` circuit preserves the ratio of $|00\rangle$, $|01\rangle + |10\rangle$ and $|11\rangle$ states. The matrix representing the operation is
+The `ExcitationPreserving` circuit preserves the ratio of $\vert 00\rangle$, $\vert 01\rangle + \vert 10\rangle$ and $\vert 11\rangle$ states. The matrix representing the operation is
 
 $$
  \begin{align}\begin{aligned}\newcommand{\th}{\theta/2}\\\begin{split}\begin{pmatrix}
@@ -37,7 +37,7 @@ See [`RealAmplitudes`](qiskit.circuit.library.RealAmplitudes "qiskit.circuit.lib
 
 The rotations of the ExcitationPreserving ansatz can be written as
 
-## Examples
+**Examples**
 
 ```python
 >>> ansatz = ExcitationPreserving(3, reps=1, insert_barriers=True, entanglement='linear')
@@ -576,7 +576,7 @@ the composed circuit (returns None if inplace==True).
 *   **CircuitError** – if composing on the front.
 *   **QiskitError** – if `other` is wider or there are duplicate edge mappings.
 
-## Examples
+**Examples**
 
 ```python
 >>> lhs.compose(rhs, qubits=[3, 2], inplace=True)
@@ -841,7 +841,7 @@ Depth of circuit.
 
 int
 
-## Notes
+**Notes**
 
 The circuit depth and the DAG depth need not be the same.
 
@@ -1323,7 +1323,7 @@ the inverted circuit
 
 **CircuitError** – if the circuit cannot be inverted.
 
-## Examples
+**Examples**
 
 **input:**
 
@@ -1728,7 +1728,7 @@ The number of qubits.
 
 Computes the number of tensor factors in the unitary (quantum) part of the circuit only.
 
-## Notes
+**Notes**
 
 This is here for backwards compatibility, and will be removed in a future release of Qiskit. You should call num\_unitary\_factors instead.
 
@@ -1750,7 +1750,7 @@ The parameters used in the underlying circuit.
 
 This includes float values and duplicates.
 
-## Examples
+**Examples**
 
 ```python
 >>> # prepare circuit ...
@@ -2116,7 +2116,7 @@ the circuit with reversed bit order.
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-## Examples
+**Examples**
 
 **input:**
 
@@ -2160,7 +2160,7 @@ the reversed circuit.
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-## Examples
+**Examples**
 
 **input:**
 

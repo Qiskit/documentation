@@ -16,7 +16,7 @@ The SciPy COBYLA optimizer wrapped as an Qiskit [`OptimizationAlgorithm`](qiskit
 
 This class provides a wrapper for `scipy.optimize.fmin_cobyla` ([https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.optimize.fmin\_cobyla.html](https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.optimize.fmin_cobyla.html)) to be used within the optimization module. The arguments for `fmin_cobyla` are passed via the constructor.
 
-## Examples
+**Examples**
 
 ```python
 >>> from qiskit.optimization.problems import QuadraticProgram

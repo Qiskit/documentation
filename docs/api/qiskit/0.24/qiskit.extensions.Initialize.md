@@ -162,7 +162,7 @@ Call to create a circuit with gates that take the desired vector to zero.
 
 **Returns**
 
-circuit to take self.params vector to $|{00\ldots0}\rangle$
+circuit to take self.params vector to $\vert {00\ldots0}\rangle$
 
 **Return type**
 

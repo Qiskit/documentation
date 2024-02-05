@@ -12,13 +12,15 @@ python_api_name: qiskit.finance.applications.ising.portfolio_diversification.get
 
 portfolio diversification
 
-## Functions
+**Functions**
 
 |                                                                                                                                                                                                                                                           |                                                                                                                               |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
 | [`get_operator`](#qiskit.finance.applications.ising.portfolio_diversification.get_operator "qiskit.finance.applications.ising.portfolio_diversification.get_operator")(rho, n, q)                                                                         | Converts an instance of portfolio optimization into a list of Paulis.                                                         |
 | [`get_portfoliodiversification_solution`](#qiskit.finance.applications.ising.portfolio_diversification.get_portfoliodiversification_solution "qiskit.finance.applications.ising.portfolio_diversification.get_portfoliodiversification_solution")(rho, …) | Tries to obtain a feasible solution (in vector form) of an instance of portfolio diversification from the results dictionary. |
 | [`get_portfoliodiversification_value`](#qiskit.finance.applications.ising.portfolio_diversification.get_portfoliodiversification_value "qiskit.finance.applications.ising.portfolio_diversification.get_portfoliodiversification_value")(rho, n, …)       | Evaluates an objective function of an instance of portfolio diversification and its solution (in vector form).                |
+
+### get\_operator
 
 <span id="qiskit.finance.applications.ising.portfolio_diversification.get_operator" />
 
@@ -40,6 +42,8 @@ Converts an instance of portfolio optimization into a list of Paulis.
 
 operator for the Hamiltonian
 
+### get\_portfoliodiversification\_solution
+
 <span id="qiskit.finance.applications.ising.portfolio_diversification.get_portfoliodiversification_solution" />
 
 `get_portfoliodiversification_solution(rho, n, q, result)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/finance/applications/ising/portfolio_diversification.py "view source code")
@@ -60,6 +64,8 @@ Tries to obtain a feasible solution (in vector form) of an instance of portfolio
 **Returns**
 
 a vector describing the solution.
+
+### get\_portfoliodiversification\_value
 
 <span id="qiskit.finance.applications.ising.portfolio_diversification.get_portfoliodiversification_value" />
 

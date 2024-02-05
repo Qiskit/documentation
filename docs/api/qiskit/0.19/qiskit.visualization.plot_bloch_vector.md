@@ -35,7 +35,7 @@ Figure
 
 **ImportError** – Requires matplotlib.
 
-## Example
+**Example**
 
 ```python
 from qiskit.visualization import plot_bloch_vector

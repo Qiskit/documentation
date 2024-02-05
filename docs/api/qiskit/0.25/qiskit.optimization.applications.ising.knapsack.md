@@ -16,7 +16,7 @@ In the Knapsack Problem we are given a list of objects that each has a weight an
 
 If we have the weights w\[i], the values v\[i] and the maximum weight W\_max. We express the solution as a binary array x\[i] where we have a 1 for the items we take in the solution set. We need to maximize sum(x\[i]\*v\[i]) while respecting W\_max >= sum(x\[i]\*w\[i])
 
-## Functions
+**Functions**
 
 |                                                                                                                                                                                                      |                                                                                                                    |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
@@ -24,13 +24,15 @@ If we have the weights w\[i], the values v\[i] and the maximum weight W\_max. We
 | [`get_solution`](#qiskit.optimization.applications.ising.knapsack.get_solution "qiskit.optimization.applications.ising.knapsack.get_solution")(x, values)                                            | Get the solution to the knapsack problem from the bitstring that represents to the ground state of the Hamiltonian |
 | [`knapsack_value_weight`](#qiskit.optimization.applications.ising.knapsack.knapsack_value_weight "qiskit.optimization.applications.ising.knapsack.knapsack_value_weight")(solution, values, weights) | Get the total wight and value of the items taken in the knapsack.                                                  |
 
+### get\_operator
+
 <span id="qiskit.optimization.applications.ising.knapsack.get_operator" />
 
 `get_operator(values, weights, max_weight)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/knapsack.py "view source code")
 
 Generate Hamiltonian for the knapsack problem.
 
-## Notes
+**Notes**
 
 To build the cost function for the Hamiltonian we add a term S that will vary with our solution. In order to make it change wit the solution we enhance X with a number of additional bits X’ = \[x\_0,..x\_\{n-1},y\_\{n}..y\_\{n+m-1}]. The bytes y\[i] will be the binary representation of S. In this way the optimizer will be able to optimize S as well as X.
 
@@ -61,6 +63,8 @@ operator for the Hamiltonian float: a constant shift for the obj function.
 *   **ValueError** – All values are zero
 *   **ValueError** – max\_weight is negative
 
+### get\_solution
+
 <span id="qiskit.optimization.applications.ising.knapsack.get_solution" />
 
 `get_solution(x, values)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/knapsack.py "view source code")
@@ -81,6 +85,8 @@ corresponding to values that have been taken in the knapsack. i.e. if the soluti
 **Return type**
 
 numpy.ndarray
+
+### knapsack\_value\_weight
 
 <span id="qiskit.optimization.applications.ising.knapsack.knapsack_value_weight" />
 

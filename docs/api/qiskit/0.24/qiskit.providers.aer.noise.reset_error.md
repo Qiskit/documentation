@@ -20,16 +20,16 @@ The error channel returned is given by the map
 
 $$
 E(ρ) = (1 - p_0 - p_1) ρ + \text{Tr}[ρ] \left(
-        p_0 |0 \rangle\langle 0|
-        + p_1 |1 \rangle\langle 1| \right)
+        p_0 \vert 0 \rangle\langle 0\vert 
+        + p_1 \vert 1 \rangle\langle 1\vert  \right)
 $$
 
 where the probability of no reset is given by $1 - p_0 - p_1$.
 
 **Parameters**
 
-*   **prob0** (*double*) – reset probability to $|0\rangle$.
-*   **prob1** (*double*) – reset probability to $|1\rangle$.
+*   **prob0** (*double*) – reset probability to $\vert 0\rangle$.
+*   **prob1** (*double*) – reset probability to $\vert 1\rangle$.
 
 **Returns**
 

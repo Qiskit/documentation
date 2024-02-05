@@ -61,7 +61,7 @@ Total sequence EPC: 0.055868, 2Q gate contribution: 0.051004
 
 As you can see two qubit gate contribution is dominant in this RB sequence.
 
-## References
+**References**
 
 \[1] D. C. McKay, S. Sheldon, J. A. Smolin, J. M. Chow, and J. M. Gambetta, “Three-Qubit Randomized Benchmarking,” Phys. Rev. Lett., vol. 122, no. 20, 2019 (arxiv:1712.06550).
 

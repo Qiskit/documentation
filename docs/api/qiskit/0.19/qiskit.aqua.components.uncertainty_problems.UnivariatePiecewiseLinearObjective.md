@@ -17,7 +17,7 @@ Univariate Piecewise Linear Objective Function.
 This objective function applies controlled Y-rotation to the target qubit, where the control qubits represent integer value, and rotation approximates a piecewise linear function of the amplitude f:
 
 $$
-|x\rangle |0\rangle \mapsto |x\rangle (\sqrt(1 - f(x))|0\rangle + sqrt(f(x))|1\rangle )
+\vert x\rangle \vert 0\rangle \mapsto \vert x\rangle (\sqrt(1 - f(x))\vert 0\rangle + sqrt(f(x))\vert 1\rangle )
 $$
 
 **Parameters**

@@ -43,7 +43,7 @@ Initialize self. See help(type(self)) for accurate signature.
 
 **Parameters**
 
-*   **operator** (`OperatorBase`) – The operator corresponding to the quantum state $|\psi(\omega)\rangle$ for which we compute the QFI.
+*   **operator** (`OperatorBase`) – The operator corresponding to the quantum state $\vert \psi(\omega)\rangle$ for which we compute the QFI.
 *   **params** (`Union`\[`ParameterVector`, `ParameterExpression`, `List`\[`ParameterExpression`], `None`]) – The parameters $\omega$ with respect to which we are computing the QFI.
 
 **Return type**

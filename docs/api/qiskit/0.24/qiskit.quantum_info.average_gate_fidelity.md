@@ -20,8 +20,8 @@ The average gate fidelity $F_{\text{ave}}$ is given by
 
 $$
 \begin{split}F_{\text{ave}}(\mathcal{E}, U)
-    &= \int d\psi \langle\psi|U^\dagger
-        \mathcal{E}(|\psi\rangle\!\langle\psi|)U|\psi\rangle \\
+    &= \int d\psi \langle\psi\vert U^\dagger
+        \mathcal{E}(\vert \psi\rangle\!\langle\psi\vert )U\vert \psi\rangle \\
     &= \frac{d F_{\text{pro}}(\mathcal{E}, U) + 1}{d + 1}\end{split}
 $$
 

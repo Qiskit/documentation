@@ -14,7 +14,7 @@ python_api_name: qiskit.optimization.converters.QuadraticProgramToQubo
 
 Convert a given optimization problem to a new problem that is a QUBO.
 
-## Examples
+**Examples**
 
 ```python
 >>> from qiskit.optimization.problems import QuadraticProgram

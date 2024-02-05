@@ -17,8 +17,8 @@ A circuit to compute the weighted sum of qubit registers.
 Given $n$ qubit basis states $q_0, \ldots, q_{n-1} \in \{0, 1\}$ and non-negative integer weights $\lambda_0, \ldots, \lambda_{n-1}$, this circuit performs the operation
 
 $$
-|q_0 \ldots q_{n-1}\rangle |0\rangle_s
-\mapsto |q_0 \ldots q_{n-1}\rangle |\sum_{j=0}^{n-1} \lambda_j q_j\rangle_s
+\vert q_0 \ldots q_{n-1}\rangle \vert 0\rangle_s
+\mapsto \vert q_0 \ldots q_{n-1}\rangle \vert \sum_{j=0}^{n-1} \lambda_j q_j\rangle_s
 $$
 
 where $s$ is the number of sum qubits required. This can be computed as
@@ -346,7 +346,7 @@ The keys of the parameter dictionary must be Parameter instances in the current 
 
 optional([QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"))
 
-#### Examples
+**Examples**
 
 ```python
 >>> from qiskit.circuit import QuantumCircuit, Parameter
@@ -542,7 +542,7 @@ the composed circuit (returns None if inplace==True).
 *   **CircuitError** – if composing on the front.
 *   **QiskitError** – if `other` is wider or there are duplicate edge mappings.
 
-#### Examples
+**Examples**
 
 ```python
 >>> lhs.compose(rhs, qubits=[3, 2], inplace=True)
@@ -713,7 +713,7 @@ Depth of circuit.
 
 int
 
-#### Notes
+**Notes**
 
 The circuit depth and the DAG depth need not be the same.
 
@@ -1379,7 +1379,7 @@ Conditional nonlocal gates are also included.
 
 Computes the number of tensor factors in the unitary (quantum) part of the circuit only.
 
-#### Notes
+**Notes**
 
 This is here for backwards compatibility, and will be removed in a future release of Qiskit. You should call num\_unitary\_factors instead.
 

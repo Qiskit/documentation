@@ -59,7 +59,7 @@ EPG without `list_epgs_1q`: 0.016107, with `list_epgs_1q`: 0.013622
   This function presupposes the basis gate consists of `u1`, `u2`, `u3` and `cx`.
 </Admonition>
 
-## References
+**References**
 
 \[1] D. C. McKay, S. Sheldon, J. A. Smolin, J. M. Chow, and J. M. Gambetta, “Three-Qubit Randomized Benchmarking,” Phys. Rev. Lett., vol. 122, no. 20, 2019 (arxiv:1712.06550).
 

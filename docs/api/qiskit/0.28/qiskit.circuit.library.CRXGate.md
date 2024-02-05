@@ -27,7 +27,7 @@ q_1: ┤ Rx(ϴ) ├
 
 $$
  \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}CRX(\lambda)\ q_0, q_1 =
-    I \otimes |0\rangle\langle 0| + RX(\theta) \otimes |1\rangle\langle 1| =
+    I \otimes \vert 0\rangle\langle 0\vert  + RX(\theta) \otimes \vert 1\rangle\langle 1\vert  =
     \begin{pmatrix}
         1 & 0 & 0 & 0 \\
         0 & \cos{\th} & 0 & -i\sin{\th} \\
@@ -48,7 +48,7 @@ $$
 
   $$
    \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}CRX(\theta)\ q_1, q_0 =
-  |0\rangle\langle0| \otimes I + |1\rangle\langle1| \otimes RX(\theta) =
+  \vert 0\rangle\langle0\vert  \otimes I + \vert 1\rangle\langle1\vert  \otimes RX(\theta) =
       \begin{pmatrix}
           1 & 0 & 0 & 0 \\
           0 & 1 & 0 & 0 \\

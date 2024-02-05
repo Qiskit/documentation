@@ -26,7 +26,7 @@ Return ordered count keys.
 
 The strings of all 0/1 combinations of the given number of qubits
 
-## Example
+**Example**
 
 ```python
 >>> count_keys(3)

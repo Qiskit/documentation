@@ -29,7 +29,7 @@ Fidelity
 
 float
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumCircuit, execute, BasicAer

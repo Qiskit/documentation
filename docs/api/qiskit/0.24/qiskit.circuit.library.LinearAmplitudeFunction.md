@@ -19,11 +19,11 @@ A circuit implementing a (piecewise) linear function on qubit amplitudes.
 An amplitude function $F$ of a function $f$ is a mapping
 
 $$
-F|x\rangle|0\rangle = \sqrt{1 - \hat{f}(x)} |x\rangle|0\rangle + \sqrt{\hat{f}(x)}
-    |x\rangle|1\rangle.
+F\vert x\rangle\vert 0\rangle = \sqrt{1 - \hat{f}(x)} \vert x\rangle\vert 0\rangle + \sqrt{\hat{f}(x)}
+    \vert x\rangle\vert 1\rangle.
 $$
 
-for a function $\hat{f}: \{0, ..., 2^n - 1} \rightarrow [0, 1]$, where $|x\rangle$ is a $n$ qubit state.
+for a function $\hat{f}: \{0, ..., 2^n - 1} \rightarrow [0, 1]$, where $\vert x\rangle$ is a $n$ qubit state.
 
 This circuit implements $F$ for piecewise linear functions $\hat{f}$. In this case, the mapping $F$ can be approximately implemented using a Taylor expansion and linearly controlled Pauli-Y rotations, see \[1, 2] for more detail. This approximation uses a `rescaling_factor` to determine the accuracy of the Taylor expansion.
 
@@ -49,7 +49,7 @@ where $1_[a, b]$ is an indication function that is 1 if the argument is in the i
 
 Examples:
 
-## References
+**References**
 
 **\[1]: Woerner, S., & Egger, D. J. (2018).**
 
@@ -324,7 +324,7 @@ A copy of the circuit with bound parameters, if `inplace` is True, otherwise Non
 
 Optional([QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"))
 
-## Examples
+**Examples**
 
 ```python
 >>> from qiskit.circuit import QuantumCircuit, Parameter
@@ -540,7 +540,7 @@ the composed circuit (returns None if inplace==True).
 *   **CircuitError** – if composing on the front.
 *   **QiskitError** – if `other` is wider or there are duplicate edge mappings.
 
-## Examples
+**Examples**
 
 ```python
 >>> lhs.compose(rhs, qubits=[3, 2], inplace=True)
@@ -805,7 +805,7 @@ Depth of circuit.
 
 int
 
-## Notes
+**Notes**
 
 The circuit depth and the DAG depth need not be the same.
 
@@ -1195,7 +1195,7 @@ the inverted circuit
 
 **CircuitError** – if the circuit cannot be inverted.
 
-## Examples
+**Examples**
 
 **input:**
 
@@ -1554,7 +1554,7 @@ Return number of qubits.
 
 Computes the number of tensor factors in the unitary (quantum) part of the circuit only.
 
-## Notes
+**Notes**
 
 This is here for backwards compatibility, and will be removed in a future release of Qiskit. You should call num\_unitary\_factors instead.
 
@@ -1850,7 +1850,7 @@ the circuit with reversed bit order.
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-## Examples
+**Examples**
 
 **input:**
 
@@ -1894,7 +1894,7 @@ the reversed circuit.
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-## Examples
+**Examples**
 
 **input:**
 

@@ -14,11 +14,13 @@ python_api_name: qiskit.scheduler.schedule_circuit
 
 QuantumCircuit to Pulse scheduler.
 
-## Functions
+**Functions**
 
 |                                                                                                                                                                 |                                                                              |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | [`schedule_circuit`](#qiskit.scheduler.schedule_circuit.schedule_circuit "qiskit.scheduler.schedule_circuit.schedule_circuit")(circuit, schedule\_config\[, …]) | Basic scheduling pass from a circuit to a pulse Schedule, using the backend. |
+
+### schedule\_circuit
 
 <span id="qiskit.scheduler.schedule_circuit.schedule_circuit" />
 

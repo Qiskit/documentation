@@ -37,7 +37,7 @@ rho_eq = [[1 - p1, 0]], [0, p1]]
 
 *   **param\_amp** (*double*) – the amplitude damping error parameter.
 *   **param\_phase** (*double*) – the phase damping error parameter.
-*   **excited\_state\_population** (*double*) – the population of $|1\rangle$ state at equilibrium (default: 0).
+*   **excited\_state\_population** (*double*) – the population of $\vert 1\rangle$ state at equilibrium (default: 0).
 *   **canonical\_kraus** (*bool*) – Convert input Kraus matrices into the canonical Kraus representation (default: True)
 
 **Returns**

@@ -18,7 +18,7 @@ In addition, a state preparation operator is generated from the coefficients and
 
 The construction of the oracle is discussed in \[1].
 
-## References
+**References**
 
 **\[1]: Gilliam et al., Grover Adaptive Search for Constrained Polynomial Binary Optimization.**
 

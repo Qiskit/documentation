@@ -14,9 +14,9 @@ python_api_name: qiskit.quantum_info.concurrence
 
 Calculate the concurrence of a quantum state.
 
-The concurrence of a bipartite [`Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector") $|\psi\rangle$ is given by
+The concurrence of a bipartite [`Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector") $\vert \psi\rangle$ is given by
 
-where $\rho_0 = Tr_1[|\psi\rangle\!\langle\psi|]$ is the reduced state from by taking the $~qiskit.quantum_info.partial_trace$ of the input state.
+where $\rho_0 = Tr_1[\vert \psi\rangle\!\langle\psi\vert ]$ is the reduced state from by taking the $~qiskit.quantum_info.partial_trace$ of the input state.
 
 For density matrices the concurrence is only defined for 2-qubit states, it is given by:
 

@@ -18,7 +18,7 @@ The Faster Amplitude Estimation (FAE) \[1] algorithm is a variant of Quantum Amp
 
 Due to the iterative version of the QPE, this algorithm does not require any additional qubits, as the originally proposed QAE \[3] and thus the resulting circuits are less complex.
 
-## References
+**References**
 
 **\[1]: K. Nakaji. Faster Amplitude Estimation, 2020;**
 
@@ -62,11 +62,11 @@ Due to the iterative version of the QPE, this algorithm does not require any add
 
 ## Methods
 
-|                                                                                                                                                                                     |                                         |              |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- | ------------ |
-| [`__init__`](#qiskit.algorithms.FasterAmplitudeEstimation.__init__ "qiskit.algorithms.FasterAmplitudeEstimation.__init__")(delta, maxiter\[, rescale, …])                           | **type delta**`float`                   |              |
-| [`construct_circuit`](#qiskit.algorithms.FasterAmplitudeEstimation.construct_circuit "qiskit.algorithms.FasterAmplitudeEstimation.construct_circuit")(estimation\_problem, k\[, …]) | Construct the circuit \$Q^k X           | 0\rangle>\$. |
-| [`estimate`](#qiskit.algorithms.FasterAmplitudeEstimation.estimate "qiskit.algorithms.FasterAmplitudeEstimation.estimate")(estimation\_problem)                                     | Run the amplitude estimation algorithm. |              |
+|                                                                                                                                                                                     |                                                |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| [`__init__`](#qiskit.algorithms.FasterAmplitudeEstimation.__init__ "qiskit.algorithms.FasterAmplitudeEstimation.__init__")(delta, maxiter\[, rescale, …])                           | **type delta**`float`                          |
+| [`construct_circuit`](#qiskit.algorithms.FasterAmplitudeEstimation.construct_circuit "qiskit.algorithms.FasterAmplitudeEstimation.construct_circuit")(estimation\_problem, k\[, …]) | Construct the circuit $Q^k X \vert 0\rangle>$. |
+| [`estimate`](#qiskit.algorithms.FasterAmplitudeEstimation.estimate "qiskit.algorithms.FasterAmplitudeEstimation.estimate")(estimation\_problem)                                     | Run the amplitude estimation algorithm.        |
 
 ## Attributes
 
@@ -80,7 +80,7 @@ Due to the iterative version of the QPE, this algorithm does not require any add
 
 `construct_circuit(estimation_problem, k, measurement=False)`
 
-Construct the circuit $Q^k X |0\rangle>$.
+Construct the circuit $Q^k X \vert 0\rangle>$.
 
 The A operator is the unitary specifying the QAE problem and Q the associated Grover operator.
 
@@ -96,7 +96,7 @@ The A operator is the unitary specifying the QAE problem and Q the associated Gr
 
 **Returns**
 
-The circuit $Q^k X |0\rangle$.
+The circuit $Q^k X \vert 0\rangle$.
 
 ### estimate
 

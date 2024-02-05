@@ -32,7 +32,7 @@ the DAG representing an OpenQASM’s AST
 
 **QiskitError** – if the AST is malformed.
 
-## Example
+**Example**
 
 ```python
 from qiskit.converters import ast_to_dag

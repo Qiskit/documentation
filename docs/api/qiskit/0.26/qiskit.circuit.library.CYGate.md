@@ -27,7 +27,7 @@ q_1: ┤ Y ├
 
 $$
 \begin{split}CY\ q_0, q_1 =
-I \otimes |0 \rangle\langle 0| + Y \otimes |1 \rangle\langle 1|  =
+I \otimes \vert 0 \rangle\langle 0\vert  + Y \otimes \vert 1 \rangle\langle 1\vert   =
     \begin{pmatrix}
         1 & 0 & 0 & 0 \\
         0 & 0 & 0 & -i \\
@@ -48,7 +48,7 @@ $$
 
   $$
   \begin{split}CY\ q_1, q_0 =
-      |0 \rangle\langle 0| \otimes I + |1 \rangle\langle 1| \otimes Y =
+      \vert 0 \rangle\langle 0\vert  \otimes I + \vert 1 \rangle\langle 1\vert  \otimes Y =
       \begin{pmatrix}
           1 & 0 & 0 & 0 \\
           0 & 1 & 0 & 0 \\
