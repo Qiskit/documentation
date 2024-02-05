@@ -54,11 +54,13 @@ print('get_operator')
 print('tsp objective:', result['energy'] + offset)
 ```
 
-## Functions
+**Functions**
 
 |                                                                                                                                                                        |                                                     |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
 | [`get_operator`](#qiskit.optimization.applications.ising.docplex.get_operator "qiskit.optimization.applications.ising.docplex.get_operator")(mdl\[, auto\_penalty, …]) | Generate Ising Hamiltonian from a model of DOcplex. |
+
+### get\_operator
 
 <span id="qiskit.optimization.applications.ising.docplex.get_operator" />
 

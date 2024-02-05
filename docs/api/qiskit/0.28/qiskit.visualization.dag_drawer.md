@@ -40,7 +40,7 @@ PIL.Image
 *   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – when style is not recognized.
 *   [**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – when pydot or pillow are not installed.
 
-## Example
+**Example**
 
 ```python
 %matplotlib inline

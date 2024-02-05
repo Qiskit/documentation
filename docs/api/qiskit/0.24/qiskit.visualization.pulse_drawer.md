@@ -42,7 +42,7 @@ A matplotlib figure object for the pulse envelope.
 
 matplotlib.figure.Figure
 
-## Example
+**Example**
 
 This example shows how to visualize your pulse schedule. Pulse names are added to the plot, unimportant channels are removed and the time window is truncated to draw out U3 pulse sequence of interest.
 

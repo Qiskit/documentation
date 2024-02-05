@@ -59,7 +59,7 @@ Create a new n-local circuit.
 *   **initial\_state** (`Optional`\[`Any`]) – A qiskit.aqua.components.initial\_states.InitialState object which can be used to describe an initial state prepended to the NLocal circuit. This is primarily for compatibility with algorithms in Qiskit Aqua, which leverage this object to prepare input states.
 *   **name** (`Optional`\[`str`]) – The name of the circuit.
 
-## Examples
+**Examples**
 
 TODO
 
@@ -91,7 +91,7 @@ Create a new n-local circuit.
 *   **initial\_state** (`Optional`\[`Any`]) – A qiskit.aqua.components.initial\_states.InitialState object which can be used to describe an initial state prepended to the NLocal circuit. This is primarily for compatibility with algorithms in Qiskit Aqua, which leverage this object to prepare input states.
 *   **name** (`Optional`\[`str`]) – The name of the circuit.
 
-## Examples
+**Examples**
 
 TODO
 
@@ -555,7 +555,7 @@ the composed circuit (returns None if inplace==True).
 *   **CircuitError** – if composing on the front.
 *   **QiskitError** – if `other` is wider or there are duplicate edge mappings.
 
-## Examples
+**Examples**
 
 ```python
 >>> lhs.compose(rhs, qubits=[3, 2], inplace=True)
@@ -820,7 +820,7 @@ Depth of circuit.
 
 int
 
-## Notes
+**Notes**
 
 The circuit depth and the DAG depth need not be the same.
 
@@ -1322,7 +1322,7 @@ the inverted circuit
 
 **CircuitError** – if the circuit cannot be inverted.
 
-## Examples
+**Examples**
 
 **input:**
 
@@ -1727,7 +1727,7 @@ The number of qubits.
 
 Computes the number of tensor factors in the unitary (quantum) part of the circuit only.
 
-## Notes
+**Notes**
 
 This is here for backwards compatibility, and will be removed in a future release of Qiskit. You should call num\_unitary\_factors instead.
 
@@ -1749,7 +1749,7 @@ The parameters used in the underlying circuit.
 
 This includes float values and duplicates.
 
-## Examples
+**Examples**
 
 ```python
 >>> # prepare circuit ...
@@ -2115,7 +2115,7 @@ the circuit with reversed bit order.
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-## Examples
+**Examples**
 
 **input:**
 
@@ -2159,7 +2159,7 @@ the reversed circuit.
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-## Examples
+**Examples**
 
 **input:**
 

@@ -23,10 +23,10 @@ The search is called *unstructured* because there are no guarantees as to how th
 To carry out this search a so-called oracle is required, that flags a good element/state. The action of the oracle $\mathcal{S}_f$ is
 
 $$
-\mathcal{S}_f |x\rangle = (-1)^{f(x)} |x\rangle,
+\mathcal{S}_f \vert x\rangle = (-1)^{f(x)} \vert x\rangle,
 $$
 
-i.e. it flips the phase of the state $|x\rangle$ if $x$ is a hit. The details of how $S_f$ works are unimportant to the algorithm; Grover’s search algorithm treats the oracle as a black box.
+i.e. it flips the phase of the state $\vert x\rangle$ if $x$ is a hit. The details of how $S_f$ works are unimportant to the algorithm; Grover’s search algorithm treats the oracle as a black box.
 
 This class supports oracles in form of `QuantumCircuit`
 
@@ -49,7 +49,7 @@ $$
 
 For more information, see the [`GroverOperator`](qiskit.circuit.library.GroverOperator "qiskit.circuit.library.GroverOperator") in the circuit library.
 
-## References
+**References**
 
 **\[1]: L. K. Grover (1996), A fast quantum mechanical algorithm for database search,**
 
@@ -75,7 +75,7 @@ Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://
 *   **ValueError** – If `growth_rate` is a float but not larger than 1.
 *   **ValueError** – If both `iterations` and `growth_rate` is set.
 
-## References
+**References**
 
 **\[1]: Boyer et al., Tight bounds on quantum searching**
 
@@ -99,7 +99,7 @@ Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://
 *   **ValueError** – If `growth_rate` is a float but not larger than 1.
 *   **ValueError** – If both `iterations` and `growth_rate` is set.
 
-## References
+**References**
 
 **\[1]: Boyer et al., Tight bounds on quantum searching**
 

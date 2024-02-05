@@ -18,7 +18,7 @@ Qiskit chemistry driver reading an FCIDump file.
 
 The FCIDump format is partially defined in Knowles1989.
 
-## References
+**References**
 
 **Knowles1989: Peter J. Knowles, Nicholas C. Handy,**
 

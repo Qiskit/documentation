@@ -23,7 +23,7 @@ Graphical representation of the input array.
 *   **slider** (*bool*) – activate slider
 *   **show\_legend** (*bool*) – show legend of graph content
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumCircuit, BasicAer, execute

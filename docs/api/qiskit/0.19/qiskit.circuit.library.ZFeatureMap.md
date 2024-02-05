@@ -28,7 +28,7 @@ On 3 qubits and with 2 repetitions the circuit is represented by:
 
 This is a sub-class of [`PauliFeatureMap`](qiskit.circuit.library.PauliFeatureMap "qiskit.circuit.library.PauliFeatureMap") where the Pauli strings are fixed as \[‘Z’]. As a result the first order expansion will be a circuit without entangling gates.
 
-## Examples
+**Examples**
 
 ```python
 >>> prep = ZFeatureMap(3, reps=3, insert_barriers=True)
@@ -244,7 +244,7 @@ The parameters used in the underlying circuit.
 
 This includes float values and duplicates.
 
-#### Examples
+**Examples**
 
 ```python
 >>> # prepare circuit ...
@@ -668,7 +668,7 @@ the composed circuit (returns None if inplace==True).
 *   **CircuitError** – if composing on the front.
 *   **QiskitError** – if `other` is wider or there are duplicate edge mappings.
 
-#### Examples
+**Examples**
 
 ```python
 >>> lhs.compose(rhs, qubits=[3, 2], inplace=True)
@@ -839,7 +839,7 @@ Depth of circuit.
 
 int
 
-#### Notes
+**Notes**
 
 The circuit depth and the DAG depth need not be the same.
 
@@ -1553,7 +1553,7 @@ Conditional nonlocal gates are also included.
 
 Computes the number of tensor factors in the unitary (quantum) part of the circuit only.
 
-#### Notes
+**Notes**
 
 This is here for backwards compatibility, and will be removed in a future release of Qiskit. You should call num\_unitary\_factors instead.
 

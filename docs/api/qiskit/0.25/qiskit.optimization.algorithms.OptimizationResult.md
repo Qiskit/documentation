@@ -18,7 +18,7 @@ The optimization algorithms return an object of the type `OptimizationResult` wi
 
 `OptimizationResult` allows users to get the value of a variable by specifying an index or a name as follows.
 
-## Examples
+**Examples**
 
 ```python
 >>> from qiskit.optimization import QuadraticProgram

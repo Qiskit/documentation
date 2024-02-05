@@ -17,8 +17,8 @@ Compute the Quantum Fisher Information (QFI).
 Computes the QFI given a pure, parametrized quantum state, where QFI is:
 
 $$
-\mathrm{QFI}_{kl}= 4 \mathrm{Re}[\langle \partial_k \psi | \partial_l \psi \rangle
-    − \langle\partial_k \psi | \psi \rangle \langle\psi | \partial_l \psi \rangle].
+\mathrm{QFI}_{kl}= 4 \mathrm{Re}[\langle \partial_k \psi \vert  \partial_l \psi \rangle
+    − \langle\partial_k \psi \vert  \psi \rangle \langle\psi \vert  \partial_l \psi \rangle].
 $$
 
 **Parameters**

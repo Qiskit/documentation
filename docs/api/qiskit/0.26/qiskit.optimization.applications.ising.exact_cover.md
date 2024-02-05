@@ -12,7 +12,7 @@ python_api_name: qiskit.optimization.applications.ising.exact_cover.check_soluti
 
 exact cover
 
-## Functions
+**Functions**
 
 |                                                                                                                                                                                                                 |                                                         |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
@@ -20,11 +20,15 @@ exact cover
 | [`get_operator`](#qiskit.optimization.applications.ising.exact_cover.get_operator "qiskit.optimization.applications.ising.exact_cover.get_operator")(list\_of\_subsets)                                         | Construct the Hamiltonian for the exact solver problem. |
 | [`get_solution`](#qiskit.optimization.applications.ising.exact_cover.get_solution "qiskit.optimization.applications.ising.exact_cover.get_solution")(x)                                                         | **param x**binary string as numpy array.                |
 
+### check\_solution\_satisfiability
+
 <span id="qiskit.optimization.applications.ising.exact_cover.check_solution_satisfiability" />
 
 `check_solution_satisfiability(sol, list_of_subsets)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/exact_cover.py "view source code")
 
 check solution satisfiability
+
+### get\_operator
 
 <span id="qiskit.optimization.applications.ising.exact_cover.get_operator" />
 
@@ -53,6 +57,8 @@ operator for the Hamiltonian, a constant shift for the obj function.
 **Return type**
 
 tuple([WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator"), float)
+
+### get\_solution
 
 <span id="qiskit.optimization.applications.ising.exact_cover.get_solution" />
 

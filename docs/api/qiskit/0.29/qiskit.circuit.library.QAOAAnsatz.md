@@ -16,7 +16,7 @@ Bases: `qiskit.circuit.library.evolved_operator_ansatz.EvolvedOperatorAnsatz`
 
 A generalized QAOA quantum circuit with a support of custom initial states and mixers.
 
-## References
+**References**
 
 **\[1]: Farhi et al., A Quantum Approximate Optimization Algorithm.**
 

@@ -21,7 +21,7 @@ Graphical representation of the input array using a 2D city style graph (hinton)
 *   **rho** (*array*) – Density matrix
 *   **figsize** (*tuple*) – Figure size in pixels.
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumCircuit, BasicAer, execute

@@ -28,7 +28,7 @@ The symplectic representation of a single-qubit Pauli matrix is a pair of boolea
 The full Pauli table is a M x 2N boolean matrix:
 
 $$
-\begin{split}\left(\begin{array}{ccc|ccc}
+\begin{split}\left(\begin{array}{ccc\vert ccc}
     x_{0,0} & ... & x_{0,N-1} & z_{0,0} & ... & z_{0,N-1}  \\
     x_{1,0} & ... & x_{1,N-1} & z_{1,0} & ... & z_{1,N-1}  \\
     \vdots & \ddots & \vdots & \vdots & \ddots & \vdots  \\
@@ -63,7 +63,7 @@ Subsets of rows can be accessed using the list access `[]` operator and will ret
 
 Rows in the Pauli table can be iterated over like a list. Iteration can also be done using the label or matrix representation of each row using the [`label_iter()`](qiskit.quantum_info.PauliTable#label_iter "qiskit.quantum_info.PauliTable.label_iter") and [`matrix_iter()`](qiskit.quantum_info.PauliTable#matrix_iter "qiskit.quantum_info.PauliTable.matrix_iter") methods.
 
-## References
+**References**
 
 1.  S. Aaronson, D. Gottesman, *Improved Simulation of Stabilizer Circuits*, Phys. Rev. A 70, 052328 (2004). [arXiv:quant-ph/0406196](https://arxiv.org/abs/quant-ph/0406196)
 

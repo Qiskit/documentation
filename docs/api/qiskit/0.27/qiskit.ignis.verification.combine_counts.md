@@ -22,7 +22,7 @@ Combine two counts dictionaries. :type counts1: `Dict`\[`str`, `int`] :param cou
 
 A dict containing the **sum** of entries in counts1 and counts2 where a nonexisting entry is treated as 0
 
-## Example
+**Example**
 
 ```python
 >>> counts1 = {'00': 3, '01': 5}

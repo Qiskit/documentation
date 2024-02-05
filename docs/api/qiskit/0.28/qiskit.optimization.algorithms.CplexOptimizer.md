@@ -16,7 +16,7 @@ The CPLEX optimizer wrapped as an Qiskit [`OptimizationAlgorithm`](qiskit.optimi
 
 This class provides a wrapper for `cplex.Cplex` ([https://pypi.org/project/cplex/](https://pypi.org/project/cplex/)) to be used within the optimization module.
 
-## Examples
+**Examples**
 
 ```python
 >>> from qiskit.optimization.problems import QuadraticProgram

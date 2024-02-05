@@ -12,12 +12,14 @@ python_api_name: qiskit.optimization.applications.ising.partition.get_operator
 
 Generate Number Partitioning (Partition) instances, and convert them into a Hamiltonian given as a Pauli list.
 
-## Functions
+**Functions**
 
 |                                                                                                                                                                            |                                                           |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
 | [`get_operator`](#qiskit.optimization.applications.ising.partition.get_operator "qiskit.optimization.applications.ising.partition.get_operator")(values)                   | Construct the Hamiltonian for a given Partition instance. |
 | [`partition_value`](#qiskit.optimization.applications.ising.partition.partition_value "qiskit.optimization.applications.ising.partition.partition_value")(x, number\_list) | Compute the value of a partition.                         |
+
+### get\_operator
 
 <span id="qiskit.optimization.applications.ising.partition.get_operator" />
 
@@ -38,6 +40,8 @@ operator for the Hamiltonian and a constant shift for the obj function.
 **Return type**
 
 tuple([WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator"), float)
+
+### partition\_value
 
 <span id="qiskit.optimization.applications.ising.partition.partition_value" />
 

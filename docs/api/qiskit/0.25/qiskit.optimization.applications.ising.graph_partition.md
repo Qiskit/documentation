@@ -12,13 +12,15 @@ python_api_name: qiskit.optimization.applications.ising.graph_partition.get_grap
 
 Convert graph partitioning instances into Pauli list Deal with Gset format. See [https://web.stanford.edu/\~yyye/yyye/Gset/](https://web.stanford.edu/~yyye/yyye/Gset/)
 
-## Functions
+**Functions**
 
 |                                                                                                                                                                                   |                                                 |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
 | [`get_graph_solution`](#qiskit.optimization.applications.ising.graph_partition.get_graph_solution "qiskit.optimization.applications.ising.graph_partition.get_graph_solution")(x) | Get graph solution from binary string.          |
 | [`get_operator`](#qiskit.optimization.applications.ising.graph_partition.get_operator "qiskit.optimization.applications.ising.graph_partition.get_operator")(weight\_matrix)      | Generate Hamiltonian for the graph partitioning |
 | [`objective_value`](#qiskit.optimization.applications.ising.graph_partition.objective_value "qiskit.optimization.applications.ising.graph_partition.objective_value")(x, w)       | Compute the value of a cut.                     |
+
+### get\_graph\_solution
 
 <span id="qiskit.optimization.applications.ising.graph_partition.get_graph_solution" />
 
@@ -38,13 +40,15 @@ graph solution as binary numpy array.
 
 numpy.ndarray
 
+### get\_operator
+
 <span id="qiskit.optimization.applications.ising.graph_partition.get_operator" />
 
 `get_operator(weight_matrix)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/graph_partition.py "view source code")
 
 Generate Hamiltonian for the graph partitioning
 
-## Notes
+**Notes**
 
 ## Goals:
 
@@ -65,6 +69,8 @@ operator for the Hamiltonian float: a constant shift for the obj function.
 **Return type**
 
 [WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
+
+### objective\_value
 
 <span id="qiskit.optimization.applications.ising.graph_partition.objective_value" />
 

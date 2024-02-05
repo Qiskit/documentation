@@ -126,7 +126,7 @@ Time keeping attribute.
 Return a new schedule with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`.
 
 $$
-t = \textrm{max}(\texttt{x.stop_time} |\texttt{x} \in
+t = \textrm{max}(\texttt{x.stop_time} \vert \texttt{x} \in
     \texttt{self.channels} \cap \texttt{schedule.channels})
 $$
 

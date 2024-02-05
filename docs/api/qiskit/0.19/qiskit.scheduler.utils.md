@@ -10,13 +10,15 @@ python_api_name: qiskit.scheduler.utils.format_meas_map
 
 Scheduling utility functions.
 
-## Functions
+**Functions**
 
 |                                                                                                                  |                                                                                                                                                                     |
 | ---------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [`format_meas_map`](#qiskit.scheduler.utils.format_meas_map "qiskit.scheduler.utils.format_meas_map")(meas\_map) | Return a mapping from qubit label to measurement group given the nested list meas\_map returned by a backend configuration.                                         |
 | [`measure`](#qiskit.scheduler.utils.measure "qiskit.scheduler.utils.measure")(qubits\[, backend, inst\_map, …])  | Return a schedule which measures the requested qubits according to the given instruction mapping and measure map, or by using the defaults provided by the backend. |
 | [`measure_all`](#qiskit.scheduler.utils.measure_all "qiskit.scheduler.utils.measure_all")(backend)               | Return a Schedule which measures all qubits of the given backend.                                                                                                   |
+
+### format\_meas\_map
 
 <span id="qiskit.scheduler.utils.format_meas_map" />
 
@@ -35,6 +37,8 @@ Return a mapping from qubit label to measurement group given the nested list mea
 **Returns**
 
 Measure map in map format
+
+### measure
 
 <span id="qiskit.scheduler.utils.measure" />
 
@@ -64,6 +68,8 @@ A measurement schedule corresponding to the inputs provided.
 **Raises**
 
 [**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If both `inst_map` or `meas_map`, and `backend` is None.
+
+### measure\_all
 
 <span id="qiskit.scheduler.utils.measure_all" />
 

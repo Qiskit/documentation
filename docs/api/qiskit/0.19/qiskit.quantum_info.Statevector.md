@@ -191,7 +191,7 @@ the tensor product state other ⊗ self.
 
 Return the output statevector of an instruction.
 
-The statevector is initialized in the state $|{0,\ldots,0}\rangle$ of the same number of qubits as the input instruction or circuit, evolved by the input instruction, and the output statevector returned.
+The statevector is initialized in the state $\vert {0,\ldots,0}\rangle$ of the same number of qubits as the input instruction or circuit, evolved by the input instruction, and the output statevector returned.
 
 **Parameters**
 
@@ -224,7 +224,7 @@ Return a computational basis statevector.
 
 **Returns**
 
-The computational basis state $|i\rangle$.
+The computational basis state $\vert i\rangle$.
 
 **Return type**
 
@@ -349,9 +349,9 @@ The Numpy vector array of probabilities.
 
 np.array
 
-#### Examples
+**Examples**
 
-Consider a 2-qubit product state $|\psi\rangle=|+\rangle\otimes|0\rangle$.
+Consider a 2-qubit product state $\vert \psi\rangle=\vert +\rangle\otimes\vert 0\rangle$.
 
 ```python
 from qiskit.quantum_info import Statevector
@@ -624,9 +624,9 @@ the dictionary form of the Statevector.
 
 dict
 
-#### Example
+**Example**
 
-The ket-form of a 2-qubit statevector $|\psi\rangle = |-\rangle\otimes |0\rangle$
+The ket-form of a 2-qubit statevector $\vert \psi\rangle = \vert -\rangle\otimes \vert 0\rangle$
 
 ```python
 from qiskit.quantum_info import Statevector

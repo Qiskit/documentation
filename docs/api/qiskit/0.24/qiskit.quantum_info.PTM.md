@@ -27,14 +27,14 @@ where $[P_0, P_1, ..., P_{4^{n}-1}]$ is the $n$-qubit Pauli basis in lexicograph
 Evolution of a [`DensityMatrix`](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") $\rho$ with respect to the PTM is given by
 
 $$
-|\mathcal{E}(\rho)\rangle\!\rangle_P = S_P |\rho\rangle\!\rangle_P
+\vert \mathcal{E}(\rho)\rangle\!\rangle_P = S_P \vert \rho\rangle\!\rangle_P
 $$
 
-where $|A\rangle\!\rangle_P$ denotes vectorization in the Pauli basis $\langle i | A\rangle\!\rangle_P = \mbox{Tr}[P_i A]$.
+where $\vert A\rangle\!\rangle_P$ denotes vectorization in the Pauli basis $\langle i \vert  A\rangle\!\rangle_P = \mbox{Tr}[P_i A]$.
 
 See reference \[1] for further details.
 
-## References
+**References**
 
 1.  C.J. Wood, J.D. Biamonte, D.G. Cory, *Tensor networks and graphical calculus for open quantum systems*, Quant. Inf. Comp. 15, 0579-0811 (2015). [arXiv:1111.6950 \[quant-ph\]](https://arxiv.org/abs/1111.6950)
 

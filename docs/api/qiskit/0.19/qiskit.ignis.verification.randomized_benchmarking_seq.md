@@ -82,7 +82,7 @@ A tuple of different fields depending on the inputs. The different fields are:
 *   **ValueError** – if `rb_pattern` is not valid.
 *   **ValueError** – if `length_multiplier` is not valid.
 
-## Examples
+**Examples**
 
 1.  Generate simultaneous standard RB sequences.
 

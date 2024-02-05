@@ -35,7 +35,7 @@ $$
 This circuit considers the discretized version of $X$ on `2 ** num_qubits` equidistant points, $x_i$, truncated to `bounds`. The action of this circuit can be written as
 
 $$
-\mathcal{P}_X |0\rangle^n = \sum_{i=0}^{2^n - 1} \sqrt{\mathbb{P}(x_i)} |i\rangle
+\mathcal{P}_X \vert 0\rangle^n = \sum_{i=0}^{2^n - 1} \sqrt{\mathbb{P}(x_i)} \vert i\rangle
 $$
 
 where $n$ is num\_qubits.
@@ -46,11 +46,11 @@ where $n$ is num\_qubits.
 
 This circuit is for example used in amplitude estimation applications, such as finance \[1, 2], where customer demand or the return of a portfolio could be modelled using a log-normal distribution.
 
-## Examples
+**Examples**
 
 This class can be used for both univariate and multivariate distributions. >>> mu = \[1, 0.9, 0.2] >>> sigma = \[\[1, -0.2, 0.2], \[-0.2, 1, 0.4], \[0.2, 0.4, 1]] >>> circuit = LogNormalDistribution(\[2, 2, 2], mu, sigma) >>> circuit.num\_qubits 6
 
-## References
+**References**
 
 **\[1]: Gacon, J., Zoufal, C., & Woerner, S. (2020).**
 
@@ -323,7 +323,7 @@ A copy of the circuit with bound parameters, if `inplace` is True, otherwise Non
 
 Optional([QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"))
 
-## Examples
+**Examples**
 
 ```python
 >>> from qiskit.circuit import QuantumCircuit, Parameter
@@ -551,7 +551,7 @@ the composed circuit (returns None if inplace==True).
 *   **CircuitError** – if composing on the front.
 *   **QiskitError** – if `other` is wider or there are duplicate edge mappings.
 
-## Examples
+**Examples**
 
 ```python
 >>> lhs.compose(rhs, qubits=[3, 2], inplace=True)
@@ -816,7 +816,7 @@ Depth of circuit.
 
 int
 
-## Notes
+**Notes**
 
 The circuit depth and the DAG depth need not be the same.
 
@@ -1206,7 +1206,7 @@ the inverted circuit
 
 **CircuitError** – if the circuit cannot be inverted.
 
-## Examples
+**Examples**
 
 **input:**
 
@@ -1565,7 +1565,7 @@ Return number of qubits.
 
 Computes the number of tensor factors in the unitary (quantum) part of the circuit only.
 
-## Notes
+**Notes**
 
 This is here for backwards compatibility, and will be removed in a future release of Qiskit. You should call num\_unitary\_factors instead.
 
@@ -1853,7 +1853,7 @@ the circuit with reversed bit order.
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-## Examples
+**Examples**
 
 **input:**
 
@@ -1897,7 +1897,7 @@ the reversed circuit.
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-## Examples
+**Examples**
 
 **input:**
 

@@ -14,7 +14,7 @@ python_api_name: qiskit.ignis.verification.gates_per_clifford
 
 Take a list of transpiled `QuantumCircuit` and use these to calculate the number of gates per Clifford. Each `QuantumCircuit` should be transpiled into given `basis` set. The result can be used to convert a value of error per Clifford into error per basis gate under appropriate assumption.
 
-## Example
+**Example**
 
 This example shows how to calculate gate per Clifford of 2Q RB sequence for qubit 0 and qubit 1. You can refer to the function `randomized_benchmarking_seq` for the detail of RB circuit generation.
 

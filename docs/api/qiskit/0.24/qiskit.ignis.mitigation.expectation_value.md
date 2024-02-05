@@ -16,7 +16,7 @@ python_api_name: qiskit.ignis.mitigation.expectation_value
 
 Compute the expectation value of a diagonal operator from counts.
 
-This computes the estimator of $\langle O \rangle = \mbox{Tr}[\rho. O]$, optionally with measurement error mitigation, of a diagonal observable $O = \sum_{x\in\{0, 1\}^n} O(x)|x\rangle\!\langle x|$.
+This computes the estimator of $\langle O \rangle = \mbox{Tr}[\rho. O]$, optionally with measurement error mitigation, of a diagonal observable $O = \sum_{x\in\{0, 1\}^n} O(x)\vert x\rangle\!\langle x\vert $.
 
 **Parameters**
 
