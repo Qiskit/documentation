@@ -53,7 +53,7 @@ Both `SamplerV2` and `EstimatorV2` take one or more *primitive unified blocs* (P
     Numpy [broadcasting rules](https://numpy.org/doc/stable/user/basics.broadcasting.html) are used when combining observables and parameter values.
 
 <Tabs>
-  <TabItem value="EstimatorV2" label="EstimatorV2 single circuit">
+  <TabItem value="EstimatorV2" label="EstimatorV2 simple">
     ```python 
 circuit = IQP(mat)
 observable = SparsePauliOp("Z" * n_qubits)
@@ -62,7 +62,7 @@ job = estimator.run([(circuit, observable)])
 ```
   </TabItem>
 
-  <TabItem value="EstimatorV1" label="Estimator (V1) single circuit">
+  <TabItem value="EstimatorV1" label="Estimator simple">
     ```python 
 circuit = IQP(mat)
 observable = SparsePauliOp("Z" * n_qubits)
@@ -70,7 +70,7 @@ observable = SparsePauliOp("Z" * n_qubits)
 job = estimator.run(circuit, observable)
 ```
   </TabItem>
-  <TabItem value="EstimatorV2m" label="EstimatorV2 multi circuit">
+  <TabItem value="EstimatorV2m" label="EstimatorV2 complex">
     ```python 
 theta = Parameter("θ")
 
@@ -113,7 +113,7 @@ result = (
 ```
   </TabItem>
 
-  <TabItem value="EstimatorV1m" label="Estimator (V1) multi circuit">
+  <TabItem value="EstimatorV1m" label="Estimator complex">
     ```python 
 theta = Parameter("θ")
 
