@@ -18,7 +18,7 @@ Parameter Class for variable parameters.
 
 A parameter is a variable value that is not required to be fixed at circuit definition.
 
-## Examples
+**Examples**
 
 Construct a variable-rotation X gate using circuit parameters.
 

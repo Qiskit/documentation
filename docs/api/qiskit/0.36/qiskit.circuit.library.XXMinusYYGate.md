@@ -16,7 +16,7 @@ Bases: `qiskit.circuit.gate.Gate`
 
 XX-YY interaction gate.
 
-A 2-qubit parameterized XX-YY interaction. Its action is to induce a coherent rotation by some angle between $|00\rangle$ and $|11\rangle$.
+A 2-qubit parameterized XX-YY interaction. Its action is to induce a coherent rotation by some angle between $\vert 00\rangle$ and $\vert 11\rangle$.
 
 **Circuit Symbol:**
 

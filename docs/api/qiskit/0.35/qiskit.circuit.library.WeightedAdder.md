@@ -19,8 +19,8 @@ A circuit to compute the weighted sum of qubit registers.
 Given $n$ qubit basis states $q_0, \ldots, q_{n-1} \in \{0, 1\}$ and non-negative integer weights $\lambda_0, \ldots, \lambda_{n-1}$, this circuit performs the operation
 
 $$
-|q_0 \ldots q_{n-1}\rangle |0\rangle_s
-\mapsto |q_0 \ldots q_{n-1}\rangle |\sum_{j=0}^{n-1} \lambda_j q_j\rangle_s
+\vert q_0 \ldots q_{n-1}\rangle \vert 0\rangle_s
+\mapsto \vert q_0 \ldots q_{n-1}\rangle \vert \sum_{j=0}^{n-1} \lambda_j q_j\rangle_s
 $$
 
 where $s$ is the number of sum qubits required. This can be computed as

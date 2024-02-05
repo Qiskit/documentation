@@ -24,9 +24,9 @@ Interface for Quantum Real Time Evolution.
 
 `abstract RealEvolver.evolve(evolution_problem)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/evolvers/real_evolver.py "view source code")
 
-Perform real time evolution $\exp(-i t H)|\Psi\rangle$.
+Perform real time evolution $\exp(-i t H)\vert \Psi\rangle$.
 
-Evolves an initial state $|\Psi\rangle$ for a time $t$ under a Hamiltonian $H$, as provided in the `evolution_problem`.
+Evolves an initial state $\vert \Psi\rangle$ for a time $t$ under a Hamiltonian $H$, as provided in the `evolution_problem`.
 
 **Parameters**
 

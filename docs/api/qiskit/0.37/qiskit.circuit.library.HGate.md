@@ -16,7 +16,7 @@ Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gat
 
 Single-qubit Hadamard gate.
 
-This gate is a pi rotation about the X+Z axis, and has the effect of changing computation basis from $|0\rangle,|1\rangle$ to $|+\rangle,|-\rangle$ and vice-versa.
+This gate is a pi rotation about the X+Z axis, and has the effect of changing computation basis from $\vert 0\rangle,\vert 1\rangle$ to $\vert +\rangle,\vert -\rangle$ and vice-versa.
 
 Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`h()`](qiskit.circuit.QuantumCircuit#h "qiskit.circuit.QuantumCircuit.h") method.
 

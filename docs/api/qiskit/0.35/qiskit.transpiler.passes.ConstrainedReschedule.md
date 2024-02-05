@@ -18,7 +18,7 @@ Rescheduler pass that updates node start times to conform to the hardware alignm
 
 This pass shifts DAG node start times previously scheduled with one of the scheduling passes, e.g. [`ASAPSchedule`](qiskit.transpiler.passes.ASAPSchedule "qiskit.transpiler.passes.ASAPSchedule") or [`ALAPSchedule`](qiskit.transpiler.passes.ALAPSchedule "qiskit.transpiler.passes.ALAPSchedule"), so that every instruction start time satisfies alignment constraints.
 
-## Examples
+**Examples**
 
 We assume executing the following circuit on a backend with 16 dt of acquire alignment.
 
@@ -40,7 +40,7 @@ c: 1/════════════════════════╩
                              0
 ```
 
-## Notes
+**Notes**
 
 Your backend may execute circuits violating these alignment constraints. However, you may obtain erroneous measurement result because of the untracked phase originating in the instruction misalignment.
 

@@ -16,7 +16,7 @@ Bases: `qiskit.circuit.quantumcircuit.QuantumCircuit`
 
 A circuit implementing the logical AND operation on a number of qubits.
 
-For the AND operation the state $|1\rangle$ is interpreted as `True`. The result qubit is flipped, if the state of all variable qubits is `True`. In this format, the AND operation equals a multi-controlled X gate, which is controlled on all variable qubits. Using a list of flags however, qubits can be skipped or negated. Practically, the flags allow to skip controls or to apply pre- and post-X gates to the negated qubits.
+For the AND operation the state $\vert 1\rangle$ is interpreted as `True`. The result qubit is flipped, if the state of all variable qubits is `True`. In this format, the AND operation equals a multi-controlled X gate, which is controlled on all variable qubits. Using a list of flags however, qubits can be skipped or negated. Practically, the flags allow to skip controls or to apply pre- and post-X gates to the negated qubits.
 
 The AND gate without special flags equals the multi-controlled-X gate:
 

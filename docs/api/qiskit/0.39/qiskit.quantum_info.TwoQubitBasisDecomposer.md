@@ -31,7 +31,7 @@ A class for decomposing 2-qubit unitaries into minimal number of uses of a 2-qub
 
 `static TwoQubitBasisDecomposer.decomp0(target)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/quantum_info/synthesis/two_qubit_decompose.py "view source code")
 
-Decompose target \~Ud(x, y, z) with 0 uses of the basis gate. Result Ur has trace: $|Tr(Ur.Utarget^dag)| = 4|(cos(x)cos(y)cos(z)+ j sin(x)sin(y)sin(z)|$, which is optimal for all targets and bases
+Decompose target \~Ud(x, y, z) with 0 uses of the basis gate. Result Ur has trace: $\vert Tr(Ur.Utarget^dag)\vert  = 4\vert (cos(x)cos(y)cos(z)+ j sin(x)sin(y)sin(z)\vert $, which is optimal for all targets and bases
 
 ### decomp1
 
@@ -85,5 +85,5 @@ Computes the number of basis gates needed in a decomposition of input unitary
 
 `TwoQubitBasisDecomposer.traces(target)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/quantum_info/synthesis/two_qubit_decompose.py "view source code")
 
-Give the expected traces $|Tr(U \cdot Utarget^dag)|$ for different number of basis gates.
+Give the expected traces $\vert Tr(U \cdot Utarget^dag)\vert $ for different number of basis gates.
 

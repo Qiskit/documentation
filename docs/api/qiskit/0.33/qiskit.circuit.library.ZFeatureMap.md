@@ -30,7 +30,7 @@ On 3 qubits and with 2 repetitions the circuit is represented by:
 
 This is a sub-class of [`PauliFeatureMap`](qiskit.circuit.library.PauliFeatureMap "qiskit.circuit.library.PauliFeatureMap") where the Pauli strings are fixed as \[‘Z’]. As a result the first order expansion will be a circuit without entangling gates.
 
-## Examples
+**Examples**
 
 ```python
 >>> prep = ZFeatureMap(3, reps=3, insert_barriers=True)
@@ -302,7 +302,7 @@ The parameters used in the underlying circuit.
 
 This includes float values and duplicates.
 
-## Examples
+**Examples**
 
 ```python
 >>> # prepare circuit ...

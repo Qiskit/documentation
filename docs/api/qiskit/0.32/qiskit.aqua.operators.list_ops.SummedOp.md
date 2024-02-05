@@ -166,7 +166,7 @@ Check if other is equal to self.
 
 True, if other and self are equal, otherwise False.
 
-#### Examples
+**Examples**
 
 ```python
 >>> from qiskit.aqua.operators import X, Z

@@ -90,7 +90,7 @@ The starting point for the first classical optimization run, at time 0. Defaults
 
 Optional\[np.ndarray]
 
-## Example
+**Example**
 
 This snippet computes the real time evolution of a quantum Ising model on two neighboring sites and keeps track of the magnetization.
 
@@ -135,7 +135,7 @@ problem = EvolutionProblem(
 result = pvqd.evolve(problem)
 ```
 
-## References
+**References**
 
 **\[1] Stefano Barison, Filippo Vicentini, and Giuseppe Carleo (2021), An efficient**
 
@@ -161,9 +161,9 @@ quantum algorithm for the time evolution of parameterized circuits, [Quantum 5, 
 
 `PVQD.evolve(evolution_problem)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/time_evolvers/pvqd/pvqd.py "view source code")
 
-Perform real time evolution $\exp(-i t H)|\Psi\rangle$.
+Perform real time evolution $\exp(-i t H)\vert \Psi\rangle$.
 
-Evolves an initial state $|\Psi\rangle$ for a time $t$ under a Hamiltonian $H$, as provided in the `evolution_problem`.
+Evolves an initial state $\vert \Psi\rangle$ for a time $t$ under a Hamiltonian $H$, as provided in the `evolution_problem`.
 
 **Parameters**
 

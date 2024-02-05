@@ -16,7 +16,7 @@ Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gat
 
 Class quantum gates specified by a unitary matrix.
 
-## Example
+**Example**
 
 We can create a unitary gate from a unitary matrix then add it to a quantum circuit. The matrix can also be directly applied to the quantum circuit, see `unitary()`.
 

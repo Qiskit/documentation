@@ -39,7 +39,7 @@ Initialize a CorrelatedReadoutMitigator
 
 Return the readout assignment matrix for specified qubits.
 
-The assignment matrix is the stochastic matrix $A$ which assigns a noisy readout probability distribution to an ideal input readout distribution: $P(i|j) = \langle i | A | j \rangle$.
+The assignment matrix is the stochastic matrix $A$ which assigns a noisy readout probability distribution to an ideal input readout distribution: $P(i\vert j) = \langle i \vert  A \vert  j \rangle$.
 
 **Parameters**
 
@@ -61,7 +61,7 @@ np.ndarray
 
 Compute the mitigated expectation value of a diagonal observable.
 
-This computes the mitigated estimator of $\langle O \rangle = \mbox{Tr}[\rho. O]$ of a diagonal observable $O = \sum_{x\in\{0, 1\}^n} O(x)|x\rangle\!\langle x|$.
+This computes the mitigated estimator of $\langle O \rangle = \mbox{Tr}[\rho. O]$ of a diagonal observable $O = \sum_{x\in\{0, 1\}^n} O(x)\vert x\rangle\!\langle x\vert $.
 
 **Parameters**
 

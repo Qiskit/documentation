@@ -29,7 +29,7 @@ q_1: ┤ Ry(ϴ) ├
 
 $$
  \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}CRY(\theta)\ q_0, q_1 =
-    I \otimes |0\rangle\langle 0| + RY(\theta) \otimes |1\rangle\langle 1| =
+    I \otimes \vert 0\rangle\langle 0\vert  + RY(\theta) \otimes \vert 1\rangle\langle 1\vert  =
     \begin{pmatrix}
         1 & 0         & 0 & 0 \\
         0 & \cos{\th} & 0 & -\sin{\th} \\
@@ -50,7 +50,7 @@ $$
 
   $$
    \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}CRY(\theta)\ q_1, q_0 =
-  |0\rangle\langle 0| \otimes I + |1\rangle\langle 1| \otimes RY(\theta) =
+  \vert 0\rangle\langle 0\vert  \otimes I + \vert 1\rangle\langle 1\vert  \otimes RY(\theta) =
       \begin{pmatrix}
           1 & 0 & 0 & 0 \\
           0 & 1 & 0 & 0 \\

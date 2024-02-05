@@ -43,7 +43,7 @@ cout_0: ┤2     ├────────────────────
 
 **Parameters**
 
-*   **num\_state\_qubits** (`int`) – The number of qubits in either input register for state $|a\rangle$ or $|b\rangle$. The two input registers must have the same number of qubits.
+*   **num\_state\_qubits** (`int`) – The number of qubits in either input register for state $\vert a\rangle$ or $\vert b\rangle$. The two input registers must have the same number of qubits.
 *   **kind** (`str`) – The kind of adder, can be `'half'` for a half adder or `'fixed'` for a fixed-sized adder. A half adder contains a carry-out to represent the most-significant bit, but the fixed-sized adder doesn’t and hence performs addition modulo `2 ** num_state_qubits`.
 *   **name** (`str`) – The name of the circuit object.
 
@@ -223,7 +223,7 @@ The parameters defined in the circuit.
 
 This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
 
-## Examples
+**Examples**
 
 The snippet below shows that insertion order of parameters does not matter.
 

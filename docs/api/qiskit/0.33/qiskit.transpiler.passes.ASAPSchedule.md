@@ -18,7 +18,7 @@ ASAP Scheduling pass, which schedules the start time of instructions as early as
 
 For circuits with instructions writing or reading clbits (e.g. measurements, conditional gates), the scheduler assumes clbits I/O operations take no time, `measure` locks clbits to be written at its end and `c_if` locks clbits to be read at its beginning.
 
-## Notes
+**Notes**
 
 The ASAP scheduler may not schedule a circuit exactly the same as any real backend does when the circuit contains control flows (e.g. conditional instructions).
 

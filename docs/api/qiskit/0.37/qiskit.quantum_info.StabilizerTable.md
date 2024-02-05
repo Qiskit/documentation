@@ -34,7 +34,7 @@ The symplectic representation of a single-qubit Stabilizer matrix is a pair of b
 Internally this is stored as a length N boolean phase vector $[p_{N-1}, ..., p_{0}]$ and a [`PauliTable`](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable") $M \times 2N$ boolean matrix:
 
 $$
-\begin{split}\left(\begin{array}{ccc|ccc}
+\begin{split}\left(\begin{array}{ccc\vert ccc}
     x_{0,0} & ... & x_{0,N-1} & z_{0,0} & ... & z_{0,N-1}  \\
     x_{1,0} & ... & x_{1,N-1} & z_{1,0} & ... & z_{1,N-1}  \\
     \vdots & \ddots & \vdots & \vdots & \ddots & \vdots  \\
@@ -75,7 +75,7 @@ The Pauli part of the Stabilizer table can be viewed and accessed as a [`PauliTa
 
 Rows in the Stabilizer table can be iterated over like a list. Iteration can also be done using the label or matrix representation of each row using the [`label_iter()`](qiskit.quantum_info.StabilizerTable#label_iter "qiskit.quantum_info.StabilizerTable.label_iter") and [`matrix_iter()`](qiskit.quantum_info.StabilizerTable#matrix_iter "qiskit.quantum_info.StabilizerTable.matrix_iter") methods.
 
-## References
+**References**
 
 1.  S. Aaronson, D. Gottesman, *Improved Simulation of Stabilizer Circuits*, Phys. Rev. A 70, 052328 (2004). [arXiv:quant-ph/0406196](https://arxiv.org/abs/quant-ph/0406196)
 

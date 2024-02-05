@@ -18,7 +18,7 @@ The deprecated observable for the absolute average of a linear system of equatio
 
 For a vector $x=(x_1,...,x_N)$, the absolute average is defined as $\abs{\frac{1}{N}\sum_{i=1}^{N}x_i}$.
 
-## Examples
+**Examples**
 
 ```python
 import warnings

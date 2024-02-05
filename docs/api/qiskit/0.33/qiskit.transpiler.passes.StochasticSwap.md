@@ -18,7 +18,7 @@ Map a DAGCircuit onto a coupling\_map adding swap gates.
 
 Uses a randomized algorithm.
 
-## Notes
+**Notes**
 
 1.  Measurements may occur and be followed by swaps that result in repeated measurement of the same qubit. Near-term experiments cannot implement these circuits, so some care is required when using this mapper with experimental backend targets.
 2.  We do not use the fact that the input state is zero to simplify the circuit.

@@ -41,7 +41,7 @@ PIL.Image
 *   **MissingOptionalLibraryError** – when pydot or pillow are not installed.
 *   **InvalidFileError** – when filename provided is not valid
 
-## Example
+**Example**
 
 ```python
 %matplotlib inline

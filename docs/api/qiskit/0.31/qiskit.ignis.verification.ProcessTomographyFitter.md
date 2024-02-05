@@ -62,7 +62,7 @@ The `cvx` fitter method used CVXPY convex optimization package. The `lstsq` meth
 
 **Objective function**
 
-This fitter solves the constrained least-squares minimization: $minimize: ||a \cdot x - b ||_2$
+This fitter solves the constrained least-squares minimization: $minimize: \vert \vert a \cdot x - b \vert \vert _2$
 
 subject to:
 
@@ -112,7 +112,7 @@ References:
 
 **Returns**
 
-The fitted Choi-matrix J for the channel that maximizes $||\text{basis_matrix} \cdot \text{vec}(J) - \text{data}||_2$. The Numpy matrix can be obtained from Choi.data.
+The fitted Choi-matrix J for the channel that maximizes $\vert \vert \text{basis_matrix} \cdot \text{vec}(J) - \text{data}\vert \vert _2$. The Numpy matrix can be obtained from Choi.data.
 
 **Return type**
 
