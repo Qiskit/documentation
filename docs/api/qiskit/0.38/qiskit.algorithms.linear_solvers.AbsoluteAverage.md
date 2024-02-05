@@ -10,13 +10,13 @@ python_api_name: qiskit.algorithms.linear_solvers.AbsoluteAverage
 
 <span id="qiskit.algorithms.linear_solvers.AbsoluteAverage" />
 
-`AbsoluteAverage`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/linear_solvers/observables/absolute_average.py "view source code")
+`AbsoluteAverage `[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/linear_solvers/observables/absolute_average.py "view source code")
 
 Bases: [`qiskit.algorithms.linear_solvers.observables.linear_system_observable.LinearSystemObservable`](qiskit.algorithms.linear_solvers.LinearSystemObservable "qiskit.algorithms.linear_solvers.observables.linear_system_observable.LinearSystemObservable")
 
 An observable for the absolute average of a linear system of equations solution.
 
-For a vector $x=(x_1,...,x_N)$, the absolute average is defined as $\abs{\frac{1}{N}\sum_{i=1}^{N}x_i}$.
+For a vector $x=(x_1,...,x_N)$, the absolute average is defined as $\left\vert \frac{1}{N}\sum_{i=1}^{N}x_i\right\vert $.
 
 **Examples**
 
