@@ -20,7 +20,36 @@ Efficiently calculate and interpret expectation values of the quantum operators 
 
 Use Estimator to determine the expectation value of a single circuit-observable pair.
 
-```python 
+
+<Tabs>
+  <TabItem value="EstimatorV2" label="EstimatorV2">
+    ```python 
+import numpy as np
+from qiskit.circuit.library import IQP
+from qiskit.quantum_info import SparsePauliOp, random_hermitian
+from qiskit_ibm_runtime import EstimatorV2 as Estimator, QiskitRuntimeService
+
+service = QiskitRuntimeService()
+backend = service.get_backend("ibm_brisbane")
+estimator = Estimator(backend)
+
+n_qubits = 127
+ 
+mat = np.real(random_hermitian(n_qubits, seed=1234))
+circuit = IQP(mat)
+observable = SparsePauliOp("Z" * n_qubits)
+ 
+
+job = estimator.run([(circuit, observable)])
+result = job.result()
+ 
+print(f" > Expectation value: {result[0].data.evs}")
+print(f" > Metadata: {result[0].metadata}")
+```
+  </TabItem>
+
+  <TabItem value="EstimatorV1" label="Estimator (V1)">
+    ```python 
 import numpy as np
 from qiskit.circuit.library import IQP
 from qiskit.quantum_info import SparsePauliOp, random_hermitian
@@ -44,6 +73,8 @@ print(f" > Observable: {observable.paulis}")
 print(f" > Expectation value: {result.values}")
 print(f" > Metadata: {result.metadata}")
 ```
+  </TabItem>
+</Tabs>
 
 ### Run multiple experiments in a single job
 

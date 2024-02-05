@@ -21,6 +21,29 @@ Version 2 is first the major interface change since the introduction of Qiskit R
 
 ## Major changes
 
+### Import
+
+For backward compatibility, you must explicity import the V2 primitives.
+
+<Admonition type="note">
+After the V1 primitves are deprecated, import *primitive* will import the V2 version of the specified primitive.
+</Admonition>
+
+<Tabs>
+  <TabItem value="EstimatorV2" label="EstimatorV2">
+    ```python 
+from qiskit_ibm_runtime import EstimatorV2 as Estimator
+```
+  </TabItem>
+
+  <TabItem value="EstimatorV1" label="Estimator (V1)">
+    ```python 
+from qiskit_ibm_runtime import Estimator
+```
+  </TabItem>
+</Tabs>
+
+
 ### Input
 
 Both `SamplerV2` and `EstimatorV2` take one or more *primitive unified blocs* (PUBs) as the input. Each PUB is a tuple that contains a single circuit and the data broadcasted to that circuit.
@@ -29,12 +52,152 @@ Both `SamplerV2` and `EstimatorV2` take one or more *primitive unified blocs* (P
 * EstimatorV2 PUB format: (`<circuit>`, `<observables>`, `<parameter values>`, `<precision>`)
     Numpy [broadcasting rules](https://numpy.org/doc/stable/user/basics.broadcasting.html) are used when combining observables and parameter values.
 
+<Tabs>
+  <TabItem value="EstimatorV2" label="EstimatorV2 single circuit">
+    ```python 
+circuit = IQP(mat)
+observable = SparsePauliOp("Z" * n_qubits)
+ 
+job = estimator.run([(circuit, observable)])
+```
+  </TabItem>
+
+  <TabItem value="EstimatorV1" label="Estimator (V1) single circuit">
+    ```python 
+circuit = IQP(mat)
+observable = SparsePauliOp("Z" * n_qubits)
+
+job = estimator.run(circuit, observable)
+```
+  </TabItem>
+  <TabItem value="EstimatorV2m" label="EstimatorV2 multi circuit">
+    ```python 
+theta = Parameter("θ")
+
+chsh_circuit_no_meas = QuantumCircuit(2)
+chsh_circuit_no_meas.h(0)
+chsh_circuit_no_meas.cx(0, 1)
+chsh_circuit_no_meas.ry(theta, 0)
+
+# Create a list of phase values to be assigned later
+
+number_of_phases = 21
+phases = np.linspace(0, 2 * np.pi, number_of_phases)
+# Phases need to be expressed as list of lists in order to work
+individual_phases = [[ph] for ph in phases]
+
+# Create observables
+
+ZZ = SparsePauliOp.from_list([("ZZ", 1)])
+ZX = SparsePauliOp.from_list([("ZX", 1)])
+XZ = SparsePauliOp.from_list([("XZ", 1)])
+XX = SparsePauliOp.from_list([("XX", 1)])
+
+ops = [ZZ, ZX, XZ, XX]
+num_ops = len(ops)
+
+estimator = Estimator(backend, options={"shots": int(1e4)})
+
+from qiskit_ibm_runtime.qiskit.primitives import ObservablesArray
+
+# Reshape observables to (4, 1)
+obs_array = ObservablesArray(ops)
+obs_array = obs_array.reshape((num_ops, 1))
+
+result = (
+    estimatorv2.run(
+        pubs=(chsh_circuit_no_meas, obs_array, individual_phases)
+    )
+    .result()
+)
+```
+  </TabItem>
+
+  <TabItem value="EstimatorV1m" label="Estimator (V1) multi circuit">
+    ```python 
+theta = Parameter("θ")
+
+chsh_circuit_no_meas = QuantumCircuit(2)
+chsh_circuit_no_meas.h(0)
+chsh_circuit_no_meas.cx(0, 1)
+chsh_circuit_no_meas.ry(theta, 0)
+
+# Create a list of phase values to be assigned later
+
+number_of_phases = 21
+phases = np.linspace(0, 2 * np.pi, number_of_phases)
+# Phases need to be expressed as list of lists in order to work
+individual_phases = [[ph] for ph in phases]
+
+# Create observables
+
+ZZ = SparsePauliOp.from_list([("ZZ", 1)])
+ZX = SparsePauliOp.from_list([("ZX", 1)])
+XZ = SparsePauliOp.from_list([("XZ", 1)])
+XX = SparsePauliOp.from_list([("XX", 1)])
+
+ops = [ZZ, ZX, XZ, XX]
+num_ops = len(ops)
+
+# Repeat the inputs so they all have the same length
+
+batch_circuits = [chsh_circuit_no_meas] * number_of_phases * num_ops
+batch_ops = [op for op in ops for _ in individual_phases]
+batch_phases = individual_phases * num_ops
+
+service = QiskitRuntimeService()
+backend = service.get_backend("ibmq_qasm_simulator")
+estimator = Estimator(backend, options={"shots": int(1e4)})
+
+batch_expvals = (
+    estimator.run(
+        batch_circuits, batch_ops, batch_phases
+    )
+    .result()
+    .values
+)
+print(len(batch_expvals))
+```
+  </TabItem>
+
+</Tabs>
+
 ### Output
 
 The output is now in the `PubResult` format.
 
 * EstimatorV2 continues to return expectation values.
 * SamplerV2 now returns per-shot measurements as a bitstring.
+
+<Tabs>
+  <TabItem value="EstimatorV2" label="EstimatorV2">
+    ```python 
+circuit = IQP(mat)
+observable = SparsePauliOp("Z" * n_qubits)
+ 
+job = estimator.run([(circuit, observable)])
+result = job.result()
+ 
+print(f" > Expectation value: {result[0].data.evs}")
+print(f" > Metadata: {result[0].metadata}")
+```
+  </TabItem>
+
+  <TabItem value="EstimatorV1" label="Estimator (V1)">
+    ```python 
+circuit = IQP(mat)
+observable = SparsePauliOp("Z" * n_qubits)
+
+estimator = Estimator(backend)
+job = estimator.run(circuit, observable)
+result = job.result()
+
+print(f" > Observable: {observable.paulis}")
+print(f" > Expectation value: {result.values}")
+print(f" > Metadata: {result.metadata}")
+```
+  </TabItem>
+</Tabs>
 
 ### Error mitigation
 
