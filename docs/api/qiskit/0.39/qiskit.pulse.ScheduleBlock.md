@@ -18,29 +18,29 @@ Time-ordered sequence of instructions with alignment context.
 
 [`ScheduleBlock`](#qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") supports lazy scheduling of context instructions, i.e. their timeslots is always generated at runtime. This indicates we can parametrize instruction durations as well as other parameters. In contrast to [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") being somewhat static, [`ScheduleBlock`](#qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") is a dynamic representation of a pulse program.
 
-## Pulse Builder
+**Pulse Builder**
 
 The Qiskit pulse builder is a domain specific language that is developed on top of the schedule block. Use of the builder syntax will improve the workflow of pulse programming. See [Pulse Builder](pulse#pulse-builder) for a user guide.
 
-## Alignment contexts
+**Alignment contexts**
 
 A schedule block is always relatively scheduled. Instead of taking individual instructions with absolute execution time `t0`, the schedule block defines a context of scheduling and instructions under the same context are scheduled in the same manner (alignment). Several contexts are available in [Alignments](pulse#pulse-alignments). A schedule block is instantiated with one of these alignment contexts. The default context is `AlignLeft`, for which all instructions are left-justified, in other words, meaning they use as-soon-as-possible scheduling.
 
 If you need an absolute-time interval in between instructions, you can explicitly insert [`Delay`](qiskit.pulse.instructions.Delay "qiskit.pulse.instructions.Delay") instructions.
 
-## Nested blocks
+**Nested blocks**
 
 A schedule block can contain other nested blocks with different alignment contexts. This enables advanced scheduling, where a subset of instructions is locally scheduled in a different manner. Note that a [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") instance cannot be directly added to a schedule block. To add a [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") instance, wrap it in a [`Call`](qiskit.pulse.instructions.Call "qiskit.pulse.instructions.Call") instruction. This is implicitly performed when a schedule is added through the [Pulse Builder](pulse#pulse-builder).
 
-## Unsupported operations
+**Unsupported operations**
 
 Because the schedule block representation lacks timeslots, it cannot perform particular [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") operations such as `insert()` or `shift()` that require instruction start time `t0`. In addition, [`exclude()`](qiskit.pulse.ScheduleBlock#exclude "qiskit.pulse.ScheduleBlock.exclude") and [`filter()`](qiskit.pulse.ScheduleBlock#filter "qiskit.pulse.ScheduleBlock.filter") methods are not supported because these operations may identify the target instruction with `t0`. Except for these operations, [`ScheduleBlock`](#qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") provides full compatibility with [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule").
 
-## Subroutine
+**Subroutine**
 
 The timeslots-free representation offers much greater flexibility for writing pulse programs. Because [`ScheduleBlock`](#qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") only cares about the ordering of the child blocks we can add an undefined pulse sequence as a subroutine of the main program. If your program contains the same sequence multiple times, this representation may reduce the memory footprint required by the program construction. Such a subroutine is realized by the special compiler directive [`Reference`](qiskit.pulse.instructions.Reference "qiskit.pulse.instructions.Reference") that is defined by a unique set of reference key strings to the subroutine. The (executable) subroutine is separately stored in the main program. Appended reference directives are resolved when the main program is executed. Subroutines must be assigned through [`assign_references()`](qiskit.pulse.ScheduleBlock#assign_references "qiskit.pulse.ScheduleBlock.assign_references") before execution.
 
-## Program Scoping
+**Program Scoping**
 
 When you call a subroutine from another subroutine, or append a schedule block to another schedule block, the management of references and parameters can be a hard task. Schedule block offers a convenient feature to help with this by automatically scoping the parameters and subroutines.
 

@@ -19,11 +19,11 @@ A circuit implementing a (piecewise) linear function on qubit amplitudes.
 An amplitude function $F$ of a function $f$ is a mapping
 
 $$
-F|x\rangle|0\rangle = \sqrt{1 - \hat{f}(x)} |x\rangle|0\rangle + \sqrt{\hat{f}(x)}
-    |x\rangle|1\rangle.
+F\vert x\rangle\vert 0\rangle = \sqrt{1 - \hat{f}(x)} \vert x\rangle\vert 0\rangle + \sqrt{\hat{f}(x)}
+    \vert x\rangle\vert 1\rangle.
 $$
 
-for a function $\hat{f}: \{ 0, ..., 2^n - 1 \} \rightarrow [0, 1]$, where $|x\rangle$ is a $n$ qubit state.
+for a function $\hat{f}: \{ 0, ..., 2^n - 1 \} \rightarrow [0, 1]$, where $\vert x\rangle$ is a $n$ qubit state.
 
 This circuit implements $F$ for piecewise linear functions $\hat{f}$. In this case, the mapping $F$ can be approximately implemented using a Taylor expansion and linearly controlled Pauli-Y rotations, see \[1, 2] for more detail. This approximation uses a `rescaling_factor` to determine the accuracy of the Taylor expansion.
 
@@ -47,7 +47,7 @@ $$
 
 where $1_{[a, b]}$ is an indication function that is 1 if the argument is in the interval $[a, b]$ and otherwise 0. The breakpoints $p_i$ can be specified by the `breakpoints` argument.
 
-## References
+**References**
 
 **\[1]: Woerner, S., & Egger, D. J. (2018).**
 
@@ -248,7 +248,7 @@ The parameters defined in the circuit.
 
 This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
 
-## Examples
+**Examples**
 
 The snippet below shows that insertion order of parameters does not matter.
 

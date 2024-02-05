@@ -59,7 +59,7 @@ Create a new n-local circuit.
 *   **initial\_state** (`Optional`\[`Any`]) – A QuantumCircuit object which can be used to describe an initial state prepended to the NLocal circuit.
 *   **name** (`Optional`\[`str`]) – The name of the circuit.
 
-## Examples
+**Examples**
 
 TODO
 
@@ -423,7 +423,7 @@ The parameters used in the underlying circuit.
 
 This includes float values and duplicates.
 
-## Examples
+**Examples**
 
 ```python
 >>> # prepare circuit ...

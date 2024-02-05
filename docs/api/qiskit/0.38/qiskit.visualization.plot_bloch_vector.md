@@ -36,7 +36,7 @@ Figure
 
 **MissingOptionalLibraryError** – Requires matplotlib.
 
-## Examples
+**Examples**
 
 ```python
 from qiskit.visualization import plot_bloch_vector

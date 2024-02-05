@@ -16,7 +16,7 @@ Bases: `qiskit.algorithms.linear_solvers.observables.linear_system_observable.Li
 
 A class for the matrix functional of the vector solution to the linear systems.
 
-## Examples
+**Examples**
 
 ```python
 import numpy as np

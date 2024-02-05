@@ -17,7 +17,7 @@ Bases: [`qiskit.algorithms.state_fidelities.base_state_fidelity.BaseStateFidelit
 This class leverages the sampler primitive to calculate the state fidelity of two quantum circuits following the compute-uncompute method (see \[1] for further reference). The fidelity can be defined as the state overlap.
 
 $$
-|\langle\psi(x)|\phi(y)\rangle|^2
+\vert \langle\psi(x)\vert \phi(y)\rangle\vert ^2
 $$
 
 where $x$ and $y$ are optional parametrizations of the states $\psi$ and $\phi$ prepared by the circuits `circuit_1` and `circuit_2`, respectively.
@@ -66,8 +66,8 @@ Runs asynchronously the state overlap (fidelity) calculation between two (parame
 
 **Parameters**
 
-*   **circuits\_1** – (Parametrized) quantum circuits preparing $|\psi\rangle$.
-*   **circuits\_2** – (Parametrized) quantum circuits preparing $|\phi\rangle$.
+*   **circuits\_1** – (Parametrized) quantum circuits preparing $\vert \psi\rangle$.
+*   **circuits\_2** – (Parametrized) quantum circuits preparing $\vert \phi\rangle$.
 *   **values\_1** – Numerical parameters to be bound to the first set of circuits.
 *   **values\_2** – Numerical parameters to be bound to the second set of circuits.
 *   **options** – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > fidelity’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting.

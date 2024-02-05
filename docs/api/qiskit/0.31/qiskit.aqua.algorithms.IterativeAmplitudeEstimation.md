@@ -20,7 +20,7 @@ This class implements the Iterative Quantum Amplitude Estimation (IQAE) algorith
 
 It differs from the original QAE algorithm proposed by Brassard \[2] in that it does not rely on Quantum Phase Estimation, but is only based on Grover’s algorithm. IQAE iteratively applies carefully selected Grover iterations to find an estimate for the target amplitude.
 
-## References
+**References**
 
 **\[1]: Grinko, D., Gacon, J., Zoufal, C., & Woerner, S. (2019).**
 
@@ -40,7 +40,7 @@ The output of the algorithm is an estimate for the amplitude a, that with at lea
 *   **min\_ratio** (`float`) – Minimal q-ratio ($K_{i+1} / K_i$) for FindNextK
 *   **state\_preparation** (`Union`\[`QuantumCircuit`, `CircuitFactory`, `None`]) – A circuit preparing the input state, referred to as $\mathcal{A}$.
 *   **grover\_operator** (`Union`\[`QuantumCircuit`, `CircuitFactory`, `None`]) – The Grover operator $\mathcal{Q}$ used as unitary in the phase estimation circuit.
-*   **objective\_qubits** (`Optional`\[`List`\[`int`]]) – A list of qubit indices. A measurement outcome is classified as ‘good’ state if all objective qubits are in state $|1\rangle$, otherwise it is classified as ‘bad’.
+*   **objective\_qubits** (`Optional`\[`List`\[`int`]]) – A list of qubit indices. A measurement outcome is classified as ‘good’ state if all objective qubits are in state $\vert 1\rangle$, otherwise it is classified as ‘bad’.
 *   **post\_processing** (`Optional`\[`Callable`\[\[`float`], `float`]]) – A mapping applied to the estimate of $0 \leq a \leq 1$, usually used to map the estimate to a target interval.
 *   **a\_factory** (`Optional`\[`CircuitFactory`]) – The A operator, specifying the QAE problem
 *   **q\_factory** (`Optional`\[`CircuitFactory`]) – The Q operator (Grover operator), constructed from the A operator
@@ -262,7 +262,7 @@ $$
 \mathcal{Q} = \mathcal{A} \mathcal{S}_0 \mathcal{A}^\dagger \mathcal{S}_f,
 $$
 
-where $\mathcal{S}_0$ reflects about the |0>\_n state and S\_psi0 reflects about $|\Psi_0\rangle_n$. See [https://arxiv.org/abs/quant-ph/0005055](https://arxiv.org/abs/quant-ph/0005055) for more detail.
+where $\mathcal{S}_0$ reflects about the |0>\_n state and S\_psi0 reflects about $\vert \Psi_0\rangle_n$. See [https://arxiv.org/abs/quant-ph/0005055](https://arxiv.org/abs/quant-ph/0005055) for more detail.
 
 If the Q operator is not set, we try to build it from the A operator. If neither the A operator is set, None is returned.
 

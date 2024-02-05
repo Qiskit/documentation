@@ -34,7 +34,7 @@ On 3 qubits and using the Pauli $Y$ and $Z$ su2\_gates as single qubit gates, th
 
 See [`RealAmplitudes`](qiskit.circuit.library.RealAmplitudes "qiskit.circuit.library.RealAmplitudes") for more detail on the possible arguments and options such as skipping unentanglement qubits, which apply here too.
 
-## Examples
+**Examples**
 
 ```python
 >>> circuit = EfficientSU2(3, reps=1)
@@ -270,7 +270,7 @@ The parameters used in the underlying circuit.
 
 This includes float values and duplicates.
 
-## Examples
+**Examples**
 
 ```python
 >>> # prepare circuit ...

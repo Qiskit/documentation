@@ -6,7 +6,7 @@ Module for builtin discrete pulses.
 
 Note the sampling strategy use for all discrete pulses is `midpoint`.
 
-## Functions
+**Functions**
 
 |                                                       |                                                                                                                                            |
 | ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |

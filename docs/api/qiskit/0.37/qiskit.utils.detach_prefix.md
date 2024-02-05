@@ -16,7 +16,7 @@ Given a SI unit value, find the most suitable prefix to scale the value.
 
 For example, the `value = 1.3e8` will be converted into a tuple of `(130.0, "M")`, which represents a scaled value and auxiliary unit that may be used to display the value. In above example, that value might be displayed as `130 MHz` (unit is arbitrary here).
 
-## Example
+**Example**
 
 ```python
 >>> value, prefix = detach_prefix(1e4)

@@ -139,7 +139,7 @@ Nearest probability distribution. float: Euclidean (L2) distance of distribution
 
 [ProbDistribution](qiskit.result.ProbDistribution "qiskit.result.ProbDistribution")
 
-#### Notes
+**Notes**
 
 Method from Smolin et al., Phys. Rev. Lett. 108, 070502 (2012).
 

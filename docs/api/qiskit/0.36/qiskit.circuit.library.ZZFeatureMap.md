@@ -30,7 +30,7 @@ For 3 qubits and 1 repetition and linear entanglement the circuit is represented
 
 where `φ` is a classical non-linear function, which defaults to `φ(x) = x` if and `φ(x,y) = (pi - x)(pi - y)`.
 
-## Examples
+**Examples**
 
 ```python
 >>> prep = ZZFeatureMap(2, reps=2)
@@ -294,7 +294,7 @@ The parameters used in the underlying circuit.
 
 This includes float values and duplicates.
 
-## Examples
+**Examples**
 
 ```python
 >>> # prepare circuit ...

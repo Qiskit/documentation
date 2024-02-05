@@ -4,7 +4,7 @@
 
 Convert portfolio optimization instances into Pauli list
 
-## Functions
+**Functions**
 
 |                                                     |                                                                       |
 | --------------------------------------------------- | --------------------------------------------------------------------- |

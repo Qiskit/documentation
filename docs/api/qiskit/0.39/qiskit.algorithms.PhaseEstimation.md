@@ -18,19 +18,19 @@ Run the Quantum Phase Estimation (QPE) algorithm.
 
 This runs QPE with a multi-qubit register for reading the phases \[1] of input states.
 
-The algorithm takes as input a unitary $U$ and a state $|\psi\rangle$, which may be written
+The algorithm takes as input a unitary $U$ and a state $\vert \psi\rangle$, which may be written
 
 $$
-|\psi\rangle = \sum_j c_j |\phi_j\rangle,
+\vert \psi\rangle = \sum_j c_j \vert \phi_j\rangle,
 $$
 
-where $|\phi_j\rangle$ are eigenstates of $U$. We prepare the quantum register in the state $|\psi\rangle$ then apply $U$ leaving the register in the state
+where $\vert \phi_j\rangle$ are eigenstates of $U$. We prepare the quantum register in the state $\vert \psi\rangle$ then apply $U$ leaving the register in the state
 
 $$
-U|\psi\rangle = \sum_j \exp(i \phi_j) c_j |\phi_j\rangle.
+U\vert \psi\rangle = \sum_j \exp(i \phi_j) c_j \vert \phi_j\rangle.
 $$
 
-In the ideal case, one then measures the phase $\phi_j$ with probability $|c_j|^2$. In practice, many (or all) of the bit strings may be measured due to noise and the possibility that $\phi_j$ may not be representable exactly by the output register. In the latter case the probability for each eigenphase will be spread across bitstrings, with amplitudes that decrease with distance from the bitstring most closely approximating the eigenphase.
+In the ideal case, one then measures the phase $\phi_j$ with probability $\vert c_j\vert ^2$. In practice, many (or all) of the bit strings may be measured due to noise and the possibility that $\phi_j$ may not be representable exactly by the output register. In the latter case the probability for each eigenphase will be spread across bitstrings, with amplitudes that decrease with distance from the bitstring most closely approximating the eigenphase.
 
 The main input to the constructor is the number of qubits in the phase-reading register. For phase estimation, there are two methods:
 

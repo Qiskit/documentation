@@ -27,7 +27,7 @@ If $A$, $b$ or $c$ contain scalar values, this circuit computes only an approxim
 Provided with $m$ qubits to encode the value, this circuit computes $Q(x) \mod 2^m$ in \[two’s complement]\([https://stackoverflow.com/questions/1049722/what-is-2s-complement](https://stackoverflow.com/questions/1049722/what-is-2s-complement)) representation.
 
 $$
-|x\rangle_n |0\rangle_m \mapsto |x\rangle_n |(Q(x) + 2^m) \mod 2^m \rangle_m
+\vert x\rangle_n \vert 0\rangle_m \mapsto \vert x\rangle_n \vert (Q(x) + 2^m) \mod 2^m \rangle_m
 $$
 
 Since we use two’s complement e.g. the value of $Q(x) = 3$ requires 2 bits to represent the value and 1 bit for the sign: 3 = ‘011’ where the first 0 indicates a positive value. On the other hand, $Q(x) = -3$ would be -3 = ‘101’, where the first 1 indicates a negative value and 01 is the two’s complement of 3.
@@ -36,7 +36,7 @@ If the value of $Q(x)$ is too large to be represented with m qubits, the resulti
 
 The implementation of this circuit is discussed in \[1], Fig. 6.
 
-## References
+**References**
 
 **\[1]: Gilliam et al., Grover Adaptive Search for Constrained Polynomial Binary Optimization.**
 
@@ -237,7 +237,7 @@ The parameters defined in the circuit.
 
 This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
 
-## Examples
+**Examples**
 
 The snippet below shows that insertion order of parameters does not matter.
 

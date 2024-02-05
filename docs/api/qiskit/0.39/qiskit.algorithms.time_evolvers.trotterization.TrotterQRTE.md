@@ -16,7 +16,7 @@ Bases: [`qiskit.algorithms.time_evolvers.real_time_evolver.RealTimeEvolver`](qis
 
 Quantum Real Time Evolution using Trotterization. Type of Trotterization is defined by a `ProductFormula` provided.
 
-## Examples
+**Examples**
 
 ```python
 from qiskit.opflow import PauliSumOp

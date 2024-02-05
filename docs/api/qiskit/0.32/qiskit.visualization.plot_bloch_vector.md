@@ -36,7 +36,7 @@ Figure
 
 [**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – Requires matplotlib.
 
-## Example
+**Example**
 
 ```python
 from qiskit.visualization import plot_bloch_vector

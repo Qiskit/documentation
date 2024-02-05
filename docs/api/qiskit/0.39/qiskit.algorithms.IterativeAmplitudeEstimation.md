@@ -20,7 +20,7 @@ This class implements the Iterative Quantum Amplitude Estimation (IQAE) algorith
 
 It differs from the original QAE algorithm proposed by Brassard \[2] in that it does not rely on Quantum Phase Estimation, but is only based on Grover’s algorithm. IQAE iteratively applies carefully selected Grover iterations to find an estimate for the target amplitude.
 
-## References
+**References**
 
 **\[1]: Grinko, D., Gacon, J., Zoufal, C., & Woerner, S. (2019).**
 
@@ -56,7 +56,7 @@ The output of the algorithm is an estimate for the amplitude a, that with at lea
 
 `IterativeAmplitudeEstimation.construct_circuit(estimation_problem, k=0, measurement=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/amplitude_estimators/iae.py "view source code")
 
-Construct the circuit $\mathcal{Q}^k \mathcal{A} |0\rangle$.
+Construct the circuit $\mathcal{Q}^k \mathcal{A} \vert 0\rangle$.
 
 The A operator is the unitary specifying the QAE problem and Q the associated Grover operator.
 
@@ -72,7 +72,7 @@ The A operator is the unitary specifying the QAE problem and Q the associated Gr
 
 **Returns**
 
-The circuit implementing $\mathcal{Q}^k \mathcal{A} |0\rangle$.
+The circuit implementing $\mathcal{Q}^k \mathcal{A} \vert 0\rangle$.
 
 ### estimate
 

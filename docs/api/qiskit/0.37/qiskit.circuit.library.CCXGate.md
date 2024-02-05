@@ -33,7 +33,7 @@ q_2: ┤ X ├
 
 $$
 \begin{split}CCX q_0, q_1, q_2 =
-    I \otimes I \otimes |0 \rangle \langle 0| + CX \otimes |1 \rangle \langle 1| =
+    I \otimes I \otimes \vert 0 \rangle \langle 0\vert  + CX \otimes \vert 1 \rangle \langle 1\vert  =
    \begin{pmatrix}
         1 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
         0 & 1 & 0 & 0 & 0 & 0 & 0 & 0\\
@@ -60,7 +60,7 @@ $$
 
   $$
   \begin{split}CCX\ q_2, q_1, q_0 =
-      |0 \rangle \langle 0| \otimes I \otimes I + |1 \rangle \langle 1| \otimes CX =
+      \vert 0 \rangle \langle 0\vert  \otimes I \otimes I + \vert 1 \rangle \langle 1\vert  \otimes CX =
       \begin{pmatrix}
           1 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
           0 & 1 & 0 & 0 & 0 & 0 & 0 & 0\\

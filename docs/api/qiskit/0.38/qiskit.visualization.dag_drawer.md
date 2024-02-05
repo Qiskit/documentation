@@ -38,7 +38,7 @@ PIL.Image
 *   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – when style is not recognized.
 *   **InvalidFileError** – when filename provided is not valid
 
-## Example
+**Example**
 
 ```python
 %matplotlib inline

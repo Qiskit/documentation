@@ -67,19 +67,19 @@
 
 ### Generalized Gates
 
-|                                                                                                                             |                                                                                         |   |                                     |
-| --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | - | ----------------------------------- |
-| [`Diagonal`](qiskit.circuit.library.Diagonal "qiskit.circuit.library.Diagonal")(diag)                                       | Diagonal circuit.                                                                       |   |                                     |
-| [`MCMT`](qiskit.circuit.library.MCMT "qiskit.circuit.library.MCMT")(gate, num\_ctrl\_qubits, num\_target\_qubits)           | The multi-controlled multi-target gate, for an arbitrary singly controlled target gate. |   |                                     |
-| [`MCMTVChain`](qiskit.circuit.library.MCMTVChain "qiskit.circuit.library.MCMTVChain")(gate, num\_ctrl\_qubits, …\[, label]) | The MCMT implementation using the CCX V-chain.                                          |   |                                     |
-| [`Permutation`](qiskit.circuit.library.Permutation "qiskit.circuit.library.Permutation")(num\_qubits\[, pattern, seed])     | An n\_qubit circuit that permutes qubits.                                               |   |                                     |
-| [`GMS`](qiskit.circuit.library.GMS "qiskit.circuit.library.GMS")(num\_qubits, theta)                                        | Global Mølmer–Sørensen gate.                                                            |   |                                     |
-| [`GR`](qiskit.circuit.library.GR "qiskit.circuit.library.GR")(num\_qubits, theta, phi)                                      | Global R gate.                                                                          |   |                                     |
-| [`GRX`](qiskit.circuit.library.GRX "qiskit.circuit.library.GRX")(num\_qubits, theta)                                        | Global RX gate.                                                                         |   |                                     |
-| [`GRY`](qiskit.circuit.library.GRY "qiskit.circuit.library.GRY")(num\_qubits, theta)                                        | Global RY gate.                                                                         |   |                                     |
-| [`GRZ`](qiskit.circuit.library.GRZ "qiskit.circuit.library.GRZ")(num\_qubits, phi)                                          | Global RZ gate.                                                                         |   |                                     |
-| [`RVGate`](qiskit.circuit.library.RVGate "qiskit.circuit.library.RVGate")(v\_x, v\_y, v\_z\[, basis])                       | Rotation around arbitrary rotation axis $v$ where \$                                    | v | \$ is angle of rotation in radians. |
-| [`PauliGate`](qiskit.circuit.library.PauliGate "qiskit.circuit.library.PauliGate")(label)                                   | A multi-qubit Pauli gate.                                                               |   |                                     |
+|                                                                                                                             |                                                                                                    |
+| --------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| [`Diagonal`](qiskit.circuit.library.Diagonal "qiskit.circuit.library.Diagonal")(diag)                                       | Diagonal circuit.                                                                                  |
+| [`MCMT`](qiskit.circuit.library.MCMT "qiskit.circuit.library.MCMT")(gate, num\_ctrl\_qubits, num\_target\_qubits)           | The multi-controlled multi-target gate, for an arbitrary singly controlled target gate.            |
+| [`MCMTVChain`](qiskit.circuit.library.MCMTVChain "qiskit.circuit.library.MCMTVChain")(gate, num\_ctrl\_qubits, …\[, label]) | The MCMT implementation using the CCX V-chain.                                                     |
+| [`Permutation`](qiskit.circuit.library.Permutation "qiskit.circuit.library.Permutation")(num\_qubits\[, pattern, seed])     | An n\_qubit circuit that permutes qubits.                                                          |
+| [`GMS`](qiskit.circuit.library.GMS "qiskit.circuit.library.GMS")(num\_qubits, theta)                                        | Global Mølmer–Sørensen gate.                                                                       |
+| [`GR`](qiskit.circuit.library.GR "qiskit.circuit.library.GR")(num\_qubits, theta, phi)                                      | Global R gate.                                                                                     |
+| [`GRX`](qiskit.circuit.library.GRX "qiskit.circuit.library.GRX")(num\_qubits, theta)                                        | Global RX gate.                                                                                    |
+| [`GRY`](qiskit.circuit.library.GRY "qiskit.circuit.library.GRY")(num\_qubits, theta)                                        | Global RY gate.                                                                                    |
+| [`GRZ`](qiskit.circuit.library.GRZ "qiskit.circuit.library.GRZ")(num\_qubits, phi)                                          | Global RZ gate.                                                                                    |
+| [`RVGate`](qiskit.circuit.library.RVGate "qiskit.circuit.library.RVGate")(v\_x, v\_y, v\_z\[, basis])                       | Rotation around arbitrary rotation axis $v$ where $\vert v\vert $ is angle of rotation in radians. |
+| [`PauliGate`](qiskit.circuit.library.PauliGate "qiskit.circuit.library.PauliGate")(label)                                   | A multi-qubit Pauli gate.                                                                          |
 
 ### Boolean Logic Circuits
 
