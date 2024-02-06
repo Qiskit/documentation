@@ -23,7 +23,7 @@ $$
                       |x\rangle|1\rangle.\]
 $$
 
-for a function $\hat{f}: \{0, ..., 2^n - 1\} \rightarrow [0, 1]$, where $\vert x\rangle$ is a $n$ qubit state.
+for a function $\hat{f}: \{0, ..., 2^n - 1\} \rightarrow [0, 1]$, where $|x\rangle$ is a $n$ qubit state.
 
 This circuit implements $F$ for piecewise linear functions $\hat{f}$. In this case, the mapping $F$ can be approximately implemented using a Taylor expansion and linearly controlled Pauli-Y rotations, see \[1, 2] for more detail. This approximation uses a `rescaling_factor` to determine the accuracy of the Taylor expansion.
 
