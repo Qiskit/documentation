@@ -64,6 +64,12 @@ Quantum Instance holds a Qiskit Terra backend as well as configuration for circu
 
 `= ['statevector_sample_measure_opt', 'max_parallel_shots']`
 
+### COMPILE\_CONFIG
+
+<span id="qiskit.aqua.QuantumInstance.COMPILE_CONFIG" />
+
+`= ['pass_manager', 'initial_layout', 'seed_transpiler', 'optimization_level']`
+
 ### NOISE\_CONFIG
 
 <span id="qiskit.aqua.QuantumInstance.NOISE_CONFIG" />
@@ -76,13 +82,27 @@ Quantum Instance holds a Qiskit Terra backend as well as configuration for circu
 
 `= ['timeout', 'wait']`
 
+### RUN\_CONFIG
+
+<span id="qiskit.aqua.QuantumInstance.RUN_CONFIG" />
+
+`= ['shots', 'max_credits', 'memory', 'seed_simulator']`
+
 ### backend
 
 Return BaseBackend backend object.
 
+### backend\_config
+
+Getter of backend\_config.
+
 ### backend\_name
 
 Return backend name.
+
+### backend\_options
+
+Getter of backend\_options.
 
 ### cals\_matrix\_refresh\_period
 
@@ -115,6 +135,14 @@ returns measurement error mitigation cls
 ### measurement\_error\_mitigation\_shots
 
 returns measurement error mitigation shots
+
+### noise\_config
+
+Getter of noise\_config.
+
+### qjob\_config
+
+Getter of qjob\_config.
 
 ### run\_config
 
