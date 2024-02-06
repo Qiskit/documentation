@@ -16,7 +16,7 @@ Bases: `qiskit.pulse.library.parametric_pulses.ParametricPulse`
 
 The Derivative Removal by Adiabatic Gate (DRAG) pulse is a standard Gaussian pulse with an additional Gaussian derivative component and lifting applied.
 
-It is designed to reduce the frequency spectrum of a normal gaussian pulse near the $\vert 1\rangle\leftrightarrow\vert 2\rangle$ transition, reducing the chance of leakage to the $\vert 2\rangle$ state.
+It is designed to reduce the frequency spectrum of a normal gaussian pulse near the $|1\rangle\leftrightarrow|2\rangle$ transition, reducing the chance of leakage to the $|2\rangle$ state.
 
 $$
 \begin{split}g(x) &= \exp\Bigl(-\frac12 \frac{(x - \text{duration}/2)^2}{\text{sigma}^2}\Bigr)\\

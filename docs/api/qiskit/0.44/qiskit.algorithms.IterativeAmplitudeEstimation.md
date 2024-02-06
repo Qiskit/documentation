@@ -96,7 +96,7 @@ The sampler primitive to evaluate the circuits.
 
 `construct_circuit(estimation_problem, k=0, measurement=False)`
 
-Construct the circuit $\mathcal{Q}^k \mathcal{A} \vert 0\rangle$.
+Construct the circuit $\mathcal{Q}^k \mathcal{A} |0\rangle$.
 
 The A operator is the unitary specifying the QAE problem and Q the associated Grover operator.
 
@@ -108,7 +108,7 @@ The A operator is the unitary specifying the QAE problem and Q the associated Gr
 
 **Returns**
 
-The circuit implementing $\mathcal{Q}^k \mathcal{A} \vert 0\rangle$.
+The circuit implementing $\mathcal{Q}^k \mathcal{A} |0\rangle$.
 
 **Return type**
 
