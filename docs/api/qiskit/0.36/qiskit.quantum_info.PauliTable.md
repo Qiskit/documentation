@@ -30,7 +30,7 @@ The symplectic representation of a single-qubit Pauli matrix is a pair of boolea
 The full Pauli table is a M x 2N boolean matrix:
 
 $$
-\begin{split}\left(\begin{array}{ccc\vert ccc}
+\begin{split}\left(\begin{array}{ccc|ccc}
     x_{0,0} & ... & x_{0,N-1} & z_{0,0} & ... & z_{0,N-1}  \\
     x_{1,0} & ... & x_{1,N-1} & z_{1,0} & ... & z_{1,N-1}  \\
     \vdots & \ddots & \vdots & \vdots & \ddots & \vdots  \\
