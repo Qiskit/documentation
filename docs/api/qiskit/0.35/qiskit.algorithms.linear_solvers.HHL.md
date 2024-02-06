@@ -52,7 +52,7 @@ approx_result = solution.observable
 
 **Parameters**
 
-*   **epsilon** (`float`) – Error tolerance of the approximation to the solution, i.e. if $x$ is the exact solution and $\tilde{x}$ the one calculated by the algorithm, then $\vert \vert x - \tilde{x}\vert \vert  \le epsilon$.
+*   **epsilon** (`float`) – Error tolerance of the approximation to the solution, i.e. if $x$ is the exact solution and $\tilde{x}$ the one calculated by the algorithm, then $||x - \tilde{x}|| \le epsilon$.
 *   **expectation** (`Optional`\[`ExpectationBase`]) – The expectation converter applied to the expectation values before evaluation. If None then PauliExpectation is used.
 *   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – Quantum Instance or Backend. If None, a Statevector calculation is done.
 
