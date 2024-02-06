@@ -110,7 +110,7 @@ async function generateJsonFiles(
   projectNewHistoricalFolder: string,
 ) {
   console.log("Generating version file");
-  const pkgName_json = { name: pkgName, version: version };
+  const pkgName_json = { name: pkgName, version: version, type: "historical" };
   await writeFile(
     `${projectNewHistoricalFolder}/_package.json`,
     JSON.stringify(pkgName_json, null, 2) + "\n",
