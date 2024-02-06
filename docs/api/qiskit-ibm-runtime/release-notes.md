@@ -6,11 +6,25 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes" />
 
-# Qiskit Runtime IBM Client 0.18 release notes
+# Qiskit Runtime IBM Client 0.19 release notes
+
+<span id="release-notes-0-19-0" />
+
+<span id="id1" />
+
+## 0.19.0
+
+<span id="release-notes-0-19-0-upgrade-notes" />
+
+### Upgrade Notes
+
+*   qiskit-ibm-provider is pending deprecation, and therefore will no longer be a dependency for qiskit-ibm-runtime.
+
+*   qiskit-ibm-runtime is now compatible with Qiskit versions >= 0.45, including 1.0.0.
 
 <span id="release-notes-0-18-0" />
 
-<span id="id1" />
+<span id="id2" />
 
 ## 0.18.0
 
@@ -38,13 +52,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-17-0" />
 
-<span id="id2" />
+<span id="id3" />
 
 ## 0.17.0
 
 <span id="release-notes-0-17-0-new-features" />
 
-<span id="id3" />
+<span id="id4" />
 
 ### New Features
 
@@ -54,7 +68,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-17-0-bug-fixes" />
 
-<span id="id4" />
+<span id="id5" />
 
 ### Bug Fixes
 
@@ -74,7 +88,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-16-0" />
 
-<span id="id5" />
+<span id="id6" />
 
 ## 0.16.0
 
@@ -86,7 +100,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-16-0-new-features" />
 
-<span id="id6" />
+<span id="id7" />
 
 ### New Features
 
@@ -94,13 +108,15 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-16-0-upgrade-notes" />
 
+<span id="id8" />
+
 ### Upgrade Notes
 
 *   Methods related to using custom programs are removed.
 
 <span id="release-notes-0-16-0-bug-fixes" />
 
-<span id="id7" />
+<span id="id9" />
 
 ### Bug Fixes
 
@@ -108,13 +124,13 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-15-1" />
 
-<span id="id8" />
+<span id="id10" />
 
 ## 0.15.1
 
 <span id="release-notes-0-15-1-bug-fixes" />
 
-<span id="id9" />
+<span id="id11" />
 
 ### Bug Fixes
 
@@ -122,13 +138,13 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-15-0" />
 
-<span id="id10" />
+<span id="id12" />
 
 ## 0.15.0
 
 <span id="release-notes-0-15-0-new-features" />
 
-<span id="id11" />
+<span id="id13" />
 
 ### New Features
 
@@ -167,7 +183,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-15-0-deprecation-notes" />
 
-<span id="id12" />
+<span id="id14" />
 
 ### Deprecation Notes
 
@@ -175,7 +191,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-15-0-bug-fixes" />
 
-<span id="id13" />
+<span id="id15" />
 
 ### Bug Fixes
 
@@ -195,13 +211,13 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-14-0" />
 
-<span id="id14" />
+<span id="id16" />
 
 ## 0.14.0
 
 <span id="release-notes-0-14-0-new-features" />
 
-<span id="id15" />
+<span id="id17" />
 
 ### New Features
 
@@ -211,7 +227,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-14-0-deprecation-notes" />
 
-<span id="id16" />
+<span id="id18" />
 
 ### Deprecation Notes
 
@@ -219,13 +235,13 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-13-0" />
 
-<span id="id17" />
+<span id="id19" />
 
 ## 0.13.0
 
 <span id="release-notes-0-13-0-new-features" />
 
-<span id="id18" />
+<span id="id20" />
 
 ### New Features
 
@@ -237,7 +253,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-13-0-upgrade-notes" />
 
-<span id="id19" />
+<span id="id21" />
 
 ### Upgrade Notes
 
@@ -247,7 +263,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-13-0-bug-fixes" />
 
-<span id="id20" />
+<span id="id22" />
 
 ### Bug Fixes
 
@@ -257,13 +273,13 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-12-2" />
 
-<span id="id21" />
+<span id="id23" />
 
 ## 0.12.2
 
 <span id="release-notes-0-12-2-new-features" />
 
-<span id="id22" />
+<span id="id24" />
 
 ### New Features
 
@@ -277,7 +293,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-12-2-upgrade-notes" />
 
-<span id="id23" />
+<span id="id25" />
 
 ### Upgrade Notes
 
@@ -285,13 +301,13 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-12-1" />
 
-<span id="id24" />
+<span id="id26" />
 
 ## 0.12.1
 
 <span id="release-notes-0-12-1-new-features" />
 
-<span id="id25" />
+<span id="id27" />
 
 ### New Features
 
@@ -303,7 +319,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-12-1-bug-fixes" />
 
-<span id="id26" />
+<span id="id28" />
 
 ### Bug Fixes
 
@@ -317,13 +333,13 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-12-0" />
 
-<span id="id27" />
+<span id="id29" />
 
 ## 0.12.0
 
 <span id="release-notes-0-12-0-new-features" />
 
-<span id="id28" />
+<span id="id30" />
 
 ### New Features
 
@@ -344,7 +360,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-12-0-upgrade-notes" />
 
-<span id="id29" />
+<span id="id31" />
 
 ### Upgrade Notes
 
@@ -352,7 +368,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-12-0-deprecation-notes" />
 
-<span id="id30" />
+<span id="id32" />
 
 ### Deprecation Notes
 
@@ -360,7 +376,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-12-0-bug-fixes" />
 
-<span id="id31" />
+<span id="id33" />
 
 ### Bug Fixes
 
@@ -372,13 +388,13 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-11-3" />
 
-<span id="id32" />
+<span id="id34" />
 
 ## 0.11.3
 
 <span id="release-notes-0-11-3-new-features" />
 
-<span id="id33" />
+<span id="id35" />
 
 ### New Features
 
@@ -394,13 +410,13 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-11-2" />
 
-<span id="id34" />
+<span id="id36" />
 
 ## 0.11.2
 
 <span id="release-notes-0-11-2-new-features" />
 
-<span id="id35" />
+<span id="id37" />
 
 ### New Features
 
@@ -423,7 +439,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-11-2-bug-fixes" />
 
-<span id="id36" />
+<span id="id38" />
 
 ### Bug Fixes
 
@@ -433,13 +449,13 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-11-1" />
 
-<span id="id37" />
+<span id="id39" />
 
 ## 0.11.1
 
 <span id="release-notes-0-11-1-deprecation-notes" />
 
-<span id="id38" />
+<span id="id40" />
 
 ### Deprecation Notes
 
@@ -447,13 +463,13 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-11-0" />
 
-<span id="id39" />
+<span id="id41" />
 
 ## 0.11.0
 
 <span id="release-notes-0-11-0-new-features" />
 
-<span id="id40" />
+<span id="id42" />
 
 ### New Features
 
@@ -475,7 +491,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-11-0-upgrade-notes" />
 
-<span id="id41" />
+<span id="id43" />
 
 ### Upgrade Notes
 
@@ -485,7 +501,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-11-0-deprecation-notes" />
 
-<span id="id42" />
+<span id="id44" />
 
 ### Deprecation Notes
 
@@ -493,13 +509,13 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-10-0" />
 
-<span id="id43" />
+<span id="id45" />
 
 ## 0.10.0
 
 <span id="release-notes-0-10-0-new-features" />
 
-<span id="id44" />
+<span id="id46" />
 
 ### New Features
 
@@ -507,7 +523,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-10-0-upgrade-notes" />
 
-<span id="id45" />
+<span id="id47" />
 
 ### Upgrade Notes
 
@@ -515,7 +531,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-10-0-bug-fixes" />
 
-<span id="id46" />
+<span id="id48" />
 
 ### Bug Fixes
 
@@ -525,13 +541,13 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-9-4" />
 
-<span id="id48" />
+<span id="id50" />
 
 ## 0.9.4
 
 <span id="release-notes-0-9-4-new-features" />
 
-<span id="id49" />
+<span id="id51" />
 
 ### New Features
 
@@ -539,7 +555,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-9-4-upgrade-notes" />
 
-<span id="id50" />
+<span id="id52" />
 
 ### Upgrade Notes
 
@@ -547,7 +563,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-9-4-deprecation-notes" />
 
-<span id="id51" />
+<span id="id53" />
 
 ### Deprecation Notes
 
@@ -561,7 +577,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-9-4-bug-fixes" />
 
-<span id="id52" />
+<span id="id54" />
 
 ### Bug Fixes
 
@@ -569,13 +585,13 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-9-3" />
 
-<span id="id53" />
+<span id="id55" />
 
 ## 0.9.3
 
 <span id="release-notes-0-9-3-upgrade-notes" />
 
-<span id="id54" />
+<span id="id56" />
 
 ### Upgrade Notes
 
@@ -585,7 +601,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-9-3-bug-fixes" />
 
-<span id="id55" />
+<span id="id57" />
 
 ### Bug Fixes
 
@@ -593,13 +609,13 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-9-2" />
 
-<span id="id56" />
+<span id="id58" />
 
 ## 0.9.2
 
 <span id="release-notes-0-9-2-new-features" />
 
-<span id="id57" />
+<span id="id59" />
 
 ### New Features
 
@@ -609,7 +625,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-9-2-upgrade-notes" />
 
-<span id="id58" />
+<span id="id60" />
 
 ### Upgrade Notes
 
@@ -621,7 +637,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-9-2-bug-fixes" />
 
-<span id="id59" />
+<span id="id61" />
 
 ### Bug Fixes
 
@@ -635,13 +651,13 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-9-1" />
 
-<span id="id60" />
+<span id="id62" />
 
 ## 0.9.1
 
 <span id="release-notes-0-9-1-upgrade-notes" />
 
-<span id="id61" />
+<span id="id63" />
 
 ### Upgrade Notes
 
@@ -661,7 +677,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-9-1-deprecation-notes" />
 
-<span id="id62" />
+<span id="id64" />
 
 ### Deprecation Notes
 
@@ -669,7 +685,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-9-1-bug-fixes" />
 
-<span id="id63" />
+<span id="id65" />
 
 ### Bug Fixes
 
@@ -677,7 +693,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 <span id="release-notes-0-9-1-other-notes" />
 
-<span id="id64" />
+<span id="id66" />
 
 ### Other Notes
 

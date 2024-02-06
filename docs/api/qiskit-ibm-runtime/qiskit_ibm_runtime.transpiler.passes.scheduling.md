@@ -31,11 +31,10 @@ from qiskit.circuit import ClassicalRegister, QuantumCircuit, QuantumRegister
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit.transpiler.passmanager import PassManager
 
-from qiskit_ibm_provider.transpiler.passes.scheduling import DynamicCircuitInstructionDurations
-from qiskit_ibm_provider.transpiler.passes.scheduling import ALAPScheduleAnalysis
-from qiskit_ibm_provider.transpiler.passes.scheduling import PadDelay
-from qiskit.providers.fake_provider import FakeJakarta
-
+from qiskit_ibm_runtime.transpiler.passes.scheduling import DynamicCircuitInstructionDurations
+from qiskit_ibm_runtime.transpiler.passes.scheduling import ALAPScheduleAnalysis
+from qiskit_ibm_runtime.transpiler.passes.scheduling import PadDelay
+from qiskit_ibm_runtime.fake_provider import FakeJakarta
 
 backend = FakeJakarta()
 
@@ -83,7 +82,7 @@ Instead of padding with delays we may also insert a dynamical decoupling sequenc
 ```python
 from qiskit.circuit.library import XGate
 
-from qiskit_ibm_provider.transpiler.passes.scheduling import PadDynamicalDecoupling
+from qiskit_ibm_runtime.transpiler.passes.scheduling import PadDynamicalDecoupling
 
 
 dd_sequence = [XGate(), XGate()]
