@@ -23,7 +23,7 @@ Version 2 is first the major interface change since the introduction of Qiskit R
 
 ### Import
 
-For backward compatibility, you must explicity import the V2 primitives. Specifying `import` *`prmitiveV2`* `as` *`primitive`* is not required, but makes it easier to transition code to V2. 
+For backward compatibility, you must explicity import the V2 primitives. Specifying `import` *`prmitive`*`V2 as` *`primitive`* is not required, but makes it easier to transition code to V2. 
 
 <Admonition type="note">
 After the V1 primitives are deprecated, `import` *`prmitive`* will import the V2 version of the specified primitive.  
@@ -53,225 +53,49 @@ Both `SamplerV2` and `EstimatorV2` take one or more *primitive unified blocs* (P
     Numpy [broadcasting rules](https://numpy.org/doc/stable/user/basics.broadcasting.html) are used when combining observables and parameter values.
 
 <Tabs>
-  <TabItem value="EstimatorV2" label="EstimatorV2 simple">
+  <TabItem value="EstimatorV2" label="EstimatorV2">
     ```python 
+mat = np.real(random_hermitian(127, seed=1234))
 circuit = IQP(mat)
-observable = SparsePauliOp("Z" * n_qubits)
+observable = SparsePauliOp("Z" * 127)
  
 job = estimator.run([(circuit, observable)])
 ```
   </TabItem>
 
-  <TabItem value="EstimatorV1" label="Estimator simple">
+  <TabItem value="EstimatorV1" label="Estimator (V1)">
     ```python 
+mat = np.real(random_hermitian(127, seed=1234))
 circuit = IQP(mat)
-observable = SparsePauliOp("Z" * n_qubits)
+observable = SparsePauliOp("Z" * 127)
 
 job = estimator.run(circuit, observable)
 ```
   </TabItem>
-  <TabItem value="EstimatorV2m" label="EstimatorV2 complex">
-    ```python 
-theta = Parameter("θ")
-
-chsh_circuit_no_meas = QuantumCircuit(2)
-chsh_circuit_no_meas.h(0)
-chsh_circuit_no_meas.cx(0, 1)
-chsh_circuit_no_meas.ry(theta, 0)
-
-# Create a list of phase values to be assigned later
-
-number_of_phases = 21
-phases = np.linspace(0, 2 * np.pi, number_of_phases)
-# Phases need to be expressed as list of lists in order to work
-individual_phases = [[ph] for ph in phases]
-
-# Create observables
-
-ZZ = SparsePauliOp.from_list([("ZZ", 1)])
-ZX = SparsePauliOp.from_list([("ZX", 1)])
-XZ = SparsePauliOp.from_list([("XZ", 1)])
-XX = SparsePauliOp.from_list([("XX", 1)])
-
-ops = [ZZ, ZX, XZ, XX]
-num_ops = len(ops)
-
-estimator = Estimator(backend, options={"shots": int(1e4)})
-
-from qiskit_ibm_runtime.qiskit.primitives import ObservablesArray
-
-# Reshape observables to (4, 1)
-obs_array = ObservablesArray(ops)
-obs_array = obs_array.reshape((num_ops, 1))
-
-result = (
-    estimatorv2.run(
-        pubs=(chsh_circuit_no_meas, obs_array, individual_phases)
-    )
-    .result()
-)
-```
-  </TabItem>
-
-  <TabItem value="EstimatorV1m" label="Estimator complex">
-    ```python 
-theta = Parameter("θ")
-
-chsh_circuit_no_meas = QuantumCircuit(2)
-chsh_circuit_no_meas.h(0)
-chsh_circuit_no_meas.cx(0, 1)
-chsh_circuit_no_meas.ry(theta, 0)
-
-# Create a list of phase values to be assigned later
-
-number_of_phases = 21
-phases = np.linspace(0, 2 * np.pi, number_of_phases)
-# Phases need to be expressed as list of lists in order to work
-individual_phases = [[ph] for ph in phases]
-
-# Create observables
-
-ZZ = SparsePauliOp.from_list([("ZZ", 1)])
-ZX = SparsePauliOp.from_list([("ZX", 1)])
-XZ = SparsePauliOp.from_list([("XZ", 1)])
-XX = SparsePauliOp.from_list([("XX", 1)])
-
-ops = [ZZ, ZX, XZ, XX]
-num_ops = len(ops)
-
-# Repeat the inputs so they all have the same length
-
-batch_circuits = [chsh_circuit_no_meas] * number_of_phases * num_ops
-batch_ops = [op for op in ops for _ in individual_phases]
-batch_phases = individual_phases * num_ops
-
-service = QiskitRuntimeService()
-backend = service.get_backend("ibmq_qasm_simulator")
-estimator = Estimator(backend, options={"shots": int(1e4)})
-
-batch_expvals = (
-    estimator.run(
-        batch_circuits, batch_ops, batch_phases
-    )
-    .result()
-    .values
-)
-print(len(batch_expvals))
-```
-  </TabItem>
-
 </Tabs>
 
-CHECKING WHAT THIS WOULD LOOK LIKE:
-
 <Tabs>
-  <TabItem value="SamplerV2" label="SamplerV2 simple">
+  <TabItem value="SamplerV2" label="SamplerV2">
     ```python 
+mat = np.real(random_hermitian(127, seed=1234))
 circuit = IQP(mat)
-observable = SparsePauliOp("Z" * n_qubits)
+circuit.measure_all()
  
-job = estimator.run([(circuit, observable)])
+sampler = Sampler(backend)
+job = sampler.run(circuit)
 ```
   </TabItem>
 
-  <TabItem value="SamplerV1" label="Sampler simple">
+  <TabItem value="SamplerV1" label="Sampler (V1)">
     ```python 
+mat = np.real(random_hermitian(127, seed=1234))
 circuit = IQP(mat)
-observable = SparsePauliOp("Z" * n_qubits)
-
-job = estimator.run(circuit, observable)
+circuit.measure_all()
+ 
+sampler = Sampler(backend)
+job = sampler.run([(circuit)])
 ```
   </TabItem>
-  <TabItem value="SamplerV2m" label="SamplerV2 complex">
-    ```python 
-theta = Parameter("θ")
-
-chsh_circuit_no_meas = QuantumCircuit(2)
-chsh_circuit_no_meas.h(0)
-chsh_circuit_no_meas.cx(0, 1)
-chsh_circuit_no_meas.ry(theta, 0)
-
-# Create a list of phase values to be assigned later
-
-number_of_phases = 21
-phases = np.linspace(0, 2 * np.pi, number_of_phases)
-# Phases need to be expressed as list of lists in order to work
-individual_phases = [[ph] for ph in phases]
-
-# Create observables
-
-ZZ = SparsePauliOp.from_list([("ZZ", 1)])
-ZX = SparsePauliOp.from_list([("ZX", 1)])
-XZ = SparsePauliOp.from_list([("XZ", 1)])
-XX = SparsePauliOp.from_list([("XX", 1)])
-
-ops = [ZZ, ZX, XZ, XX]
-num_ops = len(ops)
-
-estimator = Estimator(backend, options={"shots": int(1e4)})
-
-from qiskit_ibm_runtime.qiskit.primitives import ObservablesArray
-
-# Reshape observables to (4, 1)
-obs_array = ObservablesArray(ops)
-obs_array = obs_array.reshape((num_ops, 1))
-
-result = (
-    estimatorv2.run(
-        pubs=(chsh_circuit_no_meas, obs_array, individual_phases)
-    )
-    .result()
-)
-```
-  </TabItem>
-
-  <TabItem value="SamplerV1m" label="Sampler complex">
-    ```python 
-theta = Parameter("θ")
-
-chsh_circuit_no_meas = QuantumCircuit(2)
-chsh_circuit_no_meas.h(0)
-chsh_circuit_no_meas.cx(0, 1)
-chsh_circuit_no_meas.ry(theta, 0)
-
-# Create a list of phase values to be assigned later
-
-number_of_phases = 21
-phases = np.linspace(0, 2 * np.pi, number_of_phases)
-# Phases need to be expressed as list of lists in order to work
-individual_phases = [[ph] for ph in phases]
-
-# Create observables
-
-ZZ = SparsePauliOp.from_list([("ZZ", 1)])
-ZX = SparsePauliOp.from_list([("ZX", 1)])
-XZ = SparsePauliOp.from_list([("XZ", 1)])
-XX = SparsePauliOp.from_list([("XX", 1)])
-
-ops = [ZZ, ZX, XZ, XX]
-num_ops = len(ops)
-
-# Repeat the inputs so they all have the same length
-
-batch_circuits = [chsh_circuit_no_meas] * number_of_phases * num_ops
-batch_ops = [op for op in ops for _ in individual_phases]
-batch_phases = individual_phases * num_ops
-
-service = QiskitRuntimeService()
-backend = service.get_backend("ibmq_qasm_simulator")
-estimator = Estimator(backend, options={"shots": int(1e4)})
-
-batch_expvals = (
-    estimator.run(
-        batch_circuits, batch_ops, batch_phases
-    )
-    .result()
-    .values
-)
-print(len(batch_expvals))
-```
-  </TabItem>
-
 </Tabs>
 
 
@@ -283,12 +107,8 @@ The output is now in the `PubResult` format.
 * SamplerV2 now returns per-shot measurements as a bitstring.
 
 <Tabs>
-  <TabItem value="EstimatorV2" label="EstimatorV2 Simple">
+  <TabItem value="EstimatorV2" label="EstimatorV2">
     ```python 
-circuit = IQP(mat)
-observable = SparsePauliOp("Z" * n_qubits)
- 
-job = estimator.run([(circuit, observable)])
 result = job.result()
  
 print(f" > Expectation value: {result[0].data.evs}")
@@ -296,13 +116,8 @@ print(f" > Metadata: {result[0].metadata}")
 ```
   </TabItem>
 
-  <TabItem value="EstimatorV1" label="Estimator Simple">
+  <TabItem value="EstimatorV1" label="Estimator (V1)">
     ```python 
-circuit = IQP(mat)
-observable = SparsePauliOp("Z" * n_qubits)
-
-estimator = Estimator(backend)
-job = estimator.run(circuit, observable)
 result = job.result()
 
 print(f" > Observable: {observable.paulis}")
@@ -310,30 +125,22 @@ print(f" > Expectation value: {result.values}")
 print(f" > Metadata: {result.metadata}")
 ```
   </TabItem>
-    <TabItem value="EstimatorV2" label="EstimatorV2 Simple">
+</Tabs>
+
+<Tabs>
+  <TabItem value="SamplerV2" label="SamplerV2">
     ```python 
-circuit = IQP(mat)
-observable = SparsePauliOp("Z" * n_qubits)
- 
-job = estimator.run([(circuit, observable)])
 result = job.result()
- 
-print(f" > Expectation value: {result[0].data.evs}")
-print(f" > Metadata: {result[0].metadata}")
+
+print(f">>> Counts: {result[0].data.get_counts()}")
 ```
   </TabItem>
-  <TabItem value="EstimatorV1" label="Estimator Simple">
-  NEED TO FIX THESE UP
+
+  <TabItem value="SamplerV1" label="Sampler (V1)">
     ```python 
-circuit = IQP(mat)
-observable = SparsePauliOp("Z" * n_qubits)
-
-estimator = Estimator(backend)
-job = estimator.run(circuit, observable)
 result = job.result()
-
-print(f" > Observable: {observable.paulis}")
-print(f" > Expectation value: {result.values}")
+ 
+print(f" > Quasi-probability distribution: {result.quasi_dists}")
 print(f" > Metadata: {result.metadata}")
 ```
   </TabItem>
@@ -351,6 +158,73 @@ print(f" > Metadata: {result.metadata}")
     |                           | Gate twirling             |
     |                           | ZNE                       |
 
+<Tabs>
+  <TabItem value="EstimatorV2" label="EstimatorV2">
+    ```python 
+from qiskit_ibm_runtime import EstimatorV2 as Estimator, Options
+
+estimator = Estimator(backend, options=options)
+
+# Estimator and Sampler now have different options
+options = estimator.options
+
+options.resilience_level = 2
+options.optimization_level = 1
+```
+  </TabItem>
+
+  <TabItem value="EstimatorV1" label="Estimator (V1)">
+    ```python 
+from qiskit_ibm_runtime import Estimator, Options
+
+estimator = Estimator(backend, options=options)
+
+options = Options()
+
+options.optimization_level = 1
+options.resilience_level = 2
+```
+  </TabItem>
+</Tabs>
+
+<Tabs>
+  <TabItem value="SamplerV2" label="SamplerV2">
+    ```python 
+from qiskit_ibm_runtime import SamplerV2 as Sampler, Options
+
+# Estimator and Sampler now have different options
+options = sampler.options
+
+options.optimization_level = 1
+
+# Twirling options
+options.twirling.gates = True
+options.twirling.measure = True
+
+# DD sequence
+options.dynamical_decoupling = "XX"
+
+# ZNE options
+options.resilience.zne_mitigation = True
+options.resilience.zne_extrapolator = "exponential"
+```
+  </TabItem>
+
+  <TabItem value="SamplerV1" label="Sampler (V1)">
+    ```python 
+from qiskit_ibm_runtime import Sampler, Options
+
+sampler = Sampler(backend, options=options)
+
+options = Options()
+
+options.optimization_level = 1
+options.resilience_level = 2
+
+```
+  </TabItem>
+</Tabs>
+
 ### Transpilation
 
 V2 primitives support only lightweight transpilation, which has the following implications:
@@ -359,14 +233,7 @@ V2 primitives support only lightweight transpilation, which has the following im
 * Dynamical decoupling is no longer added by default for `optimization_level` > 0. You can, however, enable it by using the `dynamical_decoupling` option.
 * These transpilation options are no longer supported: `initial_layout`, `layout_method`, `routing_method`, and `approximation_degree`.
 
-## Migrate to EstimatorV2
-
-### Inputs and outputs
-
-
-### New options
-
-### Examples
+## Full examples
 
 CAN WE REDO THE EXAMPLES FROM https://docs.quantum.ibm.com/run/primitives-examples ? 
 
