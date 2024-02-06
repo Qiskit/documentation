@@ -18,7 +18,7 @@ Create a new functional Pauli rotation circuit.
 
 **Parameters**
 
-*   **num\_state\_qubits** (`Optional`\[`int`]) – The number of qubits representing the state $\vert x\rangle$.
+*   **num\_state\_qubits** (`Optional`\[`int`]) – The number of qubits representing the state $|x\rangle$.
 *   **basis** (`str`) – The kind of Pauli rotation to use. Must be ‘X’, ‘Y’ or ‘Z’.
 *   **name** (`str`) – The name of the circuit object.
 
@@ -116,7 +116,7 @@ Return number of qubits.
 
 `int`
 
-The number of state qubits representing the state $\vert x\rangle$.
+The number of state qubits representing the state $|x\rangle$.
 
 **Return type**
 

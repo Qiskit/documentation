@@ -14,10 +14,10 @@ python_api_name: qiskit.circuit.library.PhaseEstimation
 
 Phase Estimation circuit.
 
-In the Quantum Phase Estimation (QPE) algorithm \[1, 2, 3], the Phase Estimation circuit is used to estimate the phase $\phi$ of an eigenvalue $e^{2\pi i\phi}$ of a unitary operator $U$, provided with the corresponding eigenstate $\vert psi\rangle$. That is
+In the Quantum Phase Estimation (QPE) algorithm \[1, 2, 3], the Phase Estimation circuit is used to estimate the phase $\phi$ of an eigenvalue $e^{2\pi i\phi}$ of a unitary operator $U$, provided with the corresponding eigenstate $|psi\rangle$. That is
 
 $$
-U\vert \psi\rangle = e^{2\pi i\phi} \vert \psi\rangle
+U|\psi\rangle = e^{2\pi i\phi} |\psi\rangle
 $$
 
 This estimation (and thereby this circuit) is a central routine to several well-known algorithms, such as Shor’s algorithm or Quantum Amplitude Estimation.
@@ -1140,7 +1140,7 @@ Apply [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate").
 
 Initialize qubits in a specific state.
 
-Qubit initialization is done by first resetting the qubits to $\vert 0\rangle$ followed by an state preparing unitary. Both these steps are included in the Initialize instruction.
+Qubit initialization is done by first resetting the qubits to $|0\rangle$ followed by an state preparing unitary. Both these steps are included in the Initialize instruction.
 
 **Parameters**
 
@@ -1171,7 +1171,7 @@ a handle to the instruction that was just initialized
 
 **Examples**
 
-Prepare a qubit in the state $(\vert 0\rangle - \vert 1\rangle) / \sqrt{2}$.
+Prepare a qubit in the state $(|0\rangle - |1\rangle) / \sqrt{2}$.
 
 ```python
 import numpy as np

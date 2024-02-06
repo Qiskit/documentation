@@ -16,7 +16,7 @@ Bases: [`qiskit.algorithms.linear_solvers.observables.linear_system_observable.L
 
 The deprecated observable for the absolute average of a linear system of equations solution.
 
-For a vector $x=(x_1,...,x_N)$, the absolute average is defined as $\left\vert \frac{1}{N}\sum_{i=1}^{N}x_i\right\vert $.
+For a vector $x=(x_1,...,x_N)$, the absolute average is defined as $\left|\frac{1}{N}\sum_{i=1}^{N}x_i\right|$.
 
 Examples:
 

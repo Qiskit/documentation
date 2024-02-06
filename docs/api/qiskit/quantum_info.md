@@ -69,8 +69,8 @@ The average gate fidelity $F_{\text{ave}}$ is given by
 $$
 \begin{aligned}
 F_{\text{ave}}(\mathcal{E}, U)
-    &= \int d\psi \langle\psi\vert U^\dagger
-        \mathcal{E}(\vert \psi\rangle\!\langle\psi\vert )U\vert \psi\rangle \\
+    &= \int d\psi \langle\psi|U^\dagger
+        \mathcal{E}(|\psi\rangle\!\langle\psi|)U|\psi\rangle \\
     &= \frac{d F_{\text{pro}}(\mathcal{E}, U) + 1}{d + 1}
 \end{aligned}
 
@@ -240,7 +240,7 @@ F(\rho_1, \rho_2) = Tr[\sqrt{\sqrt{\rho_1}\rho_2\sqrt{\rho_1}}]^2.
 
 $$
 
-If one of the states is a pure state this simplifies to $F(\rho_1, \rho_2) = \langle\psi_1\vert \rho_2\vert \psi_1\rangle$, where $\rho_1 = \vert \psi_1\rangle\!\langle\psi_1\vert $.
+If one of the states is a pure state this simplifies to $F(\rho_1, \rho_2) = \langle\psi_1|\rho_2|\psi_1\rangle$, where $\rho_1 = |\psi_1\rangle\!\langle\psi_1|$.
 
 **Parameters**
 
@@ -299,13 +299,13 @@ the purity $Tr[\rho^2]$.
 
 Calculate the concurrence of a quantum state.
 
-The concurrence of a bipartite [`Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector") $\vert \psi\rangle$ is given by
+The concurrence of a bipartite [`Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector") $|\psi\rangle$ is given by
 
 $$
-C(\vert \psi\rangle) = \sqrt{2(1 - Tr[\rho_0^2])}
+C(|\psi\rangle) = \sqrt{2(1 - Tr[\rho_0^2])}
 $$
 
-where $\rho_0 = Tr_1[\vert \psi\rangle\!\langle\psi\vert ]$ is the reduced state from by taking the [`partial_trace()`](#qiskit.quantum_info.partial_trace "qiskit.quantum_info.partial_trace") of the input state.
+where $\rho_0 = Tr_1[|\psi\rangle\!\langle\psi|]$ is the reduced state from by taking the [`partial_trace()`](#qiskit.quantum_info.partial_trace "qiskit.quantum_info.partial_trace") of the input state.
 
 For density matrices the concurrence is only defined for 2-qubit states, it is given by:
 
@@ -470,8 +470,8 @@ Return the Schmidt Decomposition of a pure quantum state.
 For an arbitrary bipartite state:
 
 $$
-\vert \psi\rangle_{AB} = \sum_{i,j} c_{ij}
-                    \vert x_i\rangle_A \otimes \vert y_j\rangle_B,
+|\psi\rangle_{AB} = \sum_{i,j} c_{ij}
+                    |x_i\rangle_A \otimes |y_j\rangle_B,
 
 
 $$
@@ -479,13 +479,13 @@ $$
 its Schmidt Decomposition is given by the single-index sum over k:
 
 $$
-\vert \psi\rangle_{AB} = \sum_{k} \lambda_{k}
-                    \vert u_k\rangle_A \otimes \vert v_k\rangle_B
+|\psi\rangle_{AB} = \sum_{k} \lambda_{k}
+                    |u_k\rangle_A \otimes |v_k\rangle_B
 
 
 $$
 
-where $\vert u_k\rangle_A$ and $\vert v_k\rangle_B$ are an orthonormal set of vectors in their respective spaces $A$ and $B$, and the Schmidt coefficients $\lambda_k$ are positive real values.
+where $|u_k\rangle_A$ and $|v_k\rangle_B$ are an orthonormal set of vectors in their respective spaces $A$ and $B$, and the Schmidt coefficients $\lambda_k$ are positive real values.
 
 **Parameters**
 
@@ -494,7 +494,7 @@ where $\vert u_k\rangle_A$ and $\vert v_k\rangle_B$ are an orthonormal set of ve
 
 **Returns**
 
-list of tuples `(s, u, v)`, where `s` (float) are the Schmidt coefficients $\lambda_k$, and `u` (Statevector), `v` (Statevector) are the Schmidt vectors $\vert u_k\rangle_A$, $\vert u_k\rangle_B$, respectively.
+list of tuples `(s, u, v)`, where `s` (float) are the Schmidt coefficients $\lambda_k$, and `u` (Statevector), `v` (Statevector) are the Schmidt vectors $|u_k\rangle_A$, $|u_k\rangle_B$, respectively.
 
 **Return type**
 
@@ -506,7 +506,7 @@ list of tuples `(s, u, v)`, where `s` (float) are the Schmidt coefficients $\lam
 *   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if Input qargs is not a proper subset of Input state.
 
 <Admonition title="Note" type="note">
-  In Qiskit, qubits are ordered using little-endian notation, with the least significant qubits having smaller indices. For example, a four-qubit system is represented as $\vert q_3q_2q_1q_0\rangle$. Using this convention, setting `qargs=[0]` will partition the state as $\vert q_3q_2q_1\rangle_A\otimes\vert q_0\rangle_B$. Furthermore, qubits will be organized in this notation regardless of the order they are passed. For instance, passing either `qargs=[1,2]` or `qargs=[2,1]` will result in partitioning the state as $\vert q_3q_0\rangle_A\otimes\vert q_2q_1\rangle_B$.
+  In Qiskit, qubits are ordered using little-endian notation, with the least significant qubits having smaller indices. For example, a four-qubit system is represented as $|q_3q_2q_1q_0\rangle$. Using this convention, setting `qargs=[0]` will partition the state as $|q_3q_2q_1\rangle_A\otimes|q_0\rangle_B$. Furthermore, qubits will be organized in this notation regardless of the order they are passed. For instance, passing either `qargs=[1,2]` or `qargs=[2,1]` will result in partitioning the state as $|q_3q_0\rangle_A\otimes|q_2q_1\rangle_B$.
 </Admonition>
 
 ### shannon\_entropy

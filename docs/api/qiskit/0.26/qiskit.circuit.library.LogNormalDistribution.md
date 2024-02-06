@@ -33,7 +33,7 @@ $$
 This circuit considers the discretized version of $X$ on `2 ** num_qubits` equidistant points, $x_i$, truncated to `bounds`. The action of this circuit can be written as
 
 $$
-\mathcal{P}_X \vert 0\rangle^n = \sum_{i=0}^{2^n - 1} \sqrt{\mathbb{P}(x_i)} \vert i\rangle
+\mathcal{P}_X |0\rangle^n = \sum_{i=0}^{2^n - 1} \sqrt{\mathbb{P}(x_i)} |i\rangle
 $$
 
 where $n$ is num\_qubits.
@@ -1140,7 +1140,7 @@ Apply [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate").
 
 Initialize qubits in a specific state.
 
-Qubit initialization is done by first resetting the qubits to $\vert 0\rangle$ followed by an state preparing unitary. Both these steps are included in the Initialize instruction.
+Qubit initialization is done by first resetting the qubits to $|0\rangle$ followed by an state preparing unitary. Both these steps are included in the Initialize instruction.
 
 **Parameters**
 
@@ -1171,7 +1171,7 @@ a handle to the instruction that was just initialized
 
 **Examples**
 
-Prepare a qubit in the state $(\vert 0\rangle - \vert 1\rangle) / \sqrt{2}$.
+Prepare a qubit in the state $(|0\rangle - |1\rangle) / \sqrt{2}$.
 
 ```python
 import numpy as np
