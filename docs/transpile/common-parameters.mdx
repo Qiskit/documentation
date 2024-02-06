@@ -16,7 +16,7 @@ In two-qubit unitary synthesis (used in initial stages of all levels and for opt
 
 When the approximation degree is less than 1.0, circuits with one or two CX gates might be synthesized, leading to less error from the hardware, but more from the approximation. Since CX is the most expensive gate in terms of error, it might be beneficial to decrease the number of them at the cost of fidelity in synthesis (this technique was used to increase quantum volume on IBM devices: [Validating quantum computers using randomized model circuits](https://arxiv.org/abs/1811.12926)). 
 
-As an example, we generate a random 2-qubit `UnitaryGate` which will be synthesized in the initial stage. Setting the `approximation_degree` less than 1.0 might generate an approximate circuit. We must also specify the `basis_gates` to let the synthesis method know which gates it can use for the approximate synthesis.
+As an example, we generate a random two-qubit `UnitaryGate` which will be synthesized in the initial stage. Setting the `approximation_degree` less than 1.0 might generate an approximate circuit. We must also specify the `basis_gates` to let the synthesis method know which gates it can use for the approximate synthesis.
 
 ```python
 from qiskit import QuantumCircuit, transpile
@@ -98,7 +98,7 @@ These options influence how the transpiler works and are used to try and get bet
 * `unitary_synthesis_method` (str) - The name of the unitary synthesis method to use. By default `default` is used. 
 
 <Admonition>
-  To see a list of all installed plugins for a given stage you can run [`list_stage_plugins("stage_name")`](https://docs.quantum.ibm.com/api/qiskit/transpiler_plugins#plugin-api). For example if you want to see a list of all installed plugins for the routing stage run `list_stage_plugins(routing)`.
+  To see a list of all installed plugins for a given stage, run [`list_stage_plugins("stage_name")`](https://docs.quantum.ibm.com/api/qiskit/transpiler_plugins#plugin-api). For example, if you want to see a list of all installed plugins for the routing stage, run `list_stage_plugins(routing)`.
 </Admonition>  
 
 ## Next steps
