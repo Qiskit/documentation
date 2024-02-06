@@ -51,8 +51,10 @@ jobs:
         run: |
           ./start &
           sleep 20
+        if: always()
       - name: Check current API pages render
         run: >
           npm run check-pages-render --
           --qiskit-release-notes
           --current-apis
+        if: always()
