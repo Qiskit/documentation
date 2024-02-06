@@ -522,6 +522,7 @@ Additionally, some companies require that they are listed in a special attributi
 - Python Package Index
 - Qiskit
 - Rust
+- Slack
 - Ubuntu
 
 </details>
