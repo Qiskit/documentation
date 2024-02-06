@@ -169,7 +169,6 @@ estimator = Estimator(backend, options=options)
 options = estimator.options
 
 options.resilience_level = 2
-options.optimization_level = 1
 ```
   </TabItem>
 
@@ -181,7 +180,6 @@ estimator = Estimator(backend, options=options)
 
 options = Options()
 
-options.optimization_level = 1
 options.resilience_level = 2
 ```
   </TabItem>
@@ -200,9 +198,6 @@ options.optimization_level = 1
 # Twirling options
 options.twirling.gates = True
 options.twirling.measure = True
-
-# DD sequence
-options.dynamical_decoupling = "XX"
 
 # ZNE options
 options.resilience.zne_mitigation = True
@@ -232,6 +227,64 @@ V2 primitives support only lightweight transpilation, which has the following im
 * Both primitives support only `optimization_level` 0 and 1. 
 * Dynamical decoupling is no longer added by default for `optimization_level` > 0. You can, however, enable it by using the `dynamical_decoupling` option.
 * These transpilation options are no longer supported: `initial_layout`, `layout_method`, `routing_method`, and `approximation_degree`.
+
+<Tabs>
+  <TabItem value="EstimatorV2" label="EstimatorV2">
+    ```python 
+from qiskit_ibm_runtime import EstimatorV2 as Estimator, Options
+
+estimator = Estimator(backend, options=options)
+
+# Estimator and Sampler now have different options
+options = estimator.options
+
+options.optimization_level = 1
+
+# DD sequence
+options.dynamical_decoupling = "XX"
+```
+  </TabItem>
+
+  <TabItem value="EstimatorV1" label="Estimator (V1)">
+    ```python 
+from qiskit_ibm_runtime import Estimator, Options
+
+estimator = Estimator(backend, options=options)
+
+options = Options()
+
+options.optimization_level = 1
+```
+  </TabItem>
+</Tabs>
+
+<Tabs>
+  <TabItem value="SamplerV2" label="SamplerV2">
+    ```python 
+from qiskit_ibm_runtime import SamplerV2 as Sampler, Options
+
+# Estimator and Sampler now have different options
+options = sampler.options
+
+options.optimization_level = 1
+
+# DD sequence
+options.dynamical_decoupling = "XX"
+```
+  </TabItem>
+
+  <TabItem value="SamplerV1" label="Sampler (V1)">
+    ```python 
+from qiskit_ibm_runtime import Sampler, Options
+
+sampler = Sampler(backend, options=options)
+
+options = Options()
+
+options.optimization_level = 1
+```
+  </TabItem>
+</Tabs>
 
 ## Full examples
 
