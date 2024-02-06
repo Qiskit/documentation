@@ -162,6 +162,119 @@ print(len(batch_expvals))
 
 </Tabs>
 
+CHECKING WHAT THIS WOULD LOOK LIKE:
+
+<Tabs>
+  <TabItem value="SamplerV2" label="SamplerV2 simple">
+    ```python 
+circuit = IQP(mat)
+observable = SparsePauliOp("Z" * n_qubits)
+ 
+job = estimator.run([(circuit, observable)])
+```
+  </TabItem>
+
+  <TabItem value="SamplerV1" label="Sampler simple">
+    ```python 
+circuit = IQP(mat)
+observable = SparsePauliOp("Z" * n_qubits)
+
+job = estimator.run(circuit, observable)
+```
+  </TabItem>
+  <TabItem value="SamplerV2m" label="SamplerV2 complex">
+    ```python 
+theta = Parameter("θ")
+
+chsh_circuit_no_meas = QuantumCircuit(2)
+chsh_circuit_no_meas.h(0)
+chsh_circuit_no_meas.cx(0, 1)
+chsh_circuit_no_meas.ry(theta, 0)
+
+# Create a list of phase values to be assigned later
+
+number_of_phases = 21
+phases = np.linspace(0, 2 * np.pi, number_of_phases)
+# Phases need to be expressed as list of lists in order to work
+individual_phases = [[ph] for ph in phases]
+
+# Create observables
+
+ZZ = SparsePauliOp.from_list([("ZZ", 1)])
+ZX = SparsePauliOp.from_list([("ZX", 1)])
+XZ = SparsePauliOp.from_list([("XZ", 1)])
+XX = SparsePauliOp.from_list([("XX", 1)])
+
+ops = [ZZ, ZX, XZ, XX]
+num_ops = len(ops)
+
+estimator = Estimator(backend, options={"shots": int(1e4)})
+
+from qiskit_ibm_runtime.qiskit.primitives import ObservablesArray
+
+# Reshape observables to (4, 1)
+obs_array = ObservablesArray(ops)
+obs_array = obs_array.reshape((num_ops, 1))
+
+result = (
+    estimatorv2.run(
+        pubs=(chsh_circuit_no_meas, obs_array, individual_phases)
+    )
+    .result()
+)
+```
+  </TabItem>
+
+  <TabItem value="SamplerV1m" label="Sampler complex">
+    ```python 
+theta = Parameter("θ")
+
+chsh_circuit_no_meas = QuantumCircuit(2)
+chsh_circuit_no_meas.h(0)
+chsh_circuit_no_meas.cx(0, 1)
+chsh_circuit_no_meas.ry(theta, 0)
+
+# Create a list of phase values to be assigned later
+
+number_of_phases = 21
+phases = np.linspace(0, 2 * np.pi, number_of_phases)
+# Phases need to be expressed as list of lists in order to work
+individual_phases = [[ph] for ph in phases]
+
+# Create observables
+
+ZZ = SparsePauliOp.from_list([("ZZ", 1)])
+ZX = SparsePauliOp.from_list([("ZX", 1)])
+XZ = SparsePauliOp.from_list([("XZ", 1)])
+XX = SparsePauliOp.from_list([("XX", 1)])
+
+ops = [ZZ, ZX, XZ, XX]
+num_ops = len(ops)
+
+# Repeat the inputs so they all have the same length
+
+batch_circuits = [chsh_circuit_no_meas] * number_of_phases * num_ops
+batch_ops = [op for op in ops for _ in individual_phases]
+batch_phases = individual_phases * num_ops
+
+service = QiskitRuntimeService()
+backend = service.get_backend("ibmq_qasm_simulator")
+estimator = Estimator(backend, options={"shots": int(1e4)})
+
+batch_expvals = (
+    estimator.run(
+        batch_circuits, batch_ops, batch_phases
+    )
+    .result()
+    .values
+)
+print(len(batch_expvals))
+```
+  </TabItem>
+
+</Tabs>
+
+
 ### Output
 
 The output is now in the `PubResult` format.
