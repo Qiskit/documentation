@@ -33,7 +33,7 @@ $$
 \newcommand{\rotationangle}{\frac{\theta}{2}}
 
 CRX(\theta)\ q_0, q_1 =
-    I \otimes \vert 0\rangle\langle 0\vert  + RX(\theta) \otimes \vert 1\rangle\langle 1\vert  =
+    I \otimes |0\rangle\langle 0| + RX(\theta) \otimes |1\rangle\langle 1| =
     \begin{pmatrix}
         1 & 0 & 0 & 0 \\
         0 & \cos\left(\rotationangle\right) & 0 & -i\sin\left(\rotationangle\right) \\
@@ -56,7 +56,7 @@ $$
   \newcommand{\rotationangle}{\frac{\theta}{2}}
 
   CRX(\theta)\ q_1, q_0 =
-  \vert 0\rangle\langle0\vert  \otimes I + \vert 1\rangle\langle1\vert  \otimes RX(\theta) =
+  |0\rangle\langle0| \otimes I + |1\rangle\langle1| \otimes RX(\theta) =
       \begin{pmatrix}
           1 & 0 & 0 & 0 \\
           0 & 1 & 0 & 0 \\
