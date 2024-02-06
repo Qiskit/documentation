@@ -23,10 +23,10 @@ Version 2 is first the major interface change since the introduction of Qiskit R
 
 ### Import
 
-For backward compatibility, you must explicity import the V2 primitives. Specifying `import *prmitive*V2 as *primitive*` is not required, but makes it easier to transition code to V2. 
+For backward compatibility, you must explicity import the V2 primitives. Specifying `import` *`prmitiveV2`* `as` *`primitive`* is not required, but makes it easier to transition code to V2. 
 
 <Admonition type="note">
-After the V1 primitives are deprecated, `import *primitive*` will import the V2 version of the specified primitive.  
+After the V1 primitives are deprecated, `import` *`prmitive`* will import the V2 version of the specified primitive.  
 </Admonition>
 
 <Tabs>
@@ -283,7 +283,7 @@ The output is now in the `PubResult` format.
 * SamplerV2 now returns per-shot measurements as a bitstring.
 
 <Tabs>
-  <TabItem value="EstimatorV2" label="EstimatorV2">
+  <TabItem value="EstimatorV2" label="EstimatorV2 Simple">
     ```python 
 circuit = IQP(mat)
 observable = SparsePauliOp("Z" * n_qubits)
@@ -296,7 +296,34 @@ print(f" > Metadata: {result[0].metadata}")
 ```
   </TabItem>
 
-  <TabItem value="EstimatorV1" label="Estimator (V1)">
+  <TabItem value="EstimatorV1" label="Estimator Simple">
+    ```python 
+circuit = IQP(mat)
+observable = SparsePauliOp("Z" * n_qubits)
+
+estimator = Estimator(backend)
+job = estimator.run(circuit, observable)
+result = job.result()
+
+print(f" > Observable: {observable.paulis}")
+print(f" > Expectation value: {result.values}")
+print(f" > Metadata: {result.metadata}")
+```
+  </TabItem>
+    <TabItem value="EstimatorV2" label="EstimatorV2 Simple">
+    ```python 
+circuit = IQP(mat)
+observable = SparsePauliOp("Z" * n_qubits)
+ 
+job = estimator.run([(circuit, observable)])
+result = job.result()
+ 
+print(f" > Expectation value: {result[0].data.evs}")
+print(f" > Metadata: {result[0].metadata}")
+```
+  </TabItem>
+  <TabItem value="EstimatorV1" label="Estimator Simple">
+  NEED TO FIX THESE UP
     ```python 
 circuit = IQP(mat)
 observable = SparsePauliOp("Z" * n_qubits)
