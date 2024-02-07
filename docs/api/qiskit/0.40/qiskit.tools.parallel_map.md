@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.tools.parallel_map
 ---
 
-# qiskit.tools.parallel\_map[¶](#qiskit-tools-parallel-map "Permalink to this headline")
+# qiskit.tools.parallel\_map
 
 <span id="qiskit.tools.parallel_map" />
 
-`parallel_map(task, values, task_args=(), task_kwargs={}, num_processes=2)`
+`parallel_map(task, values, task_args=(), task_kwargs={}, num_processes=2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/tools/parallel.py "view source code")
 
 Parallel execution of a mapping of values to the function task. This is functionally equivalent to:
 
@@ -48,7 +48,7 @@ result
 
 terra.parallel.start: The collection of parallel tasks are about to start. terra.parallel.update: One of the parallel task has finished. terra.parallel.finish: All the parallel tasks have finished.
 
-## Examples
+**Examples**
 
 ```python
 import time

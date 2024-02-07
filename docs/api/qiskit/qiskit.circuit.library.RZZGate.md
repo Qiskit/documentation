@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.RZZGate
 
 <span id="qiskit.circuit.library.RZZGate" />
 
-`qiskit.circuit.library.RZZGate(theta, label=None, *, duration=None, unit='dt')`
+`qiskit.circuit.library.RZZGate(theta, label=None, *, duration=None, unit='dt')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/standard_gates/rzz.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -31,23 +31,25 @@ q_1: ───■────
 **Matrix Representation:**
 
 $$
- \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}R_{ZZ}(\theta) = \exp\left(-i \th Z{\otimes}Z\right) =
+\newcommand{\rotationangle}{\frac{\theta}{2}}
+
+R_{ZZ}(\theta) = \exp\left(-i \rotationangle Z{\otimes}Z\right) =
     \begin{pmatrix}
-        e^{-i \th} & 0 & 0 & 0 \\
-        0 & e^{i \th} & 0 & 0 \\
-        0 & 0 & e^{i \th} & 0 \\
-        0 & 0 & 0 & e^{-i \th}
-    \end{pmatrix}\end{split}\end{aligned}\end{align} 
+        e^{-i \rotationangle} & 0 & 0 & 0 \\
+        0 & e^{i \rotationangle} & 0 & 0 \\
+        0 & 0 & e^{i \rotationangle} & 0 \\
+        0 & 0 & 0 & e^{-i \rotationangle}
+    \end{pmatrix}
 $$
 
 This is a direct sum of RZ rotations, so this gate is equivalent to a uniformly controlled (multiplexed) RZ gate:
 
 $$
-\begin{split}R_{ZZ}(\theta) =
+R_{ZZ}(\theta) =
     \begin{pmatrix}
         RZ(\theta) & 0 \\
         0 & RZ(-\theta)
-    \end{pmatrix}\end{split}
+    \end{pmatrix}
 $$
 
 **Examples:**
@@ -65,13 +67,13 @@ $$
 > $$
 >
 > $$
-> \begin{split}R_{ZZ}\left(\theta = \frac{\pi}{2}\right) = \frac{1}{\sqrt{2}}
+> R_{ZZ}\left(\theta = \frac{\pi}{2}\right) = \frac{1}{\sqrt{2}}
 >                         \begin{pmatrix}
 >                             1-i & 0 & 0 & 0 \\
 >                             0 & 1+i & 0 & 0 \\
 >                             0 & 0 & 1+i & 0 \\
 >                             0 & 0 & 0 & 1-i
->                         \end{pmatrix}\end{split}
+>                         \end{pmatrix}
 > $$
 
 Create new RZZ gate.

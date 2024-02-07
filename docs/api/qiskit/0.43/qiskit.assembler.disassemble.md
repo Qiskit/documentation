@@ -12,7 +12,7 @@ python_api_name: qiskit.assembler.disassemble
 
 <span id="qiskit.assembler.disassemble" />
 
-`disassemble(qobj)`
+`disassemble(qobj)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/assembler/disassemble.py "view source code")
 
 Disassemble a qobj and return the circuits or pulse schedules, run\_config, and user header.
 
@@ -36,7 +36,7 @@ The disassembled program which consists of:
 
 Union\[CircuitModule, PulseModule]
 
-## Examples
+**Examples**
 
 ```python
 from qiskit.circuit import QuantumRegister, ClassicalRegister, QuantumCircuit

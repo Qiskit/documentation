@@ -1,8 +1,16 @@
+---
+title: ConverterBase
+description: API reference for qiskit.opflow.converters.ConverterBase
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.opflow.converters.ConverterBase
+---
+
 # ConverterBase
 
+<span id="qiskit.opflow.converters.ConverterBase" />
 
-
-`ConverterBase`
+`ConverterBase`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/converters/converter_base.py "view source code")
 
 Bases: `abc.ABC`
 
@@ -10,6 +18,23 @@ Converters take an Operator and return a new Operator, generally isomorphic in s
 
 ## Methods Defined Here
 
-|                                                                                                                                                             |                                                       |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
-| [`convert`](qiskit.opflow.converters.ConverterBase.convert#qiskit.opflow.converters.ConverterBase.convert "qiskit.opflow.converters.ConverterBase.convert") | Accept the Operator and return the converted Operator |
+### convert
+
+<span id="qiskit.opflow.converters.ConverterBase.convert" />
+
+`abstract ConverterBase.convert(operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/converters/converter_base.py "view source code")
+
+Accept the Operator and return the converted Operator
+
+**Parameters**
+
+**operator** (`OperatorBase`) – The Operator to convert.
+
+**Return type**
+
+`OperatorBase`
+
+**Returns**
+
+The converted Operator.
+

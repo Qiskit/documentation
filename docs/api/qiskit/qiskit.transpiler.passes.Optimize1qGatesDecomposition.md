@@ -10,16 +10,16 @@ python_api_name: qiskit.transpiler.passes.Optimize1qGatesDecomposition
 
 <span id="qiskit.transpiler.passes.Optimize1qGatesDecomposition" />
 
-`qiskit.transpiler.passes.Optimize1qGatesDecomposition(*args, **kwargs)`
+`qiskit.transpiler.passes.Optimize1qGatesDecomposition(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/passes/optimization/optimize_1q_decomposition.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
 Optimize chains of single-qubit gates by combining them into a single gate.
 
-**The decision to replace the original chain with a new resynthesis depends on:**
+**The decision to replace the original chain with a new re-synthesis depends on:**
 
 *   whether the original chain was out of basis: replace
-*   whether the original chain was in basis but resynthesis is lower error: replace
+*   whether the original chain was in basis but re-synthesis is lower error: replace
 *   whether the original chain contains a pulse gate: do not replace
 *   whether the original chain amounts to identity: replace with null
 

@@ -1,8 +1,16 @@
+---
+title: EvolutionBase
+description: API reference for qiskit.aqua.operators.evolutions.EvolutionBase
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.operators.evolutions.EvolutionBase
+---
+
 # EvolutionBase
 
+<span id="qiskit.aqua.operators.evolutions.EvolutionBase" />
 
-
-`EvolutionBase`
+`EvolutionBase`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/evolutions/evolution_base.py "view source code")
 
 Bases: `qiskit.aqua.operators.converters.converter_base.ConverterBase`
 
@@ -10,6 +18,23 @@ A base for Evolution converters. Evolutions are converters which traverse an Ope
 
 ## Methods
 
-|                                                                                                                                                                                     |                                                                                                   |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| [`convert`](qiskit.aqua.operators.evolutions.EvolutionBase.convert#qiskit.aqua.operators.evolutions.EvolutionBase.convert "qiskit.aqua.operators.evolutions.EvolutionBase.convert") | Traverse the operator, replacing any `EvolutionOps` with their equivalent evolution `CircuitOps`. |
+### convert
+
+<span id="qiskit.aqua.operators.evolutions.EvolutionBase.convert" />
+
+`EvolutionBase.convert(operator)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/evolutions/evolution_base.py "view source code")
+
+Traverse the operator, replacing any `EvolutionOps` with their equivalent evolution `CircuitOps`.
+
+> #### Args:
+>
+> operator: The Operator to convert.
+
+**Return type**
+
+`OperatorBase`
+
+**Returns**
+
+The converted Operator, with `EvolutionOps` replaced by `CircuitOps`.
+

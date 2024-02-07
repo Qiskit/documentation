@@ -10,14 +10,14 @@ python_api_name: qiskit.opflow.primitive_ops.PauliSumOp
 
 <span id="qiskit.opflow.primitive_ops.PauliSumOp" />
 
-`qiskit.opflow.primitive_ops.PauliSumOp(*args, **kwargs)`
+`qiskit.opflow.primitive_ops.PauliSumOp(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/opflow/primitive_ops/pauli_sum_op.py "view source code")
 
 Bases: [`PrimitiveOp`](qiskit.opflow.primitive_ops.PrimitiveOp "qiskit.opflow.primitive_ops.primitive_op.PrimitiveOp")
 
 Deprecated: Class for Operators backed by Terra’s `SparsePauliOp` class.
 
 <Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.opflow.primitive_ops.pauli_sum_op.PauliSumOp` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  The class `qiskit.opflow.primitive_ops.pauli_sum_op.PauliSumOp` is deprecated as of qiskit-terra 0.24.0. It will be removed in the Qiskit 1.0 release. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
 </Admonition>
 
 **Parameters**

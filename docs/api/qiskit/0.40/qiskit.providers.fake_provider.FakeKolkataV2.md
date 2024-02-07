@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.providers.fake_provider.FakeKolkataV2
 ---
 
-# FakeKolkataV2[¶](#fakekolkatav2 "Permalink to this headline")
+# FakeKolkataV2
 
 <span id="qiskit.providers.fake_provider.FakeKolkataV2" />
 
-`FakeKolkataV2`
+`FakeKolkataV2`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/fake_provider/backends/kolkata/fake_kolkata.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_backend.FakeBackendV2`
 

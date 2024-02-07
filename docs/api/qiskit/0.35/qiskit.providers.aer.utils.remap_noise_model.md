@@ -1,8 +1,16 @@
+---
+title: remap_noise_model
+description: API reference for qiskit.providers.aer.utils.remap_noise_model
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.providers.aer.utils.remap_noise_model
+---
+
 # qiskit.providers.aer.utils.remap\_noise\_model
 
+<span id="qiskit.providers.aer.utils.remap_noise_model" />
 
-
-`remap_noise_model(noise_model, remapping, discard_qubits=False, warnings=True)`
+`remap_noise_model(noise_model, remapping, discard_qubits=False, warnings=True)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/utils/noise_remapper.py "view source code")
 
 \[Deprecated] Remap qubits in a noise model.
 
@@ -10,7 +18,7 @@ This remaps the specified gate qubits for local quantum errors, the gate and noi
 
 **Parameters**
 
-*   **noise\_model** ([*NoiseModel*](qiskit.providers.aer.noise.NoiseModel#qiskit.providers.aer.noise.NoiseModel "qiskit.providers.aer.noise.NoiseModel")) – a noise model to remap qubits.
+*   **noise\_model** ([*NoiseModel*](qiskit.providers.aer.noise.NoiseModel "qiskit.providers.aer.noise.NoiseModel")) – a noise model to remap qubits.
 *   **remapping** (*list*) – list or remappings of old qubit to new qubit. See Additional Information.
 *   **discard\_qubits** (*bool*) – if True discard qubits not in remapping keys, if False an identity mapping wil be assumed for unnamed qubits (Default: False).
 *   **warnings** (*bool*) – display warnings if qubits being remapped are not in the input noise model (Default: True).
@@ -21,7 +29,7 @@ a new noise model with the same errors but remapped gate and noise qubits for lo
 
 **Return type**
 
-[NoiseModel](qiskit.providers.aer.noise.NoiseModel#qiskit.providers.aer.noise.NoiseModel "qiskit.providers.aer.noise.NoiseModel")
+[NoiseModel](qiskit.providers.aer.noise.NoiseModel "qiskit.providers.aer.noise.NoiseModel")
 
 **Raises**
 
@@ -31,3 +39,4 @@ a new noise model with the same errors but remapped gate and noise qubits for lo
 
 *   The remapping map be specified as either a list of pairs: `[(old, new), ...]`, or a list of old qubits where the new qubit is inferred from the position: `[old0, old1, ...]` is treated as `[(old0, 0), (old1, 1), ...]`.
 *   If `discard_qubits` is `False`, any qubits in the noise model not specified in the list of old qubits will be added to the remapping as a trivial mapping `(qubit, qubit)`.
+

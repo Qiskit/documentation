@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.QuadraticForm
 
 <span id="qiskit.circuit.library.QuadraticForm" />
 
-`QuadraticForm(num_result_qubits=None, quadratic=None, linear=None, offset=None, little_endian=True)`
+`QuadraticForm(num_result_qubits=None, quadratic=None, linear=None, offset=None, little_endian=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/arithmetic/quadratic_form.py "view source code")
 
 Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
@@ -36,7 +36,7 @@ If the value of $Q(x)$ is too large to be represented with m qubits, the resulti
 
 The implementation of this circuit is discussed in \[1], Fig. 6.
 
-## References
+**References**
 
 **\[1]: Gilliam et al., Grover Adaptive Search for Constrained Polynomial Binary Optimization.**
 
@@ -63,7 +63,7 @@ The implementation of this circuit is discussed in \[1], Fig. 6.
 
 <span id="qiskit.circuit.library.QuadraticForm.required_result_qubits" />
 
-`static QuadraticForm.required_result_qubits(quadratic, linear, offset)`
+`static QuadraticForm.required_result_qubits(quadratic, linear, offset)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/arithmetic/quadratic_form.py "view source code")
 
 Get the number of required result qubits.
 
@@ -207,7 +207,7 @@ The parameters defined in the circuit.
 
 This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
 
-## Examples
+**Examples**
 
 The snippet below shows that insertion order of parameters does not matter.
 

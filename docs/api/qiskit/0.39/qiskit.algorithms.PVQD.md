@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.PVQD
 
 <span id="qiskit.algorithms.PVQD" />
 
-`PVQD(fidelity, ansatz, initial_parameters, estimator=None, optimizer=None, num_timesteps=None, evolution=None, use_parameter_shift=True, initial_guess=None)`
+`PVQD(fidelity, ansatz, initial_parameters, estimator=None, optimizer=None, num_timesteps=None, evolution=None, use_parameter_shift=True, initial_guess=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/time_evolvers/pvqd/pvqd.py "view source code")
 
 Bases: [`qiskit.algorithms.time_evolvers.real_time_evolver.RealTimeEvolver`](qiskit.algorithms.RealTimeEvolver "qiskit.algorithms.time_evolvers.real_time_evolver.RealTimeEvolver")
 
@@ -90,7 +90,7 @@ The starting point for the first classical optimization run, at time 0. Defaults
 
 Optional\[np.ndarray]
 
-## Example
+**Example**
 
 This snippet computes the real time evolution of a quantum Ising model on two neighboring sites and keeps track of the magnetization.
 
@@ -135,7 +135,7 @@ problem = EvolutionProblem(
 result = pvqd.evolve(problem)
 ```
 
-## References
+**References**
 
 **\[1] Stefano Barison, Filippo Vicentini, and Giuseppe Carleo (2021), An efficient**
 
@@ -159,7 +159,7 @@ quantum algorithm for the time evolution of parameterized circuits, [Quantum 5, 
 
 <span id="qiskit.algorithms.PVQD.evolve" />
 
-`PVQD.evolve(evolution_problem)`
+`PVQD.evolve(evolution_problem)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/time_evolvers/pvqd/pvqd.py "view source code")
 
 Perform real time evolution $\exp(-i t H)|\Psi\rangle$.
 
@@ -186,7 +186,7 @@ A result object containing the evolution information and evaluated observables.
 
 <span id="qiskit.algorithms.PVQD.get_loss" />
 
-`PVQD.get_loss(hamiltonian, ansatz, dt, current_parameters)`
+`PVQD.get_loss(hamiltonian, ansatz, dt, current_parameters)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/time_evolvers/pvqd/pvqd.py "view source code")
 
 Get a function to evaluate the infidelity between Trotter step and ansatz.
 
@@ -211,7 +211,7 @@ a second callable to evaluate the gradient of the infidelity.
 
 <span id="qiskit.algorithms.PVQD.step" />
 
-`PVQD.step(hamiltonian, ansatz, theta, dt, initial_guess)`
+`PVQD.step(hamiltonian, ansatz, theta, dt, initial_guess)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/time_evolvers/pvqd/pvqd.py "view source code")
 
 Perform a single time step.
 

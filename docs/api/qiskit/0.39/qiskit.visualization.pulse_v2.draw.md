@@ -10,7 +10,7 @@ python_api_name: qiskit.visualization.pulse_v2.draw
 
 <span id="qiskit.visualization.pulse_v2.draw" />
 
-`draw(program, style=None, backend=None, time_range=None, time_unit='dt', disable_channels=None, show_snapshot=True, show_framechange=True, show_waveform_info=True, show_barrier=True, plotter='mpl2d', axis=None)`
+`draw(program, style=None, backend=None, time_range=None, time_unit='dt', disable_channels=None, show_snapshot=True, show_framechange=True, show_waveform_info=True, show_barrier=True, plotter='mpl2d', axis=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/visualization/pulse_v2/interface.py "view source code")
 
 Generate visualization data for pulse programs.
 
@@ -238,7 +238,7 @@ The stylesheet kwarg contains numerous options that define the style of the outp
 
 *   **layout.figure\_title** – Callback function that generates a string for the figure title. See `layout` for more details. No default layout is set.
 
-## Examples
+**Examples**
 
 To visualize a pulse program, you can call this function with set of control arguments. Most of appearance of the output image can be controlled by the stylesheet.
 

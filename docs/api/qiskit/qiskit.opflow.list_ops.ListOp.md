@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.list_ops.ListOp
 
 <span id="qiskit.opflow.list_ops.ListOp" />
 
-`qiskit.opflow.list_ops.ListOp(oplist, combo_fn=None, coeff=1.0, abelian=False, grad_combo_fn=None)`
+`qiskit.opflow.list_ops.ListOp(oplist, combo_fn=None, coeff=1.0, abelian=False, grad_combo_fn=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/opflow/list_ops/list_op.py "view source code")
 
 Bases: [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
 
@@ -21,7 +21,7 @@ List Operators are classes for storing and manipulating lists of Operators, Stat
 The base `ListOp` class is particularly interesting, as its `combo_fn` is “the identity list Operation”. Meaning, if we understand the `combo_fn` as a function from a list of complex values to some output, one such function is returning the list as-is. This is powerful for constructing compact hierarchical Operators which return many measurements in multiple dimensional lists.
 
 <Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.opflow.list_ops.list_op.ListOp` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  The class `qiskit.opflow.list_ops.list_op.ListOp` is deprecated as of qiskit-terra 0.24.0. It will be removed in the Qiskit 1.0 release. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
 </Admonition>
 
 **Parameters**

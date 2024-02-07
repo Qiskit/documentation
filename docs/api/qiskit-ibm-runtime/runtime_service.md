@@ -30,8 +30,8 @@ Below is an example of using primitives within a session:
 
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService, Session, Sampler, Estimator, Options
-from qiskit.test.reference_circuits import ReferenceCircuits
 from qiskit.circuit.library import RealAmplitudes
+from qiskit.circuit import QuantumCircuit, QuantumRegister, ClassicalRegister
 from qiskit.quantum_info import SparsePauliOp
 
 # Initialize account.
@@ -41,15 +41,21 @@ service = QiskitRuntimeService()
 options = Options(optimization_level=3)
 
 # Prepare inputs.
-bell = ReferenceCircuits.bell()
 psi = RealAmplitudes(num_qubits=2, reps=2)
 H1 = SparsePauliOp.from_list([("II", 1), ("IZ", 2), ("XI", 3)])
 theta = [0, 1, 1, 2, 3, 5]
+# Bell Circuit
+qr = QuantumRegister(2, name="qr")
+cr = ClassicalRegister(2, name="qc")
+qc = QuantumCircuit(qr, cr, name="bell")
+qc.h(qr[0])
+qc.cx(qr[0], qr[1])
+qc.measure(qr, cr)
 
 with Session(service=service, backend="ibmq_qasm_simulator") as session:
     # Submit a request to the Sampler primitive within the session.
     sampler = Sampler(session=session, options=options)
-    job = sampler.run(circuits=bell)
+    job = sampler.run(circuits=qc)
     print(f"Sampler results: {job.result()}")
 
     # Submit a request to the Estimator primitive within the session.
@@ -99,20 +105,28 @@ logging.getLogger('qiskit_ibm_runtime').setLevel(logging.WARNING)
 
 ### Interim and final results
 
-Some runtime programs provide interim results that inform you about program progress. You can choose to stream the interim results and final result when you run the program by passing in the `callback` parameter, or at a later time using the [`RuntimeJob.stream_results()`](qiskit_ibm_runtime.RuntimeJob#stream_results "qiskit_ibm_runtime.RuntimeJob.stream_results") method. For example:
+Some runtime primitives provide interim results that inform you about the progress of your job. You can choose to stream the interim results and final result when you run the program by passing in the `callback` parameter, or at a later time using the [`RuntimeJob.stream_results()`](qiskit_ibm_runtime.RuntimeJob#stream_results "qiskit_ibm_runtime.RuntimeJob.stream_results") method. For example:
 
 ```python
-from qiskit.test.reference_circuits import ReferenceCircuits
 from qiskit_ibm_runtime import QiskitRuntimeService, Sampler
+from qiskit.circuit import QuantumCircuit, QuantumRegister, ClassicalRegister
 
 service = QiskitRuntimeService()
 backend = service.backend("ibmq_qasm_simulator")
+
+# Bell Circuit
+qr = QuantumRegister(2, name="qr")
+cr = ClassicalRegister(2, name="qc")
+qc = QuantumCircuit(qr, cr, name="bell")
+qc.h(qr[0])
+qc.cx(qr[0], qr[1])
+qc.measure(qr, cr)
 
 def result_callback(job_id, result):
     print(result)
 
 # Stream results as soon as the job starts running.
-job = Sampler(backend).run(ReferenceCircuits.bell(), callback=result_callback)
+job = Sampler(backend).run(qc, callback=result_callback)
 print(job.result())
 ```
 

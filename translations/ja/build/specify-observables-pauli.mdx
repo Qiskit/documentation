@@ -1,20 +1,20 @@
 ---
-title: Specify observables in the Pauli basis
-description: Measure circuits in different Pauli bases, which is required to measure observables that are not diagonal in the computational basis.
+title: パウリ基底での観測量の指定
+description: 様々なパウリ基底で回路を測定します。計算基底で対角線ではない観測量を測定するために必要です。
 ---
 
-# Specify observables in the Pauli basis
+# パウリ基底での観測量の指定
 
-In quantum mechanics, observables correspond to physical properties that can be measured.
-When considering a system of spins, for example, you could be interested in measuring the system's energy or obtaining information about the alignment of the spins, such as the magnetization or the correlations between spins.
+量子力学では、観測量は測定可能な物理的特性に対応します。
+例えば、スピンのシステムを考えた場合、システムのエネルギーの測定や、磁化やスピン間の相関関係など、スピンのアラインメントに関する情報の取得に関心を持つ場合があります。
 
-To measure an $n$-qubit observable $O$ on a quantum computer, you must represent it as a sum of tensor products of Pauli operators, that is
+量子コンピューターで $n$ 量子ビット観測量 $O$ を測定する場合、これを以下のようにパウリ演算子のテンソル積の合計として表す必要があります。
 
 $$
 O = \\sum\_{k=1}^K \\alpha_k P_k,~~ P_k \\in {I, X, Y, Z}^{\\otimes n},~~ \\alpha_k \\in \\mathbb{R},
 $$
 
-where 
+ここで、それぞれ以下を意味します。 
 
 $$
 I = \\begin{pmatrix}
@@ -34,51 +34,51 @@ Z = \\begin{pmatrix}
 \\end{pmatrix}
 $$
 
-and you use the fact that an observable is Hermitian, as in, $O^\\dagger = O$. If $O$ is not Hermitian it can still be decomposed as a sum of Paulis, but the coefficient $\\alpha_k$ becomes complex.
+そして、$O^\\dagger = O$ のように、観測量がエルミートであるという事実を使用します。 $O$ がエルミートでない場合でも、パウリの和として分解することはできますが、係数 $\\alpha_k$ が複雑になります。
 
-In many cases, the observable is naturally specified in this representation after mapping the system of interest to qubits.
-For example, a spin-1/2 system can be mapped to an Ising Hamiltonian
+多くの場合、観測量は、対象のシステムを量子ビットにマッピングした後に、この表現に自然に指定されます。
+例えば、スピン 1/2 システムは、イジング・ハミルトニアンにマッピングできます。
 
 $$
 H = \\sum_{\\langle i, j\\rangle} Z_i Z_j - \\sum_{i=1}^n X_i,
 $$
 
-where the indices $\\langle i, j\\rangle$ run over interacting spins and the spins are subject to a transversal field in $X$.
-The subscript index indicates which qubit the Pauli operator acts on, i.e. $X_i$ applies an $X$ operator on qubit $i$ and leaves the rest unchanged.
-In Qiskit, this Hamiltonian could be constructed as 
+ここで、インデックス $\\langle i, j\\rangle$ は、相互に作用するスピンで実行され、スピンは $X$ の横磁場の影響を受けます。
+添え字インデックスは、パウリ演算子が動作する量子ビットを示します。すなわち $X_i$ は量子ビット $i$ に $X$ 演算子を適用し、残りは変更されないままになります。
+Qiskit では、このハミルトニアンは以下のように構築できます。 
 
 ```python
 from qiskit.quantum_info import SparsePauliOp
-# define the number of qubits
+# 量子ビットの数を定義します
 n = 12
 
-# define the single Pauli terms as ("Paulis", [indices], coefficient)
+# 単一パウリ項を ("Paulis", [インデックス], 係数) として定義します
 interactions = [("ZZ", [i, i + 1], 1) for i in range(n - 1)]  # we assume spins on a 1D line
 field = [("X", [i], -1) for i in range(n)]
 
-# build the operator
+# 演算子を作成します
 hamiltonian = SparsePauliOp.from_sparse_list(interactions + field, num_qubits=n)
 ```
 
-If we would like to measure the energy the observable is the Hamiltonian itself. Alternatively, we could be
-interested in measuring system properties like the average magnetization by counting the number of spins 
-aligned in the $Z$-direction with the observable
+エネルギーを測定する場合は、観測量がハミルトニアンそのものです。 または、$Z$ 方向に沿って
+観測量に合わせてスピンの回数をカウントすることで、平均磁化などのシステム
+プロパティを測定することに
+関心があるかもしれません。
 
 $$
 O = \\frac{1}{n} \\sum\_{i=1} Z_i
 $$
 
-For observables that are not given in terms of Pauli operators but in a matrix for, we first have to reformulate them
-in the Pauli basis in order to evaluate them on a quantum computer.
-We are always able to find such a representation as the Pauli matrices form a basis for the Hermitian $2^n \\times 2^n$ matrices.
-We expand the observable $O$ as 
+パウリ演算子ではなく行列で指定された観測量については、これらを量子コンピューターで評価するために、まずパウリ基底で再作成する必要があります。
+パウリ行列はエルミート $2^n \\times 2^n$ 行列の基底を成すため、そのような表現をいつでも見つけることができます。
+観測量 $O$ を以下のように展開します。 
 
 $$
 O = \\sum\_{P \\in {I, X, Y, Z}^{\\otimes n}} \\mathrm{Tr}(O P) P,
 $$
 
-where the sum runs over all possible $n$-qubit Pauli terms and $\\mathrm{Tr}(\\cdot)$ is the trace of a matrix, which acts as inner product.
-You can implement this decomposition  from a matrix to Pauli terms using the `SparsePauliOp.from_operator` method, like so:
+ここで、合計はすべての可能な $n$ 量子ビットパウリ項に渡って計算され、$\\mathrm{Tr}(\\cdot)$ は内積として機能する行列のトレースです。
+この分解は、以下のように `SparsePauliOp.from_operator` メソッドを使用して、行列からパウリ項に実装できます。
 
 ```python
 import numpy as np
@@ -93,27 +93,27 @@ observable = SparsePauliOp.from_operator(matrix)
 print(observable)  
 ```
 
-which prints
+これは以下を出力します。
 
 ```
 SparsePauliOp(['IZ', 'XI', 'YY'], coeffs=[-1. +0.j,  0.5+0.j,  1. +0.j])
 ```
 
-This means the matrix can be written as Pauli terms as $O = -Z_1 + 0.5 X_2 + Y_2 Y_1$.
+つまり、行列はパウリ項として、$O = -Z_1 + 0.5 X_2 + Y_2 Y_1$ のように記述できるということです。
 
 <Admonition type="note">
-  Remember the tensor product order maps to qubits as $q_n \otimes q_{n-1} \otimes \cdots \otimes q_1$.
+  テンソル積の順序は、$q_n \otimes q_{n-1} \otimes \cdots \otimes q_1$ として量子ビットにマッピングされていることを覚えておきましょう。
 </Admonition>
 
 <Admonition type="note">
-  If the observable is Hermitian (meaning $O^\dagger = O$), the Pauli coefficients are real numbers.
-  We can, however, also decompose any other complex matrix in terms of Paulis, if we allow for complex-valued coefficients.
+  観測量がエルミートである場合（つまり $O^\dagger = O$）、パウリ係数は実数です。
+  しかし、複素数値係数を使用できる場合、パウリに関してその他あらゆる複素行列を分解することもできます。
 </Admonition>
 
-## Measure in Pauli bases
+## パウリ基底の測定
 
-A measurement projects the qubit state to the computational basis ${|0\\rangle, |1\\rangle}$. This implies that you can only measure observables that are diagonal in this basis, such as Paulis consisting only of $I$ and $Z$ terms.
-Measuring arbitrary Pauli terms therefore requires a change of basis to diagonalize them. To do this, perform the following transformations,
+測定は、量子状態を計算基底 ${|0\\rangle, |1\\rangle}$ に投影します。 これは、$I$ 項と $Z$ 項でのみ構成されるパウリなど、この基底で対角線である観測量のみを測定できることを意味します。
+したがって、任意のパウリ項を測定するには、それらを対角化するための基底の変更が必要です。 これを行うには、以下の変換を実行します。
 
 $$
 \\begin{aligned}
@@ -122,43 +122,44 @@ $$
 \\end{aligned}
 $$
 
-where $H$ is the Hadamard gate and $S = \\sqrt{Z}$ is sometimes referred to as the phase gate. 
-If you are using an [Estimator](../api/qiskit/qiskit.primitives.Estimator) to compute expectation values, the basis transformations are automatically performed.
+ここで、$H$ はアダマールゲートで、$S = \\sqrt{Z}$ は位相ゲートと呼ばれることがあります。 
+[Estimator](../api/qiskit/qiskit.primitives.Estimator) を使用して期待値を計算している場合、基底の変換が自動的に実行されます。
 
-Below is an example demonstrating how to prepare a quantum circuit and manually measure the qubit 0 in the X basis, 
-qubit 1 in the Y basis and qubit 2 in the Z basis. 
-We apply the transformations shown in the previous equation and obtain the following circuit:
+以下は、量子回路を用意し、X 基底で量子ビット 0、Y 基底で量子ビット 1、
+Z 基底で量子ビット 2 を手動で測定する方法を
+示した例です。 
+前の方程式で示した変換を適用し、以下の回路を取得します。
 
 ```python
 from qiskit.circuit import QuantumCircuit
 
-# create a circuit, where we would like to measure
-# q0 in the X basis, q1 in the Y basis and q2 in the Z basis
+# X 基底で q0、Y 基底で q1、Z 基底で q2 を測定
+# する回路を作成します
 circuit = QuantumCircuit(3)
 circuit.ry(0.8, 0)
 circuit.cx(0, 1)
 circuit.cx(1, 2)
 circuit.barrier()
 
-# diagonalize X with the Hadamard gate 
+# アダマールゲートで X を対角化します 
 circuit.h(0)
 
-# diagonalize Y with Hadamard as S^\dagger
+# アダマールを S^\dagger として Y を対角化します
 circuit.h(1)
 circuit.sdg(1)
 
-# the Z basis is the default, no action required here
+# Z 基底はデフォルトであるため、ここではアクションは不要です
 
 # measure all qubits
 circuit.measure_all()
 circuit.draw()
 ```
 
-![output](/images/build/paulibasis.png)
+![出力](/images/build/paulibasis.png)
 
-## Next steps
+## 次のステップ
 
 <Admonition type="tip" title="Recommendations">
-  -  See an example of circuit decomposition in the [Variational quantum eigensolver](https://learning.quantum.ibm.com/tutorial/variational-quantum-eigensolver) tutorial.
-  -  Read the [SparsePauliOp API](/api/qiskit/qiskit.quantum_info.SparsePauliOp#sparsepauliop) reference.
+  -  [Variational quantum eigensolver（変分量子固有ソルバー）](https://learning.quantum.ibm.com/tutorial/variational-quantum-eigensolver)チュートリアルで回路分解の例をご覧ください。
+  -  [SparsePauliOp API](/api/qiskit/qiskit.quantum_info.SparsePauliOp#sparsepauliop) リファレンスをお読みください。
 </Admonition>

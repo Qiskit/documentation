@@ -1,39 +1,38 @@
 ---
 title: aqc
-description: API reference for qiskit.transpiler.synthesis.aqc
+description: API reference for qiskit.synthesis.unitary.aqc
 in_page_toc_min_heading_level: 1
 python_api_type: module
-python_api_name: qiskit.transpiler.synthesis.aqc
+python_api_name: qiskit.synthesis.unitary.aqc
 ---
 
-<span id="module-qiskit.transpiler.synthesis.aqc" />
+<span id="module-qiskit.synthesis.unitary.aqc" />
 
-<span id="qiskit-transpiler-synthesis-aqc" />
+<span id="qiskit-synthesis-unitary-aqc" />
 
-<span id="approximate-quantum-compiler-qiskit-transpiler-synthesis-aqc" />
+<span id="approximate-quantum-compiler-qiskit-synthesis-unitary-aqc" />
 
 # Approximate Quantum Compiler
 
-<span id="module-qiskit.transpiler.synthesis.aqc" />
+<span id="module-qiskit.synthesis.unitary.aqc" />
 
-`qiskit.transpiler.synthesis.aqc`
+`qiskit.synthesis.unitary.aqc`
 
 Implementation of Approximate Quantum Compiler as described in the paper \[1].
 
 ## Interface
 
-The main public interface of this module is reached by passing `unitary_synthesis_method='aqc'` to [`transpile`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile"). This will swap the synthesis method to use [`AQCSynthesisPlugin`](qiskit.transpiler.synthesis.aqc.AQCSynthesisPlugin "qiskit.transpiler.synthesis.aqc.AQCSynthesisPlugin"). The individual classes are:
+The main public interface of this module is reached by passing `unitary_synthesis_method='aqc'` to [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile"). This will swap the synthesis method to use `AQCSynthesisPlugin`. The individual classes are:
 
-|                                                                                                                                                                       |                                                                                                                                        |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| [`AQC`](qiskit.transpiler.synthesis.aqc.AQC "qiskit.transpiler.synthesis.aqc.AQC")(\[optimizer, seed])                                                                | A generic implementation of the Approximate Quantum Compiler.                                                                          |
-| [`AQCSynthesisPlugin`](qiskit.transpiler.synthesis.aqc.AQCSynthesisPlugin "qiskit.transpiler.synthesis.aqc.AQCSynthesisPlugin")()                                     | An AQC-based Qiskit unitary synthesis plugin.                                                                                          |
-| [`ApproximateCircuit`](qiskit.transpiler.synthesis.aqc.ApproximateCircuit "qiskit.transpiler.synthesis.aqc.ApproximateCircuit")(num\_qubits\[, name])                 | A base class that represents an approximate circuit.                                                                                   |
-| [`ApproximatingObjective`](qiskit.transpiler.synthesis.aqc.ApproximatingObjective "qiskit.transpiler.synthesis.aqc.ApproximatingObjective")()                         | A base class for an optimization problem definition.                                                                                   |
-| [`CNOTUnitCircuit`](qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit "qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit")(num\_qubits, cnots\[, tol, name])              | A class that represents an approximate circuit based on CNOT unit blocks.                                                              |
-| [`CNOTUnitObjective`](qiskit.transpiler.synthesis.aqc.CNOTUnitObjective "qiskit.transpiler.synthesis.aqc.CNOTUnitObjective")(num\_qubits, cnots)                      | A base class for a problem definition based on CNOT unit.                                                                              |
-| [`DefaultCNOTUnitObjective`](qiskit.transpiler.synthesis.aqc.DefaultCNOTUnitObjective "qiskit.transpiler.synthesis.aqc.DefaultCNOTUnitObjective")(num\_qubits, cnots) | A naive implementation of the objective function based on CNOT units.                                                                  |
-| [`FastCNOTUnitObjective`](qiskit.transpiler.synthesis.aqc.FastCNOTUnitObjective "qiskit.transpiler.synthesis.aqc.FastCNOTUnitObjective")(num\_qubits, cnots)          | Implementation of objective function and gradient calculator, which is similar to `DefaultCNOTUnitObjective` but several times faster. |
+|                                                                                                                                                                 |                                                                                                                                        |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| [`AQC`](qiskit.synthesis.unitary.aqc.AQC "qiskit.synthesis.unitary.aqc.AQC")(\[optimizer, seed])                                                                | A generic implementation of the Approximate Quantum Compiler.                                                                          |
+| [`ApproximateCircuit`](qiskit.synthesis.unitary.aqc.ApproximateCircuit "qiskit.synthesis.unitary.aqc.ApproximateCircuit")(num\_qubits\[, name])                 | A base class that represents an approximate circuit.                                                                                   |
+| [`ApproximatingObjective`](qiskit.synthesis.unitary.aqc.ApproximatingObjective "qiskit.synthesis.unitary.aqc.ApproximatingObjective")()                         | A base class for an optimization problem definition.                                                                                   |
+| [`CNOTUnitCircuit`](qiskit.synthesis.unitary.aqc.CNOTUnitCircuit "qiskit.synthesis.unitary.aqc.CNOTUnitCircuit")(num\_qubits, cnots\[, tol, name])              | A class that represents an approximate circuit based on CNOT unit blocks.                                                              |
+| [`CNOTUnitObjective`](qiskit.synthesis.unitary.aqc.CNOTUnitObjective "qiskit.synthesis.unitary.aqc.CNOTUnitObjective")(num\_qubits, cnots)                      | A base class for a problem definition based on CNOT unit.                                                                              |
+| [`DefaultCNOTUnitObjective`](qiskit.synthesis.unitary.aqc.DefaultCNOTUnitObjective "qiskit.synthesis.unitary.aqc.DefaultCNOTUnitObjective")(num\_qubits, cnots) | A naive implementation of the objective function based on CNOT units.                                                                  |
+| [`FastCNOTUnitObjective`](qiskit.synthesis.unitary.aqc.FastCNOTUnitObjective "qiskit.synthesis.unitary.aqc.FastCNOTUnitObjective")(num\_qubits, cnots)          | Implementation of objective function and gradient calculator, which is similar to `DefaultCNOTUnitObjective` but several times faster. |
 
 ## Mathematical Detail
 
@@ -44,7 +43,7 @@ To properly define what we mean by best circuit representation, we define the me
 Let $n$ be the number of qubits and $d=2^n$. Given a CNOT structure $ct$ and a vector of rotation angles $\theta$, the parametric circuit forms a matrix $Vct(\theta)\in SU(d)$. If we are given a target circuit forming a matrix $U\in SU(d)$, then we would like to compute
 
 $$
-argmax_{\theta}\frac{1}{d}|\langle Vct(\theta),U\rangle|
+\mathrm{argmax}_{\theta}\frac{1}{d}|\langle Vct(\theta),U\rangle|
 $$
 
 where the inner product is the Frobenius inner product. Note that $|\langle V,U\rangle|\leq d$ for all unitaries $U$ and $V$, so the objective has range in $[0,1]$.
@@ -103,7 +102,7 @@ cnots = make_cnot_network(
 )
 
 # Create an optimizer to be used by AQC
-optimizer = L_BFGS_B()
+optimizer = partial(scipy.optimize.minimize, method="L-BFGS-B")
 
 # Create an instance
 aqc = AQC(optimizer)
@@ -124,11 +123,13 @@ aqc.compile_unitary(
 
 Now `approximate_circuit` is a circuit that approximates the target unitary to a certain degree and can be used instead of the original matrix.
 
-This uses a helper function, [`make_cnot_network`](#qiskit.transpiler.synthesis.aqc.make_cnot_network "qiskit.transpiler.synthesis.aqc.make_cnot_network").
+This uses a helper function, [`make_cnot_network`](#qiskit.synthesis.unitary.aqc.make_cnot_network "qiskit.synthesis.unitary.aqc.make_cnot_network").
 
-<span id="qiskit.transpiler.synthesis.aqc.make_cnot_network" />
+### make\_cnot\_network
 
-`qiskit.transpiler.synthesis.aqc.make_cnot_network(num_qubits, network_layout='spin', connectivity_type='full', depth=0)`
+<span id="qiskit.synthesis.unitary.aqc.make_cnot_network" />
+
+`qiskit.synthesis.unitary.aqc.make_cnot_network(num_qubits, network_layout='spin', connectivity_type='full', depth=0)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/synthesis/unitary/aqc/cnot_structures.py "view source code")
 
 Generates a network consisting of building blocks each containing a CNOT gate and possibly some single-qubit ones. This network models a quantum operator in question. Note, each building block has 2 input and outputs corresponding to a pair of qubits. What we actually return here is a chain of indices of qubit pairs shared by every building block in a row.
 
@@ -159,7 +160,7 @@ One can take advantage of accelerated version of objective function. It implemen
 
 The rest of the code in the above example does not change.
 
-## References
+**References**
 
 **\[1]: Liam Madden, Andrea Simonetto, Best Approximate Quantum Compiling Problems.**
 

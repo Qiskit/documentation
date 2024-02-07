@@ -10,9 +10,9 @@ python_api_name: qiskit.quantum_info.StabilizerTable
 
 <span id="qiskit.quantum_info.StabilizerTable" />
 
-`StabilizerTable(data, phase=None)`
+`StabilizerTable(data, phase=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/symplectic/stabilizer_table.py "view source code")
 
-Bases: [`qiskit.quantum_info.operators.symplectic.pauli_table.PauliTable`](qiskit.quantum_info.PauliTable "qiskit.quantum_info.operators.symplectic.pauli_table.PauliTable"), `qiskit.quantum_info.operators.mixins.adjoint.AdjointMixin`
+Bases: `qiskit.quantum_info.operators.symplectic.pauli_table.PauliTable`, `qiskit.quantum_info.operators.mixins.adjoint.AdjointMixin`
 
 Symplectic representation of a list Stabilizer matrices.
 
@@ -75,7 +75,7 @@ The Pauli part of the Stabilizer table can be viewed and accessed as a [`PauliTa
 
 Rows in the Stabilizer table can be iterated over like a list. Iteration can also be done using the label or matrix representation of each row using the [`label_iter()`](qiskit.quantum_info.StabilizerTable#label_iter "qiskit.quantum_info.StabilizerTable.label_iter") and [`matrix_iter()`](qiskit.quantum_info.StabilizerTable#matrix_iter "qiskit.quantum_info.StabilizerTable.matrix_iter") methods.
 
-## References
+**References**
 
 1.  S. Aaronson, D. Gottesman, *Improved Simulation of Stabilizer Circuits*, Phys. Rev. A 70, 052328 (2004). [arXiv:quant-ph/0406196](https://arxiv.org/abs/quant-ph/0406196)
 
@@ -130,7 +130,7 @@ array
 
 <span id="qiskit.quantum_info.StabilizerTable.argsort" />
 
-`StabilizerTable.argsort(weight=False)`
+`StabilizerTable.argsort(weight=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/symplectic/stabilizer_table.py "view source code")
 
 Return indices for sorting the rows of the PauliTable.
 
@@ -202,7 +202,7 @@ array
 
 <span id="qiskit.quantum_info.StabilizerTable.compose" />
 
-`StabilizerTable.compose(other, qargs=None, front=False)`
+`StabilizerTable.compose(other, qargs=None, front=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/symplectic/stabilizer_table.py "view source code")
 
 Return the compose output product of two tables.
 
@@ -263,7 +263,7 @@ Not implemented.
 
 <span id="qiskit.quantum_info.StabilizerTable.copy" />
 
-`StabilizerTable.copy()`
+`StabilizerTable.copy()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/symplectic/stabilizer_table.py "view source code")
 
 Return a copy of the StabilizerTable.
 
@@ -271,11 +271,11 @@ Return a copy of the StabilizerTable.
 
 <span id="qiskit.quantum_info.StabilizerTable.delete" />
 
-`StabilizerTable.delete(ind, qubit=False)`
+`StabilizerTable.delete(ind, qubit=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/symplectic/stabilizer_table.py "view source code")
 
 Return a copy with Stabilizer rows deleted from table.
 
-When deleting qubit columns, qubit-0 is the right-most (largest index) column, and qubit-(N-1) is the left-most (0 index) column of the underlying [`X`](qiskit.quantum_info.StabilizerTable#X "qiskit.quantum_info.StabilizerTable.X") and [`Z`](qiskit.quantum_info.StabilizerTable#Z "qiskit.quantum_info.StabilizerTable.Z") arrays.
+When deleting qubit columns, qubit-0 is the right-most (largest index) column, and qubit-(N-1) is the left-most (0 index) column of the underlying [`X`](qiskit.quantum_info.StabilizerTable#x "qiskit.quantum_info.StabilizerTable.X") and [`Z`](qiskit.quantum_info.StabilizerTable#z "qiskit.quantum_info.StabilizerTable.Z") arrays.
 
 **Parameters**
 
@@ -298,7 +298,7 @@ the resulting table with the entries removed.
 
 <span id="qiskit.quantum_info.StabilizerTable.dot" />
 
-`StabilizerTable.dot(other, qargs=None)`
+`StabilizerTable.dot(other, qargs=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/symplectic/stabilizer_table.py "view source code")
 
 Return the dot output product of two tables.
 
@@ -348,7 +348,7 @@ the dot outer product table.
 
 <span id="qiskit.quantum_info.StabilizerTable.expand" />
 
-`StabilizerTable.expand(other)`
+`StabilizerTable.expand(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/symplectic/stabilizer_table.py "view source code")
 
 Return the expand output product of two tables.
 
@@ -388,7 +388,7 @@ the expand outer product table.
 
 <span id="qiskit.quantum_info.StabilizerTable.from_labels" />
 
-`classmethod StabilizerTable.from_labels(labels)`
+`classmethod StabilizerTable.from_labels(labels)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/symplectic/stabilizer_table.py "view source code")
 
 Construct a StabilizerTable from a list of Pauli stabilizer strings.
 
@@ -433,11 +433,11 @@ Return tuple of input dimension for specified subsystems.
 
 <span id="qiskit.quantum_info.StabilizerTable.insert" />
 
-`StabilizerTable.insert(ind, value, qubit=False)`
+`StabilizerTable.insert(ind, value, qubit=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/symplectic/stabilizer_table.py "view source code")
 
 Insert stabilizers’s into the table.
 
-When inserting qubit columns, qubit-0 is the right-most (largest index) column, and qubit-(N-1) is the left-most (0 index) column of the underlying [`X`](qiskit.quantum_info.StabilizerTable#X "qiskit.quantum_info.StabilizerTable.X") and [`Z`](qiskit.quantum_info.StabilizerTable#Z "qiskit.quantum_info.StabilizerTable.Z") arrays.
+When inserting qubit columns, qubit-0 is the right-most (largest index) column, and qubit-(N-1) is the left-most (0 index) column of the underlying [`X`](qiskit.quantum_info.StabilizerTable#x "qiskit.quantum_info.StabilizerTable.X") and [`Z`](qiskit.quantum_info.StabilizerTable#z "qiskit.quantum_info.StabilizerTable.Z") arrays.
 
 **Parameters**
 
@@ -461,7 +461,7 @@ the resulting table with the entries inserted.
 
 <span id="qiskit.quantum_info.StabilizerTable.label_iter" />
 
-`StabilizerTable.label_iter()`
+`StabilizerTable.label_iter()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/symplectic/stabilizer_table.py "view source code")
 
 Return a label representation iterator.
 
@@ -479,7 +479,7 @@ LabelIterator
 
 <span id="qiskit.quantum_info.StabilizerTable.matrix_iter" />
 
-`StabilizerTable.matrix_iter(sparse=False)`
+`StabilizerTable.matrix_iter(sparse=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/symplectic/stabilizer_table.py "view source code")
 
 Return a matrix representation iterator.
 
@@ -559,7 +559,7 @@ BaseOperator
 
 <span id="qiskit.quantum_info.StabilizerTable.sort" />
 
-`StabilizerTable.sort(weight=False)`
+`StabilizerTable.sort(weight=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/symplectic/stabilizer_table.py "view source code")
 
 Sort the rows of the table.
 
@@ -597,11 +597,11 @@ print(srt)
 
 ```python
 Initial Ordering
-StabilizerTable: ['+XX', '-YX', '+XY', '-XY', '-YY', '+IY', '+YI', '+ZX', '-ZI', '-XI', '+XI', '-XX', '+ZY', '-ZX', '-YI', '-ZY', '+YZ', '+YY', '+II', '+ZI', '-ZZ', '+IZ', '+IX', '-IZ', '-XZ', '-IY', '-II', '-YZ', '+XZ', '-IX', '+ZZ', '+YX']
+StabilizerTable: ['-YI', '-XZ', '+XI', '+XY', '-YZ', '+YX', '-ZI', '+XX', '+IX', '-XI', '+YZ', '-IY', '-XY', '+YY', '-II', '+IY', '-ZZ', '-ZX', '+IZ', '-YX', '-IX', '+ZX', '-YY', '+ZZ', '-IZ', '-ZY', '+ZY', '+XZ', '+II', '-XX', '+ZI', '+YI']
 Lexicographically sorted
-StabilizerTable: ['+II', '-II', '+IX', '-IX', '+IY', '-IY', '+IZ', '-IZ', '-XI', '+XI', '+XX', '-XX', '+XY', '-XY', '-XZ', '+XZ', '+YI', '-YI', '-YX', '+YX', '-YY', '+YY', '+YZ', '-YZ', '-ZI', '+ZI', '+ZX', '-ZX', '+ZY', '-ZY', '-ZZ', '+ZZ']
+StabilizerTable: ['-II', '+II', '+IX', '-IX', '-IY', '+IY', '+IZ', '-IZ', '+XI', '-XI', '+XX', '-XX', '+XY', '-XY', '-XZ', '+XZ', '-YI', '+YI', '+YX', '-YX', '+YY', '-YY', '-YZ', '+YZ', '-ZI', '+ZI', '-ZX', '+ZX', '-ZY', '+ZY', '-ZZ', '+ZZ']
 Weight sorted
-StabilizerTable: ['+II', '-II', '+IX', '-IX', '+IY', '-IY', '+IZ', '-IZ', '-XI', '+XI', '+YI', '-YI', '-ZI', '+ZI', '+XX', '-XX', '+XY', '-XY', '-XZ', '+XZ', '-YX', '+YX', '-YY', '+YY', '+YZ', '-YZ', '+ZX', '-ZX', '+ZY', '-ZY', '-ZZ', '+ZZ']
+StabilizerTable: ['-II', '+II', '+IX', '-IX', '-IY', '+IY', '+IZ', '-IZ', '+XI', '-XI', '-YI', '+YI', '-ZI', '+ZI', '+XX', '-XX', '+XY', '-XY', '-XZ', '+XZ', '+YX', '-YX', '+YY', '-YY', '-YZ', '+YZ', '-ZX', '+ZX', '-ZY', '+ZY', '-ZZ', '+ZZ']
 ```
 
 **Parameters**
@@ -620,7 +620,7 @@ a sorted copy of the original table.
 
 <span id="qiskit.quantum_info.StabilizerTable.tensor" />
 
-`StabilizerTable.tensor(other)`
+`StabilizerTable.tensor(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/symplectic/stabilizer_table.py "view source code")
 
 Return the tensor output product of two tables.
 
@@ -660,7 +660,7 @@ the tensor outer product table.
 
 <span id="qiskit.quantum_info.StabilizerTable.to_labels" />
 
-`StabilizerTable.to_labels(array=False)`
+`StabilizerTable.to_labels(array=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/symplectic/stabilizer_table.py "view source code")
 
 Convert a StabilizerTable to a list Pauli stabilizer string labels.
 
@@ -693,7 +693,7 @@ list or array
 
 <span id="qiskit.quantum_info.StabilizerTable.to_matrix" />
 
-`StabilizerTable.to_matrix(sparse=False, array=False)`
+`StabilizerTable.to_matrix(sparse=False, array=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/symplectic/stabilizer_table.py "view source code")
 
 Convert to a list or array of Stabilizer matrices.
 
@@ -735,7 +735,7 @@ Not implemented.
 
 <span id="qiskit.quantum_info.StabilizerTable.unique" />
 
-`StabilizerTable.unique(return_index=False, return_counts=False)`
+`StabilizerTable.unique(return_index=False, return_counts=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/symplectic/stabilizer_table.py "view source code")
 
 Return unique stabilizers from the table.
 

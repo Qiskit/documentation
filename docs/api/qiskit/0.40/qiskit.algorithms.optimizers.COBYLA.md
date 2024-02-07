@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.optimizers.COBYLA
 ---
 
-# COBYLA[¶](#cobyla "Permalink to this headline")
+# COBYLA
 
 <span id="qiskit.algorithms.optimizers.COBYLA" />
 
-`COBYLA(maxiter=1000, disp=False, rhobeg=1.0, tol=None, options=None, **kwargs)`
+`COBYLA(maxiter=1000, disp=False, rhobeg=1.0, tol=None, options=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/optimizers/cobyla.py "view source code")
 
 Bases: [`qiskit.algorithms.optimizers.scipy_optimizer.SciPyOptimizer`](qiskit.algorithms.optimizers.SciPyOptimizer "qiskit.algorithms.optimizers.scipy_optimizer.SciPyOptimizer")
 

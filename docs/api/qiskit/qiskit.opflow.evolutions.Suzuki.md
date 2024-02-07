@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.evolutions.Suzuki
 
 <span id="qiskit.opflow.evolutions.Suzuki" />
 
-`qiskit.opflow.evolutions.Suzuki(reps=1, order=2)`
+`qiskit.opflow.evolutions.Suzuki(reps=1, order=2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/opflow/evolutions/trotterizations/suzuki.py "view source code")
 
 Bases: [`TrotterizationBase`](qiskit.opflow.evolutions.TrotterizationBase "qiskit.opflow.evolutions.trotterizations.trotterization_base.TrotterizationBase")
 
@@ -19,7 +19,7 @@ Deprecated: Suzuki Trotter expansion, composing the evolution circuits of each O
 Detailed in [https://arxiv.org/pdf/quant-ph/0508139.pdf](https://arxiv.org/pdf/quant-ph/0508139.pdf).
 
 <Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.opflow.evolutions.trotterizations.suzuki.Suzuki` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  The class `qiskit.opflow.evolutions.trotterizations.suzuki.Suzuki` is deprecated as of qiskit-terra 0.24.0. It will be removed in the Qiskit 1.0 release. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
 </Admonition>
 
 **Parameters**

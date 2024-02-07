@@ -10,9 +10,9 @@ python_api_name: qiskit.pulse.instructions.SetPhase
 
 <span id="qiskit.pulse.instructions.SetPhase" />
 
-`SetPhase(phase, channel, name=None)`
+`SetPhase(phase, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/instructions/phase.py "view source code")
 
-Bases: [`qiskit.pulse.instructions.instruction.Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")
+Bases: `qiskit.pulse.instructions.instruction.Instruction`
 
 The set phase instruction sets the phase of the proceeding pulses on that channel to `phase` radians.
 
@@ -28,7 +28,7 @@ Instantiate a set phase instruction, setting the output signal phase on `channel
 
 **Parameters**
 
-*   **phase** (`Union`\[`complex`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]) – The rotation angle in radians.
+*   **phase** (`Union`\[`complex`, `ParameterExpression`]) – The rotation angle in radians.
 *   **channel** (`PulseChannel`) – The channel this instruction operates on.
 *   **name** (`Optional`\[`str`]) – Display name for this instruction.
 
@@ -160,7 +160,7 @@ A new schedule with `schedule` inserted with this instruction at t=0.
 
 <span id="qiskit.pulse.instructions.SetPhase.is_parameterized" />
 
-`SetPhase.is_parameterized()`
+`SetPhase.is_parameterized()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/instructions/phase.py "view source code")
 
 Return True iff the instruction is parameterized.
 
@@ -239,7 +239,7 @@ Iterable for getting instructions from Schedule tree.
 
 **Return type**
 
-`Tuple`\[`Tuple`\[`int`, [`Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")]]
+`Tuple`\[`Tuple`\[`int`, `Instruction`]]
 
 <span id="qiskit.pulse.instructions.SetPhase.name" />
 
@@ -279,7 +279,7 @@ Return the rotation angle enacted by this instruction in radians.
 
 **Return type**
 
-`Union`\[`complex`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]
+`Union`\[`complex`, `ParameterExpression`]
 
 <span id="qiskit.pulse.instructions.SetPhase.start_time" />
 

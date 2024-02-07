@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.library.XXMinusYYGate
 
 <span id="qiskit.circuit.library.XXMinusYYGate" />
 
-`XXMinusYYGate(theta, beta=0, label='{XX-YY}')`
+`XXMinusYYGate(theta, beta=0, label='{XX-YY}')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/xx_minus_yy.py "view source code")
 
-Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+Bases: `qiskit.circuit.gate.Gate`
 
 XX-YY interaction gate.
 
@@ -32,12 +32,12 @@ q_1: ┤1              ├
 
 $$
  \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}R_{XX-YY}(\theta, \beta) q_0, q_1 =
-  RZ_1(\beta) \cdot \exp\left(-i \frac{\theta}{2} \frac{XX-YY}{2}\right) \cdot RZ_1(-\beta) =
+  RZ_1(\beta) \cdot exp(-i \frac{\theta}{2} \frac{XX-YY}{2}) \cdot RZ_1(-\beta) =
     \begin{pmatrix}
-        \cos\left(\th\right)             & 0 & 0 & -i\sin\left(\th\right)e^{-i\beta}  \\
+        \cos(\th)             & 0 & 0 & -i\sin(\th)e^{-i\beta}  \\
         0                     & 1 & 0 & 0  \\
         0                     & 0 & 1 & 0  \\
-        -i\sin\left(\th\right)e^{i\beta} & 0 & 0 & \cos\left(\th\right)
+        -i\sin(\th)e^{i\beta} & 0 & 0 & \cos(\th)
     \end{pmatrix}\end{split}\end{aligned}\end{align} 
 $$
 
@@ -54,12 +54,12 @@ $$
 
   $$
    \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}R_{XX-YY}(\theta, \beta) q_1, q_0 =
-  RZ_0(\beta) \cdot \exp\left(-i \frac{\theta}{2} \frac{XX-YY}{2}\right) \cdot RZ_0(-\beta) =
+  RZ_0(\beta) \cdot exp(-i \frac{\theta}{2} \frac{XX-YY}{2}) \cdot RZ_0(-\beta) =
       \begin{pmatrix}
-          \cos\left(\th\right)             & 0 & 0 & -i\sin\left(\th\right)e^{i\beta}  \\
+          \cos(\th)             & 0 & 0 & -i\sin(\th)e^{i\beta}  \\
           0                     & 1 & 0 & 0  \\
           0                     & 0 & 1 & 0  \\
-          -i\sin\left(\th\right)e^{-i\beta} & 0 & 0 & \cos\left(\th\right)
+          -i\sin(\th)e^{-i\beta} & 0 & 0 & \cos(\th)
       \end{pmatrix}\end{split}\end{aligned}\end{align} 
   $$
 </Admonition>
@@ -68,8 +68,8 @@ Create new XX-YY gate.
 
 **Parameters**
 
-*   **theta** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – The rotation angle.
-*   **beta** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – The phase angle.
+*   **theta** (`Union`\[`ParameterExpression`, `float`]) – The rotation angle.
+*   **beta** (`Union`\[`ParameterExpression`, `float`]) – The phase angle.
 *   **label** (`Optional`\[`str`]) – The label of the gate.
 
 ## Methods Defined Here
@@ -78,7 +78,7 @@ Create new XX-YY gate.
 
 <span id="qiskit.circuit.library.XXMinusYYGate.inverse" />
 
-`XXMinusYYGate.inverse()`
+`XXMinusYYGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/xx_minus_yy.py "view source code")
 
 Inverse gate.
 
@@ -92,7 +92,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.library.XXMinusYYGate.decompositions" />
 

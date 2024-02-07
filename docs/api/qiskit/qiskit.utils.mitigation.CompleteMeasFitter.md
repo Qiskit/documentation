@@ -10,7 +10,7 @@ python_api_name: qiskit.utils.mitigation.CompleteMeasFitter
 
 <span id="qiskit.utils.mitigation.CompleteMeasFitter" />
 
-`qiskit.utils.mitigation.CompleteMeasFitter(results, state_labels, qubit_list=None, circlabel='')`
+`qiskit.utils.mitigation.CompleteMeasFitter(results, state_labels, qubit_list=None, circlabel='')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/utils/mitigation/fitters.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
@@ -25,7 +25,7 @@ A wrapper for the tensored fitter
 </Admonition>
 
 <Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.utils.mitigation.fitters.CompleteMeasFitter` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/qi\_migration](https://qisk.it/qi_migration).
+  The class `qiskit.utils.mitigation.fitters.CompleteMeasFitter` is deprecated as of qiskit-terra 0.24.0. It will be removed in the Qiskit 1.0 release. For code migration guidelines, visit [https://qisk.it/qi\_migration](https://qisk.it/qi_migration).
 </Admonition>
 
 **Parameters**

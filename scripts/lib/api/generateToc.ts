@@ -14,7 +14,7 @@ import { isEmpty, keyBy, keys, orderBy } from "lodash";
 
 import { getLastPartFromFullIdentifier } from "../stringUtils";
 import { Metadata } from "./Metadata";
-import { Pkg } from "../sharedTypes";
+import { Pkg } from "./Pkg";
 
 type TocEntry = {
   title: string;

@@ -27,9 +27,9 @@ Utility functions related to the IBM Quantum Provider.
 
 ## Qobj Utils
 
-|                                                                                                                                                         |                                                                       |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [`update_qobj_config`](qiskit.providers.ibmq.utils.update_qobj_config "qiskit.providers.ibmq.utils.update_qobj_config")(qobj\[, backend\_options, ...]) | Update a `Qobj` configuration from backend options and a noise model. |
+|                                                                                                                                                       |                                                                       |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| [`update_qobj_config`](qiskit.providers.ibmq.utils.update_qobj_config "qiskit.providers.ibmq.utils.update_qobj_config")(qobj\[, backend\_options, …]) | Update a `Qobj` configuration from backend options and a noise model. |
 
 ## Misc Functions
 

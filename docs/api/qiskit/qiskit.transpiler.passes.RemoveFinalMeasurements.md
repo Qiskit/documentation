@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.RemoveFinalMeasurements
 
 <span id="qiskit.transpiler.passes.RemoveFinalMeasurements" />
 
-`qiskit.transpiler.passes.RemoveFinalMeasurements(*args, **kwargs)`
+`qiskit.transpiler.passes.RemoveFinalMeasurements(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/passes/utils/remove_final_measurements.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -18,7 +18,7 @@ Remove final measurements and barriers at the end of a circuit.
 
 This pass removes final barriers and final measurements, as well as all unused classical registers and bits they are connected to. Measurements and barriers are considered final if they are followed by no other operations (aside from other measurements or barriers.)
 
-Classical registers are removed iff they reference at least one bit that has become unused by the circuit as a result of the operation, and all of their other bits are also unused. Seperately, classical bits are removed iff they have become unused by the circuit as a result of the operation, or they appear in a removed classical register, but do not appear in a classical register that will remain.
+Classical registers are removed iff they reference at least one bit that has become unused by the circuit as a result of the operation, and all of their other bits are also unused. Separately, classical bits are removed iff they have become unused by the circuit as a result of the operation, or they appear in a removed classical register, but do not appear in a classical register that will remain.
 
 ## Attributes
 

@@ -1,8 +1,16 @@
+---
+title: SummedOp
+description: API reference for qiskit.opflow.list_ops.SummedOp
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.opflow.list_ops.SummedOp
+---
+
 # qiskit.opflow\.list\_ops.SummedOp
 
+<span id="qiskit.opflow.list_ops.SummedOp" />
 
-
-`SummedOp(oplist, coeff=1.0, abelian=False)`
+`SummedOp(oplist, coeff=1.0, abelian=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/list_ops/summed_op.py "view source code")
 
 A class for lazily representing sums of Operators. Often Operators cannot be efficiently added to one another, but may be manipulated further so that they can be later. This class holds logic to indicate that the Operators in `oplist` are meant to be added together, and therefore if they reach a point in which they can be, such as after evaluation or conversion to matrices, they can be reduced by addition.
 
@@ -12,7 +20,9 @@ A class for lazily representing sums of Operators. Often Operators cannot be eff
 *   **coeff** (`Union`\[`complex`, `ParameterExpression`]) – A coefficient multiplying the operator
 *   **abelian** (`bool`) – Indicates whether the Operators in `oplist` are known to mutually commute.
 
+### \_\_init\_\_
 
+<span id="qiskit.opflow.list_ops.SummedOp.__init__" />
 
 `__init__(oplist, coeff=1.0, abelian=False)`
 
@@ -71,7 +81,9 @@ A class for lazily representing sums of Operators. Often Operators cannot be eff
 | [`parameters`](#qiskit.opflow.list_ops.SummedOp.parameters "qiskit.opflow.list_ops.SummedOp.parameters")          | Return a set of Parameter objects contained in the Operator.                                                               |
 | [`settings`](#qiskit.opflow.list_ops.SummedOp.settings "qiskit.opflow.list_ops.SummedOp.settings")                | Return settings.                                                                                                           |
 
+### abelian
 
+<span id="qiskit.opflow.list_ops.SummedOp.abelian" />
 
 `property abelian`
 
@@ -85,7 +97,9 @@ Whether the Operators in `oplist` are known to commute with one another.
 
 A bool indicating whether the `oplist` is Abelian.
 
+### add
 
+<span id="qiskit.opflow.list_ops.SummedOp.add" />
 
 `add(other)`
 
@@ -107,7 +121,9 @@ Return Operator addition of `self` and `other`, overloaded by `+`.
 
 A `SummedOp` equivalent to the sum of self and other.
 
+### adjoint
 
+<span id="qiskit.opflow.list_ops.SummedOp.adjoint" />
 
 `adjoint()`
 
@@ -121,7 +137,9 @@ Return a new Operator equal to the Operator’s adjoint (conjugate transpose), o
 
 An `OperatorBase` equivalent to the adjoint of self.
 
+### assign\_parameters
 
+<span id="qiskit.opflow.list_ops.SummedOp.assign_parameters" />
 
 `assign_parameters(param_dict)`
 
@@ -139,7 +157,9 @@ Binds scalar values to any Terra `Parameters` in the coefficients or primitives 
 
 The `OperatorBase` with the `Parameters` in self replaced by the values or `Parameters` in param\_dict. If param\_dict contains parameterization lists, this `OperatorBase` is an `OpList`.
 
+### bind\_parameters
 
+<span id="qiskit.opflow.list_ops.SummedOp.bind_parameters" />
 
 `bind_parameters(param_dict)`
 
@@ -149,7 +169,9 @@ Same as assign\_parameters, but maintained for consistency with QuantumCircuit i
 
 `OperatorBase`
 
+### coeff
 
+<span id="qiskit.opflow.list_ops.SummedOp.coeff" />
 
 `property coeff`
 
@@ -163,7 +185,9 @@ The scalar coefficient multiplying the Operator.
 
 The coefficient.
 
+### collapse\_summands
 
+<span id="qiskit.opflow.list_ops.SummedOp.collapse_summands" />
 
 `collapse_summands()`
 
@@ -179,7 +203,9 @@ E.g., `SummedOp([2 * X ^ Y, X ^ Y]).collapse_summands() -> SummedOp([3 * X ^ Y])
 
 A simplified `SummedOp` equivalent to self.
 
+### combo\_fn
 
+<span id="qiskit.opflow.list_ops.SummedOp.combo_fn" />
 
 `property combo_fn`
 
@@ -193,7 +219,9 @@ The function defining how to combine `oplist` (or Numbers, or NumPy arrays) to p
 
 The combination function.
 
+### compose
 
+<span id="qiskit.opflow.list_ops.SummedOp.compose" />
 
 `compose(other, permutation=None, front=False)`
 
@@ -219,7 +247,9 @@ Because Terra prints circuits with the initial state at the left side of the cir
 
 An `OperatorBase` equivalent to the function composition of self and other.
 
+### copy
 
+<span id="qiskit.opflow.list_ops.SummedOp.copy" />
 
 `copy()`
 
@@ -229,7 +259,9 @@ Return a deep copy of the Operator.
 
 `OperatorBase`
 
+### default\_combo\_fn
 
+<span id="qiskit.opflow.list_ops.SummedOp.default_combo_fn" />
 
 `static default_combo_fn(x)`
 
@@ -239,7 +271,9 @@ ListOp default combo function i.e. lambda x: x
 
 `Any`
 
+### distributive
 
+<span id="qiskit.opflow.list_ops.SummedOp.distributive" />
 
 `property distributive`
 
@@ -253,7 +287,9 @@ Indicates whether the ListOp or subclass is distributive under composition. List
 
 A bool indicating whether the ListOp is distributive under composition.
 
+### equals
 
+<span id="qiskit.opflow.list_ops.SummedOp.equals" />
 
 `equals(other)`
 
@@ -275,7 +311,7 @@ Check if other is equal to self.
 
 True, if other and self are equal, otherwise False.
 
-## Examples
+**Examples**
 
 ```python
 >>> from qiskit.opflow import X, Z
@@ -285,7 +321,9 @@ True
 True
 ```
 
+### eval
 
+<span id="qiskit.opflow.list_ops.SummedOp.eval" />
 
 `eval(front=None)`
 
@@ -311,7 +349,9 @@ The output of the `oplist` Operators’ evaluation function, combined with the `
 *   **TypeError** – Operators with mixed hierarchies, such as a ListOp containing both PrimitiveOps and ListOps, are not supported.
 *   **NotImplementedError** – Attempting to call ListOp’s eval from a non-distributive subclass.
 
+### exp\_i
 
+<span id="qiskit.opflow.list_ops.SummedOp.exp_i" />
 
 `exp_i()`
 
@@ -321,7 +361,9 @@ Return an `OperatorBase` equivalent to an exponentiation of self \* -i, e^(-i\*o
 
 `OperatorBase`
 
+### grad\_combo\_fn
 
+<span id="qiskit.opflow.list_ops.SummedOp.grad_combo_fn" />
 
 `property grad_combo_fn`
 
@@ -331,7 +373,9 @@ The gradient of `combo_fn`.
 
 `Optional`\[`Callable`]
 
+### instance\_id
 
+<span id="qiskit.opflow.list_ops.SummedOp.instance_id" />
 
 `property instance_id`
 
@@ -341,7 +385,9 @@ Return the unique instance id.
 
 `int`
 
+### log\_i
 
+<span id="qiskit.opflow.list_ops.SummedOp.log_i" />
 
 `log_i(massive=False)`
 
@@ -351,7 +397,9 @@ Return a `MatrixOp` equivalent to log(H)/-i for this operator H. This function i
 
 `OperatorBase`
 
+### mul
 
+<span id="qiskit.opflow.list_ops.SummedOp.mul" />
 
 `mul(scalar)`
 
@@ -369,7 +417,9 @@ Returns the scalar multiplication of the Operator, overloaded by `*`, including 
 
 An `OperatorBase` equivalent to product of self and scalar.
 
+### neg
 
+<span id="qiskit.opflow.list_ops.SummedOp.neg" />
 
 `neg()`
 
@@ -383,7 +433,9 @@ Return the Operator’s negation, effectively just multiplying by -1.0, overload
 
 An `OperatorBase` equivalent to the negation of self.
 
+### num\_qubits
 
+<span id="qiskit.opflow.list_ops.SummedOp.num_qubits" />
 
 `property num_qubits`
 
@@ -397,7 +449,9 @@ The number of qubits over which the Operator is defined. If `op.num_qubits == 5`
 
 The number of qubits accepted by the Operator’s underlying function.
 
+### oplist
 
+<span id="qiskit.opflow.list_ops.SummedOp.oplist" />
 
 `property oplist`
 
@@ -411,13 +465,17 @@ The list of `OperatorBases` defining the underlying function of this Operator.
 
 The Operators defining the ListOp
 
+### parameters
 
+<span id="qiskit.opflow.list_ops.SummedOp.parameters" />
 
 `property parameters`
 
 Return a set of Parameter objects contained in the Operator.
 
+### permute
 
+<span id="qiskit.opflow.list_ops.SummedOp.permute" />
 
 `permute(permutation)`
 
@@ -437,9 +495,11 @@ A new ListOp representing the permuted operator.
 
 **Raises**
 
-[**OpflowError**](qiskit.opflow.OpflowError#qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – if indices do not define a new index for each qubit.
+[**OpflowError**](qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – if indices do not define a new index for each qubit.
 
+### power
 
+<span id="qiskit.opflow.list_ops.SummedOp.power" />
 
 `power(exponent)`
 
@@ -449,7 +509,9 @@ Return Operator composed with self multiple times, overloaded by `**`.
 
 `OperatorBase`
 
+### primitive\_strings
 
+<span id="qiskit.opflow.list_ops.SummedOp.primitive_strings" />
 
 `primitive_strings()`
 
@@ -463,7 +525,9 @@ Return a set of strings describing the primitives contained in the Operator. For
 
 A set of strings describing the primitives contained within the Operator.
 
+### reduce
 
+<span id="qiskit.opflow.list_ops.SummedOp.reduce" />
 
 `reduce()`
 
@@ -479,7 +543,9 @@ Tries to sum up duplicate operators and reduces the operators in the sum.
 
 A collapsed version of self, if possible.
 
+### settings
 
+<span id="qiskit.opflow.list_ops.SummedOp.settings" />
 
 `property settings`
 
@@ -489,7 +555,9 @@ Return settings.
 
 `Dict`
 
+### tensor
 
+<span id="qiskit.opflow.list_ops.SummedOp.tensor" />
 
 `tensor(other)`
 
@@ -511,7 +579,9 @@ Because Terra prints circuits and results with qubit 0 at the end of the string 
 
 An `OperatorBase` equivalent to the tensor product of self and other.
 
+### tensorpower
 
+<span id="qiskit.opflow.list_ops.SummedOp.tensorpower" />
 
 `tensorpower(other)`
 
@@ -529,7 +599,9 @@ Return tensor product with self multiple times, overloaded by `^`.
 
 An `OperatorBase` equivalent to the tensorpower of self by other.
 
+### to\_circuit
 
+<span id="qiskit.opflow.list_ops.SummedOp.to_circuit" />
 
 `to_circuit()`
 
@@ -545,10 +617,12 @@ The circuit representation of the summed operator.
 
 **Raises**
 
-*   [**OpflowError**](qiskit.opflow.OpflowError#qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – if SummedOp can not be converted to MatrixOp (e.g. SummedOp is composed of
+*   [**OpflowError**](qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – if SummedOp can not be converted to MatrixOp (e.g. SummedOp is composed of
 *   **parameterized PrimitiveOps**\*\*)\*\*\*\*\*\* –
 
+### to\_circuit\_op
 
+<span id="qiskit.opflow.list_ops.SummedOp.to_circuit_op" />
 
 `to_circuit_op()`
 
@@ -558,7 +632,9 @@ Returns an equivalent Operator composed of only QuantumCircuit-based primitives,
 
 `OperatorBase`
 
+### to\_matrix
 
+<span id="qiskit.opflow.list_ops.SummedOp.to_matrix" />
 
 `to_matrix(massive=False)`
 
@@ -572,7 +648,9 @@ Return NumPy representation of the Operator. Represents the evaluation of the Op
 
 The NumPy `ndarray` equivalent to this Operator.
 
+### to\_matrix\_op
 
+<span id="qiskit.opflow.list_ops.SummedOp.to_matrix_op" />
 
 `to_matrix_op(massive=False)`
 
@@ -582,7 +660,9 @@ Returns an equivalent Operator composed of only NumPy-based primitives, such as 
 
 `SummedOp`
 
+### to\_pauli\_op
 
+<span id="qiskit.opflow.list_ops.SummedOp.to_pauli_op" />
 
 `to_pauli_op(massive=False)`
 
@@ -592,7 +672,9 @@ Returns an equivalent Operator composed of only Pauli-based primitives, such as 
 
 `SummedOp`
 
+### to\_spmatrix
 
+<span id="qiskit.opflow.list_ops.SummedOp.to_spmatrix" />
 
 `to_spmatrix()`
 
@@ -606,7 +688,9 @@ Returns SciPy sparse matrix representation of the Operator.
 
 CSR sparse matrix representation of the Operator, or List thereof.
 
+### traverse
 
+<span id="qiskit.opflow.list_ops.SummedOp.traverse" />
 
 `traverse(convert_fn, coeff=None)`
 
@@ -624,3 +708,4 @@ Apply the convert\_fn to each node in the oplist.
 **Returns**
 
 The converted ListOp.
+

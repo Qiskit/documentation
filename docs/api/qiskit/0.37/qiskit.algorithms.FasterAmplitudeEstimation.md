@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.FasterAmplitudeEstimation
 
 <span id="qiskit.algorithms.FasterAmplitudeEstimation" />
 
-`FasterAmplitudeEstimation(delta, maxiter, rescale=True, quantum_instance=None)`
+`FasterAmplitudeEstimation(delta, maxiter, rescale=True, quantum_instance=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/amplitude_estimators/fae.py "view source code")
 
 Bases: [`qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimator`](qiskit.algorithms.AmplitudeEstimator "qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimator")
 
@@ -20,7 +20,7 @@ The Faster Amplitude Estimation (FAE) \[1] algorithm is a variant of Quantum Amp
 
 Due to the iterative version of the QPE, this algorithm does not require any additional qubits, as the originally proposed QAE \[3] and thus the resulting circuits are less complex.
 
-## References
+**References**
 
 **\[1]: K. Nakaji. Faster Amplitude Estimation, 2020;**
 
@@ -51,7 +51,7 @@ Due to the iterative version of the QPE, this algorithm does not require any add
 
 <span id="qiskit.algorithms.FasterAmplitudeEstimation.construct_circuit" />
 
-`FasterAmplitudeEstimation.construct_circuit(estimation_problem, k, measurement=False)`
+`FasterAmplitudeEstimation.construct_circuit(estimation_problem, k, measurement=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/amplitude_estimators/fae.py "view source code")
 
 Construct the circuit $Q^k X |0\rangle>$.
 
@@ -75,7 +75,7 @@ The circuit $Q^k X |0\rangle$.
 
 <span id="qiskit.algorithms.FasterAmplitudeEstimation.estimate" />
 
-`FasterAmplitudeEstimation.estimate(estimation_problem)`
+`FasterAmplitudeEstimation.estimate(estimation_problem)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/amplitude_estimators/fae.py "view source code")
 
 Run the amplitude estimation algorithm.
 

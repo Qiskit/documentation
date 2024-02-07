@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.AmplitudeEstimation
 
 <span id="qiskit.algorithms.AmplitudeEstimation" />
 
-`qiskit.algorithms.AmplitudeEstimation(num_eval_qubits, phase_estimation_circuit=None, iqft=None, quantum_instance=None, sampler=None)`
+`qiskit.algorithms.AmplitudeEstimation(num_eval_qubits, phase_estimation_circuit=None, iqft=None, quantum_instance=None, sampler=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/amplitude_estimators/ae.py "view source code")
 
 Bases: [`AmplitudeEstimator`](qiskit.algorithms.AmplitudeEstimator "qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimator")
 
@@ -30,7 +30,7 @@ Using a maximum likelihood post processing, this grid constraint can be circumve
   This class does not support the [`EstimationProblem.is_good_state`](qiskit.algorithms.EstimationProblem#is_good_state "qiskit.algorithms.EstimationProblem.is_good_state") property, as for phase estimation-based QAE, the oracle that identifes the good states must be encoded in the Grover operator. To set custom oracles, the [`EstimationProblem.grover_operator`](qiskit.algorithms.EstimationProblem#grover_operator "qiskit.algorithms.EstimationProblem.grover_operator") attribute can be set directly.
 </Admonition>
 
-## References
+**References**
 
 **\[1]: Brassard, G., Hoyer, P., Mosca, M., & Tapp, A. (2000).**
 

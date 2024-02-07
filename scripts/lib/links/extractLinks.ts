@@ -21,6 +21,9 @@ import { Root } from "remark-mdx";
 import rehypeRemark from "rehype-remark";
 import rehypeParse from "rehype-parse";
 import remarkGfm from "remark-gfm";
+import { ObjectsInv } from "../api/objectsInv";
+import { removePrefix, removeSuffix } from "../stringUtils";
+import { getRoot } from "../fs";
 
 export type ParsedFile = {
   /** Anchors that the file defines. These can be linked to from other files. */
@@ -71,7 +74,22 @@ export async function parseLinks(markdown: string): Promise<string[]> {
   return result;
 }
 
+async function parseObjectsInv(filePath: string): Promise<ParsedFile> {
+  const absoluteFilePath = path.join(
+    getRoot(),
+    removeSuffix(filePath, "objects.inv"),
+  );
+  const objinv = await ObjectsInv.fromFile(absoluteFilePath);
+  // All URIs are relative to the objects.inv file
+  const dirname = removePrefix(path.dirname(filePath), "public");
+  const links = objinv.entries.map((entry) => path.join(dirname, entry.uri));
+  return { links, anchors: [] };
+}
+
 export async function parseFile(filePath: string): Promise<ParsedFile> {
+  if (filePath.endsWith(".inv")) {
+    return await parseObjectsInv(filePath);
+  }
   const source = await readFile(filePath, { encoding: "utf8" });
   const markdown =
     path.extname(filePath) === ".ipynb" ? markdownFromNotebook(source) : source;

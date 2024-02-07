@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.builder.u1
 
 <span id="qiskit.pulse.builder.u1" />
 
-`u1(theta, qubit)`
+`u1(theta, qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/builder.py "view source code")
 
 Call a `U1Gate` on the input physical qubit.
 
@@ -24,7 +24,7 @@ Examples:
 import math
 
 from qiskit import pulse
-from qiskit.providers.fake_provider import FakeOpenPulse2Q
+from qiskit.test.mock import FakeOpenPulse2Q
 
 backend = FakeOpenPulse2Q()
 

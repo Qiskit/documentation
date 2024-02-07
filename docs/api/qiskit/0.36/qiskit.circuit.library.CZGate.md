@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.library.CZGate
 
 <span id="qiskit.circuit.library.CZGate" />
 
-`CZGate(label=None, ctrl_state=None)`
+`CZGate(label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/z.py "view source code")
 
-Bases: [`qiskit.circuit.controlledgate.ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
+Bases: `qiskit.circuit.controlledgate.ControlledGate`
 
 Controlled-Z gate.
 
@@ -49,7 +49,7 @@ Create new CZ gate.
 
 <span id="qiskit.circuit.library.CZGate.inverse" />
 
-`CZGate.inverse()`
+`CZGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/z.py "view source code")
 
 Return inverted CZ gate (itself).
 
@@ -63,7 +63,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.library.CZGate.ctrl_state" />
 

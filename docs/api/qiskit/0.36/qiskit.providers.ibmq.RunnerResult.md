@@ -10,9 +10,9 @@ python_api_name: qiskit.providers.ibmq.RunnerResult
 
 <span id="qiskit.providers.ibmq.RunnerResult" />
 
-`RunnerResult(backend_name, backend_version, qobj_id, job_id, success, results, date=None, status=None, header=None, **kwargs)`
+`RunnerResult(backend_name, backend_version, qobj_id, job_id, success, results, date=None, status=None, header=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/runner_result.py "view source code")
 
-Bases: [`qiskit.result.result.Result`](qiskit.result.Result "qiskit.result.result.Result"), [`qiskit.providers.ibmq.runtime.program.result_decoder.ResultDecoder`](qiskit.providers.ibmq.runtime.ResultDecoder "qiskit.providers.ibmq.runtime.program.result_decoder.ResultDecoder")
+Bases: `qiskit.result.result.Result`, `qiskit.providers.ibmq.runtime.program.result_decoder.ResultDecoder`
 
 Result class for Qiskit Runtime program circuit-runner.
 
@@ -56,13 +56,13 @@ dict
 
 <span id="qiskit.providers.ibmq.RunnerResult.decode" />
 
-`classmethod RunnerResult.decode(data)`
+`classmethod RunnerResult.decode(data)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/runner_result.py "view source code")
 
 Decoding for results from Qiskit runtime jobs.
 
 **Return type**
 
-[`RunnerResult`](qiskit.providers.ibmq.RunnerResult "qiskit.providers.ibmq.runner_result.RunnerResult")
+`RunnerResult`
 
 ### from\_dict
 
@@ -144,7 +144,7 @@ List\[str] or np.ndarray
 
 <span id="qiskit.providers.ibmq.RunnerResult.get_quasiprobabilities" />
 
-`RunnerResult.get_quasiprobabilities(experiment=None)`
+`RunnerResult.get_quasiprobabilities(experiment=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/runner_result.py "view source code")
 
 Get quasiprobabilites associated with one or more experiments.
 
@@ -154,7 +154,7 @@ Get quasiprobabilites associated with one or more experiments.
 
 **Return type**
 
-`Union`\[[`QuasiDistribution`](qiskit.result.QuasiDistribution "qiskit.result.distributions.quasi.QuasiDistribution"), `List`\[[`QuasiDistribution`](qiskit.result.QuasiDistribution "qiskit.result.distributions.quasi.QuasiDistribution")]]
+`Union`\[`QuasiDistribution`, `List`\[`QuasiDistribution`]]
 
 **Returns**
 

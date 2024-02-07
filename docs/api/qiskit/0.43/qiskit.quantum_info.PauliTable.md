@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.PauliTable
 
 <span id="qiskit.quantum_info.PauliTable" />
 
-`PauliTable(data)`
+`PauliTable(data)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/operators/symplectic/pauli_table.py "view source code")
 
 Bases: `BaseOperator`, `AdjointMixin`
 
@@ -65,7 +65,7 @@ Subsets of rows can be accessed using the list access `[]` operator and will ret
 
 Rows in the Pauli table can be iterated over like a list. Iteration can also be done using the label or matrix representation of each row using the [`label_iter()`](qiskit.quantum_info.PauliTable#label_iter "qiskit.quantum_info.PauliTable.label_iter") and [`matrix_iter()`](qiskit.quantum_info.PauliTable#matrix_iter "qiskit.quantum_info.PauliTable.matrix_iter") methods.
 
-## References
+**References**
 
 1.  S. Aaronson, D. Gottesman, *Improved Simulation of Stabilizer Circuits*, Phys. Rev. A 70, 052328 (2004). [arXiv:quant-ph/0406196](https://arxiv.org/abs/quant-ph/0406196)
 
@@ -105,7 +105,7 @@ Return the adjoint of the Operator.
 
 <span id="qiskit.quantum_info.PauliTable.anticommutes_with_all" />
 
-`PauliTable.anticommutes_with_all(other)`
+`PauliTable.anticommutes_with_all(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/operators/symplectic/pauli_table.py "view source code")
 
 Return indexes of rows that commute other.
 
@@ -129,7 +129,7 @@ array
 
 <span id="qiskit.quantum_info.PauliTable.argsort" />
 
-`PauliTable.argsort(weight=False)`
+`PauliTable.argsort(weight=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/operators/symplectic/pauli_table.py "view source code")
 
 Return indices for sorting the rows of the table.
 
@@ -153,7 +153,7 @@ array
 
 <span id="qiskit.quantum_info.PauliTable.commutes" />
 
-`PauliTable.commutes(pauli)`
+`PauliTable.commutes(pauli)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/operators/symplectic/pauli_table.py "view source code")
 
 Return list of commutation properties for each row with a Pauli.
 
@@ -181,7 +181,7 @@ array
 
 <span id="qiskit.quantum_info.PauliTable.commutes_with_all" />
 
-`PauliTable.commutes_with_all(other)`
+`PauliTable.commutes_with_all(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/operators/symplectic/pauli_table.py "view source code")
 
 Return indexes of rows that commute other.
 
@@ -205,7 +205,7 @@ array
 
 <span id="qiskit.quantum_info.PauliTable.compose" />
 
-`PauliTable.compose(other, qargs=None, front=True)`
+`PauliTable.compose(other, qargs=None, front=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/operators/symplectic/pauli_table.py "view source code")
 
 Return the compose output product of two tables.
 
@@ -249,7 +249,7 @@ the compose outer product table.
 
 <span id="qiskit.quantum_info.PauliTable.conjugate" />
 
-`PauliTable.conjugate()`
+`PauliTable.conjugate()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/operators/symplectic/pauli_table.py "view source code")
 
 Not implemented.
 
@@ -269,11 +269,11 @@ Make a deep copy of current operator.
 
 <span id="qiskit.quantum_info.PauliTable.delete" />
 
-`PauliTable.delete(ind, qubit=False)`
+`PauliTable.delete(ind, qubit=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/operators/symplectic/pauli_table.py "view source code")
 
 Return a copy with Pauli rows deleted from table.
 
-When deleting qubits the qubit index is the same as the column index of the underlying [`X`](qiskit.quantum_info.PauliTable#X "qiskit.quantum_info.PauliTable.X") and [`Z`](qiskit.quantum_info.PauliTable#Z "qiskit.quantum_info.PauliTable.Z") arrays.
+When deleting qubits the qubit index is the same as the column index of the underlying [`X`](qiskit.quantum_info.PauliTable#x "qiskit.quantum_info.PauliTable.X") and [`Z`](qiskit.quantum_info.PauliTable#z "qiskit.quantum_info.PauliTable.Z") arrays.
 
 **Parameters**
 
@@ -298,7 +298,7 @@ the resulting table with the entries removed.
 
 <span id="qiskit.quantum_info.PauliTable.dot" />
 
-`PauliTable.dot(other, qargs=None)`
+`PauliTable.dot(other, qargs=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/operators/symplectic/pauli_table.py "view source code")
 
 Return the dot output product of two tables.
 
@@ -341,7 +341,7 @@ the dot outer product table.
 
 <span id="qiskit.quantum_info.PauliTable.expand" />
 
-`PauliTable.expand(other)`
+`PauliTable.expand(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/operators/symplectic/pauli_table.py "view source code")
 
 Return the expand output product of two tables.
 
@@ -383,7 +383,7 @@ the expand outer product table.
 
 <span id="qiskit.quantum_info.PauliTable.from_labels" />
 
-`classmethod PauliTable.from_labels(labels)`
+`classmethod PauliTable.from_labels(labels)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/operators/symplectic/pauli_table.py "view source code")
 
 Construct a PauliTable from a list of Pauli strings.
 
@@ -420,11 +420,11 @@ Return tuple of input dimension for specified subsystems.
 
 <span id="qiskit.quantum_info.PauliTable.insert" />
 
-`PauliTable.insert(ind, value, qubit=False)`
+`PauliTable.insert(ind, value, qubit=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/operators/symplectic/pauli_table.py "view source code")
 
 Insert Pauli’s into the table.
 
-When inserting qubits the qubit index is the same as the column index of the underlying [`X`](qiskit.quantum_info.PauliTable#X "qiskit.quantum_info.PauliTable.X") and [`Z`](qiskit.quantum_info.PauliTable#Z "qiskit.quantum_info.PauliTable.Z") arrays.
+When inserting qubits the qubit index is the same as the column index of the underlying [`X`](qiskit.quantum_info.PauliTable#x "qiskit.quantum_info.PauliTable.X") and [`Z`](qiskit.quantum_info.PauliTable#z "qiskit.quantum_info.PauliTable.Z") arrays.
 
 **Parameters**
 
@@ -450,7 +450,7 @@ the resulting table with the entries inserted.
 
 <span id="qiskit.quantum_info.PauliTable.label_iter" />
 
-`PauliTable.label_iter()`
+`PauliTable.label_iter()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/operators/symplectic/pauli_table.py "view source code")
 
 Return a label representation iterator.
 
@@ -470,7 +470,7 @@ LabelIterator
 
 <span id="qiskit.quantum_info.PauliTable.matrix_iter" />
 
-`PauliTable.matrix_iter(sparse=False)`
+`PauliTable.matrix_iter(sparse=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/operators/symplectic/pauli_table.py "view source code")
 
 Return a matrix representation iterator.
 
@@ -558,7 +558,7 @@ BaseOperator
 
 <span id="qiskit.quantum_info.PauliTable.sort" />
 
-`PauliTable.sort(weight=False)`
+`PauliTable.sort(weight=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/operators/symplectic/pauli_table.py "view source code")
 
 Sort the rows of the table.
 
@@ -628,7 +628,7 @@ a sorted copy of the original table.
 
 <span id="qiskit.quantum_info.PauliTable.tensor" />
 
-`PauliTable.tensor(other)`
+`PauliTable.tensor(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/operators/symplectic/pauli_table.py "view source code")
 
 Return the tensor output product of two tables.
 
@@ -670,7 +670,7 @@ the tensor outer product table.
 
 <span id="qiskit.quantum_info.PauliTable.to_labels" />
 
-`PauliTable.to_labels(array=False)`
+`PauliTable.to_labels(array=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/operators/symplectic/pauli_table.py "view source code")
 
 Convert a PauliTable to a list Pauli string labels.
 
@@ -701,7 +701,7 @@ list or array
 
 <span id="qiskit.quantum_info.PauliTable.to_matrix" />
 
-`PauliTable.to_matrix(sparse=False, array=False)`
+`PauliTable.to_matrix(sparse=False, array=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/operators/symplectic/pauli_table.py "view source code")
 
 Convert to a list or array of Pauli matrices.
 
@@ -733,7 +733,7 @@ list
 
 <span id="qiskit.quantum_info.PauliTable.transpose" />
 
-`PauliTable.transpose()`
+`PauliTable.transpose()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/operators/symplectic/pauli_table.py "view source code")
 
 Not implemented.
 
@@ -743,7 +743,7 @@ Not implemented.
 
 <span id="qiskit.quantum_info.PauliTable.unique" />
 
-`PauliTable.unique(return_index=False, return_counts=False)`
+`PauliTable.unique(return_index=False, return_counts=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/operators/symplectic/pauli_table.py "view source code")
 
 Return unique Paulis from the table.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.library.sawtooth
 
 <span id="qiskit.pulse.library.sawtooth" />
 
-`sawtooth(duration, amp, freq=None, phase=0, name=None)`
+`sawtooth(duration, amp, freq=None, phase=0, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/pulse/library/discrete.py "view source code")
 
 Generates sawtooth wave [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform").
 
@@ -30,7 +30,7 @@ where $g(x) = x/T + \phi/\pi$.
 *   **phase** (`float`) – Pulse phase.
 *   **name** (`Optional`\[`str`]) – Name of pulse.
 
-## Example
+**Example**
 
 ```python
 import matplotlib.pyplot as plt

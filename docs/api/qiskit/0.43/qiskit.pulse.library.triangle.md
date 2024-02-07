@@ -12,7 +12,7 @@ python_api_name: qiskit.pulse.library.triangle
 
 <span id="qiskit.pulse.library.triangle" />
 
-`triangle(duration, amp, freq=None, phase=0, name=None)`
+`triangle(duration, amp, freq=None, phase=0, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/library/discrete.py "view source code")
 
 Generates triangle wave [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform").
 
@@ -36,7 +36,7 @@ This a non-sinusoidal wave with linear ramping.
 
 [*Waveform*](qiskit.pulse.library.Waveform "qiskit.pulse.library.waveform.Waveform")
 
-## Example
+**Example**
 
 ```python
 import matplotlib.pyplot as plt

@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.library.GroverOperator
 
 <span id="qiskit.circuit.library.GroverOperator" />
 
-`GroverOperator(oracle, state_preparation=None, zero_reflection=None, reflection_qubits=None, insert_barriers=False, mcx_mode='noancilla', name='Q')`
+`GroverOperator(oracle, state_preparation=None, zero_reflection=None, reflection_qubits=None, insert_barriers=False, mcx_mode='noancilla', name='Q')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/grover_operator.py "view source code")
 
-Bases: [`qiskit.circuit.quantumcircuit.QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+Bases: `qiskit.circuit.quantumcircuit.QuantumCircuit`
 
 The Grover operator.
 
@@ -61,7 +61,7 @@ $$
 
 where $\mathbb{I}_n$ is the identity on $n$ qubits. By default, this class implements the negative version $2 |0\rangle^{\otimes n} \langle 0|^{\otimes n} - \mathbb{I}_n$, since this can simply be implemented with a multi-controlled Z sandwiched by X gates on the target qubit and the introduced global phase does not matter for Grover’s algorithm.
 
-## Examples
+**Examples**
 
 ```python
 >>> from qiskit.circuit import QuantumCircuit
@@ -131,7 +131,7 @@ state_2: ┤2                ├┤1              ├┤ UCRZ(-pi/4) ├┤ H �
 «         └─────────────────┘└───────────────┘└────────────┘└───┘
 ```
 
-## References
+**References**
 
 **\[1]: L. K. Grover (1996), A fast quantum mechanical algorithm for database search,**
 
@@ -147,9 +147,9 @@ Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://
 
 **Parameters**
 
-*   **oracle** (`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.states.statevector.Statevector")]) – The phase oracle implementing a reflection about the bad state. Note that this is not a bitflip oracle, see the docstring for more information.
-*   **state\_preparation** (`Optional`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]) – The operator preparing the good and bad state. For Grover’s algorithm, this is a n-qubit Hadamard gate and for amplitude amplification or estimation the operator $\mathcal{A}$.
-*   **zero\_reflection** (`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`DensityMatrix`](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.states.densitymatrix.DensityMatrix"), [`Operator`](qiskit.quantum_info.Operator "qiskit.quantum_info.operators.operator.Operator"), `None`]) – The reflection about the zero state, $\mathcal{S}_0$.
+*   **oracle** (`Union`\[`QuantumCircuit`, `Statevector`]) – The phase oracle implementing a reflection about the bad state. Note that this is not a bitflip oracle, see the docstring for more information.
+*   **state\_preparation** (`Optional`\[`QuantumCircuit`]) – The operator preparing the good and bad state. For Grover’s algorithm, this is a n-qubit Hadamard gate and for amplitude amplification or estimation the operator $\mathcal{A}$.
+*   **zero\_reflection** (`Union`\[`QuantumCircuit`, `DensityMatrix`, `Operator`, `None`]) – The reflection about the zero state, $\mathcal{S}_0$.
 *   **reflection\_qubits** (`Optional`\[`List`\[`int`]]) – Qubits on which the zero reflection acts on.
 *   **insert\_barriers** (`bool`) – Whether barriers should be inserted between the reflections and A.
 *   **mcx\_mode** (`str`) – The mode to use for building the default zero reflection.
@@ -165,7 +165,7 @@ Returns a list of ancilla bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.quantumregister.AncillaQubit")]
+`List`\[`AncillaQubit`]
 
 <span id="qiskit.circuit.library.GroverOperator.calibrations" />
 
@@ -189,7 +189,7 @@ Returns a list of classical bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.library.GroverOperator.data" />
 
@@ -199,7 +199,9 @@ Return the circuit data (instructions and context).
 
 **Returns**
 
-a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
+a list-like object containing the tuples for the circuit’s data.
+
+Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is an Instruction (or subclass) object, qargs is a list of Qubit objects, and cargs is a list of Clbit objects.
 
 **Return type**
 
@@ -219,7 +221,7 @@ Return the global phase of the circuit in radians.
 
 **Return type**
 
-`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]
+`Union`\[`ParameterExpression`, `float`]
 
 <span id="qiskit.circuit.library.GroverOperator.header" />
 
@@ -231,7 +233,7 @@ Return the global phase of the circuit in radians.
 
 ### instances
 
-`= 87`
+`= 9`
 
 <span id="qiskit.circuit.library.GroverOperator.metadata" />
 
@@ -285,26 +287,6 @@ Return number of qubits.
 
 `int`
 
-<span id="qiskit.circuit.library.GroverOperator.op_start_times" />
-
-### op\_start\_times
-
-Return a list of operation start times.
-
-This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
-
-**Return type**
-
-`List`\[`int`]
-
-**Returns**
-
-List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
-
-**Raises**
-
-**AttributeError** – When circuit is not scheduled.
-
 <span id="qiskit.circuit.library.GroverOperator.oracle" />
 
 ### oracle
@@ -335,7 +317,7 @@ Returns a list of quantum bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")]
+`List`\[`Qubit`]
 
 <span id="qiskit.circuit.library.GroverOperator.reflection_qubits" />
 
@@ -351,7 +333,7 @@ The subcircuit implementing the A operator or Hadamards.
 
 **Return type**
 
-[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+`QuantumCircuit`
 
 <span id="qiskit.circuit.library.GroverOperator.zero_reflection" />
 
@@ -361,5 +343,5 @@ The subcircuit implementing the reflection about 0.
 
 **Return type**
 
-[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+`QuantumCircuit`
 

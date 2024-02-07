@@ -10,9 +10,9 @@ python_api_name: qiskit.transpiler.passes.RemoveFinalMeasurements
 
 <span id="qiskit.transpiler.passes.RemoveFinalMeasurements" />
 
-`RemoveFinalMeasurements(*args, **kwargs)`
+`RemoveFinalMeasurements(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/utils/remove_final_measurements.py "view source code")
 
-Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
+Bases: `qiskit.transpiler.basepasses.TransformationPass`
 
 Remove final measurements and barriers at the end of a circuit.
 
@@ -34,7 +34,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.RemoveFinalMeasurements.run" />
 
-`RemoveFinalMeasurements.run(dag)`
+`RemoveFinalMeasurements.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/utils/remove_final_measurements.py "view source code")
 
 Run the RemoveFinalMeasurements pass on dag.
 

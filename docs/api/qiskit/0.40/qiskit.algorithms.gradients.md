@@ -1,10 +1,10 @@
 <span id="qiskit-algorithms-gradients" />
 
-# qiskit.algorithms.gradients[¶](#module-qiskit.algorithms.gradients "Permalink to this headline")
+# qiskit.algorithms.gradients
 
-## Gradients ([`qiskit.algorithms.gradients`](#module-qiskit.algorithms.gradients "qiskit.algorithms.gradients"))[¶](#gradients-qiskit-algorithms-gradients "Permalink to this headline")
+## Gradients ([`qiskit.algorithms.gradients`](#module-qiskit.algorithms.gradients "qiskit.algorithms.gradients"))
 
-### Estimator Gradients[¶](#estimator-gradients "Permalink to this headline")
+### Estimator Gradients
 
 |                                                                                                                                                                        |                                                                                                                       |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
@@ -16,7 +16,7 @@
 | [`SPSAEstimatorGradient`](qiskit.algorithms.gradients.SPSAEstimatorGradient "qiskit.algorithms.gradients.SPSAEstimatorGradient")(estimator, epsilon\[, ...])           | Compute the gradients of the expectation value by the Simultaneous Perturbation Stochastic Approximation (SPSA) \[1]. |
 | [`ReverseEstimatorGradient`](qiskit.algorithms.gradients.ReverseEstimatorGradient "qiskit.algorithms.gradients.ReverseEstimatorGradient")(\[derivative\_type])         | Estimator gradients with the classically efficient reverse mode.                                                      |
 
-### Sampler Gradients[¶](#sampler-gradients "Permalink to this headline")
+### Sampler Gradients
 
 |                                                                                                                                                                   |                                                                                                                          |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
@@ -26,7 +26,7 @@
 | [`ParamShiftSamplerGradient`](qiskit.algorithms.gradients.ParamShiftSamplerGradient "qiskit.algorithms.gradients.ParamShiftSamplerGradient")(sampler\[, options]) | Compute the gradients of the sampling probability by the parameter shift rule \[1].                                      |
 | [`SPSASamplerGradient`](qiskit.algorithms.gradients.SPSASamplerGradient "qiskit.algorithms.gradients.SPSASamplerGradient")(sampler, epsilon\[, ...])              | Compute the gradients of the sampling probability by the Simultaneous Perturbation Stochastic Approximation (SPSA) \[1]. |
 
-### Quantum Geometric Tensor[¶](#quantum-geometric-tensor "Permalink to this headline")
+### Quantum Geometric Tensor
 
 |                                                                                                                                  |                                                                                                      |
 | -------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
@@ -35,7 +35,7 @@
 | [`QFI`](qiskit.algorithms.gradients.QFI "qiskit.algorithms.gradients.QFI")(qgt\[, options])                                      | Computes the Quantum Fisher Information (QFI) given a pure, parameterized quantum state.             |
 | [`ReverseQGT`](qiskit.algorithms.gradients.ReverseQGT "qiskit.algorithms.gradients.ReverseQGT")(\[phase\_fix, derivative\_type]) | QGT calculation with the classically efficient reverse mode.                                         |
 
-### Results[¶](#results "Permalink to this headline")
+### Results
 
 |                                                                                                                                                                  |                              |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- |

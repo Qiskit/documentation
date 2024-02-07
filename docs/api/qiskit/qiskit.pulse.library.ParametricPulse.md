@@ -10,20 +10,20 @@ python_api_name: qiskit.pulse.library.ParametricPulse
 
 <span id="qiskit.pulse.library.ParametricPulse" />
 
-`qiskit.pulse.library.ParametricPulse(duration, name=None, limit_amplitude=None)`
+`qiskit.pulse.library.ParametricPulse(duration, name=None, limit_amplitude=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/pulse/library/parametric_pulses.py "view source code")
 
 Bases: `Pulse`
 
 The abstract superclass for parametric pulses.
 
 <Admonition title="Warning" type="caution">
-  This class is superseded by [`SymbolicPulse`](qiskit.pulse.library.SymbolicPulse "qiskit.pulse.library.SymbolicPulse") and will be deprecated and eventually removed in the future because of the poor flexibility for defining a new waveform type and serializing it through the [`qiskit.qpy`](qpy#module-qiskit.qpy "qiskit.qpy") framework.
+  This class was superseded by [`SymbolicPulse`](qiskit.pulse.library.SymbolicPulse "qiskit.pulse.library.SymbolicPulse") and is deprecated. It will be removed in Qiskit 1.0 because of the poor flexibility for defining a new waveform type and serializing it through the [`qiskit.qpy`](qpy#module-qiskit.qpy "qiskit.qpy") framework.
 </Admonition>
 
 Create a parametric pulse and validate the input parameters.
 
-<Admonition title="Deprecated since version 0.22_pending" type="danger">
-  The class `qiskit.pulse.library.parametric_pulses.ParametricPulse` is pending deprecation as of qiskit-terra 0.22. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. Instead, use SymbolicPulse because of QPY serialization support. See qiskit.pulse.library.symbolic\_pulses for details.
+<Admonition title="Deprecated since version 0.46" type="danger">
+  The class `qiskit.pulse.library.parametric_pulses.ParametricPulse` is deprecated as of qiskit-terra 0.46. It will be removed in Qiskit 1.0. Instead, use SymbolicPulse because of QPY serialization support. See qiskit.pulse.library.symbolic\_pulses for details.
 </Admonition>
 
 **Parameters**

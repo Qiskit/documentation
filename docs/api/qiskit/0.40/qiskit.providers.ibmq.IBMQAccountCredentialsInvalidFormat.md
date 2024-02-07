@@ -6,11 +6,11 @@ python_api_type: exception
 python_api_name: qiskit.providers.ibmq.IBMQAccountCredentialsInvalidFormat
 ---
 
-# qiskit.providers.ibmq.IBMQAccountCredentialsInvalidFormat[¶](#qiskit-providers-ibmq-ibmqaccountcredentialsinvalidformat "Permalink to this headline")
+# qiskit.providers.ibmq.IBMQAccountCredentialsInvalidFormat
 
 <span id="qiskit.providers.ibmq.IBMQAccountCredentialsInvalidFormat" />
 
-`IBMQAccountCredentialsInvalidFormat(*message)`
+`IBMQAccountCredentialsInvalidFormat(*message)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/exceptions.py "view source code")
 
 Errors raised when the credentials format is invalid.
 

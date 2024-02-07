@@ -12,7 +12,7 @@ python_api_name: qiskit.tools.job_monitor
 
 <span id="qiskit.tools.job_monitor" />
 
-`job_monitor(job, interval=None, quiet=False, output=<_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>, line_discipline='\r')`
+`job_monitor(job, interval=None, quiet=False, output=<_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>, line_discipline='\r')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/tools/monitor/job_monitor.py "view source code")
 
 Monitor the status of a IBMQJob instance.
 
@@ -26,7 +26,7 @@ Monitor the status of a IBMQJob instance.
 *   **line\_discipline** (*string*) – character emitted at start of a line of job monitor output,
 *   **r.** (*This defaults to*) –
 
-## Examples
+**Examples**
 
 ```python
 from qiskit import BasicAer, transpile

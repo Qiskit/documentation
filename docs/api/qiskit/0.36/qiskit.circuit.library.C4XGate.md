@@ -10,15 +10,15 @@ python_api_name: qiskit.circuit.library.C4XGate
 
 <span id="qiskit.circuit.library.C4XGate" />
 
-`C4XGate(label=None, ctrl_state=None)`
+`C4XGate(label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/x.py "view source code")
 
-Bases: [`qiskit.circuit.controlledgate.ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
+Bases: `qiskit.circuit.controlledgate.ControlledGate`
 
 The 4-qubit controlled X gate.
 
 This implementation is based on Page 21, Lemma 7.5, of \[1], with the use of the relative phase version of c3x, the rc3x \[2].
 
-## References
+**References**
 
 \[1] Barenco et al., 1995. [https://arxiv.org/pdf/quant-ph/9503016.pdf](https://arxiv.org/pdf/quant-ph/9503016.pdf) \[2] Maslov, 2015. [https://arxiv.org/abs/1508.03273](https://arxiv.org/abs/1508.03273)
 
@@ -30,7 +30,7 @@ Create a new 4-qubit controlled X gate.
 
 <span id="qiskit.circuit.library.C4XGate.control" />
 
-`C4XGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+`C4XGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 Controlled version of this gate.
 
@@ -52,7 +52,7 @@ controlled version of this gate.
 
 <span id="qiskit.circuit.library.C4XGate.inverse" />
 
-`C4XGate.inverse()`
+`C4XGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 Invert this gate. The C4X is its own inverse.
 
@@ -66,7 +66,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.library.C4XGate.ctrl_state" />
 

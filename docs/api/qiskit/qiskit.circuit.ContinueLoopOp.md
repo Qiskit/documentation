@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.ContinueLoopOp
 
 <span id="qiskit.circuit.ContinueLoopOp" />
 
-`qiskit.circuit.ContinueLoopOp(num_qubits, num_clbits, label=None)`
+`qiskit.circuit.ContinueLoopOp(num_qubits, num_clbits, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/controlflow/continue_loop.py "view source code")
 
 Bases: [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 
@@ -262,7 +262,7 @@ Return a default OpenQASM string for the instruction.
 Derived instructions may override this to print in a different format (e.g. `measure q[0] -> c[0];`).
 
 <Admonition title="Deprecated since version 0.25.0" type="danger">
-  The method `qiskit.circuit.instruction.Instruction.qasm()` is deprecated as of qiskit-terra 0.25.0. It will be removed no earlier than 3 months after the release date. Correct exporting to OpenQASM 2 is the responsibility of a larger exporter; it cannot safely be done on an object-by-object basis without context. No replacement will be provided, because the premise is wrong.
+  The method `qiskit.circuit.instruction.Instruction.qasm()` is deprecated as of qiskit-terra 0.25.0. It will be removed in the Qiskit 1.0 release. Correct exporting to OpenQASM 2 is the responsibility of a larger exporter; it cannot safely be done on an object-by-object basis without context. No replacement will be provided, because the premise is wrong.
 </Admonition>
 
 ### repeat

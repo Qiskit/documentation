@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CUGate
 
 <span id="qiskit.circuit.library.CUGate" />
 
-`CUGate(theta, phi, lam, gamma, label=None, ctrl_state=None)`
+`CUGate(theta, phi, lam, gamma, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/standard_gates/u.py "view source code")
 
 Bases: [`qiskit.circuit.controlledgate.ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 
@@ -74,7 +74,7 @@ Create new CU gate.
 
 <span id="qiskit.circuit.library.CUGate.inverse" />
 
-`CUGate.inverse()`
+`CUGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/standard_gates/u.py "view source code")
 
 Return inverted CU gate.
 

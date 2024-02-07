@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.NLocal
 
 <span id="qiskit.circuit.library.NLocal" />
 
-`qiskit.circuit.library.NLocal(num_qubits=None, rotation_blocks=None, entanglement_blocks=None, entanglement=None, reps=1, insert_barriers=False, parameter_prefix='θ', overwrite_block_parameters=True, skip_final_rotation_layer=False, skip_unentangled_qubits=False, initial_state=None, name='nlocal', flatten=None)`
+`qiskit.circuit.library.NLocal(num_qubits=None, rotation_blocks=None, entanglement_blocks=None, entanglement=None, reps=1, insert_barriers=False, parameter_prefix='θ', overwrite_block_parameters=True, skip_final_rotation_layer=False, skip_unentangled_qubits=False, initial_state=None, name='nlocal', flatten=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/n_local/n_local.py "view source code")
 
 Bases: `BlueprintCircuit`
 
@@ -157,7 +157,7 @@ If barriers are inserted in between the layers or not.
 
 ### instances
 
-`= 221`
+`= 165`
 
 <span id="qiskit.circuit.library.NLocal.layout" />
 
@@ -253,7 +253,7 @@ The parameters used in the underlying circuit.
 
 This includes float values and duplicates.
 
-## Examples
+**Examples**
 
 ```python
 >>> # prepare circuit ...

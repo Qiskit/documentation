@@ -1,8 +1,16 @@
+---
+title: CVaRExpectation
+description: API reference for qiskit.opflow.expectations.CVaRExpectation
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.opflow.expectations.CVaRExpectation
+---
+
 # CVaRExpectation
 
+<span id="qiskit.opflow.expectations.CVaRExpectation" />
 
-
-`CVaRExpectation(alpha, expectation=None)`
+`CVaRExpectation(alpha, expectation=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/expectations/cvar_expectation.py "view source code")
 
 Bases: `qiskit.opflow.expectations.expectation_base.ExpectationBase`
 
@@ -16,7 +24,7 @@ It is empirically shown, that this can lead to faster convergence for combinator
 
 Let $\alpha$ be a real number in $[0,1]$ which specifies the fraction of best observed samples which are used to compute the objective function. Observe that if $\alpha = 1$, CVaR is equivalent to a standard expectation value. Similarly, if $\alpha = 0$, then CVaR corresponds to using the best observed sample. Intermediate values of $\alpha$ interpolate between these two objective functions.
 
-## References
+**References**
 
 **\[1]: Barkoutsos, P. K., Nannicini, G., Robert, A., Tavernelli, I., and Woerner, S.,**
 
@@ -33,7 +41,45 @@ Let $\alpha$ be a real number in $[0,1]$ which specifies the fraction of best ob
 
 ## Methods Defined Here
 
-|                                                                                                                                                                                                             |                                                                              |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| [`compute_variance`](qiskit.opflow.expectations.CVaRExpectation.compute_variance#qiskit.opflow.expectations.CVaRExpectation.compute_variance "qiskit.opflow.expectations.CVaRExpectation.compute_variance") | Returns the variance of the CVaR calculation                                 |
-| [`convert`](qiskit.opflow.expectations.CVaRExpectation.convert#qiskit.opflow.expectations.CVaRExpectation.convert "qiskit.opflow.expectations.CVaRExpectation.convert")                                     | Return an expression that computes the CVaR expectation upon calling `eval`. |
+### compute\_variance
+
+<span id="qiskit.opflow.expectations.CVaRExpectation.compute_variance" />
+
+`CVaRExpectation.compute_variance(exp_op)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/expectations/cvar_expectation.py "view source code")
+
+Returns the variance of the CVaR calculation
+
+**Parameters**
+
+**exp\_op** (`OperatorBase`) – The operator whose evaluation yields an expectation of some StateFn against a diagonal observable.
+
+**Return type**
+
+`Union`\[`list`, `float`]
+
+**Returns**
+
+**The variance of the CVaR estimate corresponding to the converted**
+
+exp\_op.
+
+**Raises**
+
+**ValueError** – If the exp\_op does not correspond to an expectation value.
+
+### convert
+
+<span id="qiskit.opflow.expectations.CVaRExpectation.convert" />
+
+`CVaRExpectation.convert(operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/expectations/cvar_expectation.py "view source code")
+
+Return an expression that computes the CVaR expectation upon calling `eval`. :type operator: `OperatorBase` :param operator: The operator to convert.
+
+**Return type**
+
+`OperatorBase`
+
+**Returns**
+
+The converted operator.
+

@@ -1,8 +1,16 @@
+---
+title: update_qobj_config
+description: API reference for qiskit.providers.ibmq.utils.update_qobj_config
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.providers.ibmq.utils.update_qobj_config
+---
+
 # qiskit.providers.ibmq.utils.update\_qobj\_config
 
+<span id="qiskit.providers.ibmq.utils.update_qobj_config" />
 
-
-`update_qobj_config(qobj, backend_options=None, noise_model=None)`
+`update_qobj_config(qobj, backend_options=None, noise_model=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.18/qiskit/providers/ibmq/utils/qobj_utils.py "view source code")
 
 Update a `Qobj` configuration from backend options and a noise model.
 
@@ -19,3 +27,4 @@ Update a `Qobj` configuration from backend options and a noise model.
 **Returns**
 
 The updated `Qobj`.
+

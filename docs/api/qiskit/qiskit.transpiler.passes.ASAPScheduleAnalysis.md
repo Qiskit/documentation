@@ -10,11 +10,11 @@ python_api_name: qiskit.transpiler.passes.ASAPScheduleAnalysis
 
 <span id="qiskit.transpiler.passes.ASAPScheduleAnalysis" />
 
-`qiskit.transpiler.passes.ASAPScheduleAnalysis(*args, **kwargs)`
+`qiskit.transpiler.passes.ASAPScheduleAnalysis(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/passes/scheduling/scheduling/asap.py "view source code")
 
 Bases: `BaseScheduler`
 
-ASAP Scheduling pass, which schedules the start time of instructions as early as possible..
+ASAP Scheduling pass, which schedules the start time of instructions as early as possible.
 
 See the [Scheduling Stage](transpiler#scheduling-stage) section in the [`qiskit.transpiler`](transpiler#module-qiskit.transpiler "qiskit.transpiler") module documentation for the detailed behavior of the control flow operation, i.e. `c_if`.
 

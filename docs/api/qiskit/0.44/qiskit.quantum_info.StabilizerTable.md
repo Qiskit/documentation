@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.StabilizerTable
 
 <span id="qiskit.quantum_info.StabilizerTable" />
 
-`qiskit.quantum_info.StabilizerTable(data, phase=None)`
+`qiskit.quantum_info.StabilizerTable(data, phase=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/operators/symplectic/stabilizer_table.py "view source code")
 
 Bases: [`PauliTable`](qiskit.quantum_info.PauliTable "qiskit.quantum_info.operators.symplectic.pauli_table.PauliTable"), `AdjointMixin`
 
@@ -75,7 +75,7 @@ The Pauli part of the Stabilizer table can be viewed and accessed as a [`PauliTa
 
 Rows in the Stabilizer table can be iterated over like a list. Iteration can also be done using the label or matrix representation of each row using the [`label_iter()`](#qiskit.quantum_info.StabilizerTable.label_iter "qiskit.quantum_info.StabilizerTable.label_iter") and [`matrix_iter()`](#qiskit.quantum_info.StabilizerTable.matrix_iter "qiskit.quantum_info.StabilizerTable.matrix_iter") methods.
 
-## References
+**References**
 
 1.  S. Aaronson, D. Gottesman, *Improved Simulation of Stabilizer Circuits*, Phys. Rev. A 70, 052328 (2004). [arXiv:quant-ph/0406196](https://arxiv.org/abs/quant-ph/0406196)
 

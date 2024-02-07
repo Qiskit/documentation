@@ -10,22 +10,22 @@ python_api_name: qiskit.compiler.schedule
 
 <span id="qiskit.compiler.schedule" />
 
-`schedule(circuits, backend=None, inst_map=None, meas_map=None, dt=None, method=None)`
+`schedule(circuits, backend=None, inst_map=None, meas_map=None, dt=None, method=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/compiler/scheduler.py "view source code")
 
 Schedule a circuit to a pulse `Schedule`, using the backend, according to any specified methods. Supported methods are documented in [`qiskit.scheduler.schedule_circuit`](qiskit.scheduler.schedule_circuit#module-qiskit.scheduler.schedule_circuit "qiskit.scheduler.schedule_circuit").
 
 **Parameters**
 
-*   **circuits** (`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), `List`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]]) – The quantum circuit or circuits to translate
-*   **backend** (`Optional`\[[`Backend`](qiskit.providers.Backend "qiskit.providers.backend.Backend")]) – A backend instance, which contains hardware-specific data required for scheduling
-*   **inst\_map** (`Optional`\[[`InstructionScheduleMap`](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.instruction_schedule_map.InstructionScheduleMap")]) – Mapping of circuit operations to pulse schedules. If `None`, defaults to the `backend`’s `instruction_schedule_map`
+*   **circuits** (`Union`\[`QuantumCircuit`, `List`\[`QuantumCircuit`]]) – The quantum circuit or circuits to translate
+*   **backend** (`Union`\[`Backend`, `BaseBackend`, `None`]) – A backend instance, which contains hardware-specific data required for scheduling
+*   **inst\_map** (`Optional`\[`InstructionScheduleMap`]) – Mapping of circuit operations to pulse schedules. If `None`, defaults to the `backend`’s `instruction_schedule_map`
 *   **meas\_map** (`Optional`\[`List`\[`List`\[`int`]]]) – List of sets of qubits that must be measured together. If `None`, defaults to the `backend`’s `meas_map`
 *   **dt** (`Optional`\[`float`]) – The output sample rate of backend control electronics. For scheduled circuits which contain time information, dt is required. If not provided, it will be obtained from the backend configuration
 *   **method** (`Union`\[`str`, `List`\[`str`], `None`]) – Optionally specify a particular scheduling method
 
 **Return type**
 
-`Union`\[[`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule"), `List`\[[`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")]]
+`Union`\[`Schedule`, `List`\[`Schedule`]]
 
 **Returns**
 

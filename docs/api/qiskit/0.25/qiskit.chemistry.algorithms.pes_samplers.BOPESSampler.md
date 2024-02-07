@@ -1,8 +1,16 @@
+---
+title: BOPESSampler
+description: API reference for qiskit.chemistry.algorithms.pes_samplers.BOPESSampler
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.algorithms.pes_samplers.BOPESSampler
+---
+
 # qiskit.chemistry.algorithms.pes\_samplers.BOPESSampler
 
+<span id="qiskit.chemistry.algorithms.pes_samplers.BOPESSampler" />
 
-
-`BOPESSampler(gss, tolerance=0.001, bootstrap=True, num_bootstrap=None, extrapolator=None)`
+`BOPESSampler(gss, tolerance=0.001, bootstrap=True, num_bootstrap=None, extrapolator=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/bopes_sampler.py "view source code")
 
 Class to evaluate the Born-Oppenheimer Potential Energy Surface (BOPES).
 
@@ -16,9 +24,11 @@ Class to evaluate the Born-Oppenheimer Potential Energy Surface (BOPES).
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If `num_boostrap` is an integer smaller than 2, or if `num_boostrap` is larger than 2 and the extrapolator is not an instance of `WindowExtrapolator`.
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If `num_boostrap` is an integer smaller than 2, or if `num_boostrap` is larger than 2 and the extrapolator is not an instance of `WindowExtrapolator`.
 
+### \_\_init\_\_
 
+<span id="qiskit.chemistry.algorithms.pes_samplers.BOPESSampler.__init__" />
 
 `__init__(gss, tolerance=0.001, bootstrap=True, num_bootstrap=None, extrapolator=None)`
 
@@ -32,7 +42,7 @@ Class to evaluate the Born-Oppenheimer Potential Energy Surface (BOPES).
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If `num_boostrap` is an integer smaller than 2, or if `num_boostrap` is larger than 2 and the extrapolator is not an instance of `WindowExtrapolator`.
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If `num_boostrap` is an integer smaller than 2, or if `num_boostrap` is larger than 2 and the extrapolator is not an instance of `WindowExtrapolator`.
 
 ## Methods
 
@@ -41,7 +51,9 @@ Class to evaluate the Born-Oppenheimer Potential Energy Surface (BOPES).
 | [`__init__`](#qiskit.chemistry.algorithms.pes_samplers.BOPESSampler.__init__ "qiskit.chemistry.algorithms.pes_samplers.BOPESSampler.__init__")(gss\[, tolerance, bootstrap, …]) | **type gss**`GroundStateSolver`                                    |
 | [`sample`](#qiskit.chemistry.algorithms.pes_samplers.BOPESSampler.sample "qiskit.chemistry.algorithms.pes_samplers.BOPESSampler.sample")(driver, points)                        | Run the sampler at the given points, potentially with repetitions. |
 
+### sample
 
+<span id="qiskit.chemistry.algorithms.pes_samplers.BOPESSampler.sample" />
 
 `sample(driver, points)`
 
@@ -62,4 +74,5 @@ BOPES Sampler Result
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if the driver does not have a molecule specified.
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if the driver does not have a molecule specified.
+

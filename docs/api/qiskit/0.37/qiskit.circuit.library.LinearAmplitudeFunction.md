@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.LinearAmplitudeFunction
 
 <span id="qiskit.circuit.library.LinearAmplitudeFunction" />
 
-`LinearAmplitudeFunction(num_state_qubits, slope, offset, domain, image, rescaling_factor=1, breakpoints=None, name='F')`
+`LinearAmplitudeFunction(num_state_qubits, slope, offset, domain, image, rescaling_factor=1, breakpoints=None, name='F')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/arithmetic/linear_amplitude_function.py "view source code")
 
 Bases: [`qiskit.circuit.quantumcircuit.QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
@@ -47,7 +47,7 @@ $$
 
 where $1_{[a, b]}$ is an indication function that is 1 if the argument is in the interval $[a, b]$ and otherwise 0. The breakpoints $p_i$ can be specified by the `breakpoints` argument.
 
-## References
+**References**
 
 **\[1]: Woerner, S., & Egger, D. J. (2018).**
 
@@ -74,7 +74,7 @@ Quantum-Enhanced Simulation-Based Optimization. [arXiv:2005.10780](http://arxiv.
 
 <span id="qiskit.circuit.library.LinearAmplitudeFunction.post_processing" />
 
-`LinearAmplitudeFunction.post_processing(scaled_value)`
+`LinearAmplitudeFunction.post_processing(scaled_value)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/arithmetic/linear_amplitude_function.py "view source code")
 
 Map the function value of the approximated $\hat{f}$ to $f$.
 
@@ -248,7 +248,7 @@ The parameters defined in the circuit.
 
 This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
 
-## Examples
+**Examples**
 
 The snippet below shows that insertion order of parameters does not matter.
 

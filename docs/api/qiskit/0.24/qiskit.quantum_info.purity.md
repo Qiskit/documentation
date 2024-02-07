@@ -1,10 +1,18 @@
+---
+title: purity
+description: API reference for qiskit.quantum_info.purity
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.quantum_info.purity
+---
+
 <span id="qiskit-quantum-info-purity" />
 
 # qiskit.quantum\_info.purity
 
+<span id="qiskit.quantum_info.purity" />
 
-
-`purity(state, validate=True)`
+`purity(state, validate=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/quantum_info/states/measures.py "view source code")
 
 Calculate the purity of a quantum state.
 
@@ -16,7 +24,7 @@ $$
 
 **Parameters**
 
-*   **state** ([*Statevector*](qiskit.quantum_info.Statevector#qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix#qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")) – a quantum state.
+*   **state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")) – a quantum state.
 *   **validate** (*bool*) – check if input state is valid \[Default: True]
 
 **Returns**
@@ -30,3 +38,4 @@ float
 **Raises**
 
 **QiskitError** – if the input isn’t a valid quantum state.
+

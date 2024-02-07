@@ -1,8 +1,16 @@
+---
+title: eval_observables
+description: API reference for qiskit.algorithms.eval_observables
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.algorithms.eval_observables
+---
+
 # qiskit.algorithms.eval\_observables
 
+<span id="qiskit.algorithms.eval_observables" />
 
-
-`eval_observables(quantum_instance, quantum_state, observables, expectation, threshold=1e-12)`
+`eval_observables(quantum_instance, quantum_state, observables, expectation, threshold=1e-12)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/aux_ops_evaluator.py "view source code")
 
 Accepts a list or a dictionary of operators and calculates their expectation values - means and standard deviations. They are calculated with respect to a quantum state provided. A user can optionally provide a threshold value which filters mean values falling below the threshold.
 
@@ -25,3 +33,4 @@ A list or a dictionary of tuples (mean, standard deviation).
 **Raises**
 
 **ValueError** – If a `quantum_state` with free parameters is provided.
+

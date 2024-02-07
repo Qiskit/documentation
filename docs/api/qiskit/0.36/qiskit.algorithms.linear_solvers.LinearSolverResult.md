@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.linear_solvers.LinearSolverResult
 
 <span id="qiskit.algorithms.linear_solvers.LinearSolverResult" />
 
-`LinearSolverResult`
+`LinearSolverResult`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/linear_solvers/linear_solver.py "view source code")
 
 Bases: `qiskit.algorithms.algorithm_result.AlgorithmResult`
 
@@ -46,7 +46,7 @@ return the results from the circuits
 
 **Return type**
 
-`Union`\[`List`\[`float`], `List`\[[`Result`](qiskit.result.Result "qiskit.result.result.Result")]]
+`Union`\[`List`\[`float`], `List`\[`Result`]]
 
 <span id="qiskit.algorithms.linear_solvers.LinearSolverResult.euclidean_norm" />
 
@@ -76,5 +76,5 @@ return either the circuit that prepares the solution or the solution as a vector
 
 **Return type**
 
-`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), `ndarray`]
+`Union`\[`QuantumCircuit`, `ndarray`]
 

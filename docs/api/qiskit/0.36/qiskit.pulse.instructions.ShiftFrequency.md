@@ -10,9 +10,9 @@ python_api_name: qiskit.pulse.instructions.ShiftFrequency
 
 <span id="qiskit.pulse.instructions.ShiftFrequency" />
 
-`ShiftFrequency(frequency, channel, name=None)`
+`ShiftFrequency(frequency, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/instructions/frequency.py "view source code")
 
-Bases: [`qiskit.pulse.instructions.instruction.Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")
+Bases: `qiskit.pulse.instructions.instruction.Instruction`
 
 Shift the channel frequency away from the current frequency.
 
@@ -20,7 +20,7 @@ Creates a new shift frequency instruction.
 
 **Parameters**
 
-*   **frequency** (`Union`\[`float`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]) – Frequency shift of the channel in Hz.
+*   **frequency** (`Union`\[`float`, `ParameterExpression`]) – Frequency shift of the channel in Hz.
 *   **channel** (`PulseChannel`) – The channel this instruction operates on.
 *   **name** (`Optional`\[`str`]) – Name of this set channel frequency instruction.
 
@@ -152,7 +152,7 @@ A new schedule with `schedule` inserted with this instruction at t=0.
 
 <span id="qiskit.pulse.instructions.ShiftFrequency.is_parameterized" />
 
-`ShiftFrequency.is_parameterized()`
+`ShiftFrequency.is_parameterized()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/instructions/frequency.py "view source code")
 
 Return True iff the instruction is parameterized.
 
@@ -221,7 +221,7 @@ Frequency shift from the set frequency.
 
 **Return type**
 
-`Union`\[`float`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]
+`Union`\[`float`, `ParameterExpression`]
 
 <span id="qiskit.pulse.instructions.ShiftFrequency.id" />
 
@@ -241,7 +241,7 @@ Iterable for getting instructions from Schedule tree.
 
 **Return type**
 
-`Tuple`\[`Tuple`\[`int`, [`Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")]]
+`Tuple`\[`Tuple`\[`int`, `Instruction`]]
 
 <span id="qiskit.pulse.instructions.ShiftFrequency.name" />
 

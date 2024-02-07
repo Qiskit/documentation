@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.MCMTVChain
 ---
 
-# MCMTVChain[¶](#mcmtvchain "Permalink to this headline")
+# MCMTVChain
 
 <span id="qiskit.circuit.library.MCMTVChain" />
 
-`MCMTVChain(gate, num_ctrl_qubits, num_target_qubits)`
+`MCMTVChain(gate, num_ctrl_qubits, num_target_qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/generalized_gates/mcmt.py "view source code")
 
 Bases: [`qiskit.circuit.library.generalized_gates.mcmt.MCMT`](qiskit.circuit.library.MCMT "qiskit.circuit.library.generalized_gates.mcmt.MCMT")
 
@@ -76,7 +76,7 @@ Create a new multi-control multi-target gate.
 
 <span id="qiskit.circuit.library.MCMTVChain.inverse" />
 
-`MCMTVChain.inverse()`
+`MCMTVChain.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/generalized_gates/mcmt.py "view source code")
 
 Return the inverse MCMT circuit, which is itself.
 
@@ -242,7 +242,7 @@ The parameters defined in the circuit.
 
 This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
 
-## Examples
+**Examples**
 
 The snippet below shows that insertion order of parameters does not matter.
 

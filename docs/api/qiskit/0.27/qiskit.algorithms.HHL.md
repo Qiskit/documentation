@@ -1,8 +1,16 @@
+---
+title: HHL
+description: API reference for qiskit.algorithms.HHL
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.algorithms.HHL
+---
+
 # qiskit.algorithms.HHL
 
+<span id="qiskit.algorithms.HHL" />
 
-
-`HHL(epsilon=0.01, expectation=None, quantum_instance=None)`
+`HHL(epsilon=0.01, expectation=None, quantum_instance=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/linear_solvers/hhl.py "view source code")
 
 Systems of linear equations arise naturally in many real-life applications in a wide range of areas, such as in the solution of Partial Differential Equations, the calibration of financial models, fluid simulation or numerical field calculation. The problem can be defined as, given a matrix $A\in\mathbb{C}^{N\times N}$ and a vector $\vec{b}\in\mathbb{C}^{N}$, find $\vec{x}\in\mathbb{C}^{N}$ satisfying $A\vec{x}=\vec{b}$.
 
@@ -10,7 +18,7 @@ A system of linear equations is called $s$-sparse if $A$ has at most $s$ non-zer
 
 The HHL is a quantum algorithm to estimate a function of the solution with running time complexity of $\mathcal{ O }(\log(N)s^{2}\kappa^{2}/\epsilon)$ when $A$ is a Hermitian matrix under the assumptions of efficient oracles for loading the data, Hamiltonian simulation and computing a function of the solution. This is an exponential speed up in the size of the system, however one crucial remark to keep in mind is that the classical algorithm returns the full solution, while the HHL can only approximate functions of the solution vector.
 
-## Examples
+**Examples**
 
 ```python
 import numpy as np
@@ -34,7 +42,7 @@ solution = hhl.solve(matrix, qc, observable)
 approx_result = solution.observable
 ```
 
-## References
+**References**
 
 \[1]: Harrow, A. W., Hassidim, A., Lloyd, S. (2009). Quantum algorithm for linear systems of equations. [Phys. Rev. Lett. 103, 15 (2009), 1–15.](https://doi.org/10.1103/PhysRevLett.103.150502)
 
@@ -46,7 +54,9 @@ approx_result = solution.observable
 *   **expectation** (`Optional`\[`ExpectationBase`]) – The expectation converter applied to the expectation values before evaluation. If None then PauliExpectation is used.
 *   **quantum\_instance** (`Union`\[`QuantumInstance`, `BaseBackend`, `Backend`, `None`]) – Quantum Instance or Backend. If None, a Statevector calculation is done.
 
+### \_\_init\_\_
 
+<span id="qiskit.algorithms.HHL.__init__" />
 
 `__init__(epsilon=0.01, expectation=None, quantum_instance=None)`
 
@@ -72,7 +82,9 @@ approx_result = solution.observable
 | [`quantum_instance`](#qiskit.algorithms.HHL.quantum_instance "qiskit.algorithms.HHL.quantum_instance") | Get the quantum instance.                                                                          |
 | [`scaling`](#qiskit.algorithms.HHL.scaling "qiskit.algorithms.HHL.scaling")                            | The scaling of the solution vector.                                                                |
 
+### construct\_circuit
 
+<span id="qiskit.algorithms.HHL.construct_circuit" />
 
 `construct_circuit(matrix, vector)`
 
@@ -96,7 +108,9 @@ The HHL circuit.
 *   **ValueError** – If the input is not in the correct format.
 *   **ValueError** – If the type of the input matrix is not supported.
 
+### expectation
 
+<span id="qiskit.algorithms.HHL.expectation" />
 
 `property expectation`
 
@@ -106,7 +120,9 @@ The expectation value algorithm used to construct the expectation measurement fr
 
 `ExpectationBase`
 
+### quantum\_instance
 
+<span id="qiskit.algorithms.HHL.quantum_instance" />
 
 `property quantum_instance`
 
@@ -120,7 +136,9 @@ Get the quantum instance.
 
 The quantum instance used to run this algorithm.
 
+### scaling
 
+<span id="qiskit.algorithms.HHL.scaling" />
 
 `property scaling`
 
@@ -130,7 +148,9 @@ The scaling of the solution vector.
 
 `float`
 
+### solve
 
+<span id="qiskit.algorithms.HHL.solve" />
 
 `solve(matrix, vector, observable=None, observable_circuit=None, post_processing=None)`
 
@@ -155,3 +175,4 @@ Tries to solve the given linear system of equations.
 **Returns**
 
 The result object containing information about the solution vector of the linear system.
+

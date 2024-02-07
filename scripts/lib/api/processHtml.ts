@@ -10,7 +10,6 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { last } from "lodash";
 import { CheerioAPI, Cheerio, load } from "cheerio";
 
 import { Image } from "./HtmlToMdResult";
@@ -26,19 +25,24 @@ export type ProcessedHtml = {
 
 export function processHtml(options: {
   html: string;
-  url: string;
+  fileName: string;
   imageDestination: string;
-  baseGitHubUrl: string;
+  determineGithubUrl: (fileName: string) => string;
   releaseNotesTitle: string;
 }): ProcessedHtml {
-  const { html, url, imageDestination, baseGitHubUrl, releaseNotesTitle } =
-    options;
+  const {
+    html,
+    fileName,
+    imageDestination,
+    determineGithubUrl,
+    releaseNotesTitle,
+  } = options;
   const $ = load(html);
   const $main = $(`[role='main']`);
 
-  const isReleaseNotes = url.endsWith("release_notes.html");
-  const images = loadImages($, $main, url, imageDestination, isReleaseNotes);
-  if (url.endsWith("release_notes.html")) {
+  const isReleaseNotes = fileName.endsWith("release_notes.html");
+  const images = loadImages($, $main, imageDestination, isReleaseNotes);
+  if (isReleaseNotes) {
     renameAllH1s($, releaseNotesTitle);
   }
 
@@ -48,7 +52,7 @@ export function processHtml(options: {
   removeDownloadSourceCode($main);
   handleSphinxDesignCards($, $main);
   addLanguageClassToCodeBlocks($, $main);
-  replaceViewcodeLinksWithGitHub($, $main, baseGitHubUrl);
+  replaceViewcodeLinksWithGitHub($, $main, determineGithubUrl);
   convertRubricsToHeaders($, $main);
   processSimpleFieldLists($, $main);
   removeColonSpans($main);
@@ -66,28 +70,26 @@ export function processHtml(options: {
 export function loadImages(
   $: CheerioAPI,
   $main: Cheerio<any>,
-  url: string,
   imageDestination: string,
   isReleaseNotes: boolean,
 ): Image[] {
   return $main
     .find("img")
     .toArray()
+    .filter((img) => $(img).attr("src"))
     .map((img) => {
       const $img = $(img);
 
-      const imageUrl = new URL($img.attr("src")!, url);
-      const src = imageUrl.toString();
+      const fileName = $img.attr("src")!.split("/").pop()!;
 
-      const filename = last(src.split("/"));
-      let dest = `${imageDestination}/${filename}`;
+      let dest = `${imageDestination}/${fileName}`;
       if (isReleaseNotes) {
         // Release notes links should point to the current version
         dest = dest.replace(/[0-9].*\//, "");
       }
 
       $img.attr("src", dest);
-      return { src, dest: dest };
+      return { fileName, dest };
     });
 }
 
@@ -170,13 +172,8 @@ export function addLanguageClassToCodeBlocks(
 export function replaceViewcodeLinksWithGitHub(
   $: CheerioAPI,
   $main: Cheerio<any>,
-  baseGitHubUrl: string,
+  determineGithubUrl: (fileName: string) => string,
 ): void {
-  // Certain files do not map 1:1 between sphinx.ext.viewcode and GitHub.
-  // When adding new entries, add a dedicated test case!
-  const specialCases = new Map([
-    ["qiskit_ibm_provider", "qiskit_ibm_provider/__init__"],
-  ]);
   $main.find("a").each((_, a) => {
     const $a = $(a);
     const href = $a.attr("href");
@@ -188,12 +185,8 @@ export function replaceViewcodeLinksWithGitHub(
       return;
     }
     // E.g. `qiskit_ibm_runtime/ibm_backend`
-    let fullFileName = href.match(/_modules\/(.*?)(#|$)/)![1];
-    if (specialCases.has(fullFileName)) {
-      fullFileName = specialCases.get(fullFileName)!;
-    }
-    const newHref = `${baseGitHubUrl}${fullFileName}.py`;
-    $a.attr("href", newHref);
+    const fullFileName = href.match(/_modules\/(.*?)(#|$)/)![1];
+    $a.attr("href", determineGithubUrl(fullFileName));
   });
 }
 
@@ -201,12 +194,22 @@ export function convertRubricsToHeaders(
   $: CheerioAPI,
   $main: Cheerio<any>,
 ): void {
-  // Rubrics correspond to method and attribute headers.
-  // TODO(#479): ensure our understanding of what .rubric corresponds to is correct and figure out
-  //  if always using <h2> makes sense.
+  // A rubric is "a paragraph heading that is not used to create a table
+  // of contents node". Depending on the heading, this should be either <h2> or
+  // <strong>
+  function appropriateHtmlTag(html: string | null) {
+    html = String(html);
+    return html == "Methods" ||
+      html == "Methods Defined Here" ||
+      html == "Attributes"
+      ? "h2"
+      : "strong";
+  }
+
   $main.find(".rubric").each((_, el) => {
     const $el = $(el);
-    $el.replaceWith(`<h2>${$el.html()}</h2>`);
+    const tag = appropriateHtmlTag($el.html());
+    $el.replaceWith(`<${tag}>${$el.html()}</${tag}>`);
   });
 }
 
@@ -358,14 +361,18 @@ export function processMembersAndSetMeta(
           return output.join("\n");
         }
 
-        if (apiType === "function") {
-          findByText($, $main, "em.property", "function").remove();
-          return `<span class="target" id="${id}"/><p><code>${$child.html()}</code>${github}</p>`;
-        }
+        if (apiType === "function" || apiType === "exception") {
+          findByText($, $main, "em.property", apiType).remove();
+          const descriptionHtml = `<span class="target" id="${id}"/><p><code>${$child.html()}</code>${github}</p>`;
 
-        if (apiType === "exception") {
-          findByText($, $main, "em.property", "exception").remove();
-          return `<span class="target" id="${id}"/><p><code>${$child.html()}</code>${github}</p>`;
+          const pageHeading = $dl.siblings("h1").text();
+          if (id.endsWith(pageHeading) && pageHeading != "") {
+            // Page is already dedicated to apiType; no heading needed
+            return descriptionHtml;
+          }
+
+          const apiName = id.split(".").slice(-1)[0];
+          return `<h3>${apiName}</h3>${descriptionHtml}`;
         }
 
         throw new Error(`Unhandled Python type: ${apiType}`);

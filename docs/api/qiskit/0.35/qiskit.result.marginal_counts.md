@@ -1,8 +1,16 @@
+---
+title: marginal_counts
+description: API reference for qiskit.result.marginal_counts
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.result.marginal_counts
+---
+
 # qiskit.result.marginal\_counts
 
+<span id="qiskit.result.marginal_counts" />
 
-
-`marginal_counts(result, indices=None, inplace=False, format_marginal=False, marginalize_memory=True)`
+`marginal_counts(result, indices=None, inplace=False, format_marginal=False, marginalize_memory=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/result/utils.py "view source code")
 
 Marginalize counts from an experiment over some indices of interest.
 
@@ -22,8 +30,9 @@ the observed counts, marginalized to only account for frequency of observations 
 
 **Return type**
 
-[Result](qiskit.result.Result#qiskit.result.Result "qiskit.result.Result") or dict(str, int)
+[Result](qiskit.result.Result "qiskit.result.Result") or dict(str, int)
 
 **Raises**
 
 **QiskitError** – in case of invalid indices to marginalize over.
+

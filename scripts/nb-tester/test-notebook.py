@@ -12,9 +12,12 @@
 
 import argparse
 import sys
+import warnings
+import textwrap
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
+from typing import Iterator
 
 import nbclient
 import nbconvert
@@ -33,10 +36,81 @@ NOTEBOOKS_THAT_SUBMIT_JOBS = [
 ]
 
 
+def filter_paths(paths: list[Path], submit_jobs: bool) -> Iterator[Path]:
+    """
+    Filter out any paths we don't want to run, printing messages.
+    """
+    for path in paths:
+        if path.suffix != ".ipynb":
+            print(f"ℹ️ Skipping {path}; file is not `.ipynb` format.")
+            continue
+
+        if any(path.match(glob) for glob in NOTEBOOKS_EXCLUDE):
+            this_file = Path(__file__).resolve()
+            print(
+                f"ℹ️ Skipping {path}; to run it, edit `NOTEBOOKS_EXCLUDE` in {this_file}."
+            )
+            continue
+
+        if (
+            not submit_jobs
+            and any(path.match(glob) for glob in NOTEBOOKS_THAT_SUBMIT_JOBS)
+        ):
+            print(
+                f"ℹ️ Skipping {path} as it submits jobs; use the --submit-jobs flag to run it."
+            )
+            continue
+
+        yield path
+
+
 @dataclass(frozen=True)
 class ExecuteOptions:
     write: bool
     submit_jobs: bool
+
+
+@dataclass(frozen=True)
+class NotebookWarning:
+    cell_index: int
+    msg: str
+
+    def report(self):
+        """
+        Format warning and print it
+        """
+        message = f"Warning detected in cell {self.cell_index}:\n"
+        for line in self.msg.splitlines():
+            message += (
+                textwrap.fill(
+                    line, width=77, initial_indent=" │ ", subsequent_indent=" │ "
+                )
+                + "\n"
+            )
+        print_yellow(message, flush=True)
+
+
+def print_yellow(s: str, **kwargs):
+    """
+    Use ANSI escape codes to print yellow text
+    """
+    print(f"\033[0;33m{s}\033[0m", **kwargs)
+
+
+def extract_warnings(notebook: nbformat.NotebookNode) -> list[NotebookWarning]:
+    """
+    Detect warning messages in cell outputs
+    """
+    notebook_warnings = []
+    for cell_index, cell in enumerate(notebook.cells):
+        if not hasattr(cell, "outputs"):
+            continue
+        for output in cell.outputs:
+            if hasattr(output, "name") and output.name == "stderr":
+                notebook_warnings.append(
+                    NotebookWarning(cell_index=cell_index, msg=output.text)
+                )
+    return notebook_warnings
 
 
 def execute_notebook(path: Path, options: ExecuteOptions) -> bool:
@@ -49,16 +123,23 @@ def execute_notebook(path: Path, options: ExecuteOptions) -> bool:
         nbclient.exceptions.CellTimeoutError,
     )
     try:
-        _execute_notebook(path, options)
+        nb = _execute_notebook(path, options)
     except possible_exceptions as err:
         print("\r❌\n")
         print(err)
         return False
+
+    notebook_warnings = extract_warnings(nb)
+    if notebook_warnings:
+        print("\r⚠️")
+        [w.report() for w in notebook_warnings]
+        return False
+
     print("\r✅")
     return True
 
 
-def _execute_notebook(filepath: Path, options: ExecuteOptions) -> None:
+def _execute_notebook(filepath: Path, options: ExecuteOptions) -> nbformat.NotebookNode:
     """
     Use nbconvert to execute notebook
     """
@@ -73,12 +154,13 @@ def _execute_notebook(filepath: Path, options: ExecuteOptions) -> None:
     processor.preprocess(nb)
 
     if not options.write:
-        return
+        return nb
 
     for cell in nb.cells:
         # Remove execution metadata to avoid noisy diffs.
         cell.metadata.pop("execution", None)
     nbformat.write(nb, filepath)
+    return nb
 
 
 def find_notebooks(*, submit_jobs: bool = False) -> list[Path]:
@@ -161,15 +243,12 @@ if __name__ == "__main__":
     args = create_argument_parser().parse_args()
 
     paths = map(Path, args.filenames or find_notebooks(submit_jobs=args.submit_jobs))
-    if not args.submit_jobs:
-        paths = [path for path in paths if not any(path.match(glob) for glob in NOTEBOOKS_THAT_SUBMIT_JOBS)]
+    filtered_paths = filter_paths(paths, submit_jobs=args.submit_jobs)
 
     # Execute notebooks
     start_time = datetime.now()
     print("Executing notebooks:")
-    results = [
-        execute_notebook(path, args) for path in paths if path.suffix == ".ipynb"
-    ]
+    results = [execute_notebook(path, args) for path in filtered_paths]
     print("Checking for trailing jobs...")
     results.append(cancel_trailing_jobs(start_time))
     if not all(results):

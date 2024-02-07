@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.instructions.SetFrequency
 
 <span id="qiskit.pulse.instructions.SetFrequency" />
 
-`qiskit.pulse.instructions.SetFrequency(frequency, channel, name=None)`
+`qiskit.pulse.instructions.SetFrequency(frequency, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/pulse/instructions/frequency.py "view source code")
 
 Bases: [`Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")
 
@@ -18,6 +18,8 @@ Set the channel frequency. This instruction operates on `PulseChannel` s. A `Pul
 
 $$
 Re[\exp(i 2\pi f jdt + \phi) d_j].
+
+
 $$
 
 Here, $f$ is the frequency of the channel. The instruction `SetFrequency` allows the user to set the value of $f$. All pulses that are played on a channel after SetFrequency has been called will have the corresponding frequency.
@@ -180,7 +182,7 @@ Return maximum start time for supplied channels.
 Plot the instruction.
 
 <Admonition title="Deprecated since version 0.23.0" type="danger">
-  The method `qiskit.pulse.instructions.instruction.Instruction.draw()` is deprecated as of qiskit-terra 0.23.0. It will be removed no earlier than 3 months after the release date. No direct alternative is being provided to drawing individual pulses. But, instructions can be visualized as part of a complete schedule using `qiskit.visualization.pulse_drawer`.
+  The method `qiskit.pulse.instructions.instruction.Instruction.draw()` is deprecated as of qiskit-terra 0.23.0. It will be removed in the Qiskit 1.0 release. No direct alternative is being provided to drawing individual pulses. But, instructions can be visualized as part of a complete schedule using `qiskit.visualization.pulse_drawer`.
 </Admonition>
 
 **Parameters**

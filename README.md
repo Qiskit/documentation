@@ -238,12 +238,37 @@ If you're working on our support code in `scripts/`, run `npm run fmt` to automa
 
 To check that formatting is valid without actually making changes, run `npm run check:fmt` or `npm run check`.
 
-## Regenerate the API docs
+## Regenerate an existing API docs version
 
-1. Install and configure GitHub CLI: https://docs.github.com/en/github-cli/github-cli/quickstart
-2. Choose which documentation you want to regenerate: `qiskit`, `qiskit-ibm-provider`, or `qiskit-ibm-runtime`
-3. Determine the current version of the published stable documentation, e.g. at https://github.com/Qiskit/qiskit/releases
-4. Find a link to a CI artifact with the project's documentation, e.g at https://github.com/Qiskit/qiskit/suites/17881600359/artifacts/1026798160. To find this:
+This is useful when we make improvements to the API generation script.
+
+You can regenerate all API docs versions following these steps:
+
+1. Create a dedicated branch for the regeneration other than `main` using `git checkout -b <branch-name>`.
+2. Ensure there are no pending changes by running `git status` and creating a new commit for them if necessary.
+3. Run `npm run regen-apis` to regenerate all API docs versions for `qiskit`, `qiskit-ibm-provider`, and `qiskit-ibm-runtime`.
+
+Each regenerated version will be saved as a distinct commit. If the changes are too large for one single PR, consider splitting it up into multiple PRs by using `git cherry-pick` or `git rebase -i` so each PR only has the commits it wants to target.
+
+If you only want to regenerate the latest stable minor release of each package, then add `--current-apis-only` as an argument, and in case you only want to regenerate versions of one package, then you can use the `-p <pkg-name>` argument.
+
+Alternatively, you can also regenerate one specific version:
+
+1. Choose which documentation you want to generate (`qiskit`, `qiskit-ibm-provider`, or `qiskit-ibm-runtime`) and its version.
+2. Run `npm run gen-api -- -p <pkg-name> -v <version>`,
+   e.g. `npm run gen-api -- -p qiskit -v 0.45.0`
+
+If the version is not for the latest stable minor release series, then add `--historical` to the arguments. For example, use `--historical` if the latest stable release is 0.45.\* but you're generating docs for the patch release 0.44.3.
+
+In this case, no commit will be automatically created.
+
+## Generate new API docs
+
+This is useful when new docs content is published, usually corresponding to new releases or hotfixes for content issues. If you're generating a patch release, also see the below subsection for additional steps.
+
+1. Choose which documentation you want to generate (`qiskit`, `qiskit-ibm-provider`, or `qiskit-ibm-runtime`) and its version.
+2. Determine the full version, such as by looking at https://github.com/Qiskit/qiskit/releases
+3. Download a CI artifact with the project's documentation. To find this:
    1. Pull up the CI runs for the stable commit that you want to build docs from. This should not be from a Pull Request
    2. Open up the "Details" for the relevant workflow.
       - Qiskit: "Documentation / Build (push)"
@@ -251,14 +276,28 @@ To check that formatting is valid without actually making changes, run `npm run 
       - Provider: "CI / Build documentation (push)"
    3. Click the "Summary" page at the top of the left navbar.
    4. Scroll down to "Artifacts" and look for the artifact related to documentation, such as `html_docs`.
-   5. Copy the link by right-clicking on the artifact.
-5. Run `npm run gen-api -- -p <pkg-name> -v <version> -a <artifact-url>`,
-   e.g. `npm run gen-api -- -p qiskit -v 0.45.0 -a https://github.com/Qiskit/qiskit/suites/17881600359/artifacts/1026798160`
-6. When opening your PR, include the CLI arguments you used. That helps us to know exactly how the docs have been generated over time.
-
-If the version is not for the latest stable minor release series, then add `--historical` to the arguments. For example, use `--historical` if the latest stable release is 0.45.\* but you're generating docs for the patch release 0.44.3.
+   5. Download the artifact by clicking on its name.
+4. Rename the downloaded zip file with its version number, e.g. `0.45.zip` for an artifact from `qiskit v0.45.2`.
+5. Upload the renamed zip file to https://ibm.ent.box.com/folder/246867452622
+6. Share the file by clicking the `Copy shared link` button
+7. Select `People with the link` and go to `Link Settings`.
+8. Under `Link Expiration` select `Disable Shared Link on` and set an expiration date of ~10 years into the future.
+9. Copy the direct link at the end of the `Shared Link Settings` tab.
+10. Modify the `scripts/api-html-artifacts.json` file adding the new versions with the direct link from step 9.
+11. Run `npm run gen-api -- -p <pkg-name> -v <version>`,
+    e.g. `npm run gen-api -- -p qiskit -v 0.45.0`
 
 In case you want to save the current version and convert it into a historical one, you can run `npm run make-historical -- -p <pkg-name>` beforehand.
+
+### Generate patch releases
+
+For example, if the current docs are for 0.45.2 but you want to generate 0.45.3.
+
+Follow the same process above for new API docs, other than:
+
+- When uploading the artifact, overwrite the existing file with the new one. Be careful to follow the above steps to change "Link Expiration"!
+
+If the version is not for the latest stable minor release series, then add `--historical` to the arguments. For example, use `--historical` if the latest stable release is 0.45.\* but you're generating docs for the patch release 0.44.3.
 
 # How to write the documentation
 
@@ -282,25 +321,37 @@ Finally, add the file to the folder's `_toc.json`, such as `start/_toc.json`. Th
 
 Images are stored in the `public/images` folder. You should use subfolders to organize the files. For example, images for `start/my-file.mdx` should be stored like `public/images/start/my-file/img1.png`.
 
-To use the image inside an MDX page:
+To use the image:
 
 ```markdown
 ![Your image](/images/build/your-file/your_image.png)
 ```
 
-To add an inline images,
+To add an inline images:
 
 ```markdown
 Inline ![Inline image](/images/build/your-file/your_image.png) image
 ```
 
-To include a caption
+To include a caption:
 
 ```markdown
 ![Your image](/images/build/your-file/your_image.png "Image caption")
 ```
 
 You can include a version of the image to be with the dark theme. You only need to create an image with the same name ending in `@dark`. So for example, if you have a `sampler.png` image, the dark version would be `sampler@dark.png`. This is important for images that have a white background.
+
+## Videos
+
+Videos are stored in the `public/videos` folder. You should use subfolders to organize the files. For example, images for `start/my-file.mdx` should be stored like `public/videos/start/my-file/video1.mp4`.
+
+To add a video:
+
+```markdown
+<video title="Write a description of the video here as 'alt text' for accessibility." className="max-w-auto h-auto" controls>
+    <source src="/videos/run/sessions/demo.mp4" type="video/mp4"></source>
+</video>
+```
 
 ## Math
 

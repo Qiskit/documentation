@@ -10,9 +10,9 @@ python_api_name: qiskit.transpiler.synthesis.aqc.CNOTUnitObjective
 
 <span id="qiskit.transpiler.synthesis.aqc.CNOTUnitObjective" />
 
-`CNOTUnitObjective(num_qubits, cnots)`
+`CNOTUnitObjective(num_qubits, cnots)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/synthesis/aqc/cnot_unit_objective.py "view source code")
 
-Bases: [`qiskit.transpiler.synthesis.aqc.approximate.ApproximatingObjective`](qiskit.transpiler.synthesis.aqc.ApproximatingObjective "qiskit.transpiler.synthesis.aqc.approximate.ApproximatingObjective"), `abc.ABC`
+Bases: `qiskit.transpiler.synthesis.aqc.approximate.ApproximatingObjective`, `abc.ABC`
 
 A base class for a problem definition based on CNOT unit. This class may have different subclasses for objective and gradient computations.
 

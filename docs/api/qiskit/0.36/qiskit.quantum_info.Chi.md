@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.Chi
 
 <span id="qiskit.quantum_info.Chi" />
 
-`Chi(data, input_dims=None, output_dims=None)`
+`Chi(data, input_dims=None, output_dims=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/channel/chi.py "view source code")
 
 Bases: `qiskit.quantum_info.operators.channel.quantum_channel.QuantumChannel`
 
@@ -26,7 +26,7 @@ where $[P_0, P_1, ..., P_{4^{n}-1}]$ is the $n$-qubit Pauli basis in lexicograph
 
 See reference \[1] for further details.
 
-## References
+**References**
 
 1.  C.J. Wood, J.D. Biamonte, D.G. Cory, *Tensor networks and graphical calculus for open quantum systems*, Quant. Inf. Comp. 15, 0579-0811 (2015). [arXiv:1111.6950 \[quant-ph\]](https://arxiv.org/abs/1111.6950)
 
@@ -34,7 +34,7 @@ Initialize a quantum channel Chi-matrix operator.
 
 **Parameters**
 
-*   **or** (*data (*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – Instruction or BaseOperator or matrix): data to initialize superoperator.
+*   \*\*(\*\***QuantumCircuit or** (*data*) – Instruction or BaseOperator or matrix): data to initialize superoperator.
 *   **input\_dims** (*tuple*) – the input subsystem dimensions. \[Default: None]
 *   **output\_dims** (*tuple*) – the output subsystem dimensions. \[Default: None]
 
@@ -52,7 +52,7 @@ If the input or output dimensions are None, they will be automatically determine
 
 <span id="qiskit.quantum_info.Chi.adjoint" />
 
-`Chi.adjoint()`
+`Chi.adjoint()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/channel/chi.py "view source code")
 
 Return the adjoint quantum channel.
 
@@ -64,7 +64,7 @@ Return the adjoint quantum channel.
 
 <span id="qiskit.quantum_info.Chi.compose" />
 
-`Chi.compose(other, qargs=None, front=False)`
+`Chi.compose(other, qargs=None, front=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/channel/chi.py "view source code")
 
 Return the operator composition with another Chi.
 
@@ -87,7 +87,7 @@ The composed Chi.
 **QiskitError** – if other cannot be converted to an operator, or has incompatible dimensions for specified subsystems.
 
 <Admonition title="Note" type="note">
-  Composition (`&`) by default is defined as left matrix multiplication for matrix operators, while `@` (equivalent to [`dot()`](qiskit.quantum_info.Chi#dot "qiskit.quantum_info.Chi.dot")) is defined as right matrix multiplication. That is that `A & B == A.compose(B)` is equivalent to `B @ A == B.dot(A)` when `A` and `B` are of the same type.
+  Composition (`&`) by default is defined as left matrix multiplication for matrix operators, while [`dot()`](qiskit.quantum_info.Chi#dot "qiskit.quantum_info.Chi.dot") is defined as right matrix multiplication. That is that `A & B == A.compose(B)` is equivalent to `B.dot(A)` when `A` and `B` are of the same type.
 
   Setting the `front=True` kwarg changes this to right matrix multiplication and is equivalent to the [`dot()`](qiskit.quantum_info.Chi#dot "qiskit.quantum_info.Chi.dot") method `A.dot(B) == A.compose(B, front=True)`.
 </Admonition>
@@ -96,7 +96,7 @@ The composed Chi.
 
 <span id="qiskit.quantum_info.Chi.conjugate" />
 
-`Chi.conjugate()`
+`Chi.conjugate()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/channel/chi.py "view source code")
 
 Return the conjugate quantum channel.
 
@@ -133,15 +133,11 @@ The right matrix multiplied Operator.
 
 [Operator](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")
 
-<Admonition title="Note" type="note">
-  The dot product can be obtained using the `@` binary operator. Hence `a.dot(b)` is equivalent to `a @ b`.
-</Admonition>
-
 ### expand
 
 <span id="qiskit.quantum_info.Chi.expand" />
 
-`Chi.expand(other)`
+`Chi.expand(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/channel/chi.py "view source code")
 
 Return the reverse-order tensor product with another Chi.
 
@@ -265,7 +261,7 @@ BaseOperator
 
 <span id="qiskit.quantum_info.Chi.tensor" />
 
-`Chi.tensor(other)`
+`Chi.tensor(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/channel/chi.py "view source code")
 
 Return the tensor product with another Chi.
 
@@ -321,7 +317,7 @@ Try to convert channel to a unitary representation Operator.
 
 <span id="qiskit.quantum_info.Chi.transpose" />
 
-`Chi.transpose()`
+`Chi.transpose()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/channel/chi.py "view source code")
 
 Return the transpose quantum channel.
 

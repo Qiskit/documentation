@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.library.CRYGate
 
 <span id="qiskit.circuit.library.CRYGate" />
 
-`CRYGate(theta, label=None, ctrl_state=None)`
+`CRYGate(theta, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/ry.py "view source code")
 
-Bases: [`qiskit.circuit.controlledgate.ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
+Bases: `qiskit.circuit.controlledgate.ControlledGate`
 
 Controlled-RY gate.
 
@@ -68,7 +68,7 @@ Create new CRY gate.
 
 <span id="qiskit.circuit.library.CRYGate.inverse" />
 
-`CRYGate.inverse()`
+`CRYGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/ry.py "view source code")
 
 Return inverse CRY gate (i.e. with the negative rotation angle).
 
@@ -82,7 +82,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.library.CRYGate.ctrl_state" />
 

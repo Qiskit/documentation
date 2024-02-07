@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.synthesis.synth_cnot_depth_line_kms
 ---
 
-# qiskit.synthesis.synth\_cnot\_depth\_line\_kms[¶](#qiskit-synthesis-synth-cnot-depth-line-kms "Permalink to this headline")
+# qiskit.synthesis.synth\_cnot\_depth\_line\_kms
 
 <span id="qiskit.synthesis.synth_cnot_depth_line_kms" />
 
-`synth_cnot_depth_line_kms(mat)`
+`synth_cnot_depth_line_kms(mat)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/synthesis/linear/linear_depth_lnn.py "view source code")
 
 Synthesize linear reversible circuit for linear nearest-neighbor architectures using Kutin, Moulton, Smithline method.
 
@@ -32,7 +32,7 @@ the synthesized quantum circuit.
 
 **QiskitError** – if mat is not invertible.
 
-## References
+**References**
 
 1.  Kutin, S., Moulton, D. P., Smithline, L., *Computation at a distance*, Chicago J. Theor. Comput. Sci., vol. 2007, (2007), [arXiv:quant-ph/0701194](https://arxiv.org/abs/quant-ph/0701194)
 

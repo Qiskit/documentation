@@ -24,8 +24,8 @@ python_api_name: qiskit.utils.mitigation
 
 The measurement calibration is used to mitigate measurement errors. The main idea is to prepare all $2^n$ basis input states and compute the probability of measuring counts in the other basis states. From these calibrations, it is possible to correct the average results of another experiment of interest. These tools are intended for use solely with the [`QuantumInstance`](qiskit.utils.QuantumInstance "qiskit.utils.QuantumInstance") class as part of [`qiskit.algorithms`](algorithms#module-qiskit.algorithms "qiskit.algorithms") and [`qiskit.opflow`](opflow#module-qiskit.opflow "qiskit.opflow").
 
-|                                                                                                                                                 |                                                           |
-| ----------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
-| [`CompleteMeasFitter`](qiskit.utils.mitigation.CompleteMeasFitter "qiskit.utils.mitigation.CompleteMeasFitter")(results, state\_labels\[, ...]) | Measurement correction fitter for a full calibration      |
-| [`TensoredMeasFitter`](qiskit.utils.mitigation.TensoredMeasFitter "qiskit.utils.mitigation.TensoredMeasFitter")(results, mit\_pattern\[, ...])  | Measurement correction fitter for a tensored calibration. |
+|                                                                                                                                               |                                                           |
+| --------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| [`CompleteMeasFitter`](qiskit.utils.mitigation.CompleteMeasFitter "qiskit.utils.mitigation.CompleteMeasFitter")(results, state\_labels\[, …]) | Measurement correction fitter for a full calibration      |
+| [`TensoredMeasFitter`](qiskit.utils.mitigation.TensoredMeasFitter "qiskit.utils.mitigation.TensoredMeasFitter")(results, mit\_pattern\[, …])  | Measurement correction fitter for a tensored calibration. |
 

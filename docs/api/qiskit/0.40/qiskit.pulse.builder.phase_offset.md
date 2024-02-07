@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.pulse.builder.phase_offset
 ---
 
-# qiskit.pulse.builder.phase\_offset[¶](#qiskit-pulse-builder-phase-offset "Permalink to this headline")
+# qiskit.pulse.builder.phase\_offset
 
 <span id="qiskit.pulse.builder.phase_offset" />
 
-`phase_offset(phase, *channels)`
+`phase_offset(phase, *channels)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/builder.py "view source code")
 
 Shift the phase of input channels on entry into context and undo on exit.
 

@@ -10,15 +10,15 @@ python_api_name: qiskit.transpiler.passes.ConstrainedReschedule
 
 <span id="qiskit.transpiler.passes.ConstrainedReschedule" />
 
-`ConstrainedReschedule(acquire_alignment=1, pulse_alignment=1)`
+`ConstrainedReschedule(acquire_alignment=1, pulse_alignment=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/scheduling/alignments/reschedule.py "view source code")
 
-Bases: [`qiskit.transpiler.basepasses.AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
+Bases: `qiskit.transpiler.basepasses.AnalysisPass`
 
 Rescheduler pass that updates node start times to conform to the hardware alignments.
 
-This pass shifts DAG node start times previously scheduled with one of the scheduling passes, e.g. [`ASAPScheduleAnalysis`](qiskit.transpiler.passes.ASAPScheduleAnalysis "qiskit.transpiler.passes.ASAPScheduleAnalysis") or [`ALAPScheduleAnalysis`](qiskit.transpiler.passes.ALAPScheduleAnalysis "qiskit.transpiler.passes.ALAPScheduleAnalysis"), so that every instruction start time satisfies alignment constraints.
+This pass shifts DAG node start times previously scheduled with one of the scheduling passes, e.g. [`ASAPSchedule`](qiskit.transpiler.passes.ASAPSchedule "qiskit.transpiler.passes.ASAPSchedule") or [`ALAPSchedule`](qiskit.transpiler.passes.ALAPSchedule "qiskit.transpiler.passes.ALAPSchedule"), so that every instruction start time satisfies alignment constraints.
 
-## Examples
+**Examples**
 
 We assume executing the following circuit on a backend with 16 dt of acquire alignment.
 
@@ -40,7 +40,7 @@ c: 1/════════════════════════╩
                              0
 ```
 
-## Notes
+**Notes**
 
 Your backend may execute circuits violating these alignment constraints. However, you may obtain erroneous measurement result because of the untracked phase originating in the instruction misalignment.
 
@@ -67,7 +67,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.ConstrainedReschedule.run" />
 
-`ConstrainedReschedule.run(dag)`
+`ConstrainedReschedule.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/scheduling/alignments/reschedule.py "view source code")
 
 Run rescheduler.
 
@@ -103,7 +103,7 @@ Based on the configurations above, rescheduler pass takes following strategy.
 
 **Parameters**
 
-**dag** ([`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")) – DAG circuit to be rescheduled with constraints.
+**dag** (`DAGCircuit`) – DAG circuit to be rescheduled with constraints.
 
 **Raises**
 

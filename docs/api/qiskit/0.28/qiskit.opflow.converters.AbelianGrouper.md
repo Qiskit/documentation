@@ -1,8 +1,16 @@
+---
+title: AbelianGrouper
+description: API reference for qiskit.opflow.converters.AbelianGrouper
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.opflow.converters.AbelianGrouper
+---
+
 # qiskit.opflow\.converters.AbelianGrouper
 
+<span id="qiskit.opflow.converters.AbelianGrouper" />
 
-
-`AbelianGrouper(traverse=True)`
+`AbelianGrouper(traverse=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/converters/abelian_grouper.py "view source code")
 
 The AbelianGrouper converts SummedOps into a sum of Abelian sums.
 
@@ -12,7 +20,9 @@ Meaning, it will traverse the Operator, and when it finds a SummedOp, it will ev
 
 **traverse** (`bool`) – Whether to convert only the Operator passed to `convert`, or traverse down that Operator.
 
+### \_\_init\_\_
 
+<span id="qiskit.opflow.converters.AbelianGrouper.__init__" />
 
 `__init__(traverse=True)`
 
@@ -28,7 +38,9 @@ Meaning, it will traverse the Operator, and when it finds a SummedOp, it will ev
 | [`convert`](#qiskit.opflow.converters.AbelianGrouper.convert "qiskit.opflow.converters.AbelianGrouper.convert")(operator)                | Check if operator is a SummedOp, in which case covert it into a sum of mutually commuting sums, or if the Operator contains sub-Operators and `traverse` is True, attempt to convert any sub-Operators. |
 | [`group_subops`](#qiskit.opflow.converters.AbelianGrouper.group_subops "qiskit.opflow.converters.AbelianGrouper.group_subops")(list\_op) | Given a ListOp, attempt to group into Abelian ListOps of the same type.                                                                                                                                 |
 
+### convert
 
+<span id="qiskit.opflow.converters.AbelianGrouper.convert" />
 
 `convert(operator)`
 
@@ -46,7 +58,9 @@ Check if operator is a SummedOp, in which case covert it into a sum of mutually 
 
 The converted Operator.
 
+### group\_subops
 
+<span id="qiskit.opflow.converters.AbelianGrouper.group_subops" />
 
 `classmethod group_subops(list_op)`
 
@@ -66,4 +80,5 @@ The grouped Operator.
 
 **Raises**
 
-[**OpflowError**](qiskit.opflow.OpflowError#qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – If any of list\_op’s sub-ops is not `PauliOp`.
+[**OpflowError**](qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – If any of list\_op’s sub-ops is not `PauliOp`.
+

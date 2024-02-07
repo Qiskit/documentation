@@ -10,13 +10,13 @@ python_api_name: qiskit.circuit.library.PhaseEstimation
 
 <span id="qiskit.circuit.library.PhaseEstimation" />
 
-`qiskit.circuit.library.PhaseEstimation(num_evaluation_qubits, unitary, iqft=None, name='QPE')`
+`qiskit.circuit.library.PhaseEstimation(num_evaluation_qubits, unitary, iqft=None, name='QPE')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/phase_estimation.py "view source code")
 
 Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
 Phase Estimation circuit.
 
-In the Quantum Phase Estimation (QPE) algorithm \[1, 2, 3], the Phase Estimation circuit is used to estimate the phase $\phi$ of an eigenvalue $e^{2\pi i\phi}$ of a unitary operator $U$, provided with the corresponding eigenstate $|psi\rangle$. That is
+In the Quantum Phase Estimation (QPE) algorithm \[1, 2, 3], the Phase Estimation circuit is used to estimate the phase $\phi$ of an eigenvalue $e^{2\pi i\phi}$ of a unitary operator $U$, provided with the corresponding eigenstate $|\psi\rangle$. That is
 
 $$
 U|\psi\rangle = e^{2\pi i\phi} |\psi\rangle
@@ -36,7 +36,7 @@ Quantum Computation and Quantum Information: 10th Anniversary Edition (10th ed.)
 
 **\[3]: Qiskit**
 
-[textbook](https://learn.qiskit.org/course/ch-algorithms/quantum-phase-estimation)
+[textbook](https://github.com/Qiskit/textbook/blob/main/notebooks/ch-algorithms/quantum-phase-estimation.ipynb)
 
 **Parameters**
 
@@ -111,7 +111,7 @@ Return the global phase of the current circuit scope in radians.
 
 ### instances
 
-`= 302`
+`= 246`
 
 <span id="qiskit.circuit.library.PhaseEstimation.layout" />
 
@@ -179,7 +179,7 @@ The parameters defined in the circuit.
 
 This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
 
-## Examples
+**Examples**
 
 The snippet below shows that insertion order of parameters does not matter.
 

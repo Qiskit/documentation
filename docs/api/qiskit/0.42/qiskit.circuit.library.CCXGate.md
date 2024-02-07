@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.CCXGate
 ---
 
-# CCXGate[¶](#ccxgate "Permalink to this headline")
+# CCXGate
 
 <span id="qiskit.circuit.library.CCXGate" />
 
-`CCXGate(label=None, ctrl_state=None)`
+`CCXGate(label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 Bases: [`qiskit.circuit.controlledgate.ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 
@@ -82,7 +82,7 @@ Create new CCX gate.
 
 <span id="qiskit.circuit.library.CCXGate.control" />
 
-`CCXGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+`CCXGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 Controlled version of this gate.
 
@@ -104,7 +104,7 @@ controlled version of this gate.
 
 <span id="qiskit.circuit.library.CCXGate.inverse" />
 
-`CCXGate.inverse()`
+`CCXGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 Return an inverted CCX gate (also a CCX).
 

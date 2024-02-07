@@ -12,7 +12,7 @@ python_api_name: qiskit.visualization.plot_state_hinton
 
 <span id="qiskit.visualization.plot_state_hinton" />
 
-`qiskit.visualization.plot_state_hinton(state, title='', figsize=None, ax_real=None, ax_imag=None, *, rho=None, filename=None)`
+`qiskit.visualization.plot_state_hinton(state, title='', figsize=None, ax_real=None, ax_imag=None, *, rho=None, filename=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/visualization/state_visualization.py "view source code")
 
 Plot a hinton diagram for the density matrix of a quantum state.
 
@@ -44,7 +44,7 @@ The matplotlib.Figure of the visualization if neither ax\_real or ax\_imag is se
 *   [**MissingOptionalLibraryError**](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") – Requires matplotlib.
 *   [**VisualizationError**](visualization#qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – if input is not a valid N-qubit state.
 
-## Examples
+**Examples**
 
 ```python
 import numpy as np

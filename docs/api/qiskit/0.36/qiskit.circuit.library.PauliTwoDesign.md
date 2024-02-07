@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.library.PauliTwoDesign
 
 <span id="qiskit.circuit.library.PauliTwoDesign" />
 
-`PauliTwoDesign(num_qubits=None, reps=3, seed=None, insert_barriers=False, name='PauliTwoDesign')`
+`PauliTwoDesign(num_qubits=None, reps=3, seed=None, insert_barriers=False, name='PauliTwoDesign')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/n_local/pauli_two_design.py "view source code")
 
-Bases: [`qiskit.circuit.library.n_local.two_local.TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.n_local.two_local.TwoLocal")
+Bases: `qiskit.circuit.library.n_local.two_local.TwoLocal`
 
 The Pauli Two-Design ansatz.
 
@@ -34,9 +34,7 @@ q_3: ┤ RY(π/4) ├┤ RZ(θ[3]) ├─■─────░─┤ RX(θ[7]) �
      └─────────┘└──────────┘       ░ └──────────┘       ░ └───────────┘
 ```
 
-## Examples
-
-## References
+**Examples** **References**
 
 **\[1]: Nakata et al., Unitary 2-designs from random X- and Z-diagonal unitaries.**
 
@@ -71,7 +69,7 @@ Returns a list of ancilla bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.quantumregister.AncillaQubit")]
+`List`\[`AncillaQubit`]
 
 <span id="qiskit.circuit.library.PauliTwoDesign.calibrations" />
 
@@ -95,7 +93,7 @@ Returns a list of classical bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.library.PauliTwoDesign.data" />
 
@@ -123,7 +121,7 @@ The blocks in the entanglement layers.
 
 **Return type**
 
-`List`\[[`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")]
+`List`\[`Instruction`]
 
 **Returns**
 
@@ -143,7 +141,7 @@ Return the global phase of the circuit in radians.
 
 **Return type**
 
-`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]
+`Union`\[`ParameterExpression`, `float`]
 
 <span id="qiskit.circuit.library.PauliTwoDesign.header" />
 
@@ -183,7 +181,7 @@ True, if barriers are inserted in between the layers, False if not.
 
 ### instances
 
-`= 87`
+`= 9`
 
 <span id="qiskit.circuit.library.PauliTwoDesign.metadata" />
 
@@ -267,26 +265,6 @@ Returns the number of qubits in this circuit.
 
 The number of qubits.
 
-<span id="qiskit.circuit.library.PauliTwoDesign.op_start_times" />
-
-### op\_start\_times
-
-Return a list of operation start times.
-
-This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
-
-**Return type**
-
-`List`\[`int`]
-
-**Returns**
-
-List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
-
-**Raises**
-
-**AttributeError** – When circuit is not scheduled.
-
 <span id="qiskit.circuit.library.PauliTwoDesign.ordered_parameters" />
 
 ### ordered\_parameters
@@ -295,7 +273,7 @@ The parameters used in the underlying circuit.
 
 This includes float values and duplicates.
 
-## Examples
+**Examples**
 
 ```python
 >>> # prepare circuit ...
@@ -311,7 +289,7 @@ q_0: ┤ Ry(1) ├┤ Ry(θ[1]) ├┤ Ry(θ[1]) ├┤ Ry(θ[3]) ├
 
 **Return type**
 
-`List`\[[`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.parameter.Parameter")]
+`List`\[`Parameter`]
 
 **Returns**
 
@@ -373,7 +351,7 @@ Returns a list of quantum bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")]
+`List`\[`Qubit`]
 
 <span id="qiskit.circuit.library.PauliTwoDesign.reps" />
 
@@ -397,7 +375,7 @@ The blocks in the rotation layers.
 
 **Return type**
 
-`List`\[[`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")]
+`List`\[`Instruction`]
 
 **Returns**
 

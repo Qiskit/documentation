@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.mitigation.TensoredFilter
 
 <span id="qiskit.ignis.mitigation.TensoredFilter" />
 
-`TensoredFilter(cal_matrices, substate_labels_list)`
+`TensoredFilter(cal_matrices, substate_labels_list)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/mitigation/measurement/filters.py "view source code")
 
 Tensored measurement error mitigation filter.
 
@@ -47,7 +47,7 @@ Return \_substate\_labels\_list
 
 <span id="qiskit.ignis.mitigation.TensoredFilter.apply" />
 
-`TensoredFilter.apply(raw_data, method='least_squares')`
+`TensoredFilter.apply(raw_data, method='least_squares')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/mitigation/measurement/filters.py "view source code")
 
 Apply the calibration matrices to results.
 

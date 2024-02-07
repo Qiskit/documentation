@@ -1,14 +1,22 @@
+---
+title: MaximumLikelihoodAmplitudeEstimation
+description: API reference for qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation
+---
+
 # qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation
 
+<span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation" />
 
-
-`MaximumLikelihoodAmplitudeEstimation(evaluation_schedule, minimizer=None, quantum_instance=None)`
+`MaximumLikelihoodAmplitudeEstimation(evaluation_schedule, minimizer=None, quantum_instance=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/amplitude_estimators/mlae.py "view source code")
 
 The Maximum Likelihood Amplitude Estimation algorithm.
 
 This class implements the quantum amplitude estimation (QAE) algorithm without phase estimation, as introduced in \[1]. In comparison to the original QAE algorithm \[2], this implementation relies solely on different powers of the Grover operator and does not require additional evaluation qubits. Finally, the estimate is determined via a maximum likelihood estimation, which is why this class in named `MaximumLikelihoodAmplitudeEstimation`.
 
-## References
+**References**
 
 **\[1]: Suzuki, Y., Uno, S., Raymond, R., Tanaka, T., Onodera, T., & Yamamoto, N. (2019).**
 
@@ -28,7 +36,9 @@ Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://
 
 **ValueError** – If the number of oracle circuits is smaller than 1.
 
+### \_\_init\_\_
 
+<span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.__init__" />
 
 `__init__(evaluation_schedule, minimizer=None, quantum_instance=None)`
 
@@ -58,7 +68,9 @@ Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------- |
 | [`quantum_instance`](#qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.quantum_instance "qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.quantum_instance") | Get the quantum instance. |
 
+### compute\_confidence\_interval
 
+<span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.compute_confidence_interval" />
 
 `static compute_confidence_interval(result, alpha, kind='fisher', apply_post_processing=False)`
 
@@ -83,10 +95,12 @@ The specified confidence interval.
 
 **Raises**
 
-*   [**AlgorithmError**](qiskit.algorithms.AlgorithmError#qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If run() hasn’t been called yet.
+*   [**AlgorithmError**](qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If run() hasn’t been called yet.
 *   **NotImplementedError** – If the method kind is not supported.
 
+### compute\_mle
 
+<span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.compute_mle" />
 
 `compute_mle(circuit_results, estimation_problem, num_state_qubits=None, return_counts=False)`
 
@@ -109,7 +123,9 @@ This is a stable approach if sufficient gridpoints are used.
 
 The MLE for the provided result object.
 
+### construct\_circuits
 
+<span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.construct_circuits" />
 
 `construct_circuits(estimation_problem, measurement=False)`
 
@@ -128,7 +144,9 @@ Construct the Amplitude Estimation w/o QPE quantum circuits.
 
 A list with the QuantumCircuit objects for the algorithm.
 
+### estimate
 
+<span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.estimate" />
 
 `estimate(estimation_problem)`
 
@@ -142,7 +160,9 @@ Run the amplitude estimation algorithm.
 
 `MaximumLikelihoodAmplitudeEstimationResult`
 
+### quantum\_instance
 
+<span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.quantum_instance" />
 
 `property quantum_instance`
 
@@ -155,3 +175,4 @@ Get the quantum instance.
 **Returns**
 
 The quantum instance used to run this algorithm.
+

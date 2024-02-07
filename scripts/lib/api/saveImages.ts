@@ -14,7 +14,7 @@ import { mkdirp } from "mkdirp";
 import pMap from "p-map";
 import { copyFile } from "fs/promises";
 
-import { Pkg, getPkgRoot } from "../sharedTypes";
+import { Pkg } from "./Pkg";
 import { Image } from "./HtmlToMdResult";
 import { pathExists } from "../fs";
 
@@ -23,22 +23,20 @@ export async function saveImages(
   originalImagesFolderPath: string,
   pkg: Pkg,
 ) {
-  const imagesDestinationFolder = getPkgRoot(pkg, "public/images");
-  if (!(await pathExists(imagesDestinationFolder))) {
-    await mkdirp(imagesDestinationFolder);
+  const destFolder = pkg.outputDir("public/images");
+  if (!(await pathExists(destFolder))) {
+    await mkdirp(destFolder);
   }
 
   await pMap(images, async (img) => {
-    const imgName = img.src.split("/").pop()!;
-
     // The release notes images are only saved in the current version to
     // avoid having duplicate files.
-    if (imgName.includes("release_notes") && pkg.historical) {
+    if (img.fileName.includes("release_notes") && pkg.isHistorical()) {
       return;
     }
 
     await copyFile(
-      `${originalImagesFolderPath}/${imgName}`,
+      `${originalImagesFolderPath}/${img.fileName}`,
       `public/${img.dest}`,
     );
   });

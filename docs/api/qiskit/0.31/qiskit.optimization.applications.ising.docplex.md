@@ -44,7 +44,7 @@ print('get_operator')
 print('tsp objective:', result['energy'] + offset)
 ```
 
-## Functions
+**Functions**
 
 |                                          |                                                     |
 | ---------------------------------------- | --------------------------------------------------- |

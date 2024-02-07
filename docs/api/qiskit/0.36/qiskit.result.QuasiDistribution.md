@@ -10,11 +10,11 @@ python_api_name: qiskit.result.QuasiDistribution
 
 <span id="qiskit.result.QuasiDistribution" />
 
-`QuasiDistribution(data, shots=None, stddev_upper_bound=None)`
+`QuasiDistribution(data, shots=None, stddev_upper_bound=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/result/distributions/quasi.py "view source code")
 
 Bases: `dict`
 
-A dict-like class for representing quasi-probabilities.
+A dict-like class for representing qasi-probabilities.
 
 Builds a quasiprobability distribution object.
 
@@ -43,7 +43,7 @@ Builds a quasiprobability distribution object.
 
 <span id="qiskit.result.QuasiDistribution.binary_probabilities" />
 
-`QuasiDistribution.binary_probabilities(num_bits=None)`
+`QuasiDistribution.binary_probabilities(num_bits=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/result/distributions/quasi.py "view source code")
 
 Build a quasi-probabilities dictionary with binary string keys
 
@@ -65,7 +65,7 @@ dict
 
 <span id="qiskit.result.QuasiDistribution.clear" />
 
-`QuasiDistribution.clear() → None.  Remove all items from D.`
+`QuasiDistribution.clear() → None. Remove all items from D.`
 
 ### copy
 
@@ -93,7 +93,7 @@ Return the value for key if key is in the dictionary, else default.
 
 <span id="qiskit.result.QuasiDistribution.hex_probabilities" />
 
-`QuasiDistribution.hex_probabilities()`
+`QuasiDistribution.hex_probabilities()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/result/distributions/quasi.py "view source code")
 
 Build a quasi-probabilities dictionary with hexadecimal string keys
 
@@ -111,19 +111,19 @@ dict
 
 <span id="qiskit.result.QuasiDistribution.items" />
 
-`QuasiDistribution.items() → a set-like object providing a view on D's items`
+`QuasiDistribution.items() → a set-like object providing a view on D’s items`
 
 ### keys
 
 <span id="qiskit.result.QuasiDistribution.keys" />
 
-`QuasiDistribution.keys() → a set-like object providing a view on D's keys`
+`QuasiDistribution.keys() → a set-like object providing a view on D’s keys`
 
 ### nearest\_probability\_distribution
 
 <span id="qiskit.result.QuasiDistribution.nearest_probability_distribution" />
 
-`QuasiDistribution.nearest_probability_distribution(return_distance=False)`
+`QuasiDistribution.nearest_probability_distribution(return_distance=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/result/distributions/quasi.py "view source code")
 
 Takes a quasiprobability distribution and maps it to the closest probability distribution as defined by the L2-norm.
 
@@ -139,7 +139,7 @@ Nearest probability distribution. float: Euclidean (L2) distance of distribution
 
 [ProbDistribution](qiskit.result.ProbDistribution "qiskit.result.ProbDistribution")
 
-#### Notes
+**Notes**
 
 Method from Smolin et al., Phys. Rev. Lett. 108, 070502 (2012).
 
@@ -175,7 +175,7 @@ Return the value for key if key is in the dictionary, else default.
 
 <span id="qiskit.result.QuasiDistribution.update" />
 
-`QuasiDistribution.update([E, ]**F) → None.  Update D from dict/iterable E and F.`
+`QuasiDistribution.update([E, ]**F) → None. Update D from dict/iterable E and F.`
 
 If E is present and has a .keys() method, then does: for k in E: D\[k] = E\[k] If E is present and lacks a .keys() method, then does: for k, v in E: D\[k] = v In either case, this is followed by: for k in F: D\[k] = F\[k]
 
@@ -183,7 +183,7 @@ If E is present and has a .keys() method, then does: for k in E: D\[k] = E\[k] I
 
 <span id="qiskit.result.QuasiDistribution.values" />
 
-`QuasiDistribution.values() → an object providing a view on D's values`
+`QuasiDistribution.values() → an object providing a view on D’s values`
 
 ## Attributes
 

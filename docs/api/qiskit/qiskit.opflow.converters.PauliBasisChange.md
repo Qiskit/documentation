@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.converters.PauliBasisChange
 
 <span id="qiskit.opflow.converters.PauliBasisChange" />
 
-`qiskit.opflow.converters.PauliBasisChange(destination_basis=None, traverse=True, replacement_fn=None)`
+`qiskit.opflow.converters.PauliBasisChange(destination_basis=None, traverse=True, replacement_fn=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/opflow/converters/pauli_basis_change.py "view source code")
 
 Bases: [`ConverterBase`](qiskit.opflow.converters.ConverterBase "qiskit.opflow.converters.converter_base.ConverterBase")
 
@@ -21,7 +21,7 @@ The replacement function determines how the `PauliOps` should be replaced by the
 This class uses the typical basis change method found in most Quantum Computing textbooks (such as on page 210 of Nielsen and Chuang’s, “Quantum Computation and Quantum Information”, ISBN: 978-1-107-00217-3), which involves diagonalizing the single-qubit Paulis with H and S† gates, mapping the eigenvectors of the diagonalized origin Pauli to the diagonalized destination Pauli using CNOTS, and then de-diagonalizing any single qubit Paulis to their non-diagonal destination values. Many other methods are possible, as well as variations on this method, such as the placement of the CNOT chains.
 
 <Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.opflow.converters.pauli_basis_change.PauliBasisChange` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  The class `qiskit.opflow.converters.pauli_basis_change.PauliBasisChange` is deprecated as of qiskit-terra 0.24.0. It will be removed in the Qiskit 1.0 release. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
 </Admonition>
 
 **Parameters**

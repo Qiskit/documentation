@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.pulse.transforms.AlignFunc
 ---
 
-# AlignFunc[¶](#alignfunc "Permalink to this headline")
+# AlignFunc
 
 <span id="qiskit.pulse.transforms.AlignFunc" />
 
-`AlignFunc(duration, func)`
+`AlignFunc(duration, func)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/transforms/alignments.py "view source code")
 
 Bases: [`qiskit.pulse.transforms.alignments.AlignmentKind`](pulse#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.alignments.AlignmentKind")
 
@@ -44,7 +44,7 @@ Create new equispaced context.
 
 <span id="qiskit.pulse.transforms.AlignFunc.align" />
 
-`AlignFunc.align(schedule)`
+`AlignFunc.align(schedule)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/transforms/alignments.py "view source code")
 
 Reallocate instructions according to the policy.
 
@@ -66,7 +66,7 @@ Schedule with reallocated instructions.
 
 <span id="qiskit.pulse.transforms.AlignFunc.to_dict" />
 
-`AlignFunc.to_dict()`
+`AlignFunc.to_dict()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/transforms/alignments.py "view source code")
 
 Returns dictionary to represent this alignment.
 

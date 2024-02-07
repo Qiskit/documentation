@@ -10,7 +10,7 @@ python_api_name: qiskit.primitives.Estimator
 
 <span id="qiskit.primitives.Estimator" />
 
-`qiskit.primitives.Estimator(*, options=None)`
+`qiskit.primitives.Estimator(*, options=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/primitives/estimator.py "view source code")
 
 Bases: [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.base.base_estimator.BaseEstimator")\[`PrimitiveJob`\[[`EstimatorResult`](qiskit.primitives.EstimatorResult "qiskit.primitives.base.estimator_result.EstimatorResult")]]
 
@@ -98,6 +98,10 @@ with bound parameters
 ```python
 values = parameter_values[i].
 ```
+
+<Admonition title="Deprecated since version 0.46.0" type="danger">
+  Implicit conversion from a `PauliList` to a `SparsePauliOp` with `coeffs=1` in the `observables` arguments is deprecated as of Qiskit 0.46 and will be removed in Qiskit 1.0. You should explicitly convert to a `SparsePauli` using `SparsePauliOp(pauli_list)` to avoid this warning.
+</Admonition>
 
 **Parameters**
 

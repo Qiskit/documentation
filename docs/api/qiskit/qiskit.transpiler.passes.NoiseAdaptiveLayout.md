@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.NoiseAdaptiveLayout
 
 <span id="qiskit.transpiler.passes.NoiseAdaptiveLayout" />
 
-`qiskit.transpiler.passes.NoiseAdaptiveLayout(*args, **kwargs)`
+`qiskit.transpiler.passes.NoiseAdaptiveLayout(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/passes/layout/noise_adaptive_layout.py "view source code")
 
 Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
@@ -57,6 +57,10 @@ Choose a noise-adaptive Layout based on current calibration data for the backend
 even though a layout is not strictly a property of the DAG, in the transpiler architecture it is best passed around between passes by being set in property\_set.
 
 NoiseAdaptiveLayout initializer.
+
+<Admonition title="Deprecated since version 0.46" type="danger">
+  The class `qiskit.transpiler.passes.layout.noise_adaptive_layout.NoiseAdaptiveLayout` is deprecated as of qiskit 0.46. It will be removed in the 1.0.0 release.
+</Admonition>
 
 **Parameters**
 

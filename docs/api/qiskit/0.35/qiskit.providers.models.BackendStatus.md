@@ -1,8 +1,16 @@
+---
+title: BackendStatus
+description: API reference for qiskit.providers.models.BackendStatus
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.models.BackendStatus
+---
+
 # BackendStatus
 
+<span id="qiskit.providers.models.BackendStatus" />
 
-
-`BackendStatus(backend_name, backend_version, operational, pending_jobs, status_msg)`
+`BackendStatus(backend_name, backend_version, operational, pending_jobs, status_msg)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/models/backendstatus.py "view source code")
 
 Bases: `object`
 
@@ -24,7 +32,39 @@ Initialize a BackendStatus object
 
 ## Methods
 
-|                                                                                                                                                                  |                                                                 |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
-| [`from_dict`](qiskit.providers.models.BackendStatus.from_dict#qiskit.providers.models.BackendStatus.from_dict "qiskit.providers.models.BackendStatus.from_dict") | Create a new BackendStatus object from a dictionary.            |
-| [`to_dict`](qiskit.providers.models.BackendStatus.to_dict#qiskit.providers.models.BackendStatus.to_dict "qiskit.providers.models.BackendStatus.to_dict")         | Return a dictionary format representation of the BackendStatus. |
+### from\_dict
+
+<span id="qiskit.providers.models.BackendStatus.from_dict" />
+
+`classmethod BackendStatus.from_dict(data)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/models/backendstatus.py "view source code")
+
+Create a new BackendStatus object from a dictionary.
+
+**Parameters**
+
+**data** (*dict*) – A dictionary representing the BaseBakend to create. It will be in the same format as output by [`to_dict()`](qiskit.providers.models.BackendStatus#to_dict "qiskit.providers.models.BackendStatus.to_dict").
+
+**Returns**
+
+The BackendStatus from the input dictionary.
+
+**Return type**
+
+[BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+
+### to\_dict
+
+<span id="qiskit.providers.models.BackendStatus.to_dict" />
+
+`BackendStatus.to_dict()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/models/backendstatus.py "view source code")
+
+Return a dictionary format representation of the BackendStatus.
+
+**Returns**
+
+The dictionary form of the QobjHeader.
+
+**Return type**
+
+dict
+

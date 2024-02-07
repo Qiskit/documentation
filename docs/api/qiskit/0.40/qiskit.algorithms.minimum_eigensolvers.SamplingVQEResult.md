@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.minimum_eigensolvers.SamplingVQEResult
 ---
 
-# SamplingVQEResult[¶](#samplingvqeresult "Permalink to this headline")
+# SamplingVQEResult
 
 <span id="qiskit.algorithms.minimum_eigensolvers.SamplingVQEResult" />
 
-`SamplingVQEResult`
+`SamplingVQEResult`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/minimum_eigensolvers/sampling_vqe.py "view source code")
 
 Bases: `qiskit.algorithms.variational_algorithm.VariationalResult`, [`qiskit.algorithms.minimum_eigensolvers.sampling_mes.SamplingMinimumEigensolverResult`](qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult "qiskit.algorithms.minimum_eigensolvers.sampling_mes.SamplingMinimumEigensolverResult")
 

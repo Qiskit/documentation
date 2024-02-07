@@ -10,7 +10,7 @@ python_api_name: qiskit.result.CorrelatedReadoutMitigator
 
 <span id="qiskit.result.CorrelatedReadoutMitigator" />
 
-`qiskit.result.CorrelatedReadoutMitigator(assignment_matrix, qubits=None)`
+`qiskit.result.CorrelatedReadoutMitigator(assignment_matrix, qubits=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/result/mitigation/correlated_readout_mitigator.py "view source code")
 
 Bases: [`BaseReadoutMitigator`](qiskit.result.BaseReadoutMitigator "qiskit.result.mitigation.base_readout_mitigator.BaseReadoutMitigator")
 

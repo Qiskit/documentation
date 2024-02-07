@@ -67,16 +67,16 @@ Decorator for a classical function that returns a ClassicalFunction object.
 
 ### ClassicalFunction
 
-|                                                                                                                                                                                                        |                                                                |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------- |
-| [`ClassicalFunction`](qiskit.circuit.classicalfunction.ClassicalFunction#qiskit.circuit.classicalfunction.ClassicalFunction "qiskit.circuit.classicalfunction.ClassicalFunction")(source\[, name])     | Represent a classical function function and its logic network. |
-| [`BooleanExpression`](qiskit.circuit.classicalfunction.BooleanExpression#qiskit.circuit.classicalfunction.BooleanExpression "qiskit.circuit.classicalfunction.BooleanExpression")(expression\[, name]) | The Boolean Expression gate.                                   |
+|                                                                                                                                                     |                                                                |
+| --------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| [`ClassicalFunction`](qiskit.circuit.classicalfunction.ClassicalFunction "qiskit.circuit.classicalfunction.ClassicalFunction")(source\[, name])     | Represent a classical function function and its logic network. |
+| [`BooleanExpression`](qiskit.circuit.classicalfunction.BooleanExpression "qiskit.circuit.classicalfunction.BooleanExpression")(expression\[, name]) | The Boolean Expression gate.                                   |
 
 ### Exceptions
 
-|                                                                                                                                                                                                                                                                  |                                         |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
-| [`ClassicalFunctionCompilerTypeError`](qiskit.circuit.classicalfunction.ClassicalFunctionCompilerTypeError#qiskit.circuit.classicalfunction.ClassicalFunctionCompilerTypeError "qiskit.circuit.classicalfunction.ClassicalFunctionCompilerTypeError")(\*message) | ClassicalFunction compiler type error.  |
-| [`ClassicalFunctionParseError`](qiskit.circuit.classicalfunction.ClassicalFunctionParseError#qiskit.circuit.classicalfunction.ClassicalFunctionParseError "qiskit.circuit.classicalfunction.ClassicalFunctionParseError")(\*message)                             | ClassicalFunction compiler parse error. |
-| [`ClassicalFunctionCompilerTypeError`](qiskit.circuit.classicalfunction.ClassicalFunctionCompilerTypeError#qiskit.circuit.classicalfunction.ClassicalFunctionCompilerTypeError "qiskit.circuit.classicalfunction.ClassicalFunctionCompilerTypeError")(\*message) | ClassicalFunction compiler type error.  |
+|                                                                                                                                                                                              |                                         |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
+| [`ClassicalFunctionCompilerTypeError`](qiskit.circuit.classicalfunction.ClassicalFunctionCompilerTypeError "qiskit.circuit.classicalfunction.ClassicalFunctionCompilerTypeError")(\*message) | ClassicalFunction compiler type error.  |
+| [`ClassicalFunctionParseError`](qiskit.circuit.classicalfunction.ClassicalFunctionParseError "qiskit.circuit.classicalfunction.ClassicalFunctionParseError")(\*message)                      | ClassicalFunction compiler parse error. |
+| [`ClassicalFunctionCompilerTypeError`](qiskit.circuit.classicalfunction.ClassicalFunctionCompilerTypeError "qiskit.circuit.classicalfunction.ClassicalFunctionCompilerTypeError")(\*message) | ClassicalFunction compiler type error.  |
 

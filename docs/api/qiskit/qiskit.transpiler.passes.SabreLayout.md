@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.SabreLayout
 
 <span id="qiskit.transpiler.passes.SabreLayout" />
 
-`qiskit.transpiler.passes.SabreLayout(*args, **kwargs)`
+`qiskit.transpiler.passes.SabreLayout(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/passes/layout/sabre_layout.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -20,7 +20,7 @@ Starting with a random initial Layout, the algorithm does a full routing of the 
 
 This method exploits the reversibility of quantum circuits, and tries to include global circuit information in the choice of initial\_layout.
 
-By default this pass will run both layout and routing and will transform the circuit so that the layout is applied to the input dag (meaning that the output circuit will have ancilla qubits allocated for unused qubits on the coupling map and the qubits will be reordered to match the mapped physical qubits) and then routing will be applied (inserting `AnalysisPass` objects and just find an initial layout and set that on the property set. This is done because by default the pass will run parallel seed trials with different random seeds for selecting the random initial layout and then selecting the routed output which results in the least number of swap gates needed.
+By default, this pass will run both layout and routing and will transform the circuit so that the layout is applied to the input dag (meaning that the output circuit will have ancilla qubits allocated for unused qubits on the coupling map and the qubits will be reordered to match the mapped physical qubits) and then routing will be applied (inserting `AnalysisPass` objects and just find an initial layout and set that on the property set. This is done because by default the pass will run parallel seed trials with different random seeds for selecting the random initial layout and then selecting the routed output which results in the least number of swap gates needed.
 
 You can use the `routing_pass` argument to have this pass operate as a typical layout pass. When specified this will use the specified routing pass to select an initial layout only and will not run multiple seed trials.
 
@@ -98,7 +98,7 @@ int
 
 **param skip\_routing**
 
-If this is set `True` and `routing_pass` is not used then routing will not be applied to the output circuit. Only the layout will be returned in the property set. This is a tradeoff to run custom routing with multiple layout trials, as using this option will cause SabreLayout to run the routing stage internally but not use that result.
+If this is set `True` and `routing_pass` is not used then routing will not be applied to the output circuit. Only the layout will be set in the property set. This is a tradeoff to run custom routing with multiple layout trials, as using this option will cause SabreLayout to run the routing stage internally but not use that result.
 
 **type skip\_routing**
 

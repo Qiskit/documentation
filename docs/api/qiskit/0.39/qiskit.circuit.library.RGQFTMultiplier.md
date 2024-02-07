@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.RGQFTMultiplier
 
 <span id="qiskit.circuit.library.RGQFTMultiplier" />
 
-`RGQFTMultiplier(num_state_qubits, num_result_qubits=None, name='RGQFTMultiplier')`
+`RGQFTMultiplier(num_state_qubits, num_result_qubits=None, name='RGQFTMultiplier')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/arithmetic/multipliers/rg_qft_multiplier.py "view source code")
 
 Bases: `qiskit.circuit.library.arithmetic.multipliers.multiplier.Multiplier`
 
@@ -229,7 +229,7 @@ The parameters defined in the circuit.
 
 This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
 
-## Examples
+**Examples**
 
 The snippet below shows that insertion order of parameters does not matter.
 

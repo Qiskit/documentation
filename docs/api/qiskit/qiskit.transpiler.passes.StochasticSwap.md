@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.StochasticSwap
 
 <span id="qiskit.transpiler.passes.StochasticSwap" />
 
-`qiskit.transpiler.passes.StochasticSwap(*args, **kwargs)`
+`qiskit.transpiler.passes.StochasticSwap(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/passes/routing/stochastic_swap.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -18,7 +18,7 @@ Map a DAGCircuit onto a coupling\_map adding swap gates.
 
 Uses a randomized algorithm.
 
-## Notes
+**Notes**
 
 1.  Measurements may occur and be followed by swaps that result in repeated measurement of the same qubit. Near-term experiments cannot implement these circuits, so some care is required when using this mapper with experimental backend targets.
 2.  We do not use the fact that the input state is zero to simplify the circuit.
@@ -34,7 +34,7 @@ If these are not satisfied, the behavior is undefined.
 *   **coupling\_map** (*Union\[*[*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")*,* [*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")*]*) – Directed graph representing a coupling map.
 *   **trials** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – maximum number of iterations to attempt
 *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – seed for random number generator
-*   **fake\_run** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if true, it only pretend to do routing, i.e., no swap is effectively added.
+*   **fake\_run** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if true, it will only pretend to do routing, i.e., no swap is effectively added.
 *   **initial\_layout** ([*Layout*](qiskit.transpiler.Layout "qiskit.transpiler.Layout")) – starting layout at beginning of pass.
 
 ## Attributes

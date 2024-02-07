@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.runtime.RuntimeEncoder
 
 <span id="qiskit.providers.ibmq.runtime.RuntimeEncoder" />
 
-`RuntimeEncoder(*, skipkeys=False, ensure_ascii=True, check_circular=True, allow_nan=True, sort_keys=False, indent=None, separators=None, default=None)`
+`RuntimeEncoder(*, skipkeys=False, ensure_ascii=True, check_circular=True, allow_nan=True, sort_keys=False, indent=None, separators=None, default=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/runtime/utils.py "view source code")
 
 Bases: `json.encoder.JSONEncoder`
 
@@ -40,7 +40,7 @@ If specified, default is a function that gets called for objects that can’t ot
 
 <span id="qiskit.providers.ibmq.runtime.RuntimeEncoder.default" />
 
-`RuntimeEncoder.default(obj)`
+`RuntimeEncoder.default(obj)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/runtime/utils.py "view source code")
 
 Implement this method in a subclass such that it returns a serializable object for `o`, or calls the base implementation (to raise a `TypeError`).
 

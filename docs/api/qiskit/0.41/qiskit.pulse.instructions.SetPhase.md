@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.pulse.instructions.SetPhase
 ---
 
-# SetPhase[¶](#setphase "Permalink to this headline")
+# SetPhase
 
 <span id="qiskit.pulse.instructions.SetPhase" />
 
-`SetPhase(phase, channel, name=None)`
+`SetPhase(phase, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/instructions/phase.py "view source code")
 
 Bases: [`qiskit.pulse.instructions.instruction.Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")
 

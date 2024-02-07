@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.PVQD
 
 <span id="qiskit.algorithms.PVQD" />
 
-`qiskit.algorithms.PVQD(fidelity, ansatz, initial_parameters, estimator=None, optimizer=None, num_timesteps=None, evolution=None, use_parameter_shift=True, initial_guess=None)`
+`qiskit.algorithms.PVQD(fidelity, ansatz, initial_parameters, estimator=None, optimizer=None, num_timesteps=None, evolution=None, use_parameter_shift=True, initial_guess=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/time_evolvers/pvqd/pvqd.py "view source code")
 
 Bases: [`RealTimeEvolver`](qiskit.algorithms.RealTimeEvolver "qiskit.algorithms.time_evolvers.real_time_evolver.RealTimeEvolver")
 
@@ -90,7 +90,7 @@ The starting point for the first classical optimization run, at time 0. Defaults
 
 Optional\[np.ndarray]
 
-## Example
+**Example**
 
 This snippet computes the real time evolution of a quantum Ising model on two neighboring sites and keeps track of the magnetization.
 
@@ -134,7 +134,7 @@ problem = TimeEvolutionProblem(
 result = pvqd.evolve(problem)
 ```
 
-## References
+**References**
 
 **\[1] Stefano Barison, Filippo Vicentini, and Giuseppe Carleo (2021), An efficient**
 

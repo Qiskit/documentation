@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.providers.fake_provider.Fake1Q
 ---
 
-# Fake1Q[¶](#fake1q "Permalink to this headline")
+# Fake1Q
 
 <span id="qiskit.providers.fake_provider.Fake1Q" />
 
-`Fake1Q`
+`Fake1Q`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/fake_provider/fake_1q.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_backend.FakeBackend`
 
@@ -40,7 +40,7 @@ the configuration for the backend.
 
 <span id="qiskit.providers.fake_provider.Fake1Q.defaults" />
 
-`Fake1Q.defaults()`
+`Fake1Q.defaults()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/fake_provider/fake_1q.py "view source code")
 
 defaults == configuration
 
@@ -64,7 +64,7 @@ str
 
 <span id="qiskit.providers.fake_provider.Fake1Q.properties" />
 
-`Fake1Q.properties()`
+`Fake1Q.properties()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/fake_provider/fake_1q.py "view source code")
 
 properties == configuration
 

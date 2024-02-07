@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.instructions.ShiftPhase
 
 <span id="qiskit.pulse.instructions.ShiftPhase" />
 
-`qiskit.pulse.instructions.ShiftPhase(phase, channel, name=None)`
+`qiskit.pulse.instructions.ShiftPhase(phase, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/pulse/instructions/phase.py "view source code")
 
 Bases: [`Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")
 
@@ -20,6 +20,8 @@ In particular, a PulseChannel creates pulses of the form
 
 $$
 Re[\exp(i 2\pi f jdt + \phi) d_j].
+
+
 $$
 
 The `ShiftPhase` instruction causes $\phi$ to be increased by the instruction’s `phase` operand. This will affect all pulses following on the same channel.
@@ -182,7 +184,7 @@ Return maximum start time for supplied channels.
 Plot the instruction.
 
 <Admonition title="Deprecated since version 0.23.0" type="danger">
-  The method `qiskit.pulse.instructions.instruction.Instruction.draw()` is deprecated as of qiskit-terra 0.23.0. It will be removed no earlier than 3 months after the release date. No direct alternative is being provided to drawing individual pulses. But, instructions can be visualized as part of a complete schedule using `qiskit.visualization.pulse_drawer`.
+  The method `qiskit.pulse.instructions.instruction.Instruction.draw()` is deprecated as of qiskit-terra 0.23.0. It will be removed in the Qiskit 1.0 release. No direct alternative is being provided to drawing individual pulses. But, instructions can be visualized as part of a complete schedule using `qiskit.visualization.pulse_drawer`.
 </Admonition>
 
 **Parameters**

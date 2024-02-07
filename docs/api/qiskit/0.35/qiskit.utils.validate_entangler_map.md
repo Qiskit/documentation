@@ -1,8 +1,16 @@
+---
+title: validate_entangler_map
+description: API reference for qiskit.utils.validate_entangler_map
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.utils.validate_entangler_map
+---
+
 # qiskit.utils.validate\_entangler\_map
 
+<span id="qiskit.utils.validate_entangler_map" />
 
-
-`validate_entangler_map(entangler_map, num_qubits, allow_double_entanglement=False)`
+`validate_entangler_map(entangler_map, num_qubits, allow_double_entanglement=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/utils/entangler_map.py "view source code")
 
 Validate a user supplied entangler map and converts entries to ints.
 
@@ -25,3 +33,4 @@ list
 *   **TypeError** – entangler map is not list type or list of list
 *   **ValueError** – the index of entangler map is out of range
 *   **ValueError** – the qubits are cross-entangled.
+

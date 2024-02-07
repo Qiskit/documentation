@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.PiecewiseChebyshev
 
 <span id="qiskit.circuit.library.PiecewiseChebyshev" />
 
-`qiskit.circuit.library.PiecewiseChebyshev(f_x, degree=None, breakpoints=None, num_state_qubits=None, name='pw_cheb')`
+`qiskit.circuit.library.PiecewiseChebyshev(f_x, degree=None, breakpoints=None, num_state_qubits=None, name='pw_cheb')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/arithmetic/piecewise_chebyshev.py "view source code")
 
 Bases: `BlueprintCircuit`
 
@@ -20,7 +20,7 @@ For a given function $f(x)$ and degree $d$, this class implements a piecewise po
 
 The values of the parameters are calculated according to \[1] and see \[2] for a more detailed explanation of the circuit construction and how it acts on the qubits.
 
-## Examples
+**Examples**
 
 ```python
 import numpy as np
@@ -37,7 +37,7 @@ qc.draw(output='mpl')
 
 ![../\_images/qiskit-circuit-library-PiecewiseChebyshev-1.png](/images/api/qiskit/qiskit-circuit-library-PiecewiseChebyshev-1.png)
 
-## References
+**References**
 
 **\[1]: Haener, T., Roetteler, M., & Svore, K. M. (2018).**
 
@@ -133,7 +133,7 @@ Return the global phase of the current circuit scope in radians.
 
 ### instances
 
-`= 306`
+`= 250`
 
 <span id="qiskit.circuit.library.PiecewiseChebyshev.layout" />
 

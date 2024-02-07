@@ -1,8 +1,16 @@
+---
+title: QFI
+description: API reference for qiskit.aqua.operators.gradients.QFI
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.operators.gradients.QFI
+---
+
 # qiskit.aqua.operators.gradients.QFI
 
+<span id="qiskit.aqua.operators.gradients.QFI" />
 
-
-`QFI(qfi_method='lin_comb_full')`
+`QFI(qfi_method='lin_comb_full')`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/gradients/qfi.py "view source code")
 
 Compute the Quantum Fisher Information (QFI).
 
@@ -15,19 +23,21 @@ $$
 
 **Parameters**
 
-**qfi\_method** (`Union`\[`str`, `CircuitQFI`]) – The method used to compute the state/probability gradient. Can be either a [`CircuitQFI`](qiskit.aqua.operators.gradients.CircuitQFI#qiskit.aqua.operators.gradients.CircuitQFI "qiskit.aqua.operators.gradients.CircuitQFI") instance or one of the following pre-defined strings `'lin_comb_full'`, `` 'overlap_diag'` `` or `` 'overlap_block_diag'` ``.
+**qfi\_method** (`Union`\[`str`, `CircuitQFI`]) – The method used to compute the state/probability gradient. Can be either a [`CircuitQFI`](qiskit.aqua.operators.gradients.CircuitQFI "qiskit.aqua.operators.gradients.CircuitQFI") instance or one of the following pre-defined strings `'lin_comb_full'`, `` 'overlap_diag'` `` or `` 'overlap_block_diag'` ``.
 
 **Raises**
 
 **ValueError** – if `qfi_method` is neither a `CircuitQFI` object nor one of the predefined strings.
 
+### \_\_init\_\_
 
+<span id="qiskit.aqua.operators.gradients.QFI.__init__" />
 
 `__init__(qfi_method='lin_comb_full')`
 
 **Parameters**
 
-**qfi\_method** (`Union`\[`str`, `CircuitQFI`]) – The method used to compute the state/probability gradient. Can be either a [`CircuitQFI`](qiskit.aqua.operators.gradients.CircuitQFI#qiskit.aqua.operators.gradients.CircuitQFI "qiskit.aqua.operators.gradients.CircuitQFI") instance or one of the following pre-defined strings `'lin_comb_full'`, `` 'overlap_diag'` `` or `` 'overlap_block_diag'` ``.
+**qfi\_method** (`Union`\[`str`, `CircuitQFI`]) – The method used to compute the state/probability gradient. Can be either a [`CircuitQFI`](qiskit.aqua.operators.gradients.CircuitQFI "qiskit.aqua.operators.gradients.CircuitQFI") instance or one of the following pre-defined strings `'lin_comb_full'`, `` 'overlap_diag'` `` or `` 'overlap_block_diag'` ``.
 
 **Raises**
 
@@ -48,7 +58,9 @@ $$
 | ---------------------------------------------------------------------------------------------------------------- | --------------------- |
 | [`qfi_method`](#qiskit.aqua.operators.gradients.QFI.qfi_method "qiskit.aqua.operators.gradients.QFI.qfi_method") | Returns `CircuitQFI`. |
 
+### convert
 
+<span id="qiskit.aqua.operators.gradients.QFI.convert" />
 
 `convert(operator, params=None)`
 
@@ -65,7 +77,9 @@ $$
 
 ListOp\[ListOp] where the operator at position k,l corresponds to QFI\_kl
 
+### gradient\_wrapper
 
+<span id="qiskit.aqua.operators.gradients.QFI.gradient_wrapper" />
 
 `gradient_wrapper(operator, bind_params, grad_params=None, backend=None)`
 
@@ -86,7 +100,9 @@ Function to compute a gradient, Hessian or QFI. The function takes an iterable a
 
 callable(param\_values)
 
+### parameter\_expression\_grad
 
+<span id="qiskit.aqua.operators.gradients.QFI.parameter_expression_grad" />
 
 `static parameter_expression_grad(param_expr, param)`
 
@@ -105,7 +121,9 @@ Get the derivative of a parameter expression w\.r.t. the given parameter.
 
 ParameterExpression representing the gradient of param\_expr w\.r.t. param
 
+### qfi\_method
 
+<span id="qiskit.aqua.operators.gradients.QFI.qfi_method" />
 
 `property qfi_method`
 
@@ -118,3 +136,4 @@ Returns `CircuitQFI`.
 **Returns**
 
 `CircuitQFI`.
+

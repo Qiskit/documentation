@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.RYYGate
 ---
 
-# RYYGate[¶](#ryygate "Permalink to this headline")
+# RYYGate
 
 <span id="qiskit.circuit.library.RYYGate" />
 
-`RYYGate(theta, label=None)`
+`RYYGate(theta, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/ryy.py "view source code")
 
 Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -70,7 +70,7 @@ Create new RYY gate.
 
 <span id="qiskit.circuit.library.RYYGate.inverse" />
 
-`RYYGate.inverse()`
+`RYYGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/ryy.py "view source code")
 
 Return inverse RYY gate (i.e. with the negative rotation angle).
 
@@ -78,7 +78,7 @@ Return inverse RYY gate (i.e. with the negative rotation angle).
 
 <span id="qiskit.circuit.library.RYYGate.power" />
 
-`RYYGate.power(exponent)`
+`RYYGate.power(exponent)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/ryy.py "view source code")
 
 Raise gate to a power.
 

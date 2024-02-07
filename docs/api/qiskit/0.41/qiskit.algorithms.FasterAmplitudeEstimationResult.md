@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.FasterAmplitudeEstimationResult
 ---
 
-# FasterAmplitudeEstimationResult[¶](#fasteramplitudeestimationresult "Permalink to this headline")
+# FasterAmplitudeEstimationResult
 
 <span id="qiskit.algorithms.FasterAmplitudeEstimationResult" />
 
-`FasterAmplitudeEstimationResult`
+`FasterAmplitudeEstimationResult`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/amplitude_estimators/fae.py "view source code")
 
 Bases: [`qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimatorResult`](qiskit.algorithms.AmplitudeEstimatorResult "qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimatorResult")
 

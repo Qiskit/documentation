@@ -76,9 +76,7 @@ async function main() {
 
   const fileBatches = await determineFileBatches(args);
   const otherFiles = [
-    ...(await globby("{public,docs}/**/*.{png,jpg,gif,svg}")).map(
-      (fp) => new File(fp, []),
-    ),
+    ...(await globby("public/**/*")).map((fp) => new File(fp, [])),
     ...SYNTHETIC_FILES.map((fp) => new File(fp, [], true)),
   ];
 
@@ -119,17 +117,24 @@ async function determineCurrentDocsFileBatch(
 ): Promise<FileBatch> {
   const toCheck = [
     "docs/**/*.{ipynb,md,mdx}",
+    "public/api/*/objects.inv",
     // Ignore historical versions
     "!docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/[0-9]*/*",
+    "!public/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/[0-9]*/*",
   ];
   const toLoad = [
     "docs/api/qiskit/0.44/{algorithms,opflow}.md",
     "docs/api/qiskit/0.44/qiskit.{algorithms,extensions,opflow}.*",
     "docs/api/qiskit/0.44/qiskit.utils.QuantumInstance.md",
+    "docs/api/qiskit/0.45/qiskit.quantum_info.{OneQubitEuler,TwoQubitBasis,XX}Decomposer.md",
+    "docs/api/qiskit/0.45/qiskit.transpiler.synthesis.aqc.AQC.md",
+    "docs/api/qiskit/0.45/{tools,quantum_info,synthesis_aqc}.md",
   ];
 
   if (!args.currentApis) {
-    toCheck.push("!docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/*");
+    toCheck.push(
+      "!{public,docs}/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/*",
+    );
     toLoad.push("docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/*");
   }
 
@@ -163,7 +168,10 @@ async function determineHistoricalFileBatches(
   const result = [];
   for (const folder of historicalFolders) {
     const fileBatch = await FileBatch.fromGlobs(
-      [`docs/api/${projectName}/${folder.name}/*`],
+      [
+        `docs/api/${projectName}/${folder.name}/*`,
+        `public/api/${projectName}/${folder.name}/objects.inv`,
+      ],
       toLoad,
       `${projectName} v${folder.name}`,
     );

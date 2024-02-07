@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.synthesis.synth_cnotdihedral_two_qubits
 ---
 
-# qiskit.synthesis.synth\_cnotdihedral\_two\_qubits[¶](#qiskit-synthesis-synth-cnotdihedral-two-qubits "Permalink to this headline")
+# qiskit.synthesis.synth\_cnotdihedral\_two\_qubits
 
 <span id="qiskit.synthesis.synth_cnotdihedral_two_qubits" />
 
-`synth_cnotdihedral_two_qubits(elem)`
+`synth_cnotdihedral_two_qubits(elem)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/synthesis/cnotdihedral/cnotdihedral_decompose_two_qubits.py "view source code")
 
 Decompose a CNOTDihedral element on a single qubit and two qubits into a QuantumCircuit. This decomposition has an optimal number of CX gates.
 

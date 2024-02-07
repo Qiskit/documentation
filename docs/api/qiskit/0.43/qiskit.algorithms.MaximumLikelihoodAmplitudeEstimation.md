@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation
 
 <span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation" />
 
-`MaximumLikelihoodAmplitudeEstimation(evaluation_schedule, minimizer=None, quantum_instance=None, sampler=None)`
+`MaximumLikelihoodAmplitudeEstimation(evaluation_schedule, minimizer=None, quantum_instance=None, sampler=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/amplitude_estimators/mlae.py "view source code")
 
 Bases: [`AmplitudeEstimator`](qiskit.algorithms.AmplitudeEstimator "qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimator")
 
@@ -18,7 +18,7 @@ The Maximum Likelihood Amplitude Estimation algorithm.
 
 This class implements the quantum amplitude estimation (QAE) algorithm without phase estimation, as introduced in \[1]. In comparison to the original QAE algorithm \[2], this implementation relies solely on different powers of the Grover operator and does not require additional evaluation qubits. Finally, the estimate is determined via a maximum likelihood estimation, which is why this class in named `MaximumLikelihoodAmplitudeEstimation`.
 
-## References
+**References**
 
 **\[1]: Suzuki, Y., Uno, S., Raymond, R., Tanaka, T., Onodera, T., & Yamamoto, N. (2019).**
 
@@ -51,7 +51,7 @@ Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://
 
 <span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.compute_confidence_interval" />
 
-`static MaximumLikelihoodAmplitudeEstimation.compute_confidence_interval(result, alpha, kind='fisher', apply_post_processing=False)`
+`static MaximumLikelihoodAmplitudeEstimation.compute_confidence_interval(result, alpha, kind='fisher', apply_post_processing=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/amplitude_estimators/mlae.py "view source code")
 
 Compute the alpha confidence interval using the method kind.
 
@@ -83,7 +83,7 @@ tuple\[float, float]
 
 <span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.compute_mle" />
 
-`MaximumLikelihoodAmplitudeEstimation.compute_mle(circuit_results, estimation_problem, num_state_qubits=None, return_counts=False)`
+`MaximumLikelihoodAmplitudeEstimation.compute_mle(circuit_results, estimation_problem, num_state_qubits=None, return_counts=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/amplitude_estimators/mlae.py "view source code")
 
 Compute the MLE via a grid-search.
 
@@ -110,7 +110,7 @@ float | tuple\[float, list\[float]]
 
 <span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.construct_circuits" />
 
-`MaximumLikelihoodAmplitudeEstimation.construct_circuits(estimation_problem, measurement=False)`
+`MaximumLikelihoodAmplitudeEstimation.construct_circuits(estimation_problem, measurement=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/amplitude_estimators/mlae.py "view source code")
 
 Construct the Amplitude Estimation w/o QPE quantum circuits.
 
@@ -133,7 +133,7 @@ list\[[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCirc
 
 <span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.estimate" />
 
-`MaximumLikelihoodAmplitudeEstimation.estimate(estimation_problem)`
+`MaximumLikelihoodAmplitudeEstimation.estimate(estimation_problem)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/amplitude_estimators/mlae.py "view source code")
 
 Run the amplitude estimation algorithm on provided estimation problem.
 

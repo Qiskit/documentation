@@ -10,18 +10,15 @@ python_api_name: qiskit.providers.fake_provider.FakeQasmSimulator
 
 <span id="qiskit.providers.fake_provider.FakeQasmSimulator" />
 
-`qiskit.providers.fake_provider.FakeQasmSimulator`
+`qiskit.providers.fake_provider.FakeQasmSimulator`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/providers/fake_provider/fake_qasm_simulator.py "view source code")
 
 Bases: [`FakeBackend`](providers_fake_provider#qiskit.providers.fake_provider.FakeBackend "qiskit.providers.fake_provider.fake_backend.FakeBackend")
 
 A fake simulator backend.
 
-FakeBackend initializer.
-
-**Parameters**
-
-*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
-*   **time\_alive** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – time to wait before returning result
+<Admonition title="Deprecated since version 0.46.0" type="danger">
+  The class `qiskit.providers.fake_provider.fake_qasm_simulator.FakeQasmSimulator` is deprecated as of qiskit 0.46.0. It will be removed in qiskit 1.0. Use the qiskit.providers.basic\_provider.BasicSimulator class instead.
+</Admonition>
 
 ## Attributes
 

@@ -13,7 +13,7 @@
 import { Metadata } from "./Metadata";
 
 export type Image = {
-  src: string;
+  fileName: string;
   dest: string;
 };
 

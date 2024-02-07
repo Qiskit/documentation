@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CCXGate
 
 <span id="qiskit.circuit.library.CCXGate" />
 
-`qiskit.circuit.library.CCXGate(*args, _force_mutable=False, **kwargs)`
+`qiskit.circuit.library.CCXGate(*args, _force_mutable=False, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 Bases: [`SingletonControlledGate`](circuit_singleton#qiskit.circuit.singleton.SingletonControlledGate "qiskit.circuit.singleton.SingletonControlledGate")
 
@@ -32,7 +32,7 @@ q_2: ┤ X ├
 **Matrix representation:**
 
 $$
-\begin{split}CCX q_0, q_1, q_2 =
+CCX q_0, q_1, q_2 =
     I \otimes I \otimes |0 \rangle \langle 0| + CX \otimes |1 \rangle \langle 1| =
    \begin{pmatrix}
         1 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
@@ -43,7 +43,7 @@ $$
         0 & 0 & 0 & 0 & 0 & 1 & 0 & 0\\
         0 & 0 & 0 & 0 & 0 & 0 & 1 & 0\\
         0 & 0 & 0 & 1 & 0 & 0 & 0 & 0
-    \end{pmatrix}\end{split}
+    \end{pmatrix}
 $$
 
 <Admonition title="Note" type="note">
@@ -59,7 +59,7 @@ $$
   ```
 
   $$
-  \begin{split}CCX\ q_2, q_1, q_0 =
+  CCX\ q_2, q_1, q_0 =
       |0 \rangle \langle 0| \otimes I \otimes I + |1 \rangle \langle 1| \otimes CX =
       \begin{pmatrix}
           1 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
@@ -70,7 +70,7 @@ $$
           0 & 0 & 0 & 0 & 0 & 1 & 0 & 0\\
           0 & 0 & 0 & 0 & 0 & 0 & 0 & 1\\
           0 & 0 & 0 & 0 & 0 & 0 & 1 & 0
-      \end{pmatrix}\end{split}
+      \end{pmatrix}
   $$
 </Admonition>
 

@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.synthesis.synth_permutation_basic
 ---
 
-# qiskit.synthesis.synth\_permutation\_basic[¶](#qiskit-synthesis-synth-permutation-basic "Permalink to this headline")
+# qiskit.synthesis.synth\_permutation\_basic
 
 <span id="qiskit.synthesis.synth_permutation_basic" />
 
-`synth_permutation_basic(pattern)`
+`synth_permutation_basic(pattern)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/synthesis/permutation/permutation_full.py "view source code")
 
 Synthesize a permutation circuit for a fully-connected architecture using sorting.
 

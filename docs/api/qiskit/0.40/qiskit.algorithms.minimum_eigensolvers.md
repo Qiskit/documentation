@@ -1,10 +1,10 @@
 <span id="qiskit-algorithms-minimum-eigensolvers" />
 
-# qiskit.algorithms.minimum\_eigensolvers[¶](#module-qiskit.algorithms.minimum_eigensolvers "Permalink to this headline")
+# qiskit.algorithms.minimum\_eigensolvers
 
-## Minimum Eigensolvers Package ([`qiskit.algorithms.minimum_eigensolvers`](#module-qiskit.algorithms.minimum_eigensolvers "qiskit.algorithms.minimum_eigensolvers"))[¶](#minimum-eigensolvers-package-qiskit-algorithms-minimum-eigensolvers "Permalink to this headline")
+## Minimum Eigensolvers Package ([`qiskit.algorithms.minimum_eigensolvers`](#module-qiskit.algorithms.minimum_eigensolvers "qiskit.algorithms.minimum_eigensolvers"))
 
-### Minimum Eigensolvers[¶](#minimum-eigensolvers "Permalink to this headline")
+### Minimum Eigensolvers
 
 |                                                                                                                                                                                    |                                                                                     |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |

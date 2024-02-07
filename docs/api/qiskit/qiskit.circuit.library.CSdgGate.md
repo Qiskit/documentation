@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CSdgGate
 
 <span id="qiskit.circuit.library.CSdgGate" />
 
-`qiskit.circuit.library.CSdgGate(*args, _force_mutable=False, **kwargs)`
+`qiskit.circuit.library.CSdgGate(*args, _force_mutable=False, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/standard_gates/s.py "view source code")
 
 Bases: [`SingletonControlledGate`](circuit_singleton#qiskit.circuit.singleton.SingletonControlledGate "qiskit.circuit.singleton.SingletonControlledGate")
 
@@ -30,14 +30,14 @@ q_1: ┤ Sdg ├
 **Matrix representation:**
 
 $$
-\begin{split}CS^\dagger \ q_0, q_1 =
+CS^\dagger \ q_0, q_1 =
 I \otimes |0 \rangle\langle 0| + S^\dagger \otimes |1 \rangle\langle 1|  =
     \begin{pmatrix}
         1 & 0 & 0 & 0 \\
         0 & 1 & 0 & 0 \\
         0 & 0 & 1 & 0 \\
         0 & 0 & 0 & -i
-    \end{pmatrix}\end{split}
+    \end{pmatrix}
 $$
 
 Create new CSdg gate.

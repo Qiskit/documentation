@@ -6,11 +6,11 @@ python_api_type: exception
 python_api_name: qiskit.providers.ibmq.job.IBMQJobTimeoutError
 ---
 
-# qiskit.providers.ibmq.job.IBMQJobTimeoutError[¶](#qiskit-providers-ibmq-job-ibmqjobtimeouterror "Permalink to this headline")
+# qiskit.providers.ibmq.job.IBMQJobTimeoutError
 
 <span id="qiskit.providers.ibmq.job.IBMQJobTimeoutError" />
 
-`IBMQJobTimeoutError(*message)`
+`IBMQJobTimeoutError(*message)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/job/exceptions.py "view source code")
 
 Errors raised when a job operation times out.
 

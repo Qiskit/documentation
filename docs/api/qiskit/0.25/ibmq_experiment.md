@@ -34,13 +34,13 @@ provider = IBMQ.load_account()
 experiments = provider.experiment.experiments()
 ```
 
-All the available functions can be invoked using the provider.experiment attribute, which is an instance of the [`ExperimentService`](qiskit.providers.ibmq.experiment.ExperimentService#qiskit.providers.ibmq.experiment.ExperimentService "qiskit.providers.ibmq.experiment.ExperimentService") class.
+All the available functions can be invoked using the provider.experiment attribute, which is an instance of the [`ExperimentService`](qiskit.providers.ibmq.experiment.ExperimentService "qiskit.providers.ibmq.experiment.ExperimentService") class.
 
 ## Classes
 
-|                                                                                                                                                                                                            |                                                          |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
-| [`ExperimentService`](qiskit.providers.ibmq.experiment.ExperimentService#qiskit.providers.ibmq.experiment.ExperimentService "qiskit.providers.ibmq.experiment.ExperimentService")(provider, access\_token) | Provides experiment related services.                    |
-| [`Experiment`](qiskit.providers.ibmq.experiment.Experiment#qiskit.providers.ibmq.experiment.Experiment "qiskit.providers.ibmq.experiment.Experiment")(provider, backend\_name, …\[, …])                    | Class representing an experiment.                        |
-| [`AnalysisResult`](qiskit.providers.ibmq.experiment.AnalysisResult#qiskit.providers.ibmq.experiment.AnalysisResult "qiskit.providers.ibmq.experiment.AnalysisResult")(experiment\_uuid, …\[, fit, …])      | Class representing an analysis result for an experiment. |
+|                                                                                                                                                         |                                                          |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| [`ExperimentService`](qiskit.providers.ibmq.experiment.ExperimentService "qiskit.providers.ibmq.experiment.ExperimentService")(provider, access\_token) | Provides experiment related services.                    |
+| [`Experiment`](qiskit.providers.ibmq.experiment.Experiment "qiskit.providers.ibmq.experiment.Experiment")(provider, backend\_name, …\[, …])             | Class representing an experiment.                        |
+| [`AnalysisResult`](qiskit.providers.ibmq.experiment.AnalysisResult "qiskit.providers.ibmq.experiment.AnalysisResult")(experiment\_uuid, …\[, fit, …])   | Class representing an analysis result for an experiment. |
 

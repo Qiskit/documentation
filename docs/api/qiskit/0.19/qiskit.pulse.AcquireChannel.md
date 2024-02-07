@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.AcquireChannel
 
 <span id="qiskit.pulse.AcquireChannel" />
 
-`AcquireChannel(index)`
+`AcquireChannel(index)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/channels.py "view source code")
 
 Acquire channels are used to collect data.
 
@@ -59,4 +59,7 @@ Return the shorthand alias for this channel, which is based on its type and inde
 A shorthand string prefix for characterizing the channel type.
 
 ## Methods
+
+|   |
+| - |
 

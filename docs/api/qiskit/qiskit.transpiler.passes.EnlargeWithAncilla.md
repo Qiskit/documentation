@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.EnlargeWithAncilla
 
 <span id="qiskit.transpiler.passes.EnlargeWithAncilla" />
 
-`qiskit.transpiler.passes.EnlargeWithAncilla(*args, **kwargs)`
+`qiskit.transpiler.passes.EnlargeWithAncilla(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/passes/layout/enlarge_with_ancilla.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -94,7 +94,7 @@ An extended DAG.
 
 **Raises**
 
-[**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – If there is not layout in the property set or not set at init time.
+[**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – If there is no layout in the property set or not set at init time.
 
 ### update\_status
 

@@ -1,8 +1,16 @@
+---
+title: level_3_pass_manager
+description: API reference for qiskit.transpiler.preset_passmanagers.level_3_pass_manager
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.transpiler.preset_passmanagers.level_3_pass_manager
+---
+
 # qiskit.transpiler.preset\_passmanagers.level\_3\_pass\_manager
 
+<span id="qiskit.transpiler.preset_passmanagers.level_3_pass_manager" />
 
-
-`level_3_pass_manager(pass_manager_config)`
+`level_3_pass_manager(pass_manager_config)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/preset_passmanagers/level3.py "view source code")
 
 Level 3 pass manager: heavy optimization by noise adaptive qubit mapping and gate cancellation using commutativity rules and unitary synthesis.
 
@@ -28,4 +36,5 @@ a level 3 pass manager.
 
 **Raises**
 
-[**TranspilerError**](qiskit.transpiler.TranspilerError#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if the passmanager config is invalid.
+[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if the passmanager config is invalid.
+

@@ -1,8 +1,16 @@
+---
+title: IterativeAmplitudeEstimation
+description: API reference for qiskit.aqua.algorithms.IterativeAmplitudeEstimation
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.algorithms.IterativeAmplitudeEstimation
+---
+
 # qiskit.aqua.algorithms.IterativeAmplitudeEstimation
 
+<span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation" />
 
-
-`IterativeAmplitudeEstimation(epsilon, alpha, confint_method='beta', min_ratio=2, state_preparation=None, grover_operator=None, objective_qubits=None, post_processing=None, a_factory=None, q_factory=None, i_objective=None, initial_state=None, quantum_instance=None)`
+`IterativeAmplitudeEstimation(epsilon, alpha, confint_method='beta', min_ratio=2, state_preparation=None, grover_operator=None, objective_qubits=None, post_processing=None, a_factory=None, q_factory=None, i_objective=None, initial_state=None, quantum_instance=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_estimators/iqae.py "view source code")
 
 The Iterative Amplitude Estimation algorithm.
 
@@ -10,7 +18,7 @@ This class implements the Iterative Quantum Amplitude Estimation (IQAE) algorith
 
 It differs from the original QAE algorithm proposed by Brassard \[2] in that it does not rely on Quantum Phase Estimation, but is only based on Grover’s algorithm. IQAE iteratively applies carefully selected Grover iterations to find an estimate for the target amplitude.
 
-## References
+**References**
 
 **\[1]: Grinko, D., Gacon, J., Zoufal, C., & Woerner, S. (2019).**
 
@@ -40,9 +48,11 @@ The output of the algorithm is an estimate for the amplitude a, that with at lea
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if the method to compute the confidence intervals is not supported
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if the method to compute the confidence intervals is not supported
 
+### \_\_init\_\_
 
+<span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.__init__" />
 
 `__init__(epsilon, alpha, confint_method='beta', min_ratio=2, state_preparation=None, grover_operator=None, objective_qubits=None, post_processing=None, a_factory=None, q_factory=None, i_objective=None, initial_state=None, quantum_instance=None)`
 
@@ -66,7 +76,7 @@ The output of the algorithm is an estimate for the amplitude a, that with at lea
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if the method to compute the confidence intervals is not supported
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if the method to compute the confidence intervals is not supported
 
 ## Methods
 
@@ -94,7 +104,9 @@ The output of the algorithm is an estimate for the amplitude a, that with at lea
 | [`random`](#qiskit.aqua.algorithms.IterativeAmplitudeEstimation.random "qiskit.aqua.algorithms.IterativeAmplitudeEstimation.random")                                  | Return a numpy random.                                                              |
 | [`state_preparation`](#qiskit.aqua.algorithms.IterativeAmplitudeEstimation.state_preparation "qiskit.aqua.algorithms.IterativeAmplitudeEstimation.state_preparation") | Get the $\mathcal{A}$ operator encoding the amplitude $a$.                          |
 
+### a\_factory
 
+<span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.a_factory" />
 
 `property a_factory`
 
@@ -110,9 +122,11 @@ the A operator as CircuitFactory
 
 **Return type**
 
-[CircuitFactory](qiskit.aqua.utils.CircuitFactory#qiskit.aqua.utils.CircuitFactory "qiskit.aqua.utils.CircuitFactory")
+[CircuitFactory](qiskit.aqua.utils.CircuitFactory "qiskit.aqua.utils.CircuitFactory")
 
+### backend
 
+<span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.backend" />
 
 `property backend`
 
@@ -122,7 +136,9 @@ Returns backend.
 
 `Union`\[`Backend`, `BaseBackend`]
 
+### construct\_circuit
 
+<span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.construct_circuit" />
 
 `construct_circuit(k, measurement=False)`
 
@@ -143,7 +159,9 @@ The A operator is the unitary specifying the QAE problem and Q the associated Gr
 
 The circuit Q^k A |0>.
 
+### grover\_operator
 
+<span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.grover_operator" />
 
 `property grover_operator`
 
@@ -159,7 +177,9 @@ If the Grover operator is not set, we try to build it from the $\mathcal{A}$ ope
 
 The Grover operator, or None if neither the Grover operator nor the $\mathcal{A}$ operator is set.
 
+### i\_objective
 
+<span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.i_objective" />
 
 `property i_objective`
 
@@ -179,7 +199,9 @@ the index of the objective qubit
 
 int
 
+### is\_good\_state
 
+<span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.is_good_state" />
 
 `is_good_state(measurement)`
 
@@ -201,7 +223,9 @@ True if the measurement corresponds to a good state, False otherwise.
 
 **ValueError** – If `self.objective_qubits` is not set.
 
+### objective\_qubits
 
+<span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.objective_qubits" />
 
 `property objective_qubits`
 
@@ -215,7 +239,9 @@ Get the criterion for a measurement outcome to be in a ‘good’ state.
 
 The criterion as list of qubit indices.
 
+### post\_processing
 
+<span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.post_processing" />
 
 `post_processing(value)`
 
@@ -233,7 +259,9 @@ Post processing of the raw amplitude estimation output $0 \leq a \leq 1$.
 
 The value after post processing, usually mapping the interval $[0, 1]$ to the target interval.
 
+### precision
 
+<span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.precision" />
 
 `property precision`
 
@@ -247,7 +275,9 @@ Returns the target precision epsilon of the algorithm.
 
 The target precision (which is half the width of the confidence interval).
 
+### q\_factory
 
+<span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.q_factory" />
 
 `property q_factory`
 
@@ -269,7 +299,9 @@ returns the current Q factory of the algorithm
 
 QFactory
 
+### quantum\_instance
 
+<span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.quantum_instance" />
 
 `property quantum_instance`
 
@@ -279,13 +311,17 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
+### random
 
+<span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.random" />
 
 `property random`
 
 Return a numpy random.
 
+### run
 
+<span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.run" />
 
 `run(quantum_instance=None, **kwargs)`
 
@@ -306,9 +342,11 @@ dict
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
 
+### set\_backend
 
+<span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.set_backend" />
 
 `set_backend(backend, **kwargs)`
 
@@ -318,7 +356,9 @@ Sets backend with configuration.
 
 `None`
 
+### state\_preparation
 
+<span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.state_preparation" />
 
 `property state_preparation`
 
@@ -331,3 +371,4 @@ Get the $\mathcal{A}$ operator encoding the amplitude $a$.
 **Returns**
 
 The $\mathcal{A}$ operator as QuantumCircuit.
+

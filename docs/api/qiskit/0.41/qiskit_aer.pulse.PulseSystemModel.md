@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit_aer.pulse.PulseSystemModel
 ---
 
-# PulseSystemModel[¶](#pulsesystemmodel "Permalink to this headline")
+# PulseSystemModel
 
 <span id="qiskit_aer.pulse.PulseSystemModel" />
 
-`PulseSystemModel(hamiltonian=None, u_channel_lo=None, control_channel_labels=None, subsystem_list=None, dt=None)`
+`PulseSystemModel(hamiltonian=None, u_channel_lo=None, control_channel_labels=None, subsystem_list=None, dt=None)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/pulse/system_models/pulse_system_model.py "view source code")
 
 Bases: `object`
 
@@ -50,7 +50,7 @@ Initialize a PulseSystemModel.
 
 <span id="qiskit_aer.pulse.PulseSystemModel.calculate_channel_frequencies" />
 
-`PulseSystemModel.calculate_channel_frequencies(qubit_lo_freq=None)`
+`PulseSystemModel.calculate_channel_frequencies(qubit_lo_freq=None)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/pulse/system_models/pulse_system_model.py "view source code")
 
 Calculate frequencies for each channel given qubit\_lo\_freq.
 
@@ -74,7 +74,7 @@ OrderedDict
 
 <span id="qiskit_aer.pulse.PulseSystemModel.control_channel_index" />
 
-`PulseSystemModel.control_channel_index(label)`
+`PulseSystemModel.control_channel_index(label)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/pulse/system_models/pulse_system_model.py "view source code")
 
 Return the index of the control channel with identifying label.
 
@@ -94,7 +94,7 @@ int or None
 
 <span id="qiskit_aer.pulse.PulseSystemModel.from_backend" />
 
-`classmethod PulseSystemModel.from_backend(backend, subsystem_list=None)`
+`classmethod PulseSystemModel.from_backend(backend, subsystem_list=None)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/pulse/system_models/pulse_system_model.py "view source code")
 
 Returns a PulseSystemModel constructed from an OpenPulse enabled backend object.
 
@@ -119,7 +119,7 @@ the PulseSystemModel constructed from the backend.
 
 <span id="qiskit_aer.pulse.PulseSystemModel.from_config" />
 
-`classmethod PulseSystemModel.from_config(configuration, subsystem_list=None)`
+`classmethod PulseSystemModel.from_config(configuration, subsystem_list=None)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/pulse/system_models/pulse_system_model.py "view source code")
 
 Construct a model from configuration and defaults.
 

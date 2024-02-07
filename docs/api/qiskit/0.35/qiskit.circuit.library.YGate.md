@@ -1,8 +1,16 @@
+---
+title: YGate
+description: API reference for qiskit.circuit.library.YGate
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.YGate
+---
+
 # YGate
 
+<span id="qiskit.circuit.library.YGate" />
 
-
-`YGate(label=None)`
+`YGate(label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/y.py "view source code")
 
 Bases: `qiskit.circuit.gate.Gate`
 
@@ -50,14 +58,41 @@ Create new Y gate.
 
 ## Methods Defined Here
 
-|                                                                                                                               |                                           |
-| ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
-| [`control`](qiskit.circuit.library.YGate.control#qiskit.circuit.library.YGate.control "qiskit.circuit.library.YGate.control") | Return a (multi-)controlled-Y gate.       |
-| [`inverse`](qiskit.circuit.library.YGate.inverse#qiskit.circuit.library.YGate.inverse "qiskit.circuit.library.YGate.inverse") | Return inverted Y gate ($Y{\dagger} = Y$) |
+### control
+
+<span id="qiskit.circuit.library.YGate.control" />
+
+`YGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/y.py "view source code")
+
+Return a (multi-)controlled-Y gate.
+
+One control returns a CY gate.
+
+**Parameters**
+
+*   **num\_ctrl\_qubits** (*int*) – number of control qubits.
+*   **label** (*str or None*) – An optional label for the gate \[Default: None]
+*   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
+
+**Returns**
+
+controlled version of this gate.
+
+**Return type**
+
+[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+
+### inverse
+
+<span id="qiskit.circuit.library.YGate.inverse" />
+
+`YGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/y.py "view source code")
+
+Return inverted Y gate ($Y{\dagger} = Y$)
 
 ## Attributes
 
-
+<span id="qiskit.circuit.library.YGate.condition_bits" />
 
 ### condition\_bits
 
@@ -67,25 +102,25 @@ Get Clbits in condition.
 
 `List`\[`Clbit`]
 
-
+<span id="qiskit.circuit.library.YGate.decompositions" />
 
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
-
+<span id="qiskit.circuit.library.YGate.definition" />
 
 ### definition
 
 Return definition in terms of other basic gates.
 
-
+<span id="qiskit.circuit.library.YGate.duration" />
 
 ### duration
 
 Get the duration.
 
-
+<span id="qiskit.circuit.library.YGate.label" />
 
 ### label
 
@@ -95,32 +130,33 @@ Return instruction label
 
 `str`
 
-
+<span id="qiskit.circuit.library.YGate.name" />
 
 ### name
 
 Return the name.
 
-
+<span id="qiskit.circuit.library.YGate.num_clbits" />
 
 ### num\_clbits
 
 Return the number of clbits.
 
-
+<span id="qiskit.circuit.library.YGate.num_qubits" />
 
 ### num\_qubits
 
 Return the number of qubits.
 
-
+<span id="qiskit.circuit.library.YGate.params" />
 
 ### params
 
 return instruction params.
 
-
+<span id="qiskit.circuit.library.YGate.unit" />
 
 ### unit
 
 Get the time unit of duration.
+

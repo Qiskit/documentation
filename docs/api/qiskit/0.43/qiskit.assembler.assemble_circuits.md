@@ -12,7 +12,7 @@ python_api_name: qiskit.assembler.assemble_circuits
 
 <span id="qiskit.assembler.assemble_circuits" />
 
-`assemble_circuits(circuits, run_config, qobj_id, qobj_header)`
+`assemble_circuits(circuits, run_config, qobj_id, qobj_header)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/assembler/assemble_circuits.py "view source code")
 
 Assembles a list of circuits into a qobj that can be run on the backend.
 
@@ -31,7 +31,7 @@ The qobj to be run on the backends
 
 [*QasmQobj*](qiskit.qobj.QasmQobj "qiskit.qobj.qasm_qobj.QasmQobj")
 
-## Examples
+**Examples**
 
 ```python
 from qiskit.circuit import QuantumRegister, ClassicalRegister, QuantumCircuit

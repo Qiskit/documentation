@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.ExcitationPreserving
 
 <span id="qiskit.circuit.library.ExcitationPreserving" />
 
-`ExcitationPreserving(num_qubits=None, mode='iswap', entanglement='full', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None)`
+`ExcitationPreserving(num_qubits=None, mode='iswap', entanglement='full', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/n_local/excitation_preserving.py "view source code")
 
 The heurisitic excitation-preserving wave function ansatz.
 
@@ -35,7 +35,7 @@ See [`RealAmplitudes`](qiskit.circuit.library.RealAmplitudes "qiskit.circuit.lib
 
 The rotations of the ExcitationPreserving ansatz can be written as
 
-## Examples
+**Examples**
 
 ```python
 >>> ansatz = ExcitationPreserving(3, reps=1, insert_barriers=True, entanglement='linear')
@@ -272,7 +272,7 @@ The parameters used in the underlying circuit.
 
 This includes float values and duplicates.
 
-#### Examples
+**Examples**
 
 ```python
 >>> # prepare circuit ...
@@ -680,7 +680,7 @@ the composed circuit (returns None if inplace==True).
 *   **CircuitError** – if composing on the front.
 *   **QiskitError** – if `other` is wider or there are duplicate edge mappings.
 
-#### Examples
+**Examples**
 
 ```python
 >>> lhs.compose(rhs, qubits=[3, 2], inplace=True)
@@ -851,7 +851,7 @@ Depth of circuit.
 
 int
 
-#### Notes
+**Notes**
 
 The circuit depth and the DAG depth need not be the same.
 
@@ -1545,7 +1545,7 @@ Conditional nonlocal gates are also included.
 
 Computes the number of tensor factors in the unitary (quantum) part of the circuit only.
 
-#### Notes
+**Notes**
 
 This is here for backwards compatibility, and will be removed in a future release of Qiskit. You should call num\_unitary\_factors instead.
 

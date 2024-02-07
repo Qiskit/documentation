@@ -10,46 +10,47 @@ python_api_name: qiskit.qpy.load
 
 <span id="qiskit.qpy.load" />
 
-`load(file_obj, metadata_deserializer=None)`
+`load(file_obj, metadata_deserializer=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/qpy/interface.py "view source code")
 
 Load a QPY binary file
 
-This function is used to load a serialized QPY Qiskit program file and create [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects or [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock") objects from its contents. For example:
+This function is used to load a serialized QPY circuit file and create [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects from its contents. For example:
 
 ```python
-from qiskit import qpy
+from qiskit.circuit import qpy_serialization
 
 with open('bell.qpy', 'rb') as fd:
-    circuits = qpy.load(fd)
+    circuits = qpy_serialization.load(fd)
 ```
 
 or with a gzip compressed file:
 
 ```python
 import gzip
-from qiskit import qpy
+from qiskit.circuit import qpy_serialization
 
 with gzip.open('bell.qpy.gz', 'rb') as fd:
-    circuits = qpy.load(fd)
+    circuits = qpy_serialization.load(fd)
 ```
 
-which will read the contents of the qpy and return a list of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects or [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock") objects from the file.
+which will read the contents of the qpy and return a list of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects from the file.
 
 **Parameters**
 
-*   **file\_obj** (`BinaryIO`) – A file like object that contains the QPY binary data for a circuit or pulse schedule.
-*   **metadata\_deserializer** (`Optional`\[`Type`\[`JSONDecoder`]]) – An optional JSONDecoder class that will be used for the `cls` kwarg on the internal `json.load` call used to deserialize the JSON payload used for the `.metadata` attribute for any programs in the QPY file. If this is not specified the circuit metadata will be parsed as JSON with the stdlib `json.load()` function using the default `JSONDecoder` class.
-
-**Return type**
-
-`List`\[`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")]]
+*   **file\_obj** (*File*) – A file like object that contains the QPY binary data for a circuit
+*   **metadata\_deserializer** (*JSONDecoder*) – An optional JSONDecoder class that will be used for the `cls` kwarg on the internal `json.load` call used to deserialize the JSON payload used for the [`QuantumCircuit.metadata`](qiskit.circuit.QuantumCircuit#metadata "qiskit.circuit.QuantumCircuit.metadata") attribute for any circuits in the QPY file. If this is not specified the circuit metadata will be parsed as JSON with the stdlib `json.load()` function using the default `JSONDecoder` class.
 
 **Returns**
 
-The list of Qiskit programs contained in the QPY data. A list is always returned, even if there is only 1 program in the QPY data.
+**List of `QuantumCircuit`**
+
+The list of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects contained in the QPY data. A list is always returned, even if there is only 1 circuit in the QPY data.
+
+**Return type**
+
+list
 
 **Raises**
 
-*   **QiskitError** – if `file_obj` is not a valid QPY file
-*   **TypeError** – When invalid data type is loaded.
+**QiskitError** – if `file_obj` is not a valid QPY file
 

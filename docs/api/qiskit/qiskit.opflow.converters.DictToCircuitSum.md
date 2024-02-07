@@ -10,14 +10,14 @@ python_api_name: qiskit.opflow.converters.DictToCircuitSum
 
 <span id="qiskit.opflow.converters.DictToCircuitSum" />
 
-`qiskit.opflow.converters.DictToCircuitSum(traverse=True, convert_dicts=True, convert_vectors=True)`
+`qiskit.opflow.converters.DictToCircuitSum(traverse=True, convert_dicts=True, convert_vectors=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/opflow/converters/dict_to_circuit_sum.py "view source code")
 
 Bases: [`ConverterBase`](qiskit.opflow.converters.ConverterBase "qiskit.opflow.converters.converter_base.ConverterBase")
 
 Deprecated: Converts `DictStateFns` or `VectorStateFns` to equivalent `CircuitStateFns` or sums thereof. The behavior of this class can be mostly replicated by calling `to_circuit_op` on an Operator, but with the added control of choosing whether to convert only `DictStateFns` or `VectorStateFns`, rather than both.
 
 <Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.opflow.converters.dict_to_circuit_sum.DictToCircuitSum` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  The class `qiskit.opflow.converters.dict_to_circuit_sum.DictToCircuitSum` is deprecated as of qiskit-terra 0.24.0. It will be removed in the Qiskit 1.0 release. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
 </Admonition>
 
 **Parameters**

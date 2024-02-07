@@ -19,13 +19,17 @@ When the approximation degree is less than 1.0, circuits with one or two CX gate
 As an example, we generate a random 2-qubit `UnitaryGate` which will be synthesized in the initial stage. Setting the `approximation_degree` less than 1.0 might generate an approximate circuit. We must also specify the `basis_gates` to let the synthesis method know which gates it can use for the approximate synthesis.
 
 ```python
-    UU = random_unitary(4, seed=12345)
-    rand_U = UnitaryGate(UU)
+from qiskit import QuantumCircuit, transpile
+from qiskit.circuit.library import UnitaryGate
+from qiskit.quantum_info import random_unitary
 
-    qc = QuantumCircuit(2)
-    qc.append(rand_U, range(2))
-    approx_qc = transpile(qc, approximation_degree=0.85, basis_gates=["sx", "rz", "cx"])
-    print(approx_qc.count_ops()["cx"])
+UU = random_unitary(4, seed=12345)
+rand_U = UnitaryGate(UU)
+
+qc = QuantumCircuit(2)
+qc.append(rand_U, range(2))
+approx_qc = transpile(qc, approximation_degree=0.85, basis_gates=["sx", "rz", "cx"])
+print(approx_qc.count_ops()["cx"])
 ```
 
 This yields an output of `2` because the approximation requires fewer CX gates.
@@ -38,7 +42,7 @@ The seed transpiler argument sets the random seed for the stochastic parts of th
 Example:
 
 ```python
-    optimized_1 = transpile(qc, backend=backend, seed_transpiler=11, optimization_level=1)
+optimized_1 = transpile(qc, seed_transpiler=11, optimization_level=1)
 ```
 
 <span id="init-layout"></span>

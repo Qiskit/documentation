@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.library.SaveUnitary
 
 <span id="qiskit.providers.aer.library.SaveUnitary" />
 
-`SaveUnitary(num_qubits, label='unitary', pershot=False)`
+`SaveUnitary(num_qubits, label='unitary', pershot=False)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/library/save_instructions/save_unitary.py "view source code")
 
 Bases: `qiskit.providers.aer.library.save_instructions.save_data.SaveSingleData`
 
@@ -209,7 +209,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.providers.aer.library.SaveUnitary.decompositions" />
 

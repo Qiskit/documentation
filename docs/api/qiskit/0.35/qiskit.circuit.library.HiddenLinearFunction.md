@@ -1,8 +1,16 @@
+---
+title: HiddenLinearFunction
+description: API reference for qiskit.circuit.library.HiddenLinearFunction
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.HiddenLinearFunction
+---
+
 # HiddenLinearFunction
 
+<span id="qiskit.circuit.library.HiddenLinearFunction" />
 
-
-`HiddenLinearFunction(adjacency_matrix)`
+`HiddenLinearFunction(adjacency_matrix)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/hidden_linear_function.py "view source code")
 
 Bases: `qiskit.circuit.quantumcircuit.QuantumCircuit`
 
@@ -48,7 +56,7 @@ Create new HLF circuit.
 
 ## Attributes
 
-
+<span id="qiskit.circuit.library.HiddenLinearFunction.ancillas" />
 
 ### ancillas
 
@@ -58,7 +66,7 @@ Returns a list of ancilla bits in the order that the registers were added.
 
 `List`\[`AncillaQubit`]
 
-
+<span id="qiskit.circuit.library.HiddenLinearFunction.calibrations" />
 
 ### calibrations
 
@@ -72,7 +80,7 @@ Return calibration dictionary.
 
 `dict`
 
-
+<span id="qiskit.circuit.library.HiddenLinearFunction.clbits" />
 
 ### clbits
 
@@ -82,7 +90,7 @@ Returns a list of classical bits in the order that the registers were added.
 
 `List`\[`Clbit`]
 
-
+<span id="qiskit.circuit.library.HiddenLinearFunction.data" />
 
 ### data
 
@@ -98,13 +106,13 @@ Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is 
 
 QuantumCircuitData
 
-
+<span id="qiskit.circuit.library.HiddenLinearFunction.extension_lib" />
 
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
 
-
+<span id="qiskit.circuit.library.HiddenLinearFunction.global_phase" />
 
 ### global\_phase
 
@@ -114,19 +122,19 @@ Return the global phase of the circuit in radians.
 
 `Union`\[`ParameterExpression`, `float`]
 
-
+<span id="qiskit.circuit.library.HiddenLinearFunction.header" />
 
 ### header
 
 `= 'OPENQASM 2.0;'`
 
-
+<span id="qiskit.circuit.library.HiddenLinearFunction.instances" />
 
 ### instances
 
 `= 9`
 
-
+<span id="qiskit.circuit.library.HiddenLinearFunction.metadata" />
 
 ### metadata
 
@@ -138,7 +146,7 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 
 `dict`
 
-
+<span id="qiskit.circuit.library.HiddenLinearFunction.num_ancillas" />
 
 ### num\_ancillas
 
@@ -148,7 +156,7 @@ Return the number of ancilla qubits.
 
 `int`
 
-
+<span id="qiskit.circuit.library.HiddenLinearFunction.num_clbits" />
 
 ### num\_clbits
 
@@ -158,7 +166,7 @@ Return number of classical bits.
 
 `int`
 
-
+<span id="qiskit.circuit.library.HiddenLinearFunction.num_parameters" />
 
 ### num\_parameters
 
@@ -168,7 +176,7 @@ Convenience function to get the number of parameter objects in the circuit.
 
 `int`
 
-
+<span id="qiskit.circuit.library.HiddenLinearFunction.num_qubits" />
 
 ### num\_qubits
 
@@ -178,7 +186,7 @@ Return number of qubits.
 
 `int`
 
-
+<span id="qiskit.circuit.library.HiddenLinearFunction.parameters" />
 
 ### parameters
 
@@ -188,13 +196,13 @@ Convenience function to get the parameters defined in the parameter table.
 
 `ParameterView`
 
-
+<span id="qiskit.circuit.library.HiddenLinearFunction.prefix" />
 
 ### prefix
 
 `= 'circuit'`
 
-
+<span id="qiskit.circuit.library.HiddenLinearFunction.qubits" />
 
 ### qubits
 
@@ -203,3 +211,4 @@ Returns a list of quantum bits in the order that the registers were added.
 **Return type**
 
 `List`\[`Qubit`]
+

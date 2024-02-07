@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.optimizers.NFT
 
 <span id="qiskit.aqua.components.optimizers.NFT" />
 
-`NFT(maxiter=None, maxfev=1024, disp=False, reset_interval=32)`
+`NFT(maxiter=None, maxfev=1024, disp=False, reset_interval=32)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/nft.py "view source code")
 
 Nakanishi-Fujii-Todo algorithm.
 
@@ -25,11 +25,11 @@ Built out using scipy framework, for details, please refer to [https://docs.scip
 *   **disp** (`bool`) – disp
 *   **reset\_interval** (`int`) – The minimum estimates directly once in `reset_interval` times.
 
-## Notes
+**Notes**
 
 In this optimization method, the optimization function have to satisfy three conditions written in [1](#id2).
 
-## References
+**References**
 
 **[1](#id1)**
 
@@ -95,7 +95,7 @@ Return setting
 
 <span id="qiskit.aqua.components.optimizers.NFT.get_support_level" />
 
-`NFT.get_support_level()`
+`NFT.get_support_level()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/nft.py "view source code")
 
 return support level dictionary
 
@@ -126,7 +126,7 @@ grad
 
 <span id="qiskit.aqua.components.optimizers.NFT.optimize" />
 
-`NFT.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
+`NFT.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/nft.py "view source code")
 
 Perform optimization.
 

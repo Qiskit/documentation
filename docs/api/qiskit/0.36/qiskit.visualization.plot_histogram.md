@@ -10,7 +10,7 @@ python_api_name: qiskit.visualization.plot_histogram
 
 <span id="qiskit.visualization.plot_histogram" />
 
-`plot_histogram(data, figsize=(7, 5), color=None, number_to_keep=None, sort='asc', target_string=None, legend=None, bar_labels=True, title=None, ax=None, filename=None)`
+`plot_histogram(data, figsize=(7, 5), color=None, number_to_keep=None, sort='asc', target_string=None, legend=None, bar_labels=True, title=None, ax=None, filename=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/visualization/counts_visualization.py "view source code")
 
 Plot a histogram of data.
 
@@ -19,7 +19,7 @@ Plot a histogram of data.
 *   **data** (*list or dict*) – This is either a list of dictionaries or a single dict containing the values to represent (ex \{‘001’: 130})
 *   **figsize** (*tuple*) – Figure size in inches.
 *   **color** (*list or str*) – String or list of strings for histogram bar colors.
-*   **number\_to\_keep** (*int*) – The number of terms to plot per dataset. The rest is made into a single bar called ‘rest’. If multiple datasets are given, the `number_to_keep` applies to each dataset individually, which may result in more bars than `number_to_keep + 1`. The `number_to_keep` applies to the total values, rather than the x-axis sort.
+*   **number\_to\_keep** (*int*) – The number of terms to plot and rest is made into a single bar called ‘rest’.
 *   **sort** (*string*) – Could be ‘asc’, ‘desc’, ‘hamming’, ‘value’, or ‘value\_desc’. If set to ‘value’ or ‘value\_desc’ the x axis will be sorted by the maximum probability for each bitstring. Defaults to ‘asc’.
 *   **target\_string** (*str*) – Target string if ‘sort’ is a distance measure.
 *   **legend** (*list*) – A list of strings to use for labels of the data. The number of entries must match the length of data (if data is a list or 1 if it’s a dict)
@@ -41,7 +41,7 @@ matplotlib.Figure
 *   **MissingOptionalLibraryError** – Matplotlib not available.
 *   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – When legend is provided and the length doesn’t match the input data.
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumCircuit, BasicAer, execute

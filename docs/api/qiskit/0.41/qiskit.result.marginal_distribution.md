@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.result.marginal_distribution
 ---
 
-# qiskit.result.marginal\_distribution[¶](#qiskit-result-marginal-distribution "Permalink to this headline")
+# qiskit.result.marginal\_distribution
 
 <span id="qiskit.result.marginal_distribution" />
 
-`marginal_distribution(counts, indices=None, format_marginal=False)`
+`marginal_distribution(counts, indices=None, format_marginal=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/result/utils.py "view source code")
 
 Marginalize counts from an experiment over some indices of interest.
 

@@ -6,11 +6,11 @@ python_api_type: exception
 python_api_name: qiskit.providers.JobError
 ---
 
-# qiskit.providers.JobError[¶](#qiskit-providers-joberror "Permalink to this headline")
+# qiskit.providers.JobError
 
 <span id="qiskit.providers.JobError" />
 
-`JobError(*message)`
+`JobError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/exceptions.py "view source code")
 
 Base class for errors raised by Jobs.
 

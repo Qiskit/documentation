@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.gradients.LinCombQGT
 
 <span id="qiskit.algorithms.gradients.LinCombQGT" />
 
-`qiskit.algorithms.gradients.LinCombQGT(estimator, phase_fix=True, derivative_type=DerivativeType.COMPLEX, options=None)`
+`qiskit.algorithms.gradients.LinCombQGT(estimator, phase_fix=True, derivative_type=DerivativeType.COMPLEX, options=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/gradients/lin_comb/lin_comb_qgt.py "view source code")
 
 Bases: [`BaseQGT`](qiskit.algorithms.gradients.BaseQGT "qiskit.algorithms.gradients.base.base_qgt.BaseQGT")
 

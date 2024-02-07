@@ -28,13 +28,13 @@ The process of determining a subset of the initial features is called **feature 
 
 # Feature Map Base Class
 
-|                                                                                                                                                                |                            |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
-| [`FeatureMap`](qiskit.aqua.components.feature_maps.FeatureMap#qiskit.aqua.components.feature_maps.FeatureMap "qiskit.aqua.components.feature_maps.FeatureMap") | Base class for FeatureMap. |
+|                                                                                                                 |                            |
+| --------------------------------------------------------------------------------------------------------------- | -------------------------- |
+| [`FeatureMap`](qiskit.aqua.components.feature_maps.FeatureMap "qiskit.aqua.components.feature_maps.FeatureMap") | Base class for FeatureMap. |
 
 # Feature Maps
 
-|                                                                                                                                                                                        |                                 |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
-| [`RawFeatureVector`](qiskit.aqua.components.feature_maps.RawFeatureVector#qiskit.aqua.components.feature_maps.RawFeatureVector "qiskit.aqua.components.feature_maps.RawFeatureVector") | Raw Feature Vector feature map. |
+|                                                                                                                                   |                                 |
+| --------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
+| [`RawFeatureVector`](qiskit.aqua.components.feature_maps.RawFeatureVector "qiskit.aqua.components.feature_maps.RawFeatureVector") | Raw Feature Vector feature map. |
 

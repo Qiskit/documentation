@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit_aer.library.SaveProbabilities
 ---
 
-# SaveProbabilities[¶](#saveprobabilities "Permalink to this headline")
+# SaveProbabilities
 
 <span id="qiskit_aer.library.SaveProbabilities" />
 
-`SaveProbabilities(num_qubits, label='probabilities', unnormalized=False, pershot=False, conditional=False)`
+`SaveProbabilities(num_qubits, label='probabilities', unnormalized=False, pershot=False, conditional=False)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/library/save_instructions/save_probabilities.py "view source code")
 
 Bases: `qiskit_aer.library.save_instructions.save_data.SaveAverageData`
 

@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.Delay
 
 <span id="qiskit.circuit.Delay" />
 
-`Delay(duration, unit='dt')`
+`Delay(duration, unit='dt')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/delay.py "view source code")
 
-Bases: [`qiskit.circuit.instruction.Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
+Bases: `qiskit.circuit.instruction.Instruction`
 
 Do nothing and just delay/wait/idle for a specified duration.
 
@@ -40,7 +40,7 @@ Assemble a QasmQobjInstruction
 
 <span id="qiskit.circuit.Delay.broadcast_arguments" />
 
-`Delay.broadcast_arguments(qargs, cargs)`
+`Delay.broadcast_arguments(qargs, cargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/delay.py "view source code")
 
 Validation of the arguments.
 
@@ -61,7 +61,7 @@ Validation of the arguments.
 
 <span id="qiskit.circuit.Delay.c_if" />
 
-`Delay.c_if(classical, val)`
+`Delay.c_if(classical, val)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/delay.py "view source code")
 
 Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
 
@@ -95,7 +95,7 @@ updated if it was provided
 
 <span id="qiskit.circuit.Delay.inverse" />
 
-`Delay.inverse()`
+`Delay.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/delay.py "view source code")
 
 Special case. Return self.
 
@@ -185,7 +185,7 @@ bool
 
 <span id="qiskit.circuit.Delay.to_matrix" />
 
-`Delay.to_matrix()`
+`Delay.to_matrix()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/delay.py "view source code")
 
 Return a Numpy.array for the unitary matrix. This has been added to enable simulation without making delay a full Gate type.
 
@@ -201,7 +201,7 @@ np.ndarray
 
 <span id="qiskit.circuit.Delay.validate_parameter" />
 
-`Delay.validate_parameter(parameter)`
+`Delay.validate_parameter(parameter)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/delay.py "view source code")
 
 Delay parameter (i.e. duration) must be int, float or ParameterExpression.
 
@@ -215,7 +215,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.Delay.decompositions" />
 

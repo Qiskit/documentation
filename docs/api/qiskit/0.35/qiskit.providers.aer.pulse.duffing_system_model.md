@@ -1,10 +1,18 @@
+---
+title: duffing_system_model
+description: API reference for qiskit.providers.aer.pulse.duffing_system_model
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.providers.aer.pulse.duffing_system_model
+---
+
 # qiskit.providers.aer.pulse.duffing\_system\_model
 
+<span id="qiskit.providers.aer.pulse.duffing_system_model" />
 
+`duffing_system_model(dim_oscillators, oscillator_freqs, anharm_freqs, drive_strengths, coupling_dict, dt)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/pulse/system_models/duffing_model_generators.py "view source code")
 
-`duffing_system_model(dim_oscillators, oscillator_freqs, anharm_freqs, drive_strengths, coupling_dict, dt)`
-
-Returns a [`PulseSystemModel`](qiskit.providers.aer.pulse.PulseSystemModel#qiskit.providers.aer.pulse.PulseSystemModel "qiskit.providers.aer.pulse.PulseSystemModel") representing a physical model for a collection of Duffing oscillators.
+Returns a [`PulseSystemModel`](qiskit.providers.aer.pulse.PulseSystemModel "qiskit.providers.aer.pulse.PulseSystemModel") representing a physical model for a collection of Duffing oscillators.
 
 In the model, each individual oscillator is specified by the parameters:
 
@@ -32,7 +40,7 @@ $$
 2 \pi j (a_i^\dagger a_k + a_i a_k^\dagger).
 $$
 
-Finally, the returned [`PulseSystemModel`](qiskit.providers.aer.pulse.PulseSystemModel#qiskit.providers.aer.pulse.PulseSystemModel "qiskit.providers.aer.pulse.PulseSystemModel") is setup for performing cross-resonance drives between coupled qubits. The index for the `ControlChannel` corresponding to a particular cross-resonance drive channel is retreived by calling [`PulseSystemModel.control_channel_index()`](qiskit.providers.aer.pulse.PulseSystemModel.control_channel_index#qiskit.providers.aer.pulse.PulseSystemModel.control_channel_index "qiskit.providers.aer.pulse.PulseSystemModel.control_channel_index") with the tuple `(drive_idx, target_idx)`, where `drive_idx` is the index of the oscillator being driven, and `target_idx` is the target oscillator (see example below).
+Finally, the returned [`PulseSystemModel`](qiskit.providers.aer.pulse.PulseSystemModel "qiskit.providers.aer.pulse.PulseSystemModel") is setup for performing cross-resonance drives between coupled qubits. The index for the `ControlChannel` corresponding to a particular cross-resonance drive channel is retreived by calling [`PulseSystemModel.control_channel_index()`](qiskit.providers.aer.pulse.PulseSystemModel#control_channel_index "qiskit.providers.aer.pulse.PulseSystemModel.control_channel_index") with the tuple `(drive_idx, target_idx)`, where `drive_idx` is the index of the oscillator being driven, and `target_idx` is the target oscillator (see example below).
 
 Note: In this model, all frequencies are in frequency units (as opposed to radial).
 
@@ -88,4 +96,5 @@ The generated Duffing system model
 
 **Return type**
 
-[PulseSystemModel](qiskit.providers.aer.pulse.PulseSystemModel#qiskit.providers.aer.pulse.PulseSystemModel "qiskit.providers.aer.pulse.PulseSystemModel")
+[PulseSystemModel](qiskit.providers.aer.pulse.PulseSystemModel "qiskit.providers.aer.pulse.PulseSystemModel")
+

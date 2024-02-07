@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.pulse.transforms.block_to_schedule
 ---
 
-# qiskit.pulse.transforms.block\_to\_schedule[¶](#qiskit-pulse-transforms-block-to-schedule "Permalink to this headline")
+# qiskit.pulse.transforms.block\_to\_schedule
 
 <span id="qiskit.pulse.transforms.block_to_schedule" />
 
-`block_to_schedule(block)`
+`block_to_schedule(block)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/transforms/canonicalization.py "view source code")
 
 Convert `ScheduleBlock` to `Schedule`.
 

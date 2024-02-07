@@ -10,13 +10,13 @@ python_api_name: qiskit.synthesis.QDrift
 
 <span id="qiskit.synthesis.QDrift" />
 
-`QDrift(reps=1, insert_barriers=False, cx_structure='chain', atomic_evolution=None)`
+`QDrift(reps=1, insert_barriers=False, cx_structure='chain', atomic_evolution=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/synthesis/evolution/qdrift.py "view source code")
 
 Bases: [`ProductFormula`](qiskit.synthesis.ProductFormula "qiskit.synthesis.evolution.product_formula.ProductFormula")
 
 The QDrift Trotterization method, which selects each each term in the Trotterization randomly, with a probability proportional to its weight. Based on the work of Earl Campbell in Ref. \[1].
 
-## References
+**References**
 
 \[1]: E. Campbell, “A random compiler for fast Hamiltonian simulation” (2018). [arXiv:quant-ph/1811.08017](https://arxiv.org/abs/1811.08017)
 
@@ -35,7 +35,7 @@ The QDrift Trotterization method, which selects each each term in the Trotteriza
 
 <span id="qiskit.synthesis.QDrift.synthesize" />
 
-`QDrift.synthesize(evolution)`
+`QDrift.synthesize(evolution)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/synthesis/evolution/qdrift.py "view source code")
 
 Synthesize an `qiskit.circuit.library.PauliEvolutionGate`.
 

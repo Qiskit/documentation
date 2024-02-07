@@ -10,15 +10,15 @@ python_api_name: qiskit.pulse.transforms.AlignLeft
 
 <span id="qiskit.pulse.transforms.AlignLeft" />
 
-`AlignLeft`
+`AlignLeft`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/transforms/alignments.py "view source code")
 
-Bases: [`qiskit.pulse.transforms.alignments.AlignmentKind`](pulse#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.alignments.AlignmentKind")
+Bases: `qiskit.pulse.transforms.alignments.AlignmentKind`
 
 Align instructions in as-soon-as-possible manner.
 
 Instructions are placed at earliest available timeslots.
 
-Create new left-justified context.
+Create new context.
 
 ## Methods
 
@@ -26,7 +26,7 @@ Create new left-justified context.
 
 <span id="qiskit.pulse.transforms.AlignLeft.align" />
 
-`AlignLeft.align(schedule)`
+`AlignLeft.align(schedule)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/transforms/alignments.py "view source code")
 
 Reallocate instructions according to the policy.
 
@@ -34,11 +34,11 @@ Only top-level sub-schedules are aligned. If sub-schedules are nested, nested sc
 
 **Parameters**
 
-**schedule** ([`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")) – Schedule to align.
+**schedule** (`Schedule`) – Schedule to align.
 
 **Return type**
 
-[`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
+`Schedule`
 
 **Returns**
 
@@ -62,7 +62,5 @@ Returns dictionary to represent this alignment.
 
 ### is\_sequential
 
-**Return type**
-
-`bool`
+`= False`
 

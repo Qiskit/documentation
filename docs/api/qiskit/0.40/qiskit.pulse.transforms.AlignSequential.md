@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.pulse.transforms.AlignSequential
 ---
 
-# AlignSequential[¶](#alignsequential "Permalink to this headline")
+# AlignSequential
 
 <span id="qiskit.pulse.transforms.AlignSequential" />
 
-`AlignSequential`
+`AlignSequential`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/transforms/alignments.py "view source code")
 
 Bases: [`qiskit.pulse.transforms.alignments.AlignmentKind`](pulse#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.alignments.AlignmentKind")
 
@@ -26,7 +26,7 @@ Create new sequential context.
 
 <span id="qiskit.pulse.transforms.AlignSequential.align" />
 
-`AlignSequential.align(schedule)`
+`AlignSequential.align(schedule)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/transforms/alignments.py "view source code")
 
 Reallocate instructions according to the policy.
 

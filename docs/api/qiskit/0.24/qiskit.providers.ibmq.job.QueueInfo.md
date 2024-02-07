@@ -1,10 +1,18 @@
+---
+title: QueueInfo
+description: API reference for qiskit.providers.ibmq.job.QueueInfo
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.ibmq.job.QueueInfo
+---
+
 <span id="qiskit-providers-ibmq-job-queueinfo" />
 
 # qiskit.providers.ibmq.job.QueueInfo
 
+<span id="qiskit.providers.ibmq.job.QueueInfo" />
 
-
-`QueueInfo(position=None, status=None, estimated_start_time=None, estimated_complete_time=None, hub_priority=None, group_priority=None, project_priority=None, job_id=None, **kwargs)`
+`QueueInfo(position=None, status=None, estimated_start_time=None, estimated_complete_time=None, hub_priority=None, group_priority=None, project_priority=None, job_id=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.12/qiskit/providers/ibmq/job/queueinfo.py "view source code")
 
 Queue information for a job.
 
@@ -22,7 +30,9 @@ QueueInfo constructor.
 *   **job\_id** (`Optional`\[`str`]) – Job ID.
 *   **kwargs** (`Any`) – Additional attributes.
 
+### \_\_init\_\_
 
+<span id="qiskit.providers.ibmq.job.QueueInfo.__init__" />
 
 `__init__(position=None, status=None, estimated_start_time=None, estimated_complete_time=None, hub_priority=None, group_priority=None, project_priority=None, job_id=None, **kwargs)`
 
@@ -54,7 +64,9 @@ QueueInfo constructor.
 | [`estimated_complete_time`](#qiskit.providers.ibmq.job.QueueInfo.estimated_complete_time "qiskit.providers.ibmq.job.QueueInfo.estimated_complete_time") | Return estimated complete time in local time. |
 | [`estimated_start_time`](#qiskit.providers.ibmq.job.QueueInfo.estimated_start_time "qiskit.providers.ibmq.job.QueueInfo.estimated_start_time")          | Return estimated start time in local time.    |
 
+### estimated\_complete\_time
 
+<span id="qiskit.providers.ibmq.job.QueueInfo.estimated_complete_time" />
 
 `property estimated_complete_time`
 
@@ -64,7 +76,9 @@ Return estimated complete time in local time.
 
 `Optional`\[`datetime`]
 
+### estimated\_start\_time
 
+<span id="qiskit.providers.ibmq.job.QueueInfo.estimated_start_time" />
 
 `property estimated_start_time`
 
@@ -74,7 +88,9 @@ Return estimated start time in local time.
 
 `Optional`\[`datetime`]
 
+### format
 
+<span id="qiskit.providers.ibmq.job.QueueInfo.format" />
 
 `format()`
 
@@ -87,3 +103,4 @@ Build a user-friendly report for the job queue information.
 **Returns**
 
 The job queue information report.
+

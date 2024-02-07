@@ -10,9 +10,9 @@ python_api_name: qiskit.providers.ibmq.IBMQBackend
 
 <span id="qiskit.providers.ibmq.IBMQBackend" />
 
-`IBMQBackend(configuration, provider, credentials, api_client)`
+`IBMQBackend(configuration, provider, credentials, api_client)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/ibmqbackend.py "view source code")
 
-Bases: [`qiskit.providers.backend.BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.backend.BackendV1")
+Bases: `qiskit.providers.backend.BackendV1`
 
 Backend class interfacing with an IBM Quantum Experience device.
 
@@ -53,9 +53,9 @@ IBMQBackend constructor.
 
 **Parameters**
 
-*   **configuration** (`Union`\[[`QasmBackendConfiguration`](qiskit.providers.models.QasmBackendConfiguration "qiskit.providers.models.backendconfiguration.QasmBackendConfiguration"), [`PulseBackendConfiguration`](qiskit.providers.models.PulseBackendConfiguration "qiskit.providers.models.backendconfiguration.PulseBackendConfiguration")]) – Backend configuration.
-*   **provider** ([`AccountProvider`](qiskit.providers.ibmq.AccountProvider "qiskit.providers.ibmq.accountprovider.AccountProvider")) – IBM Quantum Experience account provider
-*   **credentials** ([`Credentials`](qiskit.providers.ibmq.credentials.Credentials "qiskit.providers.ibmq.credentials.credentials.Credentials")) – IBM Quantum Experience credentials.
+*   **configuration** (`Union`\[`QasmBackendConfiguration`, `PulseBackendConfiguration`]) – Backend configuration.
+*   **provider** (`AccountProvider`) – IBM Quantum Experience account provider
+*   **credentials** (`Credentials`) – IBM Quantum Experience credentials.
 *   **api\_client** (`AccountClient`) – IBM Quantum Experience client used to communicate with the server.
 
 ## Methods
@@ -64,11 +64,11 @@ IBMQBackend constructor.
 
 <span id="qiskit.providers.ibmq.IBMQBackend.active_jobs" />
 
-`IBMQBackend.active_jobs(limit=10)`
+`IBMQBackend.active_jobs(limit=10)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/ibmqbackend.py "view source code")
 
 Return the unfinished jobs submitted to this backend.
 
-Return the jobs submitted to this backend, with this provider, that are currently in an unfinished job status state. The unfinished [`JobStatus`](qiskit.providers.JobStatus "qiskit.providers.jobstatus.JobStatus") states include: `INITIALIZING`, `VALIDATING`, `QUEUED`, and `RUNNING`.
+Return the jobs submitted to this backend, with this provider, that are currently in an unfinished job status state. The unfinished `JobStatus` states include: `INITIALIZING`, `VALIDATING`, `QUEUED`, and `RUNNING`.
 
 **Parameters**
 
@@ -76,7 +76,7 @@ Return the jobs submitted to this backend, with this provider, that are currentl
 
 **Return type**
 
-`List`\[[`IBMQJob`](qiskit.providers.ibmq.job.IBMQJob "qiskit.providers.ibmq.job.ibmqjob.IBMQJob")]
+`List`\[`IBMQJob`]
 
 **Returns**
 
@@ -86,7 +86,7 @@ A list of the unfinished jobs for this backend on this provider.
 
 <span id="qiskit.providers.ibmq.IBMQBackend.configuration" />
 
-`IBMQBackend.configuration()`
+`IBMQBackend.configuration()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/ibmqbackend.py "view source code")
 
 Return the backend configuration.
 
@@ -96,7 +96,7 @@ The schema for backend configuration can be found in [Qiskit/ibm-quantum-schemas
 
 **Return type**
 
-`Union`\[[`QasmBackendConfiguration`](qiskit.providers.models.QasmBackendConfiguration "qiskit.providers.models.backendconfiguration.QasmBackendConfiguration"), [`PulseBackendConfiguration`](qiskit.providers.models.PulseBackendConfiguration "qiskit.providers.models.backendconfiguration.PulseBackendConfiguration")]
+`Union`\[`QasmBackendConfiguration`, `PulseBackendConfiguration`]
 
 **Returns**
 
@@ -106,7 +106,7 @@ The configuration for the backend.
 
 <span id="qiskit.providers.ibmq.IBMQBackend.defaults" />
 
-`IBMQBackend.defaults(refresh=False)`
+`IBMQBackend.defaults(refresh=False)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/ibmqbackend.py "view source code")
 
 Return the pulse defaults for the backend.
 
@@ -118,7 +118,7 @@ The schema for default pulse configuration can be found in [Qiskit/ibm-quantum-s
 
 **Return type**
 
-`Optional`\[[`PulseDefaults`](qiskit.providers.models.PulseDefaults "qiskit.providers.models.pulsedefaults.PulseDefaults")]
+`Optional`\[`PulseDefaults`]
 
 **Returns**
 
@@ -128,7 +128,7 @@ The backend pulse defaults or `None` if the backend does not support pulse.
 
 <span id="qiskit.providers.ibmq.IBMQBackend.job_limit" />
 
-`IBMQBackend.job_limit()`
+`IBMQBackend.job_limit()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/ibmqbackend.py "view source code")
 
 Return the job limit for the backend.
 
@@ -150,7 +150,7 @@ If `maximum_jobs` is equal to `None`, then there is no limit to the maximum numb
 
 **Return type**
 
-[`BackendJobLimit`](qiskit.providers.ibmq.BackendJobLimit "qiskit.providers.ibmq.backendjoblimit.BackendJobLimit")
+`BackendJobLimit`
 
 **Returns**
 
@@ -164,7 +164,7 @@ The job limit for the backend, with this provider.
 
 <span id="qiskit.providers.ibmq.IBMQBackend.jobs" />
 
-`IBMQBackend.jobs(limit=10, skip=0, status=None, job_name=None, start_datetime=None, end_datetime=None, job_tags=None, job_tags_operator='OR', experiment_id=None, descending=True, db_filter=None)`
+`IBMQBackend.jobs(limit=10, skip=0, status=None, job_name=None, start_datetime=None, end_datetime=None, job_tags=None, job_tags_operator='OR', experiment_id=None, descending=True, db_filter=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/ibmqbackend.py "view source code")
 
 Return the jobs submitted to this backend, subject to optional filtering.
 
@@ -176,7 +176,7 @@ Retrieve jobs submitted to this backend that match the given filters and paginat
 
 *   **skip** (`int`) – Starting index for the job retrieval.
 
-*   **status** (`Union`\[[`JobStatus`](qiskit.providers.JobStatus "qiskit.providers.jobstatus.JobStatus"), `str`, `List`\[`Union`\[[`JobStatus`](qiskit.providers.JobStatus "qiskit.providers.jobstatus.JobStatus"), `str`]], `None`]) – Only get jobs with this status or one of the statuses. For example, you can specify status=JobStatus.RUNNING or status=”RUNNING” or status=\[“RUNNING”, “ERROR”]
+*   **status** (`Union`\[`JobStatus`, `str`, `List`\[`Union`\[`JobStatus`, `str`]], `None`]) – Only get jobs with this status or one of the statuses. For example, you can specify status=JobStatus.RUNNING or status=”RUNNING” or status=\[“RUNNING”, “ERROR”]
 
 *   **job\_name** (`Optional`\[`str`]) – Filter by job name. The job\_name is matched partially and [regular expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions) can be used.
 
@@ -216,7 +216,7 @@ Retrieve jobs submitted to this backend that match the given filters and paginat
 
 **Return type**
 
-`List`\[[`IBMQJob`](qiskit.providers.ibmq.job.IBMQJob "qiskit.providers.ibmq.job.ibmqjob.IBMQJob")]
+`List`\[`IBMQJob`]
 
 **Returns**
 
@@ -246,7 +246,7 @@ str
 
 <span id="qiskit.providers.ibmq.IBMQBackend.properties" />
 
-`IBMQBackend.properties(refresh=False, datetime=None)`
+`IBMQBackend.properties(refresh=False, datetime=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/ibmqbackend.py "view source code")
 
 Return the backend properties, subject to optional filtering.
 
@@ -261,7 +261,7 @@ The schema for backend properties can be found in [Qiskit/ibm-quantum-schemas](h
 
 **Return type**
 
-`Optional`\[[`BackendProperties`](qiskit.providers.models.BackendProperties "qiskit.providers.models.backendproperties.BackendProperties")]
+`Optional`\[`BackendProperties`]
 
 **Returns**
 
@@ -291,7 +291,7 @@ the Provider responsible for the backend.
 
 <span id="qiskit.providers.ibmq.IBMQBackend.remaining_jobs_count" />
 
-`IBMQBackend.remaining_jobs_count()`
+`IBMQBackend.remaining_jobs_count()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/ibmqbackend.py "view source code")
 
 Return the number of remaining jobs that could be submitted to the backend.
 
@@ -317,7 +317,7 @@ The remaining number of jobs a user could submit to the backend, with this provi
 
 <span id="qiskit.providers.ibmq.IBMQBackend.reservations" />
 
-`IBMQBackend.reservations(start_datetime=None, end_datetime=None)`
+`IBMQBackend.reservations(start_datetime=None, end_datetime=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/ibmqbackend.py "view source code")
 
 Return backend reservations.
 
@@ -342,7 +342,7 @@ A list of reservations that match the criteria.
 
 <span id="qiskit.providers.ibmq.IBMQBackend.retrieve_job" />
 
-`IBMQBackend.retrieve_job(job_id)`
+`IBMQBackend.retrieve_job(job_id)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/ibmqbackend.py "view source code")
 
 Return a single job submitted to this backend.
 
@@ -352,7 +352,7 @@ Return a single job submitted to this backend.
 
 **Return type**
 
-[`IBMQJob`](qiskit.providers.ibmq.job.IBMQJob "qiskit.providers.ibmq.job.ibmqjob.IBMQJob")
+`IBMQJob`
 
 **Returns**
 
@@ -366,7 +366,7 @@ The job with the given ID.
 
 <span id="qiskit.providers.ibmq.IBMQBackend.run" />
 
-`IBMQBackend.run(circuits, job_name=None, job_share_level=None, job_tags=None, experiment_id=None, header=None, shots=None, memory=None, qubit_lo_freq=None, meas_lo_freq=None, schedule_los=None, meas_level=None, meas_return=None, memory_slots=None, memory_slot_size=None, rep_time=None, rep_delay=None, init_qubits=None, parameter_binds=None, use_measure_esp=None, live_data_enabled=None, **run_config)`
+`IBMQBackend.run(circuits, job_name=None, job_share_level=None, job_tags=None, experiment_id=None, header=None, shots=None, memory=None, qubit_lo_freq=None, meas_lo_freq=None, schedule_los=None, meas_level=None, meas_return=None, memory_slots=None, memory_slot_size=None, rep_time=None, rep_delay=None, init_qubits=None, parameter_binds=None, use_measure_esp=None, live_data_enabled=None, **run_config)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/ibmqbackend.py "view source code")
 
 Run on the backend.
 
@@ -374,7 +374,7 @@ If a keyword specified here is also present in the `options` attribute/object, t
 
 **Parameters**
 
-*   **circuits** (`Union`\[[`QasmQobj`](qiskit.qobj.QasmQobj "qiskit.qobj.qasm_qobj.QasmQobj"), [`PulseQobj`](qiskit.qobj.PulseQobj "qiskit.qobj.pulse_qobj.PulseQobj"), [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule"), `List`\[`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")]]]) – An individual or a list of `QuantumCircuit` or [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") objects to run on the backend. A [`QasmQobj`](qiskit.qobj.QasmQobj "qiskit.qobj.QasmQobj") or a [`PulseQobj`](qiskit.qobj.PulseQobj "qiskit.qobj.PulseQobj") object is also supported but is deprecated.
+*   **circuits** (`Union`\[`QasmQobj`, `PulseQobj`, `QuantumCircuit`, `Schedule`, `List`\[`Union`\[`QuantumCircuit`, `Schedule`]]]) – An individual or a list of `QuantumCircuit` or [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") objects to run on the backend. A [`QasmQobj`](qiskit.qobj.QasmQobj "qiskit.qobj.QasmQobj") or a [`PulseQobj`](qiskit.qobj.PulseQobj "qiskit.qobj.PulseQobj") object is also supported but is deprecated.
 
 *   **job\_name** (`Optional`\[`str`]) – Custom name to be assigned to the job. This job name can subsequently be used as a filter in the [`jobs()`](qiskit.providers.ibmq.IBMQBackend#jobs "qiskit.providers.ibmq.IBMQBackend.jobs") method. Job names do not need to be unique.
 
@@ -394,7 +394,7 @@ If a keyword specified here is also present in the `options` attribute/object, t
 
 *   **experiment\_id** (`Optional`\[`str`]) – Used to add a job to an “experiment”, which is a collection of jobs and additional metadata.
 
-*   **in.** (*The following arguments are NOT applicable if a Qobj is passed*) –
+*   **following arguments are NOT applicable if a Qobj is passed in.** (*The*) –
 
 *   **header** (`Optional`\[`Dict`]) – User input that will be attached to the job and will be copied to the corresponding result header. Headers do not affect the run. This replaces the old `Qobj` header.
 
@@ -429,7 +429,7 @@ If a keyword specified here is also present in the `options` attribute/object, t
 
 *   **init\_qubits** (`Optional`\[`bool`]) – Whether to reset the qubits to the ground state for each shot. Default: `True`.
 
-*   **parameter\_binds** (`Optional`\[`List`\[`Dict`\[[`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.parameter.Parameter"), `float`]]]) – List of Parameter bindings over which the set of experiments will be executed. Each list element (bind) should be of the form \{Parameter1: value1, Parameter2: value2, …}. All binds will be executed across all experiments; e.g., if parameter\_binds is a length-n list, and there are m experiments, a total of m x n experiments will be run (one for each experiment/bind pair).
+*   **parameter\_binds** (`Optional`\[`List`\[`Dict`\[`Parameter`, `float`]]]) – List of Parameter bindings over which the set of experiments will be executed. Each list element (bind) should be of the form \{Parameter1: value1, Parameter2: value2, …}. All binds will be executed across all experiments; e.g., if parameter\_binds is a length-n list, and there are m experiments, a total of m x n experiments will be run (one for each experiment/bind pair).
 
 *   **use\_measure\_esp** (`Optional`\[`bool`]) – Whether to use excited state promoted (ESP) readout for measurements which are the terminal instruction to a qubit. ESP readout can offer higher fidelity than standard measurement sequences. See [here](https://arxiv.org/pdf/2008.08571.pdf). Default: `True` if backend supports ESP readout, else `False`. Backend support for ESP readout is determined by the flag `measure_esp_enabled` in `backend.configuration()`.
 
@@ -439,7 +439,7 @@ If a keyword specified here is also present in the `options` attribute/object, t
 
 **Return type**
 
-[`IBMQJob`](qiskit.providers.ibmq.job.IBMQJob "qiskit.providers.ibmq.job.ibmqjob.IBMQJob")
+`IBMQJob`
 
 **Returns**
 
@@ -477,7 +477,7 @@ This method is used to update the options of a backend. If you need to change an
 
 <span id="qiskit.providers.ibmq.IBMQBackend.status" />
 
-`IBMQBackend.status()`
+`IBMQBackend.status()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/ibmqbackend.py "view source code")
 
 Return the backend status.
 
@@ -487,7 +487,7 @@ Return the backend status.
 
 **Return type**
 
-[`BackendStatus`](qiskit.providers.models.BackendStatus "qiskit.providers.models.backendstatus.BackendStatus")
+`BackendStatus`
 
 **Returns**
 

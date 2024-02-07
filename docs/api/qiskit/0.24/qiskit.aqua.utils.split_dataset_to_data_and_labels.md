@@ -1,10 +1,18 @@
+---
+title: split_dataset_to_data_and_labels
+description: API reference for qiskit.aqua.utils.split_dataset_to_data_and_labels
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.aqua.utils.split_dataset_to_data_and_labels
+---
+
 <span id="qiskit-aqua-utils-split-dataset-to-data-and-labels" />
 
 # qiskit.aqua.utils.split\_dataset\_to\_data\_and\_labels
 
+<span id="qiskit.aqua.utils.split_dataset_to_data_and_labels" />
 
-
-`split_dataset_to_data_and_labels(dataset, class_names=None)`
+`split_dataset_to_data_and_labels(dataset, class_names=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/utils/dataset_helper.py "view source code")
 
 Split dataset to data and labels numpy array
 
@@ -26,3 +34,4 @@ Union(tuple(list, dict), list)
 **Raises**
 
 **KeyError** – data set invalid
+

@@ -10,14 +10,14 @@ python_api_name: qiskit.opflow.gradients.Hessian
 
 <span id="qiskit.opflow.gradients.Hessian" />
 
-`qiskit.opflow.gradients.Hessian(hess_method='param_shift', **kwargs)`
+`qiskit.opflow.gradients.Hessian(hess_method='param_shift', **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/opflow/gradients/hessian.py "view source code")
 
 Bases: [`HessianBase`](qiskit.opflow.gradients.HessianBase "qiskit.opflow.gradients.hessian_base.HessianBase")
 
 Deprecated: Compute the Hessian of an expected value.
 
 <Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.opflow.gradients.hessian.Hessian` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  The class `qiskit.opflow.gradients.hessian.Hessian` is deprecated as of qiskit-terra 0.24.0. It will be removed in the Qiskit 1.0 release. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
 </Admonition>
 
 ## Attributes

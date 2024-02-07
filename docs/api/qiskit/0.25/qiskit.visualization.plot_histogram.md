@@ -1,8 +1,16 @@
+---
+title: plot_histogram
+description: API reference for qiskit.visualization.plot_histogram
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.visualization.plot_histogram
+---
+
 # qiskit.visualization.plot\_histogram
 
+<span id="qiskit.visualization.plot_histogram" />
 
-
-`plot_histogram(data, figsize=(7, 5), color=None, number_to_keep=None, sort='asc', target_string=None, legend=None, bar_labels=True, title=None, ax=None)`
+`plot_histogram(data, figsize=(7, 5), color=None, number_to_keep=None, sort='asc', target_string=None, legend=None, bar_labels=True, title=None, ax=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/visualization/counts_visualization.py "view source code")
 
 Plot a histogram of data.
 
@@ -30,9 +38,9 @@ matplotlib.Figure
 **Raises**
 
 *   **ImportError** – Matplotlib not available.
-*   [**VisualizationError**](qiskit.visualization.VisualizationError#qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – When legend is provided and the length doesn’t match the input data.
+*   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – When legend is provided and the length doesn’t match the input data.
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumCircuit, BasicAer, execute
@@ -50,3 +58,4 @@ plot_histogram(job.result().get_counts(), color='midnightblue', title="New Histo
 ```
 
 ![../\_images/qiskit.visualization.plot\_histogram\_0\_0.png](/images/api/qiskit/0.25/qiskit.visualization.plot_histogram_0_0.png) ![../\_images/qiskit.visualization.plot\_histogram\_0\_1.png](/images/api/qiskit/0.25/qiskit.visualization.plot_histogram_0_1.png)
+

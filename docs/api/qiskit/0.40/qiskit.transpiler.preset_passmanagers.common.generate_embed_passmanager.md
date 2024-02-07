@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.transpiler.preset_passmanagers.common.generate_embed_passmanager
 ---
 
-# qiskit.transpiler.preset\_passmanagers.common.generate\_embed\_passmanager[¶](#qiskit-transpiler-preset-passmanagers-common-generate-embed-passmanager "Permalink to this headline")
+# qiskit.transpiler.preset\_passmanagers.common.generate\_embed\_passmanager
 
 <span id="qiskit.transpiler.preset_passmanagers.common.generate_embed_passmanager" />
 
-`generate_embed_passmanager(coupling_map)`
+`generate_embed_passmanager(coupling_map)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/preset_passmanagers/common.py "view source code")
 
 Generate a layout embedding [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")
 

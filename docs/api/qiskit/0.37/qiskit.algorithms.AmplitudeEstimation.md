@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.AmplitudeEstimation
 
 <span id="qiskit.algorithms.AmplitudeEstimation" />
 
-`AmplitudeEstimation(num_eval_qubits, phase_estimation_circuit=None, iqft=None, quantum_instance=None)`
+`AmplitudeEstimation(num_eval_qubits, phase_estimation_circuit=None, iqft=None, quantum_instance=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/amplitude_estimators/ae.py "view source code")
 
 Bases: [`qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimator`](qiskit.algorithms.AmplitudeEstimator "qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimator")
 
@@ -26,7 +26,7 @@ More evaluation qubits produce a finer sampling grid, therefore the accuracy of 
 
 Using a maximum likelihood post processing, this grid constraint can be circumvented. This improved estimator is implemented as well, see \[2] Appendix A for more detail.
 
-## References
+**References**
 
 **\[1]: Brassard, G., Hoyer, P., Mosca, M., & Tapp, A. (2000).**
 
@@ -53,7 +53,7 @@ Iterative Quantum Amplitude Estimation. [arXiv:1912.05559](https://arxiv.org/abs
 
 <span id="qiskit.algorithms.AmplitudeEstimation.compute_confidence_interval" />
 
-`static AmplitudeEstimation.compute_confidence_interval(result, alpha=0.05, kind='likelihood_ratio')`
+`static AmplitudeEstimation.compute_confidence_interval(result, alpha=0.05, kind='likelihood_ratio')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/amplitude_estimators/ae.py "view source code")
 
 Compute the (1 - alpha) confidence interval.
 
@@ -80,7 +80,7 @@ The (1 - alpha) confidence interval of the specified kind.
 
 <span id="qiskit.algorithms.AmplitudeEstimation.compute_mle" />
 
-`static AmplitudeEstimation.compute_mle(result, apply_post_processing=False)`
+`static AmplitudeEstimation.compute_mle(result, apply_post_processing=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/amplitude_estimators/ae.py "view source code")
 
 Compute the Maximum Likelihood Estimator (MLE).
 
@@ -101,7 +101,7 @@ The MLE for the provided result object.
 
 <span id="qiskit.algorithms.AmplitudeEstimation.construct_circuit" />
 
-`AmplitudeEstimation.construct_circuit(estimation_problem, measurement=False)`
+`AmplitudeEstimation.construct_circuit(estimation_problem, measurement=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/amplitude_estimators/ae.py "view source code")
 
 Construct the Amplitude Estimation quantum circuit.
 
@@ -122,7 +122,7 @@ The QuantumCircuit object for the constructed circuit.
 
 <span id="qiskit.algorithms.AmplitudeEstimation.estimate" />
 
-`AmplitudeEstimation.estimate(estimation_problem)`
+`AmplitudeEstimation.estimate(estimation_problem)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/amplitude_estimators/ae.py "view source code")
 
 Run the amplitude estimation algorithm on provided estimation problem.
 
@@ -146,7 +146,7 @@ An amplitude estimation results object.
 
 <span id="qiskit.algorithms.AmplitudeEstimation.evaluate_measurements" />
 
-`AmplitudeEstimation.evaluate_measurements(circuit_results, threshold=1e-06)`
+`AmplitudeEstimation.evaluate_measurements(circuit_results, threshold=1e-06)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/amplitude_estimators/ae.py "view source code")
 
 Evaluate the results from the circuit simulation.
 

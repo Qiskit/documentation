@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.PiecewisePolynomialPauliRotations
 
 <span id="qiskit.circuit.library.PiecewisePolynomialPauliRotations" />
 
-`qiskit.circuit.library.PiecewisePolynomialPauliRotations(num_state_qubits=None, breakpoints=None, coeffs=None, basis='Y', name='pw_poly')`
+`qiskit.circuit.library.PiecewisePolynomialPauliRotations(num_state_qubits=None, breakpoints=None, coeffs=None, basis='Y', name='pw_poly')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/arithmetic/piecewise_polynomial_pauli_rotations.py "view source code")
 
 Bases: [`FunctionalPauliRotations`](qiskit.circuit.library.FunctionalPauliRotations "qiskit.circuit.library.arithmetic.functional_pauli_rotations.FunctionalPauliRotations")
 
@@ -21,10 +21,10 @@ This class implements a piecewise polynomial (not necessarily continuous) functi
 Then $f(x)$ is defined as:
 
 $$
-\begin{split}f(x) = \begin{cases}
+f(x) = \begin{cases}
     0, x < x_0 \\
     \sum_{i=0}^{i=d}a_{j,i}/2 x^i, x_j \leq x < x_{j+1}
-    \end{cases}\end{split}
+    \end{cases}
 $$
 
 where if given the same number of breakpoints as polynomials, we implicitly assume $x_{J+1} = 2^n$.
@@ -33,7 +33,7 @@ where if given the same number of breakpoints as polynomials, we implicitly assu
   Note the $1/2$ factor in the coefficients of $f(x)$, this is consistent with Qiskit’s Pauli rotations.
 </Admonition>
 
-## Examples
+**Examples**
 
 ```python
 >>> from qiskit import QuantumCircuit
@@ -62,7 +62,7 @@ q_5: ─────┤5         ├
           └──────────┘
 ```
 
-## References
+**References**
 
 **\[1]: Haener, T., Roetteler, M., & Svore, K. M. (2018).**
 
@@ -174,7 +174,7 @@ Return the global phase of the current circuit scope in radians.
 
 ### instances
 
-`= 306`
+`= 250`
 
 <span id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.layout" />
 

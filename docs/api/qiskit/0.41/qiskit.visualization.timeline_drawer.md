@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.visualization.timeline_drawer
 ---
 
-# qiskit.visualization.timeline\_drawer[¶](#qiskit-visualization-timeline-drawer "Permalink to this headline")
+# qiskit.visualization.timeline\_drawer
 
 <span id="qiskit.visualization.timeline_drawer" />
 
@@ -247,7 +247,7 @@ The stylesheet kwarg contains numerous options that define the style of the outp
 
 *   **layout.time\_axis\_map** – Callback function that determines the layout of horizontal axis labels. See `layouts` for more details. No default layout is set. (default None).
 
-## Examples
+**Examples**
 
 To visualize a scheduled circuit program, you can call this function with set of control arguments. Most of appearance of the output image can be controlled by the stylesheet.
 

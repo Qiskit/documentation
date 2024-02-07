@@ -1,10 +1,10 @@
 <span id="qiskit-scheduler-schedule-circuit" />
 
-# qiskit.scheduler.schedule\_circuit[¶](#module-qiskit.scheduler.schedule_circuit "Permalink to this headline")
+# qiskit.scheduler.schedule\_circuit
 
 QuantumCircuit to Pulse scheduler.
 
-## Functions
+**Functions**
 
 |                                                       |                                                                              |
 | ----------------------------------------------------- | ---------------------------------------------------------------------------- |

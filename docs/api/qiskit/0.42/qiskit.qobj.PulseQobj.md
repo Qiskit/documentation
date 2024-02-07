@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.qobj.PulseQobj
 ---
 
-# PulseQobj[¶](#pulseqobj "Permalink to this headline")
+# PulseQobj
 
 <span id="qiskit.qobj.PulseQobj" />
 
-`PulseQobj(qobj_id, config, experiments, header=None)`
+`PulseQobj(qobj_id, config, experiments, header=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/qobj/pulse_qobj.py "view source code")
 
 Bases: `object`
 
@@ -33,7 +33,7 @@ Each Pulse Qobj object is used to represent a single payload that will be passed
 
 <span id="qiskit.qobj.PulseQobj.from_dict" />
 
-`classmethod PulseQobj.from_dict(data)`
+`classmethod PulseQobj.from_dict(data)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/qobj/pulse_qobj.py "view source code")
 
 Create a new PulseQobj object from a dictionary.
 
@@ -53,7 +53,7 @@ The PulseQobj from the input dictionary.
 
 <span id="qiskit.qobj.PulseQobj.to_dict" />
 
-`PulseQobj.to_dict()`
+`PulseQobj.to_dict()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/qobj/pulse_qobj.py "view source code")
 
 Return a dictionary format representation of the Pulse Qobj.
 

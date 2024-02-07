@@ -10,29 +10,23 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { $ } from "zx";
-import { getRoot, pathExists } from "../fs";
 import { parse } from "path";
-import { Pkg } from "../sharedTypes";
 import { readFile, writeFile, readdir } from "fs/promises";
 
-interface releaseNoteEntry {
-  title: string;
-  url: string;
-}
+import { $ } from "zx";
+
+import { getRoot, pathExists } from "../fs";
+import type { Pkg, ReleaseNoteEntry } from "./Pkg";
 
 /**
  * Check for markdown files in `docs/api/package-name/release-notes/
  * then sort them and create entries for the TOC.
  */
 export const findLegacyReleaseNotes = async (
-  pkg: Pkg,
-): Promise<releaseNoteEntry[]> => {
-  if (!pkg.hasSeparateReleaseNotes) {
-    return [];
-  }
+  pkgName: string,
+): Promise<ReleaseNoteEntry[]> => {
   const legacyReleaseNoteVersions = (
-    await $`ls ${getRoot()}/docs/api/${pkg.name}/release-notes`.quiet()
+    await $`ls ${getRoot()}/docs/api/${pkgName}/release-notes`.quiet()
   ).stdout
     .trim()
     .split("\n")
@@ -57,7 +51,7 @@ export const findLegacyReleaseNotes = async (
   for (let version of legacyReleaseNoteVersions) {
     legacyReleaseNoteEntries.push({
       title: version,
-      url: `/api/${pkg.name}/release-notes/${version}`,
+      url: `/api/${pkgName}/release-notes/${version}`,
     });
   }
   return legacyReleaseNoteEntries;

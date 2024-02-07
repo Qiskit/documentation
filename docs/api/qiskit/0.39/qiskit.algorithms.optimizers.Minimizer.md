@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.Minimizer
 
 <span id="qiskit.algorithms.optimizers.Minimizer" />
 
-`Minimizer(*args, **kwargs)`
+`Minimizer(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/optimizers/optimizer.py "view source code")
 
 Bases: `Protocol`
 

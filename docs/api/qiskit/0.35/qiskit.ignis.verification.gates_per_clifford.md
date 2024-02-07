@@ -1,12 +1,20 @@
+---
+title: gates_per_clifford
+description: API reference for qiskit.ignis.verification.gates_per_clifford
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.ignis.verification.gates_per_clifford
+---
+
 # qiskit.ignis.verification.gates\_per\_clifford
 
+<span id="qiskit.ignis.verification.gates_per_clifford" />
 
-
-`gates_per_clifford(transpiled_circuits_list, clifford_lengths, basis, qubits)`
+`gates_per_clifford(transpiled_circuits_list, clifford_lengths, basis, qubits)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/randomized_benchmarking/rb_utils.py "view source code")
 
 Take a list of transpiled `QuantumCircuit` and use these to calculate the number of gates per Clifford. Each `QuantumCircuit` should be transpiled into given `basis` set. The result can be used to convert a value of error per Clifford into error per basis gate under appropriate assumption.
 
-## Example
+**Example**
 
 This example shows how to calculate gate per Clifford of 2Q RB sequence for qubit 0 and qubit 1. You can refer to the function `randomized_benchmarking_seq` for the detail of RB circuit generation.
 
@@ -38,16 +46,16 @@ pprint.pprint(ngates)
 ```
 
 ```python
-{0: {'cx': 1.526857142857143,
+{0: {'cx': 1.457142857142857,
      'id': 0.0,
-     'u1': 0.12685714285714286,
-     'u2': 1.712,
-     'u3': 0.16228571428571428},
- 1: {'cx': 1.526857142857143,
+     'u1': 0.1337142857142857,
+     'u2': 1.6571428571428573,
+     'u3': 0.1702857142857143},
+ 1: {'cx': 1.457142857142857,
      'id': 0.0,
-     'u1': 0.14285714285714285,
-     'u2': 1.6445714285714286,
-     'u3': 0.192}}
+     'u1': 0.10742857142857143,
+     'u2': 1.681142857142857,
+     'u3': 0.15314285714285714}}
 ```
 
 The gate counts for qubit 0 (1) is obtained by `ngates[0]` (`ngates[1]`) as usual python dictionary. If all gate counts are zero, you might specify wrong `basis` or input circuit list is not transpiled into basis gates.
@@ -70,3 +78,4 @@ Nested dictionary of gate counts per Clifford.
 **Raises**
 
 **QiskitError** – when input object is not a list of QuantumCircuit.
+

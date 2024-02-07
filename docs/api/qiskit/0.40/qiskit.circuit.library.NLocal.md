@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.NLocal
 ---
 
-# NLocal[¶](#nlocal "Permalink to this headline")
+# NLocal
 
 <span id="qiskit.circuit.library.NLocal" />
 
-`NLocal(num_qubits=None, rotation_blocks=None, entanglement_blocks=None, entanglement=None, reps=1, insert_barriers=False, parameter_prefix='θ', overwrite_block_parameters=True, skip_final_rotation_layer=False, skip_unentangled_qubits=False, initial_state=None, name='nlocal')`
+`NLocal(num_qubits=None, rotation_blocks=None, entanglement_blocks=None, entanglement=None, reps=1, insert_barriers=False, parameter_prefix='θ', overwrite_block_parameters=True, skip_final_rotation_layer=False, skip_unentangled_qubits=False, initial_state=None, name='nlocal')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/n_local/n_local.py "view source code")
 
 Bases: `qiskit.circuit.library.blueprintcircuit.BlueprintCircuit`
 
@@ -59,7 +59,7 @@ Create a new n-local circuit.
 *   **initial\_state** (`Optional`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]) – A [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object which can be used to describe an initial state prepended to the NLocal circuit.
 *   **name** (`Optional`\[`str`]) – The name of the circuit.
 
-## Examples
+**Examples**
 
 TODO
 
@@ -74,7 +74,7 @@ TODO
 
 <span id="qiskit.circuit.library.NLocal.add_layer" />
 
-`NLocal.add_layer(other, entanglement=None, front=False)`
+`NLocal.add_layer(other, entanglement=None, front=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/n_local/n_local.py "view source code")
 
 Append another layer to the NLocal.
 
@@ -100,7 +100,7 @@ self, such that chained composes are possible.
 
 <span id="qiskit.circuit.library.NLocal.assign_parameters" />
 
-`NLocal.assign_parameters(parameters, inplace=False)`
+`NLocal.assign_parameters(parameters, inplace=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/n_local/n_local.py "view source code")
 
 Assign parameters to the n-local circuit.
 
@@ -122,7 +122,7 @@ A copy of the NLocal circuit with the specified parameters.
 
 <span id="qiskit.circuit.library.NLocal.get_entangler_map" />
 
-`NLocal.get_entangler_map(rep_num, block_num, num_block_qubits)`
+`NLocal.get_entangler_map(rep_num, block_num, num_block_qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/n_local/n_local.py "view source code")
 
 Get the entangler map for in the repetition `rep_num` and the block `block_num`.
 
@@ -165,7 +165,7 @@ The entangler map for the current block in the current repetition.
 
 <span id="qiskit.circuit.library.NLocal.get_unentangled_qubits" />
 
-`NLocal.get_unentangled_qubits()`
+`NLocal.get_unentangled_qubits()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/n_local/n_local.py "view source code")
 
 Get the indices of unentangled qubits in a set.
 
@@ -181,7 +181,7 @@ The unentangled qubits.
 
 <span id="qiskit.circuit.library.NLocal.print_settings" />
 
-`NLocal.print_settings()`
+`NLocal.print_settings()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/n_local/n_local.py "view source code")
 
 Returns information about the setting.
 
@@ -431,7 +431,7 @@ The parameters used in the underlying circuit.
 
 This includes float values and duplicates.
 
-## Examples
+**Examples**
 
 ```python
 >>> # prepare circuit ...

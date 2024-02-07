@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.gradients.NaturalGradient
 
 <span id="qiskit.opflow.gradients.NaturalGradient" />
 
-`qiskit.opflow.gradients.NaturalGradient(grad_method='lin_comb', qfi_method='lin_comb_full', regularization=None, **kwargs)`
+`qiskit.opflow.gradients.NaturalGradient(grad_method='lin_comb', qfi_method='lin_comb_full', regularization=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/opflow/gradients/natural_gradient.py "view source code")
 
 Bases: [`GradientBase`](qiskit.opflow.gradients.GradientBase "qiskit.opflow.gradients.gradient_base.GradientBase")
 
@@ -27,7 +27,7 @@ one can use regularization schemes can be used to stabilize the system and find 
 where R(x) represents the penalization term.
 
 <Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.opflow.gradients.natural_gradient.NaturalGradient` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  The class `qiskit.opflow.gradients.natural_gradient.NaturalGradient` is deprecated as of qiskit-terra 0.24.0. It will be removed in the Qiskit 1.0 release. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
 </Admonition>
 
 **Parameters**

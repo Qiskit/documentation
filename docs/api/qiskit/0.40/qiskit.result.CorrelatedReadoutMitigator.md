@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.result.CorrelatedReadoutMitigator
 ---
 
-# CorrelatedReadoutMitigator[¶](#correlatedreadoutmitigator "Permalink to this headline")
+# CorrelatedReadoutMitigator
 
 <span id="qiskit.result.CorrelatedReadoutMitigator" />
 
-`CorrelatedReadoutMitigator(assignment_matrix, qubits=None)`
+`CorrelatedReadoutMitigator(assignment_matrix, qubits=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/result/mitigation/correlated_readout_mitigator.py "view source code")
 
 Bases: [`qiskit.result.mitigation.base_readout_mitigator.BaseReadoutMitigator`](qiskit.result.BaseReadoutMitigator "qiskit.result.mitigation.base_readout_mitigator.BaseReadoutMitigator")
 
@@ -35,7 +35,7 @@ Initialize a CorrelatedReadoutMitigator
 
 <span id="qiskit.result.CorrelatedReadoutMitigator.assignment_matrix" />
 
-`CorrelatedReadoutMitigator.assignment_matrix(qubits=None)`
+`CorrelatedReadoutMitigator.assignment_matrix(qubits=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/result/mitigation/correlated_readout_mitigator.py "view source code")
 
 Return the readout assignment matrix for specified qubits.
 
@@ -57,7 +57,7 @@ np.ndarray
 
 <span id="qiskit.result.CorrelatedReadoutMitigator.expectation_value" />
 
-`CorrelatedReadoutMitigator.expectation_value(data, diagonal=None, qubits=None, clbits=None, shots=None)`
+`CorrelatedReadoutMitigator.expectation_value(data, diagonal=None, qubits=None, clbits=None, shots=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/result/mitigation/correlated_readout_mitigator.py "view source code")
 
 Compute the mitigated expectation value of a diagonal observable.
 
@@ -87,7 +87,7 @@ The diagonal observable $O$ is input using the `diagonal` kwarg as a list or Num
 
 <span id="qiskit.result.CorrelatedReadoutMitigator.mitigation_matrix" />
 
-`CorrelatedReadoutMitigator.mitigation_matrix(qubits=None)`
+`CorrelatedReadoutMitigator.mitigation_matrix(qubits=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/result/mitigation/correlated_readout_mitigator.py "view source code")
 
 Return the readout mitigation matrix for the specified qubits.
 
@@ -109,7 +109,7 @@ np.ndarray
 
 <span id="qiskit.result.CorrelatedReadoutMitigator.quasi_probabilities" />
 
-`CorrelatedReadoutMitigator.quasi_probabilities(data, qubits=None, clbits=None, shots=None)`
+`CorrelatedReadoutMitigator.quasi_probabilities(data, qubits=None, clbits=None, shots=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/result/mitigation/correlated_readout_mitigator.py "view source code")
 
 Compute mitigated quasi probabilities value.
 
@@ -134,7 +134,7 @@ QuasiDistibution
 
 <span id="qiskit.result.CorrelatedReadoutMitigator.stddev_upper_bound" />
 
-`CorrelatedReadoutMitigator.stddev_upper_bound(shots)`
+`CorrelatedReadoutMitigator.stddev_upper_bound(shots)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/result/mitigation/correlated_readout_mitigator.py "view source code")
 
 Return an upper bound on standard deviation of expval estimator.
 

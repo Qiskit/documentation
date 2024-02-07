@@ -10,13 +10,13 @@ python_api_name: qiskit.transpiler.passes.FixedPoint
 
 <span id="qiskit.transpiler.passes.FixedPoint" />
 
-`qiskit.transpiler.passes.FixedPoint(*args, **kwargs)`
+`qiskit.transpiler.passes.FixedPoint(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/passes/utils/fixed_point.py "view source code")
 
 Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
 Check if a property reached a fixed point.
 
-A dummy analysis pass that checks if a property reached a fixed point. The results is saved in `property_set['<property>_fixed_point']` as a boolean.
+A dummy analysis pass that checks if a property reached a fixed point. The result is saved in `property_set['<property>_fixed_point']` as a boolean.
 
 FixedPoint initializer.
 

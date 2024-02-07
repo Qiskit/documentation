@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit_aer.library.SetStabilizer
 ---
 
-# SetStabilizer[¶](#setstabilizer "Permalink to this headline")
+# SetStabilizer
 
 <span id="qiskit_aer.library.SetStabilizer" />
 
-`SetStabilizer(state)`
+`SetStabilizer(state)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/library/set_instructions/set_stabilizer.py "view source code")
 
 Bases: [`qiskit.circuit.instruction.Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 

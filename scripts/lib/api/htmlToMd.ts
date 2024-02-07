@@ -32,10 +32,9 @@ import { remarkStringifyOptions } from "./commonParserConfig";
 
 export async function sphinxHtmlToMarkdown(options: {
   html: string;
-  url: string;
+  fileName: string;
   imageDestination: string;
-  // E.g. https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/
-  baseGitHubUrl: string;
+  determineGithubUrl: (fileName: string) => string;
   releaseNotesTitle: string;
 }): Promise<HtmlToMdResult> {
   const processedHtml = processHtml(options);

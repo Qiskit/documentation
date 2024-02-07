@@ -10,13 +10,13 @@ python_api_name: qiskit.circuit.library.QAOAAnsatz
 
 <span id="qiskit.circuit.library.QAOAAnsatz" />
 
-`QAOAAnsatz(cost_operator=None, reps=1, initial_state=None, mixer_operator=None, name='QAOA')`
+`QAOAAnsatz(cost_operator=None, reps=1, initial_state=None, mixer_operator=None, name='QAOA')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/n_local/qaoa_ansatz.py "view source code")
 
-Bases: [`qiskit.circuit.library.evolved_operator_ansatz.EvolvedOperatorAnsatz`](qiskit.circuit.library.EvolvedOperatorAnsatz "qiskit.circuit.library.evolved_operator_ansatz.EvolvedOperatorAnsatz")
+Bases: `qiskit.circuit.library.evolved_operator_ansatz.EvolvedOperatorAnsatz`
 
 A generalized QAOA quantum circuit with a support of custom initial states and mixers.
 
-## References
+**References**
 
 **\[1]: Farhi et al., A Quantum Approximate Optimization Algorithm.**
 
@@ -40,7 +40,7 @@ Returns a list of ancilla bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.quantumregister.AncillaQubit")]
+`List`\[`AncillaQubit`]
 
 <span id="qiskit.circuit.library.QAOAAnsatz.calibrations" />
 
@@ -64,7 +64,7 @@ Returns a list of classical bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.library.QAOAAnsatz.cost_operator" />
 
@@ -106,7 +106,7 @@ The blocks in the entanglement layers.
 
 **Return type**
 
-`List`\[[`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")]
+`List`\[`Instruction`]
 
 **Returns**
 
@@ -140,7 +140,7 @@ Return the global phase of the circuit in radians.
 
 **Return type**
 
-`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]
+`Union`\[`ParameterExpression`, `float`]
 
 <span id="qiskit.circuit.library.QAOAAnsatz.header" />
 
@@ -156,7 +156,7 @@ Returns an optional initial state as a circuit
 
 **Return type**
 
-`Optional`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]
+`Optional`\[`QuantumCircuit`]
 
 <span id="qiskit.circuit.library.QAOAAnsatz.insert_barriers" />
 
@@ -176,7 +176,7 @@ True, if barriers are inserted in between the layers, False if not.
 
 ### instances
 
-`= 87`
+`= 9`
 
 <span id="qiskit.circuit.library.QAOAAnsatz.metadata" />
 
@@ -274,26 +274,6 @@ The number of parameters originally available in the circuit.
 
 `int`
 
-<span id="qiskit.circuit.library.QAOAAnsatz.op_start_times" />
-
-### op\_start\_times
-
-Return a list of operation start times.
-
-This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
-
-**Return type**
-
-`List`\[`int`]
-
-**Returns**
-
-List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
-
-**Raises**
-
-**AttributeError** – When circuit is not scheduled.
-
 <span id="qiskit.circuit.library.QAOAAnsatz.operators" />
 
 ### operators
@@ -318,7 +298,7 @@ The parameters used in the underlying circuit.
 
 This includes float values and duplicates.
 
-## Examples
+**Examples**
 
 ```python
 >>> # prepare circuit ...
@@ -334,7 +314,7 @@ q_0: ┤ Ry(1) ├┤ Ry(θ[1]) ├┤ Ry(θ[1]) ├┤ Ry(θ[3]) ├
 
 **Return type**
 
-`List`\[[`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.parameter.Parameter")]
+`List`\[`Parameter`]
 
 **Returns**
 
@@ -388,7 +368,7 @@ Returns a list of quantum bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")]
+`List`\[`Qubit`]
 
 <span id="qiskit.circuit.library.QAOAAnsatz.reps" />
 
@@ -408,7 +388,7 @@ The blocks in the rotation layers.
 
 **Return type**
 
-`List`\[[`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")]
+`List`\[`Instruction`]
 
 **Returns**
 

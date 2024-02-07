@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.EfficientSU2
 
 <span id="qiskit.circuit.library.EfficientSU2" />
 
-`EfficientSU2(num_qubits=None, su2_gates=None, entanglement='reverse_linear', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='EfficientSU2')`
+`EfficientSU2(num_qubits=None, su2_gates=None, entanglement='reverse_linear', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='EfficientSU2')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/n_local/efficient_su2.py "view source code")
 
 Bases: [`TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.n_local.two_local.TwoLocal")
 
@@ -34,7 +34,7 @@ On 3 qubits and using the Pauli $Y$ and $Z$ su2\_gates as single qubit gates, th
 
 See [`RealAmplitudes`](qiskit.circuit.library.RealAmplitudes "qiskit.circuit.library.RealAmplitudes") for more detail on the possible arguments and options such as skipping unentanglement qubits, which apply here too.
 
-## Examples
+**Examples**
 
 ```python
 >>> circuit = EfficientSU2(3, reps=1)
@@ -262,7 +262,7 @@ The parameters used in the underlying circuit.
 
 This includes float values and duplicates.
 
-## Examples
+**Examples**
 
 ```python
 >>> # prepare circuit ...
