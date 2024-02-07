@@ -6,32 +6,15 @@ description: Install and set up Qiskit and Qiskit Runtime on various operating s
 <span id="qiskit-install"></span>
 # Install and set up Qiskit
 
-Whether you will work locally or in a cloud environment, the first step for all users is to install Qiskit. For those wanting to run on a real system, your next step is to choose one of two channels in order to access IBM Quantum systems: IBM Quantum Platform or IBM Cloud.
+Whether you will work locally or in a cloud environment, the first step for all users is to install Qiskit&reg;. For those wanting to run on a real system, your next step is to choose one of two channels in order to access IBM Quantum systems: IBM Quantum&reg; Platform or IBM Cloud&reg;.
 
-<span id="qiskit-1-upgrade-venv"></span>
-## For current Qiskit users: Upgrade to Qiskit 1.0
+<Admonition type="caution" title="Upgrade from Qiskit 0.x to Qiskit 1.0 and beyond">
+  (If you do not have a Qiskit installation already, skip ahead to the [Install and set up](#local) section.)
 
-<Admonition type="caution" title="Current users must create a new virtual environment to install Qiskit 1.0">
-  Because Qiskit 1.0 uses a new packaging structure, you cannot use `pip install -U qiskit` to upgrade from any Qiskit 0.x version to 1.0. Instead, create a new virtual environment following the following steps. 
+  If you are upgrading from version 0.x to 1.0 or later, see the [Qiskit 1.0 migration guide](/api/migration-guides/qiskit-1.0) for details and instructions. Note that because Qiskit 1.0 uses a new packaging structure, you **cannot** use `pip install -U qiskit` to upgrade from any Qiskit 0.x version to 1.0. 
   
   Future updates starting with Qiskit 1.0 will allow for in-place upgrades.  
 </Admonition>
-
-(If you do not have a Qiskit installation already, skip ahead to the [Install and set up](#local) section.) To upgrade to Qiskit 1.0, create a new virtual environment. Here is an example, using the standard tool *venv*:
-
-```shell
-# Create a new virtual environment (you only do this once)
-python -m venv ~/qiskit-1.0-env
-
-# Activate the new virtual environment (you do this every time you start a new session)
-source ~/qiskit-1.0-env/bin/activate
-
-# Install Qiskit 1.0 (you only do this once for this environment)
-pip install ‘qiskit>=1.0’
-```
-
-This upgrade introduces breaking changes, so you may need to adapt your code. See the [Qiskit 1.0 migration guide](/api/migration-guides/qiskit-1.0) for details and instructions.
-
 
 <span id="local"></span>
 ## Install and set up Qiskit with the Qiskit Runtime Client
