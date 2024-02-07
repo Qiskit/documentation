@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.Estimator
 
 <span id="qiskit_ibm_runtime.Estimator" />
 
-`Estimator(backend=None, session=None, options=None)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.18/qiskit_ibm_runtime/estimator.py "view source code")
+`Estimator(backend=None, session=None, options=None)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.19/qiskit_ibm_runtime/estimator.py "view source code")
 
 Class for interacting with Qiskit Runtime Estimator primitive service.
 
@@ -153,7 +153,7 @@ Submit a request to the estimator primitive.
 **Parameters**
 
 *   **circuits** (*QuantumCircuit | Sequence\[QuantumCircuit]*) – a (parameterized) `QuantumCircuit` or a list of (parameterized) `QuantumCircuit`.
-*   **observables** (*BaseOperator | PauliSumOp | Sequence\[BaseOperator | PauliSumOp]*) – Observable objects.
+*   **observables** (*BaseOperator | Sequence\[BaseOperator]*) – Observable objects.
 *   **parameter\_values** (*Sequence\[float] | Sequence\[Sequence\[float]] | None*) – Concrete parameters to be bound.
 *   **\*\*kwargs** – Individual options to overwrite the default primitive options. These include the runtime options in [`qiskit_ibm_runtime.RuntimeOptions`](qiskit_ibm_runtime.RuntimeOptions "qiskit_ibm_runtime.RuntimeOptions").
 
