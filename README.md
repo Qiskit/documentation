@@ -514,8 +514,10 @@ Additionally, some companies require that they are listed in a special attributi
 - IBM Cloud
 - IBM Quantum
 - Jupyter
+- LinkedIn
 - Linux
 - macOS
+- Medium
 - PowerShell
 - PyPI
 - Python
@@ -524,6 +526,7 @@ Additionally, some companies require that they are listed in a special attributi
 - Rust
 - Slack
 - Ubuntu
+- YouTube
 
 </details>
 
