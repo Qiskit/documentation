@@ -31,7 +31,7 @@ export async function saveImages(
   await pMap(images, async (img) => {
     // The release notes images are only saved in the current version to
     // avoid having duplicate files.
-    if (img.fileName.includes("release_notes") && pkg.historical) {
+    if (img.fileName.includes("release_notes") && pkg.isHistorical()) {
       return;
     }
 
