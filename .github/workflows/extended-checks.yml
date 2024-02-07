@@ -51,10 +51,10 @@ jobs:
         run: |
           ./start &
           sleep 20
-        if: !cancelled()
+        if: ${{ !cancelled() }}
       - name: Check current API pages render
         run: >
           npm run check-pages-render --
           --qiskit-release-notes
           --current-apis
-        if: !cancelled()
+        if: ${{ !cancelled() }}
