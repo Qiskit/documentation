@@ -1,0 +1,41 @@
+---
+title: Execution mode changes
+description: Learn about the changes to execution modes (sessions, batch, and single jobs)
+
+---
+
+<span id="execution-modes"></span>
+
+# Execution mode changes
+
+Jobs can be run as single jobs, sessions, or in a batch.
+
+## Sessions
+
+Sessions are designed for iterative workloads to avoid queueing delays between each iteration. When running a session, you have near exclusive access to the backend.  With this release, sessions are now thread safe. That is, you can run multiple workloads within a session.
+
+### Example: running 2 VQEs in a session using threading
+
+```python
+from concurrent.futures import ThreadPoolExecutor
+
+def minimize_thread(estimator, method):
+    minimize(cost_func, x0, args=(ansatz, hamiltonian, estimator), method=method)
+
+with Session(backend=backend), ThreadPoolExecutor() as executor:
+    estimator1 = Estimator(options={"job_tags": ["cobyla"]})
+    estimator2 = Estimator(options={"job_tags": ["nelder-mead"]})
+
+    cobyla_result = executor.submit(minimize_thread, estimator1, "cobyla").result()
+    nelder_mead_result = executor.submit(minimize_thread, estimator2, "nelder-mead").result()
+```
+
+### Extended sessions 
+
+Prior to this release, sessions were terminated after the active window, as shown in the following image.
+
+![This image shows four jobs.  Between each is the interactive TTL (time to live).  The active window starts when the first job starts and ends after the last job is completed. After the final job completes, the active window ends and the session terminates.](/images/api/qiskit-ibm-runtime/SessionTTL.png 'Figure 1: Session behavior prior to extended sessions')
+
+With extended sessions, the session pauses after the active window ends. The session is resumed if more session jobs exit the queue. 
+
+[This image shows multiple sets of jobs.  Within each set, and between each job, is the interactive TTL (time to live).  The active window starts when the first job starts and ends after the last job is completed. After the final job of the first set of jobs completes, the active window ends and the session is paused.  Another set of jobs then starts and jobs continue in a similar manner.](/images/api/qiskit-ibm-runtime/SessionTTL.png 'Figure 2: Extended sessions')
