@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.Session
 
 <span id="qiskit_ibm_runtime.Session" />
 
-`Session(service=None, backend=None, max_time=None)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.18/qiskit_ibm_runtime/session.py "view source code")
+`Session(service=None, backend=None, max_time=None)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.19/qiskit_ibm_runtime/session.py "view source code")
 
 Class for creating a flexible Qiskit Runtime session.
 
@@ -21,14 +21,22 @@ You can open a Qiskit Runtime session using this `Session` class and submit jobs
 For example:
 
 ```python
-from qiskit.test.reference_circuits import ReferenceCircuits
+from qiskit.circuit import QuantumCircuit, QuantumRegister, ClassicalRegister
 from qiskit_ibm_runtime import Sampler, Session, Options
+
+# Bell Circuit
+qr = QuantumRegister(2, name="qr")
+cr = ClassicalRegister(2, name="cr")
+qc = QuantumCircuit(qr, cr, name="bell")
+qc.h(qr[0])
+qc.cx(qr[0], qr[1])
+qc.measure(qr, cr)
 
 options = Options(optimization_level=3)
 
 with Session(backend="ibmq_qasm_simulator") as session:
     sampler = Sampler(session=session, options=options)
-    job = sampler.run(ReferenceCircuits.bell())
+    job = sampler.run(qc)
     print(f"Sampler job ID: {job.job_id()}")
     print(f"Sampler job result: {job.result()}")
 ```

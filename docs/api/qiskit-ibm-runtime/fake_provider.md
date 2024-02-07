@@ -39,11 +39,11 @@ circuit.h(0)
 circuit.cx(0,1)
 circuit.cx(0,2)
 circuit.measure_all()
-circuit.draw('mpl')
+circuit.draw('mpl', style="iqp")
 
 # Transpile the ideal circuit to a circuit that can be directly executed by the backend
 transpiled_circuit = transpile(circuit, backend)
-transpiled_circuit.draw('mpl')
+transpiled_circuit.draw('mpl', style="iqp")
 
 # Run the transpiled circuit using the simulated fake backend
 job = backend.run(transpiled_circuit)
