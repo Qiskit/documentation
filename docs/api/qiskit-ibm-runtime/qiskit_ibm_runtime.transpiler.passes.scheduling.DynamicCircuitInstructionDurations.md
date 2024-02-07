@@ -38,11 +38,7 @@ Dynamic circuit instruction durations.
 
 `classmethod from_backend(backend)`
 
-Construct an `InstructionDurations` object from the backend.
-
-**Parameters**
-
-**backend** (`Backend`) – backend from which durations (gate lengths) and dt are extracted.
+Construct a `DynamicInstructionDurations` object from the backend. :type backend: `Backend` :param backend: backend from which durations (gate lengths) and dt are extracted.
 
 **Returns**
 
@@ -50,11 +46,23 @@ The InstructionDurations constructed from backend.
 
 **Return type**
 
-InstructionDurations
+DynamicInstructionDurations
 
-**Raises**
+### from\_target
 
-**TranspilerError** – If dt and dtm is different in the backend.
+<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.DynamicCircuitInstructionDurations.from_target" />
+
+`classmethod from_target(target)`
+
+Construct a `DynamicInstructionDurations` object from the target. :type target: `Target` :param target: target from which durations (gate lengths) and dt are extracted.
+
+**Returns**
+
+The InstructionDurations constructed from backend.
+
+**Return type**
+
+DynamicInstructionDurations
 
 ### get
 
