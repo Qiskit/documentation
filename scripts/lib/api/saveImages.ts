@@ -26,7 +26,9 @@ export async function saveImages(
   const destFolder = pkg.outputDir("public/images");
   if (!(await pathExists(destFolder))) {
     await mkdirp(destFolder);
-  } else {
+  } else if (pkg.isDev()) {
+    // We don't want to store images from other versions when we generate a
+    // different dev version
     await rmFilesInFolder(destFolder);
   }
 

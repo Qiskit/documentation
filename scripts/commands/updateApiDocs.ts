@@ -99,7 +99,7 @@ zxMain(async () => {
 
   if (args.historical && args.dev) {
     throw new Error(
-      `${args.package} ${args.version} cannot be historical and dev at the same time`,
+      `${args.package} ${args.version} cannot be historical and dev at the same time. Please remove at least only one of these two arguments: --historical, --dev.`,
     );
   }
 
