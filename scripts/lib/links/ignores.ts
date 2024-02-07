@@ -31,6 +31,7 @@ const FAKE_PROVIDER_IGNORES = [
   "_downloads/20b45a9c9dd80c4687a3546bdcb4db06/fake_provider-1_02.hires.png",
   "_downloads/fe03f365d979eee2c9543dbb39696011/fake_provider-1_02.pdf",
 ];
+const AUTH_URL = "https://auth.quantum-computing.ibm.com/api";
 
 // These are legit problems that we had to punt on, usually because fixing the
 // problem requires fixing the original source documentation for API docs.
@@ -77,20 +78,20 @@ const SHOULD_BE_FIXED: FilesToIgnores = {
   "docs/api/qiskit/release-notes/0.45.md": [
     "/api/qiskit/utils#qiskit.utils.optionals.HAS_PYGMENTS",
   ],
-  "docs/api/qiskit-ibm-provider/qiskit_ibm_provider.IBMProvider.md": [
-    "https://auth.quantum-computing.ibm.com/api",
-  ],
+  "docs/api/qiskit-ibm-provider/qiskit_ibm_provider.IBMProvider.md": [AUTH_URL],
   "docs/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService.md": [
-    "https://auth.quantum-computing.ibm.com/api",
+    AUTH_URL,
   ],
+  "docs/api/qiskit-ibm-runtime/0.18/qiskit_ibm_runtime.QiskitRuntimeService.md":
+    [AUTH_URL],
   "docs/api/qiskit-ibm-runtime/0.17/qiskit_ibm_runtime.QiskitRuntimeService.md":
-    ["https://auth.quantum-computing.ibm.com/api"],
+    [AUTH_URL],
   "docs/api/qiskit-ibm-runtime/0.14/qiskit_ibm_runtime.QiskitRuntimeService.md":
-    ["https://auth.quantum-computing.ibm.com/api"],
+    [AUTH_URL],
   "docs/api/qiskit-ibm-runtime/0.15/qiskit_ibm_runtime.QiskitRuntimeService.md":
-    ["https://auth.quantum-computing.ibm.com/api"],
+    [AUTH_URL],
   "docs/api/qiskit-ibm-runtime/0.16/qiskit_ibm_runtime.QiskitRuntimeService.md":
-    ["https://auth.quantum-computing.ibm.com/api"],
+    [AUTH_URL],
   "docs/api/qiskit-ibm-runtime/fake_provider.md": FAKE_PROVIDER_IGNORES,
   "docs/api/qiskit-ibm-runtime/0.18/fake_provider.md": FAKE_PROVIDER_IGNORES,
   "docs/api/qiskit-ibm-provider/release-notes.md": [
