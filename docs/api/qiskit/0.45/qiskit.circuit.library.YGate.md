@@ -52,8 +52,8 @@ Equivalent to a $\pi$ radian rotation about the Y axis.
 The gate is equivalent to a bit and phase flip.
 
 $$
-\vert 0\rangle \rightarrow i\vert 1\rangle \\
-\vert 1\rangle \rightarrow -i\vert 0\rangle
+|0\rangle \rightarrow i|1\rangle \\
+|1\rangle \rightarrow -i|0\rangle
 $$
 
 Create new Y gate.

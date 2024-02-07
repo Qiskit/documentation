@@ -20,7 +20,7 @@ Create a new functional Pauli rotation circuit.
 
 **Parameters**
 
-*   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The number of qubits representing the state $\vert x\rangle$.
+*   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The number of qubits representing the state $|x\rangle$.
 *   **basis** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The kind of Pauli rotation to use. Must be ‘X’, ‘Y’ or ‘Z’.
 *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The name of the circuit object.
 
@@ -140,7 +140,7 @@ Return number of qubits.
 
 ### num\_state\_qubits
 
-The number of state qubits representing the state $\vert x\rangle$.
+The number of state qubits representing the state $|x\rangle$.
 
 **Returns**
 

@@ -1618,7 +1618,7 @@ A handle to the instruction created.
 
 Initialize qubits in a specific state.
 
-Qubit initialization is done by first resetting the qubits to $\vert 0\rangle$ followed by an state preparing unitary. Both these steps are included in the Initialize instruction.
+Qubit initialization is done by first resetting the qubits to $|0\rangle$ followed by an state preparing unitary. Both these steps are included in the Initialize instruction.
 
 **Parameters**
 
@@ -1649,7 +1649,7 @@ a handle to the instruction that was just initialized
 
 **Examples**
 
-Prepare a qubit in the state $(\vert 0\rangle - \vert 1\rangle) / \sqrt{2}$.
+Prepare a qubit in the state $(|0\rangle - |1\rangle) / \sqrt{2}$.
 
 ```python
 import numpy as np
@@ -2633,7 +2633,7 @@ Apply [`RVGate`](qiskit.circuit.library.RVGate "qiskit.circuit.library.RVGate").
 
 For the full matrix form of this gate, see the underlying gate documentation.
 
-Rotation around an arbitrary rotation axis $v$, where $\vert v\vert $ is the angle of rotation in radians.
+Rotation around an arbitrary rotation axis $v$, where $|v|$ is the angle of rotation in radians.
 
 **Parameters**
 

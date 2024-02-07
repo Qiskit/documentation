@@ -55,7 +55,7 @@ The output of the algorithm is an estimate for the amplitude a, that with at lea
 
 `IterativeAmplitudeEstimation.construct_circuit(estimation_problem, k=0, measurement=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/amplitude_estimators/iae.py "view source code")
 
-Construct the circuit $\mathcal{Q}^k \mathcal{A} \vert 0\rangle$.
+Construct the circuit $\mathcal{Q}^k \mathcal{A} |0\rangle$.
 
 The A operator is the unitary specifying the QAE problem and Q the associated Grover operator.
 
@@ -71,7 +71,7 @@ The A operator is the unitary specifying the QAE problem and Q the associated Gr
 
 **Returns**
 
-The circuit implementing $\mathcal{Q}^k \mathcal{A} \vert 0\rangle$.
+The circuit implementing $\mathcal{Q}^k \mathcal{A} |0\rangle$.
 
 ### estimate
 

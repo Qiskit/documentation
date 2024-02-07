@@ -27,7 +27,7 @@ $$
 This circuit considers $N = 2^n$, where $n =$ `num_qubits` and prepares the state
 
 $$
-\mathcal{P}_X \vert 0\rangle^{\otimes n} = \frac{1}{\sqrt{2^n}} \sum_{x=0}^{2^n - 1} \vert x\rangle
+\mathcal{P}_X |0\rangle^{\otimes n} = \frac{1}{\sqrt{2^n}} \sum_{x=0}^{2^n - 1} |x\rangle
 $$
 
 **Examples**
