@@ -471,6 +471,41 @@ print(len(batch_expvals))
 <Tabs>
   <TabItem value="EstimatorV2" label="EstimatorV2">
     ```python
+import numpy as np
+from qiskit.circuit.library import IQP
+from qiskit.quantum_info import SparsePauliOp, random_hermitian
+from qiskit_ibm_runtime import QiskitRuntimeService, Session, EstimatorV2 as Estimator, Options
+ 
+n_qubits = 127
+ 
+rng = np.random.default_rng(1234)
+mat = np.real(random_hermitian(n_qubits, seed=rng))
+circuit = IQP(mat)
+mat = np.real(random_hermitian(n_qubits, seed=rng))
+another_circuit = IQP(mat)
+observable = SparsePauliOp("X" * n_qubits)
+another_observable = SparsePauliOp("Y" * n_qubits)
+ 
+options = Options()
+options.optimization_level = 1
+options.resilience_level = 2
+ 
+service = QiskitRuntimeService()
+ 
+backend = service.get_backend("ibm_brisbane")
+ 
+with Session(service=service, backend=backend) as session:
+    estimator = Estimator(session=session, options=options)
+    job = estimator.run([(circuit, observable)])
+    another_job = estimator.run([(another_circuit, another_observable)])
+    result = job.result()
+    another_result = another_job.result()
+ 
+# first job
+print(f" > Expectation values job 1: {result[0].data.evs}")
+ 
+# second job
+print(f" > Expectation values job 2: {another_result[0].data.evs}")  
   ```  
   </TabItem>
 
