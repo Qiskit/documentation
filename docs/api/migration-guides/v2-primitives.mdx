@@ -59,7 +59,7 @@ mat = np.real(random_hermitian(127, seed=1234))
 circuit = IQP(mat)
 observable = SparsePauliOp("Z" * 127)
  
-job = estimator.run([(circuit, observable)])
+job = estimatorv2.run([(circuit, observable)])
 ```
   </TabItem>
 
@@ -81,8 +81,8 @@ mat = np.real(random_hermitian(127, seed=1234))
 circuit = IQP(mat)
 circuit.measure_all()
  
-sampler = Sampler(backend)
-job = sampler.run(circuit)
+samplerv2 = Samplerv2(backend)
+job = samplerv2.run(circuit)
 ```
   </TabItem>
 
