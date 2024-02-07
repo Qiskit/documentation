@@ -27,7 +27,7 @@ The purity of a density matrix $\rho$ is
 
 **Returns**
 
-the purity $\Tr[\rho^2]$.
+the purity $Tr[\rho^2]$.
 
 **Return type**
 
