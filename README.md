@@ -158,7 +158,7 @@ npm run check:links -- --external
 
 # By default, only the non-API docs are checked. You can add any of the
 # below arguments to also check API docs and/or Qiskit release notes.
-npm run check:links -- --current-apis --historical-apis --qiskit-release-notes
+npm run check:links -- --current-apis --dev-apis --historical-apis --qiskit-release-notes
 
 # However, `--historical-apis` currently has failing versions, so you may
 # want to add `--skip-broken-historical`.
@@ -227,7 +227,7 @@ To check that all the non-API docs render:
 1. Start up the local preview with `./start` by following the instructions at [Preview the docs locally](#preview-the-docs-locally)
 2. In a new tab, `npm run check-pages-render`
 
-You can also check that API docs and translations render by using any of these arguments: `npm run check-pages-render -- --qiskit-release-notes --current-apis --historical-apis --translations`. Warning that this is exponentially slower.
+You can also check that API docs and translations render by using any of these arguments: `npm run check-pages-render -- --qiskit-release-notes --current-apis --dev-apis --historical-apis --translations`. Warning that this is exponentially slower.
 
 CI will check on every PR that non-API docs correctly render. We also run a nightly cron job to check the API docs and
 translations.
