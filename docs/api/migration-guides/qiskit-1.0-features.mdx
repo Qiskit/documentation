@@ -85,7 +85,7 @@ side to jump to the module you are interested in.
 <span id="qiskit.extensions"></span>
 ## Changes to `qiskit.extensions`
 
-* The :mod:`qiskit.extensions` module is now deprecated. It had been pending deprecation since the Qiskit 0.45 release.
+* The :mod:`qiskit.extensions` module is no longer available. 
   Most objects have been moved to :mod:`qiskit.circuit.library`, including:
   * :class:`~.library.DiagonalGate`,
   * :class:`~.library.HamiltonianGateGate`,
@@ -98,7 +98,7 @@ side to jump to the module you are interested in.
   * :class:`~.library.UCRYGate`,
   * :class:`~.library.UCRZGate`,
   * :class:`~.library.UnitaryGate`.
-  With the deprecation of the objects, the following circuit methods have also been deprecated:
+  The following circuit methods have also been removed:
   * ``QuantumCircuit.diagonal``,
   * ``QuantumCircuit.hamiltonian``,
   * ``QuantumCircuit.isometry`` and ``QuantumCircuit.iso``,
@@ -106,6 +106,20 @@ side to jump to the module you are interested in.
   * ``QuantumCircuit.ucrx``,
   * ``QuantumCircuit.ucry``,
   * ``QuantumCircuit.ucrz``.
+
+Instead, these gates can be applied to a circuit by using :meth:`.QuantumCircuit.append`.
+For example, for a :class`.DiagonalGate`, we have::
+
+    from qiskit.circuit import QuantumCircuit
+    from qiskit.circuit.library import DiagonalGate  # new location in the circuit library
+
+    circuit = QuantumCircuit(2)
+    circuit.h([0, 1])  # some initial state
+
+    gate = DiagonalGate([1, -1, -1, 1])
+    qubits = [0, 1]  # qubit indices on which to apply the gate
+    circuit.append(gate, qubits)  # apply the gate
+
 
 <span id="qiskit.primitives"></span>
 ## Changes to `qiskit.primitives`
