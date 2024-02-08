@@ -218,6 +218,12 @@ async function convertHtmlToMarkdown(
       continue;
     }
 
+    // Dev versions haven't been released yet and we don't want to modify the release notes
+    // of prior versions
+    if (pkg.isDev()) {
+      continue;
+    }
+
     if (pkg.hasSeparateReleaseNotes && path.endsWith("release-notes.md")) {
       // Convert the relative links to absolute links
       result.markdown = transformLinks(result.markdown, (link, _) =>
