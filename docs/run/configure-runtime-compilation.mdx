@@ -97,7 +97,21 @@ psi1_H1 = job.result()
 
 ### Example: configure Sampler with optimization levels
 
-```python
+<Tabs>
+  <TabItem value="SamplerV2" label="SamplerV2">
+    ```python
+from qiskit_ibm_runtime import QiskitRuntimeService, Samplerv2 as Sampler, Options
+
+service = QiskitRuntimeService()
+backend = service.backend("ibmq_qasm_simulator")
+options = Options(optimization_level=1)
+
+sampler = Sampler(options=options, backend=backend)
+```
+  </TabItem>
+
+  <TabItem value="SamplerV1" label="Sampler (V1)">
+    ```python
 from qiskit_ibm_runtime import QiskitRuntimeService, Sampler, Options
 
 service = QiskitRuntimeService()
@@ -106,6 +120,8 @@ options = Options(optimization_level=1)
 
 sampler = Sampler(options=options, backend=backend)
 ```
+  </TabItem>
+</Tabs>
 
 
 <span id="transpilation-table"></span>

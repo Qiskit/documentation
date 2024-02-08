@@ -30,23 +30,49 @@ class. The session starts when its first job begins execution.
 
 **Session class**
 
-``` python
+<Tabs>
+  <TabItem value="PrimV2" label="V2 primitives">
+    ``` python
+from qiskit_ibm_runtime import Session, Samplerv2 as Sampler, Estimatorv2 as Estimator
+
+session = Session(service=service, backend="ibmq_qasm_simulator")
+estimator = Estimator(session=session)
+sampler = Sampler(session=session)
+```
+  </TabItem>
+
+  <TabItem value="PrimV1" label="V1 primitives">
+    ``` python
 from qiskit_ibm_runtime import Session, Sampler, Estimator
 
 session = Session(service=service, backend="ibmq_qasm_simulator")
 estimator = Estimator(session=session)
 sampler = Sampler(session=session)
 ```
+  </TabItem>
+</Tabs>
 
 **Context manager**
 
 The context manager automatically opens and closes the session.
 
-``` python
+<Tabs>
+  <TabItem value="PrimV2" label="V2 primitives">
+    ``` python
+with Session(service=service, backend="ibmq_qasm_simulator"):
+  estimatorv2 = Estimatorv2()
+  samplerv2 = Samplerv2()
+```
+  </TabItem>
+
+  <TabItem value="PrimV1" label="V1 primitves">
+    ``` python
 with Session(service=service, backend="ibmq_qasm_simulator"):
   estimator = Estimator()
   sampler = Sampler()
 ```
+  </TabItem>
+</Tabs>
 
 When you start a session,  you must specify a system or simulator. This can be done by specifying its name or by passing a `backend` object. 
 
@@ -132,7 +158,28 @@ with Session(service=service, backend=backend) as session:
 
 A session can handle multiple primitives, allowing for various operations within a single session.  The following example shows how you can create both an instance of the `Sampler` class and one of the `Estimator` class and invoke their `run()` methods within a session. 
 
-```python
+<Tabs>
+  <TabItem value="PrimV2" label="V2 primitives">
+    ```python
+from qiskit_ibm_runtime import Session, Samplerv2 as Sampler, Estimatorv2 as Estimator
+
+with Session(backend=backend):
+    sampler = Sampler()
+    estimator = Estimator()
+
+    job = sampler.run([(sampler_circuit)])
+    result = job.result()
+    print(f" > Counts: {result[0].data.evs}")
+
+    job = estimator.run([(circuit, observable)])
+    result = job.result() 
+    print(f" > Expectation value: {result[0].data.evs}")
+    print(f" > Metadata: {result[0].metadata}")
+    ```
+  </TabItem>
+
+  <TabItem value="PrimV1" label="V1 primitives">
+    ```python
 from qiskit_ibm_runtime import Session, Sampler, Estimator
 
 with Session(backend=backend):
@@ -145,6 +192,9 @@ with Session(backend=backend):
     result = estimator.run(circuit, observable).result()
     print(f">>> Expectation value from the estimator job: {result.values[0]}")
     ```
+  </TabItem>
+</Tabs>
+
 <span id="session-status"></span>
 ## Check session status
 

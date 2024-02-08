@@ -17,7 +17,43 @@ Quantum time is the duration, in seconds, a quantum system is committed to fulfi
 
 Example:
 
-```python
+<Tabs>
+  <TabItem value="SamplerV2" label="SamplerV2">
+    ```python
+from qiskit import QuantumCircuit
+from qiskit_ibm_runtime import QiskitRuntimeService, Samplerv2 as Sampler
+
+service = QiskitRuntimeService()
+
+# Create a new circuit with two qubits (first argument) and two classical
+# bits (second argument)
+qc = QuantumCircuit(2, 2)
+
+# Add a Hadamard gate to qubit 0
+qc.h(0)
+
+# Perform a controlled-X gate on qubit 1, controlled by qubit 0
+qc.cx(0, 1)
+
+# Measure qubit 0 to cbit 0, and qubit 1 to cbit 1
+qc.measure(0, 0)
+qc.measure(1, 1)
+
+# Run on the least-busy system you have access to
+backend = service.least_busy(simulator=False,operational=True)
+
+# Create a Sampler object
+sampler = Sampler(backend)
+
+# Submit the circuit to the sampler
+job = sampler.run([(qc)])
+
+print(job.usage_estimation)
+```
+  </TabItem>
+
+  <TabItem value="SamplerV1" label="Sampler (V1)">
+    ```python
 from qiskit import QuantumCircuit
 from qiskit_ibm_runtime import QiskitRuntimeService, Sampler
 
@@ -48,6 +84,8 @@ job = sampler.run(qc)
 
 print(job.usage_estimation)
 ```
+  </TabItem>
+</Tabs>
 
 Output:
 
