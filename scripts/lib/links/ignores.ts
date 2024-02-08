@@ -79,8 +79,12 @@ const SHOULD_BE_FIXED: FilesToIgnores = {
     "/api/qiskit/utils#qiskit.utils.optionals.HAS_PYGMENTS",
   ],
   "docs/api/qiskit-ibm-provider/qiskit_ibm_provider.IBMProvider.md": [AUTH_URL],
-  "docs/api/qiskit-ibm-provider/0.7/qiskit_ibm_provider.IBMProvider.md": [AUTH_URL],
-  "docs/api/qiskit-ibm-provider/0.8/qiskit_ibm_provider.IBMProvider.md": [AUTH_URL],
+  "docs/api/qiskit-ibm-provider/0.7/qiskit_ibm_provider.IBMProvider.md": [
+    AUTH_URL,
+  ],
+  "docs/api/qiskit-ibm-provider/0.8/qiskit_ibm_provider.IBMProvider.md": [
+    AUTH_URL,
+  ],
   "docs/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService.md": [
     AUTH_URL,
   ],
