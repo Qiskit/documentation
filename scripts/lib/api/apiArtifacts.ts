@@ -45,7 +45,7 @@ export async function downloadCIArtifact(pkg: Pkg, artifactFolder: string) {
     fs.readFileSync(`${getRoot()}/scripts/api-html-artifacts.json`, "utf-8"),
   );
 
-  const artifactName = `${pkg.versionWithoutPatch}${pkg.isDev() ? "-dev" : ""}`;
+  const artifactName = pkg.isDev() ? "dev" : `${pkg.versionWithoutPatch}`;
   if (!(`${artifactName}` in artifactJson[`${pkg.name}`])) {
     throw new Error(
       `Package ${pkg.name} version ${pkg.versionWithoutPatch} doesn't have an artifact stored. You can add one to https://ibm.ent.box.com/folder/246867452622
