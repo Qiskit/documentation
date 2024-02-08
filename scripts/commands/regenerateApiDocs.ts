@@ -129,10 +129,11 @@ async function regenerateVersion(
 }
 
 async function getDevVersion(pkgName: string): Promise<string | undefined> {
-  const devPath = `docs/api/${pkgName}/dev/_package.json`;
+  const devPath = `docs/api/${pkgName}/dev`;
 
   if (await pathExists(devPath)) {
-    return JSON.parse(await readFile(`${devPath}`, "utf-8")).version;
+    return JSON.parse(await readFile(`${devPath}/_package.json`, "utf-8"))
+      .version;
   }
 
   return undefined;
