@@ -121,7 +121,7 @@ side to jump to the module you are interested in.
   ```
 
 <span id="qiskit.converters"></span>
-## Changes to `qiskit.converters`
+## qiskit.converters
 
 * The ``qiskit.converters.ast_to_dag`` function has been deprecated and
   will be removed in the Qiskit 1.0.0 release. It previously was used to
@@ -137,7 +137,7 @@ side to jump to the module you are interested in.
   with :func:`.circuit_to_dag`.
 
 <span id="qiskit.extensions"></span>
-## Changes to `qiskit.extensions`
+## qiskit.extensions
 
 The `qiskit.extensions` module is no longer available, most of its objects have been
 integrated into the circuit library ([`qiskit.circuit.library`](/api/qiskit/circuit_library)).
@@ -154,7 +154,7 @@ from qiskit.extensions import DiagonalGate
 from qiskit.circuit.library import DiagonalGate
 ```
 
-The classe moved to [`qiskit.circuit.library`](/api/qiskit/circuit_library) are:
+The classes moved to [`qiskit.circuit.library`](/api/qiskit/circuit_library) are:
 
 * [`DiagonalGate`](/api/qiskit/qiskit.circuit.library.DiagonalGate)
 * [`HamiltonianGate`](/api/qiskit/qiskit.circuit.library.HamiltonianGate)
@@ -408,7 +408,7 @@ Jump to subsection:
 * [Other migration tips for `qiskit.providers`](#provider-misc)
 
 <span id="basicaer"></span>
-### Migrate from `basicaer` to `basic_provider`
+### Migrate from basicaer to basic_provider
 
 Most of the functionality in the [`qiskit.providers.basicaer`](../qiskit/0.46/providers_basicaer) module has
 been replaced with the new [`qiskit.providers.basic_provider`](../qiskit/providers_basic_provider) module,
@@ -436,7 +436,7 @@ Migrate from                     |   Replace with
 
     ```python
     # Former path
-    from qiskit. import BasicAer
+    from qiskit import BasicAer
     backend = BasicAer.get_backend('backend_name')
 
     # New path
@@ -526,7 +526,7 @@ The following examples show the migration paths of the three simulators in [`bas
 </Tabs>
 
 <span id="fake-backends-runtime"></span>
-### Migrate from `qiskit.providers.fake_provider` to `qiskit_ibm_runtime.fake_provider`
+### Migrate from qiskit.providers.fake_provider to qiskit_ibm_runtime.fake_provider
 
 Most of the user-facing components of [`qiskit.providers.fake_provider`](../qiskit/0.46/providers_fake_provider)
 have been migrated to the `qiskit-ibm-runtime` Python package. This includes the fake provider classes, all of
@@ -633,7 +633,7 @@ backend = GenericBackendV2(num_qubits=5)
 ```
 
 <span id="provider-misc"></span>
-### Other migration tips for `qiskit.providers`
+### Other migration tips for qiskit.providers
 
 * Importing from `qiskit.providers.aer` is no longer possible.  You
   should instead import from `qiskit_aer`, which is a drop-in replacement.
@@ -646,7 +646,7 @@ backend = GenericBackendV2(num_qubits=5)
 * Support for running pulse jobs on backends from [`qiskit.providers.fake_provider`](../qiskit/providers_fake_provider)
   has been removed in Qiskit 1.0.  This is due to Qiskit Aer removing its simulation
   functionality for such jobs.  For low-level Hamiltonian-simulation workloads, consider using
-  a specialised library such as [Qiskit Dynamics](https://qiskit.org/ecosystem/dynamics).
+  a specialized library such as [Qiskit Dynamics](https://qiskit.org/ecosystem/dynamics).
 
 <span id="qiskit.pulse"></span>
 ## qiskit.pulse
