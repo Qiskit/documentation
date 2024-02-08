@@ -12,7 +12,7 @@ Jobs can be run as single jobs, sessions, or in a batch.
 
 ## Sessions
 
-Sessions are designed for iterative workloads to avoid queueing delays between each iteration. When running a session, you have near exclusive access to the backend.  With this release, sessions are now thread safe. That is, you can run multiple workloads within a session.
+Sessions are designed for iterative workloads to avoid queueing delays between each iteration. When running a session, you have near exclusive access to the backend.  With this release, sessions are now thread safe. That is, you can run multiple workloads within a session. By default, all sessions run in this dedicated mode. 
 
 ### Example: Run two VQE algorithms in a session by using threading
 
@@ -39,3 +39,33 @@ Prior to this release, sessions were terminated after the active window, as show
 With extended sessions, the session pauses after the active window ends. The session is resumed if more session jobs exit the queue. 
 
 [This image shows multiple sets of jobs.  Within each set, and between each job, is the interactive TTL (time to live).  The active window starts when the first job starts and ends after the last job is completed. After the final job of the first set of jobs completes, the active window ends and the session is paused.  Another set of jobs then starts and jobs continue in a similar manner.](/images/api/qiskit-ibm-runtime/ExtendedSession.png 'Figure 2: Extended sessions')
+
+## Batch
+
+Submit multiple primitive jobs simultaneously. When batching, classical processing is done in parallel. No session jobs can start when batch jobs are being processed. 
+
+```python
+# Example: dividing a 500-circuit job into 5 100-circuit jobs and run them in batch
+
+from qiskit_ibm_runtime import Batch
+
+max_circuits = 100
+jobs = []
+start_idx = 0
+
+with Batch(backend):
+    sampler = Sampler()    
+    while start_idx < len(circuits):
+        end_idx = start_idx + max_circuits  
+        jobs.append(sampler.run(circuits[start_ids:end_idx]))
+        start_idx = end_idx
+```
+
+## Sessions versus batch 
+
+[This image shows multiple sets of jobs.  Within each set, and between each job, is the interactive TTL (time to live).  The active window starts when the first job starts and ends after the last job is completed. After the final job of the first set of jobs completes, the active window ends and the session is paused.  Another set of jobs then starts and jobs continue in a similar manner.](/images/api/qiskit-ibm-runtime/SessionVsBatch.png 'Figure 3: Sessions compared to batch')
+
+## Billing
+
+* Single jobs are billed for the quantum time they use in processing. 
+* Sessions are billed for the entire active session time. 
