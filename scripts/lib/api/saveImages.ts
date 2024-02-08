@@ -16,7 +16,7 @@ import { copyFile } from "fs/promises";
 
 import { Pkg } from "./Pkg";
 import { Image } from "./HtmlToMdResult";
-import { pathExists } from "../fs";
+import { pathExists, rmFilesInFolder } from "../fs";
 
 export async function saveImages(
   images: Image[],
@@ -26,6 +26,10 @@ export async function saveImages(
   const destFolder = pkg.outputDir("public/images");
   if (!(await pathExists(destFolder))) {
     await mkdirp(destFolder);
+  } else if (pkg.isDev()) {
+    // We don't want to store images from other versions when we generate a
+    // different dev version
+    await rmFilesInFolder(destFolder);
   }
 
   await pMap(images, async (img) => {
