@@ -29,7 +29,7 @@ export interface ReleaseNoteEntry {
   url: string;
 }
 
-type PackageType = "latest" | "historical";
+type PackageType = "latest" | "historical" | "dev";
 
 /**
  * Information about the specific package and version we're dealing with, e.g. qiskit 0.45.
@@ -149,6 +149,8 @@ export class Pkg {
     let path = join(parentDir, "api", this.name);
     if (this.isHistorical()) {
       path = join(path, this.versionWithoutPatch);
+    } else if (this.isDev()) {
+      path = join(path, "dev");
     }
     return path;
   }
@@ -159,6 +161,14 @@ export class Pkg {
 
   isHistorical(): boolean {
     return this.type == "historical";
+  }
+
+  isDev(): boolean {
+    return this.type == "dev";
+  }
+
+  isLatest(): boolean {
+    return this.type == "latest";
   }
 
   hasObjectsInv(): boolean {
