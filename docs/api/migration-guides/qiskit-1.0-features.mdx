@@ -11,7 +11,7 @@ This guide is organized by qiskit module, you can use the navigation bar on the 
 side to jump to the module you are interested in.
 
 <span id="qiskit.global"></span>
-## Changes to global instances and functions
+## Global instances and functions
 
 * The `qiskit.Aer` object is no longer available in Qiskit 1.0.  You should instead
   use the same object from the `qiskit_aer` namespace, which is a drop-in replacement.
@@ -54,47 +54,71 @@ side to jump to the module you are interested in.
   ```
 
 <span id="qiskit.circuit"></span>
-## Changes to `qiskit.circuit`
+## qiskit.circuit
 
-* The :meth:`.QuantumCircuit.qasm` method used to generate a OpenQASM 2
-  representation of the `.QuantumCircuit` object has been deprecated
-  and will be removed in the Qiskit 1.0.0 release. The
-  :func:`.qasm2.dump` or :func:`.qasm2.dumps` functions which provide similar
-  functionality should be used instead. If you were using the :meth:`.QuantumCircuit.qasm`
-  method to generate pygments formatted output you should instead look at the standalone
-  ``openqasm-pygments`` package to provide this functionality (as :func:`.qasm2.dump`
-  and :func:`.qasm2.dumps` do not provide pygments colored output).
+* The `QuantumCircuit.qasm` method is deprecated. Instead, use
+  [`qasm2.dump`](/api/qiskit/qasm2#dump) or
+  [`qasm2.dumps`](/api/qiskit/qasm2#dumps).
 
-* Duplicated gate methods removed:
+  For pygments-formatted output, look at the standalone
+  [`openqasm-pygments`](https://pypi.org/project/openqasm-pygments/) package, as
+  `qasm2.dump` and `qasm2.dumps` do not provide pygments colored output.
 
-    * ``QuantumCircuit.cnot``, instead use :meth:`.QuantumCircuit.cx`,
-    * ``QuantumCircuit.toffoli``, instead use :meth:`.QuantumCircuit.ccx`,
-    * ``QuantumCircuit.fredkin``, instead use :meth:`.QuantumCircuit.cswap`,
-    * ``QuantumCircuit.mct``, instead use :meth:`.QuantumCircuit.mcx`,
-    * ``QuantumCircuit.i``, instead use :meth:`.QuantumCircuit.id`.
+  ```python
+  from qiskit import QuantumCircuit
+  qc = QuantumCircuit(1)
 
-* Other methods removed:
-  The following circuit methods have also been removed:
-  * ``QuantumCircuit.diagonal``,
-  * ``QuantumCircuit.hamiltonian``,
-  * ``QuantumCircuit.isometry`` and ``QuantumCircuit.iso``,
-  * ``QuantumCircuit.uc``,
-  * ``QuantumCircuit.ucrx``,
-  * ``QuantumCircuit.ucry``,
-  * ``QuantumCircuit.ucrz``.
+  # Deprecated
+  qasm_str = qc.qasm()
 
-Instead, these gates can be applied to a circuit by using :meth:`.QuantumCircuit.append`.
-For example, for a :class`.DiagonalGate`, we have::
+  # Alternative
+  from qiskit.qasm2 import dumps
+  qasm_str = dumps(qc)
 
-    from qiskit.circuit import QuantumCircuit
-    from qiskit.circuit.library import DiagonalGate  # new location in the circuit library
+  # Alternative: Write to file
+  from qiskit.qasm2 import dump
+  with open("my_file.qasm", "w") as f:
+      dump(qc, f)
+  ```
 
-    circuit = QuantumCircuit(2)
-    circuit.h([0, 1])  # some initial state
+* A series of duplicated gate methods have been removed in favor of the more
+  established method to append the same gate:
 
-    gate = DiagonalGate([1, -1, -1, 1])
-    qubits = [0, 1]  # qubit indices on which to apply the gate
-    circuit.append(gate, qubits)  # apply the gate
+  | Deprecated                   | Alternative |
+  |------------------------------|----------------------|
+  | `QuantumCircuit.cnot`        | `QuantumCircuit.cx`(/api/qiskit/qiskit.circuit.QuantumCircuit#cx)       |
+  | `QuantumCircuit.toffoli`     | `QuantumCircuit.ccx`(/api/qiskit/qiskit.circuit.QuantumCircuit#ccx)     |
+  | `QuantumCircuit.fredkin`     | `QuantumCircuit.cswap`(/api/qiskit/qiskit.circuit.QuantumCircuit#cswap) |
+  | `QuantumCircuit.mct`         | `QuantumCircuit.mcx`(/api/qiskit/qiskit.circuit.QuantumCircuit#mcx)     |
+  | `QuantumCircuit.i`           | `QuantumCircuit.id`(/api/qiskit/qiskit.circuit.QuantumCircuit#id)       |
+
+* The following circuit methods have been removed. Instead, these gates can
+  be applied to a circuit with `QuantumCircuit.append`.
+
+  | Deprecated                   | Alternative (append) |
+  |------------------------------|----------------------|
+  | `QuantumCircuit.diagonal`    | [`DiagonalGate`](/api/qiskit/qiskit.circuit.library.DiagonalGate)          |
+  | `QuantumCircuit.hamiltonian` | [`HamiltonianGate`](/api/qiskit/qiskit.circuit.library.HamiltonianGate)    |
+  | `QuantumCircuit.isometry`    | [`Isometry`](/api/qiskit/qiskit.circuit.library.Isometry)           |
+  | `QuantumCircuit.iso`         | [`Isometry`](/api/qiskit/qiskit.circuit.library.Isometry)           |
+  | `QuantumCircuit.uc`          | [`UCGate`](/api/qiskit/qiskit.circuit.library.UCGate)               |
+  | `QuantumCircuit.ucrx`        | [`UCRXGate`](/api/qiskit/qiskit.circuit.library.UCRXGate)           |
+  | `QuantumCircuit.ucry`        | [`UCRYGate`](/api/qiskit/qiskit.circuit.library.UCRYGate)           |
+  | `QuantumCircuit.ucrz`        | [`UCRZGate`](/api/qiskit/qiskit.circuit.library.UCRZGate)           |
+
+  For example, for a [`DiagonalGate`](/api/qiskit/qiskit.circuit.library.DiagonalGate):
+
+  ```python
+  from qiskit.circuit import QuantumCircuit
+  from qiskit.circuit.library import DiagonalGate  # new location in the circuit library
+
+  circuit = QuantumCircuit(2)
+  circuit.h([0, 1])  # some initial state
+
+  gate = DiagonalGate([1, -1, -1, 1])
+  qubits = [0, 1]  # qubit indices on which to apply the gate
+  circuit.append(gate, qubits)  # apply the gate
+  ```
 
 <span id="qiskit.converters"></span>
 ## Changes to `qiskit.converters`
@@ -115,8 +139,8 @@ For example, for a :class`.DiagonalGate`, we have::
 <span id="qiskit.extensions"></span>
 ## Changes to `qiskit.extensions`
 
-The `qiskit.extensions` module is no longer available, most of
-its functionality has been integrated into the circuit library.
+The `qiskit.extensions` module is no longer available, most of its objects have been
+integrated into the circuit library ([`qiskit.circuit.library`](/api/qiskit/circuit_library)).
 
 To migrate to the new location, you can replace (drop-in)
 `qiskit.extensions` with `qiskit.circuit.library` in the object import path,
@@ -130,31 +154,31 @@ from qiskit.extensions import DiagonalGate
 from qiskit.circuit.library import DiagonalGate
 ```
 
-The classe moved to `qiskit.circuit.library` are:
+The classe moved to [`qiskit.circuit.library`](/api/qiskit/circuit_library) are:
 
-* `DiagonalGate`
-* `HamiltonianGateGate`
-* `Initialize`
-* `Isometry`
-* `~.library.generalized_gates.mcg_up_diag.MCGupDiag`
-* `UCGate`
-* `UCPauliRotGate`
-* `UCRXGate`
-* `UCRYGate`
-* `UCRZGate`
-* `UnitaryGate`
+* [`DiagonalGate`](/api/qiskit/qiskit.circuit.library.DiagonalGate)
+* [`HamiltonianGate`](/api/qiskit/qiskit.circuit.library.HamiltonianGate)
+* [`Initialize`](/api/qiskit/qiskit.circuit.library.Initialize)
+* [`Isometry`](/api/qiskit/qiskit.circuit.library.Isometry)
+* `qiskit.circuit.library.generalized_gates.mcg_up_diag.MCGupDiag`
+* [`UCGate`](/api/qiskit/qiskit.circuit.library.UCGate)
+* [`UCPauliRotGate`](/api/qiskit/qiskit.circuit.library.UCPauliRotGate)
+* [`UCRXGate`](/api/qiskit/qiskit.circuit.library.UCRXGate)
+* [`UCRYGate`](/api/qiskit/qiskit.circuit.library.UCRYGate)
+* [`UCRZGate`](/api/qiskit/qiskit.circuit.library.UCRZGate)
+* [`UnitaryGate`](/api/qiskit/qiskit.circuit.library.UnitaryGate)
 
 The following classes have been removed from the codebase, as their
 functionality was either redundant or linked to the `extensions` module:
 
 Migrate from                     |   Replace with
 ---------------------------------|--------------------------------------------
-[`SingleQubitUnitary`](../qiskit/0.46/qiskit.extensions.SingleQubitUnitary)         |  use [`UnitaryGate`](../qiskit/qiskit.circuit.library.UnitaryGate)
+[`SingleQubitUnitary`](../qiskit/0.46/qiskit.extensions.SingleQubitUnitary)    |  use [`UnitaryGate`](../qiskit/qiskit.circuit.library.UnitaryGate)
 [`Snapshot`](../qiskit/0.46/qiskit.extensions.Snapshot)             |  use qiskit-aer's save instructions
 [`ExtensionError`](../qiskit/0.46/qiskit.extensions.ExtensionError) | a relevant error class
 
 <span id="qiskit.primitives"></span>
-## Changes to `qiskit.primitives`
+## qiskit.primitives
 
 The most notable change in the [`qiskit.primitives`](../qiskit/primitives) module is the
 introduction of the new **primitives V2 interface**. This section will show how to migrate your
@@ -374,7 +398,7 @@ sampler_v2 = StatevectorSampler()
   Instead you should explicitly convert the argument using `SparsePauliOp(pauli_list)` first.
 
 <span id="qiskit.providers"></span>
-## Changes to `qiskit.providers`
+## qiskit.providers
 
 Jump to subsection:
 
@@ -625,7 +649,7 @@ backend = GenericBackendV2(num_qubits=5)
   a specialised library such as [Qiskit Dynamics](https://qiskit.org/ecosystem/dynamics).
 
 <span id="qiskit.pulse"></span>
-## Changes to `qiskit.pulse`
+## qiskit.pulse
 
 * The `~qiskit.pulse.library.parametric_pulses.ParametricPulse` base class and pulses are now
   deprecated, and will be removed in Qiskit 1.0. This includes:
@@ -713,7 +737,7 @@ backend = GenericBackendV2(num_qubits=5)
   * `~.qiskit.pulse.GaussianSquare`
 
 <span id="qiskit.qasm2"></span>
-## Changes to `qiskit.qasm2`
+## qiskit.qasm2
 
 * The legacy OpenQASM 2 parser module previously present in :mod:`qiskit.qasm` has been
   deprecated. It will be removed in the Qiskit 1.0.0 release. The legacy
@@ -721,7 +745,7 @@ backend = GenericBackendV2(num_qubits=5)
   which provides a faster more correct parser for OpenQASM 2.
 
 <span id="qiskit.quantum_info"></span>
-## Changes to `qiskit.quantum_info`
+## qiskit.quantum_info
 
 * The :mod:`qiskit.quantum_info.synthesis` module is deprecated and
   will be removed in Qiskit 1.0.0. The following objects have been moved to
@@ -737,10 +761,10 @@ backend = GenericBackendV2(num_qubits=5)
   * :func:`~.cnot_rxx_decompose`
 
 <span id="qiskit.synthesis"></span>
-## Changes to `qiskit.synthesis`
+## qiskit.synthesis
 
 <span id="qiskit.test"></span>
-## Changes to `qiskit.test`
+## qiskit.test
 
 The module ``qiskit.test`` is deprecated. This module contains tooling and helpers for internal
   Qiskit testing, and most of its functionality had been moved or is not used in Qiskit anymore.
@@ -748,7 +772,7 @@ The module ``qiskit.test`` is deprecated. This module contains tooling and helpe
   is absolutely necessary beyond Qiskit, consider copying that code out into your own test infrastructure.
 
 <span id="qiskit.tools"></span>
-## Changes to `qiskit.tools`
+## qiskit.tools
 
 The ``qiskit.tools`` module has been deprecated and will be removed in
   Qiskit 1.0.0. Except as noted in the release notes above for specific
@@ -786,7 +810,7 @@ The ``qiskit.tools`` module has been deprecated and will be removed in
   by dedicated packages such as `tqdm <https://github.com/tqdm/tqdm>`__.
 
 <span id="qiskit.transpiler"></span>
-## Changes to `qiskit.transpiler`
+## qiskit.transpiler
 
 * The :mod:`qiskit.transpiler.synthesis` module is deprecated and
   will be removed in Qiskit 1.0. The following objects have been moved:
@@ -813,7 +837,7 @@ The ``qiskit.tools`` module has been deprecated and will be removed in
   the pass has been deprecated.
 
 <span id="qiskit.utils"></span>
-## Changes to `qiskit.utils`
+## qiskit.utils
 
 * The following tools in :mod:`qiskit.utils` have been deprecated:
   * Utils in ``qiskit.utils.arithmetic``
@@ -825,7 +849,7 @@ The ``qiskit.tools`` module has been deprecated and will be removed in
   ``qiskit.algorithms`` and  ``qiskit.opflow`` in Qiskit 1.0.
 
 <span id="qiskit.visualization"></span>
-## Changes to `qiskit.visualization`
+## qiskit.visualization
 
 *   The :mod:`qiskit.visualization.qcstyle` module is now deprecated and will be removed
   in the Qiskit 1.0.0 release. Instead you should use
