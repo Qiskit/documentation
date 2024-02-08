@@ -274,15 +274,22 @@ options.dynamical_decoupling = "XX"
   </TabItem>
 
   <TabItem value="SamplerV1" label="Sampler (V1)">
-    
+    ```python
+    from qiskit_ibm_runtime import QiskitRuntimeService, Sampler, Options
+ 
+service = QiskitRuntimeService()
+options = Options()
+options.optimization_level = 3
+backend = service.backend("ibmq_qasm_simulator")
+ 
+sampler = Sampler(backend, options=options)
+```    
   </TabItem>
 </Tabs>
 
-## Full examples
+## Estimator full examples
 
-### Estimator examples
-
-#### Run a single experiment
+### Run a single experiment
 
 Use Estimator to determine the expectation value of a single circuit-observable pair.
 
@@ -340,7 +347,7 @@ print(f" > Metadata: {result.metadata}")
   </TabItem>
 </Tabs>
 
-#### Run multiple experiments in a single job
+### Run multiple experiments in a single job
 
 Use Estimator to determine the expectation values of multiple circuit-observable pairs.
 
@@ -381,7 +388,7 @@ print(f" > Expectation values: {result.values}")
   </TabItem>
 </Tabs>
 
-#### Run parameterized circuits
+### Run parameterized circuits
 
 Use Estimator to run multiple experiments in a single job, leveraging parameter values to increase circuit reusability.
 
@@ -472,13 +479,9 @@ print(len(batch_expvals))
   </TabItem>
 </Tabs>
 
-#### Use sessions and advanced options
+### Use sessions and advanced options
 
 Explore sessions and advanced options to optimize circuit performance on quantum systems.
-
-<Admonition>
-This version of Qiskit Runtime includes updates to session functionality.  To learn more, see the [Sessions migration guide](sessions).  
-</Admonition>
 
 <Tabs>
   <TabItem value="EstimatorV2" label="EstimatorV2">
@@ -562,9 +565,9 @@ print(f" > Expectation values job 2: {another_result.values}")
   </TabItem>
 </Tabs>
 
-### Sampler examples
+## Sampler full examples
 
-#### Run a single experiment
+### Run a single experiment
 
 Use Sampler to determine the counts or quasi-probability distribution of a single circuit.
 
@@ -622,7 +625,7 @@ print(f" > Metadata: {result.metadata}")
   </TabItem>
 </Tabs>
 
-#### Run multiple experiments in a single job
+### Run multiple experiments in a single job
 
 Use Sampler to determine the counts or quasi-probability distributions of multiple circuits in one job.
 
@@ -682,7 +685,7 @@ print(f" > Quasi-probability distribution: {result.quasi_dists}")
   </TabItem>
 </Tabs>
 
-#### Run parameterized circuits
+### Run parameterized circuits
 
 Run several experiments in a single job, leveraging parameter values to increase circuit reusability.
 
@@ -733,13 +736,9 @@ print(f" > Quasi-probability distribution: {result.quasi_dists}")
   </TabItem>
 </Tabs>
 
-#### Use sessions and advanced options
+### Use sessions and advanced options
 
 Explore sessions and advanced options to optimize circuit performance on quantum systems.
-
-<Admonition>
-This version of Qiskit Runtime includes updates to session functionality.  To learn more, see the [Sessions migration guide](sessions).  
-</Admonition>
 
 <Tabs>
   <TabItem value="SamplerV2" label="SamplerV2">
