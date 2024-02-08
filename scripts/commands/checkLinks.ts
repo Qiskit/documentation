@@ -101,7 +101,9 @@ async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
     return [currentBatch];
   }
 
-  const provider = await determineHistoricalFileBatches("qiskit-ibm-provider");
+  const provider = await determineHistoricalFileBatches("qiskit-ibm-provider", [
+    "docs/api/qiskit/*.md",
+  ]);
   const runtime = await determineHistoricalFileBatches("qiskit-ibm-runtime", [
     "docs/api/qiskit/providers_models.md",
   ]);
