@@ -103,6 +103,13 @@ zxMain(async () => {
     );
   }
 
+  const devRegex = /[0-9](-rc|-dev)/;
+  if (args.dev && !args.version.match(devRegex)) {
+    throw new Error(
+      `${args.package} ${args.version} is not a correct dev version. Please make sure the version has one of the following suffixes with a hyphen immediately following the patch version: -rc, -dev. e.g. 1.0.0-rc1 or 1.0.0-dev`,
+    );
+  }
+
   const type = args.historical ? "historical" : args.dev ? "dev" : "latest";
 
   const pkg = await Pkg.fromArgs(
