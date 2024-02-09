@@ -15,10 +15,10 @@ import { readFile, readdir } from "fs/promises";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 import { $ } from "zx";
-import fs from "fs";
 
 import { Pkg } from "../lib/api/Pkg";
 import { zxMain } from "../lib/zx";
+import { pathExists } from "../lib/fs";
 
 interface Arguments {
   [x: string]: unknown;
@@ -54,14 +54,17 @@ zxMain(async () => {
       continue;
     }
 
-    const [historicalVersions, currentVersion] = await getPackageVersions(
+    const [historicalVersions, currentVersion] = await getReleasedVersions(
       pkgName,
       args.currentApisOnly,
     );
+    const maybeDevVersion = await getDevVersion(pkgName);
+
     const result = await processVersions(
       pkgName,
       historicalVersions,
       currentVersion,
+      maybeDevVersion,
     );
     results.set(pkgName, result);
   }
@@ -82,24 +85,33 @@ async function processVersions(
   pkgName: string,
   historicalVersions: string[],
   currentVersion: string,
+  maybeDevVersion: string | undefined,
 ): Promise<string[]> {
   const results: string[] = [];
 
   for (const historicalVersion of historicalVersions) {
-    results.push(await regenerateVersion(pkgName, historicalVersion));
+    results.push(
+      await regenerateVersion(pkgName, historicalVersion, "historical"),
+    );
   }
-  results.push(await regenerateVersion(pkgName, currentVersion, false));
+
+  results.push(await regenerateVersion(pkgName, currentVersion));
+
+  if (maybeDevVersion) {
+    results.push(await regenerateVersion(pkgName, maybeDevVersion, "dev"));
+  }
+
   return results;
 }
 
 async function regenerateVersion(
   pkgName: string,
   version: string,
-  historical: boolean = true,
+  typeArgument?: "historical" | "dev",
 ): Promise<string> {
   try {
-    if (historical) {
-      await $`npm run gen-api -- -p ${pkgName} -v ${version} --historical`;
+    if (typeArgument) {
+      await $`npm run gen-api -- -p ${pkgName} -v ${version} --${typeArgument}`;
     } else {
       await $`npm run gen-api -- -p ${pkgName} -v ${version}`;
     }
@@ -116,7 +128,18 @@ async function regenerateVersion(
   }
 }
 
-async function getPackageVersions(
+async function getDevVersion(pkgName: string): Promise<string | undefined> {
+  const devPath = `docs/api/${pkgName}/dev`;
+
+  if (await pathExists(devPath)) {
+    return JSON.parse(await readFile(`${devPath}/_package.json`, "utf-8"))
+      .version;
+  }
+
+  return undefined;
+}
+
+async function getReleasedVersions(
   pkgName: string,
   currentApisOnly: boolean,
 ): Promise<[string[], string]> {
