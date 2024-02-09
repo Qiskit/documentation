@@ -508,26 +508,10 @@ Additionally, some companies require that they are listed in a special attributi
 <details>
 <summary>A (non-exhaustive) list of trademarked names found in our docs:</summary>
 
-- Debian
-- GitHub
 - IBM
 - IBM Cloud
 - IBM Quantum
-- Jupyter
-- LinkedIn
-- Linux
-- macOS
-- Medium
-- PowerShell
-- PyPI
-- Python
-- Python Package Index
 - Qiskit
-- Rust
-- Slack
-- Ubuntu
-- YouTube
-
 </details>
 
 See the Usage section of the IBM Quantum Experience Guide for guidance on when to use IBM and when to use IBM Quantum.

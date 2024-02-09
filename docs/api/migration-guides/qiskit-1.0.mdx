@@ -8,7 +8,7 @@ description: Adapt to changes in installing and depending on Qiskit 1.0
 Qiskit&reg; 1.0 uses a different packaging structure than previous Qiskit versions and might cause problems in environments that use packages that are not ready for Qiskit 1.0.
 
 <Admonition type="caution">
-Do not try to upgrade an existing Python&reg; virtual environment to Qiskit 1.0 in-place.
+Do not try to upgrade an existing Python virtual environment to Qiskit 1.0 in-place.
 </Admonition>
 
 This guide is divided into the following sections.  You only need to review the sections that are relevant to you. 
@@ -29,8 +29,8 @@ It is very tricky and error-prone to upgrade an existing installation in-place t
 The examples in this section use the `venv` module that is part of the Python standard library.
 If you use a different tool, such as `virtualenv` or `conda`, consult its documentation for help.
 
-For Linux&reg; and macOS&reg; commands, a bash-like syntax is used.
-PowerShell&reg; is used for Windows commands.
+For Linux and macOS commands, a bash-like syntax is used.
+PowerShell is used for Windows commands.
 </Admonition>
 
 <span id="creating-a-venv"></span>
@@ -100,7 +100,7 @@ PowerShell&reg; is used for Windows commands.
    One way to require `pip` to forbid `qiskit-terra` from individual `install` commands is to use [a constraints file](https://pip.pypa.io/en/stable/user_guide/#constraints-files) that requires that `qiskit-terra` is set to an impossible version.
    For example, a constraints file that includes the line `qiskit-terra>=1.0` will mean that if a dependency attempts to install `qiskit-terra`, no published versions will match the requirements.
 
-   We have provided such a file in a GitHub&reg; Gist at [https://qisk.it/1-0-constraints](https://qisk.it/1-0-constraints), which you can use like this:
+   We have provided such a file in a GitHub Gist at [https://qisk.it/1-0-constraints](https://qisk.it/1-0-constraints), which you can use like this:
 
    ```bash
    pip install -c https://qisk.it/1-0-constraints qiskit [other packages]
@@ -378,7 +378,7 @@ The following words have special meanings:
   Often, a distribution contains exactly one package and the metadata about how to install it (its requirements and so on), but this is not required.
   A distribution can contain zero or more modules or packages.
 
-  If you are familiar with "package managers" outside the context of Python, such as `apt` from Debian&reg;/Ubuntu&reg; or Homebrew on macOS, then what they call a "package", Python calls a distribution, and there is no exact match for what Python calls a package.
+  If you are familiar with "package managers" outside the context of Python, such as `apt` from Debian/Ubuntu or Homebrew on macOS, then what they call a "package", Python calls a distribution, and there is no exact match for what Python calls a package.
 
   Most sources talking about Python packaging use the term _package_ to mean both distributions and packages, and you must refer to the context to understand what is meant.
   In general, if you `import` it, the source means "package", and if you `pip install` it, the source means "distribution".
@@ -430,7 +430,7 @@ Starting with Qiskit 1.0, we have removed the ability for packages to extend any
 Starting with version 1.0, Qiskit comprises a single distribution, called `qiskit`, which installs one single package, also called `qiskit`, which owns all the code contained in its directory.
 This is the normal structure of Python code, and is the simplest and least error-prone structure.
 
-The `qiskit-terra` distribution on PyPI&reg; will never be updated to version 1.0 or beyond; it is entirely superseded by `qiskit`.
+The `qiskit-terra` distribution on PyPI will never be updated to version 1.0 or beyond; it is entirely superseded by `qiskit`.
 The name `qiskit-terra` is no longer involved in the installation. 
 However, the `qiskit-terra` package is not being removed from PyPI, and we will leave its most recent version in a working state, so old scientific code and legacy packages can more easily continue to use it.
 
@@ -461,7 +461,7 @@ Python cannot find your Qiskit installation.
 If you definitely installed Qiskit, then you probably do not have the correct virtual environment activated.
 See the [section on activating a virtual environment](#activating-a-venv) for instructions.
 
-If you are using Jupyter&reg; and see this, ensure that Jupyter is installed into the same virtual environment as Qiskit.
+If you are using Jupyter and see this, ensure that Jupyter is installed into the same virtual environment as Qiskit.
 Exit Jupyter, activate the Qiskit virtual environment on the command line, run `pip install jupyterlab` (or whichever notebook interface you use), then reopen Jupyter.
 
 
