@@ -58,13 +58,13 @@ zxMain(async () => {
       pkgName,
       args.currentApisOnly,
     );
-    const devVersion = await getDevVersion(pkgName);
+    const maybeDevVersion = await getDevVersion(pkgName);
 
     const result = await processVersions(
       pkgName,
       historicalVersions,
       currentVersion,
-      devVersion,
+      maybeDevVersion,
     );
     results.set(pkgName, result);
   }
@@ -85,7 +85,7 @@ async function processVersions(
   pkgName: string,
   historicalVersions: string[],
   currentVersion: string,
-  devVersion: string | undefined,
+  maybeDevVersion: string | undefined,
 ): Promise<string[]> {
   const results: string[] = [];
 
@@ -97,8 +97,8 @@ async function processVersions(
 
   results.push(await regenerateVersion(pkgName, currentVersion));
 
-  if (devVersion) {
-    results.push(await regenerateVersion(pkgName, devVersion, "dev"));
+  if (maybeDevVersion) {
+    results.push(await regenerateVersion(pkgName, maybeDevVersion, "dev"));
   }
 
   return results;
