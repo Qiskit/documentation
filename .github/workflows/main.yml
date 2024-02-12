@@ -31,12 +31,7 @@ jobs:
       - name: Spellcheck
         run: npm run check:spelling
       - name: Link checker
-        run: >
-          npm run check:links --
-          --current-apis
-          --qiskit-release-notes
-          --historical-apis
-          --skip-broken-historical
+        run: npm run check:links
       - name: Formatting
         run: npm run check:fmt
       - name: Typecheck
