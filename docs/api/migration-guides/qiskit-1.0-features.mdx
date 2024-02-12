@@ -136,7 +136,7 @@ and then converting that `QuantumCircuit` into a `DAGCircuit` with `circuit_to_d
 import qiskit.qasm2
 from qiskit.converters import circuit_to_dag
 
-circuit_to_dag(qiskit.qasm2.load("myfile.qasm"))
+dag = circuit_to_dag(qiskit.qasm2.load("myfile.qasm"))
 ```
 
 instead of:
@@ -145,7 +145,7 @@ instead of:
 from qiskit.converters import ast_to_dag
 from qiskit.qasm import Qasm
 
-ast_to_dag(Qasm(filename="myfile.qasm").parse())
+dag = ast_to_dag(Qasm(filename="myfile.qasm").parse())
 ```
 
 <span id="qiskit.extensions"></span>
