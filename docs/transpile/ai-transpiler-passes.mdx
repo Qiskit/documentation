@@ -18,8 +18,6 @@ The following passes are currently available:
 **Routing passes**
  - `AIRouting`: Layout selection and circuit routing
 
-The following passes will be available in Q1 2024.
-
 **Circuit synthesis passes**
  - `AICliffordSynthesis`: Clifford circuit synthesis
  - `AILinearFunctionSynthesis`: Linear function circuit synthesis
@@ -37,16 +35,57 @@ from qiskit_transpiler_service.ai.routing import AIRouting
 from qiskit.circuit.library import EfficientSU2
 
 ai_passmanager = PassManager([
-  AIRouting(target="ibm_sherbrooke", optimization_level=2, layout_mode="optimize")
+  AIRouting(backend_name="ibm_sherbrooke", optimization_level=2, layout_mode="optimize")
 ])
 
-circuit = EfficientSU2(120, entanglement="circular", reps=1).decompose()
+circuit = EfficientSU2(100, entanglement="circular", reps=1).decompose()
 
 transpiled_circuit = ai_passmanager.run(circuit)
 ```
 
-Here, the `target` determines which backend to route for, the `optimization_level` (1, 2, or 3) determines the computational effort to spend in the process (higher usually gives better results but takes longer), and the `layout_mode` specifies how to handle the layout selection.
+Here, the `backend_name` determines which backend to route for, the `optimization_level` (1, 2, or 3) determines the computational effort to spend in the process (higher usually gives better results but takes longer), and the `layout_mode` specifies how to handle the layout selection.
 The `layout_mode` includes the following options:
+
 - `keep`: This respects the layout set by the previous transpiler passes (or uses the trivial layout if not set). It is typically only used when the circuit must be run on specific qubits of the device. It often produces worse results because it has less room for optimization.
 - `improve`: This uses the layout set by the previous transpiler passes as a starting point. It is useful when you have a good initial guess for the layout; for example, for circuits that are built in a way that approximately follows the device's coupling map. It is also useful if you want to try other specific layout passes combined with the `AIRouting` pass.
 - `optimize`: This is the default mode. It works best for general circuits where you might not have good layout guesses. This mode ignores previous layout selections.
+
+## AI circuit synthesis passes
+
+The AI circuit synthesis passes allow you to optimize pieces of different circuit types ([Clifford](https://docs.quantum.ibm.com/api/qiskit/qiskit.quantum_info.Clifford), [Linear Function](https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.library.LinearFunction), [Permutation](https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.library.Permutation#permutation)) by re-synthesizing them. The typical way one would use the synthesis pass is the following:
+
+```python
+from qiskit.transpiler import PassManager
+from qiskit.transpiler.passes import CollectLinearFunctions
+
+from qiskit_transpiler_service.ai.routing import AIRouting
+from qiskit_transpiler_service.ai.synthesis import AILinearFunctionSynthesis
+from qiskit.circuit.library import EfficientSU2
+
+ai_passmanager = PassManager([
+  AIRouting(backend_name="ibm_cairo", optimization_level=3, layout_mode="optimize"),  # Route circuit
+  CollectLinearFunctions(),  # Collect Linear Function blocks
+  AILinearFunctionSynthesis(backend_name="ibm_cairo")  # Re-synthesize Linear Function blocks
+])
+
+circuit = EfficientSU2(10, entanglement="full", reps=1).decompose()
+
+transpiled_circuit = ai_passmanager.run(circuit)
+```
+
+The synthesis respects the coupling map of the device: it can be run safely after other routing passes without "messing up" the circuit, so the overall circuit will still follow the device restrictions. By default, the synthesis will replace the original sub-circuit only if the synthesized sub-circuit improves the original (currently only checking cnot count), but this can be forced to always replace the circuit by setting `replace_only_if_better=False`.
+
+The following synthesis passes are available from `qiskit_transpiler_service.ai.synthesis`:
+
+- *AICliffordSynthesis*: Synthesis for [Clifford](https://docs.quantum.ibm.com/api/qiskit/qiskit.quantum_info.Clifford) circuits (blocks of `H`, `S` and `CX` gates). Currently up to 9 qubit blocks.
+- *AILinearFunctionSynthesis*: Synthesis for [Linear Function](https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.library.LinearFunction) circuits (blocks of `CX` and `SWAP` gates). Currently up to 9 qubit blocks.
+- *AIPermutationSynthesis*: Synthesis for [Permutation](https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.library.Permutation#permutation) circuits (blocks of `SWAP` gates). Currently available for 65, 33, and 27 qubit blocks.
+
+To complement the synthesis passes we also provide custom collection passes for Cliffords and Permutations that can be imported from `qiskit_transpiler_service.ai.collection`:
+
+- *CollectCliffordsAsInstructions*: Collects Clifford blocks as `Instructions` and stores the original sub-circuit to compare against after synthesis.
+- *CollectPermutations*: Collects blocks of `SWAP` circuits as `Permutations`.
+
+For sub-circuit to be synthesized by the AI synthesis passes, it must lay on a connected subgraph of the coupling map (this can be ensured by just doing a routing pass previous to collecting the blocks, but this is not the only way to do it). The synthesis passes will automatically check if a the specific subgraph where the sub-circuit lays is supported, and if it is not supported it will raise a warning and just leave the original sub-circuit as it is.
+
+In a future release, we plan to include functionality in the collection passes to only collect blocks of sizes that are supported. We also expect to gradually increase the size of the supported blocks.
