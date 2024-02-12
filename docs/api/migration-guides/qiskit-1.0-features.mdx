@@ -834,40 +834,68 @@ test harnesses.
 <span id="qiskit.tools"></span>
 ## qiskit.tools
 
-The ``qiskit.tools`` module has been deprecated and will be removed in
-  Qiskit 1.0.0. Except as noted in the release notes above for specific
-  submodules (``qiskit.tools.jupyter``, ``qiskit.tools.monitor``, ``qiskit.tools.events`` and
-  ``qiskit.tools.visualization``) the functionality in this module have
-  been migrated to :mod:`qiskit.utils`. If you're using any functionality
-  in this module you can update your imports from ``qiskit.tools`` to
-  :mod:`qiskit.utils`.
+The `qiskit.tools` module was removed in Qiskit 1.0.0. Most of this functionality was
+either replaced by similar functionality in other packages or removed with no alternative.
+The primary exception was the `qiskit.tools.parallel_map()` function has been relocated to
+the [`qiskit.utils`](https://docs.quantum.ibm.com/api/qiskit/utils) module. It can be used
+from this new location instead. For example:
 
-* The ``qiskit.tools.jupyter`` module has been deprecated and will be removed
-  in Qiskit 1.0.0. This module is deprecated because the functionality in
+If you were previously running:
+
+```python
+from qiskit.tools import parallel_map
+
+parallel_map(func, input)
+```
+
+this should be replaced by
+
+```python
+from qiskit.utils import parallel_map
+
+parallel_map(func, input)
+```
+
+* The `qiskit.tools.jupyter`` submodule has been removed because the functionality in
   this module is tied to the legacy ``qiskit-ibmq-provider`` package which is
-  no longer supported and also only supported `.BackendV1`. If you're
-  using this functionality currently, similar jupyter tools exist in the
-  `qiskit-ibm-provider <https://github.com/Qiskit/qiskit-ibm-provider>`__
+  no longer supported and also only supported ``BackendV1`` and not the newer
+  ``BackendV2`` interface. If you're using this functionality currently, similar jupyter
+  tools exist in the  [`qiskit-ibm-provider`](https://github.com/Qiskit/qiskit-ibm-provider)
   package which can be used instead. The documentation for this module can
   be found here:
   https://docs.quantum.ibm.com/api/qiskit-ibm-provider/ibm_jupyter
 
-*  The ``qiskit.tools.monitor`` module has been deprecated and will be removed
-  in Qiskit 1.0.0. This module is deprecated because the functionality in
-  this module is tied to the legacy ``qiskit-ibmq-provider`` package which is
-  no longer supported and also only supported `.BackendV1`.
+*  The `qiskit.tools.monitor`` submodule has been deprecated and will be removed
+  in Qiskit 1.0.0. This module was removed because the functionality in this
+  module was tied to the legacy ``qiskit-ibmq-provider`` package which is
+  no longer supported and also only supported ``BackendV1`` interface and not
+  the newer ``BackendV2`` interface. There is no alternative provided for this
+  functionality.
 
-*   The ``qiskit.tools.visualization`` module has been deprecated and will be
-  removed in Qiskit 1.0.0. This module was a legacy redirect from the original
-  location of Qiskit's visualization module and was moved to
-  :mod:`qiskit.visualization` in Qiskit 0.8.0. If you're still using this
-  path you can just update your imports from ``qiskit.tools.visualization``
-  to :mod:`qiskit.visualization`.
+* The `qiskit.tools.visualization`` submodule has been removed. This module was
+  a legacy redirect from the original location of Qiskit's visualization module
+  and was moved to :mod:`qiskit.visualization` in Qiskit 0.8.0. If you're still
+  using this path you can just update your imports from ``qiskit.tools.visualization``
+  to `qiskit.visualization`. For example, if you were running:
 
-*   The ``qiskit.tools.events`` module and the :func:`.progressbar` utility
+  ```python
+  from qiskit.tools.visualization import plot_histogram
+
+  plot_histogram(counts)
+  ```
+
+  this should be changed to:
+
+  ```python
+  from qiskit.visualization import plot_histogram
+
+  plot_histogram(counts)
+  ```
+
+* The `qiskit.tools.events` module and the ``progressbar()` utility
   it exposed has been deprecated and will be removed in the Qiskit 1.0.0
   release. This module's functionality was not widely used and better covered
-  by dedicated packages such as `tqdm <https://github.com/tqdm/tqdm>`__.
+  by dedicated packages such as [tqdm](https://github.com/tqdm/tqdm).
 
 <span id="qiskit.transpiler"></span>
 ## qiskit.transpiler
