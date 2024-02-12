@@ -9,7 +9,7 @@ description: Specify options when building with Qiskit runtime primitives
 When calling the primitives, you can pass in options by using the `Options` class or when using the `run` method. In the `Options` class, commonly used options, such as `resilience_level`, are at the first level. Other options are grouped into different categories:
 
 <Admonition type="note" title="Important:">
-To ensure faster and more efficient results, as of 15 Feb 2024, Qiskit Runtime primitives will no longer transpile circuits.  Instead, you must submit locally-transpiled (*instruction set architecture (ISA)*) circuits.  See the [transpilation documentation](../transpile) for instructions.  Due to this change, transpilation options (`options.transpilation.xxx`) are no longer supported and will be ignored. Additionally, `optimization_level`  no longer performs routing or layout operations.
+To ensure faster and more efficient results, as of 15 Feb 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](../transpile) for instructions to transform circuits.  Due to this change, transpilation options (`options.transpilation.xxx`) are no longer supported and will be ignored. Additionally, `optimization_level`  no longer performs routing or layout operations.
 </Admonition>
 
 ![The image shows the top-level options categories: transpilation, resilience, execution, environment, and simulation.](/images/build/options.png "Option categories")
