@@ -770,8 +770,28 @@ backend = GenericBackendV2(num_qubits=5)
 ## qiskit.qasm
 
 The legacy OpenQASM 2 parser module previously present in `qiskit.qasm` has been
-superseded by the :mod:`qiskit.qasm2` module
-which provides a faster more correct parser for OpenQASM 2:
+superseded by the [`qiskit.qasm2`](https://docs.quantum.ibm.com/api/qiskit/qasm2) module
+which provides a faster and more correct parser for OpenQASM 2. The high level
+`QuantumCircuit` methods [`from_qasm_file()`](https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.QuantumCircuit#from_qasm_file)
+and [`from_qasm_str()`](https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.QuantumCircuit#from_qasm_str)
+remain the same, but will use the new parser internally. However, the public interface for
+the ``qasm2`` module is not the same. While the ``qiskit.qasm`` module provided an interface to
+an abstract syntax tree returned by the ``ply`` parser library, ``qiskit.qasm2`` does not expose
+the AST or any lower level implementation details about the parser. It instead takes OpenQASM 2
+input and outputs a ``QuantumCircuit`` object.
+
+For example, if you were previously running something like:
+
+```python
+import qiskit.qasm
+from qiskit.converters import ast_to_dag, dag_to_circuit
+
+ast = qiskit.qasm.Qasm(filename="myfile.qasm").parse()
+dag = ast_to_dag(ast)
+qasm_circ = dag_to_circuit(dag)
+```
+
+this would be replaced with:
 
 ```python
 import qiskit.qasm2
