@@ -203,9 +203,9 @@ export class Link {
 
       return failingFiles.length === 0
         ? undefined
-        : `❌ Could not find link '${this.value}${this.anchor}'\n${failingFiles
-            .sort()
-            .join("\n")}`;
+        : `❌ Could not find link '${this.value}${
+            this.anchor
+          }'. Appears in:\n${failingFiles.sort().join("\n")}`;
     }
 
     const externalError = await this.checkExternalLink();
@@ -215,6 +215,6 @@ export class Link {
     const fileList = Array.from(this.originFiles)
       .sort()
       .map((originFile) => `    ${originFile}`);
-    return `❌ ${externalError}\n${fileList.join("\n")}`;
+    return `❌ ${externalError}. Appears in:\n${fileList.join("\n")}`;
   }
 }

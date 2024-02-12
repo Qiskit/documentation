@@ -79,7 +79,7 @@ describe("Validate links", () => {
     let testFile = new File("docs/testpath.mdx", []);
     const results = await testLink.checkLink([testFile]);
     expect(results).toEqual(
-      "❌ Could not find link '/test-alternative-path'\n    /testorigin.mdx",
+      "❌ Could not find link '/test-alternative-path'. Appears in:\n    /testorigin.mdx",
     );
   });
 
@@ -95,7 +95,7 @@ describe("Validate links", () => {
     let testFile = new File("docs/testpath.mdx", []);
     const results = await testLink.checkLink([testFile]);
     expect(results).toEqual(
-      "❌ Could not find link '../testpath'\n    docs/test1/test2/testorigin.mdx",
+      "❌ Could not find link '../testpath'. Appears in:\n    docs/test1/test2/testorigin.mdx",
     );
   });
 
@@ -123,7 +123,7 @@ describe("Validate links", () => {
     let testFile2 = new File("docs/test2/test3/testpath.mdx", []);
     const results = await testLink.checkLink([testFile1, testFile2]);
     expect(results).toEqual(
-      "❌ Could not find link '/testpath'\n" +
+      "❌ Could not find link '/testpath'. Appears in:\n" +
         "    docs/test/test2/test4/testorigin.mdx    ❓ Did you mean '/test/testpath'?\n" +
         "    docs/test/test2/testorigin.mdx    ❓ Did you mean '/test/testpath'?\n" +
         "    docs/test/test3/testorigin.mdx    ❓ Did you mean '/test/testpath'?\n" +
@@ -144,7 +144,7 @@ describe("Validate links", () => {
     let testFile2 = new File("docs/test/test2/testpath.mdx", []);
     const results = await testLink.checkLink([testFile1, testFile2]);
     expect(results).toEqual(
-      "❌ Could not find link '../testpath'\n    docs/test/test2/testorigin.mdx\n    docs/test/test3/testorigin.mdx",
+      "❌ Could not find link '../testpath'. Appears in:\n    docs/test/test2/testorigin.mdx\n    docs/test/test3/testorigin.mdx",
     );
   });
 
@@ -160,7 +160,7 @@ describe("Validate links", () => {
     let testFile = new File("docs/testpath.mdx", ["#test_diff_anchor"]);
     const results = await testLink.checkLink([testFile]);
     expect(results).toEqual(
-      "❌ Could not find link '/testpath#test_anchor'\n    /testorigin.mdx    ❓ Did you mean '/testpath#test_diff_anchor'?",
+      "❌ Could not find link '/testpath#test_anchor'. Appears in:\n    /testorigin.mdx    ❓ Did you mean '/testpath#test_diff_anchor'?",
     );
   });
 
@@ -180,7 +180,7 @@ describe("Validate links", () => {
     let testFile = new File("docs/testpath.mdx", ["#test_diff_anchor"]);
     const results = await testLink.checkLink([testFile]);
     expect(results).toEqual(
-      "❌ Could not find link '../testpath#test-anchor'\n    docs/test/testorigin.mdx    ❓ Did you mean '/testpath#test_diff_anchor'?",
+      "❌ Could not find link '../testpath#test-anchor'. Appears in:\n    docs/test/testorigin.mdx    ❓ Did you mean '/testpath#test_diff_anchor'?",
     );
   });
 
@@ -196,7 +196,7 @@ describe("Validate links", () => {
     ]);
     const results = await testLink.checkLink([]);
     expect(results).toEqual(
-      "❌ Could not find link 'https://github.com/QiskitNotExistingRepo'\n    /testorigin.mdx",
+      "❌ Could not find link 'https://github.com/QiskitNotExistingRepo'. Appears in:\n    /testorigin.mdx",
     );
   });
 });
