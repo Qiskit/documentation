@@ -94,12 +94,12 @@ H = SparsePauliOp.from_list([("II", 1), ("IZ", 2), ("XI", 3)])
 theta = [0, 1, 1, 2, 3, 5]
 
 pm = generate_preset_pass_manager(backend=backend)
-isa_circuit = pm.run(circuit)
-isa_observable = observable.apply_layout(isa_circuit.layout)
+isa_circuit = pm.run(psi)
+isa_observable = H.apply_layout(isa_circuit.layout)
 
 estimator = Estimator (options=options, backend=backend)
 
-job = estimator.run(isa_circuits=[psi], isa_observables=[H], parameter_values=[theta])
+job = estimator.run(isa_circuits=[isa_circuit], isa_observables=[isa_observable], parameter_values=[theta])
 psi1_H1 = job.result()
 ```
 
