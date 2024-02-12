@@ -1,6 +1,6 @@
 # This code is a Qiskit project.
 #
-# (C) Copyright IBM 2023.
+# (C) Copyright IBM 2024.
 #
 # This code is licensed under the Apache License, Version 2.0. You may
 # obtain a copy of this license in the LICENSE file in the root directory
@@ -10,14 +10,11 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 
-# This Action runs checks things that we care about but would be
-# too slow to check in every PR.
-
-name: Extended checks
+name: API checks
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 0 * * *" # Every day at midnight UTC
+    - cron: "0 0 * * 0,2,4" # Every Sunday, Tuesday, and Thursday at midnight UTC
 
   pull_request:
     paths:
@@ -26,7 +23,7 @@ on:
       - "docs/api/qiskit-ibm-runtime/**/*"
 
 jobs:
-  extended-checks:
+  link-checker:
     runs-on: ubuntu-latest
     if: github.repository_owner == 'Qiskit'
     steps:
@@ -37,8 +34,7 @@ jobs:
           node-version: 18
       - name: Install Node.js dependencies
         run: npm ci
-
-      - name: Check external links
+      - name: Check links
         run: >
           npm run check:links --
           --qiskit-release-notes
@@ -48,15 +44,25 @@ jobs:
           --skip-broken-historical
           --external
 
+  pages-render:
+    runs-on: ubuntu-latest
+    if: github.repository_owner == 'Qiskit'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install Node.js dependencies
+        run: npm ci
       - name: Start local Docker preview
         run: |
           ./start &
           sleep 20
-        if: ${{ !cancelled() }}
-      - name: Check current API pages render
+      - name: Check API pages render
         run: >
           npm run check-pages-render --
           --qiskit-release-notes
           --current-apis
           --dev-apis
-        if: ${{ !cancelled() }}
+          --historical-apis
