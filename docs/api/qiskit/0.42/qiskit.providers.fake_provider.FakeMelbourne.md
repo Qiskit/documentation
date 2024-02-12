@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.providers.fake_provider.FakeMelbourne
 ---
 
-# FakeMelbourne[¶](#fakemelbourne "Permalink to this headline")
+# FakeMelbourne
 
 <span id="qiskit.providers.fake_provider.FakeMelbourne" />
 
-`FakeMelbourne`
+`FakeMelbourne`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/fake_provider/backends/melbourne/fake_melbourne.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_backend.FakeBackend`
 
@@ -60,7 +60,7 @@ str
 
 <span id="qiskit.providers.fake_provider.FakeMelbourne.properties" />
 
-`FakeMelbourne.properties()`
+`FakeMelbourne.properties()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/fake_provider/backends/melbourne/fake_melbourne.py "view source code")
 
 Returns a snapshot of device properties
 

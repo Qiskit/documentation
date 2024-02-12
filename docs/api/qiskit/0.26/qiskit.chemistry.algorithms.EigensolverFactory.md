@@ -1,12 +1,22 @@
+---
+title: EigensolverFactory
+description: API reference for qiskit.chemistry.algorithms.EigensolverFactory
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.algorithms.EigensolverFactory
+---
+
 # qiskit.chemistry.algorithms.EigensolverFactory
 
-<span id="undefined" />
+<span id="qiskit.chemistry.algorithms.EigensolverFactory" />
 
-`EigensolverFactory`
+`EigensolverFactory`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/excited_states_solvers/eigensolver_factories/eigensolver_factory.py "view source code")
 
 A factory to construct a eigensolver based on a qubit operator transformation.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.chemistry.algorithms.EigensolverFactory.__init__" />
 
 `__init__()`
 
@@ -19,7 +29,9 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`__init__`](#qiskit.chemistry.algorithms.EigensolverFactory.__init__ "qiskit.chemistry.algorithms.EigensolverFactory.__init__")()                     | Initialize self.                                                   |
 | [`get_solver`](#qiskit.chemistry.algorithms.EigensolverFactory.get_solver "qiskit.chemistry.algorithms.EigensolverFactory.get_solver")(transformation) | Returns a eigensolver, based on the qubit operator transformation. |
 
-<span id="undefined" />
+### get\_solver
+
+<span id="qiskit.chemistry.algorithms.EigensolverFactory.get_solver" />
 
 `abstract get_solver(transformation)`
 
@@ -36,3 +48,4 @@ Returns a eigensolver, based on the qubit operator transformation.
 **Returns**
 
 An eigensolver suitable to compute the excited states of the molecule transformed by `transformation`.
+

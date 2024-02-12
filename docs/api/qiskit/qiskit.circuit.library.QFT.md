@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.QFT
 
 <span id="qiskit.circuit.library.QFT" />
 
-`qiskit.circuit.library.QFT(num_qubits=None, approximation_degree=0, do_swaps=True, inverse=False, insert_barriers=False, name=None)`
+`qiskit.circuit.library.QFT(num_qubits=None, approximation_degree=0, do_swaps=True, inverse=False, insert_barriers=False, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/basis_change/qft.py "view source code")
 
 Bases: `BlueprintCircuit`
 
@@ -127,7 +127,7 @@ True, if barriers are inserted, False if not.
 
 ### instances
 
-`= 264`
+`= 208`
 
 <span id="qiskit.circuit.library.QFT.layout" />
 

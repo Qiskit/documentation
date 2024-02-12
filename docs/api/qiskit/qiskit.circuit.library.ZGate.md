@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.ZGate
 
 <span id="qiskit.circuit.library.ZGate" />
 
-`qiskit.circuit.library.ZGate(*args, _force_mutable=False, **kwargs)`
+`qiskit.circuit.library.ZGate(*args, _force_mutable=False, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/standard_gates/z.py "view source code")
 
 Bases: [`SingletonGate`](circuit_singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate")
 
@@ -21,10 +21,10 @@ Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.cir
 **Matrix Representation:**
 
 $$
-\begin{split}Z = \begin{pmatrix}
+Z = \begin{pmatrix}
         1 & 0 \\
         0 & -1
-    \end{pmatrix}\end{split}
+    \end{pmatrix}
 $$
 
 **Circuit symbol:**
@@ -41,19 +41,19 @@ Equivalent to a $\pi$ radian rotation about the Z axis.
   A global phase difference exists between the definitions of $RZ(\pi)$ and $Z$.
 
   $$
-  \begin{split}RZ(\pi) = \begin{pmatrix}
+  RZ(\pi) = \begin{pmatrix}
               -i & 0 \\
               0 & i
             \end{pmatrix}
-          = -i Z\end{split}
+          = -i Z
   $$
 </Admonition>
 
 The gate is equivalent to a phase flip.
 
 $$
-\begin{split}|0\rangle \rightarrow |0\rangle \\
-|1\rangle \rightarrow -|1\rangle\end{split}
+|0\rangle \rightarrow |0\rangle \\
+|1\rangle \rightarrow -|1\rangle
 $$
 
 Create new Z gate.

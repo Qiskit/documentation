@@ -1,8 +1,16 @@
+---
+title: Measure
+description: API reference for qiskit.circuit.library.Measure
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.Measure
+---
+
 # Measure
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.Measure" />
 
-`Measure`
+`Measure`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/measure.py "view source code")
 
 Bases: `qiskit.circuit.instruction.Instruction`
 
@@ -12,31 +20,48 @@ Create new measurement instruction.
 
 ## Methods Defined Here
 
-|                                                                                                                                                                                     |                              |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- |
-| [`broadcast_arguments`](qiskit.circuit.library.Measure.broadcast_arguments#qiskit.circuit.library.Measure.broadcast_arguments "qiskit.circuit.library.Measure.broadcast_arguments") | Validation of the arguments. |
+### broadcast\_arguments
+
+<span id="qiskit.circuit.library.Measure.broadcast_arguments" />
+
+`Measure.broadcast_arguments(qargs, cargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/measure.py "view source code")
+
+Validation of the arguments.
+
+**Parameters**
+
+*   **qargs** (*List*) – List of quantum bit arguments.
+*   **cargs** (*List*) – List of classical bit arguments.
+
+**Yields**
+
+*Tuple(List, List)* – A tuple with single arguments.
+
+**Raises**
+
+**CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
 
 ## Attributes
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.Measure.decompositions" />
 
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.Measure.definition" />
 
 ### definition
 
 Return definition in terms of other basic gates.
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.Measure.duration" />
 
 ### duration
 
 Get the duration.
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.Measure.label" />
 
 ### label
 
@@ -46,14 +71,15 @@ Return instruction label
 
 `str`
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.Measure.params" />
 
 ### params
 
 return instruction params.
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.Measure.unit" />
 
 ### unit
 
 Get the time unit of duration.
+

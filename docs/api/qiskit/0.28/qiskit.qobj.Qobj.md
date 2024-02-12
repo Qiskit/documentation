@@ -1,14 +1,24 @@
+---
+title: Qobj
+description: API reference for qiskit.qobj.Qobj
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.qobj.Qobj
+---
+
 # qiskit.qobj.Qobj
 
-<span id="undefined" />
+<span id="qiskit.qobj.Qobj" />
 
-`Qobj(qobj_id=None, config=None, experiments=None, header=None)`
+`Qobj(qobj_id=None, config=None, experiments=None, header=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/qobj/__init__.py "view source code")
 
 A backwards compat alias for QasmQobj.
 
 Initialize a Qobj object.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.qobj.Qobj.__init__" />
 
 `__init__(qobj_id=None, config=None, experiments=None, header=None)`
 
@@ -22,7 +32,9 @@ Initialize a Qobj object.
 | [`from_dict`](#qiskit.qobj.Qobj.from_dict "qiskit.qobj.Qobj.from_dict")(data)                                  | Create a new QASMQobj object from a dictionary.             |
 | [`to_dict`](#qiskit.qobj.Qobj.to_dict "qiskit.qobj.Qobj.to_dict")(\[validate])                                 | Return a dictionary format representation of the QASM Qobj. |
 
-<span id="undefined" />
+### from\_dict
+
+<span id="qiskit.qobj.Qobj.from_dict" />
 
 `classmethod from_dict(data)`
 
@@ -38,9 +50,11 @@ The QasmQobj from the input dictionary.
 
 **Return type**
 
-[QasmQobj](qiskit.qobj.QasmQobj#qiskit.qobj.QasmQobj "qiskit.qobj.QasmQobj")
+[QasmQobj](qiskit.qobj.QasmQobj "qiskit.qobj.QasmQobj")
 
-<span id="undefined" />
+### to\_dict
+
+<span id="qiskit.qobj.Qobj.to_dict" />
 
 `to_dict(validate=False)`
 
@@ -74,3 +88,4 @@ A dictionary representation of the QasmQobj object
 **Return type**
 
 dict
+

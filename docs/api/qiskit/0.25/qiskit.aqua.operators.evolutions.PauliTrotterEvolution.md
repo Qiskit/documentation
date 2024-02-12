@@ -1,8 +1,16 @@
+---
+title: PauliTrotterEvolution
+description: API reference for qiskit.aqua.operators.evolutions.PauliTrotterEvolution
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.operators.evolutions.PauliTrotterEvolution
+---
+
 # qiskit.aqua.operators.evolutions.PauliTrotterEvolution
 
-<span id="undefined" />
+<span id="qiskit.aqua.operators.evolutions.PauliTrotterEvolution" />
 
-`PauliTrotterEvolution(trotter_mode='trotter', reps=1)`
+`PauliTrotterEvolution(trotter_mode='trotter', reps=1)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/evolutions/pauli_trotter_evolution.py "view source code")
 
 An Evolution algorithm replacing exponentiated sums of Paulis by changing them each to the Z basis, rotating with an rZ, changing back, and trotterizing.
 
@@ -18,7 +26,9 @@ More specifically, we compute basis change circuits for each Pauli into a single
 *   **a single diagonalization circuit can be used for each group** (*so*) –
 *   **rather than each Pauli.** (*#*) –
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.aqua.operators.evolutions.PauliTrotterEvolution.__init__" />
 
 `__init__(trotter_mode='trotter', reps=1)`
 
@@ -47,7 +57,9 @@ More specifically, we compute basis change circuits for each Pauli into a single
 | --------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
 | [`trotter`](#qiskit.aqua.operators.evolutions.PauliTrotterEvolution.trotter "qiskit.aqua.operators.evolutions.PauliTrotterEvolution.trotter") | TrotterizationBase used to evolve SummedOps. |
 
-<span id="undefined" />
+### convert
+
+<span id="qiskit.aqua.operators.evolutions.PauliTrotterEvolution.convert" />
 
 `convert(operator)`
 
@@ -65,7 +77,9 @@ Traverse the operator, replacing `EvolvedOps` with `CircuitOps` containing trott
 
 The converted operator.
 
-<span id="undefined" />
+### evolution\_for\_abelian\_paulisum
+
+<span id="qiskit.aqua.operators.evolutions.PauliTrotterEvolution.evolution_for_abelian_paulisum" />
 
 `evolution_for_abelian_paulisum(op_sum)`
 
@@ -75,7 +89,9 @@ Evolution for abelian pauli sum
 
 `PrimitiveOp`
 
-<span id="undefined" />
+### evolution\_for\_pauli
+
+<span id="qiskit.aqua.operators.evolutions.PauliTrotterEvolution.evolution_for_pauli" />
 
 `evolution_for_pauli(pauli_op)`
 
@@ -93,7 +109,9 @@ Compute evolution Operator for a single Pauli using a `PauliBasisChange`.
 
 A `PrimitiveOp`, either the evolution `CircuitOp` or a `PauliOp` equal to the identity if pauli\_op is the identity.
 
-<span id="undefined" />
+### trotter
+
+<span id="qiskit.aqua.operators.evolutions.PauliTrotterEvolution.trotter" />
 
 `property trotter`
 
@@ -102,3 +120,4 @@ TrotterizationBase used to evolve SummedOps.
 **Return type**
 
 `TrotterizationBase`
+

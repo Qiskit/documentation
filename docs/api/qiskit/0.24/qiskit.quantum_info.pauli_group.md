@@ -1,10 +1,18 @@
+---
+title: pauli_group
+description: API reference for qiskit.quantum_info.pauli_group
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.quantum_info.pauli_group
+---
+
 <span id="qiskit-quantum-info-pauli-group" />
 
 # qiskit.quantum\_info.pauli\_group
 
-<span id="undefined" />
+<span id="qiskit.quantum_info.pauli_group" />
 
-`pauli_group(number_of_qubits, case='weight')`
+`pauli_group(number_of_qubits, case='weight')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/quantum_info/operators/pauli.py "view source code")
 
 Return the Pauli group with 4^n elements.
 
@@ -27,3 +35,4 @@ list
 
 *   **QiskitError** – case is not ‘weight’ or ‘tensor’
 *   **QiskitError** – number\_of\_qubits is larger than 4
+

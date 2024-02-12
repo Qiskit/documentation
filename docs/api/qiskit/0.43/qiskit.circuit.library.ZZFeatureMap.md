@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.ZZFeatureMap
 
 <span id="qiskit.circuit.library.ZZFeatureMap" />
 
-`ZZFeatureMap(feature_dimension, reps=2, entanglement='full', data_map_func=None, parameter_prefix='x', insert_barriers=False, name='ZZFeatureMap')`
+`ZZFeatureMap(feature_dimension, reps=2, entanglement='full', data_map_func=None, parameter_prefix='x', insert_barriers=False, name='ZZFeatureMap')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/data_preparation/zz_feature_map.py "view source code")
 
 Bases: [`PauliFeatureMap`](qiskit.circuit.library.PauliFeatureMap "qiskit.circuit.library.data_preparation.pauli_feature_map.PauliFeatureMap")
 
@@ -30,7 +30,7 @@ For 3 qubits and 1 repetition and linear entanglement the circuit is represented
 
 where `φ` is a classical non-linear function, which defaults to `φ(x) = x` if and `φ(x,y) = (pi - x)(pi - y)`.
 
-## Examples
+**Examples**
 
 ```python
 >>> from qiskit.circuit.library import ZZFeatureMap
@@ -272,7 +272,7 @@ The parameters used in the underlying circuit.
 
 This includes float values and duplicates.
 
-## Examples
+**Examples**
 
 ```python
 >>> # prepare circuit ...

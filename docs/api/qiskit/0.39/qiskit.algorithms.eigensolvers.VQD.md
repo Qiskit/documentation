@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.eigensolvers.VQD
 
 <span id="qiskit.algorithms.eigensolvers.VQD" />
 
-`VQD(estimator, fidelity, ansatz, optimizer, *, k=2, betas=None, initial_point=None, callback=None)`
+`VQD(estimator, fidelity, ansatz, optimizer, *, k=2, betas=None, initial_point=None, callback=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/eigensolvers/vqd.py "view source code")
 
 Bases: `qiskit.algorithms.variational_algorithm.VariationalAlgorithm`, [`qiskit.algorithms.eigensolvers.eigensolver.Eigensolver`](qiskit.algorithms.eigensolvers.Eigensolver "qiskit.algorithms.eigensolvers.eigensolver.Eigensolver")
 
@@ -88,8 +88,6 @@ Beta parameters in the VQD paper. Should have length k - 1, with k the number of
 
 list\[float]
 
-<span id="undefined" />
-
 ### initial point
 
 An optional initial point (i.e. initial parameter values) for the optimizer. If `None` then VQD will look to the ansatz for a preferred point and if not will simply compute a random one.
@@ -125,7 +123,7 @@ Callable\[\[int, np.ndarray, float, dict\[str, Any]], None] | None
 
 <span id="qiskit.algorithms.eigensolvers.VQD.compute_eigenvalues" />
 
-`VQD.compute_eigenvalues(operator, aux_operators=None)`
+`VQD.compute_eigenvalues(operator, aux_operators=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/eigensolvers/vqd.py "view source code")
 
 Computes the minimum eigenvalue. The `operator` and `aux_operators` are supplied here. While an `operator` is required by algorithms, `aux_operators` are optional.
 
@@ -146,7 +144,7 @@ An eigensolver result.
 
 <span id="qiskit.algorithms.eigensolvers.VQD.supports_aux_operators" />
 
-`classmethod VQD.supports_aux_operators()`
+`classmethod VQD.supports_aux_operators()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/eigensolvers/vqd.py "view source code")
 
 Whether computing the expectation value of auxiliary operators is supported.
 

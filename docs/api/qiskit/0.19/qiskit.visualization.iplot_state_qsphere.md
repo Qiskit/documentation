@@ -10,7 +10,7 @@ python_api_name: qiskit.visualization.iplot_state_qsphere
 
 <span id="qiskit.visualization.iplot_state_qsphere" />
 
-`iplot_state_qsphere(rho, figsize=None)`
+`iplot_state_qsphere(rho, figsize=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/visualization/interactive/iplot_qsphere.py "view source code")
 
 Create a Q sphere representation.
 
@@ -21,7 +21,7 @@ Graphical representation of the input array, using a Q sphere for each eigenvalu
 *   **rho** (*array*) – State vector or density matrix.
 *   **figsize** (*tuple*) – Figure size in pixels.
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumCircuit, BasicAer, execute

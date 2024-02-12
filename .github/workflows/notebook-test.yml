@@ -1,0 +1,89 @@
+# This code is a Qiskit project.
+#
+# (C) Copyright IBM 2023.
+#
+# This code is licensed under the Apache License, Version 2.0. You may
+# obtain a copy of this license in the LICENSE file in the root directory
+# of this source tree or at http://www.apache.org/licenses/LICENSE-2.0.
+#
+# Any modifications or derivative works of this code must retain this
+# copyright notice, and modified files need to carry a notice indicating
+# that they have been altered from the originals.
+
+name: Test notebooks
+on:
+  pull_request:
+    paths:
+      - "docs/**/*.ipynb"
+      - "!docs/api/**/*"
+  workflow_dispatch:
+jobs:
+  execute:
+    name: Execute notebooks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Get all changed files
+        id: all-changed-files
+        uses: tj-actions/changed-files@af2816c65436325c50621100d67f6e853cd1b0f1
+        with:
+          files: docs/**/*.ipynb
+          separator: "\n"
+
+      - name: Check for notebooks that require Linux
+        id: linux-changed-files
+        uses: tj-actions/changed-files@af2816c65436325c50621100d67f6e853cd1b0f1
+        with:
+          # Add your notebook to this list if it needs latex or graphviz to run
+          files: |
+            docs/build/circuit-visualization.ipynb
+            docs/transpile/transpiler-stages.ipynb
+
+      - name: Install Linux dependencies
+        if: steps.linux-changed-files.outputs.any_changed == 'true'
+        run: |
+          sudo apt-get update
+          sudo apt-get install texlive-pictures texlive-latex-extra poppler-utils graphviz
+
+      - name: Install Python packages
+        # This is to save our account in the next step. Note that the
+        # package will be re-installed during the "Run tox" step.
+        run: pip install qiskit-ibm-runtime tox
+
+      - name: Save IBM Quantum account
+        if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+        shell: python
+        run: |
+          # This saves the result for qiskit-ibm-provider too
+          from qiskit_ibm_runtime import QiskitRuntimeService
+          QiskitRuntimeService.save_account(
+              channel="ibm_quantum",
+              instance="ibm-q/open/main",
+              token="${{ secrets.IBM_QUANTUM_TEST_TOKEN }}",
+              set_as_default=True
+          )
+
+      - name: Cache tox environment
+        uses: actions/cache@v3
+        with:
+          path: ".tox"
+          key: ${{ hashFiles('scripts/nb-tester/requirements.txt') }}
+
+      - name: Run tox
+        shell: python
+        run: |
+          import subprocess
+          files = """${{ steps.all-changed-files.outputs.all_changed_files }}"""
+          args = ["tox", "--"] + files.split("\n") + ["--write"]
+          subprocess.run(args, check=True)
+
+      - name: Upload executed notebooks
+        uses: actions/upload-artifact@v4
+        with:
+          name: Executed notebooks
+          path: ${{ steps.all-changed-files.outputs.all_changed_files }}

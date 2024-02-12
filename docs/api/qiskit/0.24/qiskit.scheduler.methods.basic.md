@@ -14,16 +14,18 @@ python_api_name: qiskit.scheduler.methods.basic
 
 The most straightforward scheduling methods: scheduling **as early** or **as late** as possible.
 
-## Functions
+**Functions**
 
 |                                                                                                                                                              |                                                                                                                       |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- |
 | [`as_late_as_possible`](#qiskit.scheduler.methods.basic.as_late_as_possible "qiskit.scheduler.methods.basic.as_late_as_possible")(circuit, schedule\_config) | Return the pulse Schedule which implements the input circuit using an “as late as possible” (alap) scheduling policy. |
 | [`as_soon_as_possible`](#qiskit.scheduler.methods.basic.as_soon_as_possible "qiskit.scheduler.methods.basic.as_soon_as_possible")(circuit, schedule\_config) | Return the pulse Schedule which implements the input circuit using an “as soon as possible” (asap) scheduling policy. |
 
-<span id="undefined" />
+### as\_late\_as\_possible
 
-`as_late_as_possible(circuit, schedule_config)`
+<span id="qiskit.scheduler.methods.basic.as_late_as_possible" />
+
+`as_late_as_possible(circuit, schedule_config)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/scheduler/methods/basic.py "view source code")
 
 Return the pulse Schedule which implements the input circuit using an “as late as possible” (alap) scheduling policy.
 
@@ -44,9 +46,11 @@ This method should improves the outcome fidelity over ASAP scheduling, because w
 
 A schedule corresponding to the input `circuit` with pulses occurring as late as possible.
 
-<span id="undefined" />
+### as\_soon\_as\_possible
 
-`as_soon_as_possible(circuit, schedule_config)`
+<span id="qiskit.scheduler.methods.basic.as_soon_as_possible" />
+
+`as_soon_as_possible(circuit, schedule_config)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/scheduler/methods/basic.py "view source code")
 
 Return the pulse Schedule which implements the input circuit using an “as soon as possible” (asap) scheduling policy.
 

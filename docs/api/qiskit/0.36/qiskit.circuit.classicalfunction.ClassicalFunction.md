@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.classicalfunction.ClassicalFunction
 
 <span id="qiskit.circuit.classicalfunction.ClassicalFunction" />
 
-`ClassicalFunction(source, name=None)`
+`ClassicalFunction(source, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/classicalfunction/classicalfunction.py "view source code")
 
 Bases: `qiskit.circuit.classicalfunction.classical_element.ClassicalElement`
 
@@ -118,7 +118,7 @@ Set a classical equality condition on this instruction between the register or c
 
 <span id="qiskit.circuit.classicalfunction.ClassicalFunction.compile" />
 
-`ClassicalFunction.compile()`
+`ClassicalFunction.compile()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/classicalfunction/classicalfunction.py "view source code")
 
 Parses and creates the logical circuit
 
@@ -284,7 +284,7 @@ sub-instructions reversed.
 
 <span id="qiskit.circuit.classicalfunction.ClassicalFunction.simulate" />
 
-`ClassicalFunction.simulate(bitstring)`
+`ClassicalFunction.simulate(bitstring)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/classicalfunction/classicalfunction.py "view source code")
 
 Evaluate the expression on a bitstring.
 
@@ -306,7 +306,7 @@ bool
 
 <span id="qiskit.circuit.classicalfunction.ClassicalFunction.simulate_all" />
 
-`ClassicalFunction.simulate_all()`
+`ClassicalFunction.simulate_all()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/classicalfunction/classicalfunction.py "view source code")
 
 Returns a truth table.
 
@@ -342,16 +342,16 @@ bool
 
 <span id="qiskit.circuit.classicalfunction.ClassicalFunction.synth" />
 
-`ClassicalFunction.synth(registerless=True, synthesizer=None)`
+`ClassicalFunction.synth(registerless=True, synthesizer=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/classicalfunction/classicalfunction.py "view source code")
 
 Synthesis the logic network into a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
 
 **Parameters**
 
 *   **registerless** (`bool`) – Default `True`. If `False` uses the parameter names to create
-*   **Otherwise** (*registers with those names.*) –
-*   **register.** (*creates a circuit with a flat quantum*) –
-*   **synthesizer** (`Optional`\[`Callable`\[\[`ClassicalElement`], [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]]) – Optional. If None tweedledum’s pkrm\_synth is used.
+*   **with those names. Otherwise** (*registers*) –
+*   **a circuit with a flat quantum register.** (*creates*) –
+*   **synthesizer** (`Optional`\[`Callable`\[\[`ClassicalElement`], `QuantumCircuit`]]) – Optional. If None tweedledum’s pkrm\_synth is used.
 
 **Returns**
 
@@ -405,7 +405,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.classicalfunction.ClassicalFunction.decompositions" />
 

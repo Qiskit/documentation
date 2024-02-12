@@ -20,7 +20,7 @@ python_api_name: qiskit.providers.fake_provider
 
 ## Overview
 
-The fake provider module contains fake providers and fake backends classes. The fake backends are built to mimic the behaviors of IBM Quantum systems using system snapshots. The system snapshots contain important information about the quantum system such as coupling map, basis gates, qubit properties (T1, T2, error rate, etc.) which are useful for testing the transpiler and performing noisy simulation of the system.
+The fake provider module contains fake providers, fake backends and other simulated backend implementations. The fake backends are built to mimic the behaviors of IBM Quantum systems using system snapshots. The system snapshots contain important information about the quantum system such as coupling map, basis gates, qubit properties (T1, T2, error rate, etc.) which are useful for testing the transpiler and performing noisy simulation of the system.
 
 ## Example Usage
 
@@ -65,7 +65,7 @@ plot_histogram(counts)
 
   ```python
   from qiskit.providers.ibmq import IBMQ
-  from qiskit.providers.aer import AerSimulator
+  from qiskit_aer import AerSimulator
 
   # get a real backend from a real provider
   provider = IBMQ.load_account()
@@ -194,16 +194,17 @@ Fake V1 backends are fake backends with IBM Quantum systems snapshots implemente
 
 Special fake backends are fake backends that were created for special testing purposes.
 
-|                                                                                                                                                                       |                                                                                         |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| [`FakeQasmSimulator`](qiskit.providers.fake_provider.FakeQasmSimulator "qiskit.providers.fake_provider.FakeQasmSimulator")()                                          | A fake simulator backend.                                                               |
-| [`FakeOpenPulse2Q`](qiskit.providers.fake_provider.FakeOpenPulse2Q "qiskit.providers.fake_provider.FakeOpenPulse2Q")()                                                | A fake 2 qubit backend for pulse test.                                                  |
-| [`FakeOpenPulse3Q`](qiskit.providers.fake_provider.FakeOpenPulse3Q "qiskit.providers.fake_provider.FakeOpenPulse3Q")()                                                | Trivial extension of the FakeOpenPulse2Q.                                               |
-| [`Fake1Q`](qiskit.providers.fake_provider.Fake1Q "qiskit.providers.fake_provider.Fake1Q")()                                                                           | A fake 1Q backend.                                                                      |
-| [`FakeBackendV2`](qiskit.providers.fake_provider.FakeBackendV2 "qiskit.providers.fake_provider.FakeBackendV2")()                                                      | A mock backend that doesn't implement run() to test compatibility with Terra internals. |
-| [`FakeBackend5QV2`](qiskit.providers.fake_provider.FakeBackend5QV2 "qiskit.providers.fake_provider.FakeBackend5QV2")(\[bidirectional])                                | A mock backend that doesn't implement run() to test compatibility with Terra internals. |
-| [`FakeMumbaiFractionalCX`](qiskit.providers.fake_provider.FakeMumbaiFractionalCX "qiskit.providers.fake_provider.FakeMumbaiFractionalCX")()                           | A fake mumbai backend.                                                                  |
-| [`ConfigurableFakeBackend`](qiskit.providers.fake_provider.ConfigurableFakeBackend "qiskit.providers.fake_provider.ConfigurableFakeBackend")(name, n\_qubits\[, ...]) | Configurable backend.                                                                   |
+|                                                                                                                                                                       |                                                                                                                                |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| [`FakeQasmSimulator`](qiskit.providers.fake_provider.FakeQasmSimulator "qiskit.providers.fake_provider.FakeQasmSimulator")()                                          | A fake simulator backend.                                                                                                      |
+| [`FakeOpenPulse2Q`](qiskit.providers.fake_provider.FakeOpenPulse2Q "qiskit.providers.fake_provider.FakeOpenPulse2Q")()                                                | A fake 2 qubit backend for pulse test.                                                                                         |
+| [`FakeOpenPulse3Q`](qiskit.providers.fake_provider.FakeOpenPulse3Q "qiskit.providers.fake_provider.FakeOpenPulse3Q")()                                                | Trivial extension of the FakeOpenPulse2Q.                                                                                      |
+| [`Fake1Q`](qiskit.providers.fake_provider.Fake1Q "qiskit.providers.fake_provider.Fake1Q")()                                                                           | A fake 1Q backend.                                                                                                             |
+| [`FakeBackendV2`](qiskit.providers.fake_provider.FakeBackendV2 "qiskit.providers.fake_provider.FakeBackendV2")()                                                      | A mock backend that doesn't implement run() to test compatibility with Terra internals.                                        |
+| [`FakeBackend5QV2`](qiskit.providers.fake_provider.FakeBackend5QV2 "qiskit.providers.fake_provider.FakeBackend5QV2")(\[bidirectional])                                | A mock backend that doesn't implement run() to test compatibility with Terra internals.                                        |
+| [`FakeMumbaiFractionalCX`](qiskit.providers.fake_provider.FakeMumbaiFractionalCX "qiskit.providers.fake_provider.FakeMumbaiFractionalCX")()                           | A fake mumbai backend.                                                                                                         |
+| [`ConfigurableFakeBackend`](qiskit.providers.fake_provider.ConfigurableFakeBackend "qiskit.providers.fake_provider.ConfigurableFakeBackend")(name, n\_qubits\[, ...]) | Configurable backend.                                                                                                          |
+| [`GenericBackendV2`](qiskit.providers.fake_provider.GenericBackendV2 "qiskit.providers.fake_provider.GenericBackendV2")(num\_qubits\[, basis\_gates, ...])            | Generic [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") implementation with a configurable constructor. |
 
 ## Fake Backend Base Classes
 
@@ -211,17 +212,21 @@ The fake backends based on IBM hardware are based on a set of base classes:
 
 <span id="qiskit.providers.fake_provider.fake_backend.FakeBackendV2" />
 
-`qiskit.providers.fake_provider.fake_backend.FakeBackendV2`
+`qiskit.providers.fake_provider.fake_backend.FakeBackendV2`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/providers/fake_provider/fake_backend.py "view source code")
 
 A fake backend class for testing and noisy simulation using real backend snapshots.
 
-The class inherits [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") class. This version differs from earlier [`FakeBackend`](#qiskit.providers.fake_provider.FakeBackend "qiskit.providers.fake_provider.FakeBackend") (V1) class in a few aspects. Firstly, configuration attribute no longer exsists. Instead, attributes exposing equivalent required immutable properties of the backend device are added. For example `fake_backend.configuration().n_qubits` is accessible from `fake_backend.num_qubits` now. Secondly, this version removes extra abstractions [`FakeQasmBackend`](#qiskit.providers.fake_provider.FakeQasmBackend "qiskit.providers.fake_provider.FakeQasmBackend") and [`FakePulseBackend`](#qiskit.providers.fake_provider.FakePulseBackend "qiskit.providers.fake_provider.FakePulseBackend") that were present in V1.
+The class inherits [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") class. This version differs from earlier [`FakeBackend`](#qiskit.providers.fake_provider.FakeBackend "qiskit.providers.fake_provider.FakeBackend") (V1) class in a few aspects. Firstly, configuration attribute no longer exists. Instead, attributes exposing equivalent required immutable properties of the backend device are added. For example `fake_backend.configuration().n_qubits` is accessible from `fake_backend.num_qubits` now. Secondly, this version removes extra abstractions [`FakeQasmBackend`](#qiskit.providers.fake_provider.FakeQasmBackend "qiskit.providers.fake_provider.FakeQasmBackend") and [`FakePulseBackend`](#qiskit.providers.fake_provider.FakePulseBackend "qiskit.providers.fake_provider.FakePulseBackend") that were present in V1.
 
 FakeBackendV2 initializer.
 
+<Admonition title="Deprecated since version 0.46.0" type="danger">
+  The class `qiskit.providers.fake_provider.fake_backend.FakeBackendV2` is deprecated as of qiskit 0.46.0. It will be removed in qiskit 1.0. All fake backend instances based on real device snapshots (FakeVigo,\`FakeSherbrooke\`,…) have been migrated to the qiskit\_ibm\_runtime package. To migrate your code, run pip install qiskit-ibm-runtime and use from qiskit\_ibm\_runtime.fake\_provider import FakeExample instead of from qiskit.providers.fake\_provider import FakeExample.
+</Admonition>
+
 <span id="qiskit.providers.fake_provider.FakeBackend" />
 
-`qiskit.providers.fake_provider.FakeBackend(configuration, time_alive=10)`
+`qiskit.providers.fake_provider.FakeBackend(configuration, time_alive=10)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/providers/fake_provider/fake_backend.py "view source code")
 
 This is a dummy backend just for testing purposes.
 
@@ -234,7 +239,7 @@ FakeBackend initializer.
 
 <span id="qiskit.providers.fake_provider.FakeQasmBackend" />
 
-`qiskit.providers.fake_provider.FakeQasmBackend`
+`qiskit.providers.fake_provider.FakeQasmBackend`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/providers/fake_provider/fake_qasm_backend.py "view source code")
 
 A fake OpenQASM backend.
 
@@ -247,7 +252,7 @@ FakeBackend initializer.
 
 <span id="qiskit.providers.fake_provider.FakePulseBackend" />
 
-`qiskit.providers.fake_provider.FakePulseBackend`
+`qiskit.providers.fake_provider.FakePulseBackend`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/providers/fake_provider/fake_pulse_backend.py "view source code")
 
 A fake pulse backend.
 

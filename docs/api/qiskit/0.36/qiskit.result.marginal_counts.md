@@ -10,13 +10,13 @@ python_api_name: qiskit.result.marginal_counts
 
 <span id="qiskit.result.marginal_counts" />
 
-`marginal_counts(result, indices=None, inplace=False, format_marginal=False, marginalize_memory=True)`
+`marginal_counts(result, indices=None, inplace=False, format_marginal=False, marginalize_memory=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/result/utils.py "view source code")
 
 Marginalize counts from an experiment over some indices of interest.
 
 **Parameters**
 
-*   **result** (`Union`\[`dict`, [`Result`](qiskit.result.Result "qiskit.result.result.Result")]) – result to be marginalized (a Result object or a dict(str, int) of counts).
+*   **result** (`Union`\[`dict`, `Result`]) – result to be marginalized (a Result object or a dict(str, int) of counts).
 *   **indices** (`Optional`\[`List`\[`int`]]) – The bit positions of interest to marginalize over. If `None` (default), do not marginalize at all.
 *   **inplace** (`bool`) – Default: False. Operates on the original Result argument if True, leading to loss of original Job Result. It has no effect if `result` is a dict.
 *   **format\_marginal** (`bool`) – Default: False. If True, takes the output of marginalize and formats it with placeholders between cregs and for non-indices.

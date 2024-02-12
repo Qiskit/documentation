@@ -1,8 +1,16 @@
+---
+title: Snapshot
+description: API reference for qiskit.providers.aer.extensions.Snapshot
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.aer.extensions.Snapshot
+---
+
 # qiskit.providers.aer.extensions.Snapshot
 
-<span id="undefined" />
+<span id="qiskit.providers.aer.extensions.Snapshot" />
 
-`Snapshot(label, snapshot_type='statevector', num_qubits=0, num_clbits=0, params=None)`
+`Snapshot(label, snapshot_type='statevector', num_qubits=0, num_clbits=0, params=None)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/extensions/snapshot.py "view source code")
 
 Simulator snapshot instruction.
 
@@ -20,7 +28,9 @@ Create new snapshot instruction.
 
 **ExtensionError** – if snapshot label is invalid.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.providers.aer.extensions.Snapshot.__init__" />
 
 `__init__(label, snapshot_type='statevector', num_qubits=0, num_clbits=0, params=None)`
 
@@ -70,19 +80,25 @@ Create new snapshot instruction.
 | [`snapshot_type`](#qiskit.providers.aer.extensions.Snapshot.snapshot_type "qiskit.providers.aer.extensions.Snapshot.snapshot_type")    | Return snapshot type                                                          |
 | [`unit`](#qiskit.providers.aer.extensions.Snapshot.unit "qiskit.providers.aer.extensions.Snapshot.unit")                               | Get the time unit of duration.                                                |
 
-<span id="undefined" />
+### add\_decomposition
+
+<span id="qiskit.providers.aer.extensions.Snapshot.add_decomposition" />
 
 `add_decomposition(decomposition)`
 
 Add a decomposition of the instruction to the SessionEquivalenceLibrary.
 
-<span id="undefined" />
+### assemble
+
+<span id="qiskit.providers.aer.extensions.Snapshot.assemble" />
 
 `assemble()`
 
 Assemble a QasmQobjInstruction
 
-<span id="undefined" />
+### broadcast\_arguments
+
+<span id="qiskit.providers.aer.extensions.Snapshot.broadcast_arguments" />
 
 `broadcast_arguments(qargs, cargs)`
 
@@ -101,13 +117,17 @@ Validation of the arguments.
 
 **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
 
-<span id="undefined" />
+### c\_if
+
+<span id="qiskit.providers.aer.extensions.Snapshot.c_if" />
 
 `c_if(classical, val)`
 
 Add classical condition on register classical and value val.
 
-<span id="undefined" />
+### copy
+
+<span id="qiskit.providers.aer.extensions.Snapshot.copy" />
 
 `copy(name=None)`
 
@@ -125,51 +145,67 @@ updated if it was provided
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+### decompositions
+
+<span id="qiskit.providers.aer.extensions.Snapshot.decompositions" />
 
 `property decompositions`
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
-<span id="undefined" />
+### define\_snapshot\_register
+
+<span id="qiskit.providers.aer.extensions.Snapshot.define_snapshot_register" />
 
 `static define_snapshot_register(circuit, label=None, qubits=None)`
 
 Defines qubits to snapshot for all snapshot methods
 
-<span id="undefined" />
+### definition
+
+<span id="qiskit.providers.aer.extensions.Snapshot.definition" />
 
 `property definition`
 
 Return definition in terms of other basic gates.
 
-<span id="undefined" />
+### duration
+
+<span id="qiskit.providers.aer.extensions.Snapshot.duration" />
 
 `property duration`
 
 Get the duration.
 
-<span id="undefined" />
+### inverse
+
+<span id="qiskit.providers.aer.extensions.Snapshot.inverse" />
 
 `inverse()`
 
 Special case. Return self.
 
-<span id="undefined" />
+### is\_parameterized
+
+<span id="qiskit.providers.aer.extensions.Snapshot.is_parameterized" />
 
 `is_parameterized()`
 
 Return True .IFF. instruction is parameterized else False
 
-<span id="undefined" />
+### label
+
+<span id="qiskit.providers.aer.extensions.Snapshot.label" />
 
 `property label`
 
 Return snapshot label
 
-<span id="undefined" />
+### mirror
+
+<span id="qiskit.providers.aer.extensions.Snapshot.mirror" />
 
 `mirror()`
 
@@ -183,15 +219,19 @@ reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+### params
+
+<span id="qiskit.providers.aer.extensions.Snapshot.params" />
 
 `property params`
 
 return instruction params.
 
-<span id="undefined" />
+### qasm
+
+<span id="qiskit.providers.aer.extensions.Snapshot.qasm" />
 
 `qasm()`
 
@@ -199,7 +239,9 @@ Return a default OpenQASM string for the instruction.
 
 Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
 
-<span id="undefined" />
+### repeat
+
+<span id="qiskit.providers.aer.extensions.Snapshot.repeat" />
 
 `repeat(n)`
 
@@ -215,13 +257,15 @@ Containing the definition.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
 **Raises**
 
 **CircuitError** – If n \< 1.
 
-<span id="undefined" />
+### reverse\_ops
+
+<span id="qiskit.providers.aer.extensions.Snapshot.reverse_ops" />
 
 `reverse_ops()`
 
@@ -237,15 +281,19 @@ sub-instructions reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+### snapshot\_type
+
+<span id="qiskit.providers.aer.extensions.Snapshot.snapshot_type" />
 
 `property snapshot_type`
 
 Return snapshot type
 
-<span id="undefined" />
+### soft\_compare
+
+<span id="qiskit.providers.aer.extensions.Snapshot.soft_compare" />
 
 `soft_compare(other)`
 
@@ -263,14 +311,19 @@ are self and other equal up to parameter expressions.
 
 bool
 
-<span id="undefined" />
+### unit
+
+<span id="qiskit.providers.aer.extensions.Snapshot.unit" />
 
 `property unit`
 
 Get the time unit of duration.
 
-<span id="undefined" />
+### validate\_parameter
+
+<span id="qiskit.providers.aer.extensions.Snapshot.validate_parameter" />
 
 `validate_parameter(parameter)`
 
 Instruction parameters has no validation or normalization.
+

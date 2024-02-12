@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.StatePreparation
 
 <span id="qiskit.circuit.library.StatePreparation" />
 
-`StatePreparation(params, num_qubits=None, inverse=False, label=None)`
+`StatePreparation(params, num_qubits=None, inverse=False, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/data_preparation/state_preparation.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -49,7 +49,7 @@ When a Statevector argument is passed the state is prepared using a recursive in
 
 <span id="qiskit.circuit.library.StatePreparation.broadcast_arguments" />
 
-`StatePreparation.broadcast_arguments(qargs, cargs)`
+`StatePreparation.broadcast_arguments(qargs, cargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/data_preparation/state_preparation.py "view source code")
 
 Validation and handling of the arguments and its relationship.
 
@@ -102,7 +102,7 @@ A tuple with single arguments.
 
 <span id="qiskit.circuit.library.StatePreparation.inverse" />
 
-`StatePreparation.inverse()`
+`StatePreparation.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/data_preparation/state_preparation.py "view source code")
 
 Return inverted StatePreparation
 
@@ -112,7 +112,7 @@ Return inverted StatePreparation
 
 <span id="qiskit.circuit.library.StatePreparation.validate_parameter" />
 
-`StatePreparation.validate_parameter(parameter)`
+`StatePreparation.validate_parameter(parameter)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/data_preparation/state_preparation.py "view source code")
 
 StatePreparation instruction parameter can be str, int, float, and complex.
 

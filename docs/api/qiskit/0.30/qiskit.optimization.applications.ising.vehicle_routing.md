@@ -4,7 +4,7 @@
 
 Converts vehicle routing instances into a list of Paulis, and provides some related routines (extracting a solution, checking its objective function value).
 
-## Functions
+**Functions**
 
 |                                                   |                                                                              |
 | ------------------------------------------------- | ---------------------------------------------------------------------------- |

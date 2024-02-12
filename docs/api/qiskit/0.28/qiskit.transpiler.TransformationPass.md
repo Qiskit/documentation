@@ -1,12 +1,22 @@
+---
+title: TransformationPass
+description: API reference for qiskit.transpiler.TransformationPass
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.TransformationPass
+---
+
 # qiskit.transpiler.TransformationPass
 
-<span id="undefined" />
+<span id="qiskit.transpiler.TransformationPass" />
 
-`TransformationPass(*args, **kwargs)`
+`TransformationPass(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/basepasses.py "view source code")
 
 A transformation pass: change DAG, not property set.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.transpiler.TransformationPass.__init__" />
 
 `__init__()`
 
@@ -27,7 +37,9 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`is_analysis_pass`](#qiskit.transpiler.TransformationPass.is_analysis_pass "qiskit.transpiler.TransformationPass.is_analysis_pass")                   | Check if the pass is an analysis pass.      |
 | [`is_transformation_pass`](#qiskit.transpiler.TransformationPass.is_transformation_pass "qiskit.transpiler.TransformationPass.is_transformation_pass") | Check if the pass is a transformation pass. |
 
-<span id="undefined" />
+### is\_analysis\_pass
+
+<span id="qiskit.transpiler.TransformationPass.is_analysis_pass" />
 
 `property is_analysis_pass`
 
@@ -35,7 +47,9 @@ Check if the pass is an analysis pass.
 
 If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
 
-<span id="undefined" />
+### is\_transformation\_pass
+
+<span id="qiskit.transpiler.TransformationPass.is_transformation_pass" />
 
 `property is_transformation_pass`
 
@@ -43,13 +57,17 @@ Check if the pass is a transformation pass.
 
 If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
 
-<span id="undefined" />
+### name
+
+<span id="qiskit.transpiler.TransformationPass.name" />
 
 `name()`
 
 Return the name of the pass.
 
-<span id="undefined" />
+### run
+
+<span id="qiskit.transpiler.TransformationPass.run" />
 
 `abstract run(dag)`
 
@@ -57,8 +75,9 @@ Run a pass on the DAGCircuit. This is implemented by the pass developer.
 
 **Parameters**
 
-**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – the dag on which the pass is run.
+**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – the dag on which the pass is run.
 
 **Raises**
 
 **NotImplementedError** – when this is left unimplemented for a pass.
+

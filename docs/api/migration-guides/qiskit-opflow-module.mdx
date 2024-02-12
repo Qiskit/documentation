@@ -8,7 +8,7 @@ description: Stop using the deprecated `qiskit.opflow` module
 The new [`qiskit.primitives`](../qiskit/primitives), in combination with the [`qiskit.quantum_info`](../qiskit/quantum_info) module, have superseded
 functionality of [`qiskit.opflow`](../qiskit/0.44/opflow), which is being deprecated.
 
-This migration guide contains instructions and code examples to migrate code that uses 
+This migration guide contains instructions and code examples to migrate Qiskit&reg; code that uses 
 the [`qiskit.opflow`](../qiskit/0.44/opflow) module to the [`qiskit.primitives`](../qiskit/primitives) and [`qiskit.quantum_info`](../qiskit/quantum_info) modules.
 
 <Admonition type="note">
@@ -20,8 +20,8 @@ the [`qiskit.opflow`](../qiskit/0.44/opflow) module to the [`qiskit.primitives`]
 <span id="attention_primitives"></span>
 <Admonition type="note">
   Most references to the [`qiskit.primitives.Sampler`](../qiskit/qiskit.primitives.Sampler) or [`qiskit.primitives.Estimator`](../qiskit/qiskit.primitives.Estimator) in this guide
-  can be replaced with instances of any primitive implementation. For example Aer primitives ([`qiskit_aer.primitives.Sampler`](https://qiskit.org/ecosystem/aer/stubs/qiskit_aer.primitives.Sampler.html)/[`qiskit_aer.primitives.Estimator`](https://qiskit.org/ecosystem/aer/stubs/qiskit_aer.primitives.Estimator.html)) or the IBM Qiskit Runtime primitives ([`qiskit_ibm_runtime.Sampler`](../qiskit-ibm-runtime/qiskit_ibm_runtime.Sampler)/[`qiskit_ibm_runtime.Estimator`](../qiskit-ibm-runtime/qiskit_ibm_runtime.Estimator)).
-  Specific backends can be wrapped with ([`qiskit.primitives.BackendSampler`](../qiskit/qiskit.primitives.BackendSampler), [`qiskit.primitives.BackendEstimator`](../qiskit/qiskit.primitives.BackendEstimator)) to also present primitive-compatible interfaces.
+  can be replaced with instances of any primitive implementation. For example Aer primitives ([`qiskit_aer.primitives.Sampler`](https://qiskit.org/ecosystem/aer/stubs/qiskit_aer.primitives.Sampler.html)/[`qiskit_aer.primitives.Estimator`](https://qiskit.org/ecosystem/aer/stubs/qiskit_aer.primitives.Estimator.html)) or the Qiskit Runtime primitives ([`qiskit_ibm_runtime.Sampler`](../qiskit-ibm-runtime/qiskit_ibm_runtime.Sampler)/[`qiskit_ibm_runtime.Estimator`](../qiskit-ibm-runtime/qiskit_ibm_runtime.Estimator)).
+  Specific systems can be wrapped with ([`qiskit.primitives.BackendSampler`](../qiskit/qiskit.primitives.BackendSampler), [`qiskit.primitives.BackendEstimator`](../qiskit/qiskit.primitives.BackendEstimator)) to also present primitive-compatible interfaces.
 
   Certain classes, such as the
   [`qiskit.opflow.expectations.AerPauliExpectation`](../qiskit/0.44/qiskit.opflow.expectations.AerPauliExpectation), can only be replaced by a specific primitive instance
@@ -34,7 +34,7 @@ the [`qiskit.opflow`](../qiskit/0.44/opflow) module to the [`qiskit.primitives`]
 The [`qiskit.opflow`](../qiskit/0.44/opflow) module was originally introduced as a layer between circuits and algorithms, a series of building blocks
 for quantum algorithm research and development.
 
-The release of the [`qiskit.primitives`](../qiskit/primitives) introduced a new paradigm for interacting with backends. Instead of
+The release of the [`qiskit.primitives`](../qiskit/primitives) introduced a new paradigm for interacting with systems. Instead of
 preparing a circuit to execute with a `backend.run()` type of method, algorithms can leverage the [`qiskit.primitives.Sampler`](../qiskit/qiskit.primitives.Sampler) and
 [`qiskit.primitives.Estimator`](../qiskit/qiskit.primitives.Estimator) primitives, send parametrized circuits and observables, and directly receive quasi-probability distributions or
 expectation values (respectively). This workflow simplifies the pre-processing and post-processing steps
@@ -91,9 +91,9 @@ These were mainly used for didactic purposes or quick prototyping and can easily
 [`qiskit.quantum_info`](../qiskit/quantum_info) class: [`qiskit.quantum_info.Pauli`](../qiskit/qiskit.quantum_info.Pauli), [`qiskit.quantum_info.Clifford`](../qiskit/qiskit.quantum_info.Clifford) or
 [`qiskit.quantum_info.Statevector`](../qiskit/qiskit.quantum_info.Statevector).
 
-### 1-qubit paulis
+### Single-qubit Paulis
 
-The 1-qubit paulis were commonly used for algorithm testing, as they could be combined to create more complex operators
+The single-qubit Paulis were commonly used for algorithm testing, as they could be combined to create more complex operators
 (for example, `0.39 * (I ^ Z) + 0.5 * (X ^ X)`).
 These operations implicitly created operators of type  [`qiskit.opflow.primitive_ops.PauliSumOp`](../qiskit/0.44/qiskit.opflow.primitive_ops.PauliSumOp), and can be replaced by
 directly creating a corresponding [`qiskit.quantum_info.SparsePauliOp`](../qiskit/qiskit.quantum_info.SparsePauliOp), as shown in the following examples.
@@ -477,7 +477,7 @@ or [`qiskit.opflow.state_fns`](../qiskit/0.44/qiskit.opflow.state_fns). The [`qi
 
 | Opflow | Alternative |
 | --- | --- |
-| [`qiskit.opflow.list_ops.ListOp`](../qiskit/0.44/qiskit.opflow.list_ops.ListOp) | No direct replacement. This is the base class for operator lists. In general, these could be replaced with a Python `list`s. For [`qiskit.quantum_info.Pauli`](../qiskit/qiskit.quantum_info.Pauli) operators, there are a few alternatives, depending on the use case. One alternative is [`qiskit.quantum_info.PauliList`](../qiskit/qiskit.quantum_info.PauliList). |
+| [`qiskit.opflow.list_ops.ListOp`](../qiskit/0.44/qiskit.opflow.list_ops.ListOp) | No direct replacement. This is the base class for operator lists. In general, these could be replaced with a Python `list`. For [`qiskit.quantum_info.Pauli`](../qiskit/qiskit.quantum_info.Pauli) operators, there are a few alternatives, depending on the use case. One alternative is [`qiskit.quantum_info.PauliList`](../qiskit/qiskit.quantum_info.PauliList). |
 | [`qiskit.opflow.list_ops.ComposedOp`](../qiskit/0.44/qiskit.opflow.list_ops.ComposedOp) | No direct replacement. Current workflows do not require composing states and operators within one object (no lazy evaluation). |
 | [`qiskit.opflow.list_ops.SummedOp`](../qiskit/0.44/qiskit.opflow.list_ops.SummedOp) | No direct replacement. For [`qiskit.quantum_info.Pauli`](../qiskit/qiskit.quantum_info.Pauli) operators, use [`qiskit.quantum_info.SparsePauliOp`](../qiskit/qiskit.quantum_info.SparsePauliOp). |
 | [`qiskit.opflow.list_ops.TensoredOp`](../qiskit/0.44/qiskit.opflow.list_ops.TensoredOp) | No direct replacement. For [`qiskit.quantum_info.Pauli`](../qiskit/qiskit.quantum_info.Pauli) operators, use [`qiskit.quantum_info.SparsePauliOp`](../qiskit/qiskit.quantum_info.SparsePauliOp). |
@@ -587,7 +587,7 @@ See more examples in [Expectations](#expectations)  and [Converters](#converters
 The role of the [`qiskit.opflow.converters`](../qiskit/0.44/qiskit.opflow.converters) submodule was to convert the operators into other opflow operator classes: 
 ([`qiskit.opflow.converters.TwoQubitReduction`](../qiskit/0.44/qiskit.opflow.converters.TwoQubitReduction), [`qiskit.opflow.converters.PauliBasisChange`](../qiskit/0.44/qiskit.opflow.converters.PauliBasisChange), and so on).
 The [`qiskit.opflow.converters.CircuitSampler`](../qiskit/0.44/qiskit.opflow.converters.CircuitSampler) traversed an operator and outputted
-approximations of its state functions using a quantum backend.
+approximations of its state functions using a quantum system.
 This functionality has been replaced by the [`qiskit.primitives`](../qiskit/primitives).
 
 | Opflow | Alternative |

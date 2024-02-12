@@ -1,8 +1,16 @@
+---
+title: BOBYQA
+description: API reference for qiskit.algorithms.optimizers.BOBYQA
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.algorithms.optimizers.BOBYQA
+---
+
 # qiskit.algorithms.optimizers.BOBYQA
 
-<span id="undefined" />
+<span id="qiskit.algorithms.optimizers.BOBYQA" />
 
-`BOBYQA(maxiter=1000)`
+`BOBYQA(maxiter=1000)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/bobyqa.py "view source code")
 
 Bound Optimization BY Quadratic Approximation algorithm.
 
@@ -16,9 +24,11 @@ Uses skquant.opt installed with pip install scikit-quant. For further detail, pl
 
 **Raises**
 
-[**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError#qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – scikit-quant not installed
+[**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – scikit-quant not installed
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.algorithms.optimizers.BOBYQA.__init__" />
 
 `__init__(maxiter=1000)`
 
@@ -28,7 +38,7 @@ Uses skquant.opt installed with pip install scikit-quant. For further detail, pl
 
 **Raises**
 
-[**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError#qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – scikit-quant not installed
+[**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – scikit-quant not installed
 
 ## Methods
 
@@ -62,19 +72,25 @@ Uses skquant.opt installed with pip install scikit-quant. For further detail, pl
 | [`setting`](#qiskit.algorithms.optimizers.BOBYQA.setting "qiskit.algorithms.optimizers.BOBYQA.setting")                                                             | Return setting                                 |
 | [`settings`](#qiskit.algorithms.optimizers.BOBYQA.settings "qiskit.algorithms.optimizers.BOBYQA.settings")                                                          | The optimizer settings in a dictionary format. |
 
-<span id="undefined" />
+### bounds\_support\_level
+
+<span id="qiskit.algorithms.optimizers.BOBYQA.bounds_support_level" />
 
 `property bounds_support_level`
 
 Returns bounds support level
 
-<span id="undefined" />
+### get\_support\_level
+
+<span id="qiskit.algorithms.optimizers.BOBYQA.get_support_level" />
 
 `get_support_level()`
 
 Returns support level dictionary.
 
-<span id="undefined" />
+### gradient\_num\_diff
+
+<span id="qiskit.algorithms.optimizers.BOBYQA.gradient_num_diff" />
 
 `static gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)`
 
@@ -95,91 +111,121 @@ the gradient computed
 
 grad
 
-<span id="undefined" />
+### gradient\_support\_level
+
+<span id="qiskit.algorithms.optimizers.BOBYQA.gradient_support_level" />
 
 `property gradient_support_level`
 
 Returns gradient support level
 
-<span id="undefined" />
+### initial\_point\_support\_level
+
+<span id="qiskit.algorithms.optimizers.BOBYQA.initial_point_support_level" />
 
 `property initial_point_support_level`
 
 Returns initial point support level
 
-<span id="undefined" />
+### is\_bounds\_ignored
+
+<span id="qiskit.algorithms.optimizers.BOBYQA.is_bounds_ignored" />
 
 `property is_bounds_ignored`
 
 Returns is bounds ignored
 
-<span id="undefined" />
+### is\_bounds\_required
+
+<span id="qiskit.algorithms.optimizers.BOBYQA.is_bounds_required" />
 
 `property is_bounds_required`
 
 Returns is bounds required
 
-<span id="undefined" />
+### is\_bounds\_supported
+
+<span id="qiskit.algorithms.optimizers.BOBYQA.is_bounds_supported" />
 
 `property is_bounds_supported`
 
 Returns is bounds supported
 
-<span id="undefined" />
+### is\_gradient\_ignored
+
+<span id="qiskit.algorithms.optimizers.BOBYQA.is_gradient_ignored" />
 
 `property is_gradient_ignored`
 
 Returns is gradient ignored
 
-<span id="undefined" />
+### is\_gradient\_required
+
+<span id="qiskit.algorithms.optimizers.BOBYQA.is_gradient_required" />
 
 `property is_gradient_required`
 
 Returns is gradient required
 
-<span id="undefined" />
+### is\_gradient\_supported
+
+<span id="qiskit.algorithms.optimizers.BOBYQA.is_gradient_supported" />
 
 `property is_gradient_supported`
 
 Returns is gradient supported
 
-<span id="undefined" />
+### is\_initial\_point\_ignored
+
+<span id="qiskit.algorithms.optimizers.BOBYQA.is_initial_point_ignored" />
 
 `property is_initial_point_ignored`
 
 Returns is initial point ignored
 
-<span id="undefined" />
+### is\_initial\_point\_required
+
+<span id="qiskit.algorithms.optimizers.BOBYQA.is_initial_point_required" />
 
 `property is_initial_point_required`
 
 Returns is initial point required
 
-<span id="undefined" />
+### is\_initial\_point\_supported
+
+<span id="qiskit.algorithms.optimizers.BOBYQA.is_initial_point_supported" />
 
 `property is_initial_point_supported`
 
 Returns is initial point supported
 
-<span id="undefined" />
+### optimize
+
+<span id="qiskit.algorithms.optimizers.BOBYQA.optimize" />
 
 `optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
 Runs the optimization.
 
-<span id="undefined" />
+### print\_options
+
+<span id="qiskit.algorithms.optimizers.BOBYQA.print_options" />
 
 `print_options()`
 
 Print algorithm-specific options.
 
-<span id="undefined" />
+### set\_max\_evals\_grouped
+
+<span id="qiskit.algorithms.optimizers.BOBYQA.set_max_evals_grouped" />
 
 `set_max_evals_grouped(limit)`
 
 Set max evals grouped
 
-<span id="undefined" />
+### set\_options
+
+<span id="qiskit.algorithms.optimizers.BOBYQA.set_options" />
 
 `set_options(**kwargs)`
 
@@ -191,13 +237,17 @@ The options dictionary may be used internally by a given optimizer to pass addit
 
 **kwargs** (*dict*) – options, given as name=value.
 
-<span id="undefined" />
+### setting
+
+<span id="qiskit.algorithms.optimizers.BOBYQA.setting" />
 
 `property setting`
 
 Return setting
 
-<span id="undefined" />
+### settings
+
+<span id="qiskit.algorithms.optimizers.BOBYQA.settings" />
 
 `property settings`
 
@@ -215,7 +265,9 @@ optimizer = OptimizerClass(**settings)
 
 `Dict`\[`str`, `Any`]
 
-<span id="undefined" />
+### wrap\_function
+
+<span id="qiskit.algorithms.optimizers.BOBYQA.wrap_function" />
 
 `static wrap_function(function, args)`
 
@@ -233,3 +285,4 @@ wrapper
 **Return type**
 
 function\_wrapper
+

@@ -10,19 +10,19 @@ python_api_name: qiskit.transpiler.passes.ASAPScheduleAnalysis
 
 <span id="qiskit.transpiler.passes.ASAPScheduleAnalysis" />
 
-`ASAPScheduleAnalysis(durations)`
+`ASAPScheduleAnalysis(durations)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/scheduling/scheduling/asap.py "view source code")
 
 Bases: `qiskit.transpiler.passes.scheduling.scheduling.base_scheduler.BaseScheduler`
 
 ASAP Scheduling pass, which schedules the start time of instructions as early as possible..
 
-See Scheduling section in [Supplementary Information](transpiler#transpiler-supplemental) for the detailed behavior of the control flow operation, i.e. `c_if`.
+See `BaseScheduler` for the detailed behavior of the control flow operation, i.e. `c_if`.
 
 Scheduler initializer.
 
 **Parameters**
 
-**durations** ([`InstructionDurations`](qiskit.transpiler.InstructionDurations "qiskit.transpiler.instruction_durations.InstructionDurations")) – Durations of instructions to be used in scheduling
+**durations** (`InstructionDurations`) – Durations of instructions to be used in scheduling
 
 ## Methods
 
@@ -38,7 +38,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.ASAPScheduleAnalysis.run" />
 
-`ASAPScheduleAnalysis.run(dag)`
+`ASAPScheduleAnalysis.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/scheduling/scheduling/asap.py "view source code")
 
 Run the ASAPSchedule pass on dag.
 

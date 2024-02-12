@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.pulse.builder.drive_channel
 ---
 
-# qiskit.pulse.builder.drive\_channel[¶](#qiskit-pulse-builder-drive-channel "Permalink to this headline")
+# qiskit.pulse.builder.drive\_channel
 
 <span id="qiskit.pulse.builder.drive_channel" />
 
-`drive_channel(qubit)`
+`drive_channel(qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/builder.py "view source code")
 
 Return `DriveChannel` for `qubit` on the active builder backend.
 

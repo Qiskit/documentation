@@ -1,8 +1,16 @@
+---
+title: ECRGate
+description: API reference for qiskit.circuit.library.ECRGate
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.ECRGate
+---
+
 # qiskit.circuit.library.ECRGate
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.ECRGate" />
 
-`ECRGate`
+`ECRGate`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/ecr.py "view source code")
 
 An echoed RZX(pi/2) gate implemented using RZX(pi/4) and RZX(-pi/4).
 
@@ -54,7 +62,9 @@ $$
 
 Create new ECR gate.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.circuit.library.ECRGate.__init__" />
 
 `__init__()`
 
@@ -93,19 +103,25 @@ Create new ECR gate.
 | [`params`](#qiskit.circuit.library.ECRGate.params "qiskit.circuit.library.ECRGate.params")                         | return instruction params.                                                    |
 | [`unit`](#qiskit.circuit.library.ECRGate.unit "qiskit.circuit.library.ECRGate.unit")                               | Get the time unit of duration.                                                |
 
-<span id="undefined" />
+### add\_decomposition
+
+<span id="qiskit.circuit.library.ECRGate.add_decomposition" />
 
 `add_decomposition(decomposition)`
 
 Add a decomposition of the instruction to the SessionEquivalenceLibrary.
 
-<span id="undefined" />
+### assemble
+
+<span id="qiskit.circuit.library.ECRGate.assemble" />
 
 `assemble()`
 
 Assemble a QasmQobjInstruction
 
-<span id="undefined" />
+### broadcast\_arguments
+
+<span id="qiskit.circuit.library.ECRGate.broadcast_arguments" />
 
 `broadcast_arguments(qargs, cargs)`
 
@@ -158,17 +174,21 @@ A tuple with single arguments.
 
 **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
 
-<span id="undefined" />
+### c\_if
+
+<span id="qiskit.circuit.library.ECRGate.c_if" />
 
 `c_if(classical, val)`
 
 Add classical condition on register or cbit classical and value val.
 
-<span id="undefined" />
+### control
+
+<span id="qiskit.circuit.library.ECRGate.control" />
 
 `control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
-Return controlled version of gate. See [`ControlledGate`](qiskit.circuit.ControlledGate#qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") for usage.
+Return controlled version of gate. See [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") for usage.
 
 **Parameters**
 
@@ -182,13 +202,15 @@ Controlled version of gate. This default algorithm uses num\_ctrl\_qubits-1 anci
 
 **Return type**
 
-[qiskit.circuit.ControlledGate](qiskit.circuit.ControlledGate#qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+[qiskit.circuit.ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
 
 **Raises**
 
 **QiskitError** – unrecognized mode or invalid ctrl\_state
 
-<span id="undefined" />
+### copy
+
+<span id="qiskit.circuit.library.ECRGate.copy" />
 
 `copy(name=None)`
 
@@ -206,27 +228,35 @@ updated if it was provided
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+### decompositions
+
+<span id="qiskit.circuit.library.ECRGate.decompositions" />
 
 `property decompositions`
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
-<span id="undefined" />
+### definition
+
+<span id="qiskit.circuit.library.ECRGate.definition" />
 
 `property definition`
 
 Return definition in terms of other basic gates.
 
-<span id="undefined" />
+### duration
+
+<span id="qiskit.circuit.library.ECRGate.duration" />
 
 `property duration`
 
 Get the duration.
 
-<span id="undefined" />
+### inverse
+
+<span id="qiskit.circuit.library.ECRGate.inverse" />
 
 `inverse()`
 
@@ -242,19 +272,23 @@ a fresh instruction for the inverse
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
 **Raises**
 
 **CircuitError** – if the instruction is not composite and an inverse has not been implemented for it.
 
-<span id="undefined" />
+### is\_parameterized
+
+<span id="qiskit.circuit.library.ECRGate.is_parameterized" />
 
 `is_parameterized()`
 
 Return True .IFF. instruction is parameterized else False
 
-<span id="undefined" />
+### label
+
+<span id="qiskit.circuit.library.ECRGate.label" />
 
 `property label`
 
@@ -264,7 +298,9 @@ Return instruction label
 
 `str`
 
-<span id="undefined" />
+### mirror
+
+<span id="qiskit.circuit.library.ECRGate.mirror" />
 
 `mirror()`
 
@@ -278,15 +314,19 @@ reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+### params
+
+<span id="qiskit.circuit.library.ECRGate.params" />
 
 `property params`
 
 return instruction params.
 
-<span id="undefined" />
+### power
+
+<span id="qiskit.circuit.library.ECRGate.power" />
 
 `power(exponent)`
 
@@ -302,13 +342,15 @@ To which to\_matrix is self.to\_matrix^exponent.
 
 **Return type**
 
-[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate#qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
+[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
 
 **Raises**
 
 **CircuitError** – If Gate is not unitary
 
-<span id="undefined" />
+### qasm
+
+<span id="qiskit.circuit.library.ECRGate.qasm" />
 
 `qasm()`
 
@@ -316,7 +358,9 @@ Return a default OpenQASM string for the instruction.
 
 Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
 
-<span id="undefined" />
+### repeat
+
+<span id="qiskit.circuit.library.ECRGate.repeat" />
 
 `repeat(n)`
 
@@ -332,13 +376,15 @@ Containing the definition.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
 **Raises**
 
 **CircuitError** – If n \< 1.
 
-<span id="undefined" />
+### reverse\_ops
+
+<span id="qiskit.circuit.library.ECRGate.reverse_ops" />
 
 `reverse_ops()`
 
@@ -354,9 +400,11 @@ sub-instructions reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+### soft\_compare
+
+<span id="qiskit.circuit.library.ECRGate.soft_compare" />
 
 `soft_compare(other)`
 
@@ -374,20 +422,27 @@ are self and other equal up to parameter expressions.
 
 bool
 
-<span id="undefined" />
+### to\_matrix
+
+<span id="qiskit.circuit.library.ECRGate.to_matrix" />
 
 `to_matrix()`
 
 Return a numpy.array for the ECR gate.
 
-<span id="undefined" />
+### unit
+
+<span id="qiskit.circuit.library.ECRGate.unit" />
 
 `property unit`
 
 Get the time unit of duration.
 
-<span id="undefined" />
+### validate\_parameter
+
+<span id="qiskit.circuit.library.ECRGate.validate_parameter" />
 
 `validate_parameter(parameter)`
 
 Gate parameters should be int, float, or ParameterExpression
+

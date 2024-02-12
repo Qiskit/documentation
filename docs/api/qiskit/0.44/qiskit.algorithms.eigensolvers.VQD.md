@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.eigensolvers.VQD
 
 <span id="qiskit.algorithms.eigensolvers.VQD" />
 
-`qiskit.algorithms.eigensolvers.VQD(estimator, fidelity, ansatz, optimizer, *, k=2, betas=None, initial_point=None, callback=None)`
+`qiskit.algorithms.eigensolvers.VQD(estimator, fidelity, ansatz, optimizer, *, k=2, betas=None, initial_point=None, callback=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/eigensolvers/vqd.py "view source code")
 
 Bases: `VariationalAlgorithm`, [`Eigensolver`](qiskit.algorithms.eigensolvers.Eigensolver "qiskit.algorithms.eigensolvers.eigensolver.Eigensolver")
 
@@ -68,8 +68,6 @@ A classical optimizer or a list of optimizers,
 
 [Optimizer](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer") | Sequence\[[Optimizer](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer")]
 
-<span id="undefined" />
-
 ### one for every k-th eigenvalue. Can either be a Qiskit optimizer or a callable
 
 that takes an array as input and returns a Qiskit or SciPy optimization result.
@@ -93,8 +91,6 @@ Beta parameters in the VQD paper. Should have length k - 1, with k the number of
 **Type**
 
 [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")]
-
-<span id="undefined" />
 
 ### initial point
 

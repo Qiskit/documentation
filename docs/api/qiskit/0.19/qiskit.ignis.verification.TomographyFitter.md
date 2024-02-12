@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.verification.TomographyFitter
 
 <span id="qiskit.ignis.verification.TomographyFitter" />
 
-`TomographyFitter(result, circuits, meas_basis='Pauli', prep_basis='Pauli')`
+`TomographyFitter(result, circuits, meas_basis='Pauli', prep_basis='Pauli')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/tomography/fitters/base_fitter.py "view source code")
 
 Base maximum-likelihood estimate tomography fitter class
 
@@ -43,7 +43,7 @@ Return the tomography preparation basis.
 
 <span id="qiskit.ignis.verification.TomographyFitter.add_data" />
 
-`TomographyFitter.add_data(result, circuits)`
+`TomographyFitter.add_data(result, circuits)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/tomography/fitters/base_fitter.py "view source code")
 
 Add tomography data from a Qiskit Result object.
 
@@ -56,7 +56,7 @@ Add tomography data from a Qiskit Result object.
 
 <span id="qiskit.ignis.verification.TomographyFitter.fit" />
 
-`TomographyFitter.fit(method='auto', standard_weights=True, beta=0.5, psd=True, trace=None, trace_preserving=False, **kwargs)`
+`TomographyFitter.fit(method='auto', standard_weights=True, beta=0.5, psd=True, trace=None, trace_preserving=False, **kwargs)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/tomography/fitters/base_fitter.py "view source code")
 
 Reconstruct a quantum state using CVXPY convex optimization.
 
@@ -123,7 +123,7 @@ The fitted matrix rho that minimizes $||\text{basis_matrix} * \text{vec(rho)} - 
 
 <span id="qiskit.ignis.verification.TomographyFitter.set_measure_basis" />
 
-`TomographyFitter.set_measure_basis(basis)`
+`TomographyFitter.set_measure_basis(basis)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/tomography/fitters/base_fitter.py "view source code")
 
 Set the measurement basis
 
@@ -139,7 +139,7 @@ Set the measurement basis
 
 <span id="qiskit.ignis.verification.TomographyFitter.set_preparation_basis" />
 
-`TomographyFitter.set_preparation_basis(basis)`
+`TomographyFitter.set_preparation_basis(basis)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/tomography/fitters/base_fitter.py "view source code")
 
 Set the preparation basis function
 

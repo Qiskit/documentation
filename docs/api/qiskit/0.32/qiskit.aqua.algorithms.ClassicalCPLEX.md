@@ -1,8 +1,16 @@
+---
+title: ClassicalCPLEX
+description: API reference for qiskit.aqua.algorithms.ClassicalCPLEX
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.algorithms.ClassicalCPLEX
+---
+
 # ClassicalCPLEX
 
-<span id="undefined" />
+<span id="qiskit.aqua.algorithms.ClassicalCPLEX" />
 
-`ClassicalCPLEX(operator, timelimit=600, thread=1, display=2)`
+`ClassicalCPLEX(operator, timelimit=600, thread=1, display=2)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/minimum_eigen_solvers/cplex/classical_cplex.py "view source code")
 
 Bases: `qiskit.aqua.algorithms.classical_algorithm.ClassicalAlgorithm`
 
@@ -21,20 +29,33 @@ See these `installation instructions` if you need more information in that regar
 
 ## Methods
 
-|                                                                                                                                          |                                  |
-| ---------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
-| [`run`](qiskit.aqua.algorithms.ClassicalCPLEX.run#qiskit.aqua.algorithms.ClassicalCPLEX.run "qiskit.aqua.algorithms.ClassicalCPLEX.run") | Execute the classical algorithm. |
+### run
+
+<span id="qiskit.aqua.algorithms.ClassicalCPLEX.run" />
+
+`ClassicalCPLEX.run()`
+
+Execute the classical algorithm.
+
+**Returns**
+
+results of an algorithm.
+
+**Return type**
+
+dict
 
 ## Attributes
 
-<span id="undefined" />
+<span id="qiskit.aqua.algorithms.ClassicalCPLEX.random" />
 
 ### random
 
 Return a numpy random.
 
-<span id="undefined" />
+<span id="qiskit.aqua.algorithms.ClassicalCPLEX.solution" />
 
 ### solution
 
 return solution
+

@@ -1,8 +1,16 @@
+---
+title: QuadraticExpression
+description: API reference for qiskit.optimization.problems.QuadraticExpression
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.optimization.problems.QuadraticExpression
+---
+
 # QuadraticExpression
 
-<span id="undefined" />
+<span id="qiskit.optimization.problems.QuadraticExpression" />
 
-`QuadraticExpression(quadratic_program, coefficients)`
+`QuadraticExpression(quadratic_program, coefficients)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_expression.py "view source code")
 
 Bases: `qiskit.optimization.problems.quadratic_program_element.QuadraticProgramElement`
 
@@ -19,16 +27,90 @@ The quadratic expression can be defined via an array, a list, a sparse matrix, o
 
 ## Methods
 
-|                                                                                                                                                                                                                                   |                                                                                                                               |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| [`evaluate`](qiskit.optimization.problems.QuadraticExpression.evaluate#qiskit.optimization.problems.QuadraticExpression.evaluate "qiskit.optimization.problems.QuadraticExpression.evaluate")                                     | Evaluate the quadratic expression for given variables: x \* Q \* x.                                                           |
-| [`evaluate_gradient`](qiskit.optimization.problems.QuadraticExpression.evaluate_gradient#qiskit.optimization.problems.QuadraticExpression.evaluate_gradient "qiskit.optimization.problems.QuadraticExpression.evaluate_gradient") | Evaluate the gradient of the quadratic expression for given variables.                                                        |
-| [`to_array`](qiskit.optimization.problems.QuadraticExpression.to_array#qiskit.optimization.problems.QuadraticExpression.to_array "qiskit.optimization.problems.QuadraticExpression.to_array")                                     | Returns the coefficients of the quadratic expression as array.                                                                |
-| [`to_dict`](qiskit.optimization.problems.QuadraticExpression.to_dict#qiskit.optimization.problems.QuadraticExpression.to_dict "qiskit.optimization.problems.QuadraticExpression.to_dict")                                         | Returns the coefficients of the quadratic expression as dictionary, either using tuples of variable names or indices as keys. |
+### evaluate
+
+<span id="qiskit.optimization.problems.QuadraticExpression.evaluate" />
+
+`QuadraticExpression.evaluate(x)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_expression.py "view source code")
+
+Evaluate the quadratic expression for given variables: x \* Q \* x.
+
+**Parameters**
+
+**x** (`Union`\[`ndarray`, `List`, `Dict`\[`Union`\[`int`, `str`], `float`]]) – The values of the variables to be evaluated.
+
+**Return type**
+
+`float`
+
+**Returns**
+
+The value of the quadratic expression given the variable values.
+
+### evaluate\_gradient
+
+<span id="qiskit.optimization.problems.QuadraticExpression.evaluate_gradient" />
+
+`QuadraticExpression.evaluate_gradient(x)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_expression.py "view source code")
+
+Evaluate the gradient of the quadratic expression for given variables.
+
+**Parameters**
+
+**x** (`Union`\[`ndarray`, `List`, `Dict`\[`Union`\[`int`, `str`], `float`]]) – The values of the variables to be evaluated.
+
+**Return type**
+
+`ndarray`
+
+**Returns**
+
+The value of the gradient quadratic expression given the variable values.
+
+### to\_array
+
+<span id="qiskit.optimization.problems.QuadraticExpression.to_array" />
+
+`QuadraticExpression.to_array(symmetric=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_expression.py "view source code")
+
+Returns the coefficients of the quadratic expression as array.
+
+**Parameters**
+
+**symmetric** (`bool`) – Determines whether the output is in a symmetric form or not.
+
+**Return type**
+
+`ndarray`
+
+**Returns**
+
+An array with the coefficients corresponding to the quadratic expression.
+
+### to\_dict
+
+<span id="qiskit.optimization.problems.QuadraticExpression.to_dict" />
+
+`QuadraticExpression.to_dict(symmetric=False, use_name=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_expression.py "view source code")
+
+Returns the coefficients of the quadratic expression as dictionary, either using tuples of variable names or indices as keys.
+
+**Parameters**
+
+*   **symmetric** (`bool`) – Determines whether the output is in a symmetric form or not.
+*   **use\_name** (`bool`) – Determines whether to use index or names to refer to variables.
+
+**Return type**
+
+`Dict`\[`Union`\[`Tuple`\[`int`, `int`], `Tuple`\[`str`, `str`]], `float`]
+
+**Returns**
+
+An dictionary with the coefficients corresponding to the quadratic expression.
 
 ## Attributes
 
-<span id="undefined" />
+<span id="qiskit.optimization.problems.QuadraticExpression.coefficients" />
 
 ### coefficients
 
@@ -42,7 +124,7 @@ Returns the coefficients of the quadratic expression.
 
 The coefficients of the quadratic expression.
 
-<span id="undefined" />
+<span id="qiskit.optimization.problems.QuadraticExpression.quadratic_program" />
 
 ### quadratic\_program
 
@@ -55,3 +137,4 @@ Returns the parent QuadraticProgram.
 **Returns**
 
 The parent QuadraticProgram.
+

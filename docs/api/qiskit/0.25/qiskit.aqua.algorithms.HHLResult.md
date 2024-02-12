@@ -1,12 +1,22 @@
+---
+title: HHLResult
+description: API reference for qiskit.aqua.algorithms.HHLResult
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.algorithms.HHLResult
+---
+
 # qiskit.aqua.algorithms.HHLResult
 
-<span id="undefined" />
+<span id="qiskit.aqua.algorithms.HHLResult" />
 
-`HHLResult(a_dict=None)`
+`HHLResult(a_dict=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/linear_solvers/hhl.py "view source code")
 
 HHL Result.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.aqua.algorithms.HHLResult.__init__" />
 
 `__init__(a_dict=None)`
 
@@ -42,7 +52,9 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`solution`](#qiskit.aqua.algorithms.HHLResult.solution "qiskit.aqua.algorithms.HHLResult.solution")                               | return solution           |
 | [`vector`](#qiskit.aqua.algorithms.HHLResult.vector "qiskit.aqua.algorithms.HHLResult.vector")                                     | return vector             |
 
-<span id="undefined" />
+### circuit\_info
+
+<span id="qiskit.aqua.algorithms.HHLResult.circuit_info" />
 
 `property circuit_info`
 
@@ -52,7 +64,9 @@ return circuit info
 
 `DAGCircuit`
 
-<span id="undefined" />
+### clear
+
+<span id="qiskit.aqua.algorithms.HHLResult.clear" />
 
 `clear()`
 
@@ -60,7 +74,9 @@ return circuit info
 
 `None`
 
-<span id="undefined" />
+### combine
+
+<span id="qiskit.aqua.algorithms.HHLResult.combine" />
 
 `combine(result)`
 
@@ -74,7 +90,9 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 `None`
 
-<span id="undefined" />
+### from\_dict
+
+<span id="qiskit.aqua.algorithms.HHLResult.from_dict" />
 
 `static from_dict(a_dict)`
 
@@ -84,19 +102,27 @@ create new object from a dictionary
 
 `HHLResult`
 
-<span id="undefined" />
+### get
+
+<span id="qiskit.aqua.algorithms.HHLResult.get" />
 
 `get(k[, d]) → D[k] if k in D, else d. d defaults to None.`
 
-<span id="undefined" />
+### items
+
+<span id="qiskit.aqua.algorithms.HHLResult.items" />
 
 `items() → a set-like object providing a view on D’s items`
 
-<span id="undefined" />
+### keys
+
+<span id="qiskit.aqua.algorithms.HHLResult.keys" />
 
 `keys() → a set-like object providing a view on D’s keys`
 
-<span id="undefined" />
+### matrix
+
+<span id="qiskit.aqua.algorithms.HHLResult.matrix" />
 
 `property matrix`
 
@@ -106,7 +132,9 @@ return matrix
 
 `ndarray`
 
-<span id="undefined" />
+### output
+
+<span id="qiskit.aqua.algorithms.HHLResult.output" />
 
 `property output`
 
@@ -116,7 +144,9 @@ return output
 
 `ndarray`
 
-<span id="undefined" />
+### pop
+
+<span id="qiskit.aqua.algorithms.HHLResult.pop" />
 
 `pop(key, default=None)`
 
@@ -126,7 +156,9 @@ If key is not found, d is returned if given, otherwise KeyError is raised.
 
 `object`
 
-<span id="undefined" />
+### popitem
+
+<span id="qiskit.aqua.algorithms.HHLResult.popitem" />
 
 `popitem()`
 
@@ -136,7 +168,9 @@ as a 2-tuple; but raise KeyError if D is empty.
 
 `Tuple`\[`object`, `object`]
 
-<span id="undefined" />
+### probability\_result
+
+<span id="qiskit.aqua.algorithms.HHLResult.probability_result" />
 
 `property probability_result`
 
@@ -146,11 +180,15 @@ return probability result
 
 `Union`\[`ndarray`, `float`]
 
-<span id="undefined" />
+### setdefault
+
+<span id="qiskit.aqua.algorithms.HHLResult.setdefault" />
 
 `setdefault(k[, d]) → D.get(k,d), also set D[k]=d if k not in D`
 
-<span id="undefined" />
+### solution
+
+<span id="qiskit.aqua.algorithms.HHLResult.solution" />
 
 `property solution`
 
@@ -160,7 +198,9 @@ return solution
 
 `ndarray`
 
-<span id="undefined" />
+### update
+
+<span id="qiskit.aqua.algorithms.HHLResult.update" />
 
 `update(*args, **kwargs)`
 
@@ -170,11 +210,15 @@ If E present and has a .keys() method, does: for k in E: D\[k] = E\[k] If E pres
 
 `None`
 
-<span id="undefined" />
+### values
+
+<span id="qiskit.aqua.algorithms.HHLResult.values" />
 
 `values() → an object providing a view on D’s values`
 
-<span id="undefined" />
+### vector
+
+<span id="qiskit.aqua.algorithms.HHLResult.vector" />
 
 `property vector`
 
@@ -183,3 +227,4 @@ return vector
 **Return type**
 
 `ndarray`
+

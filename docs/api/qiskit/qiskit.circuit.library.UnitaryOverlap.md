@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.UnitaryOverlap
 
 <span id="qiskit.circuit.library.UnitaryOverlap" />
 
-`qiskit.circuit.library.UnitaryOverlap(unitary1, unitary2, prefix1='p1', prefix2='p2')`
+`qiskit.circuit.library.UnitaryOverlap(unitary1, unitary2, prefix1='p1', prefix2='p2')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/overlap.py "view source code")
 
 Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
@@ -121,7 +121,7 @@ Return the global phase of the current circuit scope in radians.
 
 ### instances
 
-`= 293`
+`= 159`
 
 <span id="qiskit.circuit.library.UnitaryOverlap.layout" />
 
@@ -189,7 +189,7 @@ The parameters defined in the circuit.
 
 This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
 
-## Examples
+**Examples**
 
 The snippet below shows that insertion order of parameters does not matter.
 

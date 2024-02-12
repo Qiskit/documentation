@@ -1,14 +1,24 @@
+---
+title: UserMessenger
+description: API reference for qiskit.providers.ibmq.runtime.UserMessenger
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.ibmq.runtime.UserMessenger
+---
+
 # qiskit.providers.ibmq.runtime.UserMessenger
 
-<span id="undefined" />
+<span id="qiskit.providers.ibmq.runtime.UserMessenger" />
 
-`UserMessenger`
+`UserMessenger`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.13/qiskit/providers/ibmq/runtime/program/user_messenger.py "view source code")
 
 Base class for handling communication with program users.
 
 This class can be used when writing a new Qiskit Runtime program.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.providers.ibmq.runtime.UserMessenger.__init__" />
 
 `__init__()`
 
@@ -21,7 +31,9 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`__init__`](#qiskit.providers.ibmq.runtime.UserMessenger.__init__ "qiskit.providers.ibmq.runtime.UserMessenger.__init__")()                        | Initialize self. |
 | [`publish`](#qiskit.providers.ibmq.runtime.UserMessenger.publish "qiskit.providers.ibmq.runtime.UserMessenger.publish")(message\[, encoder, final]) | Publish message. |
 
-<span id="undefined" />
+### publish
+
+<span id="qiskit.providers.ibmq.runtime.UserMessenger.publish" />
 
 `publish(message, encoder=<class 'qiskit.providers.ibmq.runtime.utils.RuntimeEncoder'>, final=False)`
 
@@ -40,3 +52,4 @@ The final parameter is used to indicate whether the message is the final result 
 **Return type**
 
 `None`
+

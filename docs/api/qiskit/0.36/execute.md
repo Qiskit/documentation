@@ -16,9 +16,11 @@ python_api_name: qiskit.execute_function
 
 `qiskit.execute_function`
 
+### execute
+
 <span id="qiskit.execute_function.execute" />
 
-`execute(experiments, backend, basis_gates=None, coupling_map=None, backend_properties=None, initial_layout=None, seed_transpiler=None, optimization_level=None, pass_manager=None, qobj_id=None, qobj_header=None, shots=None, memory=None, max_credits=None, seed_simulator=None, default_qubit_los=None, default_meas_los=None, qubit_lo_range=None, meas_lo_range=None, schedule_los=None, meas_level=None, meas_return=None, memory_slots=None, memory_slot_size=None, rep_time=None, rep_delay=None, parameter_binds=None, schedule_circuit=False, inst_map=None, meas_map=None, scheduling_method=None, init_qubits=None, **run_config)`
+`execute(experiments, backend, basis_gates=None, coupling_map=None, backend_properties=None, initial_layout=None, seed_transpiler=None, optimization_level=None, pass_manager=None, qobj_id=None, qobj_header=None, shots=None, memory=None, max_credits=None, seed_simulator=None, default_qubit_los=None, default_meas_los=None, qubit_lo_range=None, meas_lo_range=None, schedule_los=None, meas_level=None, meas_return=None, memory_slots=None, memory_slot_size=None, rep_time=None, rep_delay=None, parameter_binds=None, schedule_circuit=False, inst_map=None, meas_map=None, scheduling_method=None, init_qubits=None, **run_config)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/execute_function.py "view source code")
 
 Execute a list of [`qiskit.circuit.QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or [`qiskit.pulse.Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") on a backend.
 
@@ -28,7 +30,7 @@ The execution is asynchronous, and a handle to a job instance is returned.
 
 *   **experiments** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *or list\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*] or* [*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule") *or list\[*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")*]*) – Circuit(s) or pulse schedule(s) to execute
 
-*   **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.Backend")) – Backend to execute circuits on. Transpiler options are automatically grabbed from backend.configuration() and backend.properties(). If any other option is explicitly set (e.g. coupling\_map), it will override the backend’s.
+*   **backend** ([*BaseBackend*](qiskit.providers.BaseBackend "qiskit.providers.BaseBackend")  *or*[*Backend*](qiskit.providers.Backend "qiskit.providers.Backend")) – Backend to execute circuits on. Transpiler options are automatically grabbed from backend.configuration() and backend.properties(). If any other option is explicitly set (e.g. coupling\_map), it will override the backend’s.
 
 *   **basis\_gates** (*list\[str]*) – List of basis gate names to unroll to. e.g: `['u1', 'u2', 'u3', 'cx']` If `None`, do not unroll.
 
@@ -81,15 +83,23 @@ The execution is asynchronous, and a handle to a job instance is returned.
 
 *   **pass\_manager** ([*PassManager*](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")) – The pass manager to use during transpilation. If this arg is present, auto-selection of pass manager based on the transpile options will be turned off and this pass manager will be used directly.
 
-*   **qobj\_id** (*str*) – DEPRECATED: String identifier to annotate the Qobj. This has no effect and the `name` attribute of the input circuit(s) should be used instead.
+*   **qobj\_id** (*str*) – String identifier to annotate the Qobj
 
-*   **qobj\_header** ([*QobjHeader*](qiskit.qobj.QobjHeader "qiskit.qobj.QobjHeader") *or dict*) – DEPRECATED: User input that will be inserted in Qobj header, and will also be copied to the corresponding [`qiskit.result.Result`](qiskit.result.Result "qiskit.result.Result") header. Headers do not affect the run. Headers do not affect the run. This kwarg has no effect anymore and the [`metadata`](qiskit.circuit.QuantumCircuit#metadata "qiskit.circuit.QuantumCircuit.metadata") attribute of the input circuit(s) should be used instead.
+*   **qobj\_header** ([*QobjHeader*](qiskit.qobj.QobjHeader "qiskit.qobj.QobjHeader") *or dict*) – User input that will be inserted in Qobj header, and will also be copied to the corresponding [`qiskit.result.Result`](qiskit.result.Result "qiskit.result.Result") header. Headers do not affect the run.
 
 *   **shots** (*int*) – Number of repetitions of each circuit, for sampling. Default: 1024
 
 *   **memory** (*bool*) – If True, per-shot measurement bitstrings are returned as well (provided the backend supports it). For OpenPulse jobs, only measurement level 2 supports this option. Default: False
 
-*   **max\_credits** (*int*) – DEPRECATED This parameter is deprecated as of Qiskit Terra 0.20.0 and will be removed in a future release. This parameter has no effect on modern IBM Quantum systems, no alternative is necessary.
+*   **max\_credits** (*int*) – DEPRECATED This parameter is deprecated as of
+
+*   **Terra 0.20.0** (*Qiskit*) –
+
+*   **will be removed in a future release. This parameter has** (*and*) –
+
+*   **effect on modern IBM Quantum systems** (*no*) –
+
+*   **no alternative is necessary.** (*and*) –
 
 *   **seed\_simulator** (*int*) – Random seed to control sampling, for when backend is a simulator
 
@@ -121,7 +131,7 @@ The execution is asynchronous, and a handle to a job instance is returned.
 
 *   **rep\_delay** (*float*) – Delay between programs in seconds. Only supported on certain backends (`backend.configuration().dynamic_reprate_enabled` ). If supported, `rep_delay` will be used instead of `rep_time` and must be from the range supplied by the backend (`backend.configuration().rep_delay_range`). Default is given by `backend.configuration().default_rep_delay`.
 
-*   **parameter\_binds** (*list\[dict]*) – List of Parameter bindings over which the set of experiments will be executed. Each list element (bind) should be of the form `{Parameter1: value1, Parameter2: value2, ...}`. All binds will be executed across all experiments, e.g. if parameter\_binds is a length-$n$ list, and there are $m$ experiments, a total of $m \times n$ experiments will be run (one for each experiment/bind pair).
+*   **parameter\_binds** (*list\[dict]*) – List of Parameter bindings over which the set of experiments will be executed. Each list element (bind) should be of the form `{Parameter1: value1, Parameter2: value2, ...}`. All binds will be executed across all experiments, e.g. if parameter\_binds is a length-n list, and there are m experiments, a total of $m x n$ experiments will be run (one for each experiment/bind pair).
 
 *   **schedule\_circuit** (*bool*) – If `True`, `experiments` will be converted to [`qiskit.pulse.Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") objects prior to execution.
 
@@ -137,17 +147,17 @@ The execution is asynchronous, and a handle to a job instance is returned.
 
 **Returns**
 
-returns job instance derived from Job
+returns job instance derived from BaseJob
 
 **Return type**
 
-[Job](qiskit.providers.Job "qiskit.providers.Job")
+[BaseJob](qiskit.providers.BaseJob "qiskit.providers.BaseJob")
 
 **Raises**
 
 **QiskitError** – if the execution cannot be interpreted as either circuits or schedules
 
-## Example
+**Example**
 
 Construct a 5-qubit GHZ circuit and execute 4321 shots on a backend.
 

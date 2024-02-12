@@ -1,8 +1,16 @@
+---
+title: timeline_drawer
+description: API reference for qiskit.visualization.timeline_drawer
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.visualization.timeline_drawer
+---
+
 <span id="qiskit-visualization-timeline-drawer" />
 
 # qiskit.visualization.timeline\_drawer
 
-<span id="undefined" />
+<span id="qiskit.visualization.timeline_drawer" />
 
 `timeline_drawer(program, style=None, time_range=None, disable_bits=None, show_clbits=None, show_idle=None, show_barriers=None, show_delays=None, show_labels=True, plotter='mpl', axis=None, filename=None)`
 
@@ -53,7 +61,7 @@ The returned data type depends on the plotter. If matplotlib family is specified
 **Raises**
 
 *   **ImportError** – When required visualization package is not installed.
-*   [**VisualizationError**](qiskit.visualization.VisualizationError#qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – When invalid plotter API is specified.
+*   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – When invalid plotter API is specified.
 
 **Style Dict Details**
 
@@ -237,7 +245,7 @@ The stylesheet kwarg contains numerous options that define the style of the outp
 
 *   **layout.time\_axis\_map** – Callback function that determines the layout of horizontal axis labels. See `layouts` for more details. No default layout is set. (default None).
 
-## Examples
+**Examples**
 
 To visualize a scheduled circuit program, you can call this function with set of control arguments. Most of appearance of the output image can be controlled by the stylesheet.
 
@@ -306,3 +314,4 @@ draw(qc, style=style)
 ```
 
 In the same way as above, you can create custom generator or layout functions and update existing stylesheet with custom functions. This feature enables you to control the most of appearance of the output image without modifying the codebase of the scheduled circuit drawer.
+

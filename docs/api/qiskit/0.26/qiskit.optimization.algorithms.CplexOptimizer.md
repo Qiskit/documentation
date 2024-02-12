@@ -1,14 +1,22 @@
+---
+title: CplexOptimizer
+description: API reference for qiskit.optimization.algorithms.CplexOptimizer
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.optimization.algorithms.CplexOptimizer
+---
+
 # qiskit.optimization.algorithms.CplexOptimizer
 
-<span id="undefined" />
+<span id="qiskit.optimization.algorithms.CplexOptimizer" />
 
-`CplexOptimizer(disp=False)`
+`CplexOptimizer(disp=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/cplex_optimizer.py "view source code")
 
-The CPLEX optimizer wrapped as an Qiskit [`OptimizationAlgorithm`](qiskit.optimization.algorithms.OptimizationAlgorithm#qiskit.optimization.algorithms.OptimizationAlgorithm "qiskit.optimization.algorithms.OptimizationAlgorithm").
+The CPLEX optimizer wrapped as an Qiskit [`OptimizationAlgorithm`](qiskit.optimization.algorithms.OptimizationAlgorithm "qiskit.optimization.algorithms.OptimizationAlgorithm").
 
 This class provides a wrapper for `cplex.Cplex` ([https://pypi.org/project/cplex/](https://pypi.org/project/cplex/)) to be used within the optimization module.
 
-## Examples
+**Examples**
 
 ```python
 >>> from qiskit.optimization.problems import QuadraticProgram
@@ -27,9 +35,11 @@ Initializes the CplexOptimizer.
 
 **Raises**
 
-[**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError#qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – CPLEX is not installed.
+[**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – CPLEX is not installed.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.optimization.algorithms.CplexOptimizer.__init__" />
 
 `__init__(disp=False)`
 
@@ -41,7 +51,7 @@ Initializes the CplexOptimizer.
 
 **Raises**
 
-[**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError#qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – CPLEX is not installed.
+[**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – CPLEX is not installed.
 
 ## Methods
 
@@ -59,7 +69,9 @@ Initializes the CplexOptimizer.
 | ------------------------------------------------------------------------------------------------------------------ | ---------------------------- |
 | [`disp`](#qiskit.optimization.algorithms.CplexOptimizer.disp "qiskit.optimization.algorithms.CplexOptimizer.disp") | Returns the display setting. |
 
-<span id="undefined" />
+### disp
+
+<span id="qiskit.optimization.algorithms.CplexOptimizer.disp" />
 
 `property disp`
 
@@ -73,7 +85,9 @@ Returns the display setting.
 
 Whether to print CPLEX information or not.
 
-<span id="undefined" />
+### get\_compatibility\_msg
+
+<span id="qiskit.optimization.algorithms.CplexOptimizer.get_compatibility_msg" />
 
 `get_compatibility_msg(problem)`
 
@@ -93,7 +107,9 @@ Returns `''` since CPLEX accepts all problems that can be modeled using the `Qua
 
 An empty string.
 
-<span id="undefined" />
+### is\_compatible
+
+<span id="qiskit.optimization.algorithms.CplexOptimizer.is_compatible" />
 
 `is_compatible(problem)`
 
@@ -111,13 +127,17 @@ Checks whether a given problem can be solved with the optimizer implementing thi
 
 Returns True if the problem is compatible, False otherwise.
 
-<span id="undefined" />
+### is\_cplex\_installed
+
+<span id="qiskit.optimization.algorithms.CplexOptimizer.is_cplex_installed" />
 
 `static is_cplex_installed()`
 
 Returns True if cplex is installed
 
-<span id="undefined" />
+### solve
+
+<span id="qiskit.optimization.algorithms.CplexOptimizer.solve" />
 
 `solve(problem)`
 
@@ -139,4 +159,5 @@ The result of the optimizer applied to the problem.
 
 **Raises**
 
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If the problem is incompatible with the optimizer.
+[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If the problem is incompatible with the optimizer.
+

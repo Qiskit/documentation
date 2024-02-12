@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.UMDA
 
 <span id="qiskit.algorithms.optimizers.UMDA" />
 
-`qiskit.algorithms.optimizers.UMDA(maxiter=100, size_gen=20, alpha=0.5, callback=None)`
+`qiskit.algorithms.optimizers.UMDA(maxiter=100, size_gen=20, alpha=0.5, callback=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/optimizers/umda.py "view source code")
 
 Bases: [`Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.optimizer.Optimizer")
 
@@ -32,13 +32,13 @@ The optimization process can be personalized depending on the parameters chosen 
   The UMDA implementation has more parameters but these have default values for the initialization for better understanding of the user. For example, `lpha` parameter has been set to 0.5 and is the percentage of the population which is selected in each iteration to update the probabilistic model.
 </Admonition>
 
-## Example
+**Example**
 
 This short example runs UMDA to optimize the parameters of a variational algorithm. Here we will use the same operator as used in the algorithms introduction, which was originally computed by Qiskit Nature for an H2 molecule. The minimum energy of the H2 Hamiltonian can be found quite easily so we are able to set maxiters to a small value.
 
 ```python
 from qiskit.opflow import X, Z, I
-from qiskit import Aer
+from qiskit_aer import Aer
 from qiskit.algorithms.optimizers import UMDA
 from qiskit.algorithms import QAOA
 from qiskit.utils import QuantumInstance
@@ -71,7 +71,7 @@ vqe = QAOA(opt,
 result = vqe.compute_minimum_eigenvalue(operator=qubit_op)
 ```
 
-## References
+**References**
 
 \[1]: Vicente P. Soloviev, Pedro Larrañaga and Concha Bielza (2022, July). Quantum Parametric Circuit Optimization with Estimation of Distribution Algorithms. In 2022 The Genetic and Evolutionary Computation Conference (GECCO). DOI: [https://doi.org/10.1145/3520304.3533963](https://doi.org/10.1145/3520304.3533963)
 

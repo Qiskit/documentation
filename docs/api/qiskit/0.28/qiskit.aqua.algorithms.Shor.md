@@ -1,8 +1,16 @@
+---
+title: Shor
+description: API reference for qiskit.aqua.algorithms.Shor
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.algorithms.Shor
+---
+
 # qiskit.aqua.algorithms.Shor
 
-<span id="undefined" />
+<span id="qiskit.aqua.algorithms.Shor" />
 
-`Shor(N=15, a=2, quantum_instance=None)`
+`Shor(N=15, a=2, quantum_instance=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/factorizers/shor.py "view source code")
 
 Shor’s factoring algorithm.
 
@@ -28,7 +36,9 @@ See also [https://arxiv.org/abs/quant-ph/0205095](https://arxiv.org/abs/quant-ph
 
     ValueError: Invalid input
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.aqua.algorithms.Shor.__init__" />
 
 `__init__(N=15, a=2, quantum_instance=None)`
 
@@ -64,7 +74,9 @@ See also [https://arxiv.org/abs/quant-ph/0205095](https://arxiv.org/abs/quant-ph
 | [`quantum_instance`](#qiskit.aqua.algorithms.Shor.quantum_instance "qiskit.aqua.algorithms.Shor.quantum_instance") | Returns quantum instance. |
 | [`random`](#qiskit.aqua.algorithms.Shor.random "qiskit.aqua.algorithms.Shor.random")                               | Return a numpy random.    |
 
-<span id="undefined" />
+### backend
+
+<span id="qiskit.aqua.algorithms.Shor.backend" />
 
 `property backend`
 
@@ -74,7 +86,9 @@ Returns backend.
 
 `Union`\[`Backend`, `BaseBackend`]
 
-<span id="undefined" />
+### construct\_circuit
+
+<span id="qiskit.aqua.algorithms.Shor.construct_circuit" />
 
 `construct_circuit(measurement=False)`
 
@@ -92,7 +106,9 @@ Construct circuit.
 
 Quantum circuit.
 
-<span id="undefined" />
+### modinv
+
+<span id="qiskit.aqua.algorithms.Shor.modinv" />
 
 `static modinv(a, m)`
 
@@ -102,7 +118,9 @@ Returns the modular multiplicative inverse of a with respect to the modulus m.
 
 `int`
 
-<span id="undefined" />
+### quantum\_instance
+
+<span id="qiskit.aqua.algorithms.Shor.quantum_instance" />
 
 `property quantum_instance`
 
@@ -112,13 +130,17 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-<span id="undefined" />
+### random
+
+<span id="qiskit.aqua.algorithms.Shor.random" />
 
 `property random`
 
 Return a numpy random.
 
-<span id="undefined" />
+### run
+
+<span id="qiskit.aqua.algorithms.Shor.run" />
 
 `run(quantum_instance=None, **kwargs)`
 
@@ -139,9 +161,11 @@ dict
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
 
-<span id="undefined" />
+### set\_backend
+
+<span id="qiskit.aqua.algorithms.Shor.set_backend" />
 
 `set_backend(backend, **kwargs)`
 
@@ -150,3 +174,4 @@ Sets backend with configuration.
 **Return type**
 
 `None`
+

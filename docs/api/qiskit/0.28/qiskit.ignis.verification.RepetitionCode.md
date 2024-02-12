@@ -1,8 +1,16 @@
+---
+title: RepetitionCode
+description: API reference for qiskit.ignis.verification.RepetitionCode
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.ignis.verification.RepetitionCode
+---
+
 # qiskit.ignis.verification.RepetitionCode
 
-<span id="undefined" />
+<span id="qiskit.ignis.verification.RepetitionCode" />
 
-`RepetitionCode(d, T=0)`
+`RepetitionCode(d, T=0)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/topological_codes/circuits.py "view source code")
 
 Implementation of a distance d repetition code, implemented over T syndrome measurement rounds.
 
@@ -17,7 +25,9 @@ Creates the circuits corresponding to a logical 0 and 1 encoded using a repetiti
 
 No measurements are added to the circuit if T=0. Otherwise T rounds are added, followed by measurement of the code qubits (corresponding to a logical measurement and final syndrome measurement round).
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.ignis.verification.RepetitionCode.__init__" />
 
 `__init__(d, T=0)`
 
@@ -43,7 +53,9 @@ No measurements are added to the circuit if T=0. Otherwise T rounds are added, f
 | [`syndrome_measurement`](#qiskit.ignis.verification.RepetitionCode.syndrome_measurement "qiskit.ignis.verification.RepetitionCode.syndrome_measurement")(\[reset, barrier]) | Application of a syndrome measurement round.                                                                                                 |
 | [`x`](#qiskit.ignis.verification.RepetitionCode.x "qiskit.ignis.verification.RepetitionCode.x")(\[logs, barrier])                                                           | Applies a logical x to the circuits for the given logical values.                                                                            |
 
-<span id="undefined" />
+### get\_circuit\_list
+
+<span id="qiskit.ignis.verification.RepetitionCode.get_circuit_list" />
 
 `get_circuit_list()`
 
@@ -55,7 +67,9 @@ self.circuit as a list, with circuit\_list\[0] = circuit\[‘0’] circuit\_list
 
 circuit\_list
 
-<span id="undefined" />
+### process\_results
+
+<span id="qiskit.ignis.verification.RepetitionCode.process_results" />
 
 `process_results(raw_results)`
 
@@ -77,13 +91,17 @@ results
 
 The circuits must be executed outside of this class, so that their is full freedom to compile, choose a backend, use a noise model, etc. The results from these executions should then be used to create the input for this method.
 
-<span id="undefined" />
+### readout
+
+<span id="qiskit.ignis.verification.RepetitionCode.readout" />
 
 `readout()`
 
 Readout of all code qubits, which corresponds to a logical measurement as well as allowing for a measurement of the syndrome to be inferred.
 
-<span id="undefined" />
+### syndrome\_measurement
+
+<span id="qiskit.ignis.verification.RepetitionCode.syndrome_measurement" />
 
 `syndrome_measurement(reset=True, barrier=False)`
 
@@ -94,7 +112,9 @@ Application of a syndrome measurement round.
 *   **reset** (*bool*) – If set to true add a boolean at the end of each round
 *   **barrier** (*bool*) – Boolean denoting whether to include a barrier at the end.
 
-<span id="undefined" />
+### x
+
+<span id="qiskit.ignis.verification.RepetitionCode.x" />
 
 `x(logs=('0', '1'), barrier=False)`
 
@@ -104,3 +124,4 @@ Applies a logical x to the circuits for the given logical values.
 
 *   **logs** (*list or tuple*) – List or tuple of logical values expressed as strings.
 *   **barrier** (*bool*) – Boolean denoting whether to include a barrier at the end.
+

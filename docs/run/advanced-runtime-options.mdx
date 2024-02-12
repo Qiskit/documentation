@@ -8,10 +8,10 @@ description: Specify options when building with Qiskit runtime primitives
 
 When calling the primitives, you can pass in options by using the `Options` class or when using the `run` method. In the `Options` class, commonly used options, such as `resilience_level`, are at the first level. Other options are grouped into different categories:
 
-![options](/images/build/options.png)
+![The image shows the top-level options categories: transpilation, resilience, execution, environment, and simulation.](/images/build/options.png "Option categories")
 
 <Admonition type="info" title="Attention">
-    This section focuses on Qiskit Runtime primitive [Options](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.Options) (imported from `qiskit_ibm_runtime`). While most of the `primitives` interface is common across implementations, most `Options` are not. Consult the
+    This section focuses on Qiskit&reg; Runtime primitive [Options](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.Options) (imported from `qiskit_ibm_runtime`). While most of the `primitives` interface is common across implementations, most `Options` are not. Consult the
     corresponding API references for information about the `qiskit.primitives` and `qiskit_aer.primitives` options.
 </Admonition>
 
@@ -106,7 +106,7 @@ See the Optimization level table in the
 [Runtime compilation topic](configure-runtime-compilation#set-the-optimization-level) for further details.
 
 <Admonition>
-    In the currently deployed Qiskit Runtime primitives, optimization levels 2 and 3 behave identically to level 1. If you want to use more advanced optimization, use the Qiskit transpiler locally, set [`skip_transpilation=True`](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.TranspilationOptions#skip_transpilation), and then pass the transpiled circuits to the primitives.  For instructions see the [Submitting user-transpiled circuits using primitives](https://learning.quantum-computing.ibm.com/tutorial/submitting-user-transpiled-circuits-using-primitives) tutorial.
+    In the currently deployed Qiskit Runtime primitives, optimization levels 2 and 3 behave identically to level 1. If you want to use more advanced optimization, use the Qiskit transpiler locally, set [`skip_transpilation=True`](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.TranspilationOptions#skip_transpilation), and then pass the transpiled circuits to the primitives.  For instructions see the [Submit pre-transpiled circuits](https://learning.quantum.ibm.com/tutorial/submitting-user-transpiled-circuits-using-primitives) tutorial.
 </Admonition>
 
 The optimization level option is a "first-level option", and can be set as follows:

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.PauliFeatureMap
 
 <span id="qiskit.circuit.library.PauliFeatureMap" />
 
-`PauliFeatureMap(feature_dimension=None, reps=2, entanglement='full', paulis=None, data_map_func=None, parameter_prefix='x', insert_barriers=False)`
+`PauliFeatureMap(feature_dimension=None, reps=2, entanglement='full', paulis=None, data_map_func=None, parameter_prefix='x', insert_barriers=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/data_preparation/pauli_feature_map.py "view source code")
 
 The Pauli Expansion circuit.
 
@@ -26,7 +26,8 @@ The circuit contains `reps` repetitions of this transformation. The variable $P_
 $$
 \begin{split}\phi_S(\vec{x}) = \begin{cases}
     x_0 \text{ if } k = 1 \\
-    \prod_{j \in S} (\pi - x_j)\end{split}
+    \prod_{j \in S} (\pi - x_j) \text{ otherwise }
+    \end{cases}\end{split}
 $$
 
 For example, if the Pauli strings are chosen to be $P_0 = Z$ and $P_{0,1} = YY$ on 2 qubits and with 1 repetition using the default data-mapping, the Pauli evolution feature map is represented by:
@@ -41,7 +42,7 @@ For example, if the Pauli strings are chosen to be $P_0 = Z$ and $P_{0,1} = YY$ 
 
 Please refer to [`ZFeatureMap`](qiskit.circuit.library.ZFeatureMap "qiskit.circuit.library.ZFeatureMap") for the case $k = 1$, $P_0 = Z$ and to [`ZZFeatureMap`](qiskit.circuit.library.ZZFeatureMap "qiskit.circuit.library.ZZFeatureMap") for the case $k = 2$, $P_0 = Z$ and $P_{0,1} = ZZ$.
 
-## Examples
+**Examples**
 
 ```python
 >>> prep = PauliFeatureMap(2, reps=1, paulis=['ZZ'])
@@ -84,7 +85,7 @@ q_1: ┤ H ├────────────┤ X ├┤ U1(2.0*(pi - x[0]
 OrderedDict([('cx', 39), ('rx', 36), ('u1', 21), ('h', 15), ('ry', 12), ('rz', 12)])
 ```
 
-## References
+**References**
 
 **\[1]: Havlicek et al. (2018), Supervised learning with quantum enhanced feature spaces.**
 
@@ -270,7 +271,7 @@ The parameters used in the underlying circuit.
 
 This includes float values and duplicates.
 
-#### Examples
+**Examples**
 
 ```python
 >>> # prepare circuit ...
@@ -694,7 +695,7 @@ the composed circuit (returns None if inplace==True).
 *   **CircuitError** – if composing on the front.
 *   **QiskitError** – if `other` is wider or there are duplicate edge mappings.
 
-#### Examples
+**Examples**
 
 ```python
 >>> lhs.compose(rhs, qubits=[3, 2], inplace=True)
@@ -865,7 +866,7 @@ Depth of circuit.
 
 int
 
-#### Notes
+**Notes**
 
 The circuit depth and the DAG depth need not be the same.
 
@@ -1579,7 +1580,7 @@ Conditional nonlocal gates are also included.
 
 Computes the number of tensor factors in the unitary (quantum) part of the circuit only.
 
-#### Notes
+**Notes**
 
 This is here for backwards compatibility, and will be removed in a future release of Qiskit. You should call num\_unitary\_factors instead.
 
@@ -1595,7 +1596,7 @@ Computes the number of tensor factors in the unitary (quantum) part of the circu
 
 <span id="qiskit.circuit.library.PauliFeatureMap.pauli_block" />
 
-`PauliFeatureMap.pauli_block(pauli_string)`
+`PauliFeatureMap.pauli_block(pauli_string)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/data_preparation/pauli_feature_map.py "view source code")
 
 Get the Pauli block for the feature map circuit.
 
@@ -1603,7 +1604,7 @@ Get the Pauli block for the feature map circuit.
 
 <span id="qiskit.circuit.library.PauliFeatureMap.pauli_evolution" />
 
-`PauliFeatureMap.pauli_evolution(pauli_string, time)`
+`PauliFeatureMap.pauli_evolution(pauli_string, time)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/data_preparation/pauli_feature_map.py "view source code")
 
 Get the evolution block for the given pauli string.
 

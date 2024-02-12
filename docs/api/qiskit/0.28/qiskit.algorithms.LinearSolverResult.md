@@ -1,14 +1,24 @@
+---
+title: LinearSolverResult
+description: API reference for qiskit.algorithms.LinearSolverResult
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.algorithms.LinearSolverResult
+---
+
 # qiskit.algorithms.LinearSolverResult
 
-<span id="undefined" />
+<span id="qiskit.algorithms.LinearSolverResult" />
 
-`LinearSolverResult`
+`LinearSolverResult`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/linear_solvers/linear_solver.py "view source code")
 
 A base class for linear systems results.
 
 The linear systems algorithms return an object of the type `LinearSystemsResult` with the information about the solution obtained.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.algorithms.LinearSolverResult.__init__" />
 
 `__init__()`
 
@@ -30,7 +40,9 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`observable`](#qiskit.algorithms.LinearSolverResult.observable "qiskit.algorithms.LinearSolverResult.observable")                | return the (list of) calculated observable(s)                                    |
 | [`state`](#qiskit.algorithms.LinearSolverResult.state "qiskit.algorithms.LinearSolverResult.state")                               | return either the circuit that prepares the solution or the solution as a vector |
 
-<span id="undefined" />
+### circuit\_results
+
+<span id="qiskit.algorithms.LinearSolverResult.circuit_results" />
 
 `property circuit_results`
 
@@ -40,7 +52,9 @@ return the results from the circuits
 
 `Union`\[`List`\[`float`], `List`\[`Result`]]
 
-<span id="undefined" />
+### combine
+
+<span id="qiskit.algorithms.LinearSolverResult.combine" />
 
 `combine(result)`
 
@@ -54,7 +68,9 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 `None`
 
-<span id="undefined" />
+### euclidean\_norm
+
+<span id="qiskit.algorithms.LinearSolverResult.euclidean_norm" />
 
 `property euclidean_norm`
 
@@ -64,7 +80,9 @@ return the euclidean norm if the algorithm knows how to calculate it
 
 `float`
 
-<span id="undefined" />
+### observable
+
+<span id="qiskit.algorithms.LinearSolverResult.observable" />
 
 `property observable`
 
@@ -74,7 +92,9 @@ return the (list of) calculated observable(s)
 
 `Union`\[`float`, `List`\[`float`]]
 
-<span id="undefined" />
+### state
+
+<span id="qiskit.algorithms.LinearSolverResult.state" />
 
 `property state`
 
@@ -83,3 +103,4 @@ return either the circuit that prepares the solution or the solution as a vector
 **Return type**
 
 `Union`\[`QuantumCircuit`, `ndarray`]
+

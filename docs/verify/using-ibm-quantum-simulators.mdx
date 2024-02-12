@@ -6,7 +6,7 @@ description: Set up ibmq_qasm_simulator and map a basic noise model for an IBM Q
 
 # Using IBM Quantum cloud-based simulators
 
-Set up ``ibmq_qasm_simulator`` and map a basic noise model for an IBM Quantum hardware device in Qiskit Runtime, then use this noise model to perform noisy simulations of ``QuantumCircuits`` by using ``Sampler`` and ``Estimator`` to study the effects of errors that occur on real devices.
+Set up ``ibmq_qasm_simulator`` and map a basic noise model for an IBM Quantum&trade; hardware device in Qiskit&reg; Runtime, then use this noise model to perform noisy simulations of ``QuantumCircuits`` by using ``Sampler`` and ``Estimator`` to study the effects of errors that occur on real devices.
 
 ## Set up your local development environment
 
@@ -36,7 +36,7 @@ qc.cp(theta,0,1)
 qc.h(0)
 qc.measure(0,0)
 
-qc.draw('mpl')
+qc.draw('mpl', style="iqp")
 ```
 
 ![](/images/qiskit-ibm-runtime/noisy-sim-circuit.png)
@@ -99,7 +99,7 @@ plt.legend()
 <matplotlib.legend.Legend at 0x7f7fd233b6d0>
 ```
 
-![](/images/qiskit-ibm-runtime/noisy-sim-sampler-ideal.png)
+![This image shows that the value found by the simulator is very close to the theoretical value.](/images/qiskit-ibm-runtime/noisy-sim-sampler-ideal.png "Simulated versus theoretical value")
 
 ### Run the circuits on Estimator
 
@@ -109,7 +109,7 @@ The Estimator binds single-qubit rotations to get Hamiltonians before it returns
 
 ``` python
 qc_no_meas = qc.remove_final_measurements(inplace=False)
-qc_no_meas.draw('mpl')
+qc_no_meas.draw('mpl', style="iqp")
 ```
 
 ![](/images/qiskit-ibm-runtime/noisy-sim-estimator-circuit.png)
@@ -159,7 +159,7 @@ plt.legend()
 <matplotlib.legend.Legend at 0x7f7fd0ed8820>
 ```
 
-![](/images/qiskit-ibm-runtime/noisy-sim-estimator-ideal.png)
+![This image shows that the value found by the simulator is very close to the theoretical value.](/images/qiskit-ibm-runtime/noisy-sim-estimator-ideal.png "Simulated versus theoretical values")
 
 ## Running a noisy simulation
 
@@ -246,7 +246,7 @@ plt.legend()
 <matplotlib.legend.Legend at 0x7f7fb4230700>
 ```
 
-![](/images/qiskit-ibm-runtime/noisy-sim-sampler-noisy.png)
+![This image shows that the value found by a "noisy" simulator is not very close to the theoretical value, but the approximation is better when mitigated by using M3.](/images/qiskit-ibm-runtime/noisy-sim-sampler-noisy.png "Noisy and mitigated (M3) values versus theoretical values")
 
 ``T-REx`` is triggered in Estimator when the resilience level is set to
 1.
@@ -289,14 +289,14 @@ plt.legend()
 
 
 
-![](/images/qiskit-ibm-runtime/noisy-sim-estimator-noisy.png)
+![This image shows that the value found by a "noisy" simulator is not very close to the theoretical value, but the approximation is better when mitigated by using T-REX.](/images/qiskit-ibm-runtime/noisy-sim-estimator-noisy.png "Noisy and mitigated (T-REX) values versus theoretical values")
 
 Resilience levels are currently in beta so sampling overhead and
 solution quality will vary from circuit to circuit. New features,
 advanced options, and management tools will be released on a rolling
 basis. You can also test out higher levels of resilience and
 explore the additional options they offer. For more information
-about activating features like `Digital-ZNE` and `PEC`, in addition to `M3` and `T-REx` as shown in the previous examples, see the [Error suppression and error mitigation with Qiskit Runtime](https://learning.quantum-computing.ibm.com/tutorial/error-suppression-and-error-mitigation-with-qiskit-runtime) tutorial.
+about activating features like `Digital-ZNE` and `PEC`, in addition to `M3` and `T-REx` as shown in the previous examples, see the [Error suppression and error mitigation with Qiskit Runtime](https://learning.quantum.ibm.com/tutorial/error-suppression-and-error-mitigation-with-qiskit-runtime) tutorial.
 
 ``` python
 import qiskit_ibm_runtime
@@ -314,3 +314,10 @@ qiskit_ibm_runtime.version.get_version_info()
 from qiskit.tools.jupyter import *
 %qiskit_version_table
 ```
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+  - Learn about Qiskit Runtime error mitigation in [Exact and noisy simulation with Qiskit Aer primitives](../run/configure-error-mitigation).
+  - Explore error mitigation options in the [Cost Functions](https://learning.quantum.ibm.com/course/variational-algorithm-design/cost-functions) course.
+</Admonition>

@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit_aer.library.save_expectation_value_variance
 ---
 
-# qiskit\_aer.library.save\_expectation\_value\_variance[¶](#qiskit-aer-library-save-expectation-value-variance "Permalink to this headline")
+# qiskit\_aer.library.save\_expectation\_value\_variance
 
 <span id="qiskit_aer.library.save_expectation_value_variance" />
 
-`save_expectation_value_variance(self, operator, qubits, label='expectation_value_variance', unnormalized=False, pershot=False, conditional=False)`
+`save_expectation_value_variance(self, operator, qubits, label='expectation_value_variance', unnormalized=False, pershot=False, conditional=False)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/library/save_instructions/save_expectation_value.py "view source code")
 
 Save the expectation value of a Hermitian operator.
 

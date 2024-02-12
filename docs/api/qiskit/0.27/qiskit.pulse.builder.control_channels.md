@@ -1,8 +1,16 @@
+---
+title: control_channels
+description: API reference for qiskit.pulse.builder.control_channels
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.builder.control_channels
+---
+
 # qiskit.pulse.builder.control\_channels
 
-<span id="undefined" />
+<span id="qiskit.pulse.builder.control_channels" />
 
-`control_channels(*qubits)`
+`control_channels(*qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/builder.py "view source code")
 
 Return `AcquireChannel` for `qubit` on the active builder backend.
 
@@ -34,3 +42,4 @@ with pulse.build(backend):
 **Returns**
 
 List of control channels associated with the supplied ordered list of qubits.
+

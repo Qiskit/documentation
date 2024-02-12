@@ -1,10 +1,18 @@
+---
+title: COBYLA
+description: API reference for qiskit.aqua.components.optimizers.COBYLA
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.components.optimizers.COBYLA
+---
+
 <span id="qiskit-aqua-components-optimizers-cobyla" />
 
 # qiskit.aqua.components.optimizers.COBYLA
 
-<span id="undefined" />
+<span id="qiskit.aqua.components.optimizers.COBYLA" />
 
-`COBYLA(maxiter=1000, disp=False, rhobeg=1.0, tol=None)`
+`COBYLA(maxiter=1000, disp=False, rhobeg=1.0, tol=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/optimizers/cobyla.py "view source code")
 
 Constrained Optimization By Linear Approximation optimizer.
 
@@ -19,7 +27,9 @@ Uses scipy.optimize.minimize COBYLA. For further detail, please refer to [https:
 *   **rhobeg** (`float`) – Reasonable initial changes to the variables.
 *   **tol** (`Optional`\[`float`]) – Final accuracy in the optimization (not precisely guaranteed). This is a lower bound on the size of the trust region.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.aqua.components.optimizers.COBYLA.__init__" />
 
 `__init__(maxiter=1000, disp=False, rhobeg=1.0, tol=None)`
 
@@ -61,19 +71,25 @@ Uses scipy.optimize.minimize COBYLA. For further detail, please refer to [https:
 | [`is_initial_point_supported`](#qiskit.aqua.components.optimizers.COBYLA.is_initial_point_supported "qiskit.aqua.components.optimizers.COBYLA.is_initial_point_supported")    | Returns is initial point supported  |
 | [`setting`](#qiskit.aqua.components.optimizers.COBYLA.setting "qiskit.aqua.components.optimizers.COBYLA.setting")                                                             | Return setting                      |
 
-<span id="undefined" />
+### bounds\_support\_level
+
+<span id="qiskit.aqua.components.optimizers.COBYLA.bounds_support_level" />
 
 `property bounds_support_level`
 
 Returns bounds support level
 
-<span id="undefined" />
+### get\_support\_level
+
+<span id="qiskit.aqua.components.optimizers.COBYLA.get_support_level" />
 
 `get_support_level()`
 
 Return support level dictionary
 
-<span id="undefined" />
+### gradient\_num\_diff
+
+<span id="qiskit.aqua.components.optimizers.COBYLA.gradient_num_diff" />
 
 `static gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)`
 
@@ -94,73 +110,97 @@ the gradient computed
 
 grad
 
-<span id="undefined" />
+### gradient\_support\_level
+
+<span id="qiskit.aqua.components.optimizers.COBYLA.gradient_support_level" />
 
 `property gradient_support_level`
 
 Returns gradient support level
 
-<span id="undefined" />
+### initial\_point\_support\_level
+
+<span id="qiskit.aqua.components.optimizers.COBYLA.initial_point_support_level" />
 
 `property initial_point_support_level`
 
 Returns initial point support level
 
-<span id="undefined" />
+### is\_bounds\_ignored
+
+<span id="qiskit.aqua.components.optimizers.COBYLA.is_bounds_ignored" />
 
 `property is_bounds_ignored`
 
 Returns is bounds ignored
 
-<span id="undefined" />
+### is\_bounds\_required
+
+<span id="qiskit.aqua.components.optimizers.COBYLA.is_bounds_required" />
 
 `property is_bounds_required`
 
 Returns is bounds required
 
-<span id="undefined" />
+### is\_bounds\_supported
+
+<span id="qiskit.aqua.components.optimizers.COBYLA.is_bounds_supported" />
 
 `property is_bounds_supported`
 
 Returns is bounds supported
 
-<span id="undefined" />
+### is\_gradient\_ignored
+
+<span id="qiskit.aqua.components.optimizers.COBYLA.is_gradient_ignored" />
 
 `property is_gradient_ignored`
 
 Returns is gradient ignored
 
-<span id="undefined" />
+### is\_gradient\_required
+
+<span id="qiskit.aqua.components.optimizers.COBYLA.is_gradient_required" />
 
 `property is_gradient_required`
 
 Returns is gradient required
 
-<span id="undefined" />
+### is\_gradient\_supported
+
+<span id="qiskit.aqua.components.optimizers.COBYLA.is_gradient_supported" />
 
 `property is_gradient_supported`
 
 Returns is gradient supported
 
-<span id="undefined" />
+### is\_initial\_point\_ignored
+
+<span id="qiskit.aqua.components.optimizers.COBYLA.is_initial_point_ignored" />
 
 `property is_initial_point_ignored`
 
 Returns is initial point ignored
 
-<span id="undefined" />
+### is\_initial\_point\_required
+
+<span id="qiskit.aqua.components.optimizers.COBYLA.is_initial_point_required" />
 
 `property is_initial_point_required`
 
 Returns is initial point required
 
-<span id="undefined" />
+### is\_initial\_point\_supported
+
+<span id="qiskit.aqua.components.optimizers.COBYLA.is_initial_point_supported" />
 
 `property is_initial_point_supported`
 
 Returns is initial point supported
 
-<span id="undefined" />
+### optimize
+
+<span id="qiskit.aqua.components.optimizers.COBYLA.optimize" />
 
 `optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
@@ -184,19 +224,25 @@ point: is a 1D numpy.ndarray\[float] containing the solution value: is a float w
 
 **ValueError** – invalid input
 
-<span id="undefined" />
+### print\_options
+
+<span id="qiskit.aqua.components.optimizers.COBYLA.print_options" />
 
 `print_options()`
 
 Print algorithm-specific options.
 
-<span id="undefined" />
+### set\_max\_evals\_grouped
+
+<span id="qiskit.aqua.components.optimizers.COBYLA.set_max_evals_grouped" />
 
 `set_max_evals_grouped(limit)`
 
 Set max evals grouped
 
-<span id="undefined" />
+### set\_options
+
+<span id="qiskit.aqua.components.optimizers.COBYLA.set_options" />
 
 `set_options(**kwargs)`
 
@@ -208,13 +254,17 @@ The options dictionary may be used internally by a given optimizer to pass addit
 
 **kwargs** (*dict*) – options, given as name=value.
 
-<span id="undefined" />
+### setting
+
+<span id="qiskit.aqua.components.optimizers.COBYLA.setting" />
 
 `property setting`
 
 Return setting
 
-<span id="undefined" />
+### wrap\_function
+
+<span id="qiskit.aqua.components.optimizers.COBYLA.wrap_function" />
 
 `static wrap_function(function, args)`
 
@@ -232,3 +282,4 @@ wrapper
 **Return type**
 
 function\_wrapper
+

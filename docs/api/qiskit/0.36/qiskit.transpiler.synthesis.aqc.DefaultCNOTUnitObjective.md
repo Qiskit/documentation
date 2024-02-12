@@ -10,9 +10,9 @@ python_api_name: qiskit.transpiler.synthesis.aqc.DefaultCNOTUnitObjective
 
 <span id="qiskit.transpiler.synthesis.aqc.DefaultCNOTUnitObjective" />
 
-`DefaultCNOTUnitObjective(num_qubits, cnots)`
+`DefaultCNOTUnitObjective(num_qubits, cnots)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/synthesis/aqc/cnot_unit_objective.py "view source code")
 
-Bases: [`qiskit.transpiler.synthesis.aqc.cnot_unit_objective.CNOTUnitObjective`](qiskit.transpiler.synthesis.aqc.CNOTUnitObjective "qiskit.transpiler.synthesis.aqc.cnot_unit_objective.CNOTUnitObjective")
+Bases: `qiskit.transpiler.synthesis.aqc.cnot_unit_objective.CNOTUnitObjective`
 
 A naive implementation of the objective function based on CNOT units.
 
@@ -27,7 +27,7 @@ A naive implementation of the objective function based on CNOT units.
 
 <span id="qiskit.transpiler.synthesis.aqc.DefaultCNOTUnitObjective.gradient" />
 
-`DefaultCNOTUnitObjective.gradient(param_values)`
+`DefaultCNOTUnitObjective.gradient(param_values)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/synthesis/aqc/cnot_unit_objective.py "view source code")
 
 Computes a gradient with respect to parameters given a vector of parameter values.
 
@@ -47,7 +47,7 @@ an array of gradient values.
 
 <span id="qiskit.transpiler.synthesis.aqc.DefaultCNOTUnitObjective.objective" />
 
-`DefaultCNOTUnitObjective.objective(param_values)`
+`DefaultCNOTUnitObjective.objective(param_values)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/synthesis/aqc/cnot_unit_objective.py "view source code")
 
 Computes a value of the objective function given a vector of parameter values.
 

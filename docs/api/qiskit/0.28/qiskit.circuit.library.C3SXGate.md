@@ -1,14 +1,22 @@
+---
+title: C3SXGate
+description: API reference for qiskit.circuit.library.C3SXGate
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.C3SXGate
+---
+
 # qiskit.circuit.library.C3SXGate
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.C3SXGate" />
 
-`C3SXGate(label=None, ctrl_state=None, *, angle=None)`
+`C3SXGate(label=None, ctrl_state=None, *, angle=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 The 3-qubit controlled sqrt-X gate.
 
 This implementation is based on Page 17 of \[1].
 
-## References
+**References**
 
 \[1] Barenco et al., 1995. [https://arxiv.org/pdf/quant-ph/9503016.pdf](https://arxiv.org/pdf/quant-ph/9503016.pdf)
 
@@ -20,7 +28,9 @@ Create a new 3-qubit controlled sqrt-X gate.
 *   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
 *   **angle** (*float*) – DEPRECATED. The angle used in the controlled-U1 gates. An angle of π/8 yields the sqrt(X) gates, an angle of π/4 the 3-qubit controlled X gate.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.circuit.library.C3SXGate.__init__" />
 
 `__init__(label=None, ctrl_state=None, *, angle=None)`
 
@@ -68,19 +78,25 @@ Create a new 3-qubit controlled sqrt-X gate.
 | [`params`](#qiskit.circuit.library.C3SXGate.params "qiskit.circuit.library.C3SXGate.params")                            | Get parameters from base\_gate.                                               |
 | [`unit`](#qiskit.circuit.library.C3SXGate.unit "qiskit.circuit.library.C3SXGate.unit")                                  | Get the time unit of duration.                                                |
 
-<span id="undefined" />
+### add\_decomposition
+
+<span id="qiskit.circuit.library.C3SXGate.add_decomposition" />
 
 `add_decomposition(decomposition)`
 
 Add a decomposition of the instruction to the SessionEquivalenceLibrary.
 
-<span id="undefined" />
+### assemble
+
+<span id="qiskit.circuit.library.C3SXGate.assemble" />
 
 `assemble()`
 
 Assemble a QasmQobjInstruction
 
-<span id="undefined" />
+### broadcast\_arguments
+
+<span id="qiskit.circuit.library.C3SXGate.broadcast_arguments" />
 
 `broadcast_arguments(qargs, cargs)`
 
@@ -133,17 +149,21 @@ A tuple with single arguments.
 
 **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
 
-<span id="undefined" />
+### c\_if
+
+<span id="qiskit.circuit.library.C3SXGate.c_if" />
 
 `c_if(classical, val)`
 
 Add classical condition on register or cbit classical and value val.
 
-<span id="undefined" />
+### control
+
+<span id="qiskit.circuit.library.C3SXGate.control" />
 
 `control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
-Return controlled version of gate. See [`ControlledGate`](qiskit.circuit.ControlledGate#qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") for usage.
+Return controlled version of gate. See [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") for usage.
 
 **Parameters**
 
@@ -157,13 +177,15 @@ Controlled version of gate. This default algorithm uses num\_ctrl\_qubits-1 anci
 
 **Return type**
 
-[qiskit.circuit.ControlledGate](qiskit.circuit.ControlledGate#qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+[qiskit.circuit.ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
 
 **Raises**
 
 **QiskitError** – unrecognized mode or invalid ctrl\_state
 
-<span id="undefined" />
+### copy
+
+<span id="qiskit.circuit.library.C3SXGate.copy" />
 
 `copy(name=None)`
 
@@ -181,9 +203,11 @@ updated if it was provided
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+### ctrl\_state
+
+<span id="qiskit.circuit.library.C3SXGate.ctrl_state" />
 
 `property ctrl_state`
 
@@ -193,13 +217,17 @@ Return the control state of the gate as a decimal integer.
 
 `int`
 
-<span id="undefined" />
+### decompositions
+
+<span id="qiskit.circuit.library.C3SXGate.decompositions" />
 
 `property decompositions`
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
-<span id="undefined" />
+### definition
+
+<span id="qiskit.circuit.library.C3SXGate.definition" />
 
 `property definition`
 
@@ -209,25 +237,33 @@ Return definition in terms of other basic gates. If the gate has open controls, 
 
 `List`
 
-<span id="undefined" />
+### duration
+
+<span id="qiskit.circuit.library.C3SXGate.duration" />
 
 `property duration`
 
 Get the duration.
 
-<span id="undefined" />
+### inverse
+
+<span id="qiskit.circuit.library.C3SXGate.inverse" />
 
 `inverse()`
 
 Invert this gate. The C3X is its own inverse.
 
-<span id="undefined" />
+### is\_parameterized
+
+<span id="qiskit.circuit.library.C3SXGate.is_parameterized" />
 
 `is_parameterized()`
 
 Return True .IFF. instruction is parameterized else False
 
-<span id="undefined" />
+### label
+
+<span id="qiskit.circuit.library.C3SXGate.label" />
 
 `property label`
 
@@ -237,7 +273,9 @@ Return instruction label
 
 `str`
 
-<span id="undefined" />
+### mirror
+
+<span id="qiskit.circuit.library.C3SXGate.mirror" />
 
 `mirror()`
 
@@ -251,9 +289,11 @@ reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+### name
+
+<span id="qiskit.circuit.library.C3SXGate.name" />
 
 `property name`
 
@@ -267,7 +307,9 @@ where \<original\_name> is the gate name for the default case of closed control 
 
 `str`
 
-<span id="undefined" />
+### num\_ctrl\_qubits
+
+<span id="qiskit.circuit.library.C3SXGate.num_ctrl_qubits" />
 
 `property num_ctrl_qubits`
 
@@ -281,7 +323,9 @@ The number of control qubits for the gate.
 
 int
 
-<span id="undefined" />
+### params
+
+<span id="qiskit.circuit.library.C3SXGate.params" />
 
 `property params`
 
@@ -299,7 +343,9 @@ list
 
 **CircuitError** – Controlled gate does not define a base gate
 
-<span id="undefined" />
+### power
+
+<span id="qiskit.circuit.library.C3SXGate.power" />
 
 `power(exponent)`
 
@@ -315,13 +361,15 @@ To which to\_matrix is self.to\_matrix^exponent.
 
 **Return type**
 
-[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate#qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
+[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
 
 **Raises**
 
 **CircuitError** – If Gate is not unitary
 
-<span id="undefined" />
+### qasm
+
+<span id="qiskit.circuit.library.C3SXGate.qasm" />
 
 `qasm()`
 
@@ -329,7 +377,9 @@ Return a default OpenQASM string for the instruction.
 
 Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
 
-<span id="undefined" />
+### repeat
+
+<span id="qiskit.circuit.library.C3SXGate.repeat" />
 
 `repeat(n)`
 
@@ -345,13 +395,15 @@ Containing the definition.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
 **Raises**
 
 **CircuitError** – If n \< 1.
 
-<span id="undefined" />
+### reverse\_ops
+
+<span id="qiskit.circuit.library.C3SXGate.reverse_ops" />
 
 `reverse_ops()`
 
@@ -367,9 +419,11 @@ sub-instructions reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+### soft\_compare
+
+<span id="qiskit.circuit.library.C3SXGate.soft_compare" />
 
 `soft_compare(other)`
 
@@ -387,7 +441,9 @@ are self and other equal up to parameter expressions.
 
 bool
 
-<span id="undefined" />
+### to\_matrix
+
+<span id="qiskit.circuit.library.C3SXGate.to_matrix" />
 
 `to_matrix()`
 
@@ -405,14 +461,19 @@ np.ndarray
 
 **CircuitError** – If a Gate subclass does not implement this method an exception will be raised when this base class method is called.
 
-<span id="undefined" />
+### unit
+
+<span id="qiskit.circuit.library.C3SXGate.unit" />
 
 `property unit`
 
 Get the time unit of duration.
 
-<span id="undefined" />
+### validate\_parameter
+
+<span id="qiskit.circuit.library.C3SXGate.validate_parameter" />
 
 `validate_parameter(parameter)`
 
 Gate parameters should be int, float, or ParameterExpression
+

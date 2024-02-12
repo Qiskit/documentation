@@ -1,8 +1,16 @@
+---
+title: PhaseEstimationCircuit
+description: API reference for qiskit.aqua.circuits.PhaseEstimationCircuit
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.circuits.PhaseEstimationCircuit
+---
+
 # PhaseEstimationCircuit
 
-<span id="undefined" />
+<span id="qiskit.aqua.circuits.PhaseEstimationCircuit" />
 
-`PhaseEstimationCircuit(operator=None, state_in=None, iqft=None, num_time_slices=1, num_ancillae=1, expansion_mode='trotter', expansion_order=1, evo_time=6.283185307179586, state_in_circuit_factory=None, unitary_circuit_factory=None, shallow_circuit_concat=False, pauli_list=None)`
+`PhaseEstimationCircuit(operator=None, state_in=None, iqft=None, num_time_slices=1, num_ancillae=1, expansion_mode='trotter', expansion_order=1, evo_time=6.283185307179586, state_in_circuit_factory=None, unitary_circuit_factory=None, shallow_circuit_concat=False, pauli_list=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/circuits/phase_estimation_circuit.py "view source code")
 
 Bases: `object`
 
@@ -26,30 +34,57 @@ Quantum Phase Estimation Circuit.
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Missing input
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Missing input
 
 ## Methods
 
-|                                                                                                                                                                                                                    |                                        |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------- |
-| [`construct_circuit`](qiskit.aqua.circuits.PhaseEstimationCircuit.construct_circuit#qiskit.aqua.circuits.PhaseEstimationCircuit.construct_circuit "qiskit.aqua.circuits.PhaseEstimationCircuit.construct_circuit") | Construct the Phase Estimation circuit |
+### construct\_circuit
+
+<span id="qiskit.aqua.circuits.PhaseEstimationCircuit.construct_circuit" />
+
+`PhaseEstimationCircuit.construct_circuit(state_register=None, ancillary_register=None, auxiliary_register=None, measurement=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/circuits/phase_estimation_circuit.py "view source code")
+
+Construct the Phase Estimation circuit
+
+**Parameters**
+
+*   **state\_register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – the optional register to use for the quantum state
+*   **ancillary\_register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – the optional register to use for
+*   **ancillary measurement qubits** (*the*) –
+*   **auxiliary\_register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – an optional auxiliary quantum register
+*   **measurement** (*bool*) – Boolean flag to indicate if measurement should be included
+*   **the circuit.** (*in*) –
+
+**Returns**
+
+the QuantumCircuit object for the constructed circuit
+
+**Return type**
+
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+
+**Raises**
+
+*   **RuntimeError** – Multiple identity pauli terms are present
+*   **ValueError** – invalid mode
 
 ## Attributes
 
-<span id="undefined" />
+<span id="qiskit.aqua.circuits.PhaseEstimationCircuit.ancillary_register" />
 
 ### ancillary\_register
 
 returns ancillary register
 
-<span id="undefined" />
+<span id="qiskit.aqua.circuits.PhaseEstimationCircuit.auxiliary_register" />
 
 ### auxiliary\_register
 
 returns auxiliary register
 
-<span id="undefined" />
+<span id="qiskit.aqua.circuits.PhaseEstimationCircuit.state_register" />
 
 ### state\_register
 
 returns state register
+

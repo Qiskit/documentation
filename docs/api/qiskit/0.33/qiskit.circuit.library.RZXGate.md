@@ -1,8 +1,16 @@
+---
+title: RZXGate
+description: API reference for qiskit.circuit.library.RZXGate
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.RZXGate
+---
+
 # RZXGate
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.RZXGate" />
 
-`RZXGate(theta, label=None)`
+`RZXGate(theta, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/library/standard_gates/rzx.py "view source code")
 
 Bases: `qiskit.circuit.gate.Gate`
 
@@ -94,13 +102,17 @@ Create new RZX gate.
 
 ## Methods Defined Here
 
-|                                                                                                                                     |                               |
-| ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
-| [`inverse`](qiskit.circuit.library.RZXGate.inverse#qiskit.circuit.library.RZXGate.inverse "qiskit.circuit.library.RZXGate.inverse") | Return inverse RZX gate (i.e. |
+### inverse
+
+<span id="qiskit.circuit.library.RZXGate.inverse" />
+
+`RZXGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/library/standard_gates/rzx.py "view source code")
+
+Return inverse RZX gate (i.e. with the negative rotation angle).
 
 ## Attributes
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.RZXGate.condition_bits" />
 
 ### condition\_bits
 
@@ -110,25 +122,25 @@ Get Clbits in condition.
 
 `List`\[`Clbit`]
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.RZXGate.decompositions" />
 
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.RZXGate.definition" />
 
 ### definition
 
 Return definition in terms of other basic gates.
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.RZXGate.duration" />
 
 ### duration
 
 Get the duration.
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.RZXGate.label" />
 
 ### label
 
@@ -138,14 +150,15 @@ Return instruction label
 
 `str`
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.RZXGate.params" />
 
 ### params
 
 return instruction params.
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.RZXGate.unit" />
 
 ### unit
 
 Get the time unit of duration.
+

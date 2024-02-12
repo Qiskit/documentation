@@ -14,7 +14,7 @@ python_api_name: qiskit.optimization.applications.ising.tsp
 
 Convert symmetric TSP instances into Pauli list Deal with TSPLIB format. It supports only EUC\_2D edge weight type. See [https://wwwproxy.iwr.uni-heidelberg.de/groups/comopt/software/TSPLIB95/](https://wwwproxy.iwr.uni-heidelberg.de/groups/comopt/software/TSPLIB95/) and [http://elib.zib.de/pub/mp-testdata/tsp/tsplib/tsp/index.html](http://elib.zib.de/pub/mp-testdata/tsp/tsplib/tsp/index.html) Design the tsp object w as a two-dimensional np.array e.g., w\[i, j] = x means that the length of a edge between i and j is x Note that the weights are symmetric, i.e., w\[j, i] = x always holds.
 
-## Functions
+**Functions**
 
 |                                                                                                                                                                       |                                              |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
@@ -26,37 +26,45 @@ Convert symmetric TSP instances into Pauli list Deal with TSPLIB format. It supp
 | [`tsp_feasible`](#qiskit.optimization.applications.ising.tsp.tsp_feasible "qiskit.optimization.applications.ising.tsp.tsp_feasible")(x)                               | Check whether a solution is feasible or not. |
 | [`tsp_value`](#qiskit.optimization.applications.ising.tsp.tsp_value "qiskit.optimization.applications.ising.tsp.tsp_value")(z, w)                                     | Compute the TSP value of a solution.         |
 
-## Classes
+**Classes**
 
 |                                                                                                                                            |                                                     |
 | ------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------- |
 | [`TspData`](#qiskit.optimization.applications.ising.tsp.TspData "qiskit.optimization.applications.ising.tsp.TspData")(name, dim, coord, w) | Create new instance of TspData(name, dim, coord, w) |
 
-<span id="undefined" />
+<span id="qiskit.optimization.applications.ising.tsp.TspData" />
 
 `TspData(name, dim, coord, w)`
 
 Create new instance of TspData(name, dim, coord, w)
 
-<span id="undefined" />
+### coord
+
+<span id="qiskit.optimization.applications.ising.tsp.TspData.coord" />
 
 `property coord`
 
 Alias for field number 2
 
-<span id="undefined" />
+### count
+
+<span id="qiskit.optimization.applications.ising.tsp.TspData.count" />
 
 `count(value, /)`
 
 Return number of occurrences of value.
 
-<span id="undefined" />
+### dim
+
+<span id="qiskit.optimization.applications.ising.tsp.TspData.dim" />
 
 `property dim`
 
 Alias for field number 1
 
-<span id="undefined" />
+### index
+
+<span id="qiskit.optimization.applications.ising.tsp.TspData.index" />
 
 `index(value, start=0, stop=9223372036854775807, /)`
 
@@ -64,27 +72,35 @@ Return first index of value.
 
 Raises ValueError if the value is not present.
 
-<span id="undefined" />
+### name
+
+<span id="qiskit.optimization.applications.ising.tsp.TspData.name" />
 
 `property name`
 
 Alias for field number 0
 
-<span id="undefined" />
+### w
+
+<span id="qiskit.optimization.applications.ising.tsp.TspData.w" />
 
 `property w`
 
 Alias for field number 3
 
-<span id="undefined" />
+### calc\_distance
 
-`calc_distance(coord, name='tmp')`
+<span id="qiskit.optimization.applications.ising.tsp.calc_distance" />
+
+`calc_distance(coord, name='tmp')`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/tsp.py "view source code")
 
 calculate distance
 
-<span id="undefined" />
+### get\_operator
 
-`get_operator(ins, penalty=100000.0)`
+<span id="qiskit.optimization.applications.ising.tsp.get_operator" />
+
+`get_operator(ins, penalty=100000.0)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/tsp.py "view source code")
 
 Generate Hamiltonian for TSP of a graph.
 
@@ -99,11 +115,13 @@ operator for the Hamiltonian and a constant shift for the obj function.
 
 **Return type**
 
-tuple([WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator#qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator"), float)
+tuple([WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator"), float)
 
-<span id="undefined" />
+### get\_tsp\_solution
 
-`get_tsp_solution(x)`
+<span id="qiskit.optimization.applications.ising.tsp.get_tsp_solution" />
+
+`get_tsp_solution(x)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/tsp.py "view source code")
 
 Get graph solution from binary string.
 
@@ -125,9 +143,11 @@ list\[int]
 
 Instance data of TSP
 
-<span id="undefined" />
+### parse\_tsplib\_format
 
-`parse_tsplib_format(filename)`
+<span id="qiskit.optimization.applications.ising.tsp.parse_tsplib_format" />
+
+`parse_tsplib_format(filename)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/tsp.py "view source code")
 
 Read graph in TSPLIB format from file.
 
@@ -143,9 +163,11 @@ instance data.
 
 [TspData](#qiskit.optimization.applications.ising.tsp.TspData "qiskit.optimization.applications.ising.tsp.TspData")
 
-<span id="undefined" />
+### random\_tsp
 
-`random_tsp(n, low=0, high=100, savefile=None, seed=None, name='tmp')`
+<span id="qiskit.optimization.applications.ising.tsp.random_tsp" />
+
+`random_tsp(n, low=0, high=100, savefile=None, seed=None, name='tmp')`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/tsp.py "view source code")
 
 Generate a random instance for TSP.
 
@@ -166,9 +188,11 @@ instance data.
 
 [TspData](#qiskit.optimization.applications.ising.tsp.TspData "qiskit.optimization.applications.ising.tsp.TspData")
 
-<span id="undefined" />
+### tsp\_feasible
 
-`tsp_feasible(x)`
+<span id="qiskit.optimization.applications.ising.tsp.tsp_feasible" />
+
+`tsp_feasible(x)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/tsp.py "view source code")
 
 Check whether a solution is feasible or not.
 
@@ -184,9 +208,11 @@ feasible or not.
 
 bool
 
-<span id="undefined" />
+### tsp\_value
 
-`tsp_value(z, w)`
+<span id="qiskit.optimization.applications.ising.tsp.tsp_value" />
+
+`tsp_value(z, w)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/tsp.py "view source code")
 
 Compute the TSP value of a solution.
 

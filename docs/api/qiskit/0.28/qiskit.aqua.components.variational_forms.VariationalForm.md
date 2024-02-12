@@ -1,14 +1,24 @@
+---
+title: VariationalForm
+description: API reference for qiskit.aqua.components.variational_forms.VariationalForm
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.components.variational_forms.VariationalForm
+---
+
 # qiskit.aqua.components.variational\_forms.VariationalForm
 
-<span id="undefined" />
+<span id="qiskit.aqua.components.variational_forms.VariationalForm" />
 
-`VariationalForm`
+`VariationalForm`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/variational_forms/variational_form.py "view source code")
 
 Base class for VariationalForms.
 
 This method should initialize the module and use an exception if a component of the module is not available.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.aqua.components.variational_forms.VariationalForm.__init__" />
 
 `abstract __init__()`
 
@@ -34,7 +44,9 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`setting`](#qiskit.aqua.components.variational_forms.VariationalForm.setting "qiskit.aqua.components.variational_forms.VariationalForm.setting")                                                                   |                                                             |
 | [`support_parameterized_circuit`](#qiskit.aqua.components.variational_forms.VariationalForm.support_parameterized_circuit "qiskit.aqua.components.variational_forms.VariationalForm.support_parameterized_circuit") | Whether or not the sub-class support parameterized circuit. |
 
-<span id="undefined" />
+### construct\_circuit
+
+<span id="qiskit.aqua.components.variational_forms.VariationalForm.construct_circuit" />
 
 `abstract construct_circuit(parameters, q=None)`
 
@@ -51,15 +63,19 @@ A quantum circuit.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-<span id="undefined" />
+### get\_entangler\_map
+
+<span id="qiskit.aqua.components.variational_forms.VariationalForm.get_entangler_map" />
 
 `static get_entangler_map(map_type, num_qubits, offset=0)`
 
 returns entangler map
 
-<span id="undefined" />
+### num\_parameters
+
+<span id="qiskit.aqua.components.variational_forms.VariationalForm.num_parameters" />
 
 `property num_parameters`
 
@@ -73,7 +89,9 @@ An integer indicating the number of parameters.
 
 int
 
-<span id="undefined" />
+### num\_qubits
+
+<span id="qiskit.aqua.components.variational_forms.VariationalForm.num_qubits" />
 
 `property num_qubits`
 
@@ -87,7 +105,9 @@ An integer indicating the number of qubits.
 
 int
 
-<span id="undefined" />
+### parameter\_bounds
+
+<span id="qiskit.aqua.components.variational_forms.VariationalForm.parameter_bounds" />
 
 `property parameter_bounds`
 
@@ -101,7 +121,9 @@ A list of pairs indicating the bounds, as (lower, upper). None indicates an unbo
 
 list
 
-<span id="undefined" />
+### preferred\_init\_points
+
+<span id="qiskit.aqua.components.variational_forms.VariationalForm.preferred_init_points" />
 
 `property preferred_init_points`
 
@@ -109,11 +131,15 @@ Return preferred init points.
 
 If an initial state is provided then the variational form may provide back this set of parameters which when used on the variational form should result in the overall state being that defined by the initial state
 
-<span id="undefined" />
+### setting
+
+<span id="qiskit.aqua.components.variational_forms.VariationalForm.setting" />
 
 `property setting`
 
-<span id="undefined" />
+### support\_parameterized\_circuit
+
+<span id="qiskit.aqua.components.variational_forms.VariationalForm.support_parameterized_circuit" />
 
 `property support_parameterized_circuit`
 
@@ -127,8 +153,11 @@ indicate the sub-class support parameterized circuit
 
 boolean
 
-<span id="undefined" />
+### validate\_entangler\_map
+
+<span id="qiskit.aqua.components.variational_forms.VariationalForm.validate_entangler_map" />
 
 `static validate_entangler_map(entangler_map, num_qubits)`
 
 validate entangler map
+

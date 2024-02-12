@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.RealAmplitudes
 ---
 
-# RealAmplitudes[¶](#realamplitudes "Permalink to this headline")
+# RealAmplitudes
 
 <span id="qiskit.circuit.library.RealAmplitudes" />
 
-`RealAmplitudes(num_qubits=None, entanglement='reverse_linear', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='RealAmplitudes')`
+`RealAmplitudes(num_qubits=None, entanglement='reverse_linear', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='RealAmplitudes')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/n_local/real_amplitudes.py "view source code")
 
 Bases: [`qiskit.circuit.library.n_local.two_local.TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.n_local.two_local.TwoLocal")
 
@@ -34,7 +34,7 @@ The entanglement can be set using the `entanglement` keyword as string or a list
 
 If some qubits are not entangled with other qubits it makes sense to not apply rotation gates on these qubits, since a sequence of $Y$ rotations can be reduced to a single $Y$ rotation with summed rotation angles.
 
-## Examples
+**Examples**
 
 ```python
 >>> ansatz = RealAmplitudes(3, reps=2)  # create the circuit on 3 qubits
@@ -355,7 +355,7 @@ The parameters used in the underlying circuit.
 
 This includes float values and duplicates.
 
-## Examples
+**Examples**
 
 ```python
 >>> # prepare circuit ...

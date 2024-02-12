@@ -33,9 +33,11 @@ python_api_name: qiskit.synthesis
 
 ## Linear Function Synthesis
 
+### synth\_cnot\_count\_full\_pmh
+
 <span id="qiskit.synthesis.synth_cnot_count_full_pmh" />
 
-`qiskit.synthesis.synth_cnot_count_full_pmh(state, section_size=2)`
+`qiskit.synthesis.synth_cnot_count_full_pmh(state, section_size=2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/synthesis/linear/cnot_synth.py "view source code")
 
 Synthesize linear reversible circuits for all-to-all architecture using Patel, Markov and Hayes method.
 
@@ -58,13 +60,15 @@ a CX-only circuit implementing the linear transformation.
 
 [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – when variable “state” isn’t of type numpy.ndarray
 
-## References
+**References**
 
 1.  Patel, Ketan N., Igor L. Markov, and John P. Hayes, *Optimal synthesis of linear reversible circuits*, Quantum Information & Computation 8.3 (2008): 282-294. [arXiv:quant-ph/0302002 \[quant-ph\]](https://arxiv.org/abs/quant-ph/0302002)
 
+### synth\_cnot\_depth\_line\_kms
+
 <span id="qiskit.synthesis.synth_cnot_depth_line_kms" />
 
-`qiskit.synthesis.synth_cnot_depth_line_kms(mat)`
+`qiskit.synthesis.synth_cnot_depth_line_kms(mat)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/synthesis/linear/linear_depth_lnn.py "view source code")
 
 Synthesize linear reversible circuit for linear nearest-neighbor architectures using Kutin, Moulton, Smithline method.
 
@@ -86,15 +90,17 @@ the synthesized quantum circuit.
 
 [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if mat is not invertible.
 
-## References
+**References**
 
 1.  Kutin, S., Moulton, D. P., Smithline, L., *Computation at a distance*, Chicago J. Theor. Comput. Sci., vol. 2007, (2007), [arXiv:quant-ph/0701194](https://arxiv.org/abs/quant-ph/0701194)
 
 ## Linear-Phase Synthesis
 
+### synth\_cz\_depth\_line\_mr
+
 <span id="qiskit.synthesis.synth_cz_depth_line_mr" />
 
-`qiskit.synthesis.synth_cz_depth_line_mr(mat)`
+`qiskit.synthesis.synth_cz_depth_line_mr(mat)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/synthesis/linear_phase/cz_depth_lnn.py "view source code")
 
 Synthesis of a CZ circuit for linear nearest neighbour (LNN) connectivity, based on Maslov and Roetteler.
 
@@ -116,9 +122,11 @@ a circuit implementation of the CZ circuit of depth 2\*n+2 for LNN connectivity.
 
 1.  Dmitri Maslov, Martin Roetteler, *Shorter stabilizer circuits via Bruhat decomposition and quantum circuit transformations*, [arXiv:1705.09176](https://arxiv.org/abs/1705.09176).
 
+### synth\_cx\_cz\_depth\_line\_my
+
 <span id="qiskit.synthesis.synth_cx_cz_depth_line_my" />
 
-`qiskit.synthesis.synth_cx_cz_depth_line_my(mat_x, mat_z)`
+`qiskit.synthesis.synth_cx_cz_depth_line_my(mat_x, mat_z)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/synthesis/linear_phase/cx_cz_depth_lnn.py "view source code")
 
 Joint synthesis of a -CZ-CX- circuit for linear nearest neighbour (LNN) connectivity, with 2-qubit depth at most 5n, based on Maslov and Yang. This method computes the CZ circuit inside the CX circuit via phase gate insertions.
 
@@ -142,9 +150,11 @@ a circuit implementation of a CX circuit following a CZ circuit, denoted as a -C
 
 ## Permutation Synthesis
 
+### synth\_permutation\_depth\_lnn\_kms
+
 <span id="qiskit.synthesis.synth_permutation_depth_lnn_kms" />
 
-`qiskit.synthesis.synth_permutation_depth_lnn_kms(pattern)`
+`qiskit.synthesis.synth_permutation_depth_lnn_kms(pattern)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/synthesis/permutation/permutation_lnn.py "view source code")
 
 Synthesize a permutation circuit for a linear nearest-neighbor architecture using the Kutin, Moulton, Smithline method.
 
@@ -162,9 +172,11 @@ the synthesized quantum circuit.
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
+### synth\_permutation\_basic
+
 <span id="qiskit.synthesis.synth_permutation_basic" />
 
-`qiskit.synthesis.synth_permutation_basic(pattern)`
+`qiskit.synthesis.synth_permutation_basic(pattern)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/synthesis/permutation/permutation_full.py "view source code")
 
 Synthesize a permutation circuit for a fully-connected architecture using sorting.
 
@@ -182,9 +194,11 @@ the synthesized quantum circuit.
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
+### synth\_permutation\_acg
+
 <span id="qiskit.synthesis.synth_permutation_acg" />
 
-`qiskit.synthesis.synth_permutation_acg(pattern)`
+`qiskit.synthesis.synth_permutation_acg(pattern)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/synthesis/permutation/permutation_full.py "view source code")
 
 Synthesize a permutation circuit for a fully-connected architecture using the Alon, Chung, Graham method.
 
@@ -206,9 +220,11 @@ the synthesized quantum circuit.
 
 ## Clifford Synthesis
 
+### synth\_clifford\_full
+
 <span id="qiskit.synthesis.synth_clifford_full" />
 
-`qiskit.synthesis.synth_clifford_full(clifford, method=None)`
+`qiskit.synthesis.synth_clifford_full(clifford, method=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/synthesis/clifford/clifford_decompose_full.py "view source code")
 
 Decompose a Clifford operator into a QuantumCircuit.
 
@@ -227,15 +243,17 @@ a circuit implementation of the Clifford.
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-## References
+**References**
 
 1.  S. Bravyi, D. Maslov, *Hadamard-free circuits expose the structure of the Clifford group*, [arXiv:2003.09412 \[quant-ph\]](https://arxiv.org/abs/2003.09412)
 2.  S. Aaronson, D. Gottesman, *Improved Simulation of Stabilizer Circuits*, Phys. Rev. A 70, 052328 (2004). [arXiv:quant-ph/0406196](https://arxiv.org/abs/quant-ph/0406196)
 3.  Sergey Bravyi, Shaohan Hu, Dmitri Maslov, Ruslan Shaydulin, *Clifford Circuit Optimization with Templates and Symbolic Pauli Gates*, [arXiv:2105.02291 \[quant-ph\]](https://arxiv.org/abs/2105.02291)
 
+### synth\_clifford\_ag
+
 <span id="qiskit.synthesis.synth_clifford_ag" />
 
-`qiskit.synthesis.synth_clifford_ag(clifford)`
+`qiskit.synthesis.synth_clifford_ag(clifford)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/synthesis/clifford/clifford_decompose_ag.py "view source code")
 
 Decompose a Clifford operator into a QuantumCircuit based on Aaronson-Gottesman method.
 
@@ -255,9 +273,11 @@ a circuit implementation of the Clifford.
 
 1.  S. Aaronson, D. Gottesman, *Improved Simulation of Stabilizer Circuits*, Phys. Rev. A 70, 052328 (2004). [arXiv:quant-ph/0406196](https://arxiv.org/abs/quant-ph/0406196)
 
+### synth\_clifford\_bm
+
 <span id="qiskit.synthesis.synth_clifford_bm" />
 
-`qiskit.synthesis.synth_clifford_bm(clifford)`
+`qiskit.synthesis.synth_clifford_bm(clifford)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/synthesis/clifford/clifford_decompose_bm.py "view source code")
 
 Optimal CX-cost decomposition of a Clifford operator on 2-qubits or 3-qubits into a QuantumCircuit based on Bravyi-Maslov method.
 
@@ -281,9 +301,11 @@ a circuit implementation of the Clifford.
 
 1.  S. Bravyi, D. Maslov, *Hadamard-free circuits expose the structure of the Clifford group*, [arXiv:2003.09412 \[quant-ph\]](https://arxiv.org/abs/2003.09412)
 
+### synth\_clifford\_greedy
+
 <span id="qiskit.synthesis.synth_clifford_greedy" />
 
-`qiskit.synthesis.synth_clifford_greedy(clifford)`
+`qiskit.synthesis.synth_clifford_greedy(clifford)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/synthesis/clifford/clifford_decompose_greedy.py "view source code")
 
 Decompose a Clifford operator into a QuantumCircuit based on the greedy Clifford compiler that is described in Appendix A of Bravyi, Hu, Maslov and Shaydulin.
 
@@ -309,9 +331,11 @@ a circuit implementation of the Clifford.
 
 1.  Sergey Bravyi, Shaohan Hu, Dmitri Maslov, Ruslan Shaydulin, *Clifford Circuit Optimization with Templates and Symbolic Pauli Gates*, [arXiv:2105.02291 \[quant-ph\]](https://arxiv.org/abs/2105.02291)
 
+### synth\_clifford\_layers
+
 <span id="qiskit.synthesis.synth_clifford_layers" />
 
-`qiskit.synthesis.synth_clifford_layers(cliff, cx_synth_func=<function _default_cx_synth_func>, cz_synth_func=<function _default_cz_synth_func>, cx_cz_synth_func=None, cz_func_reverse_qubits=False, validate=False)`
+`qiskit.synthesis.synth_clifford_layers(cliff, cx_synth_func=<function _default_cx_synth_func>, cz_synth_func=<function _default_cz_synth_func>, cx_cz_synth_func=None, cz_func_reverse_qubits=False, validate=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/synthesis/clifford/clifford_decompose_layers.py "view source code")
 
 Synthesis of a Clifford into layers, it provides a similar decomposition to the synthesis described in Lemma 8 of Bravyi and Maslov.
 
@@ -354,9 +378,11 @@ a circuit implementation of the Clifford.
 
 1.  S. Bravyi, D. Maslov, *Hadamard-free circuits expose the structure of the Clifford group*, [arXiv:2003.09412 \[quant-ph\]](https://arxiv.org/abs/2003.09412)
 
+### synth\_clifford\_depth\_lnn
+
 <span id="qiskit.synthesis.synth_clifford_depth_lnn" />
 
-`qiskit.synthesis.synth_clifford_depth_lnn(cliff)`
+`qiskit.synthesis.synth_clifford_depth_lnn(cliff)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/synthesis/clifford/clifford_decompose_layers.py "view source code")
 
 Synthesis of a Clifford into layers for linear-nearest neighbour connectivity.
 
@@ -382,9 +408,11 @@ a circuit implementation of the Clifford.
 
 ## CNOTDihedral Synthesis
 
+### synth\_cnotdihedral\_full
+
 <span id="qiskit.synthesis.synth_cnotdihedral_full" />
 
-`qiskit.synthesis.synth_cnotdihedral_full(elem)`
+`qiskit.synthesis.synth_cnotdihedral_full(elem)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/synthesis/cnotdihedral/cnotdihedral_decompose_full.py "view source code")
 
 Decompose a CNOTDihedral element into a QuantumCircuit. For N \<= 2 qubits this is based on optimal CX cost decomposition from reference \[1]. For N > 2 qubits this is done using the general non-optimal compilation routine from reference \[2].
 
@@ -400,14 +428,16 @@ a circuit implementation of the CNOTDihedral element.
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-## References
+**References**
 
 1.  Shelly Garion and Andrew W. Cross, *Synthesis of CNOT-Dihedral circuits with optimal number of two qubit gates*, [Quantum 4(369), 2020](https://quantum-journal.org/papers/q-2020-12-07-369/)
 2.  Andrew W. Cross, Easwar Magesan, Lev S. Bishop, John A. Smolin and Jay M. Gambetta, *Scalable randomised benchmarking of non-Clifford gates*, npj Quantum Inf 2, 16012 (2016).
 
+### synth\_cnotdihedral\_two\_qubits
+
 <span id="qiskit.synthesis.synth_cnotdihedral_two_qubits" />
 
-`qiskit.synthesis.synth_cnotdihedral_two_qubits(elem)`
+`qiskit.synthesis.synth_cnotdihedral_two_qubits(elem)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/synthesis/cnotdihedral/cnotdihedral_decompose_two_qubits.py "view source code")
 
 Decompose a CNOTDihedral element on a single qubit and two qubits into a QuantumCircuit. This decomposition has an optimal number of CX gates.
 
@@ -431,9 +461,11 @@ a circuit implementation of the CNOTDihedral element.
 
 1.  Shelly Garion and Andrew W. Cross, *On the structure of the CNOT-Dihedral group*, [arXiv:2006.12042 \[quant-ph\]](https://arxiv.org/abs/2006.12042)
 
+### synth\_cnotdihedral\_general
+
 <span id="qiskit.synthesis.synth_cnotdihedral_general" />
 
-`qiskit.synthesis.synth_cnotdihedral_general(elem)`
+`qiskit.synthesis.synth_cnotdihedral_general(elem)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/synthesis/cnotdihedral/cnotdihedral_decompose_general.py "view source code")
 
 Decompose a CNOTDihedral element into a QuantumCircuit.
 
@@ -461,9 +493,11 @@ a circuit implementation of the CNOTDihedral element.
 
 ## Stabilizer State Synthesis
 
+### synth\_stabilizer\_layers
+
 <span id="qiskit.synthesis.synth_stabilizer_layers" />
 
-`qiskit.synthesis.synth_stabilizer_layers(stab, cz_synth_func=<function _default_cz_synth_func>, cz_func_reverse_qubits=False, validate=False)`
+`qiskit.synthesis.synth_stabilizer_layers(stab, cz_synth_func=<function _default_cz_synth_func>, cz_func_reverse_qubits=False, validate=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/synthesis/stabilizer/stabilizer_decompose.py "view source code")
 
 Synthesis of a stabilizer state into layers.
 
@@ -508,9 +542,11 @@ a circuit implementation of the stabilizer state.
 
 1.  S. Bravyi, D. Maslov, *Hadamard-free circuits expose the structure of the Clifford group*, [arXiv:2003.09412 \[quant-ph\]](https://arxiv.org/abs/2003.09412)
 
+### synth\_stabilizer\_depth\_lnn
+
 <span id="qiskit.synthesis.synth_stabilizer_depth_lnn" />
 
-`qiskit.synthesis.synth_stabilizer_depth_lnn(stab)`
+`qiskit.synthesis.synth_stabilizer_depth_lnn(stab)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/synthesis/stabilizer/stabilizer_decompose.py "view source code")
 
 Synthesis of an n-qubit stabilizer state for linear-nearest neighbour connectivity, in 2-qubit depth 2\*n+2 and two distinct CX layers, using CX and phase gates (S, Sdg or Z).
 
@@ -537,9 +573,11 @@ a circuit implementation of the stabilizer state.
 | --------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
 | [`SolovayKitaevDecomposition`](qiskit.synthesis.SolovayKitaevDecomposition "qiskit.synthesis.SolovayKitaevDecomposition")(\[...]) | The Solovay Kitaev discrete decomposition algorithm. |
 
+### generate\_basic\_approximations
+
 <span id="qiskit.synthesis.generate_basic_approximations" />
 
-`qiskit.synthesis.generate_basic_approximations(basis_gates, depth, filename=None)`
+`qiskit.synthesis.generate_basic_approximations(basis_gates, depth, filename=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/synthesis/discrete_basis/generate_basis_approximations.py "view source code")
 
 Generates a list of `GateSequence``s with the gates in ``basic_gates`.
 

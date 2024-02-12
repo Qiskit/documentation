@@ -10,11 +10,11 @@ python_api_name: qiskit.providers.ibmq.utils.utc_to_local
   The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
 </Admonition>
 
-# qiskit.providers.ibmq.utils.utc\_to\_local[¶](#qiskit-providers-ibmq-utils-utc-to-local "Permalink to this headline")
+# qiskit.providers.ibmq.utils.utc\_to\_local
 
 <span id="qiskit.providers.ibmq.utils.utc_to_local" />
 
-`utc_to_local(utc_dt)`
+`utc_to_local(utc_dt)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/utils/converters.py "view source code")
 
 Convert a UTC `datetime` object or string to a local timezone `datetime`.
 

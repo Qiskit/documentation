@@ -1,8 +1,16 @@
+---
+title: StatevectorSimulatorPy
+description: API reference for qiskit.providers.basicaer.StatevectorSimulatorPy
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.basicaer.StatevectorSimulatorPy
+---
+
 # qiskit.providers.basicaer.StatevectorSimulatorPy
 
-<span id="undefined" />
+<span id="qiskit.providers.basicaer.StatevectorSimulatorPy" />
 
-`StatevectorSimulatorPy(configuration=None, provider=None, **fields)`
+`StatevectorSimulatorPy(configuration=None, provider=None, **fields)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/providers/basicaer/statevector_simulator.py "view source code")
 
 Python statevector simulator.
 
@@ -10,15 +18,17 @@ Initialize a backend class
 
 **Parameters**
 
-*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration#qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – A backend configuration object for the backend object.
-*   **provider** ([*qiskit.providers.Provider*](qiskit.providers.Provider#qiskit.providers.Provider "qiskit.providers.Provider")) – Optionally, the provider object that this Backend comes from.
+*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – A backend configuration object for the backend object.
+*   **provider** ([*qiskit.providers.Provider*](qiskit.providers.Provider "qiskit.providers.Provider")) – Optionally, the provider object that this Backend comes from.
 *   **fields** – kwargs for the values to use to override the default options.
 
 **Raises**
 
 **AttributeError** – if input field not a valid options
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.providers.basicaer.StatevectorSimulatorPy.__init__" />
 
 `__init__(configuration=None, provider=None, **fields)`
 
@@ -26,8 +36,8 @@ Initialize a backend class
 
 **Parameters**
 
-*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration#qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – A backend configuration object for the backend object.
-*   **provider** ([*qiskit.providers.Provider*](qiskit.providers.Provider#qiskit.providers.Provider "qiskit.providers.Provider")) – Optionally, the provider object that this Backend comes from.
+*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – A backend configuration object for the backend object.
+*   **provider** ([*qiskit.providers.Provider*](qiskit.providers.Provider "qiskit.providers.Provider")) – Optionally, the provider object that this Backend comes from.
 *   **fields** – kwargs for the values to use to override the default options.
 
 **Raises**
@@ -59,7 +69,9 @@ Initialize a backend class
 | [`options`](#qiskit.providers.basicaer.StatevectorSimulatorPy.options "qiskit.providers.basicaer.StatevectorSimulatorPy.options") | Return the options for the backend |
 | `version`                                                                                                                         |                                    |
 
-<span id="undefined" />
+### configuration
+
+<span id="qiskit.providers.basicaer.StatevectorSimulatorPy.configuration" />
 
 `configuration()`
 
@@ -71,9 +83,11 @@ the configuration for the backend.
 
 **Return type**
 
-[BackendConfiguration](qiskit.providers.models.BackendConfiguration#qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+[BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
 
-<span id="undefined" />
+### name
+
+<span id="qiskit.providers.basicaer.StatevectorSimulatorPy.name" />
 
 `name()`
 
@@ -87,7 +101,9 @@ the name of the backend.
 
 str
 
-<span id="undefined" />
+### options
+
+<span id="qiskit.providers.basicaer.StatevectorSimulatorPy.options" />
 
 `property options`
 
@@ -95,7 +111,9 @@ Return the options for the backend
 
 The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit.providers.basicaer.StatevectorSimulatorPy.run "qiskit.providers.basicaer.StatevectorSimulatorPy.run") method.
 
-<span id="undefined" />
+### properties
+
+<span id="qiskit.providers.basicaer.StatevectorSimulatorPy.properties" />
 
 `properties()`
 
@@ -107,9 +125,11 @@ the configuration for the backend. If the backend does not support properties, i
 
 **Return type**
 
-[BackendProperties](qiskit.providers.models.BackendProperties#qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
+[BackendProperties](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
 
-<span id="undefined" />
+### provider
+
+<span id="qiskit.providers.basicaer.StatevectorSimulatorPy.provider" />
 
 `provider()`
 
@@ -121,9 +141,11 @@ the Provider responsible for the backend.
 
 **Return type**
 
-[Provider](qiskit.providers.Provider#qiskit.providers.Provider "qiskit.providers.Provider")
+[Provider](qiskit.providers.Provider "qiskit.providers.Provider")
 
-<span id="undefined" />
+### run
+
+<span id="qiskit.providers.basicaer.StatevectorSimulatorPy.run" />
 
 `run(qobj, **backend_options)`
 
@@ -131,7 +153,7 @@ Run qobj asynchronously.
 
 **Parameters**
 
-*   **qobj** ([*Qobj*](qiskit.qobj.Qobj#qiskit.qobj.Qobj "qiskit.qobj.Qobj")) – payload of the experiment
+*   **qobj** ([*Qobj*](qiskit.qobj.Qobj "qiskit.qobj.Qobj")) – payload of the experiment
 *   **backend\_options** (*dict*) – backend options
 
 **Returns**
@@ -140,7 +162,7 @@ derived from BaseJob
 
 **Return type**
 
-[BasicAerJob](qiskit.providers.basicaer.BasicAerJob#qiskit.providers.basicaer.BasicAerJob "qiskit.providers.basicaer.BasicAerJob")
+[BasicAerJob](qiskit.providers.basicaer.BasicAerJob "qiskit.providers.basicaer.BasicAerJob")
 
 **Additional Information:**
 
@@ -158,7 +180,9 @@ backend_options = {
 }
 ```
 
-<span id="undefined" />
+### run\_experiment
+
+<span id="qiskit.providers.basicaer.StatevectorSimulatorPy.run_experiment" />
 
 `run_experiment(experiment)`
 
@@ -194,9 +218,11 @@ dict
 
 **Raises**
 
-[**BasicAerError**](qiskit.providers.basicaer.BasicAerError#qiskit.providers.basicaer.BasicAerError "qiskit.providers.basicaer.BasicAerError") – if an error occurred.
+[**BasicAerError**](qiskit.providers.basicaer.BasicAerError "qiskit.providers.basicaer.BasicAerError") – if an error occurred.
 
-<span id="undefined" />
+### set\_options
+
+<span id="qiskit.providers.basicaer.StatevectorSimulatorPy.set_options" />
 
 `set_options(**fields)`
 
@@ -212,7 +238,9 @@ This method is used to update the options of a backend. If you need to change an
 
 **AttributeError** – If the field passed in is not part of the options
 
-<span id="undefined" />
+### status
+
+<span id="qiskit.providers.basicaer.StatevectorSimulatorPy.status" />
 
 `status()`
 
@@ -224,4 +252,5 @@ the status of the backend.
 
 **Return type**
 
-[BackendStatus](qiskit.providers.models.BackendStatus#qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+[BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+

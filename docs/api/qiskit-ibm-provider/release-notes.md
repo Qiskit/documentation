@@ -6,7 +6,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes" />
 
-# Qiskit IBM Provider 0.7 release notes
+# Qiskit IBM Provider 0.9 release notes
 
 <span id="release-notes-0-7-0" />
 
@@ -80,7 +80,7 @@ in_page_toc_max_heading_level: 2
 
 *   Fixes a bug in the function `jobs()`. Refer to [#586](https://github.com/Qiskit/qiskit-ibm-provider/issues/586) for more details.
 
-*   A transpilation error will no longer occur when attempting to transpile a circuit containing a conditional [`IGate`](/api/qiskit/qiskit.circuit.library.IGate "(in Qiskit v0.44)") with Qiskit 0.44.
+*   A transpilation error will no longer occur when attempting to transpile a circuit containing a conditional [`IGate`](https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.library.IGate "(in Qiskit v0.46)") with Qiskit 0.44.
 
 *   2pi wrapping cannot be applied on a parameterized global phase. Use the DAGCircuit `global_phase` setter to wrap the phase for floats only.
 
@@ -194,7 +194,7 @@ in_page_toc_max_heading_level: 2
 
 *   If the `dynamic` parameter is set to `True` in [`run()`](qiskit_ibm_provider.IBMBackend#run "qiskit_ibm_provider.IBMBackend.run") and the backend being used does not support dymamic circuits, a warning will be raised.
 
-*   When constructing a backend [`qiskit.transpiler.Target`](/api/qiskit/qiskit.transpiler.Target "(in Qiskit v0.44)"), faulty qubits and gates from the backend configuration will be filtered out.
+*   When constructing a backend [`qiskit.transpiler.Target`](https://docs.quantum.ibm.com/api/qiskit/qiskit.transpiler.Target "(in Qiskit v0.46)"), faulty qubits and gates from the backend configuration will be filtered out.
 
 <span id="release-notes-0-5-3-bug-fixes" />
 
@@ -343,7 +343,7 @@ in_page_toc_max_heading_level: 2
 
 ### Upgrade Notes
 
-*   Scheduling support for `c_if` has been removed. Please run the pass [`qiskit.transpiler.passes.ConvertConditionsToIfOps`](/api/qiskit/qiskit.transpiler.passes.ConvertConditionsToIfOps "(in Qiskit v0.44)") on your circuit before scheduling to convert all old format `c_if` statements to new format `if_test` control-flow that may be scheduled.
+*   Scheduling support for `c_if` has been removed. Please run the pass [`qiskit.transpiler.passes.ConvertConditionsToIfOps`](https://docs.quantum.ibm.com/api/qiskit/qiskit.transpiler.passes.ConvertConditionsToIfOps "(in Qiskit v0.46)") on your circuit before scheduling to convert all old format `c_if` statements to new format `if_test` control-flow that may be scheduled.
 
     ```python
     from qiskit.circuit import ClassicalRegister, QuantumCircuit, QuantumRegister
@@ -415,7 +415,7 @@ in_page_toc_max_heading_level: 2
 
 *   The meth:\~qiskit\_ibm\_provider.IBMProvider.instances was added to list all the available instances in a provider instance.
 
-*   A new transpiler pass ``qiskit_ibm_provider.transpiler.passes.basis.ConvertIdToDelay was added which converts an :class:`qiskit.circuit.library.IGate`` to [`qiskit.circuit.Delay`](/api/qiskit/qiskit.circuit.Delay "(in Qiskit v0.44)"). This was added to the default transpiler plugin `qiskit_ibm_provider.transpiler.plugin.IBMTranslationPlugin`.
+*   A new transpiler pass ``qiskit_ibm_provider.transpiler.passes.basis.ConvertIdToDelay was added which converts an :class:`qiskit.circuit.library.IGate`` to [`qiskit.circuit.Delay`](https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.Delay "(in Qiskit v0.46)"). This was added to the default transpiler plugin `qiskit_ibm_provider.transpiler.plugin.IBMTranslationPlugin`.
 
 <span id="release-notes-0-2-0-upgrade-notes" />
 
@@ -433,7 +433,7 @@ in_page_toc_max_heading_level: 2
 
 *   A bug was fixed in `qiskit.transpiler.passes.scheduling.LAPScheduleAnalysis` which was caused by an bad interaction between duration-less gates such as `rz` and `barrier`.
 
-*   A bug was fixed where conditional [`qiskit.circuit.library.IGate`](/api/qiskit/qiskit.circuit.library.IGate "(in Qiskit v0.44)") were being converted to unconditional [`qiskit.circuit.Delay`](/api/qiskit/qiskit.circuit.Delay "(in Qiskit v0.44)") operations rather than conditional operations.
+*   A bug was fixed where conditional [`qiskit.circuit.library.IGate`](https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.library.IGate "(in Qiskit v0.46)") were being converted to unconditional [`qiskit.circuit.Delay`](https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.Delay "(in Qiskit v0.46)") operations rather than conditional operations.
 
 *   Fixed an issue where filtering by instance with [`jobs()`](qiskit_ibm_provider.IBMBackendService#jobs "qiskit_ibm_provider.IBMBackendService.jobs") was not working correctly.
 
@@ -607,7 +607,7 @@ qiskit-ibm-provider is a new Python API client for accessing the quantum systems
         provider.active_account() # check active account
         ```
 
-*   [`IBMBackend`](qiskit_ibm_provider.IBMBackend "qiskit_ibm_provider.IBMBackend") class now implements the [`qiskit.providers.BackendV2`](/api/qiskit/qiskit.providers.BackendV2 "(in Qiskit v0.44)") interface and provides flatter access to the configuration of a backend, for example:
+*   [`IBMBackend`](qiskit_ibm_provider.IBMBackend "qiskit_ibm_provider.IBMBackend") class now implements the [`qiskit.providers.BackendV2`](https://docs.quantum.ibm.com/api/qiskit/qiskit.providers.BackendV2 "(in Qiskit v0.46)") interface and provides flatter access to the configuration of a backend, for example:
 
     ```python
     # BackendV1:
@@ -672,7 +672,7 @@ qiskit-ibm-provider is a new Python API client for accessing the quantum systems
 
 *   qiskit.providers.ibmq.IBMQBackend.retrieve\_job() and qiskit.providers.ibmq.IBMQBackend.jobs() have been removed. The IBMBackendService methods `job()` and [`jobs()`](qiskit_ibm_provider.IBMBackendService#jobs "qiskit_ibm_provider.IBMBackendService.jobs") can be used instead.
 
-*   Passing a [`QasmQobj`](/api/qiskit/qiskit.qobj.QasmQobj "(in Qiskit v0.44)") and [`PulseQobj`](/api/qiskit/qiskit.qobj.PulseQobj "(in Qiskit v0.44)") in the [`run()`](qiskit_ibm_provider.IBMBackend#run "qiskit_ibm_provider.IBMBackend.run") method has been removed. [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v0.44)") and [`Schedule`](/api/qiskit/qiskit.pulse.Schedule "(in Qiskit v0.44)") should now be used instead.
+*   Passing a [`QasmQobj`](https://docs.quantum.ibm.com/api/qiskit/qiskit.qobj.QasmQobj "(in Qiskit v0.46)") and [`PulseQobj`](https://docs.quantum.ibm.com/api/qiskit/qiskit.qobj.PulseQobj "(in Qiskit v0.46)") in the [`run()`](qiskit_ibm_provider.IBMBackend#run "qiskit_ibm_provider.IBMBackend.run") method has been removed. [`QuantumCircuit`](https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v0.46)") and [`Schedule`](https://docs.quantum.ibm.com/api/qiskit/qiskit.pulse.Schedule "(in Qiskit v0.46)") should now be used instead.
 
 *   The db\_filter parameter has been removed from [`jobs()`](qiskit_ibm_provider.IBMBackendService#jobs "qiskit_ibm_provider.IBMBackendService.jobs") due to low adoption.
 

@@ -1,8 +1,16 @@
+---
+title: CircuitGradient
+description: API reference for qiskit.aqua.operators.gradients.CircuitGradient
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.operators.gradients.CircuitGradient
+---
+
 # qiskit.aqua.operators.gradients.CircuitGradient
 
-<span id="undefined" />
+<span id="qiskit.aqua.operators.gradients.CircuitGradient" />
 
-`CircuitGradient`
+`CircuitGradient`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/gradients/circuit_gradients/circuit_gradient.py "view source code")
 
 Circuit to gradient operator converter.
 
@@ -12,7 +20,9 @@ This is distinct from DerivativeBase converters which take gradients of composit
 
 CircuitGradient - uses quantum techniques to get derivatives of circuits DerivativeBase - uses classical techniques to differentiate operator flow data structures
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.aqua.operators.gradients.CircuitGradient.__init__" />
 
 `__init__()`
 
@@ -25,7 +35,9 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`__init__`](#qiskit.aqua.operators.gradients.CircuitGradient.__init__ "qiskit.aqua.operators.gradients.CircuitGradient.__init__")()                 | Initialize self.                |
 | [`convert`](#qiskit.aqua.operators.gradients.CircuitGradient.convert "qiskit.aqua.operators.gradients.CircuitGradient.convert")(operator\[, params]) | **type operator**`OperatorBase` |
 
-<span id="undefined" />
+### convert
+
+<span id="qiskit.aqua.operators.gradients.CircuitGradient.convert" />
 
 `abstract convert(operator, params=None)`
 
@@ -45,3 +57,4 @@ An operator whose evaluation yields the Gradient.
 **Raises**
 
 **ValueError** – If `params` contains a parameter not present in `operator`.
+

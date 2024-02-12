@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.library.Drag
 
 <span id="qiskit.pulse.library.Drag" />
 
-`Drag(duration, amp, sigma, beta, angle=None, name=None, limit_amplitude=None)`
+`Drag(duration, amp, sigma, beta, angle=None, name=None, limit_amplitude=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/library/symbolic_pulses.py "view source code")
 
 Bases: `object`
 
@@ -27,7 +27,7 @@ $$
 
 where $g(x)$ is a standard unlifted Gaussian waveform, $g'(x)$ is the lifted [`Gaussian`](qiskit.pulse.library.Gaussian_class.rst#qiskit.pulse.library.Gaussian "qiskit.pulse.library.Gaussian") waveform, and $\text{A} = \text{amp} \times \exp\left(i\times\text{angle}\right)$.
 
-## References
+**References**
 
 1.  [*Gambetta, J. M., Motzoi, F., Merkel, S. T. & Wilhelm, F. K. Analytic control methods for high-fidelity unitary operations in a weakly nonlinear oscillator. Phys. Rev. A 83, 012308 (2011).*](https://link.aps.org/doi/10.1103/PhysRevA.83.012308)
 

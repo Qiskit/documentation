@@ -1,10 +1,18 @@
+---
+title: CNF
+description: API reference for qiskit.aqua.circuits.CNF
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.circuits.CNF
+---
+
 <span id="qiskit-aqua-circuits-cnf" />
 
 # qiskit.aqua.circuits.CNF
 
-<span id="undefined" />
+<span id="qiskit.aqua.circuits.CNF" />
 
-`CNF(ast, num_vars=None)`
+`CNF(ast, num_vars=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/circuits/boolean_logical_circuits.py "view source code")
 
 Class for constructing circuits for Conjunctive Normal Forms
 
@@ -17,9 +25,11 @@ Constructor.
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – invalid input
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – invalid input
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.aqua.circuits.CNF.__init__" />
 
 `__init__(ast, num_vars=None)`
 
@@ -32,7 +42,7 @@ Constructor.
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – invalid input
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – invalid input
 
 ## Methods
 
@@ -53,25 +63,33 @@ Constructor.
 | [`output_register`](#qiskit.aqua.circuits.CNF.output_register "qiskit.aqua.circuits.CNF.output_register")          | returns output register    |
 | [`variable_register`](#qiskit.aqua.circuits.CNF.variable_register "qiskit.aqua.circuits.CNF.variable_register")    | returns variable register  |
 
-<span id="undefined" />
+### ancillary\_register
+
+<span id="qiskit.aqua.circuits.CNF.ancillary_register" />
 
 `property ancillary_register`
 
 returns ancillary register
 
-<span id="undefined" />
+### clause\_register
+
+<span id="qiskit.aqua.circuits.CNF.clause_register" />
 
 `property clause_register`
 
 returns clause register
 
-<span id="undefined" />
+### compute\_num\_ancillae
+
+<span id="qiskit.aqua.circuits.CNF.compute_num_ancillae" />
 
 `compute_num_ancillae(mct_mode='basic')`
 
 returns the number of ancillary qubits needed
 
-<span id="undefined" />
+### construct\_circuit
+
+<span id="qiskit.aqua.circuits.CNF.construct_circuit" />
 
 `construct_circuit(circuit=None, variable_register=None, clause_register=None, output_register=None, ancillary_register=None, mct_mode='basic')`
 
@@ -79,11 +97,11 @@ Construct circuit.
 
 **Parameters**
 
-*   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The optional circuit to extend from
-*   **variable\_register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister#qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – The optional quantum register to use for problem variables
-*   **clause\_register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister#qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – The optional quantum register to use for problem clauses
-*   **output\_register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister#qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – The optional quantum register to use for holding the output
-*   **ancillary\_register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister#qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – The optional quantum register to use as ancilla
+*   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The optional circuit to extend from
+*   **variable\_register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – The optional quantum register to use for problem variables
+*   **clause\_register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – The optional quantum register to use for problem clauses
+*   **output\_register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – The optional quantum register to use for holding the output
+*   **ancillary\_register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – The optional quantum register to use as ancilla
 *   **mct\_mode** (*str*) – The mode to use for building Multiple-Control Toffoli
 
 **Returns**
@@ -92,32 +110,41 @@ quantum circuit.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – invalid input
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – invalid input
 
-<span id="undefined" />
+### num\_clauses
+
+<span id="qiskit.aqua.circuits.CNF.num_clauses" />
 
 `property num_clauses`
 
 returns num clauses
 
-<span id="undefined" />
+### num\_variables
+
+<span id="qiskit.aqua.circuits.CNF.num_variables" />
 
 `property num_variables`
 
 return num variables
 
-<span id="undefined" />
+### output\_register
+
+<span id="qiskit.aqua.circuits.CNF.output_register" />
 
 `property output_register`
 
 returns output register
 
-<span id="undefined" />
+### variable\_register
+
+<span id="qiskit.aqua.circuits.CNF.variable_register" />
 
 `property variable_register`
 
 returns variable register
+

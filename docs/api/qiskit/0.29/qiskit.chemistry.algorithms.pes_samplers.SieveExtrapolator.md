@@ -1,8 +1,16 @@
+---
+title: SieveExtrapolator
+description: API reference for qiskit.chemistry.algorithms.pes_samplers.SieveExtrapolator
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.algorithms.pes_samplers.SieveExtrapolator
+---
+
 # SieveExtrapolator
 
-<span id="undefined" />
+<span id="qiskit.chemistry.algorithms.pes_samplers.SieveExtrapolator" />
 
-`SieveExtrapolator(extrapolator=None, window=2, filter_before=True, filter_after=True)`
+`SieveExtrapolator(extrapolator=None, window=2, filter_before=True, filter_after=True)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/extrapolator.py "view source code")
 
 Bases: `qiskit.chemistry.algorithms.pes_samplers.extrapolator.Extrapolator`
 
@@ -19,7 +27,49 @@ Constructor.
 
 ## Methods
 
-|                                                                                                                                                                                                                                         |                                                                                   |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| [`extrapolate`](qiskit.chemistry.algorithms.pes_samplers.SieveExtrapolator.extrapolate#qiskit.chemistry.algorithms.pes_samplers.SieveExtrapolator.extrapolate "qiskit.chemistry.algorithms.pes_samplers.SieveExtrapolator.extrapolate") | Extrapolate at specified point of interest given a set of variational parameters. |
-| [`factory`](qiskit.chemistry.algorithms.pes_samplers.SieveExtrapolator.factory#qiskit.chemistry.algorithms.pes_samplers.SieveExtrapolator.factory "qiskit.chemistry.algorithms.pes_samplers.SieveExtrapolator.factory")                 | Factory method for constructing extrapolators.                                    |
+### extrapolate
+
+<span id="qiskit.chemistry.algorithms.pes_samplers.SieveExtrapolator.extrapolate" />
+
+`SieveExtrapolator.extrapolate(points, param_dict)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/extrapolator.py "view source code")
+
+Extrapolate at specified point of interest given a set of variational parameters. Based on the specified window, a subset of the data points will be used for extrapolation. A default window of 2 points is used, while a value of zero indicates that all previous points will be used for extrapolation. This method finds a cutoff distance based on the maximum average distance or ‘gap’ between the average values of the variational parameters. This cutoff distance is used as a criteria to divide the parameters into two clusters by setting all parameters that are below the cutoff distance to zero.
+
+**Parameters**
+
+*   **points** (`List`\[`float`]) – List of point(s) to be used for extrapolation. Can represent some degree of freedom, ex, interatomic distance.
+*   **param\_dict** (`Optional`\[`Dict`\[`float`, `List`\[`float`]]]) – Dictionary of variational parameters. Each key is the point and the value is a list of the variational parameters.
+
+**Return type**
+
+`Dict`\[`float`, `List`\[`float`]]
+
+**Returns**
+
+Dictionary of variational parameters for extrapolated point(s).
+
+### factory
+
+<span id="qiskit.chemistry.algorithms.pes_samplers.SieveExtrapolator.factory" />
+
+`static SieveExtrapolator.factory(mode, **kwargs)`
+
+Factory method for constructing extrapolators.
+
+**Parameters**
+
+*   **mode** (`str`) – Extrapolator to instantiate. Can be one of: - ‘window’ - ‘poly’ - ‘diff\_model’ - ‘pca’ - ‘l1’
+*   **kwargs** – arguments to be passed to the constructor of an extrapolator
+
+**Return type**
+
+`Extrapolator`
+
+**Returns**
+
+A newly created extrapolator instance.
+
+**Raises**
+
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if specified mode is unknown.
+

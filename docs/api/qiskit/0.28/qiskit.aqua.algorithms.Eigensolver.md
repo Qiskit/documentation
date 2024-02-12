@@ -1,14 +1,24 @@
+---
+title: Eigensolver
+description: API reference for qiskit.aqua.algorithms.Eigensolver
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.algorithms.Eigensolver
+---
+
 # qiskit.aqua.algorithms.Eigensolver
 
-<span id="undefined" />
+<span id="qiskit.aqua.algorithms.Eigensolver" />
 
-`Eigensolver`
+`Eigensolver`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/eigen_solvers/eigen_solver.py "view source code")
 
 The Eigensolver Interface.
 
 Algorithms that can compute eigenvalues for an operator may implement this interface to allow different algorithms to be used interchangeably.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.aqua.algorithms.Eigensolver.__init__" />
 
 `abstract __init__()`
 
@@ -29,7 +39,9 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`aux_operators`](#qiskit.aqua.algorithms.Eigensolver.aux_operators "qiskit.aqua.algorithms.Eigensolver.aux_operators") | Returns the auxiliary operators. |
 | [`operator`](#qiskit.aqua.algorithms.Eigensolver.operator "qiskit.aqua.algorithms.Eigensolver.operator")                | Return the operator.             |
 
-<span id="undefined" />
+### aux\_operators
+
+<span id="qiskit.aqua.algorithms.Eigensolver.aux_operators" />
 
 `abstract property aux_operators`
 
@@ -39,7 +51,9 @@ Returns the auxiliary operators.
 
 `Optional`\[`List`\[`Optional`\[`OperatorBase`]]]
 
-<span id="undefined" />
+### compute\_eigenvalues
+
+<span id="qiskit.aqua.algorithms.Eigensolver.compute_eigenvalues" />
 
 `abstract compute_eigenvalues(operator=None, aux_operators=None)`
 
@@ -58,7 +72,9 @@ Computes eigenvalues. Operator and aux\_operators can be supplied here and if no
 
 EigensolverResult
 
-<span id="undefined" />
+### operator
+
+<span id="qiskit.aqua.algorithms.Eigensolver.operator" />
 
 `abstract property operator`
 
@@ -68,7 +84,9 @@ Return the operator.
 
 `Union`\[`OperatorBase`, `LegacyBaseOperator`, `None`]
 
-<span id="undefined" />
+### supports\_aux\_operators
+
+<span id="qiskit.aqua.algorithms.Eigensolver.supports_aux_operators" />
 
 `classmethod supports_aux_operators()`
 
@@ -81,3 +99,4 @@ Whether computing the expectation value of auxiliary operators is supported.
 **Returns**
 
 True if aux\_operator expectations can be evaluated, False otherwise
+

@@ -10,11 +10,11 @@ python_api_name: qiskit.providers.ibmq.managed.ManagedJob
   The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
 </Admonition>
 
-# ManagedJob[¶](#managedjob "Permalink to this headline")
+# ManagedJob
 
 <span id="qiskit.providers.ibmq.managed.ManagedJob" />
 
-`ManagedJob(start_index, experiments_count, job=None)`
+`ManagedJob(start_index, experiments_count, job=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/managed/managedjob.py "view source code")
 
 Bases: `object`
 
@@ -38,7 +38,7 @@ ManagedJob constructor.
 
 <span id="qiskit.providers.ibmq.managed.ManagedJob.cancel" />
 
-`ManagedJob.cancel()`
+`ManagedJob.cancel()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/managed/managedjob.py "view source code")
 
 Attempt to cancel the job.
 
@@ -54,7 +54,7 @@ Attempt to cancel the job.
 
 <span id="qiskit.providers.ibmq.managed.ManagedJob.error_message" />
 
-`ManagedJob.error_message()`
+`ManagedJob.error_message()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/managed/managedjob.py "view source code")
 
 Provide details about the reason of failure.
 
@@ -74,7 +74,7 @@ An error report if the job failed or `None` otherwise.
 
 <span id="qiskit.providers.ibmq.managed.ManagedJob.qobj" />
 
-`ManagedJob.qobj()`
+`ManagedJob.qobj()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/managed/managedjob.py "view source code")
 
 Return the Qobj for this job.
 
@@ -94,7 +94,7 @@ The Qobj for this job or `None` if the Qobj could not be retrieved.
 
 <span id="qiskit.providers.ibmq.managed.ManagedJob.result" />
 
-`ManagedJob.result(timeout=None, partial=False, refresh=False)`
+`ManagedJob.result(timeout=None, partial=False, refresh=False)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/managed/managedjob.py "view source code")
 
 Return the result of the job.
 
@@ -124,7 +124,7 @@ Job result or `None` if result could not be retrieved.
 
 <span id="qiskit.providers.ibmq.managed.ManagedJob.status" />
 
-`ManagedJob.status()`
+`ManagedJob.status()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/managed/managedjob.py "view source code")
 
 Query the server for job status.
 
@@ -144,7 +144,7 @@ Current job status, or `None` if an error occurred.
 
 <span id="qiskit.providers.ibmq.managed.ManagedJob.submit" />
 
-`ManagedJob.submit(circuits, job_name, backend, executor, submit_lock, job_share_level=None, job_tags=None, **run_config)`
+`ManagedJob.submit(circuits, job_name, backend, executor, submit_lock, job_share_level=None, job_tags=None, **run_config)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/managed/managedjob.py "view source code")
 
 Submit the job.
 

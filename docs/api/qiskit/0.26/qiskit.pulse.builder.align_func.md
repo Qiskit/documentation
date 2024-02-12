@@ -1,8 +1,16 @@
+---
+title: align_func
+description: API reference for qiskit.pulse.builder.align_func
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.builder.align_func
+---
+
 # qiskit.pulse.builder.align\_func
 
-<span id="undefined" />
+<span id="qiskit.pulse.builder.align_func" />
 
-`align_func(duration, func)`
+`align_func(duration, func)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/builder.py "view source code")
 
 Callback defined alignment pulse scheduling context.
 
@@ -40,10 +48,11 @@ udd_sched.draw()
 *   **duration** (`int`) – Duration of context. This should be larger than the schedule duration.
 *   **func** (`Callable`\[\[`int`], `float`]) – A function that takes an index of sub-schedule and returns the fractional coordinate of of that sub-schedule. The returned value should be defined within \[0, 1]. The pulse index starts from 1.
 
-## Notes
+**Notes**
 
 The scheduling is performed for sub-schedules within the context rather than channel-wise. If you want to apply the numerical context for each channel, you need to apply the context independently to channels.
 
 **Return type**
 
 `AbstractContextManager`\[`None`]
+

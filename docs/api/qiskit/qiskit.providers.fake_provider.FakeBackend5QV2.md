@@ -10,26 +10,15 @@ python_api_name: qiskit.providers.fake_provider.FakeBackend5QV2
 
 <span id="qiskit.providers.fake_provider.FakeBackend5QV2" />
 
-`qiskit.providers.fake_provider.FakeBackend5QV2(bidirectional=True)`
+`qiskit.providers.fake_provider.FakeBackend5QV2(bidirectional=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/providers/fake_provider/fake_backend_v2.py "view source code")
 
 Bases: [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.backend.BackendV2")
 
 A mock backend that doesn’t implement run() to test compatibility with Terra internals.
 
-Initialize a BackendV2 based backend
-
-**Parameters**
-
-*   **provider** – An optional backwards reference to the [`Provider`](qiskit.providers.Provider "qiskit.providers.Provider") object that the backend is from
-*   **name** – An optional name for the backend
-*   **description** – An optional description of the backend
-*   **online\_date** – An optional datetime the backend was brought online
-*   **backend\_version** – An optional backend version string. This differs from the [`version`](qiskit.providers.BackendV2#version "qiskit.providers.BackendV2.version") attribute as [`version`](qiskit.providers.BackendV2#version "qiskit.providers.BackendV2.version") is for the abstract [`Backend`](qiskit.providers.Backend "qiskit.providers.Backend") abstract interface version of the object while `backend_version` is for versioning the backend itself.
-*   **fields** – kwargs for the values to use to override the default options.
-
-**Raises**
-
-[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – If a field is specified that’s outside the backend’s options
+<Admonition title="Deprecated since version 0.46.0" type="danger">
+  The class `qiskit.providers.fake_provider.fake_backend_v2.FakeBackend5QV2` is deprecated as of qiskit 0.46.0. It will be removed in qiskit 1.0. Use the qiskit.providers.basic\_provider.GenericBackendV2 class instead.
+</Admonition>
 
 ## Attributes
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.HRSCumulativeMultiplier
 
 <span id="qiskit.circuit.library.HRSCumulativeMultiplier" />
 
-`HRSCumulativeMultiplier(num_state_qubits, num_result_qubits=None, adder=None, name='HRSCumulativeMultiplier')`
+`HRSCumulativeMultiplier(num_state_qubits, num_result_qubits=None, adder=None, name='HRSCumulativeMultiplier')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/arithmetic/multipliers/hrs_cumulative_multiplier.py "view source code")
 
 Bases: `qiskit.circuit.library.arithmetic.multipliers.multiplier.Multiplier`
 
@@ -57,7 +57,7 @@ Multiplication in this circuit is implemented in a classical approach by perform
 
 *   **num\_state\_qubits** (`int`) – The number of qubits in either input register for state $|a\rangle$ or $|b\rangle$. The two input registers must have the same number of qubits.
 *   **num\_result\_qubits** (`Optional`\[`int`]) – The number of result qubits to limit the output to. If number of result qubits is $n$, multiplication modulo $2^n$ is performed to limit the output to the specified number of qubits. Default value is `2 * num_state_qubits` to represent any possible result from the multiplication of the two inputs.
-*   **adder** (`Optional`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]) – Half adder circuit to be used for performing multiplication. The CDKMRippleCarryAdder is used as default if no adder is provided.
+*   **adder** (`Optional`\[`QuantumCircuit`]) – Half adder circuit to be used for performing multiplication. The CDKMRippleCarryAdder is used as default if no adder is provided.
 *   **name** (`str`) – The name of the circuit object.
 
 **Raises**
@@ -74,7 +74,7 @@ Returns a list of ancilla bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.quantumregister.AncillaQubit")]
+`List`\[`AncillaQubit`]
 
 <span id="qiskit.circuit.library.HRSCumulativeMultiplier.calibrations" />
 
@@ -98,7 +98,7 @@ Returns a list of classical bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.library.HRSCumulativeMultiplier.data" />
 
@@ -108,7 +108,9 @@ Return the circuit data (instructions and context).
 
 **Returns**
 
-a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
+a list-like object containing the tuples for the circuit’s data.
+
+Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is an Instruction (or subclass) object, qargs is a list of Qubit objects, and cargs is a list of Clbit objects.
 
 **Return type**
 
@@ -128,7 +130,7 @@ Return the global phase of the circuit in radians.
 
 **Return type**
 
-`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]
+`Union`\[`ParameterExpression`, `float`]
 
 <span id="qiskit.circuit.library.HRSCumulativeMultiplier.header" />
 
@@ -140,7 +142,7 @@ Return the global phase of the circuit in radians.
 
 ### instances
 
-`= 87`
+`= 9`
 
 <span id="qiskit.circuit.library.HRSCumulativeMultiplier.metadata" />
 
@@ -222,26 +224,6 @@ The number of state qubits, i.e. the number of bits in each input register.
 
 The number of state qubits.
 
-<span id="qiskit.circuit.library.HRSCumulativeMultiplier.op_start_times" />
-
-### op\_start\_times
-
-Return a list of operation start times.
-
-This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
-
-**Return type**
-
-`List`\[`int`]
-
-**Returns**
-
-List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
-
-**Raises**
-
-**AttributeError** – When circuit is not scheduled.
-
 <span id="qiskit.circuit.library.HRSCumulativeMultiplier.parameters" />
 
 ### parameters
@@ -266,5 +248,5 @@ Returns a list of quantum bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")]
+`List`\[`Qubit`]
 

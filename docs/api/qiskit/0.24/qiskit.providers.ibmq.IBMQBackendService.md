@@ -1,14 +1,22 @@
+---
+title: IBMQBackendService
+description: API reference for qiskit.providers.ibmq.IBMQBackendService
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.ibmq.IBMQBackendService
+---
+
 <span id="qiskit-providers-ibmq-ibmqbackendservice" />
 
 # qiskit.providers.ibmq.IBMQBackendService
 
-<span id="undefined" />
+<span id="qiskit.providers.ibmq.IBMQBackendService" />
 
-`IBMQBackendService(provider)`
+`IBMQBackendService(provider)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.12/qiskit/providers/ibmq/ibmqbackendservice.py "view source code")
 
 Backend namespace for an IBM Quantum Experience account provider.
 
-Represent a namespace that provides backend related services for the IBM Quantum Experience backends available to this provider. An instance of this class is used as a callable attribute to the [`AccountProvider`](qiskit.providers.ibmq.AccountProvider#qiskit.providers.ibmq.AccountProvider "qiskit.providers.ibmq.AccountProvider") class. This allows a convenient way to query for all backends or to access a specific backend:
+Represent a namespace that provides backend related services for the IBM Quantum Experience backends available to this provider. An instance of this class is used as a callable attribute to the [`AccountProvider`](qiskit.providers.ibmq.AccountProvider "qiskit.providers.ibmq.AccountProvider") class. This allows a convenient way to query for all backends or to access a specific backend:
 
 ```python
 backends = provider.backends()  # Invoke backends() to get the backends.
@@ -33,7 +41,9 @@ IBMQBackendService constructor.
 
 **provider** (`AccountProvider`) – IBM Quantum Experience account provider.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.providers.ibmq.IBMQBackendService.__init__" />
 
 `__init__(provider)`
 
@@ -53,7 +63,9 @@ IBMQBackendService constructor.
 | [`my_reservations`](#qiskit.providers.ibmq.IBMQBackendService.my_reservations "qiskit.providers.ibmq.IBMQBackendService.my_reservations")()        | Return your upcoming reservations.                                               |
 | [`retrieve_job`](#qiskit.providers.ibmq.IBMQBackendService.retrieve_job "qiskit.providers.ibmq.IBMQBackendService.retrieve_job")(job\_id)          | Return a single job.                                                             |
 
-<span id="undefined" />
+### backends
+
+<span id="qiskit.providers.ibmq.IBMQBackendService.backends" />
 
 `backends(name=None, filters=None, timeout=None, min_num_qubits=None, **kwargs)`
 
@@ -92,7 +104,9 @@ Return all backends accessible via this provider, subject to optional filtering.
 
 The list of available backends that match the filter.
 
-<span id="undefined" />
+### jobs
+
+<span id="qiskit.providers.ibmq.IBMQBackendService.jobs" />
 
 `jobs(limit=10, skip=0, backend_name=None, status=None, job_name=None, start_datetime=None, end_datetime=None, job_tags=None, job_tags_operator='OR', experiment_id=None, descending=True, db_filter=None)`
 
@@ -156,10 +170,12 @@ A list of `IBMQJob` instances.
 
 **Raises**
 
-*   [**IBMQBackendValueError**](qiskit.providers.ibmq.IBMQBackendValueError#qiskit.providers.ibmq.IBMQBackendValueError "qiskit.providers.ibmq.IBMQBackendValueError") – If a keyword value is not recognized.
+*   [**IBMQBackendValueError**](qiskit.providers.ibmq.IBMQBackendValueError "qiskit.providers.ibmq.IBMQBackendValueError") – If a keyword value is not recognized.
 *   **TypeError** – If the input start\_datetime or end\_datetime parameter value is not valid.
 
-<span id="undefined" />
+### my\_reservations
+
+<span id="qiskit.providers.ibmq.IBMQBackendService.my_reservations" />
 
 `my_reservations()`
 
@@ -173,7 +189,9 @@ Return your upcoming reservations.
 
 A list of your upcoming reservations.
 
-<span id="undefined" />
+### retrieve\_job
+
+<span id="qiskit.providers.ibmq.IBMQBackendService.retrieve_job" />
 
 `retrieve_job(job_id)`
 
@@ -193,5 +211,6 @@ The job with the given id.
 
 **Raises**
 
-*   [**IBMQBackendApiError**](qiskit.providers.ibmq.IBMQBackendApiError#qiskit.providers.ibmq.IBMQBackendApiError "qiskit.providers.ibmq.IBMQBackendApiError") – If an unexpected error occurred when retrieving the job.
-*   [**IBMQBackendApiProtocolError**](qiskit.providers.ibmq.IBMQBackendApiProtocolError#qiskit.providers.ibmq.IBMQBackendApiProtocolError "qiskit.providers.ibmq.IBMQBackendApiProtocolError") – If unexpected return value received from the server.
+*   [**IBMQBackendApiError**](qiskit.providers.ibmq.IBMQBackendApiError "qiskit.providers.ibmq.IBMQBackendApiError") – If an unexpected error occurred when retrieving the job.
+*   [**IBMQBackendApiProtocolError**](qiskit.providers.ibmq.IBMQBackendApiProtocolError "qiskit.providers.ibmq.IBMQBackendApiProtocolError") – If unexpected return value received from the server.
+

@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.gradients.QFIBase
 
 <span id="qiskit.opflow.gradients.QFIBase" />
 
-`qiskit.opflow.gradients.QFIBase(qfi_method='lin_comb_full')`
+`qiskit.opflow.gradients.QFIBase(qfi_method='lin_comb_full')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/opflow/gradients/qfi_base.py "view source code")
 
 Bases: [`DerivativeBase`](qiskit.opflow.gradients.DerivativeBase "qiskit.opflow.gradients.derivative_base.DerivativeBase")
 
@@ -23,7 +23,7 @@ The QFI is:
 > \[QFI]kl= Re\[〈∂kψ|∂lψ〉−〈∂kψ|ψ〉〈ψ|∂lψ〉] \* 4.
 
 <Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.opflow.gradients.qfi_base.QFIBase` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  The class `qiskit.opflow.gradients.qfi_base.QFIBase` is deprecated as of qiskit-terra 0.24.0. It will be removed in the Qiskit 1.0 release. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
 </Admonition>
 
 **Parameters**

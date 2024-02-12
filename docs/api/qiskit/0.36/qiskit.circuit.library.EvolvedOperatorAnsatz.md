@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.library.EvolvedOperatorAnsatz
 
 <span id="qiskit.circuit.library.EvolvedOperatorAnsatz" />
 
-`EvolvedOperatorAnsatz(operators=None, reps=1, evolution=None, insert_barriers=False, name='EvolvedOps', parameter_prefix='t', initial_state=None)`
+`EvolvedOperatorAnsatz(operators=None, reps=1, evolution=None, insert_barriers=False, name='EvolvedOps', parameter_prefix='t', initial_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/evolved_operator_ansatz.py "view source code")
 
-Bases: [`qiskit.circuit.library.n_local.n_local.NLocal`](qiskit.circuit.library.NLocal "qiskit.circuit.library.n_local.n_local.NLocal")
+Bases: `qiskit.circuit.library.n_local.n_local.NLocal`
 
 The evolved operator ansatz.
 
@@ -24,7 +24,7 @@ The evolved operator ansatz.
 *   **insert\_barriers** (`bool`) – Whether to insert barriers in between each evolution.
 *   **name** (`str`) – The name of the circuit.
 *   **parameter\_prefix** (`Union`\[`str`, `List`\[`str`]]) – Set the names of the circuit parameters. If a string, the same prefix will be used for each parameters. Can also be a list to specify a prefix per operator.
-*   **initial\_state** (`Optional`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]) – A QuantumCircuit object to prepend to the circuit.
+*   **initial\_state** (`Optional`\[`QuantumCircuit`]) – A QuantumCircuit object to prepend to the circuit.
 
 ## Attributes
 
@@ -36,7 +36,7 @@ Returns a list of ancilla bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.quantumregister.AncillaQubit")]
+`List`\[`AncillaQubit`]
 
 <span id="qiskit.circuit.library.EvolvedOperatorAnsatz.calibrations" />
 
@@ -60,7 +60,7 @@ Returns a list of classical bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.library.EvolvedOperatorAnsatz.data" />
 
@@ -88,7 +88,7 @@ The blocks in the entanglement layers.
 
 **Return type**
 
-`List`\[[`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")]
+`List`\[`Instruction`]
 
 **Returns**
 
@@ -122,7 +122,7 @@ Return the global phase of the circuit in radians.
 
 **Return type**
 
-`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]
+`Union`\[`ParameterExpression`, `float`]
 
 <span id="qiskit.circuit.library.EvolvedOperatorAnsatz.header" />
 
@@ -162,7 +162,7 @@ True, if barriers are inserted in between the layers, False if not.
 
 ### instances
 
-`= 87`
+`= 9`
 
 <span id="qiskit.circuit.library.EvolvedOperatorAnsatz.metadata" />
 
@@ -246,26 +246,6 @@ The number of parameters originally available in the circuit.
 
 `int`
 
-<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.op_start_times" />
-
-### op\_start\_times
-
-Return a list of operation start times.
-
-This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
-
-**Return type**
-
-`List`\[`int`]
-
-**Returns**
-
-List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
-
-**Raises**
-
-**AttributeError** – When circuit is not scheduled.
-
 <span id="qiskit.circuit.library.EvolvedOperatorAnsatz.operators" />
 
 ### operators
@@ -288,7 +268,7 @@ The parameters used in the underlying circuit.
 
 This includes float values and duplicates.
 
-## Examples
+**Examples**
 
 ```python
 >>> # prepare circuit ...
@@ -304,7 +284,7 @@ q_0: ┤ Ry(1) ├┤ Ry(θ[1]) ├┤ Ry(θ[1]) ├┤ Ry(θ[3]) ├
 
 **Return type**
 
-`List`\[[`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.parameter.Parameter")]
+`List`\[`Parameter`]
 
 **Returns**
 
@@ -358,7 +338,7 @@ Returns a list of quantum bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")]
+`List`\[`Qubit`]
 
 <span id="qiskit.circuit.library.EvolvedOperatorAnsatz.reps" />
 
@@ -382,7 +362,7 @@ The blocks in the rotation layers.
 
 **Return type**
 
-`List`\[[`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")]
+`List`\[`Instruction`]
 
 **Returns**
 

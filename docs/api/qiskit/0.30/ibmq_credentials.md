@@ -20,15 +20,15 @@ Utilities for working with IBM Quantum Experience account credentials.
 
 ## Classes
 
-|                                                                                                                                                                                                 |                                                             |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
-| [`Credentials`](qiskit.providers.ibmq.credentials.Credentials#qiskit.providers.ibmq.credentials.Credentials "qiskit.providers.ibmq.credentials.Credentials")(token, url\[, websockets\_url, …]) | IBM Quantum Experience account credentials and preferences. |
+|                                                                                                                                                   |                                                             |
+| ------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| [`Credentials`](qiskit.providers.ibmq.credentials.Credentials "qiskit.providers.ibmq.credentials.Credentials")(token, url\[, websockets\_url, …]) | IBM Quantum Experience account credentials and preferences. |
 
 ## Exceptions
 
-|                                                                                                                                                                                                                                                 |                                                              |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| [`CredentialsError`](qiskit.providers.ibmq.credentials.CredentialsError#qiskit.providers.ibmq.credentials.CredentialsError "qiskit.providers.ibmq.credentials.CredentialsError")(\*message)                                                     | Base class for errors raised during credential management.   |
-| [`InvalidCredentialsFormatError`](qiskit.providers.ibmq.credentials.InvalidCredentialsFormatError#qiskit.providers.ibmq.credentials.InvalidCredentialsFormatError "qiskit.providers.ibmq.credentials.InvalidCredentialsFormatError")(\*message) | Errors raised when the credentials are in an invalid format. |
-| [`CredentialsNotFoundError`](qiskit.providers.ibmq.credentials.CredentialsNotFoundError#qiskit.providers.ibmq.credentials.CredentialsNotFoundError "qiskit.providers.ibmq.credentials.CredentialsNotFoundError")(\*message)                     | Errors raised when the credentials are not found.            |
+|                                                                                                                                                                                 |                                                              |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| [`CredentialsError`](qiskit.providers.ibmq.credentials.CredentialsError "qiskit.providers.ibmq.credentials.CredentialsError")(\*message)                                        | Base class for errors raised during credential management.   |
+| [`InvalidCredentialsFormatError`](qiskit.providers.ibmq.credentials.InvalidCredentialsFormatError "qiskit.providers.ibmq.credentials.InvalidCredentialsFormatError")(\*message) | Errors raised when the credentials are in an invalid format. |
+| [`CredentialsNotFoundError`](qiskit.providers.ibmq.credentials.CredentialsNotFoundError "qiskit.providers.ibmq.credentials.CredentialsNotFoundError")(\*message)                | Errors raised when the credentials are not found.            |
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.NoiseAdaptiveLayout
 
 <span id="qiskit.transpiler.passes.NoiseAdaptiveLayout" />
 
-`qiskit.transpiler.passes.NoiseAdaptiveLayout(*args, **kwargs)`
+`qiskit.transpiler.passes.NoiseAdaptiveLayout(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/passes/layout/noise_adaptive_layout.py "view source code")
 
 Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
@@ -20,11 +20,7 @@ Choose a noise-adaptive Layout based on current calibration data for the backend
 >
 > The pass implements the qubit mapping method from: Noise-Adaptive Compiler Mappings for Noisy Intermediate-Scale Quantum Computers Prakash Murali, Jonathan M. Baker, Ali Javadi-Abhari, Frederic T. Chong, Margaret R. Martonosi ASPLOS 2019 (arXiv:1901.11054).
 
-<span id="undefined" />
-
 `Ordering of edges`
-
-<span id="undefined" />
 
 `Map qubits edge-by-edge in the order of decreasing frequency of occurrence in the program dag.`
 
@@ -34,39 +30,21 @@ Choose a noise-adaptive Layout based on current calibration data for the backend
 
 `Initialization()`
 
-<span id="undefined" />
-
 `If an edge exists with both endpoints unmapped,`
-
-<span id="undefined" />
 
 `pick the best available hardware cx to execute this edge.`
 
-<span id="undefined" />
-
 `Iterative step`
-
-<span id="undefined" />
 
 `When an edge exists with one endpoint unmapped,`
 
-<span id="undefined" />
-
 `map that endpoint to a location which allows`
-
-<span id="undefined" />
 
 `maximum reliability for CNOTs with previously mapped qubits.`
 
-<span id="undefined" />
-
 `In the end if there are unmapped qubits (which don't`
 
-<span id="undefined" />
-
 `participate in any CNOT), map them to any available`
-
-<span id="undefined" />
 
 `hardware qubit.`
 
@@ -79,6 +57,10 @@ Choose a noise-adaptive Layout based on current calibration data for the backend
 even though a layout is not strictly a property of the DAG, in the transpiler architecture it is best passed around between passes by being set in property\_set.
 
 NoiseAdaptiveLayout initializer.
+
+<Admonition title="Deprecated since version 0.46" type="danger">
+  The class `qiskit.transpiler.passes.layout.noise_adaptive_layout.NoiseAdaptiveLayout` is deprecated as of qiskit 0.46. It will be removed in the 1.0.0 release.
+</Admonition>
 
 **Parameters**
 

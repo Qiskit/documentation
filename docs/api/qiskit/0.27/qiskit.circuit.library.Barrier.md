@@ -1,14 +1,24 @@
+---
+title: Barrier
+description: API reference for qiskit.circuit.library.Barrier
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.Barrier
+---
+
 # qiskit.circuit.library.Barrier
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.Barrier" />
 
-`Barrier(num_qubits)`
+`Barrier(num_qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/barrier.py "view source code")
 
 Barrier instruction.
 
 Create new barrier instruction.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.circuit.library.Barrier.__init__" />
 
 `__init__(num_qubits)`
 
@@ -43,19 +53,25 @@ Create new barrier instruction.
 | [`params`](#qiskit.circuit.library.Barrier.params "qiskit.circuit.library.Barrier.params")                         | return instruction params.                                                    |
 | [`unit`](#qiskit.circuit.library.Barrier.unit "qiskit.circuit.library.Barrier.unit")                               | Get the time unit of duration.                                                |
 
-<span id="undefined" />
+### add\_decomposition
+
+<span id="qiskit.circuit.library.Barrier.add_decomposition" />
 
 `add_decomposition(decomposition)`
 
 Add a decomposition of the instruction to the SessionEquivalenceLibrary.
 
-<span id="undefined" />
+### assemble
+
+<span id="qiskit.circuit.library.Barrier.assemble" />
 
 `assemble()`
 
 Assemble a QasmQobjInstruction
 
-<span id="undefined" />
+### broadcast\_arguments
+
+<span id="qiskit.circuit.library.Barrier.broadcast_arguments" />
 
 `broadcast_arguments(qargs, cargs)`
 
@@ -74,13 +90,17 @@ Validation of the arguments.
 
 **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
 
-<span id="undefined" />
+### c\_if
+
+<span id="qiskit.circuit.library.Barrier.c_if" />
 
 `c_if(classical, val)`
 
 Add classical condition on register classical and value val.
 
-<span id="undefined" />
+### copy
+
+<span id="qiskit.circuit.library.Barrier.copy" />
 
 `copy(name=None)`
 
@@ -98,39 +118,51 @@ updated if it was provided
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+### decompositions
+
+<span id="qiskit.circuit.library.Barrier.decompositions" />
 
 `property decompositions`
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
-<span id="undefined" />
+### definition
+
+<span id="qiskit.circuit.library.Barrier.definition" />
 
 `property definition`
 
 Return definition in terms of other basic gates.
 
-<span id="undefined" />
+### duration
+
+<span id="qiskit.circuit.library.Barrier.duration" />
 
 `property duration`
 
 Get the duration.
 
-<span id="undefined" />
+### inverse
+
+<span id="qiskit.circuit.library.Barrier.inverse" />
 
 `inverse()`
 
 Special case. Return self.
 
-<span id="undefined" />
+### is\_parameterized
+
+<span id="qiskit.circuit.library.Barrier.is_parameterized" />
 
 `is_parameterized()`
 
 Return True .IFF. instruction is parameterized else False
 
-<span id="undefined" />
+### mirror
+
+<span id="qiskit.circuit.library.Barrier.mirror" />
 
 `mirror()`
 
@@ -144,15 +176,19 @@ reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+### params
+
+<span id="qiskit.circuit.library.Barrier.params" />
 
 `property params`
 
 return instruction params.
 
-<span id="undefined" />
+### qasm
+
+<span id="qiskit.circuit.library.Barrier.qasm" />
 
 `qasm()`
 
@@ -160,7 +196,9 @@ Return a default OpenQASM string for the instruction.
 
 Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
 
-<span id="undefined" />
+### repeat
+
+<span id="qiskit.circuit.library.Barrier.repeat" />
 
 `repeat(n)`
 
@@ -176,13 +214,15 @@ Containing the definition.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
 **Raises**
 
 **CircuitError** – If n \< 1.
 
-<span id="undefined" />
+### reverse\_ops
+
+<span id="qiskit.circuit.library.Barrier.reverse_ops" />
 
 `reverse_ops()`
 
@@ -198,9 +238,11 @@ sub-instructions reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+### soft\_compare
+
+<span id="qiskit.circuit.library.Barrier.soft_compare" />
 
 `soft_compare(other)`
 
@@ -218,14 +260,19 @@ are self and other equal up to parameter expressions.
 
 bool
 
-<span id="undefined" />
+### unit
+
+<span id="qiskit.circuit.library.Barrier.unit" />
 
 `property unit`
 
 Get the time unit of duration.
 
-<span id="undefined" />
+### validate\_parameter
+
+<span id="qiskit.circuit.library.Barrier.validate_parameter" />
 
 `validate_parameter(parameter)`
 
 Instruction parameters has no validation or normalization.
+

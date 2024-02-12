@@ -1,8 +1,16 @@
+---
+title: LogicalExpressionOracle
+description: API reference for qiskit.aqua.components.oracles.LogicalExpressionOracle
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.components.oracles.LogicalExpressionOracle
+---
+
 # qiskit.aqua.components.oracles.LogicalExpressionOracle
 
-<span id="undefined" />
+<span id="qiskit.aqua.components.oracles.LogicalExpressionOracle" />
 
-`LogicalExpressionOracle(expression, optimization=False, mct_mode='basic')`
+`LogicalExpressionOracle(expression, optimization=False, mct_mode='basic')`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/oracles/logical_expression_oracle.py "view source code")
 
 The Logical Expression Quantum Oracle.
 
@@ -40,9 +48,11 @@ By default, the Logical Expression oracle will not try to apply any optimization
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Invalid input
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Invalid input
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.aqua.components.oracles.LogicalExpressionOracle.__init__" />
 
 `__init__(expression, optimization=False, mct_mode='basic')`
 
@@ -54,7 +64,7 @@ By default, the Logical Expression oracle will not try to apply any optimization
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Invalid input
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Invalid input
 
 ## Methods
 
@@ -73,36 +83,49 @@ By default, the Logical Expression oracle will not try to apply any optimization
 | [`output_register`](#qiskit.aqua.components.oracles.LogicalExpressionOracle.output_register "qiskit.aqua.components.oracles.LogicalExpressionOracle.output_register")          | returns output register    |
 | [`variable_register`](#qiskit.aqua.components.oracles.LogicalExpressionOracle.variable_register "qiskit.aqua.components.oracles.LogicalExpressionOracle.variable_register")    | returns variable register  |
 
-<span id="undefined" />
+### ancillary\_register
+
+<span id="qiskit.aqua.components.oracles.LogicalExpressionOracle.ancillary_register" />
 
 `property ancillary_register`
 
 returns ancillary register
 
-<span id="undefined" />
+### circuit
+
+<span id="qiskit.aqua.components.oracles.LogicalExpressionOracle.circuit" />
 
 `property circuit`
 
-<span id="undefined" />
+### construct\_circuit
+
+<span id="qiskit.aqua.components.oracles.LogicalExpressionOracle.construct_circuit" />
 
 `construct_circuit()`
 
 construct circuit
 
-<span id="undefined" />
+### evaluate\_classically
+
+<span id="qiskit.aqua.components.oracles.LogicalExpressionOracle.evaluate_classically" />
 
 `evaluate_classically(measurement)`
 
 evaluate classically
 
-<span id="undefined" />
+### output\_register
+
+<span id="qiskit.aqua.components.oracles.LogicalExpressionOracle.output_register" />
 
 `property output_register`
 
 returns output register
 
-<span id="undefined" />
+### variable\_register
+
+<span id="qiskit.aqua.components.oracles.LogicalExpressionOracle.variable_register" />
 
 `property variable_register`
 
 returns variable register
+

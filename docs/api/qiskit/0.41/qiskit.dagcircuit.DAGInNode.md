@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.dagcircuit.DAGInNode
 ---
 
-# DAGInNode[¶](#daginnode "Permalink to this headline")
+# DAGInNode
 
 <span id="qiskit.dagcircuit.DAGInNode" />
 
-`DAGInNode(wire)`
+`DAGInNode(wire)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/dagcircuit/dagnode.py "view source code")
 
 Bases: [`qiskit.dagcircuit.dagnode.DAGNode`](qiskit.dagcircuit.DAGNode "qiskit.dagcircuit.dagnode.DAGNode")
 

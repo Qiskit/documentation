@@ -10,9 +10,9 @@ python_api_name: qiskit.synthesis.ProductFormula
 
 <span id="qiskit.synthesis.ProductFormula" />
 
-`ProductFormula(order, reps=1, insert_barriers=False, cx_structure='chain', atomic_evolution=None)`
+`ProductFormula(order, reps=1, insert_barriers=False, cx_structure='chain', atomic_evolution=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/synthesis/evolution/product_formula.py "view source code")
 
-Bases: [`qiskit.synthesis.evolution.evolution_synthesis.EvolutionSynthesis`](qiskit.synthesis.EvolutionSynthesis "qiskit.synthesis.evolution.evolution_synthesis.EvolutionSynthesis")
+Bases: `qiskit.synthesis.evolution.evolution_synthesis.EvolutionSynthesis`
 
 Product formula base class for the decomposition of non-commuting operator exponentials.
 
@@ -24,7 +24,7 @@ Product formula base class for the decomposition of non-commuting operator expon
 *   **reps** (`int`) – The number of time steps.
 *   **insert\_barriers** (`bool`) – Whether to insert barriers between the atomic evolutions.
 *   **cx\_structure** (`str`) – How to arrange the CX gates for the Pauli evolutions, can be “chain”, where next neighbor connections are used, or “fountain”, where all qubits are connected to one.
-*   **atomic\_evolution** (`Optional`\[`Callable`\[\[`Union`\[[`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.operators.symplectic.pauli.Pauli"), [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.operators.symplectic.sparse_pauli_op.SparsePauliOp")], `float`], [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]]) – A function to construct the circuit for the evolution of single Pauli string. Per default, a single Pauli evolution is decomopsed in a CX chain and a single qubit Z rotation.
+*   **atomic\_evolution** (`Optional`\[`Callable`\[\[`Union`\[`Pauli`, `SparsePauliOp`], `float`], `QuantumCircuit`]]) – A function to construct the circuit for the evolution of single Pauli string. Per default, a single Pauli evolution is decomopsed in a CX chain and a single qubit Z rotation.
 
 ## Methods
 

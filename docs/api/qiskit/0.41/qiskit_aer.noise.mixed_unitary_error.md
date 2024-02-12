@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit_aer.noise.mixed_unitary_error
 ---
 
-# qiskit\_aer.noise.mixed\_unitary\_error[¶](#qiskit-aer-noise-mixed-unitary-error "Permalink to this headline")
+# qiskit\_aer.noise.mixed\_unitary\_error
 
 <span id="qiskit_aer.noise.mixed_unitary_error" />
 
-`mixed_unitary_error(noise_ops, standard_gates=None)`
+`mixed_unitary_error(noise_ops, standard_gates=None)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/noise/errors/standard_errors.py "view source code")
 
 Return a mixed unitary quantum error channel.
 

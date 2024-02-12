@@ -1,10 +1,18 @@
+---
+title: TensoredFilter
+description: API reference for qiskit.ignis.mitigation.TensoredFilter
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.ignis.mitigation.TensoredFilter
+---
+
 <span id="qiskit-ignis-mitigation-tensoredfilter" />
 
 # qiskit.ignis.mitigation.TensoredFilter
 
-<span id="undefined" />
+<span id="qiskit.ignis.mitigation.TensoredFilter" />
 
-`TensoredFilter(cal_matrices, substate_labels_list)`
+`TensoredFilter(cal_matrices, substate_labels_list)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/mitigation/measurement/filters.py "view source code")
 
 Tensored measurement error mitigation filter.
 
@@ -17,7 +25,9 @@ Initialize a tensored measurement error mitigation filter using the cal\_matrice
 *   **cal\_matrices** (`matrix`) – the calibration matrices for applying the correction.
 *   **substate\_labels\_list** (`list`) – for each calibration matrix a list of the states (as strings, states in the subspace)
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.ignis.mitigation.TensoredFilter.__init__" />
 
 `__init__(cal_matrices, substate_labels_list)`
 
@@ -44,7 +54,9 @@ Initialize a tensored measurement error mitigation filter using the cal\_matrice
 | [`qubit_list_sizes`](#qiskit.ignis.mitigation.TensoredFilter.qubit_list_sizes "qiskit.ignis.mitigation.TensoredFilter.qubit_list_sizes")             | Return \_qubit\_list\_sizes.    |
 | [`substate_labels_list`](#qiskit.ignis.mitigation.TensoredFilter.substate_labels_list "qiskit.ignis.mitigation.TensoredFilter.substate_labels_list") | Return \_substate\_labels\_list |
 
-<span id="undefined" />
+### apply
+
+<span id="qiskit.ignis.mitigation.TensoredFilter.apply" />
 
 `apply(raw_data, method='least_squares')`
 
@@ -52,7 +64,7 @@ Apply the calibration matrices to results.
 
 **Parameters**
 
-*   **raw\_data** (*dict or* [*Result*](qiskit.result.Result#qiskit.result.Result "qiskit.result.Result")) –
+*   **raw\_data** (*dict or* [*Result*](qiskit.result.Result "qiskit.result.Result")) –
 
     The data to be corrected. Can be in one of two forms:
 
@@ -73,32 +85,41 @@ The corrected data in the same form as raw\_data
 
 **Return type**
 
-dict or [Result](qiskit.result.Result#qiskit.result.Result "qiskit.result.Result")
+dict or [Result](qiskit.result.Result "qiskit.result.Result")
 
 **Raises**
 
 **QiskitError** – if raw\_data is not in a one of the defined forms.
 
-<span id="undefined" />
+### cal\_matrices
+
+<span id="qiskit.ignis.mitigation.TensoredFilter.cal_matrices" />
 
 `property cal_matrices`
 
 Return cal\_matrices.
 
-<span id="undefined" />
+### nqubits
+
+<span id="qiskit.ignis.mitigation.TensoredFilter.nqubits" />
 
 `property nqubits`
 
 Return the number of qubits. See also MeasurementFilter.apply()
 
-<span id="undefined" />
+### qubit\_list\_sizes
+
+<span id="qiskit.ignis.mitigation.TensoredFilter.qubit_list_sizes" />
 
 `property qubit_list_sizes`
 
 Return \_qubit\_list\_sizes.
 
-<span id="undefined" />
+### substate\_labels\_list
+
+<span id="qiskit.ignis.mitigation.TensoredFilter.substate_labels_list" />
 
 `property substate_labels_list`
 
 Return \_substate\_labels\_list
+

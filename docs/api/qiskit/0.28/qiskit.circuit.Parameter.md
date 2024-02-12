@@ -1,8 +1,16 @@
+---
+title: Parameter
+description: API reference for qiskit.circuit.Parameter
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.Parameter
+---
+
 # qiskit.circuit.Parameter
 
-<span id="undefined" />
+<span id="qiskit.circuit.Parameter" />
 
-`Parameter(name)`
+`Parameter(name)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/parameter.py "view source code")
 
 Parameter Class for variable parameters.
 
@@ -12,7 +20,9 @@ Create a new named [`Parameter`](#qiskit.circuit.Parameter "qiskit.circuit.Param
 
 **name** (`str`) – name of the `Parameter`, used for visual representation. This can be any unicode string, e.g. “ϕ”.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.circuit.Parameter.__init__" />
 
 `__init__(name)`
 
@@ -49,25 +59,33 @@ Create a new named [`Parameter`](#qiskit.circuit.Parameter "qiskit.circuit.Param
 | [`name`](#qiskit.circuit.Parameter.name "qiskit.circuit.Parameter.name")                   | Returns the name of the [`Parameter`](#qiskit.circuit.Parameter "qiskit.circuit.Parameter"). |
 | [`parameters`](#qiskit.circuit.Parameter.parameters "qiskit.circuit.Parameter.parameters") | Returns a set of the unbound Parameters in the expression.                                   |
 
-<span id="undefined" />
+### arccos
+
+<span id="qiskit.circuit.Parameter.arccos" />
 
 `arccos()`
 
 Arccos of a ParameterExpression
 
-<span id="undefined" />
+### arcsin
+
+<span id="qiskit.circuit.Parameter.arcsin" />
 
 `arcsin()`
 
 Arcsin of a ParameterExpression
 
-<span id="undefined" />
+### arctan
+
+<span id="qiskit.circuit.Parameter.arctan" />
 
 `arctan()`
 
 Arctan of a ParameterExpression
 
-<span id="undefined" />
+### assign
+
+<span id="qiskit.circuit.Parameter.assign" />
 
 `assign(parameter, value)`
 
@@ -86,7 +104,9 @@ Assign one parameter to a value, which can either be numeric or another paramete
 
 A new expression parameterized by any parameters which were not bound by assignment.
 
-<span id="undefined" />
+### bind
+
+<span id="qiskit.circuit.Parameter.bind" />
 
 `bind(parameter_values)`
 
@@ -114,7 +134,9 @@ Binds the provided set of parameters to their corresponding values.
 
 A new expression parameterized by any parameters which were not bound by parameter\_values.
 
-<span id="undefined" />
+### conjugate
+
+<span id="qiskit.circuit.Parameter.conjugate" />
 
 `conjugate()`
 
@@ -124,19 +146,25 @@ Return the conjugate.
 
 `ParameterExpression`
 
-<span id="undefined" />
+### cos
+
+<span id="qiskit.circuit.Parameter.cos" />
 
 `cos()`
 
 Cosine of a ParameterExpression
 
-<span id="undefined" />
+### exp
+
+<span id="qiskit.circuit.Parameter.exp" />
 
 `exp()`
 
 Exponential of a ParameterExpression
 
-<span id="undefined" />
+### gradient
+
+<span id="qiskit.circuit.Parameter.gradient" />
 
 `gradient(param)`
 
@@ -154,25 +182,33 @@ Get the derivative of a parameter expression w\.r.t. a specified parameter expre
 
 ParameterExpression representing the gradient of param\_expr w\.r.t. param
 
-<span id="undefined" />
+### is\_real
+
+<span id="qiskit.circuit.Parameter.is_real" />
 
 `is_real()`
 
 Return whether the expression is real
 
-<span id="undefined" />
+### log
+
+<span id="qiskit.circuit.Parameter.log" />
 
 `log()`
 
 Logarithm of a ParameterExpression
 
-<span id="undefined" />
+### name
+
+<span id="qiskit.circuit.Parameter.name" />
 
 `property name`
 
 Returns the name of the [`Parameter`](#qiskit.circuit.Parameter "qiskit.circuit.Parameter").
 
-<span id="undefined" />
+### parameters
+
+<span id="qiskit.circuit.Parameter.parameters" />
 
 `property parameters`
 
@@ -182,20 +218,27 @@ Returns a set of the unbound Parameters in the expression.
 
 `Set`
 
-<span id="undefined" />
+### sin
+
+<span id="qiskit.circuit.Parameter.sin" />
 
 `sin()`
 
 Sine of a ParameterExpression
 
-<span id="undefined" />
+### subs
+
+<span id="qiskit.circuit.Parameter.subs" />
 
 `subs(parameter_map)`
 
 Substitute self with the corresponding parameter in `parameter_map`.
 
-<span id="undefined" />
+### tan
+
+<span id="qiskit.circuit.Parameter.tan" />
 
 `tan()`
 
 Tangent of a ParameterExpression
+

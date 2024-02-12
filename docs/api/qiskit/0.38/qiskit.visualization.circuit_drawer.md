@@ -10,7 +10,7 @@ python_api_name: qiskit.visualization.circuit_drawer
 
 <span id="qiskit.visualization.circuit_drawer" />
 
-`circuit_drawer(circuit, scale=None, filename=None, style=None, output=None, interactive=False, plot_barriers=True, reverse_bits=False, justify=None, vertical_compression='medium', idle_wires=True, with_layout=True, fold=None, ax=None, initial_state=False, cregbundle=True)`
+`circuit_drawer(circuit, scale=None, filename=None, style=None, output=None, interactive=False, plot_barriers=True, reverse_bits=False, justify=None, vertical_compression='medium', idle_wires=True, with_layout=True, fold=None, ax=None, initial_state=False, cregbundle=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/visualization/circuit_visualization.py "view source code")
 
 Draw the quantum circuit. Use the output parameter to choose the drawing format:
 
@@ -66,7 +66,7 @@ Draw the quantum circuit. Use the output parameter to choose the drawing format:
 *   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – when an invalid output method is selected
 *   **MissingOptionalLibraryError** – when the output methods requires non-installed libraries.
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit

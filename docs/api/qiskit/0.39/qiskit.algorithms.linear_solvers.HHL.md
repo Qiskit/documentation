@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.linear_solvers.HHL
 
 <span id="qiskit.algorithms.linear_solvers.HHL" />
 
-`HHL(epsilon=0.01, expectation=None, quantum_instance=None)`
+`HHL(epsilon=0.01, expectation=None, quantum_instance=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/linear_solvers/hhl.py "view source code")
 
 Bases: [`qiskit.algorithms.linear_solvers.linear_solver.LinearSolver`](qiskit.algorithms.linear_solvers.LinearSolver "qiskit.algorithms.linear_solvers.linear_solver.LinearSolver")
 
@@ -22,7 +22,7 @@ The deprecated HHL is a quantum algorithm to estimate a function of the solution
 
 The HHL class is deprecated as of Qiskit Terra 0.22.0 and will be removed no sooner than 3 months after the release date. It is replaced by the tutorial at [HHL](https://qiskit.org/textbook/ch-applications/hhl_tutorial.html)
 
-## Examples
+**Examples**
 
 ```python
 import warnings
@@ -51,7 +51,7 @@ with warnings.catch_warnings():
 approx_result = solution.observable
 ```
 
-## References
+**References**
 
 **\[1]: Harrow, A. W., Hassidim, A., Lloyd, S. (2009).**
 
@@ -73,7 +73,7 @@ Enhancing the Quantum Linear Systems Algorithm Using Richardson Extrapolation. [
 
 <span id="qiskit.algorithms.linear_solvers.HHL.construct_circuit" />
 
-`HHL.construct_circuit(matrix, vector, neg_vals=True)`
+`HHL.construct_circuit(matrix, vector, neg_vals=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/linear_solvers/hhl.py "view source code")
 
 Construct the HHL circuit.
 
@@ -101,7 +101,7 @@ The HHL circuit.
 
 <span id="qiskit.algorithms.linear_solvers.HHL.solve" />
 
-`HHL.solve(matrix, vector, observable=None, observable_circuit=None, post_processing=None)`
+`HHL.solve(matrix, vector, observable=None, observable_circuit=None, post_processing=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/linear_solvers/hhl.py "view source code")
 
 Tries to solve the given linear system of equations.
 

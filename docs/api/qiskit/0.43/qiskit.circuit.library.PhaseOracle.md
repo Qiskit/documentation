@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.PhaseOracle
 
 <span id="qiskit.circuit.library.PhaseOracle" />
 
-`PhaseOracle(expression, synthesizer=None, var_order=None)`
+`PhaseOracle(expression, synthesizer=None, var_order=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/phase_oracle.py "view source code")
 
 Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
@@ -38,7 +38,7 @@ Creates a PhaseOracle object
 
 <span id="qiskit.circuit.library.PhaseOracle.evaluate_bitstring" />
 
-`PhaseOracle.evaluate_bitstring(bitstring)`
+`PhaseOracle.evaluate_bitstring(bitstring)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/phase_oracle.py "view source code")
 
 Evaluate the oracle on a bitstring. This evaluation is done classically without any quantum circuit.
 
@@ -60,7 +60,7 @@ bool
 
 <span id="qiskit.circuit.library.PhaseOracle.from_dimacs_file" />
 
-`classmethod PhaseOracle.from_dimacs_file(filename)`
+`classmethod PhaseOracle.from_dimacs_file(filename)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/phase_oracle.py "view source code")
 
 Create a PhaseOracle from the string in the DIMACS format.
 
@@ -220,7 +220,7 @@ The parameters defined in the circuit.
 
 This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
 
-## Examples
+**Examples**
 
 The snippet below shows that insertion order of parameters does not matter.
 

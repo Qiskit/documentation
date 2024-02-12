@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.providers.fake_provider.FakePrague
 ---
 
-# FakePrague[¶](#fakeprague "Permalink to this headline")
+# FakePrague
 
 <span id="qiskit.providers.fake_provider.FakePrague" />
 
-`FakePrague`
+`FakePrague`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/fake_provider/backends/prague/fake_prague.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_backend.FakeBackendV2`
 

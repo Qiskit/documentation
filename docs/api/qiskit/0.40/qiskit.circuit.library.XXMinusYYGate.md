@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.XXMinusYYGate
 ---
 
-# XXMinusYYGate[¶](#xxminusyygate "Permalink to this headline")
+# XXMinusYYGate
 
 <span id="qiskit.circuit.library.XXMinusYYGate" />
 
-`XXMinusYYGate(theta, beta=0, label='{XX-YY}')`
+`XXMinusYYGate(theta, beta=0, label='{XX-YY}')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/xx_minus_yy.py "view source code")
 
 Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -78,7 +78,7 @@ Create new XX-YY gate.
 
 <span id="qiskit.circuit.library.XXMinusYYGate.inverse" />
 
-`XXMinusYYGate.inverse()`
+`XXMinusYYGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/xx_minus_yy.py "view source code")
 
 Inverse gate.
 
@@ -86,7 +86,7 @@ Inverse gate.
 
 <span id="qiskit.circuit.library.XXMinusYYGate.power" />
 
-`XXMinusYYGate.power(exponent)`
+`XXMinusYYGate.power(exponent)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/xx_minus_yy.py "view source code")
 
 Raise gate to a power.
 

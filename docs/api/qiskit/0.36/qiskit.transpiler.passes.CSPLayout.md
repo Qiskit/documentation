@@ -10,9 +10,9 @@ python_api_name: qiskit.transpiler.passes.CSPLayout
 
 <span id="qiskit.transpiler.passes.CSPLayout" />
 
-`CSPLayout(*args, **kwargs)`
+`CSPLayout(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/layout/csp_layout.py "view source code")
 
-Bases: [`qiskit.transpiler.basepasses.AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
+Bases: `qiskit.transpiler.basepasses.AnalysisPass`
 
 If possible, chooses a Layout as a CSP, using backtracking.
 
@@ -47,7 +47,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.CSPLayout.run" />
 
-`CSPLayout.run(dag)`
+`CSPLayout.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/layout/csp_layout.py "view source code")
 
 run the layout method
 

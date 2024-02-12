@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.IGate
 
 <span id="qiskit.circuit.library.IGate" />
 
-`IGate(label=None)`
+`IGate(label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/i.py "view source code")
 
 Identity gate.
 
@@ -198,7 +198,7 @@ updated if it was provided
 
 <span id="qiskit.circuit.library.IGate.inverse" />
 
-`IGate.inverse()`
+`IGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/i.py "view source code")
 
 Invert this gate.
 
@@ -290,7 +290,7 @@ Containing the definition.
 
 <span id="qiskit.circuit.library.IGate.to_matrix" />
 
-`IGate.to_matrix()`
+`IGate.to_matrix()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/i.py "view source code")
 
 Return a numpy.array for the identity gate.
 

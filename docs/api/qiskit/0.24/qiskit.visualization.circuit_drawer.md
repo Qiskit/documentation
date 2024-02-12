@@ -1,10 +1,18 @@
+---
+title: circuit_drawer
+description: API reference for qiskit.visualization.circuit_drawer
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.visualization.circuit_drawer
+---
+
 <span id="qiskit-visualization-circuit-drawer" />
 
 # qiskit.visualization.circuit\_drawer
 
-<span id="undefined" />
+<span id="qiskit.visualization.circuit_drawer" />
 
-`circuit_drawer(circuit, scale=None, filename=None, style=None, output=None, interactive=False, plot_barriers=True, reverse_bits=False, justify=None, vertical_compression='medium', idle_wires=True, with_layout=True, fold=None, ax=None, initial_state=False, cregbundle=True)`
+`circuit_drawer(circuit, scale=None, filename=None, style=None, output=None, interactive=False, plot_barriers=True, reverse_bits=False, justify=None, vertical_compression='medium', idle_wires=True, with_layout=True, fold=None, ax=None, initial_state=False, cregbundle=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/visualization/circuit_visualization.py "view source code")
 
 Draw a quantum circuit to different formats (set by output parameter):
 
@@ -18,7 +26,7 @@ Draw a quantum circuit to different formats (set by output parameter):
 
 **Parameters**
 
-*   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – the quantum circuit to draw
+*   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – the quantum circuit to draw
 *   **scale** (*float*) – scale of image to draw (shrink if \< 1). Only used by the `mpl`, `latex`, and `latex_source` outputs.
 *   **filename** (*str*) – file path to save image to
 *   **style** (*dict or str*) – dictionary of style or file name of style file. This option is only used by the `mpl` output type. If a str is passed in that is the path to a json file which contains that will be open, parsed, and then used just as the input dict. See: [Style Dict Doc](qiskit.visualization.timeline_drawer#style-dict-doc) for more information on the contents.
@@ -57,7 +65,7 @@ Draw a quantum circuit to different formats (set by output parameter):
 
 **Raises**
 
-*   [**VisualizationError**](qiskit.visualization.VisualizationError#qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – when an invalid output method is selected
+*   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – when an invalid output method is selected
 *   **ImportError** – when the output methods requires non-installed libraries.
 
 **Style Dict Details**
@@ -186,7 +194,7 @@ The style dict kwarg contains numerous options that define the style of the outp
 
 *   **creglinestyle** (*str*) – The style of line to use for classical registers. Choices are ‘solid’, ‘doublet’, or any valid matplotlib linestyle kwarg value. Defaults to doublet
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
@@ -206,3 +214,4 @@ q0_0: ┤ H ├┤M├
 c0: 1/══════╩═
             0 
 ```
+

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.WeightedAdder
 
 <span id="qiskit.circuit.library.WeightedAdder" />
 
-`qiskit.circuit.library.WeightedAdder(num_state_qubits=None, weights=None, name='adder')`
+`qiskit.circuit.library.WeightedAdder(num_state_qubits=None, weights=None, name='adder')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/arithmetic/weighted_adder.py "view source code")
 
 Bases: `BlueprintCircuit`
 
@@ -113,7 +113,7 @@ Return the global phase of the current circuit scope in radians.
 
 ### instances
 
-`= 293`
+`= 159`
 
 <span id="qiskit.circuit.library.WeightedAdder.layout" />
 

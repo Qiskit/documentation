@@ -10,43 +10,15 @@ python_api_name: qiskit.providers.basicaer.UnitarySimulatorPy
 
 <span id="qiskit.providers.basicaer.UnitarySimulatorPy" />
 
-`qiskit.providers.basicaer.UnitarySimulatorPy(configuration=None, provider=None, **fields)`
+`qiskit.providers.basicaer.UnitarySimulatorPy(configuration=None, provider=None, **fields)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/providers/basicaer/unitary_simulator.py "view source code")
 
 Bases: [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.backend.BackendV1")
 
 Python implementation of a unitary simulator.
 
-Initialize a backend class
-
-**Parameters**
-
-*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – A backend configuration object for the backend object.
-*   **provider** ([*qiskit.providers.Provider*](qiskit.providers.Provider "qiskit.providers.Provider")) – Optionally, the provider object that this Backend comes from.
-*   **fields** – kwargs for the values to use to override the default options.
-
-**Raises**
-
-[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – if input field not a valid options
-
-In addition to the public abstract methods, subclasses should also implement the following private methods:
-
-<span id="undefined" />
-
-`classmethod _default_options()`
-
-Return the default options
-
-This method will return a [`qiskit.providers.Options`](qiskit.providers.Options "qiskit.providers.Options") subclass object that will be used for the default options. These should be the default parameters to use for the options of the backend.
-
-**Returns**
-
-**A options object with**
-
-default values set
-
-**Return type**
-
-[qiskit.providers.Options](qiskit.providers.Options "qiskit.providers.Options")
+<Admonition title="Deprecated since version 0.46.0" type="danger">
+  The class `qiskit.providers.basicaer.unitary_simulator.UnitarySimulatorPy` is deprecated as of qiskit 0.46.0. It will be removed in Qiskit 1.0.0. The qiskit.providers.basicaer module has been superseded by qiskit.providers.basic\_provider. The new module has no replacement for this class. Use the qiskit.quantum\_info.Operator class instead.
+</Admonition>
 
 ## Attributes
 
@@ -156,13 +128,17 @@ the Provider responsible for the backend.
 
 <span id="qiskit.providers.basicaer.UnitarySimulatorPy.run" />
 
-`run(qobj, **backend_options)`
+`run(run_input, **backend_options)`
 
-Run qobj asynchronously.
+Run experiments in run\_input asynchronously.
+
+<Admonition title="Deprecated since version 0.46.0" type="danger">
+  Using a QasmQobj for the first argument to UnitarySimulatorPy.run() is deprecated as of qiskit 0.46.0. It will be removed no earlier than 3 months after the release date.
+</Admonition>
 
 **Parameters**
 
-*   **qobj** (*Qobj*) – payload of the experiment
+*   **run\_input** (*Qobj,* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*,* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – payload of the experiment
 *   **backend\_options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – backend options
 
 **Returns**
@@ -183,7 +159,7 @@ backend_options: Is a dict of options for the backend. It may contain
 The "initial_unitary" option specifies a custom initial unitary
 matrix for the simulator to be used instead of the identity
 matrix. This size of this matrix must be correct for the number
-of qubits inall experiments in the qobj.
+of qubits in all experiments in the run_input.
 
 The "chop_threshold" option specifies a truncation value for
 setting small values to zero in the output unitary. The default

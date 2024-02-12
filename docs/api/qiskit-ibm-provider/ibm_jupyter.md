@@ -6,11 +6,11 @@ python_api_type: module
 python_api_name: qiskit_ibm_provider.jupyter
 ---
 
+<span id="jupyter-tools-qiskit-ibm-provider-jupyter" />
+
 <span id="module-qiskit_ibm_provider.jupyter" />
 
 <span id="qiskit-ibm-provider-jupyter" />
-
-<span id="jupyter-tools-qiskit-ibm-provider-jupyter" />
 
 # Jupyter Tools
 
@@ -43,7 +43,7 @@ backend
 ```
 
 ```python
-<FakeVigo('fake_vigo')>
+<Fake1Q('fake_1q')>
 ```
 
 ## IBM Quantum dashboard

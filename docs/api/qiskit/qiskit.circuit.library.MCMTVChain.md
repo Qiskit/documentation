@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.MCMTVChain
 
 <span id="qiskit.circuit.library.MCMTVChain" />
 
-`qiskit.circuit.library.MCMTVChain(gate, num_ctrl_qubits, num_target_qubits)`
+`qiskit.circuit.library.MCMTVChain(gate, num_ctrl_qubits, num_target_qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/generalized_gates/mcmt.py "view source code")
 
 Bases: [`MCMT`](qiskit.circuit.library.MCMT "qiskit.circuit.library.generalized_gates.mcmt.MCMT")
 
@@ -128,7 +128,7 @@ Return the global phase of the current circuit scope in radians.
 
 ### instances
 
-`= 220`
+`= 164`
 
 <span id="qiskit.circuit.library.MCMTVChain.layout" />
 
@@ -202,7 +202,7 @@ The parameters defined in the circuit.
 
 This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
 
-## Examples
+**Examples**
 
 The snippet below shows that insertion order of parameters does not matter.
 

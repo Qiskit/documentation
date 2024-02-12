@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.ExcitationPreserving
 
 <span id="qiskit.circuit.library.ExcitationPreserving" />
 
-`qiskit.circuit.library.ExcitationPreserving(num_qubits=None, mode='iswap', entanglement='full', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='ExcitationPreserving', flatten=None)`
+`qiskit.circuit.library.ExcitationPreserving(num_qubits=None, mode='iswap', entanglement='full', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='ExcitationPreserving', flatten=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/n_local/excitation_preserving.py "view source code")
 
 Bases: [`TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.n_local.two_local.TwoLocal")
 
@@ -37,7 +37,7 @@ See [`RealAmplitudes`](qiskit.circuit.library.RealAmplitudes "qiskit.circuit.lib
 
 The rotations of the ExcitationPreserving ansatz can be written as
 
-## Examples
+**Examples**
 
 ```python
 >>> ansatz = ExcitationPreserving(3, reps=1, insert_barriers=True, entanglement='linear')
@@ -285,7 +285,7 @@ The parameters used in the underlying circuit.
 
 This includes float values and duplicates.
 
-## Examples
+**Examples**
 
 ```python
 >>> # prepare circuit ...

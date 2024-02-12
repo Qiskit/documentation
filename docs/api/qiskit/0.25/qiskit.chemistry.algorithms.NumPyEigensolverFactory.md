@@ -1,8 +1,16 @@
+---
+title: NumPyEigensolverFactory
+description: API reference for qiskit.chemistry.algorithms.NumPyEigensolverFactory
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.algorithms.NumPyEigensolverFactory
+---
+
 # qiskit.chemistry.algorithms.NumPyEigensolverFactory
 
-<span id="undefined" />
+<span id="qiskit.chemistry.algorithms.NumPyEigensolverFactory" />
 
-`NumPyEigensolverFactory(filter_criterion=None, k=100, use_default_filter_criterion=False)`
+`NumPyEigensolverFactory(filter_criterion=None, k=100, use_default_filter_criterion=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/excited_states_solvers/eigensolver_factories/numpy_eigensolver_factory.py "view source code")
 
 A factory to construct a NumPyEigensolver.
 
@@ -13,7 +21,9 @@ A factory to construct a NumPyEigensolver.
 *   **k** (`int`) – How many eigenvalues are to be computed, has a min. value of 1.
 *   **use\_default\_filter\_criterion** – whether to use the transformation’s default filter criterion if `filter_criterion` is `None`.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.chemistry.algorithms.NumPyEigensolverFactory.__init__" />
 
 `__init__(filter_criterion=None, k=100, use_default_filter_criterion=False)`
 
@@ -39,7 +49,9 @@ A factory to construct a NumPyEigensolver.
 | [`k`](#qiskit.chemistry.algorithms.NumPyEigensolverFactory.k "qiskit.chemistry.algorithms.NumPyEigensolverFactory.k")                                                                                  | returns k (number of eigenvalues requested)         |
 | [`use_default_filter_criterion`](#qiskit.chemistry.algorithms.NumPyEigensolverFactory.use_default_filter_criterion "qiskit.chemistry.algorithms.NumPyEigensolverFactory.use_default_filter_criterion") | returns whether to use the default filter criterion |
 
-<span id="undefined" />
+### filter\_criterion
+
+<span id="qiskit.chemistry.algorithms.NumPyEigensolverFactory.filter_criterion" />
 
 `property filter_criterion`
 
@@ -49,7 +61,9 @@ returns filter criterion
 
 `Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]
 
-<span id="undefined" />
+### get\_solver
+
+<span id="qiskit.chemistry.algorithms.NumPyEigensolverFactory.get_solver" />
 
 `get_solver(transformation)`
 
@@ -67,7 +81,9 @@ Returns a NumPyEigensolver with the desired filter
 
 A NumPyEigensolver suitable to compute the ground state of the molecule transformed by `transformation`.
 
-<span id="undefined" />
+### k
+
+<span id="qiskit.chemistry.algorithms.NumPyEigensolverFactory.k" />
 
 `property k`
 
@@ -77,7 +93,9 @@ returns k (number of eigenvalues requested)
 
 `int`
 
-<span id="undefined" />
+### use\_default\_filter\_criterion
+
+<span id="qiskit.chemistry.algorithms.NumPyEigensolverFactory.use_default_filter_criterion" />
 
 `property use_default_filter_criterion`
 
@@ -86,3 +104,4 @@ returns whether to use the default filter criterion
 **Return type**
 
 `bool`
+

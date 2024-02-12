@@ -10,13 +10,17 @@ python_api_name: qiskit.providers.fake_provider.FakeManhattanV2
 
 <span id="qiskit.providers.fake_provider.FakeManhattanV2" />
 
-`qiskit.providers.fake_provider.FakeManhattanV2`
+`qiskit.providers.fake_provider.FakeManhattanV2`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/providers/fake_provider/backends/manhattan/fake_manhattan.py "view source code")
 
 Bases: [`FakeBackendV2`](providers_fake_provider#qiskit.providers.fake_provider.fake_backend.FakeBackendV2 "qiskit.providers.fake_provider.fake_backend.FakeBackendV2")
 
 A fake Manhattan backend.
 
 FakeBackendV2 initializer.
+
+<Admonition title="Deprecated since version 0.46.0" type="danger">
+  The class `qiskit.providers.fake_provider.fake_backend.FakeBackendV2` is deprecated as of qiskit 0.46.0. It will be removed in qiskit 1.0. All fake backend instances based on real device snapshots (FakeVigo,\`FakeSherbrooke\`,…) have been migrated to the qiskit\_ibm\_runtime package. To migrate your code, run pip install qiskit-ibm-runtime and use from qiskit\_ibm\_runtime.fake\_provider import FakeExample instead of from qiskit.providers.fake\_provider import FakeExample.
+</Admonition>
 
 ## Attributes
 
@@ -48,7 +52,7 @@ Return the [`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.Coup
 
 ### dirname
 
-`= '/home/runner/work/qiskit/qiskit/.tox/docs/lib/python3.9/site-packages/qiskit/providers/fake_provider/backends/manhattan'`
+`= '/home/runner/work/qiskit/qiskit/qiskit/providers/fake_provider/backends/manhattan'`
 
 <span id="qiskit.providers.fake_provider.FakeManhattanV2.dt" />
 
@@ -304,9 +308,9 @@ The [`QubitProperties`](qiskit.providers.QubitProperties "qiskit.providers.Qubit
 
 Run on the fake backend using a simulator.
 
-This method runs circuit jobs (an individual or a list of QuantumCircuit ) and pulse jobs (an individual or a list of Schedule or ScheduleBlock) using BasicAer or Aer simulator and returns a [`Job`](qiskit.providers.Job "qiskit.providers.Job") object.
+This method runs circuit jobs (an individual or a list of QuantumCircuit ) and pulse jobs (an individual or a list of Schedule or ScheduleBlock) using a [`BasicSimulator`](qiskit.providers.basic_provider.BasicSimulator "qiskit.providers.basic_provider.BasicSimulator") or Aer simulator and returns a [`Job`](qiskit.providers.Job "qiskit.providers.Job") object.
 
-If qiskit-aer is installed, jobs will be run using AerSimulator with noise model of the fake backend. Otherwise, jobs will be run using BasicAer simulator without noise.
+If qiskit-aer is installed, jobs will be run using AerSimulator with noise model of the fake backend. Otherwise, jobs will be run using [`BasicSimulator`](qiskit.providers.basic_provider.BasicSimulator "qiskit.providers.basic_provider.BasicSimulator") without noise.
 
 Currently noisy simulation of a pulse job is not supported yet in FakeBackendV2.
 

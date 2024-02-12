@@ -1,10 +1,18 @@
+---
+title: PauliTable
+description: API reference for qiskit.quantum_info.PauliTable
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.quantum_info.PauliTable
+---
+
 <span id="qiskit-quantum-info-paulitable" />
 
 # qiskit.quantum\_info.PauliTable
 
-<span id="undefined" />
+<span id="qiskit.quantum_info.PauliTable" />
 
-`PauliTable(data)`
+`PauliTable(data)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/quantum_info/operators/symplectic/pauli_table.py "view source code")
 
 Symplectic representation of a list Pauli matrices.
 
@@ -57,7 +65,7 @@ Subsets of rows can be accessed using the list access `[]` operator and will ret
 
 Rows in the Pauli table can be iterated over like a list. Iteration can also be done using the label or matrix representation of each row using the [`label_iter()`](#qiskit.quantum_info.PauliTable.label_iter "qiskit.quantum_info.PauliTable.label_iter") and [`matrix_iter()`](#qiskit.quantum_info.PauliTable.matrix_iter "qiskit.quantum_info.PauliTable.matrix_iter") methods.
 
-## References
+**References**
 
 1.  S. Aaronson, D. Gottesman, *Improved Simulation of Stabilizer Circuits*, Phys. Rev. A 70, 052328 (2004). [arXiv:quant-ph/0406196](https://arxiv.org/abs/quant-ph/0406196)
 
@@ -65,7 +73,7 @@ Initialize the PauliTable.
 
 **Parameters**
 
-**data** (*array or str or* [*ScalarOp*](qiskit.quantum_info.ScalarOp#qiskit.quantum_info.ScalarOp "qiskit.quantum_info.ScalarOp")  *or*[*PauliTable*](#qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")) – input data.
+**data** (*array or str or* [*ScalarOp*](qiskit.quantum_info.ScalarOp "qiskit.quantum_info.ScalarOp")  *or*[*PauliTable*](#qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")) – input data.
 
 **Raises**
 
@@ -75,7 +83,9 @@ Initialize the PauliTable.
 
 The input array is not copied so multiple Pauli tables can share the same underlying array.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.quantum_info.PauliTable.__init__" />
 
 `__init__(data)`
 
@@ -83,7 +93,7 @@ Initialize the PauliTable.
 
 **Parameters**
 
-**data** (*array or str or* [*ScalarOp*](qiskit.quantum_info.ScalarOp#qiskit.quantum_info.ScalarOp "qiskit.quantum_info.ScalarOp")  *or*[*PauliTable*](#qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")) – input data.
+**data** (*array or str or* [*ScalarOp*](qiskit.quantum_info.ScalarOp "qiskit.quantum_info.ScalarOp")  *or*[*PauliTable*](#qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")) – input data.
 
 **Raises**
 
@@ -144,19 +154,25 @@ The input array is not copied so multiple Pauli tables can share the same underl
 | [`shape`](#qiskit.quantum_info.PauliTable.shape "qiskit.quantum_info.PauliTable.shape")                | The full shape of the [`array()`](#qiskit.quantum_info.PauliTable.array "qiskit.quantum_info.PauliTable.array") |
 | [`size`](#qiskit.quantum_info.PauliTable.size "qiskit.quantum_info.PauliTable.size")                   | The number of Pauli rows in the table.                                                                          |
 
-<span id="undefined" />
+### X
+
+<span id="qiskit.quantum_info.PauliTable.X" />
 
 `property X`
 
 The X block of the [`array`](#qiskit.quantum_info.PauliTable.array "qiskit.quantum_info.PauliTable.array").
 
-<span id="undefined" />
+### Z
+
+<span id="qiskit.quantum_info.PauliTable.Z" />
 
 `property Z`
 
 The Z block of the [`array`](#qiskit.quantum_info.PauliTable.array "qiskit.quantum_info.PauliTable.array").
 
-<span id="undefined" />
+### add
+
+<span id="qiskit.quantum_info.PauliTable.add" />
 
 `add(other)`
 
@@ -176,13 +192,17 @@ the operator self + other.
 
 BaseOperator
 
-<span id="undefined" />
+### adjoint
+
+<span id="qiskit.quantum_info.PauliTable.adjoint" />
 
 `adjoint()`
 
 Return the adjoint of the operator.
 
-<span id="undefined" />
+### anticommutes\_with\_all
+
+<span id="qiskit.quantum_info.PauliTable.anticommutes_with_all" />
 
 `anticommutes_with_all(other)`
 
@@ -202,7 +222,9 @@ index array of the anti-commuting rows.
 
 array
 
-<span id="undefined" />
+### argsort
+
+<span id="qiskit.quantum_info.PauliTable.argsort" />
 
 `argsort(weight=False)`
 
@@ -222,19 +244,25 @@ the indices for sorting the table.
 
 array
 
-<span id="undefined" />
+### array
+
+<span id="qiskit.quantum_info.PauliTable.array" />
 
 `property array`
 
 The underlying boolean array.
 
-<span id="undefined" />
+### atol
+
+<span id="qiskit.quantum_info.PauliTable.atol" />
 
 `property atol`
 
 The default absolute tolerance parameter for float comparisons.
 
-<span id="undefined" />
+### commutes
+
+<span id="qiskit.quantum_info.PauliTable.commutes" />
 
 `commutes(pauli)`
 
@@ -258,7 +286,9 @@ array
 
 **QiskitError** – if input is not a single Pauli row.
 
-<span id="undefined" />
+### commutes\_with\_all
+
+<span id="qiskit.quantum_info.PauliTable.commutes_with_all" />
 
 `commutes_with_all(other)`
 
@@ -278,7 +308,9 @@ index array of the commuting rows.
 
 array
 
-<span id="undefined" />
+### compose
+
+<span id="qiskit.quantum_info.PauliTable.compose" />
 
 `compose(other, qargs=None, front=True)`
 
@@ -318,19 +350,25 @@ the compose outer product table.
 
 **QiskitError** – if other cannot be converted to a PauliTable.
 
-<span id="undefined" />
+### conjugate
+
+<span id="qiskit.quantum_info.PauliTable.conjugate" />
 
 `conjugate()`
 
 Not implemented.
 
-<span id="undefined" />
+### copy
+
+<span id="qiskit.quantum_info.PauliTable.copy" />
 
 `copy()`
 
 Make a deep copy of current operator.
 
-<span id="undefined" />
+### delete
+
+<span id="qiskit.quantum_info.PauliTable.delete" />
 
 `delete(ind, qubit=False)`
 
@@ -355,13 +393,17 @@ the resulting table with the entries removed.
 
 **QiskitError** – if ind is out of bounds for the array size or number of qubits.
 
-<span id="undefined" />
+### dim
+
+<span id="qiskit.quantum_info.PauliTable.dim" />
 
 `property dim`
 
 Return tuple (input\_shape, output\_shape).
 
-<span id="undefined" />
+### dot
+
+<span id="qiskit.quantum_info.PauliTable.dot" />
 
 `dot(other, qargs=None)`
 
@@ -400,7 +442,9 @@ the dot outer product table.
 
 **QiskitError** – if other cannot be converted to a PauliTable.
 
-<span id="undefined" />
+### expand
+
+<span id="qiskit.quantum_info.PauliTable.expand" />
 
 `expand(other)`
 
@@ -438,7 +482,9 @@ the expand outer product table.
 
 **QiskitError** – if other cannot be converted to a PauliTable.
 
-<span id="undefined" />
+### from\_labels
+
+<span id="qiskit.quantum_info.PauliTable.from_labels" />
 
 `classmethod from_labels(labels)`
 
@@ -461,13 +507,17 @@ the constructed PauliTable.
 *   **QiskitError** – If the input list is empty or contains invalid
 *   **Pauli strings.** –
 
-<span id="undefined" />
+### input\_dims
+
+<span id="qiskit.quantum_info.PauliTable.input_dims" />
 
 `input_dims(qargs=None)`
 
 Return tuple of input dimension for specified subsystems.
 
-<span id="undefined" />
+### insert
+
+<span id="qiskit.quantum_info.PauliTable.insert" />
 
 `insert(ind, value, qubit=False)`
 
@@ -493,7 +543,9 @@ the resulting table with the entries inserted.
 
 **QiskitError** – if the insertion index is invalid.
 
-<span id="undefined" />
+### label\_iter
+
+<span id="qiskit.quantum_info.PauliTable.label_iter" />
 
 `label_iter()`
 
@@ -509,7 +561,9 @@ label iterator object for the PauliTable.
 
 LabelIterator
 
-<span id="undefined" />
+### matrix\_iter
+
+<span id="qiskit.quantum_info.PauliTable.matrix_iter" />
 
 `matrix_iter(sparse=False)`
 
@@ -529,7 +583,9 @@ matrix iterator object for the PauliTable.
 
 MatrixIterator
 
-<span id="undefined" />
+### multiply
+
+<span id="qiskit.quantum_info.PauliTable.multiply" />
 
 `multiply(other)`
 
@@ -553,19 +609,25 @@ BaseOperator
 
 **NotImplementedError** – if subclass does not support multiplication.
 
-<span id="undefined" />
+### num\_qubits
+
+<span id="qiskit.quantum_info.PauliTable.num_qubits" />
 
 `property num_qubits`
 
 Return the number of qubits if a N-qubit operator or None otherwise.
 
-<span id="undefined" />
+### output\_dims
+
+<span id="qiskit.quantum_info.PauliTable.output_dims" />
 
 `output_dims(qargs=None)`
 
 Return tuple of output dimension for specified subsystems.
 
-<span id="undefined" />
+### power
+
+<span id="qiskit.quantum_info.PauliTable.power" />
 
 `power(n)`
 
@@ -587,13 +649,17 @@ BaseOperator
 
 **QiskitError** – if the input and output dimensions of the operator are not equal, or the power is not a positive integer.
 
-<span id="undefined" />
+### qargs
+
+<span id="qiskit.quantum_info.PauliTable.qargs" />
 
 `property qargs`
 
 Return the qargs for the operator.
 
-<span id="undefined" />
+### reshape
+
+<span id="qiskit.quantum_info.PauliTable.reshape" />
 
 `reshape(input_dims=None, output_dims=None)`
 
@@ -621,13 +687,17 @@ BaseOperator
 
 **QiskitError** – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
 
-<span id="undefined" />
+### rtol
+
+<span id="qiskit.quantum_info.PauliTable.rtol" />
 
 `property rtol`
 
 The relative tolerance parameter for float comparisons.
 
-<span id="undefined" />
+### set\_atol
+
+<span id="qiskit.quantum_info.PauliTable.set_atol" />
 
 `classmethod set_atol(value)`
 
@@ -635,7 +705,9 @@ Set the class default absolute tolerance parameter for float comparisons.
 
 DEPRECATED: use operator.atol = value instead
 
-<span id="undefined" />
+### set\_rtol
+
+<span id="qiskit.quantum_info.PauliTable.set_rtol" />
 
 `classmethod set_rtol(value)`
 
@@ -643,19 +715,25 @@ Set the class default relative tolerance parameter for float comparisons.
 
 DEPRECATED: use operator.rtol = value instead
 
-<span id="undefined" />
+### shape
+
+<span id="qiskit.quantum_info.PauliTable.shape" />
 
 `property shape`
 
 The full shape of the [`array()`](#qiskit.quantum_info.PauliTable.array "qiskit.quantum_info.PauliTable.array")
 
-<span id="undefined" />
+### size
+
+<span id="qiskit.quantum_info.PauliTable.size" />
 
 `property size`
 
 The number of Pauli rows in the table.
 
-<span id="undefined" />
+### sort
+
+<span id="qiskit.quantum_info.PauliTable.sort" />
 
 `sort(weight=False)`
 
@@ -712,7 +790,9 @@ a sorted copy of the original table.
 
 [PauliTable](#qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")
 
-<span id="undefined" />
+### subtract
+
+<span id="qiskit.quantum_info.PauliTable.subtract" />
 
 `subtract(other)`
 
@@ -732,7 +812,9 @@ the operator self - other.
 
 BaseOperator
 
-<span id="undefined" />
+### tensor
+
+<span id="qiskit.quantum_info.PauliTable.tensor" />
 
 `tensor(other)`
 
@@ -770,7 +852,9 @@ the tensor outer product table.
 
 **QiskitError** – if other cannot be converted to a PauliTable.
 
-<span id="undefined" />
+### to\_labels
+
+<span id="qiskit.quantum_info.PauliTable.to_labels" />
 
 `to_labels(array=False)`
 
@@ -797,7 +881,9 @@ The rows of the PauliTable in label form.
 
 list or array
 
-<span id="undefined" />
+### to\_matrix
+
+<span id="qiskit.quantum_info.PauliTable.to_matrix" />
 
 `to_matrix(sparse=False, array=False)`
 
@@ -825,13 +911,17 @@ A list of dense Pauli matrices if array=False and sparse=False. list: A list of 
 
 list
 
-<span id="undefined" />
+### transpose
+
+<span id="qiskit.quantum_info.PauliTable.transpose" />
 
 `transpose()`
 
 Not implemented.
 
-<span id="undefined" />
+### unique
+
+<span id="qiskit.quantum_info.PauliTable.unique" />
 
 `unique(return_index=False, return_counts=False)`
 
@@ -873,3 +963,4 @@ The number of times each of the unique values comes up in the original array. On
 **Return type**
 
 [PauliTable](#qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")
+

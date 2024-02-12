@@ -10,9 +10,9 @@ python_api_name: qiskit.algorithms.optimizers.QNSPSA
 
 <span id="qiskit.algorithms.optimizers.QNSPSA" />
 
-`QNSPSA(fidelity, maxiter=100, blocking=True, allowed_increase=None, learning_rate=None, perturbation=None, last_avg=1, resamplings=1, perturbation_dims=None, regularization=None, hessian_delay=0, lse_solver=None, initial_hessian=None, callback=None, termination_checker=None)`
+`QNSPSA(fidelity, maxiter=100, blocking=True, allowed_increase=None, learning_rate=None, perturbation=None, last_avg=1, resamplings=1, perturbation_dims=None, regularization=None, hessian_delay=0, lse_solver=None, initial_hessian=None, callback=None, termination_checker=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/qnspsa.py "view source code")
 
-Bases: [`qiskit.algorithms.optimizers.spsa.SPSA`](qiskit.algorithms.optimizers.SPSA "qiskit.algorithms.optimizers.spsa.SPSA")
+Bases: `qiskit.algorithms.optimizers.spsa.SPSA`
 
 The Quantum Natural SPSA (QN-SPSA) optimizer.
 
@@ -26,7 +26,7 @@ The stochastic approximation of the natural gradient can be systematically impro
   This component has some function that is normally random. If you want to reproduce behavior then you should set the random number generator seed in the algorithm\_globals (`qiskit.utils.algorithm_globals.random_seed = seed`).
 </Admonition>
 
-## Examples
+**Examples**
 
 This short example runs QN-SPSA for the ground state calculation of the `Z ^ Z` observable where the ansatz is a `PauliTwoDesign` circuit.
 
@@ -49,7 +49,7 @@ qnspsa = QNSPSA(fidelity, maxiter=300)
 result = qnspsa.optimize(ansatz.num_parameters, loss, initial_point=initial_point)
 ```
 
-## References
+**References**
 
 \[1] J. Gacon et al, “Simultaneous Perturbation Stochastic Approximation of the Quantum Fisher Information”, [arXiv:2103.09232](https://arxiv.org/abs/2103.09232)
 
@@ -125,7 +125,7 @@ Estimate the standard deviation of the loss function.
 
 <span id="qiskit.algorithms.optimizers.QNSPSA.get_fidelity" />
 
-`static QNSPSA.get_fidelity(circuit, backend=None, expectation=None)`
+`static QNSPSA.get_fidelity(circuit, backend=None, expectation=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/qnspsa.py "view source code")
 
 Get a function to compute the fidelity of `circuit` with itself.
 
@@ -139,9 +139,9 @@ The output of this function can be used as input for the `fidelity` to the :clas
 
 **Parameters**
 
-*   **circuit** ([`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – The circuit preparing the parameterized ansatz.
-*   **backend** (`Union`\[[`Backend`](qiskit.providers.Backend "qiskit.providers.backend.Backend"), [`QuantumInstance`](qiskit.utils.QuantumInstance "qiskit.utils.quantum_instance.QuantumInstance"), `None`]) – A backend of quantum instance to evaluate the circuits. If None, plain matrix multiplication will be used.
-*   **expectation** (`Optional`\[[`ExpectationBase`](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.expectation_base.ExpectationBase")]) – An expectation converter to specify how the expected value is computed. If a shot-based readout is used this should be set to `PauliExpectation`.
+*   **circuit** (`QuantumCircuit`) – The circuit preparing the parameterized ansatz.
+*   **backend** (`Union`\[`Backend`, `QuantumInstance`, `None`]) – A backend of quantum instance to evaluate the circuits. If None, plain matrix multiplication will be used.
+*   **expectation** (`Optional`\[`ExpectationBase`]) – An expectation converter to specify how the expected value is computed. If a shot-based readout is used this should be set to `PauliExpectation`.
 
 **Return type**
 
@@ -199,7 +199,7 @@ Minimize the scalar function.
 
 **Return type**
 
-[`OptimizerResult`](qiskit.algorithms.optimizers.OptimizerResult "qiskit.algorithms.optimizers.optimizer.OptimizerResult")
+`OptimizerResult`
 
 **Returns**
 
@@ -217,8 +217,8 @@ Perform optimization.
 
 *   **num\_vars** (*int*) – Number of parameters to be optimized.
 *   **objective\_function** (*callable*) – A function that computes the objective function.
-*   **gradient\_function** (*callable*) – Not supported for SPSA.
-*   **variable\_bounds** (*list\[(float, float)]*) – Not supported for SPSA.
+*   **gradient\_function** (*callable*) – A function that computes the gradient of the objective function, or None if not available.
+*   **variable\_bounds** (*list\[(float, float)]*) – List of variable bounds, given as pairs (lower, upper). None means unbounded.
 *   **initial\_point** (*numpy.ndarray\[float]*) – Initial point.
 
 **Returns**
@@ -227,9 +227,9 @@ Perform optimization.
 
 point: is a 1D numpy.ndarray\[float] containing the solution value: is a float with the objective function value nfev: number of objective function calls made if available or None
 
-**Return type**
+**Raises**
 
-tuple
+**ValueError** – invalid input
 
 ### print\_options
 

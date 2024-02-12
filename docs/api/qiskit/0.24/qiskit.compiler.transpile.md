@@ -1,10 +1,18 @@
+---
+title: transpile
+description: API reference for qiskit.compiler.transpile
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.compiler.transpile
+---
+
 <span id="qiskit-compiler-transpile" />
 
 # qiskit.compiler.transpile
 
-<span id="undefined" />
+<span id="qiskit.compiler.transpile" />
 
-`transpile(circuits, backend=None, basis_gates=None, coupling_map=None, backend_properties=None, initial_layout=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, instruction_durations=None, dt=None, seed_transpiler=None, optimization_level=None, pass_manager=None, callback=None, output_name=None)`
+`transpile(circuits, backend=None, basis_gates=None, coupling_map=None, backend_properties=None, initial_layout=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, instruction_durations=None, dt=None, seed_transpiler=None, optimization_level=None, pass_manager=None, callback=None, output_name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/compiler/transpile.py "view source code")
 
 Transpile one or more circuits, according to some desired transpilation targets.
 
@@ -116,4 +124,5 @@ The transpiled circuit(s).
 
 **Raises**
 
-[**TranspilerError**](qiskit.transpiler.TranspilerError#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – in case of bad inputs to transpiler (like conflicting parameters) or errors in passes
+[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – in case of bad inputs to transpiler (like conflicting parameters) or errors in passes
+

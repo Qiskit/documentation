@@ -6,11 +6,11 @@ python_api_type: exception
 python_api_name: qiskit.opflow.OpflowError
 ---
 
-# qiskit.opflow\.OpflowError[¶](#qiskit-opflow-opflowerror "Permalink to this headline")
+# qiskit.opflow\.OpflowError
 
 <span id="qiskit.opflow.OpflowError" />
 
-`OpflowError(*message)`
+`OpflowError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/exceptions.py "view source code")
 
 For Opflow specific errors.
 

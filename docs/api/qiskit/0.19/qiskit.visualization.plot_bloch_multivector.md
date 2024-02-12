@@ -10,7 +10,7 @@ python_api_name: qiskit.visualization.plot_bloch_multivector
 
 <span id="qiskit.visualization.plot_bloch_multivector" />
 
-`plot_bloch_multivector(rho, title='', figsize=None)`
+`plot_bloch_multivector(rho, title='', figsize=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/visualization/state_visualization.py "view source code")
 
 Plot the Bloch sphere.
 
@@ -34,7 +34,7 @@ matplotlib.Figure
 
 **ImportError** – Requires matplotlib.
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumCircuit, BasicAer, execute

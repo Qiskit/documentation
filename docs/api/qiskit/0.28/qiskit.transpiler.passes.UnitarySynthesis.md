@@ -1,8 +1,16 @@
+---
+title: UnitarySynthesis
+description: API reference for qiskit.transpiler.passes.UnitarySynthesis
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.UnitarySynthesis
+---
+
 # qiskit.transpiler.passes.UnitarySynthesis
 
-<span id="undefined" />
+<span id="qiskit.transpiler.passes.UnitarySynthesis" />
 
-`UnitarySynthesis(basis_gates, approximation_degree=1, coupling_map=None, backend_props=None, pulse_optimize=None, natural_direction=None, synth_gates=None)`
+`UnitarySynthesis(basis_gates, approximation_degree=1, coupling_map=None, backend_props=None, pulse_optimize=None, natural_direction=None, synth_gates=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/synthesis/unitary_synthesis.py "view source code")
 
 Synthesize gates according to their basis gates.
 
@@ -19,7 +27,9 @@ This pass can approximate 2-qubit unitaries given some approximation closeness m
 *   **natural\_direction** (`Optional`\[`bool`]) – Whether to apply synthesis considering directionality of 2-qubit gates. Only applies when pulse\_optimize == True. The natural direction is determined by first checking to see whether the coupling map is unidirectional. If there is no coupling map or the coupling map is bidirectional, the gate direction with the shorter duration from the backend properties will be used. If set to True, and a natural direction can not be determined, raises TranspileError. If set to None, no exception will be raised if a natural direction can not be determined.
 *   **synth\_gates** (`Optional`\[`List`\[`str`]]) – List of gates to synthesize. If None and pulse\_optimize is False or None, default to \[‘unitary’]. If None and pulse\_optimzie == True, default to \[‘unitary’, ‘swap’]
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.transpiler.passes.UnitarySynthesis.__init__" />
 
 `__init__(basis_gates, approximation_degree=1, coupling_map=None, backend_props=None, pulse_optimize=None, natural_direction=None, synth_gates=None)`
 
@@ -51,7 +61,9 @@ This pass can approximate 2-qubit unitaries given some approximation closeness m
 | [`is_analysis_pass`](#qiskit.transpiler.passes.UnitarySynthesis.is_analysis_pass "qiskit.transpiler.passes.UnitarySynthesis.is_analysis_pass")                   | Check if the pass is an analysis pass.      |
 | [`is_transformation_pass`](#qiskit.transpiler.passes.UnitarySynthesis.is_transformation_pass "qiskit.transpiler.passes.UnitarySynthesis.is_transformation_pass") | Check if the pass is a transformation pass. |
 
-<span id="undefined" />
+### is\_analysis\_pass
+
+<span id="qiskit.transpiler.passes.UnitarySynthesis.is_analysis_pass" />
 
 `property is_analysis_pass`
 
@@ -59,7 +71,9 @@ Check if the pass is an analysis pass.
 
 If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
 
-<span id="undefined" />
+### is\_transformation\_pass
+
+<span id="qiskit.transpiler.passes.UnitarySynthesis.is_transformation_pass" />
 
 `property is_transformation_pass`
 
@@ -67,13 +81,17 @@ Check if the pass is a transformation pass.
 
 If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
 
-<span id="undefined" />
+### name
+
+<span id="qiskit.transpiler.passes.UnitarySynthesis.name" />
 
 `name()`
 
 Return the name of the pass.
 
-<span id="undefined" />
+### run
+
+<span id="qiskit.transpiler.passes.UnitarySynthesis.run" />
 
 `run(dag)`
 
@@ -93,6 +111,7 @@ Output dag with UnitaryGates synthesized to target basis.
 
 **Raises**
 
-[**TranspilerError**](qiskit.transpiler.TranspilerError#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") –
+[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") –
 
 1.  pulse\_optimize is True but pulse optimal decomposition is not known for requested basis. 2. pulse\_optimize is True and natural\_direction is True but a preferred gate direction can’t be determined from the coupling map or the relative gate lengths.
+

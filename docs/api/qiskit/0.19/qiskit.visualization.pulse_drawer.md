@@ -10,7 +10,7 @@ python_api_name: qiskit.visualization.pulse_drawer
 
 <span id="qiskit.visualization.pulse_drawer" />
 
-`pulse_drawer(data, dt=1, style=None, filename=None, interp_method=None, scale=None, channel_scales=None, channels_to_plot=None, plot_all=False, plot_range=None, interactive=False, table=True, label=False, framechange=True, channels=None, scaling=None, show_framechange_channels=True)`
+`pulse_drawer(data, dt=1, style=None, filename=None, interp_method=None, scale=None, channel_scales=None, channels_to_plot=None, plot_all=False, plot_range=None, interactive=False, table=True, label=False, framechange=True, channels=None, scaling=None, show_framechange_channels=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/visualization/pulse_visualization.py "view source code")
 
 Plot the interpolated envelope of pulse and schedule.
 
@@ -42,7 +42,7 @@ A matplotlib figure object for the pulse envelope.
 
 matplotlib.figure.Figure
 
-## Example
+**Example**
 
 This example shows how to visualize your pulse schedule. Pulse names are added to the plot, unimportant channels are removed and the time window is truncated to draw out U3 pulse sequence of interest.
 

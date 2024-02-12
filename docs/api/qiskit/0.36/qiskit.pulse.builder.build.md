@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.builder.build
 
 <span id="qiskit.pulse.builder.build" />
 
-`build(backend=None, schedule=None, name=None, default_alignment='left', default_transpiler_settings=None, default_circuit_scheduler_settings=None)`
+`build(backend=None, schedule=None, name=None, default_alignment='left', default_transpiler_settings=None, default_circuit_scheduler_settings=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/builder.py "view source code")
 
 Create a context manager for launching the imperative pulse builder DSL.
 
@@ -18,7 +18,7 @@ To enter a building context and starting building a pulse program:
 
 ```python
 from qiskit import execute, pulse
-from qiskit.providers.fake_provider import FakeOpenPulse2Q
+from qiskit.test.mock import FakeOpenPulse2Q
 
 backend = FakeOpenPulse2Q()
 
@@ -36,16 +36,16 @@ qiskit.execute(pulse_prog, backend)
 
 **Parameters**
 
-*   **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.Backend")) – A Qiskit backend. If not supplied certain builder functionality will be unavailable.
-*   **schedule** (`Optional`\[[`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")]) – A pulse `ScheduleBlock` in which your pulse program will be built.
+*   **backend** (*Union\[*[*Backend*](qiskit.providers.Backend "qiskit.providers.Backend")*,* [*BaseBackend*](qiskit.providers.BaseBackend "qiskit.providers.BaseBackend")*]*) – A Qiskit backend. If not supplied certain builder functionality will be unavailable.
+*   **schedule** (`Optional`\[`ScheduleBlock`]) – A pulse `ScheduleBlock` in which your pulse program will be built.
 *   **name** (`Optional`\[`str`]) – Name of pulse program to be built.
-*   **default\_alignment** (`Union`\[`str`, [`AlignmentKind`](pulse#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.alignments.AlignmentKind"), `None`]) – Default scheduling alignment for builder. One of `left`, `right`, `sequential` or an alignment context.
+*   **default\_alignment** (`Union`\[`str`, `AlignmentKind`, `None`]) – Default scheduling alignment for builder. One of `left`, `right`, `sequential` or an alignment context.
 *   **default\_transpiler\_settings** (`Optional`\[`Dict`\[`str`, `Any`]]) – Default settings for the transpiler.
 *   **default\_circuit\_scheduler\_settings** (`Optional`\[`Dict`\[`str`, `Any`]]) – Default settings for the circuit to pulse scheduler.
 
 **Return type**
 
-`AbstractContextManager`\[[`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")]
+`AbstractContextManager`\[`ScheduleBlock`]
 
 **Returns**
 

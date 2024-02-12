@@ -10,16 +10,16 @@ python_api_name: qiskit.opflow.list_ops.TensoredOp
 
 <span id="qiskit.opflow.list_ops.TensoredOp" />
 
-`TensoredOp(oplist, coeff=1.0, abelian=False)`
+`TensoredOp(oplist, coeff=1.0, abelian=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/list_ops/tensored_op.py "view source code")
 
-Bases: [`qiskit.opflow.list_ops.list_op.ListOp`](qiskit.opflow.list_ops.ListOp "qiskit.opflow.list_ops.list_op.ListOp")
+Bases: `qiskit.opflow.list_ops.list_op.ListOp`
 
 A class for lazily representing tensor products of Operators. Often Operators cannot be efficiently tensored to one another, but may be manipulated further so that they can be later. This class holds logic to indicate that the Operators in `oplist` are meant to be tensored together, and therefore if they reach a point in which they can be, such as after conversion to QuantumCircuits, they can be reduced by tensor product.
 
 **Parameters**
 
-*   **oplist** (`List`\[[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")]) – The Operators being tensored.
-*   **coeff** (`Union`\[`complex`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]) – A coefficient multiplying the operator
+*   **oplist** (`List`\[`OperatorBase`]) – The Operators being tensored.
+*   **coeff** (`Union`\[`complex`, `ParameterExpression`]) – A coefficient multiplying the operator
 *   **abelian** (`bool`) – Indicates whether the Operators in `oplist` are known to mutually commute.
 
 ## Methods Defined Here
@@ -28,7 +28,7 @@ A class for lazily representing tensor products of Operators. Often Operators ca
 
 <span id="qiskit.opflow.list_ops.TensoredOp.eval" />
 
-`TensoredOp.eval(front=None)`
+`TensoredOp.eval(front=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/list_ops/tensored_op.py "view source code")
 
 Evaluate the Operator’s underlying function, either on a binary string or another Operator. A square binary Operator can be defined as a function taking a binary function to another binary function. This method returns the value of that function for a given StateFn or binary string. For example, `op.eval('0110').eval('1110')` can be seen as querying the Operator’s matrix representation by row 6 and column 14, and will return the complex value at those “indices.” Similarly for a StateFn, `op.eval('1011')` will return the complex value at row 11 of the vector representation of the StateFn, as all StateFns are defined to be evaluated from Zero implicitly (i.e. it is as if `.eval('0000')` is already called implicitly to always “indexing” from column 0).
 
@@ -36,11 +36,11 @@ ListOp’s eval recursively evaluates each Operator in `oplist`, and combines th
 
 **Parameters**
 
-**front** (`Union`\[`str`, `dict`, `ndarray`, [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase"), [`Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.states.statevector.Statevector"), `None`]) – The bitstring, dict of bitstrings (with values being coefficients), or StateFn to evaluated by the Operator’s underlying function.
+**front** (`Union`\[`str`, `dict`, `ndarray`, `OperatorBase`, `Statevector`, `None`]) – The bitstring, dict of bitstrings (with values being coefficients), or StateFn to evaluated by the Operator’s underlying function.
 
 **Return type**
 
-`Union`\[[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase"), `complex`]
+`Union`\[`OperatorBase`, `complex`]
 
 **Returns**
 
@@ -56,13 +56,13 @@ The output of the `oplist` Operators’ evaluation function, combined with the `
 
 <span id="qiskit.opflow.list_ops.TensoredOp.reduce" />
 
-`TensoredOp.reduce()`
+`TensoredOp.reduce()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/list_ops/tensored_op.py "view source code")
 
 Try collapsing the Operator structure, usually after some type of conversion, e.g. trying to add Operators in a SummedOp or delete needless IGates in a CircuitOp. If no reduction is available, just returns self.
 
 **Return type**
 
-[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+`OperatorBase`
 
 **Returns**
 
@@ -72,7 +72,7 @@ The reduced `OperatorBase`.
 
 <span id="qiskit.opflow.list_ops.TensoredOp.tensor" />
 
-`TensoredOp.tensor(other)`
+`TensoredOp.tensor(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/list_ops/tensored_op.py "view source code")
 
 Return tensor product between self and other, overloaded by `^`. Note: You must be conscious of Qiskit’s big-endian bit printing convention. Meaning, X.tensor(Y) produces an X on qubit 0 and an Y on qubit 1, or X⨂Y, but would produce a QuantumCircuit which looks like
 
@@ -82,11 +82,11 @@ Because Terra prints circuits and results with qubit 0 at the end of the string 
 
 **Parameters**
 
-**other** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The `OperatorBase` to tensor product with self.
+**other** (`OperatorBase`) – The `OperatorBase` to tensor product with self.
 
 **Return type**
 
-[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+`OperatorBase`
 
 **Returns**
 
@@ -96,13 +96,13 @@ An `OperatorBase` equivalent to the tensor product of self and other.
 
 <span id="qiskit.opflow.list_ops.TensoredOp.to_circuit" />
 
-`TensoredOp.to_circuit()`
+`TensoredOp.to_circuit()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/list_ops/tensored_op.py "view source code")
 
 Returns the quantum circuit, representing the tensored operator.
 
 **Return type**
 
-[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+`QuantumCircuit`
 
 **Returns**
 
@@ -118,7 +118,7 @@ The circuit representation of the tensored operator.
 
 ### INDENTATION
 
-`= '  '`
+`= ' '`
 
 <span id="qiskit.opflow.list_ops.TensoredOp.abelian" />
 
@@ -142,7 +142,7 @@ The scalar coefficient multiplying the Operator.
 
 **Return type**
 
-`Union`\[`complex`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]
+`Union`\[`complex`, `ParameterExpression`]
 
 **Returns**
 
@@ -156,7 +156,7 @@ Return a list of the coefficients of the operators listed. Raises exception for 
 
 **Return type**
 
-`List`\[`Union`\[`complex`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]]
+`List`\[`Union`\[`complex`, `ParameterExpression`]]
 
 <span id="qiskit.opflow.list_ops.TensoredOp.combo_fn" />
 
@@ -216,7 +216,7 @@ The list of `OperatorBases` defining the underlying function of this Operator.
 
 **Return type**
 
-`List`\[[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")]
+`List`\[`OperatorBase`]
 
 **Returns**
 

@@ -1,10 +1,18 @@
+---
+title: frequency_offset
+description: API reference for qiskit.pulse.builder.frequency_offset
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.builder.frequency_offset
+---
+
 <span id="qiskit-pulse-builder-frequency-offset" />
 
 # qiskit.pulse.builder.frequency\_offset
 
-<span id="undefined" />
+<span id="qiskit.pulse.builder.frequency_offset" />
 
-`frequency_offset(frequency, *channels, compensate_phase=False)`
+`frequency_offset(frequency, *channels, compensate_phase=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/builder.py "view source code")
 
 Shift the frequency of inputs channels on entry into context and undo on exit.
 
@@ -35,7 +43,7 @@ assert len(pulse_prog.instructions) == 4
 **Parameters**
 
 *   **frequency** (`float`) – Amount of frequency offset in Hz.
-*   **channels** ([`PulseChannel`](qiskit.pulse.channels#PulseChannel "qiskit.pulse.channels.PulseChannel")) – Channels to offset phase of.
+*   **channels** ([`PulseChannel`](qiskit.pulse.channels#pulsechannel "qiskit.pulse.channels.PulseChannel")) – Channels to offset phase of.
 *   **compensate\_phase** (`bool`) – Compensate for accumulated phase in accumulated with respect to the channels frame at its initial frequency.
 
 **Yields**
@@ -45,3 +53,4 @@ None
 **Return type**
 
 `AbstractContextManager`\[`None`]
+

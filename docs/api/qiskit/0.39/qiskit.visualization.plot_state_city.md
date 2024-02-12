@@ -10,7 +10,7 @@ python_api_name: qiskit.visualization.plot_state_city
 
 <span id="qiskit.visualization.plot_state_city" />
 
-`plot_state_city(state, title='', figsize=None, color=None, alpha=1, ax_real=None, ax_imag=None, *, rho=None, filename=None)`
+`plot_state_city(state, title='', figsize=None, color=None, alpha=1, ax_real=None, ax_imag=None, *, rho=None, filename=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/visualization/state_visualization.py "view source code")
 
 Plot the cityscape of quantum state.
 
@@ -40,7 +40,7 @@ matplotlib.Figure
 *   **ValueError** – When ‘color’ is not a list of len=2.
 *   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – if input is not a valid N-qubit state.
 
-## Examples
+**Examples**
 
 ```python
 # You can choose different colors for the real and imaginary parts of the density matrix.

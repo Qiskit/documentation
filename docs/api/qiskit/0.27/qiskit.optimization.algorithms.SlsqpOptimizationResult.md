@@ -1,8 +1,16 @@
+---
+title: SlsqpOptimizationResult
+description: API reference for qiskit.optimization.algorithms.SlsqpOptimizationResult
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.optimization.algorithms.SlsqpOptimizationResult
+---
+
 # qiskit.optimization.algorithms.SlsqpOptimizationResult
 
-<span id="undefined" />
+<span id="qiskit.optimization.algorithms.SlsqpOptimizationResult" />
 
-`SlsqpOptimizationResult(x, fval, variables, status, fx=None, its=None, imode=None, smode=None)`
+`SlsqpOptimizationResult(x, fval, variables, status, fx=None, its=None, imode=None, smode=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/slsqp_optimizer.py "view source code")
 
 SLSQP optimization result, defines additional properties that may be returned by the optimizer.
 
@@ -19,7 +27,9 @@ Constructs a result object with properties specific to SLSQP.
 *   **smode** (`Optional`\[`str`]) – Message describing the exit mode from the optimizer.
 *   **status** (`OptimizationResultStatus`) – the termination status of the optimization algorithm.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.optimization.algorithms.SlsqpOptimizationResult.__init__" />
 
 `__init__(x, fval, variables, status, fx=None, its=None, imode=None, smode=None)`
 
@@ -59,7 +69,9 @@ Constructs a result object with properties specific to SLSQP.
 | [`variables_dict`](#qiskit.optimization.algorithms.SlsqpOptimizationResult.variables_dict "qiskit.optimization.algorithms.SlsqpOptimizationResult.variables_dict") | Returns the optimal value as a dictionary of the variable name and corresponding value. |
 | [`x`](#qiskit.optimization.algorithms.SlsqpOptimizationResult.x "qiskit.optimization.algorithms.SlsqpOptimizationResult.x")                                        | Returns the optimal value found in the optimization or None in case of FAILURE.         |
 
-<span id="undefined" />
+### fval
+
+<span id="qiskit.optimization.algorithms.SlsqpOptimizationResult.fval" />
 
 `property fval`
 
@@ -73,7 +85,9 @@ Returns the optimal function value.
 
 The function value corresponding to the optimal value found in the optimization.
 
-<span id="undefined" />
+### fx
+
+<span id="qiskit.optimization.algorithms.SlsqpOptimizationResult.fx" />
 
 `property fx`
 
@@ -83,7 +97,9 @@ Returns the final value of the objective function being actually optimized.
 
 `Optional`\[`ndarray`]
 
-<span id="undefined" />
+### imode
+
+<span id="qiskit.optimization.algorithms.SlsqpOptimizationResult.imode" />
 
 `property imode`
 
@@ -93,7 +109,9 @@ Returns the exit mode from the optimizer.
 
 `Optional`\[`int`]
 
-<span id="undefined" />
+### its
+
+<span id="qiskit.optimization.algorithms.SlsqpOptimizationResult.its" />
 
 `property its`
 
@@ -103,7 +121,9 @@ Returns the number of iterations
 
 `Optional`\[`int`]
 
-<span id="undefined" />
+### raw\_results
+
+<span id="qiskit.optimization.algorithms.SlsqpOptimizationResult.raw_results" />
 
 `property raw_results`
 
@@ -119,7 +139,9 @@ Currently a dump for any leftovers.
 
 Additional result information of the optimization algorithm.
 
-<span id="undefined" />
+### samples
+
+<span id="qiskit.optimization.algorithms.SlsqpOptimizationResult.samples" />
 
 `property samples`
 
@@ -133,7 +155,9 @@ Returns the list of solution samples
 
 The list of solution samples.
 
-<span id="undefined" />
+### smode
+
+<span id="qiskit.optimization.algorithms.SlsqpOptimizationResult.smode" />
 
 `property smode`
 
@@ -143,7 +167,9 @@ Returns message describing the exit mode from the optimizer.
 
 `Optional`\[`str`]
 
-<span id="undefined" />
+### status
+
+<span id="qiskit.optimization.algorithms.SlsqpOptimizationResult.status" />
 
 `property status`
 
@@ -157,7 +183,9 @@ Returns the termination status of the optimization algorithm.
 
 The termination status of the algorithm.
 
-<span id="undefined" />
+### variable\_names
+
+<span id="qiskit.optimization.algorithms.SlsqpOptimizationResult.variable_names" />
 
 `property variable_names`
 
@@ -171,7 +199,9 @@ Returns the list of variable names of the optimization problem.
 
 The list of variable names of the optimization problem.
 
-<span id="undefined" />
+### variables
+
+<span id="qiskit.optimization.algorithms.SlsqpOptimizationResult.variables" />
 
 `property variables`
 
@@ -185,7 +215,9 @@ Returns the list of variables of the optimization problem.
 
 The list of variables.
 
-<span id="undefined" />
+### variables\_dict
+
+<span id="qiskit.optimization.algorithms.SlsqpOptimizationResult.variables_dict" />
 
 `property variables_dict`
 
@@ -199,7 +231,9 @@ Returns the optimal value as a dictionary of the variable name and corresponding
 
 The optimal value as a dictionary of the variable name and corresponding value.
 
-<span id="undefined" />
+### x
+
+<span id="qiskit.optimization.algorithms.SlsqpOptimizationResult.x" />
 
 `property x`
 
@@ -212,3 +246,4 @@ Returns the optimal value found in the optimization or None in case of FAILURE.
 **Returns**
 
 The optimal value found in the optimization.
+

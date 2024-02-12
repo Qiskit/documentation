@@ -1,10 +1,18 @@
+---
+title: NumPyDiscriminator
+description: API reference for qiskit.aqua.components.neural_networks.NumPyDiscriminator
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.components.neural_networks.NumPyDiscriminator
+---
+
 <span id="qiskit-aqua-components-neural-networks-numpydiscriminator" />
 
 # qiskit.aqua.components.neural\_networks.NumPyDiscriminator
 
-<span id="undefined" />
+<span id="qiskit.aqua.components.neural_networks.NumPyDiscriminator" />
 
-`NumPyDiscriminator(n_features=1, n_out=1)`
+`NumPyDiscriminator(n_features=1, n_out=1)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/neural_networks/numpy_discriminator.py "view source code")
 
 Discriminator based on NumPy
 
@@ -13,7 +21,9 @@ Discriminator based on NumPy
 *   **n\_features** (`int`) – Dimension of input data vector.
 *   **n\_out** (`int`) – Dimension of the discriminator’s output vector.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.aqua.components.neural_networks.NumPyDiscriminator.__init__" />
 
 `__init__(n_features=1, n_out=1)`
 
@@ -40,7 +50,9 @@ Discriminator based on NumPy
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
 | [`discriminator_net`](#qiskit.aqua.components.neural_networks.NumPyDiscriminator.discriminator_net "qiskit.aqua.components.neural_networks.NumPyDiscriminator.discriminator_net") | Get discriminator |
 
-<span id="undefined" />
+### discriminator\_net
+
+<span id="qiskit.aqua.components.neural_networks.NumPyDiscriminator.discriminator_net" />
 
 `property discriminator_net`
 
@@ -54,7 +66,9 @@ discriminator object
 
 DiscriminatorNet
 
-<span id="undefined" />
+### get\_label
+
+<span id="qiskit.aqua.components.neural_networks.NumPyDiscriminator.get_label" />
 
 `get_label(x, detach=False)`
 
@@ -73,7 +87,9 @@ Discriminator output, i.e. data label
 
 numpy.ndarray
 
-<span id="undefined" />
+### load\_model
+
+<span id="qiskit.aqua.components.neural_networks.NumPyDiscriminator.load_model" />
 
 `load_model(load_dir)`
 
@@ -83,7 +99,9 @@ Load discriminator model
 
 **load\_dir** (*str*) – file with stored pytorch discriminator model to be loaded
 
-<span id="undefined" />
+### loss
+
+<span id="qiskit.aqua.components.neural_networks.NumPyDiscriminator.loss" />
 
 `loss(x, y, weights=None)`
 
@@ -97,7 +115,9 @@ loss function
 
 float
 
-<span id="undefined" />
+### save\_model
+
+<span id="qiskit.aqua.components.neural_networks.NumPyDiscriminator.save_model" />
 
 `save_model(snapshot_dir)`
 
@@ -107,13 +127,17 @@ Save discriminator model
 
 **snapshot\_dir** (*str*) – directory path for saving the model
 
-<span id="undefined" />
+### set\_seed
+
+<span id="qiskit.aqua.components.neural_networks.NumPyDiscriminator.set_seed" />
 
 `set_seed(seed)`
 
 Set seed. :param seed: seed :type seed: int
 
-<span id="undefined" />
+### train
+
+<span id="qiskit.aqua.components.neural_networks.NumPyDiscriminator.train" />
 
 `train(data, weights, penalty=False, quantum_instance=None, shots=None)`
 
@@ -124,7 +148,7 @@ Perform one training step w\.r.t to the discriminator’s parameters
 *   **data** (*tuple(numpy.ndarray, numpy.ndarray)*) – real\_batch: array, Training data batch. generated\_batch: array, Generated data batch.
 *   **weights** (*tuple*) – real problem, generated problem
 *   **penalty** (*bool*) – Depreciated for classical networks.
-*   **quantum\_instance** ([*QuantumInstance*](qiskit.aqua.QuantumInstance#qiskit.aqua.QuantumInstance "qiskit.aqua.QuantumInstance")) – Depreciated for classical networks.
+*   **quantum\_instance** ([*QuantumInstance*](qiskit.aqua.QuantumInstance "qiskit.aqua.QuantumInstance")) – Depreciated for classical networks.
 *   **shots** (*int*) – Number of shots for hardware or qasm execution. Ignored for classical networks.
 
 **Returns**
@@ -134,3 +158,4 @@ with Discriminator loss and updated parameters.
 **Return type**
 
 dict
+

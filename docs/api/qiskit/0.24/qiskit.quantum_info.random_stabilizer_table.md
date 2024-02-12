@@ -1,10 +1,18 @@
+---
+title: random_stabilizer_table
+description: API reference for qiskit.quantum_info.random_stabilizer_table
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.quantum_info.random_stabilizer_table
+---
+
 <span id="qiskit-quantum-info-random-stabilizer-table" />
 
 # qiskit.quantum\_info.random\_stabilizer\_table
 
-<span id="undefined" />
+<span id="qiskit.quantum_info.random_stabilizer_table" />
 
-`random_stabilizer_table(num_qubits, size=1, seed=None)`
+`random_stabilizer_table(num_qubits, size=1, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/quantum_info/operators/symplectic/random.py "view source code")
 
 Return a random StabilizerTable.
 
@@ -20,4 +28,5 @@ a random StabilizerTable.
 
 **Return type**
 
-[PauliTable](qiskit.quantum_info.PauliTable#qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")
+[PauliTable](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")
+

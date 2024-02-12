@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.primitives.SamplerResult
 ---
 
-# SamplerResult[¶](#samplerresult "Permalink to this headline")
+# SamplerResult
 
 <span id="qiskit.primitives.SamplerResult" />
 
-`SamplerResult(quasi_dists, metadata)`
+`SamplerResult(quasi_dists, metadata)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/primitives/base/sampler_result.py "view source code")
 
 Bases: `qiskit.primitives.base.base_result.BasePrimitiveResult`
 

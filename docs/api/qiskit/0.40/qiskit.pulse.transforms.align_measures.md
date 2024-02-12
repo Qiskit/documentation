@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.pulse.transforms.align_measures
 ---
 
-# qiskit.pulse.transforms.align\_measures[¶](#qiskit-pulse-transforms-align-measures "Permalink to this headline")
+# qiskit.pulse.transforms.align\_measures
 
 <span id="qiskit.pulse.transforms.align_measures" />
 
-`align_measures(schedules, inst_map=None, cal_gate='u3', max_calibration_duration=None, align_time=None, align_all=True)`
+`align_measures(schedules, inst_map=None, cal_gate='u3', max_calibration_duration=None, align_time=None, align_all=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/transforms/canonicalization.py "view source code")
 
 Return new schedules where measurements occur at the same physical time.
 

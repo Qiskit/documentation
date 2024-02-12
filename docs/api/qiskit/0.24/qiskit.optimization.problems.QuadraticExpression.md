@@ -1,10 +1,18 @@
+---
+title: QuadraticExpression
+description: API reference for qiskit.optimization.problems.QuadraticExpression
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.optimization.problems.QuadraticExpression
+---
+
 <span id="qiskit-optimization-problems-quadraticexpression" />
 
 # qiskit.optimization.problems.QuadraticExpression
 
-<span id="undefined" />
+<span id="qiskit.optimization.problems.QuadraticExpression" />
 
-`QuadraticExpression(quadratic_program, coefficients)`
+`QuadraticExpression(quadratic_program, coefficients)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/problems/quadratic_expression.py "view source code")
 
 Representation of a quadratic expression by its coefficients.
 
@@ -17,7 +25,9 @@ The quadratic expression can be defined via an array, a list, a sparse matrix, o
 *   **quadratic\_program** (`Any`) – The parent QuadraticProgram.
 *   **coefficients** (`Union`\[`ndarray`, `spmatrix`, `List`\[`List`\[`float`]], `Dict`\[`Tuple`\[`Union`\[`int`, `str`], `Union`\[`int`, `str`]], `float`]]) – The (sparse) representation of the coefficients.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.optimization.problems.QuadraticExpression.__init__" />
 
 `__init__(quadratic_program, coefficients)`
 
@@ -47,7 +57,9 @@ The quadratic expression can be defined via an array, a list, a sparse matrix, o
 | [`coefficients`](#qiskit.optimization.problems.QuadraticExpression.coefficients "qiskit.optimization.problems.QuadraticExpression.coefficients")                | Returns the coefficients of the quadratic expression. |
 | [`quadratic_program`](#qiskit.optimization.problems.QuadraticExpression.quadratic_program "qiskit.optimization.problems.QuadraticExpression.quadratic_program") | Returns the parent QuadraticProgram.                  |
 
-<span id="undefined" />
+### coefficients
+
+<span id="qiskit.optimization.problems.QuadraticExpression.coefficients" />
 
 `property coefficients`
 
@@ -61,7 +73,9 @@ Returns the coefficients of the quadratic expression.
 
 The coefficients of the quadratic expression.
 
-<span id="undefined" />
+### evaluate
+
+<span id="qiskit.optimization.problems.QuadraticExpression.evaluate" />
 
 `evaluate(x)`
 
@@ -79,7 +93,9 @@ Evaluate the quadratic expression for given variables: x \* Q \* x.
 
 The value of the quadratic expression given the variable values.
 
-<span id="undefined" />
+### evaluate\_gradient
+
+<span id="qiskit.optimization.problems.QuadraticExpression.evaluate_gradient" />
 
 `evaluate_gradient(x)`
 
@@ -97,7 +113,9 @@ Evaluate the gradient of the quadratic expression for given variables.
 
 The value of the gradient quadratic expression given the variable values.
 
-<span id="undefined" />
+### quadratic\_program
+
+<span id="qiskit.optimization.problems.QuadraticExpression.quadratic_program" />
 
 `property quadratic_program`
 
@@ -111,7 +129,9 @@ Returns the parent QuadraticProgram.
 
 The parent QuadraticProgram.
 
-<span id="undefined" />
+### to\_array
+
+<span id="qiskit.optimization.problems.QuadraticExpression.to_array" />
 
 `to_array(symmetric=False)`
 
@@ -129,7 +149,9 @@ Returns the coefficients of the quadratic expression as array.
 
 An array with the coefficients corresponding to the quadratic expression.
 
-<span id="undefined" />
+### to\_dict
+
+<span id="qiskit.optimization.problems.QuadraticExpression.to_dict" />
 
 `to_dict(symmetric=False, use_name=False)`
 
@@ -147,3 +169,4 @@ Returns the coefficients of the quadratic expression as dictionary, either using
 **Returns**
 
 An dictionary with the coefficients corresponding to the quadratic expression.
+

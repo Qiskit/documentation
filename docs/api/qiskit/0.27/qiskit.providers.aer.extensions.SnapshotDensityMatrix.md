@@ -1,8 +1,16 @@
+---
+title: SnapshotDensityMatrix
+description: API reference for qiskit.providers.aer.extensions.SnapshotDensityMatrix
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.aer.extensions.SnapshotDensityMatrix
+---
+
 # qiskit.providers.aer.extensions.SnapshotDensityMatrix
 
-<span id="undefined" />
+<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix" />
 
-`SnapshotDensityMatrix(label, num_qubits)`
+`SnapshotDensityMatrix(label, num_qubits)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/extensions/snapshot_density_matrix.py "view source code")
 
 Snapshot instruction for density matrix method of Qasm simulator.
 
@@ -18,10 +26,12 @@ Create a density matrix state snapshot instruction.
 **ExtensionError** – if snapshot is invalid.
 
 <Admonition title="Note" type="note">
-  This instruction will be deprecated after the qiskit-aer 0.8 release. It has been superseded by the [`qiskit.providers.aer.library.SaveDensityMatrix`](qiskit.providers.aer.library.SaveDensityMatrix#qiskit.providers.aer.library.SaveDensityMatrix "qiskit.providers.aer.library.SaveDensityMatrix") instruction.
+  This instruction will be deprecated after the qiskit-aer 0.8 release. It has been superseded by the [`qiskit.providers.aer.library.SaveDensityMatrix`](qiskit.providers.aer.library.SaveDensityMatrix "qiskit.providers.aer.library.SaveDensityMatrix") instruction.
 </Admonition>
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.__init__" />
 
 `__init__(label, num_qubits)`
 
@@ -37,7 +47,7 @@ Create a density matrix state snapshot instruction.
 **ExtensionError** – if snapshot is invalid.
 
 <Admonition title="Note" type="note">
-  This instruction will be deprecated after the qiskit-aer 0.8 release. It has been superseded by the [`qiskit.providers.aer.library.SaveDensityMatrix`](qiskit.providers.aer.library.SaveDensityMatrix#qiskit.providers.aer.library.SaveDensityMatrix "qiskit.providers.aer.library.SaveDensityMatrix") instruction.
+  This instruction will be deprecated after the qiskit-aer 0.8 release. It has been superseded by the [`qiskit.providers.aer.library.SaveDensityMatrix`](qiskit.providers.aer.library.SaveDensityMatrix "qiskit.providers.aer.library.SaveDensityMatrix") instruction.
 </Admonition>
 
 ## Methods
@@ -72,19 +82,25 @@ Create a density matrix state snapshot instruction.
 | [`snapshot_type`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.snapshot_type "qiskit.providers.aer.extensions.SnapshotDensityMatrix.snapshot_type")    | Return snapshot type                                                          |
 | [`unit`](#qiskit.providers.aer.extensions.SnapshotDensityMatrix.unit "qiskit.providers.aer.extensions.SnapshotDensityMatrix.unit")                               | Get the time unit of duration.                                                |
 
-<span id="undefined" />
+### add\_decomposition
+
+<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.add_decomposition" />
 
 `add_decomposition(decomposition)`
 
 Add a decomposition of the instruction to the SessionEquivalenceLibrary.
 
-<span id="undefined" />
+### assemble
+
+<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.assemble" />
 
 `assemble()`
 
 Assemble a QasmQobjInstruction
 
-<span id="undefined" />
+### broadcast\_arguments
+
+<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.broadcast_arguments" />
 
 `broadcast_arguments(qargs, cargs)`
 
@@ -103,13 +119,17 @@ Validation of the arguments.
 
 **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
 
-<span id="undefined" />
+### c\_if
+
+<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.c_if" />
 
 `c_if(classical, val)`
 
 Add classical condition on register classical and value val.
 
-<span id="undefined" />
+### copy
+
+<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.copy" />
 
 `copy(name=None)`
 
@@ -127,51 +147,67 @@ updated if it was provided
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+### decompositions
+
+<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.decompositions" />
 
 `property decompositions`
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
-<span id="undefined" />
+### define\_snapshot\_register
+
+<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.define_snapshot_register" />
 
 `static define_snapshot_register(circuit, label=None, qubits=None)`
 
 Defines qubits to snapshot for all snapshot methods
 
-<span id="undefined" />
+### definition
+
+<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.definition" />
 
 `property definition`
 
 Return definition in terms of other basic gates.
 
-<span id="undefined" />
+### duration
+
+<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.duration" />
 
 `property duration`
 
 Get the duration.
 
-<span id="undefined" />
+### inverse
+
+<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.inverse" />
 
 `inverse()`
 
 Special case. Return self.
 
-<span id="undefined" />
+### is\_parameterized
+
+<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.is_parameterized" />
 
 `is_parameterized()`
 
 Return True .IFF. instruction is parameterized else False
 
-<span id="undefined" />
+### label
+
+<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.label" />
 
 `property label`
 
 Return snapshot label
 
-<span id="undefined" />
+### mirror
+
+<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.mirror" />
 
 `mirror()`
 
@@ -185,15 +221,19 @@ reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+### params
+
+<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.params" />
 
 `property params`
 
 return instruction params.
 
-<span id="undefined" />
+### qasm
+
+<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.qasm" />
 
 `qasm()`
 
@@ -201,7 +241,9 @@ Return a default OpenQASM string for the instruction.
 
 Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
 
-<span id="undefined" />
+### repeat
+
+<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.repeat" />
 
 `repeat(n)`
 
@@ -217,13 +259,15 @@ Containing the definition.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
 **Raises**
 
 **CircuitError** – If n \< 1.
 
-<span id="undefined" />
+### reverse\_ops
+
+<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.reverse_ops" />
 
 `reverse_ops()`
 
@@ -239,15 +283,19 @@ sub-instructions reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+### snapshot\_type
+
+<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.snapshot_type" />
 
 `property snapshot_type`
 
 Return snapshot type
 
-<span id="undefined" />
+### soft\_compare
+
+<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.soft_compare" />
 
 `soft_compare(other)`
 
@@ -265,14 +313,19 @@ are self and other equal up to parameter expressions.
 
 bool
 
-<span id="undefined" />
+### unit
+
+<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.unit" />
 
 `property unit`
 
 Get the time unit of duration.
 
-<span id="undefined" />
+### validate\_parameter
+
+<span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix.validate_parameter" />
 
 `validate_parameter(parameter)`
 
 Instruction parameters has no validation or normalization.
+

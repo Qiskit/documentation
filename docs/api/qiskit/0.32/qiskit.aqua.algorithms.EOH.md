@@ -1,8 +1,16 @@
+---
+title: EOH
+description: API reference for qiskit.aqua.algorithms.EOH
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.algorithms.EOH
+---
+
 # EOH
 
-<span id="undefined" />
+<span id="qiskit.aqua.algorithms.EOH" />
 
-`EOH(operator, initial_state, evo_operator, evo_time=1, num_time_slices=1, expansion_mode='trotter', expansion_order=1, quantum_instance=None)`
+`EOH(operator, initial_state, evo_operator, evo_time=1, num_time_slices=1, expansion_mode='trotter', expansion_order=1, quantum_instance=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/education/eoh.py "view source code")
 
 Bases: `qiskit.aqua.algorithms.quantum_algorithm.QuantumAlgorithm`
 
@@ -23,15 +31,62 @@ EOH provides the lower-level building blocks for simulating universal quantum sy
 
 ## Methods
 
-|                                                                                                                                                                 |                                              |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
-| [`construct_circuit`](qiskit.aqua.algorithms.EOH.construct_circuit#qiskit.aqua.algorithms.EOH.construct_circuit "qiskit.aqua.algorithms.EOH.construct_circuit") | Construct the circuit.                       |
-| [`run`](qiskit.aqua.algorithms.EOH.run#qiskit.aqua.algorithms.EOH.run "qiskit.aqua.algorithms.EOH.run")                                                         | Execute the algorithm with selected backend. |
-| [`set_backend`](qiskit.aqua.algorithms.EOH.set_backend#qiskit.aqua.algorithms.EOH.set_backend "qiskit.aqua.algorithms.EOH.set_backend")                         | Sets backend with configuration.             |
+### construct\_circuit
+
+<span id="qiskit.aqua.algorithms.EOH.construct_circuit" />
+
+`EOH.construct_circuit()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/education/eoh.py "view source code")
+
+Construct the circuit.
+
+**Returns**
+
+the circuit.
+
+**Return type**
+
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+
+### run
+
+<span id="qiskit.aqua.algorithms.EOH.run" />
+
+`EOH.run(quantum_instance=None, **kwargs)`
+
+Execute the algorithm with selected backend.
+
+**Parameters**
+
+*   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – the experimental setting.
+*   **kwargs** (*dict*) – kwargs
+
+**Returns**
+
+results of an algorithm.
+
+**Return type**
+
+dict
+
+**Raises**
+
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
+
+### set\_backend
+
+<span id="qiskit.aqua.algorithms.EOH.set_backend" />
+
+`EOH.set_backend(backend, **kwargs)`
+
+Sets backend with configuration.
+
+**Return type**
+
+`None`
 
 ## Attributes
 
-<span id="undefined" />
+<span id="qiskit.aqua.algorithms.EOH.backend" />
 
 ### backend
 
@@ -41,7 +96,7 @@ Returns backend.
 
 `Union`\[`Backend`, `BaseBackend`]
 
-<span id="undefined" />
+<span id="qiskit.aqua.algorithms.EOH.quantum_instance" />
 
 ### quantum\_instance
 
@@ -51,8 +106,9 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-<span id="undefined" />
+<span id="qiskit.aqua.algorithms.EOH.random" />
 
 ### random
 
 Return a numpy random.
+

@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.pulse.builder.u3
 ---
 
-# qiskit.pulse.builder.u3[¶](#qiskit-pulse-builder-u3 "Permalink to this headline")
+# qiskit.pulse.builder.u3
 
 <span id="qiskit.pulse.builder.u3" />
 
-`u3(theta, phi, lam, qubit)`
+`u3(theta, phi, lam, qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/builder.py "view source code")
 
 Call a `U3Gate` on the input physical qubit.
 

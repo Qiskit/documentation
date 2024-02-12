@@ -1,0 +1,129 @@
+---
+title: Configure runtime compilation
+description: How to use runtime compilation techniques
+---
+
+# Configure runtime compilation for Qiskit Runtime
+
+Runtime compilation techniques optimize and transform your circuit to minimize errors. Runtime compilation adds some classical pre-processing overhead to your overall runtime. Therefore, it is important to achieve a balance between perfecting your results and ensuring that your job completes in a reasonable amount of time.
+
+Primitives let you employ runtime compilation by setting the optimization level (`optimization_level` option) and by choosing advanced runtime compilation options.
+
+## Set the optimization level
+
+The `optimization_level` setting specifies how much optimization to perform on the circuits. Higher levels generate more optimized circuits, at the expense of longer compile times.
+
+<Admonition>
+  In current primitive versions, optimization levels 2 and 3 behave identically to level 1.
+</Admonition>
+
+<Table>
+  <thead>
+    <Tr>
+      <Th>Optimization Level</Th>
+      <Th>Estimator & Sampler</Th>
+    </Tr>
+  </thead>
+  <tbody>
+    <Tr>
+      <Td>0</Td>
+      <Td>
+        No optimization: typically used for hardware characterization or debugging
+
+```
+    - Basis translation
+    - Layout (as specified)
+    - Routing (stochastic swaps)
+  </Td>
+</Tr>
+<Tr>
+  <Td>1, 2, 3</Td>
+  <Td>
+    Light optimization:
+
+    -   Layout (trivial → vf2 → SabreLayout if routing is required)
+    -   Routing (SabreSWAPs if needed)
+    -   1Q gate optimization
+    -   Error suppression: dynamical decoupling
+  </Td>
+</Tr>
+```
+
+</tbody>
+</Table>
+
+<Admonition>
+  The primitives expect circuits in a form suitable to execute on the target system. You may use the Qiskit transpiler locally to translate abstract circuits into this target circuit form. 
+  
+At present, the primitives will attempt low-cost transformations if given a circuit that is not already in target form, but in the future, primitives will error on such circuits. It is therefore recommended that users take advantage of the local compilation capabilities of the Qiskit transpiler wherever possible.
+  
+  For instructions on preparing circuits for primitive queries, see the [Submit pre-transpiled circuits](https://learning.quantum.ibm.com/tutorial/submitting-user-transpiled-circuits-using-primitives) tutorial.
+</Admonition>
+
+<Admonition type="note">
+  If using an IBM Cloud Qiskit Runtime service instance with Q-CTRL performance management enabled, there is no need to specify runtime optimization or resilience levels, as the strategy includes an automatic preset.
+  
+  Q-CTRL defaults to `optimization_level=3` and `resilience_level=1`.
+  Setting `optimization_level` or `resilience_level` equal to 0 will result in an
+  execution error. Levels 1, 2, and 3 are permitted but will not impact performance.
+  Setting other options will likewise not impact performance, and it may result in a
+  runtime warning. For more information visit the [Q-CTRL documentation](https://docs.q-ctrl.com/q-ctrl-embedded).
+</Admonition>
+
+### Example: configure Estimator with optimization levels
+
+```python
+from qiskit_ibm_runtime import QiskitRuntimeService, Estimator, Options
+from qiskit.circuit.library import RealAmplitudes
+from qiskit.quantum_info import SparsePauliOp
+
+service = QiskitRuntimeService()
+backend = service.backend("ibmq_qasm_simulator")
+options = Options(optimization_level=1)
+
+psi = RealAmplitudes(num_qubits=2, reps=2)
+H = SparsePauliOp.from_list([("II", 1), ("IZ", 2), ("XI", 3)])
+theta = [0, 1, 1, 2, 3, 5]
+
+estimator = Estimator (options=options, backend=backend)
+
+job = estimator.run(circuits=[psi], observables=[H], parameter_values=[theta])
+psi1_H1 = job.result()
+```
+
+<Admonition type="note">
+  If the optimization level is not specified, the service uses `optimization_level = 1`.
+</Admonition>
+
+### Example: configure Sampler with optimization levels
+
+```python
+from qiskit_ibm_runtime import QiskitRuntimeService, Sampler, Options
+
+service = QiskitRuntimeService()
+backend = service.backend("ibmq_qasm_simulator")
+options = Options(optimization_level=1)
+
+sampler = Sampler(options=options, backend=backend)
+```
+
+<span id="transpilation-table"></span>
+## Advanced runtime compilation options
+
+You also have the ability to tune a variety of advanced options to configure your runtime compilation strategy further. These methods can be used alongside optimization levels. They allow you to change the options of interest and let your optimization level manage the rest.
+
+| Options                                                         | Description                                                                                                                                                                  |
+| --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| options.transpilation.skip_transpilation (bool)                 | Directs the service to execute the primitive query with the bare minimum about of runtime compilation necessary                                                              |
+| options.transpilation.initial_layout(Union\[dict, List, None])  | (Deprecated) Initial position of virtual qubits on physical qubits.                                                                                                          |
+| options.transpilation.layout_method (Optional\[str])            | (Deprecated) Name of layout selection pass. One of `trivial`, `dense`, `noise_adaptive`, `sabre`.                                                                            |
+| options.transpilation.routing_method (Optional\[str])           | (Deprecated) Name of routing pass: `basic`, `lookahead`, `stochastic`, `sabre`, `none`.                                                                                      |
+| options.transpilation.approximation_degree (Optional\[float])   | (Deprecated) Heuristic dial used for circuit approximation (1.0=no approximation, 0.0=maximal approximation). Defaults to no approximation for all optimization levels       |
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+    - Try a tutorial that uses optimization levels, such as the [Variational quantum eigensolver](https://learning.quantum.ibm.com/tutorial/variational-quantum-eigensolver) tutorial.
+    - Learn how to transpile locally in the [Transpile](../transpile/) section.
+    - Try the [Submit pre-transpiled circuits](https://learning.quantum.ibm.com/tutorial/submitting-user-transpiled-circuits-using-primitives) tutorial.
+</Admonition>

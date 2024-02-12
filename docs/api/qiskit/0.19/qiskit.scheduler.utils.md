@@ -10,7 +10,7 @@ python_api_name: qiskit.scheduler.utils.format_meas_map
 
 Scheduling utility functions.
 
-## Functions
+**Functions**
 
 |                                                                                                                  |                                                                                                                                                                     |
 | ---------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -18,9 +18,11 @@ Scheduling utility functions.
 | [`measure`](#qiskit.scheduler.utils.measure "qiskit.scheduler.utils.measure")(qubits\[, backend, inst\_map, …])  | Return a schedule which measures the requested qubits according to the given instruction mapping and measure map, or by using the defaults provided by the backend. |
 | [`measure_all`](#qiskit.scheduler.utils.measure_all "qiskit.scheduler.utils.measure_all")(backend)               | Return a Schedule which measures all qubits of the given backend.                                                                                                   |
 
+### format\_meas\_map
+
 <span id="qiskit.scheduler.utils.format_meas_map" />
 
-`format_meas_map(meas_map)`
+`format_meas_map(meas_map)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/scheduler/utils.py "view source code")
 
 Return a mapping from qubit label to measurement group given the nested list meas\_map returned by a backend configuration. (Qubits can not always be measured independently.) Sorts the measurement group for consistency.
 
@@ -36,9 +38,11 @@ Return a mapping from qubit label to measurement group given the nested list mea
 
 Measure map in map format
 
+### measure
+
 <span id="qiskit.scheduler.utils.measure" />
 
-`measure(qubits, backend=None, inst_map=None, meas_map=None, qubit_mem_slots=None, measure_name='measure')`
+`measure(qubits, backend=None, inst_map=None, meas_map=None, qubit_mem_slots=None, measure_name='measure')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/scheduler/utils.py "view source code")
 
 Return a schedule which measures the requested qubits according to the given instruction mapping and measure map, or by using the defaults provided by the backend.
 
@@ -65,9 +69,11 @@ A measurement schedule corresponding to the inputs provided.
 
 [**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If both `inst_map` or `meas_map`, and `backend` is None.
 
+### measure\_all
+
 <span id="qiskit.scheduler.utils.measure_all" />
 
-`measure_all(backend)`
+`measure_all(backend)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/scheduler/utils.py "view source code")
 
 Return a Schedule which measures all qubits of the given backend.
 

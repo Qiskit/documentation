@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.noise.QuantumError
 
 <span id="qiskit.providers.aer.noise.QuantumError" />
 
-`QuantumError(noise_ops, number_of_qubits=None, standard_gates=None, atol=None)`
+`QuantumError(noise_ops, number_of_qubits=None, standard_gates=None, atol=None)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/noise/errors/quantum_error.py "view source code")
 
 Bases: `qiskit.quantum_info.operators.base_operator.BaseOperator`, `qiskit.quantum_info.operators.mixins.tolerances.TolerancesMixin`
 
@@ -64,7 +64,7 @@ noise_ops = Kraus([np.sqrt(0.9) * np.array([[1, 0], [0, 1]]),
 
 <span id="qiskit.providers.aer.noise.QuantumError.compose" />
 
-`QuantumError.compose(other, qargs=None, front=False)`
+`QuantumError.compose(other, qargs=None, front=False)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/noise/errors/quantum_error.py "view source code")
 
 Return the operator composition with another CLASS.
 
@@ -87,7 +87,7 @@ CLASS
 **QiskitError** – if other cannot be converted to an operator, or has incompatible dimensions for specified subsystems.
 
 <Admonition title="Note" type="note">
-  Composition (`&`) by default is defined as left matrix multiplication for matrix operators, while `@` (equivalent to [`dot()`](qiskit.providers.aer.noise.QuantumError#dot "qiskit.providers.aer.noise.QuantumError.dot")) is defined as right matrix multiplication. That is that `A & B == A.compose(B)` is equivalent to `B @ A == B.dot(A)` when `A` and `B` are of the same type.
+  Composition (`&`) by default is defined as left matrix multiplication for matrix operators, while [`dot()`](qiskit.providers.aer.noise.QuantumError#dot "qiskit.providers.aer.noise.QuantumError.dot") is defined as right matrix multiplication. That is that `A & B == A.compose(B)` is equivalent to `B.dot(A)` when `A` and `B` are of the same type.
 
   Setting the `front=True` kwarg changes this to right matrix multiplication and is equivalent to the [`dot()`](qiskit.providers.aer.noise.QuantumError#dot "qiskit.providers.aer.noise.QuantumError.dot") method `A.dot(B) == A.compose(B, front=True)`.
 </Admonition>
@@ -96,7 +96,7 @@ CLASS
 
 <span id="qiskit.providers.aer.noise.QuantumError.copy" />
 
-`QuantumError.copy()`
+`QuantumError.copy()`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/noise/errors/quantum_error.py "view source code")
 
 Make a copy of current QuantumError.
 
@@ -121,15 +121,11 @@ The right matrix multiplied Operator.
 
 [Operator](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")
 
-<Admonition title="Note" type="note">
-  The dot product can be obtained using the `@` binary operator. Hence `a.dot(b)` is equivalent to `a @ b`.
-</Admonition>
-
 ### error\_term
 
 <span id="qiskit.providers.aer.noise.QuantumError.error_term" />
 
-`QuantumError.error_term(position)`
+`QuantumError.error_term(position)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/noise/errors/quantum_error.py "view source code")
 
 Return a single term from the error.
 
@@ -154,7 +150,7 @@ tuple
 
 <span id="qiskit.providers.aer.noise.QuantumError.expand" />
 
-`QuantumError.expand(other)`
+`QuantumError.expand(other)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/noise/errors/quantum_error.py "view source code")
 
 Return the reverse-order tensor product with another CLASS.
 
@@ -176,7 +172,7 @@ CLASS
 
 <span id="qiskit.providers.aer.noise.QuantumError.ideal" />
 
-`QuantumError.ideal()`
+`QuantumError.ideal()`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/noise/errors/quantum_error.py "view source code")
 
 Return True if this error object is composed only of identity operations. Note that the identity check is best effort and up to global phase.
 
@@ -250,7 +246,7 @@ BaseOperator
 
 <span id="qiskit.providers.aer.noise.QuantumError.set_atol" />
 
-`classmethod QuantumError.set_atol(value)`
+`classmethod QuantumError.set_atol(value)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/noise/errors/quantum_error.py "view source code")
 
 Set the class default absolute tolerance parameter for float comparisons.
 
@@ -258,7 +254,7 @@ Set the class default absolute tolerance parameter for float comparisons.
 
 <span id="qiskit.providers.aer.noise.QuantumError.set_rtol" />
 
-`classmethod QuantumError.set_rtol(value)`
+`classmethod QuantumError.set_rtol(value)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/noise/errors/quantum_error.py "view source code")
 
 Set the class default relative tolerance parameter for float comparisons.
 
@@ -266,7 +262,7 @@ Set the class default relative tolerance parameter for float comparisons.
 
 <span id="qiskit.providers.aer.noise.QuantumError.tensor" />
 
-`QuantumError.tensor(other)`
+`QuantumError.tensor(other)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/noise/errors/quantum_error.py "view source code")
 
 Return the tensor product with another CLASS.
 
@@ -292,7 +288,7 @@ CLASS
 
 <span id="qiskit.providers.aer.noise.QuantumError.to_dict" />
 
-`QuantumError.to_dict()`
+`QuantumError.to_dict()`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/noise/errors/quantum_error.py "view source code")
 
 Return the current error as a dictionary.
 
@@ -300,7 +296,7 @@ Return the current error as a dictionary.
 
 <span id="qiskit.providers.aer.noise.QuantumError.to_instruction" />
 
-`QuantumError.to_instruction()`
+`QuantumError.to_instruction()`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/noise/errors/quantum_error.py "view source code")
 
 Convert the QuantumError to a circuit Instruction.
 
@@ -308,7 +304,7 @@ Convert the QuantumError to a circuit Instruction.
 
 <span id="qiskit.providers.aer.noise.QuantumError.to_quantumchannel" />
 
-`QuantumError.to_quantumchannel()`
+`QuantumError.to_quantumchannel()`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/noise/errors/quantum_error.py "view source code")
 
 Convert the QuantumError to a SuperOp quantum channel. Required to enable SuperOp(QuantumError).
 

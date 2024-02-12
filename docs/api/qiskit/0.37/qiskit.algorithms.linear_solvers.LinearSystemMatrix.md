@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.linear_solvers.LinearSystemMatrix
 
 <span id="qiskit.algorithms.linear_solvers.LinearSystemMatrix" />
 
-`LinearSystemMatrix(num_state_qubits, tolerance, evolution_time, name='ls_matrix')`
+`LinearSystemMatrix(num_state_qubits, tolerance, evolution_time, name='ls_matrix')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/linear_solvers/matrices/linear_system_matrix.py "view source code")
 
 Bases: `qiskit.circuit.library.blueprintcircuit.BlueprintCircuit`, `abc.ABC`
 
@@ -134,7 +134,7 @@ The values can be assigned to the current circuit object or to a copy of it.
 
 A copy of the circuit with bound parameters, if `inplace` is False, otherwise None.
 
-#### Examples
+**Examples**
 
 Create a parameterized circuit and assign the parameters in-place.
 
@@ -485,7 +485,7 @@ the composed circuit (returns None if inplace==True).
 *   **CircuitError** – if trying to emit a new circuit while `self` has a partially built control-flow context active, such as the context-manager forms of [`if_test()`](qiskit.algorithms.linear_solvers.LinearSystemMatrix#if_test "qiskit.algorithms.linear_solvers.LinearSystemMatrix.if_test"), [`for_loop()`](qiskit.algorithms.linear_solvers.LinearSystemMatrix#for_loop "qiskit.algorithms.linear_solvers.LinearSystemMatrix.for_loop") and [`while_loop()`](qiskit.algorithms.linear_solvers.LinearSystemMatrix#while_loop "qiskit.algorithms.linear_solvers.LinearSystemMatrix.while_loop").
 *   **CircuitError** – if trying to compose to the front of a circuit when a control-flow builder block is active; there is no clear meaning to this action.
 
-#### Examples
+**Examples**
 
 ```python
 >>> lhs.compose(rhs, qubits=[3, 2], inplace=True)
@@ -512,7 +512,7 @@ lcr_1: 0 ═══════════                           lcr_1: 0 �
 
 <span id="qiskit.algorithms.linear_solvers.LinearSystemMatrix.condition_bounds" />
 
-`abstract LinearSystemMatrix.condition_bounds()`
+`abstract LinearSystemMatrix.condition_bounds()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/linear_solvers/matrices/linear_system_matrix.py "view source code")
 
 Return lower and upper bounds on the condition number of the matrix.
 
@@ -1035,7 +1035,7 @@ Depth of circuit.
 
 int
 
-#### Notes
+**Notes**
 
 The circuit depth and the DAG depth need not be the same.
 
@@ -1125,7 +1125,7 @@ Draw the quantum circuit. Use the output parameter to choose the drawing format:
 *   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – when an invalid output method is selected
 *   **ImportError** – when the output methods requires non-installed libraries.
 
-#### Example
+**Example**
 
 ```python
 from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
@@ -1167,7 +1167,7 @@ A handle to the instructions created.
 
 <span id="qiskit.algorithms.linear_solvers.LinearSystemMatrix.eigs_bounds" />
 
-`abstract LinearSystemMatrix.eigs_bounds()`
+`abstract LinearSystemMatrix.eigs_bounds()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/linear_solvers/matrices/linear_system_matrix.py "view source code")
 
 Return lower and upper bounds on the eigenvalues of the matrix.
 
@@ -1225,7 +1225,7 @@ contains the index at which the `Bit` can be found (in either `qubits`, `clbits`
 
 namedtuple(int, List\[Tuple(Register, int)])
 
-#### Notes
+**Notes**
 
 The circuit index of an `AncillaQubit` will be its index in `qubits`, not `ancillas`.
 
@@ -1615,7 +1615,7 @@ a handle to the instruction that was just initialized
 
 [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-#### Examples
+**Examples**
 
 Prepare a qubit in the state $(|0\rangle - |1\rangle) / \sqrt{2}$.
 
@@ -1722,7 +1722,7 @@ the inverted circuit
 
 **CircuitError** – if the circuit cannot be inverted.
 
-#### Examples
+**Examples**
 
 input:
 
@@ -2150,7 +2150,7 @@ Conditional nonlocal gates are also included.
 
 Computes the number of tensor factors in the unitary (quantum) part of the circuit only.
 
-#### Notes
+**Notes**
 
 This is here for backwards compatibility, and will be removed in a future release of Qiskit. You should call num\_unitary\_factors instead.
 
@@ -2218,7 +2218,7 @@ A handle to the instructions created.
 
 <span id="qiskit.algorithms.linear_solvers.LinearSystemMatrix.power" />
 
-`abstract LinearSystemMatrix.power(power, matrix_power=False)`
+`abstract LinearSystemMatrix.power(power, matrix_power=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/linear_solvers/matrices/linear_system_matrix.py "view source code")
 
 Build powers of the circuit.
 
@@ -2270,7 +2270,7 @@ a handle to the instruction that was just initialized
 
 [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-#### Examples
+**Examples**
 
 Prepare a qubit in the state $(|0\rangle - |1\rangle) / \sqrt{2}$.
 
@@ -2623,7 +2623,7 @@ the circuit with reversed bit order.
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-#### Examples
+**Examples**
 
 input:
 
@@ -2675,7 +2675,7 @@ the reversed circuit.
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-#### Examples
+**Examples**
 
 input:
 
@@ -3829,7 +3829,7 @@ q_0: ┤ bottom ├ ⊗ q_0: ┤ top ├  = q_0: ─┤ top ├──
 *   **other** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The other circuit to tensor this circuit with.
 *   **inplace** (*bool*) – If True, modify the object. Otherwise return composed circuit.
 
-#### Examples
+**Examples**
 
 ```python
 from qiskit import QuantumCircuit
@@ -4147,7 +4147,7 @@ the uniformly controlled rotation gate is attached to the circuit.
 
 Apply unitary gate specified by `obj` to `qubits`.
 
-#### Example
+**Example**
 
 Apply a gate specified by a unitary matrix to a quantum circuit
 

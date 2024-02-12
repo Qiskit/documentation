@@ -1,10 +1,18 @@
+---
+title: gateset_tomography_circuits
+description: API reference for qiskit.ignis.verification.gateset_tomography_circuits
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.ignis.verification.gateset_tomography_circuits
+---
+
 <span id="qiskit-ignis-verification-gateset-tomography-circuits" />
 
 # qiskit.ignis.verification.gateset\_tomography\_circuits
 
-<span id="undefined" />
+<span id="qiskit.ignis.verification.gateset_tomography_circuits" />
 
-`gateset_tomography_circuits(measured_qubits=None, gateset_basis='default')`
+`gateset_tomography_circuits(measured_qubits=None, gateset_basis='default')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/tomography/basis/circuits.py "view source code")
 
 Return a list of quantum gate set tomography (GST) circuits.
 
@@ -48,3 +56,4 @@ We perform three types of experiments:
     This experiment enables us to reconstruct \<E| and rho
 
 The result of this method is the set of all the circuits needed for these experiments, suitably labeled with a tuple of the corresponding gate/SPAM labels
+

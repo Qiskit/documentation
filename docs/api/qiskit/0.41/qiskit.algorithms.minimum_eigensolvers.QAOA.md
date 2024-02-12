@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.minimum_eigensolvers.QAOA
 ---
 
-# QAOA[¶](#qaoa "Permalink to this headline")
+# QAOA
 
 <span id="qiskit.algorithms.minimum_eigensolvers.QAOA" />
 
-`QAOA(sampler, optimizer, *, reps=1, initial_state=None, mixer=None, initial_point=None, aggregation=None, callback=None)`
+`QAOA(sampler, optimizer, *, reps=1, initial_state=None, mixer=None, initial_point=None, aggregation=None, callback=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/minimum_eigensolvers/qaoa.py "view source code")
 
 Bases: [`qiskit.algorithms.minimum_eigensolvers.sampling_vqe.SamplingVQE`](qiskit.algorithms.minimum_eigensolvers.SamplingVQE "qiskit.algorithms.minimum_eigensolvers.sampling_vqe.SamplingVQE")
 
@@ -92,7 +92,7 @@ A callback that can access the intermediate data at each optimization step. Thes
 
 Callable\[\[int, np.ndarray, float, dict\[str, Any]], None] | None
 
-## References
+**References**
 
 **\[1]: Farhi, E., Goldstone, J., Gutmann, S., “A Quantum Approximate Optimization Algorithm”**
 

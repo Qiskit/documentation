@@ -1,8 +1,16 @@
+---
+title: get_entangler_map
+description: API reference for qiskit.aqua.utils.get_entangler_map
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.aqua.utils.get_entangler_map
+---
+
 # qiskit.aqua.utils.get\_entangler\_map
 
-<span id="undefined" />
+<span id="qiskit.aqua.utils.get_entangler_map" />
 
-`get_entangler_map(map_type, num_qubits, offset=0)`
+`get_entangler_map(map_type, num_qubits, offset=0)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/utils/entangler_map.py "view source code")
 
 Utility method to get an entangler map among qubits.
 
@@ -23,3 +31,4 @@ list
 **Raises**
 
 **ValueError** – if map\_type is not valid.
+

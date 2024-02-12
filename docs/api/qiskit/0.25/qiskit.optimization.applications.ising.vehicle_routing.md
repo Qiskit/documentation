@@ -1,10 +1,18 @@
+---
+title: get_operator
+description: API reference for qiskit.optimization.applications.ising.vehicle_routing.get_operator
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.optimization.applications.ising.vehicle_routing.get_operator
+---
+
 <span id="qiskit-optimization-applications-ising-vehicle-routing" />
 
 # qiskit.optimization.applications.ising.vehicle\_routing
 
 Converts vehicle routing instances into a list of Paulis, and provides some related routines (extracting a solution, checking its objective function value).
 
-## Functions
+**Functions**
 
 |                                                                                                                                                                                                                              |                                                                              |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
@@ -13,9 +21,11 @@ Converts vehicle routing instances into a list of Paulis, and provides some rela
 | [`get_vehiclerouting_matrices`](#qiskit.optimization.applications.ising.vehicle_routing.get_vehiclerouting_matrices "qiskit.optimization.applications.ising.vehicle_routing.get_vehiclerouting_matrices")(instance, n, K)    | Constructs auxiliary matrices from a vehicle routing instance,               |
 | [`get_vehiclerouting_solution`](#qiskit.optimization.applications.ising.vehicle_routing.get_vehiclerouting_solution "qiskit.optimization.applications.ising.vehicle_routing.get_vehiclerouting_solution")(instance, n, K, …) | Tries to obtain a feasible solution (in vector form) of an instance          |
 
-<span id="undefined" />
+### get\_operator
 
-`get_operator(instance, n, K)`
+<span id="qiskit.optimization.applications.ising.vehicle_routing.get_operator" />
+
+`get_operator(instance, n, K)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/vehicle_routing.py "view source code")
 
 Converts an instance of a vehicle routing problem into a list of Paulis.
 
@@ -33,9 +43,11 @@ Converts an instance of a vehicle routing problem into a list of Paulis.
 
 operator for the Hamiltonian.
 
-<span id="undefined" />
+### get\_vehiclerouting\_cost
 
-`get_vehiclerouting_cost(instance, n, K, x_sol)`
+<span id="qiskit.optimization.applications.ising.vehicle_routing.get_vehiclerouting_cost" />
+
+`get_vehiclerouting_cost(instance, n, K, x_sol)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/vehicle_routing.py "view source code")
 
 Computes the cost of a solution to an instance of a vehicle routing problem.
 
@@ -54,9 +66,11 @@ Computes the cost of a solution to an instance of a vehicle routing problem.
 
 objective function value.
 
-<span id="undefined" />
+### get\_vehiclerouting\_matrices
 
-`get_vehiclerouting_matrices(instance, n, K)`
+<span id="qiskit.optimization.applications.ising.vehicle_routing.get_vehiclerouting_matrices" />
+
+`get_vehiclerouting_matrices(instance, n, K)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/vehicle_routing.py "view source code")
 
 ## Constructs auxiliary matrices from a vehicle routing instance,
 
@@ -76,9 +90,11 @@ which represent the encoding into a binary quadratic program. This is used in th
 
 a matrix defining the interactions between variables. a matrix defining the contribution from the individual variables. the constant offset.
 
-<span id="undefined" />
+### get\_vehiclerouting\_solution
 
-`get_vehiclerouting_solution(instance, n, K, result)`
+<span id="qiskit.optimization.applications.ising.vehicle_routing.get_vehiclerouting_solution" />
+
+`get_vehiclerouting_solution(instance, n, K, result)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/vehicle_routing.py "view source code")
 
 ## Tries to obtain a feasible solution (in vector form) of an instance
 
@@ -102,3 +118,4 @@ a solution, i.e., a path, in its binary representation.
 ## #TODO: support statevector simulation, results should be a statevector or counts format, not
 
 a result from algorithm run
+

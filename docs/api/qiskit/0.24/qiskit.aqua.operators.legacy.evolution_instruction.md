@@ -1,17 +1,25 @@
+---
+title: evolution_instruction
+description: API reference for qiskit.aqua.operators.legacy.evolution_instruction
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.aqua.operators.legacy.evolution_instruction
+---
+
 <span id="qiskit-aqua-operators-legacy-evolution-instruction" />
 
 # qiskit.aqua.operators.legacy.evolution\_instruction
 
-<span id="undefined" />
+<span id="qiskit.aqua.operators.legacy.evolution_instruction" />
 
-`evolution_instruction(pauli_list, evo_time, num_time_slices, controlled=False, power=1, use_basis_gates=True, shallow_slicing=False, barrier=False)`
+`evolution_instruction(pauli_list, evo_time, num_time_slices, controlled=False, power=1, use_basis_gates=True, shallow_slicing=False, barrier=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/legacy/common.py "view source code")
 
 Construct the evolution circuit according to the supplied specification.
 
 **Parameters**
 
-*   **pauli\_list** (*list(\[\[complex,* [*Pauli*](qiskit.quantum_info.Pauli#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")*]])*) – The list of pauli terms corresponding to a single time slice to be evolved
-*   **evo\_time** (*Union(complex, float,* [*Parameter*](qiskit.circuit.Parameter#qiskit.circuit.Parameter "qiskit.circuit.Parameter")*,* [*ParameterExpression*](qiskit.circuit.ParameterExpression#qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*)*) – The evolution time
+*   **pauli\_list** (*list(\[\[complex,* [*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")*]])*) – The list of pauli terms corresponding to a single time slice to be evolved
+*   **evo\_time** (*Union(complex, float,* [*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*,* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*)*) – The evolution time
 *   **num\_time\_slices** (*int*) – The number of time slices for the expansion
 *   **controlled** (*bool, optional*) – Controlled circuit or not
 *   **power** (*int, optional*) – The power to which the unitary operator is to be raised
@@ -25,9 +33,10 @@ The Instruction corresponding to specified evolution.
 
 **Return type**
 
-[Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
 **Raises**
 
-*   [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – power must be an integer and greater or equal to 1
+*   [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – power must be an integer and greater or equal to 1
 *   **ValueError** – Unrecognized pauli
+

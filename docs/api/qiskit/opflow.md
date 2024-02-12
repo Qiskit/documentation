@@ -95,9 +95,11 @@ The Converter submodules include objects which manipulate Operators, usually rec
 
 ## Utility functions
 
+### commutator
+
 <span id="qiskit.opflow.commutator" />
 
-`qiskit.opflow.commutator(op_a, op_b)`
+`qiskit.opflow.commutator(op_a, op_b)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/opflow/utils.py "view source code")
 
 Deprecated: Compute commutator of op\_a and op\_b.
 
@@ -106,7 +108,7 @@ AB - BA.
 $$
 
 <Admonition title="Deprecated since version 0.24.0" type="danger">
-  The function `qiskit.opflow.utils.commutator()` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  The function `qiskit.opflow.utils.commutator()` is deprecated as of qiskit-terra 0.24.0. It will be removed in the Qiskit 1.0 release. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
 </Admonition>
 
 **Parameters**
@@ -122,9 +124,11 @@ the commutator
 
 [OperatorBase](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")
 
+### anti\_commutator
+
 <span id="qiskit.opflow.anti_commutator" />
 
-`qiskit.opflow.anti_commutator(op_a, op_b)`
+`qiskit.opflow.anti_commutator(op_a, op_b)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/opflow/utils.py "view source code")
 
 Deprecated: Compute anti-commutator of op\_a and op\_b.
 
@@ -133,7 +137,7 @@ AB + BA.
 $$
 
 <Admonition title="Deprecated since version 0.24.0" type="danger">
-  The function `qiskit.opflow.utils.anti_commutator()` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  The function `qiskit.opflow.utils.anti_commutator()` is deprecated as of qiskit-terra 0.24.0. It will be removed in the Qiskit 1.0 release. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
 </Admonition>
 
 **Parameters**
@@ -149,9 +153,11 @@ the anti-commutator
 
 [OperatorBase](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")
 
+### double\_commutator
+
 <span id="qiskit.opflow.double_commutator" />
 
-`qiskit.opflow.double_commutator(op_a, op_b, op_c, sign=False)`
+`qiskit.opflow.double_commutator(op_a, op_b, op_c, sign=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/opflow/utils.py "view source code")
 
 Deprecated: Compute symmetric double commutator of op\_a, op\_b and op\_c. See McWeeny chapter 13.6 Equation of motion methods (page 479)
 
@@ -167,10 +173,12 @@ If sign is True, it returns
 $$
 \lbrace[A, B], C\rbrace/2 + \lbrace A, [B, C]\rbrace/2
 = (2ABC - 2CBA - BAC + CAB - ACB + BCA)/2.
+
+
 $$
 
 <Admonition title="Deprecated since version 0.24.0" type="danger">
-  The function `qiskit.opflow.utils.double_commutator()` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  The function `qiskit.opflow.utils.double_commutator()` is deprecated as of qiskit-terra 0.24.0. It will be removed in the Qiskit 1.0 release. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
 </Admonition>
 
 **Parameters**
@@ -190,15 +198,17 @@ the double commutator
 
 ## Exceptions
 
+### OpflowError
+
 <span id="qiskit.opflow.OpflowError" />
 
-`qiskit.opflow.OpflowError(*message)`
+`qiskit.opflow.OpflowError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/opflow/exceptions.py "view source code")
 
 Deprecated: For Opflow specific errors.
 
 Set the error message.
 
 <Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.opflow.exceptions.OpflowError` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  The class `qiskit.opflow.exceptions.OpflowError` is deprecated as of qiskit-terra 0.24.0. It will be removed in the Qiskit 1.0 release. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
 </Admonition>
 

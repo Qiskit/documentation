@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.PauliFeatureMap
 
 <span id="qiskit.circuit.library.PauliFeatureMap" />
 
-`qiskit.circuit.library.PauliFeatureMap(feature_dimension=None, reps=2, entanglement='full', alpha=2.0, paulis=None, data_map_func=None, parameter_prefix='x', insert_barriers=False, name='PauliFeatureMap')`
+`qiskit.circuit.library.PauliFeatureMap(feature_dimension=None, reps=2, entanglement='full', alpha=2.0, paulis=None, data_map_func=None, parameter_prefix='x', insert_barriers=False, name='PauliFeatureMap')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/data_preparation/pauli_feature_map.py "view source code")
 
 Bases: [`NLocal`](qiskit.circuit.library.NLocal "qiskit.circuit.library.n_local.n_local.NLocal")
 
@@ -52,7 +52,7 @@ The circuit contains `reps` repetitions of this transformation.
 
 Please refer to [`ZFeatureMap`](qiskit.circuit.library.ZFeatureMap "qiskit.circuit.library.ZFeatureMap") for the case of single-qubit Pauli-$Z$ rotations and to [`ZZFeatureMap`](qiskit.circuit.library.ZZFeatureMap "qiskit.circuit.library.ZZFeatureMap") for the single- and two-qubit Pauli-$Z$ rotations.
 
-## Examples
+**Examples**
 
 ```python
 >>> prep = PauliFeatureMap(2, reps=1, paulis=['ZZ'])
@@ -306,7 +306,7 @@ The parameters used in the underlying circuit.
 
 This includes float values and duplicates.
 
-## Examples
+**Examples**
 
 ```python
 >>> # prepare circuit ...

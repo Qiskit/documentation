@@ -6,19 +6,173 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes" />
 
-# Qiskit Runtime IBM Client 0.15 release notes
+# Qiskit Runtime IBM Client 0.19 release notes
+
+<span id="release-notes-0-19-1" />
+
+<span id="id1" />
+
+## 0.19.1
+
+<span id="release-notes-0-19-1-upgrade-notes" />
+
+### Upgrade Notes
+
+*   Extend `DynamicCircuitInstructions.from_backend()` to extract and patch durations from both `BackendV1` and `BackendV2` objects. Also add `DynamicCircuitInstructions.from_target()` to use a `Target` object instead.
+
+<span id="release-notes-0-19-1-bug-fixes" />
+
+### Bug Fixes
+
+*   Fix the patching of `DynamicCircuitInstructions` for instructions with durations that are not in units of `dt`.
+
+*   Fixed an issue with the `qpy.dump()` function, when the `use_symengine` flag was set to a truthy object that evaluated to `True` but was not actually the boolean `True` the generated QPY payload would be corrupt.
+
+<span id="release-notes-0-19-0" />
+
+<span id="id2" />
+
+## 0.19.0
+
+<span id="release-notes-0-19-0-upgrade-notes" />
+
+<span id="id3" />
+
+### Upgrade Notes
+
+*   qiskit-ibm-provider is pending deprecation, and therefore will no longer be a dependency for qiskit-ibm-runtime.
+
+*   qiskit-ibm-runtime is now compatible with Qiskit versions >= 0.45, including 1.0.0.
+
+<span id="release-notes-0-18-0" />
+
+<span id="id4" />
+
+## 0.18.0
+
+<span id="release-notes-0-18-0-new-features" />
+
+### New Features
+
+*   Added a new parameter, dynamic\_circuits to [`backends()`](qiskit_ibm_runtime.QiskitRuntimeService#backends "qiskit_ibm_runtime.QiskitRuntimeService.backends") to allow filtering of backends that support dynamic circuits.
+
+*   Added `max_time` parameter to `IBMBackend.open_session()`.
+
+*   Added a method `RuntimeJob.queue_info()` to get the queue information from the backend. This feature was transferred from `qiskit_ibm_provider`.
+
+<span id="release-notes-0-18-0-deprecation-notes" />
+
+### Deprecation Notes
+
+*   [`runtime()`](qiskit_ibm_runtime.QiskitRuntimeService#runtime "qiskit_ibm_runtime.QiskitRuntimeService.runtime") has been deprecated.
+
+<span id="release-notes-0-18-0-bug-fixes" />
+
+<span id="id5" />
+
+### Bug Fixes
+
+*   Many methods in [`RuntimeJob`](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.RuntimeJob") require retrieving the job data from the API with `job_get()`. This API call will now exclude the `params` field by default because they are only necessary in [`qiskit_ibm_runtime.RuntimeJob.inputs()`](qiskit_ibm_runtime.RuntimeJob#inputs "qiskit_ibm_runtime.RuntimeJob.inputs").
+
+<span id="release-notes-0-17-0" />
+
+<span id="id6" />
+
+## 0.17.0
+
+<span id="release-notes-0-17-0-new-features" />
+
+<span id="id7" />
+
+### New Features
+
+*   Added a new method [`properties()`](qiskit_ibm_runtime.RuntimeJob#properties "qiskit_ibm_runtime.RuntimeJob.properties") which returns the backend properties of the job at the time the job was run.
+
+*   [`details()`](qiskit_ibm_runtime.Session#details "qiskit_ibm_runtime.Session.details") has a new field, activated\_at, which is the timestamp of when the session was changed to active.
+
+<span id="release-notes-0-17-0-bug-fixes" />
+
+<span id="id8" />
+
+### Bug Fixes
+
+*   When a single backend is retrieved with the `instance` parameter,
+
+    ```python
+    service.backend('ibm_torino', instance='ibm-q/open/main')
+    # raises error if torino is not in ibm-q/open/main but in a different instance
+    # the user has access to
+    service = QiskitRuntimeService(channel="ibm_quantum", instance="ibm-q/open/main")
+    service.backend('ibm_torino') # raises the same error
+    ```
+
+    if the backend is not in the instance but in a different one the user has access to, an error will be raised. The same error will now be raised if an instance is passed in at initialization and then a backend not in that instance is retrieved.
+
+*   Fixed an issue where retrieving the coupling\_map of some backends would result in a NameError.
+
+<span id="release-notes-0-16-0" />
+
+<span id="id9" />
+
+## 0.16.0
+
+<span id="release-notes-0-16-0-prelude" />
+
+### Prelude
+
+Sessions are now thread-safe and allow for multiple concurrent interactive experiments.
+
+<span id="release-notes-0-16-0-new-features" />
+
+<span id="id10" />
+
+### New Features
+
+*   Sessions are now thread-safe.
+
+<span id="release-notes-0-16-0-upgrade-notes" />
+
+<span id="id11" />
+
+### Upgrade Notes
+
+*   Methods related to using custom programs are removed.
+
+<span id="release-notes-0-16-0-bug-fixes" />
+
+<span id="id12" />
+
+### Bug Fixes
+
+*   If a cloud instance that is `q-ctrl` enabled is used while `q-ctrl` is not passed in as the `channel_strategy`, an error will be raised.
+
+<span id="release-notes-0-15-1" />
+
+<span id="id13" />
+
+## 0.15.1
+
+<span id="release-notes-0-15-1-bug-fixes" />
+
+<span id="id14" />
+
+### Bug Fixes
+
+*   Reverting 0.15.0 changes to [`from_id()`](qiskit_ibm_runtime.Session#from_id "qiskit_ibm_runtime.Session.from_id") because it was a breaking change without proper deprecation.
 
 <span id="release-notes-0-15-0" />
 
-<span id="id1" />
+<span id="id15" />
 
 ## 0.15.0
 
 <span id="release-notes-0-15-0-new-features" />
 
+<span id="id16" />
+
 ### New Features
 
-*   A new module `qiskit_ibm_runtime.fake_provider`, has been added to provide access to a series of fake backends derived from snapshots of IBM Quantum devices. This functionality was originally provided by the `qiskit.providers.fake_provider` module, but will soon be deprecated in favor of `qiskit_ibm_runtime.fake_provider`.
+*   A new module [`qiskit_ibm_runtime.fake_provider`](fake_provider#module-qiskit_ibm_runtime.fake_provider "qiskit_ibm_runtime.fake_provider"), has been added to provide access to a series of fake backends derived from snapshots of IBM Quantum devices. This functionality was originally provided by the `qiskit.providers.fake_provider` module, but will soon be deprecated in favor of [`qiskit_ibm_runtime.fake_provider`](fake_provider#module-qiskit_ibm_runtime.fake_provider "qiskit_ibm_runtime.fake_provider").
 
     The snapshots provided by the fake backends are useful for local testing of the transpiler and performing local noisy simulations of the system before running on real devices. Here is an example of using a fake backend for transpilation and simulation:
 
@@ -53,11 +207,15 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-15-0-deprecation-notes" />
 
+<span id="id17" />
+
 ### Deprecation Notes
 
 *   Usage of the `~/.qiskit/qiskitrc.json` file for account information has been deprecated. Use `~/.qiskit/qiskit-ibm.json` instead.
 
 <span id="release-notes-0-15-0-bug-fixes" />
+
+<span id="id18" />
 
 ### Bug Fixes
 
@@ -77,13 +235,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-14-0" />
 
-<span id="id2" />
+<span id="id19" />
 
 ## 0.14.0
 
 <span id="release-notes-0-14-0-new-features" />
 
-<span id="id3" />
+<span id="id20" />
 
 ### New Features
 
@@ -93,7 +251,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-14-0-deprecation-notes" />
 
-<span id="id4" />
+<span id="id21" />
 
 ### Deprecation Notes
 
@@ -101,13 +259,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-13-0" />
 
-<span id="id5" />
+<span id="id22" />
 
 ## 0.13.0
 
 <span id="release-notes-0-13-0-new-features" />
 
-<span id="id6" />
+<span id="id23" />
 
 ### New Features
 
@@ -119,6 +277,8 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-13-0-upgrade-notes" />
 
+<span id="id24" />
+
 ### Upgrade Notes
 
 *   [`qiskit_ibm_runtime.Session.close()`](qiskit_ibm_runtime.Session#close "qiskit_ibm_runtime.Session.close") has been updated to mark a `Session` as no longer accepting new jobs. The session won’t accept more jobs but it will continue to run any queued jobs until they are done or the max time expires. This will also happen automatically when the session context manager is exited. When a session that is not accepting jobs has run out of jobs to run, it’s immediately closed, freeing up the backend to run more jobs rather than wait for the interactive timeout.
@@ -127,7 +287,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-13-0-bug-fixes" />
 
-<span id="id7" />
+<span id="id25" />
 
 ### Bug Fixes
 
@@ -137,13 +297,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-12-2" />
 
-<span id="id8" />
+<span id="id26" />
 
 ## 0.12.2
 
 <span id="release-notes-0-12-2-new-features" />
 
-<span id="id9" />
+<span id="id27" />
 
 ### New Features
 
@@ -157,7 +317,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-12-2-upgrade-notes" />
 
-<span id="id10" />
+<span id="id28" />
 
 ### Upgrade Notes
 
@@ -165,13 +325,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-12-1" />
 
-<span id="id11" />
+<span id="id29" />
 
 ## 0.12.1
 
 <span id="release-notes-0-12-1-new-features" />
 
-<span id="id12" />
+<span id="id30" />
 
 ### New Features
 
@@ -183,7 +343,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-12-1-bug-fixes" />
 
-<span id="id13" />
+<span id="id31" />
 
 ### Bug Fixes
 
@@ -197,13 +357,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-12-0" />
 
-<span id="id14" />
+<span id="id32" />
 
 ## 0.12.0
 
 <span id="release-notes-0-12-0-new-features" />
 
-<span id="id15" />
+<span id="id33" />
 
 ### New Features
 
@@ -224,7 +384,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-12-0-upgrade-notes" />
 
-<span id="id16" />
+<span id="id34" />
 
 ### Upgrade Notes
 
@@ -232,7 +392,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-12-0-deprecation-notes" />
 
-<span id="id17" />
+<span id="id35" />
 
 ### Deprecation Notes
 
@@ -240,7 +400,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-12-0-bug-fixes" />
 
-<span id="id18" />
+<span id="id36" />
 
 ### Bug Fixes
 
@@ -252,13 +412,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-11-3" />
 
-<span id="id19" />
+<span id="id37" />
 
 ## 0.11.3
 
 <span id="release-notes-0-11-3-new-features" />
 
-<span id="id20" />
+<span id="id38" />
 
 ### New Features
 
@@ -274,13 +434,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-11-2" />
 
-<span id="id21" />
+<span id="id39" />
 
 ## 0.11.2
 
 <span id="release-notes-0-11-2-new-features" />
 
-<span id="id22" />
+<span id="id40" />
 
 ### New Features
 
@@ -303,7 +463,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-11-2-bug-fixes" />
 
-<span id="id23" />
+<span id="id41" />
 
 ### Bug Fixes
 
@@ -313,13 +473,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-11-1" />
 
-<span id="id24" />
+<span id="id42" />
 
 ## 0.11.1
 
 <span id="release-notes-0-11-1-deprecation-notes" />
 
-<span id="id25" />
+<span id="id43" />
 
 ### Deprecation Notes
 
@@ -327,13 +487,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-11-0" />
 
-<span id="id26" />
+<span id="id44" />
 
 ## 0.11.0
 
 <span id="release-notes-0-11-0-new-features" />
 
-<span id="id27" />
+<span id="id45" />
 
 ### New Features
 
@@ -355,7 +515,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-11-0-upgrade-notes" />
 
-<span id="id28" />
+<span id="id46" />
 
 ### Upgrade Notes
 
@@ -365,7 +525,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-11-0-deprecation-notes" />
 
-<span id="id29" />
+<span id="id47" />
 
 ### Deprecation Notes
 
@@ -373,13 +533,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-10-0" />
 
-<span id="id30" />
+<span id="id48" />
 
 ## 0.10.0
 
 <span id="release-notes-0-10-0-new-features" />
 
-<span id="id31" />
+<span id="id49" />
 
 ### New Features
 
@@ -387,7 +547,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-10-0-upgrade-notes" />
 
-<span id="id32" />
+<span id="id50" />
 
 ### Upgrade Notes
 
@@ -395,7 +555,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-10-0-bug-fixes" />
 
-<span id="id33" />
+<span id="id51" />
 
 ### Bug Fixes
 
@@ -405,13 +565,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-9-4" />
 
-<span id="id35" />
+<span id="id53" />
 
 ## 0.9.4
 
 <span id="release-notes-0-9-4-new-features" />
 
-<span id="id36" />
+<span id="id54" />
 
 ### New Features
 
@@ -419,7 +579,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-9-4-upgrade-notes" />
 
-<span id="id37" />
+<span id="id55" />
 
 ### Upgrade Notes
 
@@ -427,7 +587,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-9-4-deprecation-notes" />
 
-<span id="id38" />
+<span id="id56" />
 
 ### Deprecation Notes
 
@@ -441,7 +601,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-9-4-bug-fixes" />
 
-<span id="id39" />
+<span id="id57" />
 
 ### Bug Fixes
 
@@ -449,13 +609,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-9-3" />
 
-<span id="id40" />
+<span id="id58" />
 
 ## 0.9.3
 
 <span id="release-notes-0-9-3-upgrade-notes" />
 
-<span id="id41" />
+<span id="id59" />
 
 ### Upgrade Notes
 
@@ -465,7 +625,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-9-3-bug-fixes" />
 
-<span id="id42" />
+<span id="id60" />
 
 ### Bug Fixes
 
@@ -473,13 +633,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-9-2" />
 
-<span id="id43" />
+<span id="id61" />
 
 ## 0.9.2
 
 <span id="release-notes-0-9-2-new-features" />
 
-<span id="id44" />
+<span id="id62" />
 
 ### New Features
 
@@ -489,7 +649,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-9-2-upgrade-notes" />
 
-<span id="id45" />
+<span id="id63" />
 
 ### Upgrade Notes
 
@@ -501,7 +661,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-9-2-bug-fixes" />
 
-<span id="id46" />
+<span id="id64" />
 
 ### Bug Fixes
 
@@ -515,13 +675,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-9-1" />
 
-<span id="id47" />
+<span id="id65" />
 
 ## 0.9.1
 
 <span id="release-notes-0-9-1-upgrade-notes" />
 
-<span id="id48" />
+<span id="id66" />
 
 ### Upgrade Notes
 
@@ -541,7 +701,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-9-1-deprecation-notes" />
 
-<span id="id49" />
+<span id="id67" />
 
 ### Deprecation Notes
 
@@ -549,7 +709,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-9-1-bug-fixes" />
 
-<span id="id50" />
+<span id="id68" />
 
 ### Bug Fixes
 
@@ -557,7 +717,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-9-1-other-notes" />
 
-<span id="id51" />
+<span id="id69" />
 
 ### Other Notes
 

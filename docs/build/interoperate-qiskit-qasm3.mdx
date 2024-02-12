@@ -6,7 +6,7 @@ description: Convert code between OpenQASM 3 and Qiskit
 
 # OpenQASM 3 and Qiskit
 
-Qiskit provides some tools for converting between OpenQASM representations of quantum programs, and the QuantumCircuit class. Note these tools are still in an exploratory phase of development and will continue to evolve as Qiskit’s support for dynamic circuit capabilities expressed by OpenQASM 3 increases.
+Qiskit&reg; provides some tools for converting between OpenQASM representations of quantum programs, and the QuantumCircuit class. Note these tools are still in an exploratory phase of development and will continue to evolve as Qiskit’s support for dynamic circuit capabilities expressed by OpenQASM 3 increases.
 
 <Admonition type="note">
 This function is still in the exploratory phase.  Therefore, it is likely that the syntax and capabilities will evolve.
@@ -14,22 +14,25 @@ This function is still in the exploratory phase.  Therefore, it is likely that t
 
 ## Import an OpenQASM 3 program into Qiskit
 
-Currently two high-level functions are available for importing from OpenQASM 3 into Qiskit. These functions are `load()`, which takes a file name, and `loads()`, which takes the program itself as a string: 
-
-
-```python
-qiskit.qasm3.load(file_name)
-```
-
-```python
-qiskit.qasm3.loads(program-string)
-```
-
-You must install the package `qiskit_qasm3_import ` to use this function.  For example:  
+You must install the package `qiskit_qasm3_import ` to use this function. Install using the following command.
 
 ```python
 pip install qiskit-qasm3-import
 ```
+
+Currently two high-level functions are available for importing from OpenQASM 3 into Qiskit. These functions are `load()`, which takes a file name, and `loads()`, which takes the program itself as a string: 
+
+
+```python
+import qiskit.qasm3
+qiskit.qasm3.load(file_name)
+```
+
+```python
+import qiskit.qasm3
+qiskit.qasm3.loads(program-string)
+```
+
 
 In this example, we define a quantum program using OpenQASM 3, and use `loads()` to directly convert it into a QuantumCircuit:
 
@@ -77,7 +80,7 @@ program = """
     out = measure q;
 """
 circuit = qiskit.qasm3.loads(program)
-circuit.draw("mpl")
+circuit.draw("mpl", style="iqp")
 ```
 ![output](/images/build/interoperate-qiskit-qasm3/qasm3circ.png)
 
@@ -117,11 +120,14 @@ f = open("my_file.txt", 'w')
 dump(qc, f)
 f.close()
 ```
+For more information, see the [Exporting to OpenQASM 3](/api/qiskit/qasm3#exporting-to-openqasm-3) section of the API reference.
 
-See more information in the [Exporting to OpenQASM 3](/api/qiskit/qasm3#exporting-to-openqasm-3) section of the API reference.
+
+## Next steps 
 
 <Admonition type="tip" title="Recommendations">
-    - [OpenQASM 3 Qiskit API](/api/qiskit/qasm3)
-    - [OpenQASM 2 Qiskit API](/api/qiskit/qasm2)
-    - [Verify your program](../verify/)
+    - Learn how to generate OpenQASM code in the [Explore gates and circuits with the Quantum Composer](https://learning.quantum.ibm.com/tutorial/explore-gates-and-circuits-with-the-quantum-composer) tutorial.
+    - Review the [OpenQASM 3 Qiskit API](/api/qiskit/qasm3) reference.
+    - Visit the [Verify your program](../verify/) topic.
+    - Review the [OpenQASM Live Specification](https://openqasm.com/).
 </Admonition>

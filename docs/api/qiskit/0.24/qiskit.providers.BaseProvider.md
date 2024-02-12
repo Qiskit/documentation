@@ -1,14 +1,24 @@
+---
+title: BaseProvider
+description: API reference for qiskit.providers.BaseProvider
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.BaseProvider
+---
+
 <span id="qiskit-providers-baseprovider" />
 
 # qiskit.providers.BaseProvider
 
-<span id="undefined" />
+<span id="qiskit.providers.BaseProvider" />
 
-`BaseProvider(*args, **kwargs)`
+`BaseProvider(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/providers/baseprovider.py "view source code")
 
 Base class for a Backend Provider.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.providers.BaseProvider.__init__" />
 
 `__init__(*args, **kwargs)`
 
@@ -22,7 +32,9 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`backends`](#qiskit.providers.BaseProvider.backends "qiskit.providers.BaseProvider.backends")(\[name])            | Return a list of backends matching the specified filtering. |
 | [`get_backend`](#qiskit.providers.BaseProvider.get_backend "qiskit.providers.BaseProvider.get_backend")(\[name])   | Return a single backend matching the specified filtering.   |
 
-<span id="undefined" />
+### backends
+
+<span id="qiskit.providers.BaseProvider.backends" />
 
 `abstract backends(name=None, **kwargs)`
 
@@ -41,9 +53,11 @@ criteria.
 
 **Return type**
 
-list\[[BaseBackend](qiskit.providers.BaseBackend#qiskit.providers.BaseBackend "qiskit.providers.BaseBackend")]
+list\[[BaseBackend](qiskit.providers.BaseBackend "qiskit.providers.BaseBackend")]
 
-<span id="undefined" />
+### get\_backend
+
+<span id="qiskit.providers.BaseProvider.get_backend" />
 
 `get_backend(name=None, **kwargs)`
 
@@ -60,8 +74,9 @@ a backend matching the filtering.
 
 **Return type**
 
-[BaseBackend](qiskit.providers.BaseBackend#qiskit.providers.BaseBackend "qiskit.providers.BaseBackend")
+[BaseBackend](qiskit.providers.BaseBackend "qiskit.providers.BaseBackend")
 
 **Raises**
 
-[**QiskitBackendNotFoundError**](qiskit.providers.QiskitBackendNotFoundError#qiskit.providers.QiskitBackendNotFoundError "qiskit.providers.QiskitBackendNotFoundError") – if no backend could be found or more than one backend matches the filtering criteria.
+[**QiskitBackendNotFoundError**](qiskit.providers.QiskitBackendNotFoundError "qiskit.providers.QiskitBackendNotFoundError") – if no backend could be found or more than one backend matches the filtering criteria.
+

@@ -4,9 +4,9 @@
 
 The most straightforward scheduling methods: scheduling **as early** or **as late** as possible.
 
-## Functions
+**Functions**
 
 |                                                  |                                                                                                                       |
 | ------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- |
-| `as_late_as_possible`(circuit, schedule\_config) | Return the pulse Schedule which implements the input circuit using an "as late as possible" (alap) scheduling policy. |
-| `as_soon_as_possible`(circuit, schedule\_config) | Return the pulse Schedule which implements the input circuit using an "as soon as possible" (asap) scheduling policy. |
+| `as_late_as_possible`(circuit, schedule\_config) | Return the pulse Schedule which implements the input circuit using an “as late as possible” (alap) scheduling policy. |
+| `as_soon_as_possible`(circuit, schedule\_config) | Return the pulse Schedule which implements the input circuit using an “as soon as possible” (asap) scheduling policy. |

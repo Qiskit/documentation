@@ -10,9 +10,9 @@ python_api_name: qiskit.providers.aer.noise.RelaxationNoisePass
 
 <span id="qiskit.providers.aer.noise.RelaxationNoisePass" />
 
-`RelaxationNoisePass(t1s, t2s, dt=None, op_types=None, excited_state_populations=None)`
+`RelaxationNoisePass(t1s, t2s, dt=None, op_types=None, excited_state_populations=None)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/noise/passes/relaxation_noise_pass.py "view source code")
 
-Bases: [`qiskit.providers.aer.noise.passes.local_noise_pass.LocalNoisePass`](qiskit.providers.aer.noise.LocalNoisePass "qiskit.providers.aer.noise.passes.local_noise_pass.LocalNoisePass")
+Bases: `qiskit.providers.aer.noise.passes.local_noise_pass.LocalNoisePass`
 
 Add duration dependent thermal relaxation noise after instructions.
 
@@ -42,11 +42,11 @@ Return the name of the pass.
 
 `RelaxationNoisePass.run(dag)`
 
-Run the LocalNoisePass pass on dag. :type dag: [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit") :param dag: DAG to be changed.
+Run the LocalNoisePass pass on dag. :type dag: `DAGCircuit` :param dag: DAG to be changed.
 
 **Return type**
 
-[`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")
+`DAGCircuit`
 
 **Returns**
 

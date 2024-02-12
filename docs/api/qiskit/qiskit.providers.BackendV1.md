@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.BackendV1
 
 <span id="qiskit.providers.BackendV1" />
 
-`qiskit.providers.BackendV1(configuration, provider=None, **fields)`
+`qiskit.providers.BackendV1(configuration, provider=None, **fields)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/providers/backend.py "view source code")
 
 Bases: [`Backend`](qiskit.providers.Backend "qiskit.providers.backend.Backend"), [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 
@@ -55,8 +55,6 @@ Initialize a backend class
 [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – if input field not a valid options
 
 In addition to the public abstract methods, subclasses should also implement the following private methods:
-
-<span id="undefined" />
 
 `abstract classmethod _default_options()`
 

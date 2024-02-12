@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.linear_solvers.LinearSolverResult
 ---
 
-# LinearSolverResult[¶](#linearsolverresult "Permalink to this headline")
+# LinearSolverResult
 
 <span id="qiskit.algorithms.linear_solvers.LinearSolverResult" />
 
-`LinearSolverResult`
+`LinearSolverResult`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/linear_solvers/linear_solver.py "view source code")
 
 Bases: `qiskit.algorithms.algorithm_result.AlgorithmResult`
 

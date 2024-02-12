@@ -1,16 +1,24 @@
+---
+title: SlsqpOptimizer
+description: API reference for qiskit.optimization.algorithms.SlsqpOptimizer
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.optimization.algorithms.SlsqpOptimizer
+---
+
 <span id="qiskit-optimization-algorithms-slsqpoptimizer" />
 
 # qiskit.optimization.algorithms.SlsqpOptimizer
 
-<span id="undefined" />
+<span id="qiskit.optimization.algorithms.SlsqpOptimizer" />
 
-`SlsqpOptimizer(iter=100, acc=1e-06, iprint=0, trials=1, clip=100.0, full_output=False)`
+`SlsqpOptimizer(iter=100, acc=1e-06, iprint=0, trials=1, clip=100.0, full_output=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/algorithms/slsqp_optimizer.py "view source code")
 
-The SciPy SLSQP optimizer wrapped as an Qiskit [`OptimizationAlgorithm`](qiskit.optimization.algorithms.OptimizationAlgorithm#qiskit.optimization.algorithms.OptimizationAlgorithm "qiskit.optimization.algorithms.OptimizationAlgorithm").
+The SciPy SLSQP optimizer wrapped as an Qiskit [`OptimizationAlgorithm`](qiskit.optimization.algorithms.OptimizationAlgorithm "qiskit.optimization.algorithms.OptimizationAlgorithm").
 
 This class provides a wrapper for `scipy.optimize.fmin_slsqp` ([https://docs.scipy.org/doc/scipy-0.13.0/reference/generated/scipy.optimize.fmin\_slsqp.html](https://docs.scipy.org/doc/scipy-0.13.0/reference/generated/scipy.optimize.fmin_slsqp.html)) to be used within the optimization module. The arguments for `fmin_slsqp` are passed via the constructor.
 
-## Examples
+**Examples**
 
 ```python
 >>> from qiskit.optimization.problems import QuadraticProgram
@@ -48,7 +56,9 @@ This initializer takes the algorithmic parameters of SLSQP and stores them for l
 
 *   **full\_output** (`bool`) – If `False`, return only the minimizer of func (default). Otherwise, output final objective function and summary information.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.optimization.algorithms.SlsqpOptimizer.__init__" />
 
 `__init__(iter=100, acc=1e-06, iprint=0, trials=1, clip=100.0, full_output=False)`
 
@@ -93,7 +103,9 @@ This initializer takes the algorithmic parameters of SLSQP and stores them for l
 | [`clip`](#qiskit.optimization.algorithms.SlsqpOptimizer.clip "qiskit.optimization.algorithms.SlsqpOptimizer.clip")       | Returns the clip value for this optimizer.       |
 | [`trials`](#qiskit.optimization.algorithms.SlsqpOptimizer.trials "qiskit.optimization.algorithms.SlsqpOptimizer.trials") | Returns the number of trials for this optimizer. |
 
-<span id="undefined" />
+### clip
+
+<span id="qiskit.optimization.algorithms.SlsqpOptimizer.clip" />
 
 `property clip`
 
@@ -107,7 +119,9 @@ Returns the clip value for this optimizer.
 
 The clip value.
 
-<span id="undefined" />
+### get\_compatibility\_msg
+
+<span id="qiskit.optimization.algorithms.SlsqpOptimizer.get_compatibility_msg" />
 
 `get_compatibility_msg(problem)`
 
@@ -127,7 +141,9 @@ Checks whether the given problem is compatible, i.e., whether the problem contai
 
 Returns a string describing the incompatibility.
 
-<span id="undefined" />
+### is\_compatible
+
+<span id="qiskit.optimization.algorithms.SlsqpOptimizer.is_compatible" />
 
 `is_compatible(problem)`
 
@@ -145,7 +161,9 @@ Checks whether a given problem can be solved with the optimizer implementing thi
 
 Returns True if the problem is compatible, False otherwise.
 
-<span id="undefined" />
+### multi\_start\_solve
+
+<span id="qiskit.optimization.algorithms.SlsqpOptimizer.multi_start_solve" />
 
 `multi_start_solve(minimize, problem)`
 
@@ -164,7 +182,9 @@ Applies a multi start method given a local optimizer.
 
 The result of the multi start algorithm applied to the problem.
 
-<span id="undefined" />
+### solve
+
+<span id="qiskit.optimization.algorithms.SlsqpOptimizer.solve" />
 
 `solve(problem)`
 
@@ -186,9 +206,11 @@ The result of the optimizer applied to the problem.
 
 **Raises**
 
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If the problem is incompatible with the optimizer.
+[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If the problem is incompatible with the optimizer.
 
-<span id="undefined" />
+### trials
+
+<span id="qiskit.optimization.algorithms.SlsqpOptimizer.trials" />
 
 `property trials`
 
@@ -201,3 +223,4 @@ Returns the number of trials for this optimizer.
 **Returns**
 
 The number of trials.
+

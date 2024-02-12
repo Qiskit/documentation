@@ -10,15 +10,15 @@ python_api_name: qiskit.algorithms.linear_solvers.AbsoluteAverage
 
 <span id="qiskit.algorithms.linear_solvers.AbsoluteAverage" />
 
-`AbsoluteAverage`
+`AbsoluteAverage `[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/linear_solvers/observables/absolute_average.py "view source code")
 
-Bases: [`qiskit.algorithms.linear_solvers.observables.linear_system_observable.LinearSystemObservable`](qiskit.algorithms.linear_solvers.LinearSystemObservable "qiskit.algorithms.linear_solvers.observables.linear_system_observable.LinearSystemObservable")
+Bases: `qiskit.algorithms.linear_solvers.observables.linear_system_observable.LinearSystemObservable`
 
 An observable for the absolute average of a linear system of equations solution.
 
-For a vector $x=(x_1,...,x_N)$, the absolute average is defined as $\abs{\frac{1}{N}\sum_{i=1}^{N}x_i}$.
+For a vector $x=(x_1,...,x_N)$, the absolute average is defined as $\left|\frac{1}{N}\sum_{i=1}^{N}x_i\right|$.
 
-## Examples
+**Examples**
 
 ```python
 import numpy as np
@@ -54,13 +54,13 @@ exact = observable.evaluate_classically(init_state)
 
 <span id="qiskit.algorithms.linear_solvers.AbsoluteAverage.evaluate_classically" />
 
-`AbsoluteAverage.evaluate_classically(solution)`
+`AbsoluteAverage.evaluate_classically(solution)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/linear_solvers/observables/absolute_average.py "view source code")
 
 Evaluates the given observable on the solution to the linear system.
 
 **Parameters**
 
-**solution** (`Union`\[`array`, [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]) – The solution to the system as a numpy array or the circuit that prepares it.
+**solution** (`Union`\[`array`, `QuantumCircuit`]) – The solution to the system as a numpy array or the circuit that prepares it.
 
 **Return type**
 
@@ -74,7 +74,7 @@ The value of the observable.
 
 <span id="qiskit.algorithms.linear_solvers.AbsoluteAverage.observable" />
 
-`AbsoluteAverage.observable(num_qubits)`
+`AbsoluteAverage.observable(num_qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/linear_solvers/observables/absolute_average.py "view source code")
 
 The observable operator.
 
@@ -84,7 +84,7 @@ The observable operator.
 
 **Return type**
 
-`Union`\[[`TensoredOp`](qiskit.opflow.list_ops.TensoredOp "qiskit.opflow.list_ops.tensored_op.TensoredOp"), `List`\[[`TensoredOp`](qiskit.opflow.list_ops.TensoredOp "qiskit.opflow.list_ops.tensored_op.TensoredOp")]]
+`Union`\[`TensoredOp`, `List`\[`TensoredOp`]]
 
 **Returns**
 
@@ -94,7 +94,7 @@ The observable as a sum of Pauli strings.
 
 <span id="qiskit.algorithms.linear_solvers.AbsoluteAverage.observable_circuit" />
 
-`AbsoluteAverage.observable_circuit(num_qubits)`
+`AbsoluteAverage.observable_circuit(num_qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/linear_solvers/observables/absolute_average.py "view source code")
 
 The circuit implementing the absolute average observable.
 
@@ -104,7 +104,7 @@ The circuit implementing the absolute average observable.
 
 **Return type**
 
-`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), `List`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]]
+`Union`\[`QuantumCircuit`, `List`\[`QuantumCircuit`]]
 
 **Returns**
 
@@ -114,7 +114,7 @@ The observable as a QuantumCircuit.
 
 <span id="qiskit.algorithms.linear_solvers.AbsoluteAverage.post_processing" />
 
-`AbsoluteAverage.post_processing(solution, num_qubits, scaling=1)`
+`AbsoluteAverage.post_processing(solution, num_qubits, scaling=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/linear_solvers/observables/absolute_average.py "view source code")
 
 Evaluates the absolute average on the solution to the linear system.
 

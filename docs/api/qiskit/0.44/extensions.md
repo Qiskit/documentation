@@ -51,9 +51,11 @@ python_api_name: qiskit.extensions
 
 The additional gates in this module will tend to raise a custom exception when they encounter problems.
 
+### ExtensionError
+
 <span id="qiskit.extensions.ExtensionError" />
 
-`qiskit.extensions.ExtensionError(*message)`
+`qiskit.extensions.ExtensionError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/extensions/exceptions.py "view source code")
 
 Base class for errors raised by extensions module.
 

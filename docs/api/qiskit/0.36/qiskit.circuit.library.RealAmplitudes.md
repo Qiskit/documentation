@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.library.RealAmplitudes
 
 <span id="qiskit.circuit.library.RealAmplitudes" />
 
-`RealAmplitudes(num_qubits=None, entanglement='full', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='RealAmplitudes')`
+`RealAmplitudes(num_qubits=None, entanglement='full', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='RealAmplitudes')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/n_local/real_amplitudes.py "view source code")
 
-Bases: [`qiskit.circuit.library.n_local.two_local.TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.n_local.two_local.TwoLocal")
+Bases: `qiskit.circuit.library.n_local.two_local.TwoLocal`
 
 The real-amplitudes 2-local circuit.
 
@@ -34,7 +34,7 @@ The entanglement can be set using the `entanglement` keyword as string or a list
 
 If some qubits are not entangled with other qubits it makes sense to not apply rotation gates on these qubits, since a sequence of $Y$ rotations can be reduced to a single $Y$ rotation with summed rotation angles.
 
-## Examples
+**Examples**
 
 ```python
 >>> ansatz = RealAmplitudes(3, reps=2)  # create the circuit on 3 qubits
@@ -115,7 +115,7 @@ Returns a list of ancilla bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.quantumregister.AncillaQubit")]
+`List`\[`AncillaQubit`]
 
 <span id="qiskit.circuit.library.RealAmplitudes.calibrations" />
 
@@ -139,7 +139,7 @@ Returns a list of classical bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.library.RealAmplitudes.data" />
 
@@ -167,7 +167,7 @@ The blocks in the entanglement layers.
 
 **Return type**
 
-`List`\[[`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")]
+`List`\[`Instruction`]
 
 **Returns**
 
@@ -187,7 +187,7 @@ Return the global phase of the circuit in radians.
 
 **Return type**
 
-`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]
+`Union`\[`ParameterExpression`, `float`]
 
 <span id="qiskit.circuit.library.RealAmplitudes.header" />
 
@@ -227,7 +227,7 @@ True, if barriers are inserted in between the layers, False if not.
 
 ### instances
 
-`= 87`
+`= 9`
 
 <span id="qiskit.circuit.library.RealAmplitudes.metadata" />
 
@@ -317,26 +317,6 @@ Returns the number of qubits in this circuit.
 
 The number of qubits.
 
-<span id="qiskit.circuit.library.RealAmplitudes.op_start_times" />
-
-### op\_start\_times
-
-Return a list of operation start times.
-
-This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
-
-**Return type**
-
-`List`\[`int`]
-
-**Returns**
-
-List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
-
-**Raises**
-
-**AttributeError** – When circuit is not scheduled.
-
 <span id="qiskit.circuit.library.RealAmplitudes.ordered_parameters" />
 
 ### ordered\_parameters
@@ -345,7 +325,7 @@ The parameters used in the underlying circuit.
 
 This includes float values and duplicates.
 
-## Examples
+**Examples**
 
 ```python
 >>> # prepare circuit ...
@@ -361,7 +341,7 @@ q_0: ┤ Ry(1) ├┤ Ry(θ[1]) ├┤ Ry(θ[1]) ├┤ Ry(θ[3]) ├
 
 **Return type**
 
-`List`\[[`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.parameter.Parameter")]
+`List`\[`Parameter`]
 
 **Returns**
 
@@ -423,7 +403,7 @@ Returns a list of quantum bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")]
+`List`\[`Qubit`]
 
 <span id="qiskit.circuit.library.RealAmplitudes.reps" />
 
@@ -447,7 +427,7 @@ The blocks in the rotation layers.
 
 **Return type**
 
-`List`\[[`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")]
+`List`\[`Instruction`]
 
 **Returns**
 

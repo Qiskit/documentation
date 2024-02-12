@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.ControlledGate
 
 <span id="qiskit.circuit.ControlledGate" />
 
-`ControlledGate(name, num_qubits, params, label=None, num_ctrl_qubits=1, definition=None, ctrl_state=None, base_gate=None)`
+`ControlledGate(name, num_qubits, params, label=None, num_ctrl_qubits=1, definition=None, ctrl_state=None, base_gate=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/controlledgate.py "view source code")
 
-Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+Bases: `qiskit.circuit.gate.Gate`
 
 Controlled unitary gate.
 
@@ -25,9 +25,9 @@ Create a new ControlledGate. In the new gate the first `num_ctrl_qubits` of the 
 *   **params** (`List`) – A list of parameters for the gate.
 *   **label** (`Optional`\[`str`]) – An optional label for the gate.
 *   **num\_ctrl\_qubits** (`Optional`\[`int`]) – Number of control qubits.
-*   **definition** (`Optional`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]) – A list of gate rules for implementing this gate. The elements of the list are tuples of ([`Gate()`](qiskit.circuit.Gate "qiskit.circuit.Gate"), \[qubit\_list], \[clbit\_list]).
+*   **definition** (`Optional`\[`QuantumCircuit`]) – A list of gate rules for implementing this gate. The elements of the list are tuples of ([`Gate()`](qiskit.circuit.Gate "qiskit.circuit.Gate"), \[qubit\_list], \[clbit\_list]).
 *   **ctrl\_state** (`Union`\[`int`, `str`, `None`]) – The control state in decimal or as a bitstring (e.g. ‘111’). If specified as a bitstring the length must equal num\_ctrl\_qubits, MSB on left. If None, use 2\*\*num\_ctrl\_qubits-1.
-*   **base\_gate** (`Optional`\[[`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")]) – Gate object to be controlled.
+*   **base\_gate** (`Optional`\[`Gate`]) – Gate object to be controlled.
 
 **Raises**
 
@@ -76,15 +76,15 @@ qc2.draw()
 ```
 
 ```python
-                    
-q_0: ───────■───────
-     ┌──────┴──────┐
-q_1: ┤0            ├
-     │  circuit-86 │
-q_2: ┤1            ├
-     └──────┬──────┘
-q_3: ───────■───────
-                    
+                   
+q_0: ──────■───────
+     ┌─────┴──────┐
+q_1: ┤0           ├
+     │  circuit-8 │
+q_2: ┤1           ├
+     └─────┬──────┘
+q_3: ──────■───────
+                   
 ```
 
 ## Methods
@@ -224,13 +224,13 @@ updated if it was provided
 
 <span id="qiskit.circuit.ControlledGate.inverse" />
 
-`ControlledGate.inverse()`
+`ControlledGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/controlledgate.py "view source code")
 
 Invert this gate by calling inverse on the base gate.
 
 **Return type**
 
-[`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
+`ControlledGate`
 
 ### is\_parameterized
 
@@ -376,7 +376,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.ControlledGate.ctrl_state" />
 

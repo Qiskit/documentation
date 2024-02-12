@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.StochasticSwap
 
 <span id="qiskit.transpiler.passes.StochasticSwap" />
 
-`StochasticSwap(*args, **kwargs)`
+`StochasticSwap(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/routing/stochastic_swap.py "view source code")
 
 Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -18,7 +18,7 @@ Map a DAGCircuit onto a coupling\_map adding swap gates.
 
 Uses a randomized algorithm.
 
-## Notes
+**Notes**
 
 1.  Measurements may occur and be followed by swaps that result in repeated measurement of the same qubit. Near-term experiments cannot implement these circuits, so some care is required when using this mapper with experimental backend targets.
 2.  We do not use the fact that the input state is zero to simplify the circuit.
@@ -50,7 +50,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.StochasticSwap.run" />
 
-`StochasticSwap.run(dag)`
+`StochasticSwap.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/routing/stochastic_swap.py "view source code")
 
 Run the StochasticSwap pass on dag.
 

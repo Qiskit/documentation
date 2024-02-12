@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.RemoveBarriers
 ---
 
-# RemoveBarriers[¶](#removebarriers "Permalink to this headline")
+# RemoveBarriers
 
 <span id="qiskit.transpiler.passes.RemoveBarriers" />
 
-`RemoveBarriers(*args, **kwargs)`
+`RemoveBarriers(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/utils/remove_barriers.py "view source code")
 
 Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -18,7 +18,7 @@ Return a circuit with any barrier removed.
 
 This transformation is not semantics preserving.
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumCircuit
@@ -51,7 +51,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.RemoveBarriers.run" />
 
-`RemoveBarriers.run(dag)`
+`RemoveBarriers.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/utils/remove_barriers.py "view source code")
 
 Run the RemoveBarriers pass on dag.
 

@@ -6,11 +6,11 @@ python_api_type: exception
 python_api_name: qiskit.result.ResultError
 ---
 
-# qiskit.result.ResultError[¶](#qiskit-result-resulterror "Permalink to this headline")
+# qiskit.result.ResultError
 
 <span id="qiskit.result.ResultError" />
 
-`ResultError(error)`
+`ResultError(error)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/result/exceptions.py "view source code")
 
 Exceptions raised due to errors in result output.
 

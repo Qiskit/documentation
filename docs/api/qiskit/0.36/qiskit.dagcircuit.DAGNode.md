@@ -10,7 +10,7 @@ python_api_name: qiskit.dagcircuit.DAGNode
 
 <span id="qiskit.dagcircuit.DAGNode" />
 
-`DAGNode(nid=- 1)`
+`DAGNode(type=None, op=None, name=None, qargs=None, cargs=None, wire=None, nid=- 1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/dagcircuit/dagnode.py "view source code")
 
 Bases: `object`
 
@@ -24,7 +24,7 @@ Create a node
 
 <span id="qiskit.dagcircuit.DAGNode.semantic_eq" />
 
-`static DAGNode.semantic_eq(node1, node2, bit_indices1=None, bit_indices2=None)`
+`static DAGNode.semantic_eq(node1, node2, bit_indices1=None, bit_indices2=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/dagcircuit/dagnode.py "view source code")
 
 Check if DAG nodes are considered equivalent, e.g., as a node\_match for nx.is\_isomorphic.
 
@@ -42,4 +42,48 @@ If node1 == node2
 **Return type**
 
 Bool
+
+## Attributes
+
+<span id="qiskit.dagcircuit.DAGNode.cargs" />
+
+### cargs
+
+Returns list of Clbit, else an empty list.
+
+<span id="qiskit.dagcircuit.DAGNode.condition" />
+
+### condition
+
+Returns the condition of the node.op
+
+<span id="qiskit.dagcircuit.DAGNode.name" />
+
+### name
+
+Returns the Instruction name corresponding to the op for this node
+
+<span id="qiskit.dagcircuit.DAGNode.op" />
+
+### op
+
+Returns the Instruction object corresponding to the op for the node, else None
+
+<span id="qiskit.dagcircuit.DAGNode.qargs" />
+
+### qargs
+
+Returns list of Qubit, else an empty list.
+
+<span id="qiskit.dagcircuit.DAGNode.type" />
+
+### type
+
+Returns the type object
+
+<span id="qiskit.dagcircuit.DAGNode.wire" />
+
+### wire
+
+Returns the Bit object, else None.
 

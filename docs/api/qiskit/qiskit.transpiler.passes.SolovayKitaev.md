@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.SolovayKitaev
 
 <span id="qiskit.transpiler.passes.SolovayKitaev" />
 
-`qiskit.transpiler.passes.SolovayKitaev(*args, **kwargs)`
+`qiskit.transpiler.passes.SolovayKitaev(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/passes/synthesis/solovay_kitaev_synthesis.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -39,7 +39,7 @@ q_0: ┤ H ├┤ T ├┤ H ├
 
 with an L2-error of approximately 0.01.
 
-## Examples
+**Examples**
 
 Per default, the basis gate set is `["t", "tdg", "h"]`:
 
@@ -90,7 +90,7 @@ approx = generate_basic_approximations(basis, depth=3)
 skd = SolovayKitaev(recursion_degree=2, basic_approximations=approx)
 ```
 
-## References
+**References**
 
 **\[1]: Kitaev, A Yu (1997). Quantum computations: algorithms and error correction.**
 

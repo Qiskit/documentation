@@ -10,37 +10,13 @@ python_api_name: qiskit.providers.JobStatus
 
 <span id="qiskit.providers.JobStatus" />
 
-`JobStatus(value)`
+`JobStatus(value)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/jobstatus.py "view source code")
 
 Bases: `enum.Enum`
 
 Class for job status enumerated type.
 
 ## Attributes
-
-<span id="qiskit.providers.JobStatus.INITIALIZING" />
-
-### INITIALIZING
-
-`= 'job is being initialized'`
-
-<span id="qiskit.providers.JobStatus.QUEUED" />
-
-### QUEUED
-
-`= 'job is queued'`
-
-<span id="qiskit.providers.JobStatus.VALIDATING" />
-
-### VALIDATING
-
-`= 'job is being validated'`
-
-<span id="qiskit.providers.JobStatus.RUNNING" />
-
-### RUNNING
-
-`= 'job is actively running'`
 
 <span id="qiskit.providers.JobStatus.CANCELLED" />
 
@@ -59,4 +35,28 @@ Class for job status enumerated type.
 ### ERROR
 
 `= 'job incurred error'`
+
+<span id="qiskit.providers.JobStatus.INITIALIZING" />
+
+### INITIALIZING
+
+`= 'job is being initialized'`
+
+<span id="qiskit.providers.JobStatus.QUEUED" />
+
+### QUEUED
+
+`= 'job is queued'`
+
+<span id="qiskit.providers.JobStatus.RUNNING" />
+
+### RUNNING
+
+`= 'job is actively running'`
+
+<span id="qiskit.providers.JobStatus.VALIDATING" />
+
+### VALIDATING
+
+`= 'job is being validated'`
 

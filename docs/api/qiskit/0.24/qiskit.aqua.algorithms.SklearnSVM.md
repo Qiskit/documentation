@@ -1,14 +1,22 @@
+---
+title: SklearnSVM
+description: API reference for qiskit.aqua.algorithms.SklearnSVM
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.algorithms.SklearnSVM
+---
+
 <span id="qiskit-aqua-algorithms-sklearnsvm" />
 
 # qiskit.aqua.algorithms.SklearnSVM
 
-<span id="undefined" />
+<span id="qiskit.aqua.algorithms.SklearnSVM" />
 
-`SklearnSVM(training_dataset, test_dataset=None, datapoints=None, gamma=None, multiclass_extension=None)`
+`SklearnSVM(training_dataset, test_dataset=None, datapoints=None, gamma=None, multiclass_extension=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/classifiers/sklearn_svm/sklearn_svm.py "view source code")
 
 The Sklearn SVM algorithm (classical).
 
-This scikit-learn based SVM algorithm uses a classical approach to experiment with feature map classification problems. See also the quantum classifier [`QSVM`](qiskit.aqua.algorithms.QSVM#qiskit.aqua.algorithms.QSVM "qiskit.aqua.algorithms.QSVM").
+This scikit-learn based SVM algorithm uses a classical approach to experiment with feature map classification problems. See also the quantum classifier [`QSVM`](qiskit.aqua.algorithms.QSVM "qiskit.aqua.algorithms.QSVM").
 
 Internally, this algorithm will run the binary classification or multiclass classification based on how many classes the data has. If the data has more than 2 classes then a *multiclass\_extension* is required to be supplied. Aqua provides several [`multiclass_extensions`](qiskit.aqua.components.multiclass_extensions#module-qiskit.aqua.components.multiclass_extensions "qiskit.aqua.components.multiclass_extensions").
 
@@ -22,9 +30,11 @@ Internally, this algorithm will run the binary classification or multiclass clas
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Multiclass extension not supplied when number of classes > 2
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Multiclass extension not supplied when number of classes > 2
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.aqua.algorithms.SklearnSVM.__init__" />
 
 `__init__(training_dataset, test_dataset=None, datapoints=None, gamma=None, multiclass_extension=None)`
 
@@ -44,7 +54,7 @@ Internally, this algorithm will run the binary classification or multiclass clas
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Multiclass extension not supplied when number of classes > 2
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Multiclass extension not supplied when number of classes > 2
 
 ## Methods
 
@@ -67,19 +77,25 @@ Internally, this algorithm will run the binary classification or multiclass clas
 | [`random`](#qiskit.aqua.algorithms.SklearnSVM.random "qiskit.aqua.algorithms.SklearnSVM.random")                         | Return a numpy random. |
 | [`ret`](#qiskit.aqua.algorithms.SklearnSVM.ret "qiskit.aqua.algorithms.SklearnSVM.ret")                                  | returns result         |
 
-<span id="undefined" />
+### class\_to\_label
+
+<span id="qiskit.aqua.algorithms.SklearnSVM.class_to_label" />
 
 `property class_to_label`
 
 returns class to label
 
-<span id="undefined" />
+### label\_to\_class
+
+<span id="qiskit.aqua.algorithms.SklearnSVM.label_to_class" />
 
 `property label_to_class`
 
 returns label to class
 
-<span id="undefined" />
+### load\_model
+
+<span id="qiskit.aqua.algorithms.SklearnSVM.load_model" />
 
 `load_model(file_path)`
 
@@ -89,7 +105,9 @@ Load a model from a file path.
 
 **file\_path** (*str*) – the path of the saved model.
 
-<span id="undefined" />
+### predict
+
+<span id="qiskit.aqua.algorithms.SklearnSVM.predict" />
 
 `predict(data)`
 
@@ -107,19 +125,25 @@ predicted labels, Nx1 array
 
 numpy.ndarray
 
-<span id="undefined" />
+### random
+
+<span id="qiskit.aqua.algorithms.SklearnSVM.random" />
 
 `property random`
 
 Return a numpy random.
 
-<span id="undefined" />
+### ret
+
+<span id="qiskit.aqua.algorithms.SklearnSVM.ret" />
 
 `property ret`
 
 returns result
 
-<span id="undefined" />
+### run
+
+<span id="qiskit.aqua.algorithms.SklearnSVM.run" />
 
 `run()`
 
@@ -133,7 +157,9 @@ results of an algorithm.
 
 dict
 
-<span id="undefined" />
+### save\_model
+
+<span id="qiskit.aqua.algorithms.SklearnSVM.save_model" />
 
 `save_model(file_path)`
 
@@ -143,7 +169,9 @@ Save the model to a file path.
 
 **file\_path** (*str*) – a path to save the model.
 
-<span id="undefined" />
+### test
+
+<span id="qiskit.aqua.algorithms.SklearnSVM.test" />
 
 `test(data, labels)`
 
@@ -162,7 +190,9 @@ accuracy
 
 float
 
-<span id="undefined" />
+### train
+
+<span id="qiskit.aqua.algorithms.SklearnSVM.train" />
 
 `train(data, labels)`
 
@@ -172,3 +202,4 @@ Train the SVM
 
 *   **data** (*numpy.ndarray*) – NxD array, where N is the number of data, D is the feature dimension.
 *   **labels** (*numpy.ndarray*) – Nx1 array, where N is the number of data
+

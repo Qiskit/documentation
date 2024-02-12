@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.Unroller
 
 <span id="qiskit.transpiler.passes.Unroller" />
 
-`qiskit.transpiler.passes.Unroller(*args, **kwargs)`
+`qiskit.transpiler.passes.Unroller(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/passes/basis/unroller.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -21,7 +21,7 @@ Unroll (expand) non-basis, non-opaque instructions recursively to a desired basi
 Unroller initializer.
 
 <Admonition title="Deprecated since version 0.45.0" type="danger">
-  The class `qiskit.transpiler.passes.basis.unroller.Unroller` is deprecated as of qiskit 0.45.0. It will be removed no earlier than 3 months after the release date. This has been replaced by the BasisTranslator pass and is going to be removed in Qiskit 1.0.
+  The class `qiskit.transpiler.passes.basis.unroller.Unroller` is deprecated as of qiskit 0.45.0. It will be removed in the Qiskit 1.0 release. This has been replaced by the BasisTranslator pass.
 </Admonition>
 
 **Parameters**

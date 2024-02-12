@@ -10,13 +10,13 @@ python_api_name: qiskit.transpiler.passes.Layout2qDistance
 
 <span id="qiskit.transpiler.passes.Layout2qDistance" />
 
-`qiskit.transpiler.passes.Layout2qDistance(*args, **kwargs)`
+`qiskit.transpiler.passes.Layout2qDistance(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/passes/layout/layout_2q_distance.py "view source code")
 
 Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
 Evaluate how good the layout selection was.
 
-Saves in property\_set\[‘layout\_score’] (or the property name in property\_name) the sum of distances for each circuit CX. The lower the number, the better the selection. Therefore, 0 is a perfect layout selection. No CX direction is considered.
+Saves in `property_set['layout_score']` (or the property name in property\_name) the sum of distances for each circuit CX. The lower the number, the better the selection. Therefore, 0 is a perfect layout selection. No CX direction is considered.
 
 Layout2qDistance initializer.
 

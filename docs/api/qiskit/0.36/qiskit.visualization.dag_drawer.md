@@ -10,11 +10,13 @@ python_api_name: qiskit.visualization.dag_drawer
 
 <span id="qiskit.visualization.dag_drawer" />
 
-`dag_drawer(dag, scale=0.7, filename=None, style='color')`
+`dag_drawer(dag, scale=0.7, filename=None, style='color')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/visualization/dag_visualization.py "view source code")
 
 Plot the directed acyclic graph (dag) to represent operation dependencies in a quantum circuit.
 
-This function calls the `graphviz_draw()` function from the `retworkx` package to draw the DAG.
+Note this function leverages [pydot](https://github.com/erocarrera/pydot) to generate the graph, which means that having [Graphviz](https://www.graphviz.org/) installed on your system is required for this to work.
+
+The current release of Graphviz can be downloaded here: \<[https://graphviz.gitlab.io/download/](https://graphviz.gitlab.io/download/)>. Download the version of the software that matches your environment and follow the instructions to install Graph Visualization Software (Graphviz) on your operating system.
 
 **Parameters**
 
@@ -36,9 +38,10 @@ PIL.Image
 **Raises**
 
 *   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – when style is not recognized.
+*   **MissingOptionalLibraryError** – when pydot or pillow are not installed.
 *   **InvalidFileError** – when filename provided is not valid
 
-## Example
+**Example**
 
 ```python
 %matplotlib inline

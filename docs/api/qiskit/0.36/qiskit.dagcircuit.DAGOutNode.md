@@ -10,9 +10,9 @@ python_api_name: qiskit.dagcircuit.DAGOutNode
 
 <span id="qiskit.dagcircuit.DAGOutNode" />
 
-`DAGOutNode(wire)`
+`DAGOutNode(wire)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/dagcircuit/dagnode.py "view source code")
 
-Bases: [`qiskit.dagcircuit.dagnode.DAGNode`](qiskit.dagcircuit.DAGNode "qiskit.dagcircuit.dagnode.DAGNode")
+Bases: `qiskit.dagcircuit.dagnode.DAGNode`
 
 Object to represent an outgoing wire node in the DAGCircuit.
 
@@ -45,11 +45,47 @@ Bool
 
 ## Attributes
 
-<span id="qiskit.dagcircuit.DAGOutNode.wire" />
+<span id="qiskit.dagcircuit.DAGOutNode.cargs" />
 
-### wire
+### cargs
+
+Returns list of Clbit, else an empty list.
+
+<span id="qiskit.dagcircuit.DAGOutNode.condition" />
+
+### condition
+
+Returns the condition of the node.op
+
+<span id="qiskit.dagcircuit.DAGOutNode.name" />
+
+### name
+
+Returns the Instruction name corresponding to the op for this node
+
+<span id="qiskit.dagcircuit.DAGOutNode.op" />
+
+### op
+
+Returns the Instruction object corresponding to the op for the node, else None
+
+<span id="qiskit.dagcircuit.DAGOutNode.qargs" />
+
+### qargs
+
+Returns list of Qubit, else an empty list.
 
 <span id="qiskit.dagcircuit.DAGOutNode.sort_key" />
 
 ### sort\_key
+
+<span id="qiskit.dagcircuit.DAGOutNode.type" />
+
+### type
+
+Returns the type object
+
+<span id="qiskit.dagcircuit.DAGOutNode.wire" />
+
+### wire
 

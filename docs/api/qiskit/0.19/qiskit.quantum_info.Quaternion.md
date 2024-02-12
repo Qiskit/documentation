@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.Quaternion
 
 <span id="qiskit.quantum_info.Quaternion" />
 
-`Quaternion(data)`
+`Quaternion(data)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/quaternion.py "view source code")
 
 A class representing a Quaternion.
 
@@ -20,7 +20,7 @@ A class representing a Quaternion.
 
 <span id="qiskit.quantum_info.Quaternion.__call__" />
 
-`Quaternion.__call__(idx)`
+`Quaternion.__call__(idx)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/quaternion.py "view source code")
 
 Call self as a function.
 
@@ -28,13 +28,13 @@ Call self as a function.
 
 <span id="qiskit.quantum_info.Quaternion.__mul__" />
 
-`Quaternion.__mul__(r)`
+`Quaternion.__mul__(r)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/quaternion.py "view source code")
 
 ### from\_axis\_rotation
 
 <span id="qiskit.quantum_info.Quaternion.from_axis_rotation" />
 
-`classmethod Quaternion.from_axis_rotation(angle, axis)`
+`classmethod Quaternion.from_axis_rotation(angle, axis)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/quaternion.py "view source code")
 
 Return quaternion for rotation about given axis.
 
@@ -59,7 +59,7 @@ Quaternion for axis rotation.
 
 <span id="qiskit.quantum_info.Quaternion.from_euler" />
 
-`classmethod Quaternion.from_euler(angles, order='yzy')`
+`classmethod Quaternion.from_euler(angles, order='yzy')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/quaternion.py "view source code")
 
 Generate a quaternion from a set of Euler angles.
 
@@ -80,7 +80,7 @@ Quaternion representation of Euler rotation.
 
 <span id="qiskit.quantum_info.Quaternion.norm" />
 
-`Quaternion.norm()`
+`Quaternion.norm()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/quaternion.py "view source code")
 
 Norm of quaternion.
 
@@ -88,7 +88,7 @@ Norm of quaternion.
 
 <span id="qiskit.quantum_info.Quaternion.normalize" />
 
-`Quaternion.normalize(inplace=False)`
+`Quaternion.normalize(inplace=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/quaternion.py "view source code")
 
 Normalizes a Quaternion to unit length so that it represents a valid rotation.
 
@@ -108,7 +108,7 @@ Normalized quaternion.
 
 <span id="qiskit.quantum_info.Quaternion.to_matrix" />
 
-`Quaternion.to_matrix()`
+`Quaternion.to_matrix()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/quaternion.py "view source code")
 
 Converts a unit-length quaternion to a rotation matrix.
 
@@ -124,7 +124,7 @@ ndarray
 
 <span id="qiskit.quantum_info.Quaternion.to_zyz" />
 
-`Quaternion.to_zyz()`
+`Quaternion.to_zyz()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/quaternion.py "view source code")
 
 Converts a unit-length quaternion to a sequence of ZYZ Euler angles.
 

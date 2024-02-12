@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.converters.ast_to_dag
 ---
 
-# qiskit.converters.ast\_to\_dag[¶](#qiskit-converters-ast-to-dag "Permalink to this headline")
+# qiskit.converters.ast\_to\_dag
 
 <span id="qiskit.converters.ast_to_dag" />
 
-`ast_to_dag(ast)`
+`ast_to_dag(ast)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/converters/ast_to_dag.py "view source code")
 
 Build a `DAGCircuit` object from an AST `Node` object.
 
@@ -30,7 +30,7 @@ the DAG representing an OpenQASM’s AST
 
 **QiskitError** – if the AST is malformed.
 
-## Example
+**Example**
 
 ```python
 from qiskit.converters import ast_to_dag

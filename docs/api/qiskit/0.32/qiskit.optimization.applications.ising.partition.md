@@ -4,7 +4,7 @@
 
 Generate Number Partitioning (Partition) instances, and convert them into a Hamiltonian given as a Pauli list.
 
-## Functions
+**Functions**
 
 |                                    |                                                           |
 | ---------------------------------- | --------------------------------------------------------- |

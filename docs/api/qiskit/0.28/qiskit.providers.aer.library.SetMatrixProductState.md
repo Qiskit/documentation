@@ -1,8 +1,16 @@
+---
+title: SetMatrixProductState
+description: API reference for qiskit.providers.aer.library.SetMatrixProductState
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.aer.library.SetMatrixProductState
+---
+
 # qiskit.providers.aer.library.SetMatrixProductState
 
-<span id="undefined" />
+<span id="qiskit.providers.aer.library.SetMatrixProductState" />
 
-`SetMatrixProductState(state)`
+`SetMatrixProductState(state)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/library/set_instructions/set_matrix_product_state.py "view source code")
 
 Set the matrix product state of the simulator
 
@@ -16,7 +24,9 @@ Create new instruction to set the matrix product state of the simulator.
   This set instruction must always be performed on the full width of qubits in a circuit. The matrix\_product\_state consists of a pair of vectors. The first is a vector of pairs of matrices of complex numbers. The second is a vector of vectors of double.
 </Admonition>
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.providers.aer.library.SetMatrixProductState.__init__" />
 
 `__init__(state)`
 
@@ -60,19 +70,25 @@ Create new instruction to set the matrix product state of the simulator.
 | [`params`](#qiskit.providers.aer.library.SetMatrixProductState.params "qiskit.providers.aer.library.SetMatrixProductState.params")                         | return instruction params.                                                    |
 | [`unit`](#qiskit.providers.aer.library.SetMatrixProductState.unit "qiskit.providers.aer.library.SetMatrixProductState.unit")                               | Get the time unit of duration.                                                |
 
-<span id="undefined" />
+### add\_decomposition
+
+<span id="qiskit.providers.aer.library.SetMatrixProductState.add_decomposition" />
 
 `add_decomposition(decomposition)`
 
 Add a decomposition of the instruction to the SessionEquivalenceLibrary.
 
-<span id="undefined" />
+### assemble
+
+<span id="qiskit.providers.aer.library.SetMatrixProductState.assemble" />
 
 `assemble()`
 
 Assemble a QasmQobjInstruction
 
-<span id="undefined" />
+### broadcast\_arguments
+
+<span id="qiskit.providers.aer.library.SetMatrixProductState.broadcast_arguments" />
 
 `broadcast_arguments(qargs, cargs)`
 
@@ -91,13 +107,17 @@ Validation of the arguments.
 
 **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
 
-<span id="undefined" />
+### c\_if
+
+<span id="qiskit.providers.aer.library.SetMatrixProductState.c_if" />
 
 `c_if(classical, val)`
 
 Add classical condition on register or cbit classical and value val.
 
-<span id="undefined" />
+### copy
+
+<span id="qiskit.providers.aer.library.SetMatrixProductState.copy" />
 
 `copy(name=None)`
 
@@ -115,27 +135,35 @@ updated if it was provided
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+### decompositions
+
+<span id="qiskit.providers.aer.library.SetMatrixProductState.decompositions" />
 
 `property decompositions`
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
-<span id="undefined" />
+### definition
+
+<span id="qiskit.providers.aer.library.SetMatrixProductState.definition" />
 
 `property definition`
 
 Return definition in terms of other basic gates.
 
-<span id="undefined" />
+### duration
+
+<span id="qiskit.providers.aer.library.SetMatrixProductState.duration" />
 
 `property duration`
 
 Get the duration.
 
-<span id="undefined" />
+### inverse
+
+<span id="qiskit.providers.aer.library.SetMatrixProductState.inverse" />
 
 `inverse()`
 
@@ -151,19 +179,23 @@ a fresh instruction for the inverse
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
 **Raises**
 
 **CircuitError** – if the instruction is not composite and an inverse has not been implemented for it.
 
-<span id="undefined" />
+### is\_parameterized
+
+<span id="qiskit.providers.aer.library.SetMatrixProductState.is_parameterized" />
 
 `is_parameterized()`
 
 Return True .IFF. instruction is parameterized else False
 
-<span id="undefined" />
+### label
+
+<span id="qiskit.providers.aer.library.SetMatrixProductState.label" />
 
 `property label`
 
@@ -173,7 +205,9 @@ Return instruction label
 
 `str`
 
-<span id="undefined" />
+### mirror
+
+<span id="qiskit.providers.aer.library.SetMatrixProductState.mirror" />
 
 `mirror()`
 
@@ -187,15 +221,19 @@ reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+### params
+
+<span id="qiskit.providers.aer.library.SetMatrixProductState.params" />
 
 `property params`
 
 return instruction params.
 
-<span id="undefined" />
+### qasm
+
+<span id="qiskit.providers.aer.library.SetMatrixProductState.qasm" />
 
 `qasm()`
 
@@ -203,7 +241,9 @@ Return a default OpenQASM string for the instruction.
 
 Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
 
-<span id="undefined" />
+### repeat
+
+<span id="qiskit.providers.aer.library.SetMatrixProductState.repeat" />
 
 `repeat(n)`
 
@@ -219,13 +259,15 @@ Containing the definition.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
 **Raises**
 
 **CircuitError** – If n \< 1.
 
-<span id="undefined" />
+### reverse\_ops
+
+<span id="qiskit.providers.aer.library.SetMatrixProductState.reverse_ops" />
 
 `reverse_ops()`
 
@@ -241,9 +283,11 @@ sub-instructions reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+### soft\_compare
+
+<span id="qiskit.providers.aer.library.SetMatrixProductState.soft_compare" />
 
 `soft_compare(other)`
 
@@ -261,14 +305,19 @@ are self and other equal up to parameter expressions.
 
 bool
 
-<span id="undefined" />
+### unit
+
+<span id="qiskit.providers.aer.library.SetMatrixProductState.unit" />
 
 `property unit`
 
 Get the time unit of duration.
 
-<span id="undefined" />
+### validate\_parameter
+
+<span id="qiskit.providers.aer.library.SetMatrixProductState.validate_parameter" />
 
 `validate_parameter(parameter)`
 
 Instruction parameters has no validation or normalization.
+

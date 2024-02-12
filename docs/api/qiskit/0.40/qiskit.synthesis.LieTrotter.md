@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.synthesis.LieTrotter
 ---
 
-# LieTrotter[¶](#lietrotter "Permalink to this headline")
+# LieTrotter
 
 <span id="qiskit.synthesis.LieTrotter" />
 
-`LieTrotter(reps=1, insert_barriers=False, cx_structure='chain', atomic_evolution=None)`
+`LieTrotter(reps=1, insert_barriers=False, cx_structure='chain', atomic_evolution=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/synthesis/evolution/lie_trotter.py "view source code")
 
 Bases: [`qiskit.synthesis.evolution.product_formula.ProductFormula`](qiskit.synthesis.ProductFormula "qiskit.synthesis.evolution.product_formula.ProductFormula")
 
@@ -28,7 +28,7 @@ $$
 e^{-it(XX + ZZ)} = e^{-it XX}e^{-it ZZ} + \mathcal{O}(t^2).
 $$
 
-## References
+**References**
 
 \[1]: D. Berry, G. Ahokas, R. Cleve and B. Sanders, “Efficient quantum algorithms for simulating sparse Hamiltonians” (2006). [arXiv:quant-ph/0508139](https://arxiv.org/abs/quant-ph/0508139) \[2]: N. Hatano and M. Suzuki, “Finding Exponential Product Formulas of Higher Orders” (2005). [arXiv:math-ph/0506007](https://arxiv.org/pdf/math-ph/0506007.pdf)
 
@@ -45,7 +45,7 @@ $$
 
 <span id="qiskit.synthesis.LieTrotter.synthesize" />
 
-`LieTrotter.synthesize(evolution)`
+`LieTrotter.synthesize(evolution)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/synthesis/evolution/lie_trotter.py "view source code")
 
 Synthesize an `qiskit.circuit.library.PauliEvolutionGate`.
 

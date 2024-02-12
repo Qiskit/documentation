@@ -10,7 +10,7 @@ python_api_name: qiskit.qasm.OpenQASMLexer
 
 <span id="qiskit.qasm.OpenQASMLexer" />
 
-`OpenQASMLexer(*args, **kwds)`
+`OpenQASMLexer(*args, **kwds)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/qasm/pygments/lexer.py "view source code")
 
 Bases: `pygments.lexer.RegexLexer`
 
@@ -50,11 +50,11 @@ Also preprocess the text, i.e. expand tabs and strip it if wanted and applies re
 
 <span id="qiskit.qasm.OpenQASMLexer.get_tokens_unprocessed" />
 
-`OpenQASMLexer.get_tokens_unprocessed(text, stack=('root',))`
+`OpenQASMLexer.get_tokens_unprocessed(text, stack=('root'))`
 
 Split `text` into (tokentype, text) pairs.
 
-`stack` is the initial stack (default: `['root']`)
+`stack` is the inital stack (default: `['root']`)
 
 ## Attributes
 
@@ -64,15 +64,11 @@ Split `text` into (tokentype, text) pairs.
 
 `= []`
 
-Secondary file name globs
-
 <span id="qiskit.qasm.OpenQASMLexer.aliases" />
 
 ### aliases
 
 `= ['qasm']`
-
-Shortcuts for the lexer
 
 <span id="qiskit.qasm.OpenQASMLexer.filenames" />
 
@@ -80,15 +76,11 @@ Shortcuts for the lexer
 
 `= ['*.qasm']`
 
-File name globs
-
 <span id="qiskit.qasm.OpenQASMLexer.flags" />
 
 ### flags
 
 `= 8`
-
-Flags for compiling the regular expressions. Defaults to MULTILINE.
 
 <span id="qiskit.qasm.OpenQASMLexer.gates" />
 
@@ -102,23 +94,17 @@ Flags for compiling the regular expressions. Defaults to MULTILINE.
 
 `= []`
 
-MIME types
-
 <span id="qiskit.qasm.OpenQASMLexer.name" />
 
 ### name
 
 `= 'OpenQASM'`
 
-Name of the lexer
-
 <span id="qiskit.qasm.OpenQASMLexer.priority" />
 
 ### priority
 
 `= 0`
-
-Priority, should multiple lexers match and no content is provided
 
 <span id="qiskit.qasm.OpenQASMLexer.tokens" />
 
@@ -127,20 +113,4 @@ Priority, should multiple lexers match and no content is provided
 `= {'gate':`
 
 `= {'gate': [('[unitary\\d+]', Token.Keyword.Type, '#push'), ('p\\d+', Token.Text, '#push')], 'if_keywords': [('[a-zA-Z0-9_]*', Token.Literal.String, '#pop'), ('\\d+', Token.Literal.Number, '#push'), ('.*\\(', Token.Text, 'params')], 'index': [('\\d+', Token.Literal.Number, '#pop')], 'keywords': [('\\s*("([^"]|"")*")', Token.Literal.String, '#push'), ('\\d+', Token.Literal.Number, '#push'), ('.*\\(', Token.Text, 'params')], 'params': [('[a-zA-Z_][a-zA-Z0-9_]*', Token.Text, '#push'), ('\\d+', Token.Literal.Number, '#push'), ('(\\d+\\.\\d*|\\d*\\.\\d+)([eEf][+-]?[0-9]+)?', Token.Literal.Number, '#push'), ('\\)', Token.Text)], 'root': [('\\n', Token.Text), ('[^\\S\\n]+', Token.Text), ('//\\n', Token.Comment), ('//.*?$', Token.Comment.Single), ('(OPENQASM|include)\\b', Token.Keyword.Reserved, 'keywords'), ('(qreg|creg)\\b', Token.Keyword.Declaration), ('(if)\\b', Token.Keyword.Reserved, 'if_keywords'), ('(pi)\\b', Token.Name.Constant), ('(barrier|measure|reset)\\b', Token.Name.Builtin, 'params'), ('(id|cx|x|y|z|s|sdg|h|t|tdg|ccx|c3x|c4x|c3sqrtx|rx|ry|rz|cz|cy|ch|swap|cswap|crx|cry|crz|cu1|cu3|rxx|rzz|rccx|rc3x|u1|u2|u3)\\b', Token.Keyword.Type, 'params'), ('[unitary\\d+]', Token.Keyword.Type), ('(gate)\\b', Token.Name.Function, 'gate'), ('[a-zA-Z_][a-zA-Z0-9_]*', Token.Text, 'index')]}`
-
-At all time there is a stack of states. Initially, the stack contains a single state ‘root’. The top of the stack is called “the current state”.
-
-Dict of `{'state': [(regex, tokentype, new_state), ...], ...}`
-
-`new_state` can be omitted to signify no state transition. If `new_state` is a string, it is pushed on the stack. This ensure the new current state is `new_state`. If `new_state` is a tuple of strings, all of those strings are pushed on the stack and the current state will be the last element of the list. `new_state` can also be `combined('state1', 'state2', ...)` to signify a new, anonymous state combined from the rules of two or more existing ones. Furthermore, it can be ‘#pop’ to signify going back one step in the state stack, or ‘#push’ to push the current state on the stack again. Note that if you push while in a combined state, the combined state itself is pushed, and not only the state in which the rule is defined.
-
-The tuple can also be replaced with `include('state')`, in which case the rules from the state named by the string are included in the current one.
-
-<span id="qiskit.qasm.OpenQASMLexer.url" />
-
-### url
-
-`= None`
-
-URL of the language specification/definition
 

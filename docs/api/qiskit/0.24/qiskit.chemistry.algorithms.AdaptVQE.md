@@ -1,10 +1,18 @@
+---
+title: AdaptVQE
+description: API reference for qiskit.chemistry.algorithms.AdaptVQE
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.algorithms.AdaptVQE
+---
+
 <span id="qiskit-chemistry-algorithms-adaptvqe" />
 
 # qiskit.chemistry.algorithms.AdaptVQE
 
-<span id="undefined" />
+<span id="qiskit.chemistry.algorithms.AdaptVQE" />
 
-`AdaptVQE(transformation, solver, threshold=1e-05, delta=1, max_iterations=None)`
+`AdaptVQE(transformation, solver, threshold=1e-05, delta=1, max_iterations=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/algorithms/ground_state_solvers/adapt_vqe.py "view source code")
 
 A ground state calculation employing the AdaptVQE algorithm.
 
@@ -16,7 +24,9 @@ A ground state calculation employing the AdaptVQE algorithm.
 *   **delta** (`float`) – the finite difference step size for the gradient computation. It has a minimum value of 1e-5.
 *   **max\_iterations** (`Optional`\[`int`]) – the maximum number of iterations of the AdaptVQE algorithm.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.chemistry.algorithms.AdaptVQE.__init__" />
 
 `__init__(transformation, solver, threshold=1e-05, delta=1, max_iterations=None)`
 
@@ -44,7 +54,9 @@ A ground state calculation employing the AdaptVQE algorithm.
 | [`solver`](#qiskit.chemistry.algorithms.AdaptVQE.solver "qiskit.chemistry.algorithms.AdaptVQE.solver")                         | Returns the minimum eigensolver or factory.                                   |
 | [`transformation`](#qiskit.chemistry.algorithms.AdaptVQE.transformation "qiskit.chemistry.algorithms.AdaptVQE.transformation") | Returns the transformation used to obtain a qubit operator from the molecule. |
 
-<span id="undefined" />
+### evaluate\_operators
+
+<span id="qiskit.chemistry.algorithms.AdaptVQE.evaluate_operators" />
 
 `evaluate_operators(state, operators)`
 
@@ -63,7 +75,9 @@ Evaluates additional operators at the given state.
 
 The expectation value of the given operator(s). The return type will be identical to the format of the provided operators.
 
-<span id="undefined" />
+### returns\_groundstate
+
+<span id="qiskit.chemistry.algorithms.AdaptVQE.returns_groundstate" />
 
 `returns_groundstate()`
 
@@ -73,7 +87,9 @@ Whether the eigensolver returns the ground state or only ground state energy.
 
 `bool`
 
-<span id="undefined" />
+### solve
+
+<span id="qiskit.chemistry.algorithms.AdaptVQE.solve" />
 
 `solve(driver, aux_operators=None)`
 
@@ -86,7 +102,7 @@ Computes the ground state.
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if a solver other than VQE or a variational form other than UCCSD is provided or if the algorithm finishes due to an unforeseen reason.
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if a solver other than VQE or a variational form other than UCCSD is provided or if the algorithm finishes due to an unforeseen reason.
 
 **Return type**
 
@@ -96,7 +112,9 @@ Computes the ground state.
 
 An AdaptVQEResult which is an ElectronicStructureResult but also includes runtime information about the AdaptVQE algorithm like the number of iterations, finishing criterion, and the final maximum gradient.
 
-<span id="undefined" />
+### solver
+
+<span id="qiskit.chemistry.algorithms.AdaptVQE.solver" />
 
 `property solver`
 
@@ -106,7 +124,9 @@ Returns the minimum eigensolver or factory.
 
 `Union`\[`MinimumEigensolver`, `MinimumEigensolverFactory`]
 
-<span id="undefined" />
+### transformation
+
+<span id="qiskit.chemistry.algorithms.AdaptVQE.transformation" />
 
 `property transformation`
 
@@ -115,3 +135,4 @@ Returns the transformation used to obtain a qubit operator from the molecule.
 **Return type**
 
 `Transformation`
+

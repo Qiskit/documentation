@@ -1,12 +1,22 @@
+---
+title: MatrixExpectation
+description: API reference for qiskit.aqua.operators.expectations.MatrixExpectation
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.operators.expectations.MatrixExpectation
+---
+
 # qiskit.aqua.operators.expectations.MatrixExpectation
 
-<span id="undefined" />
+<span id="qiskit.aqua.operators.expectations.MatrixExpectation" />
 
-`MatrixExpectation`
+`MatrixExpectation`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/expectations/matrix_expectation.py "view source code")
 
 An Expectation converter which converts Operator measurements to be matrix-based so they can be evaluated by matrix multiplication.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.aqua.operators.expectations.MatrixExpectation.__init__" />
 
 `__init__()`
 
@@ -20,7 +30,9 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`compute_variance`](#qiskit.aqua.operators.expectations.MatrixExpectation.compute_variance "qiskit.aqua.operators.expectations.MatrixExpectation.compute_variance")(exp\_op) | Compute the variance of the expectation estimator.                                                              |
 | [`convert`](#qiskit.aqua.operators.expectations.MatrixExpectation.convert "qiskit.aqua.operators.expectations.MatrixExpectation.convert")(operator)                           | Accept an Operator and return a new Operator with the Pauli measurements replaced by Matrix based measurements. |
 
-<span id="undefined" />
+### compute\_variance
+
+<span id="qiskit.aqua.operators.expectations.MatrixExpectation.compute_variance" />
 
 `compute_variance(exp_op)`
 
@@ -38,7 +50,9 @@ Compute the variance of the expectation estimator. Because this expectation work
 
 The variances or lists thereof (if exp\_op contains ListOps) of the expectation value estimation, equal to 0.
 
-<span id="undefined" />
+### convert
+
+<span id="qiskit.aqua.operators.expectations.MatrixExpectation.convert" />
 
 `convert(operator)`
 
@@ -55,3 +69,4 @@ Accept an Operator and return a new Operator with the Pauli measurements replace
 **Returns**
 
 The converted operator.
+

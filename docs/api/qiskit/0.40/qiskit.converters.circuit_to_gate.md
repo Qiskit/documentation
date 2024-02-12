@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.converters.circuit_to_gate
 ---
 
-# qiskit.converters.circuit\_to\_gate[¶](#qiskit-converters-circuit-to-gate "Permalink to this headline")
+# qiskit.converters.circuit\_to\_gate
 
 <span id="qiskit.converters.circuit_to_gate" />
 
-`circuit_to_gate(circuit, parameter_map=None, equivalence_library=None, label=None)`
+`circuit_to_gate(circuit, parameter_map=None, equivalence_library=None, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/converters/circuit_to_gate.py "view source code")
 
 Build a [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") object from a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
 

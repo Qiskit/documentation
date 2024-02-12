@@ -10,11 +10,11 @@ python_api_name: qiskit.providers.ibmq.credentials.Credentials
   The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
 </Admonition>
 
-# Credentials[¶](#credentials "Permalink to this headline")
+# Credentials
 
 <span id="qiskit.providers.ibmq.credentials.Credentials" />
 
-`Credentials(token, url, websockets_url=None, hub=None, group=None, project=None, proxies=None, verify=True, services=None, access_token=None, preferences=None, default_provider=None)`
+`Credentials(token, url, websockets_url=None, hub=None, group=None, project=None, proxies=None, verify=True, services=None, access_token=None, preferences=None, default_provider=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/credentials/credentials.py "view source code")
 
 Bases: `object`
 
@@ -51,7 +51,7 @@ Credentials constructor.
 
 <span id="qiskit.providers.ibmq.credentials.Credentials.connection_parameters" />
 
-`Credentials.connection_parameters()`
+`Credentials.connection_parameters()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/credentials/credentials.py "view source code")
 
 Construct connection related parameters.
 
@@ -71,7 +71,7 @@ A dictionary with connection-related parameters in the format expected by `reque
 
 <span id="qiskit.providers.ibmq.credentials.Credentials.is_ibmq" />
 
-`Credentials.is_ibmq()`
+`Credentials.is_ibmq()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/credentials/credentials.py "view source code")
 
 Return whether the credentials represent an IBM Quantum Experience account.
 
@@ -87,7 +87,7 @@ Return whether the credentials represent an IBM Quantum Experience account.
 
 <span id="qiskit.providers.ibmq.credentials.Credentials.unique_id" />
 
-`Credentials.unique_id()`
+`Credentials.unique_id()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/credentials/credentials.py "view source code")
 
 Return a value that uniquely identifies these credentials.
 

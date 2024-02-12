@@ -1,8 +1,16 @@
+---
+title: CVaRExpectation
+description: API reference for qiskit.aqua.operators.expectations.CVaRExpectation
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.operators.expectations.CVaRExpectation
+---
+
 # qiskit.aqua.operators.expectations.CVaRExpectation
 
-<span id="undefined" />
+<span id="qiskit.aqua.operators.expectations.CVaRExpectation" />
 
-`CVaRExpectation(alpha, expectation=None)`
+`CVaRExpectation(alpha, expectation=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/expectations/cvar_expectation.py "view source code")
 
 Compute the Conditional Value at Risk (CVaR) expectation value.
 
@@ -14,7 +22,7 @@ It is empirically shown, that this can lead to faster convergence for combinator
 
 Let $\alpha$ be a real number in $[0,1]$ which specifies the fraction of best observed samples which are used to compute the objective function. Observe that if $\alpha = 1$, CVaR is equivalent to a standard expectation value. Similarly, if $\alpha = 0$, then CVaR corresponds to using the best observed sample. Intermediate values of $\alpha$ interpolate between these two objective functions.
 
-## References
+**References**
 
 **\[1]: Barkoutsos, P. K., Nannicini, G., Robert, A., Tavernelli, I., and Woerner, S.,**
 
@@ -29,7 +37,9 @@ Let $\alpha$ be a real number in $[0,1]$ which specifies the fraction of best ob
 
 **NotImplementedError** – If the `expectation` is an AerPauliExpecation.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.aqua.operators.expectations.CVaRExpectation.__init__" />
 
 `__init__(alpha, expectation=None)`
 
@@ -50,7 +60,9 @@ Let $\alpha$ be a real number in $[0,1]$ which specifies the fraction of best ob
 | [`compute_variance`](#qiskit.aqua.operators.expectations.CVaRExpectation.compute_variance "qiskit.aqua.operators.expectations.CVaRExpectation.compute_variance")(exp\_op) | Returns the variance of the CVaR calculation                                 |
 | [`convert`](#qiskit.aqua.operators.expectations.CVaRExpectation.convert "qiskit.aqua.operators.expectations.CVaRExpectation.convert")(operator)                           | Return an expression that computes the CVaR expectation upon calling `eval`. |
 
-<span id="undefined" />
+### compute\_variance
+
+<span id="qiskit.aqua.operators.expectations.CVaRExpectation.compute_variance" />
 
 `compute_variance(exp_op)`
 
@@ -74,7 +86,9 @@ exp\_op.
 
 **ValueError** – If the exp\_op does not correspond to an expectation value.
 
-<span id="undefined" />
+### convert
+
+<span id="qiskit.aqua.operators.expectations.CVaRExpectation.convert" />
 
 `convert(operator)`
 
@@ -87,3 +101,4 @@ Return an expression that computes the CVaR expectation upon calling `eval`. :ty
 **Returns**
 
 The converted operator.
+

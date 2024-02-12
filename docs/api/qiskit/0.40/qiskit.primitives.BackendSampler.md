@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.primitives.BackendSampler
 ---
 
-# BackendSampler[¶](#backendsampler "Permalink to this headline")
+# BackendSampler
 
 <span id="qiskit.primitives.BackendSampler" />
 
-`BackendSampler(backend, options=None, bound_pass_manager=None, skip_transpilation=False)`
+`BackendSampler(backend, options=None, bound_pass_manager=None, skip_transpilation=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/primitives/backend_sampler.py "view source code")
 
 Bases: [`qiskit.primitives.base.base_sampler.BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.base.base_sampler.BaseSampler")
 
@@ -79,7 +79,7 @@ Set options values for the estimator.
 
 <span id="qiskit.primitives.BackendSampler.set_transpile_options" />
 
-`BackendSampler.set_transpile_options(**fields)`
+`BackendSampler.set_transpile_options(**fields)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/primitives/backend_sampler.py "view source code")
 
 Set the transpiler options for transpiler. :param \*\*fields: The fields to update the options.
 

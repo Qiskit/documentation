@@ -1,8 +1,16 @@
+---
+title: HHL
+description: API reference for qiskit.algorithms.HHL
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.algorithms.HHL
+---
+
 # HHL
 
-<span id="undefined" />
+<span id="qiskit.algorithms.HHL" />
 
-`HHL(epsilon=0.01, expectation=None, quantum_instance=None)`
+`HHL(epsilon=0.01, expectation=None, quantum_instance=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/linear_solvers/hhl.py "view source code")
 
 Bases: `qiskit.algorithms.linear_solvers.linear_solver.LinearSolver`
 
@@ -12,7 +20,7 @@ A system of linear equations is called $s$-sparse if $A$ has at most $s$ non-zer
 
 The HHL is a quantum algorithm to estimate a function of the solution with running time complexity of $\mathcal{ O }(\log(N)s^{2}\kappa^{2}/\epsilon)$ when $A$ is a Hermitian matrix under the assumptions of efficient oracles for loading the data, Hamiltonian simulation and computing a function of the solution. This is an exponential speed up in the size of the system, however one crucial remark to keep in mind is that the classical algorithm returns the full solution, while the HHL can only approximate functions of the solution vector.
 
-## Examples
+**Examples**
 
 ```python
 import numpy as np
@@ -36,7 +44,7 @@ solution = hhl.solve(matrix, qc, observable)
 approx_result = solution.observable
 ```
 
-## References
+**References**
 
 \[1]: Harrow, A. W., Hassidim, A., Lloyd, S. (2009). Quantum algorithm for linear systems of equations. [Phys. Rev. Lett. 103, 15 (2009), 1–15.](https://doi.org/10.1103/PhysRevLett.103.150502)
 
@@ -50,14 +58,63 @@ approx_result = solution.observable
 
 ## Methods
 
-|                                                                                                                                                  |                                                      |
-| ------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------- |
-| [`construct_circuit`](qiskit.algorithms.HHL.construct_circuit#qiskit.algorithms.HHL.construct_circuit "qiskit.algorithms.HHL.construct_circuit") | Construct the HHL circuit.                           |
-| [`solve`](qiskit.algorithms.HHL.solve#qiskit.algorithms.HHL.solve "qiskit.algorithms.HHL.solve")                                                 | Tries to solve the given linear system of equations. |
+### construct\_circuit
+
+<span id="qiskit.algorithms.HHL.construct_circuit" />
+
+`HHL.construct_circuit(matrix, vector)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/linear_solvers/hhl.py "view source code")
+
+Construct the HHL circuit.
+
+**Parameters**
+
+*   **matrix** (`Union`\[`List`, `ndarray`, `QuantumCircuit`]) – The matrix specifying the system, i.e. A in Ax=b.
+*   **vector** (`Union`\[`List`, `ndarray`, `QuantumCircuit`]) – The vector specifying the right hand side of the equation in Ax=b.
+
+**Return type**
+
+`QuantumCircuit`
+
+**Returns**
+
+The HHL circuit.
+
+**Raises**
+
+*   **ValueError** – If the input is not in the correct format.
+*   **ValueError** – If the type of the input matrix is not supported.
+
+### solve
+
+<span id="qiskit.algorithms.HHL.solve" />
+
+`HHL.solve(matrix, vector, observable=None, observable_circuit=None, post_processing=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/linear_solvers/hhl.py "view source code")
+
+Tries to solve the given linear system of equations.
+
+**Parameters**
+
+*   **matrix** (`Union`\[`List`, `ndarray`, `QuantumCircuit`]) – The matrix specifying the system, i.e. A in Ax=b.
+*   **vector** (`Union`\[`List`, `ndarray`, `QuantumCircuit`]) – The vector specifying the right hand side of the equation in Ax=b.
+*   **observable** (`Union`\[`LinearSystemObservable`, `BaseOperator`, `List`\[`LinearSystemObservable`], `List`\[`BaseOperator`], `None`]) – Optional information to be extracted from the solution. Default is the probability of success of the algorithm.
+*   **observable\_circuit** (`Union`\[`QuantumCircuit`, `List`\[`QuantumCircuit`], `None`]) – Optional circuit to be applied to the solution to extract information. Default is None.
+*   **post\_processing** (`Optional`\[`Callable`\[\[`Union`\[`float`, `List`\[`float`]]], `Union`\[`float`, `List`\[`float`]]]]) – Optional function to compute the value of the observable. Default is the raw value of measuring the observable.
+
+**Raises**
+
+**ValueError** – If an invalid combination of observable, observable\_circuit and post\_processing is passed.
+
+**Return type**
+
+`LinearSolverResult`
+
+**Returns**
+
+The result object containing information about the solution vector of the linear system.
 
 ## Attributes
 
-<span id="undefined" />
+<span id="qiskit.algorithms.HHL.expectation" />
 
 ### expectation
 
@@ -67,7 +124,7 @@ The expectation value algorithm used to construct the expectation measurement fr
 
 `ExpectationBase`
 
-<span id="undefined" />
+<span id="qiskit.algorithms.HHL.quantum_instance" />
 
 ### quantum\_instance
 
@@ -81,7 +138,7 @@ Get the quantum instance.
 
 The quantum instance used to run this algorithm.
 
-<span id="undefined" />
+<span id="qiskit.algorithms.HHL.scaling" />
 
 ### scaling
 
@@ -90,3 +147,4 @@ The scaling of the solution vector.
 **Return type**
 
 `float`
+

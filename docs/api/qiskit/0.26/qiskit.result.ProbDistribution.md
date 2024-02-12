@@ -1,8 +1,16 @@
+---
+title: ProbDistribution
+description: API reference for qiskit.result.ProbDistribution
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.result.ProbDistribution
+---
+
 # qiskit.result.ProbDistribution
 
-<span id="undefined" />
+<span id="qiskit.result.ProbDistribution" />
 
-`ProbDistribution(data, shots=None)`
+`ProbDistribution(data, shots=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/result/distributions/probability.py "view source code")
 
 A generic dict-like class for probability distributions.
 
@@ -17,7 +25,9 @@ Builds a probability distribution object.
 *   **data** (*dict*) – Input probability data.
 *   **shots** (*int*) – Number of shots the distribution was derived from.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.result.ProbDistribution.__init__" />
 
 `__init__(data, shots=None)`
 
@@ -45,47 +55,65 @@ Builds a probability distribution object.
 | [`update`](#qiskit.result.ProbDistribution.update "qiskit.result.ProbDistribution.update")(\[E, ]\*\*F)                 | If E is present and has a .keys() method, then does: for k in E: D\[k] = E\[k] If E is present and lacks a .keys() method, then does: for k, v in E: D\[k] = v In either case, this is followed by: for k in F: D\[k] = F\[k] |
 | [`values`](#qiskit.result.ProbDistribution.values "qiskit.result.ProbDistribution.values")()                            |                                                                                                                                                                                                                               |
 
-<span id="undefined" />
+### clear
+
+<span id="qiskit.result.ProbDistribution.clear" />
 
 `clear() → None. Remove all items from D.`
 
-<span id="undefined" />
+### copy
+
+<span id="qiskit.result.ProbDistribution.copy" />
 
 `copy() → a shallow copy of D`
 
-<span id="undefined" />
+### fromkeys
+
+<span id="qiskit.result.ProbDistribution.fromkeys" />
 
 `fromkeys(value=None, /)`
 
 Create a new dictionary with keys from iterable and values set to value.
 
-<span id="undefined" />
+### get
+
+<span id="qiskit.result.ProbDistribution.get" />
 
 `get(key, default=None, /)`
 
 Return the value for key if key is in the dictionary, else default.
 
-<span id="undefined" />
+### items
+
+<span id="qiskit.result.ProbDistribution.items" />
 
 `items() → a set-like object providing a view on D’s items`
 
-<span id="undefined" />
+### keys
+
+<span id="qiskit.result.ProbDistribution.keys" />
 
 `keys() → a set-like object providing a view on D’s keys`
 
-<span id="undefined" />
+### pop
+
+<span id="qiskit.result.ProbDistribution.pop" />
 
 `pop(k[, d]) → v, remove specified key and return the corresponding value.`
 
 If key is not found, d is returned if given, otherwise KeyError is raised
 
-<span id="undefined" />
+### popitem
+
+<span id="qiskit.result.ProbDistribution.popitem" />
 
 `popitem() → (k, v), remove and return some (key, value) pair as a`
 
 2-tuple; but raise KeyError if D is empty.
 
-<span id="undefined" />
+### setdefault
+
+<span id="qiskit.result.ProbDistribution.setdefault" />
 
 `setdefault(key, default=None, /)`
 
@@ -93,12 +121,17 @@ Insert key with a value of default if key is not in the dictionary.
 
 Return the value for key if key is in the dictionary, else default.
 
-<span id="undefined" />
+### update
+
+<span id="qiskit.result.ProbDistribution.update" />
 
 `update([E, ]**F) → None. Update D from dict/iterable E and F.`
 
 If E is present and has a .keys() method, then does: for k in E: D\[k] = E\[k] If E is present and lacks a .keys() method, then does: for k, v in E: D\[k] = v In either case, this is followed by: for k in F: D\[k] = F\[k]
 
-<span id="undefined" />
+### values
+
+<span id="qiskit.result.ProbDistribution.values" />
 
 `values() → an object providing a view on D’s values`
+

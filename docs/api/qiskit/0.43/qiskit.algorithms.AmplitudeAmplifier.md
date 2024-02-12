@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.AmplitudeAmplifier
 
 <span id="qiskit.algorithms.AmplitudeAmplifier" />
 
-`AmplitudeAmplifier`
+`AmplitudeAmplifier`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/amplitude_amplifiers/amplitude_amplifier.py "view source code")
 
 Bases: `ABC`
 
@@ -24,7 +24,7 @@ The interface for amplification algorithms.
 
 <span id="qiskit.algorithms.AmplitudeAmplifier.amplify" />
 
-`abstract AmplitudeAmplifier.amplify(amplification_problem)`
+`abstract AmplitudeAmplifier.amplify(amplification_problem)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/amplitude_amplifiers/amplitude_amplifier.py "view source code")
 
 Run the amplification algorithm.
 

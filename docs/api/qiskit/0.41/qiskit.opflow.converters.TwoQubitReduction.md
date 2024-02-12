@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.opflow.converters.TwoQubitReduction
 ---
 
-# TwoQubitReduction[¶](#twoqubitreduction "Permalink to this headline")
+# TwoQubitReduction
 
 <span id="qiskit.opflow.converters.TwoQubitReduction" />
 
-`TwoQubitReduction(num_particles)`
+`TwoQubitReduction(num_particles)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/converters/two_qubit_reduction.py "view source code")
 
 Bases: [`qiskit.opflow.converters.converter_base.ConverterBase`](qiskit.opflow.converters.ConverterBase "qiskit.opflow.converters.converter_base.ConverterBase")
 
@@ -28,7 +28,7 @@ Chemistry specific method: It can be used to taper two qubits in parity and bina
 
 <span id="qiskit.opflow.converters.TwoQubitReduction.convert" />
 
-`TwoQubitReduction.convert(operator)`
+`TwoQubitReduction.convert(operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/converters/two_qubit_reduction.py "view source code")
 
 Converts the Operator to tapered one by Z2 symmetries.
 

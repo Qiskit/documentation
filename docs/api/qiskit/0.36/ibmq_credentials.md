@@ -20,9 +20,9 @@ Utilities for working with IBM Quantum Experience account credentials.
 
 ## Classes
 
-|                                                                                                                                                     |                                                             |
-| --------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
-| [`Credentials`](qiskit.providers.ibmq.credentials.Credentials "qiskit.providers.ibmq.credentials.Credentials")(token, url\[, websockets\_url, ...]) | IBM Quantum Experience account credentials and preferences. |
+|                                                                                                                                                   |                                                             |
+| ------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| [`Credentials`](qiskit.providers.ibmq.credentials.Credentials "qiskit.providers.ibmq.credentials.Credentials")(token, url\[, websockets\_url, …]) | IBM Quantum Experience account credentials and preferences. |
 
 ## Exceptions
 

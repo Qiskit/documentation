@@ -1,10 +1,18 @@
+---
+title: t2star_circuits
+description: API reference for qiskit.ignis.characterization.t2star_circuits
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.ignis.characterization.t2star_circuits
+---
+
 <span id="qiskit-ignis-characterization-t2star-circuits" />
 
 # qiskit.ignis.characterization.t2star\_circuits
 
-<span id="undefined" />
+<span id="qiskit.ignis.characterization.t2star_circuits" />
 
-`t2star_circuits(num_of_gates, gate_time, qubits, nosc=0)`
+`t2star_circuits(num_of_gates, gate_time, qubits, nosc=0)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/characterization/coherence/circuits.py "view source code")
 
 Generate circuits for T2\* measurement.
 
@@ -26,3 +34,4 @@ Each circuit consists of a Hadamard gate, followed by a sequence of identity gat
 *   The generated circuits
 *   Delay times, i.e., gate\_time multiplied by the numbers in num\_of\_gates
 *   The induced oscillation frequency
+

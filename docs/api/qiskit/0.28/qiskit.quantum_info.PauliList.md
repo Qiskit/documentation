@@ -1,12 +1,20 @@
+---
+title: PauliList
+description: API reference for qiskit.quantum_info.PauliList
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.quantum_info.PauliList
+---
+
 # qiskit.quantum\_info.PauliList
 
-<span id="undefined" />
+<span id="qiskit.quantum_info.PauliList" />
 
-`PauliList(data)`
+`PauliList(data)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/operators/symplectic/pauli_list.py "view source code")
 
 List of N-qubit Pauli operators.
 
-This class is an efficient representation of a list of [`Pauli`](qiskit.quantum_info.Pauli#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli") operators. It supports 1D numpy array indexing returning a [`Pauli`](qiskit.quantum_info.Pauli#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli") for integer indexes or a [`PauliList`](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList") for slice or list indices.
+This class is an efficient representation of a list of [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli") operators. It supports 1D numpy array indexing returning a [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli") for integer indexes or a [`PauliList`](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList") for slice or list indices.
 
 **Initialization**
 
@@ -14,11 +22,11 @@ A PauliList object can be initialized in several ways.
 
 > **`PauliList(list[str])`**
 >
-> where strings are same representation with [`Pauli`](qiskit.quantum_info.Pauli#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli").
+> where strings are same representation with [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli").
 >
 > **`PauliList(Pauli) and PauliList(list[Pauli])`**
 >
-> where Pauli is [`Pauli`](qiskit.quantum_info.Pauli#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli").
+> where Pauli is [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli").
 >
 > **`PauliList.from_symplectic(z, x, phase)`**
 >
@@ -84,7 +92,7 @@ Initialize the PauliList.
 
 **Parameters**
 
-**data** ([*Pauli*](qiskit.quantum_info.Pauli#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli") *or list*) – input data for Paulis. If input is a list each item in the list must be a Pauli object or Pauli str.
+**data** ([*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli") *or list*) – input data for Paulis. If input is a list each item in the list must be a Pauli object or Pauli str.
 
 **Raises**
 
@@ -94,7 +102,9 @@ Initialize the PauliList.
 
 The input array is not copied so multiple Pauli tables can share the same underlying array.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.quantum_info.PauliList.__init__" />
 
 `__init__(data)`
 
@@ -102,7 +112,7 @@ Initialize the PauliList.
 
 **Parameters**
 
-**data** ([*Pauli*](qiskit.quantum_info.Pauli#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli") *or list*) – input data for Paulis. If input is a list each item in the list must be a Pauli object or Pauli str.
+**data** ([*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli") *or list*) – input data for Paulis. If input is a list each item in the list must be a Pauli object or Pauli str.
 
 **Raises**
 
@@ -161,13 +171,17 @@ The input array is not copied so multiple Pauli tables can share the same underl
 | [`x`](#qiskit.quantum_info.PauliList.x "qiskit.quantum_info.PauliList.x")                            | The x array for the symplectic representation.                       |
 | [`z`](#qiskit.quantum_info.PauliList.z "qiskit.quantum_info.PauliList.z")                            | The z array for the symplectic representation.                       |
 
-<span id="undefined" />
+### adjoint
+
+<span id="qiskit.quantum_info.PauliList.adjoint" />
 
 `adjoint()`
 
 Return the adjoint of each Pauli in the list.
 
-<span id="undefined" />
+### anticommutes
+
+<span id="qiskit.quantum_info.PauliList.anticommutes" />
 
 `anticommutes(other, qargs=None)`
 
@@ -186,7 +200,9 @@ True if Pauli’s anticommute, False if they commute.
 
 bool
 
-<span id="undefined" />
+### anticommutes\_with\_all
+
+<span id="qiskit.quantum_info.PauliList.anticommutes_with_all" />
 
 `anticommutes_with_all(other)`
 
@@ -206,7 +222,9 @@ index array of the anti-commuting rows.
 
 array
 
-<span id="undefined" />
+### argsort
+
+<span id="qiskit.quantum_info.PauliList.argsort" />
 
 `argsort(weight=False, phase=False)`
 
@@ -227,7 +245,9 @@ the indices for sorting the table.
 
 array
 
-<span id="undefined" />
+### commutes
+
+<span id="qiskit.quantum_info.PauliList.commutes" />
 
 `commutes(other, qargs=None)`
 
@@ -246,7 +266,9 @@ True if Pauli’s commute, False if they anti-commute.
 
 bool
 
-<span id="undefined" />
+### commutes\_with\_all
+
+<span id="qiskit.quantum_info.PauliList.commutes_with_all" />
 
 `commutes_with_all(other)`
 
@@ -266,7 +288,9 @@ index array of the commuting rows.
 
 array
 
-<span id="undefined" />
+### compose
+
+<span id="qiskit.quantum_info.PauliList.compose" />
 
 `compose(other, qargs=None, front=False, inplace=False)`
 
@@ -291,19 +315,25 @@ the list of composed Paulis.
 
 **QiskitError** – if other cannot be converted to a PauliList, does not have either 1 or the same number of Paulis as the current list, or has the wrong number of qubits for the specified qargs.
 
-<span id="undefined" />
+### conjugate
+
+<span id="qiskit.quantum_info.PauliList.conjugate" />
 
 `conjugate()`
 
 Return the conjugate of each Pauli in the list.
 
-<span id="undefined" />
+### copy
+
+<span id="qiskit.quantum_info.PauliList.copy" />
 
 `copy()`
 
 Make a deep copy of current operator.
 
-<span id="undefined" />
+### delete
+
+<span id="qiskit.quantum_info.PauliList.delete" />
 
 `delete(ind, qubit=False)`
 
@@ -328,13 +358,17 @@ the resulting table with the entries removed.
 
 **QiskitError** – if ind is out of bounds for the array size or number of qubits.
 
-<span id="undefined" />
+### dim
+
+<span id="qiskit.quantum_info.PauliList.dim" />
 
 `property dim`
 
 Return tuple (input\_shape, output\_shape).
 
-<span id="undefined" />
+### dot
+
+<span id="qiskit.quantum_info.PauliList.dot" />
 
 `dot(other, qargs=None, inplace=False)`
 
@@ -358,7 +392,9 @@ the list of composed Paulis.
 
 **QiskitError** – if other cannot be converted to a PauliList, does not have either 1 or the same number of Paulis as the current list, or has the wrong number of qubits for the specified qargs.
 
-<span id="undefined" />
+### equiv
+
+<span id="qiskit.quantum_info.PauliList.equiv" />
 
 `equiv(other)`
 
@@ -366,7 +402,7 @@ Entrywise comparison of Pauli equivalence up to global phase.
 
 **Parameters**
 
-**other** ([*PauliList*](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")  *or*[*Pauli*](qiskit.quantum_info.Pauli#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")) – a comparison object.
+**other** ([*PauliList*](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")  *or*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")) – a comparison object.
 
 **Returns**
 
@@ -378,7 +414,9 @@ of the current table.
 
 np.ndarray
 
-<span id="undefined" />
+### evolve
+
+<span id="qiskit.quantum_info.PauliList.evolve" />
 
 `evolve(other, qargs=None)`
 
@@ -388,7 +426,7 @@ This returns the Pauli $P^\prime = C.P.C^\dagger$.
 
 **Parameters**
 
-*   **other** ([*Pauli*](qiskit.quantum_info.Pauli#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *or*[*Clifford*](qiskit.quantum_info.Clifford#qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The Clifford operator to evolve by.
+*   **other** ([*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *or*[*Clifford*](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The Clifford operator to evolve by.
 *   **qargs** (*list*) – a list of qubits to apply the Clifford to.
 
 **Returns**
@@ -397,13 +435,15 @@ the Pauli $C.P.C^\dagger$.
 
 **Return type**
 
-[Pauli](qiskit.quantum_info.Pauli#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
+[Pauli](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
 
 **Raises**
 
 **QiskitError** – if the Clifford number of qubits and qargs don’t match.
 
-<span id="undefined" />
+### expand
+
+<span id="qiskit.quantum_info.PauliList.expand" />
 
 `expand(other)`
 
@@ -425,7 +465,9 @@ the list of tensor product Paulis.
 
 **QiskitError** – if other cannot be converted to a PauliList, does not have either 1 or the same number of Paulis as the current list.
 
-<span id="undefined" />
+### from\_symplectic
+
+<span id="qiskit.quantum_info.PauliList.from_symplectic" />
 
 `classmethod from_symplectic(z, x, phase=0)`
 
@@ -445,13 +487,17 @@ the constructed PauliList.
 
 [PauliList](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")
 
-<span id="undefined" />
+### input\_dims
+
+<span id="qiskit.quantum_info.PauliList.input_dims" />
 
 `input_dims(qargs=None)`
 
 Return tuple of input dimension for specified subsystems.
 
-<span id="undefined" />
+### insert
+
+<span id="qiskit.quantum_info.PauliList.insert" />
 
 `insert(ind, value, qubit=False)`
 
@@ -477,13 +523,17 @@ the resulting table with the entries inserted.
 
 **QiskitError** – if the insertion index is invalid.
 
-<span id="undefined" />
+### inverse
+
+<span id="qiskit.quantum_info.PauliList.inverse" />
 
 `inverse()`
 
 Return the inverse of each Pauli in the list.
 
-<span id="undefined" />
+### label\_iter
+
+<span id="qiskit.quantum_info.PauliList.label_iter" />
 
 `label_iter()`
 
@@ -499,7 +549,9 @@ label iterator object for the PauliList.
 
 LabelIterator
 
-<span id="undefined" />
+### matrix\_iter
+
+<span id="qiskit.quantum_info.PauliList.matrix_iter" />
 
 `matrix_iter(sparse=False)`
 
@@ -519,25 +571,33 @@ matrix iterator object for the PauliList.
 
 MatrixIterator
 
-<span id="undefined" />
+### num\_qubits
+
+<span id="qiskit.quantum_info.PauliList.num_qubits" />
 
 `property num_qubits`
 
 Return the number of qubits if a N-qubit operator or None otherwise.
 
-<span id="undefined" />
+### output\_dims
+
+<span id="qiskit.quantum_info.PauliList.output_dims" />
 
 `output_dims(qargs=None)`
 
 Return tuple of output dimension for specified subsystems.
 
-<span id="undefined" />
+### phase
+
+<span id="qiskit.quantum_info.PauliList.phase" />
 
 `property phase`
 
 Return the phase exponent of the PauliList.
 
-<span id="undefined" />
+### power
+
+<span id="qiskit.quantum_info.PauliList.power" />
 
 `power(n)`
 
@@ -553,19 +613,23 @@ the n-times composed operator.
 
 **Return type**
 
-[Pauli](qiskit.quantum_info.Pauli#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
+[Pauli](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
 
 **Raises**
 
 **QiskitError** – if the input and output dimensions of the operator are not equal, or the power is not a positive integer.
 
-<span id="undefined" />
+### qargs
+
+<span id="qiskit.quantum_info.PauliList.qargs" />
 
 `property qargs`
 
 Return the qargs for the operator.
 
-<span id="undefined" />
+### reshape
+
+<span id="qiskit.quantum_info.PauliList.reshape" />
 
 `reshape(input_dims=None, output_dims=None, num_qubits=None)`
 
@@ -589,25 +653,33 @@ BaseOperator
 
 **QiskitError** – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
 
-<span id="undefined" />
+### settings
+
+<span id="qiskit.quantum_info.PauliList.settings" />
 
 `property settings`
 
 Return operator settings.
 
-<span id="undefined" />
+### shape
+
+<span id="qiskit.quantum_info.PauliList.shape" />
 
 `property shape`
 
 The full shape of the `array()`
 
-<span id="undefined" />
+### size
+
+<span id="qiskit.quantum_info.PauliList.size" />
 
 `property size`
 
 The number of Pauli rows in the table.
 
-<span id="undefined" />
+### sort
+
+<span id="qiskit.quantum_info.PauliList.sort" />
 
 `sort(weight=False, phase=False)`
 
@@ -668,7 +740,9 @@ a sorted copy of the original table.
 
 [PauliList](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")
 
-<span id="undefined" />
+### tensor
+
+<span id="qiskit.quantum_info.PauliList.tensor" />
 
 `tensor(other)`
 
@@ -690,7 +764,9 @@ the list of tensor product Paulis.
 
 **QiskitError** – if other cannot be converted to a PauliList, does not have either 1 or the same number of Paulis as the current list.
 
-<span id="undefined" />
+### to\_labels
+
+<span id="qiskit.quantum_info.PauliList.to_labels" />
 
 `to_labels(array=False)`
 
@@ -717,7 +793,9 @@ The rows of the PauliList in label form.
 
 list or array
 
-<span id="undefined" />
+### to\_matrix
+
+<span id="qiskit.quantum_info.PauliList.to_matrix" />
 
 `to_matrix(sparse=False, array=False)`
 
@@ -745,13 +823,17 @@ A list of dense Pauli matrices if array=False and sparse=False. list: A list of 
 
 list
 
-<span id="undefined" />
+### transpose
+
+<span id="qiskit.quantum_info.PauliList.transpose" />
 
 `transpose()`
 
 Return the transpose of each Pauli in the list.
 
-<span id="undefined" />
+### unique
+
+<span id="qiskit.quantum_info.PauliList.unique" />
 
 `unique(return_index=False, return_counts=False)`
 
@@ -794,14 +876,19 @@ The number of times each of the unique values comes up in the original array. On
 
 [PauliList](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")
 
-<span id="undefined" />
+### x
+
+<span id="qiskit.quantum_info.PauliList.x" />
 
 `property x`
 
 The x array for the symplectic representation.
 
-<span id="undefined" />
+### z
+
+<span id="qiskit.quantum_info.PauliList.z" />
 
 `property z`
 
 The z array for the symplectic representation.
+

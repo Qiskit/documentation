@@ -32,7 +32,7 @@ Each minor version release of qiskit-terra **may** increment the version of any 
 
 To enable providers to have time to adjust to changes in this interface Terra will support multiple versions of each class at once. Given the nature of one version per release the version deprecation policy is a bit more conservative than the standard deprecation policy. Terra will support a provider interface version for a minimum of 3 minor releases or the first release after 6 months from the release that introduced a version, whichever is longer, prior to a potential deprecation. After that the standard deprecation policy will apply to that interface version. This will give providers and users sufficient time to adapt to potential breaking changes in the interface. So for example lets say in 0.19.0 `BackendV2` is introduced and in the 3 months after the release of 0.19.0 we release 0.20.0, 0.21.0, and 0.22.0, then 7 months after 0.19.0 we release 0.23.0. In 0.23.0 we can deprecate BackendV2, and it needs to still be supported and can’t be removed until the deprecation policy completes.
 
-It’s worth pointing out that Terra’s version support policy doesn’t mean providers themselves will have the same support story, they can (and arguably should) update to newer versions as soon as they can, the support window is just for Terra’s supported versions. Part of this lengthy window prior to deprecation is to give providers enough time to do their own deprecation of a potential end user impacting change in a user facing part of the interface prior to bumping their version. For example, let’s say we changed the signature to `Backend.run()` in `BackendV34` in a backwards incompatible way. Before Aer could update its [`AerSimulator`](https://qiskit.org/ecosystem/aer/stubs/qiskit_aer.AerSimulator.html#qiskit_aer.AerSimulator "(in Qiskit Aer v0.13.0)") class to be based on version 34 they’d need to deprecate the old signature prior to switching over. The changeover for Aer is not guaranteed to be lockstep with Terra so we need to ensure there is a sufficient amount of time for Aer to complete its deprecation cycle prior to removing version 33 (ie making version 34 mandatory/the minimum version).
+It’s worth pointing out that Terra’s version support policy doesn’t mean providers themselves will have the same support story, they can (and arguably should) update to newer versions as soon as they can, the support window is just for Terra’s supported versions. Part of this lengthy window prior to deprecation is to give providers enough time to do their own deprecation of a potential end user impacting change in a user facing part of the interface prior to bumping their version. For example, let’s say we changed the signature to `Backend.run()` in `BackendV34` in a backwards incompatible way. Before Aer could update its [`AerSimulator`](https://qiskit.org/ecosystem/aer/stubs/qiskit_aer.AerSimulator.html#qiskit_aer.AerSimulator "(in Qiskit Aer v0.13.1)") class to be based on version 34 they’d need to deprecate the old signature prior to switching over. The changeover for Aer is not guaranteed to be lockstep with Terra so we need to ensure there is a sufficient amount of time for Aer to complete its deprecation cycle prior to removing version 33 (ie making version 34 mandatory/the minimum version).
 
 ## Abstract Classes
 
@@ -48,11 +48,11 @@ It’s worth pointing out that Terra’s version support policy doesn’t mean p
 |                                                                                                                                   |                                                                                                                                                                                                                    |
 | --------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | [`Backend`](qiskit.providers.Backend "qiskit.providers.Backend")()                                                                | Base common type for all versioned Backend abstract classes.                                                                                                                                                       |
-| [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1")(configuration\[, provider])                                | Abstract class for Backends                                                                                                                                                                                        |
-| [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2")(\[provider, name, description, ...])                       | Abstract class for Backends                                                                                                                                                                                        |
-| [`QubitProperties`](qiskit.providers.QubitProperties "qiskit.providers.QubitProperties")(\[t1, t2, frequency])                    | A representation of the properties of a qubit on a backend.                                                                                                                                                        |
-| [`BackendV2Converter`](qiskit.providers.BackendV2Converter "qiskit.providers.BackendV2Converter")(backend\[, name\_mapping, ...]) | A converter class that takes a [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1") instance and wraps it in a [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") interface. |
-| [`convert_to_target`](qiskit.providers.convert_to_target "qiskit.providers.convert_to_target")(configuration\[, ...])             | Uses configuration, properties and pulse defaults to construct and return Target class.                                                                                                                            |
+| [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1")(configuration\[, provider])                                | Abstract class for Backends                                                                                                                                                                                        |
+| [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2")(\[provider, name, description, ...])                       | Abstract class for Backends                                                                                                                                                                                        |
+| [`QubitProperties`](qiskit.providers.QubitProperties "qiskit.providers.QubitProperties")(\[t1, t2, frequency])                    | A representation of the properties of a qubit on a backend.                                                                                                                                                        |
+| [`BackendV2Converter`](qiskit.providers.BackendV2Converter "qiskit.providers.BackendV2Converter")(backend\[, name\_mapping, ...]) | A converter class that takes a [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1") instance and wraps it in a [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") interface. |
+| [`convert_to_target`](qiskit.providers.convert_to_target "qiskit.providers.convert_to_target")(configuration\[, ...])             | Uses configuration, properties and pulse defaults to construct and return Target class.                                                                                                                            |
 
 ### Options
 
@@ -65,7 +65,7 @@ It’s worth pointing out that Terra’s version support policy doesn’t mean p
 |                                                                                          |                                                          |
 | ---------------------------------------------------------------------------------------- | -------------------------------------------------------- |
 | [`Job`](qiskit.providers.Job "qiskit.providers.Job")()                                   | Base common type for all versioned Job abstract classes. |
-| [`JobV1`](qiskit.providers.JobV1 "qiskit.providers.JobV1")(backend, job\_id, \*\*kwargs) | Class to handle jobs                                     |
+| [`JobV1`](qiskit.providers.JobV1 "qiskit.providers.JobV1")(backend, job\_id, \*\*kwargs) | Class to handle jobs                                     |
 
 ### Job Status
 
@@ -75,41 +75,51 @@ It’s worth pointing out that Terra’s version support policy doesn’t mean p
 
 ### Exceptions
 
+### QiskitBackendNotFoundError
+
 <span id="qiskit.providers.QiskitBackendNotFoundError" />
 
-`qiskit.providers.QiskitBackendNotFoundError(*message)`
+`qiskit.providers.QiskitBackendNotFoundError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/providers/exceptions.py "view source code")
 
 Base class for errors raised while looking for a backend.
 
 Set the error message.
 
+### BackendPropertyError
+
 <span id="qiskit.providers.BackendPropertyError" />
 
-`qiskit.providers.BackendPropertyError(*message)`
+`qiskit.providers.BackendPropertyError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/providers/exceptions.py "view source code")
 
 Base class for errors raised while looking for a backend property.
 
 Set the error message.
 
+### JobError
+
 <span id="qiskit.providers.JobError" />
 
-`qiskit.providers.JobError(*message)`
+`qiskit.providers.JobError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/providers/exceptions.py "view source code")
 
 Base class for errors raised by Jobs.
 
 Set the error message.
 
+### JobTimeoutError
+
 <span id="qiskit.providers.JobTimeoutError" />
 
-`qiskit.providers.JobTimeoutError(*message)`
+`qiskit.providers.JobTimeoutError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/providers/exceptions.py "view source code")
 
 Base class for timeout errors raised by jobs.
 
 Set the error message.
 
+### BackendConfigurationError
+
 <span id="qiskit.providers.BackendConfigurationError" />
 
-`qiskit.providers.BackendConfigurationError(*message)`
+`qiskit.providers.BackendConfigurationError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/providers/exceptions.py "view source code")
 
 Base class for errors raised by the BackendConfiguration.
 
@@ -307,7 +317,7 @@ The key piece of the [`Backend`](qiskit.providers.Backend "qiskit.providers.Back
 
     You will want this to be run on import so that as soon as the provider’s package is imported it will be run. This will ensure that any time the [`BasisTranslator`](qiskit.transpiler.passes.BasisTranslator "qiskit.transpiler.passes.BasisTranslator") pass is run with the custom gates the equivalence rules are defined.
 
-    It’s also worth noting that depending on the basis you’re using, some optimization passes in the transpiler, such as [`Optimize1qGatesDecomposition`](qiskit.transpiler.passes.Optimize1qGatesDecomposition "qiskit.transpiler.passes.Optimize1qGatesDecomposition"), may not be able to operate with your custom basis. For our `SYGate` example, the [`Optimize1qGatesDecomposition`](qiskit.transpiler.passes.Optimize1qGatesDecomposition "qiskit.transpiler.passes.Optimize1qGatesDecomposition") will not be able to simplify runs of single qubit gates into the SY basis. This is because the [`OneQubitEulerDecomposer`](qiskit.quantum_info.OneQubitEulerDecomposer "qiskit.quantum_info.OneQubitEulerDecomposer") class does not know how to work in the SY basis. To solve this the `SYGate` class would need to be added to Qiskit and [`OneQubitEulerDecomposer`](qiskit.quantum_info.OneQubitEulerDecomposer "qiskit.quantum_info.OneQubitEulerDecomposer") updated to support decomposing to the `SYGate`. Longer term that is likely a better direction for custom basis gates and contributing the definitions and support in the transpiler will ensure that it continues to be well supported by Qiskit moving forward.
+    It’s also worth noting that depending on the basis you’re using, some optimization passes in the transpiler, such as [`Optimize1qGatesDecomposition`](qiskit.transpiler.passes.Optimize1qGatesDecomposition "qiskit.transpiler.passes.Optimize1qGatesDecomposition"), may not be able to operate with your custom basis. For our `SYGate` example, the [`Optimize1qGatesDecomposition`](qiskit.transpiler.passes.Optimize1qGatesDecomposition "qiskit.transpiler.passes.Optimize1qGatesDecomposition") will not be able to simplify runs of single qubit gates into the SY basis. This is because the `OneQubitEulerDecomposer` class does not know how to work in the SY basis. To solve this the `SYGate` class would need to be added to Qiskit and `OneQubitEulerDecomposer` updated to support decomposing to the `SYGate`. Longer term that is likely a better direction for custom basis gates and contributing the definitions and support in the transpiler will ensure that it continues to be well supported by Qiskit moving forward.
 
 <span id="custom-transpiler-backend" />
 

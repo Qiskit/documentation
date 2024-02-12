@@ -1,8 +1,16 @@
+---
+title: QuadraticForm
+description: API reference for qiskit.circuit.library.QuadraticForm
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.QuadraticForm
+---
+
 # QuadraticForm
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.QuadraticForm" />
 
-`QuadraticForm(num_result_qubits=None, quadratic=None, linear=None, offset=None, little_endian=True)`
+`QuadraticForm(num_result_qubits=None, quadratic=None, linear=None, offset=None, little_endian=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/arithmetic/quadratic_form.py "view source code")
 
 Bases: `qiskit.circuit.quantumcircuit.QuantumCircuit`
 
@@ -28,7 +36,7 @@ If the value of $Q(x)$ is too large to be represented with m qubits, the resulti
 
 The implementation of this circuit is discussed in \[1], Fig. 6.
 
-## References
+**References**
 
 **\[1]: Gilliam et al., Grover Adaptive Search for Constrained Polynomial Binary Optimization.**
 
@@ -49,19 +57,37 @@ The implementation of this circuit is discussed in \[1], Fig. 6.
 
 ## Methods Defined Here
 
-|                                                                                                                                                                                                                   |                                           |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
-| [`required_result_qubits`](qiskit.circuit.library.QuadraticForm.required_result_qubits#qiskit.circuit.library.QuadraticForm.required_result_qubits "qiskit.circuit.library.QuadraticForm.required_result_qubits") | Get the number of required result qubits. |
+### required\_result\_qubits
+
+<span id="qiskit.circuit.library.QuadraticForm.required_result_qubits" />
+
+`static QuadraticForm.required_result_qubits(quadratic, linear, offset)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/arithmetic/quadratic_form.py "view source code")
+
+Get the number of required result qubits.
+
+**Parameters**
+
+*   **quadratic** (`Union`\[`ndarray`, `List`\[`List`\[`float`]]]) – A matrix containing the quadratic coefficients.
+*   **linear** (`Union`\[`ndarray`, `List`\[`float`]]) – An array containing the linear coefficients.
+*   **offset** (`float`) – A constant offset.
+
+**Return type**
+
+`int`
+
+**Returns**
+
+The number of qubits needed to represent the value of the quadratic form in twos complement.
 
 ## Attributes
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.QuadraticForm.ancillas" />
 
 ### ancillas
 
 Returns a list of ancilla bits in the order that the registers were added.
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.QuadraticForm.calibrations" />
 
 ### calibrations
 
@@ -71,13 +97,13 @@ Return calibration dictionary.
 
 \{‘gate\_name’: \{(qubits, params): schedule}}
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.QuadraticForm.clbits" />
 
 ### clbits
 
 Returns a list of classical bits in the order that the registers were added.
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.QuadraticForm.data" />
 
 ### data
 
@@ -93,31 +119,31 @@ Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is 
 
 QuantumCircuitData
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.QuadraticForm.extension_lib" />
 
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.QuadraticForm.global_phase" />
 
 ### global\_phase
 
 Return the global phase of the circuit in radians.
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.QuadraticForm.header" />
 
 ### header
 
 `= 'OPENQASM 2.0;'`
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.QuadraticForm.instances" />
 
 ### instances
 
 `= 16`
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.QuadraticForm.metadata" />
 
 ### metadata
 
@@ -125,44 +151,45 @@ The user provided metadata associated with the circuit
 
 The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.QuadraticForm.num_ancillas" />
 
 ### num\_ancillas
 
 Return the number of ancilla qubits.
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.QuadraticForm.num_clbits" />
 
 ### num\_clbits
 
 Return number of classical bits.
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.QuadraticForm.num_parameters" />
 
 ### num\_parameters
 
 Convenience function to get the number of parameter objects in the circuit.
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.QuadraticForm.num_qubits" />
 
 ### num\_qubits
 
 Return number of qubits.
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.QuadraticForm.parameters" />
 
 ### parameters
 
 Convenience function to get the parameters defined in the parameter table.
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.QuadraticForm.prefix" />
 
 ### prefix
 
 `= 'circuit'`
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.QuadraticForm.qubits" />
 
 ### qubits
 
 Returns a list of quantum bits in the order that the registers were added.
+

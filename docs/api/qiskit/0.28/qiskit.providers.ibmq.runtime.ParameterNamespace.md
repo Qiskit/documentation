@@ -1,8 +1,16 @@
+---
+title: ParameterNamespace
+description: API reference for qiskit.providers.ibmq.runtime.ParameterNamespace
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.ibmq.runtime.ParameterNamespace
+---
+
 # qiskit.providers.ibmq.runtime.ParameterNamespace
 
-<span id="undefined" />
+<span id="qiskit.providers.ibmq.runtime.ParameterNamespace" />
 
-`ParameterNamespace(params)`
+`ParameterNamespace(params)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.15/qiskit/providers/ibmq/runtime/runtime_program.py "view source code")
 
 A namespace for program parameters with validation.
 
@@ -14,7 +22,9 @@ ParameterNamespace constructor.
 
 **params** (`List`\[`ProgramParameter`]) – The program’s input parameters.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.providers.ibmq.runtime.ParameterNamespace.__init__" />
 
 `__init__(params)`
 
@@ -37,7 +47,9 @@ ParameterNamespace constructor.
 | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------ |
 | [`metadata`](#qiskit.providers.ibmq.runtime.ParameterNamespace.metadata "qiskit.providers.ibmq.runtime.ParameterNamespace.metadata") | Returns the parameter metadata |
 
-<span id="undefined" />
+### metadata
+
+<span id="qiskit.providers.ibmq.runtime.ParameterNamespace.metadata" />
 
 `property metadata`
 
@@ -47,7 +59,9 @@ Returns the parameter metadata
 
 `List`\[`ProgramParameter`]
 
-<span id="undefined" />
+### validate
+
+<span id="qiskit.providers.ibmq.runtime.ParameterNamespace.validate" />
 
 `validate()`
 
@@ -64,3 +78,4 @@ Validate program input values.
 **Return type**
 
 `None`
+

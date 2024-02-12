@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.PiecewiseChebyshev
 
 <span id="qiskit.circuit.library.PiecewiseChebyshev" />
 
-`PiecewiseChebyshev(f_x, degree=None, breakpoints=None, num_state_qubits=None, name='pw_cheb')`
+`PiecewiseChebyshev(f_x, degree=None, breakpoints=None, num_state_qubits=None, name='pw_cheb')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/arithmetic/piecewise_chebyshev.py "view source code")
 
 Bases: `qiskit.circuit.library.blueprintcircuit.BlueprintCircuit`
 
@@ -20,7 +20,7 @@ For a given function $f(x)$ and degree $d$, this class implements a piecewise po
 
 The values of the parameters are calculated according to \[1].
 
-## Examples
+**Examples**
 
 ```python
 import numpy as np
@@ -37,7 +37,7 @@ qc.draw(output='mpl')
 
 ![../\_images/qiskit.circuit.library.PiecewiseChebyshev\_0\_0.png](/images/api/qiskit/0.36/qiskit.circuit.library.PiecewiseChebyshev_0_0.png)
 
-## References
+**References**
 
 **\[1]: Haener, T., Roetteler, M., & Svore, K. M. (2018).**
 
@@ -61,7 +61,7 @@ Returns a list of ancilla bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.quantumregister.AncillaQubit")]
+`List`\[`AncillaQubit`]
 
 <span id="qiskit.circuit.library.PiecewiseChebyshev.breakpoints" />
 
@@ -99,7 +99,7 @@ Returns a list of classical bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.library.PiecewiseChebyshev.data" />
 
@@ -147,7 +147,7 @@ Return the global phase of the circuit in radians.
 
 **Return type**
 
-`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]
+`Union`\[`ParameterExpression`, `float`]
 
 <span id="qiskit.circuit.library.PiecewiseChebyshev.header" />
 
@@ -159,7 +159,7 @@ Return the global phase of the circuit in radians.
 
 ### instances
 
-`= 87`
+`= 9`
 
 <span id="qiskit.circuit.library.PiecewiseChebyshev.metadata" />
 
@@ -225,26 +225,6 @@ The number of state qubits representing the state $|x\rangle$.
 
 The number of state qubits.
 
-<span id="qiskit.circuit.library.PiecewiseChebyshev.op_start_times" />
-
-### op\_start\_times
-
-Return a list of operation start times.
-
-This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
-
-**Return type**
-
-`List`\[`int`]
-
-**Returns**
-
-List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
-
-**Raises**
-
-**AttributeError** – When circuit is not scheduled.
-
 <span id="qiskit.circuit.library.PiecewiseChebyshev.parameters" />
 
 ### parameters
@@ -291,5 +271,5 @@ Returns a list of quantum bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")]
+`List`\[`Qubit`]
 

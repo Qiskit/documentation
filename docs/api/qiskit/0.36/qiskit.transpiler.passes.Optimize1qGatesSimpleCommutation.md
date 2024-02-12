@@ -10,9 +10,9 @@ python_api_name: qiskit.transpiler.passes.Optimize1qGatesSimpleCommutation
 
 <span id="qiskit.transpiler.passes.Optimize1qGatesSimpleCommutation" />
 
-`Optimize1qGatesSimpleCommutation(*args, **kwargs)`
+`Optimize1qGatesSimpleCommutation(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/optimization/optimize_1q_commutation.py "view source code")
 
-Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
+Bases: `qiskit.transpiler.basepasses.TransformationPass`
 
 Optimizes 1Q gate strings interrupted by 2Q gates by commuting the components and re- synthesizing the results. The commutation rules are stored in commutation\_table.
 
@@ -41,7 +41,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.Optimize1qGatesSimpleCommutation.run" />
 
-`Optimize1qGatesSimpleCommutation.run(dag)`
+`Optimize1qGatesSimpleCommutation.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/optimization/optimize_1q_commutation.py "view source code")
 
 **Parameters**
 

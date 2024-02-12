@@ -1,0 +1,21 @@
+---
+title: Introduction
+description: Introduction to the Verify phase
+---
+
+# Introduction
+
+In the verify phase, you test your quantum programs by running them on simulated devices and exploring their performance under realistic device noise models. This allows you to validate them before sending them to a physical system.
+
+Because the cost of classically simulating quantum circuits scales exponentially with the number of qubits, circuits that are larger than 50 qubits or so generally cannot be directly verified. For such circuits, you can:
+
+-   Test smaller versions of the circuits that can be simulated classically.
+-   Modify the circuits so that they become classically simulable and test these modified circuits.
+
+Stabilizer circuits are a useful tool for accomplishing this latter goal. These are a restricted class of quantum circuits that can be efficiently simulated classically. Specialized simulators can easily simulate stabilizer circuits with thousands of qubits. See [Efficient simulation of stabilizer circuits with Qiskit Aer primitives](stabilizer-circuit-simulation) for an overview of stabilizer circuits and how to simulate them efficiently.
+
+For general quantum circuits, the following tools are available for you to verify your quantum programs:
+
+-   For exact simulation of small quantum circuits, you can use the reference primitives included with Qiskit. See [Exact simulation with Qiskit primitives](simulate-with-qiskit-primitives).
+-   For higher-performance simulation that can handle larger circuits, or to incorporate noise models into your simulation, use [Qiskit Aer](https://qiskit.org/ecosystem/aer/), a project that is part of the [Qiskit Ecosystem](https://qiskit.github.io/ecosystem/). See [Exact and noisy simulation with Qiskit Aer primitives](simulate-with-qiskit-aer).
+-   To build your own custom noise models, use the [`noise`](https://qiskit.org/ecosystem/aer/apidocs/aer_noise.html) module of Qiskit Aer. See [Building noise models](building_noise_models).

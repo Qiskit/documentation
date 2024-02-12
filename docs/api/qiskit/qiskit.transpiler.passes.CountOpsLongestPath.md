@@ -10,11 +10,11 @@ python_api_name: qiskit.transpiler.passes.CountOpsLongestPath
 
 <span id="qiskit.transpiler.passes.CountOpsLongestPath" />
 
-`qiskit.transpiler.passes.CountOpsLongestPath(*args, **kwargs)`
+`qiskit.transpiler.passes.CountOpsLongestPath(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/passes/analysis/count_ops_longest_path.py "view source code")
 
 Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
-Count the operations on the longest path in a DAGcircuit.
+Count the operations on the longest path in a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit").
 
 The result is saved in `property_set['count_ops_longest_path']` as an integer.
 

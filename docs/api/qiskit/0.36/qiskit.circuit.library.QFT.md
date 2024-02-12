@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.QFT
 
 <span id="qiskit.circuit.library.QFT" />
 
-`QFT(num_qubits=None, approximation_degree=0, do_swaps=True, inverse=False, insert_barriers=False, name=None)`
+`QFT(num_qubits=None, approximation_degree=0, do_swaps=True, inverse=False, insert_barriers=False, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/basis_change/qft.py "view source code")
 
 Bases: `qiskit.circuit.library.blueprintcircuit.BlueprintCircuit`
 
@@ -49,13 +49,13 @@ Construct a new QFT circuit.
 
 <span id="qiskit.circuit.library.QFT.inverse" />
 
-`QFT.inverse()`
+`QFT.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/basis_change/qft.py "view source code")
 
 Invert this circuit.
 
 **Return type**
 
-[`QFT`](qiskit.circuit.library.QFT "qiskit.circuit.library.basis_change.qft.QFT")
+`QFT`
 
 **Returns**
 
@@ -65,7 +65,7 @@ The inverted circuit.
 
 <span id="qiskit.circuit.library.QFT.is_inverse" />
 
-`QFT.is_inverse()`
+`QFT.is_inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/basis_change/qft.py "view source code")
 
 Whether the inverse Fourier transform is implemented.
 
@@ -87,7 +87,7 @@ Returns a list of ancilla bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.quantumregister.AncillaQubit")]
+`List`\[`AncillaQubit`]
 
 <span id="qiskit.circuit.library.QFT.approximation_degree" />
 
@@ -125,7 +125,7 @@ Returns a list of classical bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.library.QFT.data" />
 
@@ -159,7 +159,7 @@ Return the global phase of the circuit in radians.
 
 **Return type**
 
-`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]
+`Union`\[`ParameterExpression`, `float`]
 
 <span id="qiskit.circuit.library.QFT.header" />
 
@@ -185,7 +185,7 @@ True, if barriers are inserted, False if not.
 
 ### instances
 
-`= 87`
+`= 9`
 
 <span id="qiskit.circuit.library.QFT.metadata" />
 
@@ -241,26 +241,6 @@ The number of qubits in the QFT circuit.
 
 The number of qubits in the circuit.
 
-<span id="qiskit.circuit.library.QFT.op_start_times" />
-
-### op\_start\_times
-
-Return a list of operation start times.
-
-This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
-
-**Return type**
-
-`List`\[`int`]
-
-**Returns**
-
-List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
-
-**Raises**
-
-**AttributeError** – When circuit is not scheduled.
-
 <span id="qiskit.circuit.library.QFT.parameters" />
 
 ### parameters
@@ -289,5 +269,5 @@ Returns a list of quantum bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")]
+`List`\[`Qubit`]
 

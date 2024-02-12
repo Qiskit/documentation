@@ -1,10 +1,18 @@
+---
+title: HarmonicPotential
+description: API reference for qiskit.chemistry.algorithms.pes_samplers.HarmonicPotential
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.algorithms.pes_samplers.HarmonicPotential
+---
+
 <span id="qiskit-chemistry-algorithms-pes-samplers-harmonicpotential" />
 
 # qiskit.chemistry.algorithms.pes\_samplers.HarmonicPotential
 
-<span id="undefined" />
+<span id="qiskit.chemistry.algorithms.pes_samplers.HarmonicPotential" />
 
-`HarmonicPotential(molecule)`
+`HarmonicPotential(molecule)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/algorithms/pes_samplers/potentials/harmonic_potential.py "view source code")
 
 Implements a 1D Harmonic potential.
 
@@ -18,7 +26,9 @@ Input units are Angstroms (distance between the two atoms), and output units are
 
 **ValueError** – Only implemented for diatomic molecules
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.chemistry.algorithms.pes_samplers.HarmonicPotential.__init__" />
 
 `__init__(molecule)`
 
@@ -50,7 +60,9 @@ Input units are Angstroms (distance between the two atoms), and output units are
 | [`vibrational_energy_level`](#qiskit.chemistry.algorithms.pes_samplers.HarmonicPotential.vibrational_energy_level "qiskit.chemistry.algorithms.pes_samplers.HarmonicPotential.vibrational_energy_level")(n)          | Returns the n-th vibrational energy level for the current fit (in Hartrees).                                               |
 | [`wave_number`](#qiskit.chemistry.algorithms.pes_samplers.HarmonicPotential.wave_number "qiskit.chemistry.algorithms.pes_samplers.HarmonicPotential.wave_number")()                                                  | Returns the wave number for the current fit (in cm^-1).                                                                    |
 
-<span id="undefined" />
+### dissociation\_energy
+
+<span id="qiskit.chemistry.algorithms.pes_samplers.HarmonicPotential.dissociation_energy" />
 
 `dissociation_energy(scaling=1.0)`
 
@@ -68,7 +80,9 @@ Returns the estimated dissociation energy for the current fit.
 
 estimated dissociation energy
 
-<span id="undefined" />
+### eval
+
+<span id="qiskit.chemistry.algorithms.pes_samplers.HarmonicPotential.eval" />
 
 `eval(x)`
 
@@ -86,7 +100,9 @@ After fitting the data to the fit function, predict the energy at a point x.
 
 value of potential in point x
 
-<span id="undefined" />
+### fit
+
+<span id="qiskit.chemistry.algorithms.pes_samplers.HarmonicPotential.fit" />
 
 `fit(xdata, ydata, initial_vals=None, bounds_list=None)`
 
@@ -103,7 +119,9 @@ Fits a potential to computed molecular energies.
 
 `None`
 
-<span id="undefined" />
+### fit\_function
+
+<span id="qiskit.chemistry.algorithms.pes_samplers.HarmonicPotential.fit_function" />
 
 `static fit_function(x, k, r_0, m_shift)`
 
@@ -124,7 +142,9 @@ Functional form of the potential.
 
 harmonic potential functional form
 
-<span id="undefined" />
+### fundamental\_frequency
+
+<span id="qiskit.chemistry.algorithms.pes_samplers.HarmonicPotential.fundamental_frequency" />
 
 `fundamental_frequency()`
 
@@ -138,7 +158,9 @@ Returns the fundamental frequency for the current fit (in s^-1).
 
 fundamental frequency for the current fit
 
-<span id="undefined" />
+### get\_equilibrium\_geometry
+
+<span id="qiskit.chemistry.algorithms.pes_samplers.HarmonicPotential.get_equilibrium_geometry" />
 
 `get_equilibrium_geometry(scaling=1.0)`
 
@@ -156,7 +178,9 @@ Returns the interatomic distance corresponding to minimal energy.
 
 geometry corresponding to minimal energy
 
-<span id="undefined" />
+### get\_maximum\_trusted\_level
+
+<span id="qiskit.chemistry.algorithms.pes_samplers.HarmonicPotential.get_maximum_trusted_level" />
 
 `get_maximum_trusted_level(n=0)`
 
@@ -174,7 +198,9 @@ Returns the maximum energy level for which the particular implementation still p
 
 maximum\_trusted\_level setted
 
-<span id="undefined" />
+### get\_minimal\_energy
+
+<span id="qiskit.chemistry.algorithms.pes_samplers.HarmonicPotential.get_minimal_energy" />
 
 `get_minimal_energy(scaling=1.0)`
 
@@ -192,7 +218,9 @@ Returns the smallest molecular energy for the current fit.
 
 smallest molecular energy for the current fit
 
-<span id="undefined" />
+### get\_num\_modes
+
+<span id="qiskit.chemistry.algorithms.pes_samplers.HarmonicPotential.get_num_modes" />
 
 `get_num_modes()`
 
@@ -202,7 +230,9 @@ This (1D) potential represents a single vibrational mode
 
 `int`
 
-<span id="undefined" />
+### get\_trust\_region
+
+<span id="qiskit.chemistry.algorithms.pes_samplers.HarmonicPotential.get_trust_region" />
 
 `get_trust_region()`
 
@@ -212,7 +242,9 @@ The potential will usually be well-defined (even if not useful) for arbitrary x 
 
 `Tuple`\[`float`, `float`]
 
-<span id="undefined" />
+### process\_fit\_data
+
+<span id="qiskit.chemistry.algorithms.pes_samplers.HarmonicPotential.process_fit_data" />
 
 `classmethod process_fit_data(xdata, ydata)`
 
@@ -233,7 +265,9 @@ so that only the points around the minimum are fit (which gives more accurate vi
 
 the processed data that fit better to a harmonic potential
 
-<span id="undefined" />
+### update\_molecule
+
+<span id="qiskit.chemistry.algorithms.pes_samplers.HarmonicPotential.update_molecule" />
 
 `update_molecule(molecule)`
 
@@ -251,7 +285,9 @@ Updates the underlying molecule.
 
 `Molecule`
 
-<span id="undefined" />
+### vibrational\_energy\_level
+
+<span id="qiskit.chemistry.algorithms.pes_samplers.HarmonicPotential.vibrational_energy_level" />
 
 `vibrational_energy_level(n)`
 
@@ -269,7 +305,9 @@ Returns the n-th vibrational energy level for the current fit (in Hartrees).
 
 vibrational energy level for the current fit
 
-<span id="undefined" />
+### wave\_number
+
+<span id="qiskit.chemistry.algorithms.pes_samplers.HarmonicPotential.wave_number" />
 
 `wave_number()`
 
@@ -282,3 +320,4 @@ Returns the wave number for the current fit (in cm^-1).
 **Returns**
 
 wave number for the current fit
+

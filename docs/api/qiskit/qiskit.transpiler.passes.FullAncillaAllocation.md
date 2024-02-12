@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.FullAncillaAllocation
 
 <span id="qiskit.transpiler.passes.FullAncillaAllocation" />
 
-`qiskit.transpiler.passes.FullAncillaAllocation(*args, **kwargs)`
+`qiskit.transpiler.passes.FullAncillaAllocation(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/passes/layout/full_ancilla_allocation.py "view source code")
 
 Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
@@ -137,5 +137,5 @@ Updated pass manager state.
 
 `static validate_layout(layout_qubits, dag_qubits)`
 
-Checks if all the qregs in layout\_qregs already exist in dag\_qregs. Otherwise, raise.
+Checks if all the qregs in `layout_qregs` already exist in `dag_qregs`. Otherwise, raise.
 

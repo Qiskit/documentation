@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.library.PiecewisePolynomialPauliRotations
 
 <span id="qiskit.circuit.library.PiecewisePolynomialPauliRotations" />
 
-`PiecewisePolynomialPauliRotations(num_state_qubits=None, breakpoints=None, coeffs=None, basis='Y', name='pw_poly')`
+`PiecewisePolynomialPauliRotations(num_state_qubits=None, breakpoints=None, coeffs=None, basis='Y', name='pw_poly')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/arithmetic/piecewise_polynomial_pauli_rotations.py "view source code")
 
-Bases: [`qiskit.circuit.library.arithmetic.functional_pauli_rotations.FunctionalPauliRotations`](qiskit.circuit.library.FunctionalPauliRotations "qiskit.circuit.library.arithmetic.functional_pauli_rotations.FunctionalPauliRotations")
+Bases: `qiskit.circuit.library.arithmetic.functional_pauli_rotations.FunctionalPauliRotations`
 
 Piecewise-polynomially-controlled Pauli rotations.
 
@@ -33,7 +33,7 @@ where if given the same number of breakpoints as polynomials, we implicitly assu
   Note the $1/2$ factor in the coefficients of $f(x)$, this is consistent with Qiskit’s Pauli rotations.
 </Admonition>
 
-## Examples
+**Examples**
 
 ```python
 >>> from qiskit import QuantumCircuit
@@ -62,7 +62,7 @@ q_5: ─────┤5         ├
           └──────────┘
 ```
 
-## References
+**References**
 
 **\[1]: Haener, T., Roetteler, M., & Svore, K. M. (2018).**
 
@@ -77,8 +77,8 @@ Enhancing the Quantum Linear Systems Algorithm using Richardson Extrapolation. [
 *   **num\_state\_qubits** (`Optional`\[`int`]) – The number of qubits representing the state.
 *   **breakpoints** (`Optional`\[`List`\[`int`]]) – The breakpoints to define the piecewise-linear function. Defaults to `[0]`.
 *   **coeffs** (`Optional`\[`List`\[`List`\[`float`]]]) – The coefficients of the polynomials for different segments of the
-*   **x** (*piecewise-linear function. coeffs\[j]\[i] is the coefficient of the i-th power of*) –
-*   **polynomial.** (*for the j-th*) – Defaults to linear: `[[1]]`.
+*   **function. coeffs**\*\*\[****j****]\*\*\*\*\[****i****] \*\***is the coefficient of the i-th power of x** (*piecewise-linear*) –
+*   **the j-th polynomial.** (*for*) – Defaults to linear: `[[1]]`.
 *   **basis** (`str`) – The type of Pauli rotation (`'X'`, `'Y'`, `'Z'`).
 *   **name** (`str`) – The name of the circuit.
 
@@ -88,7 +88,7 @@ Enhancing the Quantum Linear Systems Algorithm using Richardson Extrapolation. [
 
 <span id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.evaluate" />
 
-`PiecewisePolynomialPauliRotations.evaluate(x)`
+`PiecewisePolynomialPauliRotations.evaluate(x)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/arithmetic/piecewise_polynomial_pauli_rotations.py "view source code")
 
 Classically evaluate the piecewise polynomial rotation.
 
@@ -114,7 +114,7 @@ Returns a list of ancilla bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.quantumregister.AncillaQubit")]
+`List`\[`AncillaQubit`]
 
 <span id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.basis" />
 
@@ -170,7 +170,7 @@ Returns a list of classical bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.coeffs" />
 
@@ -218,7 +218,7 @@ Return the global phase of the circuit in radians.
 
 **Return type**
 
-`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]
+`Union`\[`ParameterExpression`, `float`]
 
 <span id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.header" />
 
@@ -230,7 +230,7 @@ Return the global phase of the circuit in radians.
 
 ### instances
 
-`= 87`
+`= 9`
 
 <span id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.mapped_coeffs" />
 
@@ -324,26 +324,6 @@ The number of state qubits representing the state $|x\rangle$.
 
 The number of state qubits.
 
-<span id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.op_start_times" />
-
-### op\_start\_times
-
-Return a list of operation start times.
-
-This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
-
-**Return type**
-
-`List`\[`int`]
-
-**Returns**
-
-List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
-
-**Raises**
-
-**AttributeError** – When circuit is not scheduled.
-
 <span id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.parameters" />
 
 ### parameters
@@ -372,5 +352,5 @@ Returns a list of quantum bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")]
+`List`\[`Qubit`]
 

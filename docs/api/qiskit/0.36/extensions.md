@@ -18,30 +18,21 @@ python_api_name: qiskit.extensions
 
 ## Unitary Extensions
 
-|                                                                                                                                    |                                                                                 |
-| ---------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| [`UnitaryGate`](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")(data\[, label])                                     | Class quantum gates specified by a unitary matrix.                              |
-| [`HamiltonianGate`](qiskit.extensions.HamiltonianGate "qiskit.extensions.HamiltonianGate")(data, time\[, label])                   | Class for representing evolution by a Hermitian Hamiltonian operator as a gate. |
-| [`SingleQubitUnitary`](qiskit.extensions.SingleQubitUnitary "qiskit.extensions.SingleQubitUnitary")(unitary\_matrix\[, mode, ...]) | u = 2\*2 unitary (given as a (complex) numpy.ndarray)                           |
+|                                                                                                                                  |                                                                                 |
+| -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| [`UnitaryGate`](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")(data\[, label])                                   | Class for representing unitary gates                                            |
+| [`HamiltonianGate`](qiskit.extensions.HamiltonianGate "qiskit.extensions.HamiltonianGate")(data, time\[, label])                 | Class for representing evolution by a Hermitian Hamiltonian operator as a gate. |
+| [`SingleQubitUnitary`](qiskit.extensions.SingleQubitUnitary "qiskit.extensions.SingleQubitUnitary")(unitary\_matrix\[, mode, …]) | u = 2\*2 unitary (given as a (complex) numpy.ndarray)                           |
 
 ## Simulator Extensions
 
-|                                                                                                                   |                                 |
-| ----------------------------------------------------------------------------------------------------------------- | ------------------------------- |
-| [`Snapshot`](qiskit.extensions.Snapshot "qiskit.extensions.Snapshot")(label\[, snapshot\_type, num\_qubits, ...]) | Simulator snapshot instruction. |
+|                                                                                                                 |                                 |
+| --------------------------------------------------------------------------------------------------------------- | ------------------------------- |
+| [`Snapshot`](qiskit.extensions.Snapshot "qiskit.extensions.Snapshot")(label\[, snapshot\_type, num\_qubits, …]) | Simulator snapshot instruction. |
 
 ## Initialization
 
 |                                                                                                     |                                   |
 | --------------------------------------------------------------------------------------------------- | --------------------------------- |
 | [`Initialize`](qiskit.extensions.Initialize "qiskit.extensions.Initialize")(params\[, num\_qubits]) | Complex amplitude initialization. |
-
-## Uniformly Controlled Rotations
-
-|                                                                                                                 |                                                                     |
-| --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| [`UCPauliRotGate`](qiskit.extensions.UCPauliRotGate "qiskit.extensions.UCPauliRotGate")(angle\_list, rot\_axis) | Uniformly controlled rotations (also called multiplexed rotations). |
-| [`UCRXGate`](qiskit.extensions.UCRXGate "qiskit.extensions.UCRXGate")(angle\_list)                              | Uniformly controlled rotations (also called multiplexed rotations). |
-| [`UCRYGate`](qiskit.extensions.UCRYGate "qiskit.extensions.UCRYGate")(angle\_list)                              | Uniformly controlled rotations (also called multiplexed rotations). |
-| [`UCRZGate`](qiskit.extensions.UCRZGate "qiskit.extensions.UCRZGate")(angle\_list)                              | Uniformly controlled rotations (also called multiplexed rotations). |
 

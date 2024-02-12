@@ -14,7 +14,7 @@ python_api_name: qiskit.optimization.applications.ising.stable_set
 
 Convert stable set instances into Pauli list. We read instances in the Gset format, see [https://web.stanford.edu/\~yyye/yyye/Gset/](https://web.stanford.edu/~yyye/yyye/Gset/) , for compatibility with the maxcut format, but the weights on the edges as they are not really used and are always assumed to be 1. The graph is represented by an adjacency matrix.
 
-## Functions
+**Functions**
 
 |                                                                                                                                                                         |                                                             |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
@@ -22,9 +22,11 @@ Convert stable set instances into Pauli list. We read instances in the Gset form
 | [`get_operator`](#qiskit.optimization.applications.ising.stable_set.get_operator "qiskit.optimization.applications.ising.stable_set.get_operator")(w)                   | Generate Hamiltonian for the maximum stable set in a graph. |
 | [`stable_set_value`](#qiskit.optimization.applications.ising.stable_set.stable_set_value "qiskit.optimization.applications.ising.stable_set.stable_set_value")(x, w)    | Compute the value of a stable set, and its feasibility.     |
 
-<span id="undefined" />
+### get\_graph\_solution
 
-`get_graph_solution(x)`
+<span id="qiskit.optimization.applications.ising.stable_set.get_graph_solution" />
+
+`get_graph_solution(x)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/stable_set.py "view source code")
 
 Get graph solution from binary string.
 
@@ -40,9 +42,11 @@ graph solution as binary numpy array.
 
 numpy.ndarray
 
-<span id="undefined" />
+### get\_operator
 
-`get_operator(w)`
+<span id="qiskit.optimization.applications.ising.stable_set.get_operator" />
+
+`get_operator(w)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/stable_set.py "view source code")
 
 Generate Hamiltonian for the maximum stable set in a graph.
 
@@ -56,11 +60,13 @@ operator for the Hamiltonian and a constant shift for the obj function.
 
 **Return type**
 
-tuple([WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator#qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator"), float)
+tuple([WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator"), float)
 
-<span id="undefined" />
+### stable\_set\_value
 
-`stable_set_value(x, w)`
+<span id="qiskit.optimization.applications.ising.stable_set.stable_set_value" />
+
+`stable_set_value(x, w)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/stable_set.py "view source code")
 
 Compute the value of a stable set, and its feasibility.
 

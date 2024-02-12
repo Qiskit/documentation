@@ -1,8 +1,16 @@
+---
+title: ClassicalCPLEX
+description: API reference for qiskit.aqua.algorithms.ClassicalCPLEX
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.algorithms.ClassicalCPLEX
+---
+
 # qiskit.aqua.algorithms.ClassicalCPLEX
 
-<span id="undefined" />
+<span id="qiskit.aqua.algorithms.ClassicalCPLEX" />
 
-`ClassicalCPLEX(operator, timelimit=600, thread=1, display=2)`
+`ClassicalCPLEX(operator, timelimit=600, thread=1, display=2)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/minimum_eigen_solvers/cplex/classical_cplex.py "view source code")
 
 The Classical CPLEX algorithm (classical).
 
@@ -17,7 +25,9 @@ See these `installation instructions` if you need more information in that regar
 *   **thread** (`int`) – The number of threads that CPLEX uses. Setting this 0 lets CPLEX decide the number of threads to allocate, but this may not be ideal for small problems for which the default of 1 is more suitable.
 *   **display** (`int`) – Decides what CPLEX reports to the screen and records in a log during mixed integer optimization. This value must be between 0 and 5 where the amount of information displayed increases with increasing values of this parameter.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.aqua.algorithms.ClassicalCPLEX.__init__" />
 
 `__init__(operator, timelimit=600, thread=1, display=2)`
 
@@ -42,13 +52,17 @@ See these `installation instructions` if you need more information in that regar
 | [`random`](#qiskit.aqua.algorithms.ClassicalCPLEX.random "qiskit.aqua.algorithms.ClassicalCPLEX.random")       | Return a numpy random. |
 | [`solution`](#qiskit.aqua.algorithms.ClassicalCPLEX.solution "qiskit.aqua.algorithms.ClassicalCPLEX.solution") | return solution        |
 
-<span id="undefined" />
+### random
+
+<span id="qiskit.aqua.algorithms.ClassicalCPLEX.random" />
 
 `property random`
 
 Return a numpy random.
 
-<span id="undefined" />
+### run
+
+<span id="qiskit.aqua.algorithms.ClassicalCPLEX.run" />
 
 `run()`
 
@@ -62,8 +76,11 @@ results of an algorithm.
 
 dict
 
-<span id="undefined" />
+### solution
+
+<span id="qiskit.aqua.algorithms.ClassicalCPLEX.solution" />
 
 `property solution`
 
 return solution
+

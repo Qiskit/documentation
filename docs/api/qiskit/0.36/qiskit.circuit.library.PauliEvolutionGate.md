@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.library.PauliEvolutionGate
 
 <span id="qiskit.circuit.library.PauliEvolutionGate" />
 
-`PauliEvolutionGate(operator, time=1.0, label=None, synthesis=None)`
+`PauliEvolutionGate(operator, time=1.0, label=None, synthesis=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/pauli_evolution.py "view source code")
 
-Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+Bases: `qiskit.circuit.gate.Gate`
 
 Time-evolution of an operator consisting of Paulis.
 
@@ -63,10 +63,10 @@ q_1: ┤1                         ├
 
 **Parameters**
 
-*   **operator** ([*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *|*[*PauliOp*](qiskit.opflow.primitive_ops.PauliOp "qiskit.opflow.primitive_ops.PauliOp")  *|*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")  *|*[*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp") *| list*) – The operator to evolve. Can also be provided as list of non-commuting operators where the elements are sums of commuting operators. For example: `[XY + YX, ZZ + ZI + IZ, YY]`.
-*   **time** (`Union`\[`int`, `float`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]) – The evolution time.
+*   **operator** (*Pauli | PauliOp | SparsePauliOp | PauliSumOp | list*) – The operator to evolve. Can also be provided as list of non-commuting operators where the elements are sums of commuting operators. For example: `[XY + YX, ZZ + ZI + IZ, YY]`.
+*   **time** (`Union`\[`int`, `float`, `ParameterExpression`]) – The evolution time.
 *   **label** (`Optional`\[`str`]) – A label for the gate to display in visualizations. Per default, the label is set to `exp(-it <operators>)` where `<operators>` is the sum of the Paulis. Note that the label does not include any coefficients of the Paulis. See the class docstring for an example.
-*   **synthesis** (`Optional`\[[`EvolutionSynthesis`](qiskit.synthesis.EvolutionSynthesis "qiskit.synthesis.evolution.evolution_synthesis.EvolutionSynthesis")]) – A synthesis strategy. If None, the default synthesis is the Lie-Trotter product formula with a single repetition.
+*   **synthesis** (`Optional`\[`EvolutionSynthesis`]) – A synthesis strategy. If None, the default synthesis is the Lie-Trotter product formula with a single repetition.
 
 ## Methods Defined Here
 
@@ -74,13 +74,13 @@ q_1: ┤1                         ├
 
 <span id="qiskit.circuit.library.PauliEvolutionGate.validate_parameter" />
 
-`PauliEvolutionGate.validate_parameter(parameter)`
+`PauliEvolutionGate.validate_parameter(parameter)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/pauli_evolution.py "view source code")
 
 Gate parameters should be int, float, or ParameterExpression
 
 **Return type**
 
-`Union`\[`float`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]
+`Union`\[`float`, `ParameterExpression`]
 
 ## Attributes
 
@@ -92,7 +92,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.library.PauliEvolutionGate.decompositions" />
 
@@ -154,7 +154,7 @@ Return the evolution time as stored in the gate parameters.
 
 **Return type**
 
-`Union`\[`float`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]
+`Union`\[`float`, `ParameterExpression`]
 
 **Returns**
 

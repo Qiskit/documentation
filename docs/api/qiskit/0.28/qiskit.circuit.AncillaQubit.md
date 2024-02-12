@@ -1,8 +1,16 @@
+---
+title: AncillaQubit
+description: API reference for qiskit.circuit.AncillaQubit
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.AncillaQubit
+---
+
 # qiskit.circuit.AncillaQubit
 
-<span id="undefined" />
+<span id="qiskit.circuit.AncillaQubit" />
 
-`AncillaQubit(register=None, index=None)`
+`AncillaQubit(register=None, index=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/quantumregister.py "view source code")
 
 A qubit used as ancillary qubit.
 
@@ -10,14 +18,16 @@ Creates a qubit.
 
 **Parameters**
 
-*   **register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister#qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – Optional. A quantum register containing the bit.
+*   **register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – Optional. A quantum register containing the bit.
 *   **index** (*int*) – Optional. The index of the bit in its containing register.
 
 **Raises**
 
-**CircuitError** – if the provided register is not a valid [`QuantumRegister`](qiskit.circuit.QuantumRegister#qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")
+**CircuitError** – if the provided register is not a valid [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.circuit.AncillaQubit.__init__" />
 
 `__init__(register=None, index=None)`
 
@@ -25,12 +35,12 @@ Creates a qubit.
 
 **Parameters**
 
-*   **register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister#qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – Optional. A quantum register containing the bit.
+*   **register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – Optional. A quantum register containing the bit.
 *   **index** (*int*) – Optional. The index of the bit in its containing register.
 
 **Raises**
 
-**CircuitError** – if the provided register is not a valid [`QuantumRegister`](qiskit.circuit.QuantumRegister#qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")
+**CircuitError** – if the provided register is not a valid [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")
 
 ## Methods
 
@@ -45,14 +55,19 @@ Creates a qubit.
 | [`index`](#qiskit.circuit.AncillaQubit.index "qiskit.circuit.AncillaQubit.index")          | Get bit’s index.    |
 | [`register`](#qiskit.circuit.AncillaQubit.register "qiskit.circuit.AncillaQubit.register") | Get bit’s register. |
 
-<span id="undefined" />
+### index
+
+<span id="qiskit.circuit.AncillaQubit.index" />
 
 `property index`
 
 Get bit’s index.
 
-<span id="undefined" />
+### register
+
+<span id="qiskit.circuit.AncillaQubit.register" />
 
 `property register`
 
 Get bit’s register.
+

@@ -1,12 +1,22 @@
+---
+title: OptimizationResultStatus
+description: API reference for qiskit.optimization.algorithms.OptimizationResultStatus
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.optimization.algorithms.OptimizationResultStatus
+---
+
 # qiskit.optimization.algorithms.OptimizationResultStatus
 
-<span id="undefined" />
+<span id="qiskit.optimization.algorithms.OptimizationResultStatus" />
 
-`OptimizationResultStatus(value)`
+`OptimizationResultStatus(value)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/optimization_algorithm.py "view source code")
 
 Termination status of an optimization algorithm.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.optimization.algorithms.OptimizationResultStatus.__init__" />
 
 `__init__()`
 
@@ -20,7 +30,7 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`INFEASIBLE`](#qiskit.optimization.algorithms.OptimizationResultStatus.INFEASIBLE "qiskit.optimization.algorithms.OptimizationResultStatus.INFEASIBLE") | the optimization algorithm obtained an infeasible solution.       |
 | [`SUCCESS`](#qiskit.optimization.algorithms.OptimizationResultStatus.SUCCESS "qiskit.optimization.algorithms.OptimizationResultStatus.SUCCESS")          | the optimization algorithm succeeded to find an optimal solution. |
 
-<span id="undefined" />
+<span id="qiskit.optimization.algorithms.OptimizationResultStatus.FAILURE" />
 
 ### FAILURE
 
@@ -28,7 +38,7 @@ Initialize self. See help(type(self)) for accurate signature.
 
 the optimization algorithm ended in a failure.
 
-<span id="undefined" />
+<span id="qiskit.optimization.algorithms.OptimizationResultStatus.INFEASIBLE" />
 
 ### INFEASIBLE
 
@@ -36,10 +46,11 @@ the optimization algorithm ended in a failure.
 
 the optimization algorithm obtained an infeasible solution.
 
-<span id="undefined" />
+<span id="qiskit.optimization.algorithms.OptimizationResultStatus.SUCCESS" />
 
 ### SUCCESS
 
 `= 0`
 
 the optimization algorithm succeeded to find an optimal solution.
+

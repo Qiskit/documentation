@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.opflow.anti_commutator
 ---
 
-# qiskit.opflow\.anti\_commutator[¶](#qiskit-opflow-anti-commutator "Permalink to this headline")
+# qiskit.opflow\.anti\_commutator
 
 <span id="qiskit.opflow.anti_commutator" />
 
-`anti_commutator(op_a, op_b)`
+`anti_commutator(op_a, op_b)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/utils.py "view source code")
 
 Compute anti-commutator of op\_a and op\_b.
 

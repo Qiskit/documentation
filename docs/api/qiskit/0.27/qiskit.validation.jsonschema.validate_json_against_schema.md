@@ -1,8 +1,16 @@
+---
+title: validate_json_against_schema
+description: API reference for qiskit.validation.jsonschema.validate_json_against_schema
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.validation.jsonschema.validate_json_against_schema
+---
+
 # qiskit.validation.jsonschema.validate\_json\_against\_schema
 
-<span id="undefined" />
+<span id="qiskit.validation.jsonschema.validate_json_against_schema" />
 
-`validate_json_against_schema(json_dict, schema, err_msg=None)`
+`validate_json_against_schema(json_dict, schema, err_msg=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/validation/jsonschema/schema_validation.py "view source code")
 
 Validates JSON dict against a schema.
 
@@ -14,4 +22,5 @@ Validates JSON dict against a schema.
 
 **Raises**
 
-[**SchemaValidationError**](qiskit.validation.jsonschema.SchemaValidationError#qiskit.validation.jsonschema.SchemaValidationError "qiskit.validation.jsonschema.SchemaValidationError") – Raised if validation fails.
+[**SchemaValidationError**](qiskit.validation.jsonschema.SchemaValidationError "qiskit.validation.jsonschema.SchemaValidationError") – Raised if validation fails.
+

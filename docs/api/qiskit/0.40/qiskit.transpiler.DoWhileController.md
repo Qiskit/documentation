@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.transpiler.DoWhileController
 ---
 
-# DoWhileController[¶](#dowhilecontroller "Permalink to this headline")
+# DoWhileController
 
 <span id="qiskit.transpiler.DoWhileController" />
 
-`DoWhileController(passes, options=None, do_while=None, **partial_controller)`
+`DoWhileController(passes, options=None, do_while=None, **partial_controller)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/runningpassmanager.py "view source code")
 
 Bases: [`qiskit.transpiler.runningpassmanager.FlowController`](qiskit.transpiler.FlowController "qiskit.transpiler.runningpassmanager.FlowController")
 

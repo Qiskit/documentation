@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.library.CYGate
 
 <span id="qiskit.circuit.library.CYGate" />
 
-`CYGate(label=None, ctrl_state=None)`
+`CYGate(label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/y.py "view source code")
 
-Bases: [`qiskit.circuit.controlledgate.ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
+Bases: `qiskit.circuit.controlledgate.ControlledGate`
 
 Controlled-Y gate.
 
@@ -68,7 +68,7 @@ Create new CY gate.
 
 <span id="qiskit.circuit.library.CYGate.inverse" />
 
-`CYGate.inverse()`
+`CYGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/y.py "view source code")
 
 Return inverted CY gate (itself).
 
@@ -82,7 +82,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.library.CYGate.ctrl_state" />
 

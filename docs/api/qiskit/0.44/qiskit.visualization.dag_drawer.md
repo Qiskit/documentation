@@ -12,7 +12,7 @@ python_api_name: qiskit.visualization.dag_drawer
 
 <span id="qiskit.visualization.dag_drawer" />
 
-`qiskit.visualization.dag_drawer(dag, scale=0.7, filename=None, style='color')`
+`qiskit.visualization.dag_drawer(dag, scale=0.7, filename=None, style='color')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/visualization/dag_visualization.py "view source code")
 
 Plot the directed acyclic graph (dag) to represent operation dependencies in a quantum circuit.
 
@@ -40,7 +40,7 @@ PIL.Image
 *   [**VisualizationError**](visualization#qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – when style is not recognized.
 *   [**InvalidFileError**](exceptions#qiskit.exceptions.InvalidFileError "qiskit.exceptions.InvalidFileError") – when filename provided is not valid
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit

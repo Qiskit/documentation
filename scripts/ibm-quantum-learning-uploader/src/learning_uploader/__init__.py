@@ -6,12 +6,12 @@ from .upload import Lesson, API
 
 CONF_FILE = "./learning-api.conf.yaml"
 API_URLS = {
-    "staging": "https://learning-api-dev.quantum-computing.ibm.com",
-    "production": "https://learning-api.quantum-computing.ibm.com",
+    "staging": "https://learning-api-dev.quantum.ibm.com",
+    "production": "https://learning-api.quantum.ibm.com",
 }
 WEBSITE_URLS = {
-    "staging": "https://learning.www-dev.quantum-computing.ibm.com",
-    "production": "https://learning.quantum-computing.ibm.com",
+    "staging": "https://learning.www-dev.quantum.ibm.com",
+    "production": "https://learning.quantum.ibm.com",
 }
 
 

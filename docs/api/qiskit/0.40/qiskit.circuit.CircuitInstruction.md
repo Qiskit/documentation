@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.CircuitInstruction
 ---
 
-# CircuitInstruction[¶](#circuitinstruction "Permalink to this headline")
+# CircuitInstruction
 
 <span id="qiskit.circuit.CircuitInstruction" />
 
-`CircuitInstruction(operation, qubits=(), clbits=())`
+`CircuitInstruction(operation, qubits=(), clbits=())`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/quantumcircuitdata.py "view source code")
 
 Bases: `object`
 
@@ -26,7 +26,7 @@ A single instruction in a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qisk
 
 <span id="qiskit.circuit.CircuitInstruction.copy" />
 
-`CircuitInstruction.copy()`
+`CircuitInstruction.copy()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/quantumcircuitdata.py "view source code")
 
 Return a shallow copy of the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction").
 
@@ -38,7 +38,7 @@ Return a shallow copy of the [`CircuitInstruction`](qiskit.circuit.CircuitInstru
 
 <span id="qiskit.circuit.CircuitInstruction.replace" />
 
-`CircuitInstruction.replace(operation=None, qubits=None, clbits=None)`
+`CircuitInstruction.replace(operation=None, qubits=None, clbits=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/quantumcircuitdata.py "view source code")
 
 Return a new [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction") with the given fields replaced.
 

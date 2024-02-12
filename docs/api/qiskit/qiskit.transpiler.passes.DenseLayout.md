@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.DenseLayout
 
 <span id="qiskit.transpiler.passes.DenseLayout" />
 
-`qiskit.transpiler.passes.DenseLayout(*args, **kwargs)`
+`qiskit.transpiler.passes.DenseLayout(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/passes/layout/dense_layout.py "view source code")
 
 Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
@@ -19,7 +19,7 @@ Choose a Layout by finding the most connected subset of qubits.
 This pass associates a physical qubit (int) to each virtual qubit of the circuit (Qubit).
 
 <Admonition title="Note" type="note">
-  Even though a ‘layout’ is not strictly a property of the DAG, in the transpiler architecture it is best passed around between passes by being set in property\_set.
+  Even though a `'layout'` is not strictly a property of the DAG, in the transpiler architecture it is best passed around between passes by being set in `property_set`.
 </Admonition>
 
 DenseLayout initializer.

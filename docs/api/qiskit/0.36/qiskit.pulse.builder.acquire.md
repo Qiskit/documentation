@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.builder.acquire
 
 <span id="qiskit.pulse.builder.acquire" />
 
-`acquire(duration, qubit_or_channel, register, **metadata)`
+`acquire(duration, qubit_or_channel, register, **metadata)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/builder.py "view source code")
 
 Acquire for a `duration` on a `channel` and store the result in a `register`.
 
@@ -43,5 +43,5 @@ with pulse.build() as pulse_prog:
 
 **Raises**
 
-[**exceptions.PulseError**](pulse#qiskit.pulse.PulseError "qiskit.pulse.exceptions.PulseError") – If the register type is not supported.
+**exceptions.PulseError** – If the register type is not supported.
 

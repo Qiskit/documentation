@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.builder.align_equispaced
 
 <span id="qiskit.pulse.builder.align_equispaced" />
 
-`align_equispaced(duration)`
+`align_equispaced(duration)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/builder.py "view source code")
 
 Equispaced alignment pulse scheduling context.
 
@@ -40,17 +40,17 @@ hahn_echo.draw()
 
 **Parameters**
 
-**duration** (`Union`\[`int`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]) – Duration of this context. This should be larger than the schedule duration.
+**duration** (`Union`\[`int`, `ParameterExpression`]) – Duration of this context. This should be larger than the schedule duration.
 
 **Yields**
 
 None
 
-## Notes
+**Notes**
 
 The scheduling is performed for sub-schedules within the context rather than channel-wise. If you want to apply the equispaced context for each channel, you should use the context independently for channels.
 
 **Return type**
 
-[`AlignmentKind`](pulse#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.alignments.AlignmentKind")
+`AlignmentKind`
 

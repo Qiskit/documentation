@@ -1,10 +1,18 @@
+---
+title: ESCH
+description: API reference for qiskit.aqua.components.optimizers.ESCH
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.components.optimizers.ESCH
+---
+
 <span id="qiskit-aqua-components-optimizers-esch" />
 
 # qiskit.aqua.components.optimizers.ESCH
 
-<span id="undefined" />
+<span id="qiskit.aqua.components.optimizers.ESCH" />
 
-`ESCH(max_evals=1000)`
+`ESCH(max_evals=1000)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/optimizers/nlopts/esch.py "view source code")
 
 ESCH evolutionary optimizer.
 
@@ -20,9 +28,11 @@ NLopt global optimizer, derivative-free. For further detail, please refer to
 
 **Raises**
 
-[**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError#qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – NLopt library not installed.
+[**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – NLopt library not installed.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.aqua.components.optimizers.ESCH.__init__" />
 
 `__init__(max_evals=1000)`
 
@@ -32,7 +42,7 @@ NLopt global optimizer, derivative-free. For further detail, please refer to
 
 **Raises**
 
-[**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError#qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – NLopt library not installed.
+[**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – NLopt library not installed.
 
 ## Methods
 
@@ -66,13 +76,17 @@ NLopt global optimizer, derivative-free. For further detail, please refer to
 | [`is_initial_point_supported`](#qiskit.aqua.components.optimizers.ESCH.is_initial_point_supported "qiskit.aqua.components.optimizers.ESCH.is_initial_point_supported")    | Returns is initial point supported  |
 | [`setting`](#qiskit.aqua.components.optimizers.ESCH.setting "qiskit.aqua.components.optimizers.ESCH.setting")                                                             | Return setting                      |
 
-<span id="undefined" />
+### bounds\_support\_level
+
+<span id="qiskit.aqua.components.optimizers.ESCH.bounds_support_level" />
 
 `property bounds_support_level`
 
 Returns bounds support level
 
-<span id="undefined" />
+### get\_nlopt\_optimizer
+
+<span id="qiskit.aqua.components.optimizers.ESCH.get_nlopt_optimizer" />
 
 `get_nlopt_optimizer()`
 
@@ -82,13 +96,17 @@ Return NLopt optimizer type
 
 `NLoptOptimizerType`
 
-<span id="undefined" />
+### get\_support\_level
+
+<span id="qiskit.aqua.components.optimizers.ESCH.get_support_level" />
 
 `get_support_level()`
 
 return support level dictionary
 
-<span id="undefined" />
+### gradient\_num\_diff
+
+<span id="qiskit.aqua.components.optimizers.ESCH.gradient_num_diff" />
 
 `static gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)`
 
@@ -109,73 +127,97 @@ the gradient computed
 
 grad
 
-<span id="undefined" />
+### gradient\_support\_level
+
+<span id="qiskit.aqua.components.optimizers.ESCH.gradient_support_level" />
 
 `property gradient_support_level`
 
 Returns gradient support level
 
-<span id="undefined" />
+### initial\_point\_support\_level
+
+<span id="qiskit.aqua.components.optimizers.ESCH.initial_point_support_level" />
 
 `property initial_point_support_level`
 
 Returns initial point support level
 
-<span id="undefined" />
+### is\_bounds\_ignored
+
+<span id="qiskit.aqua.components.optimizers.ESCH.is_bounds_ignored" />
 
 `property is_bounds_ignored`
 
 Returns is bounds ignored
 
-<span id="undefined" />
+### is\_bounds\_required
+
+<span id="qiskit.aqua.components.optimizers.ESCH.is_bounds_required" />
 
 `property is_bounds_required`
 
 Returns is bounds required
 
-<span id="undefined" />
+### is\_bounds\_supported
+
+<span id="qiskit.aqua.components.optimizers.ESCH.is_bounds_supported" />
 
 `property is_bounds_supported`
 
 Returns is bounds supported
 
-<span id="undefined" />
+### is\_gradient\_ignored
+
+<span id="qiskit.aqua.components.optimizers.ESCH.is_gradient_ignored" />
 
 `property is_gradient_ignored`
 
 Returns is gradient ignored
 
-<span id="undefined" />
+### is\_gradient\_required
+
+<span id="qiskit.aqua.components.optimizers.ESCH.is_gradient_required" />
 
 `property is_gradient_required`
 
 Returns is gradient required
 
-<span id="undefined" />
+### is\_gradient\_supported
+
+<span id="qiskit.aqua.components.optimizers.ESCH.is_gradient_supported" />
 
 `property is_gradient_supported`
 
 Returns is gradient supported
 
-<span id="undefined" />
+### is\_initial\_point\_ignored
+
+<span id="qiskit.aqua.components.optimizers.ESCH.is_initial_point_ignored" />
 
 `property is_initial_point_ignored`
 
 Returns is initial point ignored
 
-<span id="undefined" />
+### is\_initial\_point\_required
+
+<span id="qiskit.aqua.components.optimizers.ESCH.is_initial_point_required" />
 
 `property is_initial_point_required`
 
 Returns is initial point required
 
-<span id="undefined" />
+### is\_initial\_point\_supported
+
+<span id="qiskit.aqua.components.optimizers.ESCH.is_initial_point_supported" />
 
 `property is_initial_point_supported`
 
 Returns is initial point supported
 
-<span id="undefined" />
+### optimize
+
+<span id="qiskit.aqua.components.optimizers.ESCH.optimize" />
 
 `optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
@@ -199,19 +241,25 @@ point: is a 1D numpy.ndarray\[float] containing the solution value: is a float w
 
 **ValueError** – invalid input
 
-<span id="undefined" />
+### print\_options
+
+<span id="qiskit.aqua.components.optimizers.ESCH.print_options" />
 
 `print_options()`
 
 Print algorithm-specific options.
 
-<span id="undefined" />
+### set\_max\_evals\_grouped
+
+<span id="qiskit.aqua.components.optimizers.ESCH.set_max_evals_grouped" />
 
 `set_max_evals_grouped(limit)`
 
 Set max evals grouped
 
-<span id="undefined" />
+### set\_options
+
+<span id="qiskit.aqua.components.optimizers.ESCH.set_options" />
 
 `set_options(**kwargs)`
 
@@ -223,13 +271,17 @@ The options dictionary may be used internally by a given optimizer to pass addit
 
 **kwargs** (*dict*) – options, given as name=value.
 
-<span id="undefined" />
+### setting
+
+<span id="qiskit.aqua.components.optimizers.ESCH.setting" />
 
 `property setting`
 
 Return setting
 
-<span id="undefined" />
+### wrap\_function
+
+<span id="qiskit.aqua.components.optimizers.ESCH.wrap_function" />
 
 `static wrap_function(function, args)`
 
@@ -247,3 +299,4 @@ wrapper
 **Return type**
 
 function\_wrapper
+

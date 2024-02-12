@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.preset_passmanagers.level_0_pass_manager
 
 <span id="qiskit.transpiler.preset_passmanagers.level_0_pass_manager" />
 
-`level_0_pass_manager(pass_manager_config)`
+`level_0_pass_manager(pass_manager_config)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/preset_passmanagers/level0.py "view source code")
 
 Level 0 pass manager: no explicit optimization other than mapping to backend.
 
@@ -18,13 +18,17 @@ This pass manager applies the user-given initial layout. If none is given, a tri
 
 The pass manager then unrolls the circuit to the desired basis, and transforms the circuit to match the coupling map.
 
+<Admonition title="Note" type="note">
+  In simulators where `coupling_map=None`, only the unrolling and optimization stages are done.
+</Admonition>
+
 **Parameters**
 
-**pass\_manager\_config** ([`PassManagerConfig`](qiskit.transpiler.PassManagerConfig "qiskit.transpiler.passmanager_config.PassManagerConfig")) – configuration of the pass manager.
+**pass\_manager\_config** (`PassManagerConfig`) – configuration of the pass manager.
 
 **Return type**
 
-[`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.passmanager.StagedPassManager")
+`PassManager`
 
 **Returns**
 

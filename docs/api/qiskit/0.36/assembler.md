@@ -18,15 +18,15 @@ python_api_name: qiskit.assembler
 
 ## Circuit Assembler
 
-|                                                                                                                            |                                                                          |
-| -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| [`assemble_circuits`](qiskit.assembler.assemble_circuits "qiskit.assembler.assemble_circuits")(circuits, run\_config, ...) | Assembles a list of circuits into a qobj that can be run on the backend. |
+|                                                                                                                          |                                                                          |
+| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| [`assemble_circuits`](qiskit.assembler.assemble_circuits "qiskit.assembler.assemble_circuits")(circuits, run\_config, …) | Assembles a list of circuits into a qobj that can be run on the backend. |
 
 ## Schedule Assembler
 
-|                                                                                                                             |                                                                           |
-| --------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| [`assemble_schedules`](qiskit.assembler.assemble_schedules "qiskit.assembler.assemble_schedules")(schedules, qobj\_id, ...) | Assembles a list of schedules into a qobj that can be run on the backend. |
+|                                                                                                                           |                                                                           |
+| ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| [`assemble_schedules`](qiskit.assembler.assemble_schedules "qiskit.assembler.assemble_schedules")(schedules, qobj\_id, …) | Assembles a list of schedules into a qobj that can be run on the backend. |
 
 ## Disassembler
 
@@ -36,7 +36,7 @@ python_api_name: qiskit.assembler
 
 ## RunConfig
 
-|                                                                                                     |                              |
-| --------------------------------------------------------------------------------------------------- | ---------------------------- |
-| [`RunConfig`](qiskit.assembler.RunConfig "qiskit.assembler.RunConfig")(\[shots, max\_credits, ...]) | Class for Run Configuration. |
+|                                                                                                   |                              |
+| ------------------------------------------------------------------------------------------------- | ---------------------------- |
+| [`RunConfig`](qiskit.assembler.RunConfig "qiskit.assembler.RunConfig")(\[shots, max\_credits, …]) | Class for Run Configuration. |
 

@@ -10,28 +10,28 @@ python_api_name: qiskit.circuit.library.CSwapGate
 
 <span id="qiskit.circuit.library.CSwapGate" />
 
-`CSwapGate(label=None, ctrl_state=None)`
+`CSwapGate(label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/swap.py "view source code")
 
-Bases: [`qiskit.circuit.controlledgate.ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
+Bases: `qiskit.circuit.controlledgate.ControlledGate`
 
 Controlled-SWAP gate, also known as the Fredkin gate.
 
 **Circuit symbol:**
 
 ```python
-q_0: ─■─
+q_0: ─X─
       │
 q_1: ─X─
       │
-q_2: ─X─
+q_2: ─■─
 ```
 
 **Matrix representation:**
 
 $$
 \begin{split}CSWAP\ q_0, q_1, q_2 =
-    I \otimes I \otimes |0 \rangle \langle 0| +
-    SWAP \otimes |1 \rangle \langle 1| =
+    |0 \rangle \langle 0| \otimes I \otimes I +
+    |1 \rangle \langle 1| \otimes SWAP =
     \begin{pmatrix}
         1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
         0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
@@ -48,11 +48,11 @@ $$
   In Qiskit’s convention, higher qubit indices are more significant (little endian convention). In many textbooks, controlled gates are presented with the assumption of more significant qubits as control, which in our case would be q\_2. Thus a textbook matrix for this gate will be:
 
   ```python
-  q_0: ─X─
+  q_0: ─■─
         │
   q_1: ─X─
         │
-  q_2: ─■─
+  q_2: ─X─
   ```
 
   $$
@@ -87,7 +87,7 @@ Create new CSWAP gate.
 
 <span id="qiskit.circuit.library.CSwapGate.inverse" />
 
-`CSwapGate.inverse()`
+`CSwapGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/swap.py "view source code")
 
 Return inverse CSwap gate (itself).
 
@@ -101,7 +101,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.library.CSwapGate.ctrl_state" />
 

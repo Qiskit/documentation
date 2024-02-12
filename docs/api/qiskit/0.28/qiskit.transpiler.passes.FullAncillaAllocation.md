@@ -1,8 +1,16 @@
+---
+title: FullAncillaAllocation
+description: API reference for qiskit.transpiler.passes.FullAncillaAllocation
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.FullAncillaAllocation
+---
+
 # qiskit.transpiler.passes.FullAncillaAllocation
 
-<span id="undefined" />
+<span id="qiskit.transpiler.passes.FullAncillaAllocation" />
 
-`FullAncillaAllocation(*args, **kwargs)`
+`FullAncillaAllocation(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/layout/full_ancilla_allocation.py "view source code")
 
 Allocate all idle nodes from the coupling map as ancilla on the layout.
 
@@ -18,7 +26,9 @@ FullAncillaAllocation initializer.
 
 **coupling\_map** (*Coupling*) – directed graph representing a coupling map.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.transpiler.passes.FullAncillaAllocation.__init__" />
 
 `__init__(coupling_map)`
 
@@ -44,7 +54,9 @@ FullAncillaAllocation initializer.
 | [`is_analysis_pass`](#qiskit.transpiler.passes.FullAncillaAllocation.is_analysis_pass "qiskit.transpiler.passes.FullAncillaAllocation.is_analysis_pass")                   | Check if the pass is an analysis pass.      |
 | [`is_transformation_pass`](#qiskit.transpiler.passes.FullAncillaAllocation.is_transformation_pass "qiskit.transpiler.passes.FullAncillaAllocation.is_transformation_pass") | Check if the pass is a transformation pass. |
 
-<span id="undefined" />
+### is\_analysis\_pass
+
+<span id="qiskit.transpiler.passes.FullAncillaAllocation.is_analysis_pass" />
 
 `property is_analysis_pass`
 
@@ -52,7 +64,9 @@ Check if the pass is an analysis pass.
 
 If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
 
-<span id="undefined" />
+### is\_transformation\_pass
+
+<span id="qiskit.transpiler.passes.FullAncillaAllocation.is_transformation_pass" />
 
 `property is_transformation_pass`
 
@@ -60,13 +74,17 @@ Check if the pass is a transformation pass.
 
 If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
 
-<span id="undefined" />
+### name
+
+<span id="qiskit.transpiler.passes.FullAncillaAllocation.name" />
 
 `name()`
 
 Return the name of the pass.
 
-<span id="undefined" />
+### run
+
+<span id="qiskit.transpiler.passes.FullAncillaAllocation.run" />
 
 `run(dag)`
 
@@ -78,7 +96,7 @@ The coupling\_map and layout together determine which physical qubits are free.
 
 **Parameters**
 
-**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – circuit to analyze
+**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – circuit to analyze
 
 **Returns**
 
@@ -86,14 +104,17 @@ returns the same dag circuit, unmodified
 
 **Return type**
 
-[DAGCircuit](qiskit.dagcircuit.DAGCircuit#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+[DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
 
 **Raises**
 
-[**TranspilerError**](qiskit.transpiler.TranspilerError#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – If there is not layout in the property set or not set at init time.
+[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – If there is not layout in the property set or not set at init time.
 
-<span id="undefined" />
+### validate\_layout
+
+<span id="qiskit.transpiler.passes.FullAncillaAllocation.validate_layout" />
 
 `static validate_layout(layout_qubits, dag_qubits)`
 
 Checks if all the qregs in layout\_qregs already exist in dag\_qregs. Otherwise, raise.
+

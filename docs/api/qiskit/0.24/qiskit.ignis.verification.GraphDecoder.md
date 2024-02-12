@@ -1,10 +1,18 @@
+---
+title: GraphDecoder
+description: API reference for qiskit.ignis.verification.GraphDecoder
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.ignis.verification.GraphDecoder
+---
+
 <span id="qiskit-ignis-verification-graphdecoder" />
 
 # qiskit.ignis.verification.GraphDecoder
 
-<span id="undefined" />
+<span id="qiskit.ignis.verification.GraphDecoder" />
 
-`GraphDecoder(code, S=None)`
+`GraphDecoder(code, S=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/topological_codes/fitters.py "view source code")
 
 Class to construct the graph corresponding to the possible syndromes of a quantum error correction code, and then run suitable decoders.
 
@@ -17,7 +25,9 @@ Class to construct the graph corresponding to the possible syndromes of a quantu
 
 The decoder for the supplied `code` is initialized by running `_make_syndrome_graph()`. Since this process can take some time, it is also possible to load in a premade `S`. However, if this was created for a differently defined `code`, it won’t work properly.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.ignis.verification.GraphDecoder.__init__" />
 
 `__init__(code, S=None)`
 
@@ -40,7 +50,9 @@ The decoder for the supplied `code` is initialized by running `_make_syndrome_gr
 | [`matching`](#qiskit.ignis.verification.GraphDecoder.matching "qiskit.ignis.verification.GraphDecoder.matching")(string)                                         | **param string**A string describing the output from the code. |
 | [`weight_syndrome_graph`](#qiskit.ignis.verification.GraphDecoder.weight_syndrome_graph "qiskit.ignis.verification.GraphDecoder.weight_syndrome_graph")(results) | Generate weighted syndrome graph from result counts.          |
 
-<span id="undefined" />
+### get\_logical\_prob
+
+<span id="qiskit.ignis.verification.GraphDecoder.get_logical_prob" />
 
 `get_logical_prob(results, algorithm='matching')`
 
@@ -58,7 +70,9 @@ Dictionary of logical error probabilities for each of the encoded logical states
 
 dict
 
-<span id="undefined" />
+### make\_error\_graph
+
+<span id="qiskit.ignis.verification.GraphDecoder.make_error_graph" />
 
 `make_error_graph(string, subgraphs=None)`
 
@@ -76,7 +90,9 @@ The subgraph(s) of S which corresponds to the non-trivial syndrome elements in t
 
 E
 
-<span id="undefined" />
+### matching
+
+<span id="qiskit.ignis.verification.GraphDecoder.matching" />
 
 `matching(string)`
 
@@ -98,7 +114,9 @@ str
 
 This function can be run directly, or used indirectly to calculate a logical error probability with get\_logical\_prob
 
-<span id="undefined" />
+### weight\_syndrome\_graph
+
+<span id="qiskit.ignis.verification.GraphDecoder.weight_syndrome_graph" />
 
 `weight_syndrome_graph(results)`
 
@@ -112,3 +130,4 @@ Generate weighted syndrome graph from result counts.
 **Additional information:**
 
 Uses results to estimate the probability of the errors that create the pairs of nodes in S. The edge weights are then replaced with the corresponding -log(p/(1-p).
+

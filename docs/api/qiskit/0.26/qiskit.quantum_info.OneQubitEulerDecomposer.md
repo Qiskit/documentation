@@ -1,8 +1,16 @@
+---
+title: OneQubitEulerDecomposer
+description: API reference for qiskit.quantum_info.OneQubitEulerDecomposer
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.quantum_info.OneQubitEulerDecomposer
+---
+
 # qiskit.quantum\_info.OneQubitEulerDecomposer
 
-<span id="undefined" />
+<span id="qiskit.quantum_info.OneQubitEulerDecomposer" />
 
-`OneQubitEulerDecomposer(basis='U3')`
+`OneQubitEulerDecomposer(basis='U3')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/quantum_info/synthesis/one_qubit_decompose.py "view source code")
 
 A class for decomposing 1-qubit unitaries into Euler angle rotations.
 
@@ -33,7 +41,9 @@ Supported bases are: ‘U’, ‘PSX’, ‘ZSX’, ‘U321’, ‘U3’, ‘U1X
 
 **QiskitError** – If input basis is not recognized.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.quantum_info.OneQubitEulerDecomposer.__init__" />
 
 `__init__(basis='U3')`
 
@@ -63,7 +73,9 @@ Supported bases are: ‘U’, ‘PSX’, ‘ZSX’, ‘U321’, ‘U3’, ‘U1X
 | ----------------------------------------------------------------------------------------------------------------- | ------------------------ |
 | [`basis`](#qiskit.quantum_info.OneQubitEulerDecomposer.basis "qiskit.quantum_info.OneQubitEulerDecomposer.basis") | The decomposition basis. |
 
-<span id="undefined" />
+### angles
+
+<span id="qiskit.quantum_info.OneQubitEulerDecomposer.angles" />
 
 `angles(unitary)`
 
@@ -81,7 +93,9 @@ Return the Euler angles for input array.
 
 tuple
 
-<span id="undefined" />
+### angles\_and\_phase
+
+<span id="qiskit.quantum_info.OneQubitEulerDecomposer.angles_and_phase" />
 
 `angles_and_phase(unitary)`
 
@@ -99,8 +113,11 @@ Return the Euler angles and phase for input array.
 
 tuple
 
-<span id="undefined" />
+### basis
+
+<span id="qiskit.quantum_info.OneQubitEulerDecomposer.basis" />
 
 `property basis`
 
 The decomposition basis.
+

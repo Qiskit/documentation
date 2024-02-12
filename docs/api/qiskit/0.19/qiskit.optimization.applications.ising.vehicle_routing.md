@@ -12,7 +12,7 @@ python_api_name: qiskit.optimization.applications.ising.vehicle_routing.get_oper
 
 Converts vehicle routing instances into a list of Paulis, and provides some related routines (extracting a solution, checking its objective function value).
 
-## Functions
+**Functions**
 
 |                                                                                                                                                                                                                              |                                                                              |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
@@ -21,9 +21,11 @@ Converts vehicle routing instances into a list of Paulis, and provides some rela
 | [`get_vehiclerouting_matrices`](#qiskit.optimization.applications.ising.vehicle_routing.get_vehiclerouting_matrices "qiskit.optimization.applications.ising.vehicle_routing.get_vehiclerouting_matrices")(instance, n, K)    | Constructs auxiliary matrices from a vehicle routing instance,               |
 | [`get_vehiclerouting_solution`](#qiskit.optimization.applications.ising.vehicle_routing.get_vehiclerouting_solution "qiskit.optimization.applications.ising.vehicle_routing.get_vehiclerouting_solution")(instance, n, K, …) | Tries to obtain a feasible solution (in vector form) of an instance          |
 
+### get\_operator
+
 <span id="qiskit.optimization.applications.ising.vehicle_routing.get_operator" />
 
-`get_operator(instance, n, K)`
+`get_operator(instance, n, K)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/applications/ising/vehicle_routing.py "view source code")
 
 Converts an instance of a vehicle routing problem into a list of Paulis.
 
@@ -41,9 +43,11 @@ operator for the Hamiltonian.
 
 [WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
 
+### get\_vehiclerouting\_cost
+
 <span id="qiskit.optimization.applications.ising.vehicle_routing.get_vehiclerouting_cost" />
 
-`get_vehiclerouting_cost(instance, n, K, x_sol)`
+`get_vehiclerouting_cost(instance, n, K, x_sol)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/applications/ising/vehicle_routing.py "view source code")
 
 Computes the cost of a solution to an instance of a vehicle routing problem.
 
@@ -62,9 +66,11 @@ objective function value.
 
 float
 
+### get\_vehiclerouting\_matrices
+
 <span id="qiskit.optimization.applications.ising.vehicle_routing.get_vehiclerouting_matrices" />
 
-`get_vehiclerouting_matrices(instance, n, K)`
+`get_vehiclerouting_matrices(instance, n, K)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/applications/ising/vehicle_routing.py "view source code")
 
 ## Constructs auxiliary matrices from a vehicle routing instance,
 
@@ -84,9 +90,11 @@ a matrix defining the interactions between variables. a matrix defining the cont
 
 tuple(numpy.ndarray, numpy.ndarray, float)
 
+### get\_vehiclerouting\_solution
+
 <span id="qiskit.optimization.applications.ising.vehicle_routing.get_vehiclerouting_solution" />
 
-`get_vehiclerouting_solution(instance, n, K, result)`
+`get_vehiclerouting_solution(instance, n, K, result)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/applications/ising/vehicle_routing.py "view source code")
 
 ## Tries to obtain a feasible solution (in vector form) of an instance
 

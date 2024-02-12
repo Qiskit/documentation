@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.RXGate
 
 <span id="qiskit.circuit.library.RXGate" />
 
-`qiskit.circuit.library.RXGate(theta, label=None, *, duration=None, unit='dt')`
+`qiskit.circuit.library.RXGate(theta, label=None, *, duration=None, unit='dt')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/standard_gates/rx.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -29,11 +29,13 @@ q_0: ┤ Rx(ϴ) ├
 **Matrix Representation:**
 
 $$
- \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}RX(\theta) = \exp\left(-i \th X\right) =
+\newcommand{\rotationangle}{\frac{\theta}{2}}
+
+RX(\theta) = \exp\left(-i \rotationangle X\right) =
     \begin{pmatrix}
-        \cos\left(\th\right)   & -i\sin\left(\th\right) \\
-        -i\sin\left(\th\right) & \cos\left(\th\right)
-    \end{pmatrix}\end{split}\end{aligned}\end{align} 
+        \cos\left(\rotationangle\right)   & -i\sin\left(\rotationangle\right) \\
+        -i\sin\left(\rotationangle\right) & \cos\left(\rotationangle\right)
+    \end{pmatrix}
 $$
 
 Create new RX gate.

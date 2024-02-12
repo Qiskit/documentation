@@ -1,8 +1,16 @@
+---
+title: BIPMapping
+description: API reference for qiskit.transpiler.passes.BIPMapping
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.BIPMapping
+---
+
 # BIPMapping
 
-<span id="undefined" />
+<span id="qiskit.transpiler.passes.BIPMapping" />
 
-`BIPMapping(*args, **kwargs)`
+`BIPMapping(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/routing/bip_mapping.py "view source code")
 
 Bases: `qiskit.transpiler.basepasses.TransformationPass`
 
@@ -28,7 +36,7 @@ BIPMapping initializer.
 
 **Parameters**
 
-*   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap#qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – Directed graph represented a coupling map.
+*   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – Directed graph represented a coupling map.
 
 *   **objective** (*str*) –
 
@@ -38,7 +46,7 @@ BIPMapping initializer.
     *   `'depth'`: \[Default] Depth (number of time-steps) of the circuit
     *   `'balanced'`: \[NotImplemented] Weighted sum of `'error_rate'` and `'depth'`
 
-*   **backend\_prop** ([*BackendProperties*](qiskit.providers.models.BackendProperties#qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – Backend properties object
+*   **backend\_prop** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – Backend properties object
 
 *   **time\_limit** (*float*) – Time limit for solving BIP in seconds
 
@@ -48,18 +56,48 @@ BIPMapping initializer.
 
 **Raises**
 
-[**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError#qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – if cplex or docplex are not installed.
+[**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – if cplex or docplex are not installed.
 
 ## Methods
 
-|                                                                                                                                        |                                                                                                                                                                   |
-| -------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`name`](qiskit.transpiler.passes.BIPMapping.name#qiskit.transpiler.passes.BIPMapping.name "qiskit.transpiler.passes.BIPMapping.name") | Return the name of the pass.                                                                                                                                      |
-| [`run`](qiskit.transpiler.passes.BIPMapping.run#qiskit.transpiler.passes.BIPMapping.run "qiskit.transpiler.passes.BIPMapping.run")     | Run the BIPMapping pass on dag, assuming the number of virtual qubits (defined in dag) and the number of physical qubits (defined in coupling\_map) are the same. |
+### name
+
+<span id="qiskit.transpiler.passes.BIPMapping.name" />
+
+`BIPMapping.name()`
+
+Return the name of the pass.
+
+### run
+
+<span id="qiskit.transpiler.passes.BIPMapping.run" />
+
+`BIPMapping.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/routing/bip_mapping.py "view source code")
+
+Run the BIPMapping pass on dag, assuming the number of virtual qubits (defined in dag) and the number of physical qubits (defined in coupling\_map) are the same.
+
+**Parameters**
+
+**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – DAG to map.
+
+**Returns**
+
+**A mapped DAG. If there is no 2q-gate in DAG or it fails to map,**
+
+returns the original dag.
+
+**Return type**
+
+[DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+
+**Raises**
+
+*   [**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if the number of virtual and physical qubits are not the same.
+*   **AssertionError** – if the final layout is not valid.
 
 ## Attributes
 
-<span id="undefined" />
+<span id="qiskit.transpiler.passes.BIPMapping.is_analysis_pass" />
 
 ### is\_analysis\_pass
 
@@ -67,10 +105,11 @@ Check if the pass is an analysis pass.
 
 If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
 
-<span id="undefined" />
+<span id="qiskit.transpiler.passes.BIPMapping.is_transformation_pass" />
 
 ### is\_transformation\_pass
 
 Check if the pass is a transformation pass.
 
 If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+

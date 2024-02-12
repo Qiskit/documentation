@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.PulseGates
 
 <span id="qiskit.transpiler.passes.PulseGates" />
 
-`qiskit.transpiler.passes.PulseGates(*args, **kwargs)`
+`qiskit.transpiler.passes.PulseGates(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/passes/calibration/pulse_gate.py "view source code")
 
 Bases: `CalibrationBuilder`
 
@@ -33,7 +33,7 @@ Create new pass.
 **Parameters**
 
 *   **inst\_map** – Instruction schedule map that user may override.
-*   **target** – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") representing the target backend, if both `inst_map` and this are specified then it updates instructions in the `target` with `inst_map`.
+*   **target** – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") representing the target backend, if both `inst_map` and `target` are specified then it updates instructions in the `target` with `inst_map`.
 
 ## Attributes
 

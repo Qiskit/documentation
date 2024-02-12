@@ -55,9 +55,11 @@ and then loading that file will return a list with all the circuits
 
 ### API documentation
 
+### load
+
 <span id="qiskit.qpy.load" />
 
-`qiskit.qpy.load(file_obj, metadata_deserializer=None)`
+`qiskit.qpy.load(file_obj, metadata_deserializer=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/qpy/interface.py "view source code")
 
 Load a QPY binary file
 
@@ -100,9 +102,11 @@ The list of Qiskit programs contained in the QPY data. A list is always returned
 
 [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")\[[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit") | [*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")]
 
+### dump
+
 <span id="qiskit.qpy.dump" />
 
-`qiskit.qpy.dump(programs, file_obj, metadata_serializer=None, use_symengine=False)`
+`qiskit.qpy.dump(programs, file_obj, metadata_serializer=None, use_symengine=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/qpy/interface.py "view source code")
 
 Write QPY binary data to a file
 
@@ -152,9 +156,11 @@ Which will save the qpy serialized circuit to the provided file.
 
 These functions will raise a custom subclass of [`QiskitError`](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") if they encounter problems during serialization or deserialization.
 
+### QpyError
+
 <span id="qiskit.qpy.QpyError" />
 
-`qiskit.qpy.QpyError(*message)`
+`qiskit.qpy.QpyError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/qpy/exceptions.py "view source code")
 
 Errors raised by the qpy module.
 
@@ -439,7 +445,7 @@ The only change compared to [Version 5](#qpy-version-5) is the addition of class
 
 Version 5 changes from [Version 4](#qpy-version-4) by adding support for `ScheduleBlock` and changing two payloads the INSTRUCTION metadata payload and the CUSTOM\_INSTRUCTION block. These now have new fields to better account for [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") objects in a circuit. In addition, new payload MAP\_ITEM is defined to implement the [MAPPING](#qpy-mapping) block.
 
-With the support of `ScheduleBlock`, now [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") can be serialized together with [`calibrations`](qiskit.circuit.QuantumCircuit#calibrations "qiskit.circuit.QuantumCircuit.calibrations"), or [Pulse Gates](https://qiskit.org/documentation/tutorials/circuits_advanced/05_pulse_gates.html). In QPY version 5 and above, [CIRCUIT\_CALIBRATIONS](#qpy-circuit-calibrations) payload is packed after the [INSTRUCTIONS](#qpy-instructions) block.
+With the support of `ScheduleBlock`, now [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") can be serialized together with [`calibrations`](qiskit.circuit.QuantumCircuit#calibrations "qiskit.circuit.QuantumCircuit.calibrations"), or [Pulse Gates](https://docs.quantum-computing.ibm.com/build/pulse). In QPY version 5 and above, [CIRCUIT\_CALIBRATIONS](#qpy-circuit-calibrations) payload is packed after the [INSTRUCTIONS](#qpy-instructions) block.
 
 In QPY version 5 and above,
 

@@ -1,32 +1,42 @@
+---
+title: IQDiscriminationFitter
+description: API reference for qiskit.ignis.measurement.IQDiscriminationFitter
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.ignis.measurement.IQDiscriminationFitter
+---
+
 <span id="qiskit-ignis-measurement-iqdiscriminationfitter" />
 
 # qiskit.ignis.measurement.IQDiscriminationFitter
 
-<span id="undefined" />
+<span id="qiskit.ignis.measurement.IQDiscriminationFitter" />
 
-`IQDiscriminationFitter(cal_results, qubit_mask, expected_states=None, standardize=False, schedules=None)`
+`IQDiscriminationFitter(cal_results, qubit_mask, expected_states=None, standardize=False, schedules=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/measurement/discriminator/iq_discriminators.py "view source code")
 
 Abstract discriminator that implements the data formatting for IQ level 1 data.
 
 **Parameters**
 
-*   **cal\_results** (*Union\[*[*Result*](qiskit.result.Result#qiskit.result.Result "qiskit.result.Result")*, List\[*[*Result*](qiskit.result.Result#qiskit.result.Result "qiskit.result.Result")*]]*) – calibration results, Result or list of Result used to fit the discriminator.
+*   **cal\_results** (*Union\[*[*Result*](qiskit.result.Result "qiskit.result.Result")*, List\[*[*Result*](qiskit.result.Result "qiskit.result.Result")*]]*) – calibration results, Result or list of Result used to fit the discriminator.
 *   **qubit\_mask** (*List\[int]*) – determines which qubit’s level 1 data to use in the discrimination process.
 *   **expected\_states** (*List\[str]*) – a list that should have the same length as schedules. All results in cal\_results are used if schedules is None. expected\_states must have the corresponding length.
 *   **standardize** (*bool*) – if true the discriminator will standardize the xdata using the internal method \_scale\_data.
-*   **schedules** (*Union\[List\[str], List\[*[*Schedule*](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule")*]]*) – The schedules or a subset of schedules in cal\_results used to train the discriminator. The user may also pass the name of the schedules instead of the schedules. If schedules is None, then all the schedules in cal\_results are used.
+*   **schedules** (*Union\[List\[str], List\[*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")*]]*) – The schedules or a subset of schedules in cal\_results used to train the discriminator. The user may also pass the name of the schedules instead of the schedules. If schedules is None, then all the schedules in cal\_results are used.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.ignis.measurement.IQDiscriminationFitter.__init__" />
 
 `__init__(cal_results, qubit_mask, expected_states=None, standardize=False, schedules=None)`
 
 **Parameters**
 
-*   **cal\_results** (*Union\[*[*Result*](qiskit.result.Result#qiskit.result.Result "qiskit.result.Result")*, List\[*[*Result*](qiskit.result.Result#qiskit.result.Result "qiskit.result.Result")*]]*) – calibration results, Result or list of Result used to fit the discriminator.
+*   **cal\_results** (*Union\[*[*Result*](qiskit.result.Result "qiskit.result.Result")*, List\[*[*Result*](qiskit.result.Result "qiskit.result.Result")*]]*) – calibration results, Result or list of Result used to fit the discriminator.
 *   **qubit\_mask** (*List\[int]*) – determines which qubit’s level 1 data to use in the discrimination process.
 *   **expected\_states** (*List\[str]*) – a list that should have the same length as schedules. All results in cal\_results are used if schedules is None. expected\_states must have the corresponding length.
 *   **standardize** (*bool*) – if true the discriminator will standardize the xdata using the internal method \_scale\_data.
-*   **schedules** (*Union\[List\[str], List\[*[*Schedule*](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule")*]]*) – The schedules or a subset of schedules in cal\_results used to train the discriminator. The user may also pass the name of the schedules instead of the schedules. If schedules is None, then all the schedules in cal\_results are used.
+*   **schedules** (*Union\[List\[str], List\[*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")*]]*) – The schedules or a subset of schedules in cal\_results used to train the discriminator. The user may also pass the name of the schedules instead of the schedules. If schedules is None, then all the schedules in cal\_results are used.
 
 ## Methods
 
@@ -51,7 +61,9 @@ Abstract discriminator that implements the data formatting for IQ level 1 data.
 | [`fitted`](#qiskit.ignis.measurement.IQDiscriminationFitter.fitted "qiskit.ignis.measurement.IQDiscriminationFitter.fitted")                            | True if the discriminator has been fitted to calibration data. |
 | [`schedules`](#qiskit.ignis.measurement.IQDiscriminationFitter.schedules "qiskit.ignis.measurement.IQDiscriminationFitter.schedules")                   | Returns the schedules with which the discriminator was fitted. |
 
-<span id="undefined" />
+### add\_data
+
+<span id="qiskit.ignis.measurement.IQDiscriminationFitter.add_data" />
 
 `add_data(result, expected_states, refit=True, schedules=None)`
 
@@ -62,7 +74,9 @@ Abstract discriminator that implements the data formatting for IQ level 1 data.
 *   **refit** (`bool`) – refit the discriminator if True.
 *   **schedules** (`Union`\[`List`\[`str`], `List`\[`Schedule`], `None`]) – The schedules or a subset of schedules in cal\_results used to train the discriminator. The user may also pass the name of the schedules instead of the schedules. If schedules is None, then all the schedules in cal\_results are used.
 
-<span id="undefined" />
+### discriminate
+
+<span id="qiskit.ignis.measurement.IQDiscriminationFitter.discriminate" />
 
 `abstract discriminate(x_data)`
 
@@ -80,25 +94,33 @@ The discriminated x\_data as a list of labels.
 
 `List`\[`str`]
 
-<span id="undefined" />
+### expected\_states
+
+<span id="qiskit.ignis.measurement.IQDiscriminationFitter.expected_states" />
 
 `property expected_states`
 
 Returns the expected states used to train the discriminator.
 
-<span id="undefined" />
+### fit
+
+<span id="qiskit.ignis.measurement.IQDiscriminationFitter.fit" />
 
 `abstract fit()`
 
 Fits the discriminator using self.\_xdata and self.\_ydata.
 
-<span id="undefined" />
+### fitted
+
+<span id="qiskit.ignis.measurement.IQDiscriminationFitter.fitted" />
 
 `property fitted`
 
 True if the discriminator has been fitted to calibration data.
 
-<span id="undefined" />
+### format\_iq\_data
+
+<span id="qiskit.ignis.measurement.IQDiscriminationFitter.format_iq_data" />
 
 `format_iq_data(iq_data)`
 
@@ -118,9 +140,11 @@ A list of shots where each entry is a list of IQ points.
 
 **Raises**
 
-[**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – if the measurement return type is unknown
+[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – if the measurement return type is unknown
 
-<span id="undefined" />
+### get\_xdata
+
+<span id="qiskit.ignis.measurement.IQDiscriminationFitter.get_xdata" />
 
 `get_xdata(results, schedule_type_to_get, schedules=None)`
 
@@ -142,9 +166,11 @@ data as a list of features. Each feature is a list.
 
 **Raises**
 
-[**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – if IQ data could not be found
+[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – if IQ data could not be found
 
-<span id="undefined" />
+### get\_ydata
+
+<span id="qiskit.ignis.measurement.IQDiscriminationFitter.get_ydata" />
 
 `get_ydata(results, schedule_type_to_get, schedules=None)`
 
@@ -166,7 +192,9 @@ y data with the same length as the x data.
 
 list
 
-<span id="undefined" />
+### is\_calibration
+
+<span id="qiskit.ignis.measurement.IQDiscriminationFitter.is_calibration" />
 
 `is_calibration(result_name)`
 
@@ -186,7 +214,9 @@ calibration result.
 
 bool
 
-<span id="undefined" />
+### plot
+
+<span id="qiskit.ignis.measurement.IQDiscriminationFitter.plot" />
 
 `plot(axs=None, show_boundary=False, show_fitting_data=True, flag_misclassified=False, qubits_to_plot=None, title=True)`
 
@@ -215,7 +245,9 @@ tuple
 
 **QiskitError** – If matplotlib is not installed, or there is invalid input
 
-<span id="undefined" />
+### plot\_xdata
+
+<span id="qiskit.ignis.measurement.IQDiscriminationFitter.plot_xdata" />
 
 `plot_xdata(axs, results, color=None)`
 
@@ -224,15 +256,18 @@ Add the relevant IQ data from the Qiskit Result, or list thereof, to the given a
 **Parameters**
 
 *   **axs** (*Union\[np.ndarray, axes]*) – the axis to use for the plot. If the number of axis instances provided is less than the number of qubits then only the data for the first len(axs) qubits will be plotted.
-*   **results** (*Union\[*[*Result*](qiskit.result.Result#qiskit.result.Result "qiskit.result.Result")*, List\[*[*Result*](qiskit.result.Result#qiskit.result.Result "qiskit.result.Result")*]]*) – the discriminators get\_xdata will be used to retrieve the x data from the Result or list of Results.
+*   **results** (*Union\[*[*Result*](qiskit.result.Result "qiskit.result.Result")*, List\[*[*Result*](qiskit.result.Result "qiskit.result.Result")*]]*) – the discriminators get\_xdata will be used to retrieve the x data from the Result or list of Results.
 *   **color** (*str*) – color of the IQ points in the scatter plot.
 
 **Raises**
 
 **QiskitError** – If not enough axis instances are provided
 
-<span id="undefined" />
+### schedules
+
+<span id="qiskit.ignis.measurement.IQDiscriminationFitter.schedules" />
 
 `property schedules`
 
 Returns the schedules with which the discriminator was fitted.
+

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.ECRGate
 
 <span id="qiskit.circuit.library.ECRGate" />
 
-`qiskit.circuit.library.ECRGate(*args, _force_mutable=False, **kwargs)`
+`qiskit.circuit.library.ECRGate(*args, _force_mutable=False, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/standard_gates/ecr.py "view source code")
 
 Bases: [`SingletonGate`](circuit_singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate")
 
@@ -33,13 +33,13 @@ q_1: ┤1        ├       q_1: ┤1           ├──────────
 **Matrix Representation:**
 
 $$
-\begin{split}ECR\ q_0, q_1 = \frac{1}{\sqrt{2}}
+ECR\ q_0, q_1 = \frac{1}{\sqrt{2}}
     \begin{pmatrix}
         0   & 1   &  0  & i \\
         1   & 0   &  -i & 0 \\
         0   & i   &  0  & 1 \\
         -i  & 0   &  1  & 0
-    \end{pmatrix}\end{split}
+    \end{pmatrix}
 $$
 
 <Admonition title="Note" type="note">
@@ -54,13 +54,13 @@ $$
   ```
 
   $$
-  \begin{split}ECR\ q_0, q_1 = \frac{1}{\sqrt{2}}
+  ECR\ q_0, q_1 = \frac{1}{\sqrt{2}}
       \begin{pmatrix}
           0   & 0   &  1  & i \\
           0   & 0   &  i  & 1 \\
           1   & -i  &  0  & 0 \\
           -i  & 1   &  0  & 0
-      \end{pmatrix}\end{split}
+      \end{pmatrix}
   $$
 </Admonition>
 

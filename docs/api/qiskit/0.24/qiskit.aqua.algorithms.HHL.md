@@ -1,10 +1,18 @@
+---
+title: HHL
+description: API reference for qiskit.aqua.algorithms.HHL
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.algorithms.HHL
+---
+
 <span id="qiskit-aqua-algorithms-hhl" />
 
 # qiskit.aqua.algorithms.HHL
 
-<span id="undefined" />
+<span id="qiskit.aqua.algorithms.HHL" />
 
-`HHL(matrix, vector, truncate_powerdim=False, truncate_hermitian=False, eigs=None, init_state=None, reciprocal=None, num_q=0, num_a=0, orig_size=None, quantum_instance=None)`
+`HHL(matrix, vector, truncate_powerdim=False, truncate_hermitian=False, eigs=None, init_state=None, reciprocal=None, num_q=0, num_a=0, orig_size=None, quantum_instance=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/linear_solvers/hhl.py "view source code")
 
 The HHL algorithm.
 
@@ -47,7 +55,9 @@ See also [https://arxiv.org/abs/0811.3171](https://arxiv.org/abs/0811.3171)
 
 **ValueError** – Invalid input
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.aqua.algorithms.HHL.__init__" />
 
 `__init__(matrix, vector, truncate_powerdim=False, truncate_hermitian=False, eigs=None, init_state=None, reciprocal=None, num_q=0, num_a=0, orig_size=None, quantum_instance=None)`
 
@@ -89,7 +99,9 @@ See also [https://arxiv.org/abs/0811.3171](https://arxiv.org/abs/0811.3171)
 | [`quantum_instance`](#qiskit.aqua.algorithms.HHL.quantum_instance "qiskit.aqua.algorithms.HHL.quantum_instance") | Returns quantum instance. |
 | [`random`](#qiskit.aqua.algorithms.HHL.random "qiskit.aqua.algorithms.HHL.random")                               | Return a numpy random.    |
 
-<span id="undefined" />
+### backend
+
+<span id="qiskit.aqua.algorithms.HHL.backend" />
 
 `property backend`
 
@@ -99,7 +111,9 @@ Returns backend.
 
 `Union`\[`Backend`, `BaseBackend`]
 
-<span id="undefined" />
+### construct\_circuit
+
+<span id="qiskit.aqua.algorithms.HHL.construct_circuit" />
 
 `construct_circuit(measurement=False)`
 
@@ -117,7 +131,9 @@ Construct the HHL circuit.
 
 the QuantumCircuit object for the constructed circuit
 
-<span id="undefined" />
+### expand\_to\_hermitian
+
+<span id="qiskit.aqua.algorithms.HHL.expand_to_hermitian" />
 
 `static expand_to_hermitian(matrix, vector)`
 
@@ -136,7 +152,9 @@ Expand a non-hermitian matrix A to a hermitian matrix by \[\[0, A.H], \[A, 0]] a
 
 the expanded matrix, the expanded vector
 
-<span id="undefined" />
+### expand\_to\_powerdim
+
+<span id="qiskit.aqua.algorithms.HHL.expand_to_powerdim" />
 
 `static expand_to_powerdim(matrix, vector)`
 
@@ -155,7 +173,9 @@ Expand a matrix to the next-larger 2\*\*n dimensional matrix with ones on the di
 
 the expanded matrix, the expanded vector
 
-<span id="undefined" />
+### matrix\_resize
+
+<span id="qiskit.aqua.algorithms.HHL.matrix_resize" />
 
 `static matrix_resize(matrix, vector)`
 
@@ -178,7 +198,9 @@ new matrix, vector, truncate\_powerdim, truncate\_hermitian
 
 **ValueError** – invalid input
 
-<span id="undefined" />
+### quantum\_instance
+
+<span id="qiskit.aqua.algorithms.HHL.quantum_instance" />
 
 `property quantum_instance`
 
@@ -188,13 +210,17 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-<span id="undefined" />
+### random
+
+<span id="qiskit.aqua.algorithms.HHL.random" />
 
 `property random`
 
 Return a numpy random.
 
-<span id="undefined" />
+### run
+
+<span id="qiskit.aqua.algorithms.HHL.run" />
 
 `run(quantum_instance=None, **kwargs)`
 
@@ -215,9 +241,11 @@ dict
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
 
-<span id="undefined" />
+### set\_backend
+
+<span id="qiskit.aqua.algorithms.HHL.set_backend" />
 
 `set_backend(backend, **kwargs)`
 
@@ -226,3 +254,4 @@ Sets backend with configuration.
 **Return type**
 
 `None`
+

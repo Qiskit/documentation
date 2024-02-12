@@ -1,10 +1,18 @@
+---
+title: random_non_hermitian
+description: API reference for qiskit.aqua.utils.random_non_hermitian
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.aqua.utils.random_non_hermitian
+---
+
 <span id="qiskit-aqua-utils-random-non-hermitian" />
 
 # qiskit.aqua.utils.random\_non\_hermitian
 
-<span id="undefined" />
+<span id="qiskit.aqua.utils.random_non_hermitian" />
 
-`random_non_hermitian(N, M=None, sings=None, K=None, srange=None, sparsity=None, trunc=None)`
+`random_non_hermitian(N, M=None, sings=None, K=None, srange=None, sparsity=None, trunc=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/utils/random_matrix_generator.py "view source code")
 
 Generate random (sparse) matrix with given properties (singular values). Sparsity is achieved by truncating Pauli matrices. Sparsity settings alternate the singular values due to truncation.
 
@@ -29,3 +37,4 @@ np.ndarray
 **Raises:**
 
 ValueError: invalid matrix
+

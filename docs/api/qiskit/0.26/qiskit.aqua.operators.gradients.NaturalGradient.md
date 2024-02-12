@@ -1,8 +1,16 @@
+---
+title: NaturalGradient
+description: API reference for qiskit.aqua.operators.gradients.NaturalGradient
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.operators.gradients.NaturalGradient
+---
+
 # qiskit.aqua.operators.gradients.NaturalGradient
 
-<span id="undefined" />
+<span id="qiskit.aqua.operators.gradients.NaturalGradient" />
 
-`NaturalGradient(grad_method='lin_comb', qfi_method='lin_comb_full', regularization=None, **kwargs)`
+`NaturalGradient(grad_method='lin_comb', qfi_method='lin_comb_full', regularization=None, **kwargs)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/gradients/natural_gradient.py "view source code")
 
 Convert an operator expression to the first-order gradient.
 
@@ -23,7 +31,9 @@ where R(x) represents the penalization term.
 *   **regularization** (`Optional`\[`str`]) – Use the following regularization with a least square method to solve the underlying system of linear equations Can be either None or `'ridge'` or `'lasso'` or `'perturb_diag'` `'ridge'` and `'lasso'` use an automatic optimal parameter search If regularization is None but the metric is ill-conditioned or singular then a least square solver is used without regularization
 *   **kwargs** (*dict*) – Optional parameters for a CircuitGradient
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.aqua.operators.gradients.NaturalGradient.__init__" />
 
 `__init__(grad_method='lin_comb', qfi_method='lin_comb_full', regularization=None, **kwargs)`
 
@@ -51,7 +61,9 @@ where R(x) represents the penalization term.
 | [`qfi_method`](#qiskit.aqua.operators.gradients.NaturalGradient.qfi_method "qiskit.aqua.operators.gradients.NaturalGradient.qfi_method")             | Returns `CircuitQFI`.              |
 | [`regularization`](#qiskit.aqua.operators.gradients.NaturalGradient.regularization "qiskit.aqua.operators.gradients.NaturalGradient.regularization") | Returns the regularization option. |
 
-<span id="undefined" />
+### convert
+
+<span id="qiskit.aqua.operators.gradients.NaturalGradient.convert" />
 
 `convert(operator, params=None)`
 
@@ -73,7 +85,9 @@ An operator whose evaluation yields the NaturalGradient.
 *   **TypeError** – If `operator` does not represent an expectation value or the quantum state is not `CircuitStateFn`.
 *   **ValueError** – If `params` contains a parameter not present in `operator`.
 
-<span id="undefined" />
+### grad\_method
+
+<span id="qiskit.aqua.operators.gradients.NaturalGradient.grad_method" />
 
 `property grad_method`
 
@@ -87,7 +101,9 @@ Returns `CircuitGradient`.
 
 `CircuitGradient`.
 
-<span id="undefined" />
+### gradient\_wrapper
+
+<span id="qiskit.aqua.operators.gradients.NaturalGradient.gradient_wrapper" />
 
 `gradient_wrapper(operator, bind_params, grad_params=None, backend=None)`
 
@@ -108,7 +124,9 @@ Function to compute a gradient, Hessian or QFI. The function takes an iterable a
 
 callable(param\_values)
 
-<span id="undefined" />
+### parameter\_expression\_grad
+
+<span id="qiskit.aqua.operators.gradients.NaturalGradient.parameter_expression_grad" />
 
 `static parameter_expression_grad(param_expr, param)`
 
@@ -127,7 +145,9 @@ Get the derivative of a parameter expression w\.r.t. the given parameter.
 
 ParameterExpression representing the gradient of param\_expr w\.r.t. param
 
-<span id="undefined" />
+### qfi\_method
+
+<span id="qiskit.aqua.operators.gradients.NaturalGradient.qfi_method" />
 
 `property qfi_method`
 
@@ -139,7 +159,9 @@ Returns: `CircuitQFI`
 
 `CircuitQFI`
 
-<span id="undefined" />
+### regularization
+
+<span id="qiskit.aqua.operators.gradients.NaturalGradient.regularization" />
 
 `property regularization`
 
@@ -150,3 +172,4 @@ Returns: the regularization option.
 **Return type**
 
 `Optional`\[`str`]
+

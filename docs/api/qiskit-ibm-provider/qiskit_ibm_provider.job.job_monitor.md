@@ -12,7 +12,7 @@ python_api_name: qiskit_ibm_provider.job.job_monitor
 
 <span id="qiskit_ibm_provider.job.job_monitor" />
 
-`job_monitor(job, interval=None, output=<_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>)`
+`job_monitor(job, interval=None, output=<_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.9/qiskit_ibm_provider/job/job_monitor.py "view source code")
 
 Monitor the status of an `IBMJob` instance.
 

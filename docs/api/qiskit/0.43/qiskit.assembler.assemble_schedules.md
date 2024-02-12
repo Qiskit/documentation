@@ -12,7 +12,7 @@ python_api_name: qiskit.assembler.assemble_schedules
 
 <span id="qiskit.assembler.assemble_schedules" />
 
-`assemble_schedules(schedules, qobj_id, qobj_header, run_config)`
+`assemble_schedules(schedules, qobj_id, qobj_header, run_config)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/assembler/assemble_schedules.py "view source code")
 
 Assembles a list of schedules into a qobj that can be run on the backend.
 
@@ -35,7 +35,7 @@ The Qobj to be run on the backends.
 
 [*PulseQobj*](qiskit.qobj.PulseQobj "qiskit.qobj.pulse_qobj.PulseQobj")
 
-## Examples
+**Examples**
 
 ```python
 from qiskit import pulse

@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.NFT
 
 <span id="qiskit.algorithms.optimizers.NFT" />
 
-`NFT(maxiter=None, maxfev=1024, disp=False, reset_interval=32, options=None, **kwargs)`
+`NFT(maxiter=None, maxfev=1024, disp=False, reset_interval=32, options=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/optimizers/nft.py "view source code")
 
 Bases: [`qiskit.algorithms.optimizers.scipy_optimizer.SciPyOptimizer`](qiskit.algorithms.optimizers.SciPyOptimizer "qiskit.algorithms.optimizers.scipy_optimizer.SciPyOptimizer")
 
@@ -29,11 +29,11 @@ Built out using scipy framework, for details, please refer to [https://docs.scip
 *   **options** (`Optional`\[`dict`]) – A dictionary of solver options.
 *   **kwargs** – additional kwargs for scipy.optimize.minimize.
 
-## Notes
+**Notes**
 
 In this optimization method, the optimization function have to satisfy three conditions written in [1](#id2).
 
-## References
+**References**
 
 **[1](#id1)**
 

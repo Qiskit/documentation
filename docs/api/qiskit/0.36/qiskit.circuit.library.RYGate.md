@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.library.RYGate
 
 <span id="qiskit.circuit.library.RYGate" />
 
-`RYGate(theta, label=None)`
+`RYGate(theta, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/ry.py "view source code")
 
-Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+Bases: `qiskit.circuit.gate.Gate`
 
 Single-qubit rotation about the Y axis.
 
@@ -27,7 +27,7 @@ q_0: ┤ Ry(ϴ) ├
 **Matrix Representation:**
 
 $$
- \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}RY(\theta) = \exp\left(-i \th Y\right) =
+ \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}RY(\theta) = exp(-i \th Y) =
     \begin{pmatrix}
         \cos{\th} & -\sin{\th} \\
         \sin{\th} & \cos{\th}
@@ -42,7 +42,7 @@ Create new RY gate.
 
 <span id="qiskit.circuit.library.RYGate.control" />
 
-`RYGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+`RYGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/ry.py "view source code")
 
 Return a (multi-)controlled-RY gate.
 
@@ -64,7 +64,7 @@ controlled version of this gate.
 
 <span id="qiskit.circuit.library.RYGate.inverse" />
 
-`RYGate.inverse()`
+`RYGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/ry.py "view source code")
 
 Return inverted RY gate.
 
@@ -80,7 +80,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.library.RYGate.decompositions" />
 

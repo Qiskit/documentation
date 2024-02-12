@@ -11,11 +11,11 @@ in_page_toc_max_heading_level: 2
 
 This guide describes key patterns of behavior and use cases with code
 examples to help you migrate code from the legacy `qiskit-ibmq-provider`
-package to use the Qiskit Runtime primitives.
+package to use the Qiskit&reg; Runtime primitives.
 
 ## Overview
 
-There are two methods for accessing IBM Quantum systems. First, the `qiskit-ibm-provider` package provides the `backend.run()` interface, allowing direct access to IBM Quantum systems with no pre- or post-processing involved. This level of access is suitable for those users who want **precise control** over circuit execution and result processing. This level of access is needed for those at the level of kernel developer who are looking to develop, for example, circuit optimization routines or error mitigation techniques, or who want to characterize quantum systems.
+There are two methods for accessing IBM Quantum&trade; systems. First, the `qiskit-ibm-provider` package provides the `backend.run()` interface, allowing direct access to IBM Quantum systems with no pre- or post-processing involved. This level of access is suitable for those users who want **precise control** over circuit execution and result processing. This level of access is needed for those at the level of kernel developer who are looking to develop, for example, circuit optimization routines or error mitigation techniques, or who want to characterize quantum systems.
 
 In contrast, Qiskit Runtime is designed to **streamline algorithm and application construction** by removing the need for users to understand technical hardware and low-level software details. Advanced processing techniques for error suppression and mitigation are automatically applied, giving users high-fidelity results without the burden of having to code these routines themselves. Sessions within Qiskit Runtime allow users to run iterative algorithm circuits back to back, or batch collections of circuits without having to re-queue each job. This results in more efficient quantum processor use and reduces the time users spend running complex computations.
 
@@ -57,7 +57,7 @@ your algorithm is based on:
 -   If it uses a **probability distribution** (from sampling the device), you will need a `Sampler`.
 
 After determining which primitive to use, identify where the algorithm
-accesses the backend. Look for the call to `backend.run()`. Next, you
+accesses the system. Look for the call to `backend.run()`. Next, you
 will replace this call with the respective primitive call, as shown in
 the following examples.
 
@@ -145,8 +145,7 @@ This guide describes how to migrate code from the legacy IBMQ provider
 `qiskit-ibmq-provider` package to use Qiskit Runtime
 `qiskit-ibm-runtime`. This guide includes instructions to
 migrate legacy runtime programs to the new syntax. However, the ability
-to use custom uploaded programs is pending deprecation, so these should
-be migrated to use primitives instead.
+to use custom uploaded programs has been deprecated and has been replaced with Quantum Serverless patterns.  For instructions to migrate, see [Converting from Qiskit Runtime Programs.](https://qiskit-extensions.github.io/quantum-serverless/migration/migration_from_qiskit_runtime_programs.html)
 
 ### Changes in Class name and location
 
@@ -191,17 +190,19 @@ from qiskit import IBMQ
 from qiskit_ibm_runtime import QiskitRuntimeService
 ```
 
-### Save and load accounts
+### Save accounts
 
-Use the updated code to work with accounts.
+Use the updated code to work save accounts.
 
-**Legacy: Save accounts**
+**Legacy**
 
 ``` python
 IBMQ.save_account("<IQX_TOKEN>", overwrite=True)
 ```
 
-**Updated: Save accounts** The new syntax accepts credentials for
+**Updated** 
+
+The new syntax accepts credentials for
 Qiskit Runtime on IBM Cloud or IBM Quantum Platform. For more
 information on retrieving account credentials, see [Install and set up](../../start/install).
 
@@ -215,10 +216,8 @@ QiskitRuntimeService.save_account(channel="ibm_cloud", token="<IBM Cloud API key
 QiskitRuntimeService.save_account(channel="ibm_quantum", token="<IQP_TOKEN>", overwrite=True, default=true)
 ```
 
-**Updated: Name saved credentials** You can now name your saved
-credentials and load the credentials by name.
+Additionally, you can now name your saved credentials and load the credentials by name.
 
-**Example:**
 
 ``` python
 # Save different accounts for open and premium access
@@ -231,13 +230,17 @@ QiskitRuntimeService.save_account(channel="ibm_quantum", token="<IQX_TOKEN>", in
 service = QiskitRuntimeService(name="open")
 ```
 
-**Legacy: Load accounts**
+### Load accounts
+
+Use the updated code to load accounts.
+
+**Legacy**
 
 ``` python
 IBMQ.load_account()
 ```
 
-**Updated: Load accounts**
+**Updated**
 
 The new syntax combines the functionality from `load_account()` and
 `get_provider()` in one statement. The `channel` input parameter is
@@ -251,6 +254,7 @@ service = QiskitRuntimeService(channel="ibm_cloud")
 # To access saved credentials for the IBM quantum channel
 service = QiskitRuntimeService(channel="ibm_quantum")
 ```
+
 
 ### Channel selection (get a provider)
 
@@ -274,9 +278,9 @@ the `hub`, `group`, and `project` are specified through the new
 service = QiskitRuntimeService(channel="ibm_quantum", instance="my_hub/my_group/my_project")
 ```
 
-### Get the backend
+### Get the system or simulator
 
-Use the updated code to view backends.
+Use the updated code to view systems and simulators.
 
 **Legacy**
 
@@ -294,79 +298,7 @@ backend = service.backend("ibm_backend", instance="h1/g1/p1")
 
 ### Upload, view, or delete custom prototype programs
 
-To work with custom programs, replace `provider.runtime` with `service`.
-
-<Admonition type="note">
-    This function is pending deprecation.
-</Admonition>
-
-**Legacy**
-
-``` python
-# Printing existing programs
-provider.runtime.pprint_programs()
-
-# Deleting custom program
-provider.runtime.delete_program("my_program") # Substitute "my_program" with your program ID
-
-# Uploading custom program
-program_id = provider.runtime.upload_program(
-            data=program_data,
-            metadata=program_json
-            )
-```
-
-**Updated**
-
-``` python
-# Printing existing programs
-service.pprint_programs()
-
-# Deleting custom program
-service.delete_program("my_program") # Substitute "my_program" with your program ID
-
-# Uploading custom program
-program_id = service.upload_program(
-            data=program_data,
-            metadata=program_json
-            )
-```
-
-### Run prototype programs
-
-To run prototype programs, replace `provider.runtime` with `service`.
-
-<Admonition type="note">
-    This function is pending deprecation.
-</Admonition>
-
-**Legacy**
-
-``` python
-program_inputs = {"iterations": 3}
-options = {"backend_name": backend.name()}
-job = provider.runtime.run(program_id="hello-world",
-                           options=options,
-                           inputs=program_inputs
-                          )
-print(f"job id: {job.job_id()}")
-result = job.result()
-print(result)
-```
-
-**Updated**
-
-``` python
-program_inputs = {"iterations": 3}
-options = {"backend": ""}
-job = service.run(program_id="hello-world",
-                  options=options,
-                  inputs=program_inputs
-                  )
-print(f"job id: {job.job_id()}")
-result = job.result()
-print(result)
-```
+This function has been replaced with Quantum Serverless patterns.  For instructions to migrate, see [Converting from Qiskit Runtime Programs.](https://qiskit-extensions.github.io/quantum-serverless/migration/migration_from_qiskit_runtime_programs.html)
 
 <span id="parm-circ"></span>
 ## Parametrized circuits with primitives
@@ -470,6 +402,6 @@ an algorithm, you might want to tune certain primitive options. For details, see
     - [Get started with Sampler.](../../run/primitives-get-started#start-sampler)
     - Explore [sessions.](../../run/sessions)
     - [Run a primitive in a session.](../../run/run-jobs-in-session)
-    - Experiment with the [Run custom transpiled circuits with primitives tutorial.](https://learning.quantum-computing.ibm.com/tutorial/submitting-user-transpiled-circuits-using-primitives)
+    - Experiment with the [Submit pre-transpiled circuits tutorial.](https://learning.quantum.ibm.com/tutorial/submitting-user-transpiled-circuits-using-primitives)
 
 </Admonition>

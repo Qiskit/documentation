@@ -1,8 +1,16 @@
+---
+title: DAGDependency
+description: API reference for qiskit.dagcircuit.DAGDependency
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.dagcircuit.DAGDependency
+---
+
 # qiskit.dagcircuit.DAGDependency
 
-<span id="undefined" />
+<span id="qiskit.dagcircuit.DAGDependency" />
 
-`DAGDependency`
+`DAGDependency`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/dagcircuit/dagdependency.py "view source code")
 
 Object to represent a quantum circuit as a directed acyclic graph via operation dependencies (i.e. lack of commutation).
 
@@ -30,7 +38,9 @@ The dependency DAG for the above circuit is represented by two nodes. The first 
 
 Create an empty DAGDependency.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.dagcircuit.DAGDependency.__init__" />
 
 `__init__()`
 
@@ -71,19 +81,25 @@ Create an empty DAGDependency.
 | [`calibrations`](#qiskit.dagcircuit.DAGDependency.calibrations "qiskit.dagcircuit.DAGDependency.calibrations") | Return calibration dictionary.          |
 | [`global_phase`](#qiskit.dagcircuit.DAGDependency.global_phase "qiskit.dagcircuit.DAGDependency.global_phase") | Return the global phase of the circuit. |
 
-<span id="undefined" />
+### add\_clbits
+
+<span id="qiskit.dagcircuit.DAGDependency.add_clbits" />
 
 `add_clbits(clbits)`
 
 Add individual clbit wires.
 
-<span id="undefined" />
+### add\_creg
+
+<span id="qiskit.dagcircuit.DAGDependency.add_creg" />
 
 `add_creg(creg)`
 
 Add clbits in a classical register.
 
-<span id="undefined" />
+### add\_op\_node
+
+<span id="qiskit.dagcircuit.DAGDependency.add_op_node" />
 
 `add_op_node(operation, qargs, cargs)`
 
@@ -91,23 +107,29 @@ Add a DAGDepNode to the graph and update the edges.
 
 **Parameters**
 
-*   **operation** ([*qiskit.circuit.Instruction*](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")) – operation as a quantum gate.
-*   **qargs** (*list\[*[*Qubit*](qiskit.circuit.Qubit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of qubits on which the operation acts
-*   **cargs** (*list\[*[*Clbit*](qiskit.circuit.Clbit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]*) – list of classical wires to attach to.
+*   **operation** ([*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")) – operation as a quantum gate.
+*   **qargs** (*list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of qubits on which the operation acts
+*   **cargs** (*list\[*[*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]*) – list of classical wires to attach to.
 
-<span id="undefined" />
+### add\_qreg
+
+<span id="qiskit.dagcircuit.DAGDependency.add_qreg" />
 
 `add_qreg(qreg)`
 
 Add qubits in a quantum register.
 
-<span id="undefined" />
+### add\_qubits
+
+<span id="qiskit.dagcircuit.DAGDependency.add_qubits" />
 
 `add_qubits(qubits)`
 
 Add individual qubit wires.
 
-<span id="undefined" />
+### calibrations
+
+<span id="qiskit.dagcircuit.DAGDependency.calibrations" />
 
 `property calibrations`
 
@@ -117,19 +139,25 @@ Return calibration dictionary.
 
 \{‘gate\_name’: \{(qubits, params): schedule}}
 
-<span id="undefined" />
+### copy
+
+<span id="qiskit.dagcircuit.DAGDependency.copy" />
 
 `copy()`
 
 Function to copy a DAGDependency object. :returns: a copy of a DAGDependency object. :rtype: DAGDependency
 
-<span id="undefined" />
+### depth
+
+<span id="qiskit.dagcircuit.DAGDependency.depth" />
 
 `depth()`
 
 Return the circuit depth. :returns: the circuit depth :rtype: int
 
-<span id="undefined" />
+### direct\_predecessors
+
+<span id="qiskit.dagcircuit.DAGDependency.direct_predecessors" />
 
 `direct_predecessors(node_id)`
 
@@ -147,7 +175,9 @@ direct predecessors id as a sorted list
 
 List
 
-<span id="undefined" />
+### direct\_successors
+
+<span id="qiskit.dagcircuit.DAGDependency.direct_successors" />
 
 `direct_successors(node_id)`
 
@@ -165,7 +195,9 @@ direct successors id as a sorted list
 
 List
 
-<span id="undefined" />
+### draw
+
+<span id="qiskit.dagcircuit.DAGDependency.draw" />
 
 `draw(scale=0.7, filename=None, style='color')`
 
@@ -189,7 +221,9 @@ otherwise None.
 
 Ipython.display.Image
 
-<span id="undefined" />
+### get\_all\_edges
+
+<span id="qiskit.dagcircuit.DAGDependency.get_all_edges" />
 
 `get_all_edges()`
 
@@ -203,7 +237,9 @@ corresponding to the label.
 
 List
 
-<span id="undefined" />
+### get\_edges
+
+<span id="qiskit.dagcircuit.DAGDependency.get_edges" />
 
 `get_edges(src_id, dest_id)`
 
@@ -222,7 +258,9 @@ corresponding to all edges between the two nodes.
 
 List
 
-<span id="undefined" />
+### get\_in\_edges
+
+<span id="qiskit.dagcircuit.DAGDependency.get_in_edges" />
 
 `get_in_edges(node_id)`
 
@@ -240,7 +278,9 @@ corresponding incoming edges data.
 
 List
 
-<span id="undefined" />
+### get\_node
+
+<span id="qiskit.dagcircuit.DAGDependency.get_node" />
 
 `get_node(node_id)`
 
@@ -256,7 +296,9 @@ corresponding to the label.
 
 node
 
-<span id="undefined" />
+### get\_nodes
+
+<span id="qiskit.dagcircuit.DAGDependency.get_nodes" />
 
 `get_nodes()`
 
@@ -268,7 +310,9 @@ iterator over all the nodes.
 
 generator(dict)
 
-<span id="undefined" />
+### get\_out\_edges
+
+<span id="qiskit.dagcircuit.DAGDependency.get_out_edges" />
 
 `get_out_edges(node_id)`
 
@@ -286,13 +330,17 @@ corresponding outgoing edges data.
 
 List
 
-<span id="undefined" />
+### global\_phase
+
+<span id="qiskit.dagcircuit.DAGDependency.global_phase" />
 
 `property global_phase`
 
 Return the global phase of the circuit.
 
-<span id="undefined" />
+### predecessors
+
+<span id="qiskit.dagcircuit.DAGDependency.predecessors" />
 
 `predecessors(node_id)`
 
@@ -310,13 +358,17 @@ all predecessors id as a sorted list
 
 List
 
-<span id="undefined" />
+### size
+
+<span id="qiskit.dagcircuit.DAGDependency.size" />
 
 `size()`
 
 Returns the number of gates in the circuit
 
-<span id="undefined" />
+### successors
+
+<span id="qiskit.dagcircuit.DAGDependency.successors" />
 
 `successors(node_id)`
 
@@ -334,19 +386,25 @@ all successors id as a sorted list
 
 List
 
-<span id="undefined" />
+### to\_networkx
+
+<span id="qiskit.dagcircuit.DAGDependency.to_networkx" />
 
 `to_networkx()`
 
 Returns a copy of the DAGDependency in networkx format.
 
-<span id="undefined" />
+### to\_retworkx
+
+<span id="qiskit.dagcircuit.DAGDependency.to_retworkx" />
 
 `to_retworkx()`
 
 Returns the DAGDependency in retworkx format.
 
-<span id="undefined" />
+### topological\_nodes
+
+<span id="qiskit.dagcircuit.DAGDependency.topological_nodes" />
 
 `topological_nodes()`
 
@@ -358,4 +416,5 @@ node in topological order.
 
 **Return type**
 
-generator([DAGNode](qiskit.dagcircuit.DAGNode#qiskit.dagcircuit.DAGNode "qiskit.dagcircuit.DAGNode"))
+generator([DAGNode](qiskit.dagcircuit.DAGNode "qiskit.dagcircuit.DAGNode"))
+

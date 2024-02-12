@@ -20,9 +20,11 @@ python_api_name: qiskit.exceptions
 
 All Qiskit-related errors raised by Qiskit are subclasses of the base:
 
+### QiskitError
+
 <span id="qiskit.exceptions.QiskitError" />
 
-`qiskit.exceptions.QiskitError(*message)`
+`qiskit.exceptions.QiskitError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/exceptions.py "view source code")
 
 Base class for errors raised by Qiskit.
 
@@ -36,9 +38,11 @@ Many of the Qiskit subpackages define their own more granular error, to help in 
 
 Qiskit has several optional features that depend on other packages that are not required for a minimal install. You can read more about those, and ways to check for their presence, in [`qiskit.utils.optionals`](utils#module-qiskit.utils.optionals "qiskit.utils.optionals"). Trying to use a feature that requires an optional extra will raise a particular error, which subclasses both [`QiskitError`](#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") and the Python built-in `ImportError`.
 
+### MissingOptionalLibraryError
+
 <span id="qiskit.exceptions.MissingOptionalLibraryError" />
 
-`qiskit.exceptions.MissingOptionalLibraryError(libname, name, pip_install=None, msg=None)`
+`qiskit.exceptions.MissingOptionalLibraryError(libname, name, pip_install=None, msg=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/exceptions.py "view source code")
 
 Raised when an optional library is missing.
 
@@ -46,17 +50,21 @@ Set the error message. :param libname: Name of missing library :param name: Name
 
 Two more uncommon errors relate to failures in reading user-configuration files, or specifying a filename that cannot be used:
 
+### QiskitUserConfigError
+
 <span id="qiskit.exceptions.QiskitUserConfigError" />
 
-`qiskit.exceptions.QiskitUserConfigError(*message)`
+`qiskit.exceptions.QiskitUserConfigError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/exceptions.py "view source code")
 
 Raised when an error is encountered reading a user config file.
 
 Set the error message.
 
+### InvalidFileError
+
 <span id="qiskit.exceptions.InvalidFileError" />
 
-`qiskit.exceptions.InvalidFileError(*message)`
+`qiskit.exceptions.InvalidFileError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/exceptions.py "view source code")
 
 Raised when the file provided is not valid for the specific task.
 

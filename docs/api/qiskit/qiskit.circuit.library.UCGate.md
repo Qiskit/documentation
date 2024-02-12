@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.UCGate
 
 <span id="qiskit.circuit.library.UCGate" />
 
-`qiskit.circuit.library.UCGate(gate_list, up_to_diagonal=False)`
+`qiskit.circuit.library.UCGate(gate_list, up_to_diagonal=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/generalized_gates/uc.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -21,12 +21,12 @@ These gates can have several control qubits and a single target qubit. If the k 
 This gate is represented by a block-diagonal matrix, where each block is a $2\times 2$ unitary, that is
 
 $$
-\begin{split}\begin{pmatrix}
+\begin{pmatrix}
     U_0 & 0 & \cdots & 0 \\
     0 & U_1 & \cdots & 0 \\
     \vdots  &     & \ddots & \vdots \\
     0 & 0   &  \cdots & U_{2^{k-1}}
-\end{pmatrix}.\end{split}
+\end{pmatrix}.
 $$
 
 The decomposition is based on Ref. \[1].

@@ -1,10 +1,18 @@
+---
+title: align_sequential
+description: API reference for qiskit.pulse.builder.align_sequential
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.builder.align_sequential
+---
+
 <span id="qiskit-pulse-builder-align-sequential" />
 
 # qiskit.pulse.builder.align\_sequential
 
-<span id="undefined" />
+<span id="qiskit.pulse.builder.align_sequential" />
 
-`align_sequential()`
+`align_sequential()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/builder.py "view source code")
 
 Sequential alignment pulse scheduling context.
 
@@ -31,3 +39,4 @@ assert pulse_prog.ch_stop_time(d0) == pulse_prog.ch_start_time(d1)
 **Return type**
 
 `AbstractContextManager`\[`None`]
+

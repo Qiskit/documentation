@@ -10,7 +10,7 @@ python_api_name: qiskit.visualization.pulse_v2.IQXStandard
 
 <span id="qiskit.visualization.pulse_v2.IQXStandard" />
 
-`IQXStandard(**kwargs)`
+`IQXStandard(**kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/visualization/pulse_v2/stylesheet.py "view source code")
 
 Bases: `dict`
 
@@ -30,7 +30,7 @@ Standard pulse stylesheet.
 
 <span id="qiskit.visualization.pulse_v2.IQXStandard.clear" />
 
-`IQXStandard.clear() → None.  Remove all items from D.`
+`IQXStandard.clear() → None. Remove all items from D.`
 
 ### copy
 
@@ -58,13 +58,13 @@ Return the value for key if key is in the dictionary, else default.
 
 <span id="qiskit.visualization.pulse_v2.IQXStandard.items" />
 
-`IQXStandard.items() → a set-like object providing a view on D's items`
+`IQXStandard.items() → a set-like object providing a view on D’s items`
 
 ### keys
 
 <span id="qiskit.visualization.pulse_v2.IQXStandard.keys" />
 
-`IQXStandard.keys() → a set-like object providing a view on D's keys`
+`IQXStandard.keys() → a set-like object providing a view on D’s keys`
 
 ### pop
 
@@ -98,7 +98,7 @@ Return the value for key if key is in the dictionary, else default.
 
 <span id="qiskit.visualization.pulse_v2.IQXStandard.update" />
 
-`IQXStandard.update([E, ]**F) → None.  Update D from dict/iterable E and F.`
+`IQXStandard.update([E, ]**F) → None. Update D from dict/iterable E and F.`
 
 If E is present and has a .keys() method, then does: for k in E: D\[k] = E\[k] If E is present and lacks a .keys() method, then does: for k, v in E: D\[k] = v In either case, this is followed by: for k in F: D\[k] = F\[k]
 
@@ -106,5 +106,5 @@ If E is present and has a .keys() method, then does: for k in E: D\[k] = E\[k] I
 
 <span id="qiskit.visualization.pulse_v2.IQXStandard.values" />
 
-`IQXStandard.values() → an object providing a view on D's values`
+`IQXStandard.values() → an object providing a view on D’s values`
 

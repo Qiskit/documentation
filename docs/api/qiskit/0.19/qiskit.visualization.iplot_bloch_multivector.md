@@ -10,7 +10,7 @@ python_api_name: qiskit.visualization.iplot_bloch_multivector
 
 <span id="qiskit.visualization.iplot_bloch_multivector" />
 
-`iplot_bloch_multivector(rho, figsize=None)`
+`iplot_bloch_multivector(rho, figsize=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/visualization/interactive/iplot_blochsphere.py "view source code")
 
 Create a bloch sphere representation.
 
@@ -21,7 +21,7 @@ Graphical representation of the input array, using as much bloch spheres as qubi
 *   **rho** (*array*) – State vector or density matrix
 *   **figsize** (*tuple*) – Figure size in pixels.
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumCircuit, BasicAer, execute

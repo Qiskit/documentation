@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.quantum_info.gate_error
 ---
 
-# qiskit.quantum\_info.gate\_error[¶](#qiskit-quantum-info-gate-error "Permalink to this headline")
+# qiskit.quantum\_info.gate\_error
 
 <span id="qiskit.quantum_info.gate_error" />
 
-`gate_error(channel, target=None, require_cp=True, require_tp=False)`
+`gate_error(channel, target=None, require_cp=True, require_tp=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/operators/measures.py "view source code")
 
 Return the gate error of a noisy quantum channel.
 

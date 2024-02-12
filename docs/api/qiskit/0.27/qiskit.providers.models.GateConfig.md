@@ -1,24 +1,32 @@
+---
+title: GateConfig
+description: API reference for qiskit.providers.models.GateConfig
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.models.GateConfig
+---
+
 # qiskit.providers.models.GateConfig
 
-<span id="undefined" />
+<span id="qiskit.providers.models.GateConfig" />
 
-`GateConfig(name, parameters, qasm_def, coupling_map=None, latency_map=None, conditional=None, description=None)`
+`GateConfig(name, parameters, qasm_def, coupling_map=None, latency_map=None, conditional=None, description=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/providers/models/backendconfiguration.py "view source code")
 
 Class representing a Gate Configuration
 
-<span id="undefined" />
+<span id="qiskit.providers.models.GateConfig.name" />
 
 ### name
 
 the gate name as it will be referred to in Qasm.
 
-<span id="undefined" />
+<span id="qiskit.providers.models.GateConfig.parameters" />
 
 ### parameters
 
 variable names for the gate parameters (if any).
 
-<span id="undefined" />
+<span id="qiskit.providers.models.GateConfig.qasm_def" />
 
 ### qasm\_def
 
@@ -36,7 +44,9 @@ Initialize a GateConfig object
 *   **conditional** (*bool*) – Optionally specify whether this gate supports conditional operations (true/false). If this is not specified, then the gate inherits the conditional property of the backend.
 *   **description** (*str*) – Description of the gate operation
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.providers.models.GateConfig.__init__" />
 
 `__init__(name, parameters, qasm_def, coupling_map=None, latency_map=None, conditional=None, description=None)`
 
@@ -60,7 +70,9 @@ Initialize a GateConfig object
 | [`from_dict`](#qiskit.providers.models.GateConfig.from_dict "qiskit.providers.models.GateConfig.from_dict")(data)                           | Create a new GateConfig object from a dictionary.            |
 | [`to_dict`](#qiskit.providers.models.GateConfig.to_dict "qiskit.providers.models.GateConfig.to_dict")()                                     | Return a dictionary format representation of the GateConfig. |
 
-<span id="undefined" />
+### from\_dict
+
+<span id="qiskit.providers.models.GateConfig.from_dict" />
 
 `classmethod from_dict(data)`
 
@@ -78,7 +90,9 @@ The GateConfig from the input dictionary.
 
 [GateConfig](#qiskit.providers.models.GateConfig "qiskit.providers.models.GateConfig")
 
-<span id="undefined" />
+### to\_dict
+
+<span id="qiskit.providers.models.GateConfig.to_dict" />
 
 `to_dict()`
 
@@ -91,3 +105,4 @@ The dictionary form of the GateConfig.
 **Return type**
 
 dict
+

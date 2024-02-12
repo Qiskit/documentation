@@ -1,10 +1,18 @@
+---
+title: CRXGate
+description: API reference for qiskit.circuit.library.CRXGate
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.CRXGate
+---
+
 <span id="qiskit-circuit-library-crxgate" />
 
 # qiskit.circuit.library.CRXGate
 
-<span id="undefined" />
+<span id="qiskit.circuit.library.CRXGate" />
 
-`CRXGate(theta, label=None, ctrl_state=None)`
+`CRXGate(theta, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/standard_gates/rx.py "view source code")
 
 Controlled-RX gate.
 
@@ -54,7 +62,9 @@ $$
 
 Create new CRX gate.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.circuit.library.CRXGate.__init__" />
 
 `__init__(theta, label=None, ctrl_state=None)`
 
@@ -94,13 +104,17 @@ Create new CRX gate.
 | [`params`](#qiskit.circuit.library.CRXGate.params "qiskit.circuit.library.CRXGate.params")                            | Get parameters from base\_gate.                                               |
 | [`unit`](#qiskit.circuit.library.CRXGate.unit "qiskit.circuit.library.CRXGate.unit")                                  | Get the time unit of duration.                                                |
 
-<span id="undefined" />
+### add\_decomposition
+
+<span id="qiskit.circuit.library.CRXGate.add_decomposition" />
 
 `add_decomposition(decomposition)`
 
 Add a decomposition of the instruction to the SessionEquivalenceLibrary.
 
-<span id="undefined" />
+### assemble
+
+<span id="qiskit.circuit.library.CRXGate.assemble" />
 
 `assemble()`
 
@@ -110,7 +124,9 @@ Assemble a QasmQobjInstruction
 
 `Instruction`
 
-<span id="undefined" />
+### broadcast\_arguments
+
+<span id="qiskit.circuit.library.CRXGate.broadcast_arguments" />
 
 `broadcast_arguments(qargs, cargs)`
 
@@ -163,17 +179,21 @@ A tuple with single arguments.
 
 **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
 
-<span id="undefined" />
+### c\_if
+
+<span id="qiskit.circuit.library.CRXGate.c_if" />
 
 `c_if(classical, val)`
 
 Add classical condition on register classical and value val.
 
-<span id="undefined" />
+### control
+
+<span id="qiskit.circuit.library.CRXGate.control" />
 
 `control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
-Return controlled version of gate. See [`ControlledGate`](qiskit.circuit.ControlledGate#qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") for usage.
+Return controlled version of gate. See [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") for usage.
 
 **Parameters**
 
@@ -187,13 +207,15 @@ Controlled version of gate. This default algorithm uses num\_ctrl\_qubits-1 anci
 
 **Return type**
 
-[qiskit.circuit.ControlledGate](qiskit.circuit.ControlledGate#qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+[qiskit.circuit.ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
 
 **Raises**
 
 **QiskitError** – unrecognized mode or invalid ctrl\_state
 
-<span id="undefined" />
+### copy
+
+<span id="qiskit.circuit.library.CRXGate.copy" />
 
 `copy(name=None)`
 
@@ -211,9 +233,11 @@ updated if it was provided
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+### ctrl\_state
+
+<span id="qiskit.circuit.library.CRXGate.ctrl_state" />
 
 `property ctrl_state`
 
@@ -223,13 +247,17 @@ Return the control state of the gate as a decimal integer.
 
 `int`
 
-<span id="undefined" />
+### decompositions
+
+<span id="qiskit.circuit.library.CRXGate.decompositions" />
 
 `property decompositions`
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
-<span id="undefined" />
+### definition
+
+<span id="qiskit.circuit.library.CRXGate.definition" />
 
 `property definition`
 
@@ -239,25 +267,33 @@ Return definition in terms of other basic gates. If the gate has open controls, 
 
 `List`
 
-<span id="undefined" />
+### duration
+
+<span id="qiskit.circuit.library.CRXGate.duration" />
 
 `property duration`
 
 Get the duration.
 
-<span id="undefined" />
+### inverse
+
+<span id="qiskit.circuit.library.CRXGate.inverse" />
 
 `inverse()`
 
 Return inverse CRX gate (i.e. with the negative rotation angle).
 
-<span id="undefined" />
+### is\_parameterized
+
+<span id="qiskit.circuit.library.CRXGate.is_parameterized" />
 
 `is_parameterized()`
 
 Return True .IFF. instruction is parameterized else False
 
-<span id="undefined" />
+### label
+
+<span id="qiskit.circuit.library.CRXGate.label" />
 
 `property label`
 
@@ -267,7 +303,9 @@ Return gate label
 
 `str`
 
-<span id="undefined" />
+### mirror
+
+<span id="qiskit.circuit.library.CRXGate.mirror" />
 
 `mirror()`
 
@@ -281,9 +319,11 @@ reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+### num\_ctrl\_qubits
+
+<span id="qiskit.circuit.library.CRXGate.num_ctrl_qubits" />
 
 `property num_ctrl_qubits`
 
@@ -297,7 +337,9 @@ The number of control qubits for the gate.
 
 int
 
-<span id="undefined" />
+### params
+
+<span id="qiskit.circuit.library.CRXGate.params" />
 
 `property params`
 
@@ -315,7 +357,9 @@ list
 
 **CircuitError** – Controlled gate does not define a base gate
 
-<span id="undefined" />
+### power
+
+<span id="qiskit.circuit.library.CRXGate.power" />
 
 `power(exponent)`
 
@@ -331,13 +375,15 @@ To which to\_matrix is self.to\_matrix^exponent.
 
 **Return type**
 
-[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate#qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
+[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
 
 **Raises**
 
 **CircuitError** – If Gate is not unitary
 
-<span id="undefined" />
+### qasm
+
+<span id="qiskit.circuit.library.CRXGate.qasm" />
 
 `qasm()`
 
@@ -345,7 +391,9 @@ Return a default OpenQASM string for the instruction.
 
 Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
 
-<span id="undefined" />
+### repeat
+
+<span id="qiskit.circuit.library.CRXGate.repeat" />
 
 `repeat(n)`
 
@@ -361,13 +409,15 @@ Containing the definition.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
 **Raises**
 
 **CircuitError** – If n \< 1.
 
-<span id="undefined" />
+### reverse\_ops
+
+<span id="qiskit.circuit.library.CRXGate.reverse_ops" />
 
 `reverse_ops()`
 
@@ -383,22 +433,29 @@ sub-instructions reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+### to\_matrix
+
+<span id="qiskit.circuit.library.CRXGate.to_matrix" />
 
 `to_matrix()`
 
 Return a numpy.array for the CRX gate.
 
-<span id="undefined" />
+### unit
+
+<span id="qiskit.circuit.library.CRXGate.unit" />
 
 `property unit`
 
 Get the time unit of duration.
 
-<span id="undefined" />
+### validate\_parameter
+
+<span id="qiskit.circuit.library.CRXGate.validate_parameter" />
 
 `validate_parameter(parameter)`
 
 Gate parameters should be int, float, or ParameterExpression
+

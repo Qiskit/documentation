@@ -10,17 +10,17 @@ python_api_name: qiskit.circuit.ForLoopOp
 
 <span id="qiskit.circuit.ForLoopOp" />
 
-`ForLoopOp(indexset, loop_parameter, body, label=None)`
+`ForLoopOp(indexset, loop_parameter, body, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/controlflow/for_loop.py "view source code")
 
-Bases: [`qiskit.circuit.controlflow.control_flow.ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.controlflow.control_flow.ControlFlowOp")
+Bases: `qiskit.circuit.controlflow.control_flow.ControlFlowOp`
 
 A circuit operation which repeatedly executes a subcircuit (`body`) parameterized by a parameter `loop_parameter` through the set of integer values provided in `indexset`.
 
 **Parameters**
 
 *   **indexset** (`Iterable`\[`int`]) – A collection of integers to loop over.
-*   **loop\_parameter** (`Optional`\[[`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.parameter.Parameter")]) – The placeholder parameterizing `body` to which the values from `indexset` will be assigned.
-*   **body** ([`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – The loop body to be repeatedly executed.
+*   **loop\_parameter** (`Optional`\[`Parameter`]) – The placeholder parameterizing `body` to which the values from `indexset` will be assigned.
+*   **body** (`QuantumCircuit`) – The loop body to be repeatedly executed.
 *   **label** (`Optional`\[`str`]) – An optional label for identifying the instruction.
 
 **Circuit symbol:**
@@ -44,15 +44,14 @@ Create a new instruction.
 *   **name** (*str*) – instruction name
 *   **num\_qubits** (*int*) – instruction’s qubit width
 *   **num\_clbits** (*int*) – instruction’s clbit width
-*   **params** (*list\[int|float|complex|str|ndarray|list|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*]*) – list of parameters
+*   **params** (*list\[int|float|complex|str|ndarray|list|ParameterExpression]*) – list of parameters
 *   **duration** (*int or float*) – instruction’s duration. it must be integer if `unit` is ‘dt’
 *   **unit** (*str*) – time unit of duration
 *   **label** (*str or None*) – An optional label for identifying the instruction.
 
 **Raises**
 
-*   **CircuitError** – when the register is not in the correct format.
-*   **TypeError** – when the optional label is provided, but it is not a string.
+**CircuitError** – when the register is not in the correct format.
 
 ## Methods
 
@@ -193,18 +192,6 @@ Containing the definition.
 
 **CircuitError** – If n \< 1.
 
-### replace\_blocks
-
-<span id="qiskit.circuit.ForLoopOp.replace_blocks" />
-
-`ForLoopOp.replace_blocks(blocks)`
-
-Replace blocks and return new instruction. :param blocks: Tuple of QuantumCircuits to replace in instruction.
-
-**Returns**
-
-New ControlFlowOp with replaced blocks.
-
 ### reverse\_ops
 
 <span id="qiskit.circuit.ForLoopOp.reverse_ops" />
@@ -267,7 +254,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.ForLoopOp.decompositions" />
 

@@ -1,14 +1,24 @@
+---
+title: VibronicStructureResult
+description: API reference for qiskit.chemistry.results.VibronicStructureResult
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.results.VibronicStructureResult
+---
+
 <span id="qiskit-chemistry-results-vibronicstructureresult" />
 
 # qiskit.chemistry.results.VibronicStructureResult
 
-<span id="undefined" />
+<span id="qiskit.chemistry.results.VibronicStructureResult" />
 
-`VibronicStructureResult(a_dict=None)`
+`VibronicStructureResult(a_dict=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/results/vibronic_structure_result.py "view source code")
 
 The vibronic structure result.
 
-<span id="undefined" />
+### \_\_init\_\_
+
+<span id="qiskit.chemistry.results.VibronicStructureResult.__init__" />
 
 `__init__(a_dict=None)`
 
@@ -47,7 +57,9 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`num_occupied_modals_per_mode`](#qiskit.chemistry.results.VibronicStructureResult.num_occupied_modals_per_mode "qiskit.chemistry.results.VibronicStructureResult.num_occupied_modals_per_mode") | Returns the number of occupied modal per mode           |
 | [`raw_result`](#qiskit.chemistry.results.VibronicStructureResult.raw_result "qiskit.chemistry.results.VibronicStructureResult.raw_result")                                                       | Returns the raw algorithm result.                       |
 
-<span id="undefined" />
+### algorithm\_result
+
+<span id="qiskit.chemistry.results.VibronicStructureResult.algorithm_result" />
 
 `property algorithm_result`
 
@@ -57,7 +69,9 @@ Returns raw algorithm result
 
 `AlgorithmResult`
 
-<span id="undefined" />
+### aux\_operator\_eigenvalues
+
+<span id="qiskit.chemistry.results.VibronicStructureResult.aux_operator_eigenvalues" />
 
 `property aux_operator_eigenvalues`
 
@@ -67,7 +81,9 @@ return aux operator eigen values
 
 `Optional`\[`List`\[`float`]]
 
-<span id="undefined" />
+### clear
+
+<span id="qiskit.chemistry.results.VibronicStructureResult.clear" />
 
 `clear()`
 
@@ -75,7 +91,9 @@ return aux operator eigen values
 
 `None`
 
-<span id="undefined" />
+### combine
+
+<span id="qiskit.chemistry.results.VibronicStructureResult.combine" />
 
 `combine(result)`
 
@@ -89,7 +107,9 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 `None`
 
-<span id="undefined" />
+### computed\_vibronic\_energies
+
+<span id="qiskit.chemistry.results.VibronicStructureResult.computed_vibronic_energies" />
 
 `property computed_vibronic_energies`
 
@@ -99,7 +119,9 @@ Returns computed electronic part of ground state energy
 
 `ndarray`
 
-<span id="undefined" />
+### eigenenergies
+
+<span id="qiskit.chemistry.results.VibronicStructureResult.eigenenergies" />
 
 `property eigenenergies`
 
@@ -109,7 +131,9 @@ returns eigen energies
 
 `Optional`\[`ndarray`]
 
-<span id="undefined" />
+### eigenstates
+
+<span id="qiskit.chemistry.results.VibronicStructureResult.eigenstates" />
 
 `property eigenstates`
 
@@ -119,7 +143,9 @@ returns eigen states
 
 `Optional`\[`List`\[`Union`\[`str`, `dict`, `Result`, `list`, `ndarray`, `Statevector`, `QuantumCircuit`, `Instruction`, `OperatorBase`]]]
 
-<span id="undefined" />
+### formatted
+
+<span id="qiskit.chemistry.results.VibronicStructureResult.formatted" />
 
 `property formatted`
 
@@ -129,11 +155,15 @@ Formatted result as a list of strings
 
 `List`\[`str`]
 
-<span id="undefined" />
+### get
+
+<span id="qiskit.chemistry.results.VibronicStructureResult.get" />
 
 `get(k[, d]) → D[k] if k in D, else d. d defaults to None.`
 
-<span id="undefined" />
+### groundenergy
+
+<span id="qiskit.chemistry.results.VibronicStructureResult.groundenergy" />
 
 `property groundenergy`
 
@@ -143,7 +173,9 @@ returns ground energy
 
 `Optional`\[`float`]
 
-<span id="undefined" />
+### groundstate
+
+<span id="qiskit.chemistry.results.VibronicStructureResult.groundstate" />
 
 `property groundstate`
 
@@ -153,15 +185,21 @@ returns ground state
 
 `Union`\[`str`, `dict`, `Result`, `list`, `ndarray`, `Statevector`, `QuantumCircuit`, `Instruction`, `OperatorBase`, `None`]
 
-<span id="undefined" />
+### items
+
+<span id="qiskit.chemistry.results.VibronicStructureResult.items" />
 
 `items() → a set-like object providing a view on D’s items`
 
-<span id="undefined" />
+### keys
+
+<span id="qiskit.chemistry.results.VibronicStructureResult.keys" />
 
 `keys() → a set-like object providing a view on D’s keys`
 
-<span id="undefined" />
+### num\_occupied\_modals\_per\_mode
+
+<span id="qiskit.chemistry.results.VibronicStructureResult.num_occupied_modals_per_mode" />
 
 `property num_occupied_modals_per_mode`
 
@@ -171,7 +209,9 @@ Returns the number of occupied modal per mode
 
 `Optional`\[`List`\[`float`]]
 
-<span id="undefined" />
+### pop
+
+<span id="qiskit.chemistry.results.VibronicStructureResult.pop" />
 
 `pop(key, default=None)`
 
@@ -181,7 +221,9 @@ If key is not found, d is returned if given, otherwise KeyError is raised.
 
 `object`
 
-<span id="undefined" />
+### popitem
+
+<span id="qiskit.chemistry.results.VibronicStructureResult.popitem" />
 
 `popitem()`
 
@@ -191,7 +233,9 @@ as a 2-tuple; but raise KeyError if D is empty.
 
 `Tuple`\[`object`, `object`]
 
-<span id="undefined" />
+### raw\_result
+
+<span id="qiskit.chemistry.results.VibronicStructureResult.raw_result" />
 
 `property raw_result`
 
@@ -201,11 +245,15 @@ Returns the raw algorithm result.
 
 `Optional`\[`AlgorithmResult`]
 
-<span id="undefined" />
+### setdefault
+
+<span id="qiskit.chemistry.results.VibronicStructureResult.setdefault" />
 
 `setdefault(k[, d]) → D.get(k,d), also set D[k]=d if k not in D`
 
-<span id="undefined" />
+### update
+
+<span id="qiskit.chemistry.results.VibronicStructureResult.update" />
 
 `update(*args, **kwargs)`
 
@@ -215,6 +263,9 @@ If E present and has a .keys() method, does: for k in E: D\[k] = E\[k] If E pres
 
 `None`
 
-<span id="undefined" />
+### values
+
+<span id="qiskit.chemistry.results.VibronicStructureResult.values" />
 
 `values() → an object providing a view on D’s values`
+
