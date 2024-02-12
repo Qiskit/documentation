@@ -10,6 +10,12 @@ Runtime compilation techniques optimize and transform your circuit to minimize e
 
 Primitives let you employ runtime compilation by setting the optimization level (`optimization_level` option) and by choosing advanced runtime compilation options.
 
+<Admonition type="note" title="Important:">
+To ensure faster and more efficient results, as of 15 Feb 2024, Qiskit Runtime primitives will no longer transpile circuits.  Instead, you must submit locally-transpiled (*instruction set architecture (ISA)*) circuits.  See the [transpilation documentation](../transpile) for instructions.  Due to this change, transpilation options (`options.transpilation.xxx`) are no longer supported and will be ignored. Additionally, `optimization_level`  no longer performs routing or layout operations.
+</Admonition>
+
+
+
 ## Set the optimization level
 
 The `optimization_level` setting specifies how much optimization to perform on the circuits. Higher levels generate more optimized circuits, at the expense of longer compile times.
@@ -17,6 +23,11 @@ The `optimization_level` setting specifies how much optimization to perform on t
 <Admonition>
   In current primitive versions, optimization levels 2 and 3 behave identically to level 1.
 </Admonition>
+
+<Admonition type="note" title="Important:">
+To ensure faster and more efficient results, as of 15 Feb 2024, Qiskit Runtime primitives will no longer transpile circuits.  Instead, you must submit locally-transpiled (*instruction set architecture (ISA)*) circuits.  See the [transpilation documentation](../transpile) for instructions.  Due to this change, transpilation options (`options.transpilation.xxx`) are no longer supported and will be ignored. Additionally, `optimization_level`  no longer performs routing or layout operations.
+</Admonition>
+
 
 <Table>
   <thead>
@@ -40,10 +51,8 @@ The `optimization_level` setting specifies how much optimization to perform on t
       <Td>1, 2, 3</Td>
       <Td>
         Light optimization:
-
-        -   Layout (trivial → vf2 → SabreLayout if routing is required)
-        -   Routing (SabreSWAPs if needed)
-        -   1Q gate optimization
+        -   Single-qubit gate optimization
+        -   Two-qubit gate optimization
         -   Error suppression: dynamical decoupling
       </Td>
     </Tr>
@@ -72,6 +81,7 @@ At present, the primitives will attempt low-cost transformations if given a circ
 
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService, Estimator, Options
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit.circuit.library import RealAmplitudes
 from qiskit.quantum_info import SparsePauliOp
 
@@ -83,9 +93,13 @@ psi = RealAmplitudes(num_qubits=2, reps=2)
 H = SparsePauliOp.from_list([("II", 1), ("IZ", 2), ("XI", 3)])
 theta = [0, 1, 1, 2, 3, 5]
 
+pm = generate_preset_pass_manager(backend=backend)
+isa_circuit = pm.run(circuit)
+isa_observable = observable.apply_layout(isa_circuit.layout)
+
 estimator = Estimator (options=options, backend=backend)
 
-job = estimator.run(circuits=[psi], observables=[H], parameter_values=[theta])
+job = estimator.run(isa_circuits=[psi], isa_observables=[H], parameter_values=[theta])
 psi1_H1 = job.result()
 ```
 
@@ -97,27 +111,18 @@ psi1_H1 = job.result()
 
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService, Sampler, Options
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 
 service = QiskitRuntimeService()
 backend = service.backend("ibmq_qasm_simulator")
 options = Options(optimization_level=1)
 
+pm = generate_preset_pass_manager(backend=backend)
+isa_circuits = pm.run(circuits)
+
 sampler = Sampler(options=options, backend=backend)
 ```
 
-
-<span id="transpilation-table"></span>
-## Advanced runtime compilation options
-
-You also have the ability to tune a variety of advanced options to configure your runtime compilation strategy further. These methods can be used alongside optimization levels. They allow you to change the options of interest and let your optimization level manage the rest.
-
-| Options                                                         | Description                                                                                                                                                                  |
-| --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| options.transpilation.skip\_transpilation (bool)                | Directs the service to execute the primitive query with the bare minimum about of runtime compilation necessary                                                              |
-| options.transpilation.initial\_layout(Union\[dict, List, None]) | (Deprecated) Initial position of virtual qubits on physical qubits.                                                                                                          |
-| options.transpilation.layout\_method (Optional\[str])           | (Deprecated) Name of layout selection pass. One of `trivial`, `dense`, `noise_adaptive`, `sabre`.                                                                            |
-| options.transpilation.routing\_method (Optional\[str])          | (Deprecated) Name of routing pass: `basic`, `lookahead`, `stochastic`, `sabre`, `none`.                                                                                      |
-| options.transpilation.approximation\_degree (Optional\[float])  | (Deprecated) Heuristic dial used for circuit approximation (1.0=no approximation, 0.0=maximal approximation). Defaults to no approximation for all optimization levels       |
 
 ## Next steps
 

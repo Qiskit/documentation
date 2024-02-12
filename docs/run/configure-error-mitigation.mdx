@@ -38,6 +38,10 @@ apply vary based whether you are sampling a distribution or generating
 expectation values.
 </Admonition>
 
+<Admonition type="note" title="Important:">
+To ensure faster and more efficient results, as of 15 Feb 2024, Qiskit Runtime primitives will no longer transpile circuits.  Instead, you must submit locally-transpiled (*instruction set architecture (ISA)*) circuits.  See the [transpilation documentation](../transpile) for instructions.  Due to this change, transpilation options (`options.transpilation.xxx`) are no longer supported and will be ignored. Additionally, `optimization_level`  no longer performs routing or layout operations.
+</Admonition>
+
 
 | Resilience Level | Definition                                                                                            | Estimator                                                                 | Sampler                                |
 |------------------|-------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|----------------------------------------|
@@ -217,6 +221,7 @@ setting `resilience_level 2`.
 
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService, Estimator, Options
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 
 service = QiskitRuntimeService()
 options = Options()
@@ -224,8 +229,12 @@ options.resilience_level = 2
 options.optimization_level = 3
 backend = service.backend("ibmq_qasm_simulator")
 
+pm = generate_preset_pass_manager(backend=backend)
+isa_circuit = pm.run(circuit)
+isa_observable = observable.apply_layout(isa_circuit.layout)
+
 estimator = Estimator(options=options, backend=backend)
-job = estimator.run(circuits=[psi1], observables=[H1], parameter_values=[theta1])
+job = estimator.run(isa_circuits=[psi1], isa_observables=[H1], parameter_values=[theta1])
 psi1_H1 = job.result()
 ```
 
@@ -257,12 +266,16 @@ nominally much easier to solve.
 
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService, Sampler, Options
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 
 service = QiskitRuntimeService()
 options = Options()
 options.resilience_level = 1
 options.optimization_level = 3
 backend = service.backend("ibmq_qasm_simulator")
+
+pm = generate_preset_pass_manager(backend=backend)
+isa_circuits = pm.run(circuits)
 
 sampler = Sampler(backend, options=options)
 ```
@@ -296,18 +309,23 @@ add options to tune other resilience levels that include PEC.
 
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService, Estimator, Options
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 
 service = QiskitRuntimeService()
 options = Options()
-options.optimization_level = 3
+options.optimization_level = 1
 options.resilience_level = 2
 options.resilience.noise_factors = (1, 2, 3, 4)
 options.resilience.noise_amplifier = 'CxAmplifier'
 options.resilience.extrapolator = 'QuadraticExtrapolator'
 backend = service.backend("ibmq_qasm_simulator")
 
+pm = generate_preset_pass_manager(backend=backend)
+isa_circuit = pm.run(circuit)
+isa_observable = observable.apply_layout(isa_circuit.layout)
+
 estimator = Estimator(options=options, backend=backend)
-job = estimator.run(circuits=[psi1], observables=[H1], parameter_values=[theta1])
+job = estimator.run(isa_circuits=[psi1], isa_observables=[H1], parameter_values=[theta1])
 psi1_H1 = job.result()
 ```
 
@@ -316,4 +334,6 @@ psi1_H1 = job.result()
 <Admonition type="tip" title="Recommendations">
   - Walk through an example that uses error mitigation in the [Cost function lesson](https://learning.quantum.ibm.com/course/variational-algorithm-design/cost-functions#primitives) in IBM Quantum Learning.
   - Learn more about [Q-CTRL](https://docs.q-ctrl.com/q-ctrl-embedded).
+  - Learn how to transpile locally in the [Transpile](../transpile/) section.
+  - Try the [Submit pre-transpiled circuits](https://learning.quantum.ibm.com/tutorial/submitting-user-transpiled-circuits-using-primitives) tutorial.
 </Admonition>
