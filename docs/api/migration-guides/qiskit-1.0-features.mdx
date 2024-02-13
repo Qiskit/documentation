@@ -5,10 +5,8 @@ description: Adapt to feature changes with Qiskit 1.0
 
 # Qiskit 1.0 feature changes
 
-Qiskit&reg;  1.0 ...
-
-This guide is organized by Qiskit module. Use the navigation bar on the
-right-hand side to navigate to the module you are interested in.
+This guide shows migration paths for the most important feature changes in Qiskit&reg;  1.0, organized by module.
+Use the navigation bar on the right-hand side to navigate to the module you are interested in.
 
 <span id="qiskit.global"></span>
 ## Global instances and functions
@@ -28,7 +26,7 @@ pip install qiskit-aer
 ### BasicAer
 
 The `qiskit.BasicAer` object is no longer available in Qiskit 1.0. See the
-[`basicaer` migration section](#basicaer) for
+[`basicaer` migration section](#providers-basicaer) for
 more information on migration options.
 
 <span id="execute"></span>
@@ -276,7 +274,7 @@ sampler_v2 = StatevectorSampler()
       evs = job.result().values
 
       # executing 1 circuit with 4 observables using Estimator V2
-      job = estimator_v2.run((circuit, [obs1, obs2, obs3, obs4]))
+      job = estimator_v2.run([(circuit, [obs1, obs2, obs3, obs4])])
       evs = job.result()[0].data.evs
       ```
   </TabItem>
@@ -284,21 +282,21 @@ sampler_v2 = StatevectorSampler()
       ```python
       # executing 1 circuit with 3 parameter sets using Sampler V1
       job = sampler_v1.run([circuit] * 3, [vals1, vals2, vals3])
-      evs = job.result().quasi_dists
+      dists = job.result().quasi_dists
 
       # executing 1 circuit with 3 parameter sets using Sampler V2
-      job = sampler_v2.run((circuit, [vals1, vals2, vals3]))
-      evs = job.result()[0].data
+      job = sampler_v2.run([(circuit, [vals1, vals2, vals3])])
+      counts = job.result()[0].data.meas.get_counts()
       ```
   </TabItem>
-  <TabItem value="e-1-4-2" label="Estimator, 1 circuit, 4 obs., 3 param. sets" default>
+  <TabItem value="e-1-4-2" label="Estimator, 1 circuit, 4 obs., 2 param. sets" default>
       ```python
       # executing 1 circuit with 4 observables and 2 parameter sets using Estimator V1
       job = estimator_v1.run([circuit] * 8, [obs1, obs2, obs3, obs4] * 2, [vals1, vals2] * 4)
       evs = job.result().values
 
       # executing 1 circuit with 4 observables and 2 parameter sets using Estimator V2
-      job = estimator_v2.run((circuit, [obs1, obs2, obs3, obs4], [vals1, vals2]))
+      job = estimator_v2.run([(circuit, [[obs1, obs2, obs3, obs4]], [[vals1], [vals2]])])
       evs = job.result()[0].data.evs
       ```
   </TabItem>
@@ -311,14 +309,14 @@ sampler_v2 = StatevectorSampler()
 <Tabs>
   <TabItem value="s-2-1" label="Sampler, 2 circuits, 1 param. set" default>
       ```python
-      # executing 2 circuits with 1 observable using Sampler V1
-      job = sampler_v1.run([circuit1, circuit2], [obs1] * 2)
-      evs = job.result().quasi_probs
+      # executing 2 circuits with 1 parameter set using Sampler V1
+      job = sampler_v1.run([circuit1, circuit2], [vals1] * 2)
+      ∂dists = job.result().quasi_dists
 
-      # executing 2 circuits with 1 observable using Sampler V2
-      job = sampler_v2.run((circuit1, obs1), (circuit2, obs1))
-      evs1 = job.result()[0].data # result for pub 1 (circuit 1)
-      evs2 = job.result()[1].data # result for pub 2 (circuit 2)
+      # executing 2 circuits with 1 parameter set using Sampler V2
+      job = sampler_v2.run([(circuit1, vals1), (circuit2, vals1)])
+      counts1 = job.result()[0].data.meas.get_counts()  # result for pub 1 (circuit 1)
+      counts2 = job.result()[1].data.meas.get_counts()  # result for pub 2 (circuit 2)
       ```
   </TabItem>
   <TabItem value="e-2-2" label="Estimator, 2 circuits, 2 different obs." default>
@@ -327,9 +325,9 @@ sampler_v2 = StatevectorSampler()
       # is not possible using Estimator V1
 
       # executing 2 circuits with 2 different observables using Estimator V2
-      job = estimator_v2.run((circuit1, obs1), (circuit2, obs2))
-      evs1 = job.result()[0].data.evs # result for pub 1 (circuit 1)
-      evs2 = job.result()[1].data.evs # result for pub 2 (circuit 2)
+      job = estimator_v2.run([(circuit1, obs1), (circuit2, obs2)])
+      evs1 = job.result()[0].data.evs  # result for pub 1 (circuit 1)
+      evs2 = job.result()[1].data.evs  # result for pub 2 (circuit 2)
       ```
   </TabItem>
 </Tabs>
@@ -424,7 +422,7 @@ sampler_v2 = StatevectorSampler()
 <span id="qiskit.providers"></span>
 ## qiskit.providers
 
-<span id="basicaer"></span>
+<span id="providers-basicaer"></span>
 ### basicaer
 
 Most of the functionality in the
