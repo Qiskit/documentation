@@ -47,7 +47,7 @@ When creating an instance of the `Estimator` or `Sampler` class, you can pass in
 
 ```python
 estimator = Estimator(session=backend, options=options)
-result = estimator.run(isa_circuit, isa_observable).result()
+result = estimator.run(circuit, observable).result()
 print(f">>> Metadata: {result.metadata[0]}")
 ```
 ### Run() method
@@ -58,7 +58,7 @@ Because most users will only overwrite a few options at the job level, it is not
 
 ```python
 estimator = Estimator(session=backend, options=options)
-result = estimator.run(isa_circuit, isa_observable, shots=1024).result()
+result = estimator.run(circuit, observable, shots=1024).result()
 print(f">>> Metadata: {result.metadata[0]}")
 ```
 
@@ -89,11 +89,11 @@ from qiskit_ibm_runtime import Estimator
 
 estimator = Estimator(session=backend)
 
-estimator.run(isa_circuits=circuits, isa_observables=observables, shots=50)
+estimator.run(circuits=circuits, observables=observables, shots=50)
 
 # other logic
 
-estimator.run(isa_circuits=circuits, isa_observables=observables, shots=100)
+estimator.run(circuits=circuits, observables=observables, shots=100)
 ```
 
 For more information about the primitive options, refer to the
