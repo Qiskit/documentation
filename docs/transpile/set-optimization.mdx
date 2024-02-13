@@ -119,7 +119,7 @@ This yields the same results as optimization level 1. Note that increasing the l
 Repeat again, with optimization level 3:
 
 ```python
-qc_t3_exact = transpile(qc, backend, optimization_level=1, coupling_map=[[0, 1], [1, 0]], seed_transpiler=12345)
+qc_t3_exact = transpile(qc, backend, optimization_level=3, coupling_map=[[0, 1], [1, 0]], seed_transpiler=12345)
 qc_t3_exact.draw('mpl', style='iqp')
 ```
 ![Circuit transpiled with optimization level 3](/images/transpile/defaults-and-configuration-options/circ-opt-level-3.png "Circuit transpiled with optimization level 3") 
@@ -127,7 +127,7 @@ qc_t3_exact.draw('mpl', style='iqp')
 Now there are only three CX gates. This is because with optimization level 3, Qiskit tries to re-synthesize two-qubit blocks of gates. Since any two-qubit gate requires at most three CX gates, we get the above result. We can get even fewer CX gates if we sacrifice the fidelity of this synthese by setting `approximation_degree` to a value less than 1:
 
 ```python
-qc_t3_approx = transpile(qc, backend, optimization_level=1, approximation_degree=0.99, coupling_map=[[0, 1], [1, 0]], seed_transpiler=12345)
+qc_t3_approx = transpile(qc, backend, optimization_level=3, approximation_degree=0.99, coupling_map=[[0, 1], [1, 0]], seed_transpiler=12345)
 qc_t3_approx.draw('mpl', style='iqp')
 ```
 
