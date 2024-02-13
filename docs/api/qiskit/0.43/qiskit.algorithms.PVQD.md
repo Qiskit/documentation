@@ -162,9 +162,9 @@ quantum algorithm for the time evolution of parameterized circuits, [Quantum 5, 
 
 `PVQD.evolve(evolution_problem)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/time_evolvers/pvqd/pvqd.py "view source code")
 
-Perform real time evolution $\exp(-i t H)\vert \Psi\rangle$.
+Perform real time evolution $\exp(-i t H)|\Psi\rangle$.
 
-Evolves an initial state $\vert \Psi\rangle$ for a time $t$ under a Hamiltonian $H$, as provided in the `evolution_problem`.
+Evolves an initial state $|\Psi\rangle$ for a time $t$ under a Hamiltonian $H$, as provided in the `evolution_problem`.
 
 **Parameters**
 

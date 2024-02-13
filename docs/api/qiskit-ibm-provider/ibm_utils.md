@@ -34,3 +34,81 @@ Utility functions related to the IBM Quantum Provider.
 | [`to_python_identifier`](qiskit_ibm_provider.utils.to_python_identifier "qiskit_ibm_provider.utils.to_python_identifier")(name)        | Convert a name to a valid Python identifier. |
 | [`validate_job_tags`](qiskit_ibm_provider.utils.validate_job_tags "qiskit_ibm_provider.utils.validate_job_tags")(job\_tags, exception) | Validates input job tags.                    |
 
+<span id="module-qiskit_ibm_provider.utils.pubsub" />
+
+<span id="publisher-subscriber-model" />
+
+## Publisher/subscriber model
+
+Message broker for the Publisher / Subscriber mechanism
+
+<span id="qiskit_ibm_provider.utils.pubsub.Publisher" />
+
+`Publisher`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.9/qiskit_ibm_provider/utils/pubsub.py "view source code")
+
+Represents a “publisher”.
+
+Every component (class) can become a [`Publisher`](#qiskit_ibm_provider.utils.pubsub.Publisher "qiskit_ibm_provider.utils.pubsub.Publisher") and send events by inheriting this class. Functions can call this class like:
+
+```python
+Publisher().publish("event", args, ... )
+```
+
+### publish
+
+<span id="qiskit_ibm_provider.utils.pubsub.Publisher.publish" />
+
+`publish(event, *args, **kwargs)`
+
+Triggers an event, and associates some data to it, so if there are any subscribers, their callback will be called synchronously.
+
+**Return type**
+
+`None`
+
+<span id="qiskit_ibm_provider.utils.pubsub.Subscriber" />
+
+`Subscriber`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.9/qiskit_ibm_provider/utils/pubsub.py "view source code")
+
+Represents a “subscriber”.
+
+Every component (class) can become a [`Subscriber`](#qiskit_ibm_provider.utils.pubsub.Subscriber "qiskit_ibm_provider.utils.pubsub.Subscriber") and subscribe to events, that will call callback functions when they are emitted.
+
+### clear
+
+<span id="qiskit_ibm_provider.utils.pubsub.Subscriber.clear" />
+
+`clear()`
+
+Unsubscribe everything
+
+**Return type**
+
+`None`
+
+### subscribe
+
+<span id="qiskit_ibm_provider.utils.pubsub.Subscriber.subscribe" />
+
+`subscribe(event, callback)`
+
+Subscribes to an event, associating a callback function to that event, so when the event occurs, the callback will be called.
+
+This is a blocking call, so try to keep callbacks as lightweight as possible.
+
+**Return type**
+
+`bool`
+
+### unsubscribe
+
+<span id="qiskit_ibm_provider.utils.pubsub.Subscriber.unsubscribe" />
+
+`unsubscribe(event, callback)`
+
+Unsubscribe a pair event-callback, so the callback will not be called anymore when the event occurs.
+
+**Return type**
+
+`bool`
+
