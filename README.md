@@ -12,7 +12,7 @@ Read on for more information about how to support this project:
 
 ### 1. Report bugs, inaccuracies or general content issues
 
-This is the quickest, easiest, and most helpful way to contribute to this project and improve the quality of Qiskit and IBM Quantum documentation. There are a few different ways to report issues, depending on where it was found:
+This is the quickest, easiest, and most helpful way to contribute to this project and improve the quality of Qiskit&reg; and IBM Quantum&trade; documentation. There are a few different ways to report issues, depending on where it was found:
 
 - For problems you've found in the [Qiskit API Reference](https://docs.quantum.ibm.com/api/qiskit) section, open an issue in the Qiskit repo [here](https://github.com/Qiskit/qiskit/issues/new/choose).
 - For problems you've found in the [Qiskit Runtime IBM Client](https://docs.quantum.ibm.com/api/qiskit-ibm-runtime) section, open an issue in the Qiskit IBM Runtime repo [here](https://github.com/Qiskit/qiskit-ibm-runtime/issues/new/choose).
@@ -541,3 +541,32 @@ To display a qasm operation (like a not gate), you can use the `Operation` compo
 ```mdx
 <Operation name="x" />
 ```
+
+## Proper marking and attribution
+
+**All information needs to identify, mark, and attribute IBM and applicable third-party trademarks.** We do this the first time an IBM trademark appears on each page. See the [Copyright and trademark information](https://www.ibm.com/legal/copyright-trademark) page for more details.
+
+Some companies require a special attribution notice. View a list of the companies to include in a special attribution notice at the [Special attributions](https://www.ibm.com/legal/copyright-trademark#special) section of the IBM Legal site.
+
+<details>
+<summary>A (non-exhaustive) list of trademarked names found in our docs:</summary>
+
+- IBM&reg;
+- IBM Cloud&reg;
+- IBM Quantum&trade;
+- Qiskit&reg;
+</details>
+
+See the Usage section of the IBM Quantum Experience Guide for guidance on when to use IBM and when to use IBM Quantum.
+
+### Trademark symbols
+
+To create the symbols in markdown:
+
+Use `&reg;` to get &reg; for registered trademarks.
+
+use `&trade;` to get &trade; for nonregistered trademarks.
+
+<Admonition type="caution">
+  Do not include trademarks in headings. The code will display rather than the symbol.
+</Admonition
