@@ -47,13 +47,13 @@ backend = service.least_busy(simulator=False,operational=True)
 
 # Generate ISA circuits
 pm = generate_preset_pass_manager(backend=backend)
-isa_circuits = pm.run(qc)
+isa_circuit = pm.run(qc)
 
 # Create a Sampler object
 sampler = Sampler(backend)
 
 # Submit the circuit to the sampler
-job = sampler.run(isa_qc)
+job = sampler.run(isa_circuit)
 
 print(job.usage_estimation)
 ```

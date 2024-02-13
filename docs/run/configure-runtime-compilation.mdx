@@ -94,12 +94,12 @@ H = SparsePauliOp.from_list([("II", 1), ("IZ", 2), ("XI", 3)])
 theta = [0, 1, 1, 2, 3, 5]
 
 pm = generate_preset_pass_manager(backend=backend)
-isa_circuit = pm.run(psi)
-isa_observable = H.apply_layout(isa_circuit.layout)
+psi = pm.run(psi)
+H = H.apply_layout(psi.layout)
 
 estimator = Estimator (options=options, backend=backend)
 
-job = estimator.run(isa_circuits=[isa_circuit], isa_observables=[isa_observable], parameter_values=[theta])
+job = estimator.run(circuits=[psi], observables=[H], parameter_values=[theta])
 psi1_H1 = job.result()
 ```
 
@@ -111,18 +111,26 @@ psi1_H1 = job.result()
 
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService, Sampler, Options
-from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 
 service = QiskitRuntimeService()
 backend = service.backend("ibmq_qasm_simulator")
 options = Options(optimization_level=1)
 
-pm = generate_preset_pass_manager(backend=backend)
-isa_circuits = pm.run(circuits)
-
 sampler = Sampler(options=options, backend=backend)
 ```
 
+<span id="transpilation-table"></span>
+## Advanced runtime compilation options
+
+Future versions of the Primitives will offer options to tune runtime compilation. At present, the only option with any effect is `skip_transpilation` to turn off all optimziations done with the Primitives.
+
+| Options                                                         | Description                                                                                                       |
+| --------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| options.transpilation.skip\_transpilation (bool)                | Directs the service to execute the primitive query with the bare minimum about of runtime compilation necessary   |
+| options.transpilation.initial\_layout(Union\[dict, List, None]) | (Deprecated) No effect                                                                                            |
+| options.transpilation.layout\_method (Optional\[str])           | (Deprecated) No effect                                                                                            |
+| options.transpilation.routing\_method (Optional\[str])          | (Deprecated) No effect                                                                                            |
+| options.transpilation.approximation\_degree (Optional\[float])  | (Deprecated) No effect                                                                                            |
 
 ## Next steps
 

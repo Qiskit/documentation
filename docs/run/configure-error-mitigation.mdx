@@ -221,17 +221,12 @@ setting `resilience_level 2`.
 
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService, Estimator, Options
-from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 
 service = QiskitRuntimeService()
 options = Options()
 options.resilience_level = 2
 options.optimization_level = 3
 backend = service.backend("ibmq_qasm_simulator")
-
-pm = generate_preset_pass_manager(backend=backend)
-isa_circuit = pm.run(circuit)
-isa_observable = observable.apply_layout(isa_circuit.layout)
 
 estimator = Estimator(options=options, backend=backend)
 job = estimator.run(isa_circuits=[psi1], isa_observables=[H1], parameter_values=[theta1])
@@ -266,16 +261,12 @@ nominally much easier to solve.
 
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService, Sampler, Options
-from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 
 service = QiskitRuntimeService()
 options = Options()
 options.resilience_level = 1
 options.optimization_level = 3
 backend = service.backend("ibmq_qasm_simulator")
-
-pm = generate_preset_pass_manager(backend=backend)
-isa_circuits = pm.run(circuits)
 
 sampler = Sampler(backend, options=options)
 ```
@@ -309,7 +300,6 @@ add options to tune other resilience levels that include PEC.
 
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService, Estimator, Options
-from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 
 service = QiskitRuntimeService()
 options = Options()
@@ -319,10 +309,6 @@ options.resilience.noise_factors = (1, 2, 3, 4)
 options.resilience.noise_amplifier = 'CxAmplifier'
 options.resilience.extrapolator = 'QuadraticExtrapolator'
 backend = service.backend("ibmq_qasm_simulator")
-
-pm = generate_preset_pass_manager(backend=backend)
-isa_circuit = pm.run(circuit)
-isa_observable = observable.apply_layout(isa_circuit.layout)
 
 estimator = Estimator(options=options, backend=backend)
 job = estimator.run(isa_circuits=[psi1], isa_observables=[H1], parameter_values=[theta1])
