@@ -264,13 +264,8 @@ sampler_v2 = StatevectorSampler()
 ```
 </Admonition>
 
-1. `Sampler and Estimator`: The new V2 primitives are designed to accept **vectorized inputs**,
-  where single circuits can be grouped with array-valued specifications.
-  That is, one circuit can be executed
-  for arrays of `n` parameter sets and/or `n` observables (in the case of the estimator). Each group
-  is called a **primitive unified bloc (pub)**, and can be represented
-  as a tuple: `(1 x circuit, [n x observables], [n x parameters])`. The V1 interface didn't allow for
-  the same flexibility, as there number of input circuits had to match the number of observables and
+1. `Sampler and Estimator`: The new V2 primitives are designed to accept **vectorized inputs**, where single circuits can be grouped with array-valued specifications. That is, one circuit can be executed
+  for arrays of `n` parameter sets and/or `n` observables (in the case of the estimator). Each group is called a **primitive unified bloc (pub)**, and can be represented as a tuple: `(1 x circuit, [n x observables], [n x parameters])`. The V1 interface didn't allow for the same flexibility, as there number of input circuits had to match the number of observables and
   parameter sets, as shown in the following examples:
 
 <Tabs>
@@ -363,7 +358,7 @@ sampler_v2 = StatevectorSampler()
     meas: 2/══════════════╩══╩═
                           0  1
     ```
-    <Admonition type="warning">
+    <Admonition type="caution" title="Default classical register name">
     You can notice in the circuit above that the name of the classical register defaults to `"meas"`.
     This name will be used later to access the measurement bitstrings.
     </Admonition>
