@@ -29,7 +29,7 @@ $$
 This circuit considers the discretized version of the normal distribution on `2 ** num_qubits` equidistant points, $x_i$, truncated to `bounds`. For a one-dimensional random variable, meaning num\_qubits is a single integer, it applies the operation
 
 $$
-\mathcal{P}_X \vert 0\rangle^n = \sum_{i=0}^{2^n - 1} \sqrt{\mathbb{P}(x_i)} \vert i\rangle
+\mathcal{P}_X |0\rangle^n = \sum_{i=0}^{2^n - 1} \sqrt{\mathbb{P}(x_i)} |i\rangle
 $$
 
 where $n$ is num\_qubits.

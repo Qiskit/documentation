@@ -1,0 +1,68 @@
+# This code is a Qiskit project.
+#
+# (C) Copyright IBM 2024.
+#
+# This code is licensed under the Apache License, Version 2.0. You may
+# obtain a copy of this license in the LICENSE file in the root directory
+# of this source tree or at http://www.apache.org/licenses/LICENSE-2.0.
+#
+# Any modifications or derivative works of this code must retain this
+# copyright notice, and modified files need to carry a notice indicating
+# that they have been altered from the originals.
+
+name: API checks
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * 0,2,4" # Every Sunday, Tuesday, and Thursday at midnight UTC
+
+  pull_request:
+    paths:
+      - "docs/api/qiskit/**/*"
+      - "docs/api/qiskit-ibm-provider/**/*"
+      - "docs/api/qiskit-ibm-runtime/**/*"
+
+jobs:
+  link-checker:
+    runs-on: ubuntu-latest
+    if: github.repository_owner == 'Qiskit'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install Node.js dependencies
+        run: npm ci
+      - name: Check links
+        run: >
+          npm run check:links --
+          --qiskit-release-notes
+          --current-apis
+          --dev-apis
+          --historical-apis
+          --skip-broken-historical
+          --external
+
+  pages-render:
+    runs-on: ubuntu-latest
+    if: github.repository_owner == 'Qiskit'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install Node.js dependencies
+        run: npm ci
+      - name: Start local Docker preview
+        run: |
+          ./start &
+          sleep 20
+      - name: Check API pages render
+        run: >
+          npm run check-pages-render --
+          --qiskit-release-notes
+          --current-apis
+          --dev-apis
+          --historical-apis

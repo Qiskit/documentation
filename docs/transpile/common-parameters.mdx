@@ -14,9 +14,9 @@ You can use the approximation degree to specify how closely you want the resulta
 
 In two-qubit unitary synthesis (used in initial stages of all levels and for optimization stage with optimization level 3), this value specifies the target fidelity of the output decomposition. That is, how much error is introduced when a matrix representation of a circuit is converted to discrete gates. If the approximation degree is a lower value (more approximation), the output circuit from synthesis will differ more from the input matrix, but will also likely have fewer gates (because any arbitrary two-qubit operation can be decomposed perfectly with at most three CX gates) and is easier to run. 
 
-When the approximation degree is less than 1.0, circuits with one or two CX gates might be synthesized, leading to less error from the hardware, but more from the approximation. Since CX is the most expensive gate in terms of error, it might be beneficial to decrease the number of them at the cost of fidelity in synthesis (this technique was used to increase quantum volume on IBM devices: [Validating quantum computers using randomized model circuits](https://arxiv.org/abs/1811.12926)). 
+When the approximation degree is less than 1.0, circuits with one or two CX gates might be synthesized, leading to less error from the hardware, but more from the approximation. Since CX is the most expensive gate in terms of error, it might be beneficial to decrease the number of them at the cost of fidelity in synthesis (this technique was used to increase quantum volume on IBM&reg; devices: [Validating quantum computers using randomized model circuits](https://arxiv.org/abs/1811.12926)). 
 
-As an example, we generate a random 2-qubit `UnitaryGate` which will be synthesized in the initial stage. Setting the `approximation_degree` less than 1.0 might generate an approximate circuit. We must also specify the `basis_gates` to let the synthesis method know which gates it can use for the approximate synthesis.
+As an example, we generate a random two-qubit `UnitaryGate` which will be synthesized in the initial stage. Setting the `approximation_degree` less than 1.0 might generate an approximate circuit. We must also specify the `basis_gates` to let the synthesis method know which gates it can use for the approximate synthesis.
 
 ```python
 from qiskit import QuantumCircuit, transpile
@@ -98,7 +98,7 @@ These options influence how the transpiler works and are used to try and get bet
 * `unitary_synthesis_method` (str) - The name of the unitary synthesis method to use. By default `default` is used. 
 
 <Admonition>
-  To see a list of all installed plugins for a given stage you can run [`list_stage_plugins("stage_name")`](https://docs.quantum.ibm.com/api/qiskit/transpiler_plugins#plugin-api). For example if you want to see a list of all installed plugins for the routing stage run `list_stage_plugins(routing)`.
+  To see a list of all installed plugins for a given stage, run [`list_stage_plugins("stage_name")`](https://docs.quantum.ibm.com/api/qiskit/transpiler_plugins#plugin-api). For example, if you want to see a list of all installed plugins for the routing stage, run `list_stage_plugins(routing)`.
 </Admonition>  
 
 ## Next steps

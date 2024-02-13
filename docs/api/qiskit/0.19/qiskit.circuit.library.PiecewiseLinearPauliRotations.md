@@ -192,7 +192,7 @@ Return number of qubits.
 
 `int`
 
-The number of state qubits representing the state $\vert x\rangle$.
+The number of state qubits representing the state $|x\rangle$.
 
 **Return type**
 

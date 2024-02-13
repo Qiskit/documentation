@@ -12,7 +12,7 @@ python_api_name: qiskit_ibm_provider.least_busy
 
 <span id="qiskit_ibm_provider.least_busy" />
 
-`least_busy(backends)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/__init__.py "view source code")
+`least_busy(backends)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.9/qiskit_ibm_provider/__init__.py "view source code")
 
 Return the least busy backend from a list.
 
@@ -20,11 +20,11 @@ Return the least busy available backend for those that have a `pending_jobs` in 
 
 **Parameters**
 
-**backends** (`List`\[[`Backend`](/api/qiskit/qiskit.providers.Backend "(in Qiskit v0.45)")]) – The backends to choose from.
+**backends** (`List`\[[`Backend`](https://docs.quantum.ibm.com/api/qiskit/qiskit.providers.Backend "(in Qiskit v0.46)")]) – The backends to choose from.
 
 **Return type**
 
-[`Backend`](/api/qiskit/qiskit.providers.Backend "(in Qiskit v0.45)")
+[`Backend`](https://docs.quantum.ibm.com/api/qiskit/qiskit.providers.Backend "(in Qiskit v0.46)")
 
 **Returns**
 

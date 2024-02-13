@@ -16,7 +16,7 @@ Bases: `qiskit.circuit.library.n_local.two_local.TwoLocal`
 
 The heuristic excitation-preserving wave function ansatz.
 
-The `ExcitationPreserving` circuit preserves the ratio of $\vert 00\rangle$, $\vert 01\rangle + \vert 10\rangle$ and $\vert 11\rangle$ states. The matrix representing the operation is
+The `ExcitationPreserving` circuit preserves the ratio of $|00\rangle$, $|01\rangle + |10\rangle$ and $|11\rangle$ states. The matrix representing the operation is
 
 $$
  \begin{align}\begin{aligned}\newcommand{\th}{\theta/2}\\\begin{split}\begin{pmatrix}

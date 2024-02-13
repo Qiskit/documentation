@@ -28,7 +28,7 @@ Here, $S$ is a set of qubit indices that describes the connections in the featur
 $$
 \begin{split}\phi_S(\vec{x}) = \begin{cases}
     x_i \text{ if } S = \{i\} \\
-    \prod_{j \in S} (\pi - x_j) \text{ if } \vert S\vert  > 1
+    \prod_{j \in S} (\pi - x_j) \text{ if } |S| > 1
     \end{cases}.\end{split}
 $$
 

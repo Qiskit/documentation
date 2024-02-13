@@ -16,7 +16,7 @@ Bases: [`RealTimeEvolver`](qiskit.algorithms.RealTimeEvolver "qiskit.algorithms.
 
 Classical Evolver for real time evolution.
 
-Evolves an initial state $\vert \Psi\rangle$ for a time $t$ under a Hamiltonian $H$, as provided in the `evolution_problem`. Note that the precision of the evolver does not depend on the number of timesteps taken.
+Evolves an initial state $|\Psi\rangle$ for a time $t$ under a Hamiltonian $H$, as provided in the `evolution_problem`. Note that the precision of the evolver does not depend on the number of timesteps taken.
 
 **Parameters**
 
@@ -34,9 +34,9 @@ Evolves an initial state $\vert \Psi\rangle$ for a time $t$ under a Hamiltonian 
 
 `evolve(evolution_problem)`
 
-Perform real time evolution $\exp(-i t H)\vert \Psi\rangle$.
+Perform real time evolution $\exp(-i t H)|\Psi\rangle$.
 
-Evolves an initial state $\vert \Psi\rangle$ for a time $t$ under a Hamiltonian $H$, as provided in the `evolution_problem`.
+Evolves an initial state $|\Psi\rangle$ for a time $t$ under a Hamiltonian $H$, as provided in the `evolution_problem`.
 
 **Parameters**
 

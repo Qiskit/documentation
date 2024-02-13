@@ -53,7 +53,7 @@ Due to the iterative version of the QPE, this algorithm does not require any add
 
 `FasterAmplitudeEstimation.construct_circuit(estimation_problem, k, measurement=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/algorithms/amplitude_estimators/fae.py "view source code")
 
-Construct the circuit $Q^k X \vert 0\rangle>$.
+Construct the circuit $Q^k X |0\rangle>$.
 
 The A operator is the unitary specifying the QAE problem and Q the associated Grover operator.
 
@@ -69,7 +69,7 @@ The A operator is the unitary specifying the QAE problem and Q the associated Gr
 
 **Returns**
 
-The circuit $Q^k X \vert 0\rangle$.
+The circuit $Q^k X |0\rangle$.
 
 ### estimate
 
