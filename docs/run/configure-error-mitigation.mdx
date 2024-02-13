@@ -229,7 +229,7 @@ options.optimization_level = 3
 backend = service.backend("ibmq_qasm_simulator")
 
 estimator = Estimator(options=options, backend=backend)
-job = estimator.run(isa_circuits=[psi1], isa_observables=[H1], parameter_values=[theta1])
+job = estimator.run(circuits=[psi1], observables=[H1], parameter_values=[theta1])
 psi1_H1 = job.result()
 ```
 
@@ -311,7 +311,7 @@ options.resilience.extrapolator = 'QuadraticExtrapolator'
 backend = service.backend("ibmq_qasm_simulator")
 
 estimator = Estimator(options=options, backend=backend)
-job = estimator.run(isa_circuits=[psi1], isa_observables=[H1], parameter_values=[theta1])
+job = estimator.run(circuits=[psi1], observables=[H1], parameter_values=[theta1])
 psi1_H1 = job.result()
 ```
 
