@@ -5,9 +5,7 @@ description: Adapt to feature changes with Qiskit 1.0
 
 # Qiskit 1.0 feature changes
 
-Qiskit&reg;  1.0 ...
-
-This guide is organized by Qiskit module. Use the navigation bar on the
+This guide is organized by Qiskit&reg; module. Use the navigation bar on the
 right-hand side to navigate to the module you are interested in.
 
 <span id="qiskit.global"></span>
@@ -265,11 +263,11 @@ sampler_v2 = StatevectorSampler()
 </Admonition>
 
 1. `Sampler and Estimator`: The new V2 primitives are designed to accept **vectorized inputs**, where single circuits can be grouped with array-valued specifications. That is, one circuit can be executed
-  for arrays of `n` parameter sets and/or `n` observables (in the case of the estimator). Each group is called a **primitive unified bloc (pub)**, and can be represented as a tuple: `(1 x circuit, [n x observables], [n x parameters])`. The V1 interface didn't allow for the same flexibility, as there number of input circuits had to match the number of observables and
-  parameter sets, as shown in the following examples:
+  for arrays of `n` parameter sets and/or `n` observables (in the case of the estimator). Each group is called a **primitive unified block (pub)**, and can be represented as a tuple: `(1 x circuit, [n x observables], [n x parameters])`. The V1 interface didn't allow for the same flexibility, as there number of input circuits had to match the number of observables and
+  parameter sets, as shown in the following examples (select a tab to see each example):
 
 <Tabs>
-  <TabItem value="e-1-4" label="Estimator, 1 circuit, 4 obs." default>
+  <TabItem value="e-1-4" label="Estimator, 1 circuit, 4 observables" default>
       ```python
       # executing 1 circuit with 4 observables using Estimator V1
       job = estimator_v1.run([circuit] * 4, [obs1, obs2, obs3, obs4])
@@ -280,7 +278,7 @@ sampler_v2 = StatevectorSampler()
       evs = job.result()[0].data.evs
       ```
   </TabItem>
-  <TabItem value="s-1-3" label="Sampler, 1 circuit, 3 param. sets" default>
+  <TabItem value="s-1-3" label="Sampler, 1 circuit, 3 parameter sets" default>
       ```python
       # executing 1 circuit with 3 parameter sets using Sampler V1
       job = sampler_v1.run([circuit] * 3, [vals1, vals2, vals3])
@@ -291,7 +289,7 @@ sampler_v2 = StatevectorSampler()
       evs = job.result()[0].data
       ```
   </TabItem>
-  <TabItem value="e-1-4-2" label="Estimator, 1 circuit, 4 obs., 3 param. sets" default>
+  <TabItem value="e-1-4-2" label="Estimator, 1 circuit, 4 observables, 3 parameter sets" default>
       ```python
       # executing 1 circuit with 4 observables and 2 parameter sets using Estimator V1
       job = estimator_v1.run([circuit] * 8, [obs1, obs2, obs3, obs4] * 2, [vals1, vals2] * 4)
@@ -309,7 +307,7 @@ sampler_v2 = StatevectorSampler()
   something not always possible in the V1 interface:
 
 <Tabs>
-  <TabItem value="s-2-1" label="Sampler, 2 circuits, 1 param. set" default>
+  <TabItem value="s-2-1" label="Sampler, 2 circuits, 1 parameter set" default>
       ```python
       # executing 2 circuits with 1 observable using Sampler V1
       job = sampler_v1.run([circuit1, circuit2], [obs1] * 2)
@@ -321,7 +319,7 @@ sampler_v2 = StatevectorSampler()
       evs2 = job.result()[1].data # result for pub 2 (circuit 2)
       ```
   </TabItem>
-  <TabItem value="e-2-2" label="Estimator, 2 circuits, 2 different obs." default>
+  <TabItem value="e-2-2" label="Estimator, 2 circuits, 2 different observables" default>
       ```python
       # executing 2 circuits with different observables
       # is not possible using Estimator V1
@@ -435,15 +433,15 @@ except for the
 [`UnitarySimulatorPy`](/api/qiskit/0.46/qiskit.providers.basicaer.UnitarySimulatorPy)
 and
 [`StatevectorSimulatorPy`](/api/qiskit/0.46/qiskit.providers.basicaer.StatevectorSimulatorPy)
-classes, whose functionality was already contained in the
+classes; their functionality was already contained in the
 [`quantum_info`](/api/qiskit/qiskit.quantum_info) module.
 
-The migration to the new paths should be straightforward, you can replace most
+The migration to the new paths should be straightforward. You can replace most
 classes in [`qiskit.providers.basicaer`](/api/qiskit/0.46/providers_basicaer)
 with their
 [`qiskit.providers.basic_provider`](/api/qiskit/providers_basic_provider)
 counterpart (drop-in replacement). Note that the following classes have not
-only changed path, but also changed names:
+only changed paths, but also changed names:
 
 Deprecated                       | Alternative
 ---------------------------------|--------------------------------------------
@@ -452,8 +450,8 @@ Deprecated                       | Alternative
 [`BasicAerJob`](/api/qiskit/0.46/qiskit.providers.basicaer.BasicAerJob)                       |  [`BasicProviderJob`](/api/qiskit/qiskit.providers.basic_provider.BasicProviderJob)
 [`QasmSimulatorPy`](/api/qiskit/0.46/qiskit.providers.basicaer.QasmSimulatorPy)               |  [`BasicSimulator`](/api/qiskit/qiskit.providers.basic_provider.BasicSimulator)
 
-<Admonition type="warning">
-    Keep an eye out for global instances when migrating to the new module. There is no replacement for
+<Admonition type="caution" title="Global instances">
+    Be aware of any global instances when migrating to the new module. There is no replacement for
     the `BasicAer` global instance that could be directly imported as `qiskit.BasicAer`. This means that
     it will **not** be valid to do `from qiskit import BasicProvider`.
     Instead, the provider class must be imported from its submodule and instantiated by the user:
@@ -469,9 +467,9 @@ Deprecated                       | Alternative
     ```
 </Admonition>
 
-As for the unitary and statevector simulators, they can be replaced with different
+The unitary and statevector simulators can be replaced with different
 [`quantum_info`](/api/qiskit/qiskit.quantum_info) classes. This is not a drop-in replacement,
-but the changes are minimal, see the migration examples below:
+but the changes are minimal. See the migration examples below:
 
 Deprecated                       |   Alternative
 ---------------------------------|--------------------------------------------
@@ -483,7 +481,7 @@ The following examples show the migration paths of the three simulators in [`bas
 
 
 <Tabs>
-  <TabItem value="statevec" label="Statevector sim." default>
+  <TabItem value="statevec" label="Statevector simulator" default>
     ```python
     from qiskit import QuantumCircuit
     qc = QuantumCircuit(3)
@@ -503,7 +501,7 @@ The following examples show the migration paths of the three simulators in [`bas
     statevector = Statevector(qc)
     ```
   </TabItem>
-  <TabItem value="unitary" label="Unitary sim.">
+  <TabItem value="unitary" label="Unitary simulator">
     ```python
     from qiskit import QuantumCircuit
     qc = QuantumCircuit(3)
@@ -523,7 +521,7 @@ The following examples show the migration paths of the three simulators in [`bas
     result = Operator(qc).data
     ```
   </TabItem>
-  <TabItem value="qasm" label="QASM sim.">
+  <TabItem value="qasm" label="QASM simulator">
     ```python
     from qiskit import QuantumCircuit
     qc = QuantumCircuit(3)
@@ -557,7 +555,7 @@ Most of the user-facing components of
 been migrated to the `qiskit-ibm-runtime` Python package. This includes the
 fake provider classes, all of the device-specific fake backends (such as
 `FakeVigo`, `FakeNairobiV2`, `FakeSherbrooke` and so on), and the fake backend
-base classes. The following table shows the affected classes.
+base classes. Click through the following tabs to see the affected classes.
 
 <Tabs>
   <TabItem value="backends" label="Fake Backends" default>
