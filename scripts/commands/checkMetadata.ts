@@ -16,6 +16,7 @@ import { globby } from "globby";
 
 const IGNORED_FILES = new Set([
   "docs/api/qiskit/transpiler_builtin_plugins.md",
+  "docs/api/qiskit/dev/transpiler_builtin_plugins.md",
 ]);
 
 const readMetadata = async (filePath: string): Promise<Record<string, any>> => {

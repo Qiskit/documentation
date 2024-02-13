@@ -47,6 +47,7 @@ interface Arguments {
   package: string;
   version: string;
   historical: boolean;
+  dev: boolean;
   skipDownload: boolean;
 }
 
@@ -71,6 +72,11 @@ const readArgs = (): Arguments => {
       default: false,
       description: "Is this a prior release?",
     })
+    .option("dev", {
+      type: "boolean",
+      default: false,
+      description: "Is this a dev release?",
+    })
     .option("skip-download", {
       type: "boolean",
       default: false,
@@ -91,11 +97,26 @@ zxMain(async () => {
     );
   }
 
+  if (args.historical && args.dev) {
+    throw new Error(
+      `${args.package} ${args.version} cannot be historical and dev at the same time. Please remove at least only one of these two arguments: --historical, --dev.`,
+    );
+  }
+
+  const devRegex = /[0-9](rc|-dev)/;
+  if (args.dev && !args.version.match(devRegex)) {
+    throw new Error(
+      `${args.package} ${args.version} is not a correct dev version. Please make sure the version has one of the following suffixes immediately following the patch version: rc, -dev. e.g. 1.0.0rc1 or 1.0.0-dev`,
+    );
+  }
+
+  const type = args.historical ? "historical" : args.dev ? "dev" : "latest";
+
   const pkg = await Pkg.fromArgs(
     args.package,
     args.version,
     versionMatch[0],
-    args.historical,
+    type,
   );
 
   const artifactFolder = pkg.ciArtifactFolder();
@@ -106,7 +127,7 @@ zxMain(async () => {
   }
 
   const outputDir = pkg.outputDir(`${getRoot()}/docs`);
-  if (pkg.historical && !(await pathExists(outputDir))) {
+  if (!pkg.isLatest() && !(await pathExists(outputDir))) {
     await mkdirp(outputDir);
   } else {
     console.log(
@@ -163,7 +184,7 @@ async function convertHtmlToMarkdown(
     results.push({ ...result, url });
 
     if (
-      !pkg.historical &&
+      pkg.isLatest() &&
       pkg.hasSeparateReleaseNotes &&
       file.endsWith("release_notes.html")
     ) {
@@ -194,13 +215,19 @@ async function convertHtmlToMarkdown(
   for (const result of results) {
     let path = urlToPath(result.url);
 
-    // Historical versions with a single release notes file should not
+    // Historical or dev versions with a single release notes file should not
     // modify the current API's file.
     if (
       !pkg.hasSeparateReleaseNotes &&
-      pkg.historical &&
+      !pkg.isLatest() &&
       path.endsWith("release-notes.md")
     ) {
+      continue;
+    }
+
+    // Dev versions haven't been released yet and we don't want to modify the release notes
+    // of prior versions
+    if (pkg.isDev() && path.endsWith("release-notes.md")) {
       continue;
     }
 
@@ -228,11 +255,11 @@ async function convertHtmlToMarkdown(
 
   // Add the new release entry to the _toc.json for all historical API versions.
   // We don't need to add any entries in projects with a single release notes file.
-  if (!pkg.historical && pkg.hasSeparateReleaseNotes) {
+  if (pkg.isLatest() && pkg.hasSeparateReleaseNotes) {
     await updateHistoricalTocFiles(pkg);
   }
 
-  if (!pkg.historical && pkg.hasSeparateReleaseNotes) {
+  if (pkg.isLatest() && pkg.hasSeparateReleaseNotes) {
     console.log("Generating release-notes/index");
     const markdown = generateReleaseNotesIndex(pkg);
     await writeFile(`${markdownPath}/release-notes/index.md`, markdown);
@@ -245,7 +272,7 @@ async function convertHtmlToMarkdown(
     JSON.stringify(pkg_json, null, 2) + "\n",
   );
 
-  if (!pkg.historical || (await pathExists(`${htmlPath}/_images`))) {
+  if (!pkg.isHistorical() || (await pathExists(`${htmlPath}/_images`))) {
     // Some historical versions don't have the `_images` folder in the artifact store in Box (https://ibm.ent.box.com/folder/246867452622)
     console.log("Saving images");
     await saveImages(allImages, `${htmlPath}/_images`, pkg);

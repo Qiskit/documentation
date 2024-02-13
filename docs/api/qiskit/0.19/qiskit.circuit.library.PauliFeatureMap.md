@@ -26,7 +26,8 @@ The circuit contains `reps` repetitions of this transformation. The variable $P_
 $$
 \begin{split}\phi_S(\vec{x}) = \begin{cases}
     x_0 \text{ if } k = 1 \\
-    \prod_{j \in S} (\pi - x_j)\end{split}
+    \prod_{j \in S} (\pi - x_j) \text{ otherwise }
+    \end{cases}\end{split}
 $$
 
 For example, if the Pauli strings are chosen to be $P_0 = Z$ and $P_{0,1} = YY$ on 2 qubits and with 1 repetition using the default data-mapping, the Pauli evolution feature map is represented by:

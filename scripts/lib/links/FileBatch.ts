@@ -116,12 +116,12 @@ export class FileBatch {
     }
 
     let allGood = true;
-    results.forEach((linkErrors) => {
-      linkErrors.forEach((errorMessage) => {
-        console.error(errorMessage);
+    results
+      .filter((res) => res !== undefined)
+      .forEach((linkError) => {
+        console.error(linkError);
         allGood = false;
       });
-    });
     return allGood;
   }
 }
