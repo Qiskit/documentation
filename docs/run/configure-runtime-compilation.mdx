@@ -12,6 +12,10 @@ Primitives let you employ runtime compilation by setting the optimization level 
 
 <admonition type="note">V2 primitives support optimization levels 0 and 1 only.</admonition>
 
+<Admonition type="note" title="Important:">
+To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](../transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations, consequently transpilation options referring to those tasks will no longer have any effect. Users may still request that the Primitives do no optimization of input circuits via `options.transpilation.skip_transpilation`.
+</Admonition>
+
 ## Set the optimization level
 
 The `optimization_level` setting specifies how much optimization to perform on the circuits. Higher levels generate more optimized circuits, at the expense of longer compile times.
@@ -43,22 +47,13 @@ The `optimization_level` setting specifies how much optimization to perform on t
       <Td>
         Light optimization:
 
-        -   Layout (trivial → vf2 → SabreLayout if routing is required)
-        -   Routing (SabreSWAPs if needed)
-        -   1Q gate optimization
-        -   Error suppression: dynamical decoupling (V1 primitives only.  To )
+        -   Single-qubit gate optimization
+        -   Two-qubit gate optimization
+        -   Error suppression: dynamical decoupling (V1 primitives only.  For V2 primitives, you can enable it by using the `dynamical_decoupling` option.)
       </Td>
     </Tr>
   </tbody>
 </Table>
-
-<Admonition>
-  The primitives expect circuits in a form suitable to execute on the target system. You may use the Qiskit transpiler locally to translate abstract circuits into this target circuit form. 
-  
-At present, the primitives will attempt low-cost transformations if given a circuit that is not already in target form, but in the future, primitives will error on such circuits. It is therefore recommended that users take advantage of the local compilation capabilities of the Qiskit transpiler wherever possible.
-  
-  For instructions on preparing circuits for primitive queries, see the [Submit pre-transpiled circuits](https://learning.quantum.ibm.com/tutorial/submitting-user-transpiled-circuits-using-primitives) tutorial.
-</Admonition>
 
 <Admonition type="note">
   If using an IBM Cloud Qiskit Runtime service instance with Q-CTRL performance management enabled, there is no need to specify runtime optimization or resilience levels, as the strategy includes an automatic preset.
@@ -74,6 +69,7 @@ At present, the primitives will attempt low-cost transformations if given a circ
 
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService, Estimator, Options
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit.circuit.library import RealAmplitudes
 from qiskit.quantum_info import SparsePauliOp
 
@@ -84,6 +80,10 @@ options = Options(optimization_level=1)
 psi = RealAmplitudes(num_qubits=2, reps=2)
 H = SparsePauliOp.from_list([("II", 1), ("IZ", 2), ("XI", 3)])
 theta = [0, 1, 1, 2, 3, 5]
+
+pm = generate_preset_pass_manager(backend=backend)
+psi = pm.run(psi)
+H = H.apply_layout(psi.layout)
 
 estimator = Estimator (options=options, backend=backend)
 
@@ -127,18 +127,7 @@ sampler = Sampler(options=options, backend=backend)
 <span id="transpilation-table"></span>
 ## Advanced runtime compilation options
 
-You also have the ability to tune a variety of advanced options to configure your runtime compilation strategy further. These methods can be used alongside optimization levels. They allow you to change the options of interest and let your optimization level manage the rest.
-
-<admonition type="note">V2 primitives do not support any advanced transpilation options except `skip_transpilation`.</admonition>
-
-
-| Options                                                         | Description                                                                                                                                                                  |
-| --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| options.transpilation.skip\_transpilation (bool)                | Directs the service to execute the primitive query with the bare minimum about of runtime compilation necessary                                                              |
-| options.transpilation.initial\_layout(Union\[dict, List, None]) | (Deprecated) Initial position of virtual qubits on physical qubits.                                                                                                          |
-| options.transpilation.layout\_method (Optional\[str])           | (Deprecated) Name of layout selection pass. One of `trivial`, `dense`, `noise_adaptive`, `sabre`.                                                                            |
-| options.transpilation.routing\_method (Optional\[str])          | (Deprecated) Name of routing pass: `basic`, `lookahead`, `stochastic`, `sabre`, `none`.                                                                                      |
-| options.transpilation.approximation\_degree (Optional\[float])  | (Deprecated) Heuristic dial used for circuit approximation (1.0=no approximation, 0.0=maximal approximation). Defaults to no approximation for all optimization levels       |
+Future versions of the primitives will offer options to tune runtime compilation. Currently, the only option with any effect is `skip_transpilation` (bool), which turns off all optimizations done with the primitives.
 
 ## Next steps
 

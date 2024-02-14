@@ -193,8 +193,6 @@ from qiskit_ibm_runtime import SamplerV2 as Sampler, Options
 # Estimator and Sampler now have different options
 options = sampler.options
 
-options.optimization_level = 1
-
 # Twirling options
 options.twirling.gates = True
 options.twirling.measure = True
@@ -213,7 +211,6 @@ sampler = Sampler(backend, options=options)
 
 options = Options()
 
-options.optimization_level = 1
 options.resilience_level = 2
 
 ```
@@ -222,70 +219,7 @@ options.resilience_level = 2
 
 ### Transpilation
 
-V2 primitives support only lightweight transpilation, which has the following implications:
-
-* Both primitives support only `optimization_level` 0 and 1. 
-* Dynamical decoupling is no longer added by default for `optimization_level` > 0. You can, however, enable it by using the `dynamical_decoupling` option.
-* These transpilation options are no longer supported: `initial_layout`, `layout_method`, `routing_method`, and `approximation_degree`.
-
-<Tabs>
-  <TabItem value="EstimatorV2" label="EstimatorV2">
-    ```python 
-from qiskit_ibm_runtime import EstimatorV2 as Estimator, Options
-
-estimator = Estimator(backend, options=options)
-
-# Estimator and Sampler now have different options
-options = estimator.options
-
-options.optimization_level = 1
-
-# DD sequence
-options.dynamical_decoupling = "XX"
-```
-  </TabItem>
-
-  <TabItem value="EstimatorV1" label="Estimator (V1)">
-    ```python 
-from qiskit_ibm_runtime import Estimator, Options
-
-estimator = Estimator(backend, options=options)
-
-options = Options()
-
-options.optimization_level = 1
-```
-  </TabItem>
-</Tabs>
-
-<Tabs>
-  <TabItem value="SamplerV2" label="SamplerV2">
-    ```python 
-from qiskit_ibm_runtime import SamplerV2 as Sampler, Options
-
-# Estimator and Sampler now have different options
-options = sampler.options
-
-options.optimization_level = 1
-
-# DD sequence
-options.dynamical_decoupling = "XX"
-```
-  </TabItem>
-
-  <TabItem value="SamplerV1" label="Sampler (V1)">
-    ```python
-    from qiskit_ibm_runtime import QiskitRuntimeService, Sampler, Options
- 
-service = QiskitRuntimeService()
-options = Options()
-options.optimization_level = 3
-backend = service.backend("ibmq_qasm_simulator")
- 
-sampler = Sampler(backend, options=options)
-```    
-  </TabItem>
-</Tabs>
+V2 primitives do not support transpilation.  Therefore, no transpilation-related options are supported, including `optimization_level`, `dynamical_decoupling`,  `initial_layout`, `layout_method`, `routing_method`, and `approximation_degree`. Instead, the circuit and observable need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits) by using the transpiler before they are submitted to the primitive. 
 
 ## Estimator full examples
 
@@ -502,7 +436,6 @@ observable = SparsePauliOp("X" * n_qubits)
 another_observable = SparsePauliOp("Y" * n_qubits)
  
 options = Options()
-options.optimization_level = 1
 options.resilience_level = 2
  
 service = QiskitRuntimeService()
@@ -758,15 +691,12 @@ mat = np.real(random_hermitian(n_qubits, seed=rng))
 another_circuit = IQP(mat)
 another_circuit.measure_all()
  
-options = Options() 
-options.optimization_level = 1 
- 
 service = QiskitRuntimeService()
  
 backend = service.get_backend("ibm_brisbane")
  
 with Session(service=service, backend=backend) as session: 
-    sampler = Sampler(session=session, options=options) 
+    sampler = Sampler(session=session) 
     job = sampler.run([(circuit)]) 
     another_job = sampler.run([(another_circuit)]) 
     result = job.result()
