@@ -54,7 +54,7 @@ The functional equivalency can be roughly summarized as follows:
 | [`qiskit.opflow.converters`](../qiskit/0.44/qiskit.opflow.converters) | [`qiskit.primitives`](../qiskit/primitives) |
 | [`qiskit.opflow.evolutions`](../qiskit/0.44/qiskit.opflow.evolutions) | `qiskit.synthesis` [`Evolution`](../qiskit/synthesis#evolution-synthesis) |
 | [`qiskit.opflow.expectations`](../qiskit/0.44/qiskit.opflow.expectations) | [`qiskit.primitives.Estimator`](../qiskit/qiskit.primitives.Estimator) |
-| [`qiskit.opflow.gradients`](../qiskit/0.44/qiskit.opflow.gradients) | [`qiskit.algorithms.gradients`](../qiskit/qiskit.algorithms.gradients) |
+| [`qiskit.opflow.gradients`](../qiskit/0.44/qiskit.opflow.gradients) | [`qiskit.algorithms.gradients`](../qiskit/0.44/qiskit.algorithms.gradients) |
 
 ## Operator base class
 
@@ -511,7 +511,7 @@ Examine references to [`qiskit.opflow.state_fns.StateFn`](../qiskit/0.44/qiskit.
 | [`qiskit.opflow.state_fns.VectorStateFn`](../qiskit/0.44/qiskit.opflow.state_fns.VectorStateFn) | This class can be replaced with [`qiskit.quantum_info.Statevector`](../qiskit/qiskit.quantum_info.Statevector) or [`qiskit.quantum_info.StabilizerState`](../qiskit/qiskit.quantum_info.StabilizerState), for Clifford-based vectors.|
 | [`qiskit.opflow.state_fns.SparseVectorStateFn`](../qiskit/0.44/qiskit.opflow.state_fns.SparseVectorStateFn) | No direct replacement. This class was used for sparse statevector representations. |
 | [`qiskit.opflow.state_fns.OperatorStateFn`](../qiskit/0.44/qiskit.opflow.state_fns.OperatorStateFn) | No direct replacement. This class was used to represent measurements against operators. |
-| [`qiskit.opflow.state_fns.CVaRMeasurement`](../qiskit/0.44/qiskit.opflow.state_fns.CVaRMeasurement) | Used in [`qiskit.opflow.expectations.CVaRExpectation`](../qiskit/0.44/qiskit.opflow.expectations.CVaRExpectation). This function is now covered by [`qiskit.algorithms.minimum_eigensolvers.SamplingVQE`](../qiskit/qiskit.algorithms.minimum_eigensolvers.SamplingVQE). See the example in [`Expectations`](#expectations). |
+| [`qiskit.opflow.state_fns.CVaRMeasurement`](../qiskit/0.44/qiskit.opflow.state_fns.CVaRMeasurement) | Used in [`qiskit.opflow.expectations.CVaRExpectation`](../qiskit/0.44/qiskit.opflow.expectations.CVaRExpectation). This function is now covered by [`qiskit.algorithms.minimum_eigensolvers.SamplingVQE`](../qiskit/0.44/qiskit.algorithms.minimum_eigensolvers.SamplingVQE). See the example in [`Expectations`](#expectations). |
 
 ### Example 1: Apply an operator to a state
 
@@ -782,7 +782,7 @@ delayed synthesis of the gates or efficient transpilation of the circuits, so th
   [`qiskit.synthesis`](../qiskit/synthesis) 
   and now extend the [`qiskit.synthesis.ProductFormula`](../qiskit/qiskit.synthesis.ProductFormula) base class. They no longer contain a `.convert()` method for
   standalone use, but are designed to be plugged into the [`qiskit.circuit.library.PauliEvolutionGate`](../qiskit/qiskit.circuit.library.PauliEvolutionGate) and called by using `.synthesize()`.
-  In this context, the job of the [`qiskit.opflow.evolutions.PauliTrotterEvolution`](../qiskit/0.44/qiskit.opflow.evolutions.PauliTrotterEvolution) class can now be handled directly by the algorithms, for example, [`qiskit.algorithms.time_evolvers.trotterization.TrotterQRTE`](../qiskit/qiskit.algorithms.time_evolvers.trotterization.TrotterQRTE).
+  In this context, the job of the [`qiskit.opflow.evolutions.PauliTrotterEvolution`](../qiskit/0.44/qiskit.opflow.evolutions.PauliTrotterEvolution) class can now be handled directly by the algorithms, for example, [`qiskit.algorithms.time_evolvers.trotterization.TrotterQRTE`](../qiskit/0.44/qiskit.algorithms.time_evolvers.trotterization.TrotterQRTE).
 
   Similarly, the [`qiskit.opflow.evolutions.MatrixEvolution`](../qiskit/0.44/qiskit.opflow.evolutions.MatrixEvolution) class performs evolution by classical matrix exponentiation,
   constructing a circuit with [`qiskit.extensions.UnitaryGate`s](../qiskit/0.44/qiskit.extensions.UnitaryGate) or [`qiskit.extensions.HamiltonianGate`s](../qiskit/0.44/qiskit.extensions.HamiltonianGate) that contain the exponentiation of the operator.
@@ -1063,7 +1063,7 @@ print(values_plus)
 
 | Opflow | Alternative |
 | --- | --- |
-| [`qiskit.opflow.expectations.CVaRExpectation`](../qiskit/0.44/qiskit.opflow.expectations.CVaRExpectation) | Functionality migrated into new VQE algorithm: [`qiskit.algorithms.minimum_eigensolvers.SamplingVQE`](../qiskit/qiskit.algorithms.minimum_eigensolvers.SamplingVQE) |
+| [`qiskit.opflow.expectations.CVaRExpectation`](../qiskit/0.44/qiskit.opflow.expectations.CVaRExpectation) | Functionality migrated into new VQE algorithm: [`qiskit.algorithms.minimum_eigensolvers.SamplingVQE`](../qiskit/0.44/qiskit.algorithms.minimum_eigensolvers.SamplingVQE) |
 
 #### Example 1: VQE with CVaR
 
@@ -1119,7 +1119,7 @@ print(result.eigenvalue)
 
 ## Gradients
 
-The opflow [`qiskit.opflow.gradients`](../qiskit/0.44/qiskit.opflow.gradients) framework has been replaced by the [`qiskit.algorithms.gradients`](../qiskit/qiskit.algorithms.gradients)
+The opflow [`qiskit.opflow.gradients`](../qiskit/0.44/qiskit.opflow.gradients) framework has been replaced by the [`qiskit.algorithms.gradients`](../qiskit/0.44/qiskit.algorithms.gradients)
 module. The new gradients are **primitive-based subroutines** commonly used by algorithms and applications, which
 can also be run standalone. For this reason, they now reside under [`qiskit.algorithms`](../qiskit/0.44/algorithms).
 
@@ -1210,9 +1210,9 @@ list:
 | Opflow | Alternative |
 | --- | --- |
 | [`qiskit.opflow.gradients.DerivativeBase`](../qiskit/0.44/qiskit.opflow.gradients.DerivativeBase) | No replacement. This was the base class for the gradient, hessian, and QFI base classes. |
-| [`qiskit.opflow.gradients.GradientBase`](../qiskit/0.44/qiskit.opflow.gradients.GradientBase) and [`qiskit.opflow.gradients.Gradient`](../qiskit/0.44/qiskit.opflow.gradients.Gradient) | [`qiskit.algorithms.gradients.BaseSamplerGradient`](../qiskit/qiskit.algorithms.gradients.BaseSamplerGradient) or [`qiskit.algorithms.gradients.BaseEstimatorGradient`](../qiskit/qiskit.algorithms.gradients.BaseEstimatorGradient), and specific subclasses per method, as explained above. |
+| [`qiskit.opflow.gradients.GradientBase`](../qiskit/0.44/qiskit.opflow.gradients.GradientBase) and [`qiskit.opflow.gradients.Gradient`](../qiskit/0.44/qiskit.opflow.gradients.Gradient) | [`qiskit.algorithms.gradients.BaseSamplerGradient`](../qiskit/0.44/qiskit.algorithms.gradients.BaseSamplerGradient) or [`qiskit.algorithms.gradients.BaseEstimatorGradient`](../qiskit/0.44/qiskit.algorithms.gradients.BaseEstimatorGradient), and specific subclasses per method, as explained above. |
 | [`qiskit.opflow.gradients.HessianBase`](../qiskit/0.44/qiskit.opflow.gradients.HessianBase) and [`qiskit.opflow.gradients.Hessian`](../qiskit/0.44/qiskit.opflow.gradients.Hessian) | No replacement. The new gradient framework does not work with hessians as independent objects. |
-| [`qiskit.opflow.gradients.QFIBase`](../qiskit/0.44/qiskit.opflow.gradients.QFIBase) and [`qiskit.opflow.gradients.QFI`](../qiskit/0.44/qiskit.opflow.gradients.QFI) | The new [`qiskit.algorithms.gradients.QFI`](../qiskit/qiskit.algorithms.gradients.QFI) class extends QGT, so the corresponding base class is [`qiskit.algorithms.gradients.BaseQGT`](../qiskit/qiskit.algorithms.gradients.BaseQGT) |
+| [`qiskit.opflow.gradients.QFIBase`](../qiskit/0.44/qiskit.opflow.gradients.QFIBase) and [`qiskit.opflow.gradients.QFI`](../qiskit/0.44/qiskit.opflow.gradients.QFI) | The new [`qiskit.algorithms.gradients.QFI`](../qiskit/0.44/qiskit.algorithms.gradients.QFI) class extends QGT, so the corresponding base class is [`qiskit.algorithms.gradients.BaseQGT`](../qiskit/0.44/qiskit.algorithms.gradients.BaseQGT) |
 | [`qiskit.opflow.gradients.CircuitGradient`](../qiskit/0.44/qiskit.opflow.gradients.CircuitGradient) | No replacement. This class was used to convert between circuit and gradient [`qiskit.opflow.primitive_ops.PrimitiveOp`](../qiskit/0.44/qiskit.opflow.primitive_ops.PrimitiveOp) and this functionality is no longer necessary. |
 | [`qiskit.opflow.gradients.CircuitQFI`](../qiskit/0.44/qiskit.opflow.gradients.CircuitQFI) | No replacement. This class was used to convert between circuit and QFI [`qiskit.opflow.primitive_ops.PrimitiveOp`](../qiskit/0.44/qiskit.opflow.primitive_ops.PrimitiveOp) and this functionality is no longer necessary. |
 | [`qiskit.opflow.gradients.NaturalGradient`](../qiskit/0.44/qiskit.opflow.gradients.NaturalGradient) | No replacement. The same functionality can be achieved with the QFI module. |
