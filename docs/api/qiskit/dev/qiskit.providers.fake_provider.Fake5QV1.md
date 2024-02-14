@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.Fake5QV1
 
 <span id="qiskit.providers.fake_provider.Fake5QV1" />
 
-`qiskit.providers.fake_provider.Fake5QV1`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/providers/fake_provider/backends_v1/fake_5q/fake_5q_v1.py "view source code")
+`qiskit.providers.fake_provider.Fake5QV1`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/providers/fake_provider/backends_v1/fake_5q/fake_5q_v1.py "view source code")
 
 Bases: [`FakeQasmBackend`](providers_fake_provider#qiskit.providers.fake_provider.FakeQasmBackend "qiskit.providers.fake_provider.fake_qasm_backend.FakeQasmBackend")
 
@@ -55,7 +55,7 @@ FakeBackend initializer.
 
 ### dirname
 
-`= '/home/vsts/work/1/s/.tox/docs/lib/python3.8/site-packages/qiskit/providers/fake_provider/backends_v1/fake_5q'`
+`= '/home/runner/work/qiskit/qiskit/.tox/docs/lib/python3.9/site-packages/qiskit/providers/fake_provider/backends_v1/fake_5q'`
 
 <span id="qiskit.providers.fake_provider.Fake5QV1.options" />
 

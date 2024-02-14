@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.EvolvedOperatorAnsatz
 
 <span id="qiskit.circuit.library.EvolvedOperatorAnsatz" />
 
-`qiskit.circuit.library.EvolvedOperatorAnsatz(operators=None, reps=1, evolution=None, insert_barriers=False, name='EvolvedOps', parameter_prefix='t', initial_state=None, flatten=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/n_local/evolved_operator_ansatz.py "view source code")
+`qiskit.circuit.library.EvolvedOperatorAnsatz(operators=None, reps=1, evolution=None, insert_barriers=False, name='EvolvedOps', parameter_prefix='t', initial_state=None, flatten=None)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/n_local/evolved_operator_ansatz.py "view source code")
 
 Bases: [`NLocal`](qiskit.circuit.library.NLocal "qiskit.circuit.library.n_local.n_local.NLocal")
 

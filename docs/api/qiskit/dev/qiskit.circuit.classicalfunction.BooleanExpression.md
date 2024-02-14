@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.classicalfunction.BooleanExpression
 
 <span id="qiskit.circuit.classicalfunction.BooleanExpression" />
 
-`qiskit.circuit.classicalfunction.BooleanExpression(expression, name=None, var_order=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/classicalfunction/boolean_expression.py "view source code")
+`qiskit.circuit.classicalfunction.BooleanExpression(expression, name=None, var_order=None)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/classicalfunction/boolean_expression.py "view source code")
 
 Bases: `ClassicalElement`
 
@@ -190,7 +190,7 @@ A tuple with single arguments.
 
 **Return type**
 
-Iterable\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)"), [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")]]
+[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)"), [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")]]
 
 ### c\_if
 

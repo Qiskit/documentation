@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.Fake27QPulseV1
 
 <span id="qiskit.providers.fake_provider.Fake27QPulseV1" />
 
-`qiskit.providers.fake_provider.Fake27QPulseV1`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/providers/fake_provider/backends_v1/fake_27q_pulse/fake_27q_pulse_v1.py "view source code")
+`qiskit.providers.fake_provider.Fake27QPulseV1`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/providers/fake_provider/backends_v1/fake_27q_pulse/fake_27q_pulse_v1.py "view source code")
 
 Bases: [`FakePulseBackend`](providers_fake_provider#qiskit.providers.fake_provider.FakePulseBackend "qiskit.providers.fake_provider.fake_pulse_backend.FakePulseBackend")
 
@@ -69,7 +69,7 @@ FakeBackend initializer.
 
 ### dirname
 
-`= '/home/vsts/work/1/s/.tox/docs/lib/python3.8/site-packages/qiskit/providers/fake_provider/backends_v1/fake_27q_pulse'`
+`= '/home/runner/work/qiskit/qiskit/.tox/docs/lib/python3.9/site-packages/qiskit/providers/fake_provider/backends_v1/fake_27q_pulse'`
 
 <span id="qiskit.providers.fake_provider.Fake27QPulseV1.options" />
 

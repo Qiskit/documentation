@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.GRY
 
 <span id="qiskit.circuit.library.GRY" />
 
-`qiskit.circuit.library.GRY(num_qubits, theta)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/generalized_gates/gr.py "view source code")
+`qiskit.circuit.library.GRY(num_qubits, theta)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/gr.py "view source code")
 
 Bases: [`GR`](qiskit.circuit.library.GR "qiskit.circuit.library.generalized_gates.gr.GR")
 
@@ -93,7 +93,7 @@ Return the global phase of the current circuit scope in radians.
 
 ### instances
 
-`= 179`
+`= 164`
 
 <span id="qiskit.circuit.library.GRY.layout" />
 
