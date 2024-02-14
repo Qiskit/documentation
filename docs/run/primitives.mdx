@@ -8,8 +8,8 @@ description: Introduction to primitives in Qiskit and Qiskit Runtime, and an exp
 
 Computing systems are built on multiple layers of abstraction. Abstractions allow to focus on a
 particular level of detail relevant to the task at hand. The closer you get to the hardware,
-the lower the level of abstraction you'll need (for example, you could
-want to manipulate electrical signals), and vice versa, the more complex the task you want to perform,
+the lower the level of abstraction you need (for example, you might
+want to manipulate electrical signals), and vice versa. The more complex the task you want to perform,
 the higher-level the abstractions will be (for example, you could be using a programming library to perform
 algebraic calculations).
 
@@ -17,7 +17,7 @@ In this context, a *primitive* is the smallest processing instruction, the simpl
 one can create something useful for a given abstraction level.
 
 The recent progress in quantum computing has increased the need to work at higher levels of abstraction.
-As we move towards larger systems and more complex workflows, the focus shifts from interacting with individual
+As we move toward larger systems and more complex workflows, the focus shifts from interacting with individual
 qubit signals to viewing quantum devices as systems that perform tasks we need.
 
 The two most common tasks quantum computers are used for are sampling quantum states and calculating expectation values.
@@ -32,8 +32,12 @@ you are trying to achieve.
 The Qiskit primitives are defined by open-source primitive base-classes, from
 which different providers can derive their own Sampler and Estimator implementations. Among the implementations
 using Qiskit, you can find reference primitive implementations for local simulation in the `qiskit.primitives` module.
-Providers like IBM Qiskit Runtime enable access to appropriate systems through native implementations of
+Providers like Qiskit Runtime enable access to appropriate systems through native implementations of
 their own primitives.
+
+<Admonition type="note" title="Important:">
+To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](../transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations, consequently transpilation options referring to those tasks will no longer have any effect. Users may still request that the Primitives do no optimization of input circuits via `options.transpilation.skip_transpilation`.
+</Admonition>
 
 ## Benefits of Qiskit primitives
 
