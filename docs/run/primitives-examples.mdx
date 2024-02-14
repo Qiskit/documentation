@@ -86,7 +86,7 @@ isa_circuits = pm.run(circuits)
 isa_observables = [ob.apply_layout(isa_circuits[0].layout) for ob in observables]
 
 estimator = Estimator(backend)
-job = estimator.run(circuits, observables)
+job = estimator.run(isa_circuits, isa_observables)
 result = job.result()
 
 print(f" > Expectation values: {result.values}")
