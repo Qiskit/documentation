@@ -207,8 +207,16 @@ export class Pkg {
 
     // Provider, Runtime, and Qiskit 0.45+ are simple: there is a branch called `stable/<version>`
     // like `stable/0.45` in each GitHub project.
-    if (this.name !== "qiskit" || +this.versionWithoutPatch >= 0.45) {
-      const baseUrl = `https://github.com/${this.githubSlug}/tree/stable/${this.versionWithoutPatch}`;
+    if (
+      this.name !== "qiskit" ||
+      this.type === "dev" ||
+      +this.versionWithoutPatch >= 0.45
+    ) {
+      const branchName =
+        this.type === "dev" && this.version.endsWith("-dev")
+          ? "main"
+          : `stable/${this.versionWithoutPatch}`;
+      const baseUrl = `https://github.com/${this.githubSlug}/tree/${branchName}`;
       return (fileName) => {
         return `${baseUrl}/${normalizeFile(fileName)}.py`;
       };
