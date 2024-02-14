@@ -113,6 +113,7 @@ methods that append the same gates:
 | `QuantumCircuit.fredkin`     | [`QuantumCircuit.cswap`](/api/qiskit/qiskit.circuit.QuantumCircuit#cswap) |
 | `QuantumCircuit.mct`         | [`QuantumCircuit.mcx`](/api/qiskit/qiskit.circuit.QuantumCircuit#mcx)     |
 | `QuantumCircuit.i`           | [`QuantumCircuit.id`](/api/qiskit/qiskit.circuit.QuantumCircuit#id)       |
+| `QuantumCircuit.squ`         | [`QuantumCircuit.unitary`](/api/qiskit/qiskit.circuit.QuantumCircuit#unitary) |
 
 The following circuit methods have been removed. Instead, these gates can be
 applied to a circuit with `QuantumCircuit.append`.
@@ -141,6 +142,13 @@ gate = DiagonalGate([1, -1, -1, 1])
 qubits = [0, 1]  # qubit indices on which to apply the gate
 circuit.append(gate, qubits)  # apply the gate
 ```
+
+The following two `QuantumCircuit` methods are also deprecated.
+
+| Deprecated                       | Alternative |
+|----------------------------------|-------------|
+| `QuantumCircuit.bind_parameters` | [`QuantumCircuit.assign_parameters`](/api/qiskit/qiskit.circuit.QuantumCircuit#assign_parameters) |
+| `QuantumCircuit.snapshot`        | `qiskit-aer`'s [save instructions](https://qiskit.org/ecosystem/aer/apidocs/circuit.html#saving-simulator-data) |
 
 <span id="qiskit.converters"></span>
 ## qiskit.converters
@@ -1030,6 +1038,16 @@ codebase. This pass was no longer usable because its internal operation
 was dependent on custom properties being set in the `BackendProperties` payload
 of a `BackendV1` instance. As no backends are setting these fields, the pass has
 been deprecated.
+
+<span id="passmanager"></span>
+### passmanager
+
+The `append` methods of the
+[`ConditionalController`](/api/qiskit/qiskit.passmanager.ConditionalController)
+[`FlowControllerLinear`](/api/qiskit/qiskit.passmanager.FlowControllerLinear)
+[`DoWhileController`](/api/qiskit/qiskit.passmanager.DoWhileController) classes
+are deprecated. Instead, all tasks must be provided when the controller objects
+are constructed.
 
 <span id="qiskit.utils"></span>
 ## qiskit.utils
