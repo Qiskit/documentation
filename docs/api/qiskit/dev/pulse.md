@@ -246,7 +246,7 @@ Return a new schedule with implicit acquires from the measurement mapping replac
 
 **Parameters**
 
-*   **schedule** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")  *|*[*Instruction*](#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")) – Schedule to be aligned.
+*   **schedule** (*ScheduleComponent*) – Schedule to be aligned.
 *   **meas\_map** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]]*) – List of lists of qubits that are measured together.
 
 **Returns**
@@ -255,7 +255,7 @@ A `Schedule` with the additional acquisition instructions.
 
 **Return type**
 
-[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
+[Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
 
 ### align\_measures
 
@@ -365,7 +365,7 @@ Optimization pass to replace identical pulses.
 
 **Parameters**
 
-**schedules** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*qiskit.pulse.schedule.Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")*]*) – Schedules to compress.
+**schedules** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")*]*) – Schedules to compress.
 
 **Returns**
 
@@ -373,7 +373,7 @@ Compressed schedules.
 
 **Return type**
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[qiskit.pulse.schedule.Schedule](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")]
+[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")]
 
 ### flatten
 
@@ -895,7 +895,7 @@ with pulse.build(backend):
 
 **Parameters**
 
-**qubits** ([*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – Tuple or list of ordered qubits of the form (control\_qubit, target\_qubit).
+**qubits** (*Iterable\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – Tuple or list of ordered qubits of the form (control\_qubit, target\_qubit).
 
 **Returns**
 
@@ -903,7 +903,7 @@ List of control channels associated with the supplied ordered list of qubits.
 
 **Return type**
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[qiskit.pulse.channels.ControlChannel](qiskit.pulse.channels.ControlChannel "qiskit.pulse.channels.ControlChannel")]
+[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[chans.ControlChannel]
 
 ### drive\_channel
 
@@ -1540,7 +1540,7 @@ None
 
 **Return type**
 
-Generator\[None, None, None]
+Generator\[(None, None, None)]
 
 **Notes**
 
@@ -1594,7 +1594,7 @@ None
 
 **Return type**
 
-Generator\[None, None, None]
+Generator\[(None, None, None)]
 
 **Notes**
 
@@ -1635,7 +1635,7 @@ None
 
 **Return type**
 
-[*Generator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Generator "(in Python v3.12)")\[None, None, None]
+Generator\[(None, None, None)]
 
 ### align\_right
 
@@ -1672,7 +1672,7 @@ None
 
 **Return type**
 
-[*Generator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Generator "(in Python v3.12)")\[None, None, None]
+Generator\[(None, None, None)]
 
 ### align\_sequential
 
@@ -1709,7 +1709,7 @@ None
 
 **Return type**
 
-[*Generator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Generator "(in Python v3.12)")\[None, None, None]
+Generator\[(None, None, None)]
 
 ### frequency\_offset
 
@@ -1746,7 +1746,7 @@ assert len(pulse_prog.instructions) == 4
 **Parameters**
 
 *   **frequency** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Amount of frequency offset in Hz.
-*   **channels** (*PulseChannel*) – Channels to offset frequency of.
+*   **channels** (*chans.PulseChannel*) – Channels to offset frequency of.
 *   **compensate\_phase** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Compensate for accumulated phase accumulated with respect to the channels’ frame at its initial frequency.
 
 **Yields**
@@ -1755,7 +1755,7 @@ None
 
 **Return type**
 
-[*Generator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Generator "(in Python v3.12)")\[None, None, None]
+Generator\[(None, None, None)]
 
 ### phase\_offset
 
@@ -1784,7 +1784,7 @@ assert len(pulse_prog.instructions) == 3
 **Parameters**
 
 *   **phase** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Amount of phase offset in radians.
-*   **channels** (*PulseChannel*) – Channels to offset phase of.
+*   **channels** (*chans.PulseChannel*) – Channels to offset phase of.
 
 **Yields**
 
@@ -1792,7 +1792,7 @@ None
 
 **Return type**
 
-[*Generator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Generator "(in Python v3.12)")\[None, None, None]
+Generator\[(None, None, None)]
 
 ### Macros
 
@@ -1903,7 +1903,7 @@ The `register`s the qubit measurement results will be stored in.
 
 **Return type**
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[qiskit.pulse.channels.MemorySlot](qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot")]
+[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[chans.MemorySlot]
 
 ### delay\_qubits
 
@@ -2052,7 +2052,7 @@ with pulse.build(backend):
 
 **Return type**
 
-[set](https://docs.python.org/3/library/stdtypes.html#set "(in Python v3.12)")\[[qiskit.pulse.channels.Channel](#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]
+[set](https://docs.python.org/3/library/stdtypes.html#set "(in Python v3.12)")\[chans.Channel]
 
 ### samples\_to\_seconds
 

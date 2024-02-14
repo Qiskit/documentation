@@ -209,7 +209,7 @@ If barriers are inserted in between the layers or not.
 
 ### instances
 
-`= 417`
+`= 304`
 
 <span id="qiskit.circuit.library.TwoLocal.layout" />
 
@@ -399,5 +399,5 @@ Overloading to handle the special case of 1 qubit where the entanglement are ign
 
 **Return type**
 
-[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.12)")\[[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.12)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")]]
+Sequence\[Sequence\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")]]
 

@@ -115,7 +115,7 @@ True, if barriers are inserted, False if not.
 
 ### instances
 
-`= 169`
+`= 161`
 
 <span id="qiskit.circuit.library.QFT.layout" />
 

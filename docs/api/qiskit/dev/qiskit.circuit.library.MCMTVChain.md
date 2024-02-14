@@ -116,7 +116,7 @@ Return the global phase of the current circuit scope in radians.
 
 ### instances
 
-`= 197`
+`= 219`
 
 <span id="qiskit.circuit.library.MCMTVChain.layout" />
 

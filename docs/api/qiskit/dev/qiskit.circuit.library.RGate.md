@@ -145,9 +145,19 @@ Get the time unit of duration.
 
 `inverse(annotated=False)`
 
-Invert this gate.
+Invert this gate as: $r(θ, φ)^dagger = r(-θ, φ)$
 
-r(θ, φ)^dagger = r(-θ, φ)
+**Parameters**
+
+**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an `AnnotatedOperation` with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always a [`RGate`](#qiskit.circuit.library.RGate "qiskit.circuit.library.RGate") with an inverted parameter value.
+
+**Returns**
+
+inverse gate.
+
+**Return type**
+
+[RGate](#qiskit.circuit.library.RGate "qiskit.circuit.library.RGate")
 
 ### power
 

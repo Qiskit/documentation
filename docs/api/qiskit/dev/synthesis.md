@@ -790,3 +790,25 @@ The Approximate Quantum Compiler is available here: [`qiskit.synthesis.unitary.a
 | [`XXDecomposer`](qiskit.synthesis.XXDecomposer "qiskit.synthesis.XXDecomposer")(\[basis\_fidelity, euler\_basis, ...])                      | A class for optimal decomposition of 2-qubit unitaries into 2-qubit basis gates of XX type (i.e., each locally equivalent to CAN(alpha, 0, 0) for a possibly varying alpha). |
 | [`TwoQubitWeylDecomposition`](qiskit.synthesis.TwoQubitWeylDecomposition "qiskit.synthesis.TwoQubitWeylDecomposition")(unitary\_matrix, \*) | Two-qubit Weyl decomposition.                                                                                                                                                |
 
+### two\_qubit\_cnot\_decompose
+
+<span id="qiskit.synthesis.two_qubit_cnot_decompose" />
+
+`qiskit.synthesis.two_qubit_cnot_decompose(*args, **kwargs)`
+
+This is an instance of [`TwoQubitBasisDecomposer`](qiskit.synthesis.TwoQubitBasisDecomposer "qiskit.synthesis.TwoQubitBasisDecomposer") that always uses `cx` as the KAK gate for the basis decomposition. You can use this function as a quick access to `cx`-based 2-qubit decompositions.
+
+**Parameters**
+
+*   **unitary** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator") *or np.ndarray*) – The 4x4 unitary to synthesize.
+*   **basis\_fidelity** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *or None*) – If given the assumed fidelity for applications of [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate").
+*   **approximate** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True` approximate if `basis_fidelity` is less than 1.0.
+
+**Returns**
+
+The synthesized circuit of the input unitary.
+
+**Return type**
+
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+

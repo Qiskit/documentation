@@ -89,7 +89,7 @@ Return the global phase of the current circuit scope in radians.
 
 ### instances
 
-`= 417`
+`= 304`
 
 <span id="qiskit.circuit.library.RGQFTMultiplier.layout" />
 

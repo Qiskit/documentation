@@ -139,7 +139,19 @@ Get the time unit of duration.
 
 `inverse(annotated=False)`
 
-Return inverted GlobalPhaseGate gate.
+Return inverse GlobalPhaseGate gate.
 
 $\text{GlobalPhaseGate}(\lambda)^{\dagger} = \text{GlobalPhaseGate}(-\lambda)$
+
+**Parameters**
+
+**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an `AnnotatedOperation` with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse is always another [`GlobalPhaseGate`](#qiskit.circuit.library.GlobalPhaseGate "qiskit.circuit.library.GlobalPhaseGate") with an inverted parameter value.
+
+**Returns**
+
+inverse gate.
+
+**Return type**
+
+[GlobalPhaseGate](#qiskit.circuit.library.GlobalPhaseGate "qiskit.circuit.library.GlobalPhaseGate")
 

@@ -650,7 +650,7 @@ A typical consumer of the expression tree wants to recursively walk through the 
 
 <span id="qiskit.circuit.classical.expr.ExprVisitor" />
 
-`qiskit.circuit.classical.expr.ExprVisitor`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/classical/expr/visitors.py "view source code")
+`qiskit.circuit.classical.expr.ExprVisitor(*args, **kwds)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/classical/expr/visitors.py "view source code")
 
 Base class for visitors to the [`Expr`](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") tree. Subclasses should override whichever of the `visit_*` methods that they are able to handle, and should be organised such that non-existent methods will never be called.
 

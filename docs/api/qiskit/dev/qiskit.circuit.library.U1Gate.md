@@ -187,8 +187,8 @@ Return a (multi-)controlled-U1 gate.
 **Parameters**
 
 *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of control qubits.
-*   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *or None*) – An optional label for the gate \[Default: None]
-*   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *or*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
+*   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – An optional label for the gate \[Default: `None`]
+*   **ctrl\_state** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – control state expressed as integer, string (e.g.\`\`’110’`), or ``None`. If `None`, use all 1s.
 *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – indicates whether the controlled gate can be implemented as an annotated gate.
 
 **Returns**
@@ -205,5 +205,17 @@ controlled version of this gate.
 
 `inverse(annotated=False)`
 
-Return inverted U1 gate ($U1(\lambda)^{\dagger} = U1(-\lambda)$)
+Return inverted U1 gate ($U1(\lambda)^{\dagger} = U1(-\lambda))$
+
+**Parameters**
+
+**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an `AnnotatedOperation` with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always a [`U1Gate`](#qiskit.circuit.library.U1Gate "qiskit.circuit.library.U1Gate") with inverse parameter values.
+
+**Returns**
+
+inverse gate.
+
+**Return type**
+
+[U1Gate](#qiskit.circuit.library.U1Gate "qiskit.circuit.library.U1Gate")
 

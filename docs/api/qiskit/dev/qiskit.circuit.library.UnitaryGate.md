@@ -39,7 +39,7 @@ Create a gate from a numeric unitary matrix.
 **Parameters**
 
 *   **data** ([*numpy.ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")  *|*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate") *| BaseOperator*) – Unitary operator.
-*   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Unitary name for backend \[Default: None].
+*   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Unitary name for backend \[Default: `None`].
 *   **check\_input** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If set to `False` this asserts the input is known to be unitary and the checking to validate this will be skipped. This should only ever be used if you know the input is unitary, setting this to `False` and passing in a non-unitary matrix will result unexpected behavior and errors.
 
 **Raises**

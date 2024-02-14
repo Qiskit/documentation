@@ -186,7 +186,7 @@ Assign the parameters in this schedule according to the input.
 
 **Parameters**
 
-*   **value\_dict** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")*\[*[*qiskit.circuit.parameterexpression.ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")*,* [*Union*](https://docs.python.org/3/library/typing.html#typing.Union "(in Python v3.12)")*\[*[*qiskit.circuit.parameterexpression.ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]]*) – A mapping from Parameters to either numeric values or another Parameter expression.
+*   **value\_dict** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")*\[*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*, ParameterValueType]*) – A mapping from Parameters to either numeric values or another Parameter expression.
 *   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Set `True` to override this instance with new parameter.
 
 **Returns**
@@ -195,7 +195,7 @@ Schedule with updated parameters.
 
 **Return type**
 
-[*Schedule*](#qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
+[Schedule](#qiskit.pulse.Schedule "qiskit.pulse.Schedule")
 
 ### ch\_duration
 
@@ -359,7 +359,7 @@ Parameter objects that have corresponding name.
 
 **Return type**
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[qiskit.circuit.parameter.Parameter](qiskit.circuit.Parameter "qiskit.circuit.parameter.Parameter")]
+[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[Parameter](qiskit.circuit.Parameter "qiskit.circuit.Parameter")]
 
 ### initialize\_from
 
@@ -462,8 +462,8 @@ Only matches at the top-level of the schedule tree. If you wish to perform this 
 
 **Parameters**
 
-*   **old** ([*Schedule*](#qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")  *|*[*Instruction*](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")) – Instruction to replace.
-*   **new** ([*Schedule*](#qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")  *|*[*Instruction*](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")) – Instruction to replace with.
+*   **old** (*ScheduleComponent*) – Instruction to replace.
+*   **new** (*ScheduleComponent*) – Instruction to replace with.
 *   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Replace instruction by mutably modifying this `Schedule`.
 
 **Returns**
@@ -476,7 +476,7 @@ The modified schedule with `old` replaced by `new`.
 
 **Return type**
 
-[*Schedule*](#qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
+[Schedule](#qiskit.pulse.Schedule "qiskit.pulse.Schedule")
 
 ### shift
 

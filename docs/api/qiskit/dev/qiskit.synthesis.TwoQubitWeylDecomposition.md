@@ -19,7 +19,7 @@ Two-qubit Weyl decomposition.
 Decompose two-qubit unitary
 
 $$
-U = ({K_1}^l \otimes {K_1}^r) \dot e^{(i a XX + i b YY + i c ZZ)} \dot ({K_2}^l \otimes {K_2}^r)
+U = ({K_1}^l \otimes {K_1}^r) e^{(i a XX + i b YY + i c ZZ)} ({K_2}^l \otimes {K_2}^r)
 $$
 
 where
@@ -39,17 +39,13 @@ This is an abstract factory class that instantiates itself as specialized subcla
 
 Passing non-None fidelity to specializations is treated as an assertion, raising QiskitError if forcing the specialization is more approximate than asserted.
 
-**Reference:**
+**References**
 
 1.  Cross, A. W., Bishop, L. S., Sheldon, S., Nation, P. D. & Gambetta, J. M., *Validating quantum computers using randomized model circuits*, [arXiv:1811.12926 \[quant-ph\]](https://arxiv.org/abs/1811.12926)
+2.  B. Kraus, J. I. Cirac, *Optimal Creation of Entanglement Using a Two-Qubit Gate*, [arXiv:0011050 \[quant-ph\]](https://arxiv.org/abs/quant-ph/0011050)
+3.  B. Drury, P. J. Love, *Constructive Quantum Shannon Decomposition from Cartan Involutions*, [arXiv:0806.4015 \[quant-ph\]](https://arxiv.org/abs/0806.4015)
 
 Perform the Weyl chamber decomposition, and optionally choose a specialized subclass.
-
-The flip into the Weyl Chamber is described in B. Kraus and J. I. Cirac, Phys. Rev. A 63, 062309 (2001).
-
-FIXME: There’s a cleaner-seeming method based on choosing branch cuts carefully, in Andrew M. Childs, Henry L. Haselgrove, and Michael A. Nielsen, Phys. Rev. A 68, 052311, but I wasn’t able to get that to work.
-
-The overall decomposition scheme is taken from Drury and Love, arXiv:0806.4015 \[quant-ph].
 
 ## Attributes
 
@@ -127,7 +123,7 @@ The overall decomposition scheme is taken from Drury and Love, arXiv:0806.4015 \
 
 `actual_fidelity(**kwargs)`
 
-Calculates the actual fidelity of the decomposed circuit to the input unitary
+Calculates the actual fidelity of the decomposed circuit to the input unitary.
 
 **Return type**
 
@@ -141,8 +137,6 @@ Calculates the actual fidelity of the decomposed circuit to the input unitary
 
 Returns Weyl decomposition in circuit form.
 
-simplify, atol arguments are passed to OneQubitEulerDecomposer
-
 **Return type**
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
@@ -153,11 +147,11 @@ simplify, atol arguments are passed to OneQubitEulerDecomposer
 
 `classmethod from_bytes(bytes_in, *, requested_fidelity, **kwargs)`
 
-Decode bytes into TwoQubitWeylDecomposition. Used by \_\_repr\_\_
+Decode bytes into [`TwoQubitWeylDecomposition`](#qiskit.synthesis.TwoQubitWeylDecomposition "qiskit.synthesis.TwoQubitWeylDecomposition").
 
 **Return type**
 
-[*TwoQubitWeylDecomposition*](#qiskit.synthesis.TwoQubitWeylDecomposition "qiskit.synthesis.two_qubit.two_qubit_decompose.TwoQubitWeylDecomposition")
+[TwoQubitWeylDecomposition](#qiskit.synthesis.TwoQubitWeylDecomposition "qiskit.synthesis.TwoQubitWeylDecomposition")
 
 ### specialize
 
@@ -166,6 +160,4 @@ Decode bytes into TwoQubitWeylDecomposition. Used by \_\_repr\_\_
 `specialize()`
 
 Make changes to the decomposition to comply with any specialization.
-
-Do update a, b, c, k1l, k1r, k2l, k2r, \_is\_flipped\_from\_original to round to the specialization. Do not update the global phase, since this gets done in generic \_\_init\_\_()
 
