@@ -14,7 +14,7 @@ The `Estimator` primitive can compute an expectation value, and the `Sampler` pr
 Follow these instructions to get the expected value of an observable for a given quantum circuit with the [`qiskit.primitives.Estimator`](../api/qiskit/qiskit.primitives.Estimator) primitive.
 
 <Admonition type="note">
-  While this guide uses Qiskit’s reference implementation, the `Estimator` primitive can be run with any provider using [`qiskit.primitives.BackendEstimator`](../api/qiskit/qiskit.primitives.BackendEstimator).
+  While this guide uses the Qiskit reference implementation, the `Estimator` primitive can be run with any provider using [`qiskit.primitives.BackendEstimator`](../api/qiskit/qiskit.primitives.BackendEstimator).
 
   ```python
   from qiskit.primitives import BackendEstimator
@@ -71,29 +71,61 @@ estimator = Estimator()
 ### Run and get results
 
 Now that you have defined your `estimator`, you can run your estimation by calling the [`qiskit.primitives.Estimator.run`](../api/qiskit/qiskit.primitives.Estimator#run) method,
-which returns an instance of [`qiskit.providers.JobV1`](../api/qiskit/qiskit.providers.JobV1). You can get the results from the job (as a [`qiskit.primitives.EstimatorResult`](../api/qiskit/qiskit.primitives.EstimatorResult) object)
-with the [`qiskit.providers.JobV1.result`](../api/qiskit/qiskit.providers.JobV1#result) method.
+which returns an instance of [`qiskit.providers.JobV1`](../api/qiskit/qiskit.providers.JobV1). 
 
-```python
-job = estimator.run(qc, observable)
+The V2 primitives take one or more primitive unified blocs (PUBs) as the inputs. Each PUB is a tuple that contains a single circuit and data broadcasted to that circuit.
+
+<Tabs>
+  <TabItem value="EstimatorV2" label="EstimatorV2">
+    ```python
+job = estimator.run([(qc, observable)])
 result = job.result()
 print(result)
 ```
 
+You can get the results from the job (as a [`qiskit.primitives.EstimatorResult`](../api/qiskit/qiskit.primitives.EstimatorResult) object)
+with the [`qiskit.providers.JobV1.result`](../api/qiskit/qiskit.providers.JobV1#result) method.
+
+```python
+print(f" > Metadata: {result[0].metadata}")
+```
+  </TabItem>
+  <TabItem value="EstimatorV1" label="Estimator (V1)">
+    ```python
+job = estimator.run(qc, observable)
+result = job.result()
+print(result)
+```
+You can get the results from the job (as a [`qiskit.primitives.EstimatorResult`](../api/qiskit/qiskit.primitives.EstimatorResult) object)
+with the [`qiskit.providers.JobV1.result`](../api/qiskit/qiskit.providers.JobV1#result) method.
+
 ```python
 EstimatorResult(values=array([4.]), metadata=[{}])
 ```
+  </TabItem>
+</Tabs>
+
+
 
 This example only uses one [`qiskit.circuit.QuantumCircuit`](../api/qiskit/qiskit.circuit.QuantumCircuit) and one observable. If you want to get expectation values for multiple circuits and observables, you can pass a `list` of [`qiskit.circuit.QuantumCircuit`](../api/qiskit/qiskit.circuit.QuantumCircuit)s and a list of `BaseOperator`s to the [`qiskit.primitives.Estimator.run`](../api/qiskit/qiskit.primitives.Estimator#run) method. Both `list`s must have the same length.
 
 #### Get the expected value
 
-From these results you can extract the expected values with the attribute [`qiskit.primitives.EstimatorResult.values`](../api/qiskit/qiskit.primitives.EstimatorResult#values).
+
+<Tabs>
+  <TabItem value="EstimatorV2" label="EstimatorV2">
+    ```python
+print(f" > Expectation value: {result[0].data.evs}")
+print(f" > Metadata: {result[0].metadata}")
+```
+  </TabItem>
+  <TabItem value="EstimatorV1" label="Estimator (V1)">
+  From these results you can extract the expected values with the attribute [`qiskit.primitives.EstimatorResult.values`](../api/qiskit/qiskit.primitives.EstimatorResult#values).
 
 [`qiskit.primitives.EstimatorResult.values`](../api/qiskit/qiskit.primitives.EstimatorResult#values) returns a `numpy.ndarray`
 whose `i`<sup>th</sup> element is the expectation value corresponding to the `i`<sup>th</sup> circuit and `i`<sup>th</sup> observable.
 
-```python
+  ```python
 exp_value = result.values[0]
 print(exp_value)
 ```
@@ -101,6 +133,8 @@ print(exp_value)
 ```python
 3.999999999999999
 ```
+  </TabItem>
+</Tabs>
 
 ### Parameterized circuit with `Estimator`
 
