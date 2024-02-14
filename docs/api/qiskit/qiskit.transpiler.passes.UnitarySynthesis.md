@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.UnitarySynthesis
 
 <span id="qiskit.transpiler.passes.UnitarySynthesis" />
 
-`qiskit.transpiler.passes.UnitarySynthesis(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/passes/synthesis/unitary_synthesis.py "view source code")
+`qiskit.transpiler.passes.UnitarySynthesis(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/synthesis/unitary_synthesis.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -33,6 +33,10 @@ This pass can approximate 2-qubit unitaries given some gate fidelities (either v
 *   **min\_qubits** – The minimum number of qubits in the unitary to synthesize. If this is set and the unitary is less than the specified number of qubits it will not be synthesized.
 *   **plugin\_config** – Optional extra configuration arguments (as a `dict`) which are passed directly to the specified unitary synthesis plugin. By default, this will have no effect as the default plugin has no extra arguments. Refer to the documentation of your unitary synthesis plugin on how to use this.
 *   **target** – The optional [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") for the target device the pass is compiling for. If specified this will supersede the values set for `basis_gates`, `coupling_map`, and `backend_props`.
+
+**Raises**
+
+[**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if `method` was specified but is not found in the installed plugins list. The list of installed plugins can be queried with [`unitary_synthesis_plugin_names()`](qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names "qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names")
 
 ## Attributes
 
@@ -64,9 +68,9 @@ Execute optimization task for input Qiskit IR.
 
 **Parameters**
 
-*   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
-*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-*   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+*   **passmanager\_ir** (*PassManagerIR*) – Qiskit IR to optimize.
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+*   **callback** (*Callable*) – A callback function which is caller per execution of optimization task.
 
 **Returns**
 
@@ -74,7 +78,7 @@ Optimized Qiskit IR and state of the workflow.
 
 **Return type**
 
-[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[PassManagerIR, [PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.PassManagerState")]
 
 ### name
 
@@ -103,10 +107,6 @@ Run the UnitarySynthesis pass on `dag`.
 **Returns**
 
 Output dag with UnitaryGates synthesized to target basis.
-
-**Raises**
-
-[**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if `method` was specified for the class and is not found in the installed plugins list. The list of installed plugins can be queried with [`unitary_synthesis_plugin_names()`](qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names "qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names")
 
 **Return type**
 

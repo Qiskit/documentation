@@ -10,13 +10,13 @@ python_api_name: qiskit.primitives.Sampler
 
 <span id="qiskit.primitives.Sampler" />
 
-`qiskit.primitives.Sampler(*, options=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/primitives/sampler.py "view source code")
+`qiskit.primitives.Sampler(*, options=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/primitives/sampler.py "view source code")
 
-Bases: [`BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.base.base_sampler.BaseSampler")\[`PrimitiveJob`\[[`SamplerResult`](qiskit.primitives.SamplerResult "qiskit.primitives.base.sampler_result.SamplerResult")]]
+Bases: `BaseSamplerV1`\[`PrimitiveJob`\[[`SamplerResult`](qiskit.primitives.SamplerResult "qiskit.primitives.base.sampler_result.SamplerResult")]]
 
 Sampler class.
 
-[`Sampler`](#qiskit.primitives.Sampler "qiskit.primitives.Sampler") is a reference implementation of [`BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler").
+[`Sampler`](#qiskit.primitives.Sampler "qiskit.primitives.Sampler") is a reference implementation of [`BaseSampler`](qiskit.primitives.BaseSampler#qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler").
 
 **Run Options**
 
@@ -25,23 +25,13 @@ Sampler class.
 
 **Parameters**
 
-**options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)") *| None*) – Default options.
+**options** – Default options.
 
 **Raises**
 
 [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if some classical bits are not used for measurements.
 
 ## Attributes
-
-<span id="qiskit.primitives.Sampler.circuits" />
-
-### circuits
-
-Quantum circuits to be sampled.
-
-**Returns**
-
-The quantum circuits to be sampled.
 
 <span id="qiskit.primitives.Sampler.options" />
 
@@ -52,16 +42,6 @@ Return options values for the estimator.
 **Returns**
 
 options
-
-<span id="qiskit.primitives.Sampler.parameters" />
-
-### parameters
-
-Parameters of quantum circuits.
-
-**Returns**
-
-List of the parameters in each quantum circuit.
 
 ## Methods
 

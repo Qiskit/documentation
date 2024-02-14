@@ -10,11 +10,11 @@ python_api_name: qiskit.primitives.Estimator
 
 <span id="qiskit.primitives.Estimator" />
 
-`qiskit.primitives.Estimator(*, options=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/primitives/estimator.py "view source code")
+`qiskit.primitives.Estimator(*, options=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/primitives/estimator.py "view source code")
 
-Bases: [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.base.base_estimator.BaseEstimator")\[`PrimitiveJob`\[[`EstimatorResult`](qiskit.primitives.EstimatorResult "qiskit.primitives.base.estimator_result.EstimatorResult")]]
+Bases: `BaseEstimatorV1`\[`PrimitiveJob`\[[`EstimatorResult`](qiskit.primitives.EstimatorResult "qiskit.primitives.base.estimator_result.EstimatorResult")]]
 
-Reference implementation of [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator").
+Reference implementation of [`BaseEstimator`](qiskit.primitives.BaseEstimator#qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator").
 
 **Run Options**
 
@@ -23,33 +23,13 @@ Reference implementation of [`BaseEstimator`](qiskit.primitives.BaseEstimator "q
 
 **Parameters**
 
-**options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)") *| None*) – Default options.
+**options** – Default options.
 
 **Raises**
 
 [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if some classical bits are not used for measurements.
 
 ## Attributes
-
-<span id="qiskit.primitives.Estimator.circuits" />
-
-### circuits
-
-Quantum circuits that represents quantum states.
-
-**Returns**
-
-The quantum circuits.
-
-<span id="qiskit.primitives.Estimator.observables" />
-
-### observables
-
-Observables to be estimated.
-
-**Returns**
-
-The observables.
 
 <span id="qiskit.primitives.Estimator.options" />
 
@@ -60,16 +40,6 @@ Return options values for the estimator.
 **Returns**
 
 options
-
-<span id="qiskit.primitives.Estimator.parameters" />
-
-### parameters
-
-Parameters of the quantum circuits.
-
-**Returns**
-
-Parameters, where `parameters[i][j]` is the j-th parameter of the i-th circuit.
 
 ## Methods
 
@@ -99,14 +69,10 @@ with bound parameters
 values = parameter_values[i].
 ```
 
-<Admonition title="Deprecated since version 0.46.0" type="danger">
-  Implicit conversion from a `PauliList` to a `SparsePauliOp` with `coeffs=1` in the `observables` arguments is deprecated as of Qiskit 0.46 and will be removed in Qiskit 1.0. You should explicitly convert to a `SparsePauli` using `SparsePauliOp(pauli_list)` to avoid this warning.
-</Admonition>
-
 **Parameters**
 
 *   **circuits** (*Sequence\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*] |* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – one or more circuit objects.
-*   **observables** (*Sequence\[BaseOperator |* [*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*] | BaseOperator |* [*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – one or more observable objects. Several formats are allowed; importantly, `str` should follow the string representation format for [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli") objects.
+*   **observables** (*Sequence\[BaseOperator |* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*] | BaseOperator |* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – one or more observable objects. Several formats are allowed; importantly, `str` should follow the string representation format for [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli") objects.
 *   **parameter\_values** (*Sequence\[Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]] | Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] |* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – concrete parameters to be bound.
 *   **run\_options** – runtime options used for circuit execution.
 

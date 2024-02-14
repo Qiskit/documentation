@@ -10,7 +10,7 @@ python_api_name: qiskit.synthesis.TwoQubitBasisDecomposer
 
 <span id="qiskit.synthesis.TwoQubitBasisDecomposer" />
 
-`qiskit.synthesis.TwoQubitBasisDecomposer(gate, basis_fidelity=1.0, euler_basis='U', pulse_optimize=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/synthesis/two_qubit/two_qubit_decompose.py "view source code")
+`qiskit.synthesis.TwoQubitBasisDecomposer(gate, basis_fidelity=1.0, euler_basis='U', pulse_optimize=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/synthesis/two_qubit/two_qubit_decompose.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
@@ -31,7 +31,13 @@ A class for decomposing 2-qubit unitaries into minimal number of uses of a 2-qub
 
 `static decomp0(target)`
 
-Decompose target \~Ud(x, y, z) with 0 uses of the basis gate. Result Ur has trace: $|Tr(Ur.Utarget^dag)| = 4|(cos(x)cos(y)cos(z)+ j sin(x)sin(y)sin(z)|$, which is optimal for all targets and bases
+Decompose target $~Ud(x, y, z)$ with 0 uses of the basis gate. Result $Ur$ has trace:
+
+$$
+|Tr(Ur.U_{target}^{\dag})| = 4|(cos(x)cos(y)cos(z)+ j sin(x)sin(y)sin(z)|
+$$
+
+which is optimal for all targets and bases
 
 ### decomp1
 
@@ -39,11 +45,11 @@ Decompose target \~Ud(x, y, z) with 0 uses of the basis gate. Result Ur has trac
 
 `decomp1(target)`
 
-Decompose target \~Ud(x, y, z) with 1 uses of the basis gate \~Ud(a, b, c). Result Ur has trace: .. math:
+Decompose target $~Ud(x, y, z)$ with 1 uses of the basis gate $~Ud(a, b, c)$. Result $Ur$ has trace:
 
-```python
-|Tr(Ur.Utarget^dag)| = 4|cos(x-a)cos(y-b)cos(z-c) + j sin(x-a)sin(y-b)sin(z-c)|
-```
+$$
+|Tr(Ur.U_{target}^{\dag})| = 4|cos(x-a)cos(y-b)cos(z-c) + j sin(x-a)sin(y-b)sin(z-c)|
+$$
 
 which is optimal for all targets and bases with z==0 or c==0
 
@@ -53,15 +59,15 @@ which is optimal for all targets and bases with z==0 or c==0
 
 `decomp2_supercontrolled(target)`
 
-Decompose target \~Ud(x, y, z) with 2 uses of the basis gate.
+Decompose target $~Ud(x, y, z)$ with 2 uses of the basis gate.
 
-For supercontrolled basis \~Ud(pi/4, b, 0), all b, result Ur has trace .. math:
+For supercontrolled basis $~Ud(\pi/4, b, 0)$, all b, result $Ur$ has trace
 
-```python
-|Tr(Ur.Utarget^dag)| = 4cos(z)
-```
+$$
+|Tr(Ur.U_{target}^{\dag})| = 4cos(z)
+$$
 
-which is the optimal approximation for basis of CNOT-class `~Ud(pi/4, 0, 0)` or DCNOT-class `~Ud(pi/4, pi/4, 0)` and any target. May be sub-optimal for b!=0 (e.g. there exists exact decomposition for any target using B `B~Ud(pi/4, pi/8, 0)`, but not this decomposition.) This is an exact decomposition for supercontrolled basis and target `~Ud(x, y, 0)`. No guarantees for non-supercontrolled basis.
+which is the optimal approximation for basis of CNOT-class $~Ud(\pi/4, 0, 0)$ or DCNOT-class $~Ud(\pi/4, \pi/4, 0)$ and any target. May be sub-optimal for b!=0 (e.g. there exists exact decomposition for any target using B $B \sim Ud(\pi/4, \pi/8, 0)$, but not this decomposition.) This is an exact decomposition for supercontrolled basis and target $~Ud(x, y, 0)$. No guarantees for non-supercontrolled basis.
 
 ### decomp3\_supercontrolled
 
@@ -69,7 +75,7 @@ which is the optimal approximation for basis of CNOT-class `~Ud(pi/4, 0, 0)` or 
 
 `decomp3_supercontrolled(target)`
 
-Decompose target with 3 uses of the basis. This is an exact decomposition for supercontrolled basis \~Ud(pi/4, b, 0), all b, and any target. No guarantees for non-supercontrolled basis.
+Decompose target with 3 uses of the basis. This is an exact decomposition for supercontrolled basis $~Ud(\pi/4, b, 0)$, all b, and any target. No guarantees for non-supercontrolled basis.
 
 ### num\_basis\_gates
 
@@ -85,5 +91,5 @@ Computes the number of basis gates needed in a decomposition of input unitary
 
 `traces(target)`
 
-Give the expected traces $|Tr(U \cdot Utarget^dag)|$ for different number of basis gates.
+Give the expected traces $|Tr(U \cdot U_{target}^{\dag})|$ for different number of basis gates.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.IntegerComparator
 
 <span id="qiskit.circuit.library.IntegerComparator" />
 
-`qiskit.circuit.library.IntegerComparator(num_state_qubits=None, value=None, geq=True, name='cmp')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/arithmetic/integer_comparator.py "view source code")
+`qiskit.circuit.library.IntegerComparator(num_state_qubits=None, value=None, geq=True, name='cmp')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/arithmetic/integer_comparator.py "view source code")
 
 Bases: `BlueprintCircuit`
 
@@ -59,12 +59,6 @@ Returns a list of classical bits in the order that the registers were added.
 
 ### data
 
-<span id="qiskit.circuit.library.IntegerComparator.extension_lib" />
-
-### extension\_lib
-
-`= 'include "qelib1.inc";'`
-
 <span id="qiskit.circuit.library.IntegerComparator.geq" />
 
 ### geq
@@ -81,17 +75,11 @@ True, if the comparator compares `>=`, False if `<`.
 
 Return the global phase of the current circuit scope in radians.
 
-<span id="qiskit.circuit.library.IntegerComparator.header" />
-
-### header
-
-`= 'OPENQASM 2.0;'`
-
 <span id="qiskit.circuit.library.IntegerComparator.instances" />
 
 ### instances
 
-`= 163`
+`= 218`
 
 <span id="qiskit.circuit.library.IntegerComparator.layout" />
 
@@ -110,12 +98,6 @@ There are two types of permutations caused by the [`transpile()`](compiler#qiski
 The user provided metadata associated with the circuit.
 
 The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
-
-<span id="qiskit.circuit.library.IntegerComparator.num_ancilla_qubits" />
-
-### num\_ancilla\_qubits
-
-Deprecated. Use num\_ancillas instead.
 
 <span id="qiskit.circuit.library.IntegerComparator.num_ancillas" />
 

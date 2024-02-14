@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.RXCalibrationBuilder
 
 <span id="qiskit.transpiler.passes.RXCalibrationBuilder" />
 
-`qiskit.transpiler.passes.RXCalibrationBuilder(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/passes/calibration/rx_builder.py "view source code")
+`qiskit.transpiler.passes.RXCalibrationBuilder(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/calibration/rx_builder.py "view source code")
 
 Bases: `CalibrationBuilder`
 
@@ -23,7 +23,7 @@ Add single-pulse RX calibrations that are bootstrapped from the SX calibration.
 It is recommended to place this pass in the post-optimization stage of a passmanager. A simple demo:
 
 ```python
-from qiskit.providers.fake_provider import FakeBelemV2
+from qiskit.providers.fake_provider import GenericBackendV2
 from qiskit.transpiler import PassManager, PassManagerConfig
 from qiskit.transpiler.preset_passmanagers import level_1_pass_manager
 from qiskit.circuit import Parameter
@@ -35,7 +35,7 @@ from calibration.rx_builder import RXCalibrationBuilder
 qv = QuantumVolume(4, 4, seed=1004)
 
 # Transpiling with single pulse RX gates enabled
-backend_with_single_pulse_rx = FakeBelemV2()
+backend_with_single_pulse_rx = GenericBackendV2(5)
 rx_inst_props = {}
 for i in range(backend_with_single_pulse_rx.num_qubits):
   rx_inst_props[(i,)] = None
@@ -48,7 +48,7 @@ transpiled_circ_with_single_pulse_rx = pm_with_rx.run(qv)
 transpiled_circ_with_single_pulse_rx.count_ops()
 
 # Conventional transpilation: each RX gate is decomposed into a sequence with two SX gates
-original_backend = FakeBelemV2()
+original_backend = GenericBackendV2(5)
 original_config = PassManagerConfig.from_backend(backend=original_backend)
 original_pm = level_1_pass_manager(pass_manager_config=original_config)
 original_transpiled_circ = original_pm.run(qv)
@@ -96,9 +96,9 @@ Execute optimization task for input Qiskit IR.
 
 **Parameters**
 
-*   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
-*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-*   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+*   **passmanager\_ir** (*PassManagerIR*) – Qiskit IR to optimize.
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+*   **callback** (*Callable*) – A callback function which is caller per execution of optimization task.
 
 **Returns**
 
@@ -106,7 +106,7 @@ Optimized Qiskit IR and state of the workflow.
 
 **Return type**
 
-[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[PassManagerIR, [PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.PassManagerState")]
 
 ### get\_calibration
 

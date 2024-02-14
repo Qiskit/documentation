@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.AQCSynthesisPlugin
 
 <span id="qiskit.transpiler.passes.AQCSynthesisPlugin" />
 
-`qiskit.transpiler.passes.AQCSynthesisPlugin`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/passes/synthesis/aqc_plugin.py "view source code")
+`qiskit.transpiler.passes.AQCSynthesisPlugin`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/synthesis/aqc_plugin.py "view source code")
 
 Bases: [`UnitarySynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin")
 
@@ -34,9 +34,9 @@ type of inter-qubit connectivity, \{`"full"`, `"line"`, `"star"`}. Default value
 
 depth of the CNOT-network, i.e. the number of layers, where each layer consists of a single CNOT-block.
 
-**optimizer ([`Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer"))**
+**optimizer (`Minimizer`)**
 
-An instance of optimizer to be used in the optimization process.
+An implementation of the `Minimizer` protocol to be used in the optimization process.
 
 **seed (int)**
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.HighLevelSynthesis
 
 <span id="qiskit.transpiler.passes.HighLevelSynthesis" />
 
-`qiskit.transpiler.passes.HighLevelSynthesis(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/passes/synthesis/high_level_synthesis.py "view source code")
+`qiskit.transpiler.passes.HighLevelSynthesis(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/synthesis/high_level_synthesis.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -20,7 +20,7 @@ The input to this pass is a DAG that may contain higher-level objects, including
 
 In the most common use-case when either `basis_gates` or `target` is specified, all higher-level objects are synthesized, so the output is a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") without such objects. More precisely, every gate in the output DAG is either directly supported by the target, or is in `equivalence_library`.
 
-The abstract mathematical objects are synthesized using synthesis plugins, applying synthesis methods specified in the high-level-synthesis config (refer to the documentation for `HLSConfig`).
+The abstract mathematical objects are synthesized using synthesis plugins, applying synthesis methods specified in the high-level-synthesis config (refer to the documentation for [`HLSConfig`](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.HLSConfig")).
 
 As an example, let us assume that `op_a` and `op_b` are names of two higher-level objects, that `op_a`-objects have two synthesis methods `default` which does require any additional parameters and `other` with two optional integer parameters `option_1` and `option_2`, that `op_b`-objects have a single synthesis method `default`, and `qc` is a quantum circuit containing `op_a` and `op_b` objects. The following code snippet:
 
@@ -80,9 +80,9 @@ Execute optimization task for input Qiskit IR.
 
 **Parameters**
 
-*   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
-*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-*   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+*   **passmanager\_ir** (*PassManagerIR*) – Qiskit IR to optimize.
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+*   **callback** (*Callable*) – A callback function which is caller per execution of optimization task.
 
 **Returns**
 
@@ -90,7 +90,7 @@ Optimized Qiskit IR and state of the workflow.
 
 **Return type**
 
-[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[PassManagerIR, [PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.PassManagerState")]
 
 ### name
 

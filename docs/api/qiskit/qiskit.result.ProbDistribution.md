@@ -10,7 +10,7 @@ python_api_name: qiskit.result.ProbDistribution
 
 <span id="qiskit.result.ProbDistribution" />
 
-`qiskit.result.ProbDistribution(data, shots=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/result/distributions/probability.py "view source code")
+`qiskit.result.ProbDistribution(data, shots=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/result/distributions/probability.py "view source code")
 
 Bases: [`dict`](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
 
@@ -123,7 +123,7 @@ format `"0x1a"`
 
 `pop(k[, d]) → v, remove specified key and return the corresponding value.`
 
-If key is not found, default is returned if given, otherwise KeyError is raised
+If key is not found, d is returned if given, otherwise KeyError is raised
 
 ### popitem
 
