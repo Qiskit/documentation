@@ -208,7 +208,7 @@ If barriers are inserted in between the layers or not.
 
 ### instances
 
-`= 206`
+`= 228`
 
 <span id="qiskit.circuit.library.PauliFeatureMap.layout" />
 

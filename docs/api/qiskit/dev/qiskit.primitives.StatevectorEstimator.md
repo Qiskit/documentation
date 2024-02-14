@@ -12,9 +12,9 @@ python_api_name: qiskit.primitives.StatevectorEstimator
 
 `qiskit.primitives.StatevectorEstimator(*, default_precision=0.0, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/primitives/statevector_estimator.py "view source code")
 
-Bases: `BaseEstimatorV2`
+Bases: [`BaseEstimatorV2`](qiskit.primitives.BaseEstimatorV2 "qiskit.primitives.base.base_estimator.BaseEstimatorV2")
 
-Simple implementation of `BaseEstimatorV2` with full state vector simulation.
+Simple implementation of [`BaseEstimatorV2`](qiskit.primitives.BaseEstimatorV2 "qiskit.primitives.BaseEstimatorV2") with full state vector simulation.
 
 This class is implemented via [`Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector") which turns provided circuits into pure state vectors. These states are subsequently acted on by :class:\~.SparsePauliOp\`, which implies that, at present, this implementation is only compatible with Pauli-based observables.
 

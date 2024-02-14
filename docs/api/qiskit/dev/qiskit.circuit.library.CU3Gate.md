@@ -213,5 +213,17 @@ Get the time unit of duration.
 
 Return inverted CU3 gate.
 
-$CU3(\theta,\phi,\lambda)^{\dagger} =CU3(-\theta,-\phi,-\lambda)$)
+$CU3(\theta,\phi,\lambda)^{\dagger} =CU3(-\theta,-\phi,-\lambda))$
+
+**Parameters**
+
+**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an `AnnotatedOperation` with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always a [`CU3Gate`](#qiskit.circuit.library.CU3Gate "qiskit.circuit.library.CU3Gate") with inverse parameter values.
+
+**Returns**
+
+inverse gate.
+
+**Return type**
+
+[CU3Gate](#qiskit.circuit.library.CU3Gate "qiskit.circuit.library.CU3Gate")
 

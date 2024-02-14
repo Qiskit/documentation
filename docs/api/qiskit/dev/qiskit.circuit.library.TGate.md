@@ -150,6 +150,18 @@ Get the time unit of duration.
 
 Return inverse T gate (i.e. Tdg).
 
+**Parameters**
+
+**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an `AnnotatedOperation` with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always a [`TdgGate`](qiskit.circuit.library.TdgGate "qiskit.circuit.library.TdgGate").
+
+**Returns**
+
+inverse of [`TGate`](#qiskit.circuit.library.TGate "qiskit.circuit.library.TGate")
+
+**Return type**
+
+[TdgGate](qiskit.circuit.library.TdgGate "qiskit.circuit.library.TdgGate")
+
 ### power
 
 <span id="qiskit.circuit.library.TGate.power" />

@@ -147,7 +147,7 @@ Return the global phase of the current circuit scope in radians.
 
 ### instances
 
-`= 182`
+`= 164`
 
 <span id="qiskit.circuit.QuantumCircuit.layout" />
 
@@ -3194,7 +3194,7 @@ q_0: ┤ bottom ├ ⊗ q_0: ┤ top ├  = q_0: ─┤ top ├──
 
 **Return type**
 
-[*QuantumCircuit*](#qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit") | None
+[QuantumCircuit](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") | None
 
 **Examples**
 

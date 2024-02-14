@@ -197,7 +197,7 @@ If barriers are inserted in between the layers or not.
 
 ### instances
 
-`= 417`
+`= 304`
 
 <span id="qiskit.circuit.library.RealAmplitudes.layout" />
 
