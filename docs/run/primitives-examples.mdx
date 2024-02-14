@@ -30,6 +30,7 @@ Use Estimator to determine the expectation value of a single circuit-observable 
     ```python 
 import numpy as np
 from qiskit.circuit.library import IQP
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit.quantum_info import SparsePauliOp, random_hermitian
 from qiskit_ibm_runtime import EstimatorV2 as Estimator, QiskitRuntimeService
 
@@ -42,9 +43,12 @@ n_qubits = 127
 mat = np.real(random_hermitian(n_qubits, seed=1234))
 circuit = IQP(mat)
 observable = SparsePauliOp("Z" * n_qubits)
- 
 
-job = estimator.run([(circuit, observable)])
+pm = generate_preset_pass_manager(backend=backend)
+isa_circuit = pm.run(circuit)
+isa_observable = observable.apply_layout(isa_circuit.layout) 
+
+job = estimator.run([(isa_circuit, isa_observable)])
 result = job.result()
  
 print(f" > Expectation value: {result[0].data.evs}")
@@ -56,6 +60,7 @@ print(f" > Metadata: {result[0].metadata}")
     ```python 
 import numpy as np
 from qiskit.circuit.library import IQP
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit.quantum_info import SparsePauliOp, random_hermitian
 from qiskit_ibm_runtime import QiskitRuntimeService, Estimator
 
@@ -69,8 +74,12 @@ mat = np.real(random_hermitian(n_qubits, seed=1234))
 circuit = IQP(mat)
 observable = SparsePauliOp("Z" * n_qubits)
 
+pm = generate_preset_pass_manager(backend=backend)
+isa_circuit = pm.run(circuit)
+isa_observable = observable.apply_layout(isa_circuit.layout)
+
 estimator = Estimator(backend)
-job = estimator.run(circuit, observable)
+job = estimator.run(isa_circuit, isa_observable)
 result = job.result()
 
 print(f" > Observable: {observable.paulis}")
@@ -87,6 +96,7 @@ Use Estimator to determine the expectation values of multiple circuit-observable
 ```python 
 import numpy as np
 from qiskit.circuit.library import IQP
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit.quantum_info import SparsePauliOp, random_hermitian
 from qiskit_ibm_runtime import QiskitRuntimeService, Estimator
 
@@ -106,8 +116,12 @@ observables = [
     SparsePauliOp("Z" * n_qubits),
 ]
 
+pm = generate_preset_pass_manager(backend=backend)
+isa_circuits = pm.run(circuits)
+isa_observables = [ob.apply_layout(isa_circuits[0].layout) for ob in observables]
+
 estimator = Estimator(backend)
-job = estimator.run(circuits, observables)
+job = estimator.run(isa_circuits, isa_observables)
 result = job.result()
 
 print(f" > Expectation values: {result.values}")
@@ -120,6 +134,7 @@ Use Estimator to run three experiments in a single job, leveraging parameter val
 ```python 
 import numpy as np
 from qiskit.circuit.library import RealAmplitudes
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit.quantum_info import SparsePauliOp
 from qiskit_ibm_runtime import QiskitRuntimeService, Estimator
 
