@@ -43,10 +43,12 @@ Instead of `qiskit.execute`, use the
 ```python
 # Legacy path
 from qiskit import execute
+
 job = execute(circuit, backend)
 
 # New path
 from qiskit import transpile
+
 new_circuit = transpile(circuit, backend)
 job = backend.run(new_circuit)
 ```
@@ -59,6 +61,7 @@ generic wrapper for backends that do not support primitives:
 
 ```python
 from qiskit.primitives import BackendSampler
+
 sampler = BackendSampler(backend)
 job = sampler.run(circuit)
 ```
@@ -79,6 +82,7 @@ as `qasm2.dump` and `qasm2.dumps` do not provide pygments colored output.
 
 ```python
 from qiskit import QuantumCircuit
+
 qc = QuantumCircuit(1)
 
 # Deprecated
@@ -86,10 +90,12 @@ qasm_str = qc.qasm()
 
 # Alternative
 from qiskit.qasm2 import dumps
+
 qasm_str = dumps(qc)
 
 # Alternative: Write to file
 from qiskit.qasm2 import dump
+
 with open("my_file.qasm", "w") as f:
     dump(qc, f)
 ```
@@ -250,7 +256,12 @@ implementations found in `qiskit.primitives`:
 For the examples below, assume the following imports and primitive intializations:
 
 ```python
-from qiskit.primitives import Sampler, StatevectorSampler, Estimator, StatevectorEstimator
+from qiskit.primitives import (
+    Sampler,
+    StatevectorSampler,
+    Estimator,
+    StatevectorEstimator,
+)
 
 estimator_v1 = Estimator()
 sampler_v1 = Sampler()
@@ -310,7 +321,7 @@ sampler_v2 = StatevectorSampler()
       ```python
       # executing 2 circuits with 1 parameter set using Sampler V1
       job = sampler_v1.run([circuit1, circuit2], [vals1] * 2)
-      ∂dists = job.result().quasi_dists
+      dists = job.result().quasi_dists
 
       # executing 2 circuits with 1 parameter set using Sampler V2
       job = sampler_v2.run([(circuit1, vals1), (circuit2, vals1)])
@@ -365,7 +376,7 @@ sampler_v2 = StatevectorSampler()
     # Run using V1 sampler
     result = sampler_v1.run(circuit).result()
     quasi_dist = result.quasi_dists[0]
-    print(f'The quasi-probability distribution is: {quasi_dist}')
+    print(f"The quasi-probability distribution is: {quasi_dist}")
     ```
     ```text
     The quasi-probability distribution is: {0: 0.5, 3: 0.5}
@@ -377,10 +388,10 @@ sampler_v2 = StatevectorSampler()
     data_pub = result[0].data
     # Access bitstring for the classical register "meas"
     bitstring = data_pub.meas.get_bitstring()
-    print(f'The bitstring shape is: {bitstring.shape}')
+    print(f"The bitstring shape is: {bitstring.shape}")
     # Get counts for the classical register "meas"
     counts = data_pub.meas.get_counts()
-    print(f'The counts are: {counts}')
+    print(f"The counts are: {counts}")
     ```
     ```text
     The bitstring shape is: (1024, 1)
@@ -458,11 +469,11 @@ Deprecated                       | Alternative
     ```python
     # Deprecated
     from qiskit import BasicAer
-    backend = BasicAer.get_backend('backend_name')
+    backend = BasicAer.get_backend("backend_name")
 
     # Alternative
     from qiskit.providers.basic_provider import BasicProvider
-    backend = BasicProvider().get_backend('backend_name')
+    backend = BasicProvider().get_backend("backend_name")
     ```
 </Admonition>
 
@@ -484,10 +495,11 @@ The following examples show the migration paths of the three simulators in `basi
   <TabItem value="statevec" label="Statevector simulator" default>
     ```python
     from qiskit import QuantumCircuit
+
     qc = QuantumCircuit(3)
     qc.h(0)
     qc.h(1)
-    qc.cx(1,2)
+    qc.cx(1, 2)
     qc.measure_all()
 
     # Deprecated
@@ -496,7 +508,7 @@ The following examples show the migration paths of the three simulators in `basi
     statevector = backend.run(qc).result().get_statevector()
 
     # Alternative
-    qc.remove_final_measurements() # no measurements allowed
+    qc.remove_final_measurements()  # no measurements allowed
     from qiskit.quantum_info import Statevector
     statevector = Statevector(qc)
     ```
@@ -507,7 +519,7 @@ The following examples show the migration paths of the three simulators in `basi
     qc = QuantumCircuit(3)
     qc.h(0)
     qc.h(1)
-    qc.cx(1,2)
+    qc.cx(1, 2)
     qc.measure_all()
 
     # Deprecated
@@ -516,7 +528,7 @@ The following examples show the migration paths of the three simulators in `basi
     result = backend.run(qc).result()
 
     # Alternative
-    qc.remove_final_measurements() # no measurements allowed
+    qc.remove_final_measurements()  # no measurements allowed
     from qiskit.quantum_info import Operator
     result = Operator(qc).data
     ```
@@ -527,7 +539,7 @@ The following examples show the migration paths of the three simulators in `basi
     qc = QuantumCircuit(3)
     qc.h(0)
     qc.h(1)
-    qc.cx(1,2)
+    qc.cx(1, 2)
     qc.measure_all()
 
     # Deprecated
@@ -539,6 +551,7 @@ The following examples show the migration paths of the three simulators in `basi
     from qiskit.providers.basic_provider import BasicProvider
     backend = BasicProvider().get_backend("basic_simulator")
     result = backend.run(qc).result()
+
     # or, directly
     from qiskit.providers.basic_provider import BasicSimulator
     backend = BasicSimulator()
@@ -653,6 +666,7 @@ backend = FakeBackend5QV2()
 # New path
 from qiskit.providers.fake_provider import GenericBackendV2
 backend = GenericBackendV2(num_qubits=5)
+
 # note that this class will generate 5q backend with generic
 # properties that serves the same purpose as FakeBackend5QV2
 # but will not be identical.
@@ -747,7 +761,7 @@ from qiskit.providers.fake_provider import GenericBackendV2
 from qiskit import pulse
 
 backend = GenericBackendV2(num_qubits=5)
-sched = backend.target['x'][(qubit,)].calibration
+sched = backend.target["x"][(qubit,)].calibration
 
 with pulse.build() as only_pulse_scheds:
     pulse.call(sched)
@@ -760,10 +774,11 @@ object.
 ```python
 from math import pi
 from qiskit.compiler import schedule, transpile
+
 qc = QuatumCircuit(2)
-qc.rz(pi/2, 0)
+qc.rz(pi / 2, 0)
 qc.sx(0)
-qc.rz(pi/2, 0)
+qc.rz(pi / 2, 0)
 qc.cx(0, 1)
 qc_t = transpile(qc, backend)
 sched = schedule(qc_t, backend)
