@@ -685,16 +685,42 @@ backend = GenericBackendV2(num_qubits=5)
 The `qiskit.pulse.library.parametric_pulses.ParametricPulse` base class and
 pulse library have been superseded by
 [`qiskit.pulse.SymbolicPulse`](/api/qiskit/qiskit.pulse.library.SymbolicPulse)
-and the corresponding pulse library. `SymbolicPulse` provides better
-performance, flexibility, and [QPY](/api/qiskit/qpy) support:
+and the corresponding pulse library. `SymbolicPulse` provides [QPY](/api/qiskit/qpy) support:
+
+    ```python
+    from qiskit import pulse, qpy
+
+    with pulse.build() as schedule:
+        pulse.play(pulse.Gaussian(100, 0.1, 25), pulse.DriveChannel(0))
+    
+    with open('schedule.qpy', 'wb') as fd:
+        qpy.dump(schedule, fd)
+    ```
 
 Deprecated                       |   Alternative
 ---------------------------------|--------------------------------------------
 `pulse.library.parametric_pulses.ParametricPulse` | [`qiskit.pulse.SymbolicPulse`](/api/qiskit/qiskit.pulse.library.SymbolicPulse)
-`pulse.library.parametric_pulses.Constant` |  ?
-`pulse.library.parametric_pulses.Drag` |  ?
-`pulse.library.parametric_pulses.Gaussian` |  ?
-`qiskit.pulse.library.parametric_pulses.GaussianSquare` |  ?
+`pulse.library.parametric_pulses.Constant` |  `pulse.library.symbolic_pulses.Constant`
+`pulse.library.parametric_pulses.Drag` |  `pulse.library.symbolic_pulses.Drag`
+`pulse.library.parametric_pulses.Gaussian` |  `pulse.library.symbolic_pulses.Gaussian`
+`qiskit.pulse.library.parametric_pulses.GaussianSquare` |  `pulse.library.symbolic_pulses.GaussianSquare`
+
+<span id="complex-val-amp"></span>
+### Complex-valued amplitude
+
+Complex-valued pulse amplitude (``amp``) is replaced with a (``amp``, ``angle``) duo.
+This representation is more intuitive especially for some calibration tasks, e.g. angle calibration:
+
+    ```python
+    from qiskit import pulse
+    from qiskit.circuit import Parameter
+    from math import pi
+    
+    with pulse.build() as schedule:
+        angle = Parameter("θ")
+        pulse.play(pulse.Gaussian(100, 0.1, 25, angle=angle), pulse.DriveChannel(0))
+    schedule.assign_parameters({angle: pi})
+    ```
 
 <span id="injecting-circuit-gate-operations"></span>
 ### Injecting circuit gate operations
