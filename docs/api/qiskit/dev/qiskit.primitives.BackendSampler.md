@@ -22,10 +22,10 @@ Initialize a new BackendSampler
 
 **Parameters**
 
-*   **backend** ([*BackendV1*](qiskit.providers.BackendV1 "qiskit.providers.BackendV1")  *|*[*BackendV2*](qiskit.providers.BackendV2 "qiskit.providers.BackendV2")) – Required: the backend to run the sampler primitive on
-*   **options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)") *| None*) – Default options.
-*   **bound\_pass\_manager** ([*PassManager*](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") *| None*) – An optional pass manager to run after parameter binding.
-*   **skip\_transpilation** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If this is set to True the internal compilation of the input circuits is skipped and the circuit objects will be directly executed when this objected is called.
+*   **backend** – Required: the backend to run the sampler primitive on
+*   **options** – Default options.
+*   **bound\_pass\_manager** – An optional pass manager to run after parameter binding.
+*   **skip\_transpilation** – If this is set to True the internal compilation of the input circuits is skipped and the circuit objects will be directly executed when this objected is called.
 
 **Raises**
 

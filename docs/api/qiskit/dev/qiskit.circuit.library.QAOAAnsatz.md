@@ -137,7 +137,7 @@ If barriers are inserted in between the layers or not.
 
 ### instances
 
-`= 271`
+`= 158`
 
 <span id="qiskit.circuit.library.QAOAAnsatz.layout" />
 

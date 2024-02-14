@@ -144,7 +144,21 @@ Get the time unit of duration.
 
 `inverse(annotated=False)`
 
-Invert this gate.
+Returne the inverse gate (itself).
+
+**Parameters**
+
+**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an `AnnotatedOperation` with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as this gate is self-inverse.
+
+**Returns**
+
+inverse gate (self-inverse).
+
+**Return type**
+
+[IGate](#qiskit.circuit.library.IGate "qiskit.circuit.library.IGate")
+
+.
 
 ### power
 

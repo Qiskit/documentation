@@ -190,7 +190,7 @@ A tuple with single arguments.
 
 **Return type**
 
-[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)"), [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")]]
+Iterable\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)"), [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")]]
 
 ### c\_if
 

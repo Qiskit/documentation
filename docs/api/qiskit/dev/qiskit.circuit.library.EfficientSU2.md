@@ -159,7 +159,7 @@ If barriers are inserted in between the layers or not.
 
 ### instances
 
-`= 158`
+`= 179`
 
 <span id="qiskit.circuit.library.EfficientSU2.layout" />
 

@@ -209,5 +209,19 @@ Get the time unit of duration.
 
 `inverse(annotated=False)`
 
-Return inverse CRY gate (i.e. with the negative rotation angle).
+Return inverse CRY gate (i.e. with the negative rotation angle)
+
+**Parameters**
+
+**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an `AnnotatedOperation` with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always a [`CRYGate`](#qiskit.circuit.library.CRYGate "qiskit.circuit.library.CRYGate") with an inverted parameter value.
+
+**Returns**
+
+inverse gate.
+
+**Return type**
+
+[CRYGate](#qiskit.circuit.library.CRYGate "qiskit.circuit.library.CRYGate")
+
+.
 

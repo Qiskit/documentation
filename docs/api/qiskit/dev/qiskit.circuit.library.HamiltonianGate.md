@@ -22,7 +22,7 @@ This gate resolves to a [`UnitaryGate`](qiskit.circuit.library.UnitaryGate "qisk
 
 *   **data** (*np.ndarray |* [*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate") *| BaseOperator*) – A hermitian operator.
 *   **time** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – Time evolution parameter.
-*   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Unitary name for backend \[Default: None].
+*   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Unitary name for backend \[Default: `None`].
 
 **Raises**
 

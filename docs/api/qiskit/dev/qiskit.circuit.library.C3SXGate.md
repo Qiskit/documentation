@@ -26,8 +26,8 @@ Create a new 3-qubit controlled sqrt-X gate.
 
 **Parameters**
 
-*   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *or None*) – An optional label for the gate \[Default: None]
-*   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *or*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
+*   **label** – An optional label for the gate \[Default: `None`]
+*   **ctrl\_state** – control state expressed as integer, string (e.g.\`\`’110’`), or ``None`. If `None`, use all 1s.
 
 ## Attributes
 

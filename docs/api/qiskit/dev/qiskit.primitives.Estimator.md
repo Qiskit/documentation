@@ -23,7 +23,7 @@ Reference implementation of [`BaseEstimator`](qiskit.primitives.BaseEstimator#qi
 
 **Parameters**
 
-**options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)") *| None*) – Default options.
+**options** – Default options.
 
 **Raises**
 

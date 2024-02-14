@@ -33,7 +33,7 @@ where the i-th elements of `result` correspond to the circuit given by `circuits
 
 ### quasi\_dists
 
-`list[qiskit.result.distributions.quasi.QuasiDistribution]`
+`list[QuasiDistribution]`
 
 <span id="qiskit.primitives.SamplerResult.metadata" />
 
