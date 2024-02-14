@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeYorktownV2
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeYorktownV2" />
 
-`FakeYorktownV2`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.19/qiskit_ibm_runtime/fake_provider/backends/yorktown/fake_yorktown.py "view source code")
+`FakeYorktownV2`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/backends/yorktown/fake_yorktown.py "view source code")
 
 A fake 5 qubit backend.
 

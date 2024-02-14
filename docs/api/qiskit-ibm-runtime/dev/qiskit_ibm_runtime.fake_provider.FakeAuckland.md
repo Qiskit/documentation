@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeAuckland
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeAuckland" />
 
-`FakeAuckland`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.19/qiskit_ibm_runtime/fake_provider/backends/auckland/fake_auckland.py "view source code")
+`FakeAuckland`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/backends/auckland/fake_auckland.py "view source code")
 
 A fake 27 qubit backend.
 

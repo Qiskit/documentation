@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeBurlingtonV2
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeBurlingtonV2" />
 
-`FakeBurlingtonV2`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.19/qiskit_ibm_runtime/fake_provider/backends/burlington/fake_burlington.py "view source code")
+`FakeBurlingtonV2`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/backends/burlington/fake_burlington.py "view source code")
 
 A fake 5 qubit backend.
 
