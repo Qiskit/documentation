@@ -685,42 +685,44 @@ backend = GenericBackendV2(num_qubits=5)
 The `qiskit.pulse.library.parametric_pulses.ParametricPulse` base class and
 pulse library have been superseded by
 [`qiskit.pulse.SymbolicPulse`](/api/qiskit/qiskit.pulse.library.SymbolicPulse)
-and the corresponding pulse library. `SymbolicPulse` provides [QPY](/api/qiskit/qpy) support:
+and the corresponding pulse library. `SymbolicPulse` supports
+[QPY](/api/qiskit/qpy) serialization:
 
-    ```python
-    from qiskit import pulse, qpy
+```python
+from qiskit import pulse, qpy
 
-    with pulse.build() as schedule:
-        pulse.play(pulse.Gaussian(100, 0.1, 25), pulse.DriveChannel(0))
-    
-    with open('schedule.qpy', 'wb') as fd:
-        qpy.dump(schedule, fd)
-    ```
+with pulse.build() as schedule:
+    pulse.play(pulse.Gaussian(100, 0.1, 25), pulse.DriveChannel(0))
+
+with open('schedule.qpy', 'wb') as fd:
+    qpy.dump(schedule, fd)
+```
 
 Deprecated                       |   Alternative
 ---------------------------------|--------------------------------------------
 `pulse.library.parametric_pulses.ParametricPulse` | [`qiskit.pulse.SymbolicPulse`](/api/qiskit/qiskit.pulse.library.SymbolicPulse)
-`pulse.library.parametric_pulses.Constant` |  `pulse.library.symbolic_pulses.Constant`
-`pulse.library.parametric_pulses.Drag` |  `pulse.library.symbolic_pulses.Drag`
-`pulse.library.parametric_pulses.Gaussian` |  `pulse.library.symbolic_pulses.Gaussian`
-`qiskit.pulse.library.parametric_pulses.GaussianSquare` |  `pulse.library.symbolic_pulses.GaussianSquare`
+`pulse.library.parametric_pulses.Constant` |  [`pulse.library.symbolic_pulses.Constant`](/api/qiskit/qiskit.pulse.library.Constant_class.rst)
+`pulse.library.parametric_pulses.Drag` |  [`pulse.library.symbolic_pulses.Drag`](/api/qiskit/qiskit.pulse.library.Drag_class.rst)
+`pulse.library.parametric_pulses.Gaussian` |  [`pulse.library.symbolic_pulses.Gaussian`](/api/qiskit/qiskit.pulse.library.Gaussian_class.rst)
+`qiskit.pulse.library.parametric_pulses.GaussianSquare` |  [`pulse.library.symbolic_pulses.GaussianSquare`](/api/qiskit/qiskit.pulse.library.GaussianSquare)
 
 <span id="complex-val-amp"></span>
 ### Complex-valued amplitude
 
-Complex-valued pulse amplitude (``amp``) is replaced with a (``amp``, ``angle``) duo.
-This representation is more intuitive especially for some calibration tasks, e.g. angle calibration:
+Complex-valued pulse amplitude (``amp``) is replaced with a (``amp``,
+``angle``) duo. This representation is more intuitive especially for some
+calibration tasks such as angle calibration:
 
-    ```python
-    from qiskit import pulse
-    from qiskit.circuit import Parameter
-    from math import pi
-    
-    with pulse.build() as schedule:
-        angle = Parameter("θ")
-        pulse.play(pulse.Gaussian(100, 0.1, 25, angle=angle), pulse.DriveChannel(0))
-    schedule.assign_parameters({angle: pi})
-    ```
+```python
+from qiskit import pulse
+from qiskit.circuit import Parameter
+from math import pi
+
+with pulse.build() as schedule:
+    angle = Parameter("θ")
+    pulse.play(pulse.Gaussian(100, 0.1, 25, angle=angle), pulse.DriveChannel(0))
+schedule.assign_parameters({angle: pi})
+```
 
 <span id="injecting-circuit-gate-operations"></span>
 ### Injecting circuit gate operations
@@ -778,7 +780,8 @@ program with the pulse model.
 <span id="builder.build"></span>
 ### builder.build
 
-The following arguments in `qiskit.pulse.builder.build` have been removed:
+The following arguments in `qiskit.pulse.builder.build` have been removed with
+no alternative.
 
 * `default_transpiler_settings`
 * `default_circuit_scheduler_settings`
@@ -790,8 +793,10 @@ Together with the functions:
 * `qiskit.pulse.builder.transpiler_settings`
 * `qiskit.pulse.builder.circuit_scheduler_settings`
 
-The alternative is ?
-
+This is because it's no longer possible to inject circuit objects into the
+builder context (see [Injecting circuit gate
+operations](#injecting-circuit-gate-operations)); these settings were for
+converting injected objects into pulse representations.
 
 <span id="library"></span>
 ### library
