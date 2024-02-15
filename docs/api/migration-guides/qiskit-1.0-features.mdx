@@ -85,7 +85,7 @@ from qiskit import QuantumCircuit
 
 qc = QuantumCircuit(1)
 
-# Deprecated
+# Old
 qasm_str = qc.qasm()
 
 # Alternative
@@ -106,7 +106,7 @@ with open("my_file.qasm", "w") as f:
 The following gate methods have been removed in favor of more established
 methods that append the same gates:
 
-| Deprecated                   | Alternative |
+| Removed                      | Alternative |
 |------------------------------|----------------------|
 | `QuantumCircuit.cnot`        | [`QuantumCircuit.cx`](/api/qiskit/qiskit.circuit.QuantumCircuit#cx)       |
 | `QuantumCircuit.toffoli`     | [`QuantumCircuit.ccx`](/api/qiskit/qiskit.circuit.QuantumCircuit#ccx)     |
@@ -118,7 +118,7 @@ methods that append the same gates:
 The following circuit methods have been removed. Instead, these gates can be
 applied to a circuit with `QuantumCircuit.append`.
 
-| Deprecated                   | Alternative (append) |
+| Removed                      | Alternative (append) |
 |------------------------------|----------------------|
 | `QuantumCircuit.diagonal`    | [`DiagonalGate`](/api/qiskit/qiskit.circuit.library.DiagonalGate)          |
 | `QuantumCircuit.hamiltonian` | [`HamiltonianGate`](/api/qiskit/qiskit.circuit.library.HamiltonianGate)    |
@@ -145,7 +145,7 @@ circuit.append(gate, qubits)  # apply the gate
 
 The following two `QuantumCircuit` methods have also been removed:
 
-| Deprecated                       | Alternative |
+| Removed                          | Alternative |
 |----------------------------------|-------------|
 | `QuantumCircuit.bind_parameters` | [`QuantumCircuit.assign_parameters`](/api/qiskit/qiskit.circuit.QuantumCircuit#assign_parameters) |
 | `QuantumCircuit.snapshot`        | `qiskit-aer`'s [save instructions](https://qiskit.org/ecosystem/aer/apidocs/circuit.html#saving-simulator-data) |
@@ -168,7 +168,7 @@ convert that `QuantumCircuit` into a
 [`circuit_to_dag`](/api/qiskit/converters#circuit_to_dag).
 
 ```python
-# Deprecated
+# Old
 from qiskit.converters import ast_to_dag
 from qiskit.qasm import Qasm
 
@@ -191,7 +191,7 @@ new location, simply replace `qiskit.extensions` with `qiskit.circuit.library`
 in the object import path. This is a drop-in replacement.
 
 ```python
-# Deprecated
+# Old
 from qiskit.extensions import DiagonalGate
 
 # Alternative
@@ -215,7 +215,7 @@ The classes moved to [`qiskit.circuit.library`](/api/qiskit/circuit_library) are
 The following classes have been removed from the codebase, as their
 functionality was either redundant or linked to the `extensions` module:
 
-Deprecated                       |   Alternative
+Removed                          |   Alternative
 ---------------------------------|--------------------------------------------
 `SingleQubitUnitary`    |  [`qiskit.circuit.library.UnitaryGate`](/api/qiskit/qiskit.circuit.library.UnitaryGate)
 `Snapshot`             |  Use `qiskit-aer`'s [save instructions](https://qiskit.org/ecosystem/aer/apidocs/circuit.html#saving-simulator-data)
@@ -457,17 +457,16 @@ Most of the functionality in the `qiskit.providers.basicaer` module has been
 replaced with the new
 [`qiskit.providers.basic_provider`](/api/qiskit/providers_basic_provider)
 module, except for the `UnitarySimulatorPy` and `StatevectorSimulatorPy`
-classes; their functionality was already contained in the
-[`quantum_info`](/api/qiskit/quantum_info) module.
+classes which have been removed; their functionality was already contained in
+the [`quantum_info`](/api/qiskit/quantum_info) module.
 
 The migration to the new paths should be straightforward. You can replace most
-classes in `qiskit.providers.basicaer`
-with their
+classes in `qiskit.providers.basicaer` with their
 [`qiskit.providers.basic_provider`](/api/qiskit/providers_basic_provider)
 counterpart (drop-in replacement). Note that the following classes have not
 only changed paths, but also changed names:
 
-Deprecated                       | Alternative
+Removed                          | Alternative
 ---------------------------------|--------------------------------------------
 `qiskit.providers.basicaer`                            |  [`qiskit.providers.basic_provider`](/api/qiskit/providers_basic_provider)
 `BasicAerProvider`             |  [`BasicProvider`](/api/qiskit/qiskit.providers.basic_provider.BasicProvider)
@@ -481,7 +480,7 @@ Deprecated                       | Alternative
     Instead, the provider class must be imported from its submodule and instantiated by the user:
 
     ```python
-    # Deprecated
+    # Old
     from qiskit import BasicAer
     backend = BasicAer.get_backend("backend_name")
 
@@ -496,7 +495,7 @@ different [`quantum_info`](/api/qiskit/quantum_info) classes. This is not a
 drop-in replacement, but the changes are minimal, see the following migration
 examples:
 
-Deprecated                       |   Alternative
+Removed                          |   Alternative
 ---------------------------------|--------------------------------------------
 `UnitarySimulatorPy`         |  [`quantum_info.Operator`](/api/qiskit/qiskit.quantum_info.Operator)
 `StatevectorSimulatorPy` |  [`quantum_info.Statevector`](/api/qiskit/qiskit.quantum_info.Statevector)
@@ -516,7 +515,7 @@ The following examples show the migration paths of the three simulators in `basi
     qc.cx(1, 2)
     qc.measure_all()
 
-    # Deprecated
+    # Old
     from qiskit import BasicAer
     backend = BasicAer.get_backend("statevector_simulator")
     statevector = backend.run(qc).result().get_statevector()
@@ -536,7 +535,7 @@ The following examples show the migration paths of the three simulators in `basi
     qc.cx(1, 2)
     qc.measure_all()
 
-    # Deprecated
+    # Old
     from qiskit import BasicAer
     backend = BasicAer.get_backend("unitary_simulator")
     result = backend.run(qc).result()
@@ -556,7 +555,7 @@ The following examples show the migration paths of the three simulators in `basi
     qc.cx(1, 2)
     qc.measure_all()
 
-    # Deprecated
+    # Old
     from qiskit import BasicAer
     backend = BasicAer.get_backend("qasm_simulator")
     result = backend.run(qc).result()
@@ -609,7 +608,7 @@ To migrate to the new path:
    `qiskit_ibm_runtime.fake_provider`. For example:
 
     ```python
-    # Deprecated
+    # Old
     from qiskit.providers.fake_provider import FakeProvider
     backend1 = FakeProvider().get_backend("fake_ourense")
 
@@ -626,7 +625,7 @@ To migrate to the new path:
 
 The fake backend base classes have also been migrated, but show some differences in the import path:
 
-Deprecated                       |   Alternative
+Removed                          |   Alternative
 ---------------------------------|--------------------------------------------
 `qiskit.providers.fake_provider.FakeQasmBackend`             |  `qiskit_ibm_runtime.fake_provider.fake_qasm_backend.FakeQasmBackend`
 `qiskit.providers.fake_provider.FakePulseBackend`             |  `qiskit_ibm_runtime.fake_provider.fake_pulse_backend.FakePulseBackend`
@@ -660,7 +659,7 @@ migration path consists of using the new
 class to configure a backend with similar properties or building a custom
 target.
 
-Deprecated                       |   Alternative
+Removed                          |   Alternative
 ---------------------------------|--------------------------------------------
 `fake_provider.FakeBackendV2` | [`fake_provider.GenericBackendV2`](/api/qiskit/qiskit.providers.fake_provider.GenericBackendV2)
 `fake_provider.FakeBackend5QV2` | [`fake_provider.GenericBackendV2`](/api/qiskit/qiskit.providers.fake_provider.GenericBackendV2)
@@ -726,7 +725,7 @@ with open('schedule.qpy', 'wb') as fd:
     qpy.dump(schedule, fd)
 ```
 
-Deprecated                       |   Alternative
+Removed                          |   Alternative
 ---------------------------------|--------------------------------------------
 `pulse.library.parametric_pulses.ParametricPulse` | [`qiskit.pulse.SymbolicPulse`](/api/qiskit/qiskit.pulse.library.SymbolicPulse)
 `pulse.library.parametric_pulses.Constant` |  [`pulse.library.symbolic_pulses.Constant`](/api/qiskit/qiskit.pulse.library.Constant_class.rst)
@@ -855,8 +854,8 @@ For example, instead of `pulse.gaussian(100,0.5,10)`, use
 [`Sawtooth`](/api/qiskit/qiskit.pulse.library.Sawtooth_class.rst) and
 [`Square`](/api/qiskit/qiskit.pulse.library.Square_fun.rst) is defined such
 that a phase of `2\\pi` shifts by a full cycle, contrary to the discrete
-counterpart. Also note that complex amplitude support is deprecated in the
-symbolic pulse library; use `float`, `amp`, and  `angle` instead.
+counterpart. Also note that complex amplitude support is no longer supported in
+the symbolic pulse library; use `float`, `amp`, and  `angle` instead.
 
 <span id="ScalableSymbolicPulse"></span>
 ### ScalableSymbolicPulse
@@ -921,7 +920,7 @@ For more information, see [qiskit.synthesis](#qiskit.synthesis).
 The `qiskit.quantum_info.synthesis` module has been migrated to different locations in the codebase,
 mostly `qiskit.synthesis`:
 
-Deprecated | Alternative
+Removed    | Alternative
 -----------|------------
 `OneQubitEulerDecomposer` | [`qiskit.synthesis.one_qubit.OneQubitEulerDecomposer`](/api/qiskit/qiskit.synthesis.OneQubitEulerDecomposer)
 `TwoQubitBasisDecomposer` | [`qiskit.synthesis.two_qubits.TwoQubitBasisDecomposer`](/api/qiskit/qiskit.synthesis.TwoQubitBasisDecomposer)
@@ -954,7 +953,7 @@ from this new location instead. For example:
 If you were previously running:
 
 ```python
-# Deprecated
+# Old
 from qiskit.tools import parallel_map
 
 parallel_map(func, input)
@@ -978,7 +977,7 @@ similar functionality, see
 <span id="monitor"></span>
 ### monitor
 
-The `qiskit.tools.monitor` submodule is deprecated because it was tied to the
+The `qiskit.tools.monitor` submodule has been removed as it was tied to the
 legacy `qiskit-ibmq-provider` package, which is no longer supported (it also
 only supported `BackendV1` interface and not the newer
 [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) interface). There is
@@ -995,7 +994,7 @@ was moved to [`qiskit.visualization`](/api/qiskit/visualization) in Qiskit
 [`qiskit.visualization`](/api/qiskit/visualization).
 
 ```python
-# Deprecated
+# Old
 from qiskit.tools.visualization import plot_histogram
 
 plot_histogram(counts)
@@ -1009,10 +1008,10 @@ plot_histogram(counts)
 <span id="events"></span>
 ### events
 
-The `qiskit.tools.events` module and the `progressbar()` utility
-it exposed have been deprecated and will be removed in the Qiskit 1.0
-release. This module's functionality was not widely used and is better covered
-by dedicated packages such as [tqdm](https://github.com/tqdm/tqdm).
+The `qiskit.tools.events` module and the `progressbar()` utility it exposed
+have been removed. This module's functionality was not widely used and is
+better covered by dedicated packages such as
+[tqdm](https://github.com/tqdm/tqdm).
 
 <span id="qiskit.transpiler"></span>
 ## qiskit.transpiler
@@ -1022,7 +1021,7 @@ by dedicated packages such as [tqdm](https://github.com/tqdm/tqdm).
 
 The items in `qiskit.transpiler.synthesis` module have been migrated to new locations:
 
-Deprecated | Alternative
+Removed    | Alternative
 -----------|------------
 `qiskit.transpiler.synthesis.aqc` | [`qiskit.synthesis.unitary.aqc`](/api/qiskit/synthesis_aqc) (except for `AQCSynthesisPlugin`)
 `qiskit.synthesis.unitary.aqc.AQCSynthesisPlugin` | [`qiskit.transpiler.passes.AQCSynthesisPlugin`](/api/qiskit/qiskit.transpiler.passes.AQCSynthesisPlugin)
@@ -1043,7 +1042,7 @@ The `CrosstalkAdaptiveSchedule` transpiler pass has been removed from the
 codebase. This pass was no longer usable because its internal operation
 was dependent on custom properties being set in the `BackendProperties` payload
 of a `BackendV1` instance. As no backends are setting these fields, the pass has
-been deprecated.
+been removed.
 
 <span id="passmanager"></span>
 ### passmanager
@@ -1052,20 +1051,20 @@ The `append` methods of the
 [`ConditionalController`](/api/qiskit/qiskit.passmanager.ConditionalController)
 [`FlowControllerLinear`](/api/qiskit/qiskit.passmanager.FlowControllerLinear)
 [`DoWhileController`](/api/qiskit/qiskit.passmanager.DoWhileController) classes
-are deprecated. Instead, all tasks must be provided when the controller objects
-are constructed.
+have been removed. Instead, all tasks must be provided when the controller
+objects are constructed.
 
 <span id="qiskit.utils"></span>
 ## qiskit.utils
 
-The following tools in `qiskit.utils` have been removed:
+The following tools in `qiskit.utils` have been removed with no replacement:
   * `qiskit.utils.arithmetic`
   * `qiskit.utils.circuit_utils`
   * `qiskit.utils.entangler_map`
   * `qiskit.utils.name_unnamed_args`
 
-These functions were used exclusively in the deprecated `qiskit.algorithms` and
-`qiskit.opflow` modules, and have no replacement.
+These functions were used exclusively in the `qiskit.algorithms` and
+`qiskit.opflow` modules, which have also been removed.
 
 <span id="qiskit.visualization"></span>
 ## qiskit.visualization
