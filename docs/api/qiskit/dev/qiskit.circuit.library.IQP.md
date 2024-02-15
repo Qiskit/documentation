@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.IQP
 
 <span id="qiskit.circuit.library.IQP" />
 
-`qiskit.circuit.library.IQP(interactions)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/iqp.py "view source code")
+`qiskit.circuit.library.IQP(interactions)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/iqp.py "view source code")
 
 Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
@@ -88,7 +88,7 @@ Return the global phase of the current circuit scope in radians.
 
 ### instances
 
-`= 203`
+`= 181`
 
 <span id="qiskit.circuit.library.IQP.layout" />
 

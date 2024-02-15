@@ -1,9 +1,9 @@
 ---
-title: as_late_as_possible
-description: API reference for qiskit.scheduler.methods.basic.as_late_as_possible
+title: basic
+description: API reference for qiskit.scheduler.methods.basic
 in_page_toc_min_heading_level: 1
-python_api_type: function
-python_api_name: qiskit.scheduler.methods.basic.as_late_as_possible
+python_api_type: module
+python_api_name: qiskit.scheduler.methods.basic
 ---
 
 <span id="qiskit-scheduler-methods-basic" />

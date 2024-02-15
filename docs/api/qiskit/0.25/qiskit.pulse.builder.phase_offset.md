@@ -33,7 +33,7 @@ assert len(pulse_prog.instructions) == 3
 **Parameters**
 
 *   **phase** (`float`) – Amount of phase offset in radians.
-*   **channels** ([`PulseChannel`](qiskit.pulse.channels#qiskit.pulse.channels.PulseChannel "qiskit.pulse.channels.PulseChannel")) – Channels to offset phase of.
+*   **channels** ([`PulseChannel`](qiskit.pulse.channels#pulsechannel "qiskit.pulse.channels.PulseChannel")) – Channels to offset phase of.
 
 **Yields**
 

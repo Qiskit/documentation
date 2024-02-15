@@ -28,6 +28,6 @@ with pulse.build() as pulse_prog:
 **Parameters**
 
 *   **pulse** (`Union`\[`Pulse`, `ndarray`]) – Pulse to play.
-*   **channel** ([`PulseChannel`](qiskit.pulse.channels#qiskit.pulse.channels.PulseChannel "qiskit.pulse.channels.PulseChannel")) – Channel to play pulse on.
+*   **channel** ([`PulseChannel`](qiskit.pulse.channels#pulsechannel "qiskit.pulse.channels.PulseChannel")) – Channel to play pulse on.
 *   **name** (`Optional`\[`str`]) – Name of the pulse.
 

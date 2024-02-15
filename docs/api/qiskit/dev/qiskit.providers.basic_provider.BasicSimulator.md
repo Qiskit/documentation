@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.basic_provider.BasicSimulator
 
 <span id="qiskit.providers.basic_provider.BasicSimulator" />
 
-`qiskit.providers.basic_provider.BasicSimulator(provider=None, target=None, **fields)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/providers/basic_provider/basic_simulator.py "view source code")
+`qiskit.providers.basic_provider.BasicSimulator(provider=None, target=None, **fields)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/providers/basic_provider/basic_simulator.py "view source code")
 
 Bases: [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.backend.BackendV2")
 
@@ -363,7 +363,7 @@ Run an experiment (circuit) and return a single experiment result.
 
 **Parameters**
 
-**experiment** ([*QasmQobjExperiment*](qiskit.qobj.QasmQobjExperiment "qiskit.qobj.QasmQobjExperiment")) – experiment from qobj experiments list
+**experiment** ([*QasmQobjExperiment*](qiskit.qobj.QasmQobjExperiment "qiskit.qobj.qasm_qobj.QasmQobjExperiment")) – experiment from qobj experiments list
 
 **Returns**
 

@@ -16,7 +16,7 @@ Pad all available timeslots with delays upon exiting context.
 
 **Parameters**
 
-**chs** ([`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")) – Channels to pad with delays. Defaults to all channels in context if none are supplied.
+**chs** ([`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")) – Channels to pad with delays. Defaults to all channels in context if none are supplied.
 
 Examples:
 

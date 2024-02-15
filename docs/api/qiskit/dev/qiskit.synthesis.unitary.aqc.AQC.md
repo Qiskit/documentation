@@ -10,7 +10,7 @@ python_api_name: qiskit.synthesis.unitary.aqc.AQC
 
 <span id="qiskit.synthesis.unitary.aqc.AQC" />
 
-`qiskit.synthesis.unitary.aqc.AQC(optimizer=None, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/synthesis/unitary/aqc/aqc.py "view source code")
+`qiskit.synthesis.unitary.aqc.AQC(optimizer=None, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/synthesis/unitary/aqc/aqc.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 

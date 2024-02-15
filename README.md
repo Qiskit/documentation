@@ -157,14 +157,14 @@ npm run check:links
 npm run check:links -- --external
 
 # By default, only the non-API docs are checked. You can add any of the
-# below arguments to also check API docs and/or Qiskit release notes.
+# below arguments to also check API docs.
 npm run check:links -- --current-apis --dev-apis --historical-apis --qiskit-release-notes
 
 # However, `--historical-apis` currently has failing versions, so you may
 # want to add `--skip-broken-historical`.
 npm run check:links -- --historical-apis --skip-broken-historical
 
-# Or, run all the checks
+# Or, run all the checks. Although this only checks non-API docs.
 npm run check
 ```
 
@@ -178,7 +178,11 @@ You can also check for valid metadata locally:
 # Only check file metadata
 npm run check:metadata
 
-# Or, run all the checks
+# By default, only the non-API docs are checked. You can add any of the
+# below arguments to also check API docs and/or translations.
+npm run check:metadata -- --translations --apis
+
+# Or, run all the checks. Although this only checks non-API docs.
 npm run check
 ```
 

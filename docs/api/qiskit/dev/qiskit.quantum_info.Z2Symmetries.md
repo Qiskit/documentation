@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.Z2Symmetries
 
 <span id="qiskit.quantum_info.Z2Symmetries" />
 
-`qiskit.quantum_info.Z2Symmetries(symmetries, sq_paulis, sq_list, tapering_values=None, *, tol=1e-14)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/quantum_info/analysis/z2_symmetries.py "view source code")
+`qiskit.quantum_info.Z2Symmetries(symmetries, sq_paulis, sq_list, tapering_values=None, *, tol=1e-14)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/quantum_info/analysis/z2_symmetries.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
@@ -160,7 +160,7 @@ The second step of the reduction consists in replacing these qubits with the pos
 
 **Parameters**
 
-**operator** ([*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")) – The to-be-tapered operator.
+**operator** ([*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.operators.symplectic.sparse_pauli_op.SparsePauliOp")) – The to-be-tapered operator.
 
 **Returns**
 
@@ -180,7 +180,7 @@ Operate the second part of the tapering. This function assumes that the input op
 
 **Parameters**
 
-**operator** ([*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")) – Partially tapered operator resulting from a call to [`convert_clifford()`](#qiskit.quantum_info.Z2Symmetries.convert_clifford "qiskit.quantum_info.Z2Symmetries.convert_clifford").
+**operator** ([*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.operators.symplectic.sparse_pauli_op.SparsePauliOp")) – Partially tapered operator resulting from a call to [`convert_clifford()`](#qiskit.quantum_info.Z2Symmetries.convert_clifford "qiskit.quantum_info.Z2Symmetries.convert_clifford").
 
 **Returns**
 

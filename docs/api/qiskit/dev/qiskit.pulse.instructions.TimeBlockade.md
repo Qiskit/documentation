@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.instructions.TimeBlockade
 
 <span id="qiskit.pulse.instructions.TimeBlockade" />
 
-`qiskit.pulse.instructions.TimeBlockade(duration, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/pulse/instructions/directives.py "view source code")
+`qiskit.pulse.instructions.TimeBlockade(duration, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/instructions/directives.py "view source code")
 
 Bases: `Directive`
 

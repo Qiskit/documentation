@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.TwoLocal
 
 <span id="qiskit.circuit.library.TwoLocal" />
 
-`qiskit.circuit.library.TwoLocal(num_qubits=None, rotation_blocks=None, entanglement_blocks=None, entanglement='full', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='TwoLocal', flatten=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/n_local/two_local.py "view source code")
+`qiskit.circuit.library.TwoLocal(num_qubits=None, rotation_blocks=None, entanglement_blocks=None, entanglement='full', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='TwoLocal', flatten=None)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/n_local/two_local.py "view source code")
 
 Bases: [`NLocal`](qiskit.circuit.library.NLocal "qiskit.circuit.library.n_local.n_local.NLocal")
 
@@ -209,7 +209,7 @@ If barriers are inserted in between the layers or not.
 
 ### instances
 
-`= 304`
+`= 417`
 
 <span id="qiskit.circuit.library.TwoLocal.layout" />
 
@@ -399,5 +399,5 @@ Overloading to handle the special case of 1 qubit where the entanglement are ign
 
 **Return type**
 
-Sequence\[Sequence\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")]]
+[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.12)")\[[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.12)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")]]
 

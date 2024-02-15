@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.PhaseEstimation
 
 <span id="qiskit.circuit.library.PhaseEstimation" />
 
-`qiskit.circuit.library.PhaseEstimation(num_evaluation_qubits, unitary, iqft=None, name='QPE')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/phase_estimation.py "view source code")
+`qiskit.circuit.library.PhaseEstimation(num_evaluation_qubits, unitary, iqft=None, name='QPE')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/phase_estimation.py "view source code")
 
 Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
@@ -89,29 +89,17 @@ a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitI
 
 QuantumCircuitData
 
-<span id="qiskit.circuit.library.PhaseEstimation.extension_lib" />
-
-### extension\_lib
-
-`= 'include "qelib1.inc";'`
-
 <span id="qiskit.circuit.library.PhaseEstimation.global_phase" />
 
 ### global\_phase
 
 Return the global phase of the current circuit scope in radians.
 
-<span id="qiskit.circuit.library.PhaseEstimation.header" />
-
-### header
-
-`= 'OPENQASM 2.0;'`
-
 <span id="qiskit.circuit.library.PhaseEstimation.instances" />
 
 ### instances
 
-`= 246`
+`= 202`
 
 <span id="qiskit.circuit.library.PhaseEstimation.layout" />
 
@@ -210,9 +198,6 @@ ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
 ```
 
 To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
-
-```python
-```
 
 ```python
 >>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector

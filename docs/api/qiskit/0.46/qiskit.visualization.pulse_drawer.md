@@ -261,7 +261,7 @@ sched = schedule(qc, FakeBoeblingen())
 draw(sched, backend=FakeBoeblingen())
 ```
 
-![../\_images/qiskit-visualization-pulse\_drawer-1.png](/images/api/qiskit/qiskit-visualization-pulse_drawer-1.png)
+![../\_images/qiskit-visualization-pulse\_drawer-1.png](/images/api/qiskit/0.46/qiskit-visualization-pulse_drawer-1.png)
 
 Drawing with the stylesheet suited for publication.
 
@@ -280,7 +280,7 @@ sched = schedule(qc, FakeBoeblingen())
 draw(sched, style=IQXSimple(), backend=FakeBoeblingen())
 ```
 
-![../\_images/qiskit-visualization-pulse\_drawer-2.png](/images/api/qiskit/qiskit-visualization-pulse_drawer-2.png)
+![../\_images/qiskit-visualization-pulse\_drawer-2.png](/images/api/qiskit/0.46/qiskit-visualization-pulse_drawer-2.png)
 
 Drawing with the stylesheet suited for program debugging.
 
@@ -299,7 +299,7 @@ sched = schedule(qc, FakeBoeblingen())
 draw(sched, style=IQXDebugging(), backend=FakeBoeblingen())
 ```
 
-![../\_images/qiskit-visualization-pulse\_drawer-3.png](/images/api/qiskit/qiskit-visualization-pulse_drawer-3.png)
+![../\_images/qiskit-visualization-pulse\_drawer-3.png](/images/api/qiskit/0.46/qiskit-visualization-pulse_drawer-3.png)
 
 You can partially customize a preset stylesheet when initializing it.
 

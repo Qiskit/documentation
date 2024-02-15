@@ -237,7 +237,7 @@ Returns channels that this schedule clock uses.
 
 **Return type**
 
-`Tuple`\[[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]
+`Tuple`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")]
 
 ### draw
 
@@ -257,7 +257,7 @@ Plot the schedule.
 
 *   **time\_unit** (`str`) – The unit of specified time range either dt or ns. The unit of ns is available only when backend object is provided.
 
-*   **disable\_channels** (`Optional`\[`List`\[[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]]) – A control property to show specific pulse channel. Pulse channel instances provided as a list are not shown in the output image.
+*   **disable\_channels** (`Optional`\[`List`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")]]) – A control property to show specific pulse channel. Pulse channel instances provided as a list are not shown in the output image.
 
 *   **show\_snapshot** (`bool`) – Show snapshot instructions.
 
@@ -344,7 +344,7 @@ self.filter(args) | self.exclude(args) == self
 **Parameters**
 
 *   **filter\_funcs** (`List`\[`Callable`]) – A list of Callables which take a (int, Union\[‘Schedule’, Instruction]) tuple and return a bool.
-*   **channels** (`Optional`\[`Iterable`\[[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]]) – For example, `[DriveChannel(0), AcquireChannel(0)]`.
+*   **channels** (`Optional`\[`Iterable`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")]]) – For example, `[DriveChannel(0), AcquireChannel(0)]`.
 *   **instruction\_types** (`Union`\[`Iterable`\[`ABCMeta`], `ABCMeta`, `None`]) – For example, `[PulseInstruction, AcquireInstruction]`.
 *   **time\_ranges** (`Optional`\[`Iterable`\[`Tuple`\[`int`, `int`]]]) – For example, `[(0, 5), (6, 10)]`.
 *   **intervals** (`Optional`\[`Iterable`\[`Tuple`\[`int`, `int`]]]) – For example, `[(0, 5), (6, 10)]`.
@@ -375,7 +375,7 @@ If no arguments are provided, `self` is returned.
 **Parameters**
 
 *   **filter\_funcs** (`List`\[`Callable`]) – A list of Callables which take a (int, Union\[‘Schedule’, Instruction]) tuple and return a bool.
-*   **channels** (`Optional`\[`Iterable`\[[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]]) – For example, `[DriveChannel(0), AcquireChannel(0)]`.
+*   **channels** (`Optional`\[`Iterable`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")]]) – For example, `[DriveChannel(0), AcquireChannel(0)]`.
 *   **instruction\_types** (`Union`\[`Iterable`\[`ABCMeta`], `ABCMeta`, `None`]) – For example, `[PulseInstruction, AcquireInstruction]`.
 *   **time\_ranges** (`Optional`\[`Iterable`\[`Tuple`\[`int`, `int`]]]) – For example, `[(0, 5), (6, 10)]`.
 *   **intervals** (`Optional`\[`Iterable`\[`Tuple`\[`int`, `int`]]]) – For example, `[(0, 5), (6, 10)]`.
@@ -586,5 +586,5 @@ Time keeping attribute.
 
 **Return type**
 
-`Dict`\[[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel"), `List`\[`Tuple`\[`int`, `int`]]]
+`Dict`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel"), `List`\[`Tuple`\[`int`, `int`]]]
 

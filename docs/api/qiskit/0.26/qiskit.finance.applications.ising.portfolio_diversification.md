@@ -1,9 +1,9 @@
 ---
-title: get_operator
-description: API reference for qiskit.finance.applications.ising.portfolio_diversification.get_operator
+title: portfolio_diversification
+description: API reference for qiskit.finance.applications.ising.portfolio_diversification
 in_page_toc_min_heading_level: 1
-python_api_type: function
-python_api_name: qiskit.finance.applications.ising.portfolio_diversification.get_operator
+python_api_type: module
+python_api_name: qiskit.finance.applications.ising.portfolio_diversification
 ---
 
 <span id="qiskit-finance-applications-ising-portfolio-diversification" />

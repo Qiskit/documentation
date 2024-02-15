@@ -10,13 +10,13 @@ python_api_name: qiskit.synthesis.OneQubitEulerDecomposer
 
 <span id="qiskit.synthesis.OneQubitEulerDecomposer" />
 
-`qiskit.synthesis.OneQubitEulerDecomposer(basis='U3', use_dag=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/synthesis/one_qubit/one_qubit_decompose.py "view source code")
+`qiskit.synthesis.OneQubitEulerDecomposer(basis='U3', use_dag=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/synthesis/one_qubit/one_qubit_decompose.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
 A class for decomposing 1-qubit unitaries into Euler angle rotations.
 
-The resulting decomposition is parameterized by 3 Euler rotation angle parameters $(\theta, \phi, \lambda)$, and a phase parameter $\gamma$. The value of the parameters for an input unitary depends on the decomposition basis. Allowed bases and the resulting circuits are shown in the following table. Note that for the non-Euler bases (U3, U1X, RR), the ZYZ Euler parameters are used.
+The resulting decomposition is parameterized by 3 Euler rotation angle parameters $(\theta, \phi, \lambda)$, and a phase parameter $\gamma$. The value of the parameters for an input unitary depends on the decomposition basis. Allowed bases and the resulting circuits are shown in the following table. Note that for the non-Euler bases ($U3$, $U1X$, $RR$), the $ZYZ$ Euler parameters are used.
 
 | Basis  | Euler Angle Basis              | Decomposition Circuit                                                                                                    |
 | ------ | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
@@ -35,11 +35,11 @@ The resulting decomposition is parameterized by 3 Euler rotation angle parameter
 
 Initialize decomposer
 
-Supported bases are: ‘U’, ‘PSX’, ‘ZSXX’, ‘ZSX’, ‘U321’, ‘U3’, ‘U1X’, ‘RR’, ‘ZYZ’, ‘ZXZ’, ‘XYX’, ‘XZX’.
+Supported bases are: `'U'`, `'PSX'`, `'ZSXX'`, `'ZSX'`, `'U321'`, `'U3'`, `'U1X'`, `'RR'`, `'ZYZ'`, `'ZXZ'`, `'XYX'`, `'XZX'`.
 
 **Parameters**
 
-*   **basis** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – the decomposition basis \[Default: ‘U3’]
+*   **basis** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – the decomposition basis \[Default: `'U3'`]
 *   **use\_dag** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If true the output from calls to the decomposer will be a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") object instead of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
 
 **Raises**
@@ -66,11 +66,11 @@ Return the Euler angles for input array.
 
 **Parameters**
 
-**unitary** (*np.ndarray*) – 2x2 unitary matrix.
+**unitary** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – $2\times2$ unitary matrix.
 
 **Returns**
 
-(theta, phi, lambda).
+`(theta, phi, lambda)`.
 
 **Return type**
 
@@ -86,11 +86,11 @@ Return the Euler angles and phase for input array.
 
 **Parameters**
 
-**unitary** (*np.ndarray*) – 2x2 unitary matrix.
+**unitary** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – $2\times2$
 
 **Returns**
 
-(theta, phi, lambda, phase).
+`(theta, phi, lambda, phase)`.
 
 **Return type**
 

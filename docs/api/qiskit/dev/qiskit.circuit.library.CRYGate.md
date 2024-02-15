@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CRYGate
 
 <span id="qiskit.circuit.library.CRYGate" />
 
-`qiskit.circuit.library.CRYGate(theta, label=None, ctrl_state=None, *, duration=None, unit='dt', _base_label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/ry.py "view source code")
+`qiskit.circuit.library.CRYGate(theta, label=None, ctrl_state=None, *, duration=None, unit='dt', _base_label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/ry.py "view source code")
 
 Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 

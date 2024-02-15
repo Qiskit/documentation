@@ -17,7 +17,7 @@ Pad the input `Schedule` with `Delay` s on all unoccupied timeslots until `until
 **Parameters**
 
 *   **schedule** ([`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")) – Schedule to pad.
-*   **channels** (`Optional`\[`Iterable`\[[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]]) – Channels to pad. Defaults to all channels in `schedule` if not provided. If the supplied channel is not a member of `schedule`, it will be added.
+*   **channels** (`Optional`\[`Iterable`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")]]) – Channels to pad. Defaults to all channels in `schedule` if not provided. If the supplied channel is not a member of `schedule`, it will be added.
 *   **until** (`Optional`\[`int`]) – Time to pad until. Defaults to `schedule.duration` if not provided.
 
 **Return type**
