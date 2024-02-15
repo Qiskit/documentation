@@ -10,7 +10,7 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { includes, isEmpty, orderBy, reject } from "lodash";
+import { includes, isEmpty, orderBy } from "lodash";
 import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkMdx from "remark-mdx";
@@ -32,21 +32,16 @@ export async function mergeClassMembers<T extends HtmlToMdResultWithUrl>(
   const classes = resultsWithName.filter(
     (result) => result.meta.apiType === "class",
   );
+  const mergedMemberUrls = new Set();
 
   for (const clazz of classes) {
-    const members = orderBy(
-      resultsWithName.filter((result) => {
-        if (
-          !includes(
-            ["method", "property", "attribute", "function"],
-            result.meta.apiType,
-          )
-        )
-          return false;
-        return result.meta.apiName?.startsWith(`${clazz.meta.apiName}.`);
-      }),
-      (result) => result.meta.apiName,
+    const unsortedMembers = resultsWithName.filter(
+      (result) =>
+        includes(["method", "property", "attribute"], result.meta.apiType) &&
+        result.meta.apiName?.startsWith(`${clazz.meta.apiName}.`),
     );
+    unsortedMembers.forEach((result) => mergedMemberUrls.add(result.url));
+    const members = orderBy(unsortedMembers, (result) => result.meta.apiName);
 
     const attributesAndProps = members.filter(
       (member) =>
@@ -94,12 +89,7 @@ export async function mergeClassMembers<T extends HtmlToMdResultWithUrl>(
     }
   }
 
-  // remove merged results
-  const finalResults = reject(results, (result) =>
-    includes(["method", "attribute", "property"], result.meta.apiType),
-  );
-
-  return finalResults;
+  return results.filter((result) => !mergedMemberUrls.has(result.url));
 }
 
 async function replaceMembersAfterTitle(
