@@ -185,6 +185,18 @@ Get the time unit of duration.
 
 Return inverse of CSdgGate (CSGate).
 
+**Parameters**
+
+**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an `AnnotatedOperation` with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always a [`CSGate`](qiskit.circuit.library.CSGate "qiskit.circuit.library.CSGate").
+
+**Returns**
+
+inverse of [`CSdgGate`](#qiskit.circuit.library.CSdgGate "qiskit.circuit.library.CSdgGate")
+
+**Return type**
+
+[CSGate](qiskit.circuit.library.CSGate "qiskit.circuit.library.CSGate")
+
 ### power
 
 <span id="qiskit.circuit.library.CSdgGate.power" />

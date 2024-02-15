@@ -104,7 +104,7 @@ Return the global phase of the current circuit scope in radians.
 
 ### instances
 
-`= 271`
+`= 365`
 
 <span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.layout" />
 

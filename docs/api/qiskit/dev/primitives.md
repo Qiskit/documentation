@@ -22,9 +22,9 @@ python_api_name: qiskit.primitives
 
 ## Overview of EstimatorV2
 
-`BaseEstimatorV2` is a primitive that estimates expectation values for provided quantum circuit and observable combinations.
+[`BaseEstimatorV2`](qiskit.primitives.BaseEstimatorV2 "qiskit.primitives.base.base_estimator.BaseEstimatorV2") is a primitive that estimates expectation values for provided quantum circuit and observable combinations.
 
-Following construction, an estimator is used by calling its `run()` method with a list of pubs (Primitive Unified Blocs). Each pub contains three values that, together, define a computation unit of work for the estimator to complete:
+Following construction, an estimator is used by calling its [`run()`](qiskit.primitives.BaseEstimatorV2#run "qiskit.primitives.BaseEstimatorV2.run") method with a list of pubs (Primitive Unified Blocs). Each pub contains three values that, together, define a computation unit of work for the estimator to complete:
 
 *   a single [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), possibly parametrized, whose final state we define as $\psi(\theta)$,
 *   one or more observables (specified as any `ObservablesArrayLike`, including [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli"), [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp"), `str`) that specify which expectation values to estimate, denoted $H_j$, and
@@ -232,17 +232,23 @@ print([q.binary_probabilities() for q in job_result.quasi_dists])
 
 ## EstimatorV2
 
-|                                                                                                                                           |                                                                               |
-| ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| [`StatevectorEstimator`](qiskit.primitives.StatevectorEstimator "qiskit.primitives.StatevectorEstimator")(\*\[, default\_precision, ...]) | Simple implementation of `BaseEstimatorV2` with full state vector simulation. |
+|                                                                                                                                           |                                                                                                                                                        |
+| ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [`BaseEstimatorV2`](qiskit.primitives.BaseEstimatorV2 "qiskit.primitives.BaseEstimatorV2")()                                              | Estimator base class version 2.                                                                                                                        |
+| [`StatevectorEstimator`](qiskit.primitives.StatevectorEstimator "qiskit.primitives.StatevectorEstimator")(\*\[, default\_precision, ...]) | Simple implementation of [`BaseEstimatorV2`](qiskit.primitives.BaseEstimatorV2 "qiskit.primitives.BaseEstimatorV2") with full state vector simulation. |
 
 ## Sampler
 
+|                                                                                                                   |                                                                                                                  |
+| ----------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| [`BaseSampler`](qiskit.primitives.BaseSampler#qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler")      | alias of `BaseSamplerV1`                                                                                         |
+| [`Sampler`](qiskit.primitives.Sampler "qiskit.primitives.Sampler")(\*\[, options])                                | Sampler class.                                                                                                   |
+| [`BackendSampler`](qiskit.primitives.BackendSampler "qiskit.primitives.BackendSampler")(backend\[, options, ...]) | A `BaseSampler` implementation that provides an interface for leveraging the sampler interface from any backend. |
+
+## SamplerV2
+
 |                                                                                                                                  |                                                                                                                                                   |
 | -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`BaseSampler`](qiskit.primitives.BaseSampler#qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler")                     | alias of `BaseSamplerV1`                                                                                                                          |
-| [`Sampler`](qiskit.primitives.Sampler "qiskit.primitives.Sampler")(\*\[, options])                                               | Sampler class.                                                                                                                                    |
-| [`BackendSampler`](qiskit.primitives.BackendSampler "qiskit.primitives.BackendSampler")(backend\[, options, ...])                | A `BaseSampler` implementation that provides an interface for leveraging the sampler interface from any backend.                                  |
 | [`BaseSamplerV2`](qiskit.primitives.BaseSamplerV2 "qiskit.primitives.BaseSamplerV2")()                                           | Sampler base class version 2.                                                                                                                     |
 | [`StatevectorSampler`](qiskit.primitives.StatevectorSampler "qiskit.primitives.StatevectorSampler")(\*\[, default\_shots, seed]) | Simple implementation of [`BaseSamplerV2`](qiskit.primitives.BaseSamplerV2 "qiskit.primitives.BaseSamplerV2") using full state vector simulation. |
 

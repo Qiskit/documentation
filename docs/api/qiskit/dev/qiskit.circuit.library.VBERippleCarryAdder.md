@@ -98,7 +98,7 @@ Return the global phase of the current circuit scope in radians.
 
 ### instances
 
-`= 158`
+`= 304`
 
 <span id="qiskit.circuit.library.VBERippleCarryAdder.layout" />
 

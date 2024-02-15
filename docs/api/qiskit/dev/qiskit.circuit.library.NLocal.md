@@ -145,7 +145,7 @@ If barriers are inserted in between the layers or not.
 
 ### instances
 
-`= 198`
+`= 220`
 
 <span id="qiskit.circuit.library.NLocal.layout" />
 
@@ -414,7 +414,7 @@ The entangler map for the current block in the current repetition.
 
 **Return type**
 
-[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.12)")\[[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.12)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")]]
+Sequence\[Sequence\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")]]
 
 ### get\_unentangled\_qubits
 

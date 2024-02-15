@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeHanoi
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeHanoi" />
 
-`FakeHanoi`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.19/qiskit_ibm_runtime/fake_provider/backends/hanoi/fake_hanoi.py "view source code")
+`FakeHanoi`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/backends/hanoi/fake_hanoi.py "view source code")
 
 A fake 27 qubit backend.
 

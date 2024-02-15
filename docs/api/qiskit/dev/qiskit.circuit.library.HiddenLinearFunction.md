@@ -100,7 +100,7 @@ Return the global phase of the current circuit scope in radians.
 
 ### instances
 
-`= 176`
+`= 198`
 
 <span id="qiskit.circuit.library.HiddenLinearFunction.layout" />
 

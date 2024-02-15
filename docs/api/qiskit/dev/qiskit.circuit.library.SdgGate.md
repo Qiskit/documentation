@@ -150,6 +150,18 @@ Get the time unit of duration.
 
 Return inverse of Sdg (SGate).
 
+**Parameters**
+
+**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an `AnnotatedOperation` with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always a [`SGate`](qiskit.circuit.library.SGate "qiskit.circuit.library.SGate").
+
+**Returns**
+
+inverse of [`SdgGate`](#qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate")
+
+**Return type**
+
+[SGate](qiskit.circuit.library.SGate "qiskit.circuit.library.SGate")
+
 ### power
 
 <span id="qiskit.circuit.library.SdgGate.power" />

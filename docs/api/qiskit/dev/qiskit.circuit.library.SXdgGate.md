@@ -146,3 +146,15 @@ Get the time unit of duration.
 
 Return inverse SXdg gate (i.e. SX).
 
+**Parameters**
+
+**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an `AnnotatedOperation` with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always a [`SXGate`](qiskit.circuit.library.SXGate "qiskit.circuit.library.SXGate").
+
+**Returns**
+
+inverse of [`SXdgGate`](#qiskit.circuit.library.SXdgGate "qiskit.circuit.library.SXdgGate")
+
+**Return type**
+
+[SXGate](qiskit.circuit.library.SXGate "qiskit.circuit.library.SXGate")
+

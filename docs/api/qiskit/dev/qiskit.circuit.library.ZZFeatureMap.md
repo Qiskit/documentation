@@ -180,7 +180,7 @@ If barriers are inserted in between the layers or not.
 
 ### instances
 
-`= 162`
+`= 308`
 
 <span id="qiskit.circuit.library.ZZFeatureMap.layout" />
 

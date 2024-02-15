@@ -98,7 +98,7 @@ Return the global phase of the current circuit scope in radians.
 
 ### instances
 
-`= 172`
+`= 194`
 
 <span id="qiskit.circuit.library.GraphState.layout" />
 

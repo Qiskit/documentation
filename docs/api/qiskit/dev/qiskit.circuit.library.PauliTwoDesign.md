@@ -143,7 +143,7 @@ If barriers are inserted in between the layers or not.
 
 ### instances
 
-`= 207`
+`= 229`
 
 <span id="qiskit.circuit.library.PauliTwoDesign.layout" />
 

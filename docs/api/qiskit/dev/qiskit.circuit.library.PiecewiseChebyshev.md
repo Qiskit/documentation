@@ -121,7 +121,7 @@ Return the global phase of the current circuit scope in radians.
 
 ### instances
 
-`= 211`
+`= 305`
 
 <span id="qiskit.circuit.library.PiecewiseChebyshev.layout" />
 

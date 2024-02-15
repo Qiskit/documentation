@@ -169,3 +169,15 @@ Get the time unit of duration.
 
 Invert this gate. The MCX is its own inverse.
 
+**Parameters**
+
+**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an `AnnotatedOperation` with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as this gate is self-inverse.
+
+**Returns**
+
+inverse gate (self-inverse).
+
+**Return type**
+
+[MCXGrayCode](#qiskit.circuit.library.MCXGrayCode "qiskit.circuit.library.MCXGrayCode")
+

@@ -122,7 +122,7 @@ Return the global phase of the current circuit scope in radians.
 
 ### instances
 
-`= 214`
+`= 158`
 
 <span id="qiskit.circuit.library.PolynomialPauliRotations.layout" />
 
