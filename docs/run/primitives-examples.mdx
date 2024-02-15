@@ -93,7 +93,13 @@ print(f" > Metadata: {result.metadata}")
 
 Use Estimator to determine the expectation values of multiple circuit-observable pairs.
 
-```python 
+<Tabs>
+  <TabItem value="EstimatorV2" label="EstimatorV2">
+    xxx
+  </TabItem>
+
+  <TabItem value="EstimatorV1" label="Estimator (V1)">
+    ```python 
 import numpy as np
 from qiskit.circuit.library import IQP
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
@@ -126,12 +132,20 @@ result = job.result()
 
 print(f" > Expectation values: {result.values}")
 ```
+  </TabItem>
+</Tabs>
 
 ### Run parameterized circuits
 
 Use Estimator to run three experiments in a single job, leveraging parameter values to increase circuit reusability.
 
-```python 
+<Tabs>
+  <TabItem value="EstimatorV2" label="EstimatorV2">
+    xxx
+  </TabItem>
+
+  <TabItem value="EstimatorV1" label="Estimator (V1)">
+    ```python 
 import numpy as np
 from qiskit.circuit.library import RealAmplitudes
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
@@ -160,11 +174,20 @@ result = job.result()
 
 print(f" > Expectation values: {result.values}")
 ```
+  </TabItem>
+</Tabs>
+
 ### Use sessions and advanced options
 
 Explore sessions and advanced options to optimize circuit performance on quantum systems.
 
-```python 
+<Tabs>
+  <TabItem value="EstimatorV2" label="EstimatorV2">
+    xxx
+  </TabItem>
+
+  <TabItem value="EstimatorV1" label="Estimator (V1)">
+    ```python 
 import numpy as np
 from qiskit.circuit.library import IQP
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
@@ -208,6 +231,8 @@ print(f" > Expectation values job 1: {result.values}")
 # second job
 print(f" > Expectation values job 2: {another_result.values}")
 ```
+  </TabItem>
+</Tabs>
 
 ## Sampler examples
 
@@ -215,9 +240,16 @@ Generate entire error-mitigated quasi-probability distributions sampled from qua
 
 ### Run a single experiment
 
-Use Sampler to determine the quasi-probability distribution of a single circuit.
+Use Sampler to return the measurement outcome as a quasi-probability distribution (V1) or as **bitstrings** or
+   **counts** (V2) of a single circuit.  
 
-```python
+<Tabs>
+  <TabItem value="SamplerV2" label="SamplerV2">
+    xxx
+  </TabItem>
+
+  <TabItem value="SamplerV1" label="Sampler (V1)">
+    ```python
 import numpy as np
 from qiskit.circuit.library import IQP
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
@@ -244,12 +276,21 @@ result = job.result()
 print(f" > Quasi-probability distribution: {result.quasi_dists}")
 print(f" > Metadata: {result.metadata}")
 ```
+  </TabItem>
+</Tabs>
 
 ### Run multiple experiments in a single job
 
-Use Sampler to determine the quasi-probability distributions of multiple circuits in one job.
+Use Sampler to return the measurement outcome as a quasi-probability distribution (V1) or as **bitstrings** or
+   **counts** (V2) of multiple circuits in one job.
 
-```python
+<Tabs>
+  <TabItem value="SamplerV2" label="SamplerV2">
+    xxx
+  </TabItem>
+
+  <TabItem value="SamplerV1" label="Sampler (V1)">
+    ```python
 import numpy as np
 from qiskit.circuit.library import IQP
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
@@ -277,12 +318,22 @@ result = job.result()
 
 print(f" > Quasi-probability distribution: {result.quasi_dists}")
 ```
+  </TabItem>
+</Tabs>
+
 
 ### Run parameterized circuits
 
 Run three experiments in a single job, leveraging parameter values to increase circuit reusability.
 
-```python
+
+<Tabs>
+  <TabItem value="SamplerV2" label="SamplerV2">
+    xxx
+  </TabItem>
+
+  <TabItem value="SamplerV1" label="Sampler (V1)">
+    ```python
 import numpy as np
 from qiskit.circuit.library import RealAmplitudes
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
@@ -310,12 +361,21 @@ result = job.result()
 
 print(f" > Quasi-probability distribution: {result.quasi_dists}")
 ```
+  </TabItem>
+</Tabs>
+
 
 ### Use sessions and advanced options
 
 Explore sessions and advanced options to optimize circuit performance on quantum systems.
 
-```python
+<Tabs>
+  <TabItem value="SamplerV2" label="SamplerV2">
+    xxx
+  </TabItem>
+
+  <TabItem value="SamplerV1" label="Sampler (V1)">
+    ```python
 import numpy as np
 from qiskit.circuit.library import IQP
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
@@ -357,6 +417,9 @@ print(f" > Quasi-probability distribution job 1: {result.quasi_dists}")
 # second job 
 print(f" > Quasi-probability distribution job 2: {another_result.quasi_dists}")
 ```
+  </TabItem>
+</Tabs>
+
 
 ## Next steps
 
