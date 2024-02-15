@@ -10,7 +10,7 @@ python_api_name: qiskit.passmanager.BaseController
 
 <span id="qiskit.passmanager.BaseController" />
 
-`qiskit.passmanager.BaseController(options=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/passmanager/base_tasks.py "view source code")
+`qiskit.passmanager.BaseController(options=None)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/passmanager/base_tasks.py "view source code")
 
 Bases: `Task`, [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 
@@ -36,9 +36,9 @@ Execute optimization task for input Qiskit IR.
 
 **Parameters**
 
-*   **passmanager\_ir** (*PassManagerIR*) – Qiskit IR to optimize.
-*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-*   **callback** (*Callable*) – A callback function which is caller per execution of optimization task.
+*   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+*   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
 
 **Returns**
 
@@ -46,7 +46,7 @@ Optimized Qiskit IR and state of the workflow.
 
 **Return type**
 
-[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[PassManagerIR, [PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.PassManagerState")]
+[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
 
 ### iter\_tasks
 
@@ -60,7 +60,7 @@ Controller subclass can consume the state to build a proper task pipeline. The u
 
 **Parameters**
 
-*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.PassManagerState")) – The state of the passmanager workflow at the beginning of this flow controller’s execution.
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – The state of the passmanager workflow at the beginning of this flow controller’s execution.
 *   **state** – the state of pass manager after the execution of the last task that was yielded. The generator does not need to inspect this if it is irrelevant to its logic, nor update it.
 
 **Yields**
@@ -69,5 +69,5 @@ Controller subclass can consume the state to build a proper task pipeline. The u
 
 **Return type**
 
-Generator\[Task, [PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.PassManagerState"), None]
+[*Generator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Generator "(in Python v3.12)")\[*Task*, [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState"), None]
 

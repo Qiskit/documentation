@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.GenericBackendV2
 
 <span id="qiskit.providers.fake_provider.GenericBackendV2" />
 
-`qiskit.providers.fake_provider.GenericBackendV2(num_qubits, basis_gates=None, *, coupling_map=None, control_flow=False, calibrate_instructions=None, dtm=None, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/providers/fake_provider/generic_backend_v2.py "view source code")
+`qiskit.providers.fake_provider.GenericBackendV2(num_qubits, basis_gates=None, *, coupling_map=None, control_flow=False, calibrate_instructions=None, dtm=None, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/providers/fake_provider/generic_backend_v2.py "view source code")
 
 Bases: [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.backend.BackendV2")
 
@@ -219,7 +219,7 @@ This is required to be implemented if the backend supports Pulse scheduling.
 
 **Parameters**
 
-**qubits** (*Iterable\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – Tuple or list of qubits of the form `(control_qubit, target_qubit)`.
+**qubits** ([*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – Tuple or list of qubits of the form `(control_qubit, target_qubit)`.
 
 **Returns**
 

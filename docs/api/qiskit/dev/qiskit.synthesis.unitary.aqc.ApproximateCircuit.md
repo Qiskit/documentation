@@ -10,7 +10,7 @@ python_api_name: qiskit.synthesis.unitary.aqc.ApproximateCircuit
 
 <span id="qiskit.synthesis.unitary.aqc.ApproximateCircuit" />
 
-`qiskit.synthesis.unitary.aqc.ApproximateCircuit(num_qubits, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/synthesis/unitary/aqc/approximate.py "view source code")
+`qiskit.synthesis.unitary.aqc.ApproximateCircuit(num_qubits, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/synthesis/unitary/aqc/approximate.py "view source code")
 
 Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 

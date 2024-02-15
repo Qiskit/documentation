@@ -10,7 +10,7 @@ python_api_name: qiskit.primitives.SamplerResult
 
 <span id="qiskit.primitives.SamplerResult" />
 
-`qiskit.primitives.SamplerResult(quasi_dists, metadata)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/primitives/base/sampler_result.py "view source code")
+`qiskit.primitives.SamplerResult(quasi_dists, metadata)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/primitives/base/sampler_result.py "view source code")
 
 Bases: `_BasePrimitiveResult`
 
@@ -33,7 +33,7 @@ where the i-th elements of `result` correspond to the circuit given by `circuits
 
 ### quasi\_dists
 
-`list[QuasiDistribution]`
+`list[qiskit.result.distributions.quasi.QuasiDistribution]`
 
 <span id="qiskit.primitives.SamplerResult.metadata" />
 

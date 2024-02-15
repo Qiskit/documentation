@@ -164,7 +164,7 @@ With the pass manager framework, a developer can flexibly customize the optimiza
 
 <span id="qiskit.passmanager.PassManagerError" />
 
-`qiskit.passmanager.PassManagerError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/passmanager/exceptions.py "view source code")
+`qiskit.passmanager.PassManagerError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/passmanager/exceptions.py "view source code")
 
 Pass manager error.
 

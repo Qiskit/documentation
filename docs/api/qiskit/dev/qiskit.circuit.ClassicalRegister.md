@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.ClassicalRegister
 
 <span id="qiskit.circuit.ClassicalRegister" />
 
-`qiskit.circuit.ClassicalRegister(size=None, name=None, bits=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/classicalregister.py "view source code")
+`qiskit.circuit.ClassicalRegister(size=None, name=None, bits=None)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/classicalregister.py "view source code")
 
 Bases: [`Register`](qiskit.circuit.Register "qiskit.circuit.register.Register")
 
@@ -40,7 +40,7 @@ Either the `size` or the `bits` argument must be provided. If `size` is not None
 
 ### instances\_counter
 
-`= count(2)`
+`= count(0)`
 
 <span id="qiskit.circuit.ClassicalRegister.name" />
 
