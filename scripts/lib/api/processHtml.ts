@@ -406,7 +406,7 @@ export function maybeSetModuleMetadata(
 ): void {
   const modulePrefix = "module-";
   const moduleIdWithPrefix = $main
-    .find("span, section")
+    .find("span, section, div.section")
     .toArray()
     .map((el) => $(el).attr("id"))
     .find((id) => id?.startsWith(modulePrefix));

@@ -32,5 +32,5 @@ with pulse.build(backend):
 
 **Return type**
 
-[`MeasureChannel`](qiskit.pulse.channels#qiskit.pulse.channels.MeasureChannel "qiskit.pulse.channels.MeasureChannel")
+[`MeasureChannel`](qiskit.pulse.channels#measurechannel "qiskit.pulse.channels.MeasureChannel")
 

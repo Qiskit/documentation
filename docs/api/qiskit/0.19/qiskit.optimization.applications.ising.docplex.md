@@ -1,9 +1,9 @@
 ---
-title: get_operator
-description: API reference for qiskit.optimization.applications.ising.docplex.get_operator
+title: docplex
+description: API reference for qiskit.optimization.applications.ising.docplex
 in_page_toc_min_heading_level: 1
-python_api_type: function
-python_api_name: qiskit.optimization.applications.ising.docplex.get_operator
+python_api_type: module
+python_api_name: qiskit.optimization.applications.ising.docplex
 ---
 
 <span id="qiskit-optimization-applications-ising-docplex" />
