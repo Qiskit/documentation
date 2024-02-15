@@ -26,7 +26,7 @@ Generate visualization data for pulse programs.
 
 *   **time\_unit** (`str`) – The unit of specified time range either `dt` or `ns`. The unit of `ns` is available only when `backend` object is provided.
 
-*   **disable\_channels** (`Optional`\[`List`\[[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]]) – A control property to show specific pulse channel. Pulse channel instances provided as a list is not shown in the output image.
+*   **disable\_channels** (`Optional`\[`List`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")]]) – A control property to show specific pulse channel. Pulse channel instances provided as a list is not shown in the output image.
 
 *   **show\_snapshot** (`bool`) – Show snapshot instructions.
 
