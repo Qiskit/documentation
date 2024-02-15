@@ -10,14 +10,35 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import grayMatter from "gray-matter";
 import fs from "fs/promises";
+
+import yargs from "yargs/yargs";
+import { hideBin } from "yargs/helpers";
+import grayMatter from "gray-matter";
 import { globby } from "globby";
 
-const IGNORED_FILES = new Set([
-  "docs/api/qiskit/transpiler_builtin_plugins.md",
-  "docs/api/qiskit/dev/transpiler_builtin_plugins.md",
-]);
+interface Arguments {
+  [x: string]: unknown;
+  apis: boolean;
+  translations: boolean;
+}
+
+const readArgs = (): Arguments => {
+  return yargs(hideBin(process.argv))
+    .version(false)
+    .option("apis", {
+      type: "boolean",
+      default: false,
+      description:
+        "Check the API docs? Currently fails (https://github.com/Qiskit/documentation/issues/66)",
+    })
+    .option("translations", {
+      type: "boolean",
+      default: false,
+      description: "Check the translations?",
+    })
+    .parseSync();
+};
 
 const readMetadata = async (filePath: string): Promise<Record<string, any>> => {
   const ext = filePath.split(".").pop();
@@ -36,18 +57,11 @@ const isValidMetadata = (metadata: Record<string, any>): boolean =>
   metadata.title && metadata.description;
 
 const main = async (): Promise<void> => {
+  const args = readArgs();
+  const [mdFiles, notebookFiles] = await determineFiles(args);
+
   const mdErrors = [];
-  const mdFiles = await globby("docs/**/*.{md,mdx}");
   for (const file of mdFiles) {
-    if (IGNORED_FILES.has(file)) {
-      continue;
-    }
-
-    // Ignore all historical API version files.
-    if (/.*\/[0-9].*\//.test(file)) {
-      continue;
-    }
-
     const metadata = await readMetadata(file);
     if (!isValidMetadata(metadata)) {
       mdErrors.push(file);
@@ -55,17 +69,33 @@ const main = async (): Promise<void> => {
   }
 
   const notebookErrors = [];
-  const notebookFiles = await globby("docs/**/*.ipynb");
   for (const file of notebookFiles) {
-    if (IGNORED_FILES.has(file)) {
-      continue;
-    }
     const metadata = await readMetadata(file);
     if (!isValidMetadata(metadata)) {
       notebookErrors.push(file);
     }
   }
 
+  handleErrors(mdErrors, notebookErrors);
+};
+
+async function determineFiles(args: Arguments): Promise<[string[], string[]]> {
+  const mdGlobs = ["docs/**/*.{md,mdx}"];
+  const notebookGlobs = ["docs/**/*.ipynb"];
+  if (!args.apis) {
+    const apiIgnore =
+      "!docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/**/*";
+    mdGlobs.push(apiIgnore);
+    notebookGlobs.push(apiIgnore);
+  }
+  if (args.translations) {
+    mdGlobs.push("translations/**/*.{md,mdx}");
+    notebookGlobs.push("translations/**/*.ipynb");
+  }
+  return [await globby(mdGlobs), await globby(notebookGlobs)];
+}
+
+function handleErrors(mdErrors: string[], notebookErrors: string[]): void {
   if (mdErrors.length > 0) {
     console.error(`
       Invalid markdown file metadata. Every .md and .mdx file should start with a metadata block like this:
@@ -79,7 +109,7 @@ const main = async (): Promise<void> => {
       in <160 characters, ideally using some keywords. The description is what
       shows up as the text in search results. See https://github.com/Qiskit/documentation/issues/131 for some tips.
 
-      Please fix these files: ${mdErrors}
+      Please fix these files:\n\n${mdErrors.join("\n")}
     `);
   }
   if (notebookErrors.length > 0) {
@@ -113,12 +143,12 @@ const main = async (): Promise<void> => {
         "kernelspec": { ...
       }
 
-      Please fix these files: ${notebookErrors}
+      Please fix these files:\n\n${notebookErrors.join("\n")}
     `);
   }
   if (mdErrors.length > 0 || notebookErrors.length > 0) {
     process.exit(1);
   }
-};
+}
 
 main();
