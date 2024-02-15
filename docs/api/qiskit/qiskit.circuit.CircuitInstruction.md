@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.CircuitInstruction
 
 <span id="qiskit.circuit.CircuitInstruction" />
 
-`qiskit.circuit.CircuitInstruction(operation, qubits=(), clbits=())`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/quantumcircuitdata.py "view source code")
+`qiskit.circuit.CircuitInstruction`
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
@@ -30,11 +30,15 @@ A single instruction in a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qisk
 
 ## Attributes
 
+<span id="qiskit.circuit.CircuitInstruction.clbits" />
+
+### clbits
+
+A sequence of the classical bits that this operation reads from or writes to.
+
 <span id="qiskit.circuit.CircuitInstruction.operation" />
 
 ### operation
-
-`Operation`
 
 The logical operation that this instruction represents an execution of.
 
@@ -42,17 +46,7 @@ The logical operation that this instruction represents an execution of.
 
 ### qubits
 
-`Tuple[Qubit, ...]`
-
 A sequence of the qubits that the operation is applied to.
-
-<span id="qiskit.circuit.CircuitInstruction.clbits" />
-
-### clbits
-
-`Tuple[Clbit, ...]`
-
-A sequence of the classical bits that this operation reads from or writes to.
 
 ## Methods
 
@@ -62,11 +56,15 @@ A sequence of the classical bits that this operation reads from or writes to.
 
 `copy()`
 
-Return a shallow copy of the [`CircuitInstruction`](#qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction").
+Returns a shallow copy.
+
+**Returns**
+
+The shallow copy.
 
 **Return type**
 
-[*CircuitInstruction*](#qiskit.circuit.CircuitInstruction "qiskit.circuit.quantumcircuitdata.CircuitInstruction")
+[CircuitInstruction](#qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")
 
 ### replace
 
@@ -74,9 +72,13 @@ Return a shallow copy of the [`CircuitInstruction`](#qiskit.circuit.CircuitInstr
 
 `replace(operation=None, qubits=None, clbits=None)`
 
-Return a new [`CircuitInstruction`](#qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction") with the given fields replaced.
+Creates a shallow copy with the given fields replaced.
+
+**Returns**
+
+A new instance with the given fields replaced.
 
 **Return type**
 
-[*CircuitInstruction*](#qiskit.circuit.CircuitInstruction "qiskit.circuit.quantumcircuitdata.CircuitInstruction")
+[CircuitInstruction](#qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")
 

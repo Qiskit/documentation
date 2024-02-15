@@ -1,9 +1,9 @@
 ---
-title: get_operator
-description: API reference for qiskit.optimization.applications.ising.vehicle_routing.get_operator
+title: vehicle_routing
+description: API reference for qiskit.optimization.applications.ising.vehicle_routing
 in_page_toc_min_heading_level: 1
-python_api_type: function
-python_api_name: qiskit.optimization.applications.ising.vehicle_routing.get_operator
+python_api_type: module
+python_api_name: qiskit.optimization.applications.ising.vehicle_routing
 ---
 
 <span id="qiskit-optimization-applications-ising-vehicle-routing" />
@@ -72,7 +72,7 @@ objective function value.
 
 `get_vehiclerouting_matrices(instance, n, K)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/vehicle_routing.py "view source code")
 
-## Constructs auxiliary matrices from a vehicle routing instance,
+**Constructs auxiliary matrices from a vehicle routing instance,**
 
 which represent the encoding into a binary quadratic program. This is used in the construction of the qubit ops and computation of the solution cost.
 
@@ -96,7 +96,7 @@ a matrix defining the interactions between variables. a matrix defining the cont
 
 `get_vehiclerouting_solution(instance, n, K, result)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/vehicle_routing.py "view source code")
 
-## Tries to obtain a feasible solution (in vector form) of an instance
+**Tries to obtain a feasible solution (in vector form) of an instance**
 
 of vehicle routing from the results dictionary.
 
@@ -115,7 +115,7 @@ of vehicle routing from the results dictionary.
 
 a solution, i.e., a path, in its binary representation.
 
-## #TODO: support statevector simulation, results should be a statevector or counts format, not
+**#TODO: support statevector simulation, results should be a statevector or counts format, not**
 
 a result from algorithm run
 

@@ -41,7 +41,7 @@ assert len(pulse_prog.instructions) == 4
 **Parameters**
 
 *   **frequency** (`float`) – Amount of frequency offset in Hz.
-*   **channels** ([`PulseChannel`](qiskit.pulse.channels#qiskit.pulse.channels.PulseChannel "qiskit.pulse.channels.PulseChannel")) – Channels to offset frequency of.
+*   **channels** ([`PulseChannel`](qiskit.pulse.channels#pulsechannel "qiskit.pulse.channels.PulseChannel")) – Channels to offset frequency of.
 *   **compensate\_phase** (`bool`) – Compensate for accumulated phase accumulated with respect to the channels’ frame at its initial frequency.
 
 **Yields**

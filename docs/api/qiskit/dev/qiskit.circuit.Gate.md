@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.Gate
 
 <span id="qiskit.circuit.Gate" />
 
-`qiskit.circuit.Gate(name, num_qubits, params, label=None, duration=None, unit='dt')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/gate.py "view source code")
+`qiskit.circuit.Gate(name, num_qubits, params, label=None, duration=None, unit='dt')`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/gate.py "view source code")
 
 Bases: [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 
@@ -193,7 +193,7 @@ A tuple with single arguments.
 
 **Return type**
 
-Iterable\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)"), [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")]]
+[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)"), [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")]]
 
 ### c\_if
 

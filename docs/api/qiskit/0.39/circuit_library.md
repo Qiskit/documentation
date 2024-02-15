@@ -1,8 +1,20 @@
+---
+title: library
+description: API reference for qiskit.circuit.library
+in_page_toc_min_heading_level: 1
+python_api_type: module
+python_api_name: qiskit.circuit.library
+---
+
 <span id="qiskit-circuit-library" />
 
 # Circuit Library
 
-## Circuit Library ([`qiskit.circuit.library`](#module-qiskit.circuit.library "qiskit.circuit.library"))
+## Circuit Library
+
+<span id="module-qiskit.circuit.library" />
+
+`qiskit.circuit.library`
 
 The circuit library is a collection of well-studied and valuable circuits, directives, and gates. We call them valuable for different reasons, for instance they can serve as building blocks for algorithms or they are circuits that we think are hard to simulate classically.
 
@@ -388,3 +400,4 @@ Template circuits with [`RZXGate`](qiskit.circuit.library.RZXGate "qiskit.circui
 | [`rzx_zz1`](qiskit.circuit.library.rzx_zz1 "qiskit.circuit.library.rzx_zz1")(\[theta]) | Template for CX - RZGate - CX. |
 | [`rzx_zz2`](qiskit.circuit.library.rzx_zz2 "qiskit.circuit.library.rzx_zz2")(\[theta]) | Template for CX - RZGate - CX. |
 | [`rzx_zz3`](qiskit.circuit.library.rzx_zz3 "qiskit.circuit.library.rzx_zz3")(\[theta]) | Template for CX - RZGate - CX. |
+

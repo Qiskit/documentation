@@ -1,9 +1,9 @@
 ---
-title: PulseStyle
-description: API reference for qiskit.visualization.pulse.qcstyle.PulseStyle
+title: qcstyle
+description: API reference for qiskit.visualization.pulse.qcstyle
 in_page_toc_min_heading_level: 1
-python_api_type: class
-python_api_name: qiskit.visualization.pulse.qcstyle.PulseStyle
+python_api_type: module
+python_api_name: qiskit.visualization.pulse.qcstyle
 ---
 
 # qcstyle

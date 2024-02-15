@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.Parameter
 
 <span id="qiskit.circuit.Parameter" />
 
-`qiskit.circuit.Parameter(name, *, uuid=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/parameter.py "view source code")
+`qiskit.circuit.Parameter(name, *, uuid=None)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/parameter.py "view source code")
 
 Bases: [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")
 
@@ -152,7 +152,7 @@ A new expression parameterized by any parameters which were not bound by paramet
 
 **Return type**
 
-[ParameterExpression](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")
+[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")
 
 ### conjugate
 
@@ -164,7 +164,7 @@ Return the conjugate.
 
 **Return type**
 
-[ParameterExpression](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")
+[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")
 
 ### cos
 
@@ -200,7 +200,7 @@ ParameterExpression representing the gradient of param\_expr w\.r.t. param or co
 
 **Return type**
 
-[ParameterExpression](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") | [complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")
+[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression") | [complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")
 
 ### is\_real
 

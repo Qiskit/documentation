@@ -1,9 +1,9 @@
 ---
-title: get_graph_solution
-description: API reference for qiskit.optimization.applications.ising.max_cut.get_graph_solution
+title: max_cut
+description: API reference for qiskit.optimization.applications.ising.max_cut
 in_page_toc_min_heading_level: 1
-python_api_type: function
-python_api_name: qiskit.optimization.applications.ising.max_cut.get_graph_solution
+python_api_type: module
+python_api_name: qiskit.optimization.applications.ising.max_cut
 ---
 
 <span id="qiskit-optimization-applications-ising-max-cut" />

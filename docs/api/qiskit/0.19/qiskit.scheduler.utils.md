@@ -1,9 +1,9 @@
 ---
-title: format_meas_map
-description: API reference for qiskit.scheduler.utils.format_meas_map
+title: utils
+description: API reference for qiskit.scheduler.utils
 in_page_toc_min_heading_level: 1
-python_api_type: function
-python_api_name: qiskit.scheduler.utils.format_meas_map
+python_api_type: module
+python_api_name: qiskit.scheduler.utils
 ---
 
 # utils
