@@ -736,8 +736,8 @@ Removed                          |   Alternative
 <span id="complex-val-amp"></span>
 ### Complex-valued amplitude
 
-Complex-valued pulse amplitude (``amp``) is replaced with a (``amp``,
-``angle``) duo. This representation is more intuitive especially for some
+Complex-valued pulse amplitude (`amp`) is replaced with a (`amp`,
+`angle`) duo. This representation is more intuitive especially for some
 calibration tasks such as angle calibration:
 
 ```python
@@ -860,9 +860,10 @@ the symbolic pulse library; use `float`, `amp`, and  `angle` instead.
 <span id="ScalableSymbolicPulse"></span>
 ### ScalableSymbolicPulse
 
-It is no longer possible to load library `qiskit.pulse.ScalableSymbolicPulse` objects with complex `amp`
-parameter from qpy files of version 5 or lower (Qiskit Terra < 0.23.0). No migration action is required, as complex `amp` will be
-automatically converted to `float` (`amp`, `angle`).
+It is no longer possible to load library `qiskit.pulse.ScalableSymbolicPulse`
+objects with complex `amp` parameter from qpy files of version 5 or lower
+(Qiskit Terra < 0.23.0). No migration action is required, as complex `amp` will
+be automatically converted to `float` (`amp`, `angle`).
 
 The change applies to the pulses:
 * [`qiskit.pulse.Constant`](/api/qiskit/qiskit.pulse.library.Constant_class.rst)
@@ -912,13 +913,6 @@ qasm_circ = qiskit.qasm2.load("myfile.qasm")
 
 The `qiskit.quantum_info.synthesis` module has been migrated to different
 locations in the codebase, mostly [`qiskit.synthesis`](/api/qiskit/synthesis).
-For more information, see [qiskit.synthesis](#qiskit.synthesis).
-
-<span id="qiskit.synthesis"></span>
-## qiskit.synthesis
-
-The `qiskit.quantum_info.synthesis` module has been migrated to different locations in the codebase,
-mostly `qiskit.synthesis`:
 
 Removed    | Alternative
 -----------|------------
@@ -931,7 +925,7 @@ Removed    | Alternative
 This move has not affected the usual import path of `Quaternion`, but you can no longer access
 it through `qiskit.quantum_info.synthesis`.
 
-Finally, `cnot_rxx_decompose` has been removed from the codebase --> why?
+Finally, `cnot_rxx_decompose` has been removed.
 
 <span id="qiskit.test"></span>
 ## qiskit.test
