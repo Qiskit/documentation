@@ -243,7 +243,7 @@ the original import path from `qiskit.primitives`:
 
 Migrate from                     |   Replace with
 ---------------------------------|--------------------------------------------
-`BaseEstimator`         |  `BaseEstimatorV2`
+`BaseEstimator`         |  [`BaseEstimatorV2`](/api/qiskit/qiskit.primitives.BaseEstimatorV2)
 `BaseSampler`             |  [`BaseSamplerV2`](/api/qiskit/qiskit.primitives.BaseSamplerV2)
 
 As for the qiskit core implementations of the V2 primitives (those importable from `qiskit.primitives`),
@@ -411,7 +411,8 @@ sampler_v2 = StatevectorSampler()
   that can be specified at the **pub** level.
   Differently to the V1 API, the base classes now expose the arguments in different formats:
 
-    * `BaseSamplerV2.run` exposes a `shots` argument (similarly to the old workflow):
+    * [`BaseSamplerV2.run`](/api/qiskit/qiskit.primitives.BaseSamplerV2#run)
+      exposes a `shots` argument (similarly to the old workflow):
         ```python
         # Sample two circuits at 128 shots each.
         sampler_v2.run([circuit1, circuit2], shots=128)
@@ -421,8 +422,9 @@ sampler_v2 = StatevectorSampler()
         sampler_v2.run([(circuit1, None, 123), (circuit2, None, 456)])
         ```
 
-    * `EstimatorV2.run` introduces a `precision` argument that specifies the error bars
-    that the primitive implementation should target for expectation values estimates:
+    * [`EstimatorV2.run`](/api/qiskit/qiskit.primitives.BaseEstimatorV2#run)
+      introduces a `precision` argument that specifies the error bars that the
+      primitive implementation should target for expectation values estimates:
         ```python
         # Estimate expectation values for two pubs, both with 0.05 precision.
         estimator_v2.run([(circuit1, obs_array1), (circuit2, obs_array_2)], precision=0.05)
@@ -433,13 +435,17 @@ sampler_v2 = StatevectorSampler()
 
 * Implicit conversion from a dense `BaseOperator` to a
   [`SparsePauliOp`](/api/qiskit/qiskit.quantum_info.SparsePauliOp) in
-  `Estimator` observable arguments is no longer allowed. You should explicitly
-  convert to a `SparsePauliOp` using `SparsePauliOp.from_operator(operator)`
+  [`Estimator`](/api/qiskit/qiskit.primitives.Estimator) observable arguments
+  is no longer allowed. You should explicitly convert to a `SparsePauliOp`
+  using
+  [`SparsePauliOp.from_operator(operator)`](/api/qiskit/qiskit.quantum_info.SparsePauliOp#from_operator)
   instead.
 
 * Using a [`PauliList`](/api/qiskit/qiskit.quantum_info.PauliList) in
   `Estimator` observable arguments is no longer allowed. Instead you should
-  explicitly convert the argument using `SparsePauliOp(pauli_list)` first.
+  explicitly convert the argument using
+  [`SparsePauliOp(pauli_list)`](/api/qiskit/qiskit.quantum_info.SparsePauliOp)
+  first.
 
 <span id="qiskit.providers"></span>
 ## qiskit.providers
@@ -942,7 +948,7 @@ test harnesses.
 The `qiskit.tools` module was removed in Qiskit 1.0. Most of this functionality was
 either replaced by similar functionality in other packages or removed with no alternative.
 The primary exception is the `qiskit.tools.parallel_map()` function, which has been relocated to
-the [`qiskit.utils`](/api/qiskit/utils) module. It can be used
+the [`qiskit.utils`](/api/qiskit/utils#parallel_map) module. It can be used
 from this new location instead. For example:
 
 If you were previously running:
