@@ -7,14 +7,14 @@ description: Simulate with Qiskit reference primitives. How to compute an expect
 
 The reference primitives in Qiskit&reg; can perform local statevector simulations, which is useful for quickly prototyping algorithms. 
 
-The `Estimator` primitive can compute an expectation value, and the `Sampler` primitive can compute circuit output probabilities. 
+The `Estimator` primitive can compute expectation values of circuits, and the `Sampler` primitive can sample from output distributions of circuits.  
 
 ## Compute an expectation value with the `Estimator` primitive
 
 Follow these instructions to get the expected value of an observable for a given quantum circuit with the [`qiskit.primitives.Estimator`](../api/qiskit/qiskit.primitives.Estimator) primitive.
 
 <Admonition type="note">
-  While this guide uses the Qiskit reference implementation, the `Estimator` primitive can be run with any provider using [`qiskit.primitives.BackendEstimator`](../api/qiskit/qiskit.primitives.BackendEstimator).
+  While this guide uses the Qiskit reference implementation, the `Estimator` primitive can be run with any provider using [`qiskit.primitives.BackendEstimator`](../api/qiskit/qiskit.primitives.BackendEstimator). There is not yet an equivalent implementation in V2, but it is coming soon. 
 
   ```python
   from qiskit.primitives import BackendEstimator
@@ -30,8 +30,8 @@ Follow these instructions to get the expected value of an observable for a given
 
 ### Initialize observables
 
-The first step is to define the observables whose expected value you want to compute. Each observable can be any `BaseOperator`, like the operators from [`qiskit.quantum_info`](../api/qiskit/quantum_info).
-Among them it is preferable to use [`qiskit.quantum_info.SparsePauliOp`](../api/qiskit/qiskit.quantum_info.SparsePauliOp).
+The first step is to define the observables whose expected values you want to compute. Each observable can be a Pauli string, a dictionary mapping Pauli strings to real coefficients, or a [`qiskit.quantum_info.SparsePauliOp`](../api/qiskit/qiskit.quantum_info.SparsePauliOp).
+In this example, we define a single observable, but in general, you can attach many observables to a single circuit.
 
 ```python
 from qiskit.quantum_info import SparsePauliOp
@@ -60,37 +60,54 @@ qc.draw("mpl", style="iqp")
 
 ### Initialize `Estimator`
 
-Next, instantiate an [`qiskit.primitives.Estimator`](../api/qiskit/qiskit.primitives.Estimator).
+<Tabs>
+  <TabItem value="EstimatorV2" label="EstimatorV2">
+    Next, instantiate an [`qiskit.primitives.StatevectorEstimator`](../api/qiskit/qiskit.primitives.StatevectorEstimator).
+
+```python
+from qiskit.primitives import StatevectorEstimator
+estimator = StatevectorEstimator()
+```
+  </TabItem>
+
+  <TabItem value="EstimatorV1" label="Estimator (V1)">
+    Next, instantiate an [`qiskit.primitives.Estimator`](../api/qiskit/qiskit.primitives.Estimator).
 
 ```python
 from qiskit.primitives import Estimator
 
 estimator = Estimator()
 ```
+  </TabItem>
+</Tabs>
+
 
 ### Run and get results
 
-Now that you have defined your `estimator`, you can run your estimation by calling the [`qiskit.primitives.Estimator.run`](../api/qiskit/qiskit.primitives.Estimator#run) method,
-which returns an instance of [`qiskit.providers.JobV1`](../api/qiskit/qiskit.providers.JobV1). 
-
-The V2 primitives take one or more primitive unified blocs (PUBs) as the inputs. Each PUB is a tuple that contains a single circuit and data broadcasted to that circuit.
-
 <Tabs>
   <TabItem value="EstimatorV2" label="EstimatorV2">
+    Now that you have defined your `estimator`, you can run your estimation by calling the [`qiskit.primitives.StatevectorEstimator.run`](../api/qiskit/qiskit.primitives.StatevectorEstimator#run) method, which returns an instance of [`qiskit.providers.JobV1`](../api/qiskit/qiskit.providers.JobV1). 
+
+    The V2 primitives take one or more primitive unified blocs (PUBs) as the inputs. Each PUB is a tuple that contains a single circuit and data broadcasted to that circuit.
+
     ```python
 job = estimator.run([(qc, observable)])
 result = job.result()
 print(result)
 ```
 
-You can get the results from the job (as a [`qiskit.primitives.EstimatorResult`](../api/qiskit/qiskit.primitives.EstimatorResult) object)
-with the [`qiskit.providers.JobV1.result`](../api/qiskit/qiskit.providers.JobV1#result) method.
+You can get the results from the job (as a [`qiskit.primitives.PrimitiveResult`](../api/qiskit/qiskit.primitives.PrimitiveResult) object)
+with the [`qiskit.primitives.PrimitiveJob.result`](../api/qiskit/qiskit.pprimitives.PrimitiveJob.result) method.
 
 ```python
 print(f" > Metadata: {result[0].metadata}")
 ```
   </TabItem>
   <TabItem value="EstimatorV1" label="Estimator (V1)">
+    Now that you have defined your `estimator`, you can run your estimation by calling the [`qiskit.primitives.Estimator.run`](../api/qiskit/qiskit.primitives.Estimator#run) method,
+which returns an instance of [`qiskit.providers.JobV1`](../api/qiskit/qiskit.providers.JobV1). 
+
+
     ```python
 job = estimator.run(qc, observable)
 result = job.result()
