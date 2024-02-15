@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.ZZFeatureMap
 
 <span id="qiskit.circuit.library.ZZFeatureMap" />
 
-`qiskit.circuit.library.ZZFeatureMap(feature_dimension, reps=2, entanglement='full', data_map_func=None, parameter_prefix='x', insert_barriers=False, name='ZZFeatureMap')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/data_preparation/zz_feature_map.py "view source code")
+`qiskit.circuit.library.ZZFeatureMap(feature_dimension, reps=2, entanglement='full', data_map_func=None, parameter_prefix='x', insert_barriers=False, name='ZZFeatureMap')`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/zz_feature_map.py "view source code")
 
 Bases: [`PauliFeatureMap`](qiskit.circuit.library.PauliFeatureMap "qiskit.circuit.library.data_preparation.pauli_feature_map.PauliFeatureMap")
 
@@ -180,7 +180,7 @@ If barriers are inserted in between the layers or not.
 
 ### instances
 
-`= 308`
+`= 162`
 
 <span id="qiskit.circuit.library.ZZFeatureMap.layout" />
 

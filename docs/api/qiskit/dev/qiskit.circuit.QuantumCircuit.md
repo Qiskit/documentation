@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
 <span id="qiskit.circuit.QuantumCircuit" />
 
-`qiskit.circuit.QuantumCircuit(*regs, name=None, global_phase=0, metadata=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/quantumcircuit.py "view source code")
+`qiskit.circuit.QuantumCircuit(*regs, name=None, global_phase=0, metadata=None)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
@@ -147,7 +147,7 @@ Return the global phase of the current circuit scope in radians.
 
 ### instances
 
-`= 164`
+`= 182`
 
 <span id="qiskit.circuit.QuantumCircuit.layout" />
 
@@ -3194,7 +3194,7 @@ q_0: ┤ bottom ├ ⊗ q_0: ┤ top ├  = q_0: ─┤ top ├──
 
 **Return type**
 
-[QuantumCircuit](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") | None
+[*QuantumCircuit*](#qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit") | None
 
 **Examples**
 

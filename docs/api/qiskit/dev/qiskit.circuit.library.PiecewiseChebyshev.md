@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.PiecewiseChebyshev
 
 <span id="qiskit.circuit.library.PiecewiseChebyshev" />
 
-`qiskit.circuit.library.PiecewiseChebyshev(f_x, degree=None, breakpoints=None, num_state_qubits=None, name='pw_cheb')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/arithmetic/piecewise_chebyshev.py "view source code")
+`qiskit.circuit.library.PiecewiseChebyshev(f_x, degree=None, breakpoints=None, num_state_qubits=None, name='pw_cheb')`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/arithmetic/piecewise_chebyshev.py "view source code")
 
 Bases: `BlueprintCircuit`
 
@@ -121,7 +121,7 @@ Return the global phase of the current circuit scope in radians.
 
 ### instances
 
-`= 305`
+`= 211`
 
 <span id="qiskit.circuit.library.PiecewiseChebyshev.layout" />
 

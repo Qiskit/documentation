@@ -10,7 +10,7 @@ python_api_name: qiskit.synthesis.TwoQubitWeylDecomposition
 
 <span id="qiskit.synthesis.TwoQubitWeylDecomposition" />
 
-`qiskit.synthesis.TwoQubitWeylDecomposition(unitary_matrix, *, fidelity=0.999999999, _unpickling=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/synthesis/two_qubit/two_qubit_decompose.py "view source code")
+`qiskit.synthesis.TwoQubitWeylDecomposition(unitary_matrix, *, fidelity=0.999999999, _unpickling=False)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/synthesis/two_qubit/two_qubit_decompose.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
@@ -151,7 +151,7 @@ Decode bytes into [`TwoQubitWeylDecomposition`](#qiskit.synthesis.TwoQubitWeylDe
 
 **Return type**
 
-[TwoQubitWeylDecomposition](#qiskit.synthesis.TwoQubitWeylDecomposition "qiskit.synthesis.TwoQubitWeylDecomposition")
+[*TwoQubitWeylDecomposition*](#qiskit.synthesis.TwoQubitWeylDecomposition "qiskit.synthesis.two_qubit.two_qubit_decompose.TwoQubitWeylDecomposition")
 
 ### specialize
 

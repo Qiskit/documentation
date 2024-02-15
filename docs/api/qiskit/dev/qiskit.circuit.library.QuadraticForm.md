@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.QuadraticForm
 
 <span id="qiskit.circuit.library.QuadraticForm" />
 
-`qiskit.circuit.library.QuadraticForm(num_result_qubits=None, quadratic=None, linear=None, offset=None, little_endian=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/arithmetic/quadratic_form.py "view source code")
+`qiskit.circuit.library.QuadraticForm(num_result_qubits=None, quadratic=None, linear=None, offset=None, little_endian=True)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/arithmetic/quadratic_form.py "view source code")
 
 Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
@@ -101,7 +101,7 @@ Return the global phase of the current circuit scope in radians.
 
 ### instances
 
-`= 170`
+`= 283`
 
 <span id="qiskit.circuit.library.QuadraticForm.layout" />
 
