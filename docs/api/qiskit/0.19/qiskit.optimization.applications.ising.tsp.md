@@ -1,9 +1,9 @@
 ---
-title: TspData
-description: API reference for qiskit.optimization.applications.ising.tsp.TspData
+title: tsp
+description: API reference for qiskit.optimization.applications.ising.tsp
 in_page_toc_min_heading_level: 1
-python_api_type: class
-python_api_name: qiskit.optimization.applications.ising.tsp.TspData
+python_api_type: module
+python_api_name: qiskit.optimization.applications.ising.tsp
 ---
 
 <span id="qiskit-optimization-applications-ising-tsp" />
