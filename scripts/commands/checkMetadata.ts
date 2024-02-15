@@ -20,6 +20,7 @@ import { globby } from "globby";
 interface Arguments {
   [x: string]: unknown;
   apis: boolean;
+  translations: boolean;
 }
 
 const readArgs = (): Arguments => {
