@@ -28,6 +28,6 @@ with pulse.build() as pulse_prog:
 **Parameters**
 
 *   **frequency** (`float`) – Frequency in Hz to shift channel frequency by.
-*   **channel** ([`PulseChannel`](qiskit.pulse.channels#qiskit.pulse.channels.PulseChannel "qiskit.pulse.channels.PulseChannel")) – Channel to shift frequency of.
+*   **channel** ([`PulseChannel`](qiskit.pulse.channels#pulsechannel "qiskit.pulse.channels.PulseChannel")) – Channel to shift frequency of.
 *   **name** (`Optional`\[`str`]) – Name of the instruction.
 

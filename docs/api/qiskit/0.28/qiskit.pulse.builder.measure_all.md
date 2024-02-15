@@ -35,7 +35,7 @@ with pulse.build(backend) as pulse_prog:
 
 **Return type**
 
-`List`\[[`MemorySlot`](qiskit.pulse.channels#qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot")]
+`List`\[[`MemorySlot`](qiskit.pulse.channels#memoryslot "qiskit.pulse.channels.MemorySlot")]
 
 **Returns**
 
