@@ -12,7 +12,7 @@ Read on for more information about how to support this project:
 
 ### 1. Report bugs, inaccuracies or general content issues
 
-This is the quickest, easiest, and most helpful way to contribute to this project and improve the quality of Qiskit and IBM Quantum documentation. There are a few different ways to report issues, depending on where it was found:
+This is the quickest, easiest, and most helpful way to contribute to this project and improve the quality of Qiskit&reg; and IBM Quantum&trade; documentation. There are a few different ways to report issues, depending on where it was found:
 
 - For problems you've found in the [Qiskit API Reference](https://docs.quantum.ibm.com/api/qiskit) section, open an issue in the Qiskit repo [here](https://github.com/Qiskit/qiskit/issues/new/choose).
 - For problems you've found in the [Qiskit Runtime IBM Client](https://docs.quantum.ibm.com/api/qiskit-ibm-runtime) section, open an issue in the Qiskit IBM Runtime repo [here](https://github.com/Qiskit/qiskit-ibm-runtime/issues/new/choose).
@@ -158,7 +158,7 @@ npm run check:links -- --external
 
 # By default, only the non-API docs are checked. You can add any of the
 # below arguments to also check API docs and/or Qiskit release notes.
-npm run check:links -- --current-apis --historical-apis --qiskit-release-notes
+npm run check:links -- --current-apis --dev-apis --historical-apis --qiskit-release-notes
 
 # However, `--historical-apis` currently has failing versions, so you may
 # want to add `--skip-broken-historical`.
@@ -227,7 +227,7 @@ To check that all the non-API docs render:
 1. Start up the local preview with `./start` by following the instructions at [Preview the docs locally](#preview-the-docs-locally)
 2. In a new tab, `npm run check-pages-render`
 
-You can also check that API docs and translations render by using any of these arguments: `npm run check-pages-render -- --qiskit-release-notes --current-apis --historical-apis --translations`. Warning that this is exponentially slower.
+You can also check that API docs and translations render by using any of these arguments: `npm run check-pages-render -- --qiskit-release-notes --current-apis --dev-apis --historical-apis --translations`. Warning that this is exponentially slower.
 
 CI will check on every PR that non-API docs correctly render. We also run a nightly cron job to check the API docs and
 translations.
@@ -260,6 +260,8 @@ Alternatively, you can also regenerate one specific version:
 
 If the version is not for the latest stable minor release series, then add `--historical` to the arguments. For example, use `--historical` if the latest stable release is 0.45.\* but you're generating docs for the patch release 0.44.3.
 
+Additionally, If you are regenerating a dev version, then you can add `--dev` as an argument and the documentation will be built at `/docs/api/<pkg-name>/dev`. For dev versions, end the `--version` in `-dev`, e.g. `-v 1.0.0-dev`. If a release candidate has already been released, use `-v 1.0.0rc1`, for example.
+
 In this case, no commit will be automatically created.
 
 ## Generate new API docs
@@ -286,6 +288,8 @@ This is useful when new docs content is published, usually corresponding to new 
 10. Modify the `scripts/api-html-artifacts.json` file adding the new versions with the direct link from step 9.
 11. Run `npm run gen-api -- -p <pkg-name> -v <version>`,
     e.g. `npm run gen-api -- -p qiskit -v 0.45.0`
+
+If you are regenerating a dev version, then you can add `--dev` as an argument and the documentation will be built at `/docs/api/<pkg-name>/dev`. For dev versions, end the `--version` in `-dev`, e.g. `-v 1.0.0-dev`. If a release candidate has already been released, use `-v 1.0.0rc1`, for example.
 
 In case you want to save the current version and convert it into a historical one, you can run `npm run make-historical -- -p <pkg-name>` beforehand.
 
@@ -537,3 +541,32 @@ To display a qasm operation (like a not gate), you can use the `Operation` compo
 ```mdx
 <Operation name="x" />
 ```
+
+## Proper marking and attribution
+
+**All information needs to identify, mark, and attribute IBM and applicable third-party trademarks.** We do this the first time an IBM trademark appears on each page. See the [Copyright and trademark information](https://www.ibm.com/legal/copyright-trademark) page for more details.
+
+Some companies require a special attribution notice. View a list of the companies to include in a special attribution notice at the [Special attributions](https://www.ibm.com/legal/copyright-trademark#special) section of the IBM Legal site.
+
+<details>
+<summary>A (non-exhaustive) list of trademarked names found in our docs:</summary>
+
+- IBM&reg;
+- IBM Cloud&reg;
+- IBM Quantum&trade;
+- Qiskit&reg;
+</details>
+
+See the Usage section of the IBM Quantum Experience Guide for guidance on when to use IBM and when to use IBM Quantum.
+
+### Trademark symbols
+
+To create the symbols in markdown:
+
+Use `&reg;` to get &reg; for registered trademarks.
+
+use `&trade;` to get &trade; for nonregistered trademarks.
+
+<Admonition type="caution">
+  Do not include trademarks in headings. The code will display rather than the symbol.
+</Admonition

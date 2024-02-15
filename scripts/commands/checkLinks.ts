@@ -16,6 +16,7 @@ import { globby } from "globby";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 
+import { pathExists } from "../lib/fs";
 import { File } from "../lib/links/LinkChecker";
 import { FileBatch } from "../lib/links/FileBatch";
 
@@ -30,6 +31,7 @@ interface Arguments {
   [x: string]: unknown;
   external: boolean;
   currentApis: boolean;
+  devApis: boolean;
   historicalApis: boolean;
   qiskitReleaseNotes: boolean;
   skipBrokenHistorical: boolean;
@@ -48,6 +50,11 @@ const readArgs = (): Arguments => {
       type: "boolean",
       default: false,
       description: "Check the links in the current API docs.",
+    })
+    .option("dev-apis", {
+      type: "boolean",
+      default: false,
+      description: "Check the links in the /dev API docs.",
     })
     .option("historical-apis", {
       type: "boolean",
@@ -97,19 +104,29 @@ async function main() {
 
 async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
   const currentBatch = await determineCurrentDocsFileBatch(args);
-  if (!args.historicalApis) {
-    return [currentBatch];
+  const result = [currentBatch];
+
+  if (args.devApis) {
+    const devBatches = await determineDevFileBatches();
+    result.push(...devBatches);
   }
 
-  const provider = await determineHistoricalFileBatches("qiskit-ibm-provider");
-  const runtime = await determineHistoricalFileBatches("qiskit-ibm-runtime", [
-    "docs/api/qiskit/providers_models.md",
-  ]);
-  let qiskit: FileBatch[] = [];
-  if (!args.skipBrokenHistorical) {
-    qiskit = await determineHistoricalFileBatches("qiskit");
+  if (args.historicalApis) {
+    const provider = await determineHistoricalFileBatches(
+      "qiskit-ibm-provider",
+      ["docs/api/qiskit/*.md"],
+    );
+    const runtime = await determineHistoricalFileBatches("qiskit-ibm-runtime", [
+      "docs/api/qiskit/providers_models.md",
+    ]);
+    let qiskit: FileBatch[] = [];
+    if (!args.skipBrokenHistorical) {
+      qiskit = await determineHistoricalFileBatches("qiskit");
+    }
+    result.push(...provider, ...runtime, ...qiskit);
   }
-  return [currentBatch, ...provider, ...runtime, ...qiskit];
+
+  return result;
 }
 
 async function determineCurrentDocsFileBatch(
@@ -121,14 +138,18 @@ async function determineCurrentDocsFileBatch(
     // Ignore historical versions
     "!docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/[0-9]*/*",
     "!public/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/[0-9]*/*",
+    // Ignore dev version
+    "!docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/dev/*",
+    "!public/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/dev/*",
   ];
   const toLoad = [
-    "docs/api/qiskit/0.44/{algorithms,opflow}.md",
-    "docs/api/qiskit/0.44/qiskit.{algorithms,extensions,opflow}.*",
-    "docs/api/qiskit/0.44/qiskit.utils.QuantumInstance.md",
+    // The 0.44 docs are used by release notes for APIs that were removed in 1.0.
+    "docs/api/qiskit/0.44/*.md",
     "docs/api/qiskit/0.45/qiskit.quantum_info.{OneQubitEuler,TwoQubitBasis,XX}Decomposer.md",
     "docs/api/qiskit/0.45/qiskit.transpiler.synthesis.aqc.AQC.md",
     "docs/api/qiskit/0.45/{tools,quantum_info,synthesis_aqc}.md",
+    "docs/api/qiskit/0.45/qiskit.passmanager.FlowController.md",
+    "docs/api/qiskit/0.45/qiskit.circuit.CommutationChecker.md",
   ];
 
   if (!args.currentApis) {
@@ -155,6 +176,30 @@ async function determineCurrentDocsFileBatch(
   }
 
   return FileBatch.fromGlobs(toCheck, toLoad, description);
+}
+
+async function determineDevFileBatches(): Promise<FileBatch[]> {
+  const devProjects = [];
+  for (const project of [
+    "qiskit",
+    "qiskit-ibm-provider",
+    "qiskit-ibm-runtime",
+  ]) {
+    if (await pathExists(`docs/api/${project}/dev`)) {
+      devProjects.push(project);
+    }
+  }
+
+  const result = [];
+  for (const project of devProjects) {
+    const fileBatch = await FileBatch.fromGlobs(
+      [`docs/api/${project}/dev/*`, `public/api/${project}/dev/objects.inv`],
+      [],
+      `${project} dev docs`,
+    );
+    result.push(fileBatch);
+  }
+  return result;
 }
 
 async function determineHistoricalFileBatches(

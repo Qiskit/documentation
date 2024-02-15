@@ -5,7 +5,7 @@ description: Use the new interface for `qiskit.algorithms`
 
 # Algorithms migration guide
 
-  In Qiskit 0.44 and later releases, the `qiskit.algorithms` module has been superseded by a new standalone library, `qiskit_algorithms`,
+  In Qiskit&reg; 0.44 and later releases, the `qiskit.algorithms` module has been superseded by a new standalone library, `qiskit_algorithms`,
   available on [GitHub](https://github.com/qiskit-community/qiskit-algorithms) and 
   [PyPi](https://pypi.org/project/qiskit-algorithms). The `qiskit.algorithms` module  was migrated to a
   separate package in order to clarify the purpose of Qiskit and make a distinction between the tools and libraries built on top of it.
@@ -76,7 +76,7 @@ This migration guide focuses on the algorithms with migration alternatives withi
 ## How to choose a primitive configuration for your algorithm
 
 The classes in
-[`qiskit.algorithms`](../qiskit/0.44/algorithms) are initialized with any implementation of [`qiskit.primitives.BaseSampler`](../qiskit/qiskit.primitives.BaseSampler) or [`qiskit.primitives.BaseEstimator`](../qiskit/qiskit.primitives.BaseEstimator).
+[`qiskit.algorithms`](../qiskit/0.44/algorithms) are initialized with any implementation of [`qiskit.primitives.BaseSampler`](../qiskit/0.44/qiskit.primitives.BaseSampler) or [`qiskit.primitives.BaseEstimator`](../qiskit/0.44/qiskit.primitives.BaseEstimator).
 
 Once you know which primitive you want to use, choose the primitive implementation that meets your needs. For example:
 
@@ -86,7 +86,7 @@ Once you know which primitive you want to use, choose the primitive implementati
 
 * For running on quantum hardware choose from these options:
 
-   - Access services with native primitive implementations, such as the IBM Qiskit Runtime service by using [`qiskit_ibm_runtime.Sampler`](../qiskit-ibm-runtime/qiskit_ibm_runtime.Sampler) and [`qiskit_ibm_runtime.Estimator`.](../qiskit-ibm-runtime/qiskit_ibm_runtime.Estimator)
+   - Access services with native primitive implementations, such as the Qiskit Runtime service by using [`qiskit_ibm_runtime.Sampler`](../qiskit-ibm-runtime/qiskit_ibm_runtime.Sampler) and [`qiskit_ibm_runtime.Estimator`.](../qiskit-ibm-runtime/qiskit_ibm_runtime.Estimator)
    - Wrap any system with `Backend` primitives ([`qiskit.primitives.BackendSampler`](../qiskit/qiskit.primitives.BackendSampler) and [`qiskit.primitives.BackendEstimator`](../qiskit/qiskit.primitives.BackendEstimator)). These wrappers implement a primitive interface on top of a backend that only supports `backend.run()`.
 
 For detailed information and examples, particularly on the use of the `Backend` primitives, refer to
@@ -648,7 +648,7 @@ In addition to the migration, the module has been substantially expanded to incl
 </Admonition>
 
 <Admonition type="note">
-  In addition to taking in a [`qiskit.primitives.Estimator`](../qiskit/qiskit.primitives.Estimator) instance instead of a [`qiskit.utils.QuantumInstance`](../qiskit/qiskit.utils.QuantumInstance),
+  In addition to taking in a [`qiskit.primitives.Estimator`](../qiskit/qiskit.primitives.Estimator) instance instead of a [`qiskit.utils.QuantumInstance`](../qiskit/0.44/qiskit.utils.QuantumInstance),
   the new [`qiskit.algorithms.eigensolvers.VQD`](../qiskit/0.44/qiskit.algorithms.eigensolvers.VQD) signature has undergone the following changes:
 
   * The `expectation` parameter has been removed, as this functionality is now

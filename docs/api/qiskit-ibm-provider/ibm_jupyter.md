@@ -43,7 +43,7 @@ backend
 ```
 
 ```python
-<FakeVigo('fake_vigo')>
+<Fake1Q('fake_1q')>
 ```
 
 ## IBM Quantum dashboard

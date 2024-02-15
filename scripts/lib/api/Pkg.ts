@@ -29,7 +29,7 @@ export interface ReleaseNoteEntry {
   url: string;
 }
 
-type PackageType = "latest" | "historical";
+type PackageType = "latest" | "historical" | "dev";
 
 /**
  * Information about the specific package and version we're dealing with, e.g. qiskit 0.45.
@@ -149,6 +149,8 @@ export class Pkg {
     let path = join(parentDir, "api", this.name);
     if (this.isHistorical()) {
       path = join(path, this.versionWithoutPatch);
+    } else if (this.isDev()) {
+      path = join(path, "dev");
     }
     return path;
   }
@@ -159,6 +161,14 @@ export class Pkg {
 
   isHistorical(): boolean {
     return this.type == "historical";
+  }
+
+  isDev(): boolean {
+    return this.type == "dev";
+  }
+
+  isLatest(): boolean {
+    return this.type == "latest";
   }
 
   hasObjectsInv(): boolean {
@@ -197,8 +207,16 @@ export class Pkg {
 
     // Provider, Runtime, and Qiskit 0.45+ are simple: there is a branch called `stable/<version>`
     // like `stable/0.45` in each GitHub project.
-    if (this.name !== "qiskit" || +this.versionWithoutPatch >= 0.45) {
-      const baseUrl = `https://github.com/${this.githubSlug}/tree/stable/${this.versionWithoutPatch}`;
+    if (
+      this.name !== "qiskit" ||
+      this.type === "dev" ||
+      +this.versionWithoutPatch >= 0.45
+    ) {
+      const branchName =
+        this.type === "dev" && this.version.endsWith("-dev")
+          ? "main"
+          : `stable/${this.versionWithoutPatch}`;
+      const baseUrl = `https://github.com/${this.githubSlug}/tree/${branchName}`;
       return (fileName) => {
         return `${baseUrl}/${normalizeFile(fileName)}.py`;
       };
