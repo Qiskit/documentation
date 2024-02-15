@@ -5,8 +5,8 @@ description: Adapt to feature changes with Qiskit 1.0
 
 # Qiskit 1.0 feature changes
 
-This guide shows migration paths for the most important feature changes in Qiskit&reg;  1.0, organized by module.
-Use the navigation bar on the right-hand side to navigate to the module you are interested in.
+This guide describes migration paths for the most important feature changes in Qiskit&reg;  1.0, organized by module.
+Use the table of contents on the right side to navigate to the module you are interested in.
 
 <span id="qiskit.global"></span>
 ## Global instances and functions
@@ -14,7 +14,7 @@ Use the navigation bar on the right-hand side to navigate to the module you are 
 <span id="Aer"></span>
 ### Aer
 
-The `qiskit.Aer` object is no longer available in Qiskit 1.0. Instead, use the
+The `qiskit.Aer` object is not available in Qiskit 1.0. Instead, use the
 same object from the `qiskit_aer` namespace, which is a drop-in replacement.
 To install `qiskit_aer`, run:
 
@@ -25,17 +25,17 @@ pip install qiskit-aer
 <span id="BasicAer"></span>
 ### BasicAer
 
-The `qiskit.BasicAer` object is no longer available in Qiskit 1.0. See the
+The `qiskit.BasicAer` object is not available in Qiskit 1.0. See the
 [`basicaer` migration section](#providers.basicaer) for
-more information on migration options.
+ migration options.
 
 <span id="execute"></span>
 ### execute
 
-The `qiskit.execute` function is no longer available in Qiskit 1.0. This
+The `qiskit.execute` function is not available in Qiskit 1.0. This
 function served as a high-level wrapper around the
 [`transpile`](/api/qiskit/compiler#transpile) and
-[`run`](/api/qiskit/qiskit.providers.BackendV2#run) functionalities in Qiskit.
+[`run`](/api/qiskit/qiskit.providers.BackendV2#run) functions in Qiskit.
 Instead of `qiskit.execute`, use the
 [`transpile`](/api/qiskit/compiler#transpile) function followed by
 [`backend.run()`](/api/qiskit/qiskit.providers.BackendV2#run).
@@ -76,9 +76,9 @@ The `QuantumCircuit.qasm` method has been removed. Instead, use
 [`qasm2.dump`](/api/qiskit/qasm2#dump) or
 [`qasm2.dumps`](/api/qiskit/qasm2#dumps).
 
-For pygments-formatted output, look at the standalone
+For Pygments-formatted output, look at the standalone
 [`openqasm-pygments`](https://pypi.org/project/openqasm-pygments/) package,
-as `qasm2.dump` and `qasm2.dumps` do not provide pygments colored output.
+as `qasm2.dump` and `qasm2.dumps` do not provide Pygments-colored output.
 
 ```python
 from qiskit import QuantumCircuit
@@ -143,7 +143,7 @@ qubits = [0, 1]  # qubit indices on which to apply the gate
 circuit.append(gate, qubits)  # apply the gate
 ```
 
-The following two `QuantumCircuit` methods have also been removed:
+The following `QuantumCircuit` methods have also been removed:
 
 | Removed                          | Alternative |
 |----------------------------------|-------------|
@@ -168,13 +168,13 @@ convert that `QuantumCircuit` into a
 [`circuit_to_dag`](/api/qiskit/converters#circuit_to_dag).
 
 ```python
-# Old
+# Previous
 from qiskit.converters import ast_to_dag
 from qiskit.qasm import Qasm
 
 dag = ast_to_dag(Qasm(filename="myfile.qasm").parse())
 
-# Alternative
+# Current alternative
 import qiskit.qasm2
 from qiskit.converters import circuit_to_dag
 
@@ -191,10 +191,10 @@ new location, simply replace `qiskit.extensions` with `qiskit.circuit.library`
 in the object import path. This is a drop-in replacement.
 
 ```python
-# Old
+# Previous
 from qiskit.extensions import DiagonalGate
 
-# Alternative
+# Current alternative
 from qiskit.circuit.library import DiagonalGate
 ```
 
@@ -213,7 +213,7 @@ The classes moved to [`qiskit.circuit.library`](/api/qiskit/circuit_library) are
 * [`UnitaryGate`](/api/qiskit/qiskit.circuit.library.UnitaryGate)
 
 The following classes have been removed from the codebase, as their
-functionality was either redundant or linked to the `extensions` module:
+functions were either redundant or linked to the `extensions` module:
 
 Removed                          |   Alternative
 ---------------------------------|--------------------------------------------
@@ -225,12 +225,12 @@ Removed                          |   Alternative
 ## qiskit.primitives
 
 The most notable change in the [`qiskit.primitives`](/api/qiskit/primitives) module is the
-introduction of the new **primitives V2 interface**. This section will show how to migrate your
+introduction of the new **primitives V2 interface**. This section shows how to migrate your
 workflow from primitives V1 to primitives V2, as well as the few changes that have taken place
 in the inputs accepted by the V1 interface.
 
 <Admonition type="note">
-From the 1.0 release onwards, we will refer to the pre-1.0 primitives interface as "primitives V1".
+Starting with the 1.0 release, we will refer to the pre-1.0 primitives interface as "primitives V1".
 </Admonition>
 
 
@@ -246,8 +246,8 @@ Migrate from                     |   Replace with
 `BaseEstimator`         |  [`BaseEstimatorV2`](/api/qiskit/qiskit.primitives.BaseEstimatorV2)
 `BaseSampler`             |  [`BaseSamplerV2`](/api/qiskit/qiskit.primitives.BaseSamplerV2)
 
-As for the qiskit core implementations of the V2 primitives (those importable from `qiskit.primitives`),
-the names have been modified to clarify their purpose as implementations that can be run locally
+The names of the qiskit core implementations of the V2 primitives (those importable from `qiskit.primitives`),
+have been modified to clarify their purpose as implementations that can be run locally
 with a statevector simulator backend. The new names **do not include the -V2 suffix**.
 
 Migrate from                     |   Replace with
@@ -256,7 +256,7 @@ Migrate from                     |   Replace with
 `qiskit.primitives.Sampler`             |  [`qiskit.primitives.StatevectorSampler`](/api/qiskit/qiskit.primitives.StatevectorSampler)
 
 
-At a conceptual level, there are some notable differences to keep in mind when migrating from V1 to V2.
+There are some conceptual differences to think about when migrating from V1 to V2.
 These differences are dictated by the base class, but are shown in the following examples using the statevector
 implementations found in `qiskit.primitives`:
 
@@ -276,12 +276,12 @@ sampler_v1 = Sampler()
 estimator_v2 = StatevectorEstimator()
 sampler_v2 = StatevectorSampler()
 
-# define circuits, observables and param. values
+# define circuits, observables and parameter values
 ```
 </Admonition>
 
 1. `Sampler and Estimator`: The new V2 primitives are designed to accept **vectorized inputs**, where single circuits can be grouped with array-valued specifications. That is, one circuit can be executed
-  for arrays of `n` parameter sets and/or `n` observables (in the case of the estimator). Each group is called a **primitive unified bloc (pub)**, and can be represented as a tuple: `(1 x circuit, [n x observables], [n x parameters])`. The V1 interface didn't allow for the same flexibility, as there number of input circuits had to match the number of observables and
+  for arrays of `n` parameter sets, `n` observables, or both (in the case of the estimator). Each group is called a **primitive unified bloc (pub)**, and can be represented as a tuple: `(1 x circuit, [n x observables], [n x parameters])`. The V1 interface didn't allow for the same flexibility.  Instead, the number of input circuits had to match the number of observables and
   parameter sets, as shown in the following examples (select a tab to see each example):
 
 <Tabs>
@@ -320,9 +320,9 @@ sampler_v2 = StatevectorSampler()
   </TabItem>
 </Tabs>
 
-  V2 primitives accept multiple pubs as inputs, and each pub gets its own result. This
-  allows for executing different circuits with different parameter/observable combinations,
-  something not always possible in the V1 interface:
+  V2 primitives accept multiple PUBs as inputs, and each pub gets its own result. This
+  lets you run different circuits with various parameter/observable combinations,
+  which was not always possible in the V1 interface:
 
 <Tabs>
   <TabItem value="s-2-1" label="Sampler, 2 circuits, 1 parameter set" default>
@@ -353,7 +353,7 @@ sampler_v2 = StatevectorSampler()
 2. [`Sampler`](/api/qiskit/qiskit.primitives.BaseSamplerV2): The V2 sampler now
    returns measurement outcome samples in the form of **bitstrings** or
    **counts**, instead of the quasi-probability distributions from the V1
-   interface. The bitstrings show the measurement outcomes preserving the shot
+   interface. The bitstrings show the measurement outcomes, preserving the shot
    order in which they were measured. The V2 sampler result objects organize
    data in terms of their input circuits' classical register names, for
    compatibility with dynamic circuits.
@@ -376,7 +376,7 @@ sampler_v2 = StatevectorSampler()
                           0  1
     ```
     <Admonition type="caution" title="Default classical register name">
-    You can notice in the circuit above that the name of the classical register defaults to `"meas"`.
+    In the circuit above, notice that the name of the classical register defaults to `"meas"`.
     This name will be used later to access the measurement bitstrings.
     </Admonition>
 
@@ -407,12 +407,12 @@ sampler_v2 = StatevectorSampler()
     ```
 
 3. `Sampler and Estimator`: The sampling overhead, commonly exposed by V1 implementations
-  through the `shots` run option, is now an argument of the `run()` method of the primitives
-  that can be specified at the **pub** level.
-  Differently to the V1 API, the base classes now expose the arguments in different formats:
+  through the `shots` run option, is now an argument of the primitives `run()` method 
+  that can be specified at the **PUB** level.
+  The V2 base classes expose the arguments in formats different from the V1 API:
 
     * [`BaseSamplerV2.run`](/api/qiskit/qiskit.primitives.BaseSamplerV2#run)
-      exposes a `shots` argument (similarly to the old workflow):
+      exposes a `shots` argument (similar to the previous workflow):
         ```python
         # Sample two circuits at 128 shots each.
         sampler_v2.run([circuit1, circuit2], shots=128)
@@ -426,7 +426,7 @@ sampler_v2 = StatevectorSampler()
       introduces a `precision` argument that specifies the error bars that the
       primitive implementation should target for expectation values estimates:
         ```python
-        # Estimate expectation values for two pubs, both with 0.05 precision.
+        # Estimate expectation values for two PUBs, both with 0.05 precision.
         estimator_v2.run([(circuit1, obs_array1), (circuit2, obs_array_2)], precision=0.05)
         ```
 
@@ -437,13 +437,13 @@ sampler_v2 = StatevectorSampler()
   [`SparsePauliOp`](/api/qiskit/qiskit.quantum_info.SparsePauliOp) in
   [`Estimator`](/api/qiskit/qiskit.primitives.Estimator) observable arguments
   is no longer allowed. You should explicitly convert to a `SparsePauliOp`
-  using
+by using
   [`SparsePauliOp.from_operator(operator)`](/api/qiskit/qiskit.quantum_info.SparsePauliOp#from_operator)
   instead.
 
 * Using a [`PauliList`](/api/qiskit/qiskit.quantum_info.PauliList) in
   `Estimator` observable arguments is no longer allowed. Instead you should
-  explicitly convert the argument using
+  explicitly convert the argument by using
   [`SparsePauliOp(pauli_list)`](/api/qiskit/qiskit.quantum_info.SparsePauliOp)
   first.
 
@@ -457,14 +457,14 @@ Most of the functionality in the `qiskit.providers.basicaer` module has been
 replaced with the new
 [`qiskit.providers.basic_provider`](/api/qiskit/providers_basic_provider)
 module, except for the `UnitarySimulatorPy` and `StatevectorSimulatorPy`
-classes which have been removed; their functionality was already contained in
+classes, which have been removed; their functionality was already contained in
 the [`quantum_info`](/api/qiskit/quantum_info) module.
 
-The migration to the new paths should be straightforward. You can replace most
+The migration to the new paths is straightforward. You can replace most
 classes in `qiskit.providers.basicaer` with their
 [`qiskit.providers.basic_provider`](/api/qiskit/providers_basic_provider)
-counterpart (drop-in replacement). Note that the following classes have not
-only changed paths, but also changed names:
+counterpart (drop-in replacement). Note that the following classes have 
+new paths and names:
 
 Removed                          | Alternative
 ---------------------------------|--------------------------------------------
@@ -476,23 +476,23 @@ Removed                          | Alternative
 <Admonition type="caution" title="Global instances">
     Be aware of any global instances when migrating to the new module. There is no replacement for
     the `BasicAer` global instance that could be directly imported as `qiskit.BasicAer`. This means that
-    it will **not** be valid to do `from qiskit import BasicProvider`.
+     `from qiskit import BasicProvider` is no longer a valid import.
     Instead, the provider class must be imported from its submodule and instantiated by the user:
 
     ```python
-    # Old
+    # Previous
     from qiskit import BasicAer
     backend = BasicAer.get_backend("backend_name")
 
-    # Alternative
+    # Current
     from qiskit.providers.basic_provider import BasicProvider
     backend = BasicProvider().get_backend("backend_name")
     ```
 </Admonition>
 
-As for the unitary and statevector simulators, they can be replaced with
+The unitary and statevector simulators can be replaced with
 different [`quantum_info`](/api/qiskit/quantum_info) classes. This is not a
-drop-in replacement, but the changes are minimal, see the following migration
+drop-in replacement, but the changes are minimal. See the following migration
 examples:
 
 Removed                          |   Alternative
@@ -737,7 +737,7 @@ Removed                          |   Alternative
 ### Complex-valued amplitude
 
 Complex-valued pulse amplitude (`amp`) is replaced with a (`amp`,
-`angle`) duo. This representation is more intuitive especially for some
+`angle`) duo. This representation is more intuitive, especially for some
 calibration tasks such as angle calibration:
 
 ```python
@@ -756,7 +756,7 @@ schedule.assign_parameters({angle: pi})
 
 Injecting circuit gate operations into the pulse builder context through
 [`qiskit.pulse.builder.call`](/api/qiskit/pulse#call) is no longer possible.
-This removal affects input arguments of type `QuantumCircuit` as well as the
+This removal affects input arguments of type `QuantumCircuit`, as well as the
 following functions:
 
 * `qiskit.pulse.builder.call_gate`
