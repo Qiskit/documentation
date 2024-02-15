@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.NLocal
 
 <span id="qiskit.circuit.library.NLocal" />
 
-`qiskit.circuit.library.NLocal(num_qubits=None, rotation_blocks=None, entanglement_blocks=None, entanglement=None, reps=1, insert_barriers=False, parameter_prefix='θ', overwrite_block_parameters=True, skip_final_rotation_layer=False, skip_unentangled_qubits=False, initial_state=None, name='nlocal', flatten=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/n_local/n_local.py "view source code")
+`qiskit.circuit.library.NLocal(num_qubits=None, rotation_blocks=None, entanglement_blocks=None, entanglement=None, reps=1, insert_barriers=False, parameter_prefix='θ', overwrite_block_parameters=True, skip_final_rotation_layer=False, skip_unentangled_qubits=False, initial_state=None, name='nlocal', flatten=None)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/n_local/n_local.py "view source code")
 
 Bases: `BlueprintCircuit`
 
@@ -145,7 +145,7 @@ If barriers are inserted in between the layers or not.
 
 ### instances
 
-`= 220`
+`= 198`
 
 <span id="qiskit.circuit.library.NLocal.layout" />
 
@@ -414,7 +414,7 @@ The entangler map for the current block in the current repetition.
 
 **Return type**
 
-Sequence\[Sequence\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")]]
+[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.12)")\[[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.12)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")]]
 
 ### get\_unentangled\_qubits
 

@@ -36,6 +36,9 @@ const AUTH_URL = "https://auth.quantum-computing.ibm.com/api";
 // These are legit problems that we had to punt on, usually because fixing the
 // problem requires fixing the original source documentation for API docs.
 const SHOULD_BE_FIXED: FilesToIgnores = {
+  "docs/api/qiskit/release-notes/1.0.md": [
+    "/api/qiskit/utils#qiskit.utils.optionals.HAS_SYMENGINE",
+  ],
   "docs/api/qiskit/algorithms.md": ["https://www.qiskit.org/terra"],
   "docs/api/qiskit/qiskit.algorithms.Grover.md": [
     "https://qiskit.org/textbook/ch-algorithms/grover.html",
@@ -104,6 +107,8 @@ const SHOULD_BE_FIXED: FilesToIgnores = {
     "https://github.com/Qiskit/qiskit-ibm-provider/blob/main/docs/tutorials/Migration_Guide_from_qiskit-ibmq-provider.ipynb",
   ],
   "public/api/qiskit/objects.inv": [
+    "/api/qiskit/qasm3#qiskit.qasm3.STDGATES_INC_GATES",
+    "/api/qiskit/qiskit.pulse.library.SymbolicPulse#symbolic-pulse-validation",
     "/api/qiskit/circuit#qiskit.circuit.CASE_DEFAULT",
     "/api/qiskit/qiskit.passmanager.FlowController#registered_controllers",
     "/api/qiskit/qiskit.providers.basicaer.QasmSimulatorPy#default_configuration",

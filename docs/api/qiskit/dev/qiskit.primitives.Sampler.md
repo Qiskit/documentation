@@ -10,7 +10,7 @@ python_api_name: qiskit.primitives.Sampler
 
 <span id="qiskit.primitives.Sampler" />
 
-`qiskit.primitives.Sampler(*, options=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/primitives/sampler.py "view source code")
+`qiskit.primitives.Sampler(*, options=None)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/primitives/sampler.py "view source code")
 
 Bases: `BaseSamplerV1`\[`PrimitiveJob`\[[`SamplerResult`](qiskit.primitives.SamplerResult "qiskit.primitives.base.sampler_result.SamplerResult")]]
 
@@ -25,7 +25,7 @@ Sampler class.
 
 **Parameters**
 
-**options** – Default options.
+**options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)") *| None*) – Default options.
 
 **Raises**
 

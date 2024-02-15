@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.QAOAAnsatz
 
 <span id="qiskit.circuit.library.QAOAAnsatz" />
 
-`qiskit.circuit.library.QAOAAnsatz(cost_operator=None, reps=1, initial_state=None, mixer_operator=None, name='QAOA', flatten=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/n_local/qaoa_ansatz.py "view source code")
+`qiskit.circuit.library.QAOAAnsatz(cost_operator=None, reps=1, initial_state=None, mixer_operator=None, name='QAOA', flatten=None)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/n_local/qaoa_ansatz.py "view source code")
 
 Bases: [`EvolvedOperatorAnsatz`](qiskit.circuit.library.EvolvedOperatorAnsatz "qiskit.circuit.library.n_local.evolved_operator_ansatz.EvolvedOperatorAnsatz")
 
@@ -137,7 +137,7 @@ If barriers are inserted in between the layers or not.
 
 ### instances
 
-`= 158`
+`= 271`
 
 <span id="qiskit.circuit.library.QAOAAnsatz.layout" />
 

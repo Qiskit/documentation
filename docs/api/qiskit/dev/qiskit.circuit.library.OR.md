@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.OR
 
 <span id="qiskit.circuit.library.OR" />
 
-`qiskit.circuit.library.OR(num_variable_qubits, flags=None, mcx_mode='noancilla')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/boolean_logic/quantum_or.py "view source code")
+`qiskit.circuit.library.OR(num_variable_qubits, flags=None, mcx_mode='noancilla')`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/boolean_logic/quantum_or.py "view source code")
 
 Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
@@ -80,7 +80,7 @@ Return the global phase of the current circuit scope in radians.
 
 ### instances
 
-`= 223`
+`= 201`
 
 <span id="qiskit.circuit.library.OR.layout" />
 

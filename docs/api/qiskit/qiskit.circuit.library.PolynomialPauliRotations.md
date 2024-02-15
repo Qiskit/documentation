@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.PolynomialPauliRotations
 
 <span id="qiskit.circuit.library.PolynomialPauliRotations" />
 
-`qiskit.circuit.library.PolynomialPauliRotations(num_state_qubits=None, coeffs=None, basis='Y', name='poly')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/arithmetic/polynomial_pauli_rotations.py "view source code")
+`qiskit.circuit.library.PolynomialPauliRotations(num_state_qubits=None, coeffs=None, basis='Y', name='poly')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/arithmetic/polynomial_pauli_rotations.py "view source code")
 
 Bases: [`FunctionalPauliRotations`](qiskit.circuit.library.FunctionalPauliRotations "qiskit.circuit.library.arithmetic.functional_pauli_rotations.FunctionalPauliRotations")
 
@@ -112,29 +112,17 @@ Return the degree of the polynomial, equals to the number of coefficients minus 
 
 The degree of the polynomial. If the coefficients have not been set, return 0.
 
-<span id="qiskit.circuit.library.PolynomialPauliRotations.extension_lib" />
-
-### extension\_lib
-
-`= 'include "qelib1.inc";'`
-
 <span id="qiskit.circuit.library.PolynomialPauliRotations.global_phase" />
 
 ### global\_phase
 
 Return the global phase of the current circuit scope in radians.
 
-<span id="qiskit.circuit.library.PolynomialPauliRotations.header" />
-
-### header
-
-`= 'OPENQASM 2.0;'`
-
 <span id="qiskit.circuit.library.PolynomialPauliRotations.instances" />
 
 ### instances
 
-`= 253`
+`= 209`
 
 <span id="qiskit.circuit.library.PolynomialPauliRotations.layout" />
 
