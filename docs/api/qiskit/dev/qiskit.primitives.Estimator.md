@@ -14,7 +14,7 @@ python_api_name: qiskit.primitives.Estimator
 
 Bases: `BaseEstimatorV1`\[`PrimitiveJob`\[[`EstimatorResult`](qiskit.primitives.EstimatorResult "qiskit.primitives.base.estimator_result.EstimatorResult")]]
 
-Reference implementation of [`BaseEstimator`](qiskit.primitives.BaseEstimator#qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator").
+Reference implementation of [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator").
 
 **Run Options**
 

@@ -224,11 +224,11 @@ print([q.binary_probabilities() for q in job_result.quasi_dists])
 
 ## Estimator
 
-|                                                                                                                         |                                                                                                                                                   |
-| ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`BaseEstimator`](qiskit.primitives.BaseEstimator#qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator")    | alias of `BaseEstimatorV1`                                                                                                                        |
-| [`Estimator`](qiskit.primitives.Estimator "qiskit.primitives.Estimator")(\*\[, options])                                | Reference implementation of [`BaseEstimator`](qiskit.primitives.BaseEstimator#qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator"). |
-| [`BackendEstimator`](qiskit.primitives.BackendEstimator "qiskit.primitives.BackendEstimator")(backend\[, options, ...]) | Evaluates expectation value using Pauli rotation gates.                                                                                           |
+|                                                                                                                         |                                                                                                                   |
+| ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator")                                    | alias of `BaseEstimatorV1`                                                                                        |
+| [`Estimator`](qiskit.primitives.Estimator "qiskit.primitives.Estimator")(\*\[, options])                                | Reference implementation of [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator"). |
+| [`BackendEstimator`](qiskit.primitives.BackendEstimator "qiskit.primitives.BackendEstimator")(backend\[, options, ...]) | Evaluates expectation value using Pauli rotation gates.                                                           |
 
 ## EstimatorV2
 
@@ -241,7 +241,7 @@ print([q.binary_probabilities() for q in job_result.quasi_dists])
 
 |                                                                                                                   |                                                                                                                  |
 | ----------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| [`BaseSampler`](qiskit.primitives.BaseSampler#qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler")      | alias of `BaseSamplerV1`                                                                                         |
+| [`BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler")                                    | alias of `BaseSamplerV1`                                                                                         |
 | [`Sampler`](qiskit.primitives.Sampler "qiskit.primitives.Sampler")(\*\[, options])                                | Sampler class.                                                                                                   |
 | [`BackendSampler`](qiskit.primitives.BackendSampler "qiskit.primitives.BackendSampler")(backend\[, options, ...]) | A `BaseSampler` implementation that provides an interface for leveraging the sampler interface from any backend. |
 
