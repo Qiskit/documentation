@@ -16,7 +16,7 @@ Bases: `BaseSamplerV1`\[`PrimitiveJob`\[[`SamplerResult`](qiskit.primitives.Samp
 
 Sampler class.
 
-[`Sampler`](#qiskit.primitives.Sampler "qiskit.primitives.Sampler") is a reference implementation of [`BaseSampler`](qiskit.primitives.BaseSampler#qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler").
+[`Sampler`](#qiskit.primitives.Sampler "qiskit.primitives.Sampler") is a reference implementation of [`BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler").
 
 **Run Options**
 
