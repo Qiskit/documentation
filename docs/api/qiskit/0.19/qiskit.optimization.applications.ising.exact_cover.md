@@ -1,9 +1,9 @@
 ---
-title: check_solution_satisfiability
-description: API reference for qiskit.optimization.applications.ising.exact_cover.check_solution_satisfiability
+title: exact_cover
+description: API reference for qiskit.optimization.applications.ising.exact_cover
 in_page_toc_min_heading_level: 1
-python_api_type: function
-python_api_name: qiskit.optimization.applications.ising.exact_cover.check_solution_satisfiability
+python_api_type: module
+python_api_name: qiskit.optimization.applications.ising.exact_cover
 ---
 
 <span id="qiskit-optimization-applications-ising-exact-cover" />

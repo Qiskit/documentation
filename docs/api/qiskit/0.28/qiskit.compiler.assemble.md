@@ -42,7 +42,7 @@ This function serializes the payloads, which could be either circuits or schedul
 
 *   **meas\_lo\_range** (`Optional`\[`List`\[`float`]]) – List of job level measurement LO ranges each of form `[range_min, range_max]` in Hz. Used to validate `meas_lo_freq`. Must have length `n_qubits.`
 
-*   **schedule\_los** (`Union`\[`List`\[`Union`\[`Dict`\[[`PulseChannel`](qiskit.pulse.channels#qiskit.pulse.channels.PulseChannel "qiskit.pulse.channels.PulseChannel"), `float`], `LoConfig`]], `Dict`\[[`PulseChannel`](qiskit.pulse.channels#qiskit.pulse.channels.PulseChannel "qiskit.pulse.channels.PulseChannel"), `float`], `LoConfig`, `None`]) – Experiment level (ie circuit or schedule) LO frequency configurations for qubit drive and measurement channels. These values override the job level values from `default_qubit_los` and `default_meas_los`. Frequencies are in Hz. Settable for qasm and pulse jobs.
+*   **schedule\_los** (`Union`\[`List`\[`Union`\[`Dict`\[[`PulseChannel`](qiskit.pulse.channels#pulsechannel "qiskit.pulse.channels.PulseChannel"), `float`], `LoConfig`]], `Dict`\[[`PulseChannel`](qiskit.pulse.channels#pulsechannel "qiskit.pulse.channels.PulseChannel"), `float`], `LoConfig`, `None`]) – Experiment level (ie circuit or schedule) LO frequency configurations for qubit drive and measurement channels. These values override the job level values from `default_qubit_los` and `default_meas_los`. Frequencies are in Hz. Settable for qasm and pulse jobs.
 
 *   **meas\_level** (`Union`\[`int`, `MeasLevel`]) – Set the appropriate level of the measurement output for pulse experiments.
 
