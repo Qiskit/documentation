@@ -145,6 +145,31 @@ click "Show all checks" in the info box at the bottom of the pull request page
 on GitHub, then choose "Details" for the "Test notebooks" job. From the job
 page, click "Summary", then download "Executed notebooks".
 
+## Lint notebooks
+
+We use [`squeaky`](https://github.com/frankharkins/squeaky) to lint our
+notebooks. To check if a notebook needs linting:
+
+```sh
+# Check all notebooks in ./docs
+tox -e lint -- docs/**/*.ipynb
+```
+
+To fix problems in a notebooks, run:
+
+```sh
+tox -e fix -- path/to/notebook
+```
+
+Or, you can retrieve an executed and linted version of your notebook from CI
+following the steps at the end of the [Execute notebook](#execute-notebooks)
+section.
+
+If you use the Jupyter notebook editor, consider adding squeaky as a [pre-save
+hook](https://github.com/frankharkins/squeaky?tab=readme-ov-file#jupyter-pre-save-hook).
+This will lint your notebooks as you save them, so you never need to worry
+about it.
+
 ## Check for broken links
 
 CI will check for broken links. You can also check locally:
