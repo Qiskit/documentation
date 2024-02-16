@@ -39,14 +39,6 @@ const SHOULD_BE_FIXED: FilesToIgnores = {
   "docs/api/qiskit/release-notes/1.0.md": [
     "/api/qiskit/utils#qiskit.utils.optionals.HAS_SYMENGINE",
   ],
-  "docs/api/qiskit/algorithms.md": ["https://www.qiskit.org/terra"],
-  "docs/api/qiskit/qiskit.algorithms.Grover.md": [
-    "https://qiskit.org/textbook/ch-algorithms/grover.html",
-  ],
-  "docs/api/qiskit/qiskit.algorithms.optimizers.NFT.md": ["#id2", "#id1"],
-  "docs/api/qiskit/qiskit.algorithms.optimizers.ISRES.md": [
-    "https://notendur.hi.is/tpr/software/sres/Tec311r.pdf",
-  ],
   "docs/api/qiskit/qpy.md": [
     "circuit#qiskit.circuit.CASE_DEFAULT",
     "#id8",
@@ -267,9 +259,6 @@ const SHOULD_BE_FIXED: FilesToIgnores = {
 // Issues that are okay, such as because the link checker times out
 // when trying to access the links.
 const EXPECTED: FilesToIgnores = {
-  "docs/api/qiskit/qiskit.algorithms.optimizers.SPSA.md": [
-    "https://ieeexplore.ieee.org/document/657661",
-  ],
   "docs/api/qiskit/synthesis.md": [
     "https://www.cs.tau.ac.il/~nogaa/PDFS/r.pdf",
   ],

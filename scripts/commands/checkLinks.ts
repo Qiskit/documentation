@@ -143,13 +143,12 @@ async function determineCurrentDocsFileBatch(
     "!public/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/dev/*",
   ];
   const toLoad = [
-    // The 0.44 docs are used by release notes for APIs that were removed in 1.0.
-    "docs/api/qiskit/0.44/*.md",
+    // The 0.46 docs are used by release notes for APIs that were removed in 1.0.
+    "docs/api/qiskit/0.46/*.md",
+    "docs/api/qiskit/0.44/qiskit.extensions.{Hamiltonian,Unitary}Gate.md",
     "docs/api/qiskit/0.45/qiskit.quantum_info.{OneQubitEuler,TwoQubitBasis,XX}Decomposer.md",
     "docs/api/qiskit/0.45/qiskit.transpiler.synthesis.aqc.AQC.md",
     "docs/api/qiskit/0.45/{tools,quantum_info,synthesis_aqc}.md",
-    "docs/api/qiskit/0.45/qiskit.passmanager.FlowController.md",
-    "docs/api/qiskit/0.45/qiskit.circuit.CommutationChecker.md",
   ];
 
   if (!args.currentApis) {
