@@ -14,35 +14,57 @@ from output distributions of circuits.
 
 The following sections show how to use the reference primitives to run your workflow locally.
 
-<Admonition type="note">
-  While this guide uses the Qiskit reference implementation, the `Estimator` primitive can be run with any provider using [`qiskit.primitives.BackendEstimator`](../api/qiskit/qiskit.primitives.BackendEstimator). There is not yet an equivalent implementation in V2, but it is coming soon.
+[//]: # ()
+[//]: # (<Admonition type="note">)
 
-  ```python
-  from qiskit.primitives import BackendEstimator
-  from <some_qiskit_provider> import QiskitProvider
+[//]: # (  While this guide uses the Qiskit reference implementation, the `Estimator` primitive can be run with any provider using [`qiskit.primitives.BackendEstimator`]&#40;../api/qiskit/qiskit.primitives.BackendEstimator&#41;. There is not yet an equivalent implementation in V2, but it is coming soon.)
 
-  provider = QiskitProvider()
-  backend = provider.get_backend('backend_name')
-  estimator = BackendEstimator(backend)
-  ```
+[//]: # ()
+[//]: # (  ```python)
 
-  There are some providers that implement primitives natively (see [the Qiskit Ecosystem page](https://qiskit.github.io/ecosystem/#primitives) for more details).
-</Admonition>
+[//]: # (  from qiskit.primitives import BackendEstimator)
 
-<Admonition type="note">
-  While this guide uses the Qiskit reference implementation, the `Sampler` primitive can be run with any provider using [`qiskit.primitives.BackendSampler`](../api/qiskit/qiskit.primitives.BackendSampler).
+[//]: # (  from <some_qiskit_provider> import QiskitProvider)
 
-  ```python
-  from qiskit.primitives import BackendSampler
-  from <some_qiskit_provider> import QiskitProvider
+[//]: # ()
+[//]: # (  provider = QiskitProvider&#40;&#41;)
 
-  provider = QiskitProvider()
-  backend = provider.get_backend('backend_name')
-  sampler = BackendSampler(backend)
-  ```
+[//]: # (  backend = provider.get_backend&#40;'backend_name'&#41;)
 
-  There are some providers that implement primitives natively (see [the Qiskit Ecosystem page](https://qiskit.github.io/ecosystem#providers) for more details).
-</Admonition>
+[//]: # (  estimator = BackendEstimator&#40;backend&#41;)
+
+[//]: # (  ```)
+
+[//]: # ()
+[//]: # (  There are some providers that implement primitives natively &#40;see [the Qiskit Ecosystem page]&#40;https://qiskit.github.io/ecosystem/#primitives&#41; for more details&#41;.)
+
+[//]: # (</Admonition>)
+
+[//]: # ()
+[//]: # (<Admonition type="note">)
+
+[//]: # (  While this guide uses the Qiskit reference implementation, the `Sampler` primitive can be run with any provider using [`qiskit.primitives.BackendSampler`]&#40;../api/qiskit/qiskit.primitives.BackendSampler&#41;.)
+
+[//]: # ()
+[//]: # (  ```python)
+
+[//]: # (  from qiskit.primitives import BackendSampler)
+
+[//]: # (  from <some_qiskit_provider> import QiskitProvider)
+
+[//]: # ()
+[//]: # (  provider = QiskitProvider&#40;&#41;)
+
+[//]: # (  backend = provider.get_backend&#40;'backend_name'&#41;)
+
+[//]: # (  sampler = BackendSampler&#40;backend&#41;)
+
+[//]: # (  ```)
+
+[//]: # ()
+[//]: # (  There are some providers that implement primitives natively &#40;see [the Qiskit Ecosystem page]&#40;https://qiskit.github.io/ecosystem#providers&#41; for more details&#41;.)
+
+[//]: # (</Admonition>)
 
 
 ## Use the reference `Estimator`
