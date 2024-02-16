@@ -13,7 +13,7 @@
 import { globby } from "globby";
 
 import { Link, File } from "./LinkChecker";
-import FILES_TO_IGNORES from "./ignores";
+import { FILES_TO_IGNORES, ALWAYS_IGNORED_URLS } from "./ignores";
 import { parseFile } from "./extractLinks";
 
 export class FileBatch {
@@ -78,6 +78,9 @@ export class FileBatch {
     const internalLinks: Link[] = [];
     const externalLinks: Link[] = [];
     for (let [linkPath, originFiles] of linksToOriginFiles) {
+      if (ALWAYS_IGNORED_URLS.has(linkPath)) {
+        continue;
+      }
       originFiles = originFiles.filter(
         (originFile) =>
           FILES_TO_IGNORES[originFile] == null ||

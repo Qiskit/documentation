@@ -10,14 +10,39 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
+// -----------------------------------------------------------------------------------
+// Always ignored URLs
+// -----------------------------------------------------------------------------------
+
+const _QISKIT_UTILS = [
+  "#qiskit.utils.optionals.HAS_TESTTOOLS",
+  "#qiskit.utils.optionals.HAS_GRAPHVIZ",
+  "#qiskit.utils.optionals.HAS_PYDOT",
+];
+
+const ALWAYS_IGNORED_URLS__EXPECTED = [
+  "https://auth.quantum-computing.ibm.com/api",
+  "https://www.cs.tau.ac.il/~nogaa/PDFS/r.pdf",
+];
+
+const ALWAYS_IGNORED_URLS__SHOULD_FIX = [
+  "circuit#qiskit.circuit.CASE_DEFAULT",
+  ..._QISKIT_UTILS,
+];
+
+export const ALWAYS_IGNORED_URLS = new Set([
+  ...ALWAYS_IGNORED_URLS__EXPECTED,
+  ...ALWAYS_IGNORED_URLS__SHOULD_FIX,
+]);
+
+// -----------------------------------------------------------------------------------
+// Files to ignores
+// -----------------------------------------------------------------------------------
+
 // A mapping of files to lists of links that will not be searched.
-//
-// If all links in the file should be ignored, then modify GLOBS_TO_CHECK in checkLinks.ts, such
-// as adding '!docs/my_file.md` to the list. If other files link to the file,
-// then you may need to add it to GLOBS_TO_LOAD in checkLinks.ts.
 type FilesToIgnores = { [id: string]: string[] };
 
-const FAKE_PROVIDER_IGNORES = [
+const _FAKE_PROVIDER_IGNORES = [
   "#id1",
   "#id2",
   "#id3",
@@ -31,90 +56,45 @@ const FAKE_PROVIDER_IGNORES = [
   "_downloads/20b45a9c9dd80c4687a3546bdcb4db06/fake_provider-1_02.hires.png",
   "_downloads/fe03f365d979eee2c9543dbb39696011/fake_provider-1_02.pdf",
 ];
-const AUTH_URL = "https://auth.quantum-computing.ibm.com/api";
 
-// These are legit problems that we had to punt on, usually because fixing the
-// problem requires fixing the original source documentation for API docs.
-const SHOULD_BE_FIXED: FilesToIgnores = {
-  "docs/api/qiskit/release-notes/1.0.md": [
-    "/api/qiskit/utils#qiskit.utils.optionals.HAS_SYMENGINE",
-  ],
-  "docs/api/qiskit/qpy.md": [
-    "circuit#qiskit.circuit.CASE_DEFAULT",
-    "#id8",
-    "#id2",
-    "#f8",
-    "#id6",
-    "#id4",
-    "#f3",
-    "#f2",
-    "#f1",
-    "/api/qiskit/circuit#qiskit.circuit.CircuitError",
-    "id2",
-    "/api/qiskit/qpy#id1",
-    "/api/qiskit/circuit#qiskit.circuit.CircuitError'",
-  ],
-  "docs/api/qiskit/qiskit.circuit.QuantumCircuit.md": [
-    "qiskit.org/documentation/tutorials/circuits/3_summary_of_quantum_operations",
-    "circuit#qiskit.circuit.CASE_DEFAULT",
-  ],
-  "docs/api/qiskit/qiskit.circuit.SwitchCaseOp.md": [
-    "circuit#qiskit.circuit.CASE_DEFAULT",
-  ],
-  "docs/api/qiskit/qiskit.circuit.library.PhaseEstimation.md": [
-    "https://learn.qiskit.org/course/ch-algorithms/quantum-phase-estimation",
-  ],
-  "docs/api/qiskit/utils.md": [
-    "https://github.com/python-constraint/python-constraint%3E__",
-    "#qiskit.utils.optionals.HAS_TESTTOOLS",
-    "#qiskit.utils.optionals.HAS_GRAPHVIZ",
-    "#qiskit.utils.optionals.HAS_PYDOT",
-  ],
-  "docs/api/qiskit/release-notes/0.45.md": [
-    "/api/qiskit/utils#qiskit.utils.optionals.HAS_PYGMENTS",
-  ],
-  "docs/api/qiskit-ibm-provider/qiskit_ibm_provider.IBMProvider.md": [AUTH_URL],
-  "docs/api/qiskit-ibm-provider/0.7/qiskit_ibm_provider.IBMProvider.md": [
-    AUTH_URL,
-  ],
-  "docs/api/qiskit-ibm-provider/0.8/qiskit_ibm_provider.IBMProvider.md": [
-    AUTH_URL,
-  ],
-  "docs/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService.md": [
-    AUTH_URL,
-  ],
-  "docs/api/qiskit-ibm-runtime/0.18/qiskit_ibm_runtime.QiskitRuntimeService.md":
-    [AUTH_URL],
-  "docs/api/qiskit-ibm-runtime/0.17/qiskit_ibm_runtime.QiskitRuntimeService.md":
-    [AUTH_URL],
-  "docs/api/qiskit-ibm-runtime/0.14/qiskit_ibm_runtime.QiskitRuntimeService.md":
-    [AUTH_URL],
-  "docs/api/qiskit-ibm-runtime/0.15/qiskit_ibm_runtime.QiskitRuntimeService.md":
-    [AUTH_URL],
-  "docs/api/qiskit-ibm-runtime/0.16/qiskit_ibm_runtime.QiskitRuntimeService.md":
-    [AUTH_URL],
-  "docs/api/qiskit-ibm-runtime/fake_provider.md": FAKE_PROVIDER_IGNORES,
-  "docs/api/qiskit-ibm-runtime/0.18/fake_provider.md": FAKE_PROVIDER_IGNORES,
+const _QPY_IGNORES = ["#f1", "#f2", "#f3", "#id2", "#id4", "#id6", "#id8"];
+
+const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = {};
+
+const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {
+  // Runtime
+  "docs/api/qiskit-ibm-runtime/fake_provider.md": _FAKE_PROVIDER_IGNORES,
+  "docs/api/qiskit-ibm-runtime/0.18/fake_provider.md": _FAKE_PROVIDER_IGNORES,
+  "docs/api/qiskit-ibm-runtime/dev/fake_provider.md": _FAKE_PROVIDER_IGNORES,
+  // Provider
   "docs/api/qiskit-ibm-provider/release-notes.md": [
     "https://github.com/Qiskit/qiskit-ibm-provider/blob/main/docs/tutorials/Migration_Guide_from_qiskit-ibmq-provider.ipynb",
   ],
+  // Qiskit
+  "docs/api/qiskit/release-notes/1.0.md": [
+    "/api/qiskit/utils#qiskit.utils.optionals.HAS_SYMENGINE",
+  ],
+  "docs/api/qiskit/qpy.md": _QPY_IGNORES,
+  "docs/api/qiskit/dev/qpy.md": _QPY_IGNORES,
+  // objects.inv
+  "public/api/qiskit-ibm-runtime/objects.inv": [
+    "/api/qiskit-ibm-runtime/qiskit_ibm_runtime.RuntimeEncoder#key_separator",
+    "/api/qiskit-ibm-runtime/index#next-steps",
+    "/api/qiskit-ibm-runtime/index#qiskit-runtime-version-api-docs-preview",
+  ],
+  "public/api/qiskit-ibm-runtime/dev/objects.inv": [
+    "/api/qiskit-ibm-runtime/dev/qiskit_ibm_runtime.RuntimeEncoder#key_separator",
+    "/api/qiskit-ibm-runtime/dev/index#next-steps",
+    "/api/qiskit-ibm-runtime/dev/index#qiskit-runtime-version-api-docs-preview",
+  ],
   "public/api/qiskit/objects.inv": [
-    "/api/qiskit/qasm3#qiskit.qasm3.STDGATES_INC_GATES",
-    "/api/qiskit/qiskit.pulse.library.SymbolicPulse#symbolic-pulse-validation",
     "/api/qiskit/circuit#qiskit.circuit.CASE_DEFAULT",
-    "/api/qiskit/qiskit.passmanager.FlowController#registered_controllers",
-    "/api/qiskit/qiskit.providers.basicaer.QasmSimulatorPy#default_configuration",
-    "/api/qiskit/qiskit.providers.basicaer.QasmSimulatorPy#default_options",
-    "/api/qiskit/qiskit.providers.basicaer.StatevectorSimulatorPy#default_configuration",
-    "/api/qiskit/qiskit.providers.basicaer.StatevectorSimulatorPy#default_options",
-    "/api/qiskit/qiskit.providers.basicaer.UnitarySimulatorPy#default_configuration",
-    "/api/qiskit/qiskit.providers.basicaer.UnitarySimulatorPy#default_options",
     "/api/qiskit/qiskit.pulse.instructions.Reference#scope_delimiter",
     "/api/qiskit/qasm2#qiskit.qasm2.LEGACY_CUSTOM_CLASSICAL",
     "/api/qiskit/qasm2#qiskit.qasm2.LEGACY_CUSTOM_INSTRUCTIONS",
     "/api/qiskit/qasm2#qiskit.qasm2.LEGACY_INCLUDE_PATH",
+    "/api/qiskit/qasm3#qiskit.qasm3.STDGATES_INC_GATES",
     "/api/qiskit/qiskit.transpiler.StagedPassManager#invalid_stage_regex",
-    "/api/qiskit/utils#qiskit.utils.algorithm_globals",
     "/api/qiskit/utils#qiskit.utils.optionals.HAS_AER",
     "/api/qiskit/utils#qiskit.utils.optionals.HAS_CONSTRAINT",
     "/api/qiskit/utils#qiskit.utils.optionals.HAS_CPLEX",
@@ -141,59 +121,22 @@ const SHOULD_BE_FIXED: FilesToIgnores = {
     "/api/qiskit/utils#qiskit.utils.optionals.HAS_SEABORN",
     "/api/qiskit/utils#qiskit.utils.optionals.HAS_SKLEARN",
     "/api/qiskit/utils#qiskit.utils.optionals.HAS_SKQUANT",
+    "/api/qiskit/utils#qiskit.utils.optionals.HAS_SKSNFIT",
     "/api/qiskit/utils#qiskit.utils.optionals.HAS_SQSNOBFIT",
     "/api/qiskit/utils#qiskit.utils.optionals.HAS_SYMENGINE",
     "/api/qiskit/utils#qiskit.utils.optionals.HAS_TESTTOOLS",
     "/api/qiskit/utils#qiskit.utils.optionals.HAS_TOQM",
     "/api/qiskit/utils#qiskit.utils.optionals.HAS_TWEEDLEDUM",
     "/api/qiskit/utils#qiskit.utils.optionals.HAS_Z3",
-    "/api/qiskit/index#main-qiskit-related-projects",
-    "/api/qiskit/index#qiskit-version-documentation",
     "/api/qiskit/qiskit.visualization.timeline_drawer#style-dict-doc",
     "/api/qiskit/qiskit.pulse.library.SymbolicPulse#symbolic-pulse-constraints",
     "/api/qiskit/qiskit.pulse.library.SymbolicPulse#symbolic-pulse-envelope",
     "/api/qiskit/qiskit.pulse.library.SymbolicPulse#symbolic-pulse-eval-condition",
     "/api/qiskit/qiskit.pulse.library.SymbolicPulse#symbolic-pulse-serialize",
-    "/api/qiskit-ibm-runtime/qiskit_ibm_runtime.RuntimeEncoder#key_separator",
-    "/api/qiskit-ibm-runtime/index#next-steps",
-    "/api/qiskit-ibm-runtime/index#qiskit-runtime-version-api-docs-preview",
-  ],
-  "docs/api/qiskit/dev/qpy.md": [
-    "circuit#qiskit.circuit.CASE_DEFAULT",
-    "#id8",
-    "#id2",
-    "#id6",
-    "#id4",
-    "#f3",
-    "#f2",
-    "#f1",
-  ],
-  "docs/api/qiskit/dev/qiskit.primitives.Sampler.md": [
-    "qiskit.primitives.BaseSampler#qiskit.primitives.BaseSampler",
-  ],
-  "docs/api/qiskit/dev/qiskit.primitives.Estimator.md": [
-    "qiskit.primitives.BaseEstimator#qiskit.primitives.BaseEstimator",
-  ],
-  "docs/api/qiskit/dev/primitives.md": [
-    "qiskit.primitives.BaseSampler#qiskit.primitives.BaseSampler",
-    "qiskit.primitives.BaseEstimator#qiskit.primitives.BaseEstimator",
-  ],
-  "docs/api/qiskit/dev/qiskit.circuit.QuantumCircuit.md": [
-    "circuit#qiskit.circuit.CASE_DEFAULT",
-  ],
-  "docs/api/qiskit/dev/qiskit.circuit.SwitchCaseOp.md": [
-    "circuit#qiskit.circuit.CASE_DEFAULT",
-  ],
-  "docs/api/qiskit/dev/utils.md": [
-    "https://github.com/python-constraint/python-constraint%3E__",
-    "#qiskit.utils.optionals.HAS_TESTTOOLS",
-    "#qiskit.utils.optionals.HAS_GRAPHVIZ",
-    "#qiskit.utils.optionals.HAS_PYDOT",
+    "/api/qiskit/qiskit.pulse.library.SymbolicPulse#symbolic-pulse-validation",
   ],
   "public/api/qiskit/dev/objects.inv": [
     "/api/qiskit/dev/circuit#qiskit.circuit.CASE_DEFAULT",
-    "/api/qiskit/dev/qiskit.primitives.BaseEstimator#qiskit.primitives.BaseEstimator",
-    "/api/qiskit/dev/qiskit.primitives.BaseSampler#qiskit.primitives.BaseSampler",
     "/api/qiskit/dev/qiskit.pulse.instructions.Reference#scope_delimiter",
     "/api/qiskit/dev/qasm2#qiskit.qasm2.LEGACY_CUSTOM_CLASSICAL",
     "/api/qiskit/dev/qasm2#qiskit.qasm2.LEGACY_CUSTOM_INSTRUCTIONS",
@@ -226,14 +169,13 @@ const SHOULD_BE_FIXED: FilesToIgnores = {
     "/api/qiskit/dev/utils#qiskit.utils.optionals.HAS_SEABORN",
     "/api/qiskit/dev/utils#qiskit.utils.optionals.HAS_SKLEARN",
     "/api/qiskit/dev/utils#qiskit.utils.optionals.HAS_SKQUANT",
+    "/api/qiskit/dev/utils#qiskit.utils.optionals.HAS_SKSNFIT",
     "/api/qiskit/dev/utils#qiskit.utils.optionals.HAS_SQSNOBFIT",
     "/api/qiskit/dev/utils#qiskit.utils.optionals.HAS_SYMENGINE",
     "/api/qiskit/dev/utils#qiskit.utils.optionals.HAS_TESTTOOLS",
     "/api/qiskit/dev/utils#qiskit.utils.optionals.HAS_TOQM",
     "/api/qiskit/dev/utils#qiskit.utils.optionals.HAS_TWEEDLEDUM",
     "/api/qiskit/dev/utils#qiskit.utils.optionals.HAS_Z3",
-    "/api/qiskit/dev/qiskit.primitives.BaseEstimator",
-    "/api/qiskit/dev/qiskit.primitives.BaseSampler",
     "/api/qiskit/dev/qiskit.visualization.timeline_drawer#style-dict-doc",
     "/api/qiskit/dev/qiskit.pulse.library.SymbolicPulse#symbolic-pulse-constraints",
     "/api/qiskit/dev/qiskit.pulse.library.SymbolicPulse#symbolic-pulse-envelope",
@@ -241,27 +183,9 @@ const SHOULD_BE_FIXED: FilesToIgnores = {
     "/api/qiskit/dev/qiskit.pulse.library.SymbolicPulse#symbolic-pulse-serialize",
     "/api/qiskit/dev/qiskit.pulse.library.SymbolicPulse#symbolic-pulse-validation",
   ],
-  "public/api/qiskit-ibm-runtime/objects.inv": [
-    "/api/qiskit-ibm-runtime/qiskit_ibm_runtime.RuntimeEncoder#key_separator",
-    "/api/qiskit-ibm-runtime/index#next-steps",
-    "/api/qiskit-ibm-runtime/index#qiskit-runtime-version-api-docs-preview",
-  ],
-  "docs/api/qiskit-ibm-runtime/dev/qiskit_ibm_runtime.QiskitRuntimeService.md":
-    [AUTH_URL],
-  "docs/api/qiskit-ibm-runtime/dev/fake_provider.md": FAKE_PROVIDER_IGNORES,
-  "public/api/qiskit-ibm-runtime/dev/objects.inv": [
-    "/api/qiskit-ibm-runtime/dev/qiskit_ibm_runtime.RuntimeEncoder#key_separator",
-    "/api/qiskit-ibm-runtime/dev/index#next-steps",
-    "/api/qiskit-ibm-runtime/dev/index#qiskit-runtime-version-api-docs-preview",
-  ],
 };
 
-// Issues that are okay, such as because the link checker times out
-// when trying to access the links.
-const EXPECTED: FilesToIgnores = {
-  "docs/api/qiskit/synthesis.md": [
-    "https://www.cs.tau.ac.il/~nogaa/PDFS/r.pdf",
-  ],
+export const FILES_TO_IGNORES: FilesToIgnores = {
+  ...FILES_TO_IGNORES__EXPECTED,
+  ...FILES_TO_IGNORES__SHOULD_FIX,
 };
-
-export default { ...SHOULD_BE_FIXED, ...EXPECTED };
