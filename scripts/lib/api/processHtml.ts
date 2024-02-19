@@ -162,12 +162,14 @@ export function addLanguageClassToCodeBlocks(
 }
 
 /**
- * Redirect URLS from sphinx.ext.viewcode to instead go to GitHub.
+ * Redirect URLS from `sphinx.ext.viewcode` to instead go to GitHub.
  *
  * These URLs will only go to the overall source code file, not the specific lines
  * of code. This function only changes the URLs; the DOM still needs to be modified
  * to remove the original `[source]` anchor element from Sphinx with our own `GitHub`
  * anchor element in the correct location.
+ *
+ * This does not impact links from `sphinx.ext.linkcode`.
  */
 export function replaceViewcodeLinksWithGitHub(
   $: CheerioAPI,
@@ -388,6 +390,9 @@ export function processMembersAndSetMeta(
  *
  * This returns the HTML string, rather than directly inserting into the HTML, because the insertion
  * logic is most easily handled by the calling code.
+ *
+ * This function works the same regardless of whether the Sphinx build used `sphinx.ext.viewcode`
+ * or `sphinx.ext.linkcode` because they have the same HTML structure.
  */
 export function prepareGitHubLink($: CheerioAPI, $child: Cheerio<any>): string {
   const originalLink = $child.find(".viewcode-link").closest("a");
