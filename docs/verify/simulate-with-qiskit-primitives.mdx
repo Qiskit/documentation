@@ -13,21 +13,6 @@ The `Estimator` primitive can compute expectation values of circuits, and the `S
 
 Follow these instructions to get the expected value of an observable for a given quantum circuit with the [`qiskit.primitives.Estimator`](../api/qiskit/qiskit.primitives.Estimator) primitive.
 
-<Admonition type="note">
-  While this guide uses the Qiskit reference implementation, the `Estimator` primitive can be run with any provider using [`qiskit.primitives.BackendEstimator`](../api/qiskit/qiskit.primitives.BackendEstimator). There is not yet an equivalent implementation in V2, but it is coming soon. 
-
-  ```python
-  from qiskit.primitives import BackendEstimator
-  from <some_qiskit_provider> import QiskitProvider
-
-  provider = QiskitProvider()
-  backend = provider.get_backend('backend_name')
-  estimator = BackendEstimator(backend)
-  ```
-
-  There are some providers that implement primitives natively (see [the Qiskit Ecosystem page](https://qiskit.github.io/ecosystem/#primitives) for more details).
-</Admonition>
-
 ### Initialize observables
 
 The first step is to define the observables whose expected values you want to compute. Each observable can be a Pauli string, a dictionary mapping Pauli strings to real coefficients, or a [`qiskit.quantum_info.SparsePauliOp`](../api/qiskit/qiskit.quantum_info.SparsePauliOp).
@@ -380,20 +365,6 @@ print(result.values[0])
 
 Follow these instructions to get the probability distribution of a quantum circuit with the [`qiskit.primitives.Sampler`](../api/qiskit/qiskit.primitives.Sampler) primitive.
 
-<Admonition type="note">
-  While this guide uses the Qiskit reference implementation, the `Sampler` primitive can be run with any provider using [`qiskit.primitives.BackendSampler`](../api/qiskit/qiskit.primitives.BackendSampler).
-
-  ```python
-  from qiskit.primitives import BackendSampler
-  from <some_qiskit_provider> import QiskitProvider
-
-  provider = QiskitProvider()
-  backend = provider.get_backend('backend_name')
-  sampler = BackendSampler(backend)
-  ```
-
-  There are some providers that implement primitives natively (see [the Qiskit Ecosystem page](https://qiskit.github.io/ecosystem#providers) for more details).
-</Admonition>
 
 ### Initialize QuantumCircuit
 
