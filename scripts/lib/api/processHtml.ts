@@ -122,6 +122,13 @@ export function removePermalinks($main: Cheerio<any>): void {
   }
 }
 
+export function removeMatplotlibFigCaptions($main: Cheerio<any>): void {
+  $main
+    .find("figcaption")
+    .has("span.caption-text a.download.internal.reference")
+    .remove();
+}
+
 export function removeDownloadSourceCode($main: Cheerio<any>): void {
   $main.find("p > a.reference.download.internal").closest("p").remove();
 }
