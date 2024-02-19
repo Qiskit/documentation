@@ -70,6 +70,6 @@ with pulse.build(backend) as pulse_prog:
 
 **Parameters**
 
-*   **channels\_or\_qubits** (`Union`\[[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel"), `int`]) – Channels or qubits to barrier.
+*   **channels\_or\_qubits** (`Union`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel"), `int`]) – Channels or qubits to barrier.
 *   **name** (`Optional`\[`str`]) – Name for the barrier
 

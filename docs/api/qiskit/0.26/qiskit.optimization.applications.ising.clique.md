@@ -1,9 +1,9 @@
 ---
-title: get_graph_solution
-description: API reference for qiskit.optimization.applications.ising.clique.get_graph_solution
+title: clique
+description: API reference for qiskit.optimization.applications.ising.clique
 in_page_toc_min_heading_level: 1
-python_api_type: function
-python_api_name: qiskit.optimization.applications.ising.clique.get_graph_solution
+python_api_type: module
+python_api_name: qiskit.optimization.applications.ising.clique
 ---
 
 <span id="qiskit-optimization-applications-ising-clique" />

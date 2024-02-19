@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeProviderForBackendV2
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeProviderForBackendV2" />
 
-`FakeProviderForBackendV2`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.18/qiskit_ibm_runtime/fake_provider/fake_provider.py "view source code")
+`FakeProviderForBackendV2`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.19/qiskit_ibm_runtime/fake_provider/fake_provider.py "view source code")
 
 Fake provider containing fake V2 backends.
 

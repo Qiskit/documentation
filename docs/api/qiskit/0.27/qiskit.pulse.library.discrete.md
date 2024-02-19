@@ -1,9 +1,9 @@
 ---
-title: constant
-description: API reference for qiskit.pulse.library.discrete.constant
+title: discrete
+description: API reference for qiskit.pulse.library.discrete
 in_page_toc_min_heading_level: 1
-python_api_type: function
-python_api_name: qiskit.pulse.library.discrete.constant
+python_api_type: module
+python_api_name: qiskit.pulse.library.discrete
 ---
 
 <span id="qiskit-pulse-library-discrete" />

@@ -21,6 +21,7 @@ const PORT = 3000;
 interface Arguments {
   [x: string]: unknown;
   currentApis: boolean;
+  devApis: boolean;
   historicalApis: boolean;
   qiskitReleaseNotes: boolean;
   translations: boolean;
@@ -33,6 +34,11 @@ const readArgs = (): Arguments => {
       type: "boolean",
       default: false,
       description: "Check the pages in the current API docs.",
+    })
+    .option("dev-apis", {
+      type: "boolean",
+      default: false,
+      description: "Check the /dev API docs.",
     })
     .option("historical-apis", {
       type: "boolean",
@@ -138,6 +144,11 @@ async function determineFilePaths(args: Arguments): Promise<string[]> {
   if (!args.historicalApis) {
     globs.push(
       "!docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/[0-9]*/*",
+    );
+  }
+  if (!args.devApis) {
+    globs.push(
+      "!docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/dev/*",
     );
   }
   if (!args.qiskitReleaseNotes) {

@@ -29,6 +29,8 @@ export interface ReleaseNoteEntry {
   url: string;
 }
 
+type PackageType = "latest" | "historical" | "dev";
+
 /**
  * Information about the specific package and version we're dealing with, e.g. qiskit 0.45.
  */
@@ -40,7 +42,7 @@ export class Pkg {
   readonly transformLink?: (link: Link) => Link | undefined;
   readonly version: string;
   readonly versionWithoutPatch: string;
-  readonly historical: boolean;
+  readonly type: PackageType;
   readonly releaseNoteEntries: ReleaseNoteEntry[];
 
   static VALID_NAMES = ["qiskit", "qiskit-ibm-runtime", "qiskit-ibm-provider"];
@@ -53,7 +55,7 @@ export class Pkg {
     transformLink?: (link: Link) => Link | undefined;
     version: string;
     versionWithoutPatch: string;
-    historical: boolean;
+    type: PackageType;
     releaseNoteEntries: ReleaseNoteEntry[];
   }) {
     this.name = kwargs.name;
@@ -63,7 +65,7 @@ export class Pkg {
     this.transformLink = kwargs.transformLink;
     this.version = kwargs.version;
     this.versionWithoutPatch = kwargs.versionWithoutPatch;
-    this.historical = kwargs.historical;
+    this.type = kwargs.type;
     this.releaseNoteEntries = kwargs.releaseNoteEntries;
   }
 
@@ -71,13 +73,13 @@ export class Pkg {
     name: string,
     version: string,
     versionWithoutPatch: string,
-    historical: boolean,
+    type: PackageType,
   ): Promise<Pkg> {
     const args = {
       name,
       version,
       versionWithoutPatch,
-      historical,
+      type,
     };
 
     if (name === "qiskit") {
@@ -127,7 +129,7 @@ export class Pkg {
     transformLink?: (link: Link) => Link | undefined;
     version?: string;
     versionWithoutPatch?: string;
-    historical?: boolean;
+    type?: PackageType;
     releaseNoteEntries?: ReleaseNoteEntry[];
   }): Pkg {
     return new Pkg({
@@ -138,21 +140,35 @@ export class Pkg {
       transformLink: kwargs.transformLink,
       version: kwargs.version ?? "0.1.0",
       versionWithoutPatch: kwargs.versionWithoutPatch ?? "0.1",
-      historical: kwargs.historical ?? false,
+      type: kwargs.type ?? "latest",
       releaseNoteEntries: kwargs.releaseNoteEntries ?? [],
     });
   }
 
   outputDir(parentDir: string): string {
     let path = join(parentDir, "api", this.name);
-    if (this.historical) {
+    if (this.isHistorical()) {
       path = join(path, this.versionWithoutPatch);
+    } else if (this.isDev()) {
+      path = join(path, "dev");
     }
     return path;
   }
 
   ciArtifactFolder(): string {
     return `${getRoot()}/.out/python/sources/${this.name}/${this.version}`;
+  }
+
+  isHistorical(): boolean {
+    return this.type == "historical";
+  }
+
+  isDev(): boolean {
+    return this.type == "dev";
+  }
+
+  isLatest(): boolean {
+    return this.type == "latest";
   }
 
   hasObjectsInv(): boolean {
@@ -164,7 +180,7 @@ export class Pkg {
     // Feel free to enable this mechanism for historical API docs if users find it useful!
     // When adding, be sure that we correctly point to the correct subfolder, e.g.
     // api/qiskit/0.44 rather than api/qiskit.
-    return !this.historical;
+    return !this.isHistorical();
   }
 
   /**
@@ -191,8 +207,16 @@ export class Pkg {
 
     // Provider, Runtime, and Qiskit 0.45+ are simple: there is a branch called `stable/<version>`
     // like `stable/0.45` in each GitHub project.
-    if (this.name !== "qiskit" || +this.versionWithoutPatch >= 0.45) {
-      const baseUrl = `https://github.com/${this.githubSlug}/tree/stable/${this.versionWithoutPatch}`;
+    if (
+      this.name !== "qiskit" ||
+      this.type === "dev" ||
+      +this.versionWithoutPatch >= 0.45
+    ) {
+      const branchName =
+        this.type === "dev" && this.version.endsWith("-dev")
+          ? "main"
+          : `stable/${this.versionWithoutPatch}`;
+      const baseUrl = `https://github.com/${this.githubSlug}/tree/${branchName}`;
       return (fileName) => {
         return `${baseUrl}/${normalizeFile(fileName)}.py`;
       };

@@ -64,7 +64,7 @@ Return a new channel with the input Parameter assigned to value.
 
 **Return type**
 
-[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")
+[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")
 
 **Returns**
 

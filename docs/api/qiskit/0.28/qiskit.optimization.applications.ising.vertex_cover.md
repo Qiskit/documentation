@@ -1,9 +1,9 @@
 ---
-title: check_full_edge_coverage
-description: API reference for qiskit.optimization.applications.ising.vertex_cover.check_full_edge_coverage
+title: vertex_cover
+description: API reference for qiskit.optimization.applications.ising.vertex_cover
 in_page_toc_min_heading_level: 1
-python_api_type: function
-python_api_name: qiskit.optimization.applications.ising.vertex_cover.check_full_edge_coverage
+python_api_type: module
+python_api_name: qiskit.optimization.applications.ising.vertex_cover
 ---
 
 <span id="qiskit-optimization-applications-ising-vertex-cover" />

@@ -1,9 +1,9 @@
 ---
-title: cubic_spline
-description: API reference for qiskit.visualization.pulse.interpolation.cubic_spline
+title: interpolation
+description: API reference for qiskit.visualization.pulse.interpolation
 in_page_toc_min_heading_level: 1
-python_api_type: function
-python_api_name: qiskit.visualization.pulse.interpolation.cubic_spline
+python_api_type: module
+python_api_name: qiskit.visualization.pulse.interpolation
 ---
 
 # interpolation

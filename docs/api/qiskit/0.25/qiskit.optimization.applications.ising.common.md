@@ -1,9 +1,9 @@
 ---
-title: get_gset_result
-description: API reference for qiskit.optimization.applications.ising.common.get_gset_result
+title: common
+description: API reference for qiskit.optimization.applications.ising.common
 in_page_toc_min_heading_level: 1
-python_api_type: function
-python_api_name: qiskit.optimization.applications.ising.common.get_gset_result
+python_api_type: module
+python_api_name: qiskit.optimization.applications.ising.common
 ---
 
 <span id="qiskit-optimization-applications-ising-common" />

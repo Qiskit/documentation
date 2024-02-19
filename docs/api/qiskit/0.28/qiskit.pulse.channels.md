@@ -1,9 +1,9 @@
 ---
-title: AcquireChannel
-description: API reference for qiskit.pulse.channels.AcquireChannel
+title: channels
+description: API reference for qiskit.pulse.channels
 in_page_toc_min_heading_level: 1
-python_api_type: class
-python_api_name: qiskit.pulse.channels.AcquireChannel
+python_api_type: module
+python_api_name: qiskit.pulse.channels
 ---
 
 <span id="qiskit-pulse-channels" />

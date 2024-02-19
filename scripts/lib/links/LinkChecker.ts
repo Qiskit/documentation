@@ -187,35 +187,34 @@ export class Link {
   }
 
   /**
-   * Returns an error message for each origin of
-   * the link, true if the link is in `existingFiles`
-   * or is a valid external link, otherwise false
+   * Returns an error message if link failed.
    */
-  async checkLink(existingFiles: File[]): Promise<string[]> {
-    const errorMessages: string[] = [];
-
+  async checkLink(existingFiles: File[]): Promise<string | undefined> {
     if (!this.isExternal) {
-      // Internal link
+      const failingFiles: string[] = [];
       this.originFiles.forEach((originFile) => {
-        if (!this.checkInternalLink(existingFiles, originFile)) {
-          const resultSuggestion = this.didYouMean(existingFiles, originFile);
-          const suggestedPath = resultSuggestion ? ` ${resultSuggestion}` : "";
-          errorMessages.push(
-            `❌ ${originFile}: Could not find link '${this.value}${this.anchor}'${suggestedPath}`,
-          );
+        if (this.checkInternalLink(existingFiles, originFile)) {
+          return;
         }
+        const resultSuggestion = this.didYouMean(existingFiles, originFile);
+        const suggestedPath = resultSuggestion ? `    ${resultSuggestion}` : "";
+        failingFiles.push(`    ${originFile}${suggestedPath}`);
       });
 
-      return errorMessages;
+      return failingFiles.length === 0
+        ? undefined
+        : `❌ Could not find link '${this.value}${
+            this.anchor
+          }'. Appears in:\n${failingFiles.sort().join("\n")}`;
     }
 
-    // External link
-    const errorMessage = await this.checkExternalLink();
-    if (errorMessage) {
-      this.originFiles.forEach((originFile: string) => {
-        errorMessages.push(`❌ ${originFile}: ${errorMessage}`);
-      });
+    const externalError = await this.checkExternalLink();
+    if (!externalError) {
+      return;
     }
-    return errorMessages;
+    const fileList = Array.from(this.originFiles)
+      .sort()
+      .map((originFile) => `    ${originFile}`);
+    return `❌ ${externalError}. Appears in:\n${fileList.join("\n")}`;
   }
 }

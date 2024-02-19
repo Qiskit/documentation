@@ -32,5 +32,5 @@ with pulse.build(backend):
 
 **Return type**
 
-[`DriveChannel`](qiskit.pulse.channels#qiskit.pulse.channels.DriveChannel "qiskit.pulse.channels.DriveChannel")
+[`DriveChannel`](qiskit.pulse.channels#drivechannel "qiskit.pulse.channels.DriveChannel")
 
