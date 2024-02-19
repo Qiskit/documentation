@@ -441,7 +441,7 @@ To use an `Admonition`, use the following syntax
 <Admonition type="note">This is a __note__ example</Admonition>
 ```
 
-Available types are `note, tip, info, caution, danger`.  This is what they look like: 
+Available types are `note, tip, info, caution, danger`. This is what they look like:
 ![types](https://github.com/Qiskit/documentation/assets/66339736/ebf5794e-45eb-49ee-97df-41ff08ee876d)
 
 By default, the title is the `type` capitalized. You can customize it by setting `title`:
