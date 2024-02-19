@@ -18,11 +18,18 @@ const _QISKIT_UTILS = [
   "#qiskit.utils.optionals.HAS_TESTTOOLS",
   "#qiskit.utils.optionals.HAS_GRAPHVIZ",
   "#qiskit.utils.optionals.HAS_PYDOT",
+  "https://github.com/python-constraint/python-constraint%3E__",
 ];
 
 const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://auth.quantum-computing.ibm.com/api",
   "https://www.cs.tau.ac.il/~nogaa/PDFS/r.pdf",
+  // StackOverflow rate limits us.
+  "https://stackoverflow.com/",
+  "https://stackoverflow.com/questions/1049722/what-is-2s-complement",
+  "https://quantumcomputing.stackexchange.com/help/how-to-ask",
+  "https://quantumcomputing.stackexchange.com/questions/",
+  "https://quantumcomputing.stackexchange.com/questions/12721/how-to-calculate-destabilizer-group-of-toric-and-other-codes",
 ];
 
 const ALWAYS_IGNORED_URLS__SHOULD_FIX = [
