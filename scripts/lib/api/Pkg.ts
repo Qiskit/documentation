@@ -172,15 +172,7 @@ export class Pkg {
   }
 
   hasObjectsInv(): boolean {
-    // We don't currently worry about objects.inv for historical API docs because we don't
-    // expect users to care about it, so we can keep things simple. For example, our copy
-    // of the historical Qiskit API docs <0.32 did not include `objects.inv`, so we could
-    // never get the mechanism working for those.
-    //
-    // Feel free to enable this mechanism for historical API docs if users find it useful!
-    // When adding, be sure that we correctly point to the correct subfolder, e.g.
-    // api/qiskit/0.44 rather than api/qiskit.
-    return !this.isHistorical();
+    return this.name !== "qiskit" || +this.versionWithoutPatch >= 0.45;
   }
 
   /**
