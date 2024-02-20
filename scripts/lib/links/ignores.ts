@@ -11,6 +11,16 @@
 // that they have been altered from the originals.
 
 // -----------------------------------------------------------------------------------
+// Ignored files
+// -----------------------------------------------------------------------------------
+
+export const IGNORED_FILES = new Set([
+  "public/api/qiskit-ibm-runtime/0.14/objects.inv",
+  "public/api/qiskit-ibm-runtime/0.15/objects.inv",
+  "public/api/qiskit-ibm-runtime/0.16/objects.inv",
+]);
+
+// -----------------------------------------------------------------------------------
 // Always ignored URLs
 // -----------------------------------------------------------------------------------
 
@@ -66,6 +76,17 @@ const _FAKE_PROVIDER_IGNORES = [
 
 const _QPY_IGNORES = ["#f1", "#f2", "#f3", "#id2", "#id4", "#id6", "#id8"];
 
+const _RUNTIME_OBJECT_INV = Object.fromEntries(
+  ["", "dev/", "0.16/", "0.17/", "0.18/"].map((vers) => [
+    `public/api/qiskit-ibm-runtime/${vers}objects.inv`,
+    [
+      `/api/qiskit-ibm-runtime/${vers}qiskit_ibm_runtime.RuntimeEncoder#key_separator`,
+      `/api/qiskit-ibm-runtime/${vers}index#next-steps`,
+      `/api/qiskit-ibm-runtime/${vers}index#qiskit-runtime-version-api-docs-preview`,
+    ],
+  ]),
+);
+
 const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = {};
 
 const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {
@@ -84,16 +105,7 @@ const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {
   "docs/api/qiskit/qpy.md": _QPY_IGNORES,
   "docs/api/qiskit/dev/qpy.md": _QPY_IGNORES,
   // objects.inv
-  "public/api/qiskit-ibm-runtime/objects.inv": [
-    "/api/qiskit-ibm-runtime/qiskit_ibm_runtime.RuntimeEncoder#key_separator",
-    "/api/qiskit-ibm-runtime/index#next-steps",
-    "/api/qiskit-ibm-runtime/index#qiskit-runtime-version-api-docs-preview",
-  ],
-  "public/api/qiskit-ibm-runtime/dev/objects.inv": [
-    "/api/qiskit-ibm-runtime/dev/qiskit_ibm_runtime.RuntimeEncoder#key_separator",
-    "/api/qiskit-ibm-runtime/dev/index#next-steps",
-    "/api/qiskit-ibm-runtime/dev/index#qiskit-runtime-version-api-docs-preview",
-  ],
+  ..._RUNTIME_OBJECT_INV,
   "public/api/qiskit/objects.inv": [
     "/api/qiskit/circuit#qiskit.circuit.CASE_DEFAULT",
     "/api/qiskit/qiskit.pulse.instructions.Reference#scope_delimiter",
