@@ -50,6 +50,7 @@ export function processHtml(options: {
   removeHtmlExtensionsInRelativeLinks($, $main);
   removePermalinks($main);
   removeDownloadSourceCode($main);
+  removeMatplotlibFigCaptions($main);
   handleSphinxDesignCards($, $main);
   addLanguageClassToCodeBlocks($, $main);
   replaceViewcodeLinksWithGitHub($, $main, determineGithubUrl);
