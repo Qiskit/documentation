@@ -192,96 +192,98 @@ test("removeColonSpans()", () => {
   doc.expectHtml(`<dt class="field-odd">Parameters</dt>`);
 });
 
-test("removeMatplotlibFigCaptions()", () => {
-  const doc = Doc.load(`
-  <figure class="align-default" id="id1">
-    <img alt="../_images/fake_provider-1_00.png" class="plot-directive" src="../_images/fake_provider-1_00.png" />
-    <figcaption>
-      <p>
-        <span class="caption-number">Fig. 1 </span>
-        <span class="caption-text">
-            (
-            <a class="reference download internal" download="" href="../_downloads/a640acbc08577560dc62a3c02c6ca2ac/fake_provider-1_00.png">
-                <code class="xref download docutils literal notranslate"><span class="pre">png</span></code>
-            </a>
-            ,
-            <a class="reference download internal" download="" href="../_downloads/98e08086a49350bea51e64248343d7ac/fake_provider-1_00.hires.png">
-                <code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code>
-            </a>
-            ,
-            <a class="reference download internal" download="" href="../_downloads/684bf35d507376624fcead10d9aedaed/fake_provider-1_00.pdf">
-                <code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code>
-            </a>
-            )
-        </span>
-        <a class="headerlink" href="#id1" title="Link to this image">¶</a>
-      </p>
-    </figcaption>
-  </figure>
-`);
-  removeMatplotlibFigCaptions(doc.$main);
-  doc.expectHtml(`
-  <figure class="align-default" id="id1">
-    <img alt="../_images/fake_provider-1_00.png" class="plot-directive" src="../_images/fake_provider-1_00.png">
-    
-  </figure>
-`);
-});
+describe("removeMatplotlibFigCaptions()", () => {
+  test("removes captions in matches", () => {
+    const doc = Doc.load(`
+    <figure class="align-default" id="id1">
+      <img alt="../_images/fake_provider-1_00.png" class="plot-directive" src="../_images/fake_provider-1_00.png" />
+      <figcaption>
+        <p>
+          <span class="caption-number">Fig. 1 </span>
+          <span class="caption-text">
+              (
+              <a class="reference download internal" download="" href="../_downloads/a640acbc08577560dc62a3c02c6ca2ac/fake_provider-1_00.png">
+                  <code class="xref download docutils literal notranslate"><span class="pre">png</span></code>
+              </a>
+              ,
+              <a class="reference download internal" download="" href="../_downloads/98e08086a49350bea51e64248343d7ac/fake_provider-1_00.hires.png">
+                  <code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code>
+              </a>
+              ,
+              <a class="reference download internal" download="" href="../_downloads/684bf35d507376624fcead10d9aedaed/fake_provider-1_00.pdf">
+                  <code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code>
+              </a>
+              )
+          </span>
+          <a class="headerlink" href="#id1" title="Link to this image">¶</a>
+        </p>
+      </figcaption>
+    </figure>
+  `);
+    removeMatplotlibFigCaptions(doc.$main);
+    doc.expectHtml(`
+    <figure class="align-default" id="id1">
+      <img alt="../_images/fake_provider-1_00.png" class="plot-directive" src="../_images/fake_provider-1_00.png">
+      
+    </figure>
+  `);
+  });
 
-test("removeMatplotlibFigCaptionsOnlyInMatches()", () => {
-  const doc = Doc.load(`
-  <figure class="align-default" id="id1">
-    <img alt="../_images/fake_provider-1_00.png" class="plot-directive" src="../_images/fake_provider-1_00.png" />
-    <figcaption>
-      <p>
-        <span class="caption-number">Fig. 1 </span>
-        <span class="caption-text">
-            (
-            <a class="reference download" download="" href="../_downloads/a640acbc08577560dc62a3c02c6ca2ac/fake_provider-1_00.png">
-                <code class="xref download docutils literal notranslate"><span class="pre">png</span></code>
-            </a>
-            ,
-            <a class="reference download" download="" href="../_downloads/98e08086a49350bea51e64248343d7ac/fake_provider-1_00.hires.png">
-                <code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code>
-            </a>
-            ,
-            <a class="reference download" download="" href="../_downloads/684bf35d507376624fcead10d9aedaed/fake_provider-1_00.pdf">
-                <code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code>
-            </a>
-            )
-        </span>
-        <a class="headerlink" href="#id1" title="Link to this image">¶</a>
-      </p>
-    </figcaption>
-  </figure>
-`);
-  removeMatplotlibFigCaptions(doc.$main);
-  doc.expectHtml(`
-  <figure class="align-default" id="id1">
-    <img alt="../_images/fake_provider-1_00.png" class="plot-directive" src="../_images/fake_provider-1_00.png">
-    <figcaption>
-      <p>
-        <span class="caption-number">Fig. 1 </span>
-        <span class="caption-text">
-            (
-            <a class="reference download" download="" href="../_downloads/a640acbc08577560dc62a3c02c6ca2ac/fake_provider-1_00.png">
-                <code class="xref download docutils literal notranslate"><span class="pre">png</span></code>
-            </a>
-            ,
-            <a class="reference download" download="" href="../_downloads/98e08086a49350bea51e64248343d7ac/fake_provider-1_00.hires.png">
-                <code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code>
-            </a>
-            ,
-            <a class="reference download" download="" href="../_downloads/684bf35d507376624fcead10d9aedaed/fake_provider-1_00.pdf">
-                <code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code>
-            </a>
-            )
-        </span>
-        <a class="headerlink" href="#id1" title="Link to this image">¶</a>
-      </p>
-    </figcaption>
-  </figure>
-`);
+  test("leaves captions alone in non-matches", () => {
+    const doc = Doc.load(`
+    <figure class="align-default" id="id1">
+      <img alt="../_images/fake_provider-1_00.png" class="plot-directive" src="../_images/fake_provider-1_00.png" />
+      <figcaption>
+        <p>
+          <span class="caption-number">Fig. 1 </span>
+          <span class="caption-text">
+              (
+              <a class="reference download" download="" href="../_downloads/a640acbc08577560dc62a3c02c6ca2ac/fake_provider-1_00.png">
+                  <code class="xref download docutils literal notranslate"><span class="pre">png</span></code>
+              </a>
+              ,
+              <a class="reference download" download="" href="../_downloads/98e08086a49350bea51e64248343d7ac/fake_provider-1_00.hires.png">
+                  <code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code>
+              </a>
+              ,
+              <a class="reference download" download="" href="../_downloads/684bf35d507376624fcead10d9aedaed/fake_provider-1_00.pdf">
+                  <code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code>
+              </a>
+              )
+          </span>
+          <a class="headerlink" href="#id1" title="Link to this image">¶</a>
+        </p>
+      </figcaption>
+    </figure>
+  `);
+    removeMatplotlibFigCaptions(doc.$main);
+    doc.expectHtml(`
+    <figure class="align-default" id="id1">
+      <img alt="../_images/fake_provider-1_00.png" class="plot-directive" src="../_images/fake_provider-1_00.png">
+      <figcaption>
+        <p>
+          <span class="caption-number">Fig. 1 </span>
+          <span class="caption-text">
+              (
+              <a class="reference download" download="" href="../_downloads/a640acbc08577560dc62a3c02c6ca2ac/fake_provider-1_00.png">
+                  <code class="xref download docutils literal notranslate"><span class="pre">png</span></code>
+              </a>
+              ,
+              <a class="reference download" download="" href="../_downloads/98e08086a49350bea51e64248343d7ac/fake_provider-1_00.hires.png">
+                  <code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code>
+              </a>
+              ,
+              <a class="reference download" download="" href="../_downloads/684bf35d507376624fcead10d9aedaed/fake_provider-1_00.pdf">
+                  <code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code>
+              </a>
+              )
+          </span>
+          <a class="headerlink" href="#id1" title="Link to this image">¶</a>
+        </p>
+      </figcaption>
+    </figure>
+  `);
+  });
 });
 
 test("addLanguageClassToCodeBlocks()", () => {
