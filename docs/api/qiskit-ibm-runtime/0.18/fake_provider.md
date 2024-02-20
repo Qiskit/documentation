@@ -53,15 +53,9 @@ plot_histogram(counts)
 
 ![../\_images/fake\_provider-1\_00.png](/images/api/qiskit-ibm-runtime/0.18/fake_provider-1_00.png)
 
-Fig. 1 ([`png`](_downloads/a640acbc08577560dc62a3c02c6ca2ac/fake_provider-1_00.png), [`hires.png`](_downloads/98e08086a49350bea51e64248343d7ac/fake_provider-1_00.hires.png), [`pdf`](_downloads/684bf35d507376624fcead10d9aedaed/fake_provider-1_00.pdf))[¶](#id1 "Link to this image")
-
 ![../\_images/fake\_provider-1\_01.png](/images/api/qiskit-ibm-runtime/0.18/fake_provider-1_01.png)
 
-Fig. 2 ([`png`](_downloads/0844f2fac7677af0994f8d82d680b6b4/fake_provider-1_01.png), [`hires.png`](_downloads/68a68ba43192e04547a9e6d7e6d53481/fake_provider-1_01.hires.png), [`pdf`](_downloads/afd203635ac2d35ca0d4a52a3380788d/fake_provider-1_01.pdf))[¶](#id2 "Link to this image")
-
 ![../\_images/fake\_provider-1\_02.png](/images/api/qiskit-ibm-runtime/0.18/fake_provider-1_02.png)
-
-Fig. 3 ([`png`](_downloads/14c310b17e4b148108e1e5e2c63c7030/fake_provider-1_02.png), [`hires.png`](_downloads/20b45a9c9dd80c4687a3546bdcb4db06/fake_provider-1_02.hires.png), [`pdf`](_downloads/fe03f365d979eee2c9543dbb39696011/fake_provider-1_02.pdf))[¶](#id3 "Link to this image")
 
 <Admonition title="Important" type="danger">
   Please note that the simulation is done using a noise model generated from system snapshots obtained in the past (sometimes a few years ago) and the results are not representative of the latest behaviours of the real quantum system which the fake backend is mimicking. If you want to run noisy simulations to compare with the real quantum system, you should use the `qiskit_aer` library. After installation, you can follow the steps below to generate a simulator that mimics a real quantum system with the latest calibration results.
