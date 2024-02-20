@@ -235,6 +235,7 @@ test("replaceSourceLinksWithGitHub()", () => {
   // Assumes that removeHtmlExtensionsInRelativeLinks() has already removed .html from the URL.
   const doc = Doc.load(
     `<a href="../_modules/my_quantum_project/my_file#IBMBackend"></a>
+    <a class="reference external" href="https://github.com/Qiskit/qiskit/blob/stable/1.0/qiskit/utils/deprecation.py#L24-L101"></a>
     <a href="#my_quantum_project.IBMBackend"></a>`,
   );
   replaceViewcodeLinksWithGitHub(
@@ -245,6 +246,7 @@ test("replaceSourceLinksWithGitHub()", () => {
   );
   doc.expectHtml(
     `<a href="https://github.com/Qiskit/my-project/tree/stable/0.9/my_quantum_project/my_file.py"></a>
+    <a class="reference external" href="https://github.com/Qiskit/qiskit/blob/stable/1.0/qiskit/utils/deprecation.py#L24-L101"></a>
     <a href="#my_quantum_project.IBMBackend"></a>`,
   );
 });
@@ -322,13 +324,26 @@ describe("prepareGitHubLink()", () => {
     doc.expectHtml(html);
   });
 
-  test("link", () => {
+  test("link from sphinx.ext.viewcode", () => {
     const doc = Doc.load(
       `<span class="pre">None</span><span class="sig-paren">)</span><a class="reference internal" href="https://ibm.com/my_link"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qiskit_ibm_runtime.IBMBackend" title="Link to this definition">#</a>`,
     );
     const result = prepareGitHubLink(doc.$, doc.$main);
     expect(result).toEqual(
       `<a href="https://ibm.com/my_link" title="view source code">GitHub</a>`,
+    );
+    doc.expectHtml(
+      `<span class="pre">None</span><span class="sig-paren">)</span><a class="headerlink" href="#qiskit_ibm_runtime.IBMBackend" title="Link to this definition">#</a>`,
+    );
+  });
+
+  test("link from sphinx.ext.linkcode", () => {
+    const doc = Doc.load(
+      `<span class="pre">None</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Qiskit/qiskit/blob/stable/1.0/qiskit/utils/deprecation.py#L24-L101"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qiskit_ibm_runtime.IBMBackend" title="Link to this definition">#</a>`,
+    );
+    const result = prepareGitHubLink(doc.$, doc.$main);
+    expect(result).toEqual(
+      `<a href="https://github.com/Qiskit/qiskit/blob/stable/1.0/qiskit/utils/deprecation.py#L24-L101" title="view source code">GitHub</a>`,
     );
     doc.expectHtml(
       `<span class="pre">None</span><span class="sig-paren">)</span><a class="headerlink" href="#qiskit_ibm_runtime.IBMBackend" title="Link to this definition">#</a>`,
