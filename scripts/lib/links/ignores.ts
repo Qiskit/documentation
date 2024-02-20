@@ -59,21 +59,6 @@ export const ALWAYS_IGNORED_URLS = new Set([
 // A mapping of files to lists of links that will not be searched.
 type FilesToIgnores = { [id: string]: string[] };
 
-const _FAKE_PROVIDER_IGNORES = [
-  "#id1",
-  "#id2",
-  "#id3",
-  "_downloads/a640acbc08577560dc62a3c02c6ca2ac/fake_provider-1_00.png",
-  "_downloads/98e08086a49350bea51e64248343d7ac/fake_provider-1_00.hires.png",
-  "_downloads/684bf35d507376624fcead10d9aedaed/fake_provider-1_00.pdf",
-  "_downloads/0844f2fac7677af0994f8d82d680b6b4/fake_provider-1_01.png",
-  "_downloads/68a68ba43192e04547a9e6d7e6d53481/fake_provider-1_01.hires.png",
-  "_downloads/afd203635ac2d35ca0d4a52a3380788d/fake_provider-1_01.pdf",
-  "_downloads/14c310b17e4b148108e1e5e2c63c7030/fake_provider-1_02.png",
-  "_downloads/20b45a9c9dd80c4687a3546bdcb4db06/fake_provider-1_02.hires.png",
-  "_downloads/fe03f365d979eee2c9543dbb39696011/fake_provider-1_02.pdf",
-];
-
 const _QPY_IGNORES = ["#f1", "#f2", "#f3", "#id2", "#id4", "#id6", "#id8"];
 
 const _RUNTIME_OBJECT_INV = Object.fromEntries(
@@ -90,10 +75,6 @@ const _RUNTIME_OBJECT_INV = Object.fromEntries(
 const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = {};
 
 const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {
-  // Runtime
-  "docs/api/qiskit-ibm-runtime/fake_provider.md": _FAKE_PROVIDER_IGNORES,
-  "docs/api/qiskit-ibm-runtime/0.18/fake_provider.md": _FAKE_PROVIDER_IGNORES,
-  "docs/api/qiskit-ibm-runtime/dev/fake_provider.md": _FAKE_PROVIDER_IGNORES,
   // Provider
   "docs/api/qiskit-ibm-provider/release-notes.md": [
     "https://github.com/Qiskit/qiskit-ibm-provider/blob/main/docs/tutorials/Migration_Guide_from_qiskit-ibmq-provider.ipynb",
