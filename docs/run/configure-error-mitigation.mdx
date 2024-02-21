@@ -45,7 +45,10 @@ To ensure faster and more efficient results, as of 1 March 2024, circuits and ob
 </Admonition>
 
 <span id="resilience-table"></span>
-Resilience levels in Estimator V2: 
+
+<Tabs>
+  <TabItem value="PrimV2" label="V2 primitives">
+    In V2, Estimator supports the following resilience levels.  Sampler does not support resilience levels. 
 
 | Resilience Level | Definition                                                                                            | Technique                                                                 |
 |------------------|-------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|
@@ -53,8 +56,10 @@ Resilience levels in Estimator V2:
 | 1 [Default]      | Minimal mitigation costs: Mitigate error associated with readout errors                               | Twirled Readout Error eXtinction  (TREX) measurement twirling             |
 | 2                | Medium mitigation costs. Typically reduces bias in estimators, but is not guaranteed to be zero-bias. | Level 1 + Zero Noise Extrapolation (ZNE) and TREX gate twirling           |
 
+  </TabItem>
 
-Resilience levels in V1 primitives: 
+  <TabItem value="PrimV1" label="V1 primitives">
+    Resilience levels in V1 primitives: 
 
 | Resilience Level | Definition                                                                                            | Estimator                                                                 | Sampler                                |
 |------------------|-------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|----------------------------------------|
@@ -62,6 +67,10 @@ Resilience levels in V1 primitives:
 | 1 [Default]      | Minimal mitigation costs: Mitigate error associated with readout errors                               | Twirled Readout Error eXtinction  (TREX)                                  | Matrix-free Measurement Mitigation (M3)|
 | 2                | Medium mitigation costs. Typically reduces bias in estimators, but is not guaranteed to be zero-bias. | Zero Noise Extrapolation (ZNE)                                            | -                                      |
 | 3                | Heavy mitigation with layer sampling. Theoretically expected to deliver zero-bias estimators.         | Probabilistic Error Cancellation (PEC)                                    | -                                      |
+
+  </TabItem>
+</Tabs>
+
 
 
 <Admonition type="info" title="Attention">
@@ -318,7 +327,7 @@ problems.
 The Estimator interface lets users seamlessly work with the variety of
 error mitigation methods to reduce error in expectation values of
 observables. The following code uses Zero Noise Extrapolation by simply
-setting `resilience_level 2`.
+setting `resilience_level=2`.
 
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService, Estimator, Options

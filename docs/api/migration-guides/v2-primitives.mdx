@@ -149,9 +149,92 @@ print(f" > Metadata: {result.metadata}")
   </TabItem>
 </Tabs>
 
+### Options
+
+`SamplerV2` and `EstimatorV2` now have separate options classes. You can see the available options and update option values during or after primitive initialization.
+
+<Tabs>
+  <TabItem value="EstimatorV2" label="EstimatorV2">
+    ```python
+from dataclasses import asdict
+from qiskit_ibm_runtime import QiskitRuntimeService
+from qiskit_ibm_runtime import EstimatorV2 as Estimator
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False)
+
+# Setting options during primitive initialization
+estimator = Estimator(backend, options={"resilience_level": 2})
+
+# Setting options after primitive initialization
+# This uses auto complete.
+estimator.options.optimization_level = 1
+estimator.options.execution.shots = 4000
+# This does bulk update.
+estimator.options.update(shots=4000, optimization_level=1)
+
+# Print the dictionary format.
+# Server defaults are used for unset options.
+print(asdict(estimator.options))
+```
+  </TabItem>
+
+  <TabItem value="EstimatorV1" label="Estimator (V1)">
+    ```python
+from qiskit_ibm_runtime import QiskitRuntimeService, Estimator, Options
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False)
+
+# Setting options during primitive initialization
+options = Options()
+# This uses auto complete.
+options.resilience_level = 2 
+estimator = Estimator(backend=backend, options=options)
+
+# Setting options after primitive initialization.
+# This does bulk update.
+estimator.set_options(shots=4000, optimization_level=1)
+```
+  </TabItem>
+</Tabs>
+
+### Advanced options
+
+Additional advanced options are available in V2 primitives. {/*See the API reference for the most up-to-date information on available options.*/}
+
+Currently, the only option Sampler accepts is `dynamical_decoupling`.
+
+For examples, see the [Error mitigation](#error-mit) and [Transpilation](#transpilation) sections. 
+
+**Advanced Estimator options:**
+
+| Category   | Option                   | Description                                                                                                                                                                                                                             | Default        |
+|------------|--------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------|
+|            | optimization_level       | How much optimization to perform on the circuits.                                                                                                                                                                                       | 1              |
+|            | resilience_level         | How much resilience to build against errors.                                                                                                                                                                                            | 1              |
+|            | dynamical_decoupling     | The dynamical decoupling sequence to use.                                                                                                                                                                                               | None           |
+|            | seed_estimator           | Seed used to control sampling.                                                                                                                                                                                                          | None           |
+| resilience | measure_noise_mitigation | Whether to enable measurement error mitigation method.                                                                                                                                                                                  | True           |
+| resilience | zne_mitigation           | Whether to turn on Zero Noise Extrapolation error mitigation method.                                                                                                                                                                    | False          |
+| resilience | zne_noise_factors        | An list of real valued noise factors that determine by what amount the circuits' noise is amplified.                                                                                                                                    |                |
+| resilience | zne_extrapolator         | An extrapolation strategy. One or more of ``"multi_exponential"``,  ``"single_exponential"``, ``"double_exponential"``, ``"linear"``.                                                                                                   |                |
+| resilience | zne_stderr_threshold     | A standard error threshold for accepting the ZNE result of Pauli basis expectation values when using ZNE mitigation.                                                                                                                    |                |
+| resilience | pec_mitigation           | Whether to turn on Probabilistic Error Cancellation error mitigation method.                                                                                                                                                            | False          |
+| resilience | pec_max_overhead         | Specify a maximum sampling overhead for the PEC sampling noise model. If None the full learned model will be sampled from.                                                                                                              |                |
+| execution  | shots                    | Number of repetitions of each circuit, for sampling.                                                                                                                                                                                    |                |
+| execution  | init_qubits              | Whether to reset the qubits to the ground state for each shot.                                                                                                                                                                          | True           |
+| execution  | samples                  | The number of samples of each measurement circuit to run. This is used when twirling or resilience levels 1, 2 is enabled. If None it will  be calculated automatically based on the ``shots`` and ``shots_per_sample`` (if specified). |                |
+| execution  | shots_per_sample         | The number of shots per sample of each measurement  circuit to run. This is used when twirling or resilience levels 1, 2, 3.  If None it will be calculated automatically based on the ``shots`` and ``samples`` (if specified).        |                |
+| execution  | interleave_samples       | If True interleave samples from different measurement circuits when running.                                                                                                                                                            | False          |
+| twirling   | gates                    | Whether to apply 2-qubit gate twirling.                                                                                                                                                                                                 | False          |
+| twirling   | measure                  | Whether to apply measurement twirling.                                                                                                                                                                                                  | True           |
+| twirling   | strategy                 | Specify the strategy of twirling qubits in identified layers of  2-qubit twirled gates.                                                                                                                                                 | “active-accum" |
+
+<span id="error-mit"></span>
 ### Error mitigation
 
-* SamplerV2 does not support `resilience_level`. However, you can apply gate / measurement twirling to your circuits using the `dynamical_decoupling` and `twirling`
+* SamplerV2 does not support `resilience_level`. However, you can apply gate / measurement twirling to your circuits using the `dynamical_decoupling` and `twirling` methods.
 * EstimatorV2 supports `resilience_level` 0-2, as described in the following table. You can also explicitly turn on / off individual error mitigation / suppression methods, including gate and measurement twirling, measurement error mitigation, and ZNE.
 
     | Level 1                   | Level 2                   |
@@ -164,14 +247,21 @@ print(f" > Metadata: {result.metadata}")
 <Tabs>
   <TabItem value="EstimatorV2" label="EstimatorV2">
     ```python 
-from qiskit_ibm_runtime import EstimatorV2 as Estimator, Options
+from qiskit_ibm_runtime import QiskitRuntimeService
+from qiskit_ibm_runtime import EstimatorV2 as Estimator
 
-estimator = Estimator(backend, options=options)
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False)
 
-# Estimator and Sampler now have different options
+estimator = Estimator(backend)
 options = estimator.options
+# Turn on gate twirling.
+options.twirling.gates = True
+# Turn on measurement error mitigation.
+options.resilience.measure_noise_mitigation = True
 
-options.resilience_level = 2
+print(f">>> gate twirling is turned on: {estimator.options.twirling.gates}")
+print(f">>> measurement error mitigation is turned on: {estimator.options.resilience.measure_noise_mitigation}")
 ```
   </TabItem>
 
@@ -187,6 +277,8 @@ options.resilience_level = 2
 ```
   </TabItem>
 </Tabs>
+
+{/* Delete these? Or waiting for updated code? */}
 
 <Tabs>
   <TabItem value="SamplerV2" label="SamplerV2">
@@ -220,9 +312,49 @@ options.resilience_level = 2
   </TabItem>
 </Tabs>
 
+<span id="transpilation"></span>
 ### Transpilation
 
-V2 primitives do not support transpilation.  Therefore, no transpilation-related options are supported, including `optimization_level`, `dynamical_decoupling`,  `initial_layout`, `layout_method`, `routing_method`, and `approximation_degree`. Instead, the circuit and observable need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits) by using the transpiler before they are submitted to the primitive. 
+V2 primitives support only ISA circuits. Because the primitives will no longer perform layout, routing, and translation operations, the corresponding transpilation options from V1 are not supported.  You can, however, still use `optimization_level` to indicate how much optimization the primitives should apply to the ISA circuits. The valid values are 0 and 1. 
+
+Dynamical decoupling is no longer added by default for `optimization_level`>0. You can, however, enable it by using the `dynamical_decoupling` option.
+
+<Tabs>
+  <TabItem value="EstimatorV2" label="EstimatorV2">
+    ```python
+from qiskit_ibm_runtime import QiskitRuntimeService
+from qiskit_ibm_runtime import EstimatorV2 as Estimator
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False)
+
+estimator = Estimator(backend)
+# Set optimization level to 0.
+estimator.options.optimization_level = 0
+# Turn on dynamical decoupling with sequence XpXm.
+estimator.options.dynamical_decoupling = "XpXm"
+
+print(f">>> optimization level to use: {estimator.options.optimization_level}")
+print(f">>> dynamical decoupling sequence to use: {estimator.options.dynamical_decoupling}")
+  ```  
+  </TabItem>
+
+  <TabItem value="EstimatorV1" label="Estimator (V1)">
+    ```python
+from qiskit_ibm_runtime import QiskitRuntimeService, Estimator, Options
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+from qiskit.circuit.library import RealAmplitudes
+from qiskit.quantum_info import SparsePauliOp
+ 
+service = QiskitRuntimeService()
+backend = service.backend("ibmq_qasm_simulator")
+options = Options(optimization_level=1)
+ 
+estimator = Estimator (options=options, backend=backend)
+``` 
+  </TabItem>
+</Tabs>
+
 
 ## Estimator full examples
 
@@ -327,91 +459,115 @@ print(f" > Expectation values: {result.values}")
 
 ### Run parameterized circuits
 
-Use Estimator to run multiple experiments in a single job, leveraging parameter values to increase circuit reusability.
+{/* This one has been updated from the most recent version of the boxnote. */}
+
+Use Estimator to run multiple experiments in a single job, leveraging parameter values to increase circuit reusability. In the following example, notice that steps 1 and 2 are the same for V1 and V2. 
 
 <Tabs>
   <TabItem value="EstimatorV2" label="EstimatorV2">
     ```python 
-from qiskit_ibm_runtime import EstimatorV2 as Estimator
-
-estimator = Estimator(backend, options={"shots": int(1e4)})
-
-from qiskit_ibm_runtime.qiskit.primitives import ObservablesArray
-
-# Reshape observables to (4, 1)
-obs_array = ObservablesArray(ops)
-obs_array = obs_array.reshape((num_ops, 1))
-
-result = (
-    estimatorv2.run(
-        pubs=(chsh_circuit_no_meas, obs_array, individual_phases)
-    )
-    .result()
-)
-print(f">>> Number of PubResult: {len(result)}")
-print(f">>> Shape of the frist pub result data: {result[0].data['evs'].shape}")
-```
-  </TabItem>
-
-  <TabItem value="EstimatorV1" label="Estimator (V1)">
-  ```python
-# General
 import numpy as np
 
-# Qiskit imports
-from qiskit import QuantumCircuit
-from qiskit.circuit import Parameter
+from qiskit.circuit import QuantumCircuit, Parameter
 from qiskit.quantum_info import SparsePauliOp
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+from qiskit_ibm_runtime import QiskitRuntimeService
 
-# Runtime imports
-from qiskit_ibm_runtime import QiskitRuntimeService, Estimator
-
-# Create a parameterized CHSH circuit
+# Step 1: Map classical inputs to a quantum problem
 
 theta = Parameter("θ")
 
-chsh_circuit_no_meas = QuantumCircuit(2)
-chsh_circuit_no_meas.h(0)
-chsh_circuit_no_meas.cx(0, 1)
-chsh_circuit_no_meas.ry(theta, 0)
-
-# Create a list of phase values to be assigned later
+chsh_circuit = QuantumCircuit(2)
+chsh_circuit.h(0)
+chsh_circuit.cx(0, 1)
+chsh_circuit.ry(theta, 0)
 
 number_of_phases = 21
 phases = np.linspace(0, 2 * np.pi, number_of_phases)
-# Phases need to be expressed as list of lists in order to work
 individual_phases = [[ph] for ph in phases]
-
-# Create observables
 
 ZZ = SparsePauliOp.from_list([("ZZ", 1)])
 ZX = SparsePauliOp.from_list([("ZX", 1)])
 XZ = SparsePauliOp.from_list([("XZ", 1)])
 XX = SparsePauliOp.from_list([("XX", 1)])
-
 ops = [ZZ, ZX, XZ, XX]
-num_ops = len(ops)
 
-# Repeat the inputs so they all have the same length
-
-batch_circuits = [chsh_circuit_no_meas] * number_of_phases * num_ops
-batch_ops = [op for op in ops for _ in individual_phases]
-batch_phases = individual_phases * num_ops
-
-print(f"All 3 arrays have the same length of {len(batch_circuits)}: {len(batch_circuits) == len(batch_ops) == len(batch_phases)}")
+# Step 2: Optimize problem for quantum execution.
 
 service = QiskitRuntimeService()
-backend = service.get_backend("ibmq_qasm_simulator")
-estimator = Estimator(backend, options={"shots": int(1e4)})
+backend = service.least_busy(operational=True, simulator=False)
 
-batch_expvals = (
-    estimator.run(
-        batch_circuits, batch_ops, batch_phases
-    )
-    .result()
-    .values
-)
-print(len(batch_expvals))
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+chsh_isa_circuit = pm.run(chsh_circuit)
+isa_observables = [operator.apply_layout(chsh_isa_circuit.layout) for operator in ops]
+
+from qiskit_ibm_runtime import EstimatorV2 as Estimator
+
+# Step 3: Execute using Qiskit Primitives.
+
+# Reshape observable array for broadcasting
+reshaped_ops = np.fromiter(isa_observables, dtype=object)
+reshaped_ops = reshaped_ops.reshape((4, 1))
+
+estimator = Estimator(backend, options={"shots": int(1e4)})
+job = estimator.run([(chsh_isa_circuit, reshaped_ops, individual_phases)])
+# Get results for the first (and only) PUB
+pub_result = job.result()[0]
+print(f">>> Expectation values: {pub_result.data.evs}")
+print(f">>> Standard errors: {pub_result.data.stds}")
+print(f">>> Metadta: {pub_result.metadata}")
+```
+  </TabItem>
+
+  <TabItem value="EstimatorV1" label="Estimator (V1)">
+  ```python
+import numpy as np
+
+from qiskit.circuit import QuantumCircuit, Parameter
+from qiskit.quantum_info import SparsePauliOp
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+from qiskit_ibm_runtime import QiskitRuntimeService
+
+# Step 1: Map classical inputs to a quantum problem
+
+theta = Parameter("θ")
+
+chsh_circuit = QuantumCircuit(2)
+chsh_circuit.h(0)
+chsh_circuit.cx(0, 1)
+chsh_circuit.ry(theta, 0)
+
+number_of_phases = 21
+phases = np.linspace(0, 2 * np.pi, number_of_phases)
+individual_phases = [[ph] for ph in phases]
+
+ZZ = SparsePauliOp.from_list([("ZZ", 1)])
+ZX = SparsePauliOp.from_list([("ZX", 1)])
+XZ = SparsePauliOp.from_list([("XZ", 1)])
+XX = SparsePauliOp.from_list([("XX", 1)])
+ops = [ZZ, ZX, XZ, XX]
+
+# Step 2: Optimize problem for quantum execution.
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False)
+
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+chsh_isa_circuit = pm.run(chsh_circuit)
+isa_observables = [operator.apply_layout(chsh_isa_circuit.layout) for operator in ops]
+
+from qiskit_ibm_runtime import Estimator
+
+# Step 3: Execute using Qiskit Primitives.
+num_ops = len(isa_observables)
+
+batch_circuits = [chsh_isa_circuit] * number_of_phases * num_ops
+batch_ops = [op for op in isa_observables for _ in individual_phases]
+batch_phases = individual_phases * num_ops
+
+estimator = Estimator(backend, options={"shots": int(1e4)})
+job = estimator.run(batch_circuits, batch_ops, batch_phases)
+expvals = job.result().values
 ```    
   </TabItem>
 </Tabs>
