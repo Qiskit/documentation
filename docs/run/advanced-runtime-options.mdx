@@ -8,10 +8,10 @@ description: Specify options when building with Qiskit runtime primitives
 
 When calling the primitives, you can pass in options by using the `Options` class or when using the `run` method. In the `Options` class, commonly used options, such as `resilience_level`, are at the first level. Other options are grouped into different categories:
 
-![The image shows the top-level options categories: transpilation, resilience, execution, environment, and simulation.](/images/build/options.png "Option categories")
+![The image shows the top-level options categories: resilience, execution, environment, and simulation.](/images/run/options.png "Option categories")
 
 <Admonition type="note" title="Important:">
-To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](../transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations, consequently transpilation options referring to those tasks will no longer have any effect. Users may still request that the Primitives do no optimization of input circuits via `options.transpilation.skip_transpilation`.
+To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](../transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. Users can still request that the primitives do no optimization of input circuits by specifying `optimization_level=0`.
 </Admonition>
 
 <Admonition type="info" title="Attention">
@@ -109,7 +109,27 @@ The Qiskit Runtime primitives may perform additional runtime compilation to opti
 See the Optimization level table in the
 [Runtime compilation topic](configure-runtime-compilation#set-the-optimization-level) for further details.
 
-<Admonition>
+<Tabs>
+  <TabItem value="PrimV2" label="V2 primitives">
+   The optimization level option is a "first-level option", and can be set as follows:
+
+```python
+from qiskit_ibm_runtime import Estimator, Options
+
+options = Options(optimization_level=1)
+
+# or..
+options = Options()
+options.optimization_level = 1
+
+estimator = Estimator(session=backend, options=options)
+```
+
+Turning off all optional runtime compilation steps requires setting `optimization_level=0`.  V2 primitives do not support any advanced transpilation options. 
+  </TabItem>
+
+  <TabItem value="PrimV1" label="V1 primitives">
+    <Admonition>
     In the currently deployed Qiskit Runtime primitives, optimization levels 2 and 3 behave identically to level 1. If you want to use more advanced optimization, use the Qiskit transpiler locally, set [`skip_transpilation=True`](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.TranspilationOptions#skip_transpilation), and then pass the transpiled circuits to the primitives.  For instructions see the [Submit pre-transpiled circuits](https://learning.quantum.ibm.com/tutorial/submitting-user-transpiled-circuits-using-primitives) tutorial.
 </Admonition>
 
@@ -140,9 +160,8 @@ estimator = Estimator(session=backend, options=options)
 
 For more information and a complete list of advanced transpilation options, see the Advanced transpilation options table in the
 [Runtime compilation topic](configure-runtime-compilation#transpilation-table).
-
-<admonition type="note">V2 primitives do not support any advanced transpilation options except `skip_transpilation`.</admonition>
-
+  </TabItem>
+</Tabs>
 
 ### Error mitigation
 

@@ -13,7 +13,7 @@ Primitives let you employ runtime compilation by setting the optimization level 
 <admonition type="note">V2 primitives support optimization levels 0 and 1 only.</admonition>
 
 <Admonition type="note" title="Important:">
-To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](../transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations, consequently transpilation options referring to those tasks will no longer have any effect. Users may still request that the Primitives do no optimization of input circuits via `options.transpilation.skip_transpilation`.
+To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](../transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. Users can still request that the primitives do no optimization of input circuits by specifying `optimization_level=0`.
 </Admonition>
 
 ## Set the optimization level
@@ -127,7 +127,19 @@ sampler = Sampler(options=options, backend=backend)
 <span id="transpilation-table"></span>
 ## Advanced runtime compilation options
 
-Future versions of the primitives will offer options to tune runtime compilation. Currently, the only option with any effect is `skip_transpilation` (bool), which turns off all optimizations done with the primitives.
+
+
+<Tabs>
+  <TabItem value="PrimV2" label="V2 primitives">
+    TALK ABOUT DD HERE INSTEAD FOR V2.
+  </TabItem>
+
+  <TabItem value="PrimV1" label="V1 primitives">
+    Because all input must be ISA, options.transpilation.xxx will be ignored. 
+  </TabItem>
+</Tabs>
+
+
 
 ## Next steps
 
