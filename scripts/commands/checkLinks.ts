@@ -19,6 +19,7 @@ import { hideBin } from "yargs/helpers";
 import { pathExists } from "../lib/fs";
 import { File } from "../lib/links/LinkChecker";
 import { FileBatch } from "../lib/links/FileBatch";
+import { QISKIT_MISSING_VERSION_MAPPING } from "../lib/qiskitMetapackage";
 
 // While these files don't exist in this repository, the link
 // checker should assume that they exist in production.
@@ -126,6 +127,38 @@ async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
     result.push(...provider, ...runtime, ...qiskit);
   }
 
+  if (args.qiskitReleaseNotes) {
+    result.push(...(await determineQiskitReleaseNotes()));
+  }
+
+  return result;
+}
+
+async function determineQiskitReleaseNotes(): Promise<FileBatch[]> {
+  const result: FileBatch[] = [];
+
+  const allVersions = (
+    await globby("docs/api/qiskit/release-notes/[!index]*")
+  ).map((releaseNotesPath) =>
+    releaseNotesPath.split("/").pop()!.split(".").slice(0, -1).join("."),
+  );
+
+  const versionsSorted = allVersions.sort((a, b) =>
+    b.localeCompare(a, undefined, { numeric: true, sensitivity: "base" }),
+  );
+
+  for (const releaseNotesVersion of versionsSorted) {
+    const docsVersionToLoad =
+      QISKIT_MISSING_VERSION_MAPPING.get(releaseNotesVersion);
+
+    const fileBatch = await FileBatch.fromGlobs(
+      [`docs/api/qiskit/release-notes/${releaseNotesVersion}.md`],
+      [`docs/api/qiskit/${docsVersionToLoad ?? releaseNotesVersion}/*`],
+      `Qiskit ${releaseNotesVersion} release notes`,
+    );
+    result.push(fileBatch);
+  }
+
   return result;
 }
 
@@ -141,6 +174,8 @@ async function determineCurrentDocsFileBatch(
     // Ignore dev version
     "!docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/dev/*",
     "!public/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/dev/*",
+    // Ignore Qiskit release notes
+    "!docs/api/qiskit/release-notes/*",
   ];
   const toLoad = [
     // The 0.46 docs are used by release notes for APIs that were removed in 1.0.
@@ -149,6 +184,7 @@ async function determineCurrentDocsFileBatch(
     "docs/api/qiskit/0.45/qiskit.quantum_info.{OneQubitEuler,TwoQubitBasis,XX}Decomposer.md",
     "docs/api/qiskit/0.45/qiskit.transpiler.synthesis.aqc.AQC.md",
     "docs/api/qiskit/0.45/{tools,quantum_info,synthesis_aqc}.md",
+    "docs/api/qiskit/release-notes/index.md",
   ];
 
   if (!args.currentApis) {
@@ -158,21 +194,9 @@ async function determineCurrentDocsFileBatch(
     toLoad.push("docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/*");
   }
 
-  if (!args.qiskitReleaseNotes) {
-    toCheck.push("!docs/api/qiskit/release-notes/*");
-    toLoad.push("docs/api/qiskit/release-notes/index.md");
-  }
-
-  let description: string;
-  if (args.currentApis && args.qiskitReleaseNotes) {
-    description = "non-API docs, current API docs, and Qiskit release notes";
-  } else if (args.currentApis) {
-    description = "non-API docs and current API docs";
-  } else if (args.qiskitReleaseNotes) {
-    description = "non-API docs and Qiskit release notes";
-  } else {
-    description = "non-API docs";
-  }
+  const description = args.currentApis
+    ? "non-API docs and current API docs"
+    : "non-API docs";
 
   return FileBatch.fromGlobs(toCheck, toLoad, description);
 }
