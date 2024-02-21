@@ -20,19 +20,19 @@ from qiskit import transpile
 from qiskit import QuantumCircuit
 from qiskit.circuit.library import GroverOperator, Diagonal
 from qiskit_ibm_runtime import QiskitRuntimeService
-from qiskit.providers.fake_provider import FakeSherbrooke
+from qiskit_ibm_runtime.fake_provider import fake_backend
 
 # Create circuit to test transpiler on
 oracle = Diagonal([1] * 7 + [-1])
 qc = QuantumCircuit(3)
 qc.h([0, 1, 2])
 qc = qc.compose(GroverOperator(oracle))
-
+ 
 # Add measurements to the circuit
 qc.measure_all()
-
+ 
 # View the circuit
-qc.draw(output='mpl', style="iqp")
+qc.draw(output='mpl')
 ```
 
 ![Original circuit](/images/transpile/defaults-and-configuration-options/original-circuit.png "Original circuit")
