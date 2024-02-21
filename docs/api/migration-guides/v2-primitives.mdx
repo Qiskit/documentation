@@ -7,20 +7,21 @@ description: Migrate from using the original primitives (Estimator and Sampler) 
 <span id="v2-primitives"></span>
 # Migrate to using the V2 primitives
 
-This guide describes what changed in the V2 primitives and why, describes each new primitive in detail, and gives examples to help you migrate code from using the legacy primitives to using the V2 primitives.  The examples in the guide all use the Qiskit Runtime primitives, but, in general, the same changes apply to the other primitive implementations.  The functions unique to Qiskit Runtime such as error mitigation remain unique to Qiskit Runtime. 
+This guide describes what changed in the V2 primitives and why, describes each new primitive in detail, and gives examples to help you migrate code from using the legacy primitives to using the V2 primitives.  The examples in the guide all use the Qiskit Runtime primitives, but in general, the same changes apply to the other primitive implementations.  The functions unique to Qiskit Runtime such as error mitigation remain unique to Qiskit Runtime. 
 
 ## Overview
 
 Version 2 is first the major interface change since the introduction of Qiskit Runtime primitives. Based on user feedback, this version introduces the following major new functions:
 
 * A new interface that lets you specify a single circuit and multiple observables (if using Estimator) and parameter value sets for that circuit. Previously, you had to specify the  same circuit multiple times to match the size of the data to be combined.
-* SamplerV2 no longer supports resilience levels.  Instead, it was simplified to focus on its core task of sampling the output register from running quantum circuits. It returns the samples, whose type is defined by the program, without weights. The result class, however, has methods to return weighted samples, such as counts and quasi-probabilities. 
+* SamplerV2 no longer supports resilience levels (error mitigation).  Instead, it was simplified to focus on its core task of sampling the output register from running quantum circuits. As a result, it **no longer returns quasi-probabilities**. It returns the samples, whose type is defined by the program, without weights. The result class, however, has methods to return weighted samples, such as counts. 
 * EstimatorV2 does not support resilience level 3.  This is because resilience level 3 in V1 Estimator uses PEC, which is proven to give unbiased results at the cost of exponential processing time. To make this trade-off more obvious, resilience level 3 support was removed from EstimatorV2. You can, however, still use PEC as the error mitigation method by using the `pec_mitigation` option.
 * Both V2 primitives let you turn on or off individual error mitigation / suppression methods.
 
 <Admonition type="note" title="Important:">
-For all versions of the primitives, To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  You can use the [Qiskit transpiler](../../run/advanced-runtime-options#runtime-compilation) or the [AI-driven transpilation service](../../transpile/qiskit-transpiler-service) (premium users) to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations, consequently transpilation options referring to those tasks will no longer have any effect. Users may still request that the Primitives do no optimization of input circuits via `options.transpilation.skip_transpilation`.
+To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](../transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. Users can still request that the primitives do no optimization of input circuits by using `options.transpilation.skip_transpilation`.
 </Admonition>
+
 ## Major changes
 
 ### Import
