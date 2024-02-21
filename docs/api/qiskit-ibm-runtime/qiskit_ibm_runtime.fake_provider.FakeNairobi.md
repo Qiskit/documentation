@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeNairobi
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeNairobi" />
 
-`FakeNairobi`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.19/qiskit_ibm_runtime/fake_provider/backends/nairobi/fake_nairobi.py "view source code")
+`FakeNairobi`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/nairobi/fake_nairobi.py "view source code")
 
 A fake 7 qubit backend.
 
