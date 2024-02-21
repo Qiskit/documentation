@@ -13,7 +13,11 @@
 import { globby } from "globby";
 
 import { Link, File } from "./LinkChecker";
-import { FILES_TO_IGNORES, ALWAYS_IGNORED_URLS } from "./ignores";
+import {
+  ALWAYS_IGNORED_URLS,
+  FILES_TO_IGNORES,
+  IGNORED_FILES,
+} from "./ignores";
 import { parseFile } from "./extractLinks";
 
 export class FileBatch {
@@ -72,7 +76,9 @@ export class FileBatch {
     for (const filePath of this.toCheck) {
       const parsed = await parseFile(filePath);
       files.push(new File(filePath, parsed.anchors));
-      addLinksToMap(filePath, parsed.links, linksToOriginFiles);
+      if (!IGNORED_FILES.has(filePath)) {
+        addLinksToMap(filePath, parsed.links, linksToOriginFiles);
+      }
     }
 
     const internalLinks: Link[] = [];
