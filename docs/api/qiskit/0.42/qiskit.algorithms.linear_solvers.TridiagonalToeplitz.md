@@ -187,11 +187,7 @@ circuit.draw('mpl')
 
 ![../\_images/qiskit-algorithms-linear\_solvers-TridiagonalToeplitz-assign\_parameters-1\_00.png](/images/api/qiskit/0.42/qiskit-algorithms-linear_solvers-TridiagonalToeplitz-assign_parameters-1_00.png)
 
-Fig. 33 ([`png`](_downloads/ff37c226764247e560e3a85343b86685/qiskit-algorithms-linear_solvers-TridiagonalToeplitz-assign_parameters-1_00.png), [`hires.png`](_downloads/b6aef7c23aef550fd1398a759defe7d8/qiskit-algorithms-linear_solvers-TridiagonalToeplitz-assign_parameters-1_00.hires.png), [`pdf`](_downloads/6119677b2f68f968c433135996279a71/qiskit-algorithms-linear_solvers-TridiagonalToeplitz-assign_parameters-1_00.pdf))[¶](#id1 "Permalink to this image")
-
 ![../\_images/qiskit-algorithms-linear\_solvers-TridiagonalToeplitz-assign\_parameters-1\_01.png](/images/api/qiskit/0.42/qiskit-algorithms-linear_solvers-TridiagonalToeplitz-assign_parameters-1_01.png)
-
-Fig. 34 ([`png`](_downloads/9922ce15188659badfba018fb101d895/qiskit-algorithms-linear_solvers-TridiagonalToeplitz-assign_parameters-1_01.png), [`hires.png`](_downloads/0f2f9b13f42a057a7a16bf92c86d3b4f/qiskit-algorithms-linear_solvers-TridiagonalToeplitz-assign_parameters-1_01.hires.png), [`pdf`](_downloads/1a04f6dc7569c4788e0e451044beba59/qiskit-algorithms-linear_solvers-TridiagonalToeplitz-assign_parameters-1_01.pdf))[¶](#id2 "Permalink to this image")
 
 Bind the values out-of-place by list and get a copy of the original circuit.
 
@@ -211,11 +207,7 @@ circuit.draw('mpl')
 
 ![../\_images/qiskit-algorithms-linear\_solvers-TridiagonalToeplitz-assign\_parameters-2\_00.png](/images/api/qiskit/0.42/qiskit-algorithms-linear_solvers-TridiagonalToeplitz-assign_parameters-2_00.png)
 
-Fig. 35 ([`png`](_downloads/4e122536e8fdb50b6f3293dd127d5a1c/qiskit-algorithms-linear_solvers-TridiagonalToeplitz-assign_parameters-2_00.png), [`hires.png`](_downloads/1cd69e6b3fcfc6c39ed237fb902b9f31/qiskit-algorithms-linear_solvers-TridiagonalToeplitz-assign_parameters-2_00.hires.png), [`pdf`](_downloads/e84c98f08b17e05affe6ce6b0ad0f9be/qiskit-algorithms-linear_solvers-TridiagonalToeplitz-assign_parameters-2_00.pdf))[¶](#id3 "Permalink to this image")
-
 ![../\_images/qiskit-algorithms-linear\_solvers-TridiagonalToeplitz-assign\_parameters-2\_01.png](/images/api/qiskit/0.42/qiskit-algorithms-linear_solvers-TridiagonalToeplitz-assign_parameters-2_01.png)
-
-Fig. 36 ([`png`](_downloads/c491eec85d0433dc7b13e3649ddae562/qiskit-algorithms-linear_solvers-TridiagonalToeplitz-assign_parameters-2_01.png), [`hires.png`](_downloads/dec07cdb65038f6ea9504bfee738004a/qiskit-algorithms-linear_solvers-TridiagonalToeplitz-assign_parameters-2_01.hires.png), [`pdf`](_downloads/c310b95de6f2569250d21a31bdd26d30/qiskit-algorithms-linear_solvers-TridiagonalToeplitz-assign_parameters-2_01.pdf))[¶](#id4 "Permalink to this image")
 
 ### barrier
 

@@ -230,11 +230,7 @@ circuit.draw('mpl')
 
 ![../\_images/qiskit-circuit-QuantumCircuit-assign\_parameters-1\_00.png](/images/api/qiskit/0.41/qiskit-circuit-QuantumCircuit-assign_parameters-1_00.png)
 
-Fig. 6 ([`png`](_downloads/d2421053d5eeaf8afb1b546673dadbf5/qiskit-circuit-QuantumCircuit-assign_parameters-1_00.png), [`hires.png`](_downloads/786e7abef7c00faa686fe238db265a63/qiskit-circuit-QuantumCircuit-assign_parameters-1_00.hires.png), [`pdf`](_downloads/09c257670eece307b2190a862c4a3437/qiskit-circuit-QuantumCircuit-assign_parameters-1_00.pdf))[¶](#id1 "Permalink to this image")
-
 ![../\_images/qiskit-circuit-QuantumCircuit-assign\_parameters-1\_01.png](/images/api/qiskit/0.41/qiskit-circuit-QuantumCircuit-assign_parameters-1_01.png)
-
-Fig. 7 ([`png`](_downloads/33b341747f4f2726fe59c77dd387e711/qiskit-circuit-QuantumCircuit-assign_parameters-1_01.png), [`hires.png`](_downloads/9541dc384fb2520544ec6aeb1d0f3275/qiskit-circuit-QuantumCircuit-assign_parameters-1_01.hires.png), [`pdf`](_downloads/32cc634a4061b139f5a7335af6ba953c/qiskit-circuit-QuantumCircuit-assign_parameters-1_01.pdf))[¶](#id2 "Permalink to this image")
 
 Bind the values out-of-place by list and get a copy of the original circuit.
 
@@ -254,11 +250,7 @@ circuit.draw('mpl')
 
 ![../\_images/qiskit-circuit-QuantumCircuit-assign\_parameters-2\_00.png](/images/api/qiskit/0.41/qiskit-circuit-QuantumCircuit-assign_parameters-2_00.png)
 
-Fig. 8 ([`png`](_downloads/4a65fc397ae868b65761780aa0013433/qiskit-circuit-QuantumCircuit-assign_parameters-2_00.png), [`hires.png`](_downloads/f936574ca467dbf470bb3e62996b8aa4/qiskit-circuit-QuantumCircuit-assign_parameters-2_00.hires.png), [`pdf`](_downloads/f6506b3b78cbacabed43c69d96b568dc/qiskit-circuit-QuantumCircuit-assign_parameters-2_00.pdf))[¶](#id3 "Permalink to this image")
-
 ![../\_images/qiskit-circuit-QuantumCircuit-assign\_parameters-2\_01.png](/images/api/qiskit/0.41/qiskit-circuit-QuantumCircuit-assign_parameters-2_01.png)
-
-Fig. 9 ([`png`](_downloads/e15ada4dc0293578ac577fd7c1da7d3f/qiskit-circuit-QuantumCircuit-assign_parameters-2_01.png), [`hires.png`](_downloads/9d8ffd778f6ca66fbbc3b196880f9a38/qiskit-circuit-QuantumCircuit-assign_parameters-2_01.hires.png), [`pdf`](_downloads/8e2e301d98ba6b3d97d4ae9de1ee0e55/qiskit-circuit-QuantumCircuit-assign_parameters-2_01.pdf))[¶](#id4 "Permalink to this image")
 
 ### barrier
 
