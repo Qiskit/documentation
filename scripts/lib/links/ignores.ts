@@ -75,6 +75,10 @@ const _RUNTIME_OBJECT_INV = Object.fromEntries(
 const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = {};
 
 const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {
+  // Provider
+  "docs/api/qiskit-ibm-provider/release-notes.md": [
+    "https://github.com/Qiskit/qiskit-ibm-provider/blob/main/docs/tutorials/Migration_Guide_from_qiskit-ibmq-provider.ipynb",
+  ],
   // Qiskit
   "docs/api/qiskit/release-notes/1.0.md": [
     "/api/qiskit/utils#qiskit.utils.optionals.HAS_SYMENGINE",
