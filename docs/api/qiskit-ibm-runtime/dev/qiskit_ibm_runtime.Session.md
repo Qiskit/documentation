@@ -77,11 +77,11 @@ Return the session ID.
 
 **Return type**
 
-`str`
+`Optional`\[`str`]
 
 **Returns**
 
-Session ID. None until a job is submitted.
+Session ID. None if the backend is a simulator.
 
 ## Methods
 

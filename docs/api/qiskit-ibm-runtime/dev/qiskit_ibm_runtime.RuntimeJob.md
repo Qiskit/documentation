@@ -120,7 +120,7 @@ Session ID.
 
 **Returns**
 
-Job ID of the first job in a runtime session.
+Session ID. None if the backend is a simulator.
 
 <span id="qiskit_ibm_runtime.RuntimeJob.tags" />
 

@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeToronto
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeToronto" />
 
-`FakeToronto`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.19/qiskit_ibm_runtime/fake_provider/backends/toronto/fake_toronto.py "view source code")
+`FakeToronto`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/toronto/fake_toronto.py "view source code")
 
 A fake 27 qubit backend.
 
