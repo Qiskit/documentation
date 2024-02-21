@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_provider.transpiler.passes.scheduling.PadDelay
 
 <span id="qiskit_ibm_provider.transpiler.passes.scheduling.PadDelay" />
 
-`PadDelay(fill_very_end=True, schedule_idle_qubits=False)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.9/qiskit_ibm_provider/transpiler/passes/scheduling/pad_delay.py "view source code")
+`PadDelay(fill_very_end=True, schedule_idle_qubits=False)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/transpiler/passes/scheduling/pad_delay.py "view source code")
 
 Padding idle time with Delay instructions.
 
@@ -89,12 +89,12 @@ Execute optimization task for input Qiskit IR.
 **Parameters**
 
 *   **passmanager\_ir** (`Any`) – Qiskit IR to optimize.
-*   **state** ([`PassManagerState`](https://docs.quantum.ibm.com/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v0.46)")) – State associated with workflow execution by the pass manager itself.
+*   **state** ([`PassManagerState`](https://docs.quantum.ibm.com/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.0)")) – State associated with workflow execution by the pass manager itself.
 *   **callback** (`Optional`\[`Callable`]) – A callback function which is caller per execution of optimization task.
 
 **Return type**
 
-`tuple`\[`Any`, [`PassManagerState`](https://docs.quantum.ibm.com/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v0.46)")]
+`tuple`\[`Any`, [`PassManagerState`](https://docs.quantum.ibm.com/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.0)")]
 
 **Returns**
 
@@ -122,7 +122,7 @@ Run the padding pass on `dag`.
 
 **Parameters**
 
-**dag** ([`DAGCircuit`](https://docs.quantum.ibm.com/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v0.46)")) – DAG to be checked.
+**dag** ([`DAGCircuit`](https://docs.quantum.ibm.com/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v1.0)")) – DAG to be checked.
 
 **Returns**
 
@@ -146,12 +146,12 @@ Update workflow status.
 
 **Parameters**
 
-*   **state** ([`PassManagerState`](https://docs.quantum.ibm.com/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v0.46)")) – Pass manager state to update.
+*   **state** ([`PassManagerState`](https://docs.quantum.ibm.com/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.0)")) – Pass manager state to update.
 *   **run\_state** (`RunState`) – Completion status of current task.
 
 **Return type**
 
-[`PassManagerState`](https://docs.quantum.ibm.com/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v0.46)")
+[`PassManagerState`](https://docs.quantum.ibm.com/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.0)")
 
 **Returns**
 
