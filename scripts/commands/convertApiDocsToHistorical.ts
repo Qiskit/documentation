@@ -102,6 +102,11 @@ async function copyApiDocsAndUpdateLinks(
       ),
     );
   }
+
+  const source = `${getRoot()}/docs/api/${pkgName}/release-notes/${versionWithoutPatch}.md`;
+  if (await pathExists(source)) {
+    updateLinksFile(pkgName, versionWithoutPatch, source, source);
+  }
 }
 
 async function generateJsonFiles(
