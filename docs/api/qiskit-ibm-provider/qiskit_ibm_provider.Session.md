@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_provider.Session
 
 <span id="qiskit_ibm_provider.Session" />
 
-`Session(max_time=None)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.9/qiskit_ibm_provider/session.py "view source code")
+`Session(max_time=None, session_id=None)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/session.py "view source code")
 
 Class for creating a flexible Qiskit Runtime session.
 
@@ -40,7 +40,7 @@ Session constructor.
 
 **Parameters**
 
-**max\_time** (`Union`\[`int`, `str`, `None`]) – (EXPERIMENTAL setting, can break between releases without warning) Maximum amount of time, a runtime session can be open before being forcibly closed. Can be specified as seconds (int) or a string like “2h 30m 40s”. This value must be in between 300 seconds and the [system imposed maximum](https://qiskit.org/documentation/partners/qiskit_ibm_runtime/faqs/max_execution_time.html).
+**max\_time** (`Union`\[`int`, `str`, `None`]) – (EXPERIMENTAL setting, can break between releases without warning) Maximum amount of time, a runtime session can be open before being forcibly closed. Can be specified as seconds (int) or a string like “2h 30m 40s”. This value must be in between 300 seconds and the [system imposed maximum](https://docs.quantum.ibm.com/run/max-execution-time).
 
 **Raises**
 
