@@ -125,7 +125,10 @@ async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
 
   const qiskit = await determineHistoricalFileBatches(
     "qiskit",
-    [],
+    [
+      "docs/api/qiskit/release-notes/0.44.md",
+      "docs/api/qiskit-ibm-provider/index.md",
+    ],
     args.historicalApis && !args.skipBrokenHistorical,
     args.qiskitReleaseNotes,
   );
