@@ -62,7 +62,7 @@ type FilesToIgnores = { [id: string]: string[] };
 const _QPY_IGNORES = ["#f1", "#f2", "#f3", "#id2", "#id4", "#id6", "#id8"];
 
 const _RUNTIME_OBJECT_INV = Object.fromEntries(
-  ["", "dev/", "0.16/", "0.17/", "0.18/"].map((vers) => [
+  ["", "dev/", "0.16/", "0.17/", "0.18/", "0.19/"].map((vers) => [
     `public/api/qiskit-ibm-runtime/${vers}objects.inv`,
     [
       `/api/qiskit-ibm-runtime/${vers}qiskit_ibm_runtime.RuntimeEncoder#key_separator`,

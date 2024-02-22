@@ -174,11 +174,7 @@ circuit.draw('mpl')
 
 ![../\_images/qiskit-algorithms-linear\_solvers-NumPyMatrix-assign\_parameters-1\_00.png](/images/api/qiskit/0.41/qiskit-algorithms-linear_solvers-NumPyMatrix-assign_parameters-1_00.png)
 
-Fig. 29 ([`png`](_downloads/0ee03cd86e2a382fa5fb1900d937ee2f/qiskit-algorithms-linear_solvers-NumPyMatrix-assign_parameters-1_00.png), [`hires.png`](_downloads/238c146f0154e894f6aef45211c9c748/qiskit-algorithms-linear_solvers-NumPyMatrix-assign_parameters-1_00.hires.png), [`pdf`](_downloads/ed52dbeb6ca69ec4fea1e3b0abce8861/qiskit-algorithms-linear_solvers-NumPyMatrix-assign_parameters-1_00.pdf))[¶](#id1 "Permalink to this image")
-
 ![../\_images/qiskit-algorithms-linear\_solvers-NumPyMatrix-assign\_parameters-1\_01.png](/images/api/qiskit/0.41/qiskit-algorithms-linear_solvers-NumPyMatrix-assign_parameters-1_01.png)
-
-Fig. 30 ([`png`](_downloads/b21b94e2a58a0e5b7f8e5a4b6ae9c99e/qiskit-algorithms-linear_solvers-NumPyMatrix-assign_parameters-1_01.png), [`hires.png`](_downloads/03b9e379c9047651591e64e53761637b/qiskit-algorithms-linear_solvers-NumPyMatrix-assign_parameters-1_01.hires.png), [`pdf`](_downloads/cba8e47be3f1af5b5648a4df1dc3f665/qiskit-algorithms-linear_solvers-NumPyMatrix-assign_parameters-1_01.pdf))[¶](#id2 "Permalink to this image")
 
 Bind the values out-of-place by list and get a copy of the original circuit.
 
@@ -198,11 +194,7 @@ circuit.draw('mpl')
 
 ![../\_images/qiskit-algorithms-linear\_solvers-NumPyMatrix-assign\_parameters-2\_00.png](/images/api/qiskit/0.41/qiskit-algorithms-linear_solvers-NumPyMatrix-assign_parameters-2_00.png)
 
-Fig. 31 ([`png`](_downloads/671a2ffb644686ba0cbe58973601fd83/qiskit-algorithms-linear_solvers-NumPyMatrix-assign_parameters-2_00.png), [`hires.png`](_downloads/63a6b5d75d9b2238feb4d9531c35f742/qiskit-algorithms-linear_solvers-NumPyMatrix-assign_parameters-2_00.hires.png), [`pdf`](_downloads/4c16358d7b26b6c07e1f30e0cf36a9c1/qiskit-algorithms-linear_solvers-NumPyMatrix-assign_parameters-2_00.pdf))[¶](#id3 "Permalink to this image")
-
 ![../\_images/qiskit-algorithms-linear\_solvers-NumPyMatrix-assign\_parameters-2\_01.png](/images/api/qiskit/0.41/qiskit-algorithms-linear_solvers-NumPyMatrix-assign_parameters-2_01.png)
-
-Fig. 32 ([`png`](_downloads/e49c821a5e323757198aae20c11e5d00/qiskit-algorithms-linear_solvers-NumPyMatrix-assign_parameters-2_01.png), [`hires.png`](_downloads/0c5636304ba11d9a701c823032805b02/qiskit-algorithms-linear_solvers-NumPyMatrix-assign_parameters-2_01.hires.png), [`pdf`](_downloads/036a3d2c96ecd0e9dac675b80c016e20/qiskit-algorithms-linear_solvers-NumPyMatrix-assign_parameters-2_01.pdf))[¶](#id4 "Permalink to this image")
 
 ### barrier
 

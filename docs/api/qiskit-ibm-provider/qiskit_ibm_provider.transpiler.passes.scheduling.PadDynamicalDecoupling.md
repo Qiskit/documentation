@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDe
 
 <span id="qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDecoupling" />
 
-`PadDynamicalDecoupling(durations, dd_sequences, qubits=None, spacings=None, skip_reset_qubits=True, pulse_alignment=16, extra_slack_distribution='middle', sequence_min_length_ratios=None, insert_multiple_cycles=False, coupling_map=None, alt_spacings=None, schedule_idle_qubits=False)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.9/qiskit_ibm_provider/transpiler/passes/scheduling/dynamical_decoupling.py "view source code")
+`PadDynamicalDecoupling(durations, dd_sequences, qubits=None, spacings=None, skip_reset_qubits=True, pulse_alignment=16, extra_slack_distribution='middle', sequence_min_length_ratios=None, insert_multiple_cycles=False, coupling_map=None, alt_spacings=None, schedule_idle_qubits=False)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/transpiler/passes/scheduling/dynamical_decoupling.py "view source code")
 
 Dynamical decoupling insertion pass for IBM dynamic circuit backends.
 
@@ -137,9 +137,9 @@ Dynamical decoupling initializer.
 
 **Parameters**
 
-*   **durations** ([`InstructionDurations`](https://docs.quantum.ibm.com/api/qiskit/qiskit.transpiler.InstructionDurations "(in Qiskit v0.46)")) – Durations of instructions to be used in scheduling.
+*   **durations** ([`InstructionDurations`](https://docs.quantum.ibm.com/api/qiskit/qiskit.transpiler.InstructionDurations "(in Qiskit v1.0)")) – Durations of instructions to be used in scheduling.
 
-*   **dd\_sequences** (`Union`\[`List`\[[`Gate`](https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.Gate "(in Qiskit v0.46)")], `List`\[`List`\[[`Gate`](https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.Gate "(in Qiskit v0.46)")]]]) – Sequence of gates to apply in idle spots. Alternatively a list of gate sequences may be supplied that will preferentially be inserted if there is a delay of sufficient duration. This may be tuned by the optionally supplied `sequence_min_length_ratios`.
+*   **dd\_sequences** (`Union`\[`List`\[[`Gate`](https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.Gate "(in Qiskit v1.0)")], `List`\[`List`\[[`Gate`](https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.Gate "(in Qiskit v1.0)")]]]) – Sequence of gates to apply in idle spots. Alternatively a list of gate sequences may be supplied that will preferentially be inserted if there is a delay of sufficient duration. This may be tuned by the optionally supplied `sequence_min_length_ratios`.
 
 *   **qubits** (`Optional`\[`List`\[`int`]]) – Physical qubits on which to apply DD. If None, all qubits will undergo DD (when possible).
 
@@ -160,7 +160,7 @@ Dynamical decoupling initializer.
 
 *   **insert\_multiple\_cycles** (`bool`) – If the available duration exceeds 2\*sequence\_min\_length\_ratio\*duration(dd\_sequence) enable the insertion of multiple rounds of the dynamical decoupling sequence in that delay.
 
-*   **coupling\_map** (`Optional`\[[`CouplingMap`](https://docs.quantum.ibm.com/api/qiskit/qiskit.transpiler.CouplingMap "(in Qiskit v0.46)")]) – directed graph representing the coupling map for the device. Specifying a coupling map partitions the device into subcircuits, in order to apply DD sequences with different pulse spacings within each. Currently support 2 subcircuits.
+*   **coupling\_map** (`Optional`\[[`CouplingMap`](https://docs.quantum.ibm.com/api/qiskit/qiskit.transpiler.CouplingMap "(in Qiskit v1.0)")]) – directed graph representing the coupling map for the device. Specifying a coupling map partitions the device into subcircuits, in order to apply DD sequences with different pulse spacings within each. Currently support 2 subcircuits.
 
 *   **alt\_spacings** (`Union`\[`List`\[`List`\[`float`]], `List`\[`float`], `None`]) – A list of lists of spacings between the DD gates, for the second subcircuit, as determined by the coupling map. If None, a balanced spacing that is staggered with respect to the first subcircuit will be used \[d, d, d, …, d, d, 0].
 
@@ -224,12 +224,12 @@ Execute optimization task for input Qiskit IR.
 **Parameters**
 
 *   **passmanager\_ir** (`Any`) – Qiskit IR to optimize.
-*   **state** ([`PassManagerState`](https://docs.quantum.ibm.com/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v0.46)")) – State associated with workflow execution by the pass manager itself.
+*   **state** ([`PassManagerState`](https://docs.quantum.ibm.com/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.0)")) – State associated with workflow execution by the pass manager itself.
 *   **callback** (`Optional`\[`Callable`]) – A callback function which is caller per execution of optimization task.
 
 **Return type**
 
-`tuple`\[`Any`, [`PassManagerState`](https://docs.quantum.ibm.com/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v0.46)")]
+`tuple`\[`Any`, [`PassManagerState`](https://docs.quantum.ibm.com/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.0)")]
 
 **Returns**
 
@@ -257,7 +257,7 @@ Run the padding pass on `dag`.
 
 **Parameters**
 
-**dag** ([`DAGCircuit`](https://docs.quantum.ibm.com/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v0.46)")) – DAG to be checked.
+**dag** ([`DAGCircuit`](https://docs.quantum.ibm.com/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v1.0)")) – DAG to be checked.
 
 **Returns**
 
@@ -281,12 +281,12 @@ Update workflow status.
 
 **Parameters**
 
-*   **state** ([`PassManagerState`](https://docs.quantum.ibm.com/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v0.46)")) – Pass manager state to update.
+*   **state** ([`PassManagerState`](https://docs.quantum.ibm.com/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.0)")) – Pass manager state to update.
 *   **run\_state** (`RunState`) – Completion status of current task.
 
 **Return type**
 
-[`PassManagerState`](https://docs.quantum.ibm.com/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v0.46)")
+[`PassManagerState`](https://docs.quantum.ibm.com/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.0)")
 
 **Returns**
 

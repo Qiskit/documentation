@@ -129,7 +129,7 @@ export function removeDownloadSourceCode($main: Cheerio<any>): void {
 
 export function removeMatplotlibFigCaptions($main: Cheerio<any>): void {
   $main
-    .find("figcaption")
+    .find("figcaption, div.figure p.caption")
     .has("span.caption-text a.download.internal.reference")
     .remove();
 }

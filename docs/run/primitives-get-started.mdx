@@ -9,7 +9,7 @@ description: Use Qiskit Runtime Estimator and Sampler
 The steps in this topic describes how to set up primitives, explore the options you can use to configure them, and invoke them in a program.
 
 <Admonition type="caution" title="Important">
-To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](../transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations; consequently, transpilation options referring to those tasks will no longer have any effect. Users may still request that the Primitives do no optimization of input circuits via `options.transpilation.skip_transpilation`.
+To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](../transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations; consequently, transpilation options referring to those tasks will no longer have any effect. Users can still request that the primitives do no optimization of input circuits by specifying `options.transpilation.skip_transpilation`.
 </Admonition>
 
 <Admonition type="note">
@@ -53,7 +53,7 @@ print(f">>> Observable: {observable.paulis}")
 The circuit and observable need to be transformed to only use instructions supported by the system. We'll use the transpiler to do this.
 
 ```python
-pm = generate_preset_pass_manager(backend=backend)
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
 isa_observable = observable.apply_layout(isa_circuit.layout)
 ```
@@ -123,7 +123,7 @@ circuit.measure_all()
 Again, we use the transpiler to get an ISA circuit.
 
 ```python
-pm = generate_preset_pass_manager(backend=backend)
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
 ```
 

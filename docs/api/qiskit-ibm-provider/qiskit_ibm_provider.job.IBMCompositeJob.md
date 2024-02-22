@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_provider.job.IBMCompositeJob
 
 <span id="qiskit_ibm_provider.job.IBMCompositeJob" />
 
-`IBMCompositeJob(backend, api_client, job_id=None, creation_date=None, jobs=None, circuits_list=None, run_config=None, name=None, tags=None, client_version=None)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.9/qiskit_ibm_provider/job/ibm_composite_job.py "view source code")
+`IBMCompositeJob(backend, api_client, job_id=None, creation_date=None, jobs=None, circuits_list=None, run_config=None, name=None, tags=None, client_version=None)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/job/ibm_composite_job.py "view source code")
 
 Representation of a set of jobs that execute on an IBM Quantum backend.
 
@@ -35,7 +35,7 @@ IBMCompositeJob constructor.
 *   **job\_id** (`Optional`\[`str`]) – Job ID.
 *   **creation\_date** (`Optional`\[`datetime`]) – Job creation date.
 *   **jobs** (`Optional`\[`List`\[[`IBMCircuitJob`](qiskit_ibm_provider.job.IBMCircuitJob "qiskit_ibm_provider.job.ibm_circuit_job.IBMCircuitJob")]]) – A list of sub-jobs.
-*   **circuits\_list** (`Optional`\[`List`\[`List`\[[`QuantumCircuit`](https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v0.46)")]]]) – Circuits for this job.
+*   **circuits\_list** (`Optional`\[`List`\[`List`\[[`QuantumCircuit`](https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.0)")]]]) – Circuits for this job.
 *   **run\_config** (`Optional`\[`Dict`]) – Runtime configuration for this job.
 *   **name** (`Optional`\[`str`]) – Job name.
 *   **tags** (`Optional`\[`List`\[`str`]]) – Job tags.
@@ -81,7 +81,7 @@ Return the backend where this job was executed.
 
 **Return type**
 
-[`Backend`](https://docs.quantum.ibm.com/api/qiskit/qiskit.providers.Backend "(in Qiskit v0.46)")
+[`Backend`](https://docs.quantum.ibm.com/api/qiskit/qiskit.providers.Backend "(in Qiskit v1.0)")
 
 ### backend\_options
 
@@ -159,7 +159,7 @@ Return the circuits for this job.
 
 **Return type**
 
-`List`\[[`QuantumCircuit`](https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v0.46)")]
+`List`\[[`QuantumCircuit`](https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.0)")]
 
 **Returns**
 
@@ -313,7 +313,7 @@ Return the backend properties for this job.
 
 **Return type**
 
-`Union`\[`List`\[[`BackendProperties`](https://docs.quantum.ibm.com/api/qiskit/qiskit.providers.models.BackendProperties "(in Qiskit v0.46)")], [`BackendProperties`](https://docs.quantum.ibm.com/api/qiskit/qiskit.providers.models.BackendProperties "(in Qiskit v0.46)"), `None`]
+`Union`\[`List`\[[`BackendProperties`](https://docs.quantum.ibm.com/api/qiskit/qiskit.providers.models.BackendProperties "(in Qiskit v1.0)")], [`BackendProperties`](https://docs.quantum.ibm.com/api/qiskit/qiskit.providers.models.BackendProperties "(in Qiskit v1.0)"), `None`]
 
 **Returns**
 
@@ -446,7 +446,7 @@ Return the result of the job.
 </Admonition>
 
 <Admonition title="Note" type="note">
-  When partial=True, this method will attempt to retrieve partial results of failed jobs. In this case, precaution should be taken when accessing individual experiments, as doing so might cause an exception. The `success` attribute of the returned [`Result`](https://docs.quantum.ibm.com/api/qiskit/qiskit.result.Result "(in Qiskit v0.46)") instance can be used to verify whether it contains partial results.
+  When partial=True, this method will attempt to retrieve partial results of failed jobs. In this case, precaution should be taken when accessing individual experiments, as doing so might cause an exception. The `success` attribute of the returned [`Result`](https://docs.quantum.ibm.com/api/qiskit/qiskit.result.Result "(in Qiskit v1.0)") instance can be used to verify whether it contains partial results.
 
   For example, if one of the circuits in the job failed, trying to get the counts of the unsuccessful circuit would raise an exception since there are no counts to return:
 
@@ -469,7 +469,7 @@ If the job failed, you can use [`error_message()`](#qiskit_ibm_provider.job.IBMC
 
 **Return type**
 
-[`Result`](https://docs.quantum.ibm.com/api/qiskit/qiskit.result.Result "(in Qiskit v0.46)")
+[`Result`](https://docs.quantum.ibm.com/api/qiskit/qiskit.result.Result "(in Qiskit v1.0)")
 
 **Returns**
 
@@ -545,7 +545,7 @@ Query the server for the latest job status.
 
 **Return type**
 
-[`JobStatus`](https://docs.quantum.ibm.com/api/qiskit/qiskit.providers.JobStatus "(in Qiskit v0.46)")
+[`JobStatus`](https://docs.quantum.ibm.com/api/qiskit/qiskit.providers.JobStatus "(in Qiskit v1.0)")
 
 **Returns**
 
