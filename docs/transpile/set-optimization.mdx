@@ -38,7 +38,7 @@ Because finding the best layout is an NP-hard problem, it is the most time-consu
       <Td>
         Light optimization (default):
         -   Layout/Routing: Layout is first attempted with `TrivialLayout`. If additional SWAPs are required, a layout with a minimum number of SWAPs is found by using `SabreSWAP`, then it uses `VF2LayoutPostLayout` to try to select the best qubits in the graph.
-        -   InverseCancellelation
+        -   `InverseCancellation`
         -   1Q gate optimization
       </Td>
     </Tr>
@@ -48,7 +48,7 @@ Because finding the best layout is an NP-hard problem, it is the most time-consu
         Medium optimization:
           - Layout/Routing: Optimization level 1 (without trivial) + heuristic optimized with greater
         search depth and trials of optimization function.  Because `TrivialLayout` is not used, there is no attempt to use the same physical and virtual qubit numbers. 
-        -   Commutative cancelation
+        -   `CommutativeCancellation`
       </Td>
     </Tr>
     <Tr>
