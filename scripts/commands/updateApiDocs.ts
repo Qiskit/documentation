@@ -34,7 +34,7 @@ import { dedupeHtmlIdsFromResults } from "../lib/api/dedupeHtmlIds";
 import { Pkg } from "../lib/api/Pkg";
 import { zxMain } from "../lib/zx";
 import { pathExists, getRoot, rmFilesInFolder } from "../lib/fs";
-import { downloadCIArtifact } from "../lib/api/apiArtifacts";
+import { downloadSphinxArtifact } from "../lib/api/sphinxArtifacts";
 import {
   addNewReleaseNotes,
   generateReleaseNotesIndex,
@@ -119,11 +119,16 @@ zxMain(async () => {
     type,
   );
 
-  const artifactFolder = pkg.ciArtifactFolder();
-  if (args.skipDownload && (await pathExists(`${artifactFolder}/artifact`))) {
-    console.log(`Skip downloading sources for ${pkg.name}:${pkg.version}`);
+  const sphinxArtifactFolder = pkg.sphinxArtifactFolder();
+  if (
+    args.skipDownload &&
+    (await pathExists(`${sphinxArtifactFolder}/artifact`))
+  ) {
+    console.log(
+      `Skip downloading sources for ${pkg.name}:${pkg.versionWithoutPatch}`,
+    );
   } else {
-    await downloadCIArtifact(pkg, artifactFolder);
+    await downloadSphinxArtifact(pkg, sphinxArtifactFolder);
   }
 
   const outputDir = pkg.outputDir(`${getRoot()}/docs`);
@@ -139,7 +144,11 @@ zxMain(async () => {
   console.log(
     `Convert sphinx html to markdown for ${pkg.name}:${pkg.versionWithoutPatch}`,
   );
-  await convertHtmlToMarkdown(`${artifactFolder}/artifact`, outputDir, pkg);
+  await convertHtmlToMarkdown(
+    `${sphinxArtifactFolder}/artifact`,
+    outputDir,
+    pkg,
+  );
 });
 
 async function convertHtmlToMarkdown(
