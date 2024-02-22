@@ -53,7 +53,7 @@ print(f">>> Observable: {observable.paulis}")
 The circuit and observable need to be transformed to only use instructions supported by the system. We'll use the transpiler to do this.
 
 ```python
-pm = generate_preset_pass_manager(backend=backend)
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
 isa_observable = observable.apply_layout(isa_circuit.layout)
 ```
@@ -123,7 +123,7 @@ circuit.measure_all()
 Again, we use the transpiler to get an ISA circuit.
 
 ```python
-pm = generate_preset_pass_manager(backend=backend)
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
 ```
 
