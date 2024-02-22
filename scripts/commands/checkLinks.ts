@@ -103,6 +103,19 @@ async function main() {
   console.log("\nNo links appear broken ✅\n");
 }
 
+const PROVIDER_GLOBS_TO_LOAD = ["docs/api/qiskit/*.md"];
+const RUNTIME_GLOBS_TO_LOAD = [
+  "docs/api/qiskit/providers_models.md",
+  "docs/run/max-execution-time.mdx",
+  "docs/run/configure-error-mitigation.mdx",
+];
+const QISKIT_GLOBS_TO_LOAD = [
+  "docs/build/circuit-construction.ipynb",
+  "docs/build/pulse.ipynb",
+  "docs/api/qiskit/release-notes/0.44.md",
+  "docs/api/qiskit-ibm-provider/index.md",
+];
+
 async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
   const currentBatch = await determineCurrentDocsFileBatch(args);
   const result = [currentBatch];
@@ -114,21 +127,18 @@ async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
 
   const provider = await determineHistoricalFileBatches(
     "qiskit-ibm-provider",
-    ["docs/api/qiskit/*.md"],
+    PROVIDER_GLOBS_TO_LOAD,
     args.historicalApis,
   );
   const runtime = await determineHistoricalFileBatches(
     "qiskit-ibm-runtime",
-    ["docs/api/qiskit/providers_models.md"],
+    RUNTIME_GLOBS_TO_LOAD,
     args.historicalApis,
   );
 
   const qiskit = await determineHistoricalFileBatches(
     "qiskit",
-    [
-      "docs/api/qiskit/release-notes/0.44.md",
-      "docs/api/qiskit-ibm-provider/index.md",
-    ],
+    QISKIT_GLOBS_TO_LOAD,
     args.historicalApis && !args.skipBrokenHistorical,
     args.qiskitReleaseNotes,
   );
@@ -179,6 +189,7 @@ async function determineCurrentDocsFileBatch(
       .join(".");
 
     toCheck.push(`docs/api/qiskit/release-notes/${currentVersion}.md`);
+    toLoad.push("docs/api/qiskit/release-notes/0.{45,46}.md");
   }
 
   let description: string;
@@ -196,22 +207,21 @@ async function determineCurrentDocsFileBatch(
 }
 
 async function determineDevFileBatches(): Promise<FileBatch[]> {
-  const devProjects = [];
-  for (const project of [
-    "qiskit",
-    "qiskit-ibm-provider",
-    "qiskit-ibm-runtime",
-  ]) {
-    if (await pathExists(`docs/api/${project}/dev`)) {
-      devProjects.push(project);
-    }
-  }
+  const projects: [string, string[]][] = [
+    ["qiskit", QISKIT_GLOBS_TO_LOAD],
+    ["qiskit-ibm-provider", PROVIDER_GLOBS_TO_LOAD],
+    ["qiskit-ibm-runtime", RUNTIME_GLOBS_TO_LOAD],
+  ];
 
   const result = [];
-  for (const project of devProjects) {
+  for (const [project, toLoad] of projects) {
+    if (!(await pathExists(`docs/api/${project}/dev`))) {
+      continue;
+    }
+
     const fileBatch = await FileBatch.fromGlobs(
       [`docs/api/${project}/dev/*`, `public/api/${project}/dev/objects.inv`],
-      [],
+      toLoad,
       `${project} dev docs`,
     );
     result.push(fileBatch);

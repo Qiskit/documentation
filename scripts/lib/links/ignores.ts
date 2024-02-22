@@ -44,6 +44,8 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
 
 const ALWAYS_IGNORED_URLS__SHOULD_FIX = [
   "circuit#qiskit.circuit.CASE_DEFAULT",
+  // Bad anchor in qiskit_ibm_runtime.options.Options.md for 0.14 - 0.16.
+  "/run/max-execution-time#maximum-execution-time",
   ..._QISKIT_UTILS,
 ];
 
