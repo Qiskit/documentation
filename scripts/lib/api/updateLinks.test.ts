@@ -191,6 +191,7 @@ describe("relativizeLink()", () => {
     "https://ibm.com",
     "https://qiskit.org/ecosystem/nature",
     "https://qiskit.org/documentation/index.html",
+    "https://docs.quantum.ibm.com",  // Note there is no `/` at the end.
   ])("ignore irrelevant links", (input) => {
     expect(relativizeLink({ url: input })).toBeUndefined();
   });
