@@ -13,16 +13,7 @@
 import { join } from "path/posix";
 
 import { findLegacyReleaseNotes } from "./releaseNotes";
-import { removePrefix, removeSuffix } from "../stringUtils";
 import { getRoot } from "../fs";
-
-/**
- * Simple interface for scripts/command/updateApiDocs.ts
- */
-export interface Link {
-  url: string; // Where the link goes
-  text?: string; // What the user sees
-}
 
 export interface ReleaseNoteEntry {
   title: string;
@@ -39,7 +30,6 @@ export class Pkg {
   readonly title: string;
   readonly githubSlug: string;
   readonly hasSeparateReleaseNotes: boolean;
-  readonly transformLink?: (link: Link) => Link | undefined;
   readonly version: string;
   readonly versionWithoutPatch: string;
   readonly type: PackageType;
@@ -52,7 +42,6 @@ export class Pkg {
     title: string;
     githubSlug: string;
     hasSeparateReleaseNotes: boolean;
-    transformLink?: (link: Link) => Link | undefined;
     version: string;
     versionWithoutPatch: string;
     type: PackageType;
@@ -62,7 +51,6 @@ export class Pkg {
     this.title = kwargs.title;
     this.githubSlug = kwargs.githubSlug;
     this.hasSeparateReleaseNotes = kwargs.hasSeparateReleaseNotes;
-    this.transformLink = kwargs.transformLink;
     this.version = kwargs.version;
     this.versionWithoutPatch = kwargs.versionWithoutPatch;
     this.type = kwargs.type;
@@ -100,7 +88,6 @@ export class Pkg {
         title: "Qiskit Runtime IBM Client",
         name: "qiskit-ibm-runtime",
         githubSlug: "qiskit/qiskit-ibm-runtime",
-        transformLink,
         hasSeparateReleaseNotes: false,
         releaseNoteEntries: [],
       });
@@ -112,7 +99,6 @@ export class Pkg {
         title: "Qiskit IBM Provider",
         name: "qiskit-ibm-provider",
         githubSlug: "qiskit/qiskit-ibm-provider",
-        transformLink,
         hasSeparateReleaseNotes: false,
         releaseNoteEntries: [],
       });
@@ -126,7 +112,6 @@ export class Pkg {
     title?: string;
     githubSlug?: string;
     hasSeparateReleaseNotes?: boolean;
-    transformLink?: (link: Link) => Link | undefined;
     version?: string;
     versionWithoutPatch?: string;
     type?: PackageType;
@@ -137,7 +122,6 @@ export class Pkg {
       title: kwargs.title ?? "My Quantum Project",
       githubSlug: kwargs.githubSlug ?? "qiskit/my-quantum-project",
       hasSeparateReleaseNotes: kwargs.hasSeparateReleaseNotes ?? false,
-      transformLink: kwargs.transformLink,
       version: kwargs.version ?? "0.1.0",
       versionWithoutPatch: kwargs.versionWithoutPatch ?? "0.1",
       type: kwargs.type ?? "latest",
@@ -381,24 +365,4 @@ function determineHistoricalQiskitGithubUrl(
   }
 
   return `https://github.com/${slug}/tree/stable/${version}/${fileName}.py`;
-}
-
-function transformLink(link: Link): Link | undefined {
-  const updateText = link.url === link.text;
-  const prefixes = [
-    "https://qiskit.org/documentation/apidoc/",
-    "https://qiskit.org/documentation/stubs/",
-  ];
-  const prefix = prefixes.find((prefix) => link.url.startsWith(prefix));
-  if (!prefix) {
-    return;
-  }
-  let [url, anchor] = link.url.split("#");
-  url = removePrefix(url, prefix);
-  url = removeSuffix(url, ".html");
-  if (anchor && anchor !== url) {
-    url = `${url}#${anchor}`;
-  }
-  const newText = updateText ? url : undefined;
-  return { url: `/api/qiskit/${url}`, text: newText };
 }

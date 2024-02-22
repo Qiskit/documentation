@@ -207,7 +207,7 @@ async function convertHtmlToMarkdown(
   results = await mergeClassMembers(results);
   flattenFolders(results);
   specialCaseResults(results);
-  await updateLinks(results, maybeObjectsInv, pkg.transformLink);
+  await updateLinks(results, maybeObjectsInv);
   await dedupeHtmlIdsFromResults(results);
   addFrontMatter(results, pkg);
 
