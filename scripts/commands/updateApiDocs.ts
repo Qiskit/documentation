@@ -39,7 +39,7 @@ import {
   addNewReleaseNotes,
   generateReleaseNotesIndex,
   updateHistoricalTocFiles,
-  writeSeparateReleaseNotes,
+  writeReleaseNoteForVersion,
 } from "../lib/api/releaseNotes";
 
 interface Arguments {
@@ -243,7 +243,7 @@ async function convertHtmlToMarkdown(
           : `${baseUrl}/${link}`,
       );
 
-      await writeSeparateReleaseNotes(pkg, result.markdown);
+      await writeReleaseNoteForVersion(pkg, result.markdown);
       continue;
     }
 

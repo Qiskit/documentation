@@ -145,10 +145,10 @@ function addNewReleaseNoteToc(releaseNotesNode: any, newVersion: string) {
 }
 
 /**
- * Updates the release notes folder by adding the notes to their corresponding version
- * file.
+ * Creates the release note file for the minor version found in `pkg`.If the file
+ * already exists, it will keep the initial header and overwrite the rest of the content.
  */
-export async function writeSeparateReleaseNotes(
+export async function writeReleaseNoteForVersion(
   pkg: Pkg,
   releaseNoteMarkdown: string,
 ): Promise<void> {
