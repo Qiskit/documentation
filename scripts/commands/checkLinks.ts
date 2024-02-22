@@ -218,8 +218,8 @@ async function determineDevFileBatches(): Promise<FileBatch[]> {
 
 async function determineHistoricalFileBatches(
   projectName: string,
-  extraFilesToLoad: string[],
-  checkHistoricalApiDocs: boolean = true,
+  extraGlobsToLoad: string[],
+  checkHistoricalApiDocs: boolean,
   checkSeparateReleaseNotes: boolean = false,
 ): Promise<FileBatch[]> {
   if (!checkHistoricalApiDocs && !checkSeparateReleaseNotes) {
@@ -233,13 +233,15 @@ async function determineHistoricalFileBatches(
   const result = [];
   for (const folder of historicalFolders) {
     const toCheck: string[] = [];
-    const toLoad = [...extraFilesToLoad];
+    const toLoad = [...extraGlobsToLoad];
 
     if (checkHistoricalApiDocs) {
       toCheck.push(
         `docs/api/${projectName}/${folder.name}/*`,
         `public/api/${projectName}/${folder.name}/objects.inv`,
       );
+    } else {
+      toLoad.push(`docs/api/${projectName}/${folder.name}/*`);
     }
 
     if (checkSeparateReleaseNotes) {
@@ -248,10 +250,23 @@ async function determineHistoricalFileBatches(
       // Some legacy release notes don't have docs, and their links point to the closest
       // next version present in the repo. QISKIT_MISSING_VERSION_MAPPING contains what
       // versions point to which other version
-      const versionsToLoad = QISKIT_MISSING_VERSION_MAPPING.get(folder.name);
-      versionsToLoad?.forEach((version) => {
+      const extraVersionsToCheck = QISKIT_MISSING_VERSION_MAPPING.get(
+        folder.name,
+      );
+      extraVersionsToCheck?.forEach((version) => {
         toCheck.push(`docs/api/${projectName}/release-notes/${version}.md`);
       });
+
+      // Temporary - remove after https://github.com/Qiskit/documentation/pull/865 is merged
+      toLoad.push(
+        "docs/api/qiskit/*.{ipynb,md,mdx}",
+        "docs/api/qiskit/0.46/*.md",
+        "docs/api/qiskit/0.44/qiskit.extensions.{Hamiltonian,Unitary}Gate.md",
+        "docs/api/qiskit/0.45/qiskit.quantum_info.{OneQubitEuler,TwoQubitBasis,XX}Decomposer.md",
+        "docs/api/qiskit/0.45/qiskit.transpiler.synthesis.aqc.AQC.md",
+        "docs/api/qiskit/0.45/{tools,quantum_info,synthesis_aqc}.md",
+        "docs/api/qiskit/release-notes/index.md",
+      );
     }
 
     const fileBatch = await FileBatch.fromGlobs(
