@@ -22,7 +22,7 @@ in_page_toc_max_heading_level: 2
 
 *   Python 3.12 is now supported.
 
-*   Sessions will now be started with a new `/sessions` endpoint that allows for different execution modes. Batch mode is now supported through `Batch`, and [`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.Session") will work the same as way as before. Please see [https://docs.quantum.ibm.com/run/sessions](https://docs.quantum.ibm.com/run/sessions) for more information.
+*   Sessions will now be started with a new `/sessions` endpoint that allows for different execution modes. Batch mode is now supported through `Batch`, and [`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.Session") will work the same as way as before. Please see [run/sessions](/run/sessions) for more information.
 
     Note that `Session` and `Batch` created from `qiskit-ibm-runtime` prior to this release will no longer be supported after March 31, 2024. Please update your `qiskit-ibm-runtime` version as soon as possible before this date.
 
@@ -34,7 +34,7 @@ in_page_toc_max_heading_level: 2
 
 ### Deprecation Notes
 
-*   Circuits that do not match the target hardware definition will no longer be supported after March 1, 2024. See the transpilation documentation ([https://docs.quantum.ibm.com/transpile](https://docs.quantum.ibm.com/transpile)) for instructions to transform circuits and the primitive examples ([https://docs.quantum.ibm.com/run/primitives-examples](https://docs.quantum.ibm.com/run/primitives-examples)) to see this coupled with operator transformations.
+*   Circuits that do not match the target hardware definition will no longer be supported after March 1, 2024. See the transpilation documentation ([transpile](/transpile)) for instructions to transform circuits and the primitive examples ([run/primitives-examples](/run/primitives-examples)) to see this coupled with operator transformations.
 
 <span id="release-notes-0-20-0-bug-fixes" />
 
@@ -369,7 +369,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 ### Upgrade Notes
 
-*   Job error messages now include the error code. Error codes can be found in [https://docs.quantum-computing.ibm.com/errors](https://docs.quantum-computing.ibm.com/errors).
+*   Job error messages now include the error code. Error codes can be found in [errors](/errors).
 
 <span id="release-notes-0-12-1" />
 
