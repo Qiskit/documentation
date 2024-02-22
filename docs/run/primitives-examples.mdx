@@ -9,7 +9,7 @@ description: Practical examples of primitive usage
 The examples in this section illustrate some common ways to use primitives. Before running these examples, follow the instructions in [Install and set up.](../start/install)
 
 <Admonition type="caution" title="Important">
-To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](../transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations; consequently, transpilation options referring to those tasks will no longer have any effect. Users may still request that the Primitives do no optimization of input circuits via `options.transpilation.skip_transpilation`.
+To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](../transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations; consequently, transpilation options referring to those tasks will no longer have any effect. Users can still request that the primitives do no optimization of input circuits by specifying `options.transpilation.skip_transpilation`.
 </Admonition>
 
 <Admonition type="note">
@@ -41,7 +41,7 @@ mat = np.real(random_hermitian(n_qubits, seed=1234))
 circuit = IQP(mat)
 observable = SparsePauliOp("Z" * n_qubits)
 
-pm = generate_preset_pass_manager(backend=backend)
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
 isa_observable = observable.apply_layout(isa_circuit.layout)
 
@@ -81,7 +81,7 @@ observables = [
     SparsePauliOp("Z" * n_qubits),
 ]
 
-pm = generate_preset_pass_manager(backend=backend)
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuits = pm.run(circuits)
 isa_observables = [ob.apply_layout(isa_circuits[0].layout) for ob in observables]
 
@@ -115,7 +115,7 @@ parameter_values = [
 ]
 observable = SparsePauliOp("Z" * 127)
 
-pm = generate_preset_pass_manager(backend=backend)
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
 isa_observable = observable.apply_layout(isa_circuit.layout)
 
@@ -146,7 +146,7 @@ another_circuit = IQP(mat)
 observable = SparsePauliOp("X" * n_qubits)
 another_observable = SparsePauliOp("Y" * n_qubits)
 
-pm = generate_preset_pass_manager(backend=backend)
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
 another_isa_circuit = pm.run(another_circuit)
 isa_observable = observable.apply_layout(isa_circuit.layout)
@@ -199,7 +199,7 @@ mat = np.real(random_hermitian(n_qubits, seed=1234))
 circuit = IQP(mat)
 circuit.measure_all()
 
-pm = generate_preset_pass_manager(backend=backend)
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
 
 sampler = Sampler(backend)
@@ -233,7 +233,7 @@ circuits = [IQP(mat) for mat in mats]
 for circuit in circuits:
     circuit.measure_all()
 
-pm = generate_preset_pass_manager(backend=backend)
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuits = pm.run(circuits)
 
 sampler = Sampler(backend) 
@@ -260,7 +260,7 @@ backend = service.get_backend("ibm_brisbane")
 circuit = RealAmplitudes(num_qubits=127, reps=2)
 circuit.measure_all()
 
-pm = generate_preset_pass_manager(backend=backend)
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
 
 # Define three sets of parameters for the circuit
@@ -297,7 +297,7 @@ mat = np.real(random_hermitian(n_qubits, seed=rng))
 another_circuit = IQP(mat)
 another_circuit.measure_all()
 
-pm = generate_preset_pass_manager(backend=backend)
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
 another_isa_circuit = pm.run(another_circuit)
 

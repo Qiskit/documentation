@@ -70,34 +70,6 @@ Initializes the Estimator primitive.
 
 ## Attributes
 
-<span id="qiskit_ibm_runtime.Estimator.circuits" />
-
-### circuits
-
-Quantum circuits that represents quantum states.
-
-**Return type**
-
-`tuple`\[`QuantumCircuit`, `...`]
-
-**Returns**
-
-The quantum circuits.
-
-<span id="qiskit_ibm_runtime.Estimator.observables" />
-
-### observables
-
-Observables to be estimated.
-
-**Return type**
-
-`tuple`\[`SparsePauliOp`, `...`]
-
-**Returns**
-
-The observables.
-
 <span id="qiskit_ibm_runtime.Estimator.options" />
 
 ### options
@@ -111,20 +83,6 @@ Return options values for the sampler.
 **Returns**
 
 options
-
-<span id="qiskit_ibm_runtime.Estimator.parameters" />
-
-### parameters
-
-Parameters of the quantum circuits.
-
-**Return type**
-
-`tuple`\[`ParameterView`, `...`]
-
-**Returns**
-
-Parameters, where `parameters[i][j]` is the j-th parameter of the i-th circuit.
 
 <span id="qiskit_ibm_runtime.Estimator.session" />
 

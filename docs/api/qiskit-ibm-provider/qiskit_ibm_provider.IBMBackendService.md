@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_provider.IBMBackendService
 
 <span id="qiskit_ibm_provider.IBMBackendService" />
 
-`IBMBackendService(provider, hgp)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.9/qiskit_ibm_provider/ibm_backend_service.py "view source code")
+`IBMBackendService(provider, hgp)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/ibm_backend_service.py "view source code")
 
 Backend namespace for an IBM Quantum account.
 
@@ -84,7 +84,7 @@ Return all backends accessible via this account, subject to optional filtering.
     IBMProvider.backends(open_pulse=True)
     ```
 
-    For the full list of backend attributes, see the IBMBackend class documentation \<[providers\_models](/api/qiskit/providers_models)>
+    For the full list of backend attributes, see the IBMBackend class documentation \<[https://docs.quantum.ibm.com/api/qiskit/providers\_models](https://docs.quantum.ibm.com/api/qiskit/providers_models)>
 
 **Return type**
 
@@ -114,7 +114,7 @@ Retrieve jobs that match the given filters and paginate the results if desired. 
 *   **limit** (`Optional`\[`int`]) – Number of jobs to retrieve. `None` means no limit. Note that the number of sub-jobs within a composite job count towards the limit.
 *   **skip** (`int`) – Starting index for the job retrieval.
 *   **backend\_name** (`Optional`\[`str`]) – Name of the backend to retrieve jobs from.
-*   **status** (`Union`\[`Literal`\[‘pending’, ‘completed’], `List`\[`Union`\[[`JobStatus`](https://docs.quantum.ibm.com/api/qiskit/qiskit.providers.JobStatus "(in Qiskit v0.46)"), `str`]], [`JobStatus`](https://docs.quantum.ibm.com/api/qiskit/qiskit.providers.JobStatus "(in Qiskit v0.46)"), `str`, `None`]) – Filter jobs with either “pending” or “completed” status. You can also specify by
+*   **status** (`Union`\[`Literal`\[‘pending’, ‘completed’], `List`\[`Union`\[[`JobStatus`](https://docs.quantum.ibm.com/api/qiskit/qiskit.providers.JobStatus "(in Qiskit v1.0)"), `str`]], [`JobStatus`](https://docs.quantum.ibm.com/api/qiskit/qiskit.providers.JobStatus "(in Qiskit v1.0)"), `str`, `None`]) – Filter jobs with either “pending” or “completed” status. You can also specify by
 *   **example** (*exact status. For*) – or status=\[“RUNNING”, “ERROR”].
 *   **status="RUNNING"** (*status=JobStatus.RUNNING or*) – or status=\[“RUNNING”, “ERROR”].
 *   **start\_datetime** (`Optional`\[`datetime`]) – Filter by the given start date, in local time. This is used to find jobs whose creation dates are after (greater than or equal to) this local date/time.

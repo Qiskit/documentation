@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeJakartaV2
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeJakartaV2" />
 
-`FakeJakartaV2`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.19/qiskit_ibm_runtime/fake_provider/backends/jakarta/fake_jakarta.py "view source code")
+`FakeJakartaV2`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/jakarta/fake_jakarta.py "view source code")
 
 A fake 7 qubit V2 backend.
 
