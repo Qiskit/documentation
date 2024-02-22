@@ -140,8 +140,10 @@ export class Pkg {
     return path;
   }
 
-  ciArtifactFolder(): string {
-    return `${getRoot()}/.out/python/sources/${this.name}/${this.version}`;
+  sphinxArtifactFolder(): string {
+    return `${getRoot()}/.sphinx-artifacts/${this.name}/${
+      this.versionWithoutPatch
+    }`;
   }
 
   isHistorical(): boolean {
