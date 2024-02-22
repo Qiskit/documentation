@@ -23,6 +23,7 @@ import {
   removeDownloadSourceCode,
   removePermalinks,
   removeColonSpans,
+  removeMatplotlibFigCaptions,
   replaceViewcodeLinksWithGitHub,
   convertRubricsToHeaders,
   prepareGitHubLink,
@@ -189,6 +190,96 @@ test("removeColonSpans()", () => {
   );
   removeColonSpans(doc.$main);
   doc.expectHtml(`<dt class="field-odd">Parameters</dt>`);
+});
+
+describe("removeMatplotlibFigCaptions()", () => {
+  test("removes <figcaption>", () => {
+    const doc = Doc.load(`
+    <figure class="align-default" id="id1">
+      <img alt="../_images/fake_provider-1_00.png" class="plot-directive" src="../_images/fake_provider-1_00.png" />
+      <figcaption>
+        <p>
+          <span class="caption-number">Fig. 1 </span>
+          <span class="caption-text">
+              (
+              <a class="reference download internal" download="" href="../_downloads/a640acbc08577560dc62a3c02c6ca2ac/fake_provider-1_00.png">
+                  <code class="xref download docutils literal notranslate"><span class="pre">png</span></code>
+              </a>
+              ,
+              <a class="reference download internal" download="" href="../_downloads/98e08086a49350bea51e64248343d7ac/fake_provider-1_00.hires.png">
+                  <code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code>
+              </a>
+              ,
+              <a class="reference download internal" download="" href="../_downloads/684bf35d507376624fcead10d9aedaed/fake_provider-1_00.pdf">
+                  <code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code>
+              </a>
+              )
+          </span>
+          <a class="headerlink" href="#id1" title="Link to this image">¶</a>
+        </p>
+      </figcaption>
+    </figure>
+  `);
+    removeMatplotlibFigCaptions(doc.$main);
+    doc.expectHtml(`
+    <figure class="align-default" id="id1">
+      <img alt="../_images/fake_provider-1_00.png" class="plot-directive" src="../_images/fake_provider-1_00.png">
+      
+    </figure>
+  `);
+  });
+
+  test("removes <div>", () => {
+    const doc = Doc.load(`
+    <div class="figure align-default" id="id1">
+      <img alt="../_images/qiskit-transpiler-passes-DynamicalDecoupling-1_00.png" class="plot-directive" src="../_images/qiskit-transpiler-passes-DynamicalDecoupling-1_00.png" />
+      <p class="caption">
+        <span class="caption-number">Fig. 23 </span>
+        <span class="caption-text">
+            (
+            <a class="reference download internal" download="" href="../_downloads/dc45751fb822be8815f217a267bae356/qiskit-transpiler-passes-DynamicalDecoupling-1_00.png">
+                <code class="xref download docutils literal notranslate"><span class="pre">png</span></code>
+            </a>
+            ,
+            <a class="reference download internal" download="" href="../_downloads/16422e7545ee14003706693459de64e2/qiskit-transpiler-passes-DynamicalDecoupling-1_00.hires.png">
+                <code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code>
+            </a>
+            ,
+            <a class="reference download internal" download="" href="../_downloads/e872644fa4d73ec0d7933d354c8b5059/qiskit-transpiler-passes-DynamicalDecoupling-1_00.pdf">
+                <code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code>
+            </a>
+            )
+        </span>
+        <a class="headerlink" href="#id1" title="Permalink to this image">¶</a>
+      </p>
+    </div>
+   `);
+    removeMatplotlibFigCaptions(doc.$main);
+    doc.expectHtml(`
+     <div class="figure align-default" id="id1">
+      <img alt="../_images/qiskit-transpiler-passes-DynamicalDecoupling-1_00.png" class="plot-directive" src="../_images/qiskit-transpiler-passes-DynamicalDecoupling-1_00.png">
+      
+    </div>
+  `);
+  });
+
+  test("ignores non-matches", () => {
+    const html = `
+    <figure class="align-default" id="id1">
+      <img alt="../_images/fake_provider-1_00.png" class="plot-directive" src="../_images/fake_provider-1_00.png">
+      <figcaption><p>My caption</p>
+      </figcaption>
+    </figure>
+
+    <div class="figure align-default" id="id1">
+      <img alt="../_images/qiskit-transpiler-passes-DynamicalDecoupling-1_00.png" class="plot-directive" src="../_images/qiskit-transpiler-passes-DynamicalDecoupling-1_00.png">
+      <p>My caption</p>
+    </div>
+  `;
+    const doc = Doc.load(html);
+    removeMatplotlibFigCaptions(doc.$main);
+    doc.expectHtml(html);
+  });
 });
 
 test("addLanguageClassToCodeBlocks()", () => {

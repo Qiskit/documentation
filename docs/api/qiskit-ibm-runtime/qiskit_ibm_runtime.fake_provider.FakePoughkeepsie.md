@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakePoughkeepsie
 
 <span id="qiskit_ibm_runtime.fake_provider.FakePoughkeepsie" />
 
-`FakePoughkeepsie`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.19/qiskit_ibm_runtime/fake_provider/backends/poughkeepsie/fake_poughkeepsie.py "view source code")
+`FakePoughkeepsie`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/poughkeepsie/fake_poughkeepsie.py "view source code")
 
 A fake Poughkeepsie backend.
 

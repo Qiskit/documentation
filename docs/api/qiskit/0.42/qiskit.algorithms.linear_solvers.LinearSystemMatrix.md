@@ -152,11 +152,7 @@ circuit.draw('mpl')
 
 ![../\_images/qiskit-algorithms-linear\_solvers-LinearSystemMatrix-assign\_parameters-1\_00.png](/images/api/qiskit/0.42/qiskit-algorithms-linear_solvers-LinearSystemMatrix-assign_parameters-1_00.png)
 
-Fig. 25 ([`png`](_downloads/cd550726533aad6278ef4e40ce940e1c/qiskit-algorithms-linear_solvers-LinearSystemMatrix-assign_parameters-1_00.png), [`hires.png`](_downloads/39b69d087a394429049b9a9d69990951/qiskit-algorithms-linear_solvers-LinearSystemMatrix-assign_parameters-1_00.hires.png), [`pdf`](_downloads/258369a9f161fbcfa34e6213fdfdd896/qiskit-algorithms-linear_solvers-LinearSystemMatrix-assign_parameters-1_00.pdf))[¶](#id1 "Permalink to this image")
-
 ![../\_images/qiskit-algorithms-linear\_solvers-LinearSystemMatrix-assign\_parameters-1\_01.png](/images/api/qiskit/0.42/qiskit-algorithms-linear_solvers-LinearSystemMatrix-assign_parameters-1_01.png)
-
-Fig. 26 ([`png`](_downloads/4a30002841eb93a693be5938bfb0b0e5/qiskit-algorithms-linear_solvers-LinearSystemMatrix-assign_parameters-1_01.png), [`hires.png`](_downloads/f923a52dee57aba3d011bdc5c2f3c9e7/qiskit-algorithms-linear_solvers-LinearSystemMatrix-assign_parameters-1_01.hires.png), [`pdf`](_downloads/5167b8d610c71df8ab38092760ef7967/qiskit-algorithms-linear_solvers-LinearSystemMatrix-assign_parameters-1_01.pdf))[¶](#id2 "Permalink to this image")
 
 Bind the values out-of-place by list and get a copy of the original circuit.
 
@@ -176,11 +172,7 @@ circuit.draw('mpl')
 
 ![../\_images/qiskit-algorithms-linear\_solvers-LinearSystemMatrix-assign\_parameters-2\_00.png](/images/api/qiskit/0.42/qiskit-algorithms-linear_solvers-LinearSystemMatrix-assign_parameters-2_00.png)
 
-Fig. 27 ([`png`](_downloads/d82ebfbd464692524a3cec301e3448a0/qiskit-algorithms-linear_solvers-LinearSystemMatrix-assign_parameters-2_00.png), [`hires.png`](_downloads/84426e962194124c31fad6d986767537/qiskit-algorithms-linear_solvers-LinearSystemMatrix-assign_parameters-2_00.hires.png), [`pdf`](_downloads/d63d9bf3a1ada6cdd5606b3263cb0c70/qiskit-algorithms-linear_solvers-LinearSystemMatrix-assign_parameters-2_00.pdf))[¶](#id3 "Permalink to this image")
-
 ![../\_images/qiskit-algorithms-linear\_solvers-LinearSystemMatrix-assign\_parameters-2\_01.png](/images/api/qiskit/0.42/qiskit-algorithms-linear_solvers-LinearSystemMatrix-assign_parameters-2_01.png)
-
-Fig. 28 ([`png`](_downloads/1ab0454b7612a39b23db77ed3f413aba/qiskit-algorithms-linear_solvers-LinearSystemMatrix-assign_parameters-2_01.png), [`hires.png`](_downloads/535f1b74876e49d677d52429ea77cdd5/qiskit-algorithms-linear_solvers-LinearSystemMatrix-assign_parameters-2_01.hires.png), [`pdf`](_downloads/dcf041f48c758b3f5cad8855392316ef/qiskit-algorithms-linear_solvers-LinearSystemMatrix-assign_parameters-2_01.pdf))[¶](#id4 "Permalink to this image")
 
 ### barrier
 

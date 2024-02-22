@@ -50,6 +50,7 @@ export function processHtml(options: {
   removeHtmlExtensionsInRelativeLinks($, $main);
   removePermalinks($main);
   removeDownloadSourceCode($main);
+  removeMatplotlibFigCaptions($main);
   handleSphinxDesignCards($, $main);
   addLanguageClassToCodeBlocks($, $main);
   replaceViewcodeLinksWithGitHub($, $main, determineGithubUrl);
@@ -124,6 +125,13 @@ export function removePermalinks($main: Cheerio<any>): void {
 
 export function removeDownloadSourceCode($main: Cheerio<any>): void {
   $main.find("p > a.reference.download.internal").closest("p").remove();
+}
+
+export function removeMatplotlibFigCaptions($main: Cheerio<any>): void {
+  $main
+    .find("figcaption, div.figure p.caption")
+    .has("span.caption-text a.download.internal.reference")
+    .remove();
 }
 
 /**
