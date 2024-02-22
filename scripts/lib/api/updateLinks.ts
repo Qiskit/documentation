@@ -103,6 +103,8 @@ export function relativizeLink(link: Link): Link | undefined {
   const priorPrefixToNewPrefix = new Map([
     ["https://qiskit.org/documentation/apidoc/", "/api/qiskit"],
     ["https://qiskit.org/documentation/stubs/", "/api/qiskit"],
+    ["https://docs.quantum.ibm.com/", ""],
+    ["https://docs.quantum-computing.ibm.com/", ""],
   ]);
   const priorPrefix = Array.from(priorPrefixToNewPrefix.keys()).find((prefix) =>
     link.url.startsWith(prefix),
