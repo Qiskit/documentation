@@ -10,26 +10,31 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
+// Some Qiskit release notes don't have docs in the repo, and we need to change
+// their links to point to the next closest version available. This map stores
+// the next closest version with docs for some qiskit legacy versions.
 export const QISKIT_MISSING_VERSION_MAPPING = new Map([
-  ["0.34", "0.35"],
-  ["0.23", "0.24"],
-  ["0.22", "0.24"],
-  ["0.21", "0.24"],
-  ["0.20", "0.24"],
-  ["0.18", "0.19"],
-  ["0.17", "0.19"],
-  ["0.16", "0.19"],
-  ["0.15", "0.19"],
-  ["0.14", "0.19"],
-  ["0.13", "0.19"],
-  ["0.12", "0.19"],
-  ["0.11", "0.19"],
-  ["0.10", "0.19"],
-  ["0.9", "0.19"],
-  ["0.8", "0.19"],
-  ["0.7", "0.19"],
-  ["0.6", "0.19"],
-  ["0.5", "0.19"],
+  [
+    "0.19",
+    [
+      "0.5",
+      "0.6",
+      "0.7",
+      "0.8",
+      "0.9",
+      "0.10",
+      "0.11",
+      "0.12",
+      "0.13",
+      "0.14",
+      "0.15",
+      "0.16",
+      "0.17",
+      "0.18",
+    ],
+  ],
+  ["0.24", ["0.20", "0.21", "0.22", "0.23"]],
+  ["0.35", ["0.34"]],
 ]);
 
 const QISKIT_METAPACKAGE_TO_TERRA = new Map([

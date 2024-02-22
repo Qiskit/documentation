@@ -10,7 +10,7 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { readdir } from "fs/promises";
+import { readFile, readdir } from "fs/promises";
 
 import { globby } from "globby";
 import yargs from "yargs/yargs";
@@ -112,52 +112,25 @@ async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
     result.push(...devBatches);
   }
 
-  if (args.historicalApis) {
-    const provider = await determineHistoricalFileBatches(
-      "qiskit-ibm-provider",
-      ["docs/api/qiskit/*.md"],
-    );
-    const runtime = await determineHistoricalFileBatches("qiskit-ibm-runtime", [
-      "docs/api/qiskit/providers_models.md",
-    ]);
-    let qiskit: FileBatch[] = [];
-    if (!args.skipBrokenHistorical) {
-      qiskit = await determineHistoricalFileBatches("qiskit");
-    }
-    result.push(...provider, ...runtime, ...qiskit);
-  }
-
-  if (args.qiskitReleaseNotes) {
-    result.push(...(await determineQiskitReleaseNotes()));
-  }
-
-  return result;
-}
-
-async function determineQiskitReleaseNotes(): Promise<FileBatch[]> {
-  const result: FileBatch[] = [];
-
-  const allVersions = (
-    await globby("docs/api/qiskit/release-notes/[!index]*")
-  ).map((releaseNotesPath) =>
-    releaseNotesPath.split("/").pop()!.split(".").slice(0, -1).join("."),
+  const provider = await determineHistoricalFileBatches(
+    "qiskit-ibm-provider",
+    ["docs/api/qiskit/*.md"],
+    args.historicalApis,
+  );
+  const runtime = await determineHistoricalFileBatches(
+    "qiskit-ibm-runtime",
+    ["docs/api/qiskit/providers_models.md"],
+    args.historicalApis,
   );
 
-  const versionsSorted = allVersions.sort((a, b) =>
-    b.localeCompare(a, undefined, { numeric: true, sensitivity: "base" }),
+  const qiskit = await determineHistoricalFileBatches(
+    "qiskit",
+    [],
+    args.historicalApis && !args.skipBrokenHistorical,
+    args.qiskitReleaseNotes,
   );
 
-  for (const releaseNotesVersion of versionsSorted) {
-    const docsVersionToLoad =
-      QISKIT_MISSING_VERSION_MAPPING.get(releaseNotesVersion);
-
-    const fileBatch = await FileBatch.fromGlobs(
-      [`docs/api/qiskit/release-notes/${releaseNotesVersion}.md`],
-      [`docs/api/qiskit/${docsVersionToLoad ?? releaseNotesVersion}/*`],
-      `Qiskit ${releaseNotesVersion} release notes`,
-    );
-    result.push(fileBatch);
-  }
+  result.push(...provider, ...runtime, ...qiskit);
 
   return result;
 }
@@ -194,9 +167,27 @@ async function determineCurrentDocsFileBatch(
     toLoad.push("docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/*");
   }
 
-  const description = args.currentApis
-    ? "non-API docs and current API docs"
-    : "non-API docs";
+  if (args.qiskitReleaseNotes) {
+    const currentVersion = JSON.parse(
+      await readFile(`docs/api/qiskit/_package.json`, "utf-8"),
+    )
+      .version.split(".")
+      .slice(0, -1)
+      .join(".");
+
+    toCheck.push(`docs/api/qiskit/release-notes/${currentVersion}.md`);
+  }
+
+  let description: string;
+  if (args.currentApis && args.qiskitReleaseNotes) {
+    description = "non-API docs, current API docs, and Qiskit release notes";
+  } else if (args.currentApis) {
+    description = "non-API docs and current API docs";
+  } else if (args.qiskitReleaseNotes) {
+    description = "non-API docs and Qiskit release notes";
+  } else {
+    description = "non-API docs";
+  }
 
   return FileBatch.fromGlobs(toCheck, toLoad, description);
 }
@@ -227,19 +218,44 @@ async function determineDevFileBatches(): Promise<FileBatch[]> {
 
 async function determineHistoricalFileBatches(
   projectName: string,
-  toLoad: string[] = [],
+  extraFilesToLoad: string[],
+  checkHistoricalApiDocs: boolean = true,
+  checkSeparateReleaseNotes: boolean = false,
 ): Promise<FileBatch[]> {
+  if (!checkHistoricalApiDocs && !checkSeparateReleaseNotes) {
+    return [];
+  }
+
   const historicalFolders = (
     await readdir(`docs/api/${projectName}`, { withFileTypes: true })
   ).filter((file) => file.isDirectory() && file.name.match(/[0-9].*/));
 
   const result = [];
   for (const folder of historicalFolders) {
-    const fileBatch = await FileBatch.fromGlobs(
-      [
+    const toCheck: string[] = [];
+    const toLoad = [...extraFilesToLoad];
+
+    if (checkHistoricalApiDocs) {
+      toCheck.push(
         `docs/api/${projectName}/${folder.name}/*`,
         `public/api/${projectName}/${folder.name}/objects.inv`,
-      ],
+      );
+    }
+
+    if (checkSeparateReleaseNotes) {
+      toCheck.push(`docs/api/${projectName}/release-notes/${folder.name}.md`);
+
+      // Some legacy release notes don't have docs, and their links point to the closest
+      // next version present in the repo. QISKIT_MISSING_VERSION_MAPPING contains what
+      // versions point to which other version
+      const versionsToLoad = QISKIT_MISSING_VERSION_MAPPING.get(folder.name);
+      versionsToLoad?.forEach((version) => {
+        toCheck.push(`docs/api/${projectName}/release-notes/${version}.md`);
+      });
+    }
+
+    const fileBatch = await FileBatch.fromGlobs(
+      toCheck,
       toLoad,
       `${projectName} v${folder.name}`,
     );
