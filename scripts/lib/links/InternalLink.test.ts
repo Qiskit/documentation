@@ -36,45 +36,45 @@ describe("Test the constructor of InternalLink", () => {
 });
 
 describe("Validate links", () => {
-  test("existing with absolute path", async () => {
+  test("existing with absolute path", () => {
     let testLink = new InternalLink("/testpath", ["/testorigin.mdx"]);
     let testFile = new File("docs/testpath.mdx", []);
-    const results = await testLink.check([testFile]);
+    const results = testLink.check([testFile]);
     expect(results).toBeUndefined();
   });
 
-  test("non-existing with absolute path", async () => {
+  test("non-existing with absolute path", () => {
     let testLink = new InternalLink("/test-alternative-path", [
       "/testorigin.mdx",
     ]);
     let testFile = new File("docs/testpath.mdx", []);
-    const results = await testLink.check([testFile]);
+    const results = testLink.check([testFile]);
     expect(results).toEqual(
       "❌ Could not find link '/test-alternative-path'. Appears in:\n    /testorigin.mdx",
     );
   });
 
-  test("existing with relative path", async () => {
+  test("existing with relative path", () => {
     let testLink = new InternalLink("../testpath", [
       "docs/test/testorigin.mdx",
     ]);
     let testFile = new File("docs/testpath.mdx", []);
-    const results = await testLink.check([testFile]);
+    const results = testLink.check([testFile]);
     expect(results).toBeUndefined();
   });
 
-  test("non-existing with relative path", async () => {
+  test("non-existing with relative path", () => {
     let testLink = new InternalLink("../testpath", [
       "docs/test1/test2/testorigin.mdx",
     ]);
     let testFile = new File("docs/testpath.mdx", []);
-    const results = await testLink.check([testFile]);
+    const results = testLink.check([testFile]);
     expect(results).toEqual(
       "❌ Could not find link '../testpath'. Appears in:\n    docs/test1/test2/testorigin.mdx",
     );
   });
 
-  test("existing absolute path and multiple origin files", async () => {
+  test("existing absolute path and multiple origin files", () => {
     let testLink = new InternalLink("/testpath", [
       "docs/test/testorigin.mdx",
       "docs/test/test2/testorigin.mdx",
@@ -83,11 +83,11 @@ describe("Validate links", () => {
     ]);
     let testFile1 = new File("docs/testpath.mdx", []);
     let testFile2 = new File("docs/test/test2/testpath.mdx", []);
-    const results = await testLink.check([testFile1, testFile2]);
+    const results = testLink.check([testFile1, testFile2]);
     expect(results).toBeUndefined();
   });
 
-  test("non-existing with absolute path and multiple origin files", async () => {
+  test("non-existing with absolute path and multiple origin files", () => {
     let testLink = new InternalLink("/testpath", [
       "docs/test/testorigin.mdx",
       "docs/test/test2/testorigin.mdx",
@@ -96,7 +96,7 @@ describe("Validate links", () => {
     ]);
     let testFile1 = new File("docs/test/testpath.mdx", []);
     let testFile2 = new File("docs/test2/test3/testpath.mdx", []);
-    const results = await testLink.check([testFile1, testFile2]);
+    const results = testLink.check([testFile1, testFile2]);
     expect(results).toEqual(
       "❌ Could not find link '/testpath'. Appears in:\n" +
         "    docs/test/test2/test4/testorigin.mdx    ❓ Did you mean '/test/testpath'?\n" +
@@ -106,7 +106,7 @@ describe("Validate links", () => {
     );
   });
 
-  test("relative path and multiple origin files", async () => {
+  test("relative path and multiple origin files", () => {
     let testLink = new InternalLink("../testpath", [
       "docs/test/testorigin.mdx",
       "docs/test/test2/testorigin.mdx",
@@ -117,47 +117,47 @@ describe("Validate links", () => {
     ]);
     let testFile1 = new File("docs/testpath.mdx", []);
     let testFile2 = new File("docs/test/test2/testpath.mdx", []);
-    const results = await testLink.check([testFile1, testFile2]);
+    const results = testLink.check([testFile1, testFile2]);
     expect(results).toEqual(
       "❌ Could not find link '../testpath'. Appears in:\n    docs/test/test2/testorigin.mdx\n    docs/test/test3/testorigin.mdx",
     );
   });
 
-  test("anchor with absolute path", async () => {
+  test("anchor with absolute path", () => {
     let testLink = new InternalLink("/testpath#test_anchor", [
       "/testorigin.mdx",
     ]);
     let testFile = new File("docs/testpath.mdx", ["#test_anchor"]);
-    const results = await testLink.check([testFile]);
+    const results = testLink.check([testFile]);
     expect(results).toBeUndefined();
   });
 
-  test("non-existing anchor with absolute path", async () => {
+  test("non-existing anchor with absolute path", () => {
     let testLink = new InternalLink("/testpath#test_anchor", [
       "/testorigin.mdx",
     ]);
     let testFile = new File("docs/testpath.mdx", ["#test_diff_anchor"]);
-    const results = await testLink.check([testFile]);
+    const results = testLink.check([testFile]);
     expect(results).toEqual(
       "❌ Could not find link '/testpath#test_anchor'. Appears in:\n    /testorigin.mdx    ❓ Did you mean '/testpath#test_diff_anchor'?",
     );
   });
 
-  test("anchor with relative path", async () => {
+  test("anchor with relative path", () => {
     let testLink = new InternalLink("../testpath#test_anchor", [
       "docs/test/testorigin.mdx",
     ]);
     let testFile = new File("docs/testpath.mdx", ["#test_anchor"]);
-    const results = await testLink.check([testFile]);
+    const results = testLink.check([testFile]);
     expect(results).toBeUndefined();
   });
 
-  test("non-existing anchor with relative path", async () => {
+  test("non-existing anchor with relative path", () => {
     let testLink = new InternalLink("../testpath#test-anchor", [
       "docs/test/testorigin.mdx",
     ]);
     let testFile = new File("docs/testpath.mdx", ["#test_diff_anchor"]);
-    const results = await testLink.check([testFile]);
+    const results = testLink.check([testFile]);
     expect(results).toEqual(
       "❌ Could not find link '../testpath#test-anchor'. Appears in:\n    docs/test/testorigin.mdx    ❓ Did you mean '/testpath#test_diff_anchor'?",
     );

@@ -117,9 +117,7 @@ export class FileBatch {
     const [docsFiles, internalLinkList, externalLinkList] = await this.load();
     const existingFiles = docsFiles.concat(otherFiles);
 
-    const results = await Promise.all(
-      internalLinkList.map((link) => link.check(existingFiles)),
-    );
+    const results = internalLinkList.map((link) => link.check(existingFiles));
 
     if (externalLinks) {
       // For loop reduces the risk of rate-limiting.

@@ -172,7 +172,7 @@ export class InternalLink {
   /**
    * Returns an error message if link failed.
    */
-  async check(existingFiles: File[]): Promise<string | undefined> {
+  check(existingFiles: File[]): string | undefined {
     const failingFiles: string[] = [];
     this.originFiles.forEach((originFile) => {
       if (this.isValid(existingFiles, originFile)) {
