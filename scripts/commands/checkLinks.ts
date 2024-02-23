@@ -304,21 +304,28 @@ async function determineQiskitLegacyReleaseNotes(): Promise<FileBatch> {
     .map((releaseNotesPath) =>
       releaseNotesPath.split("/").pop()!.split(".").slice(0, -1).join("."),
     )
-    .filter((version) => compareReleaseNotes(version, "0.45") < 0);
+    .filter(
+      (version) => +version < 1 && version != "0.45" && version != "0.46",
+    );
 
-  const legacyVersionsSorted = legacyVersions.sort((a, b) =>
-    compareReleaseNotes(a, b),
-  );
-
-  const toCheck = legacyVersionsSorted.map(
+  const toCheck = legacyVersions.map(
     (legacyVersion) => `docs/api/qiskit/release-notes/${legacyVersion}.md`,
   );
 
-  console.log(legacyVersionsSorted);
-
   return await FileBatch.fromGlobs(
     toCheck,
-    [`docs/api/qiskit/0.45/*`],
+    // Temporary - remove after https://github.com/Qiskit/documentation/pull/865 is merged
+    [
+      `docs/api/qiskit/0.45/*`,
+      "docs/api/qiskit/*.{ipynb,md,mdx}",
+      "docs/api/qiskit/0.46/*.md",
+      "docs/api/qiskit/0.44/qiskit.extensions.{Hamiltonian,Unitary}Gate.md",
+      "docs/api/qiskit/0.45/qiskit.quantum_info.{OneQubitEuler,TwoQubitBasis,XX}Decomposer.md",
+      "docs/api/qiskit/0.45/qiskit.transpiler.synthesis.aqc.AQC.md",
+      "docs/api/qiskit/0.45/{tools,quantum_info,synthesis_aqc}.md",
+      "docs/api/qiskit/release-notes/index.md",
+      "docs/api/qiskit-ibm-provider/index.md",
+    ],
     `qiskit legacy release notes`,
   );
 }
