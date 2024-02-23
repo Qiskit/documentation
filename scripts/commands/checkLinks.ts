@@ -189,7 +189,8 @@ async function determineCurrentDocsFileBatch(
       .join(".");
 
     toCheck.push(`docs/api/qiskit/release-notes/${currentVersion}.md`);
-    toLoad.push("docs/api/qiskit/release-notes/0.{45,46}.md");
+    // Necessary files for docs/api/qiskit/release-notes/1.0.md
+    toLoad.push("docs/api/qiskit/release-notes/0.{44,45,46}.md");
   }
 
   let description: string;
