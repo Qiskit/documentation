@@ -19,7 +19,6 @@ import { hideBin } from "yargs/helpers";
 import { pathExists } from "../lib/fs";
 import { File } from "../lib/links/LinkChecker";
 import { FileBatch } from "../lib/links/FileBatch";
-import { compareReleaseNotes } from "../lib/api/releaseNotes";
 
 // While these files don't exist in this repository, the link
 // checker should assume that they exist in production.
@@ -114,6 +113,7 @@ const QISKIT_GLOBS_TO_LOAD = [
   "docs/build/pulse.ipynb",
   "docs/start/install.mdx",
   "docs/api/qiskit/release-notes/0.44.md",
+  "docs/api/qiskit/release-notes/index.md",
   "docs/api/qiskit-ibm-provider/index.md",
   "docs/api/qiskit-ibm-provider/ibm_jupyter.md",
 ];
@@ -272,17 +272,6 @@ async function determineHistoricalFileBatches(
       }
 
       toCheck.push(`docs/api/${projectName}/release-notes/${folder.name}.md`);
-
-      // Temporary - remove after https://github.com/Qiskit/documentation/pull/865 is merged
-      toLoad.push(
-        "docs/api/qiskit/*.{ipynb,md,mdx}",
-        "docs/api/qiskit/0.46/*.md",
-        "docs/api/qiskit/0.44/qiskit.extensions.{Hamiltonian,Unitary}Gate.md",
-        "docs/api/qiskit/0.45/qiskit.quantum_info.{OneQubitEuler,TwoQubitBasis,XX}Decomposer.md",
-        "docs/api/qiskit/0.45/qiskit.transpiler.synthesis.aqc.AQC.md",
-        "docs/api/qiskit/0.45/{tools,quantum_info,synthesis_aqc}.md",
-        "docs/api/qiskit/release-notes/index.md",
-      );
     }
 
     const fileBatch = await FileBatch.fromGlobs(
