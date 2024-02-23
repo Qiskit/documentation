@@ -11,6 +11,7 @@ The AI-powered transpiler passes are experimental passes that work as a drop-in 
 <Admonition type="note">
     This is an experimental feature available only to the IBM Quantum Premium Plan.
     The AI-powered transpiler passes are in alpha release status, subject to change.
+    If you have feedback or want to contact the developers team, please use this [Qiskit Slack Workspace channel](https://qiskit.slack.com/archives/C06KF8YHUAU)
 </Admonition>
 
 The following passes are currently available:
@@ -38,7 +39,7 @@ ai_passmanager = PassManager([
   AIRouting(backend_name="ibm_sherbrooke", optimization_level=2, layout_mode="optimize")
 ])
 
-circuit = EfficientSU2(100, entanglement="circular", reps=1).decompose()
+circuit = EfficientSU2(101, entanglement="circular", reps=1).decompose()
 
 transpiled_circuit = ai_passmanager.run(circuit)
 ```
@@ -56,10 +57,10 @@ The AI circuit synthesis passes allow you to optimize pieces of different circui
 
 ```python
 from qiskit.transpiler import PassManager
-from qiskit.transpiler.passes import CollectLinearFunctions
 
 from qiskit_transpiler_service.ai.routing import AIRouting
 from qiskit_transpiler_service.ai.synthesis import AILinearFunctionSynthesis
+from qiskit_transpiler_service.ai.collection import CollectLinearFunctions
 from qiskit.circuit.library import EfficientSU2
 
 ai_passmanager = PassManager([
@@ -81,11 +82,23 @@ The following synthesis passes are available from `qiskit_transpiler_service.ai.
 - *AILinearFunctionSynthesis*: Synthesis for [Linear Function](https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.library.LinearFunction) circuits (blocks of `CX` and `SWAP` gates). Currently up to 9 qubit blocks.
 - *AIPermutationSynthesis*: Synthesis for [Permutation](https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.library.Permutation#permutation) circuits (blocks of `SWAP` gates). Currently available for 65, 33, and 27 qubit blocks.
 
-To complement the synthesis passes we also provide custom collection passes for Cliffords and Permutations that can be imported from `qiskit_transpiler_service.ai.collection`:
+We expect to gradually increase the size of the supported blocks.
 
-- *CollectCliffordsAsInstructions*: Collects Clifford blocks as `Instructions` and stores the original sub-circuit to compare against after synthesis.
-- *CollectPermutations*: Collects blocks of `SWAP` circuits as `Permutations`.
+All passes use a thread pool to send several requests in parallel. By default it will use as max threads as number of cores plus four (default values for `ThreadPoolExecutor` python object). However, you can set your own value with the `max_threads` argument at pass instantation. For example, the following line will instantiate the `AILinearFunctionSynthesis` pass allowing it to use a maximum of 20 threads.
+
+```python
+AILinearFunctionSynthesis(backend_name="ibm_cairo", max_threads=20)  # Re-synthesize Linear Function blocks using 20 threads max
+```
+
+You can also set the environment variable `AI_TRANSPILER_MAX_THREADS` to the desired number of maximum threads, and all syntheis passes instantiated after that will use that value.
+
 
 For sub-circuit to be synthesized by the AI synthesis passes, it must lay on a connected subgraph of the coupling map (this can be ensured by just doing a routing pass previous to collecting the blocks, but this is not the only way to do it). The synthesis passes will automatically check if a the specific subgraph where the sub-circuit lays is supported, and if it is not supported it will raise a warning and just leave the original sub-circuit as it is.
 
-In a future release, we plan to include functionality in the collection passes to only collect blocks of sizes that are supported. We also expect to gradually increase the size of the supported blocks.
+To complement the synthesis passes we also provide custom collection passes for Cliffords, Linear Functions and Permutations that can be imported from `qiskit_transpiler_service.ai.collection`:
+
+- *CollectCliffords*: Collects Clifford blocks as `Instruction` objects and stores the original sub-circuit to compare against it after synthesis.
+- *CollectLinearFunctions*: Collects blocks of `SWAP` and `CX` as `LinearFunction` objects and stores the original sub-circuit to compare against it after synthesis.
+- *CollectPermutations*: Collects blocks of `SWAP` circuits as `Permutations`.
+
+These custom collection passes limit the sizes of the collected sub-circuits so that they are supported by the AI synthesis passes, so it is recommended to use them after the routing passes and before the synthesis passes to get a better optimization overall.
