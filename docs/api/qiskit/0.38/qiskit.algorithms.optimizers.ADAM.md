@@ -20,7 +20,7 @@ Adam \[1] is a gradient-based optimization algorithm that is relies on adaptive 
 
 AMSGRAD \[2] (a variant of Adam) uses a ‘long-term memory’ of past gradients and, thereby, improves convergence properties.
 
-## References
+**References**
 
 **\[1]: Kingma, Diederik & Ba, Jimmy (2014), Adam: A Method for Stochastic Optimization.**
 

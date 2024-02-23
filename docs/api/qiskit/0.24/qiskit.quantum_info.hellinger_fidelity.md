@@ -33,7 +33,7 @@ Fidelity
 
 float
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumCircuit, execute, BasicAer
@@ -58,7 +58,7 @@ hellinger_fidelity(res1.get_counts(), res2.get_counts())
 1.0
 ```
 
-## References
+**References**
 
 [Quantum Fidelity @ wikipedia](https://en.wikipedia.org/wiki/Fidelity_of_quantum_states) [Hellinger Distance @ wikipedia](https://en.wikipedia.org/wiki/Hellinger_distance)
 

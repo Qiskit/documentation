@@ -49,7 +49,7 @@ $$
 
 For more information, see the [`GroverOperator`](qiskit.circuit.library.GroverOperator "qiskit.circuit.library.GroverOperator") in the circuit library.
 
-## References
+**References**
 
 **\[1]: L. K. Grover (1996), A fast quantum mechanical algorithm for database search,**
 
@@ -86,7 +86,7 @@ Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://
 *   [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – evaluate\_classically() missing from the input oracle
 *   **TypeError** – If `oracle` is of unsupported type.
 
-## References
+**References**
 
 **\[1]: Boyer et al., Tight bounds on quantum searching**
 
@@ -121,7 +121,7 @@ Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://
 *   [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – evaluate\_classically() missing from the input oracle
 *   **TypeError** – If `oracle` is of unsupported type.
 
-## References
+**References**
 
 **\[1]: Boyer et al., Tight bounds on quantum searching**
 

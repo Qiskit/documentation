@@ -32,7 +32,7 @@ qc = qc.compose(GroverOperator(oracle))
 qc.measure_all()
 
 # View the circuit
-qc.draw(output='mpl')
+qc.draw(output='mpl', style="iqp")
 ```
 
 ![Original circuit](/images/transpile/defaults-and-configuration-options/original-circuit.png "Original circuit")
@@ -47,7 +47,7 @@ backend = FakeSherbrooke()
 transpiled_circ = transpile(qc, backend)
 
 # View the transpiled circuit
-transpiled_circ.draw(output='mpl')
+transpiled_circ.draw(output='mpl', style="iqp")
 ```
 
 ![Transpiled circuit](/images/transpile/defaults-and-configuration-options/transpiled-circuit.png "Transpiled circuit")
@@ -208,7 +208,7 @@ qiskit.compiler.transpile(unitary_synthesis_method='default', translation_method
 <Admonition type="tip" title="Recommendations">
     - Learn how to [Set the optimization level](set-optimization).
     - Review more [Commonly used parameters](common-parameters).
-    - Learn how to [Set the optimization level when using Qiskit Runtime.](../run/advanced-runtime-options)
+    - Learn how to [Set the optimization level when using Qiskit&reg; Runtime.](../run/advanced-runtime-options)
     - Visit the [Transpile with pass managers](transpile-with-pass-managers) topic.
     - For examples, see [Representing quantum computers.](representing_quantum_computers)
     - Try the [Submit transpiled circuits](https://learning.quantum.ibm.com/tutorial/submit-transpiled-circuits) tutorial.

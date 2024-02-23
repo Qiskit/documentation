@@ -39,7 +39,7 @@ Figure
 *   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – if input is not a valid N-qubit state.
 *   **QiskitError** – Input statevector does not have valid dimensions.
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumCircuit

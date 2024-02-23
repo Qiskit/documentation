@@ -47,7 +47,7 @@ $$
 
 where $1_{[a, b]}$ is an indication function that is 1 if the argument is in the interval $[a, b]$ and otherwise 0. The breakpoints $p_i$ can be specified by the `breakpoints` argument.
 
-## References
+**References**
 
 **\[1]: Woerner, S., & Egger, D. J. (2018).**
 

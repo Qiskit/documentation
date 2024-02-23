@@ -29,11 +29,11 @@ Built out using scipy framework, for details, please refer to [https://docs.scip
 *   **options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)") *| None*) – A dictionary of solver options.
 *   **kwargs** – additional kwargs for scipy.optimize.minimize.
 
-## Notes
+**Notes**
 
 In this optimization method, the optimization function have to satisfy three conditions written in [\[1\]](#id2).
 
-## References
+**References**
 
 \[[1](#id1)]
 

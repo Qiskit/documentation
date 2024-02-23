@@ -35,7 +35,7 @@ matplotlib.Figure
 *   [**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – Requires matplotlib.
 *   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – if input is not a valid N-qubit state.
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumCircuit

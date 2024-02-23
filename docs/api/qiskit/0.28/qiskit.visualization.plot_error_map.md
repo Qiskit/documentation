@@ -33,7 +33,7 @@ Figure
 *   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – Input is not IBMQ backend.
 *   [**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – If seaborn is not installed
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumCircuit, execute, IBMQ

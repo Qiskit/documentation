@@ -27,11 +27,11 @@ Built out using scipy framework, for details, please refer to [https://docs.scip
 *   **disp** (`bool`) – disp
 *   **reset\_interval** (`int`) – The minimum estimates directly once in `reset_interval` times.
 
-## Notes
+**Notes**
 
 In this optimization method, the optimization function have to satisfy three conditions written in [1](#id2).
 
-## References
+**References**
 
 **[1](#id1)**
 

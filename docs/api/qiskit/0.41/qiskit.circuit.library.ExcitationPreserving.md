@@ -37,7 +37,7 @@ See [`RealAmplitudes`](qiskit.circuit.library.RealAmplitudes "qiskit.circuit.lib
 
 The rotations of the ExcitationPreserving ansatz can be written as
 
-## Examples
+**Examples**
 
 ```python
 >>> ansatz = ExcitationPreserving(3, reps=1, insert_barriers=True, entanglement='linear')
@@ -334,7 +334,7 @@ The parameters used in the underlying circuit.
 
 This includes float values and duplicates.
 
-## Examples
+**Examples**
 
 ```python
 >>> # prepare circuit ...

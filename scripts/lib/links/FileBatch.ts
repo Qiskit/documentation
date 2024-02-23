@@ -13,7 +13,11 @@
 import { globby } from "globby";
 
 import { Link, File } from "./LinkChecker";
-import FILES_TO_IGNORES from "./ignores";
+import {
+  ALWAYS_IGNORED_URLS,
+  FILES_TO_IGNORES,
+  IGNORED_FILES,
+} from "./ignores";
 import { parseFile } from "./extractLinks";
 
 export class FileBatch {
@@ -72,12 +76,17 @@ export class FileBatch {
     for (const filePath of this.toCheck) {
       const parsed = await parseFile(filePath);
       files.push(new File(filePath, parsed.anchors));
-      addLinksToMap(filePath, parsed.links, linksToOriginFiles);
+      if (!IGNORED_FILES.has(filePath)) {
+        addLinksToMap(filePath, parsed.links, linksToOriginFiles);
+      }
     }
 
     const internalLinks: Link[] = [];
     const externalLinks: Link[] = [];
     for (let [linkPath, originFiles] of linksToOriginFiles) {
+      if (ALWAYS_IGNORED_URLS.has(linkPath)) {
+        continue;
+      }
       originFiles = originFiles.filter(
         (originFile) =>
           FILES_TO_IGNORES[originFile] == null ||
@@ -116,12 +125,12 @@ export class FileBatch {
     }
 
     let allGood = true;
-    results.forEach((linkErrors) => {
-      linkErrors.forEach((errorMessage) => {
-        console.error(errorMessage);
+    results
+      .filter((res) => res !== undefined)
+      .forEach((linkError) => {
+        console.error(linkError);
         allGood = false;
       });
-    });
     return allGood;
   }
 }

@@ -20,7 +20,7 @@ For a given function $f(x)$ and degree $d$, this class implements a piecewise po
 
 The values of the parameters are calculated according to \[1].
 
-## Examples
+**Examples**
 
 ```python
 import numpy as np
@@ -37,7 +37,7 @@ qc.draw(output='mpl')
 
 ![../\_images/qiskit.circuit.library.PiecewiseChebyshev\_0\_0.png](/images/api/qiskit/0.31/qiskit.circuit.library.PiecewiseChebyshev_0_0.png)
 
-## References
+**References**
 
 **\[1]: Haener, T., Roetteler, M., & Svore, K. M. (2018).**
 

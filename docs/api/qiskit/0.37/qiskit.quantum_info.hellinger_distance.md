@@ -27,7 +27,7 @@ Distance
 
 float
 
-## References
+**References**
 
 [Hellinger Distance @ wikipedia](https://en.wikipedia.org/wiki/Hellinger_distance)
 

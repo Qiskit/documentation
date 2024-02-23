@@ -18,7 +18,7 @@ The Faster Amplitude Estimation (FAE) \[1] algorithm is a variant of Quantum Amp
 
 Due to the iterative version of the QPE, this algorithm does not require any additional qubits, as the originally proposed QAE \[3] and thus the resulting circuits are less complex.
 
-## References
+**References**
 
 **\[1]: K. Nakaji. Faster Amplitude Estimation, 2020;**
 

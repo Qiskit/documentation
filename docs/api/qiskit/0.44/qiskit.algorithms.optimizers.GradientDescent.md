@@ -28,7 +28,7 @@ You can either provide the analytic gradient $\vec\nabla f$ as `jac` in the [`mi
 
 This optimizer supports a callback function. If provided in the initializer, the optimizer will call the callback in each iteration with the following information in this order: current number of function values, current parameters, current function value, norm of current gradient.
 
-## Examples
+**Examples**
 
 A minimum example that will use finite difference gradients with a default perturbation of 0.01 and a default learning rate of 0.01.
 

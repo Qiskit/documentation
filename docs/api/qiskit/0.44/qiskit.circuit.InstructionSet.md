@@ -89,7 +89,7 @@ This same instance of [`InstructionSet`](#qiskit.circuit.InstructionSet "qiskit.
 
 [InstructionSet](#qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
 
-## Example
+**Example**
 
 ```python
 from qiskit import ClassicalRegister, QuantumRegister, QuantumCircuit

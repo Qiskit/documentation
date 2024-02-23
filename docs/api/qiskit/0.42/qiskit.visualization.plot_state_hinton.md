@@ -38,7 +38,7 @@ matplotlib.Figure
 *   **MissingOptionalLibraryError** – Requires matplotlib.
 *   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – if input is not a valid N-qubit state.
 
-## Examples
+**Examples**
 
 ```python
 import numpy as np

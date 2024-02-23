@@ -29,7 +29,7 @@ where $g(x)$ is a standard unlifted gaussian waveform and $f'(x)$ is the DRAG wa
 
 This pulse would be more accurately named as `LiftedDrag`, however, for historical and practical DSP reasons it has the name `Drag`.
 
-## References
+**References**
 
 1.  [*Gambetta, J. M., Motzoi, F., Merkel, S. T. & Wilhelm, F. K. Analytic control methods for high-fidelity unitary operations in a weakly nonlinear oscillator. Phys. Rev. A 83, 012308 (2011).*](https://link.aps.org/doi/10.1103/PhysRevA.83.012308)
 

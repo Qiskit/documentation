@@ -284,6 +284,8 @@ with qc.switch(cr) as case:
 
 ### Random Circuits
 
+### random\_circuit
+
 <span id="qiskit.circuit.random.random_circuit" />
 
 `qiskit.circuit.random.random_circuit(num_qubits, depth, max_operands=4, measure=False, conditional=False, reset=False, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/random/utils.py "view source code")
@@ -326,6 +328,8 @@ constructed circuit
 ### Exceptions
 
 Almost all circuit functions and methods will raise a [`CircuitError`](#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") when encountering an error that is particular to usage of Qiskit (as opposed to regular typing or indexing problems, which will typically raise the corresponding standard Python error).
+
+### CircuitError
 
 <span id="qiskit.circuit.CircuitError" />
 

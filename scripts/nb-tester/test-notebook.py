@@ -17,11 +17,13 @@ import textwrap
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
+from typing import Iterator
 
 import nbclient
 import nbconvert
 import nbformat
 from qiskit_ibm_runtime import QiskitRuntimeService
+from squeaky import clean_notebook
 
 NOTEBOOKS_GLOB = "docs/**/*.ipynb"
 NOTEBOOKS_EXCLUDE = [
@@ -33,6 +35,34 @@ NOTEBOOKS_EXCLUDE = [
 NOTEBOOKS_THAT_SUBMIT_JOBS = [
     "docs/start/hello-world.ipynb",
 ]
+
+
+def filter_paths(paths: list[Path], submit_jobs: bool) -> Iterator[Path]:
+    """
+    Filter out any paths we don't want to run, printing messages.
+    """
+    for path in paths:
+        if path.suffix != ".ipynb":
+            print(f"ℹ️ Skipping {path}; file is not `.ipynb` format.")
+            continue
+
+        if any(path.match(glob) for glob in NOTEBOOKS_EXCLUDE):
+            this_file = Path(__file__).resolve()
+            print(
+                f"ℹ️ Skipping {path}; to run it, edit `NOTEBOOKS_EXCLUDE` in {this_file}."
+            )
+            continue
+
+        if (
+            not submit_jobs
+            and any(path.match(glob) for glob in NOTEBOOKS_THAT_SUBMIT_JOBS)
+        ):
+            print(
+                f"ℹ️ Skipping {path} as it submits jobs; use the --submit-jobs flag to run it."
+            )
+            continue
+
+        yield path
 
 
 @dataclass(frozen=True)
@@ -65,7 +95,7 @@ def print_yellow(s: str, **kwargs):
     """
     Use ANSI escape codes to print yellow text
     """
-    print(f"\033[0;33m{str}\033[0m", **kwargs)
+    print(f"\033[0;33m{s}\033[0m", **kwargs)
 
 
 def extract_warnings(notebook: nbformat.NotebookNode) -> list[NotebookWarning]:
@@ -130,6 +160,7 @@ def _execute_notebook(filepath: Path, options: ExecuteOptions) -> nbformat.Noteb
     for cell in nb.cells:
         # Remove execution metadata to avoid noisy diffs.
         cell.metadata.pop("execution", None)
+    nb, _ = clean_notebook(nb)
     nbformat.write(nb, filepath)
     return nb
 
@@ -214,15 +245,12 @@ if __name__ == "__main__":
     args = create_argument_parser().parse_args()
 
     paths = map(Path, args.filenames or find_notebooks(submit_jobs=args.submit_jobs))
-    if not args.submit_jobs:
-        paths = [path for path in paths if not any(path.match(glob) for glob in NOTEBOOKS_THAT_SUBMIT_JOBS)]
+    filtered_paths = filter_paths(paths, submit_jobs=args.submit_jobs)
 
     # Execute notebooks
     start_time = datetime.now()
     print("Executing notebooks:")
-    results = [
-        execute_notebook(path, args) for path in paths if path.suffix == ".ipynb"
-    ]
+    results = [execute_notebook(path, args) for path in filtered_paths]
     print("Checking for trailing jobs...")
     results.append(cancel_trailing_jobs(start_time))
     if not all(results):

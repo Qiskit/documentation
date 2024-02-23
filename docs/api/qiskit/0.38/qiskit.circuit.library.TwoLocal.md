@@ -41,7 +41,7 @@ Barriers can be inserted in between the different layers for better visualizatio
 
 For each parameterized gate a new parameter is generated using a `ParameterVector`. The name of these parameters can be chosen using the `parameter_prefix`.
 
-## Examples
+**Examples**
 
 ```python
 >>> two = TwoLocal(3, 'ry', 'cx', 'linear', reps=2, insert_barriers=True)
@@ -380,7 +380,7 @@ The parameters used in the underlying circuit.
 
 This includes float values and duplicates.
 
-## Examples
+**Examples**
 
 ```python
 >>> # prepare circuit ...

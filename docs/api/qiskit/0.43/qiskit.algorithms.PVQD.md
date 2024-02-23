@@ -90,7 +90,7 @@ The starting point for the first classical optimization run, at time 0. Defaults
 
 Optional\[np.ndarray]
 
-## Example
+**Example**
 
 This snippet computes the real time evolution of a quantum Ising model on two neighboring sites and keeps track of the magnetization.
 
@@ -134,7 +134,7 @@ problem = TimeEvolutionProblem(
 result = pvqd.evolve(problem)
 ```
 
-## References
+**References**
 
 **\[1] Stefano Barison, Filippo Vicentini, and Giuseppe Carleo (2021), An efficient**
 

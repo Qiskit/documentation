@@ -22,7 +22,7 @@ Compared to natural gradients, which require $\mathcal{O}(d^2)$ expectation valu
 
 The stochastic approximation of the natural gradient can be systematically improved by increasing the number of `resamplings`. This leads to a Monte Carlo-style convergence to the exact, analytic value.
 
-## Examples
+**Examples**
 
 This short example runs QN-SPSA for the ground state calculation of the `Z ^ Z` observable where the ansatz is a `PauliTwoDesign` circuit.
 
@@ -45,7 +45,7 @@ qnspsa = QNSPSA(fidelity, maxiter=300)
 result = qnspsa.optimize(ansatz.num_parameters, loss, initial_point=initial_point)
 ```
 
-## References
+**References**
 
 \[1] J. Gacon et al, “Simultaneous Perturbation Stochastic Approximation of the Quantum Fisher Information”, [arXiv:2103.09232](https://arxiv.org/abs/2103.09232)
 

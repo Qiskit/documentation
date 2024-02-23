@@ -21,7 +21,7 @@ Graphical representation of the input array, using as much bloch spheres as qubi
 *   **rho** (*array*) – State vector or density matrix
 *   **figsize** (*tuple*) – Figure size in pixels.
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumCircuit, BasicAer, execute

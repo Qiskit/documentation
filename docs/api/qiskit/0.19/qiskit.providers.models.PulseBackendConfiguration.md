@@ -94,7 +94,7 @@ Return the acquisition channel for the given qubit.
 
 **Return type**
 
-[`AcquireChannel`](qiskit.pulse.channels#qiskit.pulse.channels.AcquireChannel "qiskit.pulse.channels.AcquireChannel")
+[`AcquireChannel`](qiskit.pulse.channels#acquirechannel "qiskit.pulse.channels.AcquireChannel")
 
 **Returns**
 
@@ -119,7 +119,7 @@ Return the secondary drive channel for the given qubit – typically utilized fo
 
 **Return type**
 
-`List`\[[`ControlChannel`](qiskit.pulse.channels#qiskit.pulse.channels.ControlChannel "qiskit.pulse.channels.ControlChannel")]
+`List`\[[`ControlChannel`](qiskit.pulse.channels#controlchannel "qiskit.pulse.channels.ControlChannel")]
 
 **Returns**
 
@@ -149,7 +149,7 @@ backend.configuration().describe(ControlChannel(1))
 
 **Parameters**
 
-**channel** ([`ControlChannel`](qiskit.pulse.channels#qiskit.pulse.channels.ControlChannel "qiskit.pulse.channels.ControlChannel")) – The derived channel to describe.
+**channel** ([`ControlChannel`](qiskit.pulse.channels#controlchannel "qiskit.pulse.channels.ControlChannel")) – The derived channel to describe.
 
 **Raises**
 
@@ -157,7 +157,7 @@ backend.configuration().describe(ControlChannel(1))
 
 **Return type**
 
-`Dict`\[[`DriveChannel`](qiskit.pulse.channels#qiskit.pulse.channels.DriveChannel "qiskit.pulse.channels.DriveChannel"), `complex`]
+`Dict`\[[`DriveChannel`](qiskit.pulse.channels#drivechannel "qiskit.pulse.channels.DriveChannel"), `complex`]
 
 **Returns**
 
@@ -177,7 +177,7 @@ Return the drive channel for the given qubit.
 
 **Return type**
 
-[`DriveChannel`](qiskit.pulse.channels#qiskit.pulse.channels.DriveChannel "qiskit.pulse.channels.DriveChannel")
+[`DriveChannel`](qiskit.pulse.channels#drivechannel "qiskit.pulse.channels.DriveChannel")
 
 **Returns**
 
@@ -237,7 +237,7 @@ Return a list of channels which operate on the given `qubit`.
 
 **Return type**
 
-`List`\[[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]
+`List`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")]
 
 **Returns**
 
@@ -257,7 +257,7 @@ Return the measure stimulus channel for the given qubit.
 
 **Return type**
 
-[`MeasureChannel`](qiskit.pulse.channels#qiskit.pulse.channels.MeasureChannel "qiskit.pulse.channels.MeasureChannel")
+[`MeasureChannel`](qiskit.pulse.channels#measurechannel "qiskit.pulse.channels.MeasureChannel")
 
 **Returns**
 

@@ -64,7 +64,7 @@ The string representation can be converted to a `Pauli` using the class initiali
 The internal data structure of an $n$-qubit Pauli is two length-$n$ boolean vectors $z \in \mathbb{Z}_2^N$, $x \in \mathbb{Z}_2^N$, and an integer $q \in \mathbb{Z}_4$ defining the Pauli operator
 
 $$
-P &= (-i)^{q + z\cdot x} Z^z \cdot X^x.
+P = (-i)^{q + z\cdot x} Z^z \cdot X^x.
 $$
 
 The $k$ and $x$ arrays

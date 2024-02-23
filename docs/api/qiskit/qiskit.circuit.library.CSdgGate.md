@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CSdgGate
 
 <span id="qiskit.circuit.library.CSdgGate" />
 
-`qiskit.circuit.library.CSdgGate(*args, _force_mutable=False, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/s.py "view source code")
+`qiskit.circuit.library.CSdgGate(*args, _force_mutable=False, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/s.py "view source code")
 
 Bases: [`SingletonControlledGate`](circuit_singleton#qiskit.circuit.singleton.SingletonControlledGate "qiskit.circuit.singleton.SingletonControlledGate")
 
@@ -181,9 +181,21 @@ Get the time unit of duration.
 
 <span id="qiskit.circuit.library.CSdgGate.inverse" />
 
-`inverse()`
+`inverse(annotated=False)`
 
 Return inverse of CSdgGate (CSGate).
+
+**Parameters**
+
+**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always a [`CSGate`](qiskit.circuit.library.CSGate "qiskit.circuit.library.CSGate").
+
+**Returns**
+
+inverse of [`CSdgGate`](#qiskit.circuit.library.CSdgGate "qiskit.circuit.library.CSdgGate")
+
+**Return type**
+
+[CSGate](qiskit.circuit.library.CSGate "qiskit.circuit.library.CSGate")
 
 ### power
 

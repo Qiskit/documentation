@@ -52,7 +52,7 @@ The circuit contains `reps` repetitions of this transformation.
 
 Please refer to [`ZFeatureMap`](qiskit.circuit.library.ZFeatureMap "qiskit.circuit.library.ZFeatureMap") for the case of single-qubit Pauli-$Z$ rotations and to [`ZZFeatureMap`](qiskit.circuit.library.ZZFeatureMap "qiskit.circuit.library.ZZFeatureMap") for the single- and two-qubit Pauli-$Z$ rotations.
 
-## Examples
+**Examples**
 
 ```python
 >>> prep = PauliFeatureMap(2, reps=1, paulis=['ZZ'])
@@ -322,7 +322,7 @@ The parameters used in the underlying circuit.
 
 This includes float values and duplicates.
 
-## Examples
+**Examples**
 
 ```python
 >>> # prepare circuit ...

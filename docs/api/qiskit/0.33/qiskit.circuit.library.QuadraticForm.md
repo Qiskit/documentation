@@ -36,7 +36,7 @@ If the value of $Q(x)$ is too large to be represented with m qubits, the resulti
 
 The implementation of this circuit is discussed in \[1], Fig. 6.
 
-## References
+**References**
 
 **\[1]: Gilliam et al., Grover Adaptive Search for Constrained Polynomial Binary Optimization.**
 

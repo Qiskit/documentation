@@ -47,7 +47,7 @@ $$
 
 where $1_{[a, b]}$ is an indication function that is 1 if the argument is in the interval $[a, b]$ and otherwise 0. The breakpoints $p_i$ can be specified by the `breakpoints` argument.
 
-## References
+**References**
 
 **\[1]: Woerner, S., & Egger, D. J. (2018).**
 
@@ -248,7 +248,7 @@ The parameters defined in the circuit.
 
 This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
 
-## Examples
+**Examples**
 
 The snippet below shows that insertion order of parameters does not matter.
 

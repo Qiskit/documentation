@@ -16,7 +16,7 @@ Return a circuit with any barrier removed.
 
 This transformation is not semantics preserving.
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumCircuit

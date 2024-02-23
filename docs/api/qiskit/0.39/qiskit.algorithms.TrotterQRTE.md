@@ -20,7 +20,7 @@ The TrotterQRTE class has been superseded by the [`qiskit.algorithms.time_evolve
 
 Type of Trotterization is defined by a ProductFormula provided.
 
-## Examples
+**Examples**
 
 ```python
 from qiskit.opflow import X, Z, Zero

@@ -42,7 +42,7 @@ matplotlib.Figure
 *   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – When legend is provided and the length doesn’t match the input data.
 *   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – Input must be Counts or a dict
 
-## Examples
+**Examples**
 
 ```python
 # Plot two counts in the same figure with legends and colors specified.

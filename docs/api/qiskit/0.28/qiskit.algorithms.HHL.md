@@ -18,7 +18,7 @@ A system of linear equations is called $s$-sparse if $A$ has at most $s$ non-zer
 
 The HHL is a quantum algorithm to estimate a function of the solution with running time complexity of $\mathcal{ O }(\log(N)s^{2}\kappa^{2}/\epsilon)$ when $A$ is a Hermitian matrix under the assumptions of efficient oracles for loading the data, Hamiltonian simulation and computing a function of the solution. This is an exponential speed up in the size of the system, however one crucial remark to keep in mind is that the classical algorithm returns the full solution, while the HHL can only approximate functions of the solution vector.
 
-## Examples
+**Examples**
 
 ```python
 import numpy as np
@@ -42,7 +42,7 @@ solution = hhl.solve(matrix, qc, observable)
 approx_result = solution.observable
 ```
 
-## References
+**References**
 
 \[1]: Harrow, A. W., Hassidim, A., Lloyd, S. (2009). Quantum algorithm for linear systems of equations. [Phys. Rev. Lett. 103, 15 (2009), 1–15.](https://doi.org/10.1103/PhysRevLett.103.150502)
 

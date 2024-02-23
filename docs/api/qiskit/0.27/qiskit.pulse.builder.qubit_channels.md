@@ -40,5 +40,5 @@ with pulse.build(backend):
 
 **Return type**
 
-`Set`\[[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]
+`Set`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")]
 

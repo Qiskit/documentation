@@ -43,7 +43,7 @@ A matplotlib figure instance if the `ax` kwarg is not set
 *   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – if input is not a valid N-qubit state.
 *   **QiskitError** – Input statevector does not have valid dimensions.
 
-## Examples
+**Examples**
 
 ```python
 from qiskit import QuantumCircuit

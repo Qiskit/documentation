@@ -30,7 +30,7 @@ $$
 \mathcal{P}_X |0\rangle^{\otimes n} = \frac{1}{\sqrt{2^n}} \sum_{x=0}^{2^n - 1} |x\rangle
 $$
 
-## Examples
+**Examples**
 
 ```python
 >>> circuit = UniformDistribution(3)

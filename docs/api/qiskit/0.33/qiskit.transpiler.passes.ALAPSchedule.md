@@ -18,7 +18,7 @@ ALAP Scheduling pass, which schedules the **stop** time of instructions as late 
 
 For circuits with instructions writing or reading clbits (e.g. measurements, conditional gates), the scheduler assumes clbits I/O operations take no time, `measure` locks clbits to be written at its end and `c_if` locks clbits to be read at its beginning.
 
-## Notes
+**Notes**
 
 The ALAP scheduler may not schedule a circuit exactly the same as any real backend does when the circuit contains control flows (e.g. conditional instructions).
 

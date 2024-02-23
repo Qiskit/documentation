@@ -18,23 +18,41 @@ test("Pkg.determineGithubUrlFn()", () => {
   const provider = Pkg.mock({
     name: "qiskit-ibm-provider",
     githubSlug: "qiskit/qiskit-ibm-provider",
+    type: "latest",
     versionWithoutPatch: "0.7",
   }).determineGithubUrlFn();
   const runtime = Pkg.mock({
     name: "qiskit-ibm-runtime",
     githubSlug: "qiskit/qiskit-ibm-runtime",
+    type: "latest",
     versionWithoutPatch: "0.15",
   }).determineGithubUrlFn();
   const qiskit = Pkg.mock({
     name: "qiskit",
     githubSlug: "qiskit/qiskit",
+    type: "latest",
     versionWithoutPatch: "0.45",
   }).determineGithubUrlFn();
 
   const historicalQiskit = Pkg.mock({
     name: "qiskit",
     githubSlug: "qiskit/qiskit",
+    type: "historical",
     versionWithoutPatch: "0.32",
+  }).determineGithubUrlFn();
+
+  const dev = Pkg.mock({
+    name: "qiskit",
+    githubSlug: "qiskit/qiskit",
+    type: "dev",
+    version: "1.0.0-dev",
+  }).determineGithubUrlFn();
+  const rc = Pkg.mock({
+    name: "qiskit",
+    githubSlug: "qiskit/qiskit",
+    type: "dev",
+    version: "1.0.0rc1",
+    versionWithoutPatch: "1.0",
   }).determineGithubUrlFn();
 
   expect(provider("qiskit_ibm_provider/job/exceptions")).toEqual(
@@ -59,6 +77,13 @@ test("Pkg.determineGithubUrlFn()", () => {
   );
   expect(qiskit("qiskit/transpiler/preset_passmanagers")).toEqual(
     "https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/preset_passmanagers/__init__.py",
+  );
+
+  expect(dev("qiskit/exceptions")).toEqual(
+    "https://github.com/qiskit/qiskit/tree/main/qiskit/exceptions.py",
+  );
+  expect(rc("qiskit/exceptions")).toEqual(
+    "https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/exceptions.py",
   );
 
   expect(historicalQiskit("qiskit/exceptions")).toEqual(

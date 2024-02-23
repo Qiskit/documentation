@@ -349,7 +349,7 @@ The Numpy vector array of probabilities.
 
 np.array
 
-#### Examples
+**Examples**
 
 Consider a 2-qubit product state $|\psi\rangle=|+\rangle\otimes|0\rangle$.
 
@@ -624,7 +624,7 @@ the dictionary form of the Statevector.
 
 dict
 
-#### Example
+**Example**
 
 The ket-form of a 2-qubit statevector $|\psi\rangle = |-\rangle\otimes |0\rangle$
 

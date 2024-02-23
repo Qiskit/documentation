@@ -53,8 +53,7 @@ When building a quantum circuit, there can be interest in applying a certain gat
 In the following example, we start with a single-qubit circuit formed by only a Hadamard gate ([`HGate`](qiskit.circuit.library.HGate "qiskit.circuit.library.HGate")), in which we expect to get $|0\rangle$ and $|1\rangle$ with equal probability.
 
 ```python
-from qiskit import BasicAer, transpile, QuantumRegister, ClassicalRegister, QuantumCircuit
-
+from qiskit import transpile, QuantumRegister, ClassicalRegister, QuantumCircuit
 qr = QuantumRegister(1)
 cr = ClassicalRegister(1)
 qc = QuantumCircuit(qr, cr)
@@ -66,7 +65,8 @@ qc.draw('mpl')
 ![../\_images/circuit-2.png](/images/api/qiskit/circuit-2.png)
 
 ```python
-backend = BasicAer.get_backend('qasm_simulator')
+from qiskit.providers.basic_provider import BasicSimulator
+backend = BasicSimulator()
 tqc = transpile(qc, backend)
 counts = backend.run(tqc).result().get_counts()
 
@@ -80,7 +80,7 @@ print(counts)
 Now, we add an [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.library.XGate") only if the value of the [`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") is 0. That way, if the state is $|0\rangle$, it will be changed to $|1\rangle$ and if the state is $|1\rangle$, it will not be changed at all, so the final state will always be $|1\rangle$.
 
 ```python
-from qiskit import BasicAer, transpile, QuantumRegister, ClassicalRegister, QuantumCircuit
+from qiskit import transpile, QuantumRegister, ClassicalRegister, QuantumCircuit
 
 qr = QuantumRegister(1)
 cr = ClassicalRegister(1)
@@ -97,7 +97,8 @@ qc.draw('mpl')
 ![../\_images/circuit-3.png](/images/api/qiskit/circuit-3.png)
 
 ```python
-backend = BasicAer.get_backend('qasm_simulator')
+from qiskit.providers.basic_provider import BasicSimulator
+backend = BasicSimulator()
 tqc = transpile(qc, backend)
 counts = backend.run(tqc).result().get_counts()
 
@@ -199,18 +200,18 @@ qc.depth()
 
 ### Quantum Circuit Construction
 
-|                                                                                                                             |                                                                                                                                                                 |
-| --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")(\*regs\[, name, global\_phase, ...])      | Create a new circuit.                                                                                                                                           |
-| [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")(\[size, name, bits])                   | Implement a quantum register.                                                                                                                                   |
-| [`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.Qubit")(\[register, index])                                                  | Implement a quantum bit.                                                                                                                                        |
-| [`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")(\[size, name, bits])             | Implement a classical register.                                                                                                                                 |
-| [`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.Clbit")(\[register, index])                                                  | Implement a classical bit.                                                                                                                                      |
-| [`AncillaRegister`](qiskit.circuit.AncillaRegister "qiskit.circuit.AncillaRegister")(\[size, name, bits])                   | Implement an ancilla register.                                                                                                                                  |
-| [`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.AncillaQubit")(\[register, index])                             | A qubit used as ancillary qubit.                                                                                                                                |
-| [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")(operation\[, qubits, clbits]) | A single instruction in a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), comprised of the `operation` and various operands. |
-| [`Register`](qiskit.circuit.Register "qiskit.circuit.Register")(\[size, name, bits])                                        | Implement a generic register.                                                                                                                                   |
-| [`Bit`](qiskit.circuit.Bit "qiskit.circuit.Bit")(\[register, index])                                                        | Implement a generic bit.                                                                                                                                        |
+|                                                                                                                        |                                                                                                                                                                 |
+| ---------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")(\*regs\[, name, global\_phase, ...]) | Create a new circuit.                                                                                                                                           |
+| [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")(\[size, name, bits])              | Implement a quantum register.                                                                                                                                   |
+| [`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.Qubit")(\[register, index])                                             | Implement a quantum bit.                                                                                                                                        |
+| [`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")(\[size, name, bits])        | Implement a classical register.                                                                                                                                 |
+| [`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.Clbit")(\[register, index])                                             | Implement a classical bit.                                                                                                                                      |
+| [`AncillaRegister`](qiskit.circuit.AncillaRegister "qiskit.circuit.AncillaRegister")(\[size, name, bits])              | Implement an ancilla register.                                                                                                                                  |
+| [`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.AncillaQubit")(\[register, index])                        | A qubit used as ancillary qubit.                                                                                                                                |
+| [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")                          | A single instruction in a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), comprised of the `operation` and various operands. |
+| [`Register`](qiskit.circuit.Register "qiskit.circuit.Register")(\[size, name, bits])                                   | Implement a generic register.                                                                                                                                   |
+| [`Bit`](qiskit.circuit.Bit "qiskit.circuit.Bit")(\[register, index])                                                   | Implement a generic bit.                                                                                                                                        |
 
 ### Gates and Instructions
 
@@ -223,6 +224,15 @@ qc.depth()
 | [`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")(\*\[, resource\_requester])        | Instruction collection, and their contexts.                                                            |
 | [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation")()                                                 | Quantum Operation Interface Class.                                                                     |
 | [`EquivalenceLibrary`](qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary")(\*\[, base])           | A library providing a one-way mapping of Gates to their equivalent implementations as QuantumCircuits. |
+
+### Annotated Operations
+
+|                                                                                                                         |                                                                                                                       |
+| ----------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")(base\_op, modifiers)      | Annotated operation.                                                                                                  |
+| [`InverseModifier`](qiskit.circuit.InverseModifier "qiskit.circuit.InverseModifier")()                                  | Inverse modifier: specifies that the operation is inverted.                                                           |
+| [`ControlModifier`](qiskit.circuit.ControlModifier "qiskit.circuit.ControlModifier")(\[num\_ctrl\_qubits, ctrl\_state]) | Control modifier: specifies that the operation is controlled by `num_ctrl_qubits` and has control state `ctrl_state`. |
+| [`PowerModifier`](qiskit.circuit.PowerModifier "qiskit.circuit.PowerModifier")(power)                                   | Power modifier: specifies that the operation is raised to the power `power`.                                          |
 
 ### Control Flow Operations
 
@@ -282,17 +292,23 @@ with qc.switch(cr) as case:
 | [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector")(name\[, length])               | ParameterVector class to quickly generate lists of parameters.          |
 | [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")(symbol\_map, expr) | ParameterExpression class to enable creating expressions of Parameters. |
 
+### Gate Commutation
+
+|                                                                                                       |                                                                     |
+| ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| [`CommutationChecker`](qiskit.circuit.CommutationChecker "qiskit.circuit.CommutationChecker")(\[...]) | This code is essentially copy-pasted from commutative\_analysis.py. |
+
 ### Random Circuits
 
 ### random\_circuit
 
 <span id="qiskit.circuit.random.random_circuit" />
 
-`qiskit.circuit.random.random_circuit(num_qubits, depth, max_operands=4, measure=False, conditional=False, reset=False, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/random/utils.py "view source code")
+`qiskit.circuit.random.random_circuit(num_qubits, depth, max_operands=4, measure=False, conditional=False, reset=False, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/random/utils.py "view source code")
 
 Generate random circuit of arbitrary size and form.
 
-This function will generate a random circuit by randomly selecting gates from the set of standard gates in [`qiskit.extensions`](extensions#module-qiskit.extensions "qiskit.extensions"). For example:
+This function will generate a random circuit by randomly selecting gates from the set of standard gates in `qiskit.circuit.library.standard_gates`. For example:
 
 ```python
 from qiskit.circuit.random import random_circuit
@@ -325,21 +341,6 @@ constructed circuit
 
 [**CircuitError**](#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – when invalid options given
 
-### Circuit Analysis
-
-|                                                                                                 |                                                                     |
-| ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| [`CommutationChecker`](qiskit.circuit.CommutationChecker "qiskit.circuit.CommutationChecker")() | This code is essentially copy-pasted from commutative\_analysis.py. |
-
-### Annotated Operations
-
-|                                                                                                                         |                                                                                                                       |
-| ----------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")(base\_op, modifiers)      | Annotated operation.                                                                                                  |
-| [`ControlModifier`](qiskit.circuit.ControlModifier "qiskit.circuit.ControlModifier")(\[num\_ctrl\_qubits, ctrl\_state]) | Control modifier: specifies that the operation is controlled by `num_ctrl_qubits` and has control state `ctrl_state`. |
-| [`PowerModifier`](qiskit.circuit.PowerModifier "qiskit.circuit.PowerModifier")(power)                                   | Power modifier: specifies that the operation is raised to the power `power`.                                          |
-| [`InverseModifier`](qiskit.circuit.InverseModifier "qiskit.circuit.InverseModifier")()                                  | Inverse modifier: specifies that the operation is inverted.                                                           |
-
 ### Exceptions
 
 Almost all circuit functions and methods will raise a [`CircuitError`](#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") when encountering an error that is particular to usage of Qiskit (as opposed to regular typing or indexing problems, which will typically raise the corresponding standard Python error).
@@ -348,7 +349,7 @@ Almost all circuit functions and methods will raise a [`CircuitError`](#qiskit.c
 
 <span id="qiskit.circuit.CircuitError" />
 
-`qiskit.circuit.CircuitError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/exceptions.py "view source code")
+`qiskit.circuit.CircuitError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/exceptions.py "view source code")
 
 Base class for errors raised while processing a circuit.
 

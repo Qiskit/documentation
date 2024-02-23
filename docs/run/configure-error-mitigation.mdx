@@ -38,6 +38,10 @@ apply vary based whether you are sampling a distribution or generating
 expectation values.
 </Admonition>
 
+<Admonition type="caution" title="Important">
+To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](../transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations; consequently, transpilation options referring to those tasks will no longer have any effect. Users can still request that the primitives do no optimization of input circuits by specifying `options.transpilation.skip_transpilation`.
+</Admonition>
+
 
 | Resilience Level | Definition                                                                                            | Estimator                                                                 | Sampler                                |
 |------------------|-------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|----------------------------------------|
@@ -57,7 +61,7 @@ applied at each resilience level.
 </Admonition>
 
 <Admonition type="note">
-  If using an IBM Cloud Qiskit Runtime service instance with Q-CTRL performance management enabled, there is no need to specify runtime optimization or resilience levels, as the strategy includes an automatic preset.
+  If using an IBM Cloud&reg; Qiskit&reg; Runtime service instance with Q-CTRL performance management enabled, there is no need to specify runtime optimization or resilience levels, as the strategy includes an automatic preset.
   
   Setting `optimization_level` or `resilience_level` equal to 0 will result in an
   execution error. Levels 1, 2, and 3 are permitted but will not impact performance.
@@ -165,15 +169,15 @@ mitigated circuit.
 
 How this works:
 
-When estimating an unmitigated Pauli observable $\langle P\rangle$ the
+When estimating an unmitigated Pauli observable $\langle P\rangle$, the
 standard error in the estimated expectation value is given by
 
-$\frac{1}{\sqrt{N_{\text{shots}}}}\left(1- \langle P\rangle^2\right)$
+$\frac{1}{\sqrt{N_{\text{shots}}}}\left(1- \langle P\rangle^2\right)$,
 
 where $N_{\text{shots}}$ is the number of shots used to estimate
 $\langle P\rangle$. When applying PEC mitigation, the standard error
 becomes
-$\sqrt{\frac{S}{N_{\text{samples}}}}\left(1- \langle P\rangle^2\right)$
+$\sqrt{\frac{S}{N_{\text{samples}}}}\left(1- \langle P\rangle^2\right)$,
 where $N_{\text{samples}}$ is the number of PEC samples.
 
 The sampling overhead scales exponentially with a parameter that
@@ -299,7 +303,7 @@ from qiskit_ibm_runtime import QiskitRuntimeService, Estimator, Options
 
 service = QiskitRuntimeService()
 options = Options()
-options.optimization_level = 3
+options.optimization_level = 1
 options.resilience_level = 2
 options.resilience.noise_factors = (1, 2, 3, 4)
 options.resilience.noise_amplifier = 'CxAmplifier'
@@ -316,4 +320,6 @@ psi1_H1 = job.result()
 <Admonition type="tip" title="Recommendations">
   - Walk through an example that uses error mitigation in the [Cost function lesson](https://learning.quantum.ibm.com/course/variational-algorithm-design/cost-functions#primitives) in IBM Quantum Learning.
   - Learn more about [Q-CTRL](https://docs.q-ctrl.com/q-ctrl-embedded).
+  - Learn how to transpile locally in the [Transpile](../transpile/) section.
+  - Try the [Submit pre-transpiled circuits](https://learning.quantum.ibm.com/tutorial/submitting-user-transpiled-circuits-using-primitives) tutorial.
 </Admonition>

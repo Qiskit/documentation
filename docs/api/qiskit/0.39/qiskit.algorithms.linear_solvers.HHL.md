@@ -22,7 +22,7 @@ The deprecated HHL is a quantum algorithm to estimate a function of the solution
 
 The HHL class is deprecated as of Qiskit Terra 0.22.0 and will be removed no sooner than 3 months after the release date. It is replaced by the tutorial at [HHL](https://qiskit.org/textbook/ch-applications/hhl_tutorial.html)
 
-## Examples
+**Examples**
 
 ```python
 import warnings
@@ -51,7 +51,7 @@ with warnings.catch_warnings():
 approx_result = solution.observable
 ```
 
-## References
+**References**
 
 **\[1]: Harrow, A. W., Hassidim, A., Lloyd, S. (2009).**
 

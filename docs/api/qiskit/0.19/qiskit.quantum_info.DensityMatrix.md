@@ -327,7 +327,7 @@ The Numpy vector array of probabilities.
 
 np.array
 
-#### Examples
+**Examples**
 
 Consider a 2-qubit product state $\rho=\rho_1\otimes\rho_0$ with $\rho_1=|+\rangle\!\langle+|$, $\rho_0=|0\rangle\!\langle0|$.
 
@@ -602,7 +602,7 @@ the dictionary form of the DensityMatrix.
 
 dict
 
-#### Examples
+**Examples**
 
 The ket-form of a 2-qubit density matrix $rho = |-\rangle\!\langle -|\otimes |0\rangle\!\langle 0|$
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.result.LocalReadoutMitigator
 
 <span id="qiskit.result.LocalReadoutMitigator" />
 
-`qiskit.result.LocalReadoutMitigator(assignment_matrices=None, qubits=None, backend=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/result/mitigation/local_readout_mitigator.py "view source code")
+`qiskit.result.LocalReadoutMitigator(assignment_matrices=None, qubits=None, backend=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/result/mitigation/local_readout_mitigator.py "view source code")
 
 Bases: [`BaseReadoutMitigator`](qiskit.result.BaseReadoutMitigator "qiskit.result.mitigation.base_readout_mitigator.BaseReadoutMitigator")
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CZGate
 
 <span id="qiskit.circuit.library.CZGate" />
 
-`qiskit.circuit.library.CZGate(*args, _force_mutable=False, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/z.py "view source code")
+`qiskit.circuit.library.CZGate(*args, _force_mutable=False, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/z.py "view source code")
 
 Bases: [`SingletonControlledGate`](circuit_singleton#qiskit.circuit.singleton.SingletonControlledGate "qiskit.circuit.singleton.SingletonControlledGate")
 
@@ -184,7 +184,19 @@ Get the time unit of duration.
 
 <span id="qiskit.circuit.library.CZGate.inverse" />
 
-`inverse()`
+`inverse(annotated=False)`
 
 Return inverted CZ gate (itself).
+
+**Parameters**
+
+**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as this gate is self-inverse.
+
+**Returns**
+
+inverse gate (self-inverse).
+
+**Return type**
+
+[CZGate](#qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate")
 

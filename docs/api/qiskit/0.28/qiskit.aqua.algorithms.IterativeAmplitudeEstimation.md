@@ -18,7 +18,7 @@ This class implements the Iterative Quantum Amplitude Estimation (IQAE) algorith
 
 It differs from the original QAE algorithm proposed by Brassard \[2] in that it does not rely on Quantum Phase Estimation, but is only based on Grover’s algorithm. IQAE iteratively applies carefully selected Grover iterations to find an estimate for the target amplitude.
 
-## References
+**References**
 
 **\[1]: Grinko, D., Gacon, J., Zoufal, C., & Woerner, S. (2019).**
 

@@ -39,7 +39,7 @@ matplotlib.Figure
 *   **ImportError** – Requires matplotlib.
 *   **ValueError** – When ‘color’ is not a list of len=2.
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumCircuit, BasicAer, execute

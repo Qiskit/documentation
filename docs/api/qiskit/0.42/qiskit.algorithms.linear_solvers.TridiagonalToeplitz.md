@@ -169,7 +169,7 @@ The values can be assigned to the current circuit object or to a copy of it.
 
 A copy of the circuit with bound parameters, if `inplace` is False, otherwise None.
 
-#### Examples
+**Examples**
 
 Create a parameterized circuit and assign the parameters in-place.
 
@@ -187,11 +187,7 @@ circuit.draw('mpl')
 
 ![../\_images/qiskit-algorithms-linear\_solvers-TridiagonalToeplitz-assign\_parameters-1\_00.png](/images/api/qiskit/0.42/qiskit-algorithms-linear_solvers-TridiagonalToeplitz-assign_parameters-1_00.png)
 
-Fig. 33 ([`png`](_downloads/ff37c226764247e560e3a85343b86685/qiskit-algorithms-linear_solvers-TridiagonalToeplitz-assign_parameters-1_00.png), [`hires.png`](_downloads/b6aef7c23aef550fd1398a759defe7d8/qiskit-algorithms-linear_solvers-TridiagonalToeplitz-assign_parameters-1_00.hires.png), [`pdf`](_downloads/6119677b2f68f968c433135996279a71/qiskit-algorithms-linear_solvers-TridiagonalToeplitz-assign_parameters-1_00.pdf))[¶](#id1 "Permalink to this image")
-
 ![../\_images/qiskit-algorithms-linear\_solvers-TridiagonalToeplitz-assign\_parameters-1\_01.png](/images/api/qiskit/0.42/qiskit-algorithms-linear_solvers-TridiagonalToeplitz-assign_parameters-1_01.png)
-
-Fig. 34 ([`png`](_downloads/9922ce15188659badfba018fb101d895/qiskit-algorithms-linear_solvers-TridiagonalToeplitz-assign_parameters-1_01.png), [`hires.png`](_downloads/0f2f9b13f42a057a7a16bf92c86d3b4f/qiskit-algorithms-linear_solvers-TridiagonalToeplitz-assign_parameters-1_01.hires.png), [`pdf`](_downloads/1a04f6dc7569c4788e0e451044beba59/qiskit-algorithms-linear_solvers-TridiagonalToeplitz-assign_parameters-1_01.pdf))[¶](#id2 "Permalink to this image")
 
 Bind the values out-of-place by list and get a copy of the original circuit.
 
@@ -211,11 +207,7 @@ circuit.draw('mpl')
 
 ![../\_images/qiskit-algorithms-linear\_solvers-TridiagonalToeplitz-assign\_parameters-2\_00.png](/images/api/qiskit/0.42/qiskit-algorithms-linear_solvers-TridiagonalToeplitz-assign_parameters-2_00.png)
 
-Fig. 35 ([`png`](_downloads/4e122536e8fdb50b6f3293dd127d5a1c/qiskit-algorithms-linear_solvers-TridiagonalToeplitz-assign_parameters-2_00.png), [`hires.png`](_downloads/1cd69e6b3fcfc6c39ed237fb902b9f31/qiskit-algorithms-linear_solvers-TridiagonalToeplitz-assign_parameters-2_00.hires.png), [`pdf`](_downloads/e84c98f08b17e05affe6ce6b0ad0f9be/qiskit-algorithms-linear_solvers-TridiagonalToeplitz-assign_parameters-2_00.pdf))[¶](#id3 "Permalink to this image")
-
 ![../\_images/qiskit-algorithms-linear\_solvers-TridiagonalToeplitz-assign\_parameters-2\_01.png](/images/api/qiskit/0.42/qiskit-algorithms-linear_solvers-TridiagonalToeplitz-assign_parameters-2_01.png)
-
-Fig. 36 ([`png`](_downloads/c491eec85d0433dc7b13e3649ddae562/qiskit-algorithms-linear_solvers-TridiagonalToeplitz-assign_parameters-2_01.png), [`hires.png`](_downloads/dec07cdb65038f6ea9504bfee738004a/qiskit-algorithms-linear_solvers-TridiagonalToeplitz-assign_parameters-2_01.hires.png), [`pdf`](_downloads/c310b95de6f2569250d21a31bdd26d30/qiskit-algorithms-linear_solvers-TridiagonalToeplitz-assign_parameters-2_01.pdf))[¶](#id4 "Permalink to this image")
 
 ### barrier
 
@@ -499,7 +491,7 @@ the composed circuit (returns None if inplace==True).
 *   **CircuitError** – if trying to emit a new circuit while `self` has a partially built control-flow context active, such as the context-manager forms of [`if_test()`](qiskit.algorithms.linear_solvers.TridiagonalToeplitz#if_test "qiskit.algorithms.linear_solvers.TridiagonalToeplitz.if_test"), [`for_loop()`](qiskit.algorithms.linear_solvers.TridiagonalToeplitz#for_loop "qiskit.algorithms.linear_solvers.TridiagonalToeplitz.for_loop") and [`while_loop()`](qiskit.algorithms.linear_solvers.TridiagonalToeplitz#while_loop "qiskit.algorithms.linear_solvers.TridiagonalToeplitz.while_loop").
 *   **CircuitError** – if trying to compose to the front of a circuit when a control-flow builder block is active; there is no clear meaning to this action.
 
-#### Examples
+**Examples**
 
 ```python
 >>> lhs.compose(rhs, qubits=[3, 2], inplace=True)
@@ -1045,7 +1037,7 @@ Depth of circuit.
 
 int
 
-#### Notes
+**Notes**
 
 The circuit depth and the DAG depth need not be the same.
 
@@ -1136,7 +1128,7 @@ Draw the quantum circuit. Use the output parameter to choose the drawing format:
 *   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – when an invalid output method is selected
 *   **ImportError** – when the output methods requires non-installed libraries.
 
-#### Example
+**Example**
 
 ```python
 from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
@@ -1207,7 +1199,7 @@ contains the index at which the `Bit` can be found (in either `qubits`, `clbits`
 
 namedtuple(int, List\[Tuple(Register, int)])
 
-#### Notes
+**Notes**
 
 The circuit index of an `AncillaQubit` will be its index in `qubits`, not `ancillas`.
 
@@ -1619,7 +1611,7 @@ a handle to the instruction that was just initialized
 
 [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-#### Examples
+**Examples**
 
 Prepare a qubit in the state $(|0\rangle - |1\rangle) / \sqrt{2}$.
 
@@ -1704,7 +1696,7 @@ the inverted circuit
 
 **CircuitError** – if the circuit cannot be inverted.
 
-#### Examples
+**Examples**
 
 input:
 
@@ -2108,7 +2100,7 @@ Conditional nonlocal gates are also included.
 
 Computes the number of tensor factors in the unitary (quantum) part of the circuit only.
 
-#### Notes
+**Notes**
 
 This is here for backwards compatibility, and will be removed in a future release of Qiskit. You should call num\_unitary\_factors instead.
 
@@ -2229,7 +2221,7 @@ a handle to the instruction that was just initialized
 
 [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-#### Examples
+**Examples**
 
 Prepare a qubit in the state $(|0\rangle - |1\rangle) / \sqrt{2}$.
 
@@ -2568,7 +2560,7 @@ the circuit with reversed bit order.
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-#### Examples
+**Examples**
 
 input:
 
@@ -2620,7 +2612,7 @@ the reversed circuit.
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-#### Examples
+**Examples**
 
 input:
 
@@ -3628,7 +3620,7 @@ q_0: ┤ bottom ├ ⊗ q_0: ┤ top ├  = q_0: ─┤ top ├──
 *   **other** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The other circuit to tensor this circuit with.
 *   **inplace** (*bool*) – If True, modify the object. Otherwise return composed circuit.
 
-#### Examples
+**Examples**
 
 ```python
 from qiskit import QuantumCircuit
@@ -3866,7 +3858,7 @@ the uniformly controlled rotation gate is attached to the circuit.
 
 Apply unitary gate specified by `obj` to `qubits`.
 
-#### Example
+**Example**
 
 Apply a gate specified by a unitary matrix to a quantum circuit
 

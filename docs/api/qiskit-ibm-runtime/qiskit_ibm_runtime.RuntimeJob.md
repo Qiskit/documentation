@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.RuntimeJob
 
 <span id="qiskit_ibm_runtime.RuntimeJob" />
 
-`RuntimeJob(backend, api_client, client_params, job_id, program_id, service, params=None, creation_date=None, user_callback=None, result_decoder=None, image='', session_id=None, tags=None)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.17/qiskit_ibm_runtime/runtime_job.py "view source code")
+`RuntimeJob(backend, api_client, client_params, job_id, program_id, service, params=None, creation_date=None, user_callback=None, result_decoder=None, image='', session_id=None, tags=None)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/runtime_job.py "view source code")
 
 Representation of a runtime program execution.
 
@@ -120,7 +120,7 @@ Session ID.
 
 **Returns**
 
-Job ID of the first job in a runtime session.
+Session ID. None if the backend is a simulator.
 
 <span id="qiskit_ibm_runtime.RuntimeJob.tags" />
 
@@ -354,6 +354,52 @@ Return the backend properties for this job.
 **Returns**
 
 The backend properties used for this job, at the time the job was run, or `None` if properties are not available.
+
+### queue\_info
+
+<span id="qiskit_ibm_runtime.RuntimeJob.queue_info" />
+
+`queue_info()`
+
+Return queue information for this job.
+
+The queue information may include queue position, estimated start and end time, and dynamic priorities for the hub, group, and project. See `QueueInfo` for more information.
+
+<Admonition title="Note" type="note">
+  The queue information is calculated after the job enters the queue. Therefore, some or all of the information may not be immediately available, and this method may return `None`.
+</Admonition>
+
+**Return type**
+
+`Optional`\[`QueueInfo`]
+
+**Returns**
+
+A `QueueInfo` instance that contains queue information for this job, or `None` if queue information is unknown or not applicable.
+
+### queue\_position
+
+<span id="qiskit_ibm_runtime.RuntimeJob.queue_position" />
+
+`queue_position(refresh=False)`
+
+Return the position of the job in the server queue.
+
+<Admonition title="Note" type="note">
+  The position returned is within the scope of the provider and may differ from the global queue position.
+</Admonition>
+
+**Parameters**
+
+**refresh** (`bool`) – If `True`, re-query the server to get the latest value. Otherwise return the cached value.
+
+**Return type**
+
+`Optional`\[`int`]
+
+**Returns**
+
+Position in the queue or `None` if position is unknown or not applicable.
 
 ### result
 

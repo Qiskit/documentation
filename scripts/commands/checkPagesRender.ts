@@ -21,6 +21,7 @@ const PORT = 3000;
 interface Arguments {
   [x: string]: unknown;
   currentApis: boolean;
+  devApis: boolean;
   historicalApis: boolean;
   qiskitReleaseNotes: boolean;
   translations: boolean;
@@ -33,6 +34,11 @@ const readArgs = (): Arguments => {
       type: "boolean",
       default: false,
       description: "Check the pages in the current API docs.",
+    })
+    .option("dev-apis", {
+      type: "boolean",
+      default: false,
+      description: "Check the /dev API docs.",
     })
     .option("historical-apis", {
       type: "boolean",
@@ -59,13 +65,13 @@ zxMain(async () => {
   await validateDockerRunning();
   const files = await determineFilePaths(args);
 
-  let allGood = true;
+  let failures: string[] = [];
   let numFilesChecked = 1;
   for (const fp of files) {
     const rendered = await canRender(fp);
     if (!rendered) {
       console.error(`❌ Failed to render: ${fp}`);
-      allGood = false;
+      failures.push(fp);
     }
 
     // This script can be slow, so log progress every 10 files.
@@ -75,13 +81,14 @@ zxMain(async () => {
     numFilesChecked++;
   }
 
-  if (allGood) {
+  if (failures.length === 0) {
     console.info("✅ All pages render without crashing");
   } else {
     console.error(
       "💔 Some pages crash when rendering. This is usually due to invalid syntax, such as forgetting " +
         "the closing component tag, like `</Admonition>`. You can sometimes get a helpful error message " +
-        "by previewing the docs locally or in CI. See the README for instructions.",
+        "by previewing the docs locally or in CI. See the README for instructions.\n\n" +
+        failures.join("\n"),
     );
     process.exit(1);
   }
@@ -137,6 +144,11 @@ async function determineFilePaths(args: Arguments): Promise<string[]> {
   if (!args.historicalApis) {
     globs.push(
       "!docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/[0-9]*/*",
+    );
+  }
+  if (!args.devApis) {
+    globs.push(
+      "!docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/dev/*",
     );
   }
   if (!args.qiskitReleaseNotes) {

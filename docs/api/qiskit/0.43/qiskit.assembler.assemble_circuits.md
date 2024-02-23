@@ -31,7 +31,7 @@ The qobj to be run on the backends
 
 [*QasmQobj*](qiskit.qobj.QasmQobj "qiskit.qobj.qasm_qobj.QasmQobj")
 
-## Examples
+**Examples**
 
 ```python
 from qiskit.circuit import QuantumRegister, ClassicalRegister, QuantumCircuit

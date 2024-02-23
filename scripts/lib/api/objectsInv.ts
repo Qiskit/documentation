@@ -129,7 +129,7 @@ export class ObjectsInv {
     return uri;
   }
 
-  updateUris(transformLink: Function): void {
+  updateUris(transformLink: (uri: string) => string): void {
     for (const entry of this.entries) {
       entry.uri = entry.uri.replace(/\.html/, "");
       entry.uri = transformLink(entry.uri);

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.RGQFTMultiplier
 
 <span id="qiskit.circuit.library.RGQFTMultiplier" />
 
-`qiskit.circuit.library.RGQFTMultiplier(num_state_qubits, num_result_qubits=None, name='RGQFTMultiplier')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/arithmetic/multipliers/rg_qft_multiplier.py "view source code")
+`qiskit.circuit.library.RGQFTMultiplier(num_state_qubits, num_result_qubits=None, name='RGQFTMultiplier')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/arithmetic/multipliers/rg_qft_multiplier.py "view source code")
 
 Bases: `Multiplier`
 
@@ -79,29 +79,17 @@ a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitI
 
 QuantumCircuitData
 
-<span id="qiskit.circuit.library.RGQFTMultiplier.extension_lib" />
-
-### extension\_lib
-
-`= 'include "qelib1.inc";'`
-
 <span id="qiskit.circuit.library.RGQFTMultiplier.global_phase" />
 
 ### global\_phase
 
 Return the global phase of the current circuit scope in radians.
 
-<span id="qiskit.circuit.library.RGQFTMultiplier.header" />
-
-### header
-
-`= 'OPENQASM 2.0;'`
-
 <span id="qiskit.circuit.library.RGQFTMultiplier.instances" />
 
 ### instances
 
-`= 474`
+`= 412`
 
 <span id="qiskit.circuit.library.RGQFTMultiplier.layout" />
 
@@ -220,9 +208,6 @@ ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
 ```
 
 To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
-
-```python
-```
 
 ```python
 >>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector

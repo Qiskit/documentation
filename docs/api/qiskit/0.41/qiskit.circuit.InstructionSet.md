@@ -81,7 +81,7 @@ This same instance of [`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.c
 
 **CircuitError** – if the passed classical resource is invalid, or otherwise not resolvable to a concrete resource that these instructions are permitted to access.
 
-#### Example
+**Example**
 
 ```python
 from qiskit import ClassicalRegister, QuantumRegister, QuantumCircuit

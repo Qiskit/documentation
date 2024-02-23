@@ -36,7 +36,7 @@ This a non-sinusoidal wave with linear ramping.
 
 [*Waveform*](qiskit.pulse.library.Waveform "qiskit.pulse.library.waveform.Waveform")
 
-## Example
+**Example**
 
 ```python
 import matplotlib.pyplot as plt

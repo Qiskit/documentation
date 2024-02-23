@@ -20,7 +20,7 @@ Implementation follows the methods from \[1] FullAccreditation and \[2] MeanAccr
 
 Data can be input either as qiskit result objects, or as lists of bitstrings (the latter is useful for batch jobs).
 
-## References
+**References**
 
 1.  S. Ferracin, T. Kapourniotis, A. Datta. *Accrediting outputs of noisy intermediate-scale quantum computing devices*, New Journal of Physics, Volume 21, 113038. (2019). [NJP 113038](https://iopscience.iop.org/article/10.1088/1367-2630/ab4fd6)
 2.  S. Ferracin, S. Merkel, D. McKay, A. Datta. *Experimental accreditation of outputs of noisy quantum computers*, arxiv:2103.06603 (2021). [arXiv:quant-ph/2103.06603](https://arxiv.org/abs/2103.06603)

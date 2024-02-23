@@ -178,7 +178,7 @@ True, if other and self are equal, otherwise False.
 
 [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
 
-## Examples
+**Examples**
 
 ```python
 >>> from qiskit.opflow import X, Z

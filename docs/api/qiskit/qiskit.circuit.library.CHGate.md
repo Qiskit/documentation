@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CHGate
 
 <span id="qiskit.circuit.library.CHGate" />
 
-`qiskit.circuit.library.CHGate(*args, _force_mutable=False, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/h.py "view source code")
+`qiskit.circuit.library.CHGate(*args, _force_mutable=False, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/h.py "view source code")
 
 Bases: [`SingletonControlledGate`](circuit_singleton#qiskit.circuit.singleton.SingletonControlledGate "qiskit.circuit.singleton.SingletonControlledGate")
 
@@ -205,7 +205,7 @@ Get the time unit of duration.
 
 <span id="qiskit.circuit.library.CHGate.inverse" />
 
-`inverse()`
+`inverse(annotated=False)`
 
 Return inverted CH gate (itself).
 

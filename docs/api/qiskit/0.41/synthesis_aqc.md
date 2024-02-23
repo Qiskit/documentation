@@ -124,6 +124,8 @@ Now `approximate_circuit` is a circuit that approximates the target unitary to a
 
 This uses a helper function, [`make_cnot_network`](#qiskit.transpiler.synthesis.aqc.make_cnot_network "qiskit.transpiler.synthesis.aqc.make_cnot_network").
 
+### make\_cnot\_network
+
 <span id="qiskit.transpiler.synthesis.aqc.make_cnot_network" />
 
 `make_cnot_network(num_qubits, network_layout='spin', connectivity_type='full', depth=0)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/synthesis/aqc/cnot_structures.py "view source code")
@@ -157,7 +159,7 @@ One can take advantage of accelerated version of objective function. It implemen
 
 The rest of the code in the above example does not change.
 
-## References
+**References**
 
 **\[1]: Liam Madden, Andrea Simonetto, Best Approximate Quantum Compiling Problems.**
 

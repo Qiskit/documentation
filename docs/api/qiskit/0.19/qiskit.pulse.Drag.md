@@ -25,7 +25,7 @@ $$
 Gaussian(x, amp, sigma) = amp * exp( -(1/2) * (x - duration/2)^2 / sigma^2) )
 $$
 
-## References
+**References**
 
 1.  [*Gambetta, J. M., Motzoi, F., Merkel, S. T. & Wilhelm, F. K. Analytic control methods for high-fidelity unitary operations in a weakly nonlinear oscillator. Phys. Rev. A 83, 012308 (2011).*](https://link.aps.org/doi/10.1103/PhysRevA.83.012308)
 
@@ -124,7 +124,7 @@ Plot the pulse.
 **Parameters**
 
 *   **dt** (`float`) – Time interval of samples.
-*   **style** (*Optional\[*[*PulseStyle*](qiskit.visualization.pulse.qcstyle#qiskit.visualization.pulse.qcstyle.PulseStyle "qiskit.visualization.pulse.qcstyle.PulseStyle")*]*) – A style sheet to configure plot appearance
+*   **style** (*Optional\[*[*PulseStyle*](qiskit.visualization.pulse.qcstyle#pulsestyle "qiskit.visualization.pulse.qcstyle.PulseStyle")*]*) – A style sheet to configure plot appearance
 *   **filename** (`Optional`\[`str`]) – Name required to save pulse image
 *   **interp\_method** (`Optional`\[`Callable`]) – A function for interpolation
 *   **scale** (`float`) – Relative visual scaling of waveform amplitudes

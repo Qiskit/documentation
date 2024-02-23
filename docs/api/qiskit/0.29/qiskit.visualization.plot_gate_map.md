@@ -42,7 +42,7 @@ Figure
 *   **QiskitError** – if tried to pass a simulator.
 *   [**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – if matplotlib not installed.
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumCircuit, execute, IBMQ

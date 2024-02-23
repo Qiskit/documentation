@@ -8,8 +8,12 @@ description: Practical examples of primitive usage
 
 The examples in this section illustrate some common ways to use primitives. Before running these examples, follow the instructions in [Install and set up.](../start/install)
 
+<Admonition type="caution" title="Important">
+To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](../transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations; consequently, transpilation options referring to those tasks will no longer have any effect. Users can still request that the primitives do no optimization of input circuits by specifying `options.transpilation.skip_transpilation`.
+</Admonition>
+
 <Admonition type="note">
-    These examples all use the primitives from Qiskit Runtime, but you could use the base primitives instead. 
+    These examples all use the primitives from Qiskit&reg; Runtime, but you could use the base primitives instead. 
 </Admonition>
 
 ## Estimator examples
@@ -23,6 +27,7 @@ Use Estimator to determine the expectation value of a single circuit-observable 
 ```python 
 import numpy as np
 from qiskit.circuit.library import IQP
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit.quantum_info import SparsePauliOp, random_hermitian
 from qiskit_ibm_runtime import QiskitRuntimeService, Estimator
 
@@ -36,8 +41,12 @@ mat = np.real(random_hermitian(n_qubits, seed=1234))
 circuit = IQP(mat)
 observable = SparsePauliOp("Z" * n_qubits)
 
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+isa_circuit = pm.run(circuit)
+isa_observable = observable.apply_layout(isa_circuit.layout)
+
 estimator = Estimator(backend)
-job = estimator.run(circuit, observable)
+job = estimator.run(isa_circuit, isa_observable)
 result = job.result()
 
 print(f" > Observable: {observable.paulis}")
@@ -52,6 +61,7 @@ Use Estimator to determine the expectation values of multiple circuit-observable
 ```python 
 import numpy as np
 from qiskit.circuit.library import IQP
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit.quantum_info import SparsePauliOp, random_hermitian
 from qiskit_ibm_runtime import QiskitRuntimeService, Estimator
 
@@ -71,8 +81,12 @@ observables = [
     SparsePauliOp("Z" * n_qubits),
 ]
 
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+isa_circuits = pm.run(circuits)
+isa_observables = [ob.apply_layout(isa_circuits[0].layout) for ob in observables]
+
 estimator = Estimator(backend)
-job = estimator.run(circuits, observables)
+job = estimator.run(isa_circuits, isa_observables)
 result = job.result()
 
 print(f" > Expectation values: {result.values}")
@@ -85,6 +99,7 @@ Use Estimator to run three experiments in a single job, leveraging parameter val
 ```python 
 import numpy as np
 from qiskit.circuit.library import RealAmplitudes
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit.quantum_info import SparsePauliOp
 from qiskit_ibm_runtime import QiskitRuntimeService, Estimator
 
@@ -100,8 +115,12 @@ parameter_values = [
 ]
 observable = SparsePauliOp("Z" * 127)
 
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+isa_circuit = pm.run(circuit)
+isa_observable = observable.apply_layout(isa_circuit.layout)
+
 estimator = Estimator(backend)
-job = estimator.run([circuit] * 3, [observable] * 3, parameter_values)
+job = estimator.run([isa_circuit] * 3, [isa_observable] * 3, parameter_values)
 result = job.result()
 
 print(f" > Expectation values: {result.values}")
@@ -113,6 +132,7 @@ Explore sessions and advanced options to optimize circuit performance on quantum
 ```python 
 import numpy as np
 from qiskit.circuit.library import IQP
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit.quantum_info import SparsePauliOp, random_hermitian
 from qiskit_ibm_runtime import QiskitRuntimeService, Session, Estimator, Options
 
@@ -126,6 +146,12 @@ another_circuit = IQP(mat)
 observable = SparsePauliOp("X" * n_qubits)
 another_observable = SparsePauliOp("Y" * n_qubits)
 
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+isa_circuit = pm.run(circuit)
+another_isa_circuit = pm.run(another_circuit)
+isa_observable = observable.apply_layout(isa_circuit.layout)
+another_isa_observable = another_observable.apply_layout(another_isa_circuit.layout)
+
 options = Options()
 options.optimization_level = 2
 options.resilience_level = 2
@@ -136,8 +162,8 @@ backend = service.get_backend("ibm_brisbane")
 
 with Session(service=service, backend=backend) as session:
     estimator = Estimator(session=session, options=options)
-    job = estimator.run(circuit, observable)
-    another_job = estimator.run(another_circuit, another_observable)
+    job = estimator.run(isa_circuit, isa_observable)
+    another_job = estimator.run(another_isa_circuit, another_isa_observable)
     result = job.result()
     another_result = another_job.result()
 
@@ -159,6 +185,7 @@ Use Sampler to determine the quasi-probability distribution of a single circuit.
 ```python
 import numpy as np
 from qiskit.circuit.library import IQP
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit.quantum_info import random_hermitian
 from qiskit_ibm_runtime import QiskitRuntimeService, Sampler
 
@@ -172,8 +199,11 @@ mat = np.real(random_hermitian(n_qubits, seed=1234))
 circuit = IQP(mat)
 circuit.measure_all()
 
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+isa_circuit = pm.run(circuit)
+
 sampler = Sampler(backend)
-job = sampler.run(circuit)
+job = sampler.run(isa_circuit)
 result = job.result()
 
 print(f" > Quasi-probability distribution: {result.quasi_dists}")
@@ -187,6 +217,7 @@ Use Sampler to determine the quasi-probability distributions of multiple circuit
 ```python
 import numpy as np
 from qiskit.circuit.library import IQP
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit.quantum_info import random_hermitian
 from qiskit_ibm_runtime import QiskitRuntimeService, Sampler 
 
@@ -202,8 +233,11 @@ circuits = [IQP(mat) for mat in mats]
 for circuit in circuits:
     circuit.measure_all()
 
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+isa_circuits = pm.run(circuits)
+
 sampler = Sampler(backend) 
-job = sampler.run(circuits) 
+job = sampler.run(isa_circuits)
 result = job.result() 
 
 print(f" > Quasi-probability distribution: {result.quasi_dists}")
@@ -216,6 +250,7 @@ Run three experiments in a single job, leveraging parameter values to increase c
 ```python
 import numpy as np
 from qiskit.circuit.library import RealAmplitudes
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit_ibm_runtime import QiskitRuntimeService, Sampler
 
 service = QiskitRuntimeService()
@@ -224,6 +259,10 @@ backend = service.get_backend("ibm_brisbane")
 
 circuit = RealAmplitudes(num_qubits=127, reps=2)
 circuit.measure_all()
+
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+isa_circuit = pm.run(circuit)
+
 # Define three sets of parameters for the circuit
 rng = np.random.default_rng(1234)
 parameter_values = [
@@ -231,7 +270,7 @@ parameter_values = [
 ]
 
 sampler = Sampler(backend) 
-job = sampler.run([circuit] * 3, parameter_values) 
+job = sampler.run([isa_circuit] * 3, parameter_values) 
 result = job.result() 
 
 print(f" > Quasi-probability distribution: {result.quasi_dists}")
@@ -244,6 +283,7 @@ Explore sessions and advanced options to optimize circuit performance on quantum
 ```python
 import numpy as np
 from qiskit.circuit.library import IQP
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit.quantum_info import random_hermitian
 from qiskit_ibm_runtime import QiskitRuntimeService, Sampler, Session, Options
 
@@ -257,6 +297,10 @@ mat = np.real(random_hermitian(n_qubits, seed=rng))
 another_circuit = IQP(mat)
 another_circuit.measure_all()
 
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+isa_circuit = pm.run(circuit)
+another_isa_circuit = pm.run(another_circuit)
+
 options = Options() 
 options.optimization_level = 2 
 options.resilience_level = 0 
@@ -267,8 +311,8 @@ backend = service.get_backend("ibm_brisbane")
 
 with Session(service=service, backend=backend) as session: 
     sampler = Sampler(session=session, options=options) 
-    job = sampler.run(circuit) 
-    another_job = sampler.run(another_circuit) 
+    job = sampler.run(isa_circuit) 
+    another_job = sampler.run(another_isa_circuit) 
     result = job.result()
     another_result = another_job.result() 
 
@@ -284,4 +328,6 @@ print(f" > Quasi-probability distribution job 2: {another_result.quasi_dists}")
 <Admonition type="tip" title="Recommendations">
     - [Specify advanced runtime options.](advanced-runtime-options)
     - Practice with primitives by working through the [Cost function lesson](https://learning.quantum.ibm.com/course/variational-algorithm-design/cost-functions#primitives) in IBM Quantum Learning.
+    - Learn how to transpile locally in the [Transpile](../transpile/) section.
+    - Try the [Submit pre-transpiled circuits](https://learning.quantum.ibm.com/tutorial/submitting-user-transpiled-circuits-using-primitives) tutorial.
 </Admonition>

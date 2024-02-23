@@ -16,7 +16,7 @@ Bases: [`qiskit.synthesis.evolution.product_formula.ProductFormula`](qiskit.synt
 
 The QDrift Trotterization method, which selects each each term in the Trotterization randomly, with a probability proportional to its weight. Based on the work of Earl Campbell in Ref. \[1].
 
-## References
+**References**
 
 \[1]: E. Campbell, “A random compiler for fast Hamiltonian simulation” (2018). [arXiv:quant-ph/1811.08017](https://arxiv.org/abs/1811.08017)
 

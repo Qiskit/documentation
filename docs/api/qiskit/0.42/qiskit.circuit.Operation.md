@@ -16,7 +16,7 @@ Bases: `abc.ABC`
 
 Quantum Operation Interface Class. For objects that can be added to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"). These objects include [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"), `Reset`, `Barrier`, `Measure`, and operators such as [`Clifford`](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford"). The main purpose is to add an [`Operation`](#qiskit.circuit.Operation "qiskit.circuit.Operation") to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") without synthesizing it before the transpilation.
 
-## Example
+**Example**
 
 Add a Clifford and a Toffoli gate to a QuantumCircuit.
 

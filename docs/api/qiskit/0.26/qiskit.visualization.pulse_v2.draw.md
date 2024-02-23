@@ -26,7 +26,7 @@ Generate visualization data for pulse programs.
 
 *   **time\_unit** (`str`) – The unit of specified time range either `dt` or `ns`. The unit of `ns` is available only when `backend` object is provided.
 
-*   **disable\_channels** (`Optional`\[`List`\[[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]]) – A control property to show specific pulse channel. Pulse channel instances provided as a list is not shown in the output image.
+*   **disable\_channels** (`Optional`\[`List`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")]]) – A control property to show specific pulse channel. Pulse channel instances provided as a list is not shown in the output image.
 
 *   **show\_snapshot** (`bool`) – Show snapshot instructions.
 
@@ -236,7 +236,7 @@ The stylesheet kwarg contains numerous options that define the style of the outp
 
 *   **layout.figure\_title** – Callback function that generates a string for the figure title. See :py:mod:\~\`qiskit.visualization.pulse\_v2.layout\` for more details. No default layout is set.
 
-## Examples
+**Examples**
 
 To visualize a pulse program, you can call this function with set of control arguments. Most of appearance of the output image can be controlled by the stylesheet.
 

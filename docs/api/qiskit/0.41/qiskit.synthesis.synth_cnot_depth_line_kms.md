@@ -32,7 +32,7 @@ the synthesized quantum circuit.
 
 **QiskitError** – if mat is not invertible.
 
-## References
+**References**
 
 1.  Kutin, S., Moulton, D. P., Smithline, L., *Computation at a distance*, Chicago J. Theor. Comput. Sci., vol. 2007, (2007), [arXiv:quant-ph/0701194](https://arxiv.org/abs/quant-ph/0701194)
 

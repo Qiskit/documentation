@@ -33,7 +33,7 @@ where if given the same number of breakpoints as polynomials, we implicitly assu
   Note the $1/2$ factor in the coefficients of $f(x)$, this is consistent with Qiskit’s Pauli rotations.
 </Admonition>
 
-## Examples
+**Examples**
 
 ```python
 >>> from qiskit import QuantumCircuit
@@ -62,7 +62,7 @@ q_5: ─────┤5         ├
           └──────────┘
 ```
 
-## References
+**References**
 
 **\[1]: Haener, T., Roetteler, M., & Svore, K. M. (2018).**
 

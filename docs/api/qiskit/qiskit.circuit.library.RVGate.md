@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.RVGate
 
 <span id="qiskit.circuit.library.RVGate" />
 
-`qiskit.circuit.library.RVGate(v_x, v_y, v_z, basis='U')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/generalized_gates/rv.py "view source code")
+`qiskit.circuit.library.RVGate(v_x, v_y, v_z, basis='U')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/generalized_gates/rv.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -47,7 +47,7 @@ Create new rv single-qubit gate.
 *   **v\_x** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – x-component
 *   **v\_y** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – y-component
 *   **v\_z** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – z-component
-*   **basis** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*, optional*) – basis (see [`OneQubitEulerDecomposer`](qiskit.quantum_info.OneQubitEulerDecomposer "qiskit.quantum_info.synthesis.one_qubit_decompose.OneQubitEulerDecomposer"))
+*   **basis** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*, optional*) – basis (see [`OneQubitEulerDecomposer`](qiskit.synthesis.OneQubitEulerDecomposer "qiskit.synthesis.one_qubit.one_qubit_decompose.OneQubitEulerDecomposer"))
 
 ## Attributes
 
@@ -152,7 +152,7 @@ Get the time unit of duration.
 
 <span id="qiskit.circuit.library.RVGate.inverse" />
 
-`inverse()`
+`inverse(annotated=False)`
 
 Invert this gate.
 

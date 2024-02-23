@@ -37,7 +37,7 @@ with pulse.build(backend):
 
 **Return type**
 
-`List`\[[`ControlChannel`](qiskit.pulse.channels#qiskit.pulse.channels.ControlChannel "qiskit.pulse.channels.ControlChannel")]
+`List`\[[`ControlChannel`](qiskit.pulse.channels#controlchannel "qiskit.pulse.channels.ControlChannel")]
 
 **Returns**
 

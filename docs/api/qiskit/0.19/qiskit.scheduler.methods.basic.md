@@ -1,16 +1,16 @@
 ---
-title: CircuitPulseDef
-description: API reference for qiskit.scheduler.methods.basic.CircuitPulseDef
+title: basic
+description: API reference for qiskit.scheduler.methods.basic
 in_page_toc_min_heading_level: 1
-python_api_type: class
-python_api_name: qiskit.scheduler.methods.basic.CircuitPulseDef
+python_api_type: module
+python_api_name: qiskit.scheduler.methods.basic
 ---
 
 # basic
 
 The most straightforward scheduling methods: scheduling **as early** or **as late** as possible.
 
-## Functions
+**Functions**
 
 |                                                                                                                                                                             |                                                                                                                       |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
@@ -18,7 +18,7 @@ The most straightforward scheduling methods: scheduling **as early** or **as lat
 | [`as_soon_as_possible`](#qiskit.scheduler.methods.basic.as_soon_as_possible "qiskit.scheduler.methods.basic.as_soon_as_possible")(circuit, schedule\_config)                | Return the pulse Schedule which implements the input circuit using an “as soon as possible” (asap) scheduling policy. |
 | [`translate_gates_to_pulse_defs`](#qiskit.scheduler.methods.basic.translate_gates_to_pulse_defs "qiskit.scheduler.methods.basic.translate_gates_to_pulse_defs")(circuit, …) | Return a list of Schedules and the qubits they operate on, for each element encountered in th input circuit.          |
 
-## Classes
+**Classes**
 
 |                                                                                                                                         |                                                          |
 | --------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
@@ -52,6 +52,8 @@ Alias for field number 1
 
 Alias for field number 0
 
+### as\_late\_as\_possible
+
 <span id="qiskit.scheduler.methods.basic.as_late_as_possible" />
 
 `as_late_as_possible(circuit, schedule_config)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/scheduler/methods/basic.py "view source code")
@@ -75,6 +77,8 @@ This method should improves the outcome fidelity over ASAP scheduling, because w
 
 A schedule corresponding to the input `circuit` with pulses occurring as late as possible.
 
+### as\_soon\_as\_possible
+
 <span id="qiskit.scheduler.methods.basic.as_soon_as_possible" />
 
 `as_soon_as_possible(circuit, schedule_config)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/scheduler/methods/basic.py "view source code")
@@ -95,6 +99,8 @@ Circuit instructions are first each mapped to equivalent pulse Schedules accordi
 **Returns**
 
 A schedule corresponding to the input `circuit` with pulses occurring as early as possible.
+
+### translate\_gates\_to\_pulse\_defs
 
 <span id="qiskit.scheduler.methods.basic.translate_gates_to_pulse_defs" />
 

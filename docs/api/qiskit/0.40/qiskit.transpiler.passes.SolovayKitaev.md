@@ -39,7 +39,7 @@ q_0: ┤ H ├┤ T ├┤ H ├
 
 with an L2-error of approximately 0.01.
 
-## Examples
+**Examples**
 
 ```python
 import numpy as np
@@ -78,7 +78,7 @@ q: ┤ H ├┤ T ├┤ H ├
 Error: 2.828408279166474
 ```
 
-## References
+**References**
 
 **\[1]: Kitaev, A Yu (1997). Quantum computations: algorithms and error correction.**
 

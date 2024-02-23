@@ -1042,7 +1042,7 @@ bits.</p>
 <div role='main'>
 <div class="math notranslate nohighlight">
 \\[\\begin{split}CCX q_0, q_1, q_2 =
-    I \\otimes I \\otimes \vert 0 \\rangle \\langle 0\vert  + CX \\otimes \vert 1 \\rangle \\langle 1\vert  =
+    I \\otimes I \\otimes |0 \\rangle \\langle 0| + CX \\otimes |1 \\rangle \\langle 1| =
    \\begin{pmatrix}
         1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\\\
         0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\\\
@@ -1061,7 +1061,7 @@ bits.</p>
     ).toMatchInlineSnapshot(`
         "$$
         \\begin{split}CCX q_0, q_1, q_2 =
-            I \\otimes I \\otimes \vert 0 \\rangle \\langle 0\vert  + CX \\otimes \vert 1 \\rangle \\langle 1\vert  =
+            I \\otimes I \\otimes |0 \\rangle \\langle 0| + CX \\otimes |1 \\rangle \\langle 1| =
            \\begin{pmatrix}
                 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\\\
                 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0\\\\
@@ -1423,47 +1423,6 @@ test("test dt tag without id", async () => {
   **Return type**
   
   [qiskit.providers.Options](qiskit.providers.Options#qiskit.providers.Options "qiskit.providers.Options")
-  "
-  `);
-});
-
-test("test replacement of the pipe character for `\vert` on math expressions", async () => {
-  expect(
-    await toMd(`
-    <div role="main">
-    <p class="rubric">Methods</p>
-    <table class="longtable docutils align-default">
-    <colgroup>
-    <col style="width: 10%" />
-    <col style="width: 90%" />
-    </colgroup>
-    <tbody>
-    <tr class="row-odd"><td><a class="reference internal" href="#text-with-pipe" title="text with pipe"></td>
-    <td><p>This is an example of using the | character outside of a math expression</p></td>
-    </tr>
-    <tr class="row-even"><td><a class="reference internal" href="#span-tag-math-expressions-with-pipe" title="(span tag) math expressions with pipe"></a></td>
-    <td><p>Example single pipe: <span class="math">\\(\\mathcal{Q}^k \\mathcal{A} |0\\rangle\\)</span>.</p></td>
-    <tr class="row-odd"><td><a class="reference internal" href="#span-tag-math-expressions-with-double-pipe" title="(span tag) math expressions with double pipe"></a></td>
-    <td><p>Example double pipe: The length of the vector x is <span class="math">\\(\\|x\\|_2\\)</span>.</p></td>
-    </tbody>
-    </table>
-    <p>This is a math expression outside the table: <div class="math">\\[\\mathcal{Q}^k \\mathcal{A} |0\\rangle\\]</div></p>
-    </div>
-    `),
-  ).toMatchInlineSnapshot(`
-  "## Methods
-
-  |                                                                                                |                                                                           |
-  | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-  | [](#text-with-pipe "text with pipe")                                                           | This is an example of using the \\| character outside of a math expression |
-  | [](#span-tag-math-expressions-with-pipe "(span tag) math expressions with pipe")               | Example single pipe: $\\mathcal{Q}^k \\mathcal{A} \\vert 0\\rangle$.          |
-  | [](#span-tag-math-expressions-with-double-pipe "(span tag) math expressions with double pipe") | Example double pipe: The length of the vector x is $\\|x\\|_2$.             |
-  
-  This is a math expression outside the table:
-  
-  $$
-  \\mathcal{Q}^k \\mathcal{A} \\vert 0\\rangle
-  $$
   "
   `);
 });

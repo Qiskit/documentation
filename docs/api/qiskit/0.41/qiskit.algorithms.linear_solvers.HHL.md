@@ -51,7 +51,7 @@ with warnings.catch_warnings():
 approx_result = solution.observable
 ```
 
-## References
+**References**
 
 **\[1]: Harrow, A. W., Hassidim, A., Lloyd, S. (2009).**
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.WeightedAdder
 
 <span id="qiskit.circuit.library.WeightedAdder" />
 
-`qiskit.circuit.library.WeightedAdder(num_state_qubits=None, weights=None, name='adder')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/arithmetic/weighted_adder.py "view source code")
+`qiskit.circuit.library.WeightedAdder(num_state_qubits=None, weights=None, name='adder')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/arithmetic/weighted_adder.py "view source code")
 
 Bases: `BlueprintCircuit`
 
@@ -91,29 +91,17 @@ Returns a list of classical bits in the order that the registers were added.
 
 ### data
 
-<span id="qiskit.circuit.library.WeightedAdder.extension_lib" />
-
-### extension\_lib
-
-`= 'include "qelib1.inc";'`
-
 <span id="qiskit.circuit.library.WeightedAdder.global_phase" />
 
 ### global\_phase
 
 Return the global phase of the current circuit scope in radians.
 
-<span id="qiskit.circuit.library.WeightedAdder.header" />
-
-### header
-
-`= 'OPENQASM 2.0;'`
-
 <span id="qiskit.circuit.library.WeightedAdder.instances" />
 
 ### instances
 
-`= 159`
+`= 158`
 
 <span id="qiskit.circuit.library.WeightedAdder.layout" />
 

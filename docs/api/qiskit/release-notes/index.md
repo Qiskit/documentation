@@ -9,6 +9,8 @@ New features, bug fixes, and other changes in previous versions of Qiskit.
 
 ## Release notes by version
 
+* [1.0](/api/qiskit/release-notes/1.0)
+* [0.46](/api/qiskit/release-notes/0.46)
 * [0.45](/api/qiskit/release-notes/0.45)
 * [0.44](/api/qiskit/release-notes/0.44)
 * [0.43](/api/qiskit/release-notes/0.43)

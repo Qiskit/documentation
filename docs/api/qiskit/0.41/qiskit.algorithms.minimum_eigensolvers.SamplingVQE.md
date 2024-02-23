@@ -102,7 +102,7 @@ A callback that can access the intermediate data at each optimization step. Thes
 
 Callable\[\[int, np.ndarray, float, dict\[str, Any]], None] | None
 
-## References
+**References**
 
 **\[1]: Barkoutsos, P. K., Nannicini, G., Robert, A., Tavernelli, I., and Woerner, S.,**
 

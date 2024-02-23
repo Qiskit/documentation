@@ -38,7 +38,7 @@ The tolerance threshold for ignoring real and complex parts of a coefficient.
 
 [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
 
-## References
+**References**
 
 **\[1]: Bravyi, S., et al, “Tapering off qubits to simulate fermionic Hamiltonians”**
 

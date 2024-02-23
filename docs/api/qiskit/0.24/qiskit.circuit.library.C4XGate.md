@@ -18,7 +18,7 @@ The 4-qubit controlled X gate.
 
 This implementation is based on Page 21, Lemma 7.5, of \[1].
 
-## References
+**References**
 
 \[1] Barenco et al., 1995. [https://arxiv.org/pdf/quant-ph/9503016.pdf](https://arxiv.org/pdf/quant-ph/9503016.pdf)
 

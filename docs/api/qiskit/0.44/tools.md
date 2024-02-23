@@ -20,6 +20,8 @@ python_api_name: qiskit.tools
 
 A helper function for calling a custom function with python `ProcessPoolExecutor`. Tasks can be executed in parallel using this function. It has a built-in event publisher to show the progress of the parallel tasks.
 
+### parallel\_map
+
 <span id="qiskit.tools.parallel_map" />
 
 `qiskit.tools.parallel_map(task, values, task_args=(), task_kwargs={}, num_processes=2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/tools/parallel.py "view source code")
@@ -60,7 +62,7 @@ result
 
 terra.parallel.start: The collection of parallel tasks are about to start. terra.parallel.update: One of the parallel task has finished. terra.parallel.finish: All the parallel tasks have finished.
 
-## Examples
+**Examples**
 
 ```python
 import time
@@ -74,6 +76,8 @@ parallel_map(func, list(range(10)));
 ## Monitoring
 
 A helper module to get IBM backend information and submitted job status.
+
+### job\_monitor
 
 <span id="qiskit.tools.job_monitor" />
 
@@ -91,7 +95,7 @@ Monitor the status of a IBMQJob instance.
 *   **line\_discipline** (*string*) – character emitted at start of a line of job monitor output,
 *   **r.** (*This defaults to*) –
 
-## Examples
+**Examples**
 
 ```python
 from qiskit import BasicAer, transpile
@@ -106,6 +110,8 @@ tqc = transpile(qc, sim_backend)
 job_sim = sim_backend.run(tqc)
 job_monitor(job_sim)
 ```
+
+### backend\_monitor
 
 <span id="qiskit.tools.backend_monitor" />
 
@@ -126,13 +132,15 @@ Examples: .. code-block:: python
 
 > from qiskit.providers.ibmq import IBMQ from qiskit.tools.monitor import backend\_monitor provider = IBMQ.get\_provider(hub=’ibm-q’) backend\_monitor(provider.backends.ibmq\_lima)
 
+### backend\_overview
+
 <span id="qiskit.tools.backend_overview" />
 
 `qiskit.tools.backend_overview()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/tools/monitor/overview.py "view source code")
 
 Gives overview information on all the IBMQ backends that are available.
 
-## Examples
+**Examples**
 
 ```python
 from qiskit.providers.ibmq import IBMQ
@@ -159,7 +167,7 @@ A simple text-based progress bar.
 
 is sys.stdout, another option is sys.stderr
 
-## Examples
+**Examples**
 
 The progress bar can be used to track the progress of a parallel\_map.
 

@@ -30,7 +30,7 @@ This a non-sinusoidal wave with linear ramping.
 *   **phase** (`float`) – Pulse phase.
 *   **name** (`Optional`\[`str`]) – Name of pulse.
 
-## Example
+**Example**
 
 ```python
 import matplotlib.pyplot as plt
