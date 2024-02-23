@@ -19,7 +19,6 @@ import { hideBin } from "yargs/helpers";
 import { pathExists } from "../lib/fs";
 import { File } from "../lib/links/LinkChecker";
 import { FileBatch } from "../lib/links/FileBatch";
-import { QISKIT_MISSING_VERSION_MAPPING } from "../lib/qiskitMetapackage";
 
 // While these files don't exist in this repository, the link
 // checker should assume that they exist in production.
@@ -114,6 +113,7 @@ const QISKIT_GLOBS_TO_LOAD = [
   "docs/build/pulse.ipynb",
   "docs/start/install.mdx",
   "docs/api/qiskit/release-notes/0.44.md",
+  "docs/api/qiskit/release-notes/index.md",
   "docs/api/qiskit-ibm-provider/index.md",
   "docs/api/qiskit-ibm-provider/ibm_jupyter.md",
 ];
@@ -146,6 +146,10 @@ async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
   );
 
   result.push(...provider, ...runtime, ...qiskit);
+
+  if (args.qiskitReleaseNotes) {
+    result.push(await determineQiskitLegacyReleaseNotes());
+  }
 
   return result;
 }
@@ -261,28 +265,13 @@ async function determineHistoricalFileBatches(
     }
 
     if (checkSeparateReleaseNotes) {
+      // Qiskit legacy release notes (< 0.45) have their own FileBatch, and we don't
+      // need to check them here
+      if (projectName == "qiskit" && +folder.name < 0.45) {
+        continue;
+      }
+
       toCheck.push(`docs/api/${projectName}/release-notes/${folder.name}.md`);
-
-      // Some legacy release notes don't have docs, and their links point to the closest
-      // next version present in the repo. QISKIT_MISSING_VERSION_MAPPING contains what
-      // versions point to which other version
-      const extraVersionsToCheck = QISKIT_MISSING_VERSION_MAPPING.get(
-        folder.name,
-      );
-      extraVersionsToCheck?.forEach((version) => {
-        toCheck.push(`docs/api/${projectName}/release-notes/${version}.md`);
-      });
-
-      // Temporary - remove after https://github.com/Qiskit/documentation/pull/865 is merged
-      toLoad.push(
-        "docs/api/qiskit/*.{ipynb,md,mdx}",
-        "docs/api/qiskit/0.46/*.md",
-        "docs/api/qiskit/0.44/qiskit.extensions.{Hamiltonian,Unitary}Gate.md",
-        "docs/api/qiskit/0.45/qiskit.quantum_info.{OneQubitEuler,TwoQubitBasis,XX}Decomposer.md",
-        "docs/api/qiskit/0.45/qiskit.transpiler.synthesis.aqc.AQC.md",
-        "docs/api/qiskit/0.45/{tools,quantum_info,synthesis_aqc}.md",
-        "docs/api/qiskit/release-notes/index.md",
-      );
     }
 
     const fileBatch = await FileBatch.fromGlobs(
@@ -293,6 +282,41 @@ async function determineHistoricalFileBatches(
     result.push(fileBatch);
   }
   return result;
+}
+
+async function determineQiskitLegacyReleaseNotes(): Promise<FileBatch> {
+  const result: FileBatch[] = [];
+
+  const legacyVersions = (
+    await globby("docs/api/qiskit/release-notes/[!index]*")
+  )
+    .map((releaseNotesPath) =>
+      releaseNotesPath.split("/").pop()!.split(".").slice(0, -1).join("."),
+    )
+    .filter(
+      (version) => +version < 1 && version != "0.45" && version != "0.46",
+    );
+
+  const toCheck = legacyVersions.map(
+    (legacyVersion) => `docs/api/qiskit/release-notes/${legacyVersion}.md`,
+  );
+
+  return await FileBatch.fromGlobs(
+    toCheck,
+    // Temporary - remove after https://github.com/Qiskit/documentation/pull/865 is merged
+    [
+      `docs/api/qiskit/0.45/*`,
+      "docs/api/qiskit/*.{ipynb,md,mdx}",
+      "docs/api/qiskit/0.46/*.md",
+      "docs/api/qiskit/0.44/qiskit.extensions.{Hamiltonian,Unitary}Gate.md",
+      "docs/api/qiskit/0.45/qiskit.quantum_info.{OneQubitEuler,TwoQubitBasis,XX}Decomposer.md",
+      "docs/api/qiskit/0.45/qiskit.transpiler.synthesis.aqc.AQC.md",
+      "docs/api/qiskit/0.45/{tools,quantum_info,synthesis_aqc}.md",
+      "docs/api/qiskit/release-notes/index.md",
+      "docs/api/qiskit-ibm-provider/index.md",
+    ],
+    `qiskit legacy release notes`,
+  );
 }
 
 main().then(() => process.exit());
