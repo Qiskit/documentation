@@ -19,7 +19,7 @@ on:
       - "docs/api/qiskit-ibm-provider/**/*"
       - "docs/api/qiskit-ibm-runtime/**/*"
       - "public/api/**/*"
-      - "scripts/checkLinks.ts"
+      - "scripts/checkInternalLinks.ts"
       - "scripts/lib/links/ignores.ts"
 
 jobs:
@@ -36,7 +36,7 @@ jobs:
         run: npm ci
       - name: Check internal links
         run: >
-          npm run check:links --
+          npm run check-internal-links --
           --qiskit-release-notes
           --current-apis
           --dev-apis

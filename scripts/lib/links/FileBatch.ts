@@ -13,7 +13,6 @@
 import { globby } from "globby";
 
 import { InternalLink, File } from "./InternalLink";
-import { ExternalLink } from "./ExternalLink";
 import {
   ALWAYS_IGNORED_URLS,
   FILES_TO_IGNORES,
@@ -59,75 +58,50 @@ export class FileBatch {
   /**
    * Load and process the file batch.
    *
-   * Returns a triplet:
+   * Returns a pair:
    *   1. A list of `File` objects with their anchors. These represent
    *      the universe of valid internal links for this batch, other
    *      than any additional we may add at check-time, e.g. images.
    *   2. A list of InternalLink objects to validate.
-   *   3. A list of ExternalLink objects to validate.
    */
-  async load(
-    loadExternalLinks: boolean,
-  ): Promise<[File[], InternalLink[], ExternalLink[]]> {
+  async load(): Promise<[File[], InternalLink[]]> {
     const files: File[] = [];
     for (let filePath of this.toLoad) {
       const parsed = await parseFile(filePath);
       files.push(new File(filePath, parsed.anchors));
     }
 
-    const internalLinksToOriginFiles = new Map<string, string[]>();
-    const externalLinksToOriginFiles = new Map<string, string[]>();
+    const linksToOriginFiles = new Map<string, string[]>();
     for (const filePath of this.toCheck) {
       const parsed = await parseFile(filePath);
       files.push(new File(filePath, parsed.anchors));
-      addLinksToMap(filePath, parsed.internalLinks, internalLinksToOriginFiles);
-      if (loadExternalLinks) {
-        addLinksToMap(
-          filePath,
-          parsed.externalLinks,
-          externalLinksToOriginFiles,
-        );
-      }
+      addLinksToMap(filePath, parsed.internalLinks, linksToOriginFiles);
     }
 
-    const internalLinks = Array.from(internalLinksToOriginFiles.entries()).map(
+    const links = Array.from(linksToOriginFiles.entries()).map(
       ([link, originFiles]) => new InternalLink(link, originFiles),
     );
-    const externalLinks = Array.from(externalLinksToOriginFiles.entries()).map(
-      ([link, originFiles]) => new ExternalLink(link, originFiles),
-    );
-    return [files, internalLinks, externalLinks];
+    return [files, links];
   }
 
   /**
-   * Check that all links in this file batch are valid.
+   * Check that all internal links in this file batch are valid.
    *
    * Logs the results to the console and returns `true` if there were no issues.
    */
-  async check(
-    checkExternalLinks: boolean,
-    otherFiles: File[],
-  ): Promise<boolean> {
-    console.log(`\n\nChecking links for ${this.description}`);
+  async checkInternalLinks(otherFiles: File[]): Promise<boolean> {
+    console.log(`\n\nChecking internal links for ${this.description}`);
 
-    const [docsFiles, internalLinkList, externalLinkList] =
-      await this.load(checkExternalLinks);
+    const [docsFiles, links] = await this.load();
     const existingFiles = docsFiles.concat(otherFiles);
 
-    const results = internalLinkList.map((link) => link.check(existingFiles));
-
-    // For loop reduces the risk of rate-limiting.
-    for (let link of externalLinkList) {
-      results.push(await link.check());
-    }
-
     let allGood = true;
-    results
-      .filter((res) => res !== undefined)
-      .forEach((linkError) => {
-        console.error(linkError);
-        allGood = false;
-      });
+    links.forEach((link) => {
+      const result = link.check(existingFiles);
+      if (result === undefined) return;
+      console.error(result);
+      allGood = false;
+    });
     return allGood;
   }
 }

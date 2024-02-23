@@ -178,25 +178,33 @@ about it.
 
 ## Check for broken links
 
-CI will check for broken links. You can also check locally:
+We have two broken link checkers: for internal links and for external links.
+
+To check internal links:
 
 ```bash
-# Only check for internal broken links
-npm run check:links
+# Only check non-API docs
+npm run check-internal-links
 
-# Enable the validation of external links
-npm run check:links -- --external
-
-# By default, only the non-API docs are checked. You can add any of the
-# below arguments to also check API docs.
-npm run check:links -- --current-apis --dev-apis --historical-apis --qiskit-release-notes
+# You can add any of the below arguments to also check API docs.
+npm run check-internal-links -- --current-apis --dev-apis --historical-apis --qiskit-release-notes
 
 # However, `--historical-apis` currently has failing versions, so you may
 # want to add `--skip-broken-historical`.
-npm run check:links -- --historical-apis --skip-broken-historical
+npm run check-internal-links -- --historical-apis --skip-broken-historical
 
 # Or, run all the checks. Although this only checks non-API docs.
 npm run check
+```
+
+To check external links:
+
+```bash
+# Specify the files you want after `--`
+npm run check-external-links -- docs/run/index.md
+
+# You can also use globs
+npm run check-external-links -- 'docs/run/*'
 ```
 
 ## Check file metadata
