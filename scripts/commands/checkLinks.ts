@@ -318,7 +318,7 @@ async function determineQiskitLegacyReleaseNotes(): Promise<FileBatch> {
 
   return await FileBatch.fromGlobs(
     toCheck,
-    [`docs/api/qiskit/0.44/*`],
+    [`docs/api/qiskit/0.45/*`],
     `qiskit legacy release notes`,
   );
 }
