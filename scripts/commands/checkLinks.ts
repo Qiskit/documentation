@@ -112,8 +112,10 @@ const RUNTIME_GLOBS_TO_LOAD = [
 const QISKIT_GLOBS_TO_LOAD = [
   "docs/build/circuit-construction.ipynb",
   "docs/build/pulse.ipynb",
+  "docs/start/install.mdx",
   "docs/api/qiskit/release-notes/0.44.md",
   "docs/api/qiskit-ibm-provider/index.md",
+  "docs/api/qiskit-ibm-provider/ibm_jupyter.md",
 ];
 
 async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
