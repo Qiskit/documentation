@@ -34,7 +34,7 @@ async function downloadFromBox(
   }
 }
 
-export async function downloadCIArtifact(pkg: Pkg, artifactFolder: string) {
+export async function downloadSphinxArtifact(pkg: Pkg, artifactFolder: string) {
   if (await pathExists(artifactFolder)) {
     await $`rm -rf ${artifactFolder}/*`;
   } else {
