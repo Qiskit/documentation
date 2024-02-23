@@ -17,7 +17,7 @@ import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 
 import { pathExists } from "../lib/fs";
-import { File } from "../lib/links/LinkChecker";
+import { File } from "../lib/links/InternalLink";
 import { FileBatch } from "../lib/links/FileBatch";
 import { QISKIT_MISSING_VERSION_MAPPING } from "../lib/qiskitMetapackage";
 

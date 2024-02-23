@@ -12,7 +12,8 @@
 
 import { globby } from "globby";
 
-import { Link, File } from "./LinkChecker";
+import { InternalLink, File } from "./InternalLink";
+import { ExternalLink } from "./ExternalLink";
 import {
   ALWAYS_IGNORED_URLS,
   FILES_TO_IGNORES,
@@ -62,10 +63,10 @@ export class FileBatch {
    *   1. A list of `File` objects with their anchors. These represent
    *      the universe of valid internal links for this batch, other
    *      than any additional we may add at check-time, e.g. images.
-   *   2. A list of Link objects with internal links we will validate.
-   *   3. A list of Link objects with external links we will validate.
+   *   2. A list of InternalLink objects to validate.
+   *   3. A list of ExternalLink objects to validate.
    */
-  async load(): Promise<[File[], Link[], Link[]]> {
+  async load(): Promise<[File[], InternalLink[], ExternalLink[]]> {
     const files: File[] = [];
     for (let filePath of this.toLoad) {
       const parsed = await parseFile(filePath);
@@ -77,12 +78,12 @@ export class FileBatch {
       const parsed = await parseFile(filePath);
       files.push(new File(filePath, parsed.anchors));
       if (!IGNORED_FILES.has(filePath)) {
-        addLinksToMap(filePath, parsed.links, linksToOriginFiles);
+        addLinksToMap(filePath, parsed.rawLinks, linksToOriginFiles);
       }
     }
 
-    const internalLinks: Link[] = [];
-    const externalLinks: Link[] = [];
+    const internalLinks: InternalLink[] = [];
+    const externalLinks: ExternalLink[] = [];
     for (let [linkPath, originFiles] of linksToOriginFiles) {
       if (ALWAYS_IGNORED_URLS.has(linkPath)) {
         continue;
@@ -94,8 +95,11 @@ export class FileBatch {
       );
 
       if (originFiles.length > 0) {
-        const link = new Link(linkPath, originFiles);
-        link.isExternal ? externalLinks.push(link) : internalLinks.push(link);
+        if (linkPath.startsWith("http")) {
+          externalLinks.push(new ExternalLink(linkPath, originFiles));
+        } else {
+          internalLinks.push(new InternalLink(linkPath, originFiles));
+        }
       }
     }
 
@@ -114,13 +118,13 @@ export class FileBatch {
     const existingFiles = docsFiles.concat(otherFiles);
 
     const results = await Promise.all(
-      internalLinkList.map((link) => link.checkLink(existingFiles)),
+      internalLinkList.map((link) => link.check(existingFiles)),
     );
 
     if (externalLinks) {
       // For loop reduces the risk of rate-limiting.
       for (let link of externalLinkList) {
-        results.push(await link.checkLink(existingFiles));
+        results.push(await link.check());
       }
     }
 
