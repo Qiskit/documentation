@@ -42,7 +42,7 @@ Construct a `DynamicInstructionDurations` object from the backend.
 
 **Parameters**
 
-**backend** ([`Backend`](https://docs.quantum.ibm.com/api/qiskit/qiskit.providers.Backend "(in Qiskit v0.46)")) – backend from which durations (gate lengths) and dt are extracted.
+**backend** ([`Backend`](/api/qiskit/qiskit.providers.Backend "(in Qiskit v0.46)")) – backend from which durations (gate lengths) and dt are extracted.
 
 **Returns**
 
@@ -62,7 +62,7 @@ Construct a `DynamicInstructionDurations` object from the target.
 
 **Parameters**
 
-**target** ([`Target`](https://docs.quantum.ibm.com/api/qiskit/qiskit.transpiler.Target "(in Qiskit v0.46)")) – target from which durations (gate lengths) and dt are extracted.
+**target** ([`Target`](/api/qiskit/qiskit.transpiler.Target "(in Qiskit v0.46)")) – target from which durations (gate lengths) and dt are extracted.
 
 **Returns**
 
@@ -84,7 +84,7 @@ Some instructions may have a parameter dependent duration.
 
 **Parameters**
 
-*   **inst** (*str |* [*qiskit.circuit.Instruction*](https://docs.quantum.ibm.com/api/qiskit/qiskit.circuit.Instruction "(in Qiskit v0.46)")) – An instruction or its name to be queried.
+*   **inst** (*str |* [*qiskit.circuit.Instruction*](/api/qiskit/qiskit.circuit.Instruction "(in Qiskit v0.46)")) – An instruction or its name to be queried.
 *   **qubits** (*int | list\[int]*) – Qubit indices that the instruction acts on.
 *   **unit** (*str*) – The unit of duration to be returned. It must be ‘s’ or ‘dt’.
 *   **parameters** (*list\[float] | None*) – The value of the parameters of the desired instruction.
@@ -127,7 +127,7 @@ Update self with inst\_durations (inst\_durations overwrite self). Overrides the
 
 **Parameters**
 
-*   **inst\_durations** (`Union`\[`List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `float`, `Optional`\[`Iterable`\[`float`]], `str`]], `List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `float`, `Optional`\[`Iterable`\[`float`]]]], `List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `float`, `str`]], `List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `float`]], [`InstructionDurations`](https://docs.quantum.ibm.com/api/qiskit/qiskit.transpiler.InstructionDurations "(in Qiskit v0.46)"), `None`]) – Instruction durations to be merged into self (overwriting self).
+*   **inst\_durations** (`Union`\[`List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `float`, `Optional`\[`Iterable`\[`float`]], `str`]], `List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `float`, `Optional`\[`Iterable`\[`float`]]]], `List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `float`, `str`]], `List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `float`]], [`InstructionDurations`](/api/qiskit/qiskit.transpiler.InstructionDurations "(in Qiskit v0.46)"), `None`]) – Instruction durations to be merged into self (overwriting self).
 *   **dt** (`Optional`\[`float`]) – Sampling duration in seconds of the target backend.
 
 **Returns**

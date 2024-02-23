@@ -100,23 +100,28 @@ export function normalizeUrl(
 }
 
 export function relativizeLink(link: Link): Link | undefined {
-  const prefixes = [
-    "https://qiskit.org/documentation/apidoc/",
-    "https://qiskit.org/documentation/stubs/",
-  ];
-  const prefix = prefixes.find((prefix) => link.url.startsWith(prefix));
-  if (!prefix) {
+  const priorPrefixToNewPrefix = new Map([
+    ["https://qiskit.org/documentation/apidoc/", "/api/qiskit"],
+    ["https://qiskit.org/documentation/stubs/", "/api/qiskit"],
+    ["https://docs.quantum.ibm.com/", ""],
+    ["https://docs.quantum-computing.ibm.com/", ""],
+  ]);
+  const priorPrefix = Array.from(priorPrefixToNewPrefix.keys()).find((prefix) =>
+    link.url.startsWith(prefix),
+  );
+  if (!priorPrefix) {
     return;
   }
   let [url, anchor] = link.url.split("#");
-  url = removePrefix(url, prefix);
+  url = removePrefix(url, priorPrefix);
   url = removeSuffix(url, ".html");
   if (anchor && anchor !== url) {
     url = `${url}#${anchor}`;
   }
 
   const newText = link.url === link.text ? url : undefined;
-  return { url: `/api/qiskit/${url}`, text: newText };
+  const newPrefix = priorPrefixToNewPrefix.get(priorPrefix)!;
+  return { url: `${newPrefix}/${url}`, text: newText };
 }
 
 export async function updateLinks(

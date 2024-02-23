@@ -3177,7 +3177,7 @@ A handle to the instructions created.
 
 Tensor `self` with `other`.
 
-Remember that in the little-endian convention the leftmost operation will be at the bottom of the circuit. See also [the docs](https://docs.quantum-computing.ibm.com/build/circuit-construction) for more information.
+Remember that in the little-endian convention the leftmost operation will be at the bottom of the circuit. See also [the docs](/build/circuit-construction) for more information.
 
 ```python
      ┌────────┐        ┌─────┐          ┌─────┐
