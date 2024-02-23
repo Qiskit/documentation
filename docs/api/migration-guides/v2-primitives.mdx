@@ -90,6 +90,8 @@ The output is now in the `PubResult` format.
 
 #### Estimator examples    
 
+{/*Verified by Elena.*/}
+
 <Tabs>
   <TabItem value="Estimator14" label="1 circuit, 4 observables">
     ```python 
@@ -130,6 +132,8 @@ The output is now in the `PubResult` format.
 
 #### Sampler examples    
 
+{/*Verified by Elena.*/}
+
 <Tabs>
   <TabItem value="Sampler13" label="1 circuit, 3 parameter sets">
     ```python 
@@ -159,7 +163,14 @@ The output is now in the `PubResult` format.
 
 ### Options
 
-`SamplerV2` and `EstimatorV2` now have separate options classes. You can see the available options and update option values during or after primitive initialization.
+Options are specified differently in the V2 primitives in these ways:
+
+- `SamplerV2` and `EstimatorV2` now have separate options classes. You can see the available options and update option values during or after primitive initialization.  
+- Instead of the `set_options()` method, V2 primitive options have the `update()` method that applies changes to the `options` attribute. 
+- If you do not specify a value for an option, it is given a special value of `Unset` and the server defaults are used. 
+- For V2 primitives, the `options` attribute is the `dataclass` Python type.  You , and you can use the built-in `asdict` method to convert it to a dictionary. 
+
+{/*Verified EstimatorV2. 2/23 */}
 
 <Tabs>
   <TabItem value="EstimatorV2" label="EstimatorV2">
@@ -211,7 +222,7 @@ estimator.set_options(shots=4000, optimization_level=1)
 
 Additional advanced options are available in V2 primitives. {/*See the API reference for the most up-to-date information on available options.*/}
 
-For examples, see the [Error mitigation](#error-mit) and [Transpilation](#transpilation) sections. 
+For examples of using options, see the [Error mitigation](#error-mit) and [Transpilation](#transpilation) sections. 
 
 **Advanced options:**
 
@@ -252,6 +263,8 @@ For examples, see the [Error mitigation](#error-mit) and [Transpilation](#transp
     |                           | Gate twirling             |
     |                           | ZNE                       |
 
+{/*Verified EstimatorV2. 2/23 */}
+
 <Tabs>
   <TabItem value="EstimatorV2" label="EstimatorV2">
     ```python 
@@ -286,7 +299,7 @@ options.resilience_level = 2
   </TabItem>
 </Tabs>
 
-{/* Delete these? Or waiting for updated code? */}
+{/* Waiting for updated code */}
 
 <Tabs>
   <TabItem value="SamplerV2" label="SamplerV2">
@@ -326,6 +339,8 @@ options.resilience_level = 2
 V2 primitives support only ISA circuits. Because the primitives do not perform layout, routing, and translation operations, the corresponding transpilation options from V1 are not supported.  You can, however, still use `optimization_level` to indicate how much optimization the primitives should apply to the ISA circuits. The valid values are 0 and 1. 
 
 Dynamical decoupling is no longer added for `optimization_level=1`. You can, however, enable it by using the `dynamical_decoupling` option.
+
+{/*Verified EstimatorV2. 2/23 */}
 
 <Tabs>
   <TabItem value="EstimatorV2" label="EstimatorV2">
@@ -369,6 +384,8 @@ estimator = Estimator (options=options, backend=backend)
 ### Run a single experiment
 
 Use Estimator to determine the expectation value of a single circuit-observable pair.
+
+{/*Verified EstimatorV2. 2/23 */}
 
 <Tabs>
   <TabItem value="EstimatorV2" label="EstimatorV2">
@@ -428,9 +445,39 @@ print(f" > Metadata: {result.metadata}")
 
 Use Estimator to determine the expectation values of multiple circuit-observable pairs.
 
+{/*Verified EstimatorV2. 2/23 */}
+
 <Tabs>
   <TabItem value="EstimatorV2" label="EstimatorV2">
     ```python
+import numpy as np
+from qiskit.circuit.library import IQP
+from qiskit.quantum_info import SparsePauliOp, random_hermitian
+from qiskit_ibm_runtime import QiskitRuntimeService, EstimatorV2 as Estimator
+service = QiskitRuntimeService()
+backend = service.get_backend("ibm_brisbane")
+n_qubits = 127
+rng = np.random.default_rng()
+mats = [np.real(random_hermitian(n_qubits, seed=rng)) for _ in range(3)]
+circuits = [IQP(mat) for mat in mats]
+observables = [
+    SparsePauliOp("X" * n_qubits),
+    SparsePauliOp("Y" * n_qubits),
+    SparsePauliOp("Z" * n_qubits),
+]
+estimator = Estimator(backend)
+job = estimator.run([(circuits[0], observables[0]),(circuits[1], observables[1]),(circuits[2], observables[2])])
+
+pub_result = job.result()[0]
+pub_result_2 = job.result()[1]
+pub_result_3 = job.result()[2]
+
+print(f">>> Expectation values 1: {pub_result.data.evs}")
+print(f">>> Standard errors 1: {pub_result.data.stds}")
+print(f">>> Expectation values 2: {pub_result_2.data.evs}")
+print(f">>> Standard errors 2: {pub_result_2.data.stds}")
+print(f">>> Expectation values 3: {pub_result_3.data.evs}")
+print(f">>> Standard errors 3: {pub_result_3.data.stds}")
   ```  
   </TabItem>
 
@@ -467,7 +514,7 @@ print(f" > Expectation values: {result.values}")
 
 ### Run parameterized circuits
 
-{/* This one has been updated from the most recent version of the boxnote. */}
+{/* This one has been updated from the most recent version of the boxnote. Verified that it works*/}
 
 Use Estimator to run multiple experiments in a single job, leveraging parameter values to increase circuit reusability. In the following example, notice that steps 1 and 2 are the same for V1 and V2. 
 
@@ -511,7 +558,7 @@ isa_observables = [operator.apply_layout(chsh_isa_circuit.layout) for operator i
 
 from qiskit_ibm_runtime import EstimatorV2 as Estimator
 
-# Step 3: Execute using Qiskit Primitives.
+# Step 3: Execute using Qiskit primitives.
 
 # Reshape observable array for broadcasting
 reshaped_ops = np.fromiter(isa_observables, dtype=object)
@@ -584,13 +631,16 @@ expvals = job.result().values
 
 Explore sessions and advanced options to optimize circuit performance on quantum systems.
 
+{/*Verified EstimatorV2. 2/23 */}
+
 <Tabs>
   <TabItem value="EstimatorV2" label="EstimatorV2">
     ```python
 import numpy as np
 from qiskit.circuit.library import IQP
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit.quantum_info import SparsePauliOp, random_hermitian
-from qiskit_ibm_runtime import QiskitRuntimeService, Session, EstimatorV2 as Estimator, Options
+from qiskit_ibm_runtime import QiskitRuntimeService, Session, EstimatorV2 as Estimator
  
 n_qubits = 127
  
@@ -602,25 +652,34 @@ another_circuit = IQP(mat)
 observable = SparsePauliOp("X" * n_qubits)
 another_observable = SparsePauliOp("Y" * n_qubits)
  
-options = Options()
-options.resilience_level = 2
+pm = generate_preset_pass_manager(optimization_level=1, backend=backend)
+isa_circuit = pm.run(circuit)
+another_isa_circuit = pm.run(another_circuit)
+isa_observable = observable.apply_layout(isa_circuit.layout)
+another_isa_observable = another_observable.apply_layout(another_isa_circuit.layout)
  
 service = QiskitRuntimeService()
  
 backend = service.get_backend("ibm_brisbane")
  
 with Session(service=service, backend=backend) as session:
-    estimator = Estimator(session=session, options=options)
-    job = estimator.run([(circuit, observable)])
-    another_job = estimator.run([(another_circuit, another_observable)])
+    estimator = Estimator(session=session)
+
+    estimator.options.optimization_level = 1
+    estimator.options.resilience_level = 1
+
+    job = estimator.run([(isa_circuit, isa_observable)])
+    another_job = estimator.run([(another_isa_circuit, another_isa_observable)])
     result = job.result()
     another_result = another_job.result()
- 
-# first job
-print(f" > Expectation values job 1: {result[0].data.evs}")
- 
-# second job
-print(f" > Expectation values job 2: {another_result[0].data.evs}")  
+
+    # first job
+    print(f" > Expectation value: {result[0].data.evs}")
+    print(f" > Metadata: {result[0].metadata}")
+
+    # second job
+    print(f" > Another Expectation value: {another_result[0].data.evs}")
+    print(f" > More Metadata: {another_result[0].metadata}")
   ```  
   </TabItem>
 
@@ -628,6 +687,7 @@ print(f" > Expectation values job 2: {another_result[0].data.evs}")
     ```python
 import numpy as np
 from qiskit.circuit.library import IQP
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit.quantum_info import SparsePauliOp, random_hermitian
 from qiskit_ibm_runtime import QiskitRuntimeService, Session, Estimator, Options
  
@@ -641,6 +701,12 @@ another_circuit = IQP(mat)
 observable = SparsePauliOp("X" * n_qubits)
 another_observable = SparsePauliOp("Y" * n_qubits)
  
+pm = generate_preset_pass_manager(backend=backend)
+isa_circuit = pm.run(circuit)
+another_isa_circuit = pm.run(another_circuit)
+isa_observable = observable.apply_layout(isa_circuit.layout)
+another_isa_observable = another_observable.apply_layout(another_isa_circuit.layout)
+ 
 options = Options()
 options.optimization_level = 2
 options.resilience_level = 2
@@ -651,8 +717,8 @@ backend = service.get_backend("ibm_brisbane")
  
 with Session(service=service, backend=backend) as session:
     estimator = Estimator(session=session, options=options)
-    job = estimator.run(circuit, observable)
-    another_job = estimator.run(another_circuit, another_observable)
+    job = estimator.run(isa_circuit, isa_observable)
+    another_job = estimator.run(another_isa_circuit, another_isa_observable)
     result = job.result()
     another_result = another_job.result()
  
