@@ -39,7 +39,7 @@ import {
   addNewReleaseNotes,
   generateReleaseNotesIndex,
   updateHistoricalTocFiles,
-  writeSeparateReleaseNotes,
+  writeReleaseNoteForVersion,
 } from "../lib/api/releaseNotes";
 
 interface Arguments {
@@ -241,14 +241,18 @@ async function convertHtmlToMarkdown(
     }
 
     if (pkg.hasSeparateReleaseNotes && path.endsWith("release-notes.md")) {
+      const baseUrl = pkg.isHistorical()
+        ? `/api/${pkg.name}/${pkg.versionWithoutPatch}`
+        : `/api/${pkg.name}`;
+
       // Convert the relative links to absolute links
       result.markdown = transformLinks(result.markdown, (link, _) =>
         link.startsWith("http") || link.startsWith("#") || link.startsWith("/")
           ? link
-          : `/api/${pkg.name}/${link}`,
+          : `${baseUrl}/${link}`,
       );
 
-      await writeSeparateReleaseNotes(pkg, result.markdown);
+      await writeReleaseNoteForVersion(pkg, result.markdown);
       continue;
     }
 
