@@ -39,7 +39,7 @@ By default, the package tries to authenticate to IBM Quantum services with the d
 
 The following examples demonstrate how to transpile circuits using the Qiskit transpiler service with different parameters.
 
-1. Create a circuit and call the Qiskit transpiler service to transpile the circuit with `ibm_sherbrooke` as the `backend_name`, 3 as the `optimization_level`, and not using AI during the transpilation.
+1. Create a circuit and call the Qiskit transpiler service to transpile the circuit with `ibm_sherbrooke` as the `backend_name`, 3 as the `optimization_level`, and without using AI during the transpilation.
 
     ```python
     from qiskit.circuit.library import EfficientSU2
@@ -54,7 +54,7 @@ The following examples demonstrate how to transpile circuits using the Qiskit tr
     )
     transpiled_circuit = cloud_transpiler_service.run(circuit)
     ```
-*Note*: you only can use backend_name devices you are allowed to with your IBM Quantum Account. Apart from the `backend_name`, the `TranspilerService` also allows `coupling_map` as parameter.
+*Note*: you only can use backend_name devices you have access to with your IBM Quantum account. Apart from the `backend_name`, the `TranspilerService` also allows `coupling_map` as parameter.
 
 2. Produce a similar circuit and transpile it, requesting AI transpiling capabilities by setting the flag `ai` to `True`:
 
