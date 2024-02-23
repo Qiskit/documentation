@@ -97,6 +97,37 @@ export function currentReleaseNotesPath(pkg: Pkg): string {
 }
 
 /**
+ * Compares two release note versions. Returns `1` if version1
+ * is newer than version2, and `-1` otherwise. In case of being
+ * the same version, the function returns `0`
+ */
+export function compareReleaseNotes(version1: string, version2: string) {
+  const major1 = version1.split(".")[0];
+  const major2 = version2.split(".")[0];
+
+  const compareMajorVersion = major1.localeCompare(major2, "en", {
+    numeric: true,
+    sensitivity: "base",
+  });
+  if (compareMajorVersion != 0) {
+    return compareMajorVersion;
+  }
+
+  const minor1 = version1.split(".")[1];
+  const minor2 = version2.split(".")[1];
+
+  const compareMinorVersion = minor1.localeCompare(minor2, "en", {
+    numeric: true,
+    sensitivity: "base",
+  });
+  if (compareMinorVersion != 0) {
+    return compareMinorVersion;
+  }
+
+  return 0;
+}
+
+/**
  * Adds a new entry for the release notes of the current API version to the _toc.json
  * of all historical API versions.
  */
