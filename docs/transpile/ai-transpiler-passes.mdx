@@ -90,7 +90,7 @@ All passes use a thread pool to send several requests in parallel. By default it
 AILinearFunctionSynthesis(backend_name="ibm_cairo", max_threads=20)  # Re-synthesize Linear Function blocks using 20 threads max
 ```
 
-You can also set the environment variable `AI_TRANSPILER_MAX_THREADS` to the desired number of maximum threads, and all syntheis passes instantiated after that will use that value.
+You can also set the environment variable `AI_TRANSPILER_MAX_THREADS` to the desired number of maximum threads, and all synthesis passes instantiated after that will use that value.
 
 
 For sub-circuit to be synthesized by the AI synthesis passes, it must lay on a connected subgraph of the coupling map (this can be ensured by just doing a routing pass previous to collecting the blocks, but this is not the only way to do it). The synthesis passes will automatically check if a the specific subgraph where the sub-circuit lays is supported, and if it is not supported it will raise a warning and just leave the original sub-circuit as it is.
