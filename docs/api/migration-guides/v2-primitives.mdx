@@ -47,104 +47,112 @@ from qiskit_ibm_runtime import Estimator
 </Tabs>
 
 
-### Input
+### Input and output
 
-Both `SamplerV2` and `EstimatorV2` take one or more *primitive unified blocs* (PUBs) as the input. Each PUB is a tuple that contains a single circuit and the data broadcasted to that circuit.
+#### Input
+
+Both `SamplerV2` and `EstimatorV2` take one or more *primitive unified blocs* (PUBs) as the input. Each PUB is a tuple that contains **one** circuit and the data broadcasted to that circuit, which can be multiple observables and parameters.  Each PUB returns a result.
 
 * SamplerV2 PUB format: (`<circuit>`, `<parameter values>`, `<shots>`)
 * EstimatorV2 PUB format: (`<circuit>`, `<observables>`, `<parameter values>`, `<precision>`)
     Numpy [broadcasting rules](https://numpy.org/doc/stable/user/basics.broadcasting.html) are used when combining observables and parameter values.
 
-<Tabs>
-  <TabItem value="EstimatorV2" label="EstimatorV2">
-    ```python 
-mat = np.real(random_hermitian(127, seed=1234))
-circuit = IQP(mat)
-observable = SparsePauliOp("Z" * 127)
- 
-job = estimatorv2.run([(circuit, observable)])
-```
-  </TabItem>
-
-  <TabItem value="EstimatorV1" label="Estimator (V1)">
-    ```python 
-mat = np.real(random_hermitian(127, seed=1234))
-circuit = IQP(mat)
-observable = SparsePauliOp("Z" * 127)
-
-job = estimator.run(circuit, observable)
-```
-  </TabItem>
-</Tabs>
-
-<Tabs>
-  <TabItem value="SamplerV2" label="SamplerV2">
-    ```python 
-mat = np.real(random_hermitian(127, seed=1234))
-circuit = IQP(mat)
-circuit.measure_all()
- 
-samplerv2 = Samplerv2(backend)
-job = samplerv2.run(circuit)
-```
-  </TabItem>
-
-  <TabItem value="SamplerV1" label="Sampler (V1)">
-    ```python 
-mat = np.real(random_hermitian(127, seed=1234))
-circuit = IQP(mat)
-circuit.measure_all()
- 
-sampler = Sampler(backend)
-job = sampler.run([(circuit)])
-```
-  </TabItem>
-</Tabs>
-
-
-### Output
+#### Output
 
 The output is now in the `PubResult` format.
 
 * EstimatorV2 continues to return expectation values.
-* SamplerV2 now returns per-shot measurements as a bitstring.
+* SamplerV2 now returns per-shot measurements in the form of **bitstrings** or
+   **counts**, instead of the quasi-probability distributions from the V1
+   interface. The bitstrings show the measurement outcomes, preserving the shot
+   order in which they were measured. 
+* The V2 Sampler result objects organize data in terms of their **input circuits' classical register names**, for
+   compatibility with dynamic circuits.  By default, the classical register name is `meas`, as shown in the following example.  When defining your circuit, if you create one or more classical registers with non-default name, you would use that name to get those results. 
+
+       ```python
+    # Define quantum circuit with 2 qubits
+    circuit = QuantumCircuit(2)
+    circuit.h(0)
+    circuit.cx(0, 1)
+    circuit.measure_all()
+    circuit.draw()
+    ```
+    ```text
+            ┌───┐      ░ ┌─┐
+       q_0: ┤ H ├──■───░─┤M├───
+            └───┘┌─┴─┐ ░ └╥┘┌─┐
+       q_1: ─────┤ X ├─░──╫─┤M├
+                 └───┘ ░  ║ └╥┘
+    meas: 2/══════════════╩══╩═
+                          0  1
+    ```
+
+
+#### Estimator examples    
 
 <Tabs>
-  <TabItem value="EstimatorV2" label="EstimatorV2">
+  <TabItem value="Estimator14" label="1 circuit, 4 observables">
     ```python 
-result = job.result()
- 
-print(f" > Expectation value: {result[0].data.evs}")
-print(f" > Metadata: {result[0].metadata}")
+    # Estimator V1: Execute 1 circuit with 4 observables 
+    job = estimator_v1.run([circuit] * 4, [obs1, obs2, obs3, obs4])
+    evs = job.result().values
+
+    # Estimator V2: Execute 1 circuit with 4 observables 
+    job = estimator_v2.run([(circuit, [obs1, obs2, obs3, obs4])])
+    evs = job.result()[0].data.evs
 ```
   </TabItem>
 
-  <TabItem value="EstimatorV1" label="Estimator (V1)">
+  <TabItem value="Estimator142" label="1 circuit, 4 observables, 2 parameter sets">
     ```python 
-result = job.result()
+    # Estimator V1: Execute 1 circuit with 4 observables and 2 parameter sets
+    job = estimator_v1.run([circuit] * 8, [obs1, obs2, obs3, obs4] * 2, [vals1, vals2] * 4)
+    evs = job.result().values
 
-print(f" > Observable: {observable.paulis}")
-print(f" > Expectation value: {result.values}")
-print(f" > Metadata: {result.metadata}")
+    # Estimator V2: Execute 1 circuit with 4 observables and 2 parameter sets
+    job = estimator_v2.run([(circuit, [[obs1, obs2, obs3, obs4]], [[vals1], [vals2]])])
+    evs = job.result()[0].data.evs
+```
+  </TabItem>
+
+  <TabItem value="Estimator22" label="2 circuits, 2 observables">
+    ```python 
+    # Estimator V1: Cannot execute 2 circuits with different observables
+
+    # Estimator V2: Execute 2 circuits with 2 different observables.  There are
+    # two PUBs because each PUB can have only one circuit.
+    job = estimator_v2.run([(circuit1, obs1), (circuit2, obs2)])
+    evs1 = job.result()[0].data.evs  # result for pub 1 (circuit 1)
+    evs2 = job.result()[1].data.evs  # result for pub 2 (circuit 2)
 ```
   </TabItem>
 </Tabs>
 
-<Tabs>
-  <TabItem value="SamplerV2" label="SamplerV2">
-    ```python 
-result = job.result()
+#### Sampler examples    
 
-print(f">>> Counts: {result[0].data.get_counts()}")
+<Tabs>
+  <TabItem value="Sampler13" label="1 circuit, 3 parameter sets">
+    ```python 
+      # Sampler V1: Execute 1 circuit with 3 parameter sets 
+      job = sampler_v1.run([circuit] * 3, [vals1, vals2, vals3])
+      dists = job.result().quasi_dists
+
+      # Sampler V2: Executing 1 circuit with 3 parameter sets
+      job = sampler_v2.run([(circuit, [vals1, vals2, vals3])])
+      counts = job.result()[0].data.meas.get_counts()
 ```
   </TabItem>
 
-  <TabItem value="SamplerV1" label="Sampler (V1)">
+  <TabItem value="Sampler21" label="2 circuits, 1 parameter set">
     ```python 
-result = job.result()
- 
-print(f" > Quasi-probability distribution: {result.quasi_dists}")
-print(f" > Metadata: {result.metadata}")
+    # Sampler V1: Execute 2 circuits with 1 parameter set
+      job = sampler_v1.run([circuit1, circuit2], [vals1] * 2)
+      dists = job.result().quasi_dists
+
+      # Sampler V2: Execute 2 circuits with 1 parameter set
+      job = sampler_v2.run([(circuit1, vals1), (circuit2, vals1)])
+      counts1 = job.result()[0].data.meas.get_counts()  # result for pub 1 (circuit 1)
+      counts2 = job.result()[1].data.meas.get_counts()  # result for pub 2 (circuit 2)
 ```
   </TabItem>
 </Tabs>
@@ -205,25 +213,27 @@ Additional advanced options are available in V2 primitives. {/*See the API refer
 
 For examples, see the [Error mitigation](#error-mit) and [Transpilation](#transpilation) sections. 
 
-**Advanced Estimator options:**
+**Advanced options:**
+
+{/*Need to verify which options actually make it into Sampler.  Possibly some of the last 5 will.*/}
 
 | Category   | Option                   | Description                                                                                                                                                                                                                             | Default        | Notes          |
 |------------|--------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------|----------------|
 |            | optimization_level       | How much optimization to perform on the circuits.                                                                                                                                                                                       | 1              |                |
-|            | resilience_level         | How much resilience to build against errors.                                                                                                                                                                                            | 1              |                |
+|            | resilience_level         | How much resilience to build against errors.                                                                                                                                                                                            | 1              | Estimator only |
 |            | dynamical_decoupling     | The dynamical decoupling sequence to use.                                                                                                                                                                                               | None           |                |
-|            | seed_estimator           | Seed used to control sampling.                                                                                                                                                                                                          | None           |                |
-| resilience | measure_noise_mitigation | Whether to enable measurement error mitigation method.                                                                                                                                                                                  | True           |                |
-| resilience | zne_noise_factors        | An list of real valued noise factors that determine by what amount the circuits' noise is amplified.                                                                                                                                    |                |                |
-| resilience | zne_extrapolator         | An extrapolation strategy. One or more of ``multi_exponential``,  ``single_exponential``, ``double_exponential``, ``linear``.                                                                                                           |                |                |
-| resilience | zne_stderr_threshold     | A standard error threshold for accepting the ZNE result of Pauli basis expectation values when using ZNE mitigation.                                                                                                                    |                |                |
-| resilience | pec_mitigation           | Whether to turn on the PEC error mitigation method.                                                                                                                                                                                     | False          |                |
-| resilience | pec_max_overhead         | Specify a maximum sampling overhead for the PEC sampling noise model. If None the full learned model will be sampled from.                                                                                                              |                |                |
+|            | seed_estimator           | Seed used to control sampling.                                                                                                                                                                                                          | None           | Estimator only |
+| resilience | measure_noise_mitigation | Whether to enable measurement error mitigation method.                                                                                                                                                                                  | True           | Estimator only |
+| resilience | zne_noise_factors        | An list of real valued noise factors that determine by what amount the circuits' noise is amplified.                                                                                                                                    |                | Estimator only |
+| resilience | zne_extrapolator         | An extrapolation strategy. One or more of ``multi_exponential``,  ``single_exponential``, ``double_exponential``, ``linear``.                                                                                                           |                | Estimator only |
+| resilience | zne_stderr_threshold     | A standard error threshold for accepting the ZNE result of Pauli basis expectation values when using ZNE mitigation.                                                                                                                    |                | Estimator only |
+| resilience | pec_mitigation           | Whether to turn on the PEC error mitigation method.                                                                                                                                                                                     | False          | Estimator only |
+| resilience | pec_max_overhead         | Specify a maximum sampling overhead for the PEC sampling noise model. If None the full learned model will be sampled from.                                                                                                              |                | Estimator only |
 | execution  | shots                    | Number of repetitions of each circuit, for sampling.                                                                                                                                                                                    |                |                |
 | execution  | init_qubits              | Whether to reset the qubits to the ground state for each shot.                                                                                                                                                                          | True           |                |
-| execution  | samples                  | The number of samples of each measurement circuit to run. This is used when twirling or resilience levels 1, 2 is enabled. If None it will  be calculated automatically based on the ``shots`` and ``shots_per_sample`` (if specified). |                |                |
-| execution  | shots_per_sample         | The number of shots per sample of each measurement  circuit to run. This is used when twirling or resilience levels 1, 2, 3.  If None it will be calculated automatically based on the ``shots`` and ``samples`` (if specified).        |                |                |
-| execution  | interleave_samples       | If True interleave samples from different measurement circuits when running.                                                                                                                                                            | False          |                |
+| execution  | samples                  | The number of samples of each measurement circuit to run. This is used when twirling or resilience levels 1, 2 is enabled. If None it will  be calculated automatically based on the ``shots`` and ``shots_per_sample`` (if specified). |                | Estimator only |
+| execution  | shots_per_sample         | The number of shots per sample of each measurement  circuit to run. This is used when twirling or resilience levels 1, 2, 3.  If None it will be calculated automatically based on the ``shots`` and ``samples`` (if specified).        |                | Estimator only |
+| execution  | interleave_samples       | If True interleave samples from different measurement circuits when running.                                                                                                                                                            | False          | Estimator only |
 | twirling   | gates                    | Whether to apply 2-qubit gate twirling.                                                                                                                                                                                                 | False          | Estimator only |
 | twirling   | measure                  | Whether to apply measurement twirling.                                                                                                                                                                                                  | True           | Estimator only |
 | twirling   | strategy                 | Specify the strategy of twirling qubits in identified layers of  2-qubit twirled gates.                                                                                                                                                 | “active-accum" | Estimator only |
