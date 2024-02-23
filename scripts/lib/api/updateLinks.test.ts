@@ -191,6 +191,7 @@ describe("relativizeLink()", () => {
     "https://ibm.com",
     "https://qiskit.org/ecosystem/nature",
     "https://qiskit.org/documentation/index.html",
+    "https://docs.quantum.ibm.com", // Note there is no `/` at the end.
   ])("ignore irrelevant links", (input) => {
     expect(relativizeLink({ url: input })).toBeUndefined();
   });
@@ -212,7 +213,15 @@ describe("relativizeLink()", () => {
       "https://qiskit.org/documentation/apidoc/qiskit.circuit.BreakLoopOp.html#qiskit.circuit.BreakLoopOp",
       "/api/qiskit/qiskit.circuit.BreakLoopOp",
     ],
-  ])("transform qiskit.org Qiskit API links", (input, expected) => {
+  ])("relativize qiskit.org Qiskit API links", (input, expected) => {
+    expect(relativizeLink({ url: input })).toEqual({ url: expected });
+  });
+
+  test.each([
+    ["https://docs.quantum.ibm.com/run", "/run"],
+    ["https://docs.quantum.ibm.com/api/qiskit/utils", "/api/qiskit/utils"],
+    ["https://docs.quantum-computing.ibm.com/run", "/run"],
+  ])("relativize docs.quantum.ibm.com links", (input, expected) => {
     expect(relativizeLink({ url: input })).toEqual({ url: expected });
   });
 

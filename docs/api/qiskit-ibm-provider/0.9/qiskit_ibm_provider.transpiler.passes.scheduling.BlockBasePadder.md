@@ -77,12 +77,12 @@ Execute optimization task for input Qiskit IR.
 **Parameters**
 
 *   **passmanager\_ir** (`Any`) – Qiskit IR to optimize.
-*   **state** ([`PassManagerState`](https://docs.quantum.ibm.com/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v0.46)")) – State associated with workflow execution by the pass manager itself.
+*   **state** ([`PassManagerState`](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v0.46)")) – State associated with workflow execution by the pass manager itself.
 *   **callback** (`Optional`\[`Callable`]) – A callback function which is caller per execution of optimization task.
 
 **Return type**
 
-`tuple`\[`Any`, [`PassManagerState`](https://docs.quantum.ibm.com/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v0.46)")]
+`tuple`\[`Any`, [`PassManagerState`](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v0.46)")]
 
 **Returns**
 
@@ -110,7 +110,7 @@ Run the padding pass on `dag`.
 
 **Parameters**
 
-**dag** ([`DAGCircuit`](https://docs.quantum.ibm.com/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v0.46)")) – DAG to be checked.
+**dag** ([`DAGCircuit`](/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v0.46)")) – DAG to be checked.
 
 **Returns**
 
@@ -134,12 +134,12 @@ Update workflow status.
 
 **Parameters**
 
-*   **state** ([`PassManagerState`](https://docs.quantum.ibm.com/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v0.46)")) – Pass manager state to update.
+*   **state** ([`PassManagerState`](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v0.46)")) – Pass manager state to update.
 *   **run\_state** (`RunState`) – Completion status of current task.
 
 **Return type**
 
-[`PassManagerState`](https://docs.quantum.ibm.com/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v0.46)")
+[`PassManagerState`](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v0.46)")
 
 **Returns**
 
