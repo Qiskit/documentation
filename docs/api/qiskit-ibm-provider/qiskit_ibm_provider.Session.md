@@ -40,7 +40,7 @@ Session constructor.
 
 **Parameters**
 
-**max\_time** (`Union`\[`int`, `str`, `None`]) – (EXPERIMENTAL setting, can break between releases without warning) Maximum amount of time, a runtime session can be open before being forcibly closed. Can be specified as seconds (int) or a string like “2h 30m 40s”. This value must be in between 300 seconds and the [system imposed maximum](https://docs.quantum.ibm.com/run/max-execution-time).
+**max\_time** (`Union`\[`int`, `str`, `None`]) – (EXPERIMENTAL setting, can break between releases without warning) Maximum amount of time, a runtime session can be open before being forcibly closed. Can be specified as seconds (int) or a string like “2h 30m 40s”. This value must be in between 300 seconds and the [system imposed maximum](/run/max-execution-time).
 
 **Raises**
 

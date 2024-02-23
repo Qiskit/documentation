@@ -21,7 +21,7 @@ python_api_name: qiskit_ibm_provider.transpiler.passes.scheduling
 A collection of scheduling passes for working with IBM Quantum’s next-generation backends that support advanced “dynamic circuit” capabilities. Ie., circuits with support for classical control-flow/feedback based off of measurement results.
 
 <Admonition title="Warning" type="caution">
-  You should not mix these scheduling passes with Qiskit’s builtin scheduling passes as they will negatively interact with the scheduling routines for dynamic circuits. This includes setting `scheduling_method` in [`transpile()`](https://docs.quantum.ibm.com/api/qiskit/compiler#qiskit.compiler.transpile "(in Qiskit v0.46)") or [`generate_preset_pass_manager()`](https://docs.quantum.ibm.com/api/qiskit/transpiler_preset#qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager "(in Qiskit v0.46)").
+  You should not mix these scheduling passes with Qiskit’s builtin scheduling passes as they will negatively interact with the scheduling routines for dynamic circuits. This includes setting `scheduling_method` in [`transpile()`](/api/qiskit/compiler#qiskit.compiler.transpile "(in Qiskit v0.46)") or [`generate_preset_pass_manager()`](/api/qiskit/transpiler_preset#qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager "(in Qiskit v0.46)").
 </Admonition>
 
 Below we demonstrate how to schedule and pad a teleportation circuit with delays for a dynamic circuit backend’s execution model:
@@ -106,7 +106,7 @@ dd_teleport.draw(output="mpl", style="iqp")
 
 ![../\_images/qiskit\_ibm\_provider.transpiler.passes.scheduling\_2\_0.png](/images/api/qiskit-ibm-provider/0.9/qiskit_ibm_provider.transpiler.passes.scheduling_2_0.png)
 
-When compiling a circuit with Qiskit, it is more efficient and more robust to perform all the transformations in a single transpilation. This has been done above by extending Qiskit’s preset pass managers. For example, Qiskit’s [`transpile()`](https://docs.quantum.ibm.com/api/qiskit/compiler#qiskit.compiler.transpile "(in Qiskit v0.46)") function internally builds its pass set by using [`generate_preset_pass_manager()`](https://docs.quantum.ibm.com/api/qiskit/transpiler_preset#qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager "(in Qiskit v0.46)"). This returns instances of [`StagedPassManager`](https://docs.quantum.ibm.com/api/qiskit/qiskit.transpiler.StagedPassManager "(in Qiskit v0.46)"), which can be extended.
+When compiling a circuit with Qiskit, it is more efficient and more robust to perform all the transformations in a single transpilation. This has been done above by extending Qiskit’s preset pass managers. For example, Qiskit’s [`transpile()`](/api/qiskit/compiler#qiskit.compiler.transpile "(in Qiskit v0.46)") function internally builds its pass set by using [`generate_preset_pass_manager()`](/api/qiskit/transpiler_preset#qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager "(in Qiskit v0.46)"). This returns instances of [`StagedPassManager`](/api/qiskit/qiskit.transpiler.StagedPassManager "(in Qiskit v0.46)"), which can be extended.
 
 <span id="scheduling-old-format-c-if-conditioned-gates" />
 
@@ -122,7 +122,7 @@ qc_c_if.draw(output="mpl", style="iqp")
 
 ![../\_images/qiskit\_ibm\_provider.transpiler.passes.scheduling\_3\_0.png](/images/api/qiskit-ibm-provider/0.9/qiskit_ibm_provider.transpiler.passes.scheduling_3_0.png)
 
-The [`IBMBackend`](qiskit_ibm_provider.IBMBackend "qiskit_ibm_provider.IBMBackend") configures a translation plugin `IBMTranslationPlugin` to automatically apply transformations and optimizations for IBM hardware backends when invoking [`transpile()`](https://docs.quantum.ibm.com/api/qiskit/compiler#qiskit.compiler.transpile "(in Qiskit v0.46)"). This will automatically convert all old style `c_if` conditioned gates to new-style control-flow. We may then schedule the transpiled circuit without further modification.
+The [`IBMBackend`](qiskit_ibm_provider.IBMBackend "qiskit_ibm_provider.IBMBackend") configures a translation plugin `IBMTranslationPlugin` to automatically apply transformations and optimizations for IBM hardware backends when invoking [`transpile()`](/api/qiskit/compiler#qiskit.compiler.transpile "(in Qiskit v0.46)"). This will automatically convert all old style `c_if` conditioned gates to new-style control-flow. We may then schedule the transpiled circuit without further modification.
 
 ```python
 # Temporary workaround for mock backends. For real backends this is not required.
@@ -142,7 +142,7 @@ qc_if_dd.draw(output="mpl", style="iqp")
 
 ![../\_images/qiskit\_ibm\_provider.transpiler.passes.scheduling\_4\_0.png](/images/api/qiskit-ibm-provider/0.9/qiskit_ibm_provider.transpiler.passes.scheduling_4_0.png)
 
-If you are not using the transpiler plugin stages to work around this please manually run the pass [`qiskit.transpiler.passes.ConvertConditionsToIfOps`](https://docs.quantum.ibm.com/api/qiskit/qiskit.transpiler.passes.ConvertConditionsToIfOps "(in Qiskit v0.46)") prior to your scheduling pass.
+If you are not using the transpiler plugin stages to work around this please manually run the pass [`qiskit.transpiler.passes.ConvertConditionsToIfOps`](/api/qiskit/qiskit.transpiler.passes.ConvertConditionsToIfOps "(in Qiskit v0.46)") prior to your scheduling pass.
 
 ```python
 from qiskit.transpiler.passes import ConvertConditionsToIfOps
