@@ -243,7 +243,7 @@ There are two ways to deal with cSpell incorrectly complaining about a word, suc
 Ayyyyy, this is a fake description.
 ```
 
-2. If the word is a name, add it to the `cspell/dictionaries/people.txt` file.  If it is a scientific or quantum specific word, add it to the `cspell/dictionaries/qiskit.txt` file.  If it doesn't fit in either category, add it to the `words` section in `cspell/cSpell.json`. The word is not case-sensitive.
+2. If the word is a name, add it to the `cspell/dictionaries/people.txt` file. If it is a scientific or quantum specific word, add it to the `cspell/dictionaries/qiskit.txt` file. If it doesn't fit in either category, add it to the `words` section in `cspell/cSpell.json`. The word is not case-sensitive.
 
 If the word appears in multiple files, prefer the second approach to add it to one of the dictionaries or `cSpell.json`.
 
