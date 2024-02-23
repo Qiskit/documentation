@@ -84,7 +84,7 @@ Return all backends accessible via this account, subject to optional filtering.
     IBMProvider.backends(open_pulse=True)
     ```
 
-    For the full list of backend attributes, see the IBMBackend class documentation \<[https://docs.quantum.ibm.com/api/qiskit/providers\_models](https://docs.quantum.ibm.com/api/qiskit/providers_models)>
+    For the full list of backend attributes, see the IBMBackend class documentation \<[api/qiskit/providers\_models](/api/qiskit/providers_models)>
 
 **Return type**
 
@@ -114,7 +114,7 @@ Retrieve jobs that match the given filters and paginate the results if desired. 
 *   **limit** (`Optional`\[`int`]) – Number of jobs to retrieve. `None` means no limit. Note that the number of sub-jobs within a composite job count towards the limit.
 *   **skip** (`int`) – Starting index for the job retrieval.
 *   **backend\_name** (`Optional`\[`str`]) – Name of the backend to retrieve jobs from.
-*   **status** (`Union`\[`Literal`\[‘pending’, ‘completed’], `List`\[`Union`\[[`JobStatus`](https://docs.quantum.ibm.com/api/qiskit/qiskit.providers.JobStatus "(in Qiskit v1.0)"), `str`]], [`JobStatus`](https://docs.quantum.ibm.com/api/qiskit/qiskit.providers.JobStatus "(in Qiskit v1.0)"), `str`, `None`]) – Filter jobs with either “pending” or “completed” status. You can also specify by
+*   **status** (`Union`\[`Literal`\[‘pending’, ‘completed’], `List`\[`Union`\[[`JobStatus`](/api/qiskit/qiskit.providers.JobStatus "(in Qiskit v1.0)"), `str`]], [`JobStatus`](/api/qiskit/qiskit.providers.JobStatus "(in Qiskit v1.0)"), `str`, `None`]) – Filter jobs with either “pending” or “completed” status. You can also specify by
 *   **example** (*exact status. For*) – or status=\[“RUNNING”, “ERROR”].
 *   **status="RUNNING"** (*status=JobStatus.RUNNING or*) – or status=\[“RUNNING”, “ERROR”].
 *   **start\_datetime** (`Optional`\[`datetime`]) – Filter by the given start date, in local time. This is used to find jobs whose creation dates are after (greater than or equal to) this local date/time.
