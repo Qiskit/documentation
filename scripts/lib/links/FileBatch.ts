@@ -12,7 +12,8 @@
 
 import { globby } from "globby";
 
-import { Link, File } from "./LinkChecker";
+import { InternalLink, File } from "./InternalLink";
+import { ExternalLink } from "./ExternalLink";
 import {
   ALWAYS_IGNORED_URLS,
   FILES_TO_IGNORES,
@@ -62,43 +63,39 @@ export class FileBatch {
    *   1. A list of `File` objects with their anchors. These represent
    *      the universe of valid internal links for this batch, other
    *      than any additional we may add at check-time, e.g. images.
-   *   2. A list of Link objects with internal links we will validate.
-   *   3. A list of Link objects with external links we will validate.
+   *   2. A list of InternalLink objects to validate.
+   *   3. A list of ExternalLink objects to validate.
    */
-  async load(): Promise<[File[], Link[], Link[]]> {
+  async load(
+    loadExternalLinks: boolean,
+  ): Promise<[File[], InternalLink[], ExternalLink[]]> {
     const files: File[] = [];
     for (let filePath of this.toLoad) {
       const parsed = await parseFile(filePath);
       files.push(new File(filePath, parsed.anchors));
     }
 
-    const linksToOriginFiles = new Map<string, string[]>();
+    const internalLinksToOriginFiles = new Map<string, string[]>();
+    const externalLinksToOriginFiles = new Map<string, string[]>();
     for (const filePath of this.toCheck) {
       const parsed = await parseFile(filePath);
       files.push(new File(filePath, parsed.anchors));
-      if (!IGNORED_FILES.has(filePath)) {
-        addLinksToMap(filePath, parsed.links, linksToOriginFiles);
+      addLinksToMap(filePath, parsed.internalLinks, internalLinksToOriginFiles);
+      if (loadExternalLinks) {
+        addLinksToMap(
+          filePath,
+          parsed.externalLinks,
+          externalLinksToOriginFiles,
+        );
       }
     }
 
-    const internalLinks: Link[] = [];
-    const externalLinks: Link[] = [];
-    for (let [linkPath, originFiles] of linksToOriginFiles) {
-      if (ALWAYS_IGNORED_URLS.has(linkPath)) {
-        continue;
-      }
-      originFiles = originFiles.filter(
-        (originFile) =>
-          FILES_TO_IGNORES[originFile] == null ||
-          !FILES_TO_IGNORES[originFile].includes(linkPath),
-      );
-
-      if (originFiles.length > 0) {
-        const link = new Link(linkPath, originFiles);
-        link.isExternal ? externalLinks.push(link) : internalLinks.push(link);
-      }
-    }
-
+    const internalLinks = Array.from(internalLinksToOriginFiles.entries()).map(
+      ([link, originFiles]) => new InternalLink(link, originFiles),
+    );
+    const externalLinks = Array.from(externalLinksToOriginFiles.entries()).map(
+      ([link, originFiles]) => new ExternalLink(link, originFiles),
+    );
     return [files, internalLinks, externalLinks];
   }
 
@@ -107,21 +104,21 @@ export class FileBatch {
    *
    * Logs the results to the console and returns `true` if there were no issues.
    */
-  async check(externalLinks: boolean, otherFiles: File[]): Promise<boolean> {
+  async check(
+    checkExternalLinks: boolean,
+    otherFiles: File[],
+  ): Promise<boolean> {
     console.log(`\n\nChecking links for ${this.description}`);
 
-    const [docsFiles, internalLinkList, externalLinkList] = await this.load();
+    const [docsFiles, internalLinkList, externalLinkList] =
+      await this.load(checkExternalLinks);
     const existingFiles = docsFiles.concat(otherFiles);
 
-    const results = await Promise.all(
-      internalLinkList.map((link) => link.checkLink(existingFiles)),
-    );
+    const results = internalLinkList.map((link) => link.check(existingFiles));
 
-    if (externalLinks) {
-      // For loop reduces the risk of rate-limiting.
-      for (let link of externalLinkList) {
-        results.push(await link.checkLink(existingFiles));
-      }
+    // For loop reduces the risk of rate-limiting.
+    for (let link of externalLinkList) {
+      results.push(await link.check());
     }
 
     let allGood = true;
@@ -137,10 +134,18 @@ export class FileBatch {
 
 export function addLinksToMap(
   filePath: string,
-  links: string[],
+  links: Set<string>,
   linksToOriginFiles: Map<string, string[]>,
 ): void {
+  if (IGNORED_FILES.has(filePath)) return;
   links.forEach((link) => {
+    if (
+      ALWAYS_IGNORED_URLS.has(link) ||
+      FILES_TO_IGNORES[filePath]?.includes(link)
+    ) {
+      return;
+    }
+
     const entry = linksToOriginFiles.get(link);
     if (entry === undefined) {
       linksToOriginFiles.set(link, [filePath]);

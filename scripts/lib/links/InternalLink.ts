@@ -18,36 +18,39 @@ const CONTENT_FILE_EXTENSIONS = [".md", ".mdx", ".ipynb"];
 
 export class File {
   readonly path: string;
-  readonly anchors: string[];
+  readonly anchors: Set<string>;
   readonly synthetic: boolean;
 
   /**
-   *    path: Path to the file
+   * path: Path to the file
    * anchors: Anchors available in the file
    */
-  constructor(path: string, anchors: string[], synthetic: boolean = false) {
+  constructor(path: string, anchors: Set<string>, synthetic: boolean = false) {
     this.path = path;
     this.anchors = anchors;
     this.synthetic = synthetic;
   }
 }
 
-export class Link {
+export class InternalLink {
   readonly value: string;
   readonly anchor: string;
   readonly originFiles: Set<string>;
-  readonly isExternal: boolean;
 
   /**
    *  linkString: Link as it appears in source file
    * originFiles: Paths to source file containing link
    */
   constructor(linkString: string, originFiles: string[]) {
+    if (linkString.startsWith("http")) {
+      throw new Error(
+        `Invalid InternalLink, cannot start with 'http': ${linkString}`,
+      );
+    }
     const splitLink = linkString.split("#", 2);
     this.value = splitLink[0];
     this.anchor = splitLink.length > 1 ? `#${splitLink[1]}` : "";
     this.originFiles = new Set(originFiles);
-    this.isExternal = linkString.startsWith("http");
   }
 
   /*
@@ -83,29 +86,9 @@ export class Link {
   }
 
   /**
-   * Returns a string with the error found, or null
-   * if there are no errors.
+   * Returns true if link is in `existingFiles`, otherwise false.
    */
-  async checkExternalLink(): Promise<string | null> {
-    try {
-      const response = await fetch(this.value, {
-        headers: { "User-Agent": "qiskit-documentation-broken-links-finder" },
-      });
-
-      if (response.status >= 300) {
-        return `Could not find link '${this.value}'`;
-      }
-    } catch (error) {
-      return `Failed to fetch '${this.value}': ${(error as Error).message}`;
-    }
-
-    return null;
-  }
-
-  /**
-   * True if link is in `existingFiles`, otherwise false
-   */
-  checkInternalLink(existingFiles: File[], originFile: string): boolean {
+  isValid(existingFiles: File[], originFile: string): boolean {
     const possiblePaths = this.possibleFilePaths(originFile);
     return possiblePaths.some((filePath) =>
       existingFiles.some(
@@ -113,7 +96,7 @@ export class Link {
           existingFile.path == filePath &&
           (this.anchor == "" ||
             existingFile.synthetic == true ||
-            existingFile.anchors.includes(this.anchor)),
+            existingFile.anchors.has(this.anchor)),
       ),
     );
   }
@@ -139,7 +122,7 @@ export class Link {
       if (score < minScoreLink) {
         minScoreLink = score;
         suggestionPath = file.path;
-        suggestionPathAnchors = file.anchors;
+        suggestionPathAnchors = Array.from(file.anchors);
       }
     });
 
@@ -189,32 +172,21 @@ export class Link {
   /**
    * Returns an error message if link failed.
    */
-  async checkLink(existingFiles: File[]): Promise<string | undefined> {
-    if (!this.isExternal) {
-      const failingFiles: string[] = [];
-      this.originFiles.forEach((originFile) => {
-        if (this.checkInternalLink(existingFiles, originFile)) {
-          return;
-        }
-        const resultSuggestion = this.didYouMean(existingFiles, originFile);
-        const suggestedPath = resultSuggestion ? `    ${resultSuggestion}` : "";
-        failingFiles.push(`    ${originFile}${suggestedPath}`);
-      });
+  check(existingFiles: File[]): string | undefined {
+    const failingFiles: string[] = [];
+    this.originFiles.forEach((originFile) => {
+      if (this.isValid(existingFiles, originFile)) {
+        return;
+      }
+      const resultSuggestion = this.didYouMean(existingFiles, originFile);
+      const suggestedPath = resultSuggestion ? `    ${resultSuggestion}` : "";
+      failingFiles.push(`    ${originFile}${suggestedPath}`);
+    });
 
-      return failingFiles.length === 0
-        ? undefined
-        : `❌ Could not find link '${this.value}${
-            this.anchor
-          }'. Appears in:\n${failingFiles.sort().join("\n")}`;
-    }
-
-    const externalError = await this.checkExternalLink();
-    if (!externalError) {
-      return;
-    }
-    const fileList = Array.from(this.originFiles)
-      .sort()
-      .map((originFile) => `    ${originFile}`);
-    return `❌ ${externalError}. Appears in:\n${fileList.join("\n")}`;
+    return failingFiles.length === 0
+      ? undefined
+      : `❌ Could not find link '${this.value}${
+          this.anchor
+        }'. Appears in:\n${failingFiles.sort().join("\n")}`;
   }
 }
