@@ -370,7 +370,8 @@ from qiskit.circuit.library import RealAmplitudes
 from qiskit.quantum_info import SparsePauliOp
  
 service = QiskitRuntimeService()
-backend = service.backend("ibmq_qasm_simulator")
+backend = service.least_busy(operational=True, simulator=False)
+
 options = Options(optimization_level=1)
  
 estimator = Estimator (options=options, backend=backend)
@@ -393,10 +394,10 @@ Use Estimator to determine the expectation value of a single circuit-observable 
 import numpy as np
 from qiskit.circuit.library import IQP
 from qiskit.quantum_info import SparsePauliOp, random_hermitian
-from QiskitRuntimeService import EstimatorV2 as Estimator, QiskitRuntimeService
+from qiskit_ibm_runtime import EstimatorV2 as Estimator, QiskitRuntimeService
 
 service = QiskitRuntimeService()
-backend = service.get_backend("ibm_brisbane")
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
 estimator = Estimator(backend)
 
 n_qubits = 127
@@ -405,7 +406,7 @@ mat = np.real(random_hermitian(n_qubits, seed=1234))
 circuit = IQP(mat)
 observable = SparsePauliOp("Z" * n_qubits)
 
-pm = generate_preset_pass_manager(backend=backend)
+pm = generate_preset_pass_manager(optimization_level=1, backend=backend)
 isa_circuit = pm.run(circuit)
 isa_observable = observable.apply_layout(isa_circuit.layout)
 
@@ -426,7 +427,7 @@ from qiskit_ibm_runtime import QiskitRuntimeService, Estimator
  
 service = QiskitRuntimeService()
  
-backend = service.get_backend("ibm_brisbane")
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
  
 n_qubits = 127
  
@@ -434,7 +435,7 @@ mat = np.real(random_hermitian(n_qubits, seed=1234))
 circuit = IQP(mat)
 observable = SparsePauliOp("Z" * n_qubits)
 
-pm = generate_preset_pass_manager(backend=backend)
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
 isa_observable = observable.apply_layout(isa_circuit.layout)
  
@@ -506,7 +507,7 @@ from qiskit_ibm_runtime import QiskitRuntimeService, Estimator
  
 service = QiskitRuntimeService()
  
-backend = service.get_backend("ibm_brisbane")
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
  
 n_qubits = 127
  
@@ -521,7 +522,7 @@ observables = [
  
 # Get ISA circuits
 
-pm = generate_preset_pass_manager(backend=backend)
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuits = pm.run(circuits)
 isa_observables = [ob.apply_layout(isa_circuits[0].layout) for ob in observables]
 
@@ -682,7 +683,7 @@ another_isa_observable = another_observable.apply_layout(another_isa_circuit.lay
  
 service = QiskitRuntimeService()
  
-backend = service.get_backend("ibm_brisbane")
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
  
 with Session(service=service, backend=backend) as session:
     estimator = Estimator(session=session)
@@ -723,7 +724,7 @@ another_circuit = IQP(mat)
 observable = SparsePauliOp("X" * n_qubits)
 another_observable = SparsePauliOp("Y" * n_qubits)
  
-pm = generate_preset_pass_manager(backend=backend)
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
 another_isa_circuit = pm.run(another_circuit)
 isa_observable = observable.apply_layout(isa_circuit.layout)
@@ -735,7 +736,7 @@ options.resilience_level = 2
  
 service = QiskitRuntimeService()
  
-backend = service.get_backend("ibm_brisbane")
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
  
 with Session(service=service, backend=backend) as session:
     estimator = Estimator(session=session, options=options)
@@ -769,7 +770,7 @@ from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
  
 service = QiskitRuntimeService()
  
-backend = service.get_backend("ibm_brisbane")
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
  
 n_qubits = 127
  
@@ -795,7 +796,7 @@ from qiskit_ibm_runtime import QiskitRuntimeService, Sampler
  
 service = QiskitRuntimeService()
  
-backend = service.get_backend("ibm_brisbane")
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
  
 n_qubits = 127
  
@@ -827,7 +828,7 @@ from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
  
 service = QiskitRuntimeService()
  
-backend = service.get_backend("ibm_brisbane")
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
  
 n_qubits = 127
  
@@ -854,7 +855,7 @@ from qiskit_ibm_runtime import QiskitRuntimeService, Sampler
  
 service = QiskitRuntimeService()
  
-backend = service.get_backend("ibm_brisbane")
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
  
 n_qubits = 127
  
@@ -905,7 +906,7 @@ from qiskit_ibm_runtime import QiskitRuntimeService, Sampler
  
 service = QiskitRuntimeService()
  
-backend = service.get_backend("ibm_brisbane")
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
  
 circuit = RealAmplitudes(num_qubits=127, reps=2)
 circuit.measure_all()
@@ -948,7 +949,7 @@ another_circuit.measure_all()
  
 service = QiskitRuntimeService()
  
-backend = service.get_backend("ibm_brisbane")
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
  
 with Session(service=service, backend=backend) as session: 
     sampler = Sampler(session=session) 
@@ -988,7 +989,7 @@ options.resilience_level = 0
  
 service = QiskitRuntimeService()
  
-backend = service.get_backend("ibm_brisbane")
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
  
 with Session(service=service, backend=backend) as session: 
     sampler = Sampler(session=session, options=options) 
