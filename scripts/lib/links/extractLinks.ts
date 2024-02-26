@@ -29,7 +29,7 @@ export type ParsedFile = {
   /** Anchors that the file defines. These can be linked to from other files. */
   anchors: string[];
   /** Links that this file has to other places. These need to be validated. */
-  links: string[];
+  rawLinks: string[];
 };
 
 interface JupyterCell {
@@ -83,7 +83,7 @@ async function parseObjectsInv(filePath: string): Promise<ParsedFile> {
   // All URIs are relative to the objects.inv file
   const dirname = removePrefix(path.dirname(filePath), "public");
   const links = objinv.entries.map((entry) => path.join(dirname, entry.uri));
-  return { links, anchors: [] };
+  return { rawLinks: links, anchors: [] };
 }
 
 export async function parseFile(filePath: string): Promise<ParsedFile> {
@@ -94,5 +94,5 @@ export async function parseFile(filePath: string): Promise<ParsedFile> {
   const markdown =
     path.extname(filePath) === ".ipynb" ? markdownFromNotebook(source) : source;
   const links = await parseLinks(markdown);
-  return { anchors: parseAnchors(markdown), links };
+  return { anchors: parseAnchors(markdown), rawLinks: links };
 }
