@@ -38,6 +38,7 @@ export class ExternalLink {
     try {
       const response = await fetch(this.value, {
         headers: { "User-Agent": "qiskit-documentation-broken-links-finder" },
+        method: "HEAD",
       });
       if (response.status >= 300) {
         error = `Could not find link '${this.value}'`;

@@ -83,8 +83,10 @@ async function main() {
 
   const fileBatches = await determineFileBatches(args);
   const otherFiles = [
-    ...(await globby("public/**/*")).map((fp) => new File(fp, [])),
-    ...SYNTHETIC_FILES.map((fp) => new File(fp, [], true)),
+    ...(await globby("public/{images,videos}/**/*")).map(
+      (fp) => new File(fp, new Set()),
+    ),
+    ...SYNTHETIC_FILES.map((fp) => new File(fp, new Set(), true)),
   ];
 
   let allGood = true;

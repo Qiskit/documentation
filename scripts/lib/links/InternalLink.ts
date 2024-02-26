@@ -18,14 +18,14 @@ const CONTENT_FILE_EXTENSIONS = [".md", ".mdx", ".ipynb"];
 
 export class File {
   readonly path: string;
-  readonly anchors: string[];
+  readonly anchors: Set<string>;
   readonly synthetic: boolean;
 
   /**
    * path: Path to the file
    * anchors: Anchors available in the file
    */
-  constructor(path: string, anchors: string[], synthetic: boolean = false) {
+  constructor(path: string, anchors: Set<string>, synthetic: boolean = false) {
     this.path = path;
     this.anchors = anchors;
     this.synthetic = synthetic;
@@ -96,7 +96,7 @@ export class InternalLink {
           existingFile.path == filePath &&
           (this.anchor == "" ||
             existingFile.synthetic == true ||
-            existingFile.anchors.includes(this.anchor)),
+            existingFile.anchors.has(this.anchor)),
       ),
     );
   }
@@ -122,7 +122,7 @@ export class InternalLink {
       if (score < minScoreLink) {
         minScoreLink = score;
         suggestionPath = file.path;
-        suggestionPathAnchors = file.anchors;
+        suggestionPathAnchors = Array.from(file.anchors);
       }
     });
 
