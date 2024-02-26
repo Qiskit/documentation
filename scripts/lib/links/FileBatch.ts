@@ -137,9 +137,9 @@ export function addLinksToMap(
   links: Set<string>,
   linksToOriginFiles: Map<string, string[]>,
 ): void {
+  if (IGNORED_FILES.has(filePath)) return;
   links.forEach((link) => {
     if (
-      IGNORED_FILES.has(filePath) ||
       ALWAYS_IGNORED_URLS.has(link) ||
       FILES_TO_IGNORES[filePath]?.includes(link)
     ) {
