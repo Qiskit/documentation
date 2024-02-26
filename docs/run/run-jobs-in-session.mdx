@@ -161,7 +161,7 @@ A session can handle multiple primitives, allowing for various operations within
 <Tabs>
   <TabItem value="PrimV2" label="V2 primitives">
     ```python
-from qiskit_ibm_runtime import Session, Samplerv2 as Sampler, Estimatorv2 as Estimator
+from qiskit_ibm_runtime import Session, Samplerv2 as Sampler, EstimatorV2 as Estimator
 
 with Session(backend=backend):
     sampler = Sampler()
@@ -212,7 +212,22 @@ Session status can be one of the following:
 
 For a comprehensive overview of a session's configuration and status, use the  `session.details() method`. 
 
-``` python
+<Tabs>
+  <TabItem value="EstimatorV2" label="EstimatorV2">
+    ``` python
+from qiskit_ibm_runtime import QiskitRuntimeService, EstimatorV2 as Estimator
+
+service = QiskitRuntimeService()
+
+with Session(service=service, backend="ibmq_qasm_simulator") as session:
+    estimator = Estimator()
+    job = estimator.run([(circuit, observable)])
+    print(session.details())
+```
+  </TabItem>
+
+  <TabItem value="EstimatorV1" label="Estimator (V1)">
+    ``` python
 from qiskit_ibm_runtime import QiskitRuntimeService
 
 service = QiskitRuntimeService()
@@ -222,6 +237,8 @@ with Session(service=service, backend="ibmq_qasm_simulator") as session:
     job = estimator.run(circuit, observable)
     print(session.details())
 ```
+  </TabItem>
+</Tabs>
 
  You can also view session details on the [Quantum Platform Jobs page](https://quantum.ibm.com/jobs) or on the IBM Cloud Jobs page, which you access from your [Instances page](https://cloud.ibm.com/quantum/instances). 
 

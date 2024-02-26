@@ -42,7 +42,7 @@ Here is an example of computing the expectation value using the Qiskit Runtime E
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit.circuit.random import random_circuit
 from qiskit.quantum_info import SparsePauliOp
-from qiskit_ibm_runtime import QiskitRuntimeService, Estimator
+from qiskit_ibm_runtime import QiskitRuntimeService
 from quantum_serverless import save_result
 
 service = QiskitRuntimeService()
@@ -57,10 +57,18 @@ pm = generate_preset_pass_manager(optimization_level=3, backend=backend)
 target_circuit = pm.run(abstract_circuit)
 target_observable = observable.apply_layout(target_circuit.layout)
 
-# Step 3: Execute the target circuit
+# Step 3: Execute the target circuit on Estimator V1
+# from qiskit_ibm_runtime import Estimator
+# estimator = Estimator(backend)
+# job = estimator.run(target_circuit, target_observable)
+# result = job.result()
+
+# Step 3: Execute the target circuit on Estimator V2
+from qiskit_ibm_runtime import EstimatorV2 as Estimator
 estimator = Estimator(backend)
-job = estimator.run(target_circuit, target_observable)
+job = estimator.run([(target_circuit, target_observable)])
 result = job.result()
+
 
 # Step 4: Postprocess the results
 print(result)
