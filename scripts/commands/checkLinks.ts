@@ -170,12 +170,9 @@ async function determineCurrentDocsFileBatch(
     "!docs/api/qiskit/release-notes/*",
   ];
   const toLoad = [
-    // The 0.46 docs are used by release notes for APIs that were removed in 1.0.
+    // The 0.46 docs are used by migration guides.
     "docs/api/qiskit/0.46/*.md",
     "docs/api/qiskit/0.44/qiskit.extensions.{Hamiltonian,Unitary}Gate.md",
-    "docs/api/qiskit/0.45/qiskit.quantum_info.{OneQubitEuler,TwoQubitBasis,XX}Decomposer.md",
-    "docs/api/qiskit/0.45/qiskit.transpiler.synthesis.aqc.AQC.md",
-    "docs/api/qiskit/0.45/{tools,quantum_info,synthesis_aqc}.md",
     "docs/api/qiskit/release-notes/index.md",
   ];
 
@@ -303,18 +300,7 @@ async function determineQiskitLegacyReleaseNotes(): Promise<FileBatch> {
 
   return await FileBatch.fromGlobs(
     toCheck,
-    // Temporary - remove after https://github.com/Qiskit/documentation/pull/865 is merged
-    [
-      `docs/api/qiskit/0.45/*`,
-      "docs/api/qiskit/*.{ipynb,md,mdx}",
-      "docs/api/qiskit/0.46/*.md",
-      "docs/api/qiskit/0.44/qiskit.extensions.{Hamiltonian,Unitary}Gate.md",
-      "docs/api/qiskit/0.45/qiskit.quantum_info.{OneQubitEuler,TwoQubitBasis,XX}Decomposer.md",
-      "docs/api/qiskit/0.45/qiskit.transpiler.synthesis.aqc.AQC.md",
-      "docs/api/qiskit/0.45/{tools,quantum_info,synthesis_aqc}.md",
-      "docs/api/qiskit/release-notes/index.md",
-      "docs/api/qiskit-ibm-provider/index.md",
-    ],
+    [`docs/api/qiskit/0.45/*`, "docs/api/qiskit-ibm-provider/index.md"],
     `qiskit legacy release notes`,
   );
 }
