@@ -26,6 +26,8 @@ in_page_toc_max_heading_level: 2
 
     Note that `Session` and `Batch` created from `qiskit-ibm-runtime` prior to this release will no longer be supported after March 31, 2024. Please update your `qiskit-ibm-runtime` version as soon as possible before this date.
 
+    Also note that using simulators with sessions is no longer supported. Users can still start sessions with simulators without any issues but a session will not actually be created. There will be no session ID.
+
 *   Sessions started with [`qiskit_ibm_runtime.IBMBackend.open_session()`](qiskit_ibm_runtime.IBMBackend#open_session "qiskit_ibm_runtime.IBMBackend.open_session") will use the new `/sessions` endpoint.
 
     The sessions functionality will not change but note that `backend.run()` sessions prior to this release will no longer be supported after March 31, 2024. Please update your `qiskit-ibm-runtime` version as soon as possible before this date.
