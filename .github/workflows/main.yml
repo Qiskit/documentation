@@ -53,5 +53,5 @@ jobs:
       - name: Check that pages render
         if: steps.changed-docs-files.outputs.any_changed == 'true'
         run: |
-          echo "${{ steps.all-changed-files.outputs.all_changed_files }}" > changed.txt
+          echo "${{ steps.changed-docs-files.outputs.all_changed_files }}" > changed.txt
           npm run check-pages-render -- --from-file changed.txt
