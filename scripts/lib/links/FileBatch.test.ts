@@ -16,7 +16,11 @@ import { addLinksToMap } from "./FileBatch";
 test("addLinksToMap()", () => {
   const linksToMap = new Map();
 
-  addLinksToMap("file1.md", ["https://ibm.com", "./relative"], linksToMap);
+  addLinksToMap(
+    "file1.md",
+    new Set(["https://ibm.com", "./relative"]),
+    linksToMap,
+  );
   expect(linksToMap).toEqual(
     new Map([
       ["https://ibm.com", ["file1.md"]],
@@ -24,7 +28,11 @@ test("addLinksToMap()", () => {
     ]),
   );
 
-  addLinksToMap("file2.md", ["./relative", "/images/my_image.png"], linksToMap);
+  addLinksToMap(
+    "file2.md",
+    new Set(["./relative", "/images/my_image.png"]),
+    linksToMap,
+  );
   expect(linksToMap).toEqual(
     new Map([
       ["https://ibm.com", ["file1.md"]],

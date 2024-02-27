@@ -243,9 +243,9 @@ There are two ways to deal with cSpell incorrectly complaining about a word, suc
 Ayyyyy, this is a fake description.
 ```
 
-2. Add the word to the file `cSpell.json` in the `words` section. The word is not case-sensitive.
+2. If the word is a name, add it to the `cspell/dictionaries/people.txt` file. If it is a scientific or quantum specific word, add it to the `cspell/dictionaries/qiskit.txt` file. If it doesn't fit in either category, add it to the `words` section in `cspell/cSpell.json`. The word is not case-sensitive.
 
-If the word appears in multiple files, prefer the second approach to add it to `cSpell.json`.
+If the word appears in multiple files, prefer the second approach to add it to one of the dictionaries or `cSpell.json`.
 
 ## Check that pages render
 
@@ -441,7 +441,8 @@ To use an `Admonition`, use the following syntax
 <Admonition type="note">This is a __note__ example</Admonition>
 ```
 
-Available types are `note, tip, info, caution, danger`
+Available types are `note, tip, info, caution, danger`. This is what they look like:
+![types](https://github.com/Qiskit/documentation/assets/66339736/ebf5794e-45eb-49ee-97df-41ff08ee876d)
 
 By default, the title is the `type` capitalized. You can customize it by setting `title`:
 

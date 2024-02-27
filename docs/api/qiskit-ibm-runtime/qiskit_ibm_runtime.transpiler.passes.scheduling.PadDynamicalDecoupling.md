@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDec
 
 <span id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling" />
 
-`PadDynamicalDecoupling(durations, dd_sequences, qubits=None, spacings=None, skip_reset_qubits=True, pulse_alignment=16, extra_slack_distribution='middle', sequence_min_length_ratios=None, insert_multiple_cycles=False, coupling_map=None, alt_spacings=None, schedule_idle_qubits=False)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.19/qiskit_ibm_runtime/transpiler/passes/scheduling/dynamical_decoupling.py "view source code")
+`PadDynamicalDecoupling(durations, dd_sequences, qubits=None, spacings=None, skip_reset_qubits=True, pulse_alignment=16, extra_slack_distribution='middle', sequence_min_length_ratios=None, insert_multiple_cycles=False, coupling_map=None, alt_spacings=None, schedule_idle_qubits=False, dd_barrier=None)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/transpiler/passes/scheduling/dynamical_decoupling.py "view source code")
 
 Dynamical decoupling insertion pass for IBM dynamic circuit backends.
 
@@ -165,6 +165,8 @@ Dynamical decoupling initializer.
 *   **alt\_spacings** (`Union`\[`List`\[`List`\[`float`]], `List`\[`float`], `None`]) – A list of lists of spacings between the DD gates, for the second subcircuit, as determined by the coupling map. If None, a balanced spacing that is staggered with respect to the first subcircuit will be used \[d, d, d, …, d, d, 0].
 
 *   **schedule\_idle\_qubits** (`bool`) – Set to true if you’d like a delay inserted on idle qubits. This is useful for timeline visualizations, but may cause issues for execution on large backends.
+
+*   **dd\_barrier** (`Optional`\[`str`]) – only apply DD to delays terminating with a barrier whose label contains the specified string
 
 **Raises**
 

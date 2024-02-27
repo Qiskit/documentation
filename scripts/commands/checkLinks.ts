@@ -10,14 +10,14 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { readdir } from "fs/promises";
+import { readFile, readdir } from "fs/promises";
 
 import { globby } from "globby";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 
 import { pathExists } from "../lib/fs";
-import { File } from "../lib/links/LinkChecker";
+import { File } from "../lib/links/InternalLink";
 import { FileBatch } from "../lib/links/FileBatch";
 
 // While these files don't exist in this repository, the link
@@ -83,8 +83,10 @@ async function main() {
 
   const fileBatches = await determineFileBatches(args);
   const otherFiles = [
-    ...(await globby("public/**/*")).map((fp) => new File(fp, [])),
-    ...SYNTHETIC_FILES.map((fp) => new File(fp, [], true)),
+    ...(await globby("public/{images,videos}/**/*")).map(
+      (fp) => new File(fp, new Set()),
+    ),
+    ...SYNTHETIC_FILES.map((fp) => new File(fp, new Set(), true)),
   ];
 
   let allGood = true;
@@ -102,6 +104,22 @@ async function main() {
   console.log("\nNo links appear broken ✅\n");
 }
 
+const PROVIDER_GLOBS_TO_LOAD = ["docs/api/qiskit/*.md"];
+const RUNTIME_GLOBS_TO_LOAD = [
+  "docs/api/qiskit/providers_models.md",
+  "docs/run/max-execution-time.mdx",
+  "docs/run/configure-error-mitigation.mdx",
+];
+const QISKIT_GLOBS_TO_LOAD = [
+  "docs/build/circuit-construction.ipynb",
+  "docs/build/pulse.ipynb",
+  "docs/start/install.mdx",
+  "docs/api/qiskit/release-notes/0.44.md",
+  "docs/api/qiskit/release-notes/index.md",
+  "docs/api/qiskit-ibm-provider/index.md",
+  "docs/api/qiskit-ibm-provider/ibm_jupyter.md",
+];
+
 async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
   const currentBatch = await determineCurrentDocsFileBatch(args);
   const result = [currentBatch];
@@ -111,19 +129,28 @@ async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
     result.push(...devBatches);
   }
 
-  if (args.historicalApis) {
-    const provider = await determineHistoricalFileBatches(
-      "qiskit-ibm-provider",
-      ["docs/api/qiskit/*.md"],
-    );
-    const runtime = await determineHistoricalFileBatches("qiskit-ibm-runtime", [
-      "docs/api/qiskit/providers_models.md",
-    ]);
-    let qiskit: FileBatch[] = [];
-    if (!args.skipBrokenHistorical) {
-      qiskit = await determineHistoricalFileBatches("qiskit");
-    }
-    result.push(...provider, ...runtime, ...qiskit);
+  const provider = await determineHistoricalFileBatches(
+    "qiskit-ibm-provider",
+    PROVIDER_GLOBS_TO_LOAD,
+    args.historicalApis,
+  );
+  const runtime = await determineHistoricalFileBatches(
+    "qiskit-ibm-runtime",
+    RUNTIME_GLOBS_TO_LOAD,
+    args.historicalApis,
+  );
+
+  const qiskit = await determineHistoricalFileBatches(
+    "qiskit",
+    QISKIT_GLOBS_TO_LOAD,
+    args.historicalApis && !args.skipBrokenHistorical,
+    args.qiskitReleaseNotes,
+  );
+
+  result.push(...provider, ...runtime, ...qiskit);
+
+  if (args.qiskitReleaseNotes) {
+    result.push(await determineQiskitLegacyReleaseNotes());
   }
 
   return result;
@@ -141,14 +168,17 @@ async function determineCurrentDocsFileBatch(
     // Ignore dev version
     "!docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/dev/*",
     "!public/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/dev/*",
+    // Ignore Qiskit release notes
+    "!docs/api/qiskit/release-notes/*",
   ];
   const toLoad = [
-    // The 0.46 docs are used by release notes for APIs that were removed in 1.0.
-    "docs/api/qiskit/0.46/*.md",
+    // These docs are used by the migration guides.
+    "docs/api/qiskit/0.46/{algorithms,opflow,execute}.md",
+    "docs/api/qiskit/0.46/qiskit.{algorithms,extensions,opflow}.*",
+    "docs/api/qiskit/0.46/qiskit.utils.QuantumInstance.md",
+    "docs/api/qiskit/0.46/qiskit.primitives.Base{Estimator,Sampler}.md",
     "docs/api/qiskit/0.44/qiskit.extensions.{Hamiltonian,Unitary}Gate.md",
-    "docs/api/qiskit/0.45/qiskit.quantum_info.{OneQubitEuler,TwoQubitBasis,XX}Decomposer.md",
-    "docs/api/qiskit/0.45/qiskit.transpiler.synthesis.aqc.AQC.md",
-    "docs/api/qiskit/0.45/{tools,quantum_info,synthesis_aqc}.md",
+    "docs/api/qiskit/release-notes/index.md",
   ];
 
   if (!args.currentApis) {
@@ -158,18 +188,27 @@ async function determineCurrentDocsFileBatch(
     toLoad.push("docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/*");
   }
 
-  if (!args.qiskitReleaseNotes) {
-    toCheck.push("!docs/api/qiskit/release-notes/*");
-    toLoad.push("docs/api/qiskit/release-notes/index.md");
+  if (args.qiskitReleaseNotes) {
+    const currentVersion = JSON.parse(
+      await readFile(`docs/api/qiskit/_package.json`, "utf-8"),
+    )
+      .version.split(".")
+      .slice(0, -1)
+      .join(".");
+
+    toCheck.push(`docs/api/qiskit/release-notes/${currentVersion}.md`);
+    // Necessary files for docs/api/qiskit/release-notes/1.0.md
+    toLoad.push("docs/api/qiskit/release-notes/0.{44,45,46}.md");
   }
 
   let description: string;
   if (args.currentApis && args.qiskitReleaseNotes) {
-    description = "non-API docs, current API docs, and Qiskit release notes";
+    description =
+      "non-API docs, current API docs, and latest Qiskit release note";
   } else if (args.currentApis) {
     description = "non-API docs and current API docs";
   } else if (args.qiskitReleaseNotes) {
-    description = "non-API docs and Qiskit release notes";
+    description = "non-API docs and latest Qiskit release note";
   } else {
     description = "non-API docs";
   }
@@ -178,22 +217,21 @@ async function determineCurrentDocsFileBatch(
 }
 
 async function determineDevFileBatches(): Promise<FileBatch[]> {
-  const devProjects = [];
-  for (const project of [
-    "qiskit",
-    "qiskit-ibm-provider",
-    "qiskit-ibm-runtime",
-  ]) {
-    if (await pathExists(`docs/api/${project}/dev`)) {
-      devProjects.push(project);
-    }
-  }
+  const projects: [string, string[]][] = [
+    ["qiskit", QISKIT_GLOBS_TO_LOAD],
+    ["qiskit-ibm-provider", PROVIDER_GLOBS_TO_LOAD],
+    ["qiskit-ibm-runtime", RUNTIME_GLOBS_TO_LOAD],
+  ];
 
   const result = [];
-  for (const project of devProjects) {
+  for (const [project, toLoad] of projects) {
+    if (!(await pathExists(`docs/api/${project}/dev`))) {
+      continue;
+    }
+
     const fileBatch = await FileBatch.fromGlobs(
       [`docs/api/${project}/dev/*`, `public/api/${project}/dev/objects.inv`],
-      [],
+      toLoad,
       `${project} dev docs`,
     );
     result.push(fileBatch);
@@ -203,25 +241,76 @@ async function determineDevFileBatches(): Promise<FileBatch[]> {
 
 async function determineHistoricalFileBatches(
   projectName: string,
-  toLoad: string[] = [],
+  extraGlobsToLoad: string[],
+  checkHistoricalApiDocs: boolean,
+  checkSeparateReleaseNotes: boolean = false,
 ): Promise<FileBatch[]> {
+  if (!checkHistoricalApiDocs && !checkSeparateReleaseNotes) {
+    return [];
+  }
+
   const historicalFolders = (
     await readdir(`docs/api/${projectName}`, { withFileTypes: true })
   ).filter((file) => file.isDirectory() && file.name.match(/[0-9].*/));
 
   const result = [];
   for (const folder of historicalFolders) {
-    const fileBatch = await FileBatch.fromGlobs(
-      [
+    const toCheck: string[] = [];
+    const toLoad = [...extraGlobsToLoad];
+
+    // Qiskit legacy release notes (< 0.45) have their own FileBatch, and we don't
+    // need to check them here.
+    const isBeforeQiskit0_45 = projectName === "qiskit" && +folder.name < 0.45;
+    if (!checkHistoricalApiDocs && isBeforeQiskit0_45) {
+      continue;
+    }
+
+    if (checkHistoricalApiDocs) {
+      toCheck.push(
         `docs/api/${projectName}/${folder.name}/*`,
         `public/api/${projectName}/${folder.name}/objects.inv`,
-      ],
+      );
+    }
+
+    if (checkSeparateReleaseNotes && !isBeforeQiskit0_45) {
+      toCheck.push(`docs/api/${projectName}/release-notes/${folder.name}.md`);
+      if (!checkHistoricalApiDocs) {
+        toLoad.push(`docs/api/${projectName}/${folder.name}/*`);
+      }
+    }
+
+    const fileBatch = await FileBatch.fromGlobs(
+      toCheck,
       toLoad,
       `${projectName} v${folder.name}`,
     );
     result.push(fileBatch);
   }
   return result;
+}
+
+async function determineQiskitLegacyReleaseNotes(): Promise<FileBatch> {
+  const result: FileBatch[] = [];
+
+  const legacyVersions = (
+    await globby("docs/api/qiskit/release-notes/[!index]*")
+  )
+    .map((releaseNotesPath) =>
+      releaseNotesPath.split("/").pop()!.split(".").slice(0, -1).join("."),
+    )
+    .filter(
+      (version) => +version < 1 && version != "0.45" && version != "0.46",
+    );
+
+  const toCheck = legacyVersions.map(
+    (legacyVersion) => `docs/api/qiskit/release-notes/${legacyVersion}.md`,
+  );
+
+  return await FileBatch.fromGlobs(
+    toCheck,
+    [`docs/api/qiskit/0.45/*`, "docs/api/qiskit-ibm-provider/index.md"],
+    `qiskit legacy release notes`,
+  );
 }
 
 main().then(() => process.exit());

@@ -21,12 +21,16 @@ import remarkGfm from "remark-gfm";
 import remarkMdx from "remark-mdx";
 import remarkStringify from "remark-stringify";
 
-import { removePart, removePrefix } from "../stringUtils";
+import { removePart, removePrefix, removeSuffix } from "../stringUtils";
 import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
 import { remarkStringifyOptions } from "./commonParserConfig";
-import { Link } from "./Pkg";
 import { ObjectsInv } from "./objectsInv";
 import { transformSpecialCaseUrl } from "./specialCaseResults";
+
+export interface Link {
+  url: string; // Where the link goes
+  text?: string; // What the user sees
+}
 
 /**
  * Anchors generated from markdown headings are always lower case but, if these
@@ -50,7 +54,7 @@ function lowerCaseIfMarkdownAnchor(url: string): string {
   return `${base}#${newAnchor}`;
 }
 
-export function updateUrl(
+export function normalizeUrl(
   url: string,
   resultsByName: { [key: string]: HtmlToMdResultWithUrl },
   itemNames: Set<string>,
@@ -95,10 +99,34 @@ export function updateUrl(
   return url;
 }
 
+export function relativizeLink(link: Link): Link | undefined {
+  const priorPrefixToNewPrefix = new Map([
+    ["https://qiskit.org/documentation/apidoc/", "/api/qiskit"],
+    ["https://qiskit.org/documentation/stubs/", "/api/qiskit"],
+    ["https://docs.quantum.ibm.com/", ""],
+    ["https://docs.quantum-computing.ibm.com/", ""],
+  ]);
+  const priorPrefix = Array.from(priorPrefixToNewPrefix.keys()).find((prefix) =>
+    link.url.startsWith(prefix),
+  );
+  if (!priorPrefix) {
+    return;
+  }
+  let [url, anchor] = link.url.split("#");
+  url = removePrefix(url, priorPrefix);
+  url = removeSuffix(url, ".html");
+  if (anchor && anchor !== url) {
+    url = `${url}#${anchor}`;
+  }
+
+  const newText = link.url === link.text ? url : undefined;
+  const newPrefix = priorPrefixToNewPrefix.get(priorPrefix)!;
+  return { url: `${newPrefix}/${url}`, text: newText };
+}
+
 export async function updateLinks(
   results: HtmlToMdResultWithUrl[],
   maybeObjectsInv?: ObjectsInv,
-  transformLink?: (link: Link) => Link | undefined,
 ): Promise<void> {
   const resultsByName = keyBy(results, (result) => result.meta.apiName!);
   const itemNames = new Set(keys(resultsByName));
@@ -109,29 +137,24 @@ export async function updateLinks(
       .use(remarkMath)
       .use(remarkGfm)
       .use(remarkMdx)
-      .use(() => {
-        return async (tree: Root) => {
-          visit(tree, "link", (node) => {
-            if (transformLink) {
-              const textNode =
-                node.children?.[0]?.type === "text"
-                  ? node.children?.[0]
-                  : undefined;
-              const transformedLink = transformLink({
-                url: node.url,
-                text: textNode?.value,
-              });
-              if (transformedLink) {
-                node.url = transformedLink.url;
-                if (textNode && transformedLink.text) {
-                  textNode.value = transformedLink.text;
-                }
-                return;
-              }
-            }
-            node.url = updateUrl(node.url, resultsByName, itemNames);
+      .use(() => async (tree: Root) => {
+        visit(tree, "link", (node) => {
+          const textNode =
+            node.children?.[0]?.type === "text"
+              ? node.children?.[0]
+              : undefined;
+          const relativizedLink = relativizeLink({
+            url: node.url,
+            text: textNode?.value,
           });
-        };
+          if (relativizedLink) {
+            node.url = relativizedLink.url;
+            if (textNode && relativizedLink.text) {
+              textNode.value = relativizedLink.text;
+            }
+          }
+          node.url = normalizeUrl(node.url, resultsByName, itemNames);
+        });
       })
       .use(remarkStringify, remarkStringifyOptions)
       .process(result.markdown);
@@ -140,6 +163,6 @@ export async function updateLinks(
   }
 
   maybeObjectsInv?.updateUris((uri: string) =>
-    updateUrl(uri, resultsByName, itemNames),
+    normalizeUrl(uri, resultsByName, itemNames),
   );
 }

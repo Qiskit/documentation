@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_provider.transpiler.passes.scheduling.ASAPScheduleAn
 
 <span id="qiskit_ibm_provider.transpiler.passes.scheduling.ASAPScheduleAnalysis" />
 
-`ASAPScheduleAnalysis(durations)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.9/qiskit_ibm_provider/transpiler/passes/scheduling/scheduler.py "view source code")
+`ASAPScheduleAnalysis(durations)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/transpiler/passes/scheduling/scheduler.py "view source code")
 
 Dynamic circuits as-soon-as-possible (ASAP) scheduling analysis pass.
 
@@ -32,7 +32,7 @@ Scheduler for dynamic circuit backends.
 
 **Parameters**
 
-**durations** ([`InstructionDurations`](https://docs.quantum.ibm.com/api/qiskit/qiskit.transpiler.InstructionDurations "(in Qiskit v0.46)")) – Durations of instructions to be used in scheduling.
+**durations** ([`InstructionDurations`](/api/qiskit/qiskit.transpiler.InstructionDurations "(in Qiskit v1.0)")) – Durations of instructions to be used in scheduling.
 
 ## Attributes
 
@@ -86,12 +86,12 @@ Execute optimization task for input Qiskit IR.
 **Parameters**
 
 *   **passmanager\_ir** (`Any`) – Qiskit IR to optimize.
-*   **state** ([`PassManagerState`](https://docs.quantum.ibm.com/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v0.46)")) – State associated with workflow execution by the pass manager itself.
+*   **state** ([`PassManagerState`](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.0)")) – State associated with workflow execution by the pass manager itself.
 *   **callback** (`Optional`\[`Callable`]) – A callback function which is caller per execution of optimization task.
 
 **Return type**
 
-`tuple`\[`Any`, [`PassManagerState`](https://docs.quantum.ibm.com/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v0.46)")]
+`tuple`\[`Any`, [`PassManagerState`](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.0)")]
 
 **Returns**
 
@@ -115,7 +115,7 @@ Name of the pass.
 
 `run(dag)`
 
-Run the ALAPSchedule pass on dag. :type dag: [`DAGCircuit`](https://docs.quantum.ibm.com/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v0.46)") :param dag: DAG to schedule. :type dag: DAGCircuit
+Run the ALAPSchedule pass on dag. :type dag: [`DAGCircuit`](/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v1.0)") :param dag: DAG to schedule. :type dag: DAGCircuit
 
 **Raises**
 
@@ -124,7 +124,7 @@ Run the ALAPSchedule pass on dag. :type dag: [`DAGCircuit`](https://docs.quantum
 
 **Return type**
 
-[`DAGCircuit`](https://docs.quantum.ibm.com/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v0.46)")
+[`DAGCircuit`](/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v1.0)")
 
 **Returns**
 
@@ -140,12 +140,12 @@ Update workflow status.
 
 **Parameters**
 
-*   **state** ([`PassManagerState`](https://docs.quantum.ibm.com/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v0.46)")) – Pass manager state to update.
+*   **state** ([`PassManagerState`](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.0)")) – Pass manager state to update.
 *   **run\_state** (`RunState`) – Completion status of current task.
 
 **Return type**
 
-[`PassManagerState`](https://docs.quantum.ibm.com/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v0.46)")
+[`PassManagerState`](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.0)")
 
 **Returns**
 

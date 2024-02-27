@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.Estimator
 
 <span id="qiskit_ibm_runtime.Estimator" />
 
-`Estimator(backend=None, session=None, options=None)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.19/qiskit_ibm_runtime/estimator.py "view source code")
+`Estimator(backend=None, session=None, options=None)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/estimator.py "view source code")
 
 Class for interacting with Qiskit Runtime Estimator primitive service.
 
@@ -70,34 +70,6 @@ Initializes the Estimator primitive.
 
 ## Attributes
 
-<span id="qiskit_ibm_runtime.Estimator.circuits" />
-
-### circuits
-
-Quantum circuits that represents quantum states.
-
-**Return type**
-
-`tuple`\[`QuantumCircuit`, `...`]
-
-**Returns**
-
-The quantum circuits.
-
-<span id="qiskit_ibm_runtime.Estimator.observables" />
-
-### observables
-
-Observables to be estimated.
-
-**Return type**
-
-`tuple`\[`SparsePauliOp`, `...`]
-
-**Returns**
-
-The observables.
-
 <span id="qiskit_ibm_runtime.Estimator.options" />
 
 ### options
@@ -111,20 +83,6 @@ Return options values for the sampler.
 **Returns**
 
 options
-
-<span id="qiskit_ibm_runtime.Estimator.parameters" />
-
-### parameters
-
-Parameters of the quantum circuits.
-
-**Return type**
-
-`tuple`\[`ParameterView`, `...`]
-
-**Returns**
-
-Parameters, where `parameters[i][j]` is the j-th parameter of the i-th circuit.
 
 <span id="qiskit_ibm_runtime.Estimator.session" />
 

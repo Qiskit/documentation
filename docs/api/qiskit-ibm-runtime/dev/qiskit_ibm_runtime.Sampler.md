@@ -62,20 +62,6 @@ Initializes the Sampler primitive.
 
 ## Attributes
 
-<span id="qiskit_ibm_runtime.Sampler.circuits" />
-
-### circuits
-
-Quantum circuits to be sampled.
-
-**Return type**
-
-`tuple`\[`QuantumCircuit`, `...`]
-
-**Returns**
-
-The quantum circuits to be sampled.
-
 <span id="qiskit_ibm_runtime.Sampler.options" />
 
 ### options
@@ -89,20 +75,6 @@ Return options values for the sampler.
 **Returns**
 
 options
-
-<span id="qiskit_ibm_runtime.Sampler.parameters" />
-
-### parameters
-
-Parameters of quantum circuits.
-
-**Return type**
-
-`tuple`\[`ParameterView`, `...`]
-
-**Returns**
-
-List of the parameters in each quantum circuit.
 
 <span id="qiskit_ibm_runtime.Sampler.session" />
 

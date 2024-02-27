@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeMumbaiV2
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeMumbaiV2" />
 
-`FakeMumbaiV2`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.19/qiskit_ibm_runtime/fake_provider/backends/mumbai/fake_mumbai.py "view source code")
+`FakeMumbaiV2`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/mumbai/fake_mumbai.py "view source code")
 
 A fake 27 qubit backend.
 

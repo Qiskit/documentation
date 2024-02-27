@@ -23,6 +23,33 @@ A class for decomposing 2-qubit unitaries into minimal number of uses of a 2-qub
 *   **euler\_basis** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Basis string to be provided to [`OneQubitEulerDecomposer`](qiskit.synthesis.OneQubitEulerDecomposer "qiskit.synthesis.OneQubitEulerDecomposer") for 1Q synthesis. Valid options are \[`'ZYZ'`, `'ZXZ'`, `'XYX'`, `'U'`, `'U3'`, `'U1X'`, `'PSX'`, `'ZSX'`, `'RR'`].
 *   **pulse\_optimize** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – If `True`, try to do decomposition which minimizes local unitaries in between entangling gates. This will raise an exception if an optimal decomposition is not implemented. Currently, only \[\{CX, SX, RZ}] is known. If `False`, don’t attempt optimization. If `None`, attempt optimization but don’t raise if unknown.
 
+### \_\_call\_\_
+
+<span id="qiskit.synthesis.TwoQubitBasisDecomposer.__call__" />
+
+`__call__(unitary, basis_fidelity=None, approximate=True, *, _num_basis_uses=None)`
+
+Decompose a two-qubit `unitary` over fixed basis and $SU(2)$ using the best approximation given that each basis application has a finite `basis_fidelity`.
+
+**Parameters**
+
+*   **unitary** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator") *or ndarray*) – $4 \times 4$ unitary to synthesize.
+*   **basis\_fidelity** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *or None*) – Fidelity to be assumed for applications of KAK Gate. If given, overrides `basis_fidelity` given at init.
+*   **approximate** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Approximates if basis fidelities are less than 1.0.
+*   **\_num\_basis\_uses** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – force a particular approximation by passing a number in \[0, 3].
+
+**Returns**
+
+Synthesized quantum circuit.
+
+**Return type**
+
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+
+**Raises**
+
+[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if `pulse_optimize` is True but we don’t know how to do it.
+
 ## Methods
 
 ### decomp0

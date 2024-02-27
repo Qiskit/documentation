@@ -34,12 +34,12 @@ import { dedupeHtmlIdsFromResults } from "../lib/api/dedupeHtmlIds";
 import { Pkg } from "../lib/api/Pkg";
 import { zxMain } from "../lib/zx";
 import { pathExists, getRoot, rmFilesInFolder } from "../lib/fs";
-import { downloadCIArtifact } from "../lib/api/apiArtifacts";
+import { downloadSphinxArtifact } from "../lib/api/sphinxArtifacts";
 import {
   addNewReleaseNotes,
   generateReleaseNotesIndex,
   updateHistoricalTocFiles,
-  writeSeparateReleaseNotes,
+  writeReleaseNoteForVersion,
 } from "../lib/api/releaseNotes";
 
 interface Arguments {
@@ -119,11 +119,16 @@ zxMain(async () => {
     type,
   );
 
-  const artifactFolder = pkg.ciArtifactFolder();
-  if (args.skipDownload && (await pathExists(`${artifactFolder}/artifact`))) {
-    console.log(`Skip downloading sources for ${pkg.name}:${pkg.version}`);
+  const sphinxArtifactFolder = pkg.sphinxArtifactFolder();
+  if (
+    args.skipDownload &&
+    (await pathExists(`${sphinxArtifactFolder}/artifact`))
+  ) {
+    console.log(
+      `Skip downloading sources for ${pkg.name}:${pkg.versionWithoutPatch}`,
+    );
   } else {
-    await downloadCIArtifact(pkg, artifactFolder);
+    await downloadSphinxArtifact(pkg, sphinxArtifactFolder);
   }
 
   const outputDir = pkg.outputDir(`${getRoot()}/docs`);
@@ -139,7 +144,11 @@ zxMain(async () => {
   console.log(
     `Convert sphinx html to markdown for ${pkg.name}:${pkg.versionWithoutPatch}`,
   );
-  await convertHtmlToMarkdown(`${artifactFolder}/artifact`, outputDir, pkg);
+  await convertHtmlToMarkdown(
+    `${sphinxArtifactFolder}/artifact`,
+    outputDir,
+    pkg,
+  );
 });
 
 async function convertHtmlToMarkdown(
@@ -207,7 +216,7 @@ async function convertHtmlToMarkdown(
   results = await mergeClassMembers(results);
   flattenFolders(results);
   specialCaseResults(results);
-  await updateLinks(results, maybeObjectsInv, pkg.transformLink);
+  await updateLinks(results, maybeObjectsInv);
   await dedupeHtmlIdsFromResults(results);
   addFrontMatter(results, pkg);
 
@@ -232,14 +241,18 @@ async function convertHtmlToMarkdown(
     }
 
     if (pkg.hasSeparateReleaseNotes && path.endsWith("release-notes.md")) {
+      const baseUrl = pkg.isHistorical()
+        ? `/api/${pkg.name}/${pkg.versionWithoutPatch}`
+        : `/api/${pkg.name}`;
+
       // Convert the relative links to absolute links
       result.markdown = transformLinks(result.markdown, (link, _) =>
         link.startsWith("http") || link.startsWith("#") || link.startsWith("/")
           ? link
-          : `/api/${pkg.name}/${link}`,
+          : `${baseUrl}/${link}`,
       );
 
-      await writeSeparateReleaseNotes(pkg, result.markdown);
+      await writeReleaseNoteForVersion(pkg, result.markdown);
       continue;
     }
 
