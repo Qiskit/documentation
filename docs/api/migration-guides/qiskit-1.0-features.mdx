@@ -339,8 +339,9 @@ sampler_v2 = StatevectorSampler()
   </TabItem>
   <TabItem value="e-2-2" label="Estimator, 2 circuits, 2 different observables" default>
       ```python
-      # executing 2 circuits with different observables
-      # is not possible using Estimator V1
+      # executing 2 circuits with 2 different observables using Estimator V1
+      job = estimator_v1.run([circuit1, circuit2] , [obs1, obs2])
+      evs = job.result().values
 
       # executing 2 circuits with 2 different observables using Estimator V2
       job = estimator_v2.run([(circuit1, obs1), (circuit2, obs2)])
