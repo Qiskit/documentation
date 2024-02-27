@@ -260,9 +260,9 @@ It's possible to write broken pages that crash when loaded. This is usually due 
 To check that all the non-API docs render:
 
 1. Start up the local preview with `./start` by following the instructions at [Preview the docs locally](#preview-the-docs-locally)
-2. In a new tab, `npm run check-pages-render -- --non-apis`
+2. In a new tab, `npm run check-pages-render -- --non-api`
 
-You can also check that API docs and translations render by using any of these arguments: `npm run check-pages-render -- --non-apis --qiskit-release-notes --current-apis --dev-apis --historical-apis --translations`. Warning that this is exponentially slower.
+You can also check that API docs and translations render by using any of these arguments: `npm run check-pages-render -- --non-api --qiskit-release-notes --current-apis --dev-apis --historical-apis --translations`. Warning that this is exponentially slower.
 
 CI will check on every PR that any changed files render correctly. We also run a weekly cron job to check that every page renders correctly.
 
