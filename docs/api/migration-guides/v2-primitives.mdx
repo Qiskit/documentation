@@ -485,7 +485,7 @@ observables = [
 # Get ISA circuits
 
 for qc, obs in zip(circuits, observables):
-    isa_circuit = 
+    isa_circuit = pm.run(circuits)
     isa_obs = obs.apply_layout(isa_circuit.layout)
     pubs.append((isa_circuit, isa_obs))
 
@@ -593,7 +593,7 @@ job = estimator.run([(chsh_isa_circuit, reshaped_ops, individual_phases)])
 pub_result = job.result()[0]
 print(f">>> Expectation values: {pub_result.data.evs}")
 print(f">>> Standard errors: {pub_result.data.stds}")
-print(f">>> Metadta: {pub_result.metadata}")
+print(f">>> Metadata: {pub_result.metadata}")
 ```
   </TabItem>
 
