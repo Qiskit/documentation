@@ -87,9 +87,7 @@ Returns unique key of the subroutine.
 
 <span id="qiskit.pulse.instructions.Reference.scope_delimiter" />
 
-### scope\_delimiter = '
-
-`= ':`
+### scope\_delimiter
 
 `= '::'`
 
