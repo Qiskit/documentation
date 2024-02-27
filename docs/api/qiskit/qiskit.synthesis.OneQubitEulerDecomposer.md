@@ -33,6 +33,32 @@ The resulting decomposition is parameterized by 3 Euler rotation angle parameter
 | ‘U1X’  | $Z(\phi) Y(\theta) Z(\lambda)$ | $e^{i\gamma} U_1(\phi+\pi).R_X\left(\frac{\pi}{2}\right).$ $U_1(\theta+\pi).R_X\left(\frac{\pi}{2}\right).U_1(\lambda)$  |
 | ‘RR’   | $Z(\phi) Y(\theta) Z(\lambda)$ | $e^{i\gamma} R\left(-\pi,\frac{\phi-\lambda+\pi}{2}\right).$ $R\left(\theta+\pi,\frac{\pi}{2}-\lambda\right)$            |
 
+### \_\_call\_\_
+
+<span id="qiskit.synthesis.OneQubitEulerDecomposer.__call__" />
+
+`__call__(unitary, simplify=True, atol=1e-12)`
+
+Decompose single qubit gate into a circuit.
+
+**Parameters**
+
+*   **unitary** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")  *|*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate") *| np.ndarray*) – 1-qubit unitary matrix
+*   **simplify** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – reduce gate count in decomposition \[Default: True].
+*   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – absolute tolerance for checking angles when simplifying returned circuit \[Default: 1e-12].
+
+**Returns**
+
+the decomposed single-qubit gate circuit
+
+**Return type**
+
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+
+**Raises**
+
+[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if input is invalid or synthesis fails.
+
 Initialize decomposer
 
 Supported bases are: `'U'`, `'PSX'`, `'ZSXX'`, `'ZSX'`, `'U321'`, `'U3'`, `'U1X'`, `'RR'`, `'ZYZ'`, `'ZXZ'`, `'XYX'`, `'XZX'`.

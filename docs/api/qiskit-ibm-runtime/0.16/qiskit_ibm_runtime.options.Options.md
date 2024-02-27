@@ -40,7 +40,7 @@ Options for the primitives.
 
     Maximum execution time in seconds, which is based on system execution time (not wall clock time). System execution time is the amount of time that the system is dedicated to processing your job. If a job exceeds this time limit, it is forcibly cancelled. Simulator jobs continue to use wall clock time.
 
-    Refer to the [Max execution time documentation](https://docs.quantum-computing.ibm.com/run/max-execution-time#maximum-execution-time). for more information.
+    Refer to the [Max execution time documentation](/run/max-execution-time#maximum-execution-time). for more information.
 
 *   **transpilation** (`Union`\[[`TranspilationOptions`](qiskit_ibm_runtime.options.TranspilationOptions "qiskit_ibm_runtime.options.transpilation_options.TranspilationOptions"), `Dict`]) – Transpilation options. See [`TranspilationOptions`](qiskit_ibm_runtime.options.TranspilationOptions "qiskit_ibm_runtime.options.TranspilationOptions") for all available options.
 

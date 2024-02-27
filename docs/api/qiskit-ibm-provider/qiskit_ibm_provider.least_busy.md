@@ -20,11 +20,11 @@ Return the least busy available backend for those that have a `pending_jobs` in 
 
 **Parameters**
 
-**backends** (`List`\[[`Backend`](https://docs.quantum.ibm.com/api/qiskit/qiskit.providers.Backend "(in Qiskit v1.0)")]) – The backends to choose from.
+**backends** (`List`\[[`Backend`](/api/qiskit/qiskit.providers.Backend "(in Qiskit v1.0)")]) – The backends to choose from.
 
 **Return type**
 
-[`Backend`](https://docs.quantum.ibm.com/api/qiskit/qiskit.providers.Backend "(in Qiskit v1.0)")
+[`Backend`](/api/qiskit/qiskit.providers.Backend "(in Qiskit v1.0)")
 
 **Returns**
 
