@@ -22,9 +22,7 @@ This class is a base class for multiple types of working list. When you iterate 
 
 <span id="qiskit.transpiler.FlowController.registered_controllers" />
 
-### registered\_controllers = \{'condition'
-
-`= {'condition':`
+### registered\_controllers
 
 `= {'condition': , 'do_while': }`
 

@@ -20,9 +20,7 @@ Implements a set of passes in a do-while loop.
 
 <span id="qiskit.transpiler.DoWhileController.registered_controllers" />
 
-### registered\_controllers = \{'condition'
-
-`= {'condition':`
+### registered\_controllers
 
 `= {'condition': , 'do_while': }`
 
