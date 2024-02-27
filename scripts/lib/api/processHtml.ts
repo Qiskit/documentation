@@ -319,6 +319,10 @@ export function processMembersAndSetMeta(
           if (id) {
             if (!priorApiType) {
               $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
+            } else if (!$child.attr("id")) {
+              // Overload methods have more than one <dt> tag, but only the first one
+              // contains an id.
+              return `<p><code>${$child.html()}</code>${github}</p>`;
             } else {
               // Inline methods
               $(`<h3>${getLastPartFromFullIdentifier(id)}</h3>`).insertBefore(
