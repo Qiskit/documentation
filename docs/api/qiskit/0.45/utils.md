@@ -543,13 +543,9 @@ Create a context, during which the value of the dependency manager will be `Fals
 
 ### require\_in\_call
 
-### require\_in\_call
-
 <span id="qiskit.utils.LazyDependencyManager.require_in_call" />
 
 `require_in_call(feature_or_callable: Callable) → Callable`
-
-<span id="qiskit.utils.LazyDependencyManager.require_in_call" />
 
 `require_in_call(feature_or_callable: str) → Callable[[Callable], Callable]`
 
@@ -569,13 +565,9 @@ Callable
 
 ### require\_in\_instance
 
-### require\_in\_instance
-
 <span id="qiskit.utils.LazyDependencyManager.require_in_instance" />
 
 `require_in_instance(feature_or_class: Type) → Type`
-
-<span id="qiskit.utils.LazyDependencyManager.require_in_instance" />
 
 `require_in_instance(feature_or_class: str) → Callable[[Type], Type]`
 
