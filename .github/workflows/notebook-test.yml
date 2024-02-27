@@ -90,6 +90,7 @@ jobs:
             sys.exit(1)
 
       - name: Execute notebooks
+        if: "!cancelled()"
         shell: python
         run: |
           import subprocess
@@ -98,6 +99,7 @@ jobs:
           subprocess.run(args, check=True)
 
       - name: Upload executed notebooks
+        if: "!cancelled()"
         uses: actions/upload-artifact@v4
         with:
           name: Executed notebooks
