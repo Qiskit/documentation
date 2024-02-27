@@ -14,7 +14,7 @@ A central component of Qiskit, the transpiler is designed for modularity and ext
 Find more information about the pass manager stages in the [Transpiler stages](transpiler-stages) topic.
 
 <Admonition type="caution">
-  If you perform transpilation locally and submit the transpiled circuits to the Qiskit Runtime service, set the `skip_transpilation` option to `True` so that the service does not try to apply further transformations to your circuit. See [Advanced runtime compilation options](/run/configure-runtime-compilation#advanced-runtime-compilation-options).
+  If you perform transpilation locally and submit the transpiled circuits to the Qiskit Runtime service, the service will attempt to apply additional optimizations by default, corresponding to `optimization_level=1` described [here](/run/configure-runtime-compilation#set-the-optimization-level). If you do not wish to have your circuits further transformed, set the `skip_transpilation` option to `True` to tell the service not to apply these optimizations. See [Advanced runtime compilation options](/run/configure-runtime-compilation#advanced-runtime-compilation-options). However, note that all circuits submitted to the Qiskit Runtime service must be composed of instructions supported by the system's Instruction Set Architecture (ISA), otherwise the jobs will fail.
 </Admonition>
 
 
