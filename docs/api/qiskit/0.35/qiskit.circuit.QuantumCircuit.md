@@ -1259,13 +1259,9 @@ The circuit index of an [`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.cir
 
 ### for\_loop
 
-##### for\_loop
-
 <span id="qiskit.circuit.QuantumCircuit.for_loop" />
 
 `QuantumCircuit.for_loop(indexset: Iterable[int], loop_parameter: Optional[qiskit.circuit.parameter.Parameter], body: None, qubits: None, clbits: None, *, label: Optional[str]) → qiskit.circuit.controlflow.for_loop.ForLoopContext`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/quantumcircuit.py "view source code")
-
-<span id="qiskit.circuit.QuantumCircuit.for_loop" />
 
 `QuantumCircuit.for_loop(indexset: Iterable[int], loop_parameter: Optional[qiskit.circuit.parameter.Parameter], body: QuantumCircuit, qubits: Sequence[Union[qiskit.circuit.quantumregister.Qubit, qiskit.circuit.quantumregister.QuantumRegister, int, slice, Sequence[Union[qiskit.circuit.quantumregister.Qubit, int]]]], clbits: Sequence[Union[qiskit.circuit.classicalregister.Clbit, qiskit.circuit.classicalregister.ClassicalRegister, int, slice, Sequence[Union[qiskit.circuit.classicalregister.Clbit, int]]]], *, label: Optional[str]) → qiskit.circuit.instructionset.InstructionSet`
 
@@ -1550,13 +1546,9 @@ A handle to the instruction created.
 
 ### if\_test
 
-##### if\_test
-
 <span id="qiskit.circuit.QuantumCircuit.if_test" />
 
 `QuantumCircuit.if_test(condition: Tuple[Union[qiskit.circuit.classicalregister.ClassicalRegister, qiskit.circuit.classicalregister.Clbit], int], true_body: None, qubits: None, clbits: None, *, label: Optional[str]) → qiskit.circuit.controlflow.if_else.IfContext`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/quantumcircuit.py "view source code")
-
-<span id="qiskit.circuit.QuantumCircuit.if_test" />
 
 `QuantumCircuit.if_test(condition: Tuple[Union[qiskit.circuit.classicalregister.ClassicalRegister, qiskit.circuit.classicalregister.Clbit], int], true_body: QuantumCircuit, qubits: Sequence[Union[qiskit.circuit.quantumregister.Qubit, qiskit.circuit.quantumregister.QuantumRegister, int, slice, Sequence[Union[qiskit.circuit.quantumregister.Qubit, int]]]], clbits: Sequence[Union[qiskit.circuit.classicalregister.Clbit, qiskit.circuit.classicalregister.ClassicalRegister, int, slice, Sequence[Union[qiskit.circuit.classicalregister.Clbit, int]]]], *, label: Optional[str] = 'None') → qiskit.circuit.instructionset.InstructionSet`
 
@@ -4166,13 +4158,9 @@ Apply unitary gate to q.
 
 ### while\_loop
 
-##### while\_loop
-
 <span id="qiskit.circuit.QuantumCircuit.while_loop" />
 
 `QuantumCircuit.while_loop(condition: Tuple[Union[qiskit.circuit.classicalregister.ClassicalRegister, qiskit.circuit.classicalregister.Clbit], int], body: None, qubits: None, clbits: None, *, label: Optional[str]) → qiskit.circuit.controlflow.while_loop.WhileLoopContext`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/quantumcircuit.py "view source code")
-
-<span id="qiskit.circuit.QuantumCircuit.while_loop" />
 
 `QuantumCircuit.while_loop(condition: Tuple[Union[qiskit.circuit.classicalregister.ClassicalRegister, qiskit.circuit.classicalregister.Clbit], int], body: QuantumCircuit, qubits: Sequence[Union[qiskit.circuit.quantumregister.Qubit, qiskit.circuit.quantumregister.QuantumRegister, int, slice, Sequence[Union[qiskit.circuit.quantumregister.Qubit, int]]]], clbits: Sequence[Union[qiskit.circuit.classicalregister.Clbit, qiskit.circuit.classicalregister.ClassicalRegister, int, slice, Sequence[Union[qiskit.circuit.classicalregister.Clbit, int]]]], *, label: Optional[str]) → qiskit.circuit.instructionset.InstructionSet`
 

@@ -361,13 +361,9 @@ a handle to the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit
 
 ### assign\_parameters
 
-### assign\_parameters
-
 <span id="qiskit.circuit.QuantumCircuit.assign_parameters" />
 
 `assign_parameters(parameters: Mapping[Parameter, ParameterExpression | float] | Sequence[ParameterExpression | float], inplace: Literal[False] = False, *, flat_input: bool = False, strict: bool = True) → QuantumCircuit`
-
-<span id="qiskit.circuit.QuantumCircuit.assign_parameters" />
 
 `assign_parameters(parameters: Mapping[Parameter, ParameterExpression | float] | Sequence[ParameterExpression | float], inplace: Literal[True] = False, *, flat_input: bool = False, strict: bool = True) → None`
 
@@ -1429,13 +1425,9 @@ The circuit index of an [`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.cir
 
 ### for\_loop
 
-### for\_loop
-
 <span id="qiskit.circuit.QuantumCircuit.for_loop" />
 
 `for_loop(indexset: Iterable[int], loop_parameter: Parameter | None, body: None, qubits: None, clbits: None, *, label: str | None) → qiskit.circuit.controlflow.for_loop.ForLoopContext`
-
-<span id="qiskit.circuit.QuantumCircuit.for_loop" />
 
 `for_loop(indexset: Iterable[int], loop_parameter: Parameter | None, body: QuantumCircuit, qubits: Sequence[Qubit | QuantumRegister | int | slice | Sequence[Qubit | int]], clbits: Sequence[Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int]], *, label: str | None) → InstructionSet`
 
@@ -1786,13 +1778,9 @@ A handle to the instruction created.
 
 ### if\_test
 
-### if\_test
-
 <span id="qiskit.circuit.QuantumCircuit.if_test" />
 
 `if_test(condition: tuple[ClassicalRegister | Clbit, int], true_body: None, qubits: None, clbits: None, *, label: str | None) → qiskit.circuit.controlflow.if_else.IfContext`
-
-<span id="qiskit.circuit.QuantumCircuit.if_test" />
 
 `if_test(condition: tuple[ClassicalRegister | Clbit, int], true_body: QuantumCircuit, qubits: Sequence[Qubit | QuantumRegister | int | slice | Sequence[Qubit | int]], clbits: Sequence[Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int]], *, label: str | None = None) → InstructionSet`
 
@@ -3330,13 +3318,9 @@ A handle to the instructions created.
 
 ### switch
 
-### switch
-
 <span id="qiskit.circuit.QuantumCircuit.switch" />
 
 `switch(target: Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int], cases: None, qubits: None, clbits: None, *, label: str | None) → qiskit.circuit.controlflow.switch_case.SwitchContext`
-
-<span id="qiskit.circuit.QuantumCircuit.switch" />
 
 `switch(target: Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int], cases: Iterable[Tuple[Any, QuantumCircuit]], qubits: Sequence[Qubit | QuantumRegister | int | slice | Sequence[Qubit | int]], clbits: Sequence[Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int]], *, label: str | None) → InstructionSet`
 
@@ -3786,13 +3770,9 @@ circuit.unitary(matrix, [0, 1])
 
 ### while\_loop
 
-### while\_loop
-
 <span id="qiskit.circuit.QuantumCircuit.while_loop" />
 
 `while_loop(condition: tuple[ClassicalRegister | Clbit, int] | expr.Expr, body: None, qubits: None, clbits: None, *, label: str | None) → qiskit.circuit.controlflow.while_loop.WhileLoopContext`
-
-<span id="qiskit.circuit.QuantumCircuit.while_loop" />
 
 `while_loop(condition: tuple[ClassicalRegister | Clbit, int] | expr.Expr, body: QuantumCircuit, qubits: Sequence[Qubit | QuantumRegister | int | slice | Sequence[Qubit | int]], clbits: Sequence[Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int]], *, label: str | None) → InstructionSet`
 
