@@ -77,10 +77,18 @@ jobs:
       - name: Check lint
         shell: python
         run: |
-          import subprocess
+          import subprocess, sys
           files = """${{ steps.all-changed-files.outputs.all_changed_files }}"""
           args = ["tox", "-e", "lint", "--"] + files.split("\n")
-          subprocess.run(args, check=True)
+          try:
+            subprocess.run(args, check=True)
+          except:
+            print(
+              "To fix, install `tox` and run `tox -e fix`\n"
+              "For more information, see https://github.com/Qiskit/documentation?tab=readme-ov-file#lint-notebooks"
+            )
+            sys.exit(1)
+
 
       - name: Execute notebooks
         shell: python
