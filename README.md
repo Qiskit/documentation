@@ -148,7 +148,13 @@ page, click "Summary", then download "Executed notebooks".
 ## Lint notebooks
 
 We use [`squeaky`](https://github.com/frankharkins/squeaky) to lint our
-notebooks. To check if a notebook needs linting:
+notebooks. First install `tox` using [pipx](https://pipx.pypa.io/stable/).
+
+```sh
+pipx install tox
+```
+
+To check if a notebook needs linting:
 
 ```sh
 # Check all notebooks in ./docs
