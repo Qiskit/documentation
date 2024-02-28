@@ -10,7 +10,7 @@ python_api_name: qiskit.qasm.QasmHTMLStyle
 
 <span id="qiskit.qasm.QasmHTMLStyle" />
 
-`QasmHTMLStyle`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/qasm/pygments/lexer.py "view source code")
+`QasmHTMLStyle` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/qasm/pygments/lexer.py "view source code")
 
 Bases: `pygments.style.Style`
 
