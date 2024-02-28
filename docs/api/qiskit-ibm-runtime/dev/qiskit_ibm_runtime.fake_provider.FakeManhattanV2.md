@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeManhattanV2
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeManhattanV2" />
 
-`FakeManhattanV2`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/backends/manhattan/fake_manhattan.py "view source code")
+`FakeManhattanV2` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/backends/manhattan/fake_manhattan.py "view source code")
 
 A fake Manhattan backend.
 
