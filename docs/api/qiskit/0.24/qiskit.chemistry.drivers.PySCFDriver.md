@@ -12,7 +12,7 @@ python_api_name: qiskit.chemistry.drivers.PySCFDriver
 
 <span id="qiskit.chemistry.drivers.PySCFDriver" />
 
-`PySCFDriver(atom='H 0.0 0.0 0.0; H 0.0 0.0 0.735', unit=<UnitsType.ANGSTROM: 'Angstrom'>, charge=0, spin=0, basis='sto3g', hf_method=<HFMethodType.RHF: 'rhf'>, conv_tol=1e-09, max_cycle=50, init_guess=<InitialGuess.MINAO: 'minao'>, max_memory=None, molecule=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/drivers/pyscfd/pyscfdriver.py "view source code")
+`PySCFDriver(atom='H 0.0 0.0 0.0; H 0.0 0.0 0.735', unit=<UnitsType.ANGSTROM: 'Angstrom'>, charge=0, spin=0, basis='sto3g', hf_method=<HFMethodType.RHF: 'rhf'>, conv_tol=1e-09, max_cycle=50, init_guess=<InitialGuess.MINAO: 'minao'>, max_memory=None, molecule=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/drivers/pyscfd/pyscfdriver.py "view source code")
 
 Qiskit chemistry driver using the PySCF library.
 

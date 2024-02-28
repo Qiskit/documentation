@@ -12,7 +12,7 @@ python_api_name: qiskit.transpiler.passes.RemoveDiagonalGatesBeforeMeasure
 
 <span id="qiskit.transpiler.passes.RemoveDiagonalGatesBeforeMeasure" />
 
-`RemoveDiagonalGatesBeforeMeasure(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/transpiler/passes/optimization/remove_diagonal_gates_before_measure.py "view source code")
+`RemoveDiagonalGatesBeforeMeasure(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/transpiler/passes/optimization/remove_diagonal_gates_before_measure.py "view source code")
 
 Remove diagonal gates (including diagonal 2Q gates) before a measurement.
 

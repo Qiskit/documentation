@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.library.MCMTVChain
 
 <span id="qiskit.circuit.library.MCMTVChain" />
 
-`MCMTVChain(gate, num_ctrl_qubits, num_target_qubits, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/generalized_gates/mcmt.py "view source code")
+`MCMTVChain(gate, num_ctrl_qubits, num_target_qubits, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/generalized_gates/mcmt.py "view source code")
 
 The MCMT implementation using the CCX V-chain.
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.finance.QiskitFinanceError
 
 <span id="qiskit.finance.QiskitFinanceError" />
 
-`QiskitFinanceError(*message)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/finance/exceptions.py "view source code")
+`QiskitFinanceError(*message)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/finance/exceptions.py "view source code")
 
 Class for errors returned by Qiskit’s finance module.
 

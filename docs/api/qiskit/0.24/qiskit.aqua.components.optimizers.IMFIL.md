@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.components.optimizers.IMFIL
 
 <span id="qiskit.aqua.components.optimizers.IMFIL" />
 
-`IMFIL(maxiter=1000)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/optimizers/imfil.py "view source code")
+`IMFIL(maxiter=1000)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/optimizers/imfil.py "view source code")
 
 IMplicit FILtering algorithm.
 

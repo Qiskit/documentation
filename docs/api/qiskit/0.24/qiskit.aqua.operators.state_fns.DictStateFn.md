@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.operators.state_fns.DictStateFn
 
 <span id="qiskit.aqua.operators.state_fns.DictStateFn" />
 
-`DictStateFn(primitive=None, coeff=1.0, is_measurement=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/state_fns/dict_state_fn.py "view source code")
+`DictStateFn(primitive=None, coeff=1.0, is_measurement=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/state_fns/dict_state_fn.py "view source code")
 
 A class for state functions and measurements which are defined by a lookup table, stored in a dict.
 

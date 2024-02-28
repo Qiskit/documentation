@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.components.optimizers.POWELL
 
 <span id="qiskit.aqua.components.optimizers.POWELL" />
 
-`POWELL(maxiter=None, maxfev=1000, disp=False, xtol=0.0001, tol=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/optimizers/powell.py "view source code")
+`POWELL(maxiter=None, maxfev=1000, disp=False, xtol=0.0001, tol=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/optimizers/powell.py "view source code")
 
 Powell optimizer.
 

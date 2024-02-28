@@ -12,7 +12,7 @@ python_api_name: qiskit.ignis.characterization.DragFitter
 
 <span id="qiskit.ignis.characterization.DragFitter" />
 
-`DragFitter(backend_result, xdata, qubits, fit_p0, fit_bounds=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/characterization/calibrations/fitters.py "view source code")
+`DragFitter(backend_result, xdata, qubits, fit_p0, fit_bounds=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/characterization/calibrations/fitters.py "view source code")
 
 Drag Experiment fitter
 

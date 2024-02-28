@@ -12,7 +12,7 @@ python_api_name: qiskit.ignis.verification.Plotter
 
 <span id="qiskit.ignis.verification.Plotter" />
 
-`Plotter(label)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/entanglement/analysis.py "view source code")
+`Plotter(label)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/entanglement/analysis.py "view source code")
 
 Various plots of the ground state in MQC and PO experiments
 

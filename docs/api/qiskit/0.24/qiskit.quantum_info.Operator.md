@@ -12,7 +12,7 @@ python_api_name: qiskit.quantum_info.Operator
 
 <span id="qiskit.quantum_info.Operator" />
 
-`Operator(data, input_dims=None, output_dims=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/quantum_info/operators/operator.py "view source code")
+`Operator(data, input_dims=None, output_dims=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/quantum_info/operators/operator.py "view source code")
 
 Matrix operator class
 

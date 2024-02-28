@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.algorithms.IQPE
 
 <span id="qiskit.aqua.algorithms.IQPE" />
 
-`IQPE(operator=None, state_in=None, num_time_slices=1, num_iterations=1, expansion_mode='suzuki', expansion_order=2, shallow_circuit_concat=False, quantum_instance=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/minimum_eigen_solvers/iqpe.py "view source code")
+`IQPE(operator=None, state_in=None, num_time_slices=1, num_iterations=1, expansion_mode='suzuki', expansion_order=2, shallow_circuit_concat=False, quantum_instance=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/minimum_eigen_solvers/iqpe.py "view source code")
 
 The Iterative Quantum Phase Estimation algorithm.
 
