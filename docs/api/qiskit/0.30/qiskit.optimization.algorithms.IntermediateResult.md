@@ -10,7 +10,7 @@ python_api_name: qiskit.optimization.algorithms.IntermediateResult
 
 <span id="qiskit.optimization.algorithms.IntermediateResult" />
 
-`IntermediateResult(value)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/recursive_minimum_eigen_optimizer.py "view source code")
+`IntermediateResult(value)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/recursive_minimum_eigen_optimizer.py "view source code")
 
 Bases: `enum.Enum`
 

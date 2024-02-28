@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.qpy_serialization.dump
 
 <span id="qiskit.circuit.qpy_serialization.dump" />
 
-`dump(circuits, file_obj)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/qpy_serialization.py "view source code")
+`dump(circuits, file_obj)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/qpy_serialization.py "view source code")
 
 Write QPY binary data to a file
 

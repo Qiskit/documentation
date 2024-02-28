@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.algorithms.AmplitudeEstimation
 
 <span id="qiskit.aqua.algorithms.AmplitudeEstimation" />
 
-`AmplitudeEstimation(num_eval_qubits, state_preparation=None, grover_operator=None, objective_qubits=None, post_processing=None, phase_estimation_circuit=None, iqft=None, quantum_instance=None, a_factory=None, q_factory=None, i_objective=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_estimators/ae.py "view source code")
+`AmplitudeEstimation(num_eval_qubits, state_preparation=None, grover_operator=None, objective_qubits=None, post_processing=None, phase_estimation_circuit=None, iqft=None, quantum_instance=None, a_factory=None, q_factory=None, i_objective=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_estimators/ae.py "view source code")
 
 Bases: `qiskit.aqua.algorithms.amplitude_estimators.ae_algorithm.AmplitudeEstimationAlgorithm`
 
@@ -56,7 +56,7 @@ Iterative Quantum Amplitude Estimation. [arXiv:1912.05559](https://arxiv.org/abs
 
 <span id="qiskit.aqua.algorithms.AmplitudeEstimation.confidence_interval" />
 
-`AmplitudeEstimation.confidence_interval(alpha, kind='likelihood_ratio')`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_estimators/ae.py "view source code")
+`AmplitudeEstimation.confidence_interval(alpha, kind='likelihood_ratio')` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_estimators/ae.py "view source code")
 
 Compute the (1 - alpha) confidence interval.
 
@@ -82,7 +82,7 @@ The (1 - alpha) confidence interval of the specified kind.
 
 <span id="qiskit.aqua.algorithms.AmplitudeEstimation.construct_circuit" />
 
-`AmplitudeEstimation.construct_circuit(measurement=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_estimators/ae.py "view source code")
+`AmplitudeEstimation.construct_circuit(measurement=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_estimators/ae.py "view source code")
 
 Construct the Amplitude Estimation quantum circuit.
 
