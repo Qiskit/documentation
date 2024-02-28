@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.PhaseEstimation
 
 <span id="qiskit.algorithms.PhaseEstimation" />
 
-`PhaseEstimation(num_evaluation_qubits, quantum_instance=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/phase_estimators/phase_estimation.py "view source code")
+`PhaseEstimation(num_evaluation_qubits, quantum_instance=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/phase_estimators/phase_estimation.py "view source code")
 
 Run the Quantum Phase Estimation (QPE) algorithm.
 

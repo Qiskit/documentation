@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.Unroll3qOrMore
 
 <span id="qiskit.transpiler.passes.Unroll3qOrMore" />
 
-`Unroll3qOrMore(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/basis/unroll_3q_or_more.py "view source code")
+`Unroll3qOrMore(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/basis/unroll_3q_or_more.py "view source code")
 
 Recursively expands 3q+ gates until the circuit only contains 2q or 1q gates.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.result.QuasiDistribution
 
 <span id="qiskit.result.QuasiDistribution" />
 
-`QuasiDistribution(data, shots=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/result/distributions/quasi.py "view source code")
+`QuasiDistribution(data, shots=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/result/distributions/quasi.py "view source code")
 
 A dict-like class for representing qasi-probabilities.
 

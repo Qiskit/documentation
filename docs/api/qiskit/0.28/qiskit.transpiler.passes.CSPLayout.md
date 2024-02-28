@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.CSPLayout
 
 <span id="qiskit.transpiler.passes.CSPLayout" />
 
-`CSPLayout(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/layout/csp_layout.py "view source code")
+`CSPLayout(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/layout/csp_layout.py "view source code")
 
 If possible, chooses a Layout as a CSP, using backtracking.
 

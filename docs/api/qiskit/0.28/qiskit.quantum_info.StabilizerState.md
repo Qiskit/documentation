@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.StabilizerState
 
 <span id="qiskit.quantum_info.StabilizerState" />
 
-`StabilizerState(data, validate=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/states/stabilizerstate.py "view source code")
+`StabilizerState(data, validate=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/states/stabilizerstate.py "view source code")
 
 StabilizerState class. Stabilizer simulator using the convention from reference \[1]. Based on the internal class [`Clifford`](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford").
 

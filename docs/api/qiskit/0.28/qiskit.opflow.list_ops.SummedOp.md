@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.list_ops.SummedOp
 
 <span id="qiskit.opflow.list_ops.SummedOp" />
 
-`SummedOp(oplist, coeff=1.0, abelian=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/list_ops/summed_op.py "view source code")
+`SummedOp(oplist, coeff=1.0, abelian=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/list_ops/summed_op.py "view source code")
 
 A class for lazily representing sums of Operators. Often Operators cannot be efficiently added to one another, but may be manipulated further so that they can be later. This class holds logic to indicate that the Operators in `oplist` are meant to be added together, and therefore if they reach a point in which they can be, such as after evaluation or conversion to matrices, they can be reduced by addition.
 

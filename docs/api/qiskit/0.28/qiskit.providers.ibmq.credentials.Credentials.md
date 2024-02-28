@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.credentials.Credentials
 
 <span id="qiskit.providers.ibmq.credentials.Credentials" />
 
-`Credentials(token, url, websockets_url=None, hub=None, group=None, project=None, proxies=None, verify=True, services=None, access_token=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.15/qiskit/providers/ibmq/credentials/credentials.py "view source code")
+`Credentials(token, url, websockets_url=None, hub=None, group=None, project=None, proxies=None, verify=True, services=None, access_token=None)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.15/qiskit/providers/ibmq/credentials/credentials.py "view source code")
 
 IBM Quantum Experience account credentials.
 

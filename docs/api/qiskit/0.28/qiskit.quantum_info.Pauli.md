@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.Pauli
 
 <span id="qiskit.quantum_info.Pauli" />
 
-`Pauli(data=None, x=None, *, z=None, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/operators/symplectic/pauli.py "view source code")
+`Pauli(data=None, x=None, *, z=None, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/operators/symplectic/pauli.py "view source code")
 
 N-qubit Pauli operator.
 

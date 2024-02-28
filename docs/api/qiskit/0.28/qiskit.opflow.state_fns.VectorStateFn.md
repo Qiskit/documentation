@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.state_fns.VectorStateFn
 
 <span id="qiskit.opflow.state_fns.VectorStateFn" />
 
-`VectorStateFn(primitive=None, coeff=1.0, is_measurement=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/state_fns/vector_state_fn.py "view source code")
+`VectorStateFn(primitive=None, coeff=1.0, is_measurement=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/state_fns/vector_state_fn.py "view source code")
 
 A class for state functions and measurements which are defined in vector representation, and stored using Terra’s `Statevector` class.
 

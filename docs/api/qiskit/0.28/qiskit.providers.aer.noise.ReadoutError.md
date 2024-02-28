@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.noise.ReadoutError
 
 <span id="qiskit.providers.aer.noise.ReadoutError" />
 
-`ReadoutError(probabilities, atol=1e-08)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/noise/errors/readout_error.py "view source code")
+`ReadoutError(probabilities, atol=1e-08)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/noise/errors/readout_error.py "view source code")
 
 Readout error class for Qiskit Aer noise model.
 

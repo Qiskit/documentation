@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.verification.AccreditationCircuits
 
 <span id="qiskit.ignis.verification.AccreditationCircuits" />
 
-`AccreditationCircuits(target_circ, two_qubit_gate='cx', coupling_map=None, seed=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/accreditation/circuits.py "view source code")
+`AccreditationCircuits(target_circ, two_qubit_gate='cx', coupling_map=None, seed=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/accreditation/circuits.py "view source code")
 
 This class generates accreditation circuits from a target.
 

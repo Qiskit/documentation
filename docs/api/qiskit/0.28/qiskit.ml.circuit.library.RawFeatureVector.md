@@ -10,7 +10,7 @@ python_api_name: qiskit.ml.circuit.library.RawFeatureVector
 
 <span id="qiskit.ml.circuit.library.RawFeatureVector" />
 
-`RawFeatureVector(feature_dimension)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/ml/circuit/library/raw_feature_vector.py "view source code")
+`RawFeatureVector(feature_dimension)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/ml/circuit/library/raw_feature_vector.py "view source code")
 
 The raw feature vector circuit.
 

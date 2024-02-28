@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.basicaer.BasicAerJob
 
 <span id="qiskit.providers.basicaer.BasicAerJob" />
 
-`BasicAerJob(backend, job_id, result)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/providers/basicaer/basicaerjob.py "view source code")
+`BasicAerJob(backend, job_id, result)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/providers/basicaer/basicaerjob.py "view source code")
 
 BasicAerJob class.
 
