@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
 <span id="qiskit.quantum_info.DensityMatrix" />
 
-`DensityMatrix(data, dims=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/quantum_info/states/densitymatrix.py "view source code")
+`DensityMatrix(data, dims=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/quantum_info/states/densitymatrix.py "view source code")
 
 DensityMatrix class
 

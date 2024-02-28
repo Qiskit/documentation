@@ -10,7 +10,7 @@ python_api_name: qiskit.result.ResultError
 
 <span id="qiskit.result.ResultError" />
 
-`ResultError(error)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/result/exceptions.py "view source code")
+`ResultError(error)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/result/exceptions.py "view source code")
 
 Exceptions raised due to errors in result output.
 

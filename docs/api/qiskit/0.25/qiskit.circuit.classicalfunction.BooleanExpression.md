@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.classicalfunction.BooleanExpression
 
 <span id="qiskit.circuit.classicalfunction.BooleanExpression" />
 
-`BooleanExpression(expression, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/classicalfunction/boolean_expression.py "view source code")
+`BooleanExpression(expression, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/classicalfunction/boolean_expression.py "view source code")
 
 The Boolean Expression gate.
 
