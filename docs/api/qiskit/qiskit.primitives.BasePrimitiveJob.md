@@ -10,7 +10,7 @@ python_api_name: qiskit.primitives.BasePrimitiveJob
 
 <span id="qiskit.primitives.BasePrimitiveJob" />
 
-`qiskit.primitives.BasePrimitiveJob(job_id, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/primitives/base/base_primitive_job.py "view source code")
+`qiskit.primitives.BasePrimitiveJob(job_id, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/primitives/base/base_primitive_job.py "view source code")
 
 Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)"), [`Generic`](https://docs.python.org/3/library/typing.html#typing.Generic "(in Python v3.12)")\[`ResultT`, `StatusT`]
 
