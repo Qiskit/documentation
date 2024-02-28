@@ -34,7 +34,7 @@ jobs:
           sleep 20
       - name: Check all pages render
         run: >
-          npm run check-pages-render --
+          npm run check:pages-render --
           --non-api
           --qiskit-release-notes
           --current-apis
@@ -54,10 +54,6 @@ jobs:
         run: npm ci
       - name: Check external links
         run: >
-          npm run check:links --
-          --qiskit-release-notes
-          --current-apis
-          --dev-apis
-          --historical-apis
-          --skip-broken-historical
-          --external
+          npm run check:external-links --
+          'docs/**/*.{md,mdx,ipynb}'
+          '!docs/api/qiskit/[0-9]*/*'
