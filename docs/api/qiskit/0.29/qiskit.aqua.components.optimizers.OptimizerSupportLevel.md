@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.optimizers.OptimizerSupportLevel
 
 <span id="qiskit.aqua.components.optimizers.OptimizerSupportLevel" />
 
-`OptimizerSupportLevel(value)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/optimizers/optimizer.py "view source code")
+`OptimizerSupportLevel(value)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/optimizers/optimizer.py "view source code")
 
 Bases: `enum.IntEnum`
 

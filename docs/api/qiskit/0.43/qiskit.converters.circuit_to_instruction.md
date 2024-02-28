@@ -12,7 +12,7 @@ python_api_name: qiskit.converters.circuit_to_instruction
 
 <span id="qiskit.converters.circuit_to_instruction" />
 
-`circuit_to_instruction(circuit, parameter_map=None, equivalence_library=None, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/converters/circuit_to_instruction.py "view source code")
+`circuit_to_instruction(circuit, parameter_map=None, equivalence_library=None, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/converters/circuit_to_instruction.py "view source code")
 
 Build an [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") object from a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
 

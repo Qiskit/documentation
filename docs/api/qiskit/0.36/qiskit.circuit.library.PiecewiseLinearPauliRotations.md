@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.PiecewiseLinearPauliRotations
 
 <span id="qiskit.circuit.library.PiecewiseLinearPauliRotations" />
 
-`PiecewiseLinearPauliRotations(num_state_qubits=None, breakpoints=None, slopes=None, offsets=None, basis='Y', name='pw_lin')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/arithmetic/piecewise_linear_pauli_rotations.py "view source code")
+`PiecewiseLinearPauliRotations(num_state_qubits=None, breakpoints=None, slopes=None, offsets=None, basis='Y', name='pw_lin')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/arithmetic/piecewise_linear_pauli_rotations.py "view source code")
 
 Bases: `qiskit.circuit.library.arithmetic.functional_pauli_rotations.FunctionalPauliRotations`
 
@@ -44,7 +44,7 @@ Construct piecewise-linearly-controlled Pauli rotations.
 
 <span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.evaluate" />
 
-`PiecewiseLinearPauliRotations.evaluate(x)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/arithmetic/piecewise_linear_pauli_rotations.py "view source code")
+`PiecewiseLinearPauliRotations.evaluate(x)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/arithmetic/piecewise_linear_pauli_rotations.py "view source code")
 
 Classically evaluate the piecewise linear rotation.
 

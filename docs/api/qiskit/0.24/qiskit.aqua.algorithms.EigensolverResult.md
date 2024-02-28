@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.algorithms.EigensolverResult
 
 <span id="qiskit.aqua.algorithms.EigensolverResult" />
 
-`EigensolverResult(a_dict=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/eigen_solvers/eigen_solver.py "view source code")
+`EigensolverResult(a_dict=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/eigen_solvers/eigen_solver.py "view source code")
 
 Eigensolver Result.
 

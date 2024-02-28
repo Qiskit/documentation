@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.InstructionDurations
 
 <span id="qiskit.transpiler.InstructionDurations" />
 
-`InstructionDurations(instruction_durations=None, dt=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/instruction_durations.py "view source code")
+`InstructionDurations(instruction_durations=None, dt=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/instruction_durations.py "view source code")
 
 Helper class to provide durations of instructions for scheduling.
 

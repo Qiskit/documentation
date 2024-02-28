@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CSGate
 
 <span id="qiskit.circuit.library.CSGate" />
 
-`qiskit.circuit.library.CSGate(*args, _force_mutable=False, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/s.py "view source code")
+`qiskit.circuit.library.CSGate(*args, _force_mutable=False, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/s.py "view source code")
 
 Bases: [`SingletonControlledGate`](circuit_singleton#qiskit.circuit.singleton.SingletonControlledGate "qiskit.circuit.singleton.SingletonControlledGate")
 

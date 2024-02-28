@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.Stinespring
 
 <span id="qiskit.quantum_info.Stinespring" />
 
-`Stinespring(data, input_dims=None, output_dims=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/operators/channel/stinespring.py "view source code")
+`Stinespring(data, input_dims=None, output_dims=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/operators/channel/stinespring.py "view source code")
 
 Stinespring representation of a quantum channel.
 

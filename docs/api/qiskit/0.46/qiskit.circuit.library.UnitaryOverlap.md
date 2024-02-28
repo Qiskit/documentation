@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.UnitaryOverlap
 
 <span id="qiskit.circuit.library.UnitaryOverlap" />
 
-`qiskit.circuit.library.UnitaryOverlap(unitary1, unitary2, prefix1='p1', prefix2='p2')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/overlap.py "view source code")
+`qiskit.circuit.library.UnitaryOverlap(unitary1, unitary2, prefix1='p1', prefix2='p2')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/overlap.py "view source code")
 
 Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 

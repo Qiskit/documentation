@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.transforms.target_qobj_transform
 
 <span id="qiskit.pulse.transforms.target_qobj_transform" />
 
-`target_qobj_transform(sched, remove_directives=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/transforms/base_transforms.py "view source code")
+`target_qobj_transform(sched, remove_directives=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/transforms/base_transforms.py "view source code")
 
 A basic pulse program transformation for OpenPulse API execution.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.noise.NoiseModel
 
 <span id="qiskit.providers.aer.noise.NoiseModel" />
 
-`NoiseModel(basis_gates=None)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/noise/noise_model.py "view source code")
+`NoiseModel(basis_gates=None)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/noise/noise_model.py "view source code")
 
 Noise model class for Qiskit Aer simulators.
 

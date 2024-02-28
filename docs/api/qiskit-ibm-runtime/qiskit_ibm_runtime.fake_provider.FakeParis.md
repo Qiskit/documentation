@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeParis
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeParis" />
 
-`FakeParis`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/paris/fake_paris.py "view source code")
+`FakeParis` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/paris/fake_paris.py "view source code")
 
 A fake Paris backend.
 

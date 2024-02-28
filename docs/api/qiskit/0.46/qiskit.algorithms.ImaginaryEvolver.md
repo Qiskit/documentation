@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.ImaginaryEvolver
 
 <span id="qiskit.algorithms.ImaginaryEvolver" />
 
-`qiskit.algorithms.ImaginaryEvolver`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/evolvers/imaginary_evolver.py "view source code")
+`qiskit.algorithms.ImaginaryEvolver` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/evolvers/imaginary_evolver.py "view source code")
 
 Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.chemistry.transformations.FermionicTransformationType
 
 <span id="qiskit.chemistry.transformations.FermionicTransformationType" />
 
-`FermionicTransformationType(value)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/transformations/fermionic_transformation.py "view source code")
+`FermionicTransformationType(value)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/transformations/fermionic_transformation.py "view source code")
 
 Electronic Transformation Type enum
 

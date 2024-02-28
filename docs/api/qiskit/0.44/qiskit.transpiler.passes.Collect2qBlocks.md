@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.Collect2qBlocks
 
 <span id="qiskit.transpiler.passes.Collect2qBlocks" />
 
-`qiskit.transpiler.passes.Collect2qBlocks(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/optimization/collect_2q_blocks.py "view source code")
+`qiskit.transpiler.passes.Collect2qBlocks(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/optimization/collect_2q_blocks.py "view source code")
 
 Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 

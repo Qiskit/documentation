@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_provider.Session
 
 <span id="qiskit_ibm_provider.Session" />
 
-`Session(max_time=None)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/session.py "view source code")
+`Session(max_time=None)` [GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/session.py "view source code")
 
 Class for creating a flexible Qiskit Runtime session.
 
@@ -99,7 +99,7 @@ Session ID. None until a job runs in the session.
 
 <span id="qiskit_ibm_provider.Session.cancel" />
 
-`Session.cancel()`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/session.py "view source code")
+`Session.cancel()` [GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/session.py "view source code")
 
 Set the session.\_active status to False
 

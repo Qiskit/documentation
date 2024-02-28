@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.characterization.zz_circuits
 
 <span id="qiskit.ignis.characterization.zz_circuits" />
 
-`zz_circuits(num_of_gates, gate_time, qubits, spectators, nosc=5)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/characterization/hamiltonian/circuits.py "view source code")
+`zz_circuits(num_of_gates, gate_time, qubits, spectators, nosc=5)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/characterization/hamiltonian/circuits.py "view source code")
 
 Generates circuit for measuring ZZ. Two Ramsey experiments, the first with the spectator in the ground state, the second with the spectator in the excited state
 

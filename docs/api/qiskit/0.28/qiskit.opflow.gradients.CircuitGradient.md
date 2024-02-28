@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.gradients.CircuitGradient
 
 <span id="qiskit.opflow.gradients.CircuitGradient" />
 
-`CircuitGradient`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/gradients/circuit_gradients/circuit_gradient.py "view source code")
+`CircuitGradient` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/gradients/circuit_gradients/circuit_gradient.py "view source code")
 
 Circuit to gradient operator converter.
 

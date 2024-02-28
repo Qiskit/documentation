@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.CXDirection
 
 <span id="qiskit.transpiler.passes.CXDirection" />
 
-`CXDirection(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/utils/cx_direction.py "view source code")
+`CXDirection(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/utils/cx_direction.py "view source code")
 
 Bases: [`GateDirection`](qiskit.transpiler.passes.GateDirection "qiskit.transpiler.passes.utils.gate_direction.GateDirection")
 

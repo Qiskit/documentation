@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.utils.name_args
 
 <span id="qiskit.aqua.utils.name_args" />
 
-`name_args(mapping, skip=0)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/utils/name_unnamed_args.py "view source code")
+`name_args(mapping, skip=0)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/utils/name_unnamed_args.py "view source code")
 
 Decorator to convert unnamed arguments to named ones.
 

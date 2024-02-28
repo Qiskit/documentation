@@ -10,7 +10,7 @@ python_api_name: qiskit_aer.noise.RelaxationNoisePass
 
 <span id="qiskit_aer.noise.RelaxationNoisePass" />
 
-`RelaxationNoisePass(t1s, t2s, dt=None, op_types=None, excited_state_populations=None)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/noise/passes/relaxation_noise_pass.py "view source code")
+`RelaxationNoisePass(t1s, t2s, dt=None, op_types=None, excited_state_populations=None)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/noise/passes/relaxation_noise_pass.py "view source code")
 
 Bases: [`qiskit_aer.noise.passes.local_noise_pass.LocalNoisePass`](qiskit_aer.noise.LocalNoisePass "qiskit_aer.noise.passes.local_noise_pass.LocalNoisePass")
 

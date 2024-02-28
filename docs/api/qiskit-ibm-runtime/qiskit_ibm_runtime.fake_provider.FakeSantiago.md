@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeSantiago
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeSantiago" />
 
-`FakeSantiago`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/santiago/fake_santiago.py "view source code")
+`FakeSantiago` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/santiago/fake_santiago.py "view source code")
 
 A fake Santiago backend.
 

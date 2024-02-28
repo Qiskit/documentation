@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.RealEvolver
 
 <span id="qiskit.algorithms.RealEvolver" />
 
-`RealEvolver`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/evolvers/real_evolver.py "view source code")
+`RealEvolver` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/evolvers/real_evolver.py "view source code")
 
 Bases: `ABC`
 
@@ -30,7 +30,7 @@ The RealEvolver interface has been superseded by the `qiskit.algorithms.time_evo
 
 <span id="qiskit.algorithms.RealEvolver.evolve" />
 
-`abstract RealEvolver.evolve(evolution_problem)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/evolvers/real_evolver.py "view source code")
+`abstract RealEvolver.evolve(evolution_problem)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/evolvers/real_evolver.py "view source code")
 
 Perform real time evolution $\exp(-i t H)|\Psi\rangle$.
 

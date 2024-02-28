@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.feature_maps.SecondOrderExpansion
 
 <span id="qiskit.aqua.components.feature_maps.SecondOrderExpansion" />
 
-`SecondOrderExpansion(feature_dimension, depth=2, entangler_map=None, entanglement='full', data_map_func=<function self_product>)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/feature_maps/second_order_expansion.py "view source code")
+`SecondOrderExpansion(feature_dimension, depth=2, entangler_map=None, entanglement='full', data_map_func=<function self_product>)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/feature_maps/second_order_expansion.py "view source code")
 
 DEPRECATED. Second Order Expansion feature map.
 

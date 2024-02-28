@@ -227,7 +227,7 @@ You can find code examples for each visualization functions on the individual fu
 
 <span id="qiskit.visualization.VisualizationError" />
 
-`qiskit.visualization.VisualizationError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/visualization/exceptions.py "view source code")
+`qiskit.visualization.VisualizationError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/visualization/exceptions.py "view source code")
 
 For visualization specific errors.
 

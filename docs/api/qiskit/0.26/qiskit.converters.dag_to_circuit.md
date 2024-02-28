@@ -10,7 +10,7 @@ python_api_name: qiskit.converters.dag_to_circuit
 
 <span id="qiskit.converters.dag_to_circuit" />
 
-`dag_to_circuit(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/converters/dag_to_circuit.py "view source code")
+`dag_to_circuit(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/converters/dag_to_circuit.py "view source code")
 
 Build a `QuantumCircuit` object from a `DAGCircuit`.
 

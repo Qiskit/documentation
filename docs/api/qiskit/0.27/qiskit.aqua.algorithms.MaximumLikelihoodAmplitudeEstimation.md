@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation
 
 <span id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation" />
 
-`MaximumLikelihoodAmplitudeEstimation(num_oracle_circuits, state_preparation=None, grover_operator=None, objective_qubits=None, post_processing=None, a_factory=None, q_factory=None, i_objective=None, likelihood_evals=None, quantum_instance=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_estimators/mlae.py "view source code")
+`MaximumLikelihoodAmplitudeEstimation(num_oracle_circuits, state_preparation=None, grover_operator=None, objective_qubits=None, post_processing=None, a_factory=None, q_factory=None, i_objective=None, likelihood_evals=None, quantum_instance=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_estimators/mlae.py "view source code")
 
 The Maximum Likelihood Amplitude Estimation algorithm.
 

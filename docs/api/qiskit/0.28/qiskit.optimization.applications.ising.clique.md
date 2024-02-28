@@ -26,7 +26,7 @@ Deal with Gset format. See [https://web.stanford.edu/\~yyye/yyye/Gset/](https://
 
 <span id="qiskit.optimization.applications.ising.clique.get_graph_solution" />
 
-`get_graph_solution(x)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/clique.py "view source code")
+`get_graph_solution(x)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/clique.py "view source code")
 
 Get graph solution from binary string.
 
@@ -46,7 +46,7 @@ numpy.ndarray
 
 <span id="qiskit.optimization.applications.ising.clique.get_operator" />
 
-`get_operator(weight_matrix, K)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/clique.py "view source code")
+`get_operator(weight_matrix, K)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/clique.py "view source code")
 
 Generate Hamiltonian for the clique.
 
@@ -89,7 +89,7 @@ tuple([WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator
 
 <span id="qiskit.optimization.applications.ising.clique.satisfy_or_not" />
 
-`satisfy_or_not(x, w, K)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/clique.py "view source code")
+`satisfy_or_not(x, w, K)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/clique.py "view source code")
 
 Compute the value of a cut.
 

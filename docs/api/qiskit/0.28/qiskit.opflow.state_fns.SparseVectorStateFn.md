@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.state_fns.SparseVectorStateFn
 
 <span id="qiskit.opflow.state_fns.SparseVectorStateFn" />
 
-`SparseVectorStateFn(primitive, coeff=1.0, is_measurement=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/state_fns/sparse_vector_state_fn.py "view source code")
+`SparseVectorStateFn(primitive, coeff=1.0, is_measurement=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/state_fns/sparse_vector_state_fn.py "view source code")
 
 A class for sparse state functions and measurements in vector representation.
 

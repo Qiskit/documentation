@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.builder.measure
 
 <span id="qiskit.pulse.builder.measure" />
 
-`measure(qubits, registers=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/pulse/builder.py "view source code")
+`measure(qubits, registers=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/pulse/builder.py "view source code")
 
 Measure a qubit within the currently active builder context.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.algorithms.EigensolverFactory
 
 <span id="qiskit.chemistry.algorithms.EigensolverFactory" />
 
-`EigensolverFactory`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/excited_states_solvers/eigensolver_factories/eigensolver_factory.py "view source code")
+`EigensolverFactory` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/excited_states_solvers/eigensolver_factories/eigensolver_factory.py "view source code")
 
 A factory to construct a eigensolver based on a qubit operator transformation.
 

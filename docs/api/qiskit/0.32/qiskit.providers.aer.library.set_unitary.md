@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.library.set_unitary
 
 <span id="qiskit.providers.aer.library.set_unitary" />
 
-`set_unitary(self, state)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/providers/aer/library/set_instructions/set_unitary.py "view source code")
+`set_unitary(self, state)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/providers/aer/library/set_instructions/set_unitary.py "view source code")
 
 Set the state state of the simulator.
 

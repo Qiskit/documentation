@@ -12,7 +12,7 @@ python_api_name: qiskit.pulse.builder.call
 
 <span id="qiskit.pulse.builder.call" />
 
-`call(target)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/builder.py "view source code")
+`call(target)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/builder.py "view source code")
 
 Call the `target` within the currently active builder context.
 

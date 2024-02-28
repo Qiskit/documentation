@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.Decompose
 
 <span id="qiskit.transpiler.passes.Decompose" />
 
-`qiskit.transpiler.passes.Decompose(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/basis/decompose.py "view source code")
+`qiskit.transpiler.passes.Decompose(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/basis/decompose.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 

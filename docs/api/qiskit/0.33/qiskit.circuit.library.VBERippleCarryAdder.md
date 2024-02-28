@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.VBERippleCarryAdder
 
 <span id="qiskit.circuit.library.VBERippleCarryAdder" />
 
-`VBERippleCarryAdder(num_state_qubits, kind='full', name='VBERippleCarryAdder')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/library/arithmetic/adders/vbe_ripple_carry_adder.py "view source code")
+`VBERippleCarryAdder(num_state_qubits, kind='full', name='VBERippleCarryAdder')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/library/arithmetic/adders/vbe_ripple_carry_adder.py "view source code")
 
 Bases: `qiskit.circuit.library.arithmetic.adders.adder.Adder`
 

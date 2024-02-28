@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.HiddenLinearFunction
 
 <span id="qiskit.circuit.library.HiddenLinearFunction" />
 
-`HiddenLinearFunction(adjacency_matrix)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/hidden_linear_function.py "view source code")
+`HiddenLinearFunction(adjacency_matrix)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/hidden_linear_function.py "view source code")
 
 Circuit to solve the hidden linear function problem.
 

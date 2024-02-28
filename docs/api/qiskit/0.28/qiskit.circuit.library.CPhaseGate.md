@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CPhaseGate
 
 <span id="qiskit.circuit.library.CPhaseGate" />
 
-`CPhaseGate(theta, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/p.py "view source code")
+`CPhaseGate(theta, label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/p.py "view source code")
 
 Controlled-Phase gate.
 

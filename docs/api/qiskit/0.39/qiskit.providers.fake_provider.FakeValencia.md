@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeValencia
 
 <span id="qiskit.providers.fake_provider.FakeValencia" />
 
-`FakeValencia`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/fake_provider/backends/valencia/fake_valencia.py "view source code")
+`FakeValencia` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/fake_provider/backends/valencia/fake_valencia.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_pulse_backend.FakePulseBackend`
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.models.PulseDefaults
 
 <span id="qiskit.providers.models.PulseDefaults" />
 
-`PulseDefaults(qubit_freq_est, meas_freq_est, buffer, pulse_library, cmd_def, meas_kernel=None, discriminator=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/providers/models/pulsedefaults.py "view source code")
+`PulseDefaults(qubit_freq_est, meas_freq_est, buffer, pulse_library, cmd_def, meas_kernel=None, discriminator=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/providers/models/pulsedefaults.py "view source code")
 
 Description of default settings for Pulse systems. These are instructions or settings that may be good starting points for the Pulse user. The user may modify these defaults for custom scheduling.
 

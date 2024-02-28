@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay
 
 <span id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay" />
 
-`PadDelay(durations, fill_very_end=True, schedule_idle_qubits=False)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/transpiler/passes/scheduling/pad_delay.py "view source code")
+`PadDelay(durations, fill_very_end=True, schedule_idle_qubits=False)` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/transpiler/passes/scheduling/pad_delay.py "view source code")
 
 Padding idle time with Delay instructions.
 

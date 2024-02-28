@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.experiment.ExperimentService
 
 <span id="qiskit.providers.ibmq.experiment.ExperimentService" />
 
-`ExperimentService(provider, access_token)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.12/qiskit/providers/ibmq/experiment/experimentservice.py "view source code")
+`ExperimentService(provider, access_token)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.12/qiskit/providers/ibmq/experiment/experimentservice.py "view source code")
 
 Provides experiment related services.
 

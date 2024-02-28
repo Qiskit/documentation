@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.ParameterNamespace
 
 <span id="qiskit_ibm_runtime.ParameterNamespace" />
 
-`ParameterNamespace(parameters)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.14/qiskit_ibm_runtime/runtime_program.py "view source code")
+`ParameterNamespace(parameters)` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.14/qiskit_ibm_runtime/runtime_program.py "view source code")
 
 A namespace for program parameters with validation.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.C3SXGate
 
 <span id="qiskit.circuit.library.C3SXGate" />
 
-`qiskit.circuit.library.C3SXGate(*args, _force_mutable=False, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/x.py "view source code")
+`qiskit.circuit.library.C3SXGate(*args, _force_mutable=False, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 Bases: [`SingletonControlledGate`](circuit_singleton#qiskit.circuit.singleton.SingletonControlledGate "qiskit.circuit.singleton.SingletonControlledGate")
 

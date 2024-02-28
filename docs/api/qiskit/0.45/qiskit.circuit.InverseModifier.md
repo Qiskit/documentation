@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.InverseModifier
 
 <span id="qiskit.circuit.InverseModifier" />
 
-`qiskit.circuit.InverseModifier`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/annotated_operation.py "view source code")
+`qiskit.circuit.InverseModifier` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/annotated_operation.py "view source code")
 
 Bases: `Modifier`
 

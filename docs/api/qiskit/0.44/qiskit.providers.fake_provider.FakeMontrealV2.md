@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeMontrealV2
 
 <span id="qiskit.providers.fake_provider.FakeMontrealV2" />
 
-`qiskit.providers.fake_provider.FakeMontrealV2`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/providers/fake_provider/backends/montreal/fake_montreal.py "view source code")
+`qiskit.providers.fake_provider.FakeMontrealV2` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/providers/fake_provider/backends/montreal/fake_montreal.py "view source code")
 
 Bases: `FakeBackendV2`
 

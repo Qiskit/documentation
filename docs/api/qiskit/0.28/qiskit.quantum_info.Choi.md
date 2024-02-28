@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.Choi
 
 <span id="qiskit.quantum_info.Choi" />
 
-`Choi(data, input_dims=None, output_dims=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/operators/channel/choi.py "view source code")
+`Choi(data, input_dims=None, output_dims=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/operators/channel/choi.py "view source code")
 
 Choi-matrix representation of a Quantum Channel.
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.ignis.verification.StateTomographyFitter
 
 <span id="qiskit.ignis.verification.StateTomographyFitter" />
 
-`StateTomographyFitter(result, circuits, meas_basis='Pauli')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/tomography/fitters/state_fitter.py "view source code")
+`StateTomographyFitter(result, circuits, meas_basis='Pauli')` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/tomography/fitters/state_fitter.py "view source code")
 
 Maximum-Likelihood estimation state tomography fitter.
 

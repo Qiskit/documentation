@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.Reset
 
 <span id="qiskit.circuit.library.Reset" />
 
-`qiskit.circuit.library.Reset`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/reset.py "view source code")
+`qiskit.circuit.library.Reset` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/reset.py "view source code")
 
 Bases: [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 

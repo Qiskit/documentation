@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.BOBYQA
 
 <span id="qiskit.algorithms.optimizers.BOBYQA" />
 
-`BOBYQA(maxiter=1000)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/bobyqa.py "view source code")
+`BOBYQA(maxiter=1000)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/bobyqa.py "view source code")
 
 Bound Optimization BY Quadratic Approximation algorithm.
 

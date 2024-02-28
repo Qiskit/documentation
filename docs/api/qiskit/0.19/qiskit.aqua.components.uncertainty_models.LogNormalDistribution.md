@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.uncertainty_models.LogNormalDistribution
 
 <span id="qiskit.aqua.components.uncertainty_models.LogNormalDistribution" />
 
-`LogNormalDistribution(num_target_qubits, mu=0, sigma=1, low=0, high=1)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/uncertainty_models/log_normal_distribution.py "view source code")
+`LogNormalDistribution(num_target_qubits, mu=0, sigma=1, low=0, high=1)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/uncertainty_models/log_normal_distribution.py "view source code")
 
 The Univariate Log-Normal Distribution.
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.extensions.Initialize
 
 <span id="qiskit.extensions.Initialize" />
 
-`Initialize(params)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/extensions/quantum_initializer/initializer.py "view source code")
+`Initialize(params)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/extensions/quantum_initializer/initializer.py "view source code")
 
 Complex amplitude initialization.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.ASAPSchedule
 
 <span id="qiskit.transpiler.passes.ASAPSchedule" />
 
-`qiskit.transpiler.passes.ASAPSchedule(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/scheduling/asap.py "view source code")
+`qiskit.transpiler.passes.ASAPSchedule(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/scheduling/asap.py "view source code")
 
 Bases: `BaseSchedulerTransform`
 

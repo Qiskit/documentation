@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.DraperQFTAdder
 
 <span id="qiskit.circuit.library.DraperQFTAdder" />
 
-`DraperQFTAdder(num_state_qubits, kind='fixed', name='DraperQFTAdder')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/arithmetic/adders/draper_qft_adder.py "view source code")
+`DraperQFTAdder(num_state_qubits, kind='fixed', name='DraperQFTAdder')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/arithmetic/adders/draper_qft_adder.py "view source code")
 
 Bases: `qiskit.circuit.library.arithmetic.adders.adder.Adder`
 

@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_provider.job.IBMCompositeJob
 
 <span id="qiskit_ibm_provider.job.IBMCompositeJob" />
 
-`IBMCompositeJob(backend, api_client, job_id=None, creation_date=None, jobs=None, circuits_list=None, run_config=None, name=None, tags=None, client_version=None)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.8/qiskit_ibm_provider/job/ibm_composite_job.py "view source code")
+`IBMCompositeJob(backend, api_client, job_id=None, creation_date=None, jobs=None, circuits_list=None, run_config=None, name=None, tags=None, client_version=None)` [GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.8/qiskit_ibm_provider/job/ibm_composite_job.py "view source code")
 
 Representation of a set of jobs that execute on an IBM Quantum backend.
 

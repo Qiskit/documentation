@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.Parameter
 
 <span id="qiskit.circuit.Parameter" />
 
-`Parameter(name)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/parameter.py "view source code")
+`Parameter(name)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/parameter.py "view source code")
 
 Parameter Class for variable parameters.
 

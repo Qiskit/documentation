@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.LinearAmplitudeFunction
 
 <span id="qiskit.circuit.library.LinearAmplitudeFunction" />
 
-`LinearAmplitudeFunction(num_state_qubits, slope, offset, domain, image, rescaling_factor=1, breakpoints=None, name='F')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/library/arithmetic/linear_amplitude_function.py "view source code")
+`LinearAmplitudeFunction(num_state_qubits, slope, offset, domain, image, rescaling_factor=1, breakpoints=None, name='F')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/library/arithmetic/linear_amplitude_function.py "view source code")
 
 A circuit implementing a (piecewise) linear function on qubit amplitudes.
 

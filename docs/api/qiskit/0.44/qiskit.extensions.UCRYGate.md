@@ -10,7 +10,7 @@ python_api_name: qiskit.extensions.UCRYGate
 
 <span id="qiskit.extensions.UCRYGate" />
 
-`qiskit.extensions.UCRYGate(angle_list)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/extensions/quantum_initializer/ucry.py "view source code")
+`qiskit.extensions.UCRYGate(angle_list)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/extensions/quantum_initializer/ucry.py "view source code")
 
 Bases: [`UCPauliRotGate`](qiskit.extensions.UCPauliRotGate "qiskit.extensions.quantum_initializer.uc_pauli_rot.UCPauliRotGate")
 

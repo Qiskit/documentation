@@ -12,7 +12,7 @@ python_api_name: qiskit.pulse.Waveform
 
 <span id="qiskit.pulse.Waveform" />
 
-`Waveform(samples, name=None, epsilon=1e-07)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/library/waveform.py "view source code")
+`Waveform(samples, name=None, epsilon=1e-07)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/library/waveform.py "view source code")
 
 A pulse specified completely by complex-valued samples; each sample is played for the duration of the backend cycle-time, dt.
 

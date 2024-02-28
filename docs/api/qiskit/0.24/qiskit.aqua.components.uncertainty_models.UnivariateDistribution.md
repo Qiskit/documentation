@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.components.uncertainty_models.UnivariateDistributio
 
 <span id="qiskit.aqua.components.uncertainty_models.UnivariateDistribution" />
 
-`UnivariateDistribution(num_target_qubits, probabilities=None, low=0, high=1)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/uncertainty_models/univariate_distribution.py "view source code")
+`UnivariateDistribution(num_target_qubits, probabilities=None, low=0, high=1)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/uncertainty_models/univariate_distribution.py "view source code")
 
 This module contains the definition of a base class for univariate distributions. (Interface for discrete bounded uncertainty models assuming an equidistant grid)
 

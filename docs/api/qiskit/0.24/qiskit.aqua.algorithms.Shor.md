@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.algorithms.Shor
 
 <span id="qiskit.aqua.algorithms.Shor" />
 
-`Shor(N=15, a=2, quantum_instance=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/factorizers/shor.py "view source code")
+`Shor(N=15, a=2, quantum_instance=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/factorizers/shor.py "view source code")
 
 Shor’s factoring algorithm.
 

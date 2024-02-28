@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.IBMQAccountCredentialsNotFound
 
 <span id="qiskit.providers.ibmq.IBMQAccountCredentialsNotFound" />
 
-`IBMQAccountCredentialsNotFound(*message)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.16/qiskit/providers/ibmq/exceptions.py "view source code")
+`IBMQAccountCredentialsNotFound(*message)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.16/qiskit/providers/ibmq/exceptions.py "view source code")
 
 Errors raised when credentials are not found.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.characterization.t1_circuits
 
 <span id="qiskit.ignis.characterization.t1_circuits" />
 
-`t1_circuits(num_of_gates, gate_time, qubits)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/characterization/coherence/circuits.py "view source code")
+`t1_circuits(num_of_gates, gate_time, qubits)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/characterization/coherence/circuits.py "view source code")
 
 Generate circuits for T1 measurement.
 

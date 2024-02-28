@@ -10,7 +10,7 @@ python_api_name: qiskit.tools.vectorize
 
 <span id="qiskit.tools.vectorize" />
 
-`vectorize(density_matrix, method='col')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/tools/qi/qi.py "view source code")
+`vectorize(density_matrix, method='col')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/tools/qi/qi.py "view source code")
 
 Flatten an operator to a vector in a specified basis.
 

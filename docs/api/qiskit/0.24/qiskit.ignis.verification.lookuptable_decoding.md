@@ -12,7 +12,7 @@ python_api_name: qiskit.ignis.verification.lookuptable_decoding
 
 <span id="qiskit.ignis.verification.lookuptable_decoding" />
 
-`lookuptable_decoding(training_results, real_results)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/topological_codes/fitters.py "view source code")
+`lookuptable_decoding(training_results, real_results)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/topological_codes/fitters.py "view source code")
 
 Calculates the logical error probability using postselection decoding. This postselects all results with trivial syndrome.
 

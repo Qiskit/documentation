@@ -10,7 +10,7 @@ python_api_name: qiskit.finance.data_providers.ExchangeDataProvider
 
 <span id="qiskit.finance.data_providers.ExchangeDataProvider" />
 
-`ExchangeDataProvider(token, tickers, stockmarket=<StockMarket.LONDON: 'XLON'>, start=datetime.datetime(2016, 1, 1, 0, 0), end=datetime.datetime(2016, 1, 30, 0, 0))`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/finance/data_providers/exchange_data_provider.py "view source code")
+`ExchangeDataProvider(token, tickers, stockmarket=<StockMarket.LONDON: 'XLON'>, start=datetime.datetime(2016, 1, 1, 0, 0), end=datetime.datetime(2016, 1, 30, 0, 0))` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/finance/data_providers/exchange_data_provider.py "view source code")
 
 Exchange data provider.
 

@@ -14,7 +14,7 @@ python_api_name: qiskit.providers.ibmq.job.IBMQJobFailureError
 
 <span id="qiskit.providers.ibmq.job.IBMQJobFailureError" />
 
-`IBMQJobFailureError(*message)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/job/exceptions.py "view source code")
+`IBMQJobFailureError(*message)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/job/exceptions.py "view source code")
 
 Errors raised when a job failed.
 

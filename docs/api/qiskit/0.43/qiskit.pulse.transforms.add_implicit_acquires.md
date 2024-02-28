@@ -12,7 +12,7 @@ python_api_name: qiskit.pulse.transforms.add_implicit_acquires
 
 <span id="qiskit.pulse.transforms.add_implicit_acquires" />
 
-`add_implicit_acquires(schedule, meas_map)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/transforms/canonicalization.py "view source code")
+`add_implicit_acquires(schedule, meas_map)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/transforms/canonicalization.py "view source code")
 
 Return a new schedule with implicit acquires from the measurement mapping replaced by explicit ones.
 

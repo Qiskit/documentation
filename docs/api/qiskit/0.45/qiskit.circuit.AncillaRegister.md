@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.AncillaRegister
 
 <span id="qiskit.circuit.AncillaRegister" />
 
-`qiskit.circuit.AncillaRegister(size=None, name=None, bits=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/quantumregister.py "view source code")
+`qiskit.circuit.AncillaRegister(size=None, name=None, bits=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/quantumregister.py "view source code")
 
 Bases: [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")
 

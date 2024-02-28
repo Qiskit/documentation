@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CYGate
 
 <span id="qiskit.circuit.library.CYGate" />
 
-`CYGate(label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/y.py "view source code")
+`CYGate(label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/y.py "view source code")
 
 Bases: `qiskit.circuit.controlledgate.ControlledGate`
 
@@ -68,7 +68,7 @@ Create new CY gate.
 
 <span id="qiskit.circuit.library.CYGate.inverse" />
 
-`CYGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/y.py "view source code")
+`CYGate.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/y.py "view source code")
 
 Return inverted CY gate (itself).
 

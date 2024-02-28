@@ -12,7 +12,7 @@ python_api_name: qiskit.transpiler.passes.synthesis.plugin.high_level_synthesis_
 
 <span id="qiskit.transpiler.passes.synthesis.plugin.high_level_synthesis_plugin_names" />
 
-`qiskit.transpiler.passes.synthesis.plugin.high_level_synthesis_plugin_names(op_name)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/synthesis/plugin.py "view source code")
+`qiskit.transpiler.passes.synthesis.plugin.high_level_synthesis_plugin_names(op_name)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/synthesis/plugin.py "view source code")
 
 Return a list of plugin names installed for a given high level object name
 

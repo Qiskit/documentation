@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CRYGate
 
 <span id="qiskit.circuit.library.CRYGate" />
 
-`CRYGate(theta, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/ry.py "view source code")
+`CRYGate(theta, label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/ry.py "view source code")
 
 Controlled-RY gate.
 
@@ -244,7 +244,7 @@ updated if it was provided
 
 <span id="qiskit.circuit.library.CRYGate.inverse" />
 
-`CRYGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/ry.py "view source code")
+`CRYGate.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/ry.py "view source code")
 
 Return inverse RY gate (i.e. with the negative rotation angle).
 

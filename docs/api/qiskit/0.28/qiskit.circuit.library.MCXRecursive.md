@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.MCXRecursive
 
 <span id="qiskit.circuit.library.MCXRecursive" />
 
-`MCXRecursive(num_ctrl_qubits=None, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/x.py "view source code")
+`MCXRecursive(num_ctrl_qubits=None, label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 Implement the multi-controlled X gate using recursion.
 

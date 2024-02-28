@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.IterativePhaseEstimation
 
 <span id="qiskit.algorithms.IterativePhaseEstimation" />
 
-`qiskit.algorithms.IterativePhaseEstimation(num_iterations, quantum_instance=None, sampler=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/phase_estimators/ipe.py "view source code")
+`qiskit.algorithms.IterativePhaseEstimation(num_iterations, quantum_instance=None, sampler=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/phase_estimators/ipe.py "view source code")
 
 Bases: `PhaseEstimator`
 

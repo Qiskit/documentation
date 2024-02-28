@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeCasablanca
 
 <span id="qiskit.providers.fake_provider.FakeCasablanca" />
 
-`FakeCasablanca`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/fake_provider/backends/casablanca/fake_casablanca.py "view source code")
+`FakeCasablanca` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/fake_provider/backends/casablanca/fake_casablanca.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_pulse_backend.FakePulseBackend`
 

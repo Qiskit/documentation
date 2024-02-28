@@ -10,7 +10,7 @@ python_api_name: qiskit.validation.bind_schema
 
 <span id="qiskit.validation.bind_schema" />
 
-`bind_schema(schema, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/validation/base.py "view source code")
+`bind_schema(schema, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/validation/base.py "view source code")
 
 Class decorator for adding schema validation to its instances.
 

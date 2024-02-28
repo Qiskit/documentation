@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.operators.legacy.commutator
 
 <span id="qiskit.aqua.operators.legacy.commutator" />
 
-`commutator(op_a, op_b, op_c=None, threshold=1e-12)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/legacy/common.py "view source code")
+`commutator(op_a, op_b, op_c=None, threshold=1e-12)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/legacy/common.py "view source code")
 
 Compute commutator of op\_a and op\_b or the symmetric double commutator of op\_a, op\_b and op\_c.
 

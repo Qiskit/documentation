@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.PhaseOracle
 
 <span id="qiskit.circuit.library.PhaseOracle" />
 
-`PhaseOracle(expression, synthesizer=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/phase_oracle.py "view source code")
+`PhaseOracle(expression, synthesizer=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/phase_oracle.py "view source code")
 
 Phase Oracle.
 

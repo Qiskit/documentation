@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.expectations.PauliExpectation
 
 <span id="qiskit.opflow.expectations.PauliExpectation" />
 
-`qiskit.opflow.expectations.PauliExpectation(group_paulis=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/expectations/pauli_expectation.py "view source code")
+`qiskit.opflow.expectations.PauliExpectation(group_paulis=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/expectations/pauli_expectation.py "view source code")
 
 Bases: [`ExpectationBase`](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.expectation_base.ExpectationBase")
 

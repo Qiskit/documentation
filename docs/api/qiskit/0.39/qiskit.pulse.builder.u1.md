@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.builder.u1
 
 <span id="qiskit.pulse.builder.u1" />
 
-`u1(theta, qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/pulse/builder.py "view source code")
+`u1(theta, qubit)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/pulse/builder.py "view source code")
 
 Call a `U1Gate` on the input physical qubit.
 

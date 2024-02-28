@@ -12,7 +12,7 @@ python_api_name: qiskit.pulse.builder.qubit_channels
 
 <span id="qiskit.pulse.builder.qubit_channels" />
 
-`qubit_channels(qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/builder.py "view source code")
+`qubit_channels(qubit)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/builder.py "view source code")
 
 Returns the set of channels associated with a qubit.
 

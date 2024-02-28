@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeParis
 
 <span id="qiskit.providers.fake_provider.FakeParis" />
 
-`qiskit.providers.fake_provider.FakeParis`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/providers/fake_provider/backends/paris/fake_paris.py "view source code")
+`qiskit.providers.fake_provider.FakeParis` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/providers/fake_provider/backends/paris/fake_paris.py "view source code")
 
 Bases: `FakePulseBackend`
 

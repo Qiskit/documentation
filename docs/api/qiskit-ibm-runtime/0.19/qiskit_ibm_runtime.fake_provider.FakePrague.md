@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakePrague
 
 <span id="qiskit_ibm_runtime.fake_provider.FakePrague" />
 
-`FakePrague`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.19/qiskit_ibm_runtime/fake_provider/backends/prague/fake_prague.py "view source code")
+`FakePrague` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.19/qiskit_ibm_runtime/fake_provider/backends/prague/fake_prague.py "view source code")
 
 A fake 33 qubit backend.
 

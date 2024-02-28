@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.FasterAmplitudeEstimationResult
 
 <span id="qiskit.algorithms.FasterAmplitudeEstimationResult" />
 
-`FasterAmplitudeEstimationResult`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/amplitude_estimators/fae.py "view source code")
+`FasterAmplitudeEstimationResult` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/amplitude_estimators/fae.py "view source code")
 
 The result object for the Faster Amplitude Estimation algorithm.
 

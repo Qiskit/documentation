@@ -10,7 +10,7 @@ python_api_name: qiskit.extensions.UnitaryGate
 
 <span id="qiskit.extensions.UnitaryGate" />
 
-`qiskit.extensions.UnitaryGate(data, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/extensions/unitary.py "view source code")
+`qiskit.extensions.UnitaryGate(data, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/extensions/unitary.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 

@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeLagosV2
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeLagosV2" />
 
-`FakeLagosV2`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/backends/lagos/fake_lagos.py "view source code")
+`FakeLagosV2` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/backends/lagos/fake_lagos.py "view source code")
 
 A fake 7 qubit backend.
 

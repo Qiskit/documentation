@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.builder.samples_to_seconds
 
 <span id="qiskit.pulse.builder.samples_to_seconds" />
 
-`samples_to_seconds(samples)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/pulse/builder.py "view source code")
+`samples_to_seconds(samples)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/pulse/builder.py "view source code")
 
 Obtain the time in seconds that will elapse for the input number of samples on the active backend.
 

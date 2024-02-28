@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.library.SymbolicPulse
 
 <span id="qiskit.pulse.library.SymbolicPulse" />
 
-`SymbolicPulse(pulse_type, duration, parameters=None, name=None, limit_amplitude=None, envelope=None, constraints=None, valid_amp_conditions=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/library/symbolic_pulses.py "view source code")
+`SymbolicPulse(pulse_type, duration, parameters=None, name=None, limit_amplitude=None, envelope=None, constraints=None, valid_amp_conditions=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/library/symbolic_pulses.py "view source code")
 
 Bases: `qiskit.pulse.library.pulse.Pulse`
 
@@ -159,7 +159,7 @@ Visualization output data. The returned data type depends on the `plotter`. If m
 
 <span id="qiskit.pulse.library.SymbolicPulse.get_waveform" />
 
-`SymbolicPulse.get_waveform()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/library/symbolic_pulses.py "view source code")
+`SymbolicPulse.get_waveform()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/library/symbolic_pulses.py "view source code")
 
 Return a Waveform with samples filled according to the formula that the pulse represents and the parameter values it contains.
 
@@ -186,7 +186,7 @@ A waveform representation of this pulse.
 
 <span id="qiskit.pulse.library.SymbolicPulse.is_parameterized" />
 
-`SymbolicPulse.is_parameterized()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/library/symbolic_pulses.py "view source code")
+`SymbolicPulse.is_parameterized()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/library/symbolic_pulses.py "view source code")
 
 Return True iff the instruction is parameterized.
 
@@ -198,7 +198,7 @@ Return True iff the instruction is parameterized.
 
 <span id="qiskit.pulse.library.SymbolicPulse.validate_parameters" />
 
-`SymbolicPulse.validate_parameters()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/library/symbolic_pulses.py "view source code")
+`SymbolicPulse.validate_parameters()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/library/symbolic_pulses.py "view source code")
 
 Validate parameters.
 

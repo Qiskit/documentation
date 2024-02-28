@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.synthesis.high_level_synthesis.Default
 
 <span id="qiskit.transpiler.passes.synthesis.high_level_synthesis.DefaultSynthesisClifford" />
 
-`qiskit.transpiler.passes.synthesis.high_level_synthesis.DefaultSynthesisClifford`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/synthesis/high_level_synthesis.py "view source code")
+`qiskit.transpiler.passes.synthesis.high_level_synthesis.DefaultSynthesisClifford` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/synthesis/high_level_synthesis.py "view source code")
 
 Bases: [`HighLevelSynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin")
 

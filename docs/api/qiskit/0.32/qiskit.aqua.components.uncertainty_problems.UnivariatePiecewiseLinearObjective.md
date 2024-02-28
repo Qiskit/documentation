@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.uncertainty_problems.UnivariatePiecewise
 
 <span id="qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective" />
 
-`UnivariatePiecewiseLinearObjective(num_state_qubits, min_state_value, max_state_value, breakpoints, slopes, offsets, f_min, f_max, c_approx, i_state=None, i_objective=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_problems/univariate_piecewise_linear_objective.py "view source code")
+`UnivariatePiecewiseLinearObjective(num_state_qubits, min_state_value, max_state_value, breakpoints, slopes, offsets, f_min, f_max, c_approx, i_state=None, i_objective=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_problems/univariate_piecewise_linear_objective.py "view source code")
 
 Bases: `qiskit.aqua.utils.circuit_factory.CircuitFactory`
 
@@ -42,7 +42,7 @@ $$
 
 <span id="qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective.build" />
 
-`UnivariatePiecewiseLinearObjective.build(qc, q, q_ancillas=None, params=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_problems/univariate_piecewise_linear_objective.py "view source code")
+`UnivariatePiecewiseLinearObjective.build(qc, q, q_ancillas=None, params=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_problems/univariate_piecewise_linear_objective.py "view source code")
 
 ### build\_controlled
 
@@ -142,7 +142,7 @@ returns number of qubits controlled
 
 <span id="qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective.required_ancillas" />
 
-`UnivariatePiecewiseLinearObjective.required_ancillas()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_problems/univariate_piecewise_linear_objective.py "view source code")
+`UnivariatePiecewiseLinearObjective.required_ancillas()` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_problems/univariate_piecewise_linear_objective.py "view source code")
 
 requires ancillas
 
@@ -158,7 +158,7 @@ returns required ancillas controlled
 
 <span id="qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective.value_to_estimation" />
 
-`UnivariatePiecewiseLinearObjective.value_to_estimation(value)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_problems/univariate_piecewise_linear_objective.py "view source code")
+`UnivariatePiecewiseLinearObjective.value_to_estimation(value)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_problems/univariate_piecewise_linear_objective.py "view source code")
 
 value to estimation
 

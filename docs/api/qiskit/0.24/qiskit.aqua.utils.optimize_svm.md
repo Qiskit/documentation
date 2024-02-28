@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.utils.optimize_svm
 
 <span id="qiskit.aqua.utils.optimize_svm" />
 
-`optimize_svm(kernel_matrix, y, scaling=None, maxiter=500, show_progress=False, max_iters=None, lambda2=0.001)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/utils/qp_solver.py "view source code")
+`optimize_svm(kernel_matrix, y, scaling=None, maxiter=500, show_progress=False, max_iters=None, lambda2=0.001)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/utils/qp_solver.py "view source code")
 
 Solving quadratic programming problem for SVM; thus, some constraints are fixed.
 

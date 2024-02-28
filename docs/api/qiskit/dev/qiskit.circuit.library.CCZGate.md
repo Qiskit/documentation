@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CCZGate
 
 <span id="qiskit.circuit.library.CCZGate" />
 
-`qiskit.circuit.library.CCZGate(*args, _force_mutable=False, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/z.py "view source code")
+`qiskit.circuit.library.CCZGate(*args, _force_mutable=False, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/z.py "view source code")
 
 Bases: [`SingletonControlledGate`](circuit_singleton#qiskit.circuit.singleton.SingletonControlledGate "qiskit.circuit.singleton.SingletonControlledGate")
 

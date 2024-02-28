@@ -10,7 +10,7 @@ python_api_name: qiskit.passmanager.FlowControllerLinear
 
 <span id="qiskit.passmanager.FlowControllerLinear" />
 
-`qiskit.passmanager.FlowControllerLinear(tasks=(), *, options=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/passmanager/flow_controllers.py "view source code")
+`qiskit.passmanager.FlowControllerLinear(tasks=(), *, options=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/passmanager/flow_controllers.py "view source code")
 
 Bases: [`BaseController`](qiskit.passmanager.BaseController "qiskit.passmanager.base_tasks.BaseController")
 

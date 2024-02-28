@@ -12,7 +12,7 @@ python_api_name: qiskit.providers.aer.AerJob
 
 <span id="qiskit.providers.aer.AerJob" />
 
-`AerJob(backend, job_id, fn, qobj, *args)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.7/qiskit/providers/aer/aerjob.py "view source code")
+`AerJob(backend, job_id, fn, qobj, *args)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.7/qiskit/providers/aer/aerjob.py "view source code")
 
 AerJob class.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.tools.shannon_entropy
 
 <span id="qiskit.tools.shannon_entropy" />
 
-`shannon_entropy(pvec, base=2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/tools/qi/qi.py "view source code")
+`shannon_entropy(pvec, base=2)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/tools/qi/qi.py "view source code")
 
 Compute the Shannon entropy of a probability vector.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.qobj.QasmQobjExperimentConfig
 
 <span id="qiskit.qobj.QasmQobjExperimentConfig" />
 
-`QasmQobjExperimentConfig(calibrations=None, qubit_lo_freq=None, meas_lo_freq=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/qobj/qasm_qobj.py "view source code")
+`QasmQobjExperimentConfig(calibrations=None, qubit_lo_freq=None, meas_lo_freq=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/qobj/qasm_qobj.py "view source code")
 
 Configuration for a single QASM experiment in the qobj.
 

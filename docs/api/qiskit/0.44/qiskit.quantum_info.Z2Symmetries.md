@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.Z2Symmetries
 
 <span id="qiskit.quantum_info.Z2Symmetries" />
 
-`qiskit.quantum_info.Z2Symmetries(symmetries, sq_paulis, sq_list, tapering_values=None, *, tol=1e-14)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/analysis/z2_symmetries.py "view source code")
+`qiskit.quantum_info.Z2Symmetries(symmetries, sq_paulis, sq_list, tapering_values=None, *, tol=1e-14)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/analysis/z2_symmetries.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 

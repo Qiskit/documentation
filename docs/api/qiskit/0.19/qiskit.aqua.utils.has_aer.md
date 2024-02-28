@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.utils.has_aer
 
 <span id="qiskit.aqua.utils.has_aer" />
 
-`has_aer()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/utils/backend_utils.py "view source code")
+`has_aer()` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/utils/backend_utils.py "view source code")
 
 check if Aer is installed
 

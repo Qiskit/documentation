@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.operators.gradients.QFIBase
 
 <span id="qiskit.aqua.operators.gradients.QFIBase" />
 
-`QFIBase(qfi_method='lin_comb_full')`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/gradients/qfi_base.py "view source code")
+`QFIBase(qfi_method='lin_comb_full')` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/gradients/qfi_base.py "view source code")
 
 Bases: `qiskit.aqua.operators.gradients.derivative_base.DerivativeBase`
 

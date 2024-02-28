@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeOurenseV2
 
 <span id="qiskit.providers.fake_provider.FakeOurenseV2" />
 
-`FakeOurenseV2`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/fake_provider/backends/ourense/fake_ourense.py "view source code")
+`FakeOurenseV2` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/fake_provider/backends/ourense/fake_ourense.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_backend.FakeBackendV2`
 

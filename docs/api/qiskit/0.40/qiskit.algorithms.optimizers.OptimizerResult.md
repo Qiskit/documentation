@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.OptimizerResult
 
 <span id="qiskit.algorithms.optimizers.OptimizerResult" />
 
-`OptimizerResult`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/optimizers/optimizer.py "view source code")
+`OptimizerResult` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/optimizers/optimizer.py "view source code")
 
 Bases: `qiskit.algorithms.algorithm_result.AlgorithmResult`
 

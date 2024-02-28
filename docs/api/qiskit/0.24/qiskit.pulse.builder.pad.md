@@ -12,7 +12,7 @@ python_api_name: qiskit.pulse.builder.pad
 
 <span id="qiskit.pulse.builder.pad" />
 
-`pad(*chs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/builder.py "view source code")
+`pad(*chs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/builder.py "view source code")
 
 Pad all availale timeslots with delays upon exiting context.
 

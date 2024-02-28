@@ -12,7 +12,7 @@ python_api_name: qiskit.qobj.QasmQobj
 
 <span id="qiskit.qobj.QasmQobj" />
 
-`QasmQobj(qobj_id=None, config=None, experiments=None, header=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/qobj/qasm_qobj.py "view source code")
+`QasmQobj(qobj_id=None, config=None, experiments=None, header=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/qobj/qasm_qobj.py "view source code")
 
 A QASM Qobj.
 

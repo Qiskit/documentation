@@ -10,7 +10,7 @@ python_api_name: qiskit.qasm.QasmTerminalStyle
 
 <span id="qiskit.qasm.QasmTerminalStyle" />
 
-`QasmTerminalStyle`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/qasm/pygments/lexer.py "view source code")
+`QasmTerminalStyle` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/qasm/pygments/lexer.py "view source code")
 
 Bases: `pygments.style.Style`
 
