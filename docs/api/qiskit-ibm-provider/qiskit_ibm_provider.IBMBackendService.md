@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_provider.IBMBackendService
 
 <span id="qiskit_ibm_provider.IBMBackendService" />
 
-`IBMBackendService(provider, hgp)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/ibm_backend_service.py "view source code")
+`IBMBackendService(provider, hgp)` [GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/ibm_backend_service.py "view source code")
 
 Backend namespace for an IBM Quantum account.
 
