@@ -29,7 +29,6 @@ const SYNTHETIC_FILES: string[] = [
 
 interface Arguments {
   [x: string]: unknown;
-  external: boolean;
   currentApis: boolean;
   devApis: boolean;
   historicalApis: boolean;
@@ -40,12 +39,6 @@ interface Arguments {
 const readArgs = (): Arguments => {
   return yargs(hideBin(process.argv))
     .version(false)
-    .option("external", {
-      type: "boolean",
-      default: false,
-      description:
-        "Should external links be checked? This slows down the script, but is useful to check.",
-    })
     .option("current-apis", {
       type: "boolean",
       default: false,
@@ -91,7 +84,7 @@ async function main() {
 
   let allGood = true;
   for (const fileBatch of fileBatches) {
-    const allValidLinks = await fileBatch.check(args.external, otherFiles);
+    const allValidLinks = await fileBatch.checkInternalLinks(otherFiles);
     if (!allValidLinks) {
       allGood = false;
     }
