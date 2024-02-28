@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.classicalfunction.ClassicalFunction
 
 <span id="qiskit.circuit.classicalfunction.ClassicalFunction" />
 
-`qiskit.circuit.classicalfunction.ClassicalFunction(source, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/classicalfunction/classicalfunction.py "view source code")
+`qiskit.circuit.classicalfunction.ClassicalFunction(source, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/classicalfunction/classicalfunction.py "view source code")
 
 Bases: `ClassicalElement`
 

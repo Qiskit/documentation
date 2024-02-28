@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.BasisTranslator
 
 <span id="qiskit.transpiler.passes.BasisTranslator" />
 
-`qiskit.transpiler.passes.BasisTranslator(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/basis/basis_translator.py "view source code")
+`qiskit.transpiler.passes.BasisTranslator(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/basis/basis_translator.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 

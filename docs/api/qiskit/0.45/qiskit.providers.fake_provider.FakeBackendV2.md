@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeBackendV2
 
 <span id="qiskit.providers.fake_provider.FakeBackendV2" />
 
-`qiskit.providers.fake_provider.FakeBackendV2`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/fake_provider/fake_backend_v2.py "view source code")
+`qiskit.providers.fake_provider.FakeBackendV2` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/fake_provider/fake_backend_v2.py "view source code")
 
 Bases: [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.backend.BackendV2")
 

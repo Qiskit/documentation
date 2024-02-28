@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.list_ops.TensoredOp
 
 <span id="qiskit.opflow.list_ops.TensoredOp" />
 
-`qiskit.opflow.list_ops.TensoredOp(oplist, coeff=1.0, abelian=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/list_ops/tensored_op.py "view source code")
+`qiskit.opflow.list_ops.TensoredOp(oplist, coeff=1.0, abelian=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/list_ops/tensored_op.py "view source code")
 
 Bases: [`ListOp`](qiskit.opflow.list_ops.ListOp "qiskit.opflow.list_ops.list_op.ListOp")
 

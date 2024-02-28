@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.ISRES
 
 <span id="qiskit.algorithms.optimizers.ISRES" />
 
-`qiskit.algorithms.optimizers.ISRES(max_evals=1000)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/optimizers/nlopts/isres.py "view source code")
+`qiskit.algorithms.optimizers.ISRES(max_evals=1000)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/optimizers/nlopts/isres.py "view source code")
 
 Bases: `NLoptOptimizer`
 

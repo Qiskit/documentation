@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.basicaer.UnitarySimulatorPy
 
 <span id="qiskit.providers.basicaer.UnitarySimulatorPy" />
 
-`qiskit.providers.basicaer.UnitarySimulatorPy(configuration=None, provider=None, **fields)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/basicaer/unitary_simulator.py "view source code")
+`qiskit.providers.basicaer.UnitarySimulatorPy(configuration=None, provider=None, **fields)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/basicaer/unitary_simulator.py "view source code")
 
 Bases: [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.backend.BackendV1")
 

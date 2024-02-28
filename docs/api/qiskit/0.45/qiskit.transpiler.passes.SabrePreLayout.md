@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.SabrePreLayout
 
 <span id="qiskit.transpiler.passes.SabrePreLayout" />
 
-`qiskit.transpiler.passes.SabrePreLayout(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/layout/sabre_pre_layout.py "view source code")
+`qiskit.transpiler.passes.SabrePreLayout(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/layout/sabre_pre_layout.py "view source code")
 
 Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 

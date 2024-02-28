@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.Target
 
 <span id="qiskit.transpiler.Target" />
 
-`qiskit.transpiler.Target(description=None, num_qubits=0, dt=None, granularity=1, min_length=1, pulse_alignment=1, acquire_alignment=1, qubit_properties=None, concurrent_measurements=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/target.py "view source code")
+`qiskit.transpiler.Target(description=None, num_qubits=0, dt=None, granularity=1, min_length=1, pulse_alignment=1, acquire_alignment=1, qubit_properties=None, concurrent_measurements=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/target.py "view source code")
 
 Bases: [`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping "(in Python v3.12)")
 

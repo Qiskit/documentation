@@ -10,7 +10,7 @@ python_api_name: qiskit.synthesis.SuzukiTrotter
 
 <span id="qiskit.synthesis.SuzukiTrotter" />
 
-`qiskit.synthesis.SuzukiTrotter(order=2, reps=1, insert_barriers=False, cx_structure='chain', atomic_evolution=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/evolution/suzuki_trotter.py "view source code")
+`qiskit.synthesis.SuzukiTrotter(order=2, reps=1, insert_barriers=False, cx_structure='chain', atomic_evolution=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/evolution/suzuki_trotter.py "view source code")
 
 Bases: [`ProductFormula`](qiskit.synthesis.ProductFormula "qiskit.synthesis.evolution.product_formula.ProductFormula")
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.primitive_ops.TaperedPauliSumOp
 
 <span id="qiskit.opflow.primitive_ops.TaperedPauliSumOp" />
 
-`qiskit.opflow.primitive_ops.TaperedPauliSumOp(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/primitive_ops/tapered_pauli_sum_op.py "view source code")
+`qiskit.opflow.primitive_ops.TaperedPauliSumOp(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/primitive_ops/tapered_pauli_sum_op.py "view source code")
 
 Bases: [`PauliSumOp`](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.pauli_sum_op.PauliSumOp")
 

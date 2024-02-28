@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.Clbit
 
 <span id="qiskit.circuit.Clbit" />
 
-`qiskit.circuit.Clbit(register=None, index=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/classicalregister.py "view source code")
+`qiskit.circuit.Clbit(register=None, index=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/classicalregister.py "view source code")
 
 Bases: [`Bit`](qiskit.circuit.Bit "qiskit.circuit.bit.Bit")
 
