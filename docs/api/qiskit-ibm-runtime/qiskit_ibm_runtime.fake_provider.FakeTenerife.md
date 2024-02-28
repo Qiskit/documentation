@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeTenerife
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeTenerife" />
 
-`FakeTenerife` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/tenerife/fake_tenerife.py "view source code")
+`FakeTenerife` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/tenerife/fake_tenerife.py#L28-L68 "view source code")
 
 A fake 5 qubit backend.
 

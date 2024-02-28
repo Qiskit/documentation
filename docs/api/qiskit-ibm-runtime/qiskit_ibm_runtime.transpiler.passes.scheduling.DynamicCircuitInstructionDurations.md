@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.DynamicCircuitI
 
 <span id="qiskit_ibm_runtime.transpiler.passes.scheduling.DynamicCircuitInstructionDurations" />
 
-`DynamicCircuitInstructionDurations(instruction_durations=None, dt=None, enable_patching=True)` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/transpiler/passes/scheduling/utils.py "view source code")
+`DynamicCircuitInstructionDurations(instruction_durations=None, dt=None, enable_patching=True)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/transpiler/passes/scheduling/utils.py#L133-L359 "view source code")
 
 For dynamic circuits the IBM Qiskit backend currently reports instruction durations that differ compared with those required for the legacy Qobj-based path. For now we use this class to report updated InstructionDurations. TODO: This would be mitigated by a specialized Backend/Target for dynamic circuit backends.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_provider.transpiler.passes.scheduling.ASAPScheduleAn
 
 <span id="qiskit_ibm_provider.transpiler.passes.scheduling.ASAPScheduleAnalysis" />
 
-`ASAPScheduleAnalysis(durations)` [GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/transpiler/passes/scheduling/scheduler.py "view source code")
+`ASAPScheduleAnalysis(durations)` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/transpiler/passes/scheduling/scheduler.py#L304-L434 "view source code")
 
 Dynamic circuits as-soon-as-possible (ASAP) scheduling analysis pass.
 

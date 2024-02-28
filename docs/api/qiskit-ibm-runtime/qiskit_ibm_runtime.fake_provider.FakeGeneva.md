@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeGeneva
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeGeneva" />
 
-`FakeGeneva` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/geneva/fake_geneva.py "view source code")
+`FakeGeneva` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/geneva/fake_geneva.py#L22-L29 "view source code")
 
 A fake 27 qubit backend.
 

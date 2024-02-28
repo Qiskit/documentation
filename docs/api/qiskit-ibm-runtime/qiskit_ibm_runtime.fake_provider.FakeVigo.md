@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeVigo
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeVigo" />
 
-`FakeVigo` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/vigo/fake_vigo.py "view source code")
+`FakeVigo` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/vigo/fake_vigo.py#L37-L50 "view source code")
 
 A fake 5 qubit backend.
 

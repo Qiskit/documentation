@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeGuadalupeV2
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeGuadalupeV2" />
 
-`FakeGuadalupeV2` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/guadalupe/fake_guadalupe.py "view source code")
+`FakeGuadalupeV2` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/guadalupe/fake_guadalupe.py#L22-L29 "view source code")
 
 A fake 16 qubit backend.
 

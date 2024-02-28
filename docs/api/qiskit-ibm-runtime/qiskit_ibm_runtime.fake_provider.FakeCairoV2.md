@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeCairoV2
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeCairoV2" />
 
-`FakeCairoV2` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/cairo/fake_cairo.py "view source code")
+`FakeCairoV2` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/cairo/fake_cairo.py#L21-L28 "view source code")
 
 A fake 27 qubit backend.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeValenciaV2
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeValenciaV2" />
 
-`FakeValenciaV2` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/valencia/fake_valencia.py "view source code")
+`FakeValenciaV2` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/valencia/fake_valencia.py#L21-L28 "view source code")
 
 A fake 5 qubit backend.
 
