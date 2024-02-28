@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
 <span id="qiskit.circuit.QuantumCircuit" />
 
-`qiskit.circuit.QuantumCircuit(*regs, name=None, global_phase=0, metadata=None)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py "view source code")
+`qiskit.circuit.QuantumCircuit(*regs, name=None, global_phase=0, metadata=None, inputs=(), captures=(), declarations=())` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
@@ -20,11 +20,11 @@ A circuit is a list of instructions bound to some registers.
 
 **Parameters**
 
-*   **regs** (list([`Register`](qiskit.circuit.Register "qiskit.circuit.Register")) or list(`int`) or list(list([`Bit`](qiskit.circuit.Bit "qiskit.circuit.Bit")))) –
+*   **regs** (list([`Register`](circuit#qiskit.circuit.Register "qiskit.circuit.Register")) or list(`int`) or list(list([`Bit`](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit")))) –
 
     The registers to be included in the circuit.
 
-    *   If a list of [`Register`](qiskit.circuit.Register "qiskit.circuit.Register") objects, represents the [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister") and/or [`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") objects to include in the circuit.
+    *   If a list of [`Register`](circuit#qiskit.circuit.Register "qiskit.circuit.Register") objects, represents the [`QuantumRegister`](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister") and/or [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") objects to include in the circuit.
 
         For example:
 
@@ -39,17 +39,28 @@ A circuit is a list of instructions bound to some registers.
         > *   `QuantumCircuit(4) # A QuantumCircuit with 4 qubits`
         > *   `QuantumCircuit(4, 3) # A QuantumCircuit with 4 qubits and 3 classical bits`
 
-    *   If a list of python lists containing [`Bit`](qiskit.circuit.Bit "qiskit.circuit.Bit") objects, a collection of [`Bit`](qiskit.circuit.Bit "qiskit.circuit.Bit") s to be added to the circuit.
+    *   If a list of python lists containing [`Bit`](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit") objects, a collection of [`Bit`](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit") s to be added to the circuit.
 
 *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – the name of the quantum circuit. If not set, an automatically generated string will be assigned.
 
-*   **global\_phase** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *or*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – The global phase of the circuit in radians.
+*   **global\_phase** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *or*[*ParameterExpression*](circuit#qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – The global phase of the circuit in radians.
 
 *   **metadata** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – Arbitrary key value metadata to associate with the circuit. This gets stored as free-form data in a dict in the [`metadata`](#qiskit.circuit.QuantumCircuit.metadata "qiskit.circuit.QuantumCircuit.metadata") attribute. It will not be directly used in the circuit.
 
+*   **inputs** (*Iterable\[*[*expr.Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var")*]*) – any variables to declare as `input` runtime variables for this circuit. These should already be existing [`expr.Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") nodes that you build from somewhere else; if you need to create the inputs as well, use [`QuantumCircuit.add_input()`](#qiskit.circuit.QuantumCircuit.add_input "qiskit.circuit.QuantumCircuit.add_input"). The variables given in this argument will be passed directly to [`add_input()`](#qiskit.circuit.QuantumCircuit.add_input "qiskit.circuit.QuantumCircuit.add_input"). A circuit cannot have both `inputs` and `captures`.
+
+*   **captures** (*Iterable\[*[*expr.Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var")*]*) – any variables that that this circuit scope should capture from a containing scope. The variables given here will be passed directly to [`add_capture()`](#qiskit.circuit.QuantumCircuit.add_capture "qiskit.circuit.QuantumCircuit.add_capture"). A circuit cannot have both `inputs` and `captures`.
+
+*   **declarations** (*Mapping\[*[*expr.Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var")*,* [*expr.Expr*](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr")*] | Iterable\[Tuple\[*[*expr.Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var")*,* [*expr.Expr*](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr")*]]*) –
+
+    any variables that this circuit should declare and initialize immediately. You can order this input so that later declarations depend on earlier ones (including inputs or captures). If you need to depend on values that will be computed later at runtime, use [`add_var()`](#qiskit.circuit.QuantumCircuit.add_var "qiskit.circuit.QuantumCircuit.add_var") at an appropriate point in the circuit execution.
+
+    This argument is intended for convenient circuit initialization when you already have a set of created variables. The variables used here will be directly passed to [`add_var()`](#qiskit.circuit.QuantumCircuit.add_var "qiskit.circuit.QuantumCircuit.add_var"), which you can use directly if this is the first time you are creating the variable.
+
 **Raises**
 
-[**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the circuit name, if given, is not valid.
+*   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the circuit name, if given, is not valid.
+*   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if both `inputs` and `captures` are given.
 
 **Examples**
 
@@ -131,7 +142,7 @@ Return the circuit data (instructions and context).
 
 **Returns**
 
-a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
+a list-like object containing the [`CircuitInstruction`](circuit#qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
 
 **Return type**
 
@@ -147,7 +158,7 @@ Return the global phase of the current circuit scope in radians.
 
 ### instances
 
-`= 182`
+`= 1413`
 
 <span id="qiskit.circuit.QuantumCircuit.layout" />
 
@@ -173,11 +184,35 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 
 Return the number of ancilla qubits.
 
+<span id="qiskit.circuit.QuantumCircuit.num_captured_vars" />
+
+### num\_captured\_vars
+
+The number of runtime classical variables in the circuit marked as captured from an enclosing scope.
+
+This is the length of the [`iter_captured_vars()`](#qiskit.circuit.QuantumCircuit.iter_captured_vars "qiskit.circuit.QuantumCircuit.iter_captured_vars") iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.QuantumCircuit.num_input_vars "qiskit.circuit.QuantumCircuit.num_input_vars") must be zero.
+
 <span id="qiskit.circuit.QuantumCircuit.num_clbits" />
 
 ### num\_clbits
 
 Return number of classical bits.
+
+<span id="qiskit.circuit.QuantumCircuit.num_declared_vars" />
+
+### num\_declared\_vars
+
+The number of runtime classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
+
+This is the length of the [`iter_declared_vars()`](#qiskit.circuit.QuantumCircuit.iter_declared_vars "qiskit.circuit.QuantumCircuit.iter_declared_vars") iterable.
+
+<span id="qiskit.circuit.QuantumCircuit.num_input_vars" />
+
+### num\_input\_vars
+
+The number of runtime classical variables in the circuit marked as circuit inputs.
+
+This is the length of the [`iter_input_vars()`](#qiskit.circuit.QuantumCircuit.iter_input_vars "qiskit.circuit.QuantumCircuit.iter_input_vars") iterable. If this is non-zero, [`num_captured_vars`](#qiskit.circuit.QuantumCircuit.num_captured_vars "qiskit.circuit.QuantumCircuit.num_captured_vars") must be zero.
 
 <span id="qiskit.circuit.QuantumCircuit.num_parameters" />
 
@@ -190,6 +225,14 @@ The number of parameter objects in the circuit.
 ### num\_qubits
 
 Return number of qubits.
+
+<span id="qiskit.circuit.QuantumCircuit.num_vars" />
+
+### num\_vars
+
+The number of runtime classical variables in the circuit.
+
+This is the length of the [`iter_vars()`](#qiskit.circuit.QuantumCircuit.iter_vars "qiskit.circuit.QuantumCircuit.iter_vars") iterable.
 
 <span id="qiskit.circuit.QuantumCircuit.op_start_times" />
 
@@ -213,7 +256,7 @@ List of integers representing instruction start times. The index corresponds to 
 
 The parameters defined in the circuit.
 
-This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
+This attribute returns the [`Parameter`](circuit#qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](circuit#qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
 
 **Examples**
 
@@ -245,7 +288,7 @@ q: ┤ U(angle_1,angle_2,angle_10) ├
 ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
 ```
 
-To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
+To respect numerical sorting, a [`ParameterVector`](circuit#qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
 
 ```python
 >>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector
@@ -263,7 +306,7 @@ ParameterView([
 
 **Returns**
 
-The sorted [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit.
+The sorted [`Parameter`](circuit#qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit.
 
 <span id="qiskit.circuit.QuantumCircuit.prefix" />
 
@@ -297,14 +340,57 @@ Register a low-level, custom pulse definition for the given gate.
 
 **Parameters**
 
-*   **gate** (*Union\[*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")*,* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – Gate information.
+*   **gate** (*Union\[*[*Gate*](circuit#qiskit.circuit.Gate "qiskit.circuit.Gate")*,* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – Gate information.
 *   **qubits** (*Union\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*, Tuple\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]]*) – List of qubits to be measured.
 *   **schedule** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")) – Schedule information.
-*   **params** (*Optional\[List\[Union\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*,* [*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*]]]*) – A list of parameters.
+*   **params** (*Optional\[List\[Union\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*,* [*Parameter*](circuit#qiskit.circuit.Parameter "qiskit.circuit.Parameter")*]]]*) – A list of parameters.
 
 **Raises**
 
 [**Exception**](https://docs.python.org/3/library/exceptions.html#Exception "(in Python v3.12)") – if the gate is of type string and params is None.
+
+### add\_capture
+
+<span id="qiskit.circuit.QuantumCircuit.add_capture" />
+
+`add_capture(var)`
+
+Add a variable to the circuit that it should capture from a scope it will be contained within.
+
+This method requires a [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") node to enforce that you’ve got a handle to one, because you will need to declare the same variable using the same object into the outer circuit.
+
+This is a low-level method, which is only really useful if you are manually constructing control-flow operations. You typically will not need to call this method, assuming you are using the builder interface for control-flow scopes (`with` context-manager statements for [`if_test()`](#qiskit.circuit.QuantumCircuit.if_test "qiskit.circuit.QuantumCircuit.if_test") and the other scoping constructs). The builder interface will automatically make the inner scopes closures on your behalf by capturing any variables that are used within them.
+
+**Parameters**
+
+**var** ([*Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.expr.Var")) – the variable to capture from an enclosing scope.
+
+**Raises**
+
+[**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the variable cannot be created due to shadowing an existing variable.
+
+### add\_input
+
+<span id="qiskit.circuit.QuantumCircuit.add_input" />
+
+`add_input(name_or_var: str, type_: Type, /) → Var`
+
+`add_input(name_or_var: Var, type_: None = None, /) → Var`
+
+Register a variable as an input to the circuit.
+
+**Parameters**
+
+*   **name\_or\_var** – either a string name, or an existing [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") node to use as the input variable.
+*   **type** – if the name is given as a string, then this must be a [`Type`](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type") to use for the variable. If the variable is given as an existing [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var"), then this must not be given, and will instead be read from the object itself.
+
+**Returns**
+
+the variable created, or the same variable as was passed in.
+
+**Raises**
+
+[**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the variable cannot be created due to shadowing an existing variable.
 
 ### add\_register
 
@@ -314,6 +400,98 @@ Register a low-level, custom pulse definition for the given gate.
 
 Add registers.
 
+### add\_uninitialized\_var
+
+<span id="qiskit.circuit.QuantumCircuit.add_uninitialized_var" />
+
+`add_uninitialized_var(var, /)`
+
+Add a variable with no initializer.
+
+In most cases, you should use [`add_var()`](#qiskit.circuit.QuantumCircuit.add_var "qiskit.circuit.QuantumCircuit.add_var") to initialize the variable. To use this function, you must already hold a [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") instance, as the use of the function typically only makes sense in copying contexts.
+
+<Admonition title="Warning" type="caution">
+  Qiskit makes no assertions about what an uninitialized variable will evaluate to at runtime, and some hardware may reject this as an error.
+
+  You should treat this function with caution, and as a low-level primitive that is useful only in special cases of programmatically rebuilding two like circuits.
+</Admonition>
+
+**Parameters**
+
+**var** ([*Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.expr.Var")) – the variable to add.
+
+### add\_var
+
+<span id="qiskit.circuit.QuantumCircuit.add_var" />
+
+`add_var(name_or_var, /, initial)`
+
+Add a classical variable with automatic storage and scope to this circuit.
+
+The variable is considered to have been “declared” at the beginning of the circuit, but it only becomes initialized at the point of the circuit that you call this method, so it can depend on variables defined before it.
+
+**Parameters**
+
+*   **name\_or\_var** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*expr.Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var")) – either a string of the variable name, or an existing instance of [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") to re-use. Variables cannot shadow names that are already in use within the circuit.
+
+*   **initial** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) –
+
+    the value to initialize this variable with. If the first argument was given as a string name, the type of the resulting variable is inferred from the initial expression; to control this more manually, either use `Var.new()` to manually construct a new variable with the desired type, or use [`expr.cast()`](circuit_classical#qiskit.circuit.classical.expr.cast "qiskit.circuit.classical.expr.cast") to cast the initializer to the desired type.
+
+    This must be either a [`Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") node, or a value that can be lifted to one using `expr.lift`.
+
+**Returns**
+
+The created variable. If a [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") instance was given, the exact same object will be returned.
+
+**Raises**
+
+[**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the variable cannot be created due to shadowing an existing variable.
+
+**Return type**
+
+[expr.Var](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var")
+
+**Examples**
+
+Define a new variable given just a name and an initializer expression:
+
+```python
+from qiskit.circuit import QuantumCircuit
+
+qc = QuantumCircuit(2)
+my_var = qc.add_var("my_var", False)
+```
+
+Reuse a variable that may have been taken from a related circuit, or otherwise constructed manually, and initialize it to some more complicated expression:
+
+```python
+from qiskit.circuit import QuantumCircuit, QuantumRegister, ClassicalRegister
+from qiskit.circuit.classical import expr, types
+
+my_var = expr.Var.new("my_var", types.Uint(8))
+
+cr1 = ClassicalRegister(8, "cr1")
+cr2 = ClassicalRegister(8, "cr2")
+qc = QuantumCircuit(QuantumRegister(8), cr1, cr2)
+
+# Get some measurement results into each register.
+qc.h(0)
+for i in range(1, 8):
+    qc.cx(0, i)
+qc.measure(range(8), cr1)
+
+qc.reset(range(8))
+qc.h(0)
+for i in range(1, 8):
+    qc.cx(0, i)
+qc.measure(range(8), cr2)
+
+# Now when we add the variable, it is initialized using the runtime state of the two
+# classical registers we measured into above.
+qc.add_var(my_var, expr.bit_and(cr1, cr2))
+```
+
 ### append
 
 <span id="qiskit.circuit.QuantumCircuit.append" />
@@ -322,27 +500,27 @@ Add registers.
 
 Append one or more instructions to the end of the circuit, modifying the circuit in place.
 
-The `qargs` and `cargs` will be expanded and broadcast according to the rules of the given [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction"), and any non-[`Bit`](qiskit.circuit.Bit "qiskit.circuit.Bit") specifiers (such as integer indices) will be resolved into the relevant instances.
+The `qargs` and `cargs` will be expanded and broadcast according to the rules of the given [`Instruction`](circuit#qiskit.circuit.Instruction "qiskit.circuit.Instruction"), and any non-[`Bit`](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit") specifiers (such as integer indices) will be resolved into the relevant instances.
 
-If a [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction") is given, it will be unwrapped, verified in the context of this circuit, and a new object will be appended to the circuit. In this case, you may not pass `qargs` or `cargs` separately.
+If a [`CircuitInstruction`](circuit#qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction") is given, it will be unwrapped, verified in the context of this circuit, and a new object will be appended to the circuit. In this case, you may not pass `qargs` or `cargs` separately.
 
 **Parameters**
 
-*   **instruction** ([*Operation*](qiskit.circuit.Operation "qiskit.circuit.Operation")  *|*[*CircuitInstruction*](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")) – [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") instance to append, or a [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction") with all its context.
-*   **qargs** (*Sequence\[QubitSpecifier] | None*) – specifiers of the [`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.Qubit")s to attach instruction to.
-*   **cargs** (*Sequence\[ClbitSpecifier] | None*) – specifiers of the [`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.Clbit")s to attach instruction to.
+*   **instruction** ([*Operation*](circuit#qiskit.circuit.Operation "qiskit.circuit.Operation")  *|*[*CircuitInstruction*](circuit#qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")) – [`Instruction`](circuit#qiskit.circuit.Instruction "qiskit.circuit.Instruction") instance to append, or a [`CircuitInstruction`](circuit#qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction") with all its context.
+*   **qargs** (*Sequence\[QubitSpecifier] | None*) – specifiers of the [`Qubit`](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")s to attach instruction to.
+*   **cargs** (*Sequence\[ClbitSpecifier] | None*) – specifiers of the [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")s to attach instruction to.
 
 **Returns**
 
-a handle to the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s that were actually added to the circuit.
+a handle to the [`CircuitInstruction`](circuit#qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s that were actually added to the circuit.
 
 **Return type**
 
-[qiskit.circuit.InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
+[qiskit.circuit.InstructionSet](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
 
 **Raises**
 
-[**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the operation passed is not an instance of [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") .
+[**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the operation passed is not an instance of [`Instruction`](circuit#qiskit.circuit.Instruction "qiskit.circuit.Instruction") .
 
 ### assign\_parameters
 
@@ -354,23 +532,23 @@ a handle to the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit
 
 Assign parameters to new parameters or values.
 
-If `parameters` is passed as a dictionary, the keys should be [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") instances in the current circuit. The values of the dictionary can either be numeric values or new parameter objects.
+If `parameters` is passed as a dictionary, the keys should be [`Parameter`](circuit#qiskit.circuit.Parameter "qiskit.circuit.Parameter") instances in the current circuit. The values of the dictionary can either be numeric values or new parameter objects.
 
-If `parameters` is passed as a list or array, the elements are assigned to the current parameters in the order of [`parameters`](#qiskit.circuit.QuantumCircuit.parameters "qiskit.circuit.QuantumCircuit.parameters") which is sorted alphabetically (while respecting the ordering in [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") objects).
+If `parameters` is passed as a list or array, the elements are assigned to the current parameters in the order of [`parameters`](#qiskit.circuit.QuantumCircuit.parameters "qiskit.circuit.QuantumCircuit.parameters") which is sorted alphabetically (while respecting the ordering in [`ParameterVector`](circuit#qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") objects).
 
 The values can be assigned to the current circuit object or to a copy of it.
 
 <Admonition title="Note" type="note">
-  When `parameters` is given as a mapping, it is permissible to have keys that are strings of the parameter names; these will be looked up using [`get_parameter()`](#qiskit.circuit.QuantumCircuit.get_parameter "qiskit.circuit.QuantumCircuit.get_parameter"). You can also have keys that are [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") instances, and in this case, the dictionary value should be a sequence of values of the same length as the vector.
+  When `parameters` is given as a mapping, it is permissible to have keys that are strings of the parameter names; these will be looked up using [`get_parameter()`](#qiskit.circuit.QuantumCircuit.get_parameter "qiskit.circuit.QuantumCircuit.get_parameter"). You can also have keys that are [`ParameterVector`](circuit#qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") instances, and in this case, the dictionary value should be a sequence of values of the same length as the vector.
 
-  If you use either of these cases, you must leave the setting `flat_input=False`; changing this to `True` enables the fast path, where all keys must be [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") instances.
+  If you use either of these cases, you must leave the setting `flat_input=False`; changing this to `True` enables the fast path, where all keys must be [`Parameter`](circuit#qiskit.circuit.Parameter "qiskit.circuit.Parameter") instances.
 </Admonition>
 
 **Parameters**
 
 *   **parameters** – Either a dictionary or iterable specifying the new parameter values.
 *   **inplace** – If False, a copy of the circuit with the bound parameters is returned. If True the circuit instance itself is modified.
-*   **flat\_input** – If `True` and `parameters` is a mapping type, it is assumed to be exactly a mapping of `{parameter: value}`. By default (`False`), the mapping may also contain [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") keys that point to a corresponding sequence of values, and these will be unrolled during the mapping, or string keys, which will be converted to [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") instances using [`get_parameter()`](#qiskit.circuit.QuantumCircuit.get_parameter "qiskit.circuit.QuantumCircuit.get_parameter").
+*   **flat\_input** – If `True` and `parameters` is a mapping type, it is assumed to be exactly a mapping of `{parameter: value}`. By default (`False`), the mapping may also contain [`ParameterVector`](circuit#qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") keys that point to a corresponding sequence of values, and these will be unrolled during the mapping, or string keys, which will be converted to [`Parameter`](circuit#qiskit.circuit.Parameter "qiskit.circuit.Parameter") instances using [`get_parameter()`](#qiskit.circuit.QuantumCircuit.get_parameter "qiskit.circuit.QuantumCircuit.get_parameter").
 *   **strict** – If `False`, any parameters given in the mapping that are not used in the circuit will be ignored. If `True` (the default), an error will be raised indicating a logic error.
 
 **Raises**
@@ -428,7 +606,7 @@ circuit.draw('mpl')
 
 `barrier(*qargs, label=None)`
 
-Apply [`Barrier`](qiskit.circuit.library.Barrier "qiskit.circuit.library.Barrier"). If `qargs` is empty, applies to all qubits in the circuit.
+Apply `Barrier`. If `qargs` is empty, applies to all qubits in the circuit.
 
 **Parameters**
 
@@ -441,7 +619,7 @@ handle to the added instructions.
 
 **Return type**
 
-[qiskit.circuit.InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
+[qiskit.circuit.InstructionSet](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
 
 ### break\_loop
 
@@ -449,10 +627,10 @@ handle to the added instructions.
 
 `break_loop()`
 
-Apply [`BreakLoopOp`](qiskit.circuit.BreakLoopOp "qiskit.circuit.BreakLoopOp").
+Apply [`BreakLoopOp`](circuit#qiskit.circuit.BreakLoopOp "qiskit.circuit.BreakLoopOp").
 
 <Admonition title="Warning" type="caution">
-  If you are using the context-manager “builder” forms of [`if_test()`](#qiskit.circuit.QuantumCircuit.if_test "qiskit.circuit.QuantumCircuit.if_test"), [`for_loop()`](#qiskit.circuit.QuantumCircuit.for_loop "qiskit.circuit.QuantumCircuit.for_loop") or [`while_loop()`](#qiskit.circuit.QuantumCircuit.while_loop "qiskit.circuit.QuantumCircuit.while_loop"), you can only call this method if you are within a loop context, because otherwise the “resource width” of the operation cannot be determined. This would quickly lead to invalid circuits, and so if you are trying to construct a reusable loop body (without the context managers), you must also use the non-context-manager form of [`if_test()`](#qiskit.circuit.QuantumCircuit.if_test "qiskit.circuit.QuantumCircuit.if_test") and [`if_else()`](#qiskit.circuit.QuantumCircuit.if_else "qiskit.circuit.QuantumCircuit.if_else"). Take care that the [`BreakLoopOp`](qiskit.circuit.BreakLoopOp "qiskit.circuit.BreakLoopOp") instruction must span all the resources of its containing loop, not just the immediate scope.
+  If you are using the context-manager “builder” forms of [`if_test()`](#qiskit.circuit.QuantumCircuit.if_test "qiskit.circuit.QuantumCircuit.if_test"), [`for_loop()`](#qiskit.circuit.QuantumCircuit.for_loop "qiskit.circuit.QuantumCircuit.for_loop") or [`while_loop()`](#qiskit.circuit.QuantumCircuit.while_loop "qiskit.circuit.QuantumCircuit.while_loop"), you can only call this method if you are within a loop context, because otherwise the “resource width” of the operation cannot be determined. This would quickly lead to invalid circuits, and so if you are trying to construct a reusable loop body (without the context managers), you must also use the non-context-manager form of [`if_test()`](#qiskit.circuit.QuantumCircuit.if_test "qiskit.circuit.QuantumCircuit.if_test") and [`if_else()`](#qiskit.circuit.QuantumCircuit.if_else "qiskit.circuit.QuantumCircuit.if_else"). Take care that the [`BreakLoopOp`](circuit#qiskit.circuit.BreakLoopOp "qiskit.circuit.BreakLoopOp") instruction must span all the resources of its containing loop, not just the immediate scope.
 </Admonition>
 
 **Returns**
@@ -465,7 +643,7 @@ A handle to the instruction created.
 
 **Return type**
 
-[*InstructionSet*](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+[*InstructionSet*](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
 
 ### cast
 
@@ -522,7 +700,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
+[InstructionSet](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
 
 ### ccz
 
@@ -548,7 +726,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
+[InstructionSet](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
 
 ### ch
 
@@ -573,7 +751,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
+[InstructionSet](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
 
 ### clear
 
@@ -621,9 +799,9 @@ Compose circuit with `other` circuit or instruction, optionally permuting wires.
 
 **Parameters**
 
-*   **other** ([*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")  *or*[*QuantumCircuit*](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – (sub)circuit or instruction to compose onto self. If not a [`QuantumCircuit`](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), this can be anything that [`append`](#qiskit.circuit.QuantumCircuit.append "qiskit.circuit.QuantumCircuit.append") will accept.
-*   **qubits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – qubits of self to compose onto.
-*   **clbits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – clbits of self to compose onto.
+*   **other** ([*qiskit.circuit.Instruction*](circuit#qiskit.circuit.Instruction "qiskit.circuit.Instruction")  *or*[*QuantumCircuit*](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – (sub)circuit or instruction to compose onto self. If not a [`QuantumCircuit`](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), this can be anything that [`append`](#qiskit.circuit.QuantumCircuit.append "qiskit.circuit.QuantumCircuit.append") will accept.
+*   **qubits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – qubits of self to compose onto.
+*   **clbits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")*|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – clbits of self to compose onto.
 *   **front** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, front composition will be performed. This is not possible within control-flow builder context managers.
 *   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, modify the object. Otherwise return composed circuit.
 *   **wrap** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, wraps the other circuit into a gate (or instruction, depending on whether it contains only unitary instructions) before composing it onto self.
@@ -671,10 +849,10 @@ lcr_1: 0 ═══════════                           lcr_1: 0 �
 
 `continue_loop()`
 
-Apply [`ContinueLoopOp`](qiskit.circuit.ContinueLoopOp "qiskit.circuit.ContinueLoopOp").
+Apply [`ContinueLoopOp`](circuit#qiskit.circuit.ContinueLoopOp "qiskit.circuit.ContinueLoopOp").
 
 <Admonition title="Warning" type="caution">
-  If you are using the context-manager “builder” forms of [`if_test()`](#qiskit.circuit.QuantumCircuit.if_test "qiskit.circuit.QuantumCircuit.if_test"), [`for_loop()`](#qiskit.circuit.QuantumCircuit.for_loop "qiskit.circuit.QuantumCircuit.for_loop") or [`while_loop()`](#qiskit.circuit.QuantumCircuit.while_loop "qiskit.circuit.QuantumCircuit.while_loop"), you can only call this method if you are within a loop context, because otherwise the “resource width” of the operation cannot be determined. This would quickly lead to invalid circuits, and so if you are trying to construct a reusable loop body (without the context managers), you must also use the non-context-manager form of [`if_test()`](#qiskit.circuit.QuantumCircuit.if_test "qiskit.circuit.QuantumCircuit.if_test") and [`if_else()`](#qiskit.circuit.QuantumCircuit.if_else "qiskit.circuit.QuantumCircuit.if_else"). Take care that the [`ContinueLoopOp`](qiskit.circuit.ContinueLoopOp "qiskit.circuit.ContinueLoopOp") instruction must span all the resources of its containing loop, not just the immediate scope.
+  If you are using the context-manager “builder” forms of [`if_test()`](#qiskit.circuit.QuantumCircuit.if_test "qiskit.circuit.QuantumCircuit.if_test"), [`for_loop()`](#qiskit.circuit.QuantumCircuit.for_loop "qiskit.circuit.QuantumCircuit.for_loop") or [`while_loop()`](#qiskit.circuit.QuantumCircuit.while_loop "qiskit.circuit.QuantumCircuit.while_loop"), you can only call this method if you are within a loop context, because otherwise the “resource width” of the operation cannot be determined. This would quickly lead to invalid circuits, and so if you are trying to construct a reusable loop body (without the context managers), you must also use the non-context-manager form of [`if_test()`](#qiskit.circuit.QuantumCircuit.if_test "qiskit.circuit.QuantumCircuit.if_test") and [`if_else()`](#qiskit.circuit.QuantumCircuit.if_else "qiskit.circuit.QuantumCircuit.if_else"). Take care that the [`ContinueLoopOp`](circuit#qiskit.circuit.ContinueLoopOp "qiskit.circuit.ContinueLoopOp") instruction must span all the resources of its containing loop, not just the immediate scope.
 </Admonition>
 
 **Returns**
@@ -687,7 +865,7 @@ A handle to the instruction created.
 
 **Return type**
 
-[*InstructionSet*](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+[*InstructionSet*](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
 
 ### control
 
@@ -750,6 +928,10 @@ Return a copy of self with the same structure but empty.
 *   global phase
 *   all the qubits and clbits, including the registers
 
+<Admonition title="Warning" type="caution">
+  If the circuit contains any local variable declarations (those added by the `declarations` argument to the circuit constructor, or using [`add_var()`](#qiskit.circuit.QuantumCircuit.add_var "qiskit.circuit.QuantumCircuit.add_var")), they will be **uninitialized** in the output circuit. You will need to manually add store instructions for them (see [`Store`](circuit#qiskit.circuit.Store "qiskit.circuit.Store") and [`QuantumCircuit.store()`](#qiskit.circuit.QuantumCircuit.store "qiskit.circuit.QuantumCircuit.store")) to initialize them.
+</Admonition>
+
 **Parameters**
 
 **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Name for the copied circuit. If None, then the name stays the same.
@@ -802,7 +984,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
+[InstructionSet](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
 
 ### crx
 
@@ -828,7 +1010,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
+[InstructionSet](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
 
 ### cry
 
@@ -854,7 +1036,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
+[InstructionSet](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
 
 ### crz
 
@@ -880,7 +1062,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
+[InstructionSet](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
 
 ### cs
 
@@ -905,7 +1087,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
+[InstructionSet](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
 
 ### csdg
 
@@ -930,7 +1112,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
+[InstructionSet](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
 
 ### cswap
 
@@ -956,7 +1138,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
+[InstructionSet](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
 
 ### csx
 
@@ -981,7 +1163,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
+[InstructionSet](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
 
 ### cu
 
@@ -1010,7 +1192,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
+[InstructionSet](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
 
 ### cx
 
@@ -1035,7 +1217,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
+[InstructionSet](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
 
 ### cy
 
@@ -1060,7 +1242,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
+[InstructionSet](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
 
 ### cz
 
@@ -1085,7 +1267,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
+[InstructionSet](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
 
 ### dcx
 
@@ -1099,8 +1281,8 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **qubit1** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
-*   **qubit2** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
+*   **qubit1** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
+*   **qubit2** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
 
 **Returns**
 
@@ -1108,7 +1290,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[*InstructionSet*](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+[*InstructionSet*](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
 
 ### decompose
 
@@ -1137,11 +1319,11 @@ a circuit one level decomposed
 
 `delay(duration, qarg=None, unit='dt')`
 
-Apply [`Delay`](qiskit.circuit.Delay "qiskit.circuit.Delay"). If qarg is `None`, applies to all qubits. When applying to multiple qubits, delays with the same duration will be created.
+Apply [`Delay`](circuit#qiskit.circuit.Delay "qiskit.circuit.Delay"). If qarg is `None`, applies to all qubits. When applying to multiple qubits, delays with the same duration will be created.
 
 **Parameters**
 
-*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *or*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *or*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – duration of the delay.
+*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *or*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *or*[*ParameterExpression*](circuit#qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – duration of the delay.
 *   **qarg** (*Object*) – qubit argument to apply this delay.
 *   **unit** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – unit of the duration. Supported units: `'s'`, `'ms'`, `'us'`, `'ns'`, `'ps'`, and `'dt'`. Default is `'dt'`, i.e. integer time unit depending on the target backend.
 
@@ -1151,7 +1333,7 @@ handle to the added instructions.
 
 **Return type**
 
-[qiskit.circuit.InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
+[qiskit.circuit.InstructionSet](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
 
 **Raises**
 
@@ -1242,7 +1424,7 @@ Draw the quantum circuit. Use the output parameter to choose the drawing format:
 
 *   **wire\_order** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – A list of integers used to reorder the display of the bits. The list must have an entry for every bit with the bits in the range 0 to (`num_qubits` + `num_clbits`).
 
-*   **expr\_len** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of characters to display if an [`Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") is used for the condition in a [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp"). If this number is exceeded, the string will be truncated at that number and ‘…’ added to the end.
+*   **expr\_len** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of characters to display if an [`Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") is used for the condition in a [`ControlFlowOp`](circuit#qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp"). If this number is exceeded, the string will be truncated at that number and ‘…’ added to the end.
 
 **Returns**
 
@@ -1293,8 +1475,8 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **qubit1** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubits to apply the gate to.
-*   **qubit2** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubits to apply the gate to.
+*   **qubit1** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubits to apply the gate to.
+*   **qubit2** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubits to apply the gate to.
 
 **Returns**
 
@@ -1302,7 +1484,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[*InstructionSet*](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+[*InstructionSet*](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
 
 ### find\_bit
 
@@ -1310,30 +1492,30 @@ A handle to the instructions created.
 
 `find_bit(bit)`
 
-Find locations in the circuit which can be used to reference a given [`Bit`](qiskit.circuit.Bit "qiskit.circuit.Bit").
+Find locations in the circuit which can be used to reference a given [`Bit`](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit").
 
 **Parameters**
 
-**bit** ([*Bit*](qiskit.circuit.Bit "qiskit.circuit.Bit")) – The bit to locate.
+**bit** ([*Bit*](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit")) – The bit to locate.
 
 **Returns**
 
 **A 2-tuple. The first element (`index`)**
 
-contains the index at which the `Bit` can be found (in either [`qubits`](#qiskit.circuit.QuantumCircuit.qubits "qiskit.circuit.QuantumCircuit.qubits"), [`clbits`](#qiskit.circuit.QuantumCircuit.clbits "qiskit.circuit.QuantumCircuit.clbits"), depending on its type). The second element (`registers`) is a list of `(register, index)` pairs with an entry for each [`Register`](qiskit.circuit.Register "qiskit.circuit.Register") in the circuit which contains the [`Bit`](qiskit.circuit.Bit "qiskit.circuit.Bit") (and the index in the [`Register`](qiskit.circuit.Register "qiskit.circuit.Register") at which it can be found).
+contains the index at which the `Bit` can be found (in either [`qubits`](#qiskit.circuit.QuantumCircuit.qubits "qiskit.circuit.QuantumCircuit.qubits"), [`clbits`](#qiskit.circuit.QuantumCircuit.clbits "qiskit.circuit.QuantumCircuit.clbits"), depending on its type). The second element (`registers`) is a list of `(register, index)` pairs with an entry for each [`Register`](circuit#qiskit.circuit.Register "qiskit.circuit.Register") in the circuit which contains the [`Bit`](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit") (and the index in the [`Register`](circuit#qiskit.circuit.Register "qiskit.circuit.Register") at which it can be found).
 
 **Return type**
 
-namedtuple([int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)"), List\[Tuple([Register](qiskit.circuit.Register "qiskit.circuit.Register"), [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)"))])
+namedtuple([int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)"), List\[Tuple([Register](circuit#qiskit.circuit.Register "qiskit.circuit.Register"), [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)"))])
 
 **Notes**
 
-The circuit index of an [`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.AncillaQubit") will be its index in [`qubits`](#qiskit.circuit.QuantumCircuit.qubits "qiskit.circuit.QuantumCircuit.qubits"), not [`ancillas`](#qiskit.circuit.QuantumCircuit.ancillas "qiskit.circuit.QuantumCircuit.ancillas").
+The circuit index of an [`AncillaQubit`](circuit#qiskit.circuit.AncillaQubit "qiskit.circuit.AncillaQubit") will be its index in [`qubits`](#qiskit.circuit.QuantumCircuit.qubits "qiskit.circuit.QuantumCircuit.qubits"), not [`ancillas`](#qiskit.circuit.QuantumCircuit.ancillas "qiskit.circuit.QuantumCircuit.ancillas").
 
 **Raises**
 
-*   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If the supplied [`Bit`](qiskit.circuit.Bit "qiskit.circuit.Bit") was of an unknown type.
-*   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If the supplied [`Bit`](qiskit.circuit.Bit "qiskit.circuit.Bit") could not be found on the circuit.
+*   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If the supplied [`Bit`](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit") was of an unknown type.
+*   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If the supplied [`Bit`](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit") could not be found on the circuit.
 
 **Return type**
 
@@ -1349,7 +1531,7 @@ The circuit index of an [`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.cir
 
 Create a `for` loop on this circuit.
 
-There are two forms for calling this function. If called with all its arguments (with the possible exception of `label`), it will create a [`ForLoopOp`](qiskit.circuit.ForLoopOp "qiskit.circuit.ForLoopOp") with the given `body`. If `body` (and `qubits` and `clbits`) are *not* passed, then this acts as a context manager, which, when entered, provides a loop variable (unless one is given, in which case it will be reused) and will automatically build a [`ForLoopOp`](qiskit.circuit.ForLoopOp "qiskit.circuit.ForLoopOp") when the scope finishes. In this form, you do not need to keep track of the qubits or clbits you are using, because the scope will handle it for you.
+There are two forms for calling this function. If called with all its arguments (with the possible exception of `label`), it will create a [`ForLoopOp`](circuit#qiskit.circuit.ForLoopOp "qiskit.circuit.ForLoopOp") with the given `body`. If `body` (and `qubits` and `clbits`) are *not* passed, then this acts as a context manager, which, when entered, provides a loop variable (unless one is given, in which case it will be reused) and will automatically build a [`ForLoopOp`](circuit#qiskit.circuit.ForLoopOp "qiskit.circuit.ForLoopOp") when the scope finishes. In this form, you do not need to keep track of the qubits or clbits you are using, because the scope will handle it for you.
 
 For example:
 
@@ -1368,7 +1550,7 @@ with qc.for_loop(range(5)) as i:
 
 *   **indexset** (*Iterable\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – A collection of integers to loop over. Always necessary.
 
-*   **loop\_parameter** (*Optional\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*]*) –
+*   **loop\_parameter** (*Optional\[*[*Parameter*](circuit#qiskit.circuit.Parameter "qiskit.circuit.Parameter")*]*) –
 
     The parameter used within `body` to which the values from `indexset` will be assigned. In the context-manager form, if this argument is not supplied, then a loop parameter will be allocated for you and returned as the value of the `with` statement. This will only be bound into the circuit if it is used within the body.
 
@@ -1384,11 +1566,11 @@ with qc.for_loop(range(5)) as i:
 
 **Returns**
 
-depending on the call signature, either a context manager for creating the for loop (it will automatically be added to the circuit at the end of the block), or an [`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet") handle to the appended loop operation.
+depending on the call signature, either a context manager for creating the for loop (it will automatically be added to the circuit at the end of the block), or an [`InstructionSet`](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet") handle to the appended loop operation.
 
 **Return type**
 
-[InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet") or ForLoopContext
+[InstructionSet](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet") or ForLoopContext
 
 **Raises**
 
@@ -1404,9 +1586,9 @@ Construct a circuit from an iterable of CircuitInstructions.
 
 **Parameters**
 
-*   **instructions** (*Iterable\[*[*CircuitInstruction*](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")*] |* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")*, Iterable\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]] |* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")*, Iterable\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*], Iterable\[*[*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]]]*) – The instructions to add to the circuit.
-*   **qubits** (*Iterable\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – Any qubits to add to the circuit. This argument can be used, for example, to enforce a particular ordering of qubits.
-*   **clbits** (*Iterable\[*[*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]*) – Any classical bits to add to the circuit. This argument can be used, for example, to enforce a particular ordering of classical bits.
+*   **instructions** (*Iterable\[*[*CircuitInstruction*](circuit#qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*qiskit.circuit.Instruction*](circuit#qiskit.circuit.Instruction "qiskit.circuit.Instruction")*] |* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*qiskit.circuit.Instruction*](circuit#qiskit.circuit.Instruction "qiskit.circuit.Instruction")*, Iterable\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]] |* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*qiskit.circuit.Instruction*](circuit#qiskit.circuit.Instruction "qiskit.circuit.Instruction")*, Iterable\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*], Iterable\[*[*Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]]]*) – The instructions to add to the circuit.
+*   **qubits** (*Iterable\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – Any qubits to add to the circuit. This argument can be used, for example, to enforce a particular ordering of qubits.
+*   **clbits** (*Iterable\[*[*Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]*) – Any classical bits to add to the circuit. This argument can be used, for example, to enforce a particular ordering of classical bits.
 *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – The name of the circuit.
 *   **global\_phase** (*ParameterValueType*) – The global phase of the circuit in radians.
 *   **metadata** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)") *| None*) – Arbitrary key value metadata to associate with the circuit.
@@ -1537,6 +1719,66 @@ assert qc.get_parameter("my_param", None) is my_param
 assert qc.get_parameter("unknown_param", None) is None
 ```
 
+<Admonition title="See also" type="note">
+  **[`get_var()`](#qiskit.circuit.QuantumCircuit.get_var "qiskit.circuit.QuantumCircuit.get_var")**
+
+  A similar method, but for [`expr.Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") run-time variables instead of [`Parameter`](circuit#qiskit.circuit.Parameter "qiskit.circuit.Parameter") compile-time parameters.
+</Admonition>
+
+### get\_var
+
+<span id="qiskit.circuit.QuantumCircuit.get_var" />
+
+`get_var(name: str, default: T) → Var | T`
+
+`get_var(name: str, default: ellipsis = Ellipsis) → Var`
+
+Retrieve a variable that is accessible in this circuit scope by name.
+
+**Parameters**
+
+*   **name** – the name of the variable to retrieve.
+*   **default** – if given, this value will be returned if the variable is not present. If it is not given, a [`KeyError`](https://docs.python.org/3/library/exceptions.html#KeyError "(in Python v3.12)") is raised instead.
+
+**Returns**
+
+The corresponding variable.
+
+**Raises**
+
+[**KeyError**](https://docs.python.org/3/library/exceptions.html#KeyError "(in Python v3.12)") – if no default is given, but the variable does not exist.
+
+**Examples**
+
+Retrieve a variable by name from a circuit:
+
+```python
+from qiskit.circuit import QuantumCircuit
+
+# Create a circuit and create a variable in it.
+qc = QuantumCircuit()
+my_var = qc.add_var("my_var", False)
+
+# We can use 'my_var' as a variable, but let's say we've lost the Python object and
+# need to retrieve it.
+my_var_again = qc.get_var("my_var")
+
+assert my_var is my_var_again
+```
+
+Get a variable from a circuit by name, returning some default if it is not present:
+
+```python
+assert qc.get_var("my_var", None) is my_var
+assert qc.get_var("unknown_variable", None) is None
+```
+
+<Admonition title="See also" type="note">
+  **[`get_parameter()`](#qiskit.circuit.QuantumCircuit.get_parameter "qiskit.circuit.QuantumCircuit.get_parameter")**
+
+  A similar method, but for [`Parameter`](circuit#qiskit.circuit.Parameter "qiskit.circuit.Parameter") compile-time parameters instead of [`expr.Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") run-time variables.
+</Admonition>
+
 ### h
 
 <span id="qiskit.circuit.QuantumCircuit.h" />
@@ -1549,7 +1791,7 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-**qubit** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
+**qubit** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
 
 **Returns**
 
@@ -1557,7 +1799,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[*InstructionSet*](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+[*InstructionSet*](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
 
 ### has\_calibration\_for
 
@@ -1577,7 +1819,7 @@ Check whether a parameter object exists in this circuit.
 
 **Parameters**
 
-**name\_or\_param** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")) – the parameter, or name of a parameter to check. If this is a [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") node, the parameter must be exactly the given one for this function to return `True`.
+**name\_or\_param** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*Parameter*](circuit#qiskit.circuit.Parameter "qiskit.circuit.Parameter")) – the parameter, or name of a parameter to check. If this is a [`Parameter`](circuit#qiskit.circuit.Parameter "qiskit.circuit.Parameter") node, the parameter must be exactly the given one for this function to return `True`.
 
 **Returns**
 
@@ -1590,7 +1832,11 @@ whether a matching parameter is assignable in this circuit.
 <Admonition title="See also" type="note">
   **[`QuantumCircuit.get_parameter()`](#qiskit.circuit.QuantumCircuit.get_parameter "qiskit.circuit.QuantumCircuit.get_parameter")**
 
-  Retrieve the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") instance from this circuit by name.
+  Retrieve the [`Parameter`](circuit#qiskit.circuit.Parameter "qiskit.circuit.Parameter") instance from this circuit by name.
+
+  **[`QuantumCircuit.has_var()`](#qiskit.circuit.QuantumCircuit.has_var "qiskit.circuit.QuantumCircuit.has_var")**
+
+  A similar method to this, but for run-time [`expr.Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") variables instead of compile-time [`Parameter`](circuit#qiskit.circuit.Parameter "qiskit.circuit.Parameter")s.
 </Admonition>
 
 ### has\_register
@@ -1603,7 +1849,7 @@ Test if this circuit has the register r.
 
 **Parameters**
 
-**register** ([*Register*](qiskit.circuit.Register "qiskit.circuit.Register")) – a quantum or classical register.
+**register** ([*Register*](circuit#qiskit.circuit.Register "qiskit.circuit.Register")) – a quantum or classical register.
 
 **Returns**
 
@@ -1612,6 +1858,36 @@ True if the register is contained in this circuit.
 **Return type**
 
 [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+
+### has\_var
+
+<span id="qiskit.circuit.QuantumCircuit.has_var" />
+
+`has_var(name_or_var, /)`
+
+Check whether a variable is accessible in this scope.
+
+**Parameters**
+
+**name\_or\_var** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*expr.Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var")) – the variable, or name of a variable to check. If this is a [`expr.Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") node, the variable must be exactly the given one for this function to return `True`.
+
+**Returns**
+
+whether a matching variable is accessible.
+
+**Return type**
+
+[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+
+<Admonition title="See also" type="note">
+  **[`QuantumCircuit.get_var()`](#qiskit.circuit.QuantumCircuit.get_var "qiskit.circuit.QuantumCircuit.get_var")**
+
+  Retrieve the [`expr.Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") instance from this circuit by name.
+
+  **[`QuantumCircuit.has_parameter()`](#qiskit.circuit.QuantumCircuit.has_parameter "qiskit.circuit.QuantumCircuit.has_parameter")**
+
+  A similar method to this, but for compile-time [`Parameter`](circuit#qiskit.circuit.Parameter "qiskit.circuit.Parameter")s instead of run-time [`expr.Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") variables.
+</Admonition>
 
 ### id
 
@@ -1625,7 +1901,7 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-**qubit** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
+**qubit** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
 
 **Returns**
 
@@ -1633,7 +1909,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[*InstructionSet*](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+[*InstructionSet*](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
 
 ### if\_else
 
@@ -1641,7 +1917,7 @@ A handle to the instructions created.
 
 `if_else(condition, true_body, false_body, qubits, clbits, label=None)`
 
-Apply [`IfElseOp`](qiskit.circuit.IfElseOp "qiskit.circuit.IfElseOp").
+Apply [`IfElseOp`](circuit#qiskit.circuit.IfElseOp "qiskit.circuit.IfElseOp").
 
 <Admonition title="Note" type="note">
   This method does not have an associated context-manager form, because it is already handled by the [`if_test()`](#qiskit.circuit.QuantumCircuit.if_test "qiskit.circuit.QuantumCircuit.if_test") method. You can use the `else` part of that with something such as:
@@ -1662,7 +1938,7 @@ Apply [`IfElseOp`](qiskit.circuit.IfElseOp "qiskit.circuit.IfElseOp").
 
 **Parameters**
 
-*   **condition** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*ClassicalRegister*](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] |* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] |* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*,* [*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")*]*) – A condition to be evaluated at circuit runtime which, if true, will trigger the evaluation of `true_body`. Can be specified as either a tuple of a `ClassicalRegister` to be tested for equality with a given `int`, or as a tuple of a `Clbit` to be compared to either a `bool` or an `int`.
+*   **condition** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*ClassicalRegister*](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] |* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] |* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")*,* [*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")*]*) – A condition to be evaluated at circuit runtime which, if true, will trigger the evaluation of `true_body`. Can be specified as either a tuple of a `ClassicalRegister` to be tested for equality with a given `int`, or as a tuple of a `Clbit` to be compared to either a `bool` or an `int`.
 *   **true\_body** ([*QuantumCircuit*](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The circuit body to be run if `condition` is true.
 *   **false\_body** ([*QuantumCircuit*](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The circuit to be run if `condition` is false.
 *   **qubits** (*Sequence\[QubitSpecifier]*) – The circuit qubits over which the if/else should be run.
@@ -1679,7 +1955,7 @@ A handle to the instruction created.
 
 **Return type**
 
-[InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
+[InstructionSet](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
 
 ### if\_test
 
@@ -1691,7 +1967,7 @@ A handle to the instruction created.
 
 Create an `if` statement on this circuit.
 
-There are two forms for calling this function. If called with all its arguments (with the possible exception of `label`), it will create a [`IfElseOp`](qiskit.circuit.IfElseOp "qiskit.circuit.IfElseOp") with the given `true_body`, and there will be no branch for the `false` condition (see also the [`if_else()`](#qiskit.circuit.QuantumCircuit.if_else "qiskit.circuit.QuantumCircuit.if_else") method). However, if `true_body` (and `qubits` and `clbits`) are *not* passed, then this acts as a context manager, which can be used to build `if` statements. The return value of the `with` statement is a chainable context manager, which can be used to create subsequent `else` blocks. In this form, you do not need to keep track of the qubits or clbits you are using, because the scope will handle it for you.
+There are two forms for calling this function. If called with all its arguments (with the possible exception of `label`), it will create a [`IfElseOp`](circuit#qiskit.circuit.IfElseOp "qiskit.circuit.IfElseOp") with the given `true_body`, and there will be no branch for the `false` condition (see also the [`if_else()`](#qiskit.circuit.QuantumCircuit.if_else "qiskit.circuit.QuantumCircuit.if_else") method). However, if `true_body` (and `qubits` and `clbits`) are *not* passed, then this acts as a context manager, which can be used to build `if` statements. The return value of the `with` statement is a chainable context manager, which can be used to create subsequent `else` blocks. In this form, you do not need to keep track of the qubits or clbits you are using, because the scope will handle it for you.
 
 For example:
 
@@ -1716,7 +1992,7 @@ with else_:
 
 **Parameters**
 
-*   **condition** (*Tuple\[Union\[*[*ClassicalRegister*](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")*,* [*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*],* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – A condition to be evaluated at circuit runtime which, if true, will trigger the evaluation of `true_body`. Can be specified as either a tuple of a `ClassicalRegister` to be tested for equality with a given `int`, or as a tuple of a `Clbit` to be compared to either a `bool` or an `int`.
+*   **condition** (*Tuple\[Union\[*[*ClassicalRegister*](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")*,* [*Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")*],* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – A condition to be evaluated at circuit runtime which, if true, will trigger the evaluation of `true_body`. Can be specified as either a tuple of a `ClassicalRegister` to be tested for equality with a given `int`, or as a tuple of a `Clbit` to be compared to either a `bool` or an `int`.
 *   **true\_body** (*Optional\[*[*QuantumCircuit*](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – The circuit body to be run if `condition` is true.
 *   **qubits** (*Optional\[Sequence\[QubitSpecifier]]*) – The circuit qubits over which the if/else should be run.
 *   **clbits** (*Optional\[Sequence\[ClbitSpecifier]]*) – The circuit clbits over which the if/else should be run.
@@ -1724,11 +2000,11 @@ with else_:
 
 **Returns**
 
-depending on the call signature, either a context manager for creating the `if` block (it will automatically be added to the circuit at the end of the block), or an [`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet") handle to the appended conditional operation.
+depending on the call signature, either a context manager for creating the `if` block (it will automatically be added to the circuit at the end of the block), or an [`InstructionSet`](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet") handle to the appended conditional operation.
 
 **Return type**
 
-[InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet") or IfContext
+[InstructionSet](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet") or IfContext
 
 **Raises**
 
@@ -1890,8 +2166,8 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **qubit1** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubits to apply the gate to.
-*   **qubit2** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubits to apply the gate to.
+*   **qubit1** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubits to apply the gate to.
+*   **qubit2** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubits to apply the gate to.
 
 **Returns**
 
@@ -1899,7 +2175,57 @@ A handle to the instructions created.
 
 **Return type**
 
-[*InstructionSet*](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+[*InstructionSet*](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+
+### iter\_captured\_vars
+
+<span id="qiskit.circuit.QuantumCircuit.iter_captured_vars" />
+
+`iter_captured_vars()`
+
+Get an iterable over all runtime classical variables that are captured by this circuit scope from a containing scope. This excludes input variables (see [`iter_input_vars()`](#qiskit.circuit.QuantumCircuit.iter_input_vars "qiskit.circuit.QuantumCircuit.iter_input_vars")) and locally declared variables (see [`iter_declared_vars()`](#qiskit.circuit.QuantumCircuit.iter_declared_vars "qiskit.circuit.QuantumCircuit.iter_declared_vars")).
+
+**Return type**
+
+[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")\[[*Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.expr.Var")]
+
+### iter\_declared\_vars
+
+<span id="qiskit.circuit.QuantumCircuit.iter_declared_vars" />
+
+`iter_declared_vars()`
+
+Get an iterable over all runtime classical variables that are declared with automatic storage duration in this scope. This excludes input variables (see [`iter_input_vars()`](#qiskit.circuit.QuantumCircuit.iter_input_vars "qiskit.circuit.QuantumCircuit.iter_input_vars")) and captured variables (see [`iter_captured_vars()`](#qiskit.circuit.QuantumCircuit.iter_captured_vars "qiskit.circuit.QuantumCircuit.iter_captured_vars")).
+
+**Return type**
+
+[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")\[[*Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.expr.Var")]
+
+### iter\_input\_vars
+
+<span id="qiskit.circuit.QuantumCircuit.iter_input_vars" />
+
+`iter_input_vars()`
+
+Get an iterable over all runtime classical variables that are declared as inputs to this circuit scope. This excludes locally declared variables (see [`iter_declared_vars()`](#qiskit.circuit.QuantumCircuit.iter_declared_vars "qiskit.circuit.QuantumCircuit.iter_declared_vars")) and captured variables (see [`iter_captured_vars()`](#qiskit.circuit.QuantumCircuit.iter_captured_vars "qiskit.circuit.QuantumCircuit.iter_captured_vars")).
+
+**Return type**
+
+[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")\[[*Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.expr.Var")]
+
+### iter\_vars
+
+<span id="qiskit.circuit.QuantumCircuit.iter_vars" />
+
+`iter_vars()`
+
+Get an iterable over all runtime classical variables in scope within this circuit.
+
+This method will iterate over all variables in scope. For more fine-grained iterators, see [`iter_declared_vars()`](#qiskit.circuit.QuantumCircuit.iter_declared_vars "qiskit.circuit.QuantumCircuit.iter_declared_vars"), [`iter_input_vars()`](#qiskit.circuit.QuantumCircuit.iter_input_vars "qiskit.circuit.QuantumCircuit.iter_input_vars") and [`iter_captured_vars()`](#qiskit.circuit.QuantumCircuit.iter_captured_vars "qiskit.circuit.QuantumCircuit.iter_captured_vars").
+
+**Return type**
+
+[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")\[[*Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.expr.Var")]
 
 ### mcp
 
@@ -1913,9 +2239,9 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **lam** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The angle of the rotation.
-*   **control\_qubits** ([*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]]*) – The qubits used as the controls.
-*   **target\_qubit** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) targeted by the gate.
+*   **lam** ([*ParameterExpression*](circuit#qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The angle of the rotation.
+*   **control\_qubits** ([*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]]*) – The qubits used as the controls.
+*   **target\_qubit** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) targeted by the gate.
 
 **Returns**
 
@@ -1923,7 +2249,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[*InstructionSet*](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+[*InstructionSet*](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
 
 ### mcrx
 
@@ -1937,8 +2263,8 @@ Apply Multiple-Controlled X rotation gate
 
 *   **self** ([*QuantumCircuit*](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to apply the mcrx gate on.
 *   **theta** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – angle theta
-*   **q\_controls** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*(*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*)*) – The list of control qubits
-*   **q\_target** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit
+*   **q\_controls** ([*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*(*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*)*) – The list of control qubits
+*   **q\_target** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit
 *   **use\_basis\_gates** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – use p, u, cx
 
 **Raises**
@@ -1957,9 +2283,9 @@ Apply Multiple-Controlled Y rotation gate
 
 *   **self** ([*QuantumCircuit*](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to apply the mcry gate on.
 *   **theta** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – angle theta
-*   **q\_controls** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*(*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*)*) – The list of control qubits
-*   **q\_target** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit
-*   **q\_ancillae** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")  *or*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*(*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*)*) – The list of ancillary qubits.
+*   **q\_controls** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*(*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*)*) – The list of control qubits
+*   **q\_target** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit
+*   **q\_ancillae** ([*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")  *or*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*(*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*)*) – The list of ancillary qubits.
 *   **mode** (*string*) – The implementation mode to use
 *   **use\_basis\_gates** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – use p, u, cx
 
@@ -1979,8 +2305,8 @@ Apply Multiple-Controlled Z rotation gate
 
 *   **self** ([*QuantumCircuit*](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to apply the mcrz gate on.
 *   **lam** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – angle lambda
-*   **q\_controls** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*(*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*)*) – The list of control qubits
-*   **q\_target** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit
+*   **q\_controls** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*(*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*)*) – The list of control qubits
+*   **q\_target** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit
 *   **use\_basis\_gates** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – use p, u, cx
 
 **Raises**
@@ -2022,7 +2348,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
+[InstructionSet](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
 
 ### measure
 
@@ -2036,8 +2362,8 @@ When a quantum state is measured, a qubit is projected in the computational (Pau
 
 **Parameters**
 
-*   **qubit** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – qubit(s) to measure.
-*   **cbit** ([*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")  *|*[*ClassicalRegister*](qiskit.circuit.ClassicalRegister "qiskit.circuit.classicalregister.ClassicalRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – classical bit(s) to place the measurement result(s) in.
+*   **qubit** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – qubit(s) to measure.
+*   **cbit** ([*Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")  *|*[*ClassicalRegister*](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.classicalregister.ClassicalRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – classical bit(s) to place the measurement result(s) in.
 
 **Returns**
 
@@ -2045,7 +2371,7 @@ handle to the added instructions.
 
 **Return type**
 
-[qiskit.circuit.InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
+[qiskit.circuit.InstructionSet](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
 
 **Raises**
 
@@ -2084,7 +2410,7 @@ circuit.measure(0, 0)
 circuit.measure(1, 1)
 ```
 
-Instead of lists, you can use [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister") and [`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") under the same logic.
+Instead of lists, you can use [`QuantumRegister`](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister") and [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") under the same logic.
 
 ```python
 from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister
@@ -2132,7 +2458,7 @@ Returns circuit with measurements when inplace = False.
 
 Adds measurement to all qubits.
 
-By default, adds new classical bits in a [`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") to store these measurements. If `add_bits=False`, the results of the measurements will instead be stored in the already existing classical bits, with qubit `n` being measured into classical bit `n`.
+By default, adds new classical bits in a [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") to store these measurements. If `add_bits=False`, the results of the measurements will instead be stored in the already existing classical bits, with qubit `n` being measured into classical bit `n`.
 
 Returns a new circuit with measurements if `inplace=False`.
 
@@ -2165,8 +2491,8 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **theta** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The angle of the rotation.
-*   **qubits** ([*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]]*) – The qubits to apply the gate to.
+*   **theta** ([*ParameterExpression*](circuit#qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The angle of the rotation.
+*   **qubits** ([*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]]*) – The qubits to apply the gate to.
 
 **Returns**
 
@@ -2174,7 +2500,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[*InstructionSet*](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+[*InstructionSet*](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
 
 ### num\_connected\_components
 
@@ -2250,8 +2576,8 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **theta** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – THe angle of the rotation.
-*   **qubit** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
+*   **theta** ([*ParameterExpression*](circuit#qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – THe angle of the rotation.
+*   **qubit** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
 
 **Returns**
 
@@ -2259,7 +2585,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[*InstructionSet*](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+[*InstructionSet*](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
 
 ### pauli
 
@@ -2272,7 +2598,7 @@ Apply [`PauliGate`](qiskit.circuit.library.PauliGate "qiskit.circuit.library.Pau
 **Parameters**
 
 *   **pauli\_string** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – A string representing the Pauli operator to apply, e.g. ‘XX’.
-*   **qubits** ([*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]]*) – The qubits to apply this gate to.
+*   **qubits** ([*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]]*) – The qubits to apply this gate to.
 
 **Returns**
 
@@ -2280,7 +2606,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[*InstructionSet*](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+[*InstructionSet*](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
 
 ### power
 
@@ -2341,7 +2667,7 @@ A handle to the instruction that was just initialized
 
 **Return type**
 
-[InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
+[InstructionSet](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
 
 **Examples**
 
@@ -2424,7 +2750,7 @@ the resolved instances of the qubits.
 
 **Return type**
 
-List([Qubit](qiskit.circuit.Qubit "qiskit.circuit.Qubit"))
+List([Qubit](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit"))
 
 ### qubit\_duration
 
@@ -2436,7 +2762,7 @@ Return the duration between the start and stop time of the first and last instru
 
 **Parameters**
 
-**\*qubits** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Qubits within `self` to include.
+**\*qubits** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Qubits within `self` to include.
 
 **Returns**
 
@@ -2458,7 +2784,7 @@ Return 0 if there are no instructions over qubits
 
 **Parameters**
 
-*   **\*qubits** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Qubits within `self` to include. Integers are allowed for qubits, indicating
+*   **\*qubits** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Qubits within `self` to include. Integers are allowed for qubits, indicating
 *   **self.qubits.** (*indices of*) –
 
 **Returns**
@@ -2485,7 +2811,7 @@ Return 0 if there are no instructions over qubits
 
 **Parameters**
 
-*   **\*qubits** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Qubits within `self` to include. Integers are allowed for qubits, indicating
+*   **\*qubits** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Qubits within `self` to include. Integers are allowed for qubits, indicating
 *   **self.qubits.** (*indices of*) –
 
 **Returns**
@@ -2512,9 +2838,9 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **theta** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The angle of the rotation.
-*   **phi** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The angle of the axis of rotation in the x-y plane.
-*   **qubit** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
+*   **theta** ([*ParameterExpression*](circuit#qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The angle of the rotation.
+*   **phi** ([*ParameterExpression*](circuit#qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The angle of the axis of rotation in the x-y plane.
+*   **qubit** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
 
 **Returns**
 
@@ -2522,7 +2848,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[*InstructionSet*](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+[*InstructionSet*](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
 
 ### rcccx
 
@@ -2536,10 +2862,10 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **control\_qubit1** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) used as the first control.
-*   **control\_qubit2** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) used as the second control.
-*   **control\_qubit3** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) used as the third control.
-*   **target\_qubit** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) targeted by the gate.
+*   **control\_qubit1** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) used as the first control.
+*   **control\_qubit2** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) used as the second control.
+*   **control\_qubit3** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) used as the third control.
+*   **target\_qubit** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) targeted by the gate.
 
 **Returns**
 
@@ -2547,7 +2873,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[*InstructionSet*](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+[*InstructionSet*](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
 
 ### rccx
 
@@ -2561,9 +2887,9 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **control\_qubit1** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) used as the first control.
-*   **control\_qubit2** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) used as the second control.
-*   **target\_qubit** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) targeted by the gate.
+*   **control\_qubit1** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) used as the first control.
+*   **control\_qubit2** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) used as the second control.
+*   **target\_qubit** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) targeted by the gate.
 
 **Returns**
 
@@ -2571,7 +2897,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[*InstructionSet*](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+[*InstructionSet*](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
 
 ### remove\_final\_measurements
 
@@ -2625,7 +2951,7 @@ Reset the quantum bit(s) to their default state.
 
 **Parameters**
 
-**qubit** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – qubit(s) to reset.
+**qubit** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – qubit(s) to reset.
 
 **Returns**
 
@@ -2633,7 +2959,7 @@ handle to the added instruction.
 
 **Return type**
 
-[qiskit.circuit.InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
+[qiskit.circuit.InstructionSet](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
 
 ### reverse\_bits
 
@@ -2743,10 +3069,10 @@ Rotation around an arbitrary rotation axis $v$, where $|v|$ is the angle of rota
 
 **Parameters**
 
-*   **vx** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – x-component of the rotation axis.
-*   **vy** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – y-component of the rotation axis.
-*   **vz** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – z-component of the rotation axis.
-*   **qubit** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
+*   **vx** ([*ParameterExpression*](circuit#qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – x-component of the rotation axis.
+*   **vy** ([*ParameterExpression*](circuit#qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – y-component of the rotation axis.
+*   **vz** ([*ParameterExpression*](circuit#qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – z-component of the rotation axis.
+*   **qubit** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
 
 **Returns**
 
@@ -2754,7 +3080,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[*InstructionSet*](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+[*InstructionSet*](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
 
 ### rx
 
@@ -2778,7 +3104,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
+[InstructionSet](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
 
 ### rxx
 
@@ -2792,9 +3118,9 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **theta** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The angle of the rotation.
-*   **qubit1** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
-*   **qubit2** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
+*   **theta** ([*ParameterExpression*](circuit#qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The angle of the rotation.
+*   **qubit1** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
+*   **qubit2** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
 
 **Returns**
 
@@ -2802,7 +3128,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[*InstructionSet*](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+[*InstructionSet*](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
 
 ### ry
 
@@ -2826,7 +3152,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
+[InstructionSet](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
 
 ### ryy
 
@@ -2840,9 +3166,9 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **theta** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The rotation angle of the gate.
-*   **qubit1** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
-*   **qubit2** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
+*   **theta** ([*ParameterExpression*](circuit#qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The rotation angle of the gate.
+*   **qubit1** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
+*   **qubit2** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
 
 **Returns**
 
@@ -2850,7 +3176,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[*InstructionSet*](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+[*InstructionSet*](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
 
 ### rz
 
@@ -2864,8 +3190,8 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **phi** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The rotation angle of the gate.
-*   **qubit** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
+*   **phi** ([*ParameterExpression*](circuit#qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The rotation angle of the gate.
+*   **qubit** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
 
 **Returns**
 
@@ -2873,7 +3199,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[*InstructionSet*](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+[*InstructionSet*](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
 
 ### rzx
 
@@ -2887,9 +3213,9 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **theta** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The rotation angle of the gate.
-*   **qubit1** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
-*   **qubit2** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
+*   **theta** ([*ParameterExpression*](circuit#qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The rotation angle of the gate.
+*   **qubit1** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
+*   **qubit2** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
 
 **Returns**
 
@@ -2897,7 +3223,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[*InstructionSet*](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+[*InstructionSet*](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
 
 ### rzz
 
@@ -2911,9 +3237,9 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **theta** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The rotation angle of the gate.
-*   **qubit1** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
-*   **qubit2** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
+*   **theta** ([*ParameterExpression*](circuit#qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The rotation angle of the gate.
+*   **qubit1** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
+*   **qubit2** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
 
 **Returns**
 
@@ -2921,7 +3247,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[*InstructionSet*](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+[*InstructionSet*](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
 
 ### s
 
@@ -2935,7 +3261,7 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-**qubit** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
+**qubit** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
 
 **Returns**
 
@@ -2943,7 +3269,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[*InstructionSet*](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+[*InstructionSet*](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
 
 ### sdg
 
@@ -2957,7 +3283,7 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-**qubit** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
+**qubit** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
 
 **Returns**
 
@@ -2965,7 +3291,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[*InstructionSet*](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+[*InstructionSet*](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
 
 ### size
 
@@ -2987,6 +3313,35 @@ Total number of gate operations.
 
 [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
 
+### store
+
+<span id="qiskit.circuit.QuantumCircuit.store" />
+
+`store(lvalue, rvalue, /)`
+
+Store the result of the given runtime classical expression `rvalue` in the memory location defined by `lvalue`.
+
+Typically `lvalue` will be a [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") node and `rvalue` will be some [`Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") to write into it, but anything that [`expr.lift()`](circuit_classical#qiskit.circuit.classical.expr.lift "qiskit.circuit.classical.expr.lift") can raise to an [`Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") is permissible in both places, and it will be called on them.
+
+**Parameters**
+
+*   **lvalue** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – a valid specifier for a memory location in the circuit. This will typically be a [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") node, but you can also write to [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit") or [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") memory locations if your hardware supports it. The memory location must already be present in the circuit.
+*   **rvalue** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – a runtime classical expression whose result should be written into the given memory location.
+
+**Return type**
+
+[*InstructionSet*](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+
+<Admonition title="See also" type="note">
+  **[`Store`](circuit#qiskit.circuit.Store "qiskit.circuit.Store")**
+
+  The backing [`Instruction`](circuit#qiskit.circuit.Instruction "qiskit.circuit.Instruction") class that represents this operation.
+
+  **[`add_var()`](#qiskit.circuit.QuantumCircuit.add_var "qiskit.circuit.QuantumCircuit.add_var")**
+
+  Create a new variable in the circuit that can be written to with this method.
+</Admonition>
+
 ### swap
 
 <span id="qiskit.circuit.QuantumCircuit.swap" />
@@ -2999,8 +3354,8 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **qubit1** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubits to apply the gate to.
-*   **qubit2** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubits to apply the gate to.
+*   **qubit1** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubits to apply the gate to.
+*   **qubit2** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubits to apply the gate to.
 
 **Returns**
 
@@ -3008,7 +3363,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[*InstructionSet*](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+[*InstructionSet*](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
 
 ### switch
 
@@ -3020,7 +3375,7 @@ A handle to the instructions created.
 
 Create a `switch`/`case` structure on this circuit.
 
-There are two forms for calling this function. If called with all its arguments (with the possible exception of `label`), it will create a [`SwitchCaseOp`](qiskit.circuit.SwitchCaseOp "qiskit.circuit.SwitchCaseOp") with the given case structure. If `cases` (and `qubits` and `clbits`) are *not* passed, then this acts as a context manager, which will automatically build a [`SwitchCaseOp`](qiskit.circuit.SwitchCaseOp "qiskit.circuit.SwitchCaseOp") when the scope finishes. In this form, you do not need to keep track of the qubits or clbits you are using, because the scope will handle it for you.
+There are two forms for calling this function. If called with all its arguments (with the possible exception of `label`), it will create a [`SwitchCaseOp`](circuit#qiskit.circuit.SwitchCaseOp "qiskit.circuit.SwitchCaseOp") with the given case structure. If `cases` (and `qubits` and `clbits`) are *not* passed, then this acts as a context manager, which will automatically build a [`SwitchCaseOp`](circuit#qiskit.circuit.SwitchCaseOp "qiskit.circuit.SwitchCaseOp") when the scope finishes. In this form, you do not need to keep track of the qubits or clbits you are using, because the scope will handle it for you.
 
 Example usage:
 
@@ -3043,10 +3398,10 @@ with qc.switch(creg) as case:
 
 **Parameters**
 
-*   **target** (*Union\[*[*ClassicalRegister*](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")*,* [*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]*) – The classical value to switch one. This must be integer-like.
+*   **target** (*Union\[*[*ClassicalRegister*](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")*,* [*Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]*) – The classical value to switch one. This must be integer-like.
 *   **cases** (*Iterable\[Tuple\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")*,* [*QuantumCircuit*](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]]*) – A sequence of case specifiers. Each tuple defines one case body (the second item). The first item of the tuple can be either a single integer value, the special value [`CASE_DEFAULT`](circuit#qiskit.circuit.CASE_DEFAULT "qiskit.circuit.CASE_DEFAULT"), or a tuple of several integer values. Each of the integer values will be tried in turn; control will then pass to the body corresponding to the first match. [`CASE_DEFAULT`](circuit#qiskit.circuit.CASE_DEFAULT "qiskit.circuit.CASE_DEFAULT") matches all possible values. Omit in context-manager form.
-*   **qubits** (*Sequence\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – The circuit qubits over which all case bodies execute. Omit in context-manager form.
-*   **clbits** (*Sequence\[*[*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]*) – The circuit clbits over which all case bodies execute. Omit in context-manager form.
+*   **qubits** (*Sequence\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – The circuit qubits over which all case bodies execute. Omit in context-manager form.
+*   **clbits** (*Sequence\[*[*Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]*) – The circuit clbits over which all case bodies execute. Omit in context-manager form.
 *   **label** (*Optional\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – The string label of the instruction in the circuit.
 
 **Returns**
@@ -3055,7 +3410,7 @@ If used in context-manager mode, then this should be used as a `with` resource, 
 
 **Return type**
 
-[InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet") or SwitchCaseContext
+[InstructionSet](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet") or SwitchCaseContext
 
 **Raises**
 
@@ -3073,7 +3428,7 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-**qubit** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
+**qubit** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
 
 **Returns**
 
@@ -3081,7 +3436,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[*InstructionSet*](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+[*InstructionSet*](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
 
 ### sxdg
 
@@ -3095,7 +3450,7 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-**qubit** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
+**qubit** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
 
 **Returns**
 
@@ -3103,7 +3458,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[*InstructionSet*](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+[*InstructionSet*](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
 
 ### t
 
@@ -3117,7 +3472,7 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-**qubit** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
+**qubit** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
 
 **Returns**
 
@@ -3125,7 +3480,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[*InstructionSet*](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+[*InstructionSet*](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
 
 ### tdg
 
@@ -3139,7 +3494,7 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-**qubit** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
+**qubit** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
 
 **Returns**
 
@@ -3147,7 +3502,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[*InstructionSet*](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+[*InstructionSet*](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
 
 ### tensor
 
@@ -3174,7 +3529,7 @@ q_0: ┤ bottom ├ ⊗ q_0: ┤ top ├  = q_0: ─┤ top ├──
 
 **Return type**
 
-[*QuantumCircuit*](#qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit") | None
+[QuantumCircuit](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") | None
 
 **Examples**
 
@@ -3217,7 +3572,7 @@ a composite gate encapsulating this circuit (can be decomposed back)
 
 **Return type**
 
-[Gate](qiskit.circuit.Gate "qiskit.circuit.Gate")
+[Gate](circuit#qiskit.circuit.Gate "qiskit.circuit.Gate")
 
 ### to\_instruction
 
@@ -3238,7 +3593,7 @@ a composite instruction encapsulating this circuit (can be decomposed back)
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](circuit#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
 ### u
 
@@ -3252,10 +3607,10 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **theta** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The $\theta$ rotation angle of the gate.
-*   **phi** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The $\phi$ rotation angle of the gate.
-*   **lam** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The $\lambda$ rotation angle of the gate.
-*   **qubit** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
+*   **theta** ([*ParameterExpression*](circuit#qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The $\theta$ rotation angle of the gate.
+*   **phi** ([*ParameterExpression*](circuit#qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The $\phi$ rotation angle of the gate.
+*   **lam** ([*ParameterExpression*](circuit#qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The $\lambda$ rotation angle of the gate.
+*   **qubit** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
 
 **Returns**
 
@@ -3263,7 +3618,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[*InstructionSet*](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+[*InstructionSet*](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
 
 ### unitary
 
@@ -3275,7 +3630,7 @@ Apply unitary gate specified by `obj` to `qubits`.
 
 **Parameters**
 
-*   **obj** (*np.ndarray |* [*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate") *| BaseOperator*) – Unitary operator.
+*   **obj** (*np.ndarray |* [*Gate*](circuit#qiskit.circuit.Gate "qiskit.circuit.Gate") *| BaseOperator*) – Unitary operator.
 *   **qubits** (*Sequence\[QubitSpecifier]*) – The circuit qubits to apply the transformation to.
 *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Unitary name for backend \[Default: None].
 
@@ -3328,10 +3683,10 @@ with qc.while_loop((bits[2], 0)):
 
 **Parameters**
 
-*   **condition** (*Tuple\[Union\[*[*ClassicalRegister*](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")*,* [*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*],* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – An equality condition to be checked prior to executing `body`. The left-hand side of the condition must be a [`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") or a [`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.Clbit"), and the right-hand side must be an integer or boolean.
+*   **condition** (*Tuple\[Union\[*[*ClassicalRegister*](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")*,* [*Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")*],* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – An equality condition to be checked prior to executing `body`. The left-hand side of the condition must be a [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") or a [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit"), and the right-hand side must be an integer or boolean.
 *   **body** (*Optional\[*[*QuantumCircuit*](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – The loop body to be repeatedly executed. Omit this to use the context-manager mode.
-*   **qubits** (*Optional\[Sequence\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]]*) – The circuit qubits over which the loop body should be run. Omit this to use the context-manager mode.
-*   **clbits** (*Optional\[Sequence\[*[*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]]*) – The circuit clbits over which the loop body should be run. Omit this to use the context-manager mode.
+*   **qubits** (*Optional\[Sequence\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]]*) – The circuit qubits over which the loop body should be run. Omit this to use the context-manager mode.
+*   **clbits** (*Optional\[Sequence\[*[*Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]]*) – The circuit clbits over which the loop body should be run. Omit this to use the context-manager mode.
 *   **label** (*Optional\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – The string label of the instruction in the circuit.
 
 **Returns**
@@ -3340,7 +3695,7 @@ If used in context-manager mode, then this should be used as a `with` resource, 
 
 **Return type**
 
-[InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet") or WhileLoopContext
+[InstructionSet](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet") or WhileLoopContext
 
 **Raises**
 
@@ -3383,7 +3738,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
+[InstructionSet](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
 
 ### y
 
@@ -3397,7 +3752,7 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-**qubit** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
+**qubit** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
 
 **Returns**
 
@@ -3405,7 +3760,7 @@ A handle to the instructions created.
 
 **Return type**
 
-[*InstructionSet*](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+[*InstructionSet*](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
 
 ### z
 
@@ -3419,7 +3774,7 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-**qubit** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
+**qubit** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
 
 **Returns**
 
@@ -3427,5 +3782,5 @@ A handle to the instructions created.
 
 **Return type**
 
-[*InstructionSet*](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+[*InstructionSet*](circuit#qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
 

@@ -111,7 +111,7 @@ q_3: ┤ RY(θ[2]) ├┤ X ├┤ RY(θ[5]) ├──────────�
 *   **initial\_state** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| None*) – A QuantumCircuit object to prepend to the circuit.
 *   **skip\_unentangled\_qubits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, the single qubit gates are only applied to qubits that are entangled with another qubit. If False, the single qubit gates are applied to each qubit in the Ansatz. Defaults to False.
 *   **skip\_final\_rotation\_layer** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If False, a rotation layer is added at the end of the ansatz. If True, no rotation layer is added.
-*   **parameter\_prefix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The parameterized gates require a parameter to be defined, for which we use [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector").
+*   **parameter\_prefix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The parameterized gates require a parameter to be defined, for which we use [`ParameterVector`](circuit#qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector").
 *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, barriers are inserted in between each layer. If False, no barriers are inserted.
 *   **flatten** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – Set this to `True` to output a flat circuit instead of nesting it inside multiple layers of gate objects. By default currently the contents of the output circuit will be wrapped in nested objects for cleaner visualization. However, if you’re using this circuit for anything besides visualization its **strongly** recommended to set this flag to `True` to avoid a large performance overhead for parameter binding.
 
@@ -197,7 +197,7 @@ If barriers are inserted in between the layers or not.
 
 ### instances
 
-`= 417`
+`= 449`
 
 <span id="qiskit.circuit.library.RealAmplitudes.layout" />
 
@@ -223,11 +223,35 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 
 Return the number of ancilla qubits.
 
+<span id="qiskit.circuit.library.RealAmplitudes.num_captured_vars" />
+
+### num\_captured\_vars
+
+The number of runtime classical variables in the circuit marked as captured from an enclosing scope.
+
+This is the length of the `iter_captured_vars()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.RealAmplitudes.num_input_vars "qiskit.circuit.library.RealAmplitudes.num_input_vars") must be zero.
+
 <span id="qiskit.circuit.library.RealAmplitudes.num_clbits" />
 
 ### num\_clbits
 
 Return number of classical bits.
+
+<span id="qiskit.circuit.library.RealAmplitudes.num_declared_vars" />
+
+### num\_declared\_vars
+
+The number of runtime classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
+
+This is the length of the `iter_declared_vars()` iterable.
+
+<span id="qiskit.circuit.library.RealAmplitudes.num_input_vars" />
+
+### num\_input\_vars
+
+The number of runtime classical variables in the circuit marked as circuit inputs.
+
+This is the length of the `iter_input_vars()` iterable. If this is non-zero, [`num_captured_vars`](#qiskit.circuit.library.RealAmplitudes.num_captured_vars "qiskit.circuit.library.RealAmplitudes.num_captured_vars") must be zero.
 
 <span id="qiskit.circuit.library.RealAmplitudes.num_layers" />
 
@@ -249,7 +273,7 @@ The number of layers in the circuit.
 
 The number of total parameters that can be set to distinct values.
 
-This does not change when the parameters are bound or exchanged for same parameters, and therefore is different from `num_parameters` which counts the number of unique [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects currently in the circuit.
+This does not change when the parameters are bound or exchanged for same parameters, and therefore is different from `num_parameters` which counts the number of unique [`Parameter`](circuit#qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects currently in the circuit.
 
 **Returns**
 
@@ -268,6 +292,14 @@ Returns the number of qubits in this circuit.
 **Returns**
 
 The number of qubits.
+
+<span id="qiskit.circuit.library.RealAmplitudes.num_vars" />
+
+### num\_vars
+
+The number of runtime classical variables in the circuit.
+
+This is the length of the `iter_vars()` iterable.
 
 <span id="qiskit.circuit.library.RealAmplitudes.op_start_times" />
 

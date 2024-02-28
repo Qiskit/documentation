@@ -12,7 +12,7 @@ python_api_name: qiskit.primitives.BackendEstimator
 
 `qiskit.primitives.BackendEstimator(backend, options=None, abelian_grouping=True, bound_pass_manager=None, skip_transpilation=False)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/primitives/backend_estimator.py "view source code")
 
-Bases: `BaseEstimatorV1`\[`PrimitiveJob`\[[`EstimatorResult`](qiskit.primitives.EstimatorResult "qiskit.primitives.base.estimator_result.EstimatorResult")]]
+Bases: [`BaseEstimatorV1`](qiskit.primitives.BaseEstimatorV1 "qiskit.primitives.base.base_estimator.BaseEstimatorV1")\[[`PrimitiveJob`](qiskit.primitives.PrimitiveJob "qiskit.primitives.primitive_job.PrimitiveJob")\[[`EstimatorResult`](qiskit.primitives.EstimatorResult "qiskit.primitives.base.estimator_result.EstimatorResult")]]
 
 Evaluates expectation value using Pauli rotation gates.
 
@@ -22,11 +22,11 @@ Initialize a new BackendEstimator instance
 
 **Parameters**
 
-*   **backend** ([*BackendV1*](qiskit.providers.BackendV1 "qiskit.providers.BackendV1")  *|*[*BackendV2*](qiskit.providers.BackendV2 "qiskit.providers.BackendV2")) – Required: the backend to run the primitive on
-*   **options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)") *| None*) – Default options.
-*   **abelian\_grouping** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether the observable should be grouped into commuting
-*   **bound\_pass\_manager** ([*PassManager*](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") *| None*) – An optional pass manager to run after parameter binding.
-*   **skip\_transpilation** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If this is set to True the internal compilation of the input circuits is skipped and the circuit objects will be directly executed when this object is called.
+*   **backend** – Required: the backend to run the primitive on
+*   **options** – Default options.
+*   **abelian\_grouping** – Whether the observable should be grouped into commuting
+*   **bound\_pass\_manager** – An optional pass manager to run after parameter binding.
+*   **skip\_transpilation** – If this is set to True the internal compilation of the input circuits is skipped and the circuit objects will be directly executed when this object is called.
 
 ## Attributes
 

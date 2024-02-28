@@ -20,7 +20,7 @@ python_api_name: qiskit.circuit.classical
 
 This module contains an exploratory representation of runtime operations on classical values during circuit execution.
 
-Currently, only simple expressions on bits and registers that result in a Boolean value are supported, and these are only valid for use in the conditions of [`QuantumCircuit.if_test()`](qiskit.circuit.QuantumCircuit#if_test "qiskit.circuit.QuantumCircuit.if_test") ([`IfElseOp`](qiskit.circuit.IfElseOp "qiskit.circuit.IfElseOp")) and [`QuantumCircuit.while_loop()`](qiskit.circuit.QuantumCircuit#while_loop "qiskit.circuit.QuantumCircuit.while_loop") ([`WhileLoopOp`](qiskit.circuit.WhileLoopOp "qiskit.circuit.WhileLoopOp")), and in the target of [`QuantumCircuit.switch()`](qiskit.circuit.QuantumCircuit#switch "qiskit.circuit.QuantumCircuit.switch") ([`SwitchCaseOp`](qiskit.circuit.SwitchCaseOp "qiskit.circuit.SwitchCaseOp")).
+Currently, only simple expressions on bits and registers that result in a Boolean value are supported, and these are only valid for use in the conditions of [`QuantumCircuit.if_test()`](qiskit.circuit.QuantumCircuit#if_test "qiskit.circuit.QuantumCircuit.if_test") ([`IfElseOp`](circuit#qiskit.circuit.IfElseOp "qiskit.circuit.IfElseOp")) and [`QuantumCircuit.while_loop()`](qiskit.circuit.QuantumCircuit#while_loop "qiskit.circuit.QuantumCircuit.while_loop") ([`WhileLoopOp`](circuit#qiskit.circuit.WhileLoopOp "qiskit.circuit.WhileLoopOp")), and in the target of [`QuantumCircuit.switch()`](qiskit.circuit.QuantumCircuit#switch "qiskit.circuit.QuantumCircuit.switch") ([`SwitchCaseOp`](circuit#qiskit.circuit.SwitchCaseOp "qiskit.circuit.SwitchCaseOp")).
 
 <Admonition title="Note" type="note">
   This is an exploratory module, and while we will commit to the standard Qiskit deprecation policy within it, please be aware that the module will be deliberately limited in scope at the start, and early versions may not evolve cleanly into the final version. It is possible that various components of this module will be replaced (subject to deprecations) instead of improved into a new form.
@@ -60,15 +60,33 @@ All subclasses are responsible for setting their `type` attribute in their `__in
 
 These objects are mutable and should not be reused in a different location without a copy.
 
-The entry point from general circuit objects to the expression system is by wrapping the object in a [`Var`](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") node and associating a [`Type`](#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type") with it.
+The base for dynamic variables is the [`Var`](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var"), which can be either an arbitrarily typed runtime variable, or a wrapper around a [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit") or [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister").
 
 <span id="qiskit.circuit.classical.expr.Var" />
 
-`final class qiskit.circuit.classical.expr.Var(var, type)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py "view source code")
+`final class qiskit.circuit.classical.expr.Var(var, type, *, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py "view source code")
 
 A classical variable.
 
+These variables take two forms: a new-style variable that owns its storage location and has an associated name; and an old-style variable that wraps a [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit") or [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") instance that is owned by some containing circuit. In general, construction of variables for use in programs should use `Var.new()` or [`QuantumCircuit.add_var()`](qiskit.circuit.QuantumCircuit#add_var "qiskit.circuit.QuantumCircuit.add_var").
+
 Variables are immutable after construction, so they can be used as dictionary keys.
+
+<span id="qiskit.circuit.classical.expr.Var.name" />
+
+### name
+
+`str | None`
+
+The name of the variable. This is required to exist if the backing [`var`](#qiskit.circuit.classical.expr.Var.var "qiskit.circuit.classical.expr.Var.var") attribute is a [`UUID`](https://docs.python.org/3/library/uuid.html#uuid.UUID "(in Python v3.12)"), i.e. if it is a new-style variable, and must be `None` if it is an old-style variable.
+
+<span id="qiskit.circuit.classical.expr.Var.var" />
+
+### var
+
+`qiskit.circuit.Clbit | qiskit.circuit.ClassicalRegister | uuid.UUID`
+
+A reference to the backing data storage of the [`Var`](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") instance. When lifting old-style [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit") or [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") instances into a [`Var`](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var"), this is exactly the [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit") or [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister"). If the variable is a new-style classical variable (one that owns its own storage separate to the old [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")/[`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") model), this field will be a [`UUID`](https://docs.python.org/3/library/uuid.html#uuid.UUID "(in Python v3.12)") to uniquely identify it.
 
 Similarly, literals used in comparison (such as integers) should be lifted to [`Value`](#qiskit.circuit.classical.expr.Value "qiskit.circuit.classical.expr.Value") nodes with associated types.
 
@@ -287,6 +305,8 @@ Value(5, Uint(4))
 
 [Expr](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr")
 
+Typically you should create memory-owning [`Var`](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") instances by using the [`QuantumCircuit.add_var()`](qiskit.circuit.QuantumCircuit#add_var "qiskit.circuit.QuantumCircuit.add_var") method to declare them in some circuit context, since a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") will not accept an [`Expr`](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") that contains variables that are not already declared in it, since it needs to know how to allocate the storage and how the variable will be initialized. However, should you want to do this manually, you should use the low-level `Var.new()` call to safely generate a named variable for usage.
+
 You can manually specify casts in cases where the cast is allowed in explicit form, but may be lossy (such as the cast of a higher precision [`Uint`](#qiskit.circuit.classical.types.Uint "qiskit.circuit.classical.types.Uint") to a lower precision one).
 
 ### cast
@@ -324,7 +344,7 @@ Create a bitwise ‘not’ expression node from the given value, resolving any i
 
 **Examples**
 
-Bitwise negation of a [`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister"):
+Bitwise negation of a [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister"):
 
 ```python
 >>> from qiskit.circuit import ClassicalRegister
@@ -347,7 +367,7 @@ Create a logical ‘not’ expression node from the given value, resolving any i
 
 **Examples**
 
-Logical negation of a [`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister"):
+Logical negation of a [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister"):
 
 ```python
 >>> from qiskit.circuit import ClassicalRegister
@@ -615,7 +635,7 @@ Binary(Binary.Op.GREATER_EQUAL, Var(ClassicalRegister(3, "a"), Uint(3)), Var(Cla
 
 [*Expr*](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.expr.Expr")
 
-Qiskit’s legacy method for specifying equality conditions for use in conditionals is to use a two-tuple of a [`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.Clbit") or [`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") and an integer. This represents an exact equality condition, and there are no ways to specify any other relations. The helper function [`lift_legacy_condition()`](#qiskit.circuit.classical.expr.lift_legacy_condition "qiskit.circuit.classical.expr.lift_legacy_condition") converts this legacy format into the new expression syntax.
+Qiskit’s legacy method for specifying equality conditions for use in conditionals is to use a two-tuple of a [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit") or [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") and an integer. This represents an exact equality condition, and there are no ways to specify any other relations. The helper function [`lift_legacy_condition()`](#qiskit.circuit.classical.expr.lift_legacy_condition "qiskit.circuit.classical.expr.lift_legacy_condition") converts this legacy format into the new expression syntax.
 
 ### lift\_legacy\_condition
 
@@ -650,7 +670,7 @@ A typical consumer of the expression tree wants to recursively walk through the 
 
 <span id="qiskit.circuit.classical.expr.ExprVisitor" />
 
-`qiskit.circuit.classical.expr.ExprVisitor` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/visitors.py "view source code")
+`qiskit.circuit.classical.expr.ExprVisitor(*args, **kwds)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/visitors.py "view source code")
 
 Base class for visitors to the [`Expr`](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") tree. Subclasses should override whichever of the `visit_*` methods that they are able to handle, and should be organised such that non-existent methods will never be called.
 
@@ -728,7 +748,7 @@ Get an iterator over the [`Var`](#qiskit.circuit.classical.expr.Var "qiskit.circ
 
 **Examples**
 
-Print out the name of each [`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") encountered:
+Print out the name of each [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") encountered:
 
 ```python
 from qiskit.circuit import ClassicalRegister
@@ -756,7 +776,7 @@ Two expressions can be compared for direct structural equality by using the buil
 
 Do these two expressions have exactly the same tree structure, up to some key function for the [`Var`](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.expr.Var") objects?
 
-In other words, are these two expressions the exact same trees, except we compare the `Var.var` fields by calling the appropriate `*_var_key` function on them, and comparing that output for equality. This function does not allow any semantic “equivalences” such as asserting that `a == b` is equivalent to `b == a`; the evaluation order of the operands could, in general, cause such a statement to be false (consider hypothetical `extern` functions that access global state).
+In other words, are these two expressions the exact same trees, except we compare the [`Var.var`](#qiskit.circuit.classical.expr.Var.var "qiskit.circuit.classical.expr.Var.var") fields by calling the appropriate `*_var_key` function on them, and comparing that output for equality. This function does not allow any semantic “equivalences” such as asserting that `a == b` is equivalent to `b == a`; the evaluation order of the operands could, in general, cause such a statement to be false (consider hypothetical `extern` functions that access global state).
 
 There’s no requirements on the key functions, except that their outputs should have general `__eq__` methods. If a key function returns `None`, the variable will be used verbatim instead.
 
@@ -764,7 +784,7 @@ There’s no requirements on the key functions, except that their outputs should
 
 *   **left** ([*expr.Expr*](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.expr.Expr")) – one of the [`Expr`](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.expr.Expr") nodes.
 *   **right** ([*expr.Expr*](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.expr.Expr")) – the other [`Expr`](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.expr.Expr") node.
-*   **left\_var\_key** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)")*\[\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")*],* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")*] | None*) – a callable whose output should be used when comparing `Var.var` attributes. If this argument is `None` or its output is `None` for a given variable in `left`, the variable will be used verbatim.
+*   **left\_var\_key** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)")*\[\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")*],* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")*] | None*) – a callable whose output should be used when comparing [`Var.var`](#qiskit.circuit.classical.expr.Var.var "qiskit.circuit.classical.expr.Var.var") attributes. If this argument is `None` or its output is `None` for a given variable in `left`, the variable will be used verbatim.
 *   **right\_var\_key** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)")*\[\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")*],* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")*] | None*) – same as `left_var_key`, but used on the variables in `right` instead.
 
 **Return type**
@@ -773,7 +793,7 @@ There’s no requirements on the key functions, except that their outputs should
 
 **Examples**
 
-Comparing two expressions for structural equivalence, with no remapping of the variables. These are different because the different [`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.Clbit") instances compare differently:
+Comparing two expressions for structural equivalence, with no remapping of the variables. These are different because the different [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit") instances compare differently:
 
 ```python
 >>> from qiskit.circuit import Clbit
@@ -794,6 +814,54 @@ Comparing the same two expressions, but this time using mapping functions that a
 >>> expr.structurally_equivalent(left, right, left_key, right_key)
 True
 ```
+
+Some expressions have associated memory locations, and others may be purely temporary. You can use [`is_lvalue()`](#qiskit.circuit.classical.expr.is_lvalue "qiskit.circuit.classical.expr.is_lvalue") to determine whether an expression has an associated memory location.
+
+### is\_lvalue
+
+<span id="qiskit.circuit.classical.expr.is_lvalue" />
+
+`qiskit.circuit.classical.expr.is_lvalue(node, /)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/visitors.py "view source code")
+
+Return whether this expression can be used in l-value positions, that is, whether it has a well-defined location in memory, such as one that might be writeable.
+
+Being an l-value is a necessary but not sufficient for this location to be writeable; it is permissible that a larger object containing this memory location may not allow writing from the scope that attempts to write to it. This would be an access property of the containing program, however, and not an inherent property of the expression system.
+
+**Examples**
+
+Literal values are never l-values; there’s no memory location associated with (for example) the constant `1`:
+
+```python
+>>> from qiskit.circuit.classical import expr
+>>> expr.is_lvalue(expr.lift(2))
+False
+```
+
+[`Var`](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.expr.Var") nodes are always l-values, because they always have some associated memory location:
+
+```python
+>>> from qiskit.circuit.classical import types
+>>> from qiskit.circuit import Clbit
+>>> expr.is_lvalue(expr.Var.new("a", types.Bool()))
+True
+>>> expr.is_lvalue(expr.lift(Clbit()))
+True
+```
+
+Currently there are no unary or binary operations on variables that can produce an l-value expression, but it is likely in the future that some sort of “indexing” operation will be added, which could produce l-values:
+
+```python
+>>> a = expr.Var.new("a", types.Uint(8))
+>>> b = expr.Var.new("b", types.Uint(8))
+>>> expr.is_lvalue(a) and expr.is_lvalue(b)
+True
+>>> expr.is_lvalue(expr.bit_and(a, b))
+False
+```
+
+**Return type**
+
+[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
 
 <span id="module-qiskit.circuit.classical.types" />
 
@@ -823,7 +891,7 @@ This must not be subclassed by users; subclasses form the internal data of the r
 
 Types should be considered immutable objects, and you must not mutate them. It is permissible to reuse a [`Type`](#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type") that you take from another object without copying it, and generally this will be the best approach for performance. [`Type`](#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type") objects are designed to be small amounts of data, and it’s best to point to the same instance of the data where possible rather than heap-allocating a new version of the same thing. Where possible, the class constructors will return singleton instances to facilitate this.
 
-The two different types available are for Booleans (corresponding to [`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.Clbit") and the literals `True` and `False`), and unsigned integers (corresponding to [`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") and Python integers).
+The two different types available are for Booleans (corresponding to [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit") and the literals `True` and `False`), and unsigned integers (corresponding to [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") and Python integers).
 
 <span id="qiskit.circuit.classical.types.Bool" />
 

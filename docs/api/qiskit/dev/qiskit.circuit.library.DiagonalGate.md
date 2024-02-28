@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.library.DiagonalGate
 
 `qiskit.circuit.library.DiagonalGate(diag)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/diagonal.py "view source code")
 
-Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+Bases: [`Gate`](circuit#qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
 Gate implementing a diagonal transformation.
 
@@ -109,7 +109,7 @@ Return the number of qubits.
 
 ### params
 
-return instruction params.
+The parameters of this `Instruction`. Ideally these will be gate angles.
 
 <span id="qiskit.circuit.library.DiagonalGate.unit" />
 

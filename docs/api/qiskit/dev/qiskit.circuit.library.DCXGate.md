@@ -131,7 +131,7 @@ Return the number of qubits.
 
 ### params
 
-return instruction params.
+The parameters of this `Instruction`. Ideally these will be gate angles.
 
 <span id="qiskit.circuit.library.DCXGate.unit" />
 

@@ -42,7 +42,7 @@ Gate in basic approximations that is closest to `sequence`.
 
 **Return type**
 
-[*Gate*](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+[*Gate*](circuit#qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
 ### load\_basic\_approximations
 
