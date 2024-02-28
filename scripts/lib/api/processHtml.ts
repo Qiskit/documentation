@@ -349,8 +349,13 @@ export function processMembersAndSetMeta(
 
           // Else, the attribute is embedded on the class
           const text = $child.text();
+
+          // Index of the default value of the attribute
           const equalIndex = text.indexOf("=");
-          const colonIndex = text.indexOf(":");
+          // Index of the attribute's type. The type should be
+          // found before the default value
+          const colonIndex = text.slice(0, equalIndex).indexOf(":");
+
           let name = text;
           let type: string | undefined;
           let value: string | undefined;

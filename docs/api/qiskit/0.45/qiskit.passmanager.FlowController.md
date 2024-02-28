@@ -56,9 +56,7 @@ Create new flow controller.
 
 <span id="qiskit.passmanager.FlowController.registered_controllers" />
 
-### registered\_controllers = \{'condition'
-
-`= {'condition':`
+### registered\_controllers
 
 `= {'condition': , 'do_while': }`
 

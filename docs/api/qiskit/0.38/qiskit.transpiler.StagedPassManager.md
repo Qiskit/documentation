@@ -226,9 +226,7 @@ Expanded Pass manager stages including `pre_` and `post_` phases.
 
 <span id="qiskit.transpiler.StagedPassManager.invalid_stage_regex" />
 
-### invalid\_stage\_regex = re.compile('\\\s|\\\\+|\\\\-|\\\\\*|\\\\/|\\\\\\\\|\\\\%|\\\\\<|\\\\>|\\\\@|\\\\!|\\\\\~|\\\\^|\\\\&|\\\\
-
-`= re.compile('\\s|\\+|\\-|\\*|\\/|\\\\|\\%|\\<|\\>|\\@|\\!|\\~|\\^|\\&|\\:`
+### invalid\_stage\_regex
 
 `= re.compile('\\s|\\+|\\-|\\*|\\/|\\\\|\\%|\\<|\\>|\\@|\\!|\\~|\\^|\\&|\\:|\\[|\\]|\\{|\\}|\\(|\\)')`
 

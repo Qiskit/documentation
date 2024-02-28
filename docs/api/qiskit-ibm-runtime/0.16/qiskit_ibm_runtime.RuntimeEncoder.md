@@ -42,9 +42,7 @@ If specified, default is a function that gets called for objects that can’t ot
 
 <span id="qiskit_ibm_runtime.RuntimeEncoder.key_separator" />
 
-### key\_separator = '
-
-`= ':`
+### key\_separator
 
 `= ': '`
 

@@ -101,9 +101,7 @@ for chunk in JSONEncoder().iterencode(bigobject):
 
 <span id="qiskit.providers.ibmq.runtime.RuntimeEncoder.key_separator" />
 
-### key\_separator = '
-
-`= ':`
+### key\_separator
 
 `= ': '`
 
