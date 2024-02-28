@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.algorithms.ClassicalCPLEX
 
 <span id="qiskit.aqua.algorithms.ClassicalCPLEX" />
 
-`ClassicalCPLEX(operator, timelimit=600, thread=1, display=2)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/minimum_eigen_solvers/cplex/classical_cplex.py "view source code")
+`ClassicalCPLEX(operator, timelimit=600, thread=1, display=2)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/minimum_eigen_solvers/cplex/classical_cplex.py "view source code")
 
 Bases: `qiskit.aqua.algorithms.classical_algorithm.ClassicalAlgorithm`
 
