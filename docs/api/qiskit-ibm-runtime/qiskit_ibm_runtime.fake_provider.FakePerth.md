@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakePerth
 
 <span id="qiskit_ibm_runtime.fake_provider.FakePerth" />
 
-`FakePerth`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/perth/fake_perth.py "view source code")
+`FakePerth` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/perth/fake_perth.py "view source code")
 
 A fake 7 qubit backend.
 
