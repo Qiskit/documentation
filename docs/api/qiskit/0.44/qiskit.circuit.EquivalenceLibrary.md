@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.EquivalenceLibrary
 
 <span id="qiskit.circuit.EquivalenceLibrary" />
 
-`qiskit.circuit.EquivalenceLibrary(*, base=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/equivalence.py "view source code")
+`qiskit.circuit.EquivalenceLibrary(*, base=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/equivalence.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 

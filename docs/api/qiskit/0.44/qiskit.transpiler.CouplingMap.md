@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.CouplingMap
 
 <span id="qiskit.transpiler.CouplingMap" />
 
-`qiskit.transpiler.CouplingMap(couplinglist=None, description=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/coupling.py "view source code")
+`qiskit.transpiler.CouplingMap(couplinglist=None, description=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/coupling.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.library.ParametricPulse
 
 <span id="qiskit.pulse.library.ParametricPulse" />
 
-`qiskit.pulse.library.ParametricPulse(duration, name=None, limit_amplitude=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/pulse/library/parametric_pulses.py "view source code")
+`qiskit.pulse.library.ParametricPulse(duration, name=None, limit_amplitude=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/pulse/library/parametric_pulses.py "view source code")
 
 Bases: `Pulse`
 

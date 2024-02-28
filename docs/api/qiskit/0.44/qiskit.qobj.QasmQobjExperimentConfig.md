@@ -10,7 +10,7 @@ python_api_name: qiskit.qobj.QasmQobjExperimentConfig
 
 <span id="qiskit.qobj.QasmQobjExperimentConfig" />
 
-`qiskit.qobj.QasmQobjExperimentConfig(calibrations=None, qubit_lo_freq=None, meas_lo_freq=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/qobj/qasm_qobj.py "view source code")
+`qiskit.qobj.QasmQobjExperimentConfig(calibrations=None, qubit_lo_freq=None, meas_lo_freq=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/qobj/qasm_qobj.py "view source code")
 
 Bases: `QobjDictField`
 

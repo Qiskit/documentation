@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.FencedDAGCircuit
 
 <span id="qiskit.transpiler.FencedDAGCircuit" />
 
-`qiskit.transpiler.FencedDAGCircuit(dag_circuit_instance)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/fencedobjs.py "view source code")
+`qiskit.transpiler.FencedDAGCircuit(dag_circuit_instance)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/fencedobjs.py "view source code")
 
 Bases: `FencedObject`
 

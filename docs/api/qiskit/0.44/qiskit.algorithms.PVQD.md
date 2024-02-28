@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.PVQD
 
 <span id="qiskit.algorithms.PVQD" />
 
-`qiskit.algorithms.PVQD(fidelity, ansatz, initial_parameters, estimator=None, optimizer=None, num_timesteps=None, evolution=None, use_parameter_shift=True, initial_guess=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/time_evolvers/pvqd/pvqd.py "view source code")
+`qiskit.algorithms.PVQD(fidelity, ansatz, initial_parameters, estimator=None, optimizer=None, num_timesteps=None, evolution=None, use_parameter_shift=True, initial_guess=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/time_evolvers/pvqd/pvqd.py "view source code")
 
 Bases: [`RealTimeEvolver`](qiskit.algorithms.RealTimeEvolver "qiskit.algorithms.time_evolvers.real_time_evolver.RealTimeEvolver")
 

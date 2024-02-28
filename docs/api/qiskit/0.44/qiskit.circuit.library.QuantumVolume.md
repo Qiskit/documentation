@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.QuantumVolume
 
 <span id="qiskit.circuit.library.QuantumVolume" />
 
-`qiskit.circuit.library.QuantumVolume(num_qubits, depth=None, seed=None, classical_permutation=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/quantum_volume.py "view source code")
+`qiskit.circuit.library.QuantumVolume(num_qubits, depth=None, seed=None, classical_permutation=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/quantum_volume.py "view source code")
 
 Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 

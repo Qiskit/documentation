@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.converters.DictToCircuitSum
 
 <span id="qiskit.opflow.converters.DictToCircuitSum" />
 
-`qiskit.opflow.converters.DictToCircuitSum(traverse=True, convert_dicts=True, convert_vectors=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/opflow/converters/dict_to_circuit_sum.py "view source code")
+`qiskit.opflow.converters.DictToCircuitSum(traverse=True, convert_dicts=True, convert_vectors=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/opflow/converters/dict_to_circuit_sum.py "view source code")
 
 Bases: [`ConverterBase`](qiskit.opflow.converters.ConverterBase "qiskit.opflow.converters.converter_base.ConverterBase")
 
