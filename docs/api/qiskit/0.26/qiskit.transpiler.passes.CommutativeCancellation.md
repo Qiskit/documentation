@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.CommutativeCancellation
 
 <span id="qiskit.transpiler.passes.CommutativeCancellation" />
 
-`CommutativeCancellation(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/transpiler/passes/optimization/commutative_cancellation.py "view source code")
+`CommutativeCancellation(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/transpiler/passes/optimization/commutative_cancellation.py "view source code")
 
 Cancel the redundant (self-adjoint) gates through commutation relations.
 

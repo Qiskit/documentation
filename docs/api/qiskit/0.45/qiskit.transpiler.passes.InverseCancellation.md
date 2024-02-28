@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.InverseCancellation
 
 <span id="qiskit.transpiler.passes.InverseCancellation" />
 
-`qiskit.transpiler.passes.InverseCancellation(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/optimization/inverse_cancellation.py "view source code")
+`qiskit.transpiler.passes.InverseCancellation(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/optimization/inverse_cancellation.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 

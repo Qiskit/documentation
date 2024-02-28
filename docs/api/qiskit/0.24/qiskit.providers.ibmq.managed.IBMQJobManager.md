@@ -12,7 +12,7 @@ python_api_name: qiskit.providers.ibmq.managed.IBMQJobManager
 
 <span id="qiskit.providers.ibmq.managed.IBMQJobManager" />
 
-`IBMQJobManager`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.12/qiskit/providers/ibmq/managed/ibmqjobmanager.py "view source code")
+`IBMQJobManager` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.12/qiskit/providers/ibmq/managed/ibmqjobmanager.py "view source code")
 
 Job Manager for IBM Quantum Experience.
 

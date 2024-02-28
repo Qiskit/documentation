@@ -12,7 +12,7 @@ python_api_name: qiskit.ignis.verification.InterleavedRBFitter
 
 <span id="qiskit.ignis.verification.InterleavedRBFitter" />
 
-`InterleavedRBFitter(original_result, interleaved_result, cliff_lengths, rb_pattern=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/randomized_benchmarking/fitters.py "view source code")
+`InterleavedRBFitter(original_result, interleaved_result, cliff_lengths, rb_pattern=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/randomized_benchmarking/fitters.py "view source code")
 
 Class for fitters for interleaved RB, derived from RBFitterBase class.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
 <span id="qiskit.pulse.ScheduleBlock" />
 
-`ScheduleBlock(name=None, metadata=None, alignment_context=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/schedule.py "view source code")
+`ScheduleBlock(name=None, metadata=None, alignment_context=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/schedule.py "view source code")
 
 A `ScheduleBlock` is a time-ordered sequence of instructions and transform macro to manage their relative timing. The relative position of the instructions is managed by the `context_alignment`. This allows `ScheduleBlock` to support instructions with a parametric duration and allows the lazy scheduling of instructions, i.e. allocating the instruction time just before execution.
 

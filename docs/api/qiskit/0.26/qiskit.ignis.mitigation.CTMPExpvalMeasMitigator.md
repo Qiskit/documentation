@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.mitigation.CTMPExpvalMeasMitigator
 
 <span id="qiskit.ignis.mitigation.CTMPExpvalMeasMitigator" />
 
-`CTMPExpvalMeasMitigator(generators, rates, num_qubits=None, seed=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/mitigation/expval/ctmp_mitigator.py "view source code")
+`CTMPExpvalMeasMitigator(generators, rates, num_qubits=None, seed=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/mitigation/expval/ctmp_mitigator.py "view source code")
 
 N-qubit CTMP measurement error mitigator.
 

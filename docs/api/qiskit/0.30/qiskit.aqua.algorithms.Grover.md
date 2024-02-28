@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.algorithms.Grover
 
 <span id="qiskit.aqua.algorithms.Grover" />
 
-`Grover(oracle, good_state=None, state_preparation=None, iterations=1, sample_from_iterations=False, post_processing=None, grover_operator=None, quantum_instance=None, init_state=None, incremental=False, num_iterations=None, lam=None, rotation_counts=None, mct_mode=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_amplifiers/grover.py "view source code")
+`Grover(oracle, good_state=None, state_preparation=None, iterations=1, sample_from_iterations=False, post_processing=None, grover_operator=None, quantum_instance=None, init_state=None, incremental=False, num_iterations=None, lam=None, rotation_counts=None, mct_mode=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_amplifiers/grover.py "view source code")
 
 Bases: `qiskit.aqua.algorithms.quantum_algorithm.QuantumAlgorithm`
 
@@ -100,7 +100,7 @@ Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://
 
 <span id="qiskit.aqua.algorithms.Grover.construct_circuit" />
 
-`Grover.construct_circuit(power=None, measurement=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_amplifiers/grover.py "view source code")
+`Grover.construct_circuit(power=None, measurement=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_amplifiers/grover.py "view source code")
 
 Construct the circuit for Grover’s algorithm with `power` Grover operators.
 
@@ -121,7 +121,7 @@ the QuantumCircuit object for the constructed circuit
 
 <span id="qiskit.aqua.algorithms.Grover.is_good_state" />
 
-`Grover.is_good_state(bitstr)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_amplifiers/grover.py "view source code")
+`Grover.is_good_state(bitstr)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_amplifiers/grover.py "view source code")
 
 Check whether a provided bitstring is a good state or not.
 
@@ -141,7 +141,7 @@ True if the measurement is a good state, False otherwise.
 
 <span id="qiskit.aqua.algorithms.Grover.optimal_num_iterations" />
 
-`static Grover.optimal_num_iterations(num_solutions, num_qubits)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_amplifiers/grover.py "view source code")
+`static Grover.optimal_num_iterations(num_solutions, num_qubits)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_amplifiers/grover.py "view source code")
 
 Return the optimal number of iterations, if the number of solutions is known.
 
@@ -162,7 +162,7 @@ The optimal number of iterations for Grover’s algorithm to succeed.
 
 <span id="qiskit.aqua.algorithms.Grover.post_processing" />
 
-`Grover.post_processing(measurement)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_amplifiers/grover.py "view source code")
+`Grover.post_processing(measurement)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_amplifiers/grover.py "view source code")
 
 Do the post-processing to the measurement result
 

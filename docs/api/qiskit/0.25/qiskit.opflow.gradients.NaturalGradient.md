@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.gradients.NaturalGradient
 
 <span id="qiskit.opflow.gradients.NaturalGradient" />
 
-`NaturalGradient(grad_method='lin_comb', qfi_method='lin_comb_full', regularization=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/gradients/natural_gradient.py "view source code")
+`NaturalGradient(grad_method='lin_comb', qfi_method='lin_comb_full', regularization=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/gradients/natural_gradient.py "view source code")
 
 Convert an operator expression to the first-order gradient.
 

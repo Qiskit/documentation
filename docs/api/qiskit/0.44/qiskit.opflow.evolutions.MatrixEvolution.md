@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.evolutions.MatrixEvolution
 
 <span id="qiskit.opflow.evolutions.MatrixEvolution" />
 
-`qiskit.opflow.evolutions.MatrixEvolution`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/opflow/evolutions/matrix_evolution.py "view source code")
+`qiskit.opflow.evolutions.MatrixEvolution` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/opflow/evolutions/matrix_evolution.py "view source code")
 
 Bases: [`EvolutionBase`](qiskit.opflow.evolutions.EvolutionBase "qiskit.opflow.evolutions.evolution_base.EvolutionBase")
 

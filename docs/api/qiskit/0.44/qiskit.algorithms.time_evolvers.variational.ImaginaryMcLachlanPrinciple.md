@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.time_evolvers.variational.ImaginaryMcLachlanP
 
 <span id="qiskit.algorithms.time_evolvers.variational.ImaginaryMcLachlanPrinciple" />
 
-`qiskit.algorithms.time_evolvers.variational.ImaginaryMcLachlanPrinciple(qgt=None, gradient=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/time_evolvers/variational/variational_principles/imaginary_mc_lachlan_principle.py "view source code")
+`qiskit.algorithms.time_evolvers.variational.ImaginaryMcLachlanPrinciple(qgt=None, gradient=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/time_evolvers/variational/variational_principles/imaginary_mc_lachlan_principle.py "view source code")
 
 Bases: [`ImaginaryVariationalPrinciple`](qiskit.algorithms.time_evolvers.variational.ImaginaryVariationalPrinciple "qiskit.algorithms.time_evolvers.variational.variational_principles.imaginary_variational_principle.ImaginaryVariationalPrinciple")
 

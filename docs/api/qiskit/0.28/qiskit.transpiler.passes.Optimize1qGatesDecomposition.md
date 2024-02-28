@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.Optimize1qGatesDecomposition
 
 <span id="qiskit.transpiler.passes.Optimize1qGatesDecomposition" />
 
-`Optimize1qGatesDecomposition(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/optimization/optimize_1q_decomposition.py "view source code")
+`Optimize1qGatesDecomposition(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/optimization/optimize_1q_decomposition.py "view source code")
 
 Optimize chains of single-qubit gates by combining them into a single gate.
 

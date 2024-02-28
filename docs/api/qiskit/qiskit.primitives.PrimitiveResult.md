@@ -10,7 +10,7 @@ python_api_name: qiskit.primitives.PrimitiveResult
 
 <span id="qiskit.primitives.PrimitiveResult" />
 
-`qiskit.primitives.PrimitiveResult(pub_results, metadata=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/primitives/containers/primitive_result.py "view source code")
+`qiskit.primitives.PrimitiveResult(pub_results, metadata=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/primitives/containers/primitive_result.py "view source code")
 
 Bases: [`Generic`](https://docs.python.org/3/library/typing.html#typing.Generic "(in Python v3.12)")\[`T`]
 

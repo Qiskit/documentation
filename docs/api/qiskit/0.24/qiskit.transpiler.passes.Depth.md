@@ -12,7 +12,7 @@ python_api_name: qiskit.transpiler.passes.Depth
 
 <span id="qiskit.transpiler.passes.Depth" />
 
-`Depth(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/transpiler/passes/analysis/depth.py "view source code")
+`Depth(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/transpiler/passes/analysis/depth.py "view source code")
 
 Calculate the depth of a DAG circuit.
 

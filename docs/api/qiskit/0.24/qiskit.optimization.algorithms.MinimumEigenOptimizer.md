@@ -12,7 +12,7 @@ python_api_name: qiskit.optimization.algorithms.MinimumEigenOptimizer
 
 <span id="qiskit.optimization.algorithms.MinimumEigenOptimizer" />
 
-`MinimumEigenOptimizer(min_eigen_solver, penalty=None, converters=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/algorithms/minimum_eigen_optimizer.py "view source code")
+`MinimumEigenOptimizer(min_eigen_solver, penalty=None, converters=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/algorithms/minimum_eigen_optimizer.py "view source code")
 
 A wrapper for minimum eigen solvers from Qiskit Aqua.
 

@@ -285,7 +285,7 @@ export function processMembersAndSetMeta(
       .map((child) => {
         const $child = $(child);
         const id = $dl.find("dt").attr("id") || "";
-        const github = prepareGitHubLink($, $child);
+        const github = ` ${prepareGitHubLink($, $child)}`;
 
         const apiType = getApiType($dl);
 

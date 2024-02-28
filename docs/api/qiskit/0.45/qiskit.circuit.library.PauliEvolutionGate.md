@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.PauliEvolutionGate
 
 <span id="qiskit.circuit.library.PauliEvolutionGate" />
 
-`qiskit.circuit.library.PauliEvolutionGate(operator, time=1.0, label=None, synthesis=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/pauli_evolution.py "view source code")
+`qiskit.circuit.library.PauliEvolutionGate(operator, time=1.0, label=None, synthesis=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/pauli_evolution.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 

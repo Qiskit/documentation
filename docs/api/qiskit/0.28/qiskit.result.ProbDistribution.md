@@ -10,7 +10,7 @@ python_api_name: qiskit.result.ProbDistribution
 
 <span id="qiskit.result.ProbDistribution" />
 
-`ProbDistribution(data, shots=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/result/distributions/probability.py "view source code")
+`ProbDistribution(data, shots=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/result/distributions/probability.py "view source code")
 
 A generic dict-like class for probability distributions.
 

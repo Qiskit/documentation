@@ -12,7 +12,7 @@ python_api_name: qiskit.chemistry.algorithms.pes_samplers.PCAExtrapolator
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.PCAExtrapolator" />
 
-`PCAExtrapolator(extrapolator=None, kernel=None, window=2)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/algorithms/pes_samplers/extrapolator.py "view source code")
+`PCAExtrapolator(extrapolator=None, kernel=None, window=2)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/algorithms/pes_samplers/extrapolator.py "view source code")
 
 A wrapper extrapolator which reduces the points’ dimensionality with PCA, performs extrapolation in the transformed pca space, and inverse transforms the results before returning. A user specifies the kernel within how the PCA transformation should be done.
 

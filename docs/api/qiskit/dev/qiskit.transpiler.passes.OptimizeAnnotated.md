@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.OptimizeAnnotated
 
 <span id="qiskit.transpiler.passes.OptimizeAnnotated" />
 
-`qiskit.transpiler.passes.OptimizeAnnotated(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/optimize_annotated.py "view source code")
+`qiskit.transpiler.passes.OptimizeAnnotated(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/optimize_annotated.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.state_fns.SparseVectorStateFn
 
 <span id="qiskit.opflow.state_fns.SparseVectorStateFn" />
 
-`qiskit.opflow.state_fns.SparseVectorStateFn(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/state_fns/sparse_vector_state_fn.py "view source code")
+`qiskit.opflow.state_fns.SparseVectorStateFn(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/state_fns/sparse_vector_state_fn.py "view source code")
 
 Bases: [`StateFn`](qiskit.opflow.state_fns.StateFn "qiskit.opflow.state_fns.state_fn.StateFn")
 

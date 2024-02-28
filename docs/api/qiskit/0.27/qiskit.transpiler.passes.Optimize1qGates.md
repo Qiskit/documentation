@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.Optimize1qGates
 
 <span id="qiskit.transpiler.passes.Optimize1qGates" />
 
-`Optimize1qGates(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/transpiler/passes/optimization/optimize_1q_gates.py "view source code")
+`Optimize1qGates(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/transpiler/passes/optimization/optimize_1q_gates.py "view source code")
 
 Optimize chains of single-qubit u1, u2, u3 gates by combining them into a single gate.
 

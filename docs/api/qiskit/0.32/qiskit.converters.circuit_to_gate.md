@@ -10,7 +10,7 @@ python_api_name: qiskit.converters.circuit_to_gate
 
 <span id="qiskit.converters.circuit_to_gate" />
 
-`circuit_to_gate(circuit, parameter_map=None, equivalence_library=None, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/converters/circuit_to_gate.py "view source code")
+`circuit_to_gate(circuit, parameter_map=None, equivalence_library=None, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/converters/circuit_to_gate.py "view source code")
 
 Build a `Gate` object from a `QuantumCircuit`.
 

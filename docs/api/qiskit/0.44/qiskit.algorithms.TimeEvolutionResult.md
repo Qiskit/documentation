@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.TimeEvolutionResult
 
 <span id="qiskit.algorithms.TimeEvolutionResult" />
 
-`qiskit.algorithms.TimeEvolutionResult(evolved_state, aux_ops_evaluated=None, observables=None, times=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/time_evolvers/time_evolution_result.py "view source code")
+`qiskit.algorithms.TimeEvolutionResult(evolved_state, aux_ops_evaluated=None, observables=None, times=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/time_evolvers/time_evolution_result.py "view source code")
 
 Bases: `AlgorithmResult`
 

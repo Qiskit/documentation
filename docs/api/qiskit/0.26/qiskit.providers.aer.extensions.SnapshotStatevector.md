@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.extensions.SnapshotStatevector
 
 <span id="qiskit.providers.aer.extensions.SnapshotStatevector" />
 
-`SnapshotStatevector(label, num_qubits=0)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/extensions/snapshot_statevector.py "view source code")
+`SnapshotStatevector(label, num_qubits=0)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/extensions/snapshot_statevector.py "view source code")
 
 Snapshot instruction for statevector snapshot type
 

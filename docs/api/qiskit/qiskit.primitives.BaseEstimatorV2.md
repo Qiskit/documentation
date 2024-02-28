@@ -10,7 +10,7 @@ python_api_name: qiskit.primitives.BaseEstimatorV2
 
 <span id="qiskit.primitives.BaseEstimatorV2" />
 
-`qiskit.primitives.BaseEstimatorV2`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/primitives/base/base_estimator.py "view source code")
+`qiskit.primitives.BaseEstimatorV2` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/primitives/base/base_estimator.py "view source code")
 
 Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.runtime.ProgramBackend
 
 <span id="qiskit.providers.ibmq.runtime.ProgramBackend" />
 
-`ProgramBackend(configuration, provider=None, **fields)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.15/qiskit/providers/ibmq/runtime/program/program_backend.py "view source code")
+`ProgramBackend(configuration, provider=None, **fields)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.15/qiskit/providers/ibmq/runtime/program/program_backend.py "view source code")
 
 Base class for a program backend.
 

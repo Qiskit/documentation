@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeSherbrooke
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke" />
 
-`FakeSherbrooke`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/sherbrooke/fake_sherbrooke.py "view source code")
+`FakeSherbrooke` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/sherbrooke/fake_sherbrooke.py "view source code")
 
 A fake 127 qubit backend.
 

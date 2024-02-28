@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.verification.BConfig
 
 <span id="qiskit.ignis.verification.BConfig" />
 
-`BConfig(backend, indicator=True)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/entanglement/parallelize.py "view source code")
+`BConfig(backend, indicator=True)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/entanglement/parallelize.py "view source code")
 
 This class is used to create a GHZ circuit with parallellized CNOT gates to increase fidelity
 

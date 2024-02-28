@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.CRS
 
 <span id="qiskit.algorithms.optimizers.CRS" />
 
-`qiskit.algorithms.optimizers.CRS(max_evals=1000)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/optimizers/nlopts/crs.py "view source code")
+`qiskit.algorithms.optimizers.CRS(max_evals=1000)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/optimizers/nlopts/crs.py "view source code")
 
 Bases: `NLoptOptimizer`
 

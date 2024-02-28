@@ -10,7 +10,7 @@ python_api_name: qiskit.synthesis.LieTrotter
 
 <span id="qiskit.synthesis.LieTrotter" />
 
-`qiskit.synthesis.LieTrotter(reps=1, insert_barriers=False, cx_structure='chain', atomic_evolution=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/synthesis/evolution/lie_trotter.py "view source code")
+`qiskit.synthesis.LieTrotter(reps=1, insert_barriers=False, cx_structure='chain', atomic_evolution=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/synthesis/evolution/lie_trotter.py "view source code")
 
 Bases: [`ProductFormula`](qiskit.synthesis.ProductFormula "qiskit.synthesis.evolution.product_formula.ProductFormula")
 

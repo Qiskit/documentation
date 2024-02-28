@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.circuits.WeightedSumOperator
 
 <span id="qiskit.aqua.circuits.WeightedSumOperator" />
 
-`WeightedSumOperator(num_state_qubits, weights, i_state=None, i_sum=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/circuits/weighted_sum_operator.py "view source code")
+`WeightedSumOperator(num_state_qubits, weights, i_state=None, i_sum=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/circuits/weighted_sum_operator.py "view source code")
 
 Adds q^T \* w to separate register for non-negative integer weights w.
 

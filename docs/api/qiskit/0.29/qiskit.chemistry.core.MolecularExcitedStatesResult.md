@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.core.MolecularExcitedStatesResult
 
 <span id="qiskit.chemistry.core.MolecularExcitedStatesResult" />
 
-`MolecularExcitedStatesResult(a_dict=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/core/chemistry_operator.py "view source code")
+`MolecularExcitedStatesResult(a_dict=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/core/chemistry_operator.py "view source code")
 
 Bases: `qiskit.chemistry.core.chemistry_operator.MolecularChemistryResult`
 

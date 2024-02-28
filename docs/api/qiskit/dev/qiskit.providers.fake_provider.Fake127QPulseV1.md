@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.Fake127QPulseV1
 
 <span id="qiskit.providers.fake_provider.Fake127QPulseV1" />
 
-`qiskit.providers.fake_provider.Fake127QPulseV1`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/providers/fake_provider/backends_v1/fake_127q_pulse/fake_127q_pulse_v1.py "view source code")
+`qiskit.providers.fake_provider.Fake127QPulseV1` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/providers/fake_provider/backends_v1/fake_127q_pulse/fake_127q_pulse_v1.py "view source code")
 
 Bases: [`FakePulseBackend`](providers_fake_provider#qiskit.providers.fake_provider.FakePulseBackend "qiskit.providers.fake_provider.fake_pulse_backend.FakePulseBackend")
 

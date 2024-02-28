@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.library.save_stabilizer
 
 <span id="qiskit.providers.aer.library.save_stabilizer" />
 
-`save_stabilizer(self, label='stabilizer', pershot=False, conditional=False)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/library/save_instructions/save_stabilizer.py "view source code")
+`save_stabilizer(self, label='stabilizer', pershot=False, conditional=False)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/library/save_instructions/save_stabilizer.py "view source code")
 
 Save the current stabilizer simulator quantum state as a StabilizerState.
 

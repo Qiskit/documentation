@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.RunnerResult
 
 <span id="qiskit.providers.ibmq.RunnerResult" />
 
-`RunnerResult(backend_name, backend_version, qobj_id, job_id, success, results, date=None, status=None, header=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.14/qiskit/providers/ibmq/runner_result.py "view source code")
+`RunnerResult(backend_name, backend_version, qobj_id, job_id, success, results, date=None, status=None, header=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.14/qiskit/providers/ibmq/runner_result.py "view source code")
 
 Result class for Qiskit Runtime program circuit-runner.
 

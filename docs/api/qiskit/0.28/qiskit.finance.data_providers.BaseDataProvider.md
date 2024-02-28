@@ -10,7 +10,7 @@ python_api_name: qiskit.finance.data_providers.BaseDataProvider
 
 <span id="qiskit.finance.data_providers.BaseDataProvider" />
 
-`BaseDataProvider`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/finance/data_providers/_base_data_provider.py "view source code")
+`BaseDataProvider` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/finance/data_providers/_base_data_provider.py "view source code")
 
 The abstract base class for data\_provider modules within Qiskit’s finance module.
 

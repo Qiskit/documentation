@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.state_fns.CVaRMeasurement
 
 <span id="qiskit.opflow.state_fns.CVaRMeasurement" />
 
-`CVaRMeasurement(primitive=None, alpha=1.0, coeff=1.0)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/state_fns/cvar_measurement.py "view source code")
+`CVaRMeasurement(primitive=None, alpha=1.0, coeff=1.0)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/state_fns/cvar_measurement.py "view source code")
 
 **A specialized measurement class to compute CVaR expectation values.**
 

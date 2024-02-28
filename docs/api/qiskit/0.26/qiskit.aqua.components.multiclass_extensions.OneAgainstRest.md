@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.multiclass_extensions.OneAgainstRest
 
 <span id="qiskit.aqua.components.multiclass_extensions.OneAgainstRest" />
 
-`OneAgainstRest`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/multiclass_extensions/one_against_rest.py "view source code")
+`OneAgainstRest` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/multiclass_extensions/one_against_rest.py "view source code")
 
 The One Against Rest multiclass extension.
 

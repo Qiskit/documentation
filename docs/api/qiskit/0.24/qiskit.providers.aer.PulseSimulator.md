@@ -12,7 +12,7 @@ python_api_name: qiskit.providers.aer.PulseSimulator
 
 <span id="qiskit.providers.aer.PulseSimulator" />
 
-`PulseSimulator(configuration=None, properties=None, defaults=None, provider=None, **backend_options)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.7/qiskit/providers/aer/backends/pulse_simulator.py "view source code")
+`PulseSimulator(configuration=None, properties=None, defaults=None, provider=None, **backend_options)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.7/qiskit/providers/aer/backends/pulse_simulator.py "view source code")
 
 Pulse schedule simulator backend.
 

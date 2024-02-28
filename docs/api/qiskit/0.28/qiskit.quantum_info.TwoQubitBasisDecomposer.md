@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.TwoQubitBasisDecomposer
 
 <span id="qiskit.quantum_info.TwoQubitBasisDecomposer" />
 
-`TwoQubitBasisDecomposer(gate, basis_fidelity=1.0, euler_basis=None, pulse_optimize=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/synthesis/two_qubit_decompose.py "view source code")
+`TwoQubitBasisDecomposer(gate, basis_fidelity=1.0, euler_basis=None, pulse_optimize=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/synthesis/two_qubit_decompose.py "view source code")
 
 A class for decomposing 2-qubit unitaries into minimal number of uses of a 2-qubit basis gate.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.components.bosonic_bases.BosonicBasis
 
 <span id="qiskit.chemistry.components.bosonic_bases.BosonicBasis" />
 
-`BosonicBasis`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/components/bosonic_bases/bosonic_basis.py "view source code")
+`BosonicBasis` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/components/bosonic_bases/bosonic_basis.py "view source code")
 
 Basis to express a second quantization Bosonic Hamiltonian.
 

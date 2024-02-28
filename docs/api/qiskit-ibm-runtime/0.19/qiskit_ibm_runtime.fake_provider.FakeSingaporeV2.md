@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeSingaporeV2
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeSingaporeV2" />
 
-`FakeSingaporeV2`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.19/qiskit_ibm_runtime/fake_provider/backends/singapore/fake_singapore.py "view source code")
+`FakeSingaporeV2` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.19/qiskit_ibm_runtime/fake_provider/backends/singapore/fake_singapore.py "view source code")
 
 A fake Singapore backend.
 

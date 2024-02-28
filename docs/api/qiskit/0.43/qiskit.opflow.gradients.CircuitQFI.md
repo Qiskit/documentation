@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.gradients.CircuitQFI
 
 <span id="qiskit.opflow.gradients.CircuitQFI" />
 
-`CircuitQFI`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/gradients/circuit_qfis/circuit_qfi.py "view source code")
+`CircuitQFI` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/gradients/circuit_qfis/circuit_qfi.py "view source code")
 
 Bases: [`ConverterBase`](qiskit.opflow.converters.ConverterBase "qiskit.opflow.converters.converter_base.ConverterBase")
 
@@ -34,7 +34,7 @@ CircuitQFI - uses quantum techniques to get the QFI of circuits DerivativeBase -
 
 <span id="qiskit.opflow.gradients.CircuitQFI.convert" />
 
-`abstract CircuitQFI.convert(operator, params)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/gradients/circuit_qfis/circuit_qfi.py "view source code")
+`abstract CircuitQFI.convert(operator, params)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/gradients/circuit_qfis/circuit_qfi.py "view source code")
 
 **Parameters**
 

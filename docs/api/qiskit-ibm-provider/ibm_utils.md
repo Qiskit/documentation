@@ -44,7 +44,7 @@ Message broker for the Publisher / Subscriber mechanism
 
 <span id="qiskit_ibm_provider.utils.pubsub.Publisher" />
 
-`Publisher`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/utils/pubsub.py "view source code")
+`Publisher` [GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/utils/pubsub.py "view source code")
 
 Represents a “publisher”.
 
@@ -68,7 +68,7 @@ Triggers an event, and associates some data to it, so if there are any subscribe
 
 <span id="qiskit_ibm_provider.utils.pubsub.Subscriber" />
 
-`Subscriber`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/utils/pubsub.py "view source code")
+`Subscriber` [GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/utils/pubsub.py "view source code")
 
 Represents a “subscriber”.
 

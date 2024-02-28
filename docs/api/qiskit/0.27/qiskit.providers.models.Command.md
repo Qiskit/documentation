@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.models.Command
 
 <span id="qiskit.providers.models.Command" />
 
-`Command(name, qubits=None, sequence=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/providers/models/pulsedefaults.py "view source code")
+`Command(name, qubits=None, sequence=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/providers/models/pulsedefaults.py "view source code")
 
 Class representing a Command.
 

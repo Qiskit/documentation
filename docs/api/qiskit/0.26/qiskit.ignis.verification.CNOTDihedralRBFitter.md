@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.verification.CNOTDihedralRBFitter
 
 <span id="qiskit.ignis.verification.CNOTDihedralRBFitter" />
 
-`CNOTDihedralRBFitter(cnotdihedral_Z_result, cnotdihedral_X_result, elmnts_lengths, rb_pattern=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/randomized_benchmarking/fitters.py "view source code")
+`CNOTDihedralRBFitter(cnotdihedral_Z_result, cnotdihedral_X_result, elmnts_lengths, rb_pattern=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/randomized_benchmarking/fitters.py "view source code")
 
 Class for fitters for non-Clifford CNOT-Dihedral RB.
 

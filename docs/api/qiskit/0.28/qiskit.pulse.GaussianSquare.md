@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.GaussianSquare
 
 <span id="qiskit.pulse.GaussianSquare" />
 
-`GaussianSquare(duration, amp, sigma, width=None, risefall_sigma_ratio=None, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/library/parametric_pulses.py "view source code")
+`GaussianSquare(duration, amp, sigma, width=None, risefall_sigma_ratio=None, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/library/parametric_pulses.py "view source code")
 
 **A square pulse with a Gaussian shaped risefall on both sides. Either risefall\_sigma\_ratio**
 

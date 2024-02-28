@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.components.optimizers.SPSA
 
 <span id="qiskit.aqua.components.optimizers.SPSA" />
 
-`SPSA(maxiter=1000, save_steps=1, last_avg=1, c0=0.6283185307179586, c1=0.1, c2=0.602, c3=0.101, c4=0, skip_calibration=False, max_trials=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/optimizers/spsa.py "view source code")
+`SPSA(maxiter=1000, save_steps=1, last_avg=1, c0=0.6283185307179586, c1=0.1, c2=0.602, c3=0.101, c4=0, skip_calibration=False, max_trials=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/optimizers/spsa.py "view source code")
 
 Simultaneous Perturbation Stochastic Approximation (SPSA) optimizer.
 

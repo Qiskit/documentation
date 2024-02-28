@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeMontrealV2
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeMontrealV2" />
 
-`FakeMontrealV2`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/montreal/fake_montreal.py "view source code")
+`FakeMontrealV2` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/montreal/fake_montreal.py "view source code")
 
 A fake 27 qubit backend.
 

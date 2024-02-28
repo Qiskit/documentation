@@ -935,7 +935,7 @@ See [https://arxiv.org/abs/2102.01682](https://arxiv.org/abs/2102.01682) for mor
 
 <span id="qiskit.transpiler.TranspilerError" />
 
-`qiskit.transpiler.TranspilerError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/exceptions.py "view source code")
+`qiskit.transpiler.TranspilerError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/exceptions.py "view source code")
 
 Exceptions raised during transpilation.
 
@@ -945,7 +945,7 @@ Set the error message.
 
 <span id="qiskit.transpiler.TranspilerAccessError" />
 
-`qiskit.transpiler.TranspilerAccessError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/exceptions.py "view source code")
+`qiskit.transpiler.TranspilerAccessError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/exceptions.py "view source code")
 
 DEPRECATED: Exception of access error in the transpiler passes.
 
@@ -955,7 +955,7 @@ Set the error message.
 
 <span id="qiskit.transpiler.CouplingError" />
 
-`qiskit.transpiler.CouplingError(*msg)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/exceptions.py "view source code")
+`qiskit.transpiler.CouplingError(*msg)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/exceptions.py "view source code")
 
 Base class for errors raised by the coupling graph object.
 
@@ -965,7 +965,7 @@ Set the error message.
 
 <span id="qiskit.transpiler.LayoutError" />
 
-`qiskit.transpiler.LayoutError(*msg)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/exceptions.py "view source code")
+`qiskit.transpiler.LayoutError(*msg)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/exceptions.py "view source code")
 
 Errors raised by the layout object.
 
@@ -975,7 +975,7 @@ Set the error message.
 
 <span id="qiskit.transpiler.CircuitTooWideForTarget" />
 
-`qiskit.transpiler.CircuitTooWideForTarget(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/exceptions.py "view source code")
+`qiskit.transpiler.CircuitTooWideForTarget(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/exceptions.py "view source code")
 
 Error raised if the circuit is too wide for the target.
 
@@ -985,7 +985,7 @@ Set the error message.
 
 <span id="qiskit.transpiler.InvalidLayoutError" />
 
-`qiskit.transpiler.InvalidLayoutError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/exceptions.py "view source code")
+`qiskit.transpiler.InvalidLayoutError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/exceptions.py "view source code")
 
 Error raised when a user provided layout is invalid.
 

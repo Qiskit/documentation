@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.NoiseAdaptiveLayout
 
 <span id="qiskit.transpiler.passes.NoiseAdaptiveLayout" />
 
-`NoiseAdaptiveLayout(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/transpiler/passes/layout/noise_adaptive_layout.py "view source code")
+`NoiseAdaptiveLayout(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/transpiler/passes/layout/noise_adaptive_layout.py "view source code")
 
 Choose a noise-adaptive Layout based on current calibration data for the backend.
 

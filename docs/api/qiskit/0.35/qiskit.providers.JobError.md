@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.JobError
 
 <span id="qiskit.providers.JobError" />
 
-`JobError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/exceptions.py "view source code")
+`JobError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/exceptions.py "view source code")
 
 Base class for errors raised by Jobs.
 

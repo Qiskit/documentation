@@ -10,7 +10,7 @@ python_api_name: qiskit.optimization.algorithms.ADMMOptimizer
 
 <span id="qiskit.optimization.algorithms.ADMMOptimizer" />
 
-`ADMMOptimizer(qubo_optimizer=None, continuous_optimizer=None, params=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/admm_optimizer.py "view source code")
+`ADMMOptimizer(qubo_optimizer=None, continuous_optimizer=None, params=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/admm_optimizer.py "view source code")
 
 An implementation of the ADMM-based heuristic.
 

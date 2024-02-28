@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.extensions.SnapshotExpectationValue
 
 <span id="qiskit.providers.aer.extensions.SnapshotExpectationValue" />
 
-`SnapshotExpectationValue(label, op, single_shot=False, variance=False)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/extensions/snapshot_expectation_value.py "view source code")
+`SnapshotExpectationValue(label, op, single_shot=False, variance=False)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/extensions/snapshot_expectation_value.py "view source code")
 
 Snapshot instruction for supported methods of Qasm simulator.
 

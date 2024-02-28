@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.SparsePauliOp
 
 <span id="qiskit.quantum_info.SparsePauliOp" />
 
-`qiskit.quantum_info.SparsePauliOp(data, coeffs=None, *, ignore_pauli_phase=False, copy=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py "view source code")
+`qiskit.quantum_info.SparsePauliOp(data, coeffs=None, *, ignore_pauli_phase=False, copy=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py "view source code")
 
 Bases: `LinearOp`
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.dagcircuit.DAGDependency
 
 <span id="qiskit.dagcircuit.DAGDependency" />
 
-`DAGDependency`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/dagcircuit/dagdependency.py "view source code")
+`DAGDependency` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/dagcircuit/dagdependency.py "view source code")
 
 Object to represent a quantum circuit as a directed acyclic graph via operation dependencies (i.e. lack of commutation).
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.algorithms.QSVM
 
 <span id="qiskit.aqua.algorithms.QSVM" />
 
-`QSVM(feature_map, training_dataset=None, test_dataset=None, datapoints=None, multiclass_extension=None, lambda2=0.001, quantum_instance=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/classifiers/qsvm/qsvm.py "view source code")
+`QSVM(feature_map, training_dataset=None, test_dataset=None, datapoints=None, multiclass_extension=None, lambda2=0.001, quantum_instance=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/classifiers/qsvm/qsvm.py "view source code")
 
 Quantum SVM algorithm.
 

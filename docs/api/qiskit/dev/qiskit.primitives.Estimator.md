@@ -10,7 +10,7 @@ python_api_name: qiskit.primitives.Estimator
 
 <span id="qiskit.primitives.Estimator" />
 
-`qiskit.primitives.Estimator(*, options=None)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/primitives/estimator.py "view source code")
+`qiskit.primitives.Estimator(*, options=None)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/primitives/estimator.py "view source code")
 
 Bases: `BaseEstimatorV1`\[`PrimitiveJob`\[[`EstimatorResult`](qiskit.primitives.EstimatorResult "qiskit.primitives.base.estimator_result.EstimatorResult")]]
 

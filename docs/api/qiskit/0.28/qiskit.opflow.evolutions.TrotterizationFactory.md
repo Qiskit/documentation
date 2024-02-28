@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.evolutions.TrotterizationFactory
 
 <span id="qiskit.opflow.evolutions.TrotterizationFactory" />
 
-`TrotterizationFactory`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/evolutions/trotterizations/trotterization_factory.py "view source code")
+`TrotterizationFactory` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/evolutions/trotterizations/trotterization_factory.py "view source code")
 
 A factory for conveniently creating TrotterizationBase instances.
 

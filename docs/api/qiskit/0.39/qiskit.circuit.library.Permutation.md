@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.Permutation
 
 <span id="qiskit.circuit.library.Permutation" />
 
-`Permutation(num_qubits, pattern=None, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/generalized_gates/permutation.py "view source code")
+`Permutation(num_qubits, pattern=None, seed=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/generalized_gates/permutation.py "view source code")
 
 Bases: [`qiskit.circuit.quantumcircuit.QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 

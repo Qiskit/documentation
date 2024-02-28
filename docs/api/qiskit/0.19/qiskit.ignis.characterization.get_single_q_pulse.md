@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.characterization.get_single_q_pulse
 
 <span id="qiskit.ignis.characterization.get_single_q_pulse" />
 
-`get_single_q_pulse(inst_map, qubits)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/characterization/calibrations/ibmq_utils.py "view source code")
+`get_single_q_pulse(inst_map, qubits)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/characterization/calibrations/ibmq_utils.py "view source code")
 
 Get the DRAG parameters for the single qubit pulse
 

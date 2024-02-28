@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.verification.QOTP
 
 <span id="qiskit.ignis.verification.QOTP" />
 
-`QOTP(circ, num, two_qubit_gate='cx', coupling_map=None, seed=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/accreditation/qotp.py "view source code")
+`QOTP(circ, num, two_qubit_gate='cx', coupling_map=None, seed=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/accreditation/qotp.py "view source code")
 
 Performs a QOTP (or random compilation) on a generic circuit.
 

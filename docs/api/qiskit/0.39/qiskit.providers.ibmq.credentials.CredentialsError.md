@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.credentials.CredentialsError
 
 <span id="qiskit.providers.ibmq.credentials.CredentialsError" />
 
-`CredentialsError(*message)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/credentials/exceptions.py "view source code")
+`CredentialsError(*message)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/credentials/exceptions.py "view source code")
 
 Base class for errors raised during credential management.
 

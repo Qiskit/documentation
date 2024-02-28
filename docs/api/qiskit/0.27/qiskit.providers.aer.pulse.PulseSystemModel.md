@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.pulse.PulseSystemModel
 
 <span id="qiskit.providers.aer.pulse.PulseSystemModel" />
 
-`PulseSystemModel(hamiltonian=None, u_channel_lo=None, control_channel_labels=None, subsystem_list=None, dt=None)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/pulse/system_models/pulse_system_model.py "view source code")
+`PulseSystemModel(hamiltonian=None, u_channel_lo=None, control_channel_labels=None, subsystem_list=None, dt=None)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/pulse/system_models/pulse_system_model.py "view source code")
 
 Physical model object for pulse simulator.
 

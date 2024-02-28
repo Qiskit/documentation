@@ -10,7 +10,7 @@ python_api_name: qiskit_aer.noise.coherent_unitary_error
 
 <span id="qiskit_aer.noise.coherent_unitary_error" />
 
-`coherent_unitary_error(unitary)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/noise/errors/standard_errors.py "view source code")
+`coherent_unitary_error(unitary)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/noise/errors/standard_errors.py "view source code")
 
 Return a coherent unitary quantum error channel.
 

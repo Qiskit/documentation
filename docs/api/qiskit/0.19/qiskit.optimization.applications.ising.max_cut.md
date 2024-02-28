@@ -24,7 +24,7 @@ Convert max-cut instances into Pauli list Deal with Gset format. See [https://we
 
 <span id="qiskit.optimization.applications.ising.max_cut.get_graph_solution" />
 
-`get_graph_solution(x)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/applications/ising/max_cut.py "view source code")
+`get_graph_solution(x)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/applications/ising/max_cut.py "view source code")
 
 Get graph solution from binary string.
 
@@ -44,7 +44,7 @@ numpy.ndarray
 
 <span id="qiskit.optimization.applications.ising.max_cut.get_operator" />
 
-`get_operator(weight_matrix)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/applications/ising/max_cut.py "view source code")
+`get_operator(weight_matrix)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/applications/ising/max_cut.py "view source code")
 
 Generate Hamiltonian for the max-cut problem of a graph.
 
@@ -64,7 +64,7 @@ operator for the Hamiltonian float: a constant shift for the obj function.
 
 <span id="qiskit.optimization.applications.ising.max_cut.max_cut_value" />
 
-`max_cut_value(x, w)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/applications/ising/max_cut.py "view source code")
+`max_cut_value(x, w)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/applications/ising/max_cut.py "view source code")
 
 Compute the value of a cut.
 

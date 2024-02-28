@@ -12,7 +12,7 @@ python_api_name: qiskit.visualization.plot_bloch_vector
 
 <span id="qiskit.visualization.plot_bloch_vector" />
 
-`qiskit.visualization.plot_bloch_vector(bloch, title='', ax=None, figsize=None, coord_type='cartesian', font_size=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/visualization/state_visualization.py "view source code")
+`qiskit.visualization.plot_bloch_vector(bloch, title='', ax=None, figsize=None, coord_type='cartesian', font_size=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/visualization/state_visualization.py "view source code")
 
 Plot the Bloch sphere.
 

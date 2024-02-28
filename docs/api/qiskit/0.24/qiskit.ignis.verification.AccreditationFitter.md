@@ -12,7 +12,7 @@ python_api_name: qiskit.ignis.verification.AccreditationFitter
 
 <span id="qiskit.ignis.verification.AccreditationFitter" />
 
-`AccreditationFitter`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/accreditation/fitters.py "view source code")
+`AccreditationFitter` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/accreditation/fitters.py "view source code")
 
 Class for fitters for accreditation
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.ZGate
 
 <span id="qiskit.circuit.library.ZGate" />
 
-`qiskit.circuit.library.ZGate(label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/standard_gates/z.py "view source code")
+`qiskit.circuit.library.ZGate(label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/standard_gates/z.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.NormalizeRXAngle
 
 <span id="qiskit.transpiler.passes.NormalizeRXAngle" />
 
-`qiskit.transpiler.passes.NormalizeRXAngle(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/optimization/normalize_rx_angle.py "view source code")
+`qiskit.transpiler.passes.NormalizeRXAngle(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/optimization/normalize_rx_angle.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 

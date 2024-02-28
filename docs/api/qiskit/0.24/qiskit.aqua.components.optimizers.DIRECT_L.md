@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.components.optimizers.DIRECT_L
 
 <span id="qiskit.aqua.components.optimizers.DIRECT_L" />
 
-`DIRECT_L(max_evals=1000)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/optimizers/nlopts/direct_l.py "view source code")
+`DIRECT_L(max_evals=1000)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/optimizers/nlopts/direct_l.py "view source code")
 
 DIviding RECTangles Locally-biased optimizer.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeRome
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeRome" />
 
-`FakeRome`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/rome/fake_rome.py "view source code")
+`FakeRome` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/rome/fake_rome.py "view source code")
 
 A fake 5 qubit backend.
 

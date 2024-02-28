@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.ExactReciprocal
 
 <span id="qiskit.circuit.library.ExactReciprocal" />
 
-`qiskit.circuit.library.ExactReciprocal(num_state_qubits, scaling, neg_vals=False, name='1/x')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/arithmetic/exact_reciprocal.py "view source code")
+`qiskit.circuit.library.ExactReciprocal(num_state_qubits, scaling, neg_vals=False, name='1/x')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/arithmetic/exact_reciprocal.py "view source code")
 
 Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 

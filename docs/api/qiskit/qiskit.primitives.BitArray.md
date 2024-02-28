@@ -10,7 +10,7 @@ python_api_name: qiskit.primitives.BitArray
 
 <span id="qiskit.primitives.BitArray" />
 
-`qiskit.primitives.BitArray(array, num_bits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/primitives/containers/bit_array.py "view source code")
+`qiskit.primitives.BitArray(array, num_bits)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/primitives/containers/bit_array.py "view source code")
 
 Bases: `ShapedMixin`
 

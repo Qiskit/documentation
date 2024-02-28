@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.neural_networks.PyTorchDiscriminator
 
 <span id="qiskit.aqua.components.neural_networks.PyTorchDiscriminator" />
 
-`PyTorchDiscriminator(n_features=1, n_out=1)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/neural_networks/pytorch_discriminator.py "view source code")
+`PyTorchDiscriminator(n_features=1, n_out=1)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/neural_networks/pytorch_discriminator.py "view source code")
 
 Discriminator based on PyTorch
 

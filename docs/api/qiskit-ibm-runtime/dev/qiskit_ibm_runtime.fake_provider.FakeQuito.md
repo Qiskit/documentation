@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeQuito
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeQuito" />
 
-`FakeQuito`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/backends/quito/fake_quito.py "view source code")
+`FakeQuito` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/backends/quito/fake_quito.py "view source code")
 
 A fake 5 qubit backend.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.expectations.AerPauliExpectation
 
 <span id="qiskit.opflow.expectations.AerPauliExpectation" />
 
-`AerPauliExpectation`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/expectations/aer_pauli_expectation.py "view source code")
+`AerPauliExpectation` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/expectations/aer_pauli_expectation.py "view source code")
 
 An Expectation converter for using Aer’s operator snapshot to take expectations of quantum state circuits over Pauli observables.
 

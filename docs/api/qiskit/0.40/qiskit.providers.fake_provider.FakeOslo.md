@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeOslo
 
 <span id="qiskit.providers.fake_provider.FakeOslo" />
 
-`FakeOslo`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/fake_provider/backends/oslo/fake_oslo.py "view source code")
+`FakeOslo` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/fake_provider/backends/oslo/fake_oslo.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_backend.FakeBackendV2`
 

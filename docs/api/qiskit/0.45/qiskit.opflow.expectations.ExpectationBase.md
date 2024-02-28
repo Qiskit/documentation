@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.expectations.ExpectationBase
 
 <span id="qiskit.opflow.expectations.ExpectationBase" />
 
-`qiskit.opflow.expectations.ExpectationBase`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/expectations/expectation_base.py "view source code")
+`qiskit.opflow.expectations.ExpectationBase` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/expectations/expectation_base.py "view source code")
 
 Bases: [`ConverterBase`](qiskit.opflow.converters.ConverterBase "qiskit.opflow.converters.converter_base.ConverterBase")
 

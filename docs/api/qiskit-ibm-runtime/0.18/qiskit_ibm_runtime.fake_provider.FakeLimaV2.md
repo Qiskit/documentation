@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeLimaV2
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeLimaV2" />
 
-`FakeLimaV2`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.18/qiskit_ibm_runtime/fake_provider/backends/lima/fake_lima.py "view source code")
+`FakeLimaV2` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.18/qiskit_ibm_runtime/fake_provider/backends/lima/fake_lima.py "view source code")
 
 A fake 5 qubit backend.
 

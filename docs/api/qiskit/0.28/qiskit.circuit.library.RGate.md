@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.RGate
 
 <span id="qiskit.circuit.library.RGate" />
 
-`RGate(theta, phi)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/r.py "view source code")
+`RGate(theta, phi)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/r.py "view source code")
 
 Rotation θ around the cos(φ)x + sin(φ)y axis.
 

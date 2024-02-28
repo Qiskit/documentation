@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.PauliTable
 
 <span id="qiskit.quantum_info.PauliTable" />
 
-`PauliTable(data)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/quantum_info/operators/symplectic/pauli_table.py "view source code")
+`PauliTable(data)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/quantum_info/operators/symplectic/pauli_table.py "view source code")
 
 Symplectic representation of a list Pauli matrices.
 

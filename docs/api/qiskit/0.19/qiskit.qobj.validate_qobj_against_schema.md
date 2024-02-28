@@ -10,7 +10,7 @@ python_api_name: qiskit.qobj.validate_qobj_against_schema
 
 <span id="qiskit.qobj.validate_qobj_against_schema" />
 
-`validate_qobj_against_schema(qobj)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/qobj/utils.py "view source code")
+`validate_qobj_against_schema(qobj)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/qobj/utils.py "view source code")
 
 Validates a QObj against the .json schema.
 

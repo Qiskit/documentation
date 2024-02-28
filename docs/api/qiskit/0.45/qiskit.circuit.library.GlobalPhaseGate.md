@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.GlobalPhaseGate
 
 <span id="qiskit.circuit.library.GlobalPhaseGate" />
 
-`qiskit.circuit.library.GlobalPhaseGate(phase, label=None, *, duration=None, unit='dt')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/global_phase.py "view source code")
+`qiskit.circuit.library.GlobalPhaseGate(phase, label=None, *, duration=None, unit='dt')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/global_phase.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 

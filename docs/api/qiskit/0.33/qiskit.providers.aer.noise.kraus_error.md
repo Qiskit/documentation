@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.noise.kraus_error
 
 <span id="qiskit.providers.aer.noise.kraus_error" />
 
-`kraus_error(noise_ops, standard_gates=True, canonical_kraus=False)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/providers/aer/noise/errors/standard_errors.py "view source code")
+`kraus_error(noise_ops, standard_gates=True, canonical_kraus=False)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/providers/aer/noise/errors/standard_errors.py "view source code")
 
 Return a Kraus quantum error channel.
 

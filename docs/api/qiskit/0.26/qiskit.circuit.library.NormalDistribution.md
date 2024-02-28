@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.NormalDistribution
 
 <span id="qiskit.circuit.library.NormalDistribution" />
 
-`NormalDistribution(num_qubits, mu=None, sigma=None, bounds=None, upto_diag=False, name='P(X)')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/library/probability_distributions/normal.py "view source code")
+`NormalDistribution(num_qubits, mu=None, sigma=None, bounds=None, upto_diag=False, name='P(X)')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/library/probability_distributions/normal.py "view source code")
 
 A circuit to encode a discretized normal distribution in qubit amplitudes.
 

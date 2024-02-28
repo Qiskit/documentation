@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.utils.remap_noise_model
 
 <span id="qiskit.providers.aer.utils.remap_noise_model" />
 
-`remap_noise_model(noise_model, remapping, discard_qubits=False, warnings=True)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.5/qiskit/providers/aer/utils/noise_remapper.py "view source code")
+`remap_noise_model(noise_model, remapping, discard_qubits=False, warnings=True)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.5/qiskit/providers/aer/utils/noise_remapper.py "view source code")
 
 Remap qubits in a noise model.
 

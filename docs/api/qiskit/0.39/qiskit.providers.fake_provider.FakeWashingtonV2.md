@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeWashingtonV2
 
 <span id="qiskit.providers.fake_provider.FakeWashingtonV2" />
 
-`FakeWashingtonV2`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/fake_provider/backends/washington/fake_washington.py "view source code")
+`FakeWashingtonV2` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/fake_provider/backends/washington/fake_washington.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_backend.FakeBackendV2`
 

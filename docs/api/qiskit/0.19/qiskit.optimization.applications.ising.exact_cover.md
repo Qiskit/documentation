@@ -24,7 +24,7 @@ exact cover
 
 <span id="qiskit.optimization.applications.ising.exact_cover.check_solution_satisfiability" />
 
-`check_solution_satisfiability(sol, list_of_subsets)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/applications/ising/exact_cover.py "view source code")
+`check_solution_satisfiability(sol, list_of_subsets)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/applications/ising/exact_cover.py "view source code")
 
 check solution satisfiability
 
@@ -32,7 +32,7 @@ check solution satisfiability
 
 <span id="qiskit.optimization.applications.ising.exact_cover.get_operator" />
 
-`get_operator(list_of_subsets)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/applications/ising/exact_cover.py "view source code")
+`get_operator(list_of_subsets)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/applications/ising/exact_cover.py "view source code")
 
 Construct the Hamiltonian for the exact solver problem.
 
@@ -62,7 +62,7 @@ tuple([WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator
 
 <span id="qiskit.optimization.applications.ising.exact_cover.get_solution" />
 
-`get_solution(x)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/applications/ising/exact_cover.py "view source code")
+`get_solution(x)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/applications/ising/exact_cover.py "view source code")
 
 **Parameters**
 

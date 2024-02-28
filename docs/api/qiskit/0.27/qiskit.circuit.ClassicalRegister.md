@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.ClassicalRegister
 
 <span id="qiskit.circuit.ClassicalRegister" />
 
-`ClassicalRegister(size=None, name=None, bits=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/classicalregister.py "view source code")
+`ClassicalRegister(size=None, name=None, bits=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/classicalregister.py "view source code")
 
 Implement a classical register.
 

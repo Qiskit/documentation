@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCod
 
 <span id="qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode" />
 
-`ErrorCorrectingCode(code_size=4)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/multiclass_extensions/error_correcting_code.py "view source code")
+`ErrorCorrectingCode(code_size=4)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/multiclass_extensions/error_correcting_code.py "view source code")
 
 The Error Correcting Code multiclass extension.
 

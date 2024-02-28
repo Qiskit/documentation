@@ -12,7 +12,7 @@ python_api_name: qiskit.quantum_info.euler_angles_1q
 
 <span id="qiskit.quantum_info.euler_angles_1q" />
 
-`euler_angles_1q(unitary_matrix)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/quantum_info/synthesis/two_qubit_decompose.py "view source code")
+`euler_angles_1q(unitary_matrix)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/quantum_info/synthesis/two_qubit_decompose.py "view source code")
 
 DEPRECATED: Compute Euler angles for a single-qubit gate.
 

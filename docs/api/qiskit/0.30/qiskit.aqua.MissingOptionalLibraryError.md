@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.MissingOptionalLibraryError
 
 <span id="qiskit.aqua.MissingOptionalLibraryError" />
 
-`MissingOptionalLibraryError(libname, name, pip_install=None, msg=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/missing_optional_library_error.py "view source code")
+`MissingOptionalLibraryError(libname, name, pip_install=None, msg=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/missing_optional_library_error.py "view source code")
 
 Raised when an optional library is missing.
 
