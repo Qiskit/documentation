@@ -95,9 +95,7 @@ Removes a flow controller.
 
 <span id="qiskit.transpiler.FlowController.registered_controllers" />
 
-### registered\_controllers = \{'condition'
-
-`= {'condition':`
+### registered\_controllers
 
 `= {'condition': , 'do_while': }`
 

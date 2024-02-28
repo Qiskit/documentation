@@ -54,9 +54,7 @@ This creates a nested flow controller that runs when the value `x` in the [`Prop
 
 <span id="qiskit.passmanager.FlowController.registered_controllers" />
 
-### registered\_controllers = \{'condition'
-
-`= {'condition':`
+### registered\_controllers
 
 `= {'condition': , 'do_while': }`
 

@@ -20,9 +20,7 @@ Implements a set of passes under a certain condition.
 
 <span id="qiskit.transpiler.ConditionalController.registered_controllers" />
 
-### registered\_controllers = \{'condition'
-
-`= {'condition':`
+### registered\_controllers
 
 `= {'condition': , 'do_while': }`
 
