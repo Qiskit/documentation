@@ -10,7 +10,7 @@ python_api_name: qiskit.validation.jsonschema.validate_json_against_schema
 
 <span id="qiskit.validation.jsonschema.validate_json_against_schema" />
 
-`validate_json_against_schema(json_dict, schema, err_msg=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/validation/jsonschema/schema_validation.py "view source code")
+`validate_json_against_schema(json_dict, schema, err_msg=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/validation/jsonschema/schema_validation.py "view source code")
 
 Validates JSON dict against a schema.
 

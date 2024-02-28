@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.operators.legacy.measure_pauli_z
 
 <span id="qiskit.aqua.operators.legacy.measure_pauli_z" />
 
-`measure_pauli_z(data, pauli)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/legacy/common.py "view source code")
+`measure_pauli_z(data, pauli)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/legacy/common.py "view source code")
 
 Appropriate post-rotations on the state are assumed.
 
