@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.verification.gateset_tomography_circuits
 
 <span id="qiskit.ignis.verification.gateset_tomography_circuits" />
 
-`gateset_tomography_circuits(measured_qubits=None, gateset_basis='default')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/tomography/basis/circuits.py "view source code")
+`gateset_tomography_circuits(measured_qubits=None, gateset_basis='default')` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/tomography/basis/circuits.py "view source code")
 
 Return a list of quantum gate set tomography (GST) circuits.
 
