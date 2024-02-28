@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.gradients.Hessian
 
 <span id="qiskit.opflow.gradients.Hessian" />
 
-`Hessian(hess_method='param_shift', **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/gradients/hessian.py "view source code")
+`Hessian(hess_method='param_shift', **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/gradients/hessian.py "view source code")
 
 Compute the Hessian of an expected value.
 

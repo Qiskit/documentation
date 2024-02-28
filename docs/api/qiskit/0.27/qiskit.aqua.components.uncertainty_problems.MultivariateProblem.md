@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.uncertainty_problems.MultivariateProblem
 
 <span id="qiskit.aqua.components.uncertainty_problems.MultivariateProblem" />
 
-`MultivariateProblem(uncertainty_model, aggregation_function, univariate_objective, conditions=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_problems/multivariate_problem.py "view source code")
+`MultivariateProblem(uncertainty_model, aggregation_function, univariate_objective, conditions=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_problems/multivariate_problem.py "view source code")
 
 Multivariate Uncertainty Problem.
 

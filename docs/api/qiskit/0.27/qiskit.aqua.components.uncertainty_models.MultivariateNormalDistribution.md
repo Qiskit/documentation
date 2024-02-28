@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.uncertainty_models.MultivariateNormalDis
 
 <span id="qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution" />
 
-`MultivariateNormalDistribution(num_qubits, low=None, high=None, mu=None, sigma=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_models/multivariate_normal_distribution.py "view source code")
+`MultivariateNormalDistribution(num_qubits, low=None, high=None, mu=None, sigma=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_models/multivariate_normal_distribution.py "view source code")
 
 The Multivariate Normal Distribution.
 

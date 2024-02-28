@@ -10,7 +10,7 @@ python_api_name: qiskit.qobj.GateCalibration
 
 <span id="qiskit.qobj.GateCalibration" />
 
-`GateCalibration(name, qubits, params, instructions)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/qobj/qasm_qobj.py "view source code")
+`GateCalibration(name, qubits, params, instructions)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/qobj/qasm_qobj.py "view source code")
 
 Each calibration specifies a unique gate by name, qubits and params, and contains the Pulse instructions to implement it.
 

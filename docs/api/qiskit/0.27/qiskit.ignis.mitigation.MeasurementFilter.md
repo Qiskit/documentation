@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.mitigation.MeasurementFilter
 
 <span id="qiskit.ignis.mitigation.MeasurementFilter" />
 
-`MeasurementFilter(cal_matrix, state_labels)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/mitigation/measurement/filters.py "view source code")
+`MeasurementFilter(cal_matrix, state_labels)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/mitigation/measurement/filters.py "view source code")
 
 Measurement error mitigation filter.
 

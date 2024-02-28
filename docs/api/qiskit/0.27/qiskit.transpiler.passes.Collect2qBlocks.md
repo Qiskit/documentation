@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.Collect2qBlocks
 
 <span id="qiskit.transpiler.passes.Collect2qBlocks" />
 
-`Collect2qBlocks(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/transpiler/passes/optimization/collect_2q_blocks.py "view source code")
+`Collect2qBlocks(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/transpiler/passes/optimization/collect_2q_blocks.py "view source code")
 
 Collect sequences of uninterrupted gates acting on 2 qubits.
 
