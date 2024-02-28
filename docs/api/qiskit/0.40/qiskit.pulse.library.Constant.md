@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.library.Constant
 
 <span id="qiskit.pulse.library.Constant" />
 
-`Constant(duration: Union[int, qiskit.circuit.parameterexpression.ParameterExpression], amp: Union[complex, float, qiskit.circuit.parameterexpression.ParameterExpression], angle: Optional[Union[float, qiskit.circuit.parameterexpression.ParameterExpression]] = None, name: Optional[str] = None, limit_amplitude: Optional[bool] = None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/library/symbolic_pulses.py "view source code")
+`Constant(duration: Union[int, qiskit.circuit.parameterexpression.ParameterExpression], amp: Union[complex, float, qiskit.circuit.parameterexpression.ParameterExpression], angle: Optional[Union[float, qiskit.circuit.parameterexpression.ParameterExpression]] = None, name: Optional[str] = None, limit_amplitude: Optional[bool] = None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/library/symbolic_pulses.py "view source code")
 
 Bases: `object`
 

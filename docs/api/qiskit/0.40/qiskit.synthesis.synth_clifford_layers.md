@@ -10,7 +10,7 @@ python_api_name: qiskit.synthesis.synth_clifford_layers
 
 <span id="qiskit.synthesis.synth_clifford_layers" />
 
-`synth_clifford_layers(cliff, cx_synth_func=<function _default_cx_synth_func>, cz_synth_func=<function _default_cz_synth_func>, cx_cz_synth_func=None, validate=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/synthesis/clifford/clifford_decompose_layers.py "view source code")
+`synth_clifford_layers(cliff, cx_synth_func=<function _default_cx_synth_func>, cz_synth_func=<function _default_cz_synth_func>, cx_cz_synth_func=None, validate=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/synthesis/clifford/clifford_decompose_layers.py "view source code")
 
 Synthesis of a Clifford into layers, it provides a similar decomposition to the synthesis described in Lemma 8 of \[1].
 
