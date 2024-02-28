@@ -11,11 +11,18 @@ This guide describes what changed in the V2 primitives and why, describes each n
 
 ## Overview
 
-Version 2 is first the major interface change since the introduction of Qiskit Runtime primitives. Based on user feedback, this version introduces the following major new functions:
+Version 2 of the primitives is introduced with a new base class for both Sampler and Estimator ((BaseSamplerV2)[/api/qiskit/qiskit.primitives.BaseSamplerV2] and (BaseEstimatorV2)[/api/qiskit/qiskit.primitives.BaseEstimatorV2]), along with new types for their inputs and outputs. The emphasis of this new version is on performing vectorized calls to the `primitive run()` methods so that sweeps over parameter value sets and observables can be efficiently specified. See [StatevectorSampler](/api/qiskit/qiskit.primitives.StatevectorSampler) and [StatevectorEstimator](/api/qiskit/qiskit.primitives.StatevectorEstimator) for V2 primitive reference implementations.
+
+Based on user feedback, this version introduces the following major new functions:
 
 * A new interface that lets you specify a single circuit and multiple observables (if using Estimator) and parameter value sets for that circuit. Previously, you had to specify the  same circuit multiple times to match the size of the data to be combined.
-* SamplerV2 no longer supports resilience levels (error mitigation).  Instead, it was simplified to focus on its core task of sampling the output register from running quantum circuits. As a result, it **no longer returns quasi-probabilities**. It returns the samples, whose type is defined by the program, without weights. The result class, however, has methods to return weighted samples, such as counts. 
-* EstimatorV2 does not support resilience level 3.  This is because resilience level 3 in V1 Estimator uses Probabilistic Error Cancellation (PEC), which is proven to give unbiased results at the cost of exponential processing time. To make this trade-off more obvious, resilience level 3 support was removed from EstimatorV2. You can, however, still use PEC as the error mitigation method by using the `pec_mitigation` option.
+* SamplerV2 
+  - Returns the outputs (bitstrings) from every shot, rather than providing a counts-like return (quasi-probabilities). The result class, however, has methods to return weighted samples, such as counts.
+  - Returns data from separate `ClassicalRegisters`. This enables derived classes to implement Sampler support for circuits with classical control flows.
+  - No longer supports resilience levels (error mitigation).  
+* EstimatorV2 
+  - Has a new `precision` argument in the `run()` method that specifies the targeted precision of the expectation value estimates.
+  - Does not support resilience level 3.  This is because resilience level 3 in V1 Estimator uses Probabilistic Error Cancellation (PEC), which is proven to give unbiased results at the cost of exponential processing time.  You can, however, still use PEC as the error mitigation method by using the `pec_mitigation` option.
 * Both V2 primitives let you turn on or off individual error mitigation / suppression methods.
 
 <Admonition type="note" title="Important:">
@@ -67,8 +74,8 @@ from qiskit_ibm_runtime import Sampler
 
 Both `SamplerV2` and `EstimatorV2` take one or more *primitive unified blocs* (PUBs) as the input. Each PUB is a tuple that contains **one** circuit and the data broadcasted to that circuit, which can be multiple observables and parameters.  Each PUB returns a result.
 
-* SamplerV2 PUB format: (`<circuit>`, `<parameter values>`, `<shots>`)
-* EstimatorV2 PUB format: (`<circuit>`, `<observables>`, `<parameter values>`, `<precision>`)
+* SamplerV2 PUB format: (`<circuit>`, `<parameter values>`, `<shots>`), where `<parameter values>`and `<shots>` are optional.
+* EstimatorV2 PUB format: (`<circuit>`, `<observables>`, `<parameter values>`, `<precision>`), where `<parameter values>`and `<precision>` are optional.
     Numpy [broadcasting rules](https://numpy.org/doc/stable/user/basics.broadcasting.html) are used when combining observables and parameter values.
 
 ##### Examples
@@ -96,7 +103,7 @@ sampler.run([(circuit1, None, 123), (circuit2, None, 456)])
 
 #### Output
 
-The output is now in the `PubResult` format.
+The output is now in the (`PubResult`)[/api/qiskit/qiskit.primitives.PubResult] format. A `PubResult` is the data and metadata resulting from a single PUB’s execution
 
 * EstimatorV2 continues to return expectation values.
 * SamplerV2 returns per-shot measurements in the form of **bitstrings** or
