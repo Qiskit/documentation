@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.utils.has_ibmq
 
 <span id="qiskit.aqua.utils.has_ibmq" />
 
-`has_ibmq()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/utils/backend_utils.py "view source code")
+`has_ibmq()` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/utils/backend_utils.py "view source code")
 
 Check if IBMQ is installed
 
