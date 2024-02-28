@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeAthens
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeAthens" />
 
-`FakeAthens`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.18/qiskit_ibm_runtime/fake_provider/backends/athens/fake_athens.py "view source code")
+`FakeAthens` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.18/qiskit_ibm_runtime/fake_provider/backends/athens/fake_athens.py "view source code")
 
 A fake 5 qubit backend.
 

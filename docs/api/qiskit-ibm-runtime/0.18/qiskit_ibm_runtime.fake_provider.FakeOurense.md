@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeOurense
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeOurense" />
 
-`FakeOurense`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.18/qiskit_ibm_runtime/fake_provider/backends/ourense/fake_ourense.py "view source code")
+`FakeOurense` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.18/qiskit_ibm_runtime/fake_provider/backends/ourense/fake_ourense.py "view source code")
 
 A fake 5 qubit backend.
 
