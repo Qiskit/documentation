@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.Gaussian
 
 <span id="qiskit.pulse.Gaussian" />
 
-`Gaussian(duration, amp, sigma, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/parametric_pulses.py "view source code")
+`Gaussian(duration, amp, sigma, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/parametric_pulses.py "view source code")
 
 A truncated pulse envelope shaped according to the Gaussian function whose mean is centered at the center of the pulse (duration / 2):
 
@@ -117,7 +117,7 @@ matplotlib.figure
 
 <span id="qiskit.pulse.Gaussian.get_sample_pulse" />
 
-`Gaussian.get_sample_pulse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/parametric_pulses.py "view source code")
+`Gaussian.get_sample_pulse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/parametric_pulses.py "view source code")
 
 Return a SamplePulse with samples filled according to the formula that the pulse represents and the parameter values it contains.
 
@@ -129,7 +129,7 @@ Return a SamplePulse with samples filled according to the formula that the pulse
 
 <span id="qiskit.pulse.Gaussian.validate_parameters" />
 
-`Gaussian.validate_parameters()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/parametric_pulses.py "view source code")
+`Gaussian.validate_parameters()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/parametric_pulses.py "view source code")
 
 Validate parameters.
 

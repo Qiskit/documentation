@@ -10,7 +10,7 @@ python_api_name: qiskit.visualization.plot_gate_map
 
 <span id="qiskit.visualization.plot_gate_map" />
 
-`plot_gate_map(backend, figsize=None, plot_directed=False, label_qubits=True, qubit_size=24, line_width=4, font_size=12, qubit_color=None, qubit_labels=None, line_color=None, font_color='w', ax=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/visualization/gate_map.py "view source code")
+`plot_gate_map(backend, figsize=None, plot_directed=False, label_qubits=True, qubit_size=24, line_width=4, font_size=12, qubit_color=None, qubit_labels=None, line_color=None, font_color='w', ax=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/visualization/gate_map.py "view source code")
 
 Plots the gate map of a device.
 

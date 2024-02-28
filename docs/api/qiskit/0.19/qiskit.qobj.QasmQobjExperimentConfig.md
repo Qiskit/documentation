@@ -10,7 +10,7 @@ python_api_name: qiskit.qobj.QasmQobjExperimentConfig
 
 <span id="qiskit.qobj.QasmQobjExperimentConfig" />
 
-`QasmQobjExperimentConfig(**kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/qobj/qasm_qobj.py "view source code")
+`QasmQobjExperimentConfig(**kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/qobj/qasm_qobj.py "view source code")
 
 Configuration for a single QASM experiment in the qobj.
 

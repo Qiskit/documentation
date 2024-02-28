@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.reschedule.pad
 
 <span id="qiskit.pulse.reschedule.pad" />
 
-`pad(schedule, channels=None, until=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/reschedule.py "view source code")
+`pad(schedule, channels=None, until=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/reschedule.py "view source code")
 
 Pad the input `Schedule` with `Delay` s on all unoccupied timeslots until `until` if it is provided, otherwise until `schedule.duration`.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.mitigation.complete_meas_cal
 
 <span id="qiskit.ignis.mitigation.complete_meas_cal" />
 
-`complete_meas_cal(qubit_list=None, qr=None, cr=None, circlabel='')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/mitigation/measurement/circuits.py "view source code")
+`complete_meas_cal(qubit_list=None, qr=None, cr=None, circlabel='')` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/mitigation/measurement/circuits.py "view source code")
 
 Return a list of measurement calibration circuits for the full Hilbert space.
 

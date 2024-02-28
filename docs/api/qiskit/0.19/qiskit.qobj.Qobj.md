@@ -10,7 +10,7 @@ python_api_name: qiskit.qobj.Qobj
 
 <span id="qiskit.qobj.Qobj" />
 
-`Qobj(qobj_id=None, config=None, experiments=None, header=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/qobj/__init__.py "view source code")
+`Qobj(qobj_id=None, config=None, experiments=None, header=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/qobj/__init__.py "view source code")
 
 A backwards compat alias for QasmQobj.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CRXGate
 
 <span id="qiskit.circuit.library.CRXGate" />
 
-`CRXGate(theta, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/rx.py "view source code")
+`CRXGate(theta, label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/rx.py "view source code")
 
 Controlled-RX gate.
 
@@ -243,7 +243,7 @@ updated if it was provided
 
 <span id="qiskit.circuit.library.CRXGate.inverse" />
 
-`CRXGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/rx.py "view source code")
+`CRXGate.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/rx.py "view source code")
 
 Return inverse RX gate (i.e. with the negative rotation angle).
 

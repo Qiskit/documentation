@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.StatevectorSimulator
 
 <span id="qiskit.providers.aer.StatevectorSimulator" />
 
-`StatevectorSimulator(configuration=None, provider=None)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.5/qiskit/providers/aer/backends/statevector_simulator.py "view source code")
+`StatevectorSimulator(configuration=None, provider=None)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.5/qiskit/providers/aer/backends/statevector_simulator.py "view source code")
 
 Ideal quantum circuit statevector simulator
 

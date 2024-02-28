@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.reschedule.add_implicit_acquires
 
 <span id="qiskit.pulse.reschedule.add_implicit_acquires" />
 
-`add_implicit_acquires(schedule, meas_map)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/reschedule.py "view source code")
+`add_implicit_acquires(schedule, meas_map)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/reschedule.py "view source code")
 
 Return a new schedule with implicit acquires from the measurement mapping replaced by explicit ones.
 
