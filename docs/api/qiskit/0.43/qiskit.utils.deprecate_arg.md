@@ -12,7 +12,7 @@ python_api_name: qiskit.utils.deprecate_arg
 
 <span id="qiskit.utils.deprecate_arg" />
 
-`deprecate_arg(name, *, since, additional_msg=None, deprecation_description=None, pending=False, package_name='qiskit-terra', new_alias=None, predicate=None, removal_timeline='no earlier than 3 months after the release date')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/utils/deprecation.py "view source code")
+`deprecate_arg(name, *, since, additional_msg=None, deprecation_description=None, pending=False, package_name='qiskit-terra', new_alias=None, predicate=None, removal_timeline='no earlier than 3 months after the release date')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/utils/deprecation.py "view source code")
 
 Decorator to indicate an argument has been deprecated in some way.
 

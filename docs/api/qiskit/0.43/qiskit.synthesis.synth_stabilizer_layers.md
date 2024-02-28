@@ -12,7 +12,7 @@ python_api_name: qiskit.synthesis.synth_stabilizer_layers
 
 <span id="qiskit.synthesis.synth_stabilizer_layers" />
 
-`synth_stabilizer_layers(stab, cz_synth_func=<function _default_cz_synth_func>, cz_func_reverse_qubits=False, validate=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/synthesis/stabilizer/stabilizer_decompose.py "view source code")
+`synth_stabilizer_layers(stab, cz_synth_func=<function _default_cz_synth_func>, cz_func_reverse_qubits=False, validate=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/synthesis/stabilizer/stabilizer_decompose.py "view source code")
 
 Synthesis of a stabilizer state into layers.
 

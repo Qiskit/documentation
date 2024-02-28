@@ -12,7 +12,7 @@ python_api_name: qiskit.compiler.sequence
 
 <span id="qiskit.compiler.sequence" />
 
-`sequence(scheduled_circuits, backend=None, inst_map=None, meas_map=None, dt=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/compiler/sequencer.py "view source code")
+`sequence(scheduled_circuits, backend=None, inst_map=None, meas_map=None, dt=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/compiler/sequencer.py "view source code")
 
 Schedule a scheduled circuit to a pulse `Schedule`, using the backend.
 

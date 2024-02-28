@@ -12,7 +12,7 @@ python_api_name: qiskit.quantum_info.random_pauli
 
 <span id="qiskit.quantum_info.random_pauli" />
 
-`random_pauli(num_qubits, group_phase=False, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/operators/symplectic/random.py "view source code")
+`random_pauli(num_qubits, group_phase=False, seed=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/operators/symplectic/random.py "view source code")
 
 Return a random Pauli.
 

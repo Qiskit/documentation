@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.InnerProduct
 
 <span id="qiskit.circuit.library.InnerProduct" />
 
-`InnerProduct(num_qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/boolean_logic/inner_product.py "view source code")
+`InnerProduct(num_qubits)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/boolean_logic/inner_product.py "view source code")
 
 Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 

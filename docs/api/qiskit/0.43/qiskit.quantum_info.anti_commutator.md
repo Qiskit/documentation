@@ -12,7 +12,7 @@ python_api_name: qiskit.quantum_info.anti_commutator
 
 <span id="qiskit.quantum_info.anti_commutator" />
 
-`anti_commutator(a, b)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/operators/utils/anti_commutator.py "view source code")
+`anti_commutator(a, b)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/operators/utils/anti_commutator.py "view source code")
 
 Compute anti-commutator of a and b.
 
