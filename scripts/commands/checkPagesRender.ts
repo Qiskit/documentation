@@ -10,6 +10,8 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
+import fs from "fs/promises";
+
 import { globby } from "globby";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
@@ -20,6 +22,8 @@ const PORT = 3000;
 
 interface Arguments {
   [x: string]: unknown;
+  fromFile?: string;
+  nonApi: boolean;
   currentApis: boolean;
   devApis: boolean;
   historicalApis: boolean;
@@ -30,6 +34,17 @@ interface Arguments {
 const readArgs = (): Arguments => {
   return yargs(hideBin(process.argv))
     .version(false)
+    .option("from-file", {
+      type: "string",
+      normalize: true,
+      description:
+        "Read the file path for file paths and globs to check, like `docs/start/index.md`. Entries should be separated by a newline and should be valid file types (.md, .mdx, .ipynb).",
+    })
+    .option("non-api", {
+      type: "boolean",
+      default: false,
+      description: "Check all the non-API docs, like start/.",
+    })
     .option("current-apis", {
       type: "boolean",
       default: false,
@@ -137,22 +152,36 @@ async function validateDockerRunning(): Promise<void> {
 }
 
 async function determineFilePaths(args: Arguments): Promise<string[]> {
-  const globs = ["docs/**/*.{ipynb,md,mdx}"];
-  if (!args.currentApis) {
-    globs.push("!docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/*");
+  const globs = [];
+  if (args.fromFile) {
+    const content = await fs.readFile(args.fromFile, "utf-8");
+    globs.push(...content.split("\n").filter((entry) => entry));
   }
-  if (!args.historicalApis) {
+
+  if (args.nonApi) {
     globs.push(
-      "!docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/[0-9]*/*",
+      "docs/support.mdx",
+      "docs/{build,run,start,transpile,verify}/*.{ipynb,md,mdx}",
+      "docs/api/migration-guides/**/*.{ipynb,md,mdx}",
     );
   }
-  if (!args.devApis) {
+  if (args.currentApis) {
     globs.push(
-      "!docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/dev/*",
+      "docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/*.{ipynb,md,mdx}",
     );
   }
-  if (!args.qiskitReleaseNotes) {
-    globs.push("!docs/api/qiskit/release-notes/*");
+  if (args.historicalApis) {
+    globs.push(
+      "docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/[0-9]*/*.{ipynb,md,mdx}",
+    );
+  }
+  if (args.devApis) {
+    globs.push(
+      "docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/dev/*.{ipynb,md,mdx}",
+    );
+  }
+  if (args.qiskitReleaseNotes) {
+    globs.push("docs/api/qiskit/release-notes/*.{ipynb,md,mdx}");
   }
   if (args.translations) {
     globs.push("translations/**/*.{ipynb,md,mdx}");
