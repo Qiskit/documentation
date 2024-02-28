@@ -73,6 +73,8 @@ Both `SamplerV2` and `EstimatorV2` take one or more *primitive unified blocs* (P
 
 ##### Examples
 
+{/*From the boxnote.*/}
+
 EstimatorV2 example that uses precision in `run()`:
 
 ```python
@@ -97,7 +99,7 @@ sampler.run([(circuit1, None, 123), (circuit2, None, 456)])
 The output is now in the `PubResult` format.
 
 * EstimatorV2 continues to return expectation values.
-* SamplerV2 now returns per-shot measurements in the form of **bitstrings** or
+* SamplerV2 returns per-shot measurements in the form of **bitstrings** or
    **counts**, instead of the quasi-probability distributions from the V1
    interface. The bitstrings show the measurement outcomes, preserving the shot
    order in which they were measured. 
@@ -105,7 +107,7 @@ The output is now in the `PubResult` format.
    compatibility with dynamic circuits.  By default, the classical register name is `meas`, as shown in the following example.  When defining your circuit, if you create one or more classical registers with non-default name, you would use that name to get those results. 
 
        ```python
-    # Define quantum circuit with 2 qubits
+    # Define a quantum circuit with 2 qubits
     circuit = QuantumCircuit(2)
     circuit.h(0)
     circuit.cx(0, 1)
@@ -122,7 +124,9 @@ The output is now in the `PubResult` format.
                           0  1
     ```
 
-##### Example
+##### Example that uses different output registers
+
+{/*From the boxnote.*/}
 
 ```python
 from qiskit import ClassicalRegister, QuantumRegister, QuantumCircuit
@@ -152,7 +156,7 @@ print(f" >> Counts for the alpha output register: {pub_result.data.alpha.get_cou
 print(f" >> Counts for the beta output register: {pub_result.data.beta.get_counts()}")
 ```
 
-#### Estimator examples    
+#### Estimator examples (input and output)   
 
 {/*Verified by Elena.*/}
 
@@ -194,7 +198,7 @@ print(f" >> Counts for the beta output register: {pub_result.data.beta.get_count
   </TabItem>
 </Tabs>
 
-#### Sampler examples    
+#### Sampler examples  (input and output)
 
 {/*Verified by Elena.*/}
 
@@ -284,29 +288,22 @@ estimator.set_options(shots=4000, optimization_level=1)
 
 <Tabs>
   <TabItem value="SamplerV2" label="SamplerV2">
+  {/*from the boxnote */}
     ```python
-from dataclasses import asdict
 from qiskit_ibm_runtime import QiskitRuntimeService
 from qiskit_ibm_runtime import SamplerV2 as Sampler
 
 service = QiskitRuntimeService()
 backend = service.least_busy(operational=True, simulator=False)
 
-# Setting options during primitive initialization
-sampler = Sampler(backend, options={"optimization_level": 1})
-
-# Setting options after primitive initialization
-# This uses auto complete.
+sampler = Sampler(backend)
+# Set optimization level to 0.
 sampler.options.optimization_level = 0
-# This does bulk update.
-sampler.options.update(optimization_level=0)
+# Turn on dynamical decoupling with sequence XpXm.
+sampler.options.dynamical_decoupling = "XpXm"
 
-# Print the dictionary format.
-# Server defaults are used for unset options.
-print(asdict(sampler.options))
-
-# Sample the circuit with 2000 shots.
-sampler.run([(circuit)], shots=2000)
+print(f">> optimization level to use: {sampler.options.optimization_level}")
+print(f">> dynamical decoupling sequence to use: {sampler.options.dynamical_decoupling}")
 ```    
   </TabItem>
 
@@ -411,6 +408,7 @@ options.resilience_level = 2
   </TabItem>
 </Tabs>
 
+{/*Verified 2/28 */}
 
 <Tabs>
   <TabItem value="SamplerV2" label="SamplerV2">
@@ -487,6 +485,8 @@ estimator = Estimator (options=options, backend=backend)
 ``` 
   </TabItem>
 </Tabs>
+
+{/*Verified SamplerV2. 2/28 */}
 
 <Tabs>
   <TabItem value="SamplerV2" label="SamplerV2">
@@ -899,6 +899,7 @@ print(f" > Expectation values job 2: {another_result.values}")
 
 Use Sampler to determine the counts or quasi-probability distribution of a single circuit.
 
+{/*Verified 2/28 */}
 <Tabs>
   <TabItem value="SamplerV2" label="SamplerV2">
     ```python
@@ -917,12 +918,12 @@ mat = np.real(random_hermitian(n_qubits, seed=1234))
 circuit = IQP(mat)
 circuit.measure_all()
  
-sampler = Sampler(backend)
-
-job = sampler.run([(circuit)])
-result = job.result()
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+isa_circuit = pm.run(circuit)
  
-print(f" > Counts: {result[0].data.meas.get_counts()}")
+sampler = Sampler(backend)
+job = sampler.run([(isa_circuit,)])
+result = job.result()
 ```  
   </TabItem>
 
@@ -957,6 +958,8 @@ print(f" > Metadata: {result.metadata}")
 
 Use Sampler to determine the counts or quasi-probability distributions of multiple circuits in one job.
 
+{/*Verified 2/28 */}
+
 <Tabs>
   <TabItem value="SamplerV2" label="SamplerV2">
     ```python
@@ -976,9 +979,12 @@ mats = [np.real(random_hermitian(n_qubits, seed=rng)) for _ in range(3)]
 circuits = [IQP(mat) for mat in mats]
 for circuit in circuits:
     circuit.measure_all()
+
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+isa_circuits = pm.run(circuit)    
  
 sampler = Sampler(backend) 
-job = sampler.run([(circuits)])
+job = sampler.run([(isa_circuits)])
 result = job.result() 
 
 print(f" > Counts: {result[0].data.meas.get_counts()}") 
@@ -1016,6 +1022,8 @@ print(f" > Quasi-probability distribution: {result.quasi_dists}")
 ### Run parameterized circuits
 
 Run several experiments in a single job, leveraging parameter values to increase circuit reusability.
+
+{/*Verified 2/28 */}
 
 <Tabs>
   <TabItem value="SamplerV2" label="SamplerV2">
@@ -1102,13 +1110,15 @@ print(f" > Metadata: {result.metadata}")
 
 Explore sessions and advanced options to optimize circuit performance on quantum systems.
 
+{/*Verified 2/28 */}
+
 <Tabs>
   <TabItem value="SamplerV2" label="SamplerV2">
     ```python
 import numpy as np
 from qiskit.circuit.library import IQP
 from qiskit.quantum_info import random_hermitian
-from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler, Session, Options
+from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler, Session
  
 n_qubits = 127
  
@@ -1119,6 +1129,10 @@ circuit.measure_all()
 mat = np.real(random_hermitian(n_qubits, seed=rng))
 another_circuit = IQP(mat)
 another_circuit.measure_all()
+
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+isa_circuit = pm.run(circuit)
+another_isa_circuit = pm.run(another_circuit)
  
 service = QiskitRuntimeService()
  
@@ -1126,8 +1140,8 @@ backend = service.least_busy(operational=True, simulator=False, min_num_qubits=1
  
 with Session(service=service, backend=backend) as session: 
     sampler = Sampler(session=session) 
-    job = sampler.run([(circuit)]) 
-    another_job = sampler.run([(another_circuit)]) 
+    job = sampler.run([(isa_circuit)]) 
+    another_job = sampler.run([(another_isa_circuit)]) 
     result = job.result()
     another_result = another_job.result() 
  
