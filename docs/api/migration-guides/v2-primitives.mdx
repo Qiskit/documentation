@@ -15,6 +15,9 @@ Version 2 of the primitives is introduced with a new base class for both Sampler
 
 Based on user feedback, this version introduces the following major new functions:
 
+* Estimator has gained a precision argument in the run() method that specifies the targeted precision of the expectation value estimates. 
+* Sampler has moved shots out of the options and into the arguments of the run() method. The sampler has also been changed to return the outputs (e.g. bitstrings) from every shot, rather than providing a Counts-like return, and also to store data from separate ClassicalRegisters . This enables derived classes to implement sampler support for circuits with classical control flow.
+
 * A new interface that lets you specify a single circuit and multiple observables (if using Estimator) and parameter value sets for that circuit. Previously, you had to specify the  same circuit multiple times to match the size of the data to be combined.
 * SamplerV2 
   - Returns the outputs (bitstrings) from every shot, rather than providing a counts-like return (quasi-probabilities). The result class, however, has methods to return weighted samples, such as counts.
