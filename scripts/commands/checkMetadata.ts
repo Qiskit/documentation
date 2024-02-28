@@ -53,12 +53,16 @@ const readMetadata = async (filePath: string): Promise<Record<string, any>> => {
   }
 };
 
-const isValidMetadata = (metadata: Record<string, any>): boolean =>
+const isValidMetadata = (
+  metadata: Record<string, any>,
+  filePath: string,
+): boolean =>
   metadata.title &&
   metadata.description &&
-  metadata.title != metadata.description &&
-  metadata.description.length <= 160 &&
-  metadata.description.length >= 50;
+  (isApi(filePath) ||
+    (metadata.title != metadata.description &&
+      metadata.description.length <= 160 &&
+      metadata.description.length >= 50));
 
 const main = async (): Promise<void> => {
   const args = readArgs();
@@ -67,7 +71,7 @@ const main = async (): Promise<void> => {
   const mdErrors = [];
   for (const file of mdFiles) {
     const metadata = await readMetadata(file);
-    if (!isValidMetadata(metadata)) {
+    if (!isValidMetadata(metadata, file)) {
       mdErrors.push(file);
     }
   }
@@ -75,7 +79,7 @@ const main = async (): Promise<void> => {
   const notebookErrors = [];
   for (const file of notebookFiles) {
     const metadata = await readMetadata(file);
-    if (!isValidMetadata(metadata)) {
+    if (!isValidMetadata(metadata, file)) {
       notebookErrors.push(file);
     }
   }
@@ -97,6 +101,14 @@ async function determineFiles(args: Arguments): Promise<[string[], string[]]> {
     notebookGlobs.push("translations/**/*.ipynb");
   }
   return [await globby(mdGlobs), await globby(notebookGlobs)];
+}
+
+function isApi(filePath: string): boolean {
+  return (
+    filePath.includes("/api/qiskit/") ||
+    filePath.includes("/api/qiskit-ibm-runtime/") ||
+    filePath.includes("/api/qiskit-ibm-provider/")
+  );
 }
 
 function handleErrors(mdErrors: string[], notebookErrors: string[]): void {
