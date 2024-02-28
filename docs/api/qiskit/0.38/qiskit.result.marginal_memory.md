@@ -10,7 +10,7 @@ python_api_name: qiskit.result.marginal_memory
 
 <span id="qiskit.result.marginal_memory" />
 
-`marginal_memory(memory, indices=None, int_return=False, hex_return=False, avg_data=False, parallel_threshold=1000)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/result/utils.py "view source code")
+`marginal_memory(memory, indices=None, int_return=False, hex_return=False, avg_data=False, parallel_threshold=1000)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/result/utils.py "view source code")
 
 Marginalize shot memory
 

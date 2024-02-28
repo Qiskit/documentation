@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeCairo
 
 <span id="qiskit.providers.fake_provider.FakeCairo" />
 
-`FakeCairo`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/fake_provider/backends/cairo/fake_cairo.py "view source code")
+`FakeCairo` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/fake_provider/backends/cairo/fake_cairo.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_pulse_backend.FakePulseBackend`
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.PhaseEstimation
 
 <span id="qiskit.circuit.library.PhaseEstimation" />
 
-`PhaseEstimation(num_evaluation_qubits, unitary, iqft=None, name='QPE')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/phase_estimation.py "view source code")
+`PhaseEstimation(num_evaluation_qubits, unitary, iqft=None, name='QPE')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/phase_estimation.py "view source code")
 
 Bases: [`qiskit.circuit.quantumcircuit.QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 

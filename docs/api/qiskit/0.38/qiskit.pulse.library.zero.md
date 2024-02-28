@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.library.zero
 
 <span id="qiskit.pulse.library.zero" />
 
-`zero(duration, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/pulse/library/discrete.py "view source code")
+`zero(duration, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/pulse/library/discrete.py "view source code")
 
 Generates zero-sampled [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform").
 
