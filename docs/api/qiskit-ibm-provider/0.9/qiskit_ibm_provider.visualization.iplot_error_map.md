@@ -12,7 +12,7 @@ python_api_name: qiskit_ibm_provider.visualization.iplot_error_map
 
 <span id="qiskit_ibm_provider.visualization.iplot_error_map" />
 
-`iplot_error_map(backend, figsize=(800, 500), show_title=True, remove_badcal_edges=True, background_color='white', as_widget=False)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.9/qiskit_ibm_provider/visualization/interactive/error_map.py "view source code")
+`iplot_error_map(backend, figsize=(800, 500), show_title=True, remove_badcal_edges=True, background_color='white', as_widget=False)` [GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.9/qiskit_ibm_provider/visualization/interactive/error_map.py "view source code")
 
 Plot the error map of a device.
 
