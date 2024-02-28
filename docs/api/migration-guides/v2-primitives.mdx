@@ -46,6 +46,20 @@ from qiskit_ibm_runtime import Estimator
   </TabItem>
 </Tabs>
 
+<Tabs>
+  <TabItem value="SamplerV2" label="SamplerV2">
+    ```python 
+from qiskit_ibm_runtime import SamplerV2 as Sampler
+```
+  </TabItem>
+
+  <TabItem value="SamplerV1" label="Sampler (V1)">
+    ```python 
+from qiskit_ibm_runtime import Sampler
+```
+  </TabItem>
+</Tabs>
+
 
 ### Input and output
 
@@ -56,6 +70,27 @@ Both `SamplerV2` and `EstimatorV2` take one or more *primitive unified blocs* (P
 * SamplerV2 PUB format: (`<circuit>`, `<parameter values>`, `<shots>`)
 * EstimatorV2 PUB format: (`<circuit>`, `<observables>`, `<parameter values>`, `<precision>`)
     Numpy [broadcasting rules](https://numpy.org/doc/stable/user/basics.broadcasting.html) are used when combining observables and parameter values.
+
+##### Examples
+
+EstimatorV2 example that uses precision in `run()`:
+
+```python
+# Estimate expectation values for two PUBs, both with 0.05 precision.
+estimator.run([(circuit1, obs_array1), (circuit2, obs_array_2)], precision=0.05)
+```
+
+SamplerV2 example that uses shots in `run()`:
+
+```python
+# Sample two circuits at 128 shots each.
+sampler.run([(circuit1,), (circuit2,)], shots=128)
+
+# Sample two circuits at different amounts of shots. The "None"s are necessary
+# as placeholders
+# for the lack of parameter values in this example.
+sampler.run([(circuit1, None, 123), (circuit2, None, 456)])
+```
 
 #### Output
 
@@ -87,6 +122,35 @@ The output is now in the `PubResult` format.
                           0  1
     ```
 
+##### Example
+
+```python
+from qiskit import ClassicalRegister, QuantumRegister, QuantumCircuit
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
+
+alpha = ClassicalRegister(5, "alpha") 
+beta = ClassicalRegister(7, "beta")
+qreg = QuantumRegister(12)
+
+circuit = QuantumCircuit(qreg, alpha, beta)
+circuit.h(0)
+circuit.measure(qreg[:5], alpha)
+circuit.measure(qreg[5:], beta)
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=12)
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+isa_circuit = pm.run(circuit)
+
+sampler = Sampler(backend)
+job = sampler.run([(isa_circuit,)])
+result = job.result()
+# Get results for the first (and only) PUB
+pub_result = result[0]
+print(f" >> Counts for the alpha output register: {pub_result.data.alpha.get_counts()}")
+print(f" >> Counts for the beta output register: {pub_result.data.beta.get_counts()}")
+```
 
 #### Estimator examples    
 
@@ -200,7 +264,7 @@ print(asdict(estimator.options))
 
   <TabItem value="EstimatorV1" label="Estimator (V1)">
     ```python
-from qiskit_ibm_runtime import QiskitRuntimeService, Estimator, Options
+from qiskit_ibm_runtime import QiskitRuntimeService, Sampler, Options
 
 service = QiskitRuntimeService()
 backend = service.least_busy(operational=True, simulator=False)
@@ -215,6 +279,54 @@ estimator = Estimator(backend=backend, options=options)
 # This does bulk update.
 estimator.set_options(shots=4000, optimization_level=1)
 ```
+  </TabItem>
+</Tabs>
+
+<Tabs>
+  <TabItem value="SamplerV2" label="SamplerV2">
+    ```python
+from dataclasses import asdict
+from qiskit_ibm_runtime import QiskitRuntimeService
+from qiskit_ibm_runtime import SamplerV2 as Sampler
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False)
+
+# Setting options during primitive initialization
+sampler = Sampler(backend, options={"optimization_level": 1})
+
+# Setting options after primitive initialization
+# This uses auto complete.
+sampler.options.optimization_level = 0
+# This does bulk update.
+sampler.options.update(optimization_level=0)
+
+# Print the dictionary format.
+# Server defaults are used for unset options.
+print(asdict(sampler.options))
+
+# Sample the circuit with 2000 shots.
+sampler.run([(circuit)], shots=2000)
+```    
+  </TabItem>
+
+  <TabItem value="SamplerV1" label="Sampler (V1)">
+    ```python
+from qiskit_ibm_runtime import QiskitRuntimeService, Sampler, Options
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False)
+
+# Setting options during primitive initialization
+options = Options()
+# This uses auto complete.
+options.resilience_level = 2 
+sampler = Sampler(backend=backend, options=options)
+
+# Setting options after primitive initialization.
+# This does bulk update.
+sampler.set_options(shots=2000, optimization_level=0)
+  ```  
   </TabItem>
 </Tabs>
 
@@ -299,23 +411,21 @@ options.resilience_level = 2
   </TabItem>
 </Tabs>
 
-{/* Waiting for updated code */}
 
 <Tabs>
   <TabItem value="SamplerV2" label="SamplerV2">
     ```python 
 from qiskit_ibm_runtime import SamplerV2 as Sampler
 
-# Estimator and Sampler now have different options
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False)
+
+sampler = Sampler(backend)
 options = sampler.options
-
-# Twirling options
+# Turn on gate twirling.
 options.twirling.gates = True
-options.twirling.measure = True
 
-# ZNE options
-options.resilience.zne_mitigation = True
-options.resilience.zne_extrapolator = "exponential"
+print(f">>> gate twirling is turned on: {sampler.options.twirling.gates}")
 ```
   </TabItem>
 
@@ -328,7 +438,6 @@ sampler = Sampler(backend, options=options)
 options = Options()
 
 options.resilience_level = 2
-
 ```
   </TabItem>
 </Tabs>
@@ -379,6 +488,42 @@ estimator = Estimator (options=options, backend=backend)
   </TabItem>
 </Tabs>
 
+<Tabs>
+  <TabItem value="SamplerV2" label="SamplerV2">
+    ```python
+from qiskit_ibm_runtime import QiskitRuntimeService
+from qiskit_ibm_runtime import SamplerV2 as Sampler
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False)
+
+sampler = Sampler(backend)
+# Set optimization level to 0.
+sampler.options.optimization_level = 0
+# Turn on dynamical decoupling with sequence XpXm.
+sampler.options.dynamical_decoupling = "XpXm"
+
+print(f">>> optimization level to use: {sampler.options.optimization_level}")
+print(f">>> dynamical decoupling sequence to use: {sampler.options.dynamical_decoupling}")
+  ``` 
+  </TabItem>
+
+  <TabItem value="SamplerV1" label="Sampler (V1)">
+    ```python
+from qiskit_ibm_runtime import QiskitRuntimeService, Sampler, Options
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+from qiskit.circuit.library import RealAmplitudes
+from qiskit.quantum_info import SparsePauliOp
+ 
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False)
+
+options = Options(optimization_level=1)
+ 
+sampler = Sampler (options=options, backend=backend)
+``` 
+  </TabItem>
+</Tabs>
 
 ## Estimator full examples
 
@@ -875,20 +1020,41 @@ Run several experiments in a single job, leveraging parameter values to increase
 <Tabs>
   <TabItem value="SamplerV2" label="SamplerV2">
     ```python 
+import numpy as np
+from qiskit.circuit.library import RealAmplitudes
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+from qiskit_ibm_runtime import QiskitRuntimeService
+
+# Step 1: Map classical inputs to a quantum problem
+num_qubits = 5
+circuit = RealAmplitudes(num_qubits=num_qubits, reps=2)
+circuit.measure_all()
+
+# Define three sets of parameters for the circuit
+rng = np.random.default_rng(1234)
+parameter_values = [
+    rng.uniform(-np.pi, np.pi, size=circuit.num_parameters) for _ in range(3)
+]
+
+# Step 2: Optimize problem for quantum execution.
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=num_qubits)
+
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+isa_circuit = pm.run(circuit)
+
+# Step 3: Execute using Qiskit primitives.
+
 from qiskit_ibm_runtime import SamplerV2 as Sampler
 
-chsh_circuit = QuantumCircuit(2)
-chsh_circuit.h(0)
-chsh_circuit.cx(0, 1)
-chsh_circuit.ry(theta, 0)
-chsh_circuit.measure_all()
-
-number_of_phases = 21
-phases = np.linspace(0, 2 * np.pi, number_of_phases)
-phases = phases.reshape(21, 1)
-
-sampler = Sampler(backend, options={"shots": 100})
-result = sampler.run((chsh_circuit, phases)).result()
+sampler = Sampler(backend)
+job = sampler.run([(isa_circuit, parameter_values)])
+result = job.result()
+# Get results for the first (and only) PUB
+pub_result = result[0]
+# Get counts from the classical register "meas". 
+print(f" >> Counts for the meas output register: {pub_result.data.meas.get_counts()}")
 ```
   </TabItem>
 
@@ -896,25 +1062,38 @@ result = sampler.run((chsh_circuit, phases)).result()
   ```python
 import numpy as np
 from qiskit.circuit.library import RealAmplitudes
-from qiskit_ibm_runtime import QiskitRuntimeService, Sampler
- 
-service = QiskitRuntimeService()
- 
-backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
- 
-circuit = RealAmplitudes(num_qubits=127, reps=2)
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+from qiskit_ibm_runtime import QiskitRuntimeService
+
+# Step 1: Map classical inputs to a quantum problem
+num_qubits = 5
+circuit = RealAmplitudes(num_qubits=num_qubits, reps=2)
 circuit.measure_all()
+
 # Define three sets of parameters for the circuit
 rng = np.random.default_rng(1234)
 parameter_values = [
     rng.uniform(-np.pi, np.pi, size=circuit.num_parameters) for _ in range(3)
 ]
- 
-sampler = Sampler(backend) 
-job = sampler.run([circuit] * 3, parameter_values) 
-result = job.result() 
+
+# Step 2: Optimize problem for quantum execution.
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=num_qubits)
+
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+isa_circuit = pm.run(circuit)
+
+# Step 3: Execute using Qiskit primitives.
+
+from qiskit_ibm_runtime import Sampler
+
+sampler = Sampler(backend)
+job = sampler.run([isa_circuit] * 3, parameter_values) 
+result = job.result()
  
 print(f" > Quasi-probability distribution: {result.quasi_dists}")
+print(f" > Metadata: {result.metadata}")
 ```    
   </TabItem>
 </Tabs>
