@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_provider.IBMBackend
 
 <span id="qiskit_ibm_provider.IBMBackend" />
 
-`IBMBackend(configuration, provider, api_client, instance=None)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_backend.py "view source code")
+`IBMBackend(configuration, provider, api_client, instance=None)` [GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_backend.py "view source code")
 
 Backend class interfacing with an IBM Quantum device.
 
@@ -372,7 +372,7 @@ A [`qiskit.transpiler.Target`](/api/qiskit/qiskit.transpiler.Target "(in Qiskit 
 
 <span id="qiskit_ibm_provider.IBMBackend.acquire_channel" />
 
-`IBMBackend.acquire_channel(qubit)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_backend.py "view source code")
+`IBMBackend.acquire_channel(qubit)` [GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_backend.py "view source code")
 
 Return the acquisition channel for the given qubit.
 
@@ -390,7 +390,7 @@ AcquireChannel
 
 <span id="qiskit_ibm_provider.IBMBackend.cancel_session" />
 
-`IBMBackend.cancel_session()`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_backend.py "view source code")
+`IBMBackend.cancel_session()` [GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_backend.py "view source code")
 
 Cancel session. All pending jobs will be cancelled.
 
@@ -404,7 +404,7 @@ Cancel session. All pending jobs will be cancelled.
 
 <span id="qiskit_ibm_provider.IBMBackend.close_session" />
 
-`IBMBackend.close_session()`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_backend.py "view source code")
+`IBMBackend.close_session()` [GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_backend.py "view source code")
 
 Close the session so new jobs will no longer be accepted, but existing queued or running jobs will run to completion. The session will be terminated once there are no more pending jobs.
 
@@ -418,7 +418,7 @@ Close the session so new jobs will no longer be accepted, but existing queued or
 
 <span id="qiskit_ibm_provider.IBMBackend.configuration" />
 
-`IBMBackend.configuration()`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_backend.py "view source code")
+`IBMBackend.configuration()` [GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_backend.py "view source code")
 
 Return the backend configuration.
 
@@ -440,7 +440,7 @@ The configuration for the backend.
 
 <span id="qiskit_ibm_provider.IBMBackend.control_channel" />
 
-`IBMBackend.control_channel(qubits)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_backend.py "view source code")
+`IBMBackend.control_channel(qubits)` [GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_backend.py "view source code")
 
 Return the secondary drive channel for the given qubit.
 
@@ -464,7 +464,7 @@ List\[ControlChannel]
 
 <span id="qiskit_ibm_provider.IBMBackend.defaults" />
 
-`IBMBackend.defaults(refresh=False)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_backend.py "view source code")
+`IBMBackend.defaults(refresh=False)` [GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_backend.py "view source code")
 
 Return the pulse defaults for the backend.
 
@@ -488,7 +488,7 @@ The backend pulse defaults or `None` if the backend does not support pulse.
 
 <span id="qiskit_ibm_provider.IBMBackend.drive_channel" />
 
-`IBMBackend.drive_channel(qubit)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_backend.py "view source code")
+`IBMBackend.drive_channel(qubit)` [GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_backend.py "view source code")
 
 Return the drive channel for the given qubit.
 
@@ -506,7 +506,7 @@ DriveChannel
 
 <span id="qiskit_ibm_provider.IBMBackend.get_translation_stage_plugin" />
 
-`classmethod IBMBackend.get_translation_stage_plugin()`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_backend.py "view source code")
+`classmethod IBMBackend.get_translation_stage_plugin()` [GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_backend.py "view source code")
 
 Return the default translation stage plugin name for IBM backends.
 
@@ -520,7 +520,7 @@ Return the default translation stage plugin name for IBM backends.
 
 <span id="qiskit_ibm_provider.IBMBackend.measure_channel" />
 
-`IBMBackend.measure_channel(qubit)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_backend.py "view source code")
+`IBMBackend.measure_channel(qubit)` [GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_backend.py "view source code")
 
 Return the measure stimulus channel for the given qubit.
 
@@ -538,7 +538,7 @@ MeasureChannel
 
 <span id="qiskit_ibm_provider.IBMBackend.open_session" />
 
-`IBMBackend.open_session(max_time=None)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_backend.py "view source code")
+`IBMBackend.open_session(max_time=None)` [GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_backend.py "view source code")
 
 Open session
 
@@ -552,7 +552,7 @@ Open session
 
 <span id="qiskit_ibm_provider.IBMBackend.properties" />
 
-`IBMBackend.properties(refresh=False, datetime=None)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_backend.py "view source code")
+`IBMBackend.properties(refresh=False, datetime=None)` [GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_backend.py "view source code")
 
 Return the backend properties, subject to optional filtering.
 
@@ -611,7 +611,7 @@ The `QubitProperties` object for the specified qubit. If a list of qubits is pro
 
 <span id="qiskit_ibm_provider.IBMBackend.run" />
 
-`IBMBackend.run(circuits, dynamic=None, job_tags=None, init_circuit=None, init_num_resets=None, header=None, shots=None, memory=None, meas_level=None, meas_return=None, rep_delay=None, init_qubits=None, use_measure_esp=None, noise_model=None, seed_simulator=None, **run_config)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_backend.py "view source code")
+`IBMBackend.run(circuits, dynamic=None, job_tags=None, init_circuit=None, init_num_resets=None, header=None, shots=None, memory=None, meas_level=None, meas_return=None, rep_delay=None, init_qubits=None, use_measure_esp=None, noise_model=None, seed_simulator=None, **run_config)` [GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_backend.py "view source code")
 
 Run on the backend. If a keyword specified here is also present in the `options` attribute/object, the value specified here will be used for this run.
 
@@ -708,7 +708,7 @@ This method is used to update the options of a backend. If you need to change an
 
 <span id="qiskit_ibm_provider.IBMBackend.status" />
 
-`IBMBackend.status()`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_backend.py "view source code")
+`IBMBackend.status()` [GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_backend.py "view source code")
 
 Return the backend status.
 
@@ -734,7 +734,7 @@ The status of the backend.
 
 <span id="qiskit_ibm_provider.IBMBackend.target_history" />
 
-`IBMBackend.target_history(datetime=None)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_backend.py "view source code")
+`IBMBackend.target_history(datetime=None)` [GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_backend.py "view source code")
 
 A [`qiskit.transpiler.Target`](/api/qiskit/qiskit.transpiler.Target "(in Qiskit v0.45)") object for the backend. :rtype: [`Target`](/api/qiskit/qiskit.transpiler.Target "(in Qiskit v0.45)") :returns: Target with properties found on datetime
 
