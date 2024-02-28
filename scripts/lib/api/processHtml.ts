@@ -301,7 +301,7 @@ export function processMembersAndSetMeta(
 
         if (apiType == "class") {
           findByText($, $main, "em.property", "class").remove();
-          return `<span class="target" id="${id}"/><p><code>${$child.html()}</code>${github}</p>`;
+          return `<span class="target" id="${id}"/><p><code>${$child.html()}</code> ${github}</p>`;
         }
 
         if (apiType == "property") {
@@ -312,7 +312,7 @@ export function processMembersAndSetMeta(
           findByText($, $main, "em.property", "property").remove();
           const signature = $child.find("em").text()?.replace(/^:\s+/, "");
           if (signature.trim().length === 0) return;
-          return `<span class="target" id='${id}'/><p><code>${signature}</code>${github}</p>`;
+          return `<span class="target" id='${id}'/><p><code>${signature}</code> ${github}</p>`;
         }
 
         if (apiType == "method") {
@@ -322,7 +322,7 @@ export function processMembersAndSetMeta(
             } else if (!$child.attr("id")) {
               // Overload methods have more than one <dt> tag, but only the first one
               // contains an id.
-              return `<p><code>${$child.html()}</code>${github}</p>`;
+              return `<p><code>${$child.html()}</code> ${github}</p>`;
             } else {
               // Inline methods
               $(`<h3>${getLastPartFromFullIdentifier(id)}</h3>`).insertBefore(
@@ -332,7 +332,7 @@ export function processMembersAndSetMeta(
           }
 
           findByText($, $main, "em.property", "method").remove();
-          return `<span class="target" id='${id}'/><p><code>${$child.html()}</code>${github}</p>`;
+          return `<span class="target" id='${id}'/><p><code>${$child.html()}</code> ${github}</p>`;
         }
 
         if (apiType == "attribute") {
@@ -344,7 +344,7 @@ export function processMembersAndSetMeta(
             findByText($, $main, "em.property", "attribute").remove();
             const signature = $child.find("em").text()?.replace(/^:\s+/, "");
             if (signature.trim().length === 0) return;
-            return `<span class="target" id='${id}'/><p><code>${signature}</code>${github}</p>`;
+            return `<span class="target" id='${id}'/><p><code>${signature}</code> ${github}</p>`;
           }
 
           // Else, the attribute is embedded on the class
@@ -377,7 +377,7 @@ export function processMembersAndSetMeta(
 
         if (apiType === "function" || apiType === "exception") {
           findByText($, $main, "em.property", apiType).remove();
-          const descriptionHtml = `<span class="target" id="${id}"/><p><code>${$child.html()}</code>${github}</p>`;
+          const descriptionHtml = `<span class="target" id="${id}"/><p><code>${$child.html()}</code> ${github}</p>`;
 
           const pageHeading = $dl.siblings("h1").text();
           if (id.endsWith(pageHeading) && pageHeading != "") {
