@@ -10,7 +10,7 @@ python_api_name: qiskit.converters.dag_to_dagdependency
 
 <span id="qiskit.converters.dag_to_dagdependency" />
 
-`dag_to_dagdependency(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/converters/dag_to_dagdependency.py "view source code")
+`dag_to_dagdependency(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/converters/dag_to_dagdependency.py "view source code")
 
 Build a `DAGDependency` object from a `DAGCircuit`.
 
