@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.characterization.rabi_schedules
 
 <span id="qiskit.ignis.characterization.rabi_schedules" />
 
-`rabi_schedules(amp_list, qubits, pulse_width, pulse_sigma=None, width_sigma_ratio=4, drives=None, inst_map=None, meas_map=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/characterization/calibrations/pulse_schedules.py "view source code")
+`rabi_schedules(amp_list, qubits, pulse_width, pulse_sigma=None, width_sigma_ratio=4, drives=None, inst_map=None, meas_map=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/characterization/calibrations/pulse_schedules.py "view source code")
 
 Generates schedules for a rabi experiment using a Gaussian pulse
 

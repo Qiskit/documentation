@@ -10,7 +10,7 @@ python_api_name: qiskit.synthesis.QDrift
 
 <span id="qiskit.synthesis.QDrift" />
 
-`qiskit.synthesis.QDrift(reps=1, insert_barriers=False, cx_structure='chain', atomic_evolution=None, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/evolution/qdrift.py "view source code")
+`qiskit.synthesis.QDrift(reps=1, insert_barriers=False, cx_structure='chain', atomic_evolution=None, seed=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/evolution/qdrift.py "view source code")
 
 Bases: [`ProductFormula`](qiskit.synthesis.ProductFormula "qiskit.synthesis.evolution.product_formula.ProductFormula")
 

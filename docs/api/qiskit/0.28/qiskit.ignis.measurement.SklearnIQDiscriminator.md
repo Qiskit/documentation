@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.measurement.SklearnIQDiscriminator
 
 <span id="qiskit.ignis.measurement.SklearnIQDiscriminator" />
 
-`SklearnIQDiscriminator(classifier, cal_results, qubit_mask, expected_states=None, standardize=False, schedules=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/measurement/discriminator/iq_discriminators.py "view source code")
+`SklearnIQDiscriminator(classifier, cal_results, qubit_mask, expected_states=None, standardize=False, schedules=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/measurement/discriminator/iq_discriminators.py "view source code")
 
 A generic discriminant analysis discriminator for IQ data that takes an sklearn classifier as an argument.
 

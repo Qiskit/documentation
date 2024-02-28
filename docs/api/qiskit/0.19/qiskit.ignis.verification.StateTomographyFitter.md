@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.verification.StateTomographyFitter
 
 <span id="qiskit.ignis.verification.StateTomographyFitter" />
 
-`StateTomographyFitter(result, circuits, meas_basis='Pauli')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/tomography/fitters/state_fitter.py "view source code")
+`StateTomographyFitter(result, circuits, meas_basis='Pauli')` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/tomography/fitters/state_fitter.py "view source code")
 
 Maximum-Likelihood estimation state tomography fitter.
 
@@ -55,7 +55,7 @@ Add tomography data from a Qiskit Result object.
 
 <span id="qiskit.ignis.verification.StateTomographyFitter.fit" />
 
-`StateTomographyFitter.fit(method='auto', standard_weights=True, beta=0.5, **kwargs)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/tomography/fitters/state_fitter.py "view source code")
+`StateTomographyFitter.fit(method='auto', standard_weights=True, beta=0.5, **kwargs)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/tomography/fitters/state_fitter.py "view source code")
 
 Reconstruct a quantum state using CVXPY convex optimization.
 

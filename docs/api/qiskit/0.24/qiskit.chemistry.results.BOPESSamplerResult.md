@@ -12,7 +12,7 @@ python_api_name: qiskit.chemistry.results.BOPESSamplerResult
 
 <span id="qiskit.chemistry.results.BOPESSamplerResult" />
 
-`BOPESSamplerResult(points, energies, raw_results)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/results/bopes_sampler_result.py "view source code")
+`BOPESSamplerResult(points, energies, raw_results)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/results/bopes_sampler_result.py "view source code")
 
 The BOPES Sampler result
 

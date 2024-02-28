@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.evolutions.Suzuki
 
 <span id="qiskit.opflow.evolutions.Suzuki" />
 
-`qiskit.opflow.evolutions.Suzuki(reps=1, order=2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/evolutions/trotterizations/suzuki.py "view source code")
+`qiskit.opflow.evolutions.Suzuki(reps=1, order=2)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/evolutions/trotterizations/suzuki.py "view source code")
 
 Bases: [`TrotterizationBase`](qiskit.opflow.evolutions.TrotterizationBase "qiskit.opflow.evolutions.trotterizations.trotterization_base.TrotterizationBase")
 

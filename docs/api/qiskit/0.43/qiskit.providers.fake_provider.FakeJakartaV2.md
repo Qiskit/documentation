@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeJakartaV2
 
 <span id="qiskit.providers.fake_provider.FakeJakartaV2" />
 
-`FakeJakartaV2`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/backends/jakarta/fake_jakarta.py "view source code")
+`FakeJakartaV2` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/backends/jakarta/fake_jakarta.py "view source code")
 
 Bases: `FakeBackendV2`
 

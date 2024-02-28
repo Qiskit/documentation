@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.library.save_expectation_value
 
 <span id="qiskit.providers.aer.library.save_expectation_value" />
 
-`save_expectation_value(self, operator, qubits, label='expectation_value', unnormalized=False, pershot=False, conditional=False)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/library/save_instructions/save_expectation_value.py "view source code")
+`save_expectation_value(self, operator, qubits, label='expectation_value', unnormalized=False, pershot=False, conditional=False)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/library/save_instructions/save_expectation_value.py "view source code")
 
 Save the expectation value of a Hermitian operator.
 

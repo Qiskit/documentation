@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeRome
 
 <span id="qiskit.providers.fake_provider.FakeRome" />
 
-`qiskit.providers.fake_provider.FakeRome`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/providers/fake_provider/backends/rome/fake_rome.py "view source code")
+`qiskit.providers.fake_provider.FakeRome` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/providers/fake_provider/backends/rome/fake_rome.py "view source code")
 
 Bases: `FakePulseBackend`
 

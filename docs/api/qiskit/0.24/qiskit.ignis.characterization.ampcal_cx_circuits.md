@@ -12,7 +12,7 @@ python_api_name: qiskit.ignis.characterization.ampcal_cx_circuits
 
 <span id="qiskit.ignis.characterization.ampcal_cx_circuits" />
 
-`ampcal_cx_circuits(max_reps, qubits, control_qubits)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/characterization/gates/circuits.py "view source code")
+`ampcal_cx_circuits(max_reps, qubits, control_qubits)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/characterization/gates/circuits.py "view source code")
 
 Generates circuit for measuring the amplitude error of the cx gate
 

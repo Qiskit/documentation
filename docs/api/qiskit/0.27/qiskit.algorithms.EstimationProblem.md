@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.EstimationProblem
 
 <span id="qiskit.algorithms.EstimationProblem" />
 
-`EstimationProblem(state_preparation, objective_qubits, grover_operator=None, post_processing=None, is_good_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/amplitude_estimators/estimation_problem.py "view source code")
+`EstimationProblem(state_preparation, objective_qubits, grover_operator=None, post_processing=None, is_good_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/amplitude_estimators/estimation_problem.py "view source code")
 
 The estimation problem is the input to amplitude estimation algorithm.
 

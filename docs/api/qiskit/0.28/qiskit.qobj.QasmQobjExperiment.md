@@ -10,7 +10,7 @@ python_api_name: qiskit.qobj.QasmQobjExperiment
 
 <span id="qiskit.qobj.QasmQobjExperiment" />
 
-`QasmQobjExperiment(config=None, header=None, instructions=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/qobj/qasm_qobj.py "view source code")
+`QasmQobjExperiment(config=None, header=None, instructions=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/qobj/qasm_qobj.py "view source code")
 
 A QASM Qobj Experiment.
 

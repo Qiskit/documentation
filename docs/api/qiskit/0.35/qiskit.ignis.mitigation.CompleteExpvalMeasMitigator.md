@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.mitigation.CompleteExpvalMeasMitigator
 
 <span id="qiskit.ignis.mitigation.CompleteExpvalMeasMitigator" />
 
-`CompleteExpvalMeasMitigator(amat)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/mitigation/expval/complete_mitigator.py "view source code")
+`CompleteExpvalMeasMitigator(amat)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/mitigation/expval/complete_mitigator.py "view source code")
 
 Bases: `qiskit.ignis.mitigation.expval.base_meas_mitigator.BaseExpvalMeasMitigator`
 
@@ -54,7 +54,7 @@ float
 
 <span id="qiskit.ignis.mitigation.CompleteExpvalMeasMitigator.assignment_matrix" />
 
-`CompleteExpvalMeasMitigator.assignment_matrix(qubits=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/mitigation/expval/complete_mitigator.py "view source code")
+`CompleteExpvalMeasMitigator.assignment_matrix(qubits=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/mitigation/expval/complete_mitigator.py "view source code")
 
 Return the measurement assignment matrix for specified qubits.
 
@@ -76,7 +76,7 @@ np.ndarray
 
 <span id="qiskit.ignis.mitigation.CompleteExpvalMeasMitigator.expectation_value" />
 
-`CompleteExpvalMeasMitigator.expectation_value(counts, diagonal=None, qubits=None, clbits=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/mitigation/expval/complete_mitigator.py "view source code")
+`CompleteExpvalMeasMitigator.expectation_value(counts, diagonal=None, qubits=None, clbits=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/mitigation/expval/complete_mitigator.py "view source code")
 
 Compute the mitigated expectation value of a diagonal observable.
 
@@ -111,7 +111,7 @@ The `clbits` kwarg is used to marginalize the input counts dictionary over the s
 
 <span id="qiskit.ignis.mitigation.CompleteExpvalMeasMitigator.mitigation_matrix" />
 
-`CompleteExpvalMeasMitigator.mitigation_matrix(qubits=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/mitigation/expval/complete_mitigator.py "view source code")
+`CompleteExpvalMeasMitigator.mitigation_matrix(qubits=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/mitigation/expval/complete_mitigator.py "view source code")
 
 Return the measurement mitigation matrix for the specified qubits.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.instructions.SetPhase
 
 <span id="qiskit.pulse.instructions.SetPhase" />
 
-`SetPhase(phase, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/instructions/phase.py "view source code")
+`SetPhase(phase, channel, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/instructions/phase.py "view source code")
 
 The set phase instruction sets the phase of the proceeding pulses on that channel to `phase` radians.
 

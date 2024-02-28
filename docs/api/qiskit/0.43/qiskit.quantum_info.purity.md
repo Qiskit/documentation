@@ -12,7 +12,7 @@ python_api_name: qiskit.quantum_info.purity
 
 <span id="qiskit.quantum_info.purity" />
 
-`purity(state, validate=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/states/measures.py "view source code")
+`purity(state, validate=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/states/measures.py "view source code")
 
 Calculate the purity of a quantum state.
 

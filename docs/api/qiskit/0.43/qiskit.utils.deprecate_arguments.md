@@ -12,7 +12,7 @@ python_api_name: qiskit.utils.deprecate_arguments
 
 <span id="qiskit.utils.deprecate_arguments" />
 
-`deprecate_arguments(kwarg_map, category=<class 'DeprecationWarning'>, *, since=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/utils/deprecation.py "view source code")
+`deprecate_arguments(kwarg_map, category=<class 'DeprecationWarning'>, *, since=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/utils/deprecation.py "view source code")
 
 Deprecated. Instead, use @deprecate\_arg.
 

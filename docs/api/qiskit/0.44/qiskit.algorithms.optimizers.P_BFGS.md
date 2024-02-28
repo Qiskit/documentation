@@ -12,7 +12,7 @@ python_api_name: qiskit.algorithms.optimizers.P_BFGS
 
 <span id="qiskit.algorithms.optimizers.P_BFGS" />
 
-`qiskit.algorithms.optimizers.P_BFGS(maxfun=1000, ftol=2.220446049250313e-15, iprint=-1, max_processes=None, options=None, max_evals_grouped=1, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/optimizers/p_bfgs.py "view source code")
+`qiskit.algorithms.optimizers.P_BFGS(maxfun=1000, ftol=2.220446049250313e-15, iprint=-1, max_processes=None, options=None, max_evals_grouped=1, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/optimizers/p_bfgs.py "view source code")
 
 Bases: [`SciPyOptimizer`](qiskit.algorithms.optimizers.SciPyOptimizer "qiskit.algorithms.optimizers.scipy_optimizer.SciPyOptimizer")
 

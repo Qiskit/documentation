@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.SNOBFIT
 
 <span id="qiskit.algorithms.optimizers.SNOBFIT" />
 
-`SNOBFIT(maxiter=1000, maxfail=10, maxmp=None, verbose=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/optimizers/snobfit.py "view source code")
+`SNOBFIT(maxiter=1000, maxfail=10, maxmp=None, verbose=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/optimizers/snobfit.py "view source code")
 
 Stable Noisy Optimization by Branch and FIT algorithm.
 

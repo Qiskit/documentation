@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.state_fns.OperatorStateFn
 
 <span id="qiskit.opflow.state_fns.OperatorStateFn" />
 
-`qiskit.opflow.state_fns.OperatorStateFn(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/state_fns/operator_state_fn.py "view source code")
+`qiskit.opflow.state_fns.OperatorStateFn(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/state_fns/operator_state_fn.py "view source code")
 
 Bases: [`StateFn`](qiskit.opflow.state_fns.StateFn "qiskit.opflow.state_fns.state_fn.StateFn")
 

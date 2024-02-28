@@ -10,7 +10,7 @@ python_api_name: qiskit.optimization.algorithms.OptimizationResult
 
 <span id="qiskit.optimization.algorithms.OptimizationResult" />
 
-`OptimizationResult(x, fval, variables, status, raw_results=None, samples=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/optimization_algorithm.py "view source code")
+`OptimizationResult(x, fval, variables, status, raw_results=None, samples=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/optimization_algorithm.py "view source code")
 
 A base class for optimization results.
 

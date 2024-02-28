@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.operators.legacy.kernel_F2
 
 <span id="qiskit.aqua.operators.legacy.kernel_F2" />
 
-`kernel_F2(matrix_in)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/legacy/common.py "view source code")
+`kernel_F2(matrix_in)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/legacy/common.py "view source code")
 
 Computes the kernel of a binary matrix on the binary finite field
 

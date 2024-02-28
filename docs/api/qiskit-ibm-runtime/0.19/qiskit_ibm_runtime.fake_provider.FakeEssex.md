@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeEssex
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeEssex" />
 
-`FakeEssex`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.19/qiskit_ibm_runtime/fake_provider/backends/essex/fake_essex.py "view source code")
+`FakeEssex` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.19/qiskit_ibm_runtime/fake_provider/backends/essex/fake_essex.py "view source code")
 
 A fake 5 qubit backend.
 

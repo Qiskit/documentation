@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.library.IQP
 
 <span id="qiskit.circuit.library.IQP" />
 
-`IQP(interactions)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/iqp.py "view source code")
+`IQP(interactions)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/iqp.py "view source code")
 
 Instantaneous quantum polynomial (IQP) circuit.
 

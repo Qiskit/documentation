@@ -12,7 +12,7 @@ python_api_name: qiskit.ignis.characterization.AngleCalCXFitter
 
 <span id="qiskit.ignis.characterization.AngleCalCXFitter" />
 
-`AngleCalCXFitter(backend_result, xdata, qubits, fit_p0, fit_bounds)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/characterization/gates/fitters.py "view source code")
+`AngleCalCXFitter(backend_result, xdata, qubits, fit_p0, fit_bounds)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/characterization/gates/fitters.py "view source code")
 
 Amplitude error fitter
 

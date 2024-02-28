@@ -10,7 +10,7 @@ python_api_name: qiskit.utils.is_main_process
 
 <span id="qiskit.utils.is_main_process" />
 
-`is_main_process()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/utils/multiprocessing.py "view source code")
+`is_main_process()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/utils/multiprocessing.py "view source code")
 
 Checks whether the current process is the main one
 

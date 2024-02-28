@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.U1Gate
 
 <span id="qiskit.circuit.library.U1Gate" />
 
-`U1Gate(theta, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/u1.py "view source code")
+`U1Gate(theta, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/u1.py "view source code")
 
 Single-qubit rotation about the Z axis.
 

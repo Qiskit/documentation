@@ -10,7 +10,7 @@ python_api_name: qiskit.qobj.QasmExperimentCalibrations
 
 <span id="qiskit.qobj.QasmExperimentCalibrations" />
 
-`qiskit.qobj.QasmExperimentCalibrations(gates)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/qobj/qasm_qobj.py "view source code")
+`qiskit.qobj.QasmExperimentCalibrations(gates)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/qobj/qasm_qobj.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 

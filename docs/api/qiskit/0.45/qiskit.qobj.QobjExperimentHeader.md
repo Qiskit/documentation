@@ -10,7 +10,7 @@ python_api_name: qiskit.qobj.QobjExperimentHeader
 
 <span id="qiskit.qobj.QobjExperimentHeader" />
 
-`qiskit.qobj.QobjExperimentHeader(**kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/qobj/common.py "view source code")
+`qiskit.qobj.QobjExperimentHeader(**kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/qobj/common.py "view source code")
 
 Bases: [`QobjHeader`](qiskit.qobj.QobjHeader "qiskit.qobj.common.QobjHeader")
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.reschedule.align_measures
 
 <span id="qiskit.pulse.reschedule.align_measures" />
 
-`align_measures(schedules, inst_map=None, cal_gate='u3', max_calibration_duration=None, align_time=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/reschedule.py "view source code")
+`align_measures(schedules, inst_map=None, cal_gate='u3', max_calibration_duration=None, align_time=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/reschedule.py "view source code")
 
 Return new schedules where measurements occur at the same physical time. Minimum measurement wait time (to allow for calibration pulses) is enforced.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.qobj.QasmQobjConfig
 
 <span id="qiskit.qobj.QasmQobjConfig" />
 
-`QasmQobjConfig(shots=None, max_credits=None, seed_simulator=None, memory=None, parameter_binds=None, meas_level=None, meas_return=None, memory_slots=None, n_qubits=None, pulse_library=None, calibrations=None, rep_delay=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/qobj/qasm_qobj.py "view source code")
+`QasmQobjConfig(shots=None, max_credits=None, seed_simulator=None, memory=None, parameter_binds=None, meas_level=None, meas_return=None, memory_slots=None, n_qubits=None, pulse_library=None, calibrations=None, rep_delay=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/qobj/qasm_qobj.py "view source code")
 
 A configuration for a QASM Qobj.
 

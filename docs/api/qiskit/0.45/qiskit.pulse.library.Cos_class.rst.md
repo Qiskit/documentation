@@ -12,7 +12,7 @@ python_api_name: qiskit.pulse.library.Cos
 
 <span id="qiskit.pulse.library.Cos" />
 
-`qiskit.pulse.library.Cos(duration, amp, phase, freq=None, angle=0.0, name=None, limit_amplitude=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/pulse/library/symbolic_pulses.py "view source code")
+`qiskit.pulse.library.Cos(duration, amp, phase, freq=None, angle=0.0, name=None, limit_amplitude=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/pulse/library/symbolic_pulses.py "view source code")
 
 A cosine pulse.
 

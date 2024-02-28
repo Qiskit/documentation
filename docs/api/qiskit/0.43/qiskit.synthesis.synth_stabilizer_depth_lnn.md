@@ -12,7 +12,7 @@ python_api_name: qiskit.synthesis.synth_stabilizer_depth_lnn
 
 <span id="qiskit.synthesis.synth_stabilizer_depth_lnn" />
 
-`synth_stabilizer_depth_lnn(stab)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/synthesis/stabilizer/stabilizer_decompose.py "view source code")
+`synth_stabilizer_depth_lnn(stab)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/synthesis/stabilizer/stabilizer_decompose.py "view source code")
 
 Synthesis of an n-qubit stabilizer state for linear-nearest neighbour connectivity, in 2-qubit depth 2\*n+2 and two distinct CX layers, using CX and phase gates (S, Sdg or Z).
 

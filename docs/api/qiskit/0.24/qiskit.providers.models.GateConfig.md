@@ -12,7 +12,7 @@ python_api_name: qiskit.providers.models.GateConfig
 
 <span id="qiskit.providers.models.GateConfig" />
 
-`GateConfig(name, parameters, qasm_def, coupling_map=None, latency_map=None, conditional=None, description=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/providers/models/backendconfiguration.py "view source code")
+`GateConfig(name, parameters, qasm_def, coupling_map=None, latency_map=None, conditional=None, description=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/providers/models/backendconfiguration.py "view source code")
 
 Class representing a Gate Configuration
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.ControlModifier
 
 <span id="qiskit.circuit.ControlModifier" />
 
-`qiskit.circuit.ControlModifier(num_ctrl_qubits=0, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/annotated_operation.py "view source code")
+`qiskit.circuit.ControlModifier(num_ctrl_qubits=0, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/annotated_operation.py "view source code")
 
 Bases: `Modifier`
 

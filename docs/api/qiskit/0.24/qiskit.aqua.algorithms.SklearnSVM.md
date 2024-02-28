@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.algorithms.SklearnSVM
 
 <span id="qiskit.aqua.algorithms.SklearnSVM" />
 
-`SklearnSVM(training_dataset, test_dataset=None, datapoints=None, gamma=None, multiclass_extension=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/classifiers/sklearn_svm/sklearn_svm.py "view source code")
+`SklearnSVM(training_dataset, test_dataset=None, datapoints=None, gamma=None, multiclass_extension=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/classifiers/sklearn_svm/sklearn_svm.py "view source code")
 
 The Sklearn SVM algorithm (classical).
 

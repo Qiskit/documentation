@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.CrosstalkAdaptiveSchedule
 
 <span id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule" />
 
-`CrosstalkAdaptiveSchedule(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/optimization/crosstalk_adaptive_schedule.py "view source code")
+`CrosstalkAdaptiveSchedule(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/optimization/crosstalk_adaptive_schedule.py "view source code")
 
 Crosstalk mitigation through adaptive instruction scheduling.
 

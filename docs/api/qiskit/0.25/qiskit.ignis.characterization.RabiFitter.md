@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.characterization.RabiFitter
 
 <span id="qiskit.ignis.characterization.RabiFitter" />
 
-`RabiFitter(backend_result, xdata, qubits, fit_p0, fit_bounds=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/characterization/calibrations/fitters.py "view source code")
+`RabiFitter(backend_result, xdata, qubits, fit_p0, fit_bounds=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/characterization/calibrations/fitters.py "view source code")
 
 Rabi Experiment fitter
 

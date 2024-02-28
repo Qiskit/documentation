@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.instructions.SetFrequency
 
 <span id="qiskit.pulse.instructions.SetFrequency" />
 
-`qiskit.pulse.instructions.SetFrequency(frequency, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/pulse/instructions/frequency.py "view source code")
+`qiskit.pulse.instructions.SetFrequency(frequency, channel, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/pulse/instructions/frequency.py "view source code")
 
 Bases: [`Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")
 

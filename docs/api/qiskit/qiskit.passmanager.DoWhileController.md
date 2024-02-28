@@ -10,7 +10,7 @@ python_api_name: qiskit.passmanager.DoWhileController
 
 <span id="qiskit.passmanager.DoWhileController" />
 
-`qiskit.passmanager.DoWhileController(tasks=(), do_while=None, *, options=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/passmanager/flow_controllers.py "view source code")
+`qiskit.passmanager.DoWhileController(tasks=(), do_while=None, *, options=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/passmanager/flow_controllers.py "view source code")
 
 Bases: [`BaseController`](qiskit.passmanager.BaseController "qiskit.passmanager.base_tasks.BaseController")
 

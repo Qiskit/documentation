@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.converters.PauliBasisChange
 
 <span id="qiskit.opflow.converters.PauliBasisChange" />
 
-`qiskit.opflow.converters.PauliBasisChange(destination_basis=None, traverse=True, replacement_fn=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/converters/pauli_basis_change.py "view source code")
+`qiskit.opflow.converters.PauliBasisChange(destination_basis=None, traverse=True, replacement_fn=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/converters/pauli_basis_change.py "view source code")
 
 Bases: [`ConverterBase`](qiskit.opflow.converters.ConverterBase "qiskit.opflow.converters.converter_base.ConverterBase")
 

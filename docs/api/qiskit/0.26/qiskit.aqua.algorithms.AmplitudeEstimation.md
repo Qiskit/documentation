@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.algorithms.AmplitudeEstimation
 
 <span id="qiskit.aqua.algorithms.AmplitudeEstimation" />
 
-`AmplitudeEstimation(num_eval_qubits, state_preparation=None, grover_operator=None, objective_qubits=None, post_processing=None, phase_estimation_circuit=None, iqft=None, quantum_instance=None, a_factory=None, q_factory=None, i_objective=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_estimators/ae.py "view source code")
+`AmplitudeEstimation(num_eval_qubits, state_preparation=None, grover_operator=None, objective_qubits=None, post_processing=None, phase_estimation_circuit=None, iqft=None, quantum_instance=None, a_factory=None, q_factory=None, i_objective=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_estimators/ae.py "view source code")
 
 The Quantum Phase Estimation-based Amplitude Estimation algorithm.
 

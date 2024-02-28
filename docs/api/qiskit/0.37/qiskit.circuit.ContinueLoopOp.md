@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.ContinueLoopOp
 
 <span id="qiskit.circuit.ContinueLoopOp" />
 
-`ContinueLoopOp(num_qubits, num_clbits, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/controlflow/continue_loop.py "view source code")
+`ContinueLoopOp(num_qubits, num_clbits, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/controlflow/continue_loop.py "view source code")
 
 Bases: [`qiskit.circuit.instruction.Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 

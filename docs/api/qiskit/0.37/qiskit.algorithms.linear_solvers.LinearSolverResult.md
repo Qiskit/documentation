@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.linear_solvers.LinearSolverResult
 
 <span id="qiskit.algorithms.linear_solvers.LinearSolverResult" />
 
-`LinearSolverResult`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/linear_solvers/linear_solver.py "view source code")
+`LinearSolverResult` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/linear_solvers/linear_solver.py "view source code")
 
 Bases: `qiskit.algorithms.algorithm_result.AlgorithmResult`
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.AmplitudeEstimation
 
 <span id="qiskit.algorithms.AmplitudeEstimation" />
 
-`AmplitudeEstimation(num_eval_qubits, phase_estimation_circuit=None, iqft=None, quantum_instance=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/amplitude_estimators/ae.py "view source code")
+`AmplitudeEstimation(num_eval_qubits, phase_estimation_circuit=None, iqft=None, quantum_instance=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/amplitude_estimators/ae.py "view source code")
 
 The Quantum Phase Estimation-based Amplitude Estimation algorithm.
 

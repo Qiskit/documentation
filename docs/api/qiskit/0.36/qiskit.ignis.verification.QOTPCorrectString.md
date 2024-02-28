@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.verification.QOTPCorrectString
 
 <span id="qiskit.ignis.verification.QOTPCorrectString" />
 
-`QOTPCorrectString(qotp_string, qotp_postp)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/accreditation/qotp.py "view source code")
+`QOTPCorrectString(qotp_string, qotp_postp)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/accreditation/qotp.py "view source code")
 
 Corrects a measurement string, shifting the qotp
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.operators.converters.CircuitSampler
 
 <span id="qiskit.aqua.operators.converters.CircuitSampler" />
 
-`CircuitSampler(backend, statevector=None, param_qobj=False, attach_results=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/converters/circuit_sampler.py "view source code")
+`CircuitSampler(backend, statevector=None, param_qobj=False, attach_results=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/converters/circuit_sampler.py "view source code")
 
 The CircuitSampler traverses an Operator and converts any CircuitStateFns into approximations of the state function by a DictStateFn or VectorStateFn using a quantum backend. Note that in order to approximate the value of the CircuitStateFn, it must 1) send state function through a depolarizing channel, which will destroy all phase information and 2) replace the sampled frequencies with **square roots** of the frequency, rather than the raw probability of sampling (which would be the equivalent of sampling the **square** of the state function, per the Born rule.
 

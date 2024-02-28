@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.minimum_eigensolvers.MinimumEigensolver
 
 <span id="qiskit.algorithms.minimum_eigensolvers.MinimumEigensolver" />
 
-`qiskit.algorithms.minimum_eigensolvers.MinimumEigensolver`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/minimum_eigensolvers/minimum_eigensolver.py "view source code")
+`qiskit.algorithms.minimum_eigensolvers.MinimumEigensolver` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/minimum_eigensolvers/minimum_eigensolver.py "view source code")
 
 Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 

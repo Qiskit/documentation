@@ -10,7 +10,7 @@ python_api_name: qiskit.utils.apply_prefix
 
 <span id="qiskit.utils.apply_prefix" />
 
-`apply_prefix(value, unit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/utils/units.py "view source code")
+`apply_prefix(value, unit)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/utils/units.py "view source code")
 
 Given a SI unit prefix and value, apply the prefix to convert to standard SI unit.
 

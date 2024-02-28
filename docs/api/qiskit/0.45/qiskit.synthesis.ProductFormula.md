@@ -10,7 +10,7 @@ python_api_name: qiskit.synthesis.ProductFormula
 
 <span id="qiskit.synthesis.ProductFormula" />
 
-`qiskit.synthesis.ProductFormula(order, reps=1, insert_barriers=False, cx_structure='chain', atomic_evolution=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/evolution/product_formula.py "view source code")
+`qiskit.synthesis.ProductFormula(order, reps=1, insert_barriers=False, cx_structure='chain', atomic_evolution=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/synthesis/evolution/product_formula.py "view source code")
 
 Bases: [`EvolutionSynthesis`](qiskit.synthesis.EvolutionSynthesis "qiskit.synthesis.evolution.evolution_synthesis.EvolutionSynthesis")
 

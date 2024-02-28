@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.runtime.UserMessenger
 
 <span id="qiskit.providers.ibmq.runtime.UserMessenger" />
 
-`UserMessenger`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.14/qiskit/providers/ibmq/runtime/program/user_messenger.py "view source code")
+`UserMessenger` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.14/qiskit/providers/ibmq/runtime/program/user_messenger.py "view source code")
 
 Base class for handling communication with program users.
 

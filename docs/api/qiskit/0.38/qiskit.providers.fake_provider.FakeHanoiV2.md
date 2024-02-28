@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeHanoiV2
 
 <span id="qiskit.providers.fake_provider.FakeHanoiV2" />
 
-`FakeHanoiV2`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/fake_provider/backends/hanoi/fake_hanoi.py "view source code")
+`FakeHanoiV2` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/fake_provider/backends/hanoi/fake_hanoi.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_backend.FakeBackendV2`
 

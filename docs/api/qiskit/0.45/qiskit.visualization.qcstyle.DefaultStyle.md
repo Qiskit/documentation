@@ -10,7 +10,7 @@ python_api_name: qiskit.visualization.qcstyle.DefaultStyle
 
 <span id="qiskit.visualization.qcstyle.DefaultStyle" />
 
-`qiskit.visualization.qcstyle.DefaultStyle`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/visualization/circuit/qcstyle.py "view source code")
+`qiskit.visualization.qcstyle.DefaultStyle` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/visualization/circuit/qcstyle.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 

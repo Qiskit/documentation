@@ -12,7 +12,7 @@ python_api_name: qiskit.transpiler.preset_passmanagers.common.generate_unroll_3q
 
 <span id="qiskit.transpiler.preset_passmanagers.common.generate_unroll_3q" />
 
-`generate_unroll_3q(target, basis_gates=None, approximation_degree=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None, hls_config=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/preset_passmanagers/common.py "view source code")
+`generate_unroll_3q(target, basis_gates=None, approximation_degree=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None, hls_config=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/preset_passmanagers/common.py "view source code")
 
 Generate an unroll >3q [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.optimization.QuadraticProgram
 
 <span id="qiskit.optimization.QuadraticProgram" />
 
-`QuadraticProgram(name='')`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py "view source code")
+`QuadraticProgram(name='')` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py "view source code")
 
 Quadratically Constrained Quadratic Program representation.
 

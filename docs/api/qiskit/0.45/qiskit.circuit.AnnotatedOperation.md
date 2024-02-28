@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.AnnotatedOperation
 
 <span id="qiskit.circuit.AnnotatedOperation" />
 
-`qiskit.circuit.AnnotatedOperation(base_op, modifiers)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/annotated_operation.py "view source code")
+`qiskit.circuit.AnnotatedOperation(base_op, modifiers)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/annotated_operation.py "view source code")
 
 Bases: [`Operation`](qiskit.circuit.Operation "qiskit.circuit.operation.Operation")
 

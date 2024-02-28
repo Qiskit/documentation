@@ -12,7 +12,7 @@ python_api_name: qiskit.providers.models.JobStatus
 
 <span id="qiskit.providers.models.JobStatus" />
 
-`JobStatus(job_id, status, status_msg, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/providers/models/jobstatus.py "view source code")
+`JobStatus(job_id, status, status_msg, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/providers/models/jobstatus.py "view source code")
 
 Model for JobStatus.
 

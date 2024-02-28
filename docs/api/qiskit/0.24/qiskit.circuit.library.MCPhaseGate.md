@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.library.MCPhaseGate
 
 <span id="qiskit.circuit.library.MCPhaseGate" />
 
-`MCPhaseGate(lam, num_ctrl_qubits, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/standard_gates/p.py "view source code")
+`MCPhaseGate(lam, num_ctrl_qubits, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/standard_gates/p.py "view source code")
 
 Multi-controlled-Phase gate.
 

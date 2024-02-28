@@ -12,7 +12,7 @@ python_api_name: qiskit.ignis.characterization.BaseCoherenceFitter
 
 <span id="qiskit.ignis.characterization.BaseCoherenceFitter" />
 
-`BaseCoherenceFitter(description, backend_result, xdata, qubits, fit_fun, fit_p0, fit_bounds, circuit_names, series=None, expected_state='0', time_index=0, time_unit='micro-seconds')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/characterization/fitters.py "view source code")
+`BaseCoherenceFitter(description, backend_result, xdata, qubits, fit_fun, fit_p0, fit_bounds, circuit_names, series=None, expected_state='0', time_index=0, time_unit='micro-seconds')` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/characterization/fitters.py "view source code")
 
 Base class for fitters of characteristic times
 

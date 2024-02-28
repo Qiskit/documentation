@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeGeneva
 
 <span id="qiskit.providers.fake_provider.FakeGeneva" />
 
-`qiskit.providers.fake_provider.FakeGeneva`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/providers/fake_provider/backends/geneva/fake_geneva.py "view source code")
+`qiskit.providers.fake_provider.FakeGeneva` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/providers/fake_provider/backends/geneva/fake_geneva.py "view source code")
 
 Bases: `FakeBackendV2`
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.algorithms.optimizers.NELDER_MEAD
 
 <span id="qiskit.algorithms.optimizers.NELDER_MEAD" />
 
-`qiskit.algorithms.optimizers.NELDER_MEAD(maxiter=None, maxfev=1000, disp=False, xatol=0.0001, tol=None, adaptive=False, options=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/optimizers/nelder_mead.py "view source code")
+`qiskit.algorithms.optimizers.NELDER_MEAD(maxiter=None, maxfev=1000, disp=False, xatol=0.0001, tol=None, adaptive=False, options=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/optimizers/nelder_mead.py "view source code")
 
 Bases: [`SciPyOptimizer`](qiskit.algorithms.optimizers.SciPyOptimizer "qiskit.algorithms.optimizers.scipy_optimizer.SciPyOptimizer")
 

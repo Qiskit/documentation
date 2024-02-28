@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.builder.call
 
 <span id="qiskit.pulse.builder.call" />
 
-`call(target, name=None, value_dict=None, **kw_params)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/pulse/builder.py "view source code")
+`call(target, name=None, value_dict=None, **kw_params)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/pulse/builder.py "view source code")
 
 Call the subroutine within the currently active builder context with arbitrary parameters which will be assigned to the target program.
 

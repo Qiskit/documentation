@@ -12,7 +12,7 @@ python_api_name: qiskit.ignis.mitigation.TensoredExpvalMeasMitigator
 
 <span id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator" />
 
-`TensoredExpvalMeasMitigator(amats)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/mitigation/expval/tensored_mitigator.py "view source code")
+`TensoredExpvalMeasMitigator(amats)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/mitigation/expval/tensored_mitigator.py "view source code")
 
 1-qubit tensor product measurement error mitigator.
 

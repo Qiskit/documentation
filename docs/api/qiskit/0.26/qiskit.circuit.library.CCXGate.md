@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CCXGate
 
 <span id="qiskit.circuit.library.CCXGate" />
 
-`CCXGate(label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/library/standard_gates/x.py "view source code")
+`CCXGate(label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 CCX gate, also known as Toffoli gate.
 

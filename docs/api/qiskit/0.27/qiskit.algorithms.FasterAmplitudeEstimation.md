@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.FasterAmplitudeEstimation
 
 <span id="qiskit.algorithms.FasterAmplitudeEstimation" />
 
-`FasterAmplitudeEstimation(delta, maxiter, rescale=True, quantum_instance=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/amplitude_estimators/fae.py "view source code")
+`FasterAmplitudeEstimation(delta, maxiter, rescale=True, quantum_instance=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/amplitude_estimators/fae.py "view source code")
 
 The Faster Amplitude Estimation algorithm.
 

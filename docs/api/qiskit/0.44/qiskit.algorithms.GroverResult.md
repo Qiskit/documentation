@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.GroverResult
 
 <span id="qiskit.algorithms.GroverResult" />
 
-`qiskit.algorithms.GroverResult`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/amplitude_amplifiers/grover.py "view source code")
+`qiskit.algorithms.GroverResult` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/amplitude_amplifiers/grover.py "view source code")
 
 Bases: `AmplitudeAmplifierResult`
 

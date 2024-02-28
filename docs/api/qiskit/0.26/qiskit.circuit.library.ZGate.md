@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.ZGate
 
 <span id="qiskit.circuit.library.ZGate" />
 
-`ZGate(label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/library/standard_gates/z.py "view source code")
+`ZGate(label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/library/standard_gates/z.py "view source code")
 
 The single-qubit Pauli-Z gate ($\sigma_z$).
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.chemistry.algorithms.NumPyEigensolverFactory
 
 <span id="qiskit.chemistry.algorithms.NumPyEigensolverFactory" />
 
-`NumPyEigensolverFactory(filter_criterion=None, k=100, use_default_filter_criterion=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/algorithms/excited_states_solvers/eigensolver_factories/numpy_eigensolver_factory.py "view source code")
+`NumPyEigensolverFactory(filter_criterion=None, k=100, use_default_filter_criterion=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/algorithms/excited_states_solvers/eigensolver_factories/numpy_eigensolver_factory.py "view source code")
 
 A factory to construct a NumPyEigensolver.
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.chemistry.algorithms.GroundStateEigensolver
 
 <span id="qiskit.chemistry.algorithms.GroundStateEigensolver" />
 
-`GroundStateEigensolver(transformation, solver)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/algorithms/ground_state_solvers/ground_state_eigensolver.py "view source code")
+`GroundStateEigensolver(transformation, solver)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/algorithms/ground_state_solvers/ground_state_eigensolver.py "view source code")
 
 Ground state computation using a minimum eigensolver.
 

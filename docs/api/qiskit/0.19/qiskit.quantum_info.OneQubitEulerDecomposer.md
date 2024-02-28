@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.OneQubitEulerDecomposer
 
 <span id="qiskit.quantum_info.OneQubitEulerDecomposer" />
 
-`OneQubitEulerDecomposer(basis='U3')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/synthesis/one_qubit_decompose.py "view source code")
+`OneQubitEulerDecomposer(basis='U3')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/synthesis/one_qubit_decompose.py "view source code")
 
 A class for decomposing 1-qubit unitaries into Euler angle rotations.
 
@@ -49,7 +49,7 @@ The decomposition basis.
 
 <span id="qiskit.quantum_info.OneQubitEulerDecomposer.__call__" />
 
-`OneQubitEulerDecomposer.__call__(unitary, simplify=True, atol=1e-12)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/synthesis/one_qubit_decompose.py "view source code")
+`OneQubitEulerDecomposer.__call__(unitary, simplify=True, atol=1e-12)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/synthesis/one_qubit_decompose.py "view source code")
 
 Decompose single qubit gate into a circuit.
 
@@ -75,7 +75,7 @@ the decomposed single-qubit gate circuit
 
 <span id="qiskit.quantum_info.OneQubitEulerDecomposer.angles" />
 
-`OneQubitEulerDecomposer.angles(unitary)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/synthesis/one_qubit_decompose.py "view source code")
+`OneQubitEulerDecomposer.angles(unitary)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/synthesis/one_qubit_decompose.py "view source code")
 
 Return the Euler angles for input array.
 
@@ -95,7 +95,7 @@ tuple
 
 <span id="qiskit.quantum_info.OneQubitEulerDecomposer.angles_and_phase" />
 
-`OneQubitEulerDecomposer.angles_and_phase(unitary)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/synthesis/one_qubit_decompose.py "view source code")
+`OneQubitEulerDecomposer.angles_and_phase(unitary)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/synthesis/one_qubit_decompose.py "view source code")
 
 Return the Euler angles and phase for input array.
 

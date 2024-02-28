@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.Statevector
 
 <span id="qiskit.quantum_info.Statevector" />
 
-`Statevector(data, dims=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/states/statevector.py "view source code")
+`Statevector(data, dims=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/states/statevector.py "view source code")
 
 Bases: `qiskit.quantum_info.states.quantum_state.QuantumState`, `qiskit.quantum_info.operators.mixins.tolerances.TolerancesMixin`
 
@@ -40,7 +40,7 @@ The `dims` kwarg can be None, an integer, or an iterable of integers.
 
 <span id="qiskit.quantum_info.Statevector.conjugate" />
 
-`Statevector.conjugate()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/states/statevector.py "view source code")
+`Statevector.conjugate()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/states/statevector.py "view source code")
 
 Return the conjugate of the operator.
 
@@ -64,7 +64,7 @@ Return tuple of input dimension for specified subsystems.
 
 <span id="qiskit.quantum_info.Statevector.draw" />
 
-`Statevector.draw(output=None, **drawer_args)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/states/statevector.py "view source code")
+`Statevector.draw(output=None, **drawer_args)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/states/statevector.py "view source code")
 
 Return a visualization of the Statevector.
 
@@ -116,7 +116,7 @@ sv.draw(output='hinton')
 
 <span id="qiskit.quantum_info.Statevector.equiv" />
 
-`Statevector.equiv(other, rtol=None, atol=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/states/statevector.py "view source code")
+`Statevector.equiv(other, rtol=None, atol=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/states/statevector.py "view source code")
 
 Return True if other is equivalent as a statevector up to global phase.
 
@@ -142,7 +142,7 @@ bool
 
 <span id="qiskit.quantum_info.Statevector.evolve" />
 
-`Statevector.evolve(other, qargs=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/states/statevector.py "view source code")
+`Statevector.evolve(other, qargs=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/states/statevector.py "view source code")
 
 Evolve a quantum state by the operator.
 
@@ -167,7 +167,7 @@ the output quantum state.
 
 <span id="qiskit.quantum_info.Statevector.expand" />
 
-`Statevector.expand(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/states/statevector.py "view source code")
+`Statevector.expand(other)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/states/statevector.py "view source code")
 
 Return the tensor product state other ⊗ self.
 
@@ -191,7 +191,7 @@ the tensor product state other ⊗ self.
 
 <span id="qiskit.quantum_info.Statevector.expectation_value" />
 
-`Statevector.expectation_value(oper, qargs=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/states/statevector.py "view source code")
+`Statevector.expectation_value(oper, qargs=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/states/statevector.py "view source code")
 
 Compute the expectation value of an operator.
 
@@ -212,7 +212,7 @@ complex
 
 <span id="qiskit.quantum_info.Statevector.from_instruction" />
 
-`classmethod Statevector.from_instruction(instruction)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/states/statevector.py "view source code")
+`classmethod Statevector.from_instruction(instruction)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/states/statevector.py "view source code")
 
 Return the output statevector of an instruction.
 
@@ -238,7 +238,7 @@ The final statevector.
 
 <span id="qiskit.quantum_info.Statevector.from_int" />
 
-`static Statevector.from_int(i, dims)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/states/statevector.py "view source code")
+`static Statevector.from_int(i, dims)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/states/statevector.py "view source code")
 
 Return a computational basis statevector.
 
@@ -266,7 +266,7 @@ The `dims` kwarg can be an integer or an iterable of integers.
 
 <span id="qiskit.quantum_info.Statevector.from_label" />
 
-`classmethod Statevector.from_label(label)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/states/statevector.py "view source code")
+`classmethod Statevector.from_label(label)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/states/statevector.py "view source code")
 
 Return a tensor product of Pauli X,Y,Z eigenstates.
 
@@ -299,7 +299,7 @@ The N-qubit basis state density matrix.
 
 <span id="qiskit.quantum_info.Statevector.inner" />
 
-`Statevector.inner(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/states/statevector.py "view source code")
+`Statevector.inner(other)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/states/statevector.py "view source code")
 
 Return the inner product of self and other as $\langle self| other \rangle$.
 
@@ -323,7 +323,7 @@ np.complex128
 
 <span id="qiskit.quantum_info.Statevector.is_valid" />
 
-`Statevector.is_valid(atol=None, rtol=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/states/statevector.py "view source code")
+`Statevector.is_valid(atol=None, rtol=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/states/statevector.py "view source code")
 
 Return True if a Statevector has norm 1.
 
@@ -355,7 +355,7 @@ tuple
 
 <span id="qiskit.quantum_info.Statevector.probabilities" />
 
-`Statevector.probabilities(qargs=None, decimals=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/states/statevector.py "view source code")
+`Statevector.probabilities(qargs=None, decimals=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/states/statevector.py "view source code")
 
 Return the subsystem measurement probability vector.
 
@@ -453,7 +453,7 @@ dict
 
 <span id="qiskit.quantum_info.Statevector.purity" />
 
-`Statevector.purity()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/states/statevector.py "view source code")
+`Statevector.purity()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/states/statevector.py "view source code")
 
 Return the purity of the quantum state.
 
@@ -461,7 +461,7 @@ Return the purity of the quantum state.
 
 <span id="qiskit.quantum_info.Statevector.reset" />
 
-`Statevector.reset(qargs=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/states/statevector.py "view source code")
+`Statevector.reset(qargs=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/states/statevector.py "view source code")
 
 Reset state or subsystems to the 0-state.
 
@@ -485,7 +485,7 @@ If all subsystems are reset this will return the ground state on all subsystems.
 
 <span id="qiskit.quantum_info.Statevector.reverse_qargs" />
 
-`Statevector.reverse_qargs()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/states/statevector.py "view source code")
+`Statevector.reverse_qargs()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/states/statevector.py "view source code")
 
 Return a Statevector with reversed subsystem ordering.
 
@@ -565,7 +565,7 @@ Set the seed for the quantum state RNG.
 
 <span id="qiskit.quantum_info.Statevector.tensor" />
 
-`Statevector.tensor(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/states/statevector.py "view source code")
+`Statevector.tensor(other)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/states/statevector.py "view source code")
 
 Return the tensor product state self ⊗ other.
 
@@ -589,7 +589,7 @@ the tensor product operator self ⊗ other.
 
 <span id="qiskit.quantum_info.Statevector.to_dict" />
 
-`Statevector.to_dict(decimals=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/states/statevector.py "view source code")
+`Statevector.to_dict(decimals=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/states/statevector.py "view source code")
 
 Convert the statevector to dictionary form.
 
@@ -660,7 +660,7 @@ print(psi.to_dict())
 
 <span id="qiskit.quantum_info.Statevector.to_operator" />
 
-`Statevector.to_operator()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/states/statevector.py "view source code")
+`Statevector.to_operator()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/states/statevector.py "view source code")
 
 Convert state to a rank-1 projector operator
 
@@ -668,7 +668,7 @@ Convert state to a rank-1 projector operator
 
 <span id="qiskit.quantum_info.Statevector.trace" />
 
-`Statevector.trace()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/states/statevector.py "view source code")
+`Statevector.trace()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/states/statevector.py "view source code")
 
 Return the trace of the quantum state as a density matrix.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.operators.legacy.LegacyBaseOperator
 
 <span id="qiskit.aqua.operators.legacy.LegacyBaseOperator" />
 
-`LegacyBaseOperator(basis=None, z2_symmetries=None, name=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/legacy/base_operator.py "view source code")
+`LegacyBaseOperator(basis=None, z2_symmetries=None, name=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/legacy/base_operator.py "view source code")
 
 Operators relevant for quantum applications.
 

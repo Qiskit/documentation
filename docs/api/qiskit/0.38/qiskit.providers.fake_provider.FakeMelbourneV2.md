@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeMelbourneV2
 
 <span id="qiskit.providers.fake_provider.FakeMelbourneV2" />
 
-`FakeMelbourneV2`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/fake_provider/backends/melbourne/fake_melbourne.py "view source code")
+`FakeMelbourneV2` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/fake_provider/backends/melbourne/fake_melbourne.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_backend.FakeBackendV2`
 

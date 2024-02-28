@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.models.BackendStatus
 
 <span id="qiskit.providers.models.BackendStatus" />
 
-`BackendStatus(backend_name, backend_version, operational, pending_jobs, status_msg)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/providers/models/backendstatus.py "view source code")
+`BackendStatus(backend_name, backend_version, operational, pending_jobs, status_msg)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/providers/models/backendstatus.py "view source code")
 
 Class representing Backend Status.
 

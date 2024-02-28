@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.algorithms.VQEUCCSDFactory
 
 <span id="qiskit.chemistry.algorithms.VQEUCCSDFactory" />
 
-`VQEUCCSDFactory(quantum_instance, optimizer=None, initial_point=None, gradient=None, expectation=None, include_custom=False, method_singles='both', method_doubles='ucc', excitation_type='sd', same_spin_doubles=True)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/ground_state_solvers/minimum_eigensolver_factories/vqe_uccsd_factory.py "view source code")
+`VQEUCCSDFactory(quantum_instance, optimizer=None, initial_point=None, gradient=None, expectation=None, include_custom=False, method_singles='both', method_doubles='ucc', excitation_type='sd', same_spin_doubles=True)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/ground_state_solvers/minimum_eigensolver_factories/vqe_uccsd_factory.py "view source code")
 
 A factory to construct a VQE minimum eigensolver with UCCSD ansatz wavefunction.
 

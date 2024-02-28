@@ -12,7 +12,7 @@ python_api_name: qiskit.transpiler.passes.TrivialLayout
 
 <span id="qiskit.transpiler.passes.TrivialLayout" />
 
-`TrivialLayout(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/transpiler/passes/layout/trivial_layout.py "view source code")
+`TrivialLayout(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/transpiler/passes/layout/trivial_layout.py "view source code")
 
 Choose a Layout by assigning `n` circuit qubits to device qubits `0, .., n-1`.
 

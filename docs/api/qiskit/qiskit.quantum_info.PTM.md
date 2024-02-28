@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.PTM
 
 <span id="qiskit.quantum_info.PTM" />
 
-`qiskit.quantum_info.PTM(data, input_dims=None, output_dims=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/quantum_info/operators/channel/ptm.py "view source code")
+`qiskit.quantum_info.PTM(data, input_dims=None, output_dims=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/quantum_info/operators/channel/ptm.py "view source code")
 
 Bases: `QuantumChannel`
 

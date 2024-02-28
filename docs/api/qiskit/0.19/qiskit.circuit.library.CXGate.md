@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CXGate
 
 <span id="qiskit.circuit.library.CXGate" />
 
-`CXGate(ctrl_state=None, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/x.py "view source code")
+`CXGate(ctrl_state=None, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 Controlled-X gate.
 
@@ -201,7 +201,7 @@ Add classical condition on register classical and value val.
 
 <span id="qiskit.circuit.library.CXGate.control" />
 
-`CXGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/x.py "view source code")
+`CXGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 Return a controlled-X gate with more control lines.
 
@@ -245,7 +245,7 @@ updated if it was provided
 
 <span id="qiskit.circuit.library.CXGate.inverse" />
 
-`CXGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/x.py "view source code")
+`CXGate.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 Return inverted CX gate (itself).
 
@@ -337,7 +337,7 @@ Containing the definition.
 
 <span id="qiskit.circuit.library.CXGate.to_matrix" />
 
-`CXGate.to_matrix()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/x.py "view source code")
+`CXGate.to_matrix()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 Return a numpy.array for the CX gate.
 

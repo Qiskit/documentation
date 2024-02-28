@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.operators.evolutions.Trotter
 
 <span id="qiskit.aqua.operators.evolutions.Trotter" />
 
-`Trotter(reps=1)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/evolutions/trotterizations/trotter.py "view source code")
+`Trotter(reps=1)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/evolutions/trotterizations/trotter.py "view source code")
 
 Simple Trotter expansion, composing the evolution circuits of each Operator in the sum together `reps` times and dividing the evolution time of each by `reps`.
 

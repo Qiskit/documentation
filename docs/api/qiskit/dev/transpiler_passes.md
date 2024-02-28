@@ -95,7 +95,7 @@ python_api_name: qiskit.transpiler.passes
 
 <span id="qiskit.transpiler.passes.rzx_templates" />
 
-`qiskit.transpiler.passes.rzx_templates(template_list=None)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/transpiler/passes/calibration/rzx_templates.py "view source code")
+`qiskit.transpiler.passes.rzx_templates(template_list=None)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/transpiler/passes/calibration/rzx_templates.py "view source code")
 
 Convenience function to get the cost\_dict and templates for template matching.
 

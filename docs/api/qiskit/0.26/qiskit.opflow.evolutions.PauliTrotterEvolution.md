@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.evolutions.PauliTrotterEvolution
 
 <span id="qiskit.opflow.evolutions.PauliTrotterEvolution" />
 
-`PauliTrotterEvolution(trotter_mode='trotter', reps=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/evolutions/pauli_trotter_evolution.py "view source code")
+`PauliTrotterEvolution(trotter_mode='trotter', reps=1)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/evolutions/pauli_trotter_evolution.py "view source code")
 
 An Evolution algorithm replacing exponentiated sums of Paulis by changing them each to the Z basis, rotating with an rZ, changing back, and Trotterizing.
 

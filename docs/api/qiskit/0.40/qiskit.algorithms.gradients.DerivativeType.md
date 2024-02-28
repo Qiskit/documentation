@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.gradients.DerivativeType
 
 <span id="qiskit.algorithms.gradients.DerivativeType" />
 
-`DerivativeType(value)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/gradients/utils.py "view source code")
+`DerivativeType(value)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/gradients/utils.py "view source code")
 
 Bases: `enum.Enum`
 

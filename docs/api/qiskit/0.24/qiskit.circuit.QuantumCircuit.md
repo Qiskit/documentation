@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
 <span id="qiskit.circuit.QuantumCircuit" />
 
-`QuantumCircuit(*regs, name=None, global_phase=0)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit(*regs, name=None, global_phase=0)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/quantumcircuit.py "view source code")
 
 Create a new circuit.
 

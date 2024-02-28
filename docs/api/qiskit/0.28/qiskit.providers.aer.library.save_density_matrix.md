@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.library.save_density_matrix
 
 <span id="qiskit.providers.aer.library.save_density_matrix" />
 
-`save_density_matrix(self, qubits=None, label='density_matrix', unnormalized=False, pershot=False, conditional=False)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/library/save_instructions/save_density_matrix.py "view source code")
+`save_density_matrix(self, qubits=None, label='density_matrix', unnormalized=False, pershot=False, conditional=False)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/library/save_instructions/save_density_matrix.py "view source code")
 
 Save the current simulator quantum state as a density matrix.
 

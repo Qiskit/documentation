@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.Reset
 
 <span id="qiskit.circuit.library.Reset" />
 
-`qiskit.circuit.library.Reset(*args, _force_mutable=False, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/reset.py "view source code")
+`qiskit.circuit.library.Reset(*args, _force_mutable=False, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/reset.py "view source code")
 
 Bases: [`SingletonInstruction`](circuit_singleton#qiskit.circuit.singleton.SingletonInstruction "qiskit.circuit.singleton.SingletonInstruction")
 

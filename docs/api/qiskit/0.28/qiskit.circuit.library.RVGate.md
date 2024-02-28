@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.RVGate
 
 <span id="qiskit.circuit.library.RVGate" />
 
-`RVGate(v_x, v_y, v_z, basis='U')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/generalized_gates/rv.py "view source code")
+`RVGate(v_x, v_y, v_z, basis='U')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/generalized_gates/rv.py "view source code")
 
 Rotation around arbitrary rotation axis $v$ where $|v|$ is angle of rotation in radians.
 

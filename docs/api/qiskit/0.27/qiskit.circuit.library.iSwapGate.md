@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.iSwapGate
 
 <span id="qiskit.circuit.library.iSwapGate" />
 
-`iSwapGate`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/library/standard_gates/iswap.py "view source code")
+`iSwapGate` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/library/standard_gates/iswap.py "view source code")
 
 iSWAP gate.
 

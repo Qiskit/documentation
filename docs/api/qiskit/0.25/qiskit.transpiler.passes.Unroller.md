@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.Unroller
 
 <span id="qiskit.transpiler.passes.Unroller" />
 
-`Unroller(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/transpiler/passes/basis/unroller.py "view source code")
+`Unroller(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/transpiler/passes/basis/unroller.py "view source code")
 
 Unroll a circuit to a given basis.
 

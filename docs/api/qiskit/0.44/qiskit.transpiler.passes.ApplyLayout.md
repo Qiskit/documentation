@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.ApplyLayout
 
 <span id="qiskit.transpiler.passes.ApplyLayout" />
 
-`qiskit.transpiler.passes.ApplyLayout(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/layout/apply_layout.py "view source code")
+`qiskit.transpiler.passes.ApplyLayout(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/layout/apply_layout.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 

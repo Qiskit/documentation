@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.IntegerComparator
 
 <span id="qiskit.circuit.library.IntegerComparator" />
 
-`qiskit.circuit.library.IntegerComparator(num_state_qubits=None, value=None, geq=True, name='cmp')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/arithmetic/integer_comparator.py "view source code")
+`qiskit.circuit.library.IntegerComparator(num_state_qubits=None, value=None, geq=True, name='cmp')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/arithmetic/integer_comparator.py "view source code")
 
 Bases: `BlueprintCircuit`
 

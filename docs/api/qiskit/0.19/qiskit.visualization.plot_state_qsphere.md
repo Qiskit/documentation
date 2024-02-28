@@ -10,7 +10,7 @@ python_api_name: qiskit.visualization.plot_state_qsphere
 
 <span id="qiskit.visualization.plot_state_qsphere" />
 
-`plot_state_qsphere(rho, figsize=None, ax=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/visualization/state_visualization.py "view source code")
+`plot_state_qsphere(rho, figsize=None, ax=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/visualization/state_visualization.py "view source code")
 
 Plot the qsphere representation of a quantum state. Here, the size of the points is proportional to the probability of the corresponding term in the state and the color represents the phase.
 

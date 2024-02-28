@@ -10,7 +10,7 @@ python_api_name: qiskit.primitives.BaseSamplerV2
 
 <span id="qiskit.primitives.BaseSamplerV2" />
 
-`qiskit.primitives.BaseSamplerV2`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/primitives/base/base_sampler.py "view source code")
+`qiskit.primitives.BaseSamplerV2` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/primitives/base/base_sampler.py "view source code")
 
 Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 

@@ -289,7 +289,7 @@ with qc.switch(cr) as case:
 
 <span id="qiskit.circuit.random.random_circuit" />
 
-`qiskit.circuit.random.random_circuit(num_qubits, depth, max_operands=4, measure=False, conditional=False, reset=False, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/random/utils.py "view source code")
+`qiskit.circuit.random.random_circuit(num_qubits, depth, max_operands=4, measure=False, conditional=False, reset=False, seed=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/random/utils.py "view source code")
 
 Generate random circuit of arbitrary size and form.
 
@@ -349,7 +349,7 @@ Almost all circuit functions and methods will raise a [`CircuitError`](#qiskit.c
 
 <span id="qiskit.circuit.CircuitError" />
 
-`qiskit.circuit.CircuitError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/exceptions.py "view source code")
+`qiskit.circuit.CircuitError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/exceptions.py "view source code")
 
 Base class for errors raised while processing a circuit.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.optimizers.CRS
 
 <span id="qiskit.aqua.components.optimizers.CRS" />
 
-`CRS(max_evals=1000)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/optimizers/nlopts/crs.py "view source code")
+`CRS(max_evals=1000)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/optimizers/nlopts/crs.py "view source code")
 
 Controlled Random Search (CRS) with local mutation optimizer.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CHGate
 
 <span id="qiskit.circuit.library.CHGate" />
 
-`CHGate(label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/h.py "view source code")
+`CHGate(label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/h.py "view source code")
 
 Controlled-Hadamard gate.
 
@@ -248,7 +248,7 @@ updated if it was provided
 
 <span id="qiskit.circuit.library.CHGate.inverse" />
 
-`CHGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/h.py "view source code")
+`CHGate.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/h.py "view source code")
 
 Return inverted CH gate (itself).
 
@@ -340,7 +340,7 @@ Containing the definition.
 
 <span id="qiskit.circuit.library.CHGate.to_matrix" />
 
-`CHGate.to_matrix()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/h.py "view source code")
+`CHGate.to_matrix()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/h.py "view source code")
 
 Return a numpy.array for the CH gate.
 

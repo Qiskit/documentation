@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.primitive_ops.PauliSumOp
 
 <span id="qiskit.opflow.primitive_ops.PauliSumOp" />
 
-`PauliSumOp(primitive, coeff=1.0, grouping_type='None')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/primitive_ops/pauli_sum_op.py "view source code")
+`PauliSumOp(primitive, coeff=1.0, grouping_type='None')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/primitive_ops/pauli_sum_op.py "view source code")
 
 Class for Operators backend by Terra’s `SparsePauliOp` class.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.visualization.pulse_v2.IQXDebugging
 
 <span id="qiskit.visualization.pulse_v2.IQXDebugging" />
 
-`IQXDebugging(**kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/visualization/pulse_v2/stylesheet.py "view source code")
+`IQXDebugging(**kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/visualization/pulse_v2/stylesheet.py "view source code")
 
 Bases: `dict`
 

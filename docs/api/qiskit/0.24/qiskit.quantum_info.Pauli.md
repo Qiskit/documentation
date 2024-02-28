@@ -12,7 +12,7 @@ python_api_name: qiskit.quantum_info.Pauli
 
 <span id="qiskit.quantum_info.Pauli" />
 
-`Pauli(z=None, x=None, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/quantum_info/operators/pauli.py "view source code")
+`Pauli(z=None, x=None, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/quantum_info/operators/pauli.py "view source code")
 
 A simple class representing Pauli Operators.
 

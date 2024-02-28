@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.managed.ManagedJob
 
 <span id="qiskit.providers.ibmq.managed.ManagedJob" />
 
-`ManagedJob(start_index, experiments_count, job=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.15/qiskit/providers/ibmq/managed/managedjob.py "view source code")
+`ManagedJob(start_index, experiments_count, job=None)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.15/qiskit/providers/ibmq/managed/managedjob.py "view source code")
 
 Job managed by the Job Manager.
 

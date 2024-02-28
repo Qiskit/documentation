@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.gradients.NaturalGradient
 
 <span id="qiskit.opflow.gradients.NaturalGradient" />
 
-`qiskit.opflow.gradients.NaturalGradient(grad_method='lin_comb', qfi_method='lin_comb_full', regularization=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/opflow/gradients/natural_gradient.py "view source code")
+`qiskit.opflow.gradients.NaturalGradient(grad_method='lin_comb', qfi_method='lin_comb_full', regularization=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/opflow/gradients/natural_gradient.py "view source code")
 
 Bases: [`GradientBase`](qiskit.opflow.gradients.GradientBase "qiskit.opflow.gradients.gradient_base.GradientBase")
 
