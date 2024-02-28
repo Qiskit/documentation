@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.utils.NoiseTransformer
 
 <span id="qiskit.providers.aer.utils.NoiseTransformer" />
 
-`NoiseTransformer`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/utils/noise_transformation.py "view source code")
+`NoiseTransformer` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/utils/noise_transformation.py "view source code")
 
 Transforms one quantum channel to another based on a specified criteria.
 

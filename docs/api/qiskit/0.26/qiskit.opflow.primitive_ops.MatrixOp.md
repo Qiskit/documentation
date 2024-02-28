@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.primitive_ops.MatrixOp
 
 <span id="qiskit.opflow.primitive_ops.MatrixOp" />
 
-`MatrixOp(primitive, coeff=1.0)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/primitive_ops/matrix_op.py "view source code")
+`MatrixOp(primitive, coeff=1.0)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/primitive_ops/matrix_op.py "view source code")
 
 Class for Operators represented by matrices, backed by Terra’s `Operator` module.
 

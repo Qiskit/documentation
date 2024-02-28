@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.basicaer.QasmSimulatorPy
 
 <span id="qiskit.providers.basicaer.QasmSimulatorPy" />
 
-`QasmSimulatorPy(configuration=None, provider=None, **fields)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/providers/basicaer/qasm_simulator.py "view source code")
+`QasmSimulatorPy(configuration=None, provider=None, **fields)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/providers/basicaer/qasm_simulator.py "view source code")
 
 Python implementation of a qasm simulator.
 

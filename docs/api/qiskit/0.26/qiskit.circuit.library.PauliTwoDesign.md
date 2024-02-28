@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.PauliTwoDesign
 
 <span id="qiskit.circuit.library.PauliTwoDesign" />
 
-`PauliTwoDesign(num_qubits=None, reps=3, seed=None, insert_barriers=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/library/n_local/pauli_two_design.py "view source code")
+`PauliTwoDesign(num_qubits=None, reps=3, seed=None, insert_barriers=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/library/n_local/pauli_two_design.py "view source code")
 
 The Pauli Two-Design ansatz.
 
