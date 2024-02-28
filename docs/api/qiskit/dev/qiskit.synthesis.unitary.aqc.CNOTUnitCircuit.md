@@ -10,7 +10,7 @@ python_api_name: qiskit.synthesis.unitary.aqc.CNOTUnitCircuit
 
 <span id="qiskit.synthesis.unitary.aqc.CNOTUnitCircuit" />
 
-`qiskit.synthesis.unitary.aqc.CNOTUnitCircuit(num_qubits, cnots, tol=0.0, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/synthesis/unitary/aqc/cnot_unit_circuit.py "view source code")
+`qiskit.synthesis.unitary.aqc.CNOTUnitCircuit(num_qubits, cnots, tol=0.0, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/synthesis/unitary/aqc/cnot_unit_circuit.py "view source code")
 
 Bases: [`ApproximateCircuit`](qiskit.synthesis.unitary.aqc.ApproximateCircuit "qiskit.synthesis.unitary.aqc.approximate.ApproximateCircuit")
 

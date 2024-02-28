@@ -10,7 +10,7 @@ python_api_name: qiskit.primitives.StatevectorSampler
 
 <span id="qiskit.primitives.StatevectorSampler" />
 
-`qiskit.primitives.StatevectorSampler(*, default_shots=1024, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/primitives/statevector_sampler.py "view source code")
+`qiskit.primitives.StatevectorSampler(*, default_shots=1024, seed=None)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/primitives/statevector_sampler.py "view source code")
 
 Bases: [`BaseSamplerV2`](qiskit.primitives.BaseSamplerV2 "qiskit.primitives.base.base_sampler.BaseSamplerV2")
 

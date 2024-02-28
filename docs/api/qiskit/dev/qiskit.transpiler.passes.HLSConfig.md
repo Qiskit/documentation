@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.HLSConfig
 
 <span id="qiskit.transpiler.passes.HLSConfig" />
 
-`qiskit.transpiler.passes.HLSConfig(use_default_on_unspecified=True, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/high_level_synthesis.py "view source code")
+`qiskit.transpiler.passes.HLSConfig(use_default_on_unspecified=True, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/high_level_synthesis.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 

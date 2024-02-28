@@ -10,7 +10,7 @@ python_api_name: qiskit.primitives.BackendEstimator
 
 <span id="qiskit.primitives.BackendEstimator" />
 
-`qiskit.primitives.BackendEstimator(backend, options=None, abelian_grouping=True, bound_pass_manager=None, skip_transpilation=False)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/primitives/backend_estimator.py "view source code")
+`qiskit.primitives.BackendEstimator(backend, options=None, abelian_grouping=True, bound_pass_manager=None, skip_transpilation=False)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/primitives/backend_estimator.py "view source code")
 
 Bases: `BaseEstimatorV1`\[`PrimitiveJob`\[[`EstimatorResult`](qiskit.primitives.EstimatorResult "qiskit.primitives.base.estimator_result.EstimatorResult")]]
 

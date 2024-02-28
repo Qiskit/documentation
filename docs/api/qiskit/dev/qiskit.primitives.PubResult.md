@@ -10,7 +10,7 @@ python_api_name: qiskit.primitives.PubResult
 
 <span id="qiskit.primitives.PubResult" />
 
-`qiskit.primitives.PubResult(data, metadata=None)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/primitives/containers/pub_result.py "view source code")
+`qiskit.primitives.PubResult(data, metadata=None)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/primitives/containers/pub_result.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 

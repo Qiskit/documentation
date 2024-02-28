@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.CXCancellation
 
 <span id="qiskit.transpiler.passes.CXCancellation" />
 
-`qiskit.transpiler.passes.CXCancellation(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/cx_cancellation.py "view source code")
+`qiskit.transpiler.passes.CXCancellation(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/cx_cancellation.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
