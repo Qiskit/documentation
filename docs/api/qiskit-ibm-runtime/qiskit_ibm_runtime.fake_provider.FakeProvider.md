@@ -53,7 +53,7 @@ list\[Backend]
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeProvider.get_backend" />
 
-`get_backend(name=None, **kwargs)`
+`get_backend(name=None, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/fake_provider.py#L149-L158 "view source code")
 
 Return a single backend matching the specified filtering.
 

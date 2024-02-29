@@ -38,7 +38,7 @@ Filter backends in provider by name.
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeProviderForBackendV2.backends" />
 
-`backends(name=None, **kwargs)`
+`backends(name=None, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/fake_provider.py#L86-L87 "view source code")
 
 Return a list of backends matching the specified filtering.
 

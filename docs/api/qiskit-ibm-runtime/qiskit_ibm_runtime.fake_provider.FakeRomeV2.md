@@ -244,7 +244,7 @@ AcquireChannel
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeRomeV2.control_channel" />
 
-`control_channel(qubits)`
+`control_channel(qubits)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/fake_backend.py#L284-L304 "view source code")
 
 Return the secondary drive channel for the given qubit
 
@@ -268,7 +268,7 @@ List\[ControlChannel]
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeRomeV2.drive_channel" />
 
-`drive_channel(qubit)`
+`drive_channel(qubit)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/fake_backend.py#L239-L252 "view source code")
 
 Return the drive channel for the given qubit.
 
@@ -286,7 +286,7 @@ DriveChannel
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeRomeV2.measure_channel" />
 
-`measure_channel(qubit)`
+`measure_channel(qubit)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/fake_backend.py#L254-L267 "view source code")
 
 Return the measure stimulus channel for the given qubit.
 
@@ -330,7 +330,7 @@ The `QubitProperties` object for the specified qubit. If a list of qubits is pro
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeRomeV2.run" />
 
-`run(run_input, **options)`
+`run(run_input, **options)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/fake_backend.py#L306-L365 "view source code")
 
 Run on the fake backend using a simulator.
 
