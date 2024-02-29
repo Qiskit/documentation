@@ -39,7 +39,7 @@ where R(x) represents the penalization term.
 
 <span id="qiskit.opflow.gradients.NaturalGradient.convert" />
 
-`NaturalGradient.convert(operator, params=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/gradients/natural_gradient.py "view source code")
+`NaturalGradient.convert(operator, params=None)`
 
 **Parameters**
 
@@ -64,7 +64,7 @@ An operator whose evaluation yields the NaturalGradient.
 
 <span id="qiskit.opflow.gradients.NaturalGradient.nat_grad_combo_fn" />
 
-`static NaturalGradient.nat_grad_combo_fn(x, regularization=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/gradients/natural_gradient.py "view source code")
+`static NaturalGradient.nat_grad_combo_fn(x, regularization=None)`
 
 Natural Gradient Function Implementation.
 

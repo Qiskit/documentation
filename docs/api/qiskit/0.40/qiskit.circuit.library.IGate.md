@@ -45,7 +45,7 @@ Create new Identity gate.
 
 <span id="qiskit.circuit.library.IGate.inverse" />
 
-`IGate.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/i.py "view source code")
+`IGate.inverse()`
 
 Invert this gate.
 
@@ -53,7 +53,7 @@ Invert this gate.
 
 <span id="qiskit.circuit.library.IGate.power" />
 
-`IGate.power(exponent)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/i.py "view source code")
+`IGate.power(exponent)`
 
 Raise gate to a power.
 

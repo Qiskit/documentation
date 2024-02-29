@@ -51,7 +51,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.BasisTranslator.run" />
 
-`BasisTranslator.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/basis/basis_translator.py "view source code")
+`BasisTranslator.run(dag)`
 
 Translate an input DAGCircuit to the target basis.
 
