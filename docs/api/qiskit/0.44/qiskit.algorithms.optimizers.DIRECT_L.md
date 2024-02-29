@@ -12,7 +12,7 @@ python_api_name: qiskit.algorithms.optimizers.DIRECT_L
 
 <span id="qiskit.algorithms.optimizers.DIRECT_L" />
 
-`qiskit.algorithms.optimizers.DIRECT_L(max_evals=1000)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/optimizers/nlopts/direct_l.py "view source code")
+`qiskit.algorithms.optimizers.DIRECT_L(max_evals=1000)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/optimizers/nlopts/direct_l.py "view source code")
 
 Bases: `NLoptOptimizer`
 

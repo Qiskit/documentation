@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.verification.state_tomography_circuits
 
 <span id="qiskit.ignis.verification.state_tomography_circuits" />
 
-`state_tomography_circuits(circuit, measured_qubits, meas_labels='Pauli', meas_basis='Pauli')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/tomography/basis/circuits.py "view source code")
+`state_tomography_circuits(circuit, measured_qubits, meas_labels='Pauli', meas_basis='Pauli')` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/tomography/basis/circuits.py "view source code")
 
 Return a list of quantum state tomography circuits.
 

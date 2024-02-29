@@ -10,7 +10,7 @@ python_api_name: qiskit.result.QuasiDistribution
 
 <span id="qiskit.result.QuasiDistribution" />
 
-`QuasiDistribution(data, shots=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/result/distributions/quasi.py "view source code")
+`QuasiDistribution(data, shots=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/result/distributions/quasi.py "view source code")
 
 A dict-like class for representing qasi-probabilities.
 
@@ -178,7 +178,7 @@ Nearest probability distribution. float: Euclidean (L2) distance of distribution
 
 [ProbDistribution](qiskit.result.ProbDistribution "qiskit.result.ProbDistribution")
 
-## Notes
+**Notes**
 
 Method from Smolin et al., Phys. Rev. Lett. 108, 070502 (2012).
 

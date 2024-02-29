@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.RXGate
 
 <span id="qiskit.circuit.library.RXGate" />
 
-`RXGate(theta, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/rx.py "view source code")
+`RXGate(theta, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/rx.py "view source code")
 
 Single-qubit rotation about the X axis.
 

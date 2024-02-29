@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.managed.IBMQJobManagerUnknownJobSet
 
 <span id="qiskit.providers.ibmq.managed.IBMQJobManagerUnknownJobSet" />
 
-`IBMQJobManagerUnknownJobSet(*message)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/managed/exceptions.py "view source code")
+`IBMQJobManagerUnknownJobSet(*message)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/managed/exceptions.py "view source code")
 
 Errors raised when the job set ID is unknown.
 

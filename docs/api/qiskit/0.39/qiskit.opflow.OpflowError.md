@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.OpflowError
 
 <span id="qiskit.opflow.OpflowError" />
 
-`OpflowError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/opflow/exceptions.py "view source code")
+`OpflowError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/opflow/exceptions.py "view source code")
 
 For Opflow specific errors.
 

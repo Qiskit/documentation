@@ -10,13 +10,13 @@ python_api_name: qiskit.circuit.library.C4XGate
 
 <span id="qiskit.circuit.library.C4XGate" />
 
-`C4XGate(label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/library/standard_gates/x.py "view source code")
+`C4XGate(label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 The 4-qubit controlled X gate.
 
 This implementation is based on Page 21, Lemma 7.5, of \[1], with the use of the relative phase version of c3x, the rc3x \[2].
 
-## References
+**References**
 
 \[1] Barenco et al., 1995. [https://arxiv.org/pdf/quant-ph/9503016.pdf](https://arxiv.org/pdf/quant-ph/9503016.pdf) \[2] Maslov, 2015. [https://arxiv.org/abs/1508.03273](https://arxiv.org/abs/1508.03273)
 

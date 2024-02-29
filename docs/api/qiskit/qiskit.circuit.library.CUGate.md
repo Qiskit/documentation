@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CUGate
 
 <span id="qiskit.circuit.library.CUGate" />
 
-`qiskit.circuit.library.CUGate(theta, phi, lam, gamma, label=None, ctrl_state=None, *, duration=None, unit='dt', _base_label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/u.py "view source code")
+`qiskit.circuit.library.CUGate(theta, phi, lam, gamma, label=None, ctrl_state=None, *, duration=None, unit='dt', _base_label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/u.py "view source code")
 
 Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 
@@ -199,9 +199,21 @@ Get the time unit of duration.
 
 <span id="qiskit.circuit.library.CUGate.inverse" />
 
-`inverse()`
+`inverse(annotated=False)`
 
 Return inverted CU gate.
 
-$CU(\theta,\phi,\lambda,\gamma)^{\dagger} = CU(-\theta,-\phi,-\lambda,-\gamma)$)
+$CU(\theta,\phi,\lambda,\gamma)^{\dagger} = CU(-\theta,-\phi,-\lambda,-\gamma))$
+
+**Parameters**
+
+**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always a [`CUGate`](#qiskit.circuit.library.CUGate "qiskit.circuit.library.CUGate") with inverse parameter values.
+
+**Returns**
+
+inverse gate.
+
+**Return type**
+
+[CUGate](#qiskit.circuit.library.CUGate "qiskit.circuit.library.CUGate")
 

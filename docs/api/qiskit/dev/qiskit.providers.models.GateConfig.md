@@ -1,0 +1,86 @@
+---
+title: GateConfig
+description: API reference for qiskit.providers.models.GateConfig
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.models.GateConfig
+---
+
+# GateConfig
+
+<span id="qiskit.providers.models.GateConfig" />
+
+`qiskit.providers.models.GateConfig(name, parameters, qasm_def, coupling_map=None, latency_map=None, conditional=None, description=None)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/providers/models/backendconfiguration.py "view source code")
+
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
+
+Class representing a Gate Configuration
+
+<span id="qiskit.providers.models.GateConfig.name" />
+
+### name
+
+the gate name as it will be referred to in OpenQASM.
+
+<span id="qiskit.providers.models.GateConfig.parameters" />
+
+### parameters
+
+variable names for the gate parameters (if any).
+
+<span id="qiskit.providers.models.GateConfig.qasm_def" />
+
+### qasm\_def
+
+definition of this gate in terms of OpenQASM 2 primitives U and CX.
+
+Initialize a GateConfig object
+
+**Parameters**
+
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – the gate name as it will be referred to in OpenQASM.
+*   **parameters** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – variable names for the gate parameters (if any) as a list of strings.
+*   **qasm\_def** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – definition of this gate in terms of OpenQASM 2 primitives U and CX.
+*   **coupling\_map** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – An optional coupling map for the gate. In the form of a list of lists of integers representing the qubit groupings which are coupled by this gate.
+*   **latency\_map** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – An optional map of latency for the gate. In the the form of a list of lists of integers of either 0 or 1 representing an array of dimension len(coupling\_map) X n\_registers that specifies the register latency (1: fast, 0: slow) conditional operations on the gate
+*   **conditional** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Optionally specify whether this gate supports conditional operations (true/false). If this is not specified, then the gate inherits the conditional property of the backend.
+*   **description** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Description of the gate operation
+
+## Methods
+
+### from\_dict
+
+<span id="qiskit.providers.models.GateConfig.from_dict" />
+
+`classmethod from_dict(data)`
+
+Create a new GateConfig object from a dictionary.
+
+**Parameters**
+
+**data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – A dictionary representing the GateConfig to create. It will be in the same format as output by [`to_dict()`](#qiskit.providers.models.GateConfig.to_dict "qiskit.providers.models.GateConfig.to_dict").
+
+**Returns**
+
+The GateConfig from the input dictionary.
+
+**Return type**
+
+[GateConfig](#qiskit.providers.models.GateConfig "qiskit.providers.models.GateConfig")
+
+### to\_dict
+
+<span id="qiskit.providers.models.GateConfig.to_dict" />
+
+`to_dict()`
+
+Return a dictionary format representation of the GateConfig.
+
+**Returns**
+
+The dictionary form of the GateConfig.
+
+**Return type**
+
+[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
+

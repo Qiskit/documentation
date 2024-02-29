@@ -12,7 +12,7 @@ python_api_name: qiskit.transpiler.preset_passmanagers.common.generate_pre_op_pa
 
 <span id="qiskit.transpiler.preset_passmanagers.common.generate_pre_op_passmanager" />
 
-`generate_pre_op_passmanager(target=None, coupling_map=None, remove_reset_in_zero=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/preset_passmanagers/common.py "view source code")
+`generate_pre_op_passmanager(target=None, coupling_map=None, remove_reset_in_zero=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/preset_passmanagers/common.py "view source code")
 
 Generate a pre-optimization loop [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.SPSA
 
 <span id="qiskit.algorithms.optimizers.SPSA" />
 
-`SPSA(maxiter=100, blocking=False, allowed_increase=None, trust_region=False, learning_rate=None, perturbation=None, last_avg=1, resamplings=1, perturbation_dims=None, callback=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/optimizers/spsa.py "view source code")
+`SPSA(maxiter=100, blocking=False, allowed_increase=None, trust_region=False, learning_rate=None, perturbation=None, last_avg=1, resamplings=1, perturbation_dims=None, callback=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/optimizers/spsa.py "view source code")
 
 Simultaneous Perturbation Stochastic Approximation (SPSA) optimizer.
 
@@ -28,7 +28,7 @@ SPSA is a descent method capable of finding global minima, sharing this property
 
 The optimization process can includes a calibration phase if neither the `learning_rate` nor `perturbation` is provided, which requires additional functional evaluations. (Note that either both or none must be set.) For further details on the automatic calibration, please refer to the supplementary information section IV. of \[2].
 
-## References
+**References**
 
 \[1]: J. C. Spall (1998). An Overview of the Simultaneous Perturbation Method for Efficient Optimization, Johns Hopkins APL Technical Digest, 19(4), 482–492. [Online.](https://www.jhuapl.edu/SPSA/PDF-SPSA/Spall_An_Overview.PDF)
 

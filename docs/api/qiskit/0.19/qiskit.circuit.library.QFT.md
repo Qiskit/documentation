@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.QFT
 
 <span id="qiskit.circuit.library.QFT" />
 
-`QFT(num_qubits=None, approximation_degree=0, do_swaps=True, inverse=False, insert_barriers=False, name='qft')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/basis_change/qft.py "view source code")
+`QFT(num_qubits=None, approximation_degree=0, do_swaps=True, inverse=False, insert_barriers=False, name='qft')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/basis_change/qft.py "view source code")
 
 Quantum Fourier Transform Circuit.
 
@@ -288,7 +288,7 @@ The keys of the parameter dictionary must be Parameter instances in the current 
 
 optional([QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"))
 
-#### Examples
+**Examples**
 
 ```python
 >>> from qiskit.circuit import QuantumCircuit, Parameter
@@ -484,7 +484,7 @@ the composed circuit (returns None if inplace==True).
 *   **CircuitError** – if composing on the front.
 *   **QiskitError** – if `other` is wider or there are duplicate edge mappings.
 
-#### Examples
+**Examples**
 
 ```python
 >>> lhs.compose(rhs, qubits=[3, 2], inplace=True)
@@ -655,7 +655,7 @@ Depth of circuit.
 
 int
 
-#### Notes
+**Notes**
 
 The circuit depth and the DAG depth need not be the same.
 
@@ -1008,7 +1008,7 @@ Apply initialize to circuit.
 
 <span id="qiskit.circuit.library.QFT.inverse" />
 
-`QFT.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/basis_change/qft.py "view source code")
+`QFT.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/basis_change/qft.py "view source code")
 
 Invert this circuit.
 
@@ -1024,7 +1024,7 @@ The inverted circuit.
 
 <span id="qiskit.circuit.library.QFT.is_inverse" />
 
-`QFT.is_inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/basis_change/qft.py "view source code")
+`QFT.is_inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/basis_change/qft.py "view source code")
 
 Whether the inverse Fourier transform is implemented.
 
@@ -1331,7 +1331,7 @@ Conditional nonlocal gates are also included.
 
 Computes the number of tensor factors in the unitary (quantum) part of the circuit only.
 
-#### Notes
+**Notes**
 
 This is here for backwards compatibility, and will be removed in a future release of Qiskit. You should call num\_unitary\_factors instead.
 

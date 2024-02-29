@@ -10,7 +10,7 @@ python_api_name: qiskit.utils.QuantumInstance
 
 <span id="qiskit.utils.QuantumInstance" />
 
-`QuantumInstance(backend, shots=None, seed_simulator=None, max_credits=10, basis_gates=None, coupling_map=None, initial_layout=None, pass_manager=None, seed_transpiler=None, optimization_level=None, backend_options=None, noise_model=None, timeout=None, wait=5.0, skip_qobj_validation=True, measurement_error_mitigation_cls=None, cals_matrix_refresh_period=30, measurement_error_mitigation_shots=None, job_callback=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/utils/quantum_instance.py "view source code")
+`QuantumInstance(backend, shots=None, seed_simulator=None, max_credits=10, basis_gates=None, coupling_map=None, initial_layout=None, pass_manager=None, seed_transpiler=None, optimization_level=None, backend_options=None, noise_model=None, timeout=None, wait=5.0, skip_qobj_validation=True, measurement_error_mitigation_cls=None, cals_matrix_refresh_period=30, measurement_error_mitigation_shots=None, job_callback=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/utils/quantum_instance.py "view source code")
 
 Quantum Backend including execution setting.
 

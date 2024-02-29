@@ -12,7 +12,7 @@ python_api_name: qiskit.chemistry.applications.MolecularGroundStateEnergy
 
 <span id="qiskit.chemistry.applications.MolecularGroundStateEnergy" />
 
-`MolecularGroundStateEnergy(driver, solver=None, transformation=<TransformationType.FULL: 'full'>, qubit_mapping=<QubitMappingType.PARITY: 'parity'>, two_qubit_reduction=True, freeze_core=False, orbital_reduction=None, z2symmetry_reduction=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/applications/molecular_ground_state_energy.py "view source code")
+`MolecularGroundStateEnergy(driver, solver=None, transformation=<TransformationType.FULL: 'full'>, qubit_mapping=<QubitMappingType.PARITY: 'parity'>, two_qubit_reduction=True, freeze_core=False, orbital_reduction=None, z2symmetry_reduction=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/applications/molecular_ground_state_energy.py "view source code")
 
 Molecular ground state energy chemistry application
 

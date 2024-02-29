@@ -10,13 +10,13 @@ python_api_name: qiskit.optimization.algorithms.MinimumEigenOptimizer
 
 <span id="qiskit.optimization.algorithms.MinimumEigenOptimizer" />
 
-`MinimumEigenOptimizer(min_eigen_solver, penalty=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/algorithms/minimum_eigen_optimizer.py "view source code")
+`MinimumEigenOptimizer(min_eigen_solver, penalty=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/algorithms/minimum_eigen_optimizer.py "view source code")
 
 A wrapper for minimum eigen solvers from Qiskit Aqua.
 
 This class provides a wrapper for minimum eigen solvers from Qiskit to be used within the optimization module. It assumes a problem consisting only of binary or integer variables as well as linear equality constraints thereof. It converts such a problem into a Quadratic Unconstrained Binary Optimization (QUBO) problem by expanding integer variables into binary variables and by adding the linear equality constraints as weighted penalty terms to the objective function. The resulting QUBO is then translated into an Ising Hamiltonian whose minimal eigen vector and corresponding eigenstate correspond to the optimal solution of the original optimization problem. The provided minimum eigen solver is then used to approximate the ground state of the Hamiltonian to find a good solution for the optimization problem.
 
-## Examples
+**Examples**
 
 Outline of how to use this class:
 
@@ -45,7 +45,7 @@ This initializer takes the minimum eigen solver to be used to approximate the gr
 
 <span id="qiskit.optimization.algorithms.MinimumEigenOptimizer.get_compatibility_msg" />
 
-`MinimumEigenOptimizer.get_compatibility_msg(problem)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/algorithms/minimum_eigen_optimizer.py "view source code")
+`MinimumEigenOptimizer.get_compatibility_msg(problem)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/algorithms/minimum_eigen_optimizer.py "view source code")
 
 Checks whether a given problem can be solved with this optimizer.
 
@@ -87,7 +87,7 @@ Returns True if the problem is compatible, False otherwise.
 
 <span id="qiskit.optimization.algorithms.MinimumEigenOptimizer.solve" />
 
-`MinimumEigenOptimizer.solve(problem)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/algorithms/minimum_eigen_optimizer.py "view source code")
+`MinimumEigenOptimizer.solve(problem)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/algorithms/minimum_eigen_optimizer.py "view source code")
 
 Tries to solves the given problem using the optimizer.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.PVQDResult
 
 <span id="qiskit.algorithms.PVQDResult" />
 
-`PVQDResult(evolved_state, aux_ops_evaluated=None, times=None, parameters=None, fidelities=None, estimated_error=None, observables=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/time_evolvers/pvqd/pvqd_result.py "view source code")
+`PVQDResult(evolved_state, aux_ops_evaluated=None, times=None, parameters=None, fidelities=None, estimated_error=None, observables=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/time_evolvers/pvqd/pvqd_result.py "view source code")
 
 Bases: [`qiskit.algorithms.time_evolvers.time_evolution_result.TimeEvolutionResult`](qiskit.algorithms.TimeEvolutionResult "qiskit.algorithms.time_evolvers.time_evolution_result.TimeEvolutionResult")
 

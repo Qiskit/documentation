@@ -10,7 +10,7 @@ python_api_name: qiskit.dagcircuit.BlockCollector
 
 <span id="qiskit.dagcircuit.BlockCollector" />
 
-`qiskit.dagcircuit.BlockCollector(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/dagcircuit/collect_blocks.py "view source code")
+`qiskit.dagcircuit.BlockCollector(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/dagcircuit/collect_blocks.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 

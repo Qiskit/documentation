@@ -12,7 +12,7 @@ python_api_name: qiskit.providers.ibmq.utils.seconds_to_duration
 
 <span id="qiskit.providers.ibmq.utils.seconds_to_duration" />
 
-`seconds_to_duration(seconds)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.12/qiskit/providers/ibmq/utils/converters.py "view source code")
+`seconds_to_duration(seconds)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.12/qiskit/providers/ibmq/utils/converters.py "view source code")
 
 Converts seconds in a datetime delta to a duration.
 

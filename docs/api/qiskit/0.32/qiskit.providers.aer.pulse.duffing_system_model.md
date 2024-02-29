@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.pulse.duffing_system_model
 
 <span id="qiskit.providers.aer.pulse.duffing_system_model" />
 
-`duffing_system_model(dim_oscillators, oscillator_freqs, anharm_freqs, drive_strengths, coupling_dict, dt)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/providers/aer/pulse/system_models/duffing_model_generators.py "view source code")
+`duffing_system_model(dim_oscillators, oscillator_freqs, anharm_freqs, drive_strengths, coupling_dict, dt)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/providers/aer/pulse/system_models/duffing_model_generators.py "view source code")
 
 Returns a [`PulseSystemModel`](qiskit.providers.aer.pulse.PulseSystemModel "qiskit.providers.aer.pulse.PulseSystemModel") representing a physical model for a collection of Duffing oscillators.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.tools.entanglement_of_formation
 
 <span id="qiskit.tools.entanglement_of_formation" />
 
-`entanglement_of_formation(state, d0, d1=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/tools/qi/qi.py "view source code")
+`entanglement_of_formation(state, d0, d1=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/tools/qi/qi.py "view source code")
 
 Compute the entanglement of formation of quantum state.
 

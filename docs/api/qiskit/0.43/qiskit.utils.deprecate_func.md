@@ -12,7 +12,7 @@ python_api_name: qiskit.utils.deprecate_func
 
 <span id="qiskit.utils.deprecate_func" />
 
-`deprecate_func(*, since, additional_msg=None, pending=False, package_name='qiskit-terra', removal_timeline='no earlier than 3 months after the release date', is_property=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/utils/deprecation.py "view source code")
+`deprecate_func(*, since, additional_msg=None, pending=False, package_name='qiskit-terra', removal_timeline='no earlier than 3 months after the release date', is_property=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/utils/deprecation.py "view source code")
 
 Decorator to indicate a function has been deprecated.
 

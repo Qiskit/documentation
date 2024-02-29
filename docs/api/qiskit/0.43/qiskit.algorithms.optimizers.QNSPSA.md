@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.QNSPSA
 
 <span id="qiskit.algorithms.optimizers.QNSPSA" />
 
-`QNSPSA(fidelity, maxiter=100, blocking=True, allowed_increase=None, learning_rate=None, perturbation=None, resamplings=1, perturbation_dims=None, regularization=None, hessian_delay=0, lse_solver=None, initial_hessian=None, callback=None, termination_checker=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/optimizers/qnspsa.py "view source code")
+`QNSPSA(fidelity, maxiter=100, blocking=True, allowed_increase=None, learning_rate=None, perturbation=None, resamplings=1, perturbation_dims=None, regularization=None, hessian_delay=0, lse_solver=None, initial_hessian=None, callback=None, termination_checker=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/optimizers/qnspsa.py "view source code")
 
 Bases: [`SPSA`](qiskit.algorithms.optimizers.SPSA "qiskit.algorithms.optimizers.spsa.SPSA")
 
@@ -26,7 +26,7 @@ The stochastic approximation of the natural gradient can be systematically impro
   This component has some function that is normally random. If you want to reproduce behavior then you should set the random number generator seed in the algorithm\_globals (`qiskit.utils.algorithm_globals.random_seed = seed`).
 </Admonition>
 
-## Examples
+**Examples**
 
 This short example runs QN-SPSA for the ground state calculation of the `Z ^ Z` observable where the ansatz is a `PauliTwoDesign` circuit.
 
@@ -79,7 +79,7 @@ qnspsa = QNSPSA(fidelity, maxiter=300)
 result = qnspsa.optimize(ansatz.num_parameters, loss, initial_point=initial_point)
 ```
 
-## References
+**References**
 
 \[1] J. Gacon et al, “Simultaneous Perturbation Stochastic Approximation of the Quantum Fisher Information”, [arXiv:2103.09232](https://arxiv.org/abs/2103.09232)
 
@@ -160,7 +160,7 @@ float
 
 <span id="qiskit.algorithms.optimizers.QNSPSA.get_fidelity" />
 
-`static QNSPSA.get_fidelity(circuit, backend=None, expectation=None, *, sampler=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/optimizers/qnspsa.py "view source code")
+`static QNSPSA.get_fidelity(circuit, backend=None, expectation=None, *, sampler=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/optimizers/qnspsa.py "view source code")
 
 Get a function to compute the fidelity of `circuit` with itself.
 

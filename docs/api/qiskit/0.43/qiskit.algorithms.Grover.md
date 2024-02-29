@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.Grover
 
 <span id="qiskit.algorithms.Grover" />
 
-`Grover(iterations=None, growth_rate=None, sample_from_iterations=False, quantum_instance=None, sampler=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/amplitude_amplifiers/grover.py "view source code")
+`Grover(iterations=None, growth_rate=None, sample_from_iterations=False, quantum_instance=None, sampler=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/amplitude_amplifiers/grover.py "view source code")
 
 Bases: [`AmplitudeAmplifier`](qiskit.algorithms.AmplitudeAmplifier "qiskit.algorithms.amplitude_amplifiers.amplitude_amplifier.AmplitudeAmplifier")
 
@@ -55,7 +55,7 @@ $$
 
 For more information, see the [`GroverOperator`](qiskit.circuit.library.GroverOperator "qiskit.circuit.library.GroverOperator") in the circuit library.
 
-## References
+**References**
 
 **\[1]: L. K. Grover (1996), A fast quantum mechanical algorithm for database search,**
 
@@ -86,7 +86,7 @@ Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://
 *   **ValueError** – If `growth_rate` is a float but not larger than 1.
 *   **ValueError** – If both `iterations` and `growth_rate` is set.
 
-## References
+**References**
 
 **\[1]: Boyer et al., Tight bounds on quantum searching**
 
@@ -100,7 +100,7 @@ Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://
 
 <span id="qiskit.algorithms.Grover.amplify" />
 
-`Grover.amplify(amplification_problem)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/amplitude_amplifiers/grover.py "view source code")
+`Grover.amplify(amplification_problem)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/amplitude_amplifiers/grover.py "view source code")
 
 Run the Grover algorithm.
 
@@ -129,7 +129,7 @@ The result as a `GroverResult`, where e.g. the most likely state can be queried 
 
 <span id="qiskit.algorithms.Grover.construct_circuit" />
 
-`Grover.construct_circuit(problem, power=None, measurement=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/amplitude_amplifiers/grover.py "view source code")
+`Grover.construct_circuit(problem, power=None, measurement=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/amplitude_amplifiers/grover.py "view source code")
 
 Construct the circuit for Grover’s algorithm with `power` Grover operators.
 
@@ -157,7 +157,7 @@ the QuantumCircuit object for the constructed circuit
 
 <span id="qiskit.algorithms.Grover.optimal_num_iterations" />
 
-`static Grover.optimal_num_iterations(num_solutions, num_qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/amplitude_amplifiers/grover.py "view source code")
+`static Grover.optimal_num_iterations(num_solutions, num_qubits)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/amplitude_amplifiers/grover.py "view source code")
 
 Return the optimal number of iterations, if the number of solutions is known.
 

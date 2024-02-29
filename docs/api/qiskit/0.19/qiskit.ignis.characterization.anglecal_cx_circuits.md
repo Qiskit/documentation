@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.characterization.anglecal_cx_circuits
 
 <span id="qiskit.ignis.characterization.anglecal_cx_circuits" />
 
-`anglecal_cx_circuits(max_reps, qubits, control_qubits, angleerr=0.0)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/characterization/gates/circuits.py "view source code")
+`anglecal_cx_circuits(max_reps, qubits, control_qubits, angleerr=0.0)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/characterization/gates/circuits.py "view source code")
 
 Generates circuit for measuring the angle error of the cx gate
 

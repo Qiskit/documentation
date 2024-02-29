@@ -14,7 +14,7 @@ python_api_name: qiskit.scheduler.methods.basic
 
 The most straightforward scheduling methods: scheduling **as early** or **as late** as possible.
 
-## Functions
+**Functions**
 
 |                                                  |                                                                                                                       |
 | ------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- |

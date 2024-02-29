@@ -12,7 +12,7 @@ python_api_name: qiskit.pulse.library.Sin
 
 <span id="qiskit.pulse.library.Sin" />
 
-`Sin(duration, amp, phase, freq=None, angle=0.0, name=None, limit_amplitude=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/library/symbolic_pulses.py "view source code")
+`Sin(duration, amp, phase, freq=None, angle=0.0, name=None, limit_amplitude=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/library/symbolic_pulses.py "view source code")
 
 A sinusoidal pulse.
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.chemistry.algorithms.pes_samplers.HarmonicPotential
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.HarmonicPotential" />
 
-`HarmonicPotential(molecule)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/algorithms/pes_samplers/potentials/harmonic_potential.py "view source code")
+`HarmonicPotential(molecule)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/algorithms/pes_samplers/potentials/harmonic_potential.py "view source code")
 
 Implements a 1D Harmonic potential.
 

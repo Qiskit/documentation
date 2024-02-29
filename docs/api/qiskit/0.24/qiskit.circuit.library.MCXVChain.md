@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.library.MCXVChain
 
 <span id="qiskit.circuit.library.MCXVChain" />
 
-`MCXVChain(num_ctrl_qubits=None, dirty_ancillas=False, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/standard_gates/x.py "view source code")
+`MCXVChain(num_ctrl_qubits=None, dirty_ancillas=False, label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 Implement the multi-controlled X gate using a V-chain of CX gates.
 

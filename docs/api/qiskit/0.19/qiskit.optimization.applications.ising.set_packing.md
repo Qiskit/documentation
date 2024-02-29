@@ -1,9 +1,9 @@
 ---
-title: check_disjoint
-description: API reference for qiskit.optimization.applications.ising.set_packing.check_disjoint
+title: set_packing
+description: API reference for qiskit.optimization.applications.ising.set_packing
 in_page_toc_min_heading_level: 1
-python_api_type: function
-python_api_name: qiskit.optimization.applications.ising.set_packing.check_disjoint
+python_api_type: module
+python_api_name: qiskit.optimization.applications.ising.set_packing
 ---
 
 <span id="qiskit-optimization-applications-ising-set-packing" />
@@ -12,7 +12,7 @@ python_api_name: qiskit.optimization.applications.ising.set_packing.check_disjoi
 
 set packing module
 
-## Functions
+**Functions**
 
 |                                                                                                                                                                                    |                                                |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
@@ -20,19 +20,23 @@ set packing module
 | [`get_operator`](#qiskit.optimization.applications.ising.set_packing.get_operator "qiskit.optimization.applications.ising.set_packing.get_operator")(list\_of\_subsets)            | Construct the Hamiltonian for the set packing. |
 | [`get_solution`](#qiskit.optimization.applications.ising.set_packing.get_solution "qiskit.optimization.applications.ising.set_packing.get_solution")(x)                            | **param x**binary string as numpy array.       |
 
+### check\_disjoint
+
 <span id="qiskit.optimization.applications.ising.set_packing.check_disjoint" />
 
-`check_disjoint(sol, list_of_subsets)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/applications/ising/set_packing.py "view source code")
+`check_disjoint(sol, list_of_subsets)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/applications/ising/set_packing.py "view source code")
 
 check disjoint
 
+### get\_operator
+
 <span id="qiskit.optimization.applications.ising.set_packing.get_operator" />
 
-`get_operator(list_of_subsets)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/applications/ising/set_packing.py "view source code")
+`get_operator(list_of_subsets)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/applications/ising/set_packing.py "view source code")
 
 Construct the Hamiltonian for the set packing.
 
-## Notes
+**Notes**
 
 find the maximal number of subsets which are disjoint pairwise.
 
@@ -56,9 +60,11 @@ a constant shift for the obj function.
 
 tuple([WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator"), float)
 
+### get\_solution
+
 <span id="qiskit.optimization.applications.ising.set_packing.get_solution" />
 
-`get_solution(x)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/applications/ising/set_packing.py "view source code")
+`get_solution(x)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/applications/ising/set_packing.py "view source code")
 
 **Parameters**
 

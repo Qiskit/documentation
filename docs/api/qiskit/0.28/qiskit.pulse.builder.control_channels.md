@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.builder.control_channels
 
 <span id="qiskit.pulse.builder.control_channels" />
 
-`control_channels(*qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/builder.py "view source code")
+`control_channels(*qubits)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/builder.py "view source code")
 
 Return `ControlChannel` for `qubit` on the active builder backend.
 
@@ -37,7 +37,7 @@ with pulse.build(backend):
 
 **Return type**
 
-`List`\[[`ControlChannel`](qiskit.pulse.channels#qiskit.pulse.channels.ControlChannel "qiskit.pulse.channels.ControlChannel")]
+`List`\[[`ControlChannel`](qiskit.pulse.channels#controlchannel "qiskit.pulse.channels.ControlChannel")]
 
 **Returns**
 

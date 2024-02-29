@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.verification.AccreditationCircuits
 
 <span id="qiskit.ignis.verification.AccreditationCircuits" />
 
-`AccreditationCircuits(target_circ, two_qubit_gate='cx', coupling_map=None, seed=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/accreditation/circuits.py "view source code")
+`AccreditationCircuits(target_circ, two_qubit_gate='cx', coupling_map=None, seed=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/accreditation/circuits.py "view source code")
 
 Bases: `object`
 
@@ -18,7 +18,7 @@ This class generates accreditation circuits from a target.
 
 Implementation follows the methods from \[1]
 
-## References
+**References**
 
 1.  S. Ferracin, T. Kapourniotis, A. Datta. *Accrediting outputs of noisy intermediate-scale quantum computing devices*, New Journal of Physics, Volume 21, 113038. (2019). [NJP 113038](https://iopscience.iop.org/article/10.1088/1367-2630/ab4fd6)
 
@@ -37,7 +37,7 @@ Initialize the circuit generation class parse into layers
 
 <span id="qiskit.ignis.verification.AccreditationCircuits.generate_circuits" />
 
-`AccreditationCircuits.generate_circuits(num_trap)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/accreditation/circuits.py "view source code")
+`AccreditationCircuits.generate_circuits(num_trap)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/accreditation/circuits.py "view source code")
 
 Generate quantum circuits for accreditation
 
@@ -59,7 +59,7 @@ tuple
 
 <span id="qiskit.ignis.verification.AccreditationCircuits.target_circuit" />
 
-`AccreditationCircuits.target_circuit(target_circ, two_qubit_gate='cx', coupling_map=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/accreditation/circuits.py "view source code")
+`AccreditationCircuits.target_circuit(target_circ, two_qubit_gate='cx', coupling_map=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/accreditation/circuits.py "view source code")
 
 Load target circuit in to class, and parse into layers
 

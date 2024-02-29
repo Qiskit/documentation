@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.UMDA
 
 <span id="qiskit.algorithms.optimizers.UMDA" />
 
-`UMDA(maxiter=100, size_gen=20, alpha=0.5)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/optimizers/umda.py "view source code")
+`UMDA(maxiter=100, size_gen=20, alpha=0.5)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/optimizers/umda.py "view source code")
 
 Bases: [`qiskit.algorithms.optimizers.optimizer.Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.optimizer.Optimizer")
 
@@ -32,7 +32,7 @@ The optimization process can be personalized depending on the paremeters chosen 
   The UMDA implementation has more parameters but these have default values for the initialization for better understanding of the user. For example, `lpha` parameter has been set to 0.5 and is the percentage of the population which is selected in each iteration to update the probabilistic model.
 </Admonition>
 
-## Example
+**Example**
 
 This short example runs UMDA to optimize the parameters of a variational algorithm. Here we will use the same operator as used in the algorithms introduction, which was originally computed by Qiskit Nature for an H2 molecule. The minimum energy of the H2 Hamiltonian can be found quite easily so we are able to set maxiters to a small value.
 
@@ -71,7 +71,7 @@ vqe = QAOA(opt,
 result = vqe.compute_minimum_eigenvalue(operator=qubit_op)
 ```
 
-## References
+**References**
 
 \[1]: Vicente P. Soloviev, Pedro Larrañaga and Concha Bielza (2022, July). Quantum Parametric Circuit Optimization with Estimation of Distribution Algorithms. In 2022 The Genetic and Evolutionary Computation Conference (GECCO). DOI: [https://doi.org/10.1145/3520304.3533963](https://doi.org/10.1145/3520304.3533963)
 
@@ -89,7 +89,7 @@ result = vqe.compute_minimum_eigenvalue(operator=qubit_op)
 
 <span id="qiskit.algorithms.optimizers.UMDA.get_support_level" />
 
-`UMDA.get_support_level()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/optimizers/umda.py "view source code")
+`UMDA.get_support_level()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/optimizers/umda.py "view source code")
 
 Get the support level dictionary.
 
@@ -120,7 +120,7 @@ grad
 
 <span id="qiskit.algorithms.optimizers.UMDA.minimize" />
 
-`UMDA.minimize(fun, x0, jac=None, bounds=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/optimizers/umda.py "view source code")
+`UMDA.minimize(fun, x0, jac=None, bounds=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/optimizers/umda.py "view source code")
 
 Minimize the scalar function.
 

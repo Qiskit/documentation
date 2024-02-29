@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.RealAmplitudes
 
 <span id="qiskit.circuit.library.RealAmplitudes" />
 
-`RealAmplitudes(num_qubits=None, entanglement='full', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/library/n_local/real_amplitudes.py "view source code")
+`RealAmplitudes(num_qubits=None, entanglement='full', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/library/n_local/real_amplitudes.py "view source code")
 
 The real-amplitudes 2-local circuit.
 
@@ -32,7 +32,7 @@ The entanglement can be set using the `entanglement` keyword as string or a list
 
 If some qubits are not entangled with other qubits it makes sense to not apply rotation gates on these qubits, since a sequence of $Y$ rotations can be reduced to a single $Y$ rotation with summed rotation angles.
 
-## Examples
+**Examples**
 
 ```python
 >>> ansatz = RealAmplitudes(3, reps=2)  # create the circuit on 3 qubits
@@ -875,7 +875,7 @@ Depth of circuit.
 
 int
 
-## Notes
+**Notes**
 
 The circuit depth and the DAG depth need not be the same.
 
@@ -965,7 +965,7 @@ Draw the quantum circuit. Use the output parameter to choose the drawing format:
 *   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – when an invalid output method is selected
 *   **ImportError** – when the output methods requires non-installed libraries.
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
@@ -1237,7 +1237,7 @@ a handle to the instruction that was just initialized
 
 [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-## Examples
+**Examples**
 
 Prepare a qubit in the state $(|0\rangle - |1\rangle) / \sqrt{2}$.
 
@@ -1356,7 +1356,7 @@ the inverted circuit
 
 **CircuitError** – if the circuit cannot be inverted.
 
-## Examples
+**Examples**
 
 **input:**
 
@@ -1749,7 +1749,7 @@ The number of qubits.
 
 Computes the number of tensor factors in the unitary (quantum) part of the circuit only.
 
-## Notes
+**Notes**
 
 This is here for backwards compatibility, and will be removed in a future release of Qiskit. You should call num\_unitary\_factors instead.
 
@@ -1771,7 +1771,7 @@ The parameters used in the underlying circuit.
 
 This includes float values and duplicates.
 
-## Examples
+**Examples**
 
 ```python
 >>> # prepare circuit ...
@@ -2142,7 +2142,7 @@ the circuit with reversed bit order.
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-## Examples
+**Examples**
 
 **input:**
 
@@ -2186,7 +2186,7 @@ the reversed circuit.
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-## Examples
+**Examples**
 
 **input:**
 
@@ -3103,7 +3103,7 @@ q_0: ┤ bottom ├ ⊗ q_0: ┤ top ├  = q_0: ─┤ top ├──
 *   **other** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The other circuit to tensor this circuit with.
 *   **inplace** (*bool*) – If True, modify the object. Otherwise return composed circuit.
 
-## Examples
+**Examples**
 
 ```python
 from qiskit import QuantumCircuit

@@ -10,7 +10,7 @@ python_api_name: qiskit.visualization.pulse.IQXStandard
 
 <span id="qiskit.visualization.pulse.IQXStandard" />
 
-`IQXStandard(**kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/visualization/pulse_v2/stylesheet.py "view source code")
+`IQXStandard(**kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/visualization/pulse_v2/stylesheet.py "view source code")
 
 Bases: `dict`
 

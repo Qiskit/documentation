@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.utils.get_subsystems_counts
 
 <span id="qiskit.aqua.utils.get_subsystems_counts" />
 
-`get_subsystems_counts(complete_system_counts, post_select_index=None, post_select_flag=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/utils/subsystem.py "view source code")
+`get_subsystems_counts(complete_system_counts, post_select_index=None, post_select_flag=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/utils/subsystem.py "view source code")
 
 Extract all subsystems’ counts from the single complete system count dictionary.
 

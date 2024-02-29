@@ -10,13 +10,13 @@ python_api_name: qiskit.circuit.library.QAOAAnsatz
 
 <span id="qiskit.circuit.library.QAOAAnsatz" />
 
-`QAOAAnsatz(cost_operator=None, reps=1, initial_state=None, mixer_operator=None, name='QAOA')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/n_local/qaoa_ansatz.py "view source code")
+`QAOAAnsatz(cost_operator=None, reps=1, initial_state=None, mixer_operator=None, name='QAOA')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/n_local/qaoa_ansatz.py "view source code")
 
 Bases: [`EvolvedOperatorAnsatz`](qiskit.circuit.library.EvolvedOperatorAnsatz "qiskit.circuit.library.evolved_operator_ansatz.EvolvedOperatorAnsatz")
 
 A generalized QAOA quantum circuit with a support of custom initial states and mixers.
 
-## References
+**References**
 
 **\[1]: Farhi et al., A Quantum Approximate Optimization Algorithm.**
 
@@ -262,7 +262,7 @@ The parameters used in the underlying circuit.
 
 This includes float values and duplicates.
 
-## Examples
+**Examples**
 
 ```python
 >>> # prepare circuit ...

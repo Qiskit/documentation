@@ -12,7 +12,7 @@ python_api_name: qiskit.visualization.plot_circuit_layout
 
 <span id="qiskit.visualization.plot_circuit_layout" />
 
-`qiskit.visualization.plot_circuit_layout(circuit, backend, view='virtual', qubit_coordinates=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/visualization/gate_map.py "view source code")
+`qiskit.visualization.plot_circuit_layout(circuit, backend, view='virtual', qubit_coordinates=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/visualization/gate_map.py "view source code")
 
 Plot the layout of a circuit transpiled for a given target backend.
 
@@ -36,7 +36,7 @@ Figure
 *   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – Invalid view type given.
 *   [**VisualizationError**](visualization#qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – Circuit has no layout attribute.
 
-## Example
+**Example**
 
 ```python
 import numpy as np

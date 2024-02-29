@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.AND
 
 <span id="qiskit.circuit.library.AND" />
 
-`AND(num_variable_qubits, flags=None, mcx_mode='noancilla')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/boolean_logic/quantum_and.py "view source code")
+`AND(num_variable_qubits, flags=None, mcx_mode='noancilla')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/boolean_logic/quantum_and.py "view source code")
 
 Bases: [`qiskit.circuit.quantumcircuit.QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
@@ -188,7 +188,7 @@ The parameters defined in the circuit.
 
 This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
 
-## Examples
+**Examples**
 
 The snippet below shows that insertion order of parameters does not matter.
 

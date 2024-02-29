@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.algorithms.GroverResult
 
 <span id="qiskit.aqua.algorithms.GroverResult" />
 
-`GroverResult(a_dict=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_amplifiers/grover.py "view source code")
+`GroverResult(a_dict=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_amplifiers/grover.py "view source code")
 
 Grover Result.
 

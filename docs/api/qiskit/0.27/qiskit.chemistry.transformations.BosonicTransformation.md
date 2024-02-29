@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.transformations.BosonicTransformation
 
 <span id="qiskit.chemistry.transformations.BosonicTransformation" />
 
-`BosonicTransformation(qubit_mapping=<BosonicQubitMappingType.DIRECT: 'direct'>, transformation_type=<BosonicTransformationType.HARMONIC: 'harmonic'>, basis_size=2, truncation=3)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/transformations/bosonic_transformation.py "view source code")
+`BosonicTransformation(qubit_mapping=<BosonicQubitMappingType.DIRECT: 'direct'>, transformation_type=<BosonicTransformationType.HARMONIC: 'harmonic'>, basis_size=2, truncation=3)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/transformations/bosonic_transformation.py "view source code")
 
 A vibronic Hamiltonian operator representing the energy of the nuclei in the molecule
 

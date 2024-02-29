@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.TransformationPass
 
 <span id="qiskit.transpiler.TransformationPass" />
 
-`TransformationPass(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/basepasses.py "view source code")
+`TransformationPass(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/basepasses.py "view source code")
 
 A transformation pass: change DAG, not property set.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.evolutions.MatrixEvolution
 
 <span id="qiskit.opflow.evolutions.MatrixEvolution" />
 
-`MatrixEvolution`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/evolutions/matrix_evolution.py "view source code")
+`MatrixEvolution` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/evolutions/matrix_evolution.py "view source code")
 
 Performs Evolution by classical matrix exponentiation, constructing a circuit with `UnitaryGates` or `HamiltonianGates` containing the exponentiation of the Operator.
 

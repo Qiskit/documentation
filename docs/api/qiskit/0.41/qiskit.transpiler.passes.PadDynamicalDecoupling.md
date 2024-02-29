@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.PadDynamicalDecoupling
 
 <span id="qiskit.transpiler.passes.PadDynamicalDecoupling" />
 
-`PadDynamicalDecoupling(durations, dd_sequence, qubits=None, spacing=None, skip_reset_qubits=True, pulse_alignment=1, extra_slack_distribution='middle')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/scheduling/padding/dynamical_decoupling.py "view source code")
+`PadDynamicalDecoupling(durations, dd_sequence, qubits=None, spacing=None, skip_reset_qubits=True, pulse_alignment=1, extra_slack_distribution='middle')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/scheduling/padding/dynamical_decoupling.py "view source code")
 
 Bases: `qiskit.transpiler.passes.scheduling.padding.base_padding.BasePadding`
 
@@ -69,11 +69,7 @@ timeline_drawer(circ_dd)
 
 ![../\_images/qiskit-transpiler-passes-PadDynamicalDecoupling-1\_00.png](/images/api/qiskit/0.41/qiskit-transpiler-passes-PadDynamicalDecoupling-1_00.png)
 
-Fig. 21 ([`png`](_downloads/77c296cb945ba0294e4f741643f74b03/qiskit-transpiler-passes-PadDynamicalDecoupling-1_00.png), [`hires.png`](_downloads/d85fd432b248c4a18b945a3085ec0153/qiskit-transpiler-passes-PadDynamicalDecoupling-1_00.hires.png), [`pdf`](_downloads/5721283413f40c9d4fbd65d76d494e58/qiskit-transpiler-passes-PadDynamicalDecoupling-1_00.pdf))[¶](#id1 "Permalink to this image")
-
 ![../\_images/qiskit-transpiler-passes-PadDynamicalDecoupling-1\_01.png](/images/api/qiskit/0.41/qiskit-transpiler-passes-PadDynamicalDecoupling-1_01.png)
-
-Fig. 22 ([`png`](_downloads/221e8a90d9816980f043bd325afd7fdf/qiskit-transpiler-passes-PadDynamicalDecoupling-1_01.png), [`hires.png`](_downloads/8e49f5936a9645949b3592df2065fb9d/qiskit-transpiler-passes-PadDynamicalDecoupling-1_01.hires.png), [`pdf`](_downloads/47aa302b7c447fe9745c5ca7d8c7a7c8/qiskit-transpiler-passes-PadDynamicalDecoupling-1_01.pdf))[¶](#id2 "Permalink to this image")
 
 <Admonition title="Note" type="note">
   You may need to call alignment pass before running dynamical decoupling to guarantee your circuit satisfies acquisition alignment constraints.

@@ -10,7 +10,7 @@ python_api_name: qiskit.optimization.problems.QuadraticExpression
 
 <span id="qiskit.optimization.problems.QuadraticExpression" />
 
-`QuadraticExpression(quadratic_program, coefficients)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_expression.py "view source code")
+`QuadraticExpression(quadratic_program, coefficients)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_expression.py "view source code")
 
 Representation of a quadratic expression by its coefficients.
 

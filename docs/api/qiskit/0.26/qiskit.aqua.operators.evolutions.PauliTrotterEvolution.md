@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.operators.evolutions.PauliTrotterEvolution
 
 <span id="qiskit.aqua.operators.evolutions.PauliTrotterEvolution" />
 
-`PauliTrotterEvolution(trotter_mode='trotter', reps=1)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/evolutions/pauli_trotter_evolution.py "view source code")
+`PauliTrotterEvolution(trotter_mode='trotter', reps=1)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/evolutions/pauli_trotter_evolution.py "view source code")
 
 An Evolution algorithm replacing exponentiated sums of Paulis by changing them each to the Z basis, rotating with an rZ, changing back, and trotterizing.
 

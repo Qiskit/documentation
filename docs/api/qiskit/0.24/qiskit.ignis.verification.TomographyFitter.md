@@ -12,7 +12,7 @@ python_api_name: qiskit.ignis.verification.TomographyFitter
 
 <span id="qiskit.ignis.verification.TomographyFitter" />
 
-`TomographyFitter(result, circuits, meas_basis='Pauli', prep_basis='Pauli')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/tomography/fitters/base_fitter.py "view source code")
+`TomographyFitter(result, circuits, meas_basis='Pauli', prep_basis='Pauli')` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/tomography/fitters/base_fitter.py "view source code")
 
 Base maximum-likelihood estimate tomography fitter class
 

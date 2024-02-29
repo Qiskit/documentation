@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.operators.legacy.PauliGraph
 
 <span id="qiskit.aqua.operators.legacy.PauliGraph" />
 
-`PauliGraph(paulis, mode='largest-degree')`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/legacy/pauli_graph.py "view source code")
+`PauliGraph(paulis, mode='largest-degree')` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/legacy/pauli_graph.py "view source code")
 
 Pauli Graph.
 

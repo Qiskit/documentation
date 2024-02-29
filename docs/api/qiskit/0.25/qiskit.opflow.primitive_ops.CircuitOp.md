@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.primitive_ops.CircuitOp
 
 <span id="qiskit.opflow.primitive_ops.CircuitOp" />
 
-`CircuitOp(primitive, coeff=1.0)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/primitive_ops/circuit_op.py "view source code")
+`CircuitOp(primitive, coeff=1.0)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/primitive_ops/circuit_op.py "view source code")
 
 Class for Operators backed by Terra’s `QuantumCircuit` module.
 

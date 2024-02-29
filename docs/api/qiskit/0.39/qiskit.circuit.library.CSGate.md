@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CSGate
 
 <span id="qiskit.circuit.library.CSGate" />
 
-`CSGate(label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/standard_gates/s.py "view source code")
+`CSGate(label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/standard_gates/s.py "view source code")
 
 Bases: [`qiskit.circuit.controlledgate.ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 
@@ -48,7 +48,7 @@ Create new CS gate.
 
 <span id="qiskit.circuit.library.CSGate.inverse" />
 
-`CSGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/standard_gates/s.py "view source code")
+`CSGate.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/standard_gates/s.py "view source code")
 
 Return inverse of CSGate (CSdgGate).
 

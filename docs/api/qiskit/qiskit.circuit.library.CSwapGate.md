@@ -10,13 +10,13 @@ python_api_name: qiskit.circuit.library.CSwapGate
 
 <span id="qiskit.circuit.library.CSwapGate" />
 
-`qiskit.circuit.library.CSwapGate(*args, _force_mutable=False, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/swap.py "view source code")
+`qiskit.circuit.library.CSwapGate(*args, _force_mutable=False, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/swap.py "view source code")
 
 Bases: [`SingletonControlledGate`](circuit_singleton#qiskit.circuit.singleton.SingletonControlledGate "qiskit.circuit.singleton.SingletonControlledGate")
 
 Controlled-SWAP gate, also known as the Fredkin gate.
 
-Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`cswap()`](qiskit.circuit.QuantumCircuit#cswap "qiskit.circuit.QuantumCircuit.cswap") and [`fredkin()`](qiskit.circuit.QuantumCircuit#fredkin "qiskit.circuit.QuantumCircuit.fredkin") methods.
+Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`cswap()`](qiskit.circuit.QuantumCircuit#cswap "qiskit.circuit.QuantumCircuit.cswap") and `fredkin()` methods.
 
 **Circuit symbol:**
 
@@ -224,7 +224,19 @@ Get the time unit of duration.
 
 <span id="qiskit.circuit.library.CSwapGate.inverse" />
 
-`inverse()`
+`inverse(annotated=False)`
 
 Return inverse CSwap gate (itself).
+
+**Parameters**
+
+**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as this gate is self-inverse.
+
+**Returns**
+
+inverse gate (self-inverse).
+
+**Return type**
+
+[CSwapGate](#qiskit.circuit.library.CSwapGate "qiskit.circuit.library.CSwapGate")
 

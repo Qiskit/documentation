@@ -1,9 +1,9 @@
 ---
-title: get_operator
-description: API reference for qiskit.optimization.applications.ising.docplex.get_operator
+title: docplex
+description: API reference for qiskit.optimization.applications.ising.docplex
 in_page_toc_min_heading_level: 1
-python_api_type: function
-python_api_name: qiskit.optimization.applications.ising.docplex.get_operator
+python_api_type: module
+python_api_name: qiskit.optimization.applications.ising.docplex
 ---
 
 <span id="qiskit-optimization-applications-ising-docplex" />
@@ -52,15 +52,17 @@ print('get_operator')
 print('tsp objective:', result['energy'] + offset)
 ```
 
-## Functions
+**Functions**
 
 |                                                                                                                                                                        |                                                     |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
 | [`get_operator`](#qiskit.optimization.applications.ising.docplex.get_operator "qiskit.optimization.applications.ising.docplex.get_operator")(mdl\[, auto\_penalty, …]) | Generate Ising Hamiltonian from a model of DOcplex. |
 
+### get\_operator
+
 <span id="qiskit.optimization.applications.ising.docplex.get_operator" />
 
-`get_operator(mdl, auto_penalty=True, default_penalty=100000.0)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/docplex.py "view source code")
+`get_operator(mdl, auto_penalty=True, default_penalty=100000.0)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/docplex.py "view source code")
 
 Generate Ising Hamiltonian from a model of DOcplex.
 

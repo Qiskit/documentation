@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.components.multiclass_extensions.MulticlassExtensio
 
 <span id="qiskit.aqua.components.multiclass_extensions.MulticlassExtension" />
 
-`MulticlassExtension`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/multiclass_extensions/multiclass_extension.py "view source code")
+`MulticlassExtension` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/multiclass_extensions/multiclass_extension.py "view source code")
 
 Base class for multiclass extension.
 

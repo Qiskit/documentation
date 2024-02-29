@@ -10,7 +10,7 @@ python_api_name: qiskit.ml.circuit.library.RawFeatureVector
 
 <span id="qiskit.ml.circuit.library.RawFeatureVector" />
 
-`RawFeatureVector(feature_dimension)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/ml/circuit/library/raw_feature_vector.py "view source code")
+`RawFeatureVector(feature_dimension)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/ml/circuit/library/raw_feature_vector.py "view source code")
 
 Bases: `qiskit.circuit.library.blueprintcircuit.BlueprintCircuit`
 
@@ -123,7 +123,7 @@ a handle to the instruction that was just added
 
 <span id="qiskit.ml.circuit.library.RawFeatureVector.assign_parameters" />
 
-`RawFeatureVector.assign_parameters(parameters, inplace=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/ml/circuit/library/raw_feature_vector.py "view source code")
+`RawFeatureVector.assign_parameters(parameters, inplace=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/ml/circuit/library/raw_feature_vector.py "view source code")
 
 Call the initialize instruction.
 
@@ -139,7 +139,7 @@ Apply `Barrier`. If qargs is None, applies to all.
 
 <span id="qiskit.ml.circuit.library.RawFeatureVector.bind_parameters" />
 
-`RawFeatureVector.bind_parameters(values)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/ml/circuit/library/raw_feature_vector.py "view source code")
+`RawFeatureVector.bind_parameters(values)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/ml/circuit/library/raw_feature_vector.py "view source code")
 
 Bind parameters.
 
@@ -518,7 +518,7 @@ Depth of circuit.
 
 int
 
-#### Notes
+**Notes**
 
 The circuit depth and the DAG depth need not be the same.
 
@@ -608,7 +608,7 @@ Draw the quantum circuit. Use the output parameter to choose the drawing format:
 *   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – when an invalid output method is selected
 *   **ImportError** – when the output methods requires non-installed libraries.
 
-#### Example
+**Example**
 
 ```python
 from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
@@ -816,7 +816,7 @@ a handle to the instruction that was just initialized
 
 [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-#### Examples
+**Examples**
 
 Prepare a qubit in the state $(|0\rangle - |1\rangle) / \sqrt{2}$.
 
@@ -919,7 +919,7 @@ the inverted circuit
 
 **CircuitError** – if the circuit cannot be inverted.
 
-#### Examples
+**Examples**
 
 #### input:
 
@@ -1222,7 +1222,7 @@ Conditional nonlocal gates are also included.
 
 Computes the number of tensor factors in the unitary (quantum) part of the circuit only.
 
-#### Notes
+**Notes**
 
 This is here for backwards compatibility, and will be removed in a future release of Qiskit. You should call num\_unitary\_factors instead.
 
@@ -1492,7 +1492,7 @@ the circuit with reversed bit order.
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-#### Examples
+**Examples**
 
 #### input:
 
@@ -1536,7 +1536,7 @@ the reversed circuit.
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-#### Examples
+**Examples**
 
 #### input:
 
@@ -2437,7 +2437,7 @@ q_0: ┤ bottom ├ ⊗ q_0: ┤ top ├  = q_0: ─┤ top ├──
 *   **other** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The other circuit to tensor this circuit with.
 *   **inplace** (*bool*) – If True, modify the object. Otherwise return composed circuit.
 
-#### Examples
+**Examples**
 
 ```python
 from qiskit import QuantumCircuit

@@ -10,7 +10,7 @@ python_api_name: qiskit.visualization.plot_distribution
 
 <span id="qiskit.visualization.plot_distribution" />
 
-`plot_distribution(data, figsize=(7, 5), color=None, number_to_keep=None, sort='asc', target_string=None, legend=None, bar_labels=True, title=None, ax=None, filename=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/visualization/counts_visualization.py "view source code")
+`plot_distribution(data, figsize=(7, 5), color=None, number_to_keep=None, sort='asc', target_string=None, legend=None, bar_labels=True, title=None, ax=None, filename=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/visualization/counts_visualization.py "view source code")
 
 Plot a distribution from input sampled data.
 
@@ -41,7 +41,7 @@ matplotlib.Figure
 *   **MissingOptionalLibraryError** – Matplotlib not available.
 *   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – When legend is provided and the length doesn’t match the input data.
 
-## Examples
+**Examples**
 
 ```python
 # Plot two counts in the same figure with legends and colors specified.

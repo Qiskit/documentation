@@ -10,11 +10,11 @@ python_api_name: qiskit.quantum_info.process_fidelity
 
 <span id="qiskit.quantum_info.process_fidelity" />
 
-`process_fidelity(channel, target=None, require_cp=True, require_tp=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/quantum_info/operators/measures.py "view source code")
+`process_fidelity(channel, target=None, require_cp=True, require_tp=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/quantum_info/operators/measures.py "view source code")
 
 Return the process fidelity of a noisy quantum channel.
 
-The process fidelity $F_{\text{pro}}(\mathcal{E}, \methcal{F})$ between two quantum channels $\mathcal{E}, \mathcal{F}$ is given by
+The process fidelity $F_{\text{pro}}(\mathcal{E}, \mathcal{F})$ between two quantum channels $\mathcal{E}, \mathcal{F}$ is given by
 
 where $F$ is the [`state_fidelity()`](qiskit.quantum_info.state_fidelity "qiskit.quantum_info.state_fidelity"), $\rho_{\mathcal{E}} = \Lambda_{\mathcal{E}} / d$ is the normalized [`Choi`](qiskit.quantum_info.Choi "qiskit.quantum_info.Choi") matrix for the channel $\mathcal{E}$, and $d$ is the input dimension of $\mathcal{E}$.
 

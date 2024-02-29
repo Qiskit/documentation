@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.measurement.IQDiscriminationFitter
 
 <span id="qiskit.ignis.measurement.IQDiscriminationFitter" />
 
-`IQDiscriminationFitter(cal_results, qubit_mask, expected_states=None, standardize=False, schedules=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/measurement/discriminator/iq_discriminators.py "view source code")
+`IQDiscriminationFitter(cal_results, qubit_mask, expected_states=None, standardize=False, schedules=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/measurement/discriminator/iq_discriminators.py "view source code")
 
 Abstract discriminator that implements the data formatting for IQ level 1 data.
 

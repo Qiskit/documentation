@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.OperatorBase
 
 <span id="qiskit.opflow.OperatorBase" />
 
-`OperatorBase`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/operator_base.py "view source code")
+`OperatorBase` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/operator_base.py "view source code")
 
 A base class for all Operators: PrimitiveOps, StateFns, ListOps, etc. Operators are defined as functions which take one complex binary function to another. These complex binary functions are represented by StateFns, which are themselves a special class of Operators taking only the `Zero` StateFn to the complex binary function they represent.
 

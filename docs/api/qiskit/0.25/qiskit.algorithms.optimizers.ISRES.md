@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.ISRES
 
 <span id="qiskit.algorithms.optimizers.ISRES" />
 
-`ISRES(max_evals=1000)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/optimizers/nlopts/isres.py "view source code")
+`ISRES(max_evals=1000)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/optimizers/nlopts/isres.py "view source code")
 
 Improved Stochastic Ranking Evolution Strategy optimizer.
 

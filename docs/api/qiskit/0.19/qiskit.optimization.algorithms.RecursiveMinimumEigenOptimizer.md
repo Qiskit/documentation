@@ -10,13 +10,13 @@ python_api_name: qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer
 
 <span id="qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer" />
 
-`RecursiveMinimumEigenOptimizer(min_eigen_optimizer, min_num_vars=1, min_num_vars_optimizer=None, penalty=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/algorithms/recursive_minimum_eigen_optimizer.py "view source code")
+`RecursiveMinimumEigenOptimizer(min_eigen_optimizer, min_num_vars=1, min_num_vars_optimizer=None, penalty=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/algorithms/recursive_minimum_eigen_optimizer.py "view source code")
 
 A meta-algorithm that applies a recursive optimization.
 
 The recursive minimum eigen optimizer applies a recursive optimization on top of [`MinimumEigenOptimizer`](qiskit.optimization.algorithms.MinimumEigenOptimizer "qiskit.optimization.algorithms.MinimumEigenOptimizer"). The algorithm is introduced in \[1].
 
-## Examples
+**Examples**
 
 Outline of how to use this class:
 
@@ -32,7 +32,7 @@ optimizer = RecursiveMinimumEigenOptimizer(qaoa)
 result = optimizer.solve(problem)
 ```
 
-## References
+**References**
 
 **\[1]: Bravyi et al. (2019), Obstacles to State Preparation and Variational Optimization**
 
@@ -61,7 +61,7 @@ TODO: add flag to store full history.
 
 <span id="qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer.get_compatibility_msg" />
 
-`RecursiveMinimumEigenOptimizer.get_compatibility_msg(problem)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/algorithms/recursive_minimum_eigen_optimizer.py "view source code")
+`RecursiveMinimumEigenOptimizer.get_compatibility_msg(problem)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/algorithms/recursive_minimum_eigen_optimizer.py "view source code")
 
 Checks whether a given problem can be solved with this optimizer.
 
@@ -103,7 +103,7 @@ Returns True if the problem is compatible, False otherwise.
 
 <span id="qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer.solve" />
 
-`RecursiveMinimumEigenOptimizer.solve(problem)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/algorithms/recursive_minimum_eigen_optimizer.py "view source code")
+`RecursiveMinimumEigenOptimizer.solve(problem)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/algorithms/recursive_minimum_eigen_optimizer.py "view source code")
 
 Tries to solve the given problem using the recursive optimizer.
 

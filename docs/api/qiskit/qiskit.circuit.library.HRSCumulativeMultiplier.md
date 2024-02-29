@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.HRSCumulativeMultiplier
 
 <span id="qiskit.circuit.library.HRSCumulativeMultiplier" />
 
-`qiskit.circuit.library.HRSCumulativeMultiplier(num_state_qubits, num_result_qubits=None, adder=None, name='HRSCumulativeMultiplier')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/arithmetic/multipliers/hrs_cumulative_multiplier.py "view source code")
+`qiskit.circuit.library.HRSCumulativeMultiplier(num_state_qubits, num_result_qubits=None, adder=None, name='HRSCumulativeMultiplier')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/arithmetic/multipliers/hrs_cumulative_multiplier.py "view source code")
 
 Bases: `Multiplier`
 
@@ -100,29 +100,17 @@ a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitI
 
 QuantumCircuitData
 
-<span id="qiskit.circuit.library.HRSCumulativeMultiplier.extension_lib" />
-
-### extension\_lib
-
-`= 'include "qelib1.inc";'`
-
 <span id="qiskit.circuit.library.HRSCumulativeMultiplier.global_phase" />
 
 ### global\_phase
 
 Return the global phase of the current circuit scope in radians.
 
-<span id="qiskit.circuit.library.HRSCumulativeMultiplier.header" />
-
-### header
-
-`= 'OPENQASM 2.0;'`
-
 <span id="qiskit.circuit.library.HRSCumulativeMultiplier.instances" />
 
 ### instances
 
-`= 205`
+`= 174`
 
 <span id="qiskit.circuit.library.HRSCumulativeMultiplier.layout" />
 
@@ -241,9 +229,6 @@ ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
 ```
 
 To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
-
-```python
-```
 
 ```python
 >>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector

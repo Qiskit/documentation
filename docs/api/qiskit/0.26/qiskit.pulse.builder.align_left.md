@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.builder.align_left
 
 <span id="qiskit.pulse.builder.align_left" />
 
-`align_left()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/builder.py "view source code")
+`align_left()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/builder.py "view source code")
 
 Left alignment pulse scheduling context.
 

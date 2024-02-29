@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.BaseProvider
 
 <span id="qiskit.providers.BaseProvider" />
 
-`BaseProvider(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/providers/baseprovider.py "view source code")
+`BaseProvider(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/providers/baseprovider.py "view source code")
 
 Base class for a Backend Provider.
 

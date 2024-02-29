@@ -1,8 +1,20 @@
+---
+title: gradients
+description: API reference for qiskit.opflow.gradients
+in_page_toc_min_heading_level: 1
+python_api_type: module
+python_api_name: qiskit.opflow.gradients
+---
+
 <span id="qiskit-opflow-gradients" />
 
 # qiskit.opflow\.gradients
 
-## Gradients ([`qiskit.opflow.gradients`](#module-qiskit.opflow.gradients "qiskit.opflow.gradients"))
+## Gradients
+
+<span id="module-qiskit.opflow.gradients" />
+
+`qiskit.opflow.gradients`
 
 Given an operator that represents either a quantum state resp. an expectation value, the gradient framework enables the evaluation of gradients, natural gradients, Hessians, as well as the Quantum Fisher Information.
 
@@ -109,3 +121,4 @@ The derivative classes come with a gradient\_wrapper() function which returns th
 | [`Hessian`](qiskit.opflow.gradients.Hessian "qiskit.opflow.gradients.Hessian")(\[hess\_method])                                           | Compute the Hessian of an expected value.                   |
 | [`NaturalGradient`](qiskit.opflow.gradients.NaturalGradient "qiskit.opflow.gradients.NaturalGradient")(\[grad\_method, qfi\_method, ...]) | Convert an operator expression to the first-order gradient. |
 | [`QFI`](qiskit.opflow.gradients.QFI "qiskit.opflow.gradients.QFI")(\[qfi\_method])                                                        | Compute the Quantum Fisher Information (QFI).               |
+

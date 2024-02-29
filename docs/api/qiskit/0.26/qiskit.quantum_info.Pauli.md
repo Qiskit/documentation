@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.Pauli
 
 <span id="qiskit.quantum_info.Pauli" />
 
-`Pauli(data=None, x=None, *, z=None, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/quantum_info/operators/symplectic/pauli.py "view source code")
+`Pauli(data=None, x=None, *, z=None, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/quantum_info/operators/symplectic/pauli.py "view source code")
 
 N-qubit Pauli operator.
 
@@ -62,7 +62,7 @@ The string representation can be converted to a `Pauli` using the class initiali
 The internal data structure of an $n$-qubit Pauli is two length-$n$ boolean vectors $z \in \mathbb{Z}_2^N$, $x \in \mathbb{Z}_2^N$, and an integer $q \in \mathbb{Z}_4$ defining the Pauli operator
 
 $$
-P &= (-i)^{q + z\cdot x} Z^z \cdot X^x.
+P = (-i)^{q + z\cdot x} Z^z \cdot X^x.
 $$
 
 The $k$ and $x$ arrays

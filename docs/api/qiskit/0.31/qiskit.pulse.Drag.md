@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.Drag
 
 <span id="qiskit.pulse.Drag" />
 
-`Drag(duration, amp, sigma, beta, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/library/parametric_pulses.py "view source code")
+`Drag(duration, amp, sigma, beta, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/library/parametric_pulses.py "view source code")
 
 Bases: `qiskit.pulse.library.parametric_pulses.ParametricPulse`
 
@@ -27,7 +27,7 @@ $$
 Gaussian(x, amp, sigma) = amp * exp( -(1/2) * (x - duration/2)^2 / sigma^2) )
 $$
 
-## References
+**References**
 
 1.  [*Gambetta, J. M., Motzoi, F., Merkel, S. T. & Wilhelm, F. K. Analytic control methods for high-fidelity unitary operations in a weakly nonlinear oscillator. Phys. Rev. A 83, 012308 (2011).*](https://link.aps.org/doi/10.1103/PhysRevA.83.012308)
 
@@ -131,7 +131,7 @@ Visualization output data. The returned data type depends on the `plotter`. If m
 
 <span id="qiskit.pulse.Drag.get_waveform" />
 
-`Drag.get_waveform()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/library/parametric_pulses.py "view source code")
+`Drag.get_waveform()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/library/parametric_pulses.py "view source code")
 
 Return a Waveform with samples filled according to the formula that the pulse represents and the parameter values it contains.
 
@@ -155,7 +155,7 @@ Return True iff the instruction is parameterized.
 
 <span id="qiskit.pulse.Drag.validate_parameters" />
 
-`Drag.validate_parameters()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/library/parametric_pulses.py "view source code")
+`Drag.validate_parameters()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/library/parametric_pulses.py "view source code")
 
 Validate parameters.
 

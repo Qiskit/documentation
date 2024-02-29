@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.operators.legacy.pauli_measurement
 
 <span id="qiskit.aqua.operators.legacy.pauli_measurement" />
 
-`pauli_measurement(circuit, pauli, qr, cr, barrier=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/legacy/common.py "view source code")
+`pauli_measurement(circuit, pauli, qr, cr, barrier=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/legacy/common.py "view source code")
 
 Add the proper post-rotation gate on the circuit.
 

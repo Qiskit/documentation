@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.preset_passmanagers.common.generate_error_on_
 
 <span id="qiskit.transpiler.preset_passmanagers.common.generate_error_on_control_flow" />
 
-`generate_error_on_control_flow(message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/preset_passmanagers/common.py "view source code")
+`generate_error_on_control_flow(message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/preset_passmanagers/common.py "view source code")
 
 Get a pass manager that always raises an error if control flow is present in a given circuit.
 

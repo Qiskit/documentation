@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.ControlledGate
 
 <span id="qiskit.circuit.ControlledGate" />
 
-`ControlledGate(name, num_qubits, params, label=None, num_ctrl_qubits=1, definition=None, ctrl_state=None, base_gate=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/controlledgate.py "view source code")
+`ControlledGate(name, num_qubits, params, label=None, num_ctrl_qubits=1, definition=None, ctrl_state=None, base_gate=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/controlledgate.py "view source code")
 
 Controlled unitary gate.
 

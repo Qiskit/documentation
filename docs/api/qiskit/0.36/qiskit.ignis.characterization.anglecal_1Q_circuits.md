@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.characterization.anglecal_1Q_circuits
 
 <span id="qiskit.ignis.characterization.anglecal_1Q_circuits" />
 
-`anglecal_1Q_circuits(max_reps, qubits, angleerr=0.0)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/characterization/gates/circuits.py "view source code")
+`anglecal_1Q_circuits(max_reps, qubits, angleerr=0.0)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/characterization/gates/circuits.py "view source code")
 
 Generates circuit for measuring the angle error of the single qubit gate
 

@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.RuntimeJob
 
 <span id="qiskit_ibm_runtime.RuntimeJob" />
 
-`RuntimeJob(backend, api_client, client_params, job_id, program_id, service, params=None, creation_date=None, user_callback=None, result_decoder=None, image='', session_id=None, tags=None)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.18/qiskit_ibm_runtime/runtime_job.py "view source code")
+`RuntimeJob(backend, api_client, client_params, job_id, program_id, service, params=None, creation_date=None, user_callback=None, result_decoder=None, image='', session_id=None, tags=None)` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/runtime_job.py "view source code")
 
 Representation of a runtime program execution.
 
@@ -120,7 +120,7 @@ Session ID.
 
 **Returns**
 
-Job ID of the first job in a runtime session.
+Session ID. None if the backend is a simulator.
 
 <span id="qiskit_ibm_runtime.RuntimeJob.tags" />
 

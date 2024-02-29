@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.pauli_basis
 
 <span id="qiskit.quantum_info.pauli_basis" />
 
-`pauli_basis(num_qubits, weight=False, pauli_list=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/quantum_info/operators/symplectic/pauli_utils.py "view source code")
+`pauli_basis(num_qubits, weight=False, pauli_list=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/quantum_info/operators/symplectic/pauli_utils.py "view source code")
 
 Return the ordered PauliTable or PauliList for the n-qubit Pauli basis.
 

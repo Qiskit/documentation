@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.DynamicalDecoupling
 
 <span id="qiskit.transpiler.passes.DynamicalDecoupling" />
 
-`qiskit.transpiler.passes.DynamicalDecoupling(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/scheduling/dynamical_decoupling.py "view source code")
+`qiskit.transpiler.passes.DynamicalDecoupling(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/scheduling/dynamical_decoupling.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 

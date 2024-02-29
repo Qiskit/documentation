@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.utils.insert_noise
 
 <span id="qiskit.providers.aer.utils.insert_noise" />
 
-`insert_noise(circuits, noise_model, transpile=False)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/utils/noise_model_inserter.py "view source code")
+`insert_noise(circuits, noise_model, transpile=False)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/utils/noise_model_inserter.py "view source code")
 
 Return a noisy version of a QuantumCircuit.
 

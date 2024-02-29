@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.BreakLoopOp
 
 <span id="qiskit.circuit.BreakLoopOp" />
 
-`qiskit.circuit.BreakLoopOp(num_qubits, num_clbits, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/controlflow/break_loop.py "view source code")
+`qiskit.circuit.BreakLoopOp(num_qubits, num_clbits, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/controlflow/break_loop.py "view source code")
 
 Bases: [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 

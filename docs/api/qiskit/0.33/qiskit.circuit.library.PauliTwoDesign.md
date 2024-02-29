@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.PauliTwoDesign
 
 <span id="qiskit.circuit.library.PauliTwoDesign" />
 
-`PauliTwoDesign(num_qubits=None, reps=3, seed=None, insert_barriers=False, name='PauliTwoDesign')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/library/n_local/pauli_two_design.py "view source code")
+`PauliTwoDesign(num_qubits=None, reps=3, seed=None, insert_barriers=False, name='PauliTwoDesign')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/library/n_local/pauli_two_design.py "view source code")
 
 Bases: `qiskit.circuit.library.n_local.two_local.TwoLocal`
 
@@ -34,9 +34,7 @@ q_3: ┤ RY(π/4) ├┤ RZ(θ[3]) ├─■─────░─┤ RX(θ[7]) �
      └─────────┘└──────────┘       ░ └──────────┘       ░ └───────────┘
 ```
 
-## Examples
-
-## References
+**Examples** **References**
 
 **\[1]: Nakata et al., Unitary 2-designs from random X- and Z-diagonal unitaries.**
 
@@ -275,7 +273,7 @@ The parameters used in the underlying circuit.
 
 This includes float values and duplicates.
 
-## Examples
+**Examples**
 
 ```python
 >>> # prepare circuit ...

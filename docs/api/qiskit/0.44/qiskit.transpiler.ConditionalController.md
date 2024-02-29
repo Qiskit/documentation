@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.ConditionalController
 
 <span id="qiskit.transpiler.ConditionalController" />
 
-`qiskit.transpiler.ConditionalController(passes, options=None, condition=None, **partial_controller)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/runningpassmanager.py "view source code")
+`qiskit.transpiler.ConditionalController(passes, options=None, condition=None, **partial_controller)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/runningpassmanager.py "view source code")
 
 Bases: [`FlowController`](qiskit.transpiler.FlowController "qiskit.transpiler.runningpassmanager.FlowController")
 
@@ -20,9 +20,7 @@ Implements a set of passes under a certain condition.
 
 <span id="qiskit.transpiler.ConditionalController.registered_controllers" />
 
-### registered\_controllers = \{'condition'
-
-`= {'condition':`
+### registered\_controllers
 
 `= {'condition': , 'do_while': }`
 

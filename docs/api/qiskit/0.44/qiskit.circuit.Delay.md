@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.Delay
 
 <span id="qiskit.circuit.Delay" />
 
-`qiskit.circuit.Delay(duration, unit='dt')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/delay.py "view source code")
+`qiskit.circuit.Delay(duration, unit='dt')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/delay.py "view source code")
 
 Bases: [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 

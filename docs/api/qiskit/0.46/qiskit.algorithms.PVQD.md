@@ -1,0 +1,232 @@
+---
+title: PVQD
+description: API reference for qiskit.algorithms.PVQD
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.algorithms.PVQD
+---
+
+# PVQD
+
+<span id="qiskit.algorithms.PVQD" />
+
+`qiskit.algorithms.PVQD(fidelity, ansatz, initial_parameters, estimator=None, optimizer=None, num_timesteps=None, evolution=None, use_parameter_shift=True, initial_guess=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/time_evolvers/pvqd/pvqd.py "view source code")
+
+Bases: [`RealTimeEvolver`](qiskit.algorithms.RealTimeEvolver "qiskit.algorithms.time_evolvers.real_time_evolver.RealTimeEvolver")
+
+The projected Variational Quantum Dynamics (p-VQD) Algorithm.
+
+In each timestep, this algorithm computes the next state with a Trotter formula (specified by the `evolution` argument) and projects the timestep onto a variational form (`ansatz`). The projection is determined by maximizing the fidelity of the Trotter-evolved state and the ansatz, using a classical optimization routine. See Ref. \[1] for details.
+
+The following attributes can be set via the initializer but can also be read and updated once the PVQD object has been constructed.
+
+<span id="qiskit.algorithms.PVQD.ansatz" />
+
+### ansatz
+
+The parameterized circuit representing the time-evolved state.
+
+**Type**
+
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+
+<span id="qiskit.algorithms.PVQD.initial_parameters" />
+
+### initial\_parameters
+
+The parameters of the ansatz at time 0.
+
+**Type**
+
+np.ndarray
+
+<span id="qiskit.algorithms.PVQD.optimizer" />
+
+### optimizer
+
+The classical optimization routine used to maximize the fidelity of the Trotter step and ansatz.
+
+**Type**
+
+Optional\[Union\[[Optimizer](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer"), [Minimizer](qiskit.algorithms.optimizers.Minimizer "qiskit.algorithms.optimizers.Minimizer")]]
+
+<span id="qiskit.algorithms.PVQD.num_timesteps" />
+
+### num\_timesteps
+
+The number of timesteps to take. If None, it is automatically selected to achieve a timestep of approximately 0.01.
+
+**Type**
+
+Optional\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")]
+
+<span id="qiskit.algorithms.PVQD.evolution" />
+
+### evolution
+
+The method to perform the Trotter step. Defaults to first-order Lie-Trotter evolution.
+
+**Type**
+
+Optional\[[EvolutionSynthesis](qiskit.synthesis.EvolutionSynthesis "qiskit.synthesis.EvolutionSynthesis")]
+
+<span id="qiskit.algorithms.PVQD.use_parameter_shift" />
+
+### use\_parameter\_shift
+
+If True, use the parameter shift rule for loss function gradients (if the ansatz supports).
+
+**Type**
+
+[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+
+<span id="qiskit.algorithms.PVQD.initial_guess" />
+
+### initial\_guess
+
+The starting point for the first classical optimization run, at time 0. Defaults to random values in $[-0.01, 0.01]$.
+
+**Type**
+
+Optional\[np.ndarray]
+
+**Example**
+
+This snippet computes the real time evolution of a quantum Ising model on two neighboring sites and keeps track of the magnetization.
+
+```python
+import numpy as np
+
+from qiskit.algorithms.state_fidelities import ComputeUncompute
+from qiskit.algorithms.time_evolvers import TimeEvolutionProblem, PVQD
+from qiskit.primitives import Estimator, Sampler
+from qiskit.circuit.library import EfficientSU2
+from qiskit.quantum_info import SparsePauliOp, Pauli
+from qiskit.algorithms.optimizers import L_BFGS_B
+
+sampler = Sampler()
+fidelity = ComputeUncompute(sampler)
+estimator = Estimator()
+hamiltonian = 0.1 * SparsePauliOp(["ZZ", "IX", "XI"])
+observable = Pauli("ZZ")
+ansatz = EfficientSU2(2, reps=1)
+initial_parameters = np.zeros(ansatz.num_parameters)
+
+time = 1
+optimizer = L_BFGS_B()
+
+# setup the algorithm
+pvqd = PVQD(
+    fidelity,
+    ansatz,
+    initial_parameters,
+    estimator,
+    num_timesteps=100,
+    optimizer=optimizer,
+)
+
+# specify the evolution problem
+problem = TimeEvolutionProblem(
+    hamiltonian, time, aux_operators=[hamiltonian, observable]
+)
+
+# and evolve!
+result = pvqd.evolve(problem)
+```
+
+**References**
+
+**\[1] Stefano Barison, Filippo Vicentini, and Giuseppe Carleo (2021), An efficient**
+
+quantum algorithm for the time evolution of parameterized circuits, [Quantum 5, 512](https://quantum-journal.org/papers/q-2021-07-28-512/).
+
+**Parameters**
+
+*   **fidelity** ([*BaseStateFidelity*](qiskit.algorithms.state_fidelities.BaseStateFidelity "qiskit.algorithms.state_fidelities.BaseStateFidelity")) – A fidelity primitive used by the algorithm.
+*   **ansatz** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – A parameterized circuit preparing the variational ansatz to model the time evolved quantum state.
+*   **initial\_parameters** (*np.ndarray*) – The initial parameters for the ansatz. Together with the ansatz, these define the initial state of the time evolution.
+*   **estimator** ([*BaseEstimator*](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator") *| None*) – An estimator primitive used for calculating expected values of auxiliary operators (if provided via the problem).
+*   **optimizer** ([*Optimizer*](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer")  *|*[*Minimizer*](qiskit.algorithms.optimizers.Minimizer "qiskit.algorithms.optimizers.Minimizer") *| None*) – The classical optimizers used to minimize the overlap between Trotterization and ansatz. Can be either a [`Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer") or a callable using the [`Minimizer`](qiskit.algorithms.optimizers.Minimizer "qiskit.algorithms.optimizers.Minimizer") protocol. This argument is optional since it is not required for [`get_loss()`](#qiskit.algorithms.PVQD.get_loss "qiskit.algorithms.PVQD.get_loss"), but it has to be set before [`evolve()`](#qiskit.algorithms.PVQD.evolve "qiskit.algorithms.PVQD.evolve") is called.
+*   **num\_timesteps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The number of time steps. If `None` it will be set such that the timestep is close to 0.01.
+*   **evolution** ([*EvolutionSynthesis*](qiskit.synthesis.EvolutionSynthesis "qiskit.synthesis.EvolutionSynthesis") *| None*) – The evolution synthesis to use for the construction of the Trotter step. Defaults to first-order Lie-Trotter decomposition, see also `evolution` for different options.
+*   **use\_parameter\_shift** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, use the parameter shift rule to compute gradients. If False, the optimizer will not be passed a gradient callable. In that case, Qiskit optimizers will use a finite difference rule to approximate the gradients.
+*   **initial\_guess** (*np.ndarray | None*) – The initial guess for the first VQE optimization. Afterwards the previous iteration result is used as initial guess. If None, this is set to a random vector with elements in the interval $[-0.01, 0.01]$.
+
+## Methods
+
+### evolve
+
+<span id="qiskit.algorithms.PVQD.evolve" />
+
+`evolve(evolution_problem)`
+
+Perform real time evolution $\exp(-i t H)|\Psi\rangle$.
+
+Evolves an initial state $|\Psi\rangle$ for a time $t$ under a Hamiltonian $H$, as provided in the `evolution_problem`.
+
+**Parameters**
+
+**evolution\_problem** ([*TimeEvolutionProblem*](qiskit.algorithms.TimeEvolutionProblem "qiskit.algorithms.time_evolvers.time_evolution_problem.TimeEvolutionProblem")) – The evolution problem containing the hamiltonian, total evolution time and observables to evaluate.
+
+**Returns**
+
+A result object containing the evolution information and evaluated observables.
+
+**Raises**
+
+*   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If `aux_operators` provided in the time evolution problem but no estimator provided to the algorithm.
+*   [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.12)") – If the evolution problem contains an initial state.
+
+**Return type**
+
+[*TimeEvolutionResult*](qiskit.algorithms.TimeEvolutionResult "qiskit.algorithms.time_evolvers.time_evolution_result.TimeEvolutionResult")
+
+### get\_loss
+
+<span id="qiskit.algorithms.PVQD.get_loss" />
+
+`get_loss(hamiltonian, ansatz, dt, current_parameters)`
+
+Get a function to evaluate the infidelity between Trotter step and ansatz.
+
+**Parameters**
+
+*   **hamiltonian** (*BaseOperator |* [*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")) – The Hamiltonian under which to evolve.
+*   **ansatz** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The parameterized quantum circuit which attempts to approximate the time-evolved state.
+*   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The time step.
+*   **current\_parameters** (*np.ndarray*) – The current parameters.
+
+**Returns**
+
+**A callable to evaluate the infidelity and, if gradients are supported and required,**
+
+a second callable to evaluate the gradient of the infidelity.
+
+**Return type**
+
+[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[Callable\[\[np.ndarray], [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")], Callable\[\[np.ndarray], np.ndarray]] | None
+
+### step
+
+<span id="qiskit.algorithms.PVQD.step" />
+
+`step(hamiltonian, ansatz, theta, dt, initial_guess)`
+
+Perform a single time step.
+
+**Parameters**
+
+*   **hamiltonian** (*BaseOperator |* [*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")) – The Hamiltonian under which to evolve.
+*   **ansatz** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The parameterized quantum circuit which attempts to approximate the time-evolved state.
+*   **theta** (*np.ndarray*) – The current parameters.
+*   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The time step.
+*   **initial\_guess** (*np.ndarray*) – The initial guess for the classical optimization of the fidelity between the next variational state and the Trotter-evolved last state. If None, this is set to a random vector with elements in the interval $[-0.01, 0.01]$.
+
+**Returns**
+
+A tuple consisting of the next parameters and the fidelity of the optimization.
+
+**Return type**
+
+[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[np.ndarray, [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")]
+

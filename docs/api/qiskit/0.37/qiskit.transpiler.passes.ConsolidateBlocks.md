@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.ConsolidateBlocks
 
 <span id="qiskit.transpiler.passes.ConsolidateBlocks" />
 
-`ConsolidateBlocks(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/optimization/consolidate_blocks.py "view source code")
+`ConsolidateBlocks(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/optimization/consolidate_blocks.py "view source code")
 
 Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -18,7 +18,7 @@ Replace each block of consecutive gates by a single Unitary node.
 
 Pass to consolidate sequences of uninterrupted gates acting on the same qubits into a Unitary node, to be resynthesized later, to a potentially more optimal subcircuit.
 
-## Notes
+**Notes**
 
 This pass assumes that the ‘blocks\_list’ property that it reads is given such that blocks are in topological order. The blocks are collected by a previous pass, such as Collect2qBlocks.
 
@@ -45,7 +45,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.ConsolidateBlocks.run" />
 
-`ConsolidateBlocks.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/optimization/consolidate_blocks.py "view source code")
+`ConsolidateBlocks.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/optimization/consolidate_blocks.py "view source code")
 
 Run the ConsolidateBlocks pass on dag.
 

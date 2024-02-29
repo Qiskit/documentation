@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.operators.gradients.QFI
 
 <span id="qiskit.aqua.operators.gradients.QFI" />
 
-`QFI(qfi_method='lin_comb_full')`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/gradients/qfi.py "view source code")
+`QFI(qfi_method='lin_comb_full')` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/gradients/qfi.py "view source code")
 
 Compute the Quantum Fisher Information (QFI).
 

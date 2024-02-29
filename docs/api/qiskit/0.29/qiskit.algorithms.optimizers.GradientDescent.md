@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.GradientDescent
 
 <span id="qiskit.algorithms.optimizers.GradientDescent" />
 
-`GradientDescent(maxiter=100, learning_rate=0.01, tol=1e-07, callback=None, perturbation=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/gradient_descent.py "view source code")
+`GradientDescent(maxiter=100, learning_rate=0.01, tol=1e-07, callback=None, perturbation=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/gradient_descent.py "view source code")
 
 Bases: `qiskit.algorithms.optimizers.optimizer.Optimizer`
 
@@ -28,7 +28,7 @@ You can either provide the analytic gradient $\vec\nabla f$ as `gradient_functio
 
 This optimizer supports a callback function. If provided in the initializer, the optimizer will call the callback in each iteration with the following information in this order: current number of function values, current parameters, current function value, norm of current gradient.
 
-## Examples
+**Examples**
 
 A minimum example that will use finite difference gradients with a default perturbation of 0.01 and a default learning rate of 0.01.
 
@@ -47,7 +47,7 @@ An example where the learning rate is an iterator and we supply the analytic gra
 
 <span id="qiskit.algorithms.optimizers.GradientDescent.get_support_level" />
 
-`GradientDescent.get_support_level()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/gradient_descent.py "view source code")
+`GradientDescent.get_support_level()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/gradient_descent.py "view source code")
 
 Get the support level dictionary.
 
@@ -78,7 +78,7 @@ grad
 
 <span id="qiskit.algorithms.optimizers.GradientDescent.optimize" />
 
-`GradientDescent.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/gradient_descent.py "view source code")
+`GradientDescent.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/gradient_descent.py "view source code")
 
 Perform optimization.
 

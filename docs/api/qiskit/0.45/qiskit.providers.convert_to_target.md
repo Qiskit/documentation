@@ -1,0 +1,26 @@
+---
+title: convert_to_target
+description: API reference for qiskit.providers.convert_to_target
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.providers.convert_to_target
+---
+
+<span id="qiskit-providers-convert-to-target" />
+
+# qiskit.providers.convert\_to\_target
+
+<span id="qiskit.providers.convert_to_target" />
+
+`qiskit.providers.convert_to_target(configuration, properties=None, defaults=None, custom_name_mapping=None, add_delay=False, filter_faulty=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/backend_compat.py "view source code")
+
+Uses configuration, properties and pulse defaults to construct and return Target class.
+
+In order to convert with a `defaults.instruction_schedule_map`, which has a custom calibration for an operation, the operation name must be in `configuration.basis_gates` and `custom_name_mapping` must be supplied for the operation. Otherwise, the operation will be dropped in the resulting `Target` object.
+
+That suggests it is recommended to add custom calibrations **after** creating a target with this function instead of adding them to `defaults` in advance. For example:
+
+```python
+target.add_instruction(custom_gate, {(0, 1): InstructionProperties(calibration=custom_sched)})
+```
+

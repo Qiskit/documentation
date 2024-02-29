@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.mutual_information
 
 <span id="qiskit.quantum_info.mutual_information" />
 
-`mutual_information(state, base=2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/states/measures.py "view source code")
+`mutual_information(state, base=2)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/states/measures.py "view source code")
 
 Calculate the mutual information of a bipartite state.
 

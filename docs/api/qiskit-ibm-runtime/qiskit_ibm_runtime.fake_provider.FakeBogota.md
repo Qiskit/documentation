@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeBogota
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeBogota" />
 
-`FakeBogota`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.18/qiskit_ibm_runtime/fake_provider/backends/bogota/fake_bogota.py "view source code")
+`FakeBogota` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/bogota/fake_bogota.py "view source code")
 
 A fake 5 qubit backend.
 

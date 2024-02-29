@@ -12,7 +12,7 @@ python_api_name: qiskit.synthesis.synth_clifford_depth_lnn
 
 <span id="qiskit.synthesis.synth_clifford_depth_lnn" />
 
-`synth_clifford_depth_lnn(cliff)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/synthesis/clifford/clifford_decompose_layers.py "view source code")
+`synth_clifford_depth_lnn(cliff)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/synthesis/clifford/clifford_decompose_layers.py "view source code")
 
 Synthesis of a Clifford into layers for linear-nearest neighbour connectivity.
 

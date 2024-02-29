@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.library.set_matrix_product_state
 
 <span id="qiskit.providers.aer.library.set_matrix_product_state" />
 
-`set_matrix_product_state(self, state)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/library/set_instructions/set_matrix_product_state.py "view source code")
+`set_matrix_product_state(self, state)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/library/set_instructions/set_matrix_product_state.py "view source code")
 
 Set the matrix product state of the simulator.
 

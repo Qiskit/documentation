@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.LogNormalDistribution
 
 <span id="qiskit.circuit.library.LogNormalDistribution" />
 
-`LogNormalDistribution(num_qubits, mu=None, sigma=None, bounds=None, upto_diag=False, name='P(X)')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/probability_distributions/lognormal.py "view source code")
+`LogNormalDistribution(num_qubits, mu=None, sigma=None, bounds=None, upto_diag=False, name='P(X)')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/probability_distributions/lognormal.py "view source code")
 
 Bases: `qiskit.circuit.quantumcircuit.QuantumCircuit`
 
@@ -46,11 +46,11 @@ where $n$ is num\_qubits.
 
 This circuit is for example used in amplitude estimation applications, such as finance \[1, 2], where customer demand or the return of a portfolio could be modelled using a log-normal distribution.
 
-## Examples
+**Examples**
 
 This class can be used for both univariate and multivariate distributions. >>> mu = \[1, 0.9, 0.2] >>> sigma = \[\[1, -0.2, 0.2], \[-0.2, 1, 0.4], \[0.2, 0.4, 1]] >>> circuit = LogNormalDistribution(\[2, 2, 2], mu, sigma) >>> circuit.num\_qubits 6
 
-## References
+**References**
 
 **\[1]: Gacon, J., Zoufal, C., & Woerner, S. (2020).**
 

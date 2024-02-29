@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakePerth
 
 <span id="qiskit.providers.fake_provider.FakePerth" />
 
-`FakePerth`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/fake_provider/backends/perth/fake_perth.py "view source code")
+`FakePerth` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/fake_provider/backends/perth/fake_perth.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_backend.FakeBackendV2`
 

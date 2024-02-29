@@ -10,6 +10,8 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
+import fs from "fs/promises";
+
 import { globby } from "globby";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
@@ -20,7 +22,10 @@ const PORT = 3000;
 
 interface Arguments {
   [x: string]: unknown;
+  fromFile?: string;
+  nonApi: boolean;
   currentApis: boolean;
+  devApis: boolean;
   historicalApis: boolean;
   qiskitReleaseNotes: boolean;
   translations: boolean;
@@ -29,10 +34,26 @@ interface Arguments {
 const readArgs = (): Arguments => {
   return yargs(hideBin(process.argv))
     .version(false)
+    .option("from-file", {
+      type: "string",
+      normalize: true,
+      description:
+        "Read the file path for file paths and globs to check, like `docs/start/index.md`. Entries should be separated by a newline and should be valid file types (.md, .mdx, .ipynb).",
+    })
+    .option("non-api", {
+      type: "boolean",
+      default: false,
+      description: "Check all the non-API docs, like start/.",
+    })
     .option("current-apis", {
       type: "boolean",
       default: false,
       description: "Check the pages in the current API docs.",
+    })
+    .option("dev-apis", {
+      type: "boolean",
+      default: false,
+      description: "Check the /dev API docs.",
     })
     .option("historical-apis", {
       type: "boolean",
@@ -59,13 +80,13 @@ zxMain(async () => {
   await validateDockerRunning();
   const files = await determineFilePaths(args);
 
-  let allGood = true;
+  let failures: string[] = [];
   let numFilesChecked = 1;
   for (const fp of files) {
     const rendered = await canRender(fp);
     if (!rendered) {
       console.error(`❌ Failed to render: ${fp}`);
-      allGood = false;
+      failures.push(fp);
     }
 
     // This script can be slow, so log progress every 10 files.
@@ -75,13 +96,14 @@ zxMain(async () => {
     numFilesChecked++;
   }
 
-  if (allGood) {
+  if (failures.length === 0) {
     console.info("✅ All pages render without crashing");
   } else {
     console.error(
       "💔 Some pages crash when rendering. This is usually due to invalid syntax, such as forgetting " +
         "the closing component tag, like `</Admonition>`. You can sometimes get a helpful error message " +
-        "by previewing the docs locally or in CI. See the README for instructions.",
+        "by previewing the docs locally or in CI. See the README for instructions.\n\n" +
+        failures.join("\n"),
     );
     process.exit(1);
   }
@@ -130,17 +152,36 @@ async function validateDockerRunning(): Promise<void> {
 }
 
 async function determineFilePaths(args: Arguments): Promise<string[]> {
-  const globs = ["docs/**/*.{ipynb,md,mdx}"];
-  if (!args.currentApis) {
-    globs.push("!docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/*");
+  const globs = [];
+  if (args.fromFile) {
+    const content = await fs.readFile(args.fromFile, "utf-8");
+    globs.push(...content.split("\n").filter((entry) => entry));
   }
-  if (!args.historicalApis) {
+
+  if (args.nonApi) {
     globs.push(
-      "!docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/[0-9]*/*",
+      "docs/support.mdx",
+      "docs/{build,run,start,transpile,verify}/*.{ipynb,md,mdx}",
+      "docs/api/migration-guides/**/*.{ipynb,md,mdx}",
     );
   }
-  if (!args.qiskitReleaseNotes) {
-    globs.push("!docs/api/qiskit/release-notes/*");
+  if (args.currentApis) {
+    globs.push(
+      "docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/*.{ipynb,md,mdx}",
+    );
+  }
+  if (args.historicalApis) {
+    globs.push(
+      "docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/[0-9]*/*.{ipynb,md,mdx}",
+    );
+  }
+  if (args.devApis) {
+    globs.push(
+      "docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/dev/*.{ipynb,md,mdx}",
+    );
+  }
+  if (args.qiskitReleaseNotes) {
+    globs.push("docs/api/qiskit/release-notes/*.{ipynb,md,mdx}");
   }
   if (args.translations) {
     globs.push("translations/**/*.{ipynb,md,mdx}");

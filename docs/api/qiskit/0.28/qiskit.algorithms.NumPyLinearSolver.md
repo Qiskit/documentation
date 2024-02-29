@@ -10,13 +10,13 @@ python_api_name: qiskit.algorithms.NumPyLinearSolver
 
 <span id="qiskit.algorithms.NumPyLinearSolver" />
 
-`NumPyLinearSolver`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/linear_solvers/numpy_linear_solver.py "view source code")
+`NumPyLinearSolver` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/linear_solvers/numpy_linear_solver.py "view source code")
 
 The Numpy Linear Solver algorithm (classical).
 
 This linear system solver computes the exact value of the given observable(s) or the full solution vector if no observable is specified.
 
-## Examples
+**Examples**
 
 ```python
 import numpy as np

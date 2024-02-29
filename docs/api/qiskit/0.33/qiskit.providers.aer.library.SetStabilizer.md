@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.library.SetStabilizer
 
 <span id="qiskit.providers.aer.library.SetStabilizer" />
 
-`SetStabilizer(state)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/providers/aer/library/set_instructions/set_stabilizer.py "view source code")
+`SetStabilizer(state)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/providers/aer/library/set_instructions/set_stabilizer.py "view source code")
 
 Bases: `qiskit.circuit.instruction.Instruction`
 

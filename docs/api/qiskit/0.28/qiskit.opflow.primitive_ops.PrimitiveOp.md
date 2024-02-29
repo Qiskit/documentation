@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.primitive_ops.PrimitiveOp
 
 <span id="qiskit.opflow.primitive_ops.PrimitiveOp" />
 
-`PrimitiveOp(primitive, coeff=1.0)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/primitive_ops/primitive_op.py "view source code")
+`PrimitiveOp(primitive, coeff=1.0)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/primitive_ops/primitive_op.py "view source code")
 
 A class for representing basic Operators, backed by Operator primitives from Terra. This class (and inheritors) primarily serves to allow the underlying primitives to “flow” - i.e. interoperability and adherence to the Operator formalism - while the core computational logic mostly remains in the underlying primitives. For example, we would not produce an interface in Terra in which `QuantumCircuit1 + QuantumCircuit2` equaled the Operator sum of the circuit unitaries, rather than simply appending the circuits. However, within the Operator flow summing the unitaries is the expected behavior.
 

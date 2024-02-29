@@ -1,6 +1,6 @@
 ---
 title: Configure error mitigation
-description: Configure error mitigation with Qiskit Runtime
+description: How to configure error mitigation with Qiskit Runtime.
 ---
 
 # Configure error mitigation for Qiskit Runtime
@@ -83,7 +83,7 @@ applied at each resilience level.
 </Admonition>
 
 <Admonition type="note">
-  If using an IBM Cloud Qiskit Runtime service instance with Q-CTRL performance management enabled, there is no need to specify runtime optimization or resilience levels, as the strategy includes an automatic preset.
+  If using an IBM Cloud&reg; Qiskit&reg; Runtime service instance with Q-CTRL performance management enabled, there is no need to specify runtime optimization or resilience levels, as the strategy includes an automatic preset.
   
   Setting `optimization_level` or `resilience_level` equal to 0 will result in an
   execution error. Levels 1, 2, and 3 are permitted but will not impact performance.
@@ -280,15 +280,15 @@ mitigated circuit.
 
 How this works:
 
-When estimating an unmitigated Pauli observable $\langle P\rangle$ the
+When estimating an unmitigated Pauli observable $\langle P\rangle$, the
 standard error in the estimated expectation value is given by
 
-$\frac{1}{\sqrt{N_{\text{shots}}}}\left(1- \langle P\rangle^2\right)$
+$\frac{1}{\sqrt{N_{\text{shots}}}}\left(1- \langle P\rangle^2\right)$,
 
 where $N_{\text{shots}}$ is the number of shots used to estimate
 $\langle P\rangle$. When applying PEC mitigation, the standard error
 becomes
-$\sqrt{\frac{S}{N_{\text{samples}}}}\left(1- \langle P\rangle^2\right)$
+$\sqrt{\frac{S}{N_{\text{samples}}}}\left(1- \langle P\rangle^2\right)$,
 where $N_{\text{samples}}$ is the number of PEC samples.
 
 The sampling overhead scales exponentially with a parameter that

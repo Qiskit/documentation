@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.MCMTVChain
 
 <span id="qiskit.circuit.library.MCMTVChain" />
 
-`MCMTVChain(gate, num_ctrl_qubits, num_target_qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/generalized_gates/mcmt.py "view source code")
+`MCMTVChain(gate, num_ctrl_qubits, num_target_qubits)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/generalized_gates/mcmt.py "view source code")
 
 The MCMT implementation using the CCX V-chain.
 
@@ -210,7 +210,7 @@ The keys of the parameter dictionary must be Parameter instances in the current 
 
 optional([QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"))
 
-#### Examples
+**Examples**
 
 ```python
 >>> from qiskit.circuit import QuantumCircuit, Parameter
@@ -406,7 +406,7 @@ the composed circuit (returns None if inplace==True).
 *   **CircuitError** – if composing on the front.
 *   **QiskitError** – if `other` is wider or there are duplicate edge mappings.
 
-#### Examples
+**Examples**
 
 ```python
 >>> lhs.compose(rhs, qubits=[3, 2], inplace=True)
@@ -585,7 +585,7 @@ Depth of circuit.
 
 int
 
-#### Notes
+**Notes**
 
 The circuit depth and the DAG depth need not be the same.
 
@@ -938,7 +938,7 @@ Apply initialize to circuit.
 
 <span id="qiskit.circuit.library.MCMTVChain.inverse" />
 
-`MCMTVChain.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/generalized_gates/mcmt.py "view source code")
+`MCMTVChain.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/generalized_gates/mcmt.py "view source code")
 
 Return the inverse MCMT circuit, which is itself.
 
@@ -1237,7 +1237,7 @@ Conditional nonlocal gates are also included.
 
 Computes the number of tensor factors in the unitary (quantum) part of the circuit only.
 
-#### Notes
+**Notes**
 
 This is here for backwards compatibility, and will be removed in a future release of Qiskit. You should call num\_unitary\_factors instead.
 

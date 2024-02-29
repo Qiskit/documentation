@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.ALAPSchedule
 
 <span id="qiskit.transpiler.passes.ALAPSchedule" />
 
-`ALAPSchedule(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/passes/scheduling/alap.py "view source code")
+`ALAPSchedule(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/passes/scheduling/alap.py "view source code")
 
 Bases: `qiskit.transpiler.basepasses.TransformationPass`
 
@@ -18,7 +18,7 @@ ALAP Scheduling pass, which schedules the **stop** time of instructions as late 
 
 For circuits with instructions writing or reading clbits (e.g. measurements, conditional gates), the scheduler assumes clbits I/O operations take no time, `measure` locks clbits to be written at its end and `c_if` locks clbits to be read at its beginning.
 
-## Notes
+**Notes**
 
 The ALAP scheduler may not schedule a circuit exactly the same as any real backend does when the circuit contains control flows (e.g. conditional instructions).
 
@@ -42,7 +42,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.ALAPSchedule.run" />
 
-`ALAPSchedule.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/passes/scheduling/alap.py "view source code")
+`ALAPSchedule.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/passes/scheduling/alap.py "view source code")
 
 Run the ALAPSchedule pass on dag.
 

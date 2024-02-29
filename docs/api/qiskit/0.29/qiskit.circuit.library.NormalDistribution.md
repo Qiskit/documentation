@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.NormalDistribution
 
 <span id="qiskit.circuit.library.NormalDistribution" />
 
-`NormalDistribution(num_qubits, mu=None, sigma=None, bounds=None, upto_diag=False, name='P(X)')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/probability_distributions/normal.py "view source code")
+`NormalDistribution(num_qubits, mu=None, sigma=None, bounds=None, upto_diag=False, name='P(X)')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/probability_distributions/normal.py "view source code")
 
 Bases: `qiskit.circuit.quantumcircuit.QuantumCircuit`
 
@@ -50,7 +50,7 @@ Since, in general, it is not yet known how to efficiently prepare the qubit ampl
 
 This circuit is for example used in amplitude estimation applications, such as finance \[1, 2], where customer demand or the return of a portfolio could be modelled using a normal distribution.
 
-## Examples
+**Examples**
 
 ```python
 >>> circuit = NormalDistribution(3, mu=1, sigma=1, bounds=(0, 2))
@@ -98,7 +98,7 @@ q_5: ─────────┤ RY(1) ├┤ RY(2) ├┤ RY(4) ├┤ RY(8)
               └───────┘└───────┘└───────┘└───────┘└────────┘
 ```
 
-## References
+**References**
 
 **\[1]: Gacon, J., Zoufal, C., & Woerner, S. (2020).**
 

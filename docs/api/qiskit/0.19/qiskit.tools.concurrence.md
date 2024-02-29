@@ -10,7 +10,7 @@ python_api_name: qiskit.tools.concurrence
 
 <span id="qiskit.tools.concurrence" />
 
-`concurrence(state)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/tools/qi/qi.py "view source code")
+`concurrence(state)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/tools/qi/qi.py "view source code")
 
 Calculate the concurrence.
 

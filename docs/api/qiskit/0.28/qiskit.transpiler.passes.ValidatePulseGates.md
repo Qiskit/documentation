@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.ValidatePulseGates
 
 <span id="qiskit.transpiler.passes.ValidatePulseGates" />
 
-`ValidatePulseGates(granularity=1, min_length=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/scheduling/instruction_alignment.py "view source code")
+`ValidatePulseGates(granularity=1, min_length=1)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/scheduling/instruction_alignment.py "view source code")
 
 Check custom gate length.
 

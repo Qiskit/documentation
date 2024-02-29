@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.library.SGate
 
 <span id="qiskit.circuit.library.SGate" />
 
-`SGate(label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/standard_gates/s.py "view source code")
+`SGate(label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/standard_gates/s.py "view source code")
 
 Single qubit S gate (Z\*\*0.5).
 

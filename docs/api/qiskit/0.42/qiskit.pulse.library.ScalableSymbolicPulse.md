@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.library.ScalableSymbolicPulse
 
 <span id="qiskit.pulse.library.ScalableSymbolicPulse" />
 
-`ScalableSymbolicPulse(pulse_type, duration, amp, angle, parameters=None, name=None, limit_amplitude=None, envelope=None, constraints=None, valid_amp_conditions=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/library/symbolic_pulses.py "view source code")
+`ScalableSymbolicPulse(pulse_type, duration, amp, angle, parameters=None, name=None, limit_amplitude=None, envelope=None, constraints=None, valid_amp_conditions=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/library/symbolic_pulses.py "view source code")
 
 Bases: [`qiskit.pulse.library.symbolic_pulses.SymbolicPulse`](qiskit.pulse.library.SymbolicPulse "qiskit.pulse.library.symbolic_pulses.SymbolicPulse")
 

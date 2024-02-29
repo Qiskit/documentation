@@ -12,7 +12,7 @@ python_api_name: qiskit.ignis.verification.PurityRBFitter
 
 <span id="qiskit.ignis.verification.PurityRBFitter" />
 
-`PurityRBFitter(purity_result, npurity, cliff_lengths, rb_pattern=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/randomized_benchmarking/fitters.py "view source code")
+`PurityRBFitter(purity_result, npurity, cliff_lengths, rb_pattern=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/randomized_benchmarking/fitters.py "view source code")
 
 Class for fitter for purity RB.
 

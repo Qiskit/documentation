@@ -10,7 +10,7 @@ python_api_name: qiskit.visualization.iplot_state_city
 
 <span id="qiskit.visualization.iplot_state_city" />
 
-`iplot_state_city(rho, figsize=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/visualization/interactive/iplot_cities.py "view source code")
+`iplot_state_city(rho, figsize=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/visualization/interactive/iplot_cities.py "view source code")
 
 Create a cities representation.
 
@@ -21,7 +21,7 @@ Graphical representation of the input array using a city style graph.
 *   **rho** (*array*) – State vector or density matrix.
 *   **figsize** (*tuple*) – The figure size in pixels.
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumCircuit, BasicAer, execute

@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.components.uncertainty_problems.UnivariatePiecewise
 
 <span id="qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective" />
 
-`UnivariatePiecewiseLinearObjective(num_state_qubits, min_state_value, max_state_value, breakpoints, slopes, offsets, f_min, f_max, c_approx, i_state=None, i_objective=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/uncertainty_problems/univariate_piecewise_linear_objective.py "view source code")
+`UnivariatePiecewiseLinearObjective(num_state_qubits, min_state_value, max_state_value, breakpoints, slopes, offsets, f_min, f_max, c_approx, i_state=None, i_objective=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/uncertainty_problems/univariate_piecewise_linear_objective.py "view source code")
 
 Univariate Piecewise Linear Objective Function.
 

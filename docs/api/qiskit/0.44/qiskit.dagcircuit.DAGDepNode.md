@@ -10,7 +10,7 @@ python_api_name: qiskit.dagcircuit.DAGDepNode
 
 <span id="qiskit.dagcircuit.DAGDepNode" />
 
-`qiskit.dagcircuit.DAGDepNode(type=None, op=None, name=None, qargs=(), cargs=(), successors=None, predecessors=None, reachable=None, matchedwith=None, successorstovisit=None, isblocked=None, qindices=None, cindices=None, nid=-1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/dagcircuit/dagdepnode.py "view source code")
+`qiskit.dagcircuit.DAGDepNode(type=None, op=None, name=None, qargs=(), cargs=(), successors=None, predecessors=None, reachable=None, matchedwith=None, successorstovisit=None, isblocked=None, qindices=None, cindices=None, nid=-1)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/dagcircuit/dagdepnode.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 

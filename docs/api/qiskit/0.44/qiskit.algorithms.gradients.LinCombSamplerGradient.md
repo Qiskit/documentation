@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.gradients.LinCombSamplerGradient
 
 <span id="qiskit.algorithms.gradients.LinCombSamplerGradient" />
 
-`qiskit.algorithms.gradients.LinCombSamplerGradient(sampler, options=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/gradients/lin_comb/lin_comb_sampler_gradient.py "view source code")
+`qiskit.algorithms.gradients.LinCombSamplerGradient(sampler, options=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/gradients/lin_comb/lin_comb_sampler_gradient.py "view source code")
 
 Bases: [`BaseSamplerGradient`](qiskit.algorithms.gradients.BaseSamplerGradient "qiskit.algorithms.gradients.base.base_sampler_gradient.BaseSamplerGradient")
 

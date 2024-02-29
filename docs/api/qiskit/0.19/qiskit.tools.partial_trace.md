@@ -10,7 +10,7 @@ python_api_name: qiskit.tools.partial_trace
 
 <span id="qiskit.tools.partial_trace" />
 
-`partial_trace(state, trace_systems, dimensions=None, reverse=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/tools/qi/qi.py "view source code")
+`partial_trace(state, trace_systems, dimensions=None, reverse=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/tools/qi/qi.py "view source code")
 
 Partial trace over subsystems of multi-partite matrix.
 

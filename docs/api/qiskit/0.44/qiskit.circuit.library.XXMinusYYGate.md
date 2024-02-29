@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.XXMinusYYGate
 
 <span id="qiskit.circuit.library.XXMinusYYGate" />
 
-`qiskit.circuit.library.XXMinusYYGate(theta, beta=0, label='(XX-YY)')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/standard_gates/xx_minus_yy.py "view source code")
+`qiskit.circuit.library.XXMinusYYGate(theta, beta=0, label='(XX-YY)')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/standard_gates/xx_minus_yy.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 

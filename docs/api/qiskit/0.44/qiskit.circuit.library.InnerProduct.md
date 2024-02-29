@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.InnerProduct
 
 <span id="qiskit.circuit.library.InnerProduct" />
 
-`qiskit.circuit.library.InnerProduct(num_qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/boolean_logic/inner_product.py "view source code")
+`qiskit.circuit.library.InnerProduct(num_qubits)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/boolean_logic/inner_product.py "view source code")
 
 Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
@@ -179,7 +179,7 @@ The parameters defined in the circuit.
 
 This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
 
-## Examples
+**Examples**
 
 The snippet below shows that insertion order of parameters does not matter.
 

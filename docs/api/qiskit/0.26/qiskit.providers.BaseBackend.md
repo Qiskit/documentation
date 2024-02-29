@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.BaseBackend
 
 <span id="qiskit.providers.BaseBackend" />
 
-`BaseBackend(configuration, provider=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/providers/basebackend.py "view source code")
+`BaseBackend(configuration, provider=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/providers/basebackend.py "view source code")
 
 Legacy Base class for backends.
 

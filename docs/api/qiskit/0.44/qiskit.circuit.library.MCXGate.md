@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.MCXGate
 
 <span id="qiskit.circuit.library.MCXGate" />
 
-`qiskit.circuit.library.MCXGate(num_ctrl_qubits=None, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/standard_gates/x.py "view source code")
+`qiskit.circuit.library.MCXGate(num_ctrl_qubits=None, label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 

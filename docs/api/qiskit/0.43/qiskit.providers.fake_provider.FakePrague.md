@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakePrague
 
 <span id="qiskit.providers.fake_provider.FakePrague" />
 
-`FakePrague`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/backends/prague/fake_prague.py "view source code")
+`FakePrague` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/backends/prague/fake_prague.py "view source code")
 
 Bases: `FakeBackendV2`
 

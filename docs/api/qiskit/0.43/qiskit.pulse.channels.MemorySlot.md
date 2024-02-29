@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.channels.MemorySlot
 
 <span id="qiskit.pulse.channels.MemorySlot" />
 
-`MemorySlot(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/channels.py "view source code")
+`MemorySlot(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/channels.py "view source code")
 
 Bases: `ClassicalIOChannel`
 

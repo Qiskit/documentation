@@ -12,7 +12,7 @@ python_api_name: qiskit.synthesis.synth_cnotdihedral_full
 
 <span id="qiskit.synthesis.synth_cnotdihedral_full" />
 
-`synth_cnotdihedral_full(elem)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/synthesis/cnotdihedral/cnotdihedral_decompose_full.py "view source code")
+`synth_cnotdihedral_full(elem)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/synthesis/cnotdihedral/cnotdihedral_decompose_full.py "view source code")
 
 Decompose a CNOTDihedral element into a QuantumCircuit. For N \<= 2 qubits this is based on optimal CX cost decomposition from reference \[1]. For N > 2 qubits this is done using the general non-optimal compilation routine from reference \[2].
 
@@ -28,7 +28,7 @@ a circuit implementation of the CNOTDihedral element.
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-## References
+**References**
 
 1.  Shelly Garion and Andrew W. Cross, *Synthesis of CNOT-Dihedral circuits with optimal number of two qubit gates*, [Quantum 4(369), 2020](https://quantum-journal.org/papers/q-2020-12-07-369/)
 2.  Andrew W. Cross, Easwar Magesan, Lev S. Bishop, John A. Smolin and Jay M. Gambetta, *Scalable randomised benchmarking of non-Clifford gates*, npj Quantum Inf 2, 16012 (2016).

@@ -97,9 +97,11 @@ Note that the entry point `name = path` is a single string not a Python expressi
 | [`PassManagerStagePlugin`](qiskit.transpiler.preset_passmanagers.plugin.PassManagerStagePlugin "qiskit.transpiler.preset_passmanagers.plugin.PassManagerStagePlugin")()                      | A `PassManagerStagePlugin` is a plugin interface object for using custom stages in [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile"). |
 | [`PassManagerStagePluginManager`](qiskit.transpiler.preset_passmanagers.plugin.PassManagerStagePluginManager "qiskit.transpiler.preset_passmanagers.plugin.PassManagerStagePluginManager")() | Manager class for preset pass manager stage plugins.                                                                                                                |
 
+### list\_stage\_plugins
+
 <span id="qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins" />
 
-`qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins(stage_name)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/preset_passmanagers/plugin.py "view source code")
+`qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins(stage_name)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/preset_passmanagers/plugin.py "view source code")
 
 Get a list of installed plugins for a stage.
 
@@ -119,9 +121,11 @@ plugins
 
 [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – If an invalid stage name is specified.
 
+### passmanager\_stage\_plugins
+
 <span id="qiskit.transpiler.preset_passmanagers.plugin.passmanager_stage_plugins" />
 
-`qiskit.transpiler.preset_passmanagers.plugin.passmanager_stage_plugins(stage)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/preset_passmanagers/plugin.py "view source code")
+`qiskit.transpiler.preset_passmanagers.plugin.passmanager_stage_plugins(stage)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/preset_passmanagers/plugin.py "view source code")
 
 Return a dict with, for each stage name, the class type of the plugin.
 

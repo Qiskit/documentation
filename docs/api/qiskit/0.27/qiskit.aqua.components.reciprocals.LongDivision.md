@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.reciprocals.LongDivision
 
 <span id="qiskit.aqua.components.reciprocals.LongDivision" />
 
-`LongDivision(scale=0, precision=None, negative_evals=False, evo_time=None, lambda_min=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/reciprocals/long_division.py "view source code")
+`LongDivision(scale=0, precision=None, negative_evals=False, evo_time=None, lambda_min=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/reciprocals/long_division.py "view source code")
 
 The Long Division Rotation for Reciprocals.
 

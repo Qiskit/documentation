@@ -10,7 +10,7 @@ python_api_name: qiskit.visualization.plot_state_qsphere
 
 <span id="qiskit.visualization.plot_state_qsphere" />
 
-`plot_state_qsphere(state, figsize=None, ax=None, show_state_labels=True, show_state_phases=False, use_degrees=False, *, rho=None, filename=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/visualization/state_visualization.py "view source code")
+`plot_state_qsphere(state, figsize=None, ax=None, show_state_labels=True, show_state_phases=False, use_degrees=False, *, rho=None, filename=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/visualization/state_visualization.py "view source code")
 
 Plot the qsphere representation of a quantum state. Here, the size of the points is proportional to the probability of the corresponding term in the state and the color represents the phase.
 
@@ -37,7 +37,7 @@ Figure
 *   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – if input is not a valid N-qubit state.
 *   **QiskitError** – Input statevector does not have valid dimensions.
 
-## Examples
+**Examples**
 
 ```python
 from qiskit import QuantumCircuit

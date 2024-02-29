@@ -10,7 +10,7 @@ python_api_name: qiskit.utils.deprecate_arguments
 
 <span id="qiskit.utils.deprecate_arguments" />
 
-`deprecate_arguments(kwarg_map, category=<class 'DeprecationWarning'>)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/utils/deprecation.py "view source code")
+`deprecate_arguments(kwarg_map, category=<class 'DeprecationWarning'>)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/utils/deprecation.py "view source code")
 
 Decorator to automatically alias deprecated argument names and warn upon use.
 

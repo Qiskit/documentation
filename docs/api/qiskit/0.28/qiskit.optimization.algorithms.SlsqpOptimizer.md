@@ -10,13 +10,13 @@ python_api_name: qiskit.optimization.algorithms.SlsqpOptimizer
 
 <span id="qiskit.optimization.algorithms.SlsqpOptimizer" />
 
-`SlsqpOptimizer(iter=100, acc=1e-06, iprint=0, trials=1, clip=100.0, full_output=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/slsqp_optimizer.py "view source code")
+`SlsqpOptimizer(iter=100, acc=1e-06, iprint=0, trials=1, clip=100.0, full_output=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/slsqp_optimizer.py "view source code")
 
 The SciPy SLSQP optimizer wrapped as an Qiskit [`OptimizationAlgorithm`](qiskit.optimization.algorithms.OptimizationAlgorithm "qiskit.optimization.algorithms.OptimizationAlgorithm").
 
 This class provides a wrapper for `scipy.optimize.fmin_slsqp` ([https://docs.scipy.org/doc/scipy-0.13.0/reference/generated/scipy.optimize.fmin\_slsqp.html](https://docs.scipy.org/doc/scipy-0.13.0/reference/generated/scipy.optimize.fmin_slsqp.html)) to be used within the optimization module. The arguments for `fmin_slsqp` are passed via the constructor.
 
-## Examples
+**Examples**
 
 ```python
 >>> from qiskit.optimization.problems import QuadraticProgram

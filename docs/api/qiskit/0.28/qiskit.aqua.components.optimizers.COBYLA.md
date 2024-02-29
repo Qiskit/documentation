@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.optimizers.COBYLA
 
 <span id="qiskit.aqua.components.optimizers.COBYLA" />
 
-`COBYLA(maxiter=1000, disp=False, rhobeg=1.0, tol=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/optimizers/cobyla.py "view source code")
+`COBYLA(maxiter=1000, disp=False, rhobeg=1.0, tol=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/optimizers/cobyla.py "view source code")
 
 Constrained Optimization By Linear Approximation optimizer.
 

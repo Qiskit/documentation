@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.uncertainty_models.UncertaintyModel
 
 <span id="qiskit.aqua.components.uncertainty_models.UncertaintyModel" />
 
-`UncertaintyModel(num_target_qubits)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_models/uncertainty_model.py "view source code")
+`UncertaintyModel(num_target_qubits)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_models/uncertainty_model.py "view source code")
 
 The abstract Uncertainty Model
 

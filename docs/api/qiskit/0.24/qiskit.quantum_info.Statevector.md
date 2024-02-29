@@ -12,7 +12,7 @@ python_api_name: qiskit.quantum_info.Statevector
 
 <span id="qiskit.quantum_info.Statevector" />
 
-`Statevector(data, dims=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/quantum_info/states/statevector.py "view source code")
+`Statevector(data, dims=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/quantum_info/states/statevector.py "view source code")
 
 Statevector class
 
@@ -443,7 +443,7 @@ The Numpy vector array of probabilities.
 
 np.array
 
-## Examples
+**Examples**
 
 Consider a 2-qubit product state $|\psi\rangle=|+\rangle\otimes|0\rangle$.
 
@@ -730,7 +730,7 @@ the dictionary form of the Statevector.
 
 dict
 
-## Example
+**Example**
 
 The ket-form of a 2-qubit statevector $|\psi\rangle = |-\rangle\otimes |0\rangle$
 

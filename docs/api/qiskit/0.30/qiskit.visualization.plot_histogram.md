@@ -10,7 +10,7 @@ python_api_name: qiskit.visualization.plot_histogram
 
 <span id="qiskit.visualization.plot_histogram" />
 
-`plot_histogram(data, figsize=(7, 5), color=None, number_to_keep=None, sort='asc', target_string=None, legend=None, bar_labels=True, title=None, ax=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/visualization/counts_visualization.py "view source code")
+`plot_histogram(data, figsize=(7, 5), color=None, number_to_keep=None, sort='asc', target_string=None, legend=None, bar_labels=True, title=None, ax=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/visualization/counts_visualization.py "view source code")
 
 Plot a histogram of data.
 
@@ -40,7 +40,7 @@ matplotlib.Figure
 *   [**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – Matplotlib not available.
 *   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – When legend is provided and the length doesn’t match the input data.
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumCircuit, BasicAer, execute

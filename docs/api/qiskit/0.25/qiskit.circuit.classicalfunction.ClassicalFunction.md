@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.classicalfunction.ClassicalFunction
 
 <span id="qiskit.circuit.classicalfunction.ClassicalFunction" />
 
-`ClassicalFunction(source, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/classicalfunction/classicalfunction.py "view source code")
+`ClassicalFunction(source, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/classicalfunction/classicalfunction.py "view source code")
 
 Represent a classical function function and its logic network.
 

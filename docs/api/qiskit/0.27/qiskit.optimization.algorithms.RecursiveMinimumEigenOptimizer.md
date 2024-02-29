@@ -10,13 +10,13 @@ python_api_name: qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer
 
 <span id="qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer" />
 
-`RecursiveMinimumEigenOptimizer(min_eigen_optimizer, min_num_vars=1, min_num_vars_optimizer=None, penalty=None, history=<IntermediateResult.LAST_ITERATION: 1>, converters=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/recursive_minimum_eigen_optimizer.py "view source code")
+`RecursiveMinimumEigenOptimizer(min_eigen_optimizer, min_num_vars=1, min_num_vars_optimizer=None, penalty=None, history=<IntermediateResult.LAST_ITERATION: 1>, converters=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/recursive_minimum_eigen_optimizer.py "view source code")
 
 A meta-algorithm that applies a recursive optimization.
 
 The recursive minimum eigen optimizer applies a recursive optimization on top of [`MinimumEigenOptimizer`](qiskit.optimization.algorithms.MinimumEigenOptimizer "qiskit.optimization.algorithms.MinimumEigenOptimizer"). The algorithm is introduced in \[1].
 
-## Examples
+**Examples**
 
 Outline of how to use this class:
 
@@ -32,7 +32,7 @@ optimizer = RecursiveMinimumEigenOptimizer(qaoa)
 result = optimizer.solve(problem)
 ```
 
-## References
+**References**
 
 **\[1]: Bravyi et al. (2019), Obstacles to State Preparation and Variational Optimization**
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.Commuting2qGateRouter
 
 <span id="qiskit.transpiler.passes.Commuting2qGateRouter" />
 
-`qiskit.transpiler.passes.Commuting2qGateRouter(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/routing/commuting_2q_gate_routing/commuting_2q_gate_router.py "view source code")
+`qiskit.transpiler.passes.Commuting2qGateRouter(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/routing/commuting_2q_gate_routing/commuting_2q_gate_router.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 

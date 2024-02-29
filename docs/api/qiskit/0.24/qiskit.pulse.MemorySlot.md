@@ -12,7 +12,7 @@ python_api_name: qiskit.pulse.MemorySlot
 
 <span id="qiskit.pulse.MemorySlot" />
 
-`MemorySlot(index)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/channels.py "view source code")
+`MemorySlot(index)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/channels.py "view source code")
 
 Memory slot channels represent classical memory storage.
 

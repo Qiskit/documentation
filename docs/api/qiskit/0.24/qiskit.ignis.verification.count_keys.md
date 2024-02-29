@@ -12,7 +12,7 @@ python_api_name: qiskit.ignis.verification.count_keys
 
 <span id="qiskit.ignis.verification.count_keys" />
 
-`count_keys(num_qubits)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/tomography/data.py "view source code")
+`count_keys(num_qubits)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/tomography/data.py "view source code")
 
 Return ordered count keys.
 
@@ -28,7 +28,7 @@ Return ordered count keys.
 
 The strings of all 0/1 combinations of the given number of qubits
 
-## Example
+**Example**
 
 ```python
 >>> count_keys(3)

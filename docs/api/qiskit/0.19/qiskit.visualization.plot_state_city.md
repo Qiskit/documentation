@@ -10,7 +10,7 @@ python_api_name: qiskit.visualization.plot_state_city
 
 <span id="qiskit.visualization.plot_state_city" />
 
-`plot_state_city(rho, title='', figsize=None, color=None, alpha=1, ax_real=None, ax_imag=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/visualization/state_visualization.py "view source code")
+`plot_state_city(rho, title='', figsize=None, color=None, alpha=1, ax_real=None, ax_imag=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/visualization/state_visualization.py "view source code")
 
 Plot the cityscape of quantum state.
 
@@ -39,7 +39,7 @@ matplotlib.Figure
 *   **ImportError** – Requires matplotlib.
 *   **ValueError** – When ‘color’ is not a list of len=2.
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumCircuit, BasicAer, execute

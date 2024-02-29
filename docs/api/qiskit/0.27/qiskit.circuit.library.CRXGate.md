@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CRXGate
 
 <span id="qiskit.circuit.library.CRXGate" />
 
-`CRXGate(theta, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/library/standard_gates/rx.py "view source code")
+`CRXGate(theta, label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/library/standard_gates/rx.py "view source code")
 
 Controlled-RX gate.
 

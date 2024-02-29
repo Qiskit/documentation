@@ -10,7 +10,7 @@ python_api_name: qiskit_aer.noise.device.basic_device_readout_errors
 
 <span id="qiskit_aer.noise.device.basic_device_readout_errors" />
 
-`basic_device_readout_errors(properties=None, target=None)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/noise/device/models.py "view source code")
+`basic_device_readout_errors(properties=None, target=None)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/noise/device/models.py "view source code")
 
 Return readout error parameters from either of device Target or BackendProperties.
 

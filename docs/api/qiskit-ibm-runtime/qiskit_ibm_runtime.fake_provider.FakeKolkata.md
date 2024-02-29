@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeKolkata
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeKolkata" />
 
-`FakeKolkata`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.18/qiskit_ibm_runtime/fake_provider/backends/kolkata/fake_kolkata.py "view source code")
+`FakeKolkata` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/kolkata/fake_kolkata.py "view source code")
 
 A fake 27 qubit backend.
 

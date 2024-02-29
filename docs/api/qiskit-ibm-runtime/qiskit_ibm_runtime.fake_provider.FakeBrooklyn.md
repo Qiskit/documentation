@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeBrooklyn
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeBrooklyn" />
 
-`FakeBrooklyn`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.18/qiskit_ibm_runtime/fake_provider/backends/brooklyn/fake_brooklyn.py "view source code")
+`FakeBrooklyn` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/brooklyn/fake_brooklyn.py "view source code")
 
 A fake Brooklyn backend.
 

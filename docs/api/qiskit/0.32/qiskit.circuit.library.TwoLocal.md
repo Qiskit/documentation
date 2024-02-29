@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.TwoLocal
 
 <span id="qiskit.circuit.library.TwoLocal" />
 
-`TwoLocal(num_qubits=None, rotation_blocks=None, entanglement_blocks=None, entanglement='full', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='TwoLocal')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/n_local/two_local.py "view source code")
+`TwoLocal(num_qubits=None, rotation_blocks=None, entanglement_blocks=None, entanglement='full', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='TwoLocal')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/n_local/two_local.py "view source code")
 
 Bases: `qiskit.circuit.library.n_local.n_local.NLocal`
 
@@ -41,7 +41,7 @@ Barriers can be inserted in between the different layers for better visualizatio
 
 For each parameterized gate a new parameter is generated using a `ParameterVector`. The name of these parameters can be chosen using the `parameter_prefix`.
 
-## Examples
+**Examples**
 
 ```python
 >>> two = TwoLocal(3, 'ry', 'cx', 'linear', reps=2, insert_barriers=True)
@@ -132,7 +132,7 @@ Construct a new two-local circuit.
 
 <span id="qiskit.circuit.library.TwoLocal.get_entangler_map" />
 
-`TwoLocal.get_entangler_map(rep_num, block_num, num_block_qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/n_local/two_local.py "view source code")
+`TwoLocal.get_entangler_map(rep_num, block_num, num_block_qubits)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/n_local/two_local.py "view source code")
 
 Overloading to handle the special case of 1 qubit where the entanglement are ignored.
 
@@ -332,7 +332,7 @@ The parameters used in the underlying circuit.
 
 This includes float values and duplicates.
 
-## Examples
+**Examples**
 
 ```python
 >>> # prepare circuit ...

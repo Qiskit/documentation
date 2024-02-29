@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.builder.drive_channel
 
 <span id="qiskit.pulse.builder.drive_channel" />
 
-`drive_channel(qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/builder.py "view source code")
+`drive_channel(qubit)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/builder.py "view source code")
 
 Return `DriveChannel` for `qubit` on the active builder backend.
 
@@ -32,5 +32,5 @@ with pulse.build(backend):
 
 **Return type**
 
-[`DriveChannel`](qiskit.pulse.channels#qiskit.pulse.channels.DriveChannel "qiskit.pulse.channels.DriveChannel")
+[`DriveChannel`](qiskit.pulse.channels#drivechannel "qiskit.pulse.channels.DriveChannel")
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.time_evolvers.variational.RealMcLachlanPrinci
 
 <span id="qiskit.algorithms.time_evolvers.variational.RealMcLachlanPrinciple" />
 
-`qiskit.algorithms.time_evolvers.variational.RealMcLachlanPrinciple(qgt=None, gradient=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/time_evolvers/variational/variational_principles/real_mc_lachlan_principle.py "view source code")
+`qiskit.algorithms.time_evolvers.variational.RealMcLachlanPrinciple(qgt=None, gradient=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/time_evolvers/variational/variational_principles/real_mc_lachlan_principle.py "view source code")
 
 Bases: [`RealVariationalPrinciple`](qiskit.algorithms.time_evolvers.variational.RealVariationalPrinciple "qiskit.algorithms.time_evolvers.variational.variational_principles.real_variational_principle.RealVariationalPrinciple")
 

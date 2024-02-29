@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.uncertainty_models.GaussianConditionalIn
 
 <span id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel" />
 
-`GaussianConditionalIndependenceModel(n_normal, normal_max_value, p_zeros, rhos, i_normal=None, i_ps=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_models/gaussian_conditional_independence_model.py "view source code")
+`GaussianConditionalIndependenceModel(n_normal, normal_max_value, p_zeros, rhos, i_normal=None, i_ps=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_models/gaussian_conditional_independence_model.py "view source code")
 
 The Gaussian Conditional Independence Model for Credit Risk.
 

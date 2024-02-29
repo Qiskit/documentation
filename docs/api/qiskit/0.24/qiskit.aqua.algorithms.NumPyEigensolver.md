@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.algorithms.NumPyEigensolver
 
 <span id="qiskit.aqua.algorithms.NumPyEigensolver" />
 
-`NumPyEigensolver(operator=None, k=1, aux_operators=None, filter_criterion=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/eigen_solvers/numpy_eigen_solver.py "view source code")
+`NumPyEigensolver(operator=None, k=1, aux_operators=None, filter_criterion=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/eigen_solvers/numpy_eigen_solver.py "view source code")
 
 The NumPy Eigensolver algorithm.
 

@@ -14,7 +14,7 @@ python_api_name: qiskit.providers.ibmq.IBMQBackendApiError
 
 <span id="qiskit.providers.ibmq.IBMQBackendApiError" />
 
-`IBMQBackendApiError(*message)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/exceptions.py "view source code")
+`IBMQBackendApiError(*message)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/exceptions.py "view source code")
 
 Errors that occur unexpectedly when querying the server.
 

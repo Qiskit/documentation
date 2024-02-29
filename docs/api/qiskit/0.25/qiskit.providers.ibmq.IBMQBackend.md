@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.IBMQBackend
 
 <span id="qiskit.providers.ibmq.IBMQBackend" />
 
-`IBMQBackend(configuration, provider, credentials, api_client)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.12/qiskit/providers/ibmq/ibmqbackend.py "view source code")
+`IBMQBackend(configuration, provider, credentials, api_client)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.12/qiskit/providers/ibmq/ibmqbackend.py "view source code")
 
 Backend class interfacing with an IBM Quantum Experience device.
 
@@ -457,7 +457,7 @@ If a keyword specified here is also present in the `options` attribute/object, t
 
 *   **meas\_lo\_freq** (`Optional`\[`List`\[`int`]]) – List of default measurement LO frequencies in Hz. Will be overridden by `schedule_los` if set.
 
-*   **schedule\_los** (`Union`\[`List`\[`Union`\[`Dict`\[[`PulseChannel`](qiskit.pulse.channels#qiskit.pulse.channels.PulseChannel "qiskit.pulse.channels.PulseChannel"), `float`], `LoConfig`]], `Dict`\[[`PulseChannel`](qiskit.pulse.channels#qiskit.pulse.channels.PulseChannel "qiskit.pulse.channels.PulseChannel"), `float`], `LoConfig`, `None`]) – Experiment LO configurations, frequencies are given in Hz.
+*   **schedule\_los** (`Union`\[`List`\[`Union`\[`Dict`\[[`PulseChannel`](qiskit.pulse.channels#pulsechannel "qiskit.pulse.channels.PulseChannel"), `float`], `LoConfig`]], `Dict`\[[`PulseChannel`](qiskit.pulse.channels#pulsechannel "qiskit.pulse.channels.PulseChannel"), `float`], `LoConfig`, `None`]) – Experiment LO configurations, frequencies are given in Hz.
 
 *   **meas\_level** (`Union`\[`int`, `MeasLevel`, `None`]) – Set the appropriate level of the measurement output for pulse experiments.
 

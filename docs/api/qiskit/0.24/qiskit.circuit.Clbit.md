@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.Clbit
 
 <span id="qiskit.circuit.Clbit" />
 
-`Clbit(register, index)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/classicalregister.py "view source code")
+`Clbit(register, index)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/classicalregister.py "view source code")
 
 Implement a classical bit.
 

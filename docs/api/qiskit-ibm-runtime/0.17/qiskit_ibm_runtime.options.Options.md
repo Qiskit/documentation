@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.options.Options
 
 <span id="qiskit_ibm_runtime.options.Options" />
 
-`Options(optimization_level=None, resilience_level=None, max_execution_time=None, transpilation=<factory>, resilience=<factory>, execution=<factory>, environment=<factory>, simulator=<factory>)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.17/qiskit_ibm_runtime/options/options.py "view source code")
+`Options(optimization_level=None, resilience_level=None, max_execution_time=None, transpilation=<factory>, resilience=<factory>, execution=<factory>, environment=<factory>, simulator=<factory>)` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.17/qiskit_ibm_runtime/options/options.py "view source code")
 
 Options for the primitives.
 
@@ -34,13 +34,13 @@ Options for the primitives.
     *   2: Medium mitigation costs. Typically reduces bias in estimators but is not guaranteed to be zero bias. Only applies to estimator.
     *   3: Heavy mitigation with layer sampling. Theoretically expected to deliver zero bias estimators. Only applies to estimator.
 
-    Refer to the [Qiskit Runtime documentation](https://docs.quantum.ibm.com/run/configure-error-mitigation). for more information about the error mitigation methods used at each level.
+    Refer to the [Qiskit Runtime documentation](/run/configure-error-mitigation). for more information about the error mitigation methods used at each level.
 
 *   **max\_execution\_time** (`Optional`\[`int`]) –
 
     Maximum execution time in seconds, which is based on system execution time (not wall clock time). System execution time is the amount of time that the system is dedicated to processing your job. If a job exceeds this time limit, it is forcibly cancelled. Simulator jobs continue to use wall clock time.
 
-    Refer to the [Max execution time documentation](https://docs.quantum.ibm.com/run/max-execution-time). for more information.
+    Refer to the [Max execution time documentation](/run/max-execution-time). for more information.
 
 *   **transpilation** (`Union`\[[`TranspilationOptions`](qiskit_ibm_runtime.options.TranspilationOptions "qiskit_ibm_runtime.options.transpilation_options.TranspilationOptions"), `Dict`]) – Transpilation options. See [`TranspilationOptions`](qiskit_ibm_runtime.options.TranspilationOptions "qiskit_ibm_runtime.options.TranspilationOptions") for all available options.
 
