@@ -202,7 +202,7 @@ updated if it was provided
 
 <span id="qiskit.circuit.library.TGate.inverse" />
 
-`TGate.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/t.py "view source code")
+`TGate.inverse()`
 
 Return inverse T gate (i.e. Tdg).
 
@@ -294,7 +294,7 @@ Containing the definition.
 
 <span id="qiskit.circuit.library.TGate.to_matrix" />
 
-`TGate.to_matrix()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/t.py "view source code")
+`TGate.to_matrix()`
 
 Return a numpy.array for the T gate.
 

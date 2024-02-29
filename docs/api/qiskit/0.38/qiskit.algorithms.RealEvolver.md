@@ -22,7 +22,7 @@ Interface for Quantum Real Time Evolution.
 
 <span id="qiskit.algorithms.RealEvolver.evolve" />
 
-`abstract RealEvolver.evolve(evolution_problem)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/evolvers/real_evolver.py "view source code")
+`abstract RealEvolver.evolve(evolution_problem)`
 
 Perform real time evolution $\exp(-i t H)|\Psi\rangle$.
 

@@ -159,7 +159,7 @@ quantum algorithm for the time evolution of parameterized circuits, [Quantum 5, 
 
 <span id="qiskit.algorithms.PVQD.evolve" />
 
-`PVQD.evolve(evolution_problem)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/time_evolvers/pvqd/pvqd.py "view source code")
+`PVQD.evolve(evolution_problem)`
 
 Perform real time evolution $\exp(-i t H)|\Psi\rangle$.
 
@@ -186,7 +186,7 @@ A result object containing the evolution information and evaluated observables.
 
 <span id="qiskit.algorithms.PVQD.get_loss" />
 
-`PVQD.get_loss(hamiltonian, ansatz, dt, current_parameters)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/time_evolvers/pvqd/pvqd.py "view source code")
+`PVQD.get_loss(hamiltonian, ansatz, dt, current_parameters)`
 
 Get a function to evaluate the infidelity between Trotter step and ansatz.
 
@@ -211,7 +211,7 @@ a second callable to evaluate the gradient of the infidelity.
 
 <span id="qiskit.algorithms.PVQD.step" />
 
-`PVQD.step(hamiltonian, ansatz, theta, dt, initial_guess)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/time_evolvers/pvqd/pvqd.py "view source code")
+`PVQD.step(hamiltonian, ansatz, theta, dt, initial_guess)`
 
 Perform a single time step.
 

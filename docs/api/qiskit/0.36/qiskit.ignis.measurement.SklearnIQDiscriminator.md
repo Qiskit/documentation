@@ -44,7 +44,7 @@ A generic discriminant analysis discriminator for IQ data that takes an sklearn 
 
 <span id="qiskit.ignis.measurement.SklearnIQDiscriminator.discriminate" />
 
-`SklearnIQDiscriminator.discriminate(x_data)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/measurement/discriminator/iq_discriminators.py "view source code")
+`SklearnIQDiscriminator.discriminate(x_data)`
 
 Applies the discriminator to x\_data.
 
@@ -64,7 +64,7 @@ the discriminated x\_data as a list of labels.
 
 <span id="qiskit.ignis.measurement.SklearnIQDiscriminator.fit" />
 
-`SklearnIQDiscriminator.fit()` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/measurement/discriminator/iq_discriminators.py "view source code")
+`SklearnIQDiscriminator.fit()`
 
 Fits the discriminator using self.\_xdata and self.\_ydata.
 

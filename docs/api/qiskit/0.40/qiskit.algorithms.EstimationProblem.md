@@ -32,7 +32,7 @@ This class contains all problem-specific information required to run an amplitud
 
 <span id="qiskit.algorithms.EstimationProblem.rescale" />
 
-`EstimationProblem.rescale(scaling_factor)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/amplitude_estimators/estimation_problem.py "view source code")
+`EstimationProblem.rescale(scaling_factor)`
 
 Rescale the good state amplitude in the estimation problem.
 

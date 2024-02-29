@@ -123,7 +123,7 @@ the Provider responsible for the backend.
 
 <span id="qiskit.providers.basicaer.StatevectorSimulatorPy.run" />
 
-`StatevectorSimulatorPy.run(qobj, backend_options=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/basicaer/statevector_simulator.py "view source code")
+`StatevectorSimulatorPy.run(qobj, backend_options=None)`
 
 Run qobj asynchronously.
 

@@ -31,7 +31,7 @@ Convert an operator expression to the first-order gradient.
 
 <span id="qiskit.aqua.operators.gradients.Gradient.convert" />
 
-`Gradient.convert(operator, params=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/gradients/gradient.py "view source code")
+`Gradient.convert(operator, params=None)`
 
 **Parameters**
 
@@ -54,7 +54,7 @@ An operator whose evaluation yields the Gradient.
 
 <span id="qiskit.aqua.operators.gradients.Gradient.get_gradient" />
 
-`Gradient.get_gradient(operator, params)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/gradients/gradient.py "view source code")
+`Gradient.get_gradient(operator, params)`
 
 Get the gradient for the given operator w\.r.t. the given parameters
 

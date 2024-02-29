@@ -102,7 +102,7 @@ Changed in version 3.0.0rc9: Validation no longer occurs upon serialization.
 
 <span id="qiskit.validation.BaseSchema.dump_additional_data" />
 
-`BaseSchema.dump_additional_data(valid_data, original_data, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/validation/base.py "view source code")
+`BaseSchema.dump_additional_data(valid_data, original_data, **kwargs)`
 
 Include unknown fields after dumping.
 
@@ -254,7 +254,7 @@ Changed in version 3.0.0b7: This method returns the deserialized data rather tha
 
 <span id="qiskit.validation.BaseSchema.make_model" />
 
-`BaseSchema.make_model(data, **_)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/validation/base.py "view source code")
+`BaseSchema.make_model(data, **_)`
 
 Make `load` return a `model_cls` instance instead of a dict.
 

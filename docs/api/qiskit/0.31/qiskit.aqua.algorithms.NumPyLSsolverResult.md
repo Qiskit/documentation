@@ -54,7 +54,7 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 <span id="qiskit.aqua.algorithms.NumPyLSsolverResult.from_dict" />
 
-`static NumPyLSsolverResult.from_dict(a_dict)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/linear_solvers/numpy_ls_solver.py "view source code")
+`static NumPyLSsolverResult.from_dict(a_dict)`
 
 create new object from a dictionary
 

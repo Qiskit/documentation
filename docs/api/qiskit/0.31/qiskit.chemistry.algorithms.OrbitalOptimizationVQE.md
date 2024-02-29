@@ -57,7 +57,7 @@ The expectation value of the given operator(s). The return type will be identica
 
 <span id="qiskit.chemistry.algorithms.OrbitalOptimizationVQE.returns_groundstate" />
 
-`OrbitalOptimizationVQE.returns_groundstate()` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/ground_state_solvers/orbital_optimization_vqe.py "view source code")
+`OrbitalOptimizationVQE.returns_groundstate()`
 
 Whether the eigensolver returns the ground state or only ground state energy.
 
@@ -69,7 +69,7 @@ Whether the eigensolver returns the ground state or only ground state energy.
 
 <span id="qiskit.chemistry.algorithms.OrbitalOptimizationVQE.solve" />
 
-`OrbitalOptimizationVQE.solve(driver, aux_operators=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/ground_state_solvers/orbital_optimization_vqe.py "view source code")
+`OrbitalOptimizationVQE.solve(driver, aux_operators=None)`
 
 Compute Ground State properties.
 

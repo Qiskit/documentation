@@ -38,7 +38,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.SetLayout.run" />
 
-`SetLayout.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/layout/set_layout.py "view source code")
+`SetLayout.run(dag)`
 
 Run the SetLayout pass on dag.
 

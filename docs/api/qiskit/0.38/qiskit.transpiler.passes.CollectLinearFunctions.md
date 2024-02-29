@@ -30,7 +30,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.CollectLinearFunctions.run" />
 
-`CollectLinearFunctions.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/optimization/collect_linear_functions.py "view source code")
+`CollectLinearFunctions.run(dag)`
 
 Run the CollectLinearFunctions pass on dag.
 

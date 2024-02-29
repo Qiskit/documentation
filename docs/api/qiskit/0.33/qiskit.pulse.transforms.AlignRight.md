@@ -26,7 +26,7 @@ Create new context.
 
 <span id="qiskit.pulse.transforms.AlignRight.align" />
 
-`AlignRight.align(schedule)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/pulse/transforms/alignments.py "view source code")
+`AlignRight.align(schedule)`
 
 Reallocate instructions according to the policy.
 

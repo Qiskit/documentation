@@ -55,7 +55,7 @@ RuntimeProgram constructor.
 
 <span id="qiskit.providers.ibmq.runtime.RuntimeProgram.parameters" />
 
-`RuntimeProgram.parameters()` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.16/qiskit/providers/ibmq/runtime/runtime_program.py "view source code")
+`RuntimeProgram.parameters()`
 
 Program parameter namespace.
 
@@ -75,7 +75,7 @@ Program parameter namespace.
 
 <span id="qiskit.providers.ibmq.runtime.RuntimeProgram.to_dict" />
 
-`RuntimeProgram.to_dict()` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.16/qiskit/providers/ibmq/runtime/runtime_program.py "view source code")
+`RuntimeProgram.to_dict()`
 
 Convert program metadata to dictionary format.
 

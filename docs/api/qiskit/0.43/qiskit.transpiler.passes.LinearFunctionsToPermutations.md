@@ -34,7 +34,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.LinearFunctionsToPermutations.run" />
 
-`LinearFunctionsToPermutations.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/synthesis/linear_functions_synthesis.py "view source code")
+`LinearFunctionsToPermutations.run(dag)`
 
 Run the LinearFunctionsToPermutations pass on dag. :param dag: input dag.
 

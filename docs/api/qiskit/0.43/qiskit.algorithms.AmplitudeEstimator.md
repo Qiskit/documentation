@@ -24,7 +24,7 @@ The Amplitude Estimation interface.
 
 <span id="qiskit.algorithms.AmplitudeEstimator.estimate" />
 
-`abstract AmplitudeEstimator.estimate(estimation_problem)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/amplitude_estimators/amplitude_estimator.py "view source code")
+`abstract AmplitudeEstimator.estimate(estimation_problem)`
 
 Run the amplitude estimation algorithm.
 

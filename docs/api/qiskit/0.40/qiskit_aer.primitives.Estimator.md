@@ -49,7 +49,7 @@ Aer implmentation of Estimator.
 
 <span id="qiskit_aer.primitives.Estimator.close" />
 
-`Estimator.close()` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/primitives/estimator.py "view source code")
+`Estimator.close()`
 
 Close the session and free resources
 

@@ -20,7 +20,7 @@ DEPRECATED. Base class for QFT.
 
 <span id="qiskit.aqua.components.qfts.QFT.construct_circuit" />
 
-`QFT.construct_circuit(mode='circuit', qubits=None, circuit=None, do_swaps=True)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/qfts/qft.py "view source code")
+`QFT.construct_circuit(mode='circuit', qubits=None, circuit=None, do_swaps=True)`
 
 Construct the circuit.
 

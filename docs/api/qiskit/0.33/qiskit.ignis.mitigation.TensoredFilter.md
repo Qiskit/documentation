@@ -32,7 +32,7 @@ Initialize a tensored measurement error mitigation filter using the cal\_matrice
 
 <span id="qiskit.ignis.mitigation.TensoredFilter.apply" />
 
-`TensoredFilter.apply(raw_data, method='least_squares', meas_layout=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/mitigation/measurement/filters.py "view source code")
+`TensoredFilter.apply(raw_data, method='least_squares', meas_layout=None)`
 
 Apply the calibration matrices to results.
 
@@ -87,7 +87,7 @@ dict or [Result](qiskit.result.Result "qiskit.result.Result")
 
 <span id="qiskit.ignis.mitigation.TensoredFilter.compute_index_of_cal_mat" />
 
-`TensoredFilter.compute_index_of_cal_mat(state, pos_qubits, indices)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/mitigation/measurement/filters.py "view source code")
+`TensoredFilter.compute_index_of_cal_mat(state, pos_qubits, indices)`
 
 Return the index of (pseudo inverse) calibration matrix for the input quantum state
 
@@ -99,7 +99,7 @@ Return the index of (pseudo inverse) calibration matrix for the input quantum st
 
 <span id="qiskit.ignis.mitigation.TensoredFilter.flip_state" />
 
-`TensoredFilter.flip_state(state, mat_index, flip_poses)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/mitigation/measurement/filters.py "view source code")
+`TensoredFilter.flip_state(state, mat_index, flip_poses)`
 
 Flip the state according to the chosen qubit positions
 

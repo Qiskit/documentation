@@ -66,7 +66,7 @@ Return estimated start time in local time.
 
 <span id="qiskit_ibm_provider.job.QueueInfo.format" />
 
-`QueueInfo.format()` [GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/queueinfo.py "view source code")
+`QueueInfo.format()`
 
 Build a user-friendly report for the job queue information.
 

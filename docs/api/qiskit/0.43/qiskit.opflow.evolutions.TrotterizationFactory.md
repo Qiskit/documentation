@@ -24,7 +24,7 @@ Deprecated: A factory for conveniently creating TrotterizationBase instances.
 
 <span id="qiskit.opflow.evolutions.TrotterizationFactory.build" />
 
-`static TrotterizationFactory.build(mode='trotter', reps=1)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/evolutions/trotterizations/trotterization_factory.py "view source code")
+`static TrotterizationFactory.build(mode='trotter', reps=1)`
 
 A factory for conveniently creating TrotterizationBase instances.
 

@@ -223,7 +223,7 @@ updated if it was provided
 
 <span id="qiskit.circuit.library.RYYGate.inverse" />
 
-`RYYGate.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/ryy.py "view source code")
+`RYYGate.inverse()`
 
 Return inverse RYY gate (i.e. with the negative rotation angle).
 

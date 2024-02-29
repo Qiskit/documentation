@@ -57,7 +57,7 @@ Create new SX gate.
 
 <span id="qiskit.circuit.library.SXGate.control" />
 
-`SXGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/sx.py "view source code")
+`SXGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
 Return a (multi-)controlled-SX gate.
 
@@ -83,7 +83,7 @@ controlled version of this gate.
 
 <span id="qiskit.circuit.library.SXGate.inverse" />
 
-`SXGate.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/sx.py "view source code")
+`SXGate.inverse()`
 
 Return inverse SX gate (i.e. SXdg).
 

@@ -30,7 +30,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.DAGLongestPath.run" />
 
-`DAGLongestPath.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/analysis/dag_longest_path.py "view source code")
+`DAGLongestPath.run(dag)`
 
 Run the DAGLongestPath pass on dag.
 

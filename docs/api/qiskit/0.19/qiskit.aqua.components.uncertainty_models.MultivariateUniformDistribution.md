@@ -66,7 +66,7 @@ returns values
 
 <span id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build" />
 
-`MultivariateUniformDistribution.build(qc, q, q_ancillas=None, params=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/uncertainty_models/multivariate_uniform_distribution.py "view source code")
+`MultivariateUniformDistribution.build(qc, q, q_ancillas=None, params=None)`
 
 ### build\_controlled
 

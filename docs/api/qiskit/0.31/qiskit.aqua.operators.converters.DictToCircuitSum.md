@@ -28,7 +28,7 @@ Converts `DictStateFns` or `VectorStateFns` to equivalent `CircuitStateFns` or s
 
 <span id="qiskit.aqua.operators.converters.DictToCircuitSum.convert" />
 
-`DictToCircuitSum.convert(operator)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/converters/dict_to_circuit_sum.py "view source code")
+`DictToCircuitSum.convert(operator)`
 
 Convert the Operator to `CircuitStateFns`, recursively if `traverse` is True.
 

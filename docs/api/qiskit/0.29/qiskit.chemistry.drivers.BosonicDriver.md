@@ -33,7 +33,7 @@ Base class for Qiskit’s chemistry bosonic drivers.
 
 <span id="qiskit.chemistry.drivers.BosonicDriver.run" />
 
-`abstract BosonicDriver.run()` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/bosonic_driver.py "view source code")
+`abstract BosonicDriver.run()`
 
 Runs driver to produce a WatsonHamiltonian output.
 

@@ -57,7 +57,7 @@ T.E. O’Brien, B. Tarasinski, B.M. Terhal [arXiv:1809.09697](https://arxiv.org/
 
 <span id="qiskit.algorithms.HamiltonianPhaseEstimation.estimate" />
 
-`HamiltonianPhaseEstimation.estimate(hamiltonian, state_preparation=None, evolution=None, bound=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/phase_estimators/hamiltonian_phase_estimation.py "view source code")
+`HamiltonianPhaseEstimation.estimate(hamiltonian, state_preparation=None, evolution=None, bound=None)`
 
 Run the Hamiltonian phase estimation algorithm.
 

@@ -154,7 +154,7 @@ Estimate the standard deviation of the loss function.
 
 <span id="qiskit.algorithms.optimizers.QNSPSA.get_fidelity" />
 
-`static QNSPSA.get_fidelity(circuit, backend=None, expectation=None, *, sampler=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/optimizers/qnspsa.py "view source code")
+`static QNSPSA.get_fidelity(circuit, backend=None, expectation=None, *, sampler=None)`
 
 Get a function to compute the fidelity of `circuit` with itself.
 

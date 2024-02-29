@@ -105,7 +105,7 @@ matplotlib.figure
 
 <span id="qiskit.pulse.Constant.get_sample_pulse" />
 
-`Constant.get_sample_pulse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/parametric_pulses.py "view source code")
+`Constant.get_sample_pulse()`
 
 Return a SamplePulse with samples filled according to the formula that the pulse represents and the parameter values it contains.
 
@@ -117,7 +117,7 @@ Return a SamplePulse with samples filled according to the formula that the pulse
 
 <span id="qiskit.pulse.Constant.validate_parameters" />
 
-`Constant.validate_parameters()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/parametric_pulses.py "view source code")
+`Constant.validate_parameters()`
 
 Validate parameters.
 

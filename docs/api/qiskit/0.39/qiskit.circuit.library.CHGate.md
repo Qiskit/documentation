@@ -72,7 +72,7 @@ Create new CH gate.
 
 <span id="qiskit.circuit.library.CHGate.inverse" />
 
-`CHGate.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/standard_gates/h.py "view source code")
+`CHGate.inverse()`
 
 Return inverted CH gate (itself).
 

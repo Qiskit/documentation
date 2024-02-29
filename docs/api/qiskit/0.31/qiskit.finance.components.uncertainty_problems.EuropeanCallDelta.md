@@ -33,7 +33,7 @@ Constructor.
 
 <span id="qiskit.finance.components.uncertainty_problems.EuropeanCallDelta.build" />
 
-`EuropeanCallDelta.build(qc, q, q_ancillas=None, params=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/finance/components/uncertainty_problems/european_call_delta.py "view source code")
+`EuropeanCallDelta.build(qc, q, q_ancillas=None, params=None)`
 
 Adds corresponding sub-circuit to given circuit
 
@@ -142,7 +142,7 @@ returns number of qubits controlled
 
 <span id="qiskit.finance.components.uncertainty_problems.EuropeanCallDelta.required_ancillas" />
 
-`EuropeanCallDelta.required_ancillas()` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/finance/components/uncertainty_problems/european_call_delta.py "view source code")
+`EuropeanCallDelta.required_ancillas()`
 
 returns required ancillas
 
@@ -150,7 +150,7 @@ returns required ancillas
 
 <span id="qiskit.finance.components.uncertainty_problems.EuropeanCallDelta.required_ancillas_controlled" />
 
-`EuropeanCallDelta.required_ancillas_controlled()` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/finance/components/uncertainty_problems/european_call_delta.py "view source code")
+`EuropeanCallDelta.required_ancillas_controlled()`
 
 returns required ancillas controlled
 

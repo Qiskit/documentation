@@ -61,7 +61,7 @@ The implementation of this circuit is discussed in \[1], Fig. 6.
 
 <span id="qiskit.circuit.library.QuadraticForm.required_result_qubits" />
 
-`static QuadraticForm.required_result_qubits(quadratic, linear, offset)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/arithmetic/quadratic_form.py "view source code")
+`static QuadraticForm.required_result_qubits(quadratic, linear, offset)`
 
 Get the number of required result qubits.
 

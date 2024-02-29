@@ -83,7 +83,7 @@ Final chemistry result computed from the algorithm result
 
 <span id="qiskit.chemistry.core.Hamiltonian.run" />
 
-`Hamiltonian.run(qmolecule)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/chemistry/core/hamiltonian.py "view source code")
+`Hamiltonian.run(qmolecule)`
 
 Convert the qmolecule, according to the ChemistryOperator, into an Operator that can be given to a QuantumAlgorithm
 

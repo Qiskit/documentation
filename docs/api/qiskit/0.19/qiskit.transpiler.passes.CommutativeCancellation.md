@@ -48,7 +48,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.CommutativeCancellation.run" />
 
-`CommutativeCancellation.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/transpiler/passes/optimization/commutative_cancellation.py "view source code")
+`CommutativeCancellation.run(dag)`
 
 Run the CommutativeCancellation pass on dag.
 

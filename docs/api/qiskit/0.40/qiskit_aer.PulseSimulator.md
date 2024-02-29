@@ -149,7 +149,7 @@ backend does not support pulse.
 
 <span id="qiskit_aer.PulseSimulator.from_backend" />
 
-`classmethod PulseSimulator.from_backend(backend, **options)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/backends/pulse_simulator.py "view source code")
+`classmethod PulseSimulator.from_backend(backend, **options)`
 
 Initialize simulator from backend.
 
@@ -207,7 +207,7 @@ the Provider responsible for the backend.
 
 <span id="qiskit_aer.PulseSimulator.run" />
 
-`PulseSimulator.run(schedules, validate=True, **run_options)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/backends/pulse_simulator.py "view source code")
+`PulseSimulator.run(schedules, validate=True, **run_options)`
 
 Run a qobj on the backend.
 
@@ -233,7 +233,7 @@ The simulation job.
 
 <span id="qiskit_aer.PulseSimulator.set_option" />
 
-`PulseSimulator.set_option(key, value)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/backends/pulse_simulator.py "view source code")
+`PulseSimulator.set_option(key, value)`
 
 Set pulse simulation options and update backend.
 

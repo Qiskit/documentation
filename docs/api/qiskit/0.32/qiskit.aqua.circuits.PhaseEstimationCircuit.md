@@ -42,7 +42,7 @@ Quantum Phase Estimation Circuit.
 
 <span id="qiskit.aqua.circuits.PhaseEstimationCircuit.construct_circuit" />
 
-`PhaseEstimationCircuit.construct_circuit(state_register=None, ancillary_register=None, auxiliary_register=None, measurement=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/circuits/phase_estimation_circuit.py "view source code")
+`PhaseEstimationCircuit.construct_circuit(state_register=None, ancillary_register=None, auxiliary_register=None, measurement=False)`
 
 Construct the Phase Estimation circuit
 

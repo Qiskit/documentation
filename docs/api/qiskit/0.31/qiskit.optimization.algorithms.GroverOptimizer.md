@@ -34,7 +34,7 @@ Uses Grover Adaptive Search (GAS) to find the minimum of a QUBO function.
 
 <span id="qiskit.optimization.algorithms.GroverOptimizer.get_compatibility_msg" />
 
-`GroverOptimizer.get_compatibility_msg(problem)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/grover_optimizer.py "view source code")
+`GroverOptimizer.get_compatibility_msg(problem)`
 
 Checks whether a given problem can be solved with this optimizer.
 
@@ -76,7 +76,7 @@ Returns True if the problem is compatible, False otherwise.
 
 <span id="qiskit.optimization.algorithms.GroverOptimizer.solve" />
 
-`GroverOptimizer.solve(problem)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/grover_optimizer.py "view source code")
+`GroverOptimizer.solve(problem)`
 
 Tries to solves the given problem using the grover optimizer.
 

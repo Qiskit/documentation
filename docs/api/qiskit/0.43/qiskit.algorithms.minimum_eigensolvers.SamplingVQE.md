@@ -125,7 +125,7 @@ Callable\[\[int, np.ndarray, float, dict\[str, Any]], None] | None
 
 <span id="qiskit.algorithms.minimum_eigensolvers.SamplingVQE.compute_minimum_eigenvalue" />
 
-`SamplingVQE.compute_minimum_eigenvalue(operator, aux_operators=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/minimum_eigensolvers/sampling_vqe.py "view source code")
+`SamplingVQE.compute_minimum_eigenvalue(operator, aux_operators=None)`
 
 Compute the minimum eigenvalue of a diagonal operator.
 
@@ -148,7 +148,7 @@ A [`SamplingMinimumEigensolverResult`](qiskit.algorithms.minimum_eigensolvers.Sa
 
 <span id="qiskit.algorithms.minimum_eigensolvers.SamplingVQE.supports_aux_operators" />
 
-`classmethod SamplingVQE.supports_aux_operators()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/minimum_eigensolvers/sampling_vqe.py "view source code")
+`classmethod SamplingVQE.supports_aux_operators()`
 
 Whether computing the expectation value of auxiliary operators is supported.
 

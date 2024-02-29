@@ -78,7 +78,7 @@ Create new XX+YY gate.
 
 <span id="qiskit.circuit.library.XXPlusYYGate.inverse" />
 
-`XXPlusYYGate.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/standard_gates/xx_plus_yy.py "view source code")
+`XXPlusYYGate.inverse()`
 
 Return inverse XX+YY gate (i.e. with the negative rotation angle and same phase angle).
 

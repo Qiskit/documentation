@@ -24,7 +24,7 @@ Create new MCX gate.
 
 <span id="qiskit.circuit.library.MCXVChain.get_num_ancilla_qubits" />
 
-`static MCXVChain.get_num_ancilla_qubits(num_ctrl_qubits, mode='v-chain')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/x.py "view source code")
+`static MCXVChain.get_num_ancilla_qubits(num_ctrl_qubits, mode='v-chain')`
 
 Get the number of required ancilla qubits.
 
@@ -32,7 +32,7 @@ Get the number of required ancilla qubits.
 
 <span id="qiskit.circuit.library.MCXVChain.inverse" />
 
-`MCXVChain.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/x.py "view source code")
+`MCXVChain.inverse()`
 
 Invert this gate. The MCX is its own inverse.
 

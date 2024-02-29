@@ -24,7 +24,7 @@ This abstract class defines the interface for unitary synthesis plugins.
 
 <span id="qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin.run" />
 
-`abstract UnitarySynthesisPlugin.run(unitary, **options)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/passes/synthesis/plugin.py "view source code")
+`abstract UnitarySynthesisPlugin.run(unitary, **options)`
 
 Run synthesis for the given unitary matrix
 

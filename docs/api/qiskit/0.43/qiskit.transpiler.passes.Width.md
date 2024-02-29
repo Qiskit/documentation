@@ -36,7 +36,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.Width.run" />
 
-`Width.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/analysis/width.py "view source code")
+`Width.run(dag)`
 
 Run the Width pass on dag.
 

@@ -64,7 +64,7 @@ str
 
 <span id="qiskit.providers.fake_provider.FakePoughkeepsie.properties" />
 
-`FakePoughkeepsie.properties()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/fake_provider/backends/poughkeepsie/fake_poughkeepsie.py "view source code")
+`FakePoughkeepsie.properties()`
 
 Returns a snapshot of device properties
 

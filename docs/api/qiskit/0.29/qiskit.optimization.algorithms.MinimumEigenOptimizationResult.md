@@ -32,7 +32,7 @@ Minimum Eigen Optimizer Result.
 
 <span id="qiskit.optimization.algorithms.MinimumEigenOptimizationResult.get_correlations" />
 
-`MinimumEigenOptimizationResult.get_correlations()` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/minimum_eigen_optimizer.py "view source code")
+`MinimumEigenOptimizationResult.get_correlations()`
 
 Get \<Zi x Zj> correlation matrix from samples.
 

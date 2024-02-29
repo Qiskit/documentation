@@ -60,7 +60,7 @@ Create new U2 gate.
 
 <span id="qiskit.circuit.library.U2Gate.inverse" />
 
-`U2Gate.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/library/standard_gates/u2.py "view source code")
+`U2Gate.inverse()`
 
 Return inverted U2 gate.
 

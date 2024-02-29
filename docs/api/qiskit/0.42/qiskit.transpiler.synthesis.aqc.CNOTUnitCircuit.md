@@ -33,7 +33,7 @@ A class that represents an approximate circuit based on CNOT unit blocks.
 
 <span id="qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit.build" />
 
-`CNOTUnitCircuit.build(thetas)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/synthesis/aqc/cnot_unit_circuit.py "view source code")
+`CNOTUnitCircuit.build(thetas)`
 
 #### Constructs a Qiskit quantum circuit out of the parameters (angles) of this circuit. If a
 

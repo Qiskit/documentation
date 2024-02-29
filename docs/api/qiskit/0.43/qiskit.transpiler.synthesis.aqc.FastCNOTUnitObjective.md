@@ -29,7 +29,7 @@ Implementation of objective function and gradient calculator, which is similar t
 
 <span id="qiskit.transpiler.synthesis.aqc.FastCNOTUnitObjective.gradient" />
 
-`FastCNOTUnitObjective.gradient(param_values)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/synthesis/aqc/fast_gradient/fast_gradient.py "view source code")
+`FastCNOTUnitObjective.gradient(param_values)`
 
 Computes the gradient of objective function. See description of the base class method.
 
@@ -43,7 +43,7 @@ Computes the gradient of objective function. See description of the base class m
 
 <span id="qiskit.transpiler.synthesis.aqc.FastCNOTUnitObjective.objective" />
 
-`FastCNOTUnitObjective.objective(param_values)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/synthesis/aqc/fast_gradient/fast_gradient.py "view source code")
+`FastCNOTUnitObjective.objective(param_values)`
 
 Computes the objective function and some intermediate data for the subsequent gradient computation. See description of the base class method.
 

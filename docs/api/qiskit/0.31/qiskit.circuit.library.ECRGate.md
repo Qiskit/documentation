@@ -70,7 +70,7 @@ Create new ECR gate.
 
 <span id="qiskit.circuit.library.ECRGate.to_matrix" />
 
-`ECRGate.to_matrix()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/ecr.py "view source code")
+`ECRGate.to_matrix()`
 
 Return a numpy.array for the ECR gate.
 

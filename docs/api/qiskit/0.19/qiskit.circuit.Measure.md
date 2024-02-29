@@ -52,7 +52,7 @@ Assemble a QasmQobjInstruction
 
 <span id="qiskit.circuit.Measure.broadcast_arguments" />
 
-`Measure.broadcast_arguments(qargs, cargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/measure.py "view source code")
+`Measure.broadcast_arguments(qargs, cargs)`
 
 Validation of the arguments.
 

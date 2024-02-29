@@ -34,7 +34,7 @@ Chemistry specific method: It can be used to taper two qubits in parity and bina
 
 <span id="qiskit.opflow.converters.TwoQubitReduction.convert" />
 
-`TwoQubitReduction.convert(operator)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/converters/two_qubit_reduction.py "view source code")
+`TwoQubitReduction.convert(operator)`
 
 Converts the Operator to tapered one by Z2 symmetries.
 

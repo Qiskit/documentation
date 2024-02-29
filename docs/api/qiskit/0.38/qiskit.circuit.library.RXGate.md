@@ -44,7 +44,7 @@ Create new RX gate.
 
 <span id="qiskit.circuit.library.RXGate.control" />
 
-`RXGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/standard_gates/rx.py "view source code")
+`RXGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
 Return a (multi-)controlled-RX gate.
 
@@ -66,7 +66,7 @@ controlled version of this gate.
 
 <span id="qiskit.circuit.library.RXGate.inverse" />
 
-`RXGate.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/standard_gates/rx.py "view source code")
+`RXGate.inverse()`
 
 Return inverted RX gate.
 

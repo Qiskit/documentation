@@ -93,7 +93,7 @@ Return a numpy random.
 
 <span id="qiskit.aqua.algorithms.IQPE.compute_minimum_eigenvalue" />
 
-`IQPE.compute_minimum_eigenvalue(operator=None, aux_operators=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/minimum_eigen_solvers/iqpe.py "view source code")
+`IQPE.compute_minimum_eigenvalue(operator=None, aux_operators=None)`
 
 Computes minimum eigenvalue. Operator and aux\_operators can be supplied here and if not None will override any already set into algorithm so it can be reused with different operators. While an operator is required by algorithms, aux\_operators are optional. To ‘remove’ a previous aux\_operators array use an empty list here.
 
@@ -114,7 +114,7 @@ MinimumEigensolverResult
 
 <span id="qiskit.aqua.algorithms.IQPE.construct_circuit" />
 
-`IQPE.construct_circuit(k=None, omega=0, measurement=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/minimum_eigen_solvers/iqpe.py "view source code")
+`IQPE.construct_circuit(k=None, omega=0, measurement=False)`
 
 Construct the kth iteration Quantum Phase Estimation circuit.
 

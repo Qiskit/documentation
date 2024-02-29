@@ -45,7 +45,7 @@ Let $\alpha$ be a real number in $[0,1]$ which specifies the fraction of best ob
 
 <span id="qiskit.opflow.expectations.CVaRExpectation.compute_variance" />
 
-`CVaRExpectation.compute_variance(exp_op)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/opflow/expectations/cvar_expectation.py "view source code")
+`CVaRExpectation.compute_variance(exp_op)`
 
 Returns the variance of the CVaR calculation
 
@@ -71,7 +71,7 @@ exp\_op.
 
 <span id="qiskit.opflow.expectations.CVaRExpectation.convert" />
 
-`CVaRExpectation.convert(operator)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/opflow/expectations/cvar_expectation.py "view source code")
+`CVaRExpectation.convert(operator)`
 
 Return an expression that computes the CVaR expectation upon calling `eval`. :type operator: [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase") :param operator: The operator to convert.
 

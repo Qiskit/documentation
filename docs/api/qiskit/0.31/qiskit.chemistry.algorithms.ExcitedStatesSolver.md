@@ -22,7 +22,7 @@ The excited states calculation interface
 
 <span id="qiskit.chemistry.algorithms.ExcitedStatesSolver.solve" />
 
-`abstract ExcitedStatesSolver.solve(driver, aux_operators=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/excited_states_solvers/excited_states_solver.py "view source code")
+`abstract ExcitedStatesSolver.solve(driver, aux_operators=None)`
 
 Compute the excited states energies of the molecule that was supplied via the driver.
 

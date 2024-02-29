@@ -31,7 +31,7 @@ Initializes the constraint.
 
 <span id="qiskit.optimization.problems.Constraint.evaluate" />
 
-`abstract Constraint.evaluate(x)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/constraint.py "view source code")
+`abstract Constraint.evaluate(x)`
 
 Evaluate left-hand-side of constraint for given values of variables.
 

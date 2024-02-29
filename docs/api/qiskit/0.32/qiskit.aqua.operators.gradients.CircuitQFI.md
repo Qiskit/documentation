@@ -28,7 +28,7 @@ CircuitQFI - uses quantum techniques to get the QFI of circuits DerivativeBase -
 
 <span id="qiskit.aqua.operators.gradients.CircuitQFI.convert" />
 
-`abstract CircuitQFI.convert(operator, params=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/gradients/circuit_qfis/circuit_qfi.py "view source code")
+`abstract CircuitQFI.convert(operator, params=None)`
 
 **Parameters**
 

@@ -162,7 +162,7 @@ A new schedule with `schedule` inserted with this instruction at t=0.
 
 <span id="qiskit.pulse.instructions.ShiftPhase.is_parameterized" />
 
-`ShiftPhase.is_parameterized()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/pulse/instructions/phase.py "view source code")
+`ShiftPhase.is_parameterized()`
 
 Return True iff the instruction is parameterized.
 

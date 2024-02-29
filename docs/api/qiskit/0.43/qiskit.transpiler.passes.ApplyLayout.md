@@ -38,7 +38,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.ApplyLayout.run" />
 
-`ApplyLayout.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/layout/apply_layout.py "view source code")
+`ApplyLayout.run(dag)`
 
 Run the ApplyLayout pass on dag.
 

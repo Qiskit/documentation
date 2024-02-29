@@ -291,7 +291,7 @@ Containing the definition.
 
 <span id="qiskit.circuit.library.RCCXGate.to_matrix" />
 
-`RCCXGate.to_matrix()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/x.py "view source code")
+`RCCXGate.to_matrix()`
 
 Return a numpy.array for the simplified CCX gate.
 

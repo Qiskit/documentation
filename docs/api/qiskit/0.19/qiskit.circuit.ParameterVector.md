@@ -30,19 +30,19 @@ Returns the list of parameters in the ParameterVector.
 
 <span id="qiskit.circuit.ParameterVector.__getitem__" />
 
-`ParameterVector.__getitem__(key)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/parametervector.py "view source code")
+`ParameterVector.__getitem__(key)`
 
 ### \_\_len\_\_
 
 <span id="qiskit.circuit.ParameterVector.__len__" />
 
-`ParameterVector.__len__()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/parametervector.py "view source code")
+`ParameterVector.__len__()`
 
 ### resize
 
 <span id="qiskit.circuit.ParameterVector.resize" />
 
-`ParameterVector.resize(length)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/parametervector.py "view source code")
+`ParameterVector.resize(length)`
 
 Resize the parameter vector.
 

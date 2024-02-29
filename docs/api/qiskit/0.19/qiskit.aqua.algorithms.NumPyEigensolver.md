@@ -90,7 +90,7 @@ dict
 
 <span id="qiskit.aqua.algorithms.NumPyEigensolver.supports_aux_operators" />
 
-`NumPyEigensolver.supports_aux_operators()` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/eigen_solvers/numpy_eigen_solver.py "view source code")
+`NumPyEigensolver.supports_aux_operators()`
 
 If will process auxiliary operators or not
 

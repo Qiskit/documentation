@@ -62,7 +62,7 @@ approx_result = solution.observable
 
 <span id="qiskit.algorithms.HHL.construct_circuit" />
 
-`HHL.construct_circuit(matrix, vector)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/linear_solvers/hhl.py "view source code")
+`HHL.construct_circuit(matrix, vector)`
 
 Construct the HHL circuit.
 
@@ -88,7 +88,7 @@ The HHL circuit.
 
 <span id="qiskit.algorithms.HHL.solve" />
 
-`HHL.solve(matrix, vector, observable=None, observable_circuit=None, post_processing=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/linear_solvers/hhl.py "view source code")
+`HHL.solve(matrix, vector, observable=None, observable_circuit=None, post_processing=None)`
 
 Tries to solve the given linear system of equations.
 

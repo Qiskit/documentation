@@ -49,7 +49,7 @@ Create new T gate.
 
 <span id="qiskit.circuit.library.TGate.inverse" />
 
-`TGate.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/t.py "view source code")
+`TGate.inverse()`
 
 Return inverse T gate (i.e. Tdg).
 
@@ -57,7 +57,7 @@ Return inverse T gate (i.e. Tdg).
 
 <span id="qiskit.circuit.library.TGate.power" />
 
-`TGate.power(exponent)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/t.py "view source code")
+`TGate.power(exponent)`
 
 Raise gate to a power.
 

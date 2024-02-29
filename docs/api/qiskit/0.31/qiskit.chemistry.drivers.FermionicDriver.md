@@ -33,7 +33,7 @@ Base class for Qiskit’s chemistry fermionic drivers.
 
 <span id="qiskit.chemistry.drivers.FermionicDriver.run" />
 
-`abstract FermionicDriver.run()` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/fermionic_driver.py "view source code")
+`abstract FermionicDriver.run()`
 
 Runs driver to produce a QMolecule output.
 

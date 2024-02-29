@@ -72,7 +72,7 @@ Create new CRX gate.
 
 <span id="qiskit.circuit.library.CRXGate.inverse" />
 
-`CRXGate.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/rx.py "view source code")
+`CRXGate.inverse()`
 
 Return inverse CRX gate (i.e. with the negative rotation angle).
 

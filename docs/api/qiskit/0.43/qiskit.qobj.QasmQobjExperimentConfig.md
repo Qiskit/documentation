@@ -31,7 +31,7 @@ Configuration for a single QASM experiment in the qobj.
 
 <span id="qiskit.qobj.QasmQobjExperimentConfig.from_dict" />
 
-`classmethod QasmQobjExperimentConfig.from_dict(data)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/qobj/qasm_qobj.py "view source code")
+`classmethod QasmQobjExperimentConfig.from_dict(data)`
 
 Create a new QobjHeader object from a dictionary.
 
@@ -53,7 +53,7 @@ QobjDictFieldr
 
 <span id="qiskit.qobj.QasmQobjExperimentConfig.to_dict" />
 
-`QasmQobjExperimentConfig.to_dict()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/qobj/qasm_qobj.py "view source code")
+`QasmQobjExperimentConfig.to_dict()`
 
 Return a dictionary format representation of the QASM Qobj.
 

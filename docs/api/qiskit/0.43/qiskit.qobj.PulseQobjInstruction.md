@@ -46,7 +46,7 @@ Instantiate a new PulseQobjInstruction object.
 
 <span id="qiskit.qobj.PulseQobjInstruction.from_dict" />
 
-`classmethod PulseQobjInstruction.from_dict(data)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/qobj/pulse_qobj.py "view source code")
+`classmethod PulseQobjInstruction.from_dict(data)`
 
 Create a new PulseQobjExperimentConfig object from a dictionary.
 
@@ -68,7 +68,7 @@ The object from the input dictionary.
 
 <span id="qiskit.qobj.PulseQobjInstruction.to_dict" />
 
-`PulseQobjInstruction.to_dict()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/qobj/pulse_qobj.py "view source code")
+`PulseQobjInstruction.to_dict()`
 
 Return a dictionary format representation of the Instruction.
 

@@ -37,7 +37,7 @@ Uses skquant.opt installed with pip install scikit-quant. For further detail, pl
 
 <span id="qiskit.algorithms.optimizers.SNOBFIT.get_support_level" />
 
-`SNOBFIT.get_support_level()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/snobfit.py "view source code")
+`SNOBFIT.get_support_level()`
 
 Returns support level dictionary.
 
@@ -68,7 +68,7 @@ grad
 
 <span id="qiskit.algorithms.optimizers.SNOBFIT.optimize" />
 
-`SNOBFIT.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/snobfit.py "view source code")
+`SNOBFIT.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
 Runs the optimization.
 
