@@ -32,7 +32,7 @@ Instantiate a PulseQobjExperiment.
 
 <span id="qiskit.qobj.PulseQobjExperiment.from_dict" />
 
-`classmethod PulseQobjExperiment.from_dict(data)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/qobj/pulse_qobj.py "view source code")
+`classmethod PulseQobjExperiment.from_dict(data)`
 
 Create a new PulseQobjExperiment object from a dictionary.
 
@@ -52,7 +52,7 @@ The object from the input dictionary.
 
 <span id="qiskit.qobj.PulseQobjExperiment.to_dict" />
 
-`PulseQobjExperiment.to_dict()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/qobj/pulse_qobj.py "view source code")
+`PulseQobjExperiment.to_dict()`
 
 Return a dictionary format representation of the Experiment.
 

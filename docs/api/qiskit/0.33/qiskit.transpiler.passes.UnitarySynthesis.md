@@ -47,7 +47,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.UnitarySynthesis.run" />
 
-`UnitarySynthesis.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/passes/synthesis/unitary_synthesis.py "view source code")
+`UnitarySynthesis.run(dag)`
 
 Run the UnitarySynthesis pass on dag.
 
