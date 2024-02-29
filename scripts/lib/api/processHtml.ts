@@ -299,8 +299,9 @@ export function processMembersAndSetMeta(
           meta.apiName = id;
         }
 
+        findByText($, $main, "em.property", apiType).remove();
+
         if (apiType == "class") {
-          findByText($, $main, "em.property", "class").remove();
           return `<span class="target" id="${id}"/><p><code>${$child.html()}</code>${github}</p>`;
         }
 
@@ -309,7 +310,6 @@ export function processMembersAndSetMeta(
             $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
           }
 
-          findByText($, $main, "em.property", "property").remove();
           const signature = $child.find("em").text()?.replace(/^:\s+/, "");
           if (signature.trim().length === 0) return;
           return `<span class="target" id='${id}'/><p><code>${signature}</code>${github}</p>`;
@@ -331,7 +331,6 @@ export function processMembersAndSetMeta(
             }
           }
 
-          findByText($, $main, "em.property", "method").remove();
           return `<span class="target" id='${id}'/><p><code>${$child.html()}</code>${github}</p>`;
         }
 
@@ -341,7 +340,6 @@ export function processMembersAndSetMeta(
               $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
             }
 
-            findByText($, $main, "em.property", "attribute").remove();
             const signature = $child.find("em").text()?.replace(/^:\s+/, "");
             if (signature.trim().length === 0) return;
             return `<span class="target" id='${id}'/><p><code>${signature}</code>${github}</p>`;
@@ -351,39 +349,34 @@ export function processMembersAndSetMeta(
           const text = $child.text();
 
           // Index of the default value of the attribute
-          const equalIndex = text.indexOf("=");
+          let equalIndex = text.indexOf("=");
+          if (equalIndex == -1) {
+            equalIndex = text.length;
+          }
+
           // Index of the attribute's type. The type should be
           // found before the default value
-          const colonIndex = text.slice(0, equalIndex).indexOf(":");
+          let colonIndex = text.slice(0, equalIndex).indexOf(":");
+          if (colonIndex == -1) {
+            colonIndex = text.length;
+          }
 
-          let name = text;
-          let type: string | undefined;
-          let value: string | undefined;
-          if (colonIndex > 0 && equalIndex > 0) {
-            name = text.substring(0, colonIndex);
-            type = text.substring(colonIndex + 1, equalIndex);
-            value = text.substring(equalIndex);
-          } else if (colonIndex > 0) {
-            name = text.substring(0, colonIndex);
-            type = text.substring(colonIndex + 1);
-          } else if (equalIndex > 0) {
-            name = text.substring(0, equalIndex);
-            value = text.substring(equalIndex);
-          }
-          const output = [`<span class="target" id='${id}'/><h3>${name}</h3>`];
-          if (type) {
-            output.push(`<p><code>${type}</code></p>`);
-          }
-          if (value) {
-            output.push(`<p><code>${value}</code></p>`);
-          }
-          return output.join("\n");
+          const name = text.substring(0, Math.min(colonIndex, equalIndex));
+          const type = text.substring(
+            Math.min(colonIndex + 1, equalIndex),
+            equalIndex,
+          );
+          const value = text.substring(equalIndex);
+
+          return (
+            `<span class="target" id='${id}'/><h3>${name}</h3>` + type != "" ??
+            `\n<p><code>${type}</code></p>` + value != "" ??
+            `\n<p><code>${value}</code></p>`
+          );
         }
 
         if (apiType === "function" || apiType === "exception") {
-          findByText($, $main, "em.property", apiType).remove();
           const descriptionHtml = `<span class="target" id="${id}"/><p><code>${$child.html()}</code>${github}</p>`;
-
           const pageHeading = $dl.siblings("h1").text();
           if (id.endsWith(pageHeading) && pageHeading != "") {
             // Page is already dedicated to apiType; no heading needed

@@ -102,12 +102,12 @@ function prepareHandlers(meta: Metadata): Record<string, Handle> {
         return buildMathExpression(node, "inlineMath");
       }
 
-      if (node.properties.id && node.properties.className?.includes("target")) {
+      if (
+        node.properties.id &&
+        (node.properties.className?.includes("target") ||
+          node.children.length === 0)
+      ) {
         return [buildSpanId(node.properties.id), ...all(h, node)];
-      }
-
-      if (node.properties.id && node.children.length === 0) {
-        return buildSpanId(node.properties.id);
       }
 
       return all(h, node);
