@@ -64,7 +64,7 @@ in_page_toc_max_heading_level: 2
 
 ### Upgrade Notes
 
-*   The provider now requires Qiskit 0.45.0 \<[api/qiskit/release-notes/0.45>\_](/api/qiskit/release-notes/0.45>_) and supports new features from this version of Qiskit.
+*   The provider now requires [Qiskit 0.45.0](/api/qiskit/release-notes/0.45) and supports new features from this version of Qiskit.
 
 <span id="release-notes-0-8-0-bug-fixes" />
 
@@ -561,7 +561,7 @@ in_page_toc_max_heading_level: 2
 
 A [`transpiler`](ibm_transpiler#module-qiskit_ibm_provider.transpiler "qiskit_ibm_provider.transpiler") module has been added. It will contain routines that are specific to IBM hardware backends and which consequently can not be placed directly within Qiskit Terra.
 
-qiskit-ibm-provider is a new Python API client for accessing the quantum systems and simulators at IBM Quantum. This new package is built upon the work already done in qiskit.providers.ibmq.backend module in the qiskit-ibmq-provider package and replaces it going forward. The backend module in qiskit-ibmq-provider package is now deprecated. Please take a look at the mirgraion guide [here](https://github.com/Qiskit/qiskit-ibm-provider/blob/main/docs/tutorials/Migration_Guide_from_qiskit-ibmq-provider.ipynb). qiskit-ibm-provider is not included as part of Qiskit meta package and thereby you have to install it separately using `pip install qiskit-ibm-provider`.
+qiskit-ibm-provider is a new Python API client for accessing the quantum systems and simulators at IBM Quantum. This new package is built upon the work already done in qiskit.providers.ibmq.backend module in the qiskit-ibmq-provider package and replaces it going forward. The backend module in qiskit-ibmq-provider package is now deprecated. Please take a look at the migration guide [here](https://github.com/Qiskit/qiskit-ibm-provider/blob/stable/0.6/docs/tutorials/Migration_Guide_from_qiskit-ibmq-provider.ipynb). qiskit-ibm-provider is not included as part of Qiskit meta package and thereby you have to install it separately using `pip install qiskit-ibm-provider`.
 
 <span id="release-notes-0-1-0-new-features" />
 
