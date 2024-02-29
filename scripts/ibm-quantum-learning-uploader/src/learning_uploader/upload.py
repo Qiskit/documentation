@@ -165,18 +165,22 @@ class API:
 
         # 6. Return URLs
         log("Getting URLs...")
+
         response = requests.get(
             f"{self.url}/items/{lesson.url}", headers=self.auth_header
         )
         response.raise_for_status()
         lesson_slug = response.json()["data"]["slug"]
 
-        log("Getting URLs...")
-
         if lesson.url.startswith("tutorial"):
+            # Tutorials don't belong to a course so are under
+            # `tutorial/<lesson-name>`
             parent_path = "tutorial"
         else:
-            # Need to find the course it belongs to
+            # Other pages do belong to a course and have URL
+            # `course/<course-name>/<lesson-name>`.
+            # Do a request to get the course name.
+            log("Getting parent course...")
             response = requests.get(
                 f"{self.url}/items/courses/{response.json()['data']['course']}",
                 headers=self.auth_header,
