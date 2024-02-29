@@ -37,7 +37,7 @@ $$
 
 <span id="qiskit.opflow.gradients.QFI.convert" />
 
-`QFI.convert(operator, params=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/gradients/qfi.py "view source code")
+`QFI.convert(operator, params=None)`
 
 **Parameters**
 

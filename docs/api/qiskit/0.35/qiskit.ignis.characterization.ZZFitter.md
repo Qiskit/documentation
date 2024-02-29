@@ -22,7 +22,7 @@ ZZ fitter
 
 <span id="qiskit.ignis.characterization.ZZFitter.ZZ_rate" />
 
-`ZZFitter.ZZ_rate(qind=- 1)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/characterization/hamiltonian/fitters.py "view source code")
+`ZZFitter.ZZ_rate(qind=- 1)`
 
 Return the ZZ rate from the fit of the two curves
 
@@ -100,7 +100,7 @@ Axes
 
 <span id="qiskit.ignis.characterization.ZZFitter.plot_ZZ" />
 
-`ZZFitter.plot_ZZ(qind, ax=None, show_plot=False)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/characterization/hamiltonian/fitters.py "view source code")
+`ZZFitter.plot_ZZ(qind, ax=None, show_plot=False)`
 
 Plot ZZ data. Will plot both traces on the plot.
 
