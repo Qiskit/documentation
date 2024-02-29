@@ -42,7 +42,7 @@ Return the Python representation of `s` (a `str` instance containing a JSON docu
 
 <span id="qiskit.providers.ibmq.runtime.RuntimeDecoder.object_hook" />
 
-`RuntimeDecoder.object_hook(obj)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.18/qiskit/providers/ibmq/runtime/utils.py "view source code")
+`RuntimeDecoder.object_hook(obj)`
 
 Called to decode object.
 

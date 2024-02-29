@@ -39,7 +39,7 @@ Either the `size` or the `bits` argument must be provided. If `size` is not None
 
 <span id="qiskit.circuit.ClassicalRegister.qasm" />
 
-`ClassicalRegister.qasm()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/classicalregister.py "view source code")
+`ClassicalRegister.qasm()`
 
 Return OPENQASM string for this register.
 

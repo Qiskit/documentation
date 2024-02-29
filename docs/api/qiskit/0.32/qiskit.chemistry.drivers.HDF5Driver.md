@@ -28,7 +28,7 @@ The HDF5 file is as saved from a [`QMolecule`](qiskit.chemistry.QMolecule "qiski
 
 <span id="qiskit.chemistry.drivers.HDF5Driver.run" />
 
-`HDF5Driver.run()` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/hdf5d/hdf5driver.py "view source code")
+`HDF5Driver.run()`
 
 Runs driver to produce a QMolecule output.
 
