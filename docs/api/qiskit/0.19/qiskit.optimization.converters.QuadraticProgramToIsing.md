@@ -22,7 +22,7 @@ Initialize the internal data structure.
 
 <span id="qiskit.optimization.converters.QuadraticProgramToIsing.encode" />
 
-`QuadraticProgramToIsing.encode(op)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/converters/quadratic_program_to_ising.py "view source code")
+`QuadraticProgramToIsing.encode(op)`
 
 Convert a problem into a qubit operator
 

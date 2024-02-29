@@ -117,7 +117,7 @@ matplotlib.figure
 
 <span id="qiskit.pulse.Gaussian.get_sample_pulse" />
 
-`Gaussian.get_sample_pulse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/parametric_pulses.py "view source code")
+`Gaussian.get_sample_pulse()`
 
 Return a SamplePulse with samples filled according to the formula that the pulse represents and the parameter values it contains.
 
@@ -129,7 +129,7 @@ Return a SamplePulse with samples filled according to the formula that the pulse
 
 <span id="qiskit.pulse.Gaussian.validate_parameters" />
 
-`Gaussian.validate_parameters()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/parametric_pulses.py "view source code")
+`Gaussian.validate_parameters()`
 
 Validate parameters.
 

@@ -37,7 +37,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.TemplateOptimization.run" />
 
-`TemplateOptimization.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/transpiler/passes/optimization/template_optimization.py "view source code")
+`TemplateOptimization.run(dag)`
 
 **Parameters**
 

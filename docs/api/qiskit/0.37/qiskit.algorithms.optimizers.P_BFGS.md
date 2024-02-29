@@ -67,7 +67,7 @@ grad
 
 <span id="qiskit.algorithms.optimizers.P_BFGS.minimize" />
 
-`P_BFGS.minimize(fun, x0, jac=None, bounds=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/optimizers/p_bfgs.py "view source code")
+`P_BFGS.minimize(fun, x0, jac=None, bounds=None)`
 
 Minimize the scalar function.
 

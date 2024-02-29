@@ -32,7 +32,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.DAGFixedPoint.run" />
 
-`DAGFixedPoint.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/passes/utils/dag_fixed_point.py "view source code")
+`DAGFixedPoint.run(dag)`
 
 Run the DAGFixedPoint pass on dag.
 

@@ -49,7 +49,7 @@ Create new S gate.
 
 <span id="qiskit.circuit.library.SGate.inverse" />
 
-`SGate.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/standard_gates/s.py "view source code")
+`SGate.inverse()`
 
 Return inverse of S (SdgGate).
 

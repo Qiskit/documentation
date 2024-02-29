@@ -90,7 +90,7 @@ Unsubscribe everything
 
 <span id="qiskit_ibm_provider.utils.pubsub.Subscriber.subscribe" />
 
-`subscribe(event, callback)`
+`subscribe(event, callback)` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/utils/pubsub.py#L168-L173 "view source code")
 
 Subscribes to an event, associating a callback function to that event, so when the event occurs, the callback will be called.
 
@@ -104,7 +104,7 @@ This is a blocking call, so try to keep callbacks as lightweight as possible.
 
 <span id="qiskit_ibm_provider.utils.pubsub.Subscriber.unsubscribe" />
 
-`unsubscribe(event, callback)`
+`unsubscribe(event, callback)` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/utils/pubsub.py#L175-L178 "view source code")
 
 Unsubscribe a pair event-callback, so the callback will not be called anymore when the event occurs.
 

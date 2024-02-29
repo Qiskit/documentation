@@ -46,7 +46,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.TrivialLayout.run" />
 
-`TrivialLayout.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/layout/trivial_layout.py "view source code")
+`TrivialLayout.run(dag)`
 
 Run the TrivialLayout pass on dag.
 

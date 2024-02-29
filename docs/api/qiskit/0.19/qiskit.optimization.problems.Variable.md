@@ -118,7 +118,7 @@ The variable type.
 
 <span id="qiskit.optimization.problems.Variable.as_tuple" />
 
-`Variable.as_tuple()` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/problems/variable.py "view source code")
+`Variable.as_tuple()`
 
 Returns a tuple corresponding to this variable.
 

@@ -88,7 +88,7 @@ Return setting
 
 <span id="qiskit.aqua.components.optimizers.SLSQP.get_support_level" />
 
-`SLSQP.get_support_level()` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/slsqp.py "view source code")
+`SLSQP.get_support_level()`
 
 Return support level dictionary
 
@@ -119,7 +119,7 @@ grad
 
 <span id="qiskit.aqua.components.optimizers.SLSQP.optimize" />
 
-`SLSQP.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/slsqp.py "view source code")
+`SLSQP.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
 Perform optimization.
 

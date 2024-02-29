@@ -24,7 +24,7 @@ The RealEvolver interface has been superseded by the `qiskit.algorithms.time_evo
 
 <span id="qiskit.algorithms.RealEvolver.evolve" />
 
-`abstract RealEvolver.evolve(evolution_problem)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/evolvers/real_evolver.py "view source code")
+`abstract RealEvolver.evolve(evolution_problem)`
 
 Perform real time evolution $\exp(-i t H)|\Psi\rangle$.
 

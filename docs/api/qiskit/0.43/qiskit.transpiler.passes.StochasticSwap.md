@@ -55,7 +55,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.StochasticSwap.run" />
 
-`StochasticSwap.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/routing/stochastic_swap.py "view source code")
+`StochasticSwap.run(dag)`
 
 Run the StochasticSwap pass on dag.
 

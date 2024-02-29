@@ -41,7 +41,7 @@ returns the number of ancillary qubits needed
 
 <span id="qiskit.aqua.circuits.CNF.construct_circuit" />
 
-`CNF.construct_circuit(circuit=None, variable_register=None, clause_register=None, output_register=None, ancillary_register=None, mct_mode='basic')` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/circuits/boolean_logical_circuits.py "view source code")
+`CNF.construct_circuit(circuit=None, variable_register=None, clause_register=None, output_register=None, ancillary_register=None, mct_mode='basic')`
 
 Construct circuit.
 

@@ -54,7 +54,7 @@ The output of the algorithm is an estimate for the amplitude a, that with at lea
 
 <span id="qiskit.algorithms.IterativeAmplitudeEstimation.construct_circuit" />
 
-`IterativeAmplitudeEstimation.construct_circuit(estimation_problem, k=0, measurement=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/amplitude_estimators/iae.py "view source code")
+`IterativeAmplitudeEstimation.construct_circuit(estimation_problem, k=0, measurement=False)`
 
 Construct the circuit $\mathcal{Q}^k \mathcal{A} |0\rangle$.
 
@@ -78,7 +78,7 @@ The circuit implementing $\mathcal{Q}^k \mathcal{A} |0\rangle$.
 
 <span id="qiskit.algorithms.IterativeAmplitudeEstimation.estimate" />
 
-`IterativeAmplitudeEstimation.estimate(estimation_problem)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/amplitude_estimators/iae.py "view source code")
+`IterativeAmplitudeEstimation.estimate(estimation_problem)`
 
 Run the amplitude estimation algorithm on provided estimation problem.
 

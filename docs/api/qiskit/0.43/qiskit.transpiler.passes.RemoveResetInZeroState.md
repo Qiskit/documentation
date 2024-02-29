@@ -34,7 +34,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.RemoveResetInZeroState.run" />
 
-`RemoveResetInZeroState.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/optimization/remove_reset_in_zero_state.py "view source code")
+`RemoveResetInZeroState.run(dag)`
 
 Run the RemoveResetInZeroState pass on dag.
 

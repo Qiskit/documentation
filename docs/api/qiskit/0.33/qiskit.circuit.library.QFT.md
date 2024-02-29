@@ -49,7 +49,7 @@ Construct a new QFT circuit.
 
 <span id="qiskit.circuit.library.QFT.inverse" />
 
-`QFT.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/library/basis_change/qft.py "view source code")
+`QFT.inverse()`
 
 Invert this circuit.
 
@@ -65,7 +65,7 @@ The inverted circuit.
 
 <span id="qiskit.circuit.library.QFT.is_inverse" />
 
-`QFT.is_inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/library/basis_change/qft.py "view source code")
+`QFT.is_inverse()`
 
 Whether the inverse Fourier transform is implemented.
 

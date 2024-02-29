@@ -37,7 +37,7 @@ Create a new 3-qubit controlled sqrt-X gate.
 
 <span id="qiskit.circuit.library.C3SXGate.qasm" />
 
-`C3SXGate.qasm()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/x.py "view source code")
+`C3SXGate.qasm()`
 
 Return a default OpenQASM string for the instruction.
 

@@ -938,7 +938,7 @@ Apply initialize to circuit.
 
 <span id="qiskit.circuit.library.MCMTVChain.inverse" />
 
-`MCMTVChain.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/generalized_gates/mcmt.py "view source code")
+`MCMTVChain.inverse()`
 
 Return the inverse MCMT circuit, which is itself.
 

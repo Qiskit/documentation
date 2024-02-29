@@ -22,7 +22,7 @@ Base class for Classical Algorithms.
 
 <span id="qiskit.aqua.algorithms.ClassicalAlgorithm.run" />
 
-`ClassicalAlgorithm.run()` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/classical_algorithm.py "view source code")
+`ClassicalAlgorithm.run()`
 
 Execute the classical algorithm.
 

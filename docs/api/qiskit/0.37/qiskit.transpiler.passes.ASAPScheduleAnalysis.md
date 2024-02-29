@@ -38,7 +38,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.ASAPScheduleAnalysis.run" />
 
-`ASAPScheduleAnalysis.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/scheduling/scheduling/asap.py "view source code")
+`ASAPScheduleAnalysis.run(dag)`
 
 Run the ASAPSchedule pass on dag.
 

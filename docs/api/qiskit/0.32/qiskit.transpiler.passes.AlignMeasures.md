@@ -74,7 +74,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.AlignMeasures.run" />
 
-`AlignMeasures.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/scheduling/instruction_alignment.py "view source code")
+`AlignMeasures.run(dag)`
 
 Run the measurement alignment pass on dag.
 

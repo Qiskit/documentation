@@ -123,7 +123,7 @@ Callable\[\[int, np.ndarray, float, dict\[str, Any]], None] | None
 
 <span id="qiskit.algorithms.eigensolvers.VQD.compute_eigenvalues" />
 
-`VQD.compute_eigenvalues(operator, aux_operators=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/eigensolvers/vqd.py "view source code")
+`VQD.compute_eigenvalues(operator, aux_operators=None)`
 
 Computes the minimum eigenvalue. The `operator` and `aux_operators` are supplied here. While an `operator` is required by algorithms, `aux_operators` are optional.
 
@@ -144,7 +144,7 @@ An eigensolver result.
 
 <span id="qiskit.algorithms.eigensolvers.VQD.supports_aux_operators" />
 
-`classmethod VQD.supports_aux_operators()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/eigensolvers/vqd.py "view source code")
+`classmethod VQD.supports_aux_operators()`
 
 Whether computing the expectation value of auxiliary operators is supported.
 

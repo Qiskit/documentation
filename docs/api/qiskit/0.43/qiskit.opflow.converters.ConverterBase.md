@@ -28,7 +28,7 @@ Deprecated: Converters take an Operator and return a new Operator, generally iso
 
 <span id="qiskit.opflow.converters.ConverterBase.convert" />
 
-`abstract ConverterBase.convert(operator)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/converters/converter_base.py "view source code")
+`abstract ConverterBase.convert(operator)`
 
 Accept the Operator and return the converted Operator
 

@@ -132,7 +132,7 @@ Construct a new two-local circuit.
 
 <span id="qiskit.circuit.library.TwoLocal.get_entangler_map" />
 
-`TwoLocal.get_entangler_map(rep_num, block_num, num_block_qubits)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/library/n_local/two_local.py "view source code")
+`TwoLocal.get_entangler_map(rep_num, block_num, num_block_qubits)`
 
 Overloading to handle the special case of 1 qubit where the entanglement are ignored.
 

@@ -63,7 +63,7 @@ Add a decomposition of the instruction to the SessionEquivalenceLibrary.
 
 <span id="qiskit.providers.aer.extensions.SnapshotExpectationValue.assemble" />
 
-`SnapshotExpectationValue.assemble()` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.5/qiskit/providers/aer/extensions/snapshot_expectation_value.py "view source code")
+`SnapshotExpectationValue.assemble()`
 
 Assemble a QasmQobjInstruction for snapshot\_expectation\_value.
 

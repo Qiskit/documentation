@@ -46,7 +46,7 @@ This class is the input to time evolution algorithms and must contain informatio
 
 <span id="qiskit.algorithms.EvolutionProblem.validate_params" />
 
-`EvolutionProblem.validate_params()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/evolvers/evolution_problem.py "view source code")
+`EvolutionProblem.validate_params()`
 
 Checks if all parameters present in the Hamiltonian are also present in the dictionary that maps them to values.
 

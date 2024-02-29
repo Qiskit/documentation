@@ -46,7 +46,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.HighLevelSynthesis.run" />
 
-`HighLevelSynthesis.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/synthesis/high_level_synthesis.py "view source code")
+`HighLevelSynthesis.run(dag)`
 
 Run the HighLevelSynthesis pass on dag. :param dag: input dag.
 

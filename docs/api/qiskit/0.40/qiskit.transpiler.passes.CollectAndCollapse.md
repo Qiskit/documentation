@@ -42,7 +42,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.CollectAndCollapse.run" />
 
-`CollectAndCollapse.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/optimization/collect_and_collapse.py "view source code")
+`CollectAndCollapse.run(dag)`
 
 Run the CollectLinearFunctions pass on dag. :param dag: the DAG to be optimized. :type dag: DAGCircuit
 

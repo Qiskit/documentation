@@ -42,7 +42,7 @@ See [https://sunqm.github.io/pyscf/](https://sunqm.github.io/pyscf/)
 
 <span id="qiskit.chemistry.drivers.PySCFDriver.run" />
 
-`PySCFDriver.run()` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/pyscfd/pyscfdriver.py "view source code")
+`PySCFDriver.run()`
 
 Runs driver to produce a QMolecule output.
 

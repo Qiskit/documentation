@@ -45,7 +45,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.ValidatePulseGates.run" />
 
-`ValidatePulseGates.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/passes/scheduling/instruction_alignment.py "view source code")
+`ValidatePulseGates.run(dag)`
 
 Run the measurement alignment pass on dag.
 

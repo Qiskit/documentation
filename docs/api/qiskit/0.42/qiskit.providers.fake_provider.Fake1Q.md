@@ -40,7 +40,7 @@ the configuration for the backend.
 
 <span id="qiskit.providers.fake_provider.Fake1Q.defaults" />
 
-`Fake1Q.defaults()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/fake_provider/fake_1q.py "view source code")
+`Fake1Q.defaults()`
 
 defaults == configuration
 
@@ -64,7 +64,7 @@ str
 
 <span id="qiskit.providers.fake_provider.Fake1Q.properties" />
 
-`Fake1Q.properties()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/fake_provider/fake_1q.py "view source code")
+`Fake1Q.properties()`
 
 properties == configuration
 

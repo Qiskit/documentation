@@ -639,7 +639,7 @@ Can be either (1) a dictionary mapping XX angle values to fidelity at that angle
 
       <span id="qiskit_ibm_runtime.Estimator.run" />
 
-      \`Estimator.run(circuits, observables, parameter_values=None, **kwargs)\` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit_ibm_runtime/estimator.py "view source code")
+      \`Estimator.run(circuits, observables, parameter_values=None, **kwargs)\`
 
       Submit a request to the estimator primitive program.
       ",
@@ -855,7 +855,7 @@ By default this is sys.stdout.</p></li>
 
       <span id="qiskit_ibm_provider.job.IBMCircuitJob.wait_for_final_state" />
 
-      \`IBMCircuitJob.wait_for_final_state(timeout=None) \`[GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit_ibm_provider/job/ibm_circuit_job.py "view source code")
+      \`IBMCircuitJob.wait_for_final_state(timeout=None)\`
 
       ## Use the websocket server to wait for the final the state of a job. The server
 
@@ -1408,7 +1408,7 @@ test("test dt tag without id", async () => {
   ).toMatchInlineSnapshot(`
   "In addition to the public abstract methods, subclasses should also implement the following private methods:
   
-  \`classmethod _default_options()\` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit/providers/basicaer/qasm_simulator.py "view source code")
+  \`classmethod _default_options()\`
   
   Return the default options
   

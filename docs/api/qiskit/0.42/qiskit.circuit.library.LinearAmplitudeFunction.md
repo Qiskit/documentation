@@ -74,7 +74,7 @@ Quantum-Enhanced Simulation-Based Optimization. [arXiv:2005.10780](http://arxiv.
 
 <span id="qiskit.circuit.library.LinearAmplitudeFunction.post_processing" />
 
-`LinearAmplitudeFunction.post_processing(scaled_value)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/arithmetic/linear_amplitude_function.py "view source code")
+`LinearAmplitudeFunction.post_processing(scaled_value)`
 
 Map the function value of the approximated $\hat{f}$ to $f$.
 

@@ -38,7 +38,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.ContainsInstruction.run" />
 
-`ContainsInstruction.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/utils/contains_instruction.py "view source code")
+`ContainsInstruction.run(dag)`
 
 Run the ContainsInstruction pass on dag.
 

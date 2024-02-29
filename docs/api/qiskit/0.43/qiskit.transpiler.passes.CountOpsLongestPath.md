@@ -36,7 +36,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.CountOpsLongestPath.run" />
 
-`CountOpsLongestPath.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/analysis/count_ops_longest_path.py "view source code")
+`CountOpsLongestPath.run(dag)`
 
 Run the CountOpsLongestPath pass on dag.
 

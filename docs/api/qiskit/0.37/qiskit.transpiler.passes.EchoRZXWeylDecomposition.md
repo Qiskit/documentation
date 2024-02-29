@@ -38,7 +38,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.EchoRZXWeylDecomposition.run" />
 
-`EchoRZXWeylDecomposition.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/optimization/echo_rzx_weyl_decomposition.py "view source code")
+`EchoRZXWeylDecomposition.run(dag)`
 
 Run the EchoRZXWeylDecomposition pass on dag.
 

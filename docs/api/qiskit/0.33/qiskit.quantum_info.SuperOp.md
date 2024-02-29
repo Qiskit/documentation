@@ -52,7 +52,7 @@ If the input or output dimensions are None, they will be automatically determine
 
 <span id="qiskit.quantum_info.SuperOp.adjoint" />
 
-`SuperOp.adjoint()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/quantum_info/operators/channel/superop.py "view source code")
+`SuperOp.adjoint()`
 
 Return the adjoint quantum channel.
 
@@ -64,7 +64,7 @@ Return the adjoint quantum channel.
 
 <span id="qiskit.quantum_info.SuperOp.compose" />
 
-`SuperOp.compose(other, qargs=None, front=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/quantum_info/operators/channel/superop.py "view source code")
+`SuperOp.compose(other, qargs=None, front=False)`
 
 Return the operator composition with another SuperOp.
 
@@ -96,7 +96,7 @@ The composed SuperOp.
 
 <span id="qiskit.quantum_info.SuperOp.conjugate" />
 
-`SuperOp.conjugate()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/quantum_info/operators/channel/superop.py "view source code")
+`SuperOp.conjugate()`
 
 Return the conjugate quantum channel.
 
@@ -137,7 +137,7 @@ The right matrix multiplied Operator.
 
 <span id="qiskit.quantum_info.SuperOp.expand" />
 
-`SuperOp.expand(other)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/quantum_info/operators/channel/superop.py "view source code")
+`SuperOp.expand(other)`
 
 Return the reverse-order tensor product with another SuperOp.
 
@@ -261,7 +261,7 @@ BaseOperator
 
 <span id="qiskit.quantum_info.SuperOp.tensor" />
 
-`SuperOp.tensor(other)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/quantum_info/operators/channel/superop.py "view source code")
+`SuperOp.tensor(other)`
 
 Return the tensor product with another SuperOp.
 
@@ -317,7 +317,7 @@ Try to convert channel to a unitary representation Operator.
 
 <span id="qiskit.quantum_info.SuperOp.transpose" />
 
-`SuperOp.transpose()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/quantum_info/operators/channel/superop.py "view source code")
+`SuperOp.transpose()`
 
 Return the transpose quantum channel.
 

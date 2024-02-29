@@ -36,7 +36,7 @@ QueueInfo constructor.
 
 <span id="qiskit.providers.ibmq.job.QueueInfo.format" />
 
-`QueueInfo.format()` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.16/qiskit/providers/ibmq/job/queueinfo.py "view source code")
+`QueueInfo.format()`
 
 Build a user-friendly report for the job queue information.
 

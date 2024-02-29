@@ -34,7 +34,7 @@ NLopt global optimizer, derivative-free. For further detail, please refer to [ht
 
 <span id="qiskit.aqua.components.optimizers.DIRECT_L.get_nlopt_optimizer" />
 
-`DIRECT_L.get_nlopt_optimizer()` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/optimizers/nlopts/direct_l.py "view source code")
+`DIRECT_L.get_nlopt_optimizer()`
 
 Return NLopt optimizer type
 

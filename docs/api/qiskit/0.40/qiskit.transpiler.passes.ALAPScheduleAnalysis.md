@@ -38,7 +38,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.ALAPScheduleAnalysis.run" />
 
-`ALAPScheduleAnalysis.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/scheduling/scheduling/alap.py "view source code")
+`ALAPScheduleAnalysis.run(dag)`
 
 Run the ALAPSchedule pass on dag.
 

@@ -22,7 +22,7 @@ A base for Evolution converters. Evolutions are converters which traverse an Ope
 
 <span id="qiskit.aqua.operators.evolutions.EvolutionBase.convert" />
 
-`EvolutionBase.convert(operator)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/evolutions/evolution_base.py "view source code")
+`EvolutionBase.convert(operator)`
 
 Traverse the operator, replacing any `EvolutionOps` with their equivalent evolution `CircuitOps`.
 

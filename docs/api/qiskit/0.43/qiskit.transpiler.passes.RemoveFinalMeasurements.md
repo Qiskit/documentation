@@ -38,7 +38,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.RemoveFinalMeasurements.run" />
 
-`RemoveFinalMeasurements.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/utils/remove_final_measurements.py "view source code")
+`RemoveFinalMeasurements.run(dag)`
 
 Run the RemoveFinalMeasurements pass on dag.
 

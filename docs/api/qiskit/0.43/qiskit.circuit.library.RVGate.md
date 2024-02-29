@@ -57,7 +57,7 @@ Create new rv single-qubit gate.
 
 <span id="qiskit.circuit.library.RVGate.inverse" />
 
-`RVGate.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/generalized_gates/rv.py "view source code")
+`RVGate.inverse()`
 
 Invert this gate.
 
@@ -67,7 +67,7 @@ Invert this gate.
 
 <span id="qiskit.circuit.library.RVGate.to_matrix" />
 
-`RVGate.to_matrix()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/generalized_gates/rv.py "view source code")
+`RVGate.to_matrix()`
 
 Return a numpy.array for the R(v) gate.
 

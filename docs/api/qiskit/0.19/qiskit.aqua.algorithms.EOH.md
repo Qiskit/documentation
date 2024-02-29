@@ -63,7 +63,7 @@ Return a numpy random.
 
 <span id="qiskit.aqua.algorithms.EOH.construct_circuit" />
 
-`EOH.construct_circuit()` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/education/eoh.py "view source code")
+`EOH.construct_circuit()`
 
 Construct the circuit.
 

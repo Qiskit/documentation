@@ -33,7 +33,7 @@ A calculation of reciprocals of eigenvalues is performed and controlled rotation
 
 <span id="qiskit.aqua.components.reciprocals.LookupRotation.construct_circuit" />
 
-`LookupRotation.construct_circuit(mode, inreg)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/reciprocals/lookup_rotation.py "view source code")
+`LookupRotation.construct_circuit(mode, inreg)`
 
 Construct the Lookup Rotation circuit.
 
@@ -58,7 +58,7 @@ NotImplementedError: mode not supported
 
 <span id="qiskit.aqua.components.reciprocals.LookupRotation.sv_to_resvec" />
 
-`LookupRotation.sv_to_resvec(statevector, num_q)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/reciprocals/lookup_rotation.py "view source code")
+`LookupRotation.sv_to_resvec(statevector, num_q)`
 
 Convert statevector to result vector.
 

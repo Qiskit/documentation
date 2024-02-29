@@ -86,7 +86,7 @@ Return setting
 
 <span id="qiskit.aqua.components.optimizers.CRS.get_nlopt_optimizer" />
 
-`CRS.get_nlopt_optimizer()` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/nlopts/crs.py "view source code")
+`CRS.get_nlopt_optimizer()`
 
 Return NLopt optimizer type
 

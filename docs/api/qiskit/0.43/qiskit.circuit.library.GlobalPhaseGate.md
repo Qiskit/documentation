@@ -40,7 +40,7 @@ $$
 
 <span id="qiskit.circuit.library.GlobalPhaseGate.inverse" />
 
-`GlobalPhaseGate.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/global_phase.py "view source code")
+`GlobalPhaseGate.inverse()`
 
 Return inverted GLobalPhaseGate gate.
 

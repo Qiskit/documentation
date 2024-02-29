@@ -99,7 +99,7 @@ Session ID. None until a job runs in the session.
 
 <span id="qiskit_ibm_provider.Session.cancel" />
 
-`Session.cancel()` [GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/session.py "view source code")
+`Session.cancel()`
 
 Set the session.\_active status to False
 

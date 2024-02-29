@@ -69,7 +69,7 @@ Visualization output data. The returned data type depends on the `plotter`. If m
 
 <span id="qiskit.pulse.library.Waveform.is_parameterized" />
 
-`Waveform.is_parameterized()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/library/waveform.py "view source code")
+`Waveform.is_parameterized()`
 
 Return True iff the instruction is parameterized.
 

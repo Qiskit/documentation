@@ -52,7 +52,7 @@ On the Convergence of Adam and Beyond. [arXiv:1904.09237](https://arxiv.org/abs/
 
 <span id="qiskit.algorithms.optimizers.ADAM.get_support_level" />
 
-`ADAM.get_support_level()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/adam_amsgrad.py "view source code")
+`ADAM.get_support_level()`
 
 Return support level dictionary
 
@@ -83,7 +83,7 @@ grad
 
 <span id="qiskit.algorithms.optimizers.ADAM.load_params" />
 
-`ADAM.load_params(load_dir)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/adam_amsgrad.py "view source code")
+`ADAM.load_params(load_dir)`
 
 Load iteration parameters for a file called `adam_params.csv`.
 
@@ -99,7 +99,7 @@ Load iteration parameters for a file called `adam_params.csv`.
 
 <span id="qiskit.algorithms.optimizers.ADAM.minimize" />
 
-`ADAM.minimize(objective_function, initial_point, gradient_function)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/adam_amsgrad.py "view source code")
+`ADAM.minimize(objective_function, initial_point, gradient_function)`
 
 Run the minimization.
 
@@ -121,7 +121,7 @@ A tuple of (optimal parameters, optimal value, number of iterations).
 
 <span id="qiskit.algorithms.optimizers.ADAM.optimize" />
 
-`ADAM.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/adam_amsgrad.py "view source code")
+`ADAM.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
 Perform optimization.
 
@@ -159,7 +159,7 @@ Print algorithm-specific options.
 
 <span id="qiskit.algorithms.optimizers.ADAM.save_params" />
 
-`ADAM.save_params(snapshot_dir)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/adam_amsgrad.py "view source code")
+`ADAM.save_params(snapshot_dir)`
 
 Save the current iteration parameters to a file called `adam_params.csv`.
 

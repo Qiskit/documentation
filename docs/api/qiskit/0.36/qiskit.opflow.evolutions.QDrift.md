@@ -26,7 +26,7 @@ The QDrift Trotterization method, which selects each each term in the Trotteriza
 
 <span id="qiskit.opflow.evolutions.QDrift.convert" />
 
-`QDrift.convert(operator)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/evolutions/trotterizations/qdrift.py "view source code")
+`QDrift.convert(operator)`
 
 Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`.
 

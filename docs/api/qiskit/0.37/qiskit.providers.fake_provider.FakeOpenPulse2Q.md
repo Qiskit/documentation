@@ -45,7 +45,7 @@ the configuration for the backend.
 
 <span id="qiskit.providers.fake_provider.FakeOpenPulse2Q.defaults" />
 
-`FakeOpenPulse2Q.defaults()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/fake_provider/fake_openpulse_2q.py "view source code")
+`FakeOpenPulse2Q.defaults()`
 
 Return the default pulse-related settings provided by the backend (such as gate to Schedule mappings).
 
@@ -69,7 +69,7 @@ str
 
 <span id="qiskit.providers.fake_provider.FakeOpenPulse2Q.properties" />
 
-`FakeOpenPulse2Q.properties()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/fake_provider/fake_openpulse_2q.py "view source code")
+`FakeOpenPulse2Q.properties()`
 
 Return the measured characteristics of the backend.
 
