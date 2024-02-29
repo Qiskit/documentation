@@ -77,7 +77,6 @@ async function generateMarkdownFile(
         }
         parent.children.splice(index + 1, nextIndex - (index + 1));
 
-        // remove initial and trailing spaces from emphasis
         removeEmphasisSpaces(node, index, parent, "initial");
         removeEmphasisSpaces(node, index, parent, "tail");
       });
