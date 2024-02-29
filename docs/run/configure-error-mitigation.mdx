@@ -124,7 +124,7 @@ values](https://arxiv.org/abs/2012.09738).
 <details>
 <summary>Resilience Level 2</summary>
 
-Level 2 applies the **error mitigation techniques included in level 1** and also applies **gate twirling** and uses the **Zero Noise Extrapolation method (ZNE)**.  Zne computes an
+Level 2 applies the **error mitigation techniques included in level 1** and also applies **gate twirling** and uses the **Zero Noise Extrapolation method (ZNE)**.  ZNE computes an
 expectation value of the observable for different noise factors
 (amplification stage) and then uses the measured expectation values to
 infer the ideal expectation value at the zero-noise limit (extrapolation
@@ -412,9 +412,9 @@ With the V2 primitives, you can turn on and off individual error mitigation and 
 | execution  | samples                  | The number of samples of each measurement circuit to run. This is used when twirling or resilience levels 1, 2 is enabled. If None it will  be calculated automatically based on the ``shots`` and ``shots_per_sample`` (if specified). |                | Estimator only |
 | execution  | shots_per_sample         | The number of shots per sample of each measurement  circuit to run. This is used when twirling or resilience levels 1, 2, 3.  If None it will be calculated automatically based on the ``shots`` and ``samples`` (if specified).        |                | Estimator only |
 | execution  | interleave_samples       | If True interleave samples from different measurement circuits when running.                                                                                                                                                            | False          | Estimator only |
-| twirling   | gates                    | Whether to apply 2-qubit gate twirling.                                                                                                                                                                                                 | False          | Estimator only |
+| twirling   | gates                    | Whether to apply two-qubit gate twirling.                                                                                                                                                                                                 | False          | Estimator only |
 | twirling   | measure                  | Whether to apply measurement twirling.                                                                                                                                                                                                  | True           | Estimator only |
-| twirling   | strategy                 | Specify the strategy of twirling qubits in identified layers of  2-qubit twirled gates.                                                                                                                                                 | `active-accum` | Estimator only |
+| twirling   | strategy                 | Specify the strategy of twirling qubits in identified layers of  two-qubit twirled gates.                                                                                                                                                 | `active-accum` | Estimator only |
 
 <Tabs>
   <TabItem value="EstimatorV2" label="EstimatorV2">
