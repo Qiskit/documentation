@@ -42,7 +42,7 @@ result = solution.observable
 
 <span id="qiskit.algorithms.linear_solvers.NumPyLinearSolver.solve" />
 
-`NumPyLinearSolver.solve(matrix, vector, observable=None, observable_circuit=None, post_processing=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/linear_solvers/numpy_linear_solver.py "view source code")
+`NumPyLinearSolver.solve(matrix, vector, observable=None, observable_circuit=None, post_processing=None)`
 
 Solve classically the linear system and compute the observable(s)
 

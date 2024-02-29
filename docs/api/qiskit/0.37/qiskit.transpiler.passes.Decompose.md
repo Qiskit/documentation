@@ -37,7 +37,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.Decompose.run" />
 
-`Decompose.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/basis/decompose.py "view source code")
+`Decompose.run(dag)`
 
 Run the Decompose pass on dag.
 

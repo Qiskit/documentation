@@ -31,7 +31,7 @@ Sampler class
 
 <span id="qiskit.primitives.Sampler.close" />
 
-`Sampler.close()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/primitives/sampler.py "view source code")
+`Sampler.close()`
 
 Close the session and free resources
 

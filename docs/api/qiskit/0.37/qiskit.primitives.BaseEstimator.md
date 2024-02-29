@@ -36,7 +36,7 @@ Creating an instance of an Estimator, or using one in a `with` context opens a s
 
 <span id="qiskit.primitives.BaseEstimator.close" />
 
-`abstract BaseEstimator.close()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/primitives/base_estimator.py "view source code")
+`abstract BaseEstimator.close()`
 
 Close the session and free resources
 

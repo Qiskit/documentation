@@ -35,7 +35,7 @@ Initializes a RZXGate calibration builder.
 
 <span id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.get_calibration" />
 
-`RZXCalibrationBuilderNoEcho.get_calibration(node_op, qubits)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/calibration/builders.py "view source code")
+`RZXCalibrationBuilderNoEcho.get_calibration(node_op, qubits)`
 
 Builds the calibration schedule for the RZXGate(theta) without echos.
 

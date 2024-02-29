@@ -44,7 +44,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.TimeUnitConversion.run" />
 
-`TimeUnitConversion.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/scheduling/time_unit_conversion.py "view source code")
+`TimeUnitConversion.run(dag)`
 
 Run the TimeUnitAnalysis pass on dag.
 
