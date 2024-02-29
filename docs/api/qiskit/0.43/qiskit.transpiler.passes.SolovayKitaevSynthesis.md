@@ -46,7 +46,7 @@ The number of times the decomposition is recursively improved. If None, defaults
 
 <span id="qiskit.transpiler.passes.SolovayKitaevSynthesis.run" />
 
-`SolovayKitaevSynthesis.run(unitary, **options)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/synthesis/solovay_kitaev_synthesis.py "view source code")
+`SolovayKitaevSynthesis.run(unitary, **options)`
 
 Run synthesis for the given unitary matrix
 

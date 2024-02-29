@@ -70,7 +70,7 @@ str
 
 <span id="qiskit.providers.fake_provider.FakeTokyo.properties" />
 
-`FakeTokyo.properties()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/backends/tokyo/fake_tokyo.py "view source code")
+`FakeTokyo.properties()`
 
 Returns a snapshot of device properties as recorded on 8/30/19.
 

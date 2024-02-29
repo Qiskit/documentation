@@ -42,7 +42,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.HoareOptimizer.run" />
 
-`HoareOptimizer.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/optimization/hoare_opt.py "view source code")
+`HoareOptimizer.run(dag)`
 
 **Parameters**
 

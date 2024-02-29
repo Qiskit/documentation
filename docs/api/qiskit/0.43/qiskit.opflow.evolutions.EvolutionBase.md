@@ -28,7 +28,7 @@ Deprecated: A base for Evolution converters. Evolutions are converters which tra
 
 <span id="qiskit.opflow.evolutions.EvolutionBase.convert" />
 
-`abstract EvolutionBase.convert(operator)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/evolutions/evolution_base.py "view source code")
+`abstract EvolutionBase.convert(operator)`
 
 Traverse the operator, replacing any `EvolutionOps` with their equivalent evolution `CircuitOps`.
 

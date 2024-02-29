@@ -72,7 +72,7 @@ Create new CY gate.
 
 <span id="qiskit.circuit.library.CYGate.inverse" />
 
-`CYGate.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/y.py "view source code")
+`CYGate.inverse()`
 
 Return inverted CY gate (itself).
 

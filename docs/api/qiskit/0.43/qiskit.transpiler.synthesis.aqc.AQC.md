@@ -34,7 +34,7 @@ A generic implementation of Approximate Quantum Compiler. This implementation is
 
 <span id="qiskit.transpiler.synthesis.aqc.AQC.compile_unitary" />
 
-`AQC.compile_unitary(target_matrix, approximate_circuit, approximating_objective, initial_point=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/synthesis/aqc/aqc.py "view source code")
+`AQC.compile_unitary(target_matrix, approximate_circuit, approximating_objective, initial_point=None)`
 
 Approximately compiles a circuit represented as a unitary matrix by solving an optimization problem defined by `approximating_objective` and using `approximate_circuit` as a template for the approximate circuit.
 

@@ -194,7 +194,7 @@ Containing the definition.
 
 <span id="qiskit.circuit.ControlFlowOp.replace_blocks" />
 
-`abstract ControlFlowOp.replace_blocks(blocks)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/controlflow/control_flow.py "view source code")
+`abstract ControlFlowOp.replace_blocks(blocks)`
 
 Replace blocks and return new instruction. :param blocks: Tuple of QuantumCircuits to replace in instruction.
 

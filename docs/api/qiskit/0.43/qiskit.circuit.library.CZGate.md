@@ -53,7 +53,7 @@ Create new CZ gate.
 
 <span id="qiskit.circuit.library.CZGate.inverse" />
 
-`CZGate.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/z.py "view source code")
+`CZGate.inverse()`
 
 Return inverted CZ gate (itself).
 

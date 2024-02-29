@@ -84,7 +84,7 @@ Create new RZZ gate.
 
 <span id="qiskit.circuit.library.RZZGate.inverse" />
 
-`RZZGate.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/rzz.py "view source code")
+`RZZGate.inverse()`
 
 Return inverse RZZ gate (i.e. with the negative rotation angle).
 
@@ -94,7 +94,7 @@ Return inverse RZZ gate (i.e. with the negative rotation angle).
 
 <span id="qiskit.circuit.library.RZZGate.power" />
 
-`RZZGate.power(exponent)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/rzz.py "view source code")
+`RZZGate.power(exponent)`
 
 Raise gate to a power.
 

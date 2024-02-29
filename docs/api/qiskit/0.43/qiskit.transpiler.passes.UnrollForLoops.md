@@ -44,7 +44,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.UnrollForLoops.run" />
 
-`UnrollForLoops.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/utils/unroll_forloops.py "view source code")
+`UnrollForLoops.run(dag)`
 
 Run the UnrollForLoops pass on dag.
 

@@ -60,7 +60,7 @@ the configuration for the backend.
 
 <span id="qiskit.providers.fake_provider.ConfigurableFakeBackend.defaults" />
 
-`ConfigurableFakeBackend.defaults()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/utils/configurable_backend.py "view source code")
+`ConfigurableFakeBackend.defaults()`
 
 Return backend defaults.
 
@@ -88,7 +88,7 @@ str
 
 <span id="qiskit.providers.fake_provider.ConfigurableFakeBackend.properties" />
 
-`ConfigurableFakeBackend.properties()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/utils/configurable_backend.py "view source code")
+`ConfigurableFakeBackend.properties()`
 
 Return backend properties
 
