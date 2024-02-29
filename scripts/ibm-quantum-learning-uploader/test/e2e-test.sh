@@ -18,13 +18,14 @@ pip install ../
 
 UUID=$(python -c "import uuid; print(uuid.uuid4())")
 echo "Attempting to upload to staging with UUID: $UUID"
-mkdir -p test-lesson
+mkdir -p test-lesson test-tutorial
 sed "s/_REPLACE_WITH_UUID_/$UUID/" template.ipynb > test-lesson/upload-me.ipynb
+cp test-lesson/upload-me.ipynb test-tutorial/upload-me.ipynb
 sync-lessons
-rm test-lesson/upload-me.ipynb
+rm test-lesson/upload-me.ipynb test-tutorial/upload-me.ipynb
 
 echo "Sleeping 2s to let changes reflect on-site"
 sleep 2
 
-echo "Checking for UUID in web page"
+echo "Checking for UUID in web pages"
 python assert-string-on-page.py $UUID
