@@ -44,7 +44,7 @@ Add a decomposition of the instruction to the SessionEquivalenceLibrary.
 
 <span id="qiskit.extensions.Snapshot.assemble" />
 
-`Snapshot.assemble()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/extensions/simulator/snapshot.py "view source code")
+`Snapshot.assemble()`
 
 Assemble a QasmQobjInstruction
 
@@ -73,7 +73,7 @@ Validation of the arguments.
 
 <span id="qiskit.extensions.Snapshot.c_if" />
 
-`Snapshot.c_if(classical, val)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/extensions/simulator/snapshot.py "view source code")
+`Snapshot.c_if(classical, val)`
 
 Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
 
@@ -107,7 +107,7 @@ updated if it was provided
 
 <span id="qiskit.extensions.Snapshot.inverse" />
 
-`Snapshot.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/extensions/simulator/snapshot.py "view source code")
+`Snapshot.inverse()`
 
 Special case. Return self.
 
