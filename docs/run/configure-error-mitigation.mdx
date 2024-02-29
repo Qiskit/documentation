@@ -93,7 +93,7 @@ applied at each resilience level.
 
 ## Configure Estimator V2 with resilience levels
 
-You can use resilience levels to specify error mitigation techniques, or you can set custom techniques individually as described in [Custom error settings with Estimator V2.](#advanced-options) You cannot specify resiliance levels in Sampler V2. However, you can set custom techniques individually.
+You can use resilience levels to specify error mitigation techniques, or you can set custom techniques individually as described in [Custom error settings with Estimator V2.](#advanced-options) You cannot specify resilience levels in Sampler V2. However, you can set custom techniques individually.
 
 <details>
 <summary>Resilience Level 0</summary>
@@ -132,7 +132,7 @@ stage). This approach tends to reduce errors in expectation values, but
 is not guaranteed to produce an unbiased result.
 
 
-![This image shows a graph.  The x-axis is labeled Noise amplification factor.  The y-axis is labeled Expectation value.  An upward sloping line is labeled Mitigated value.  Points near the line are noise-amplified values.  There is a horizontal line just above the X-axis labeled Exact value. ](/images/optimize/resiliance-2.png "Illustration of the ZNE method")
+![This image shows a graph.  The x-axis is labeled Noise amplification factor.  The y-axis is labeled Expectation value.  An upward sloping line is labeled Mitigated value.  Points near the line are noise-amplified values.  There is a horizontal line just above the X-axis labeled Exact value. ](/images/optimize/resilience-2.png "Illustration of the ZNE method")
 
 The overhead of this method scales with the number of noise factors. The
 default settings sample the expectation value at three noise factors,
@@ -222,7 +222,7 @@ stage). This approach tends to reduce errors in expectation values, but
 is not guaranteed to produce an unbiased result.
 
 
-![This image shows a graph.  The x-axis is labeled Noise amplification factor.  The y-axis is labeled Expectation value.  An upward sloping line is labeled Mitigated value.  Points near the line are noise-amplified values.  There is a horizontal line just above the X-axis labeled Exact value. ](/images/optimize/resiliance-2.png "Illustration of the ZNE method")
+![This image shows a graph.  The x-axis is labeled Noise amplification factor.  The y-axis is labeled Expectation value.  An upward sloping line is labeled Mitigated value.  Points near the line are noise-amplified values.  There is a horizontal line just above the X-axis labeled Exact value. ](/images/optimize/resilience-2.png "Illustration of the ZNE method")
 
 The overhead of this method scales with the number of noise factors. The
 default settings sample the expectation value at three noise factors,
@@ -414,7 +414,7 @@ With the V2 primitives, you can turn on and off individual error mitigation and 
 | execution  | interleave_samples       | If True interleave samples from different measurement circuits when running.                                                                                                                                                            | False          | Estimator only |
 | twirling   | gates                    | Whether to apply 2-qubit gate twirling.                                                                                                                                                                                                 | False          | Estimator only |
 | twirling   | measure                  | Whether to apply measurement twirling.                                                                                                                                                                                                  | True           | Estimator only |
-| twirling   | strategy                 | Specify the strategy of twirling qubits in identified layers of  2-qubit twirled gates.                                                                                                                                                 | “active-accum" | Estimator only |
+| twirling   | strategy                 | Specify the strategy of twirling qubits in identified layers of  2-qubit twirled gates.                                                                                                                                                 | `active-accum` | Estimator only |
 
 <Tabs>
   <TabItem value="EstimatorV2" label="EstimatorV2">
