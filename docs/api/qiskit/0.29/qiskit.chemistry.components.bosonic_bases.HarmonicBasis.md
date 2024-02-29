@@ -34,7 +34,7 @@ This class uses the Hermite polynomials (eigenstates of the harmonic oscillator)
 
 <span id="qiskit.chemistry.components.bosonic_bases.HarmonicBasis.convert" />
 
-`HarmonicBasis.convert(threshold=1e-06)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/components/bosonic_bases/harmonic_basis.py "view source code")
+`HarmonicBasis.convert(threshold=1e-06)`
 
 This prepares an array object representing a bosonic hamiltonian expressed in the harmonic basis. This object can directly be given to the BosonicOperator class to be mapped to a qubit hamiltonian.
 

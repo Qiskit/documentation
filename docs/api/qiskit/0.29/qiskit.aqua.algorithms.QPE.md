@@ -36,7 +36,7 @@ QPE (also sometimes abbreviated as PEA, for Phase Estimation Algorithm), has two
 
 <span id="qiskit.aqua.algorithms.QPE.compute_minimum_eigenvalue" />
 
-`QPE.compute_minimum_eigenvalue(operator=None, aux_operators=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/minimum_eigen_solvers/qpe.py "view source code")
+`QPE.compute_minimum_eigenvalue(operator=None, aux_operators=None)`
 
 Computes minimum eigenvalue. Operator and aux\_operators can be supplied here and if not None will override any already set into algorithm so it can be reused with different operators. While an operator is required by algorithms, aux\_operators are optional. To ‘remove’ a previous aux\_operators array use an empty list here.
 
@@ -57,7 +57,7 @@ MinimumEigensolverResult
 
 <span id="qiskit.aqua.algorithms.QPE.construct_circuit" />
 
-`QPE.construct_circuit(measurement=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/minimum_eigen_solvers/qpe.py "view source code")
+`QPE.construct_circuit(measurement=False)`
 
 Construct circuit.
 

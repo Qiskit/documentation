@@ -55,7 +55,7 @@ Final chemistry result computed from the algorithm result
 
 <span id="qiskit.chemistry.core.Hamiltonian.run" />
 
-`Hamiltonian.run(qmolecule)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/core/hamiltonian.py "view source code")
+`Hamiltonian.run(qmolecule)`
 
 run method
 

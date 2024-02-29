@@ -24,7 +24,7 @@ This class can be used when writing a new Qiskit Runtime program.
 
 <span id="qiskit.providers.ibmq.runtime.UserMessenger.publish" />
 
-`UserMessenger.publish(message, encoder=<class 'qiskit.providers.ibmq.runtime.utils.RuntimeEncoder'>, final=False)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.16/qiskit/providers/ibmq/runtime/program/user_messenger.py "view source code")
+`UserMessenger.publish(message, encoder=<class 'qiskit.providers.ibmq.runtime.utils.RuntimeEncoder'>, final=False)`
 
 Publish message.
 
