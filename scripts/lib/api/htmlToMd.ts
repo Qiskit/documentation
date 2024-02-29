@@ -22,7 +22,7 @@ import remarkMath from "remark-math";
 import remarkMdx from "remark-mdx";
 import { MdxJsxFlowElement } from "mdast-util-mdx-jsx";
 import { visit } from "unist-util-visit";
-import { Root } from "mdast";
+import { Emphasis, Root } from "mdast";
 
 import { processHtml } from "./processHtml";
 import { HtmlToMdResult } from "./HtmlToMdResult";
@@ -54,6 +54,39 @@ async function generateMarkdownFile(
   mainHtml: string,
   meta: Metadata,
 ): Promise<string> {
+  const handlers = prepareHandlers(meta);
+  const mdFile = await unified()
+    .use(rehypeParse)
+    .use(remarkGfm)
+    .use(remarkMath)
+    .use(remarkMdx)
+    .use(rehypeRemark, {
+      handlers,
+    })
+    .use(remarkStringify, remarkStringifyOptions)
+    .use(() => (root: Root) => {
+      // merge contiguous emphasis
+      visit(root, "emphasis", (node, index, parent) => {
+        if (index === null || parent === null) return;
+        let nextIndex = index + 1;
+        while (parent.children[nextIndex]?.type === "emphasis") {
+          node.children.push(
+            ...((parent.children[nextIndex] as any).children ?? []),
+          );
+          nextIndex++;
+        }
+        parent.children.splice(index + 1, nextIndex - (index + 1));
+
+        removeEmphasisSpaces(node, index, parent, "initial");
+        removeEmphasisSpaces(node, index, parent, "tail");
+      });
+    })
+    .process(mainHtml);
+
+  return mdFile.toString().replaceAll(`<!---->`, "");
+}
+
+function prepareHandlers(meta: Metadata): Record<string, Handle> {
   const handlers: Record<string, Handle> = {
     br(h, node: any) {
       return all(h, node);
@@ -66,13 +99,7 @@ async function generateMarkdownFile(
     },
     span(h, node: any) {
       if (node.properties.className?.includes("math")) {
-        let value = node.children[0].value;
-        const prefix = "\\(";
-        const sufix = "\\)";
-        if (value.startsWith(prefix) && value.endsWith(sufix)) {
-          value = value.substring(prefix.length, value.length - sufix.length);
-        }
-        return { type: "inlineMath", value };
+        return buildMathExpression(node, "inlineMath");
       }
 
       if (node.properties.id && node.properties.className?.includes("target")) {
@@ -87,13 +114,7 @@ async function generateMarkdownFile(
     },
     pre(h, node: any) {
       if (node.properties.className?.includes("math")) {
-        let value = node.children[0].value;
-        const prefix = "\\[";
-        const sufix = "\\]";
-        if (value.startsWith(prefix) && value.endsWith(sufix)) {
-          value = value.substring(prefix.length, value.length - sufix.length);
-        }
-        return { type: "math", value };
+        return buildMathExpression(node, "math");
       }
       return defaultHandlers.pre(h, node);
     },
@@ -149,10 +170,7 @@ async function generateMarkdownFile(
           (child: any) =>
             child.properties.className?.includes("versionmodified"),
         );
-        let title = toText(titleNode).trim();
-        if (title.endsWith(":")) {
-          title = title.slice(0, -1);
-        }
+        const title = toText(titleNode).trim().replace(/:$/, "");
         const otherChildren = without(root.children, titleNode);
         return buildAdmonition({
           title,
@@ -172,64 +190,38 @@ async function generateMarkdownFile(
     },
   };
 
-  const mdFile = await unified()
-    .use(rehypeParse)
-    .use(remarkGfm)
-    .use(remarkMath)
-    .use(remarkMdx)
-    .use(rehypeRemark, {
-      handlers,
-    })
-    .use(remarkStringify, remarkStringifyOptions)
-    .use(() => (root: Root) => {
-      // merge contiguous emphasis
-      visit(root, "emphasis", (node, index, parent) => {
-        if (index === null || parent === null) return;
-        let nextIndex = index + 1;
-        while (parent.children[nextIndex]?.type === "emphasis") {
-          node.children.push(
-            ...((parent.children[nextIndex] as any).children ?? []),
-          );
-          nextIndex++;
-        }
-        parent.children.splice(index + 1, nextIndex - (index + 1));
+  return handlers;
+}
 
-        // remove initial and trailing spaces from emphasis
-        const firstChild = first(node.children);
-        if (firstChild?.type === "text") {
-          const match = firstChild.value.match(/^\s+/);
-          if (match) {
-            if (match[0] === firstChild.value) {
-              node.children = tail(node.children);
-            } else {
-              firstChild.value = removePrefix(firstChild.value, match[0]);
-            }
-            parent.children.splice(index, 0, {
-              type: "text",
-              value: match[0],
-            });
-          }
-        }
-        const lastChild = last(node.children);
-        if (lastChild?.type === "text") {
-          const match = lastChild.value.match(/\s+$/);
-          if (match) {
-            if (match[0] === lastChild.value) {
-              node.children = initial(node.children);
-            } else {
-              lastChild.value = removeSuffix(lastChild.value, match[0]);
-            }
-            parent.children.splice(index + 1, 0, {
-              type: "text",
-              value: match[0],
-            });
-          }
-        }
+function removeEmphasisSpaces(
+  node: Emphasis,
+  index: number,
+  parent: any,
+  position: "initial" | "tail",
+): void {
+  const child =
+    position == "initial" ? first(node.children) : last(node.children);
+  const reg = position == "initial" ? /^\s+/ : /\s+$/;
+  const idx = position == "initial" ? index : index + 1;
+
+  if (child?.type === "text") {
+    const match = child.value.match(reg);
+    if (match) {
+      if (match[0] === child.value) {
+        node.children =
+          position == "initial" ? tail(node.children) : initial(node.children);
+      } else {
+        child.value =
+          position == "initial"
+            ? removePrefix(child.value, match[0])
+            : removeSuffix(child.value, match[0]);
+      }
+      parent.children.splice(idx, 0, {
+        type: "text",
+        value: match[0],
       });
-    })
-    .process(mainHtml);
-
-  return mdFile.toString().replaceAll(`<!---->`, "");
+    }
+  }
 }
 
 function buildAdmonition(options: {
@@ -270,4 +262,14 @@ function buildSpanId(id: string): MdxJsxFlowElement {
     ],
     children: [],
   };
+}
+
+function buildMathExpression(node: any, type: "math" | "inlineMath"): any {
+  let value = node.children[0].value;
+  const prefix = type == "math" ? "\\[" : "\\(";
+  const sufix = type == "math" ? "\\]" : "\\)";
+  if (value.startsWith(prefix) && value.endsWith(sufix)) {
+    value = value.substring(prefix.length, value.length - sufix.length);
+  }
+  return { type: type, value };
 }
