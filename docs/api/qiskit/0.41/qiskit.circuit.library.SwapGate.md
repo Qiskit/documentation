@@ -54,7 +54,7 @@ Create new SWAP gate.
 
 <span id="qiskit.circuit.library.SwapGate.control" />
 
-`SwapGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/swap.py "view source code")
+`SwapGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
 Return a (multi-)controlled-SWAP gate.
 
@@ -78,7 +78,7 @@ controlled version of this gate.
 
 <span id="qiskit.circuit.library.SwapGate.inverse" />
 
-`SwapGate.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/swap.py "view source code")
+`SwapGate.inverse()`
 
 Return inverse Swap gate (itself).
 

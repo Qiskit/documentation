@@ -48,7 +48,7 @@ $$
 
 <span id="qiskit.synthesis.SuzukiTrotter.synthesize" />
 
-`SuzukiTrotter.synthesize(evolution)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/synthesis/evolution/suzuki_trotter.py "view source code")
+`SuzukiTrotter.synthesize(evolution)`
 
 Synthesize an `qiskit.circuit.library.PauliEvolutionGate`.
 

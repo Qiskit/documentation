@@ -203,7 +203,7 @@ Sine of a ParameterExpression
 
 <span id="qiskit.circuit.Parameter.subs" />
 
-`Parameter.subs(parameter_map, allow_unknown_parameters=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/parameter.py "view source code")
+`Parameter.subs(parameter_map, allow_unknown_parameters=False)`
 
 Substitute self with the corresponding parameter in `parameter_map`.
 
