@@ -121,7 +121,7 @@ Name of the pass.
 
 <span id="qiskit_ibm_provider.transpiler.passes.scheduling.ALAPScheduleAnalysis.run" />
 
-`ALAPScheduleAnalysis.run(dag)` [GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/transpiler/passes/scheduling/scheduler.py "view source code")
+`ALAPScheduleAnalysis.run(dag)`
 
 Run the ASAPSchedule pass on dag. :type dag: [`DAGCircuit`](/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v0.45)") :param dag: DAG to schedule. :type dag: DAGCircuit
 
