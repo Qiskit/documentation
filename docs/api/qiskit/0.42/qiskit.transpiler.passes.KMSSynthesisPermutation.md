@@ -43,7 +43,7 @@ print(f"kms: {qct.size() = }, {qct.depth() = }")
 
 <span id="qiskit.transpiler.passes.KMSSynthesisPermutation.run" />
 
-`KMSSynthesisPermutation.run(high_level_object, **options)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/synthesis/high_level_synthesis.py "view source code")
+`KMSSynthesisPermutation.run(high_level_object, **options)`
 
 Run synthesis for the given Permutation.
 
