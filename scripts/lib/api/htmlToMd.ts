@@ -171,7 +171,6 @@ function prepareHandlers(meta: Metadata): Record<string, Handle> {
             child.properties.className?.includes("versionmodified"),
         );
         const title = toText(titleNode).trim().replace(/:$/, "");
-
         const otherChildren = without(root.children, titleNode);
         return buildAdmonition({
           title,
