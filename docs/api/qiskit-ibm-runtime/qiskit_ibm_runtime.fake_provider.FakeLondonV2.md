@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeLondonV2
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeLondonV2" />
 
-`FakeLondonV2` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/london/fake_london.py "view source code")
+`FakeLondonV2` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/london/fake_london.py#L21-L36 "view source code")
 
 A fake 5 qubit backend.
 

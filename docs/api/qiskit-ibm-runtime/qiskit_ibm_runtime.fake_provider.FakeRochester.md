@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeRochester
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeRochester" />
 
-`FakeRochester` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/rochester/fake_rochester.py "view source code")
+`FakeRochester` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/rochester/fake_rochester.py#L30-L36 "view source code")
 
 A fake Rochester backend.
 
