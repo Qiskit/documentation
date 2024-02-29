@@ -143,7 +143,7 @@ an asset-to-asset similarity matrix.
 
 <span id="qiskit.finance.data_providers.ExchangeDataProvider.run" />
 
-`ExchangeDataProvider.run()` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/finance/data_providers/exchange_data_provider.py "view source code")
+`ExchangeDataProvider.run()`
 
 Loads data, thus enabling get\_similarity\_matrix and get\_covariance\_matrix methods in the base class.
 

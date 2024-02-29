@@ -35,7 +35,7 @@ EOH provides the lower-level building blocks for simulating universal quantum sy
 
 <span id="qiskit.aqua.algorithms.EOH.construct_circuit" />
 
-`EOH.construct_circuit()` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/education/eoh.py "view source code")
+`EOH.construct_circuit()`
 
 Construct the circuit.
 

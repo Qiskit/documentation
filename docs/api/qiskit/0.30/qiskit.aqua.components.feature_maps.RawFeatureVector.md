@@ -28,7 +28,7 @@ The Raw Feature Vector can be directly used as a feature map, where the raw feat
 
 <span id="qiskit.aqua.components.feature_maps.RawFeatureVector.construct_circuit" />
 
-`RawFeatureVector.construct_circuit(x, qr=None, inverse=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/feature_maps/raw_feature_vector.py "view source code")
+`RawFeatureVector.construct_circuit(x, qr=None, inverse=False)`
 
 Construct the second order expansion based on given data.
 

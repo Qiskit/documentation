@@ -123,7 +123,7 @@ a handle to the instruction that was just added
 
 <span id="qiskit.ml.circuit.library.RawFeatureVector.assign_parameters" />
 
-`RawFeatureVector.assign_parameters(parameters, inplace=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/ml/circuit/library/raw_feature_vector.py "view source code")
+`RawFeatureVector.assign_parameters(parameters, inplace=False)`
 
 Call the initialize instruction.
 
@@ -139,7 +139,7 @@ Apply `Barrier`. If qargs is None, applies to all.
 
 <span id="qiskit.ml.circuit.library.RawFeatureVector.bind_parameters" />
 
-`RawFeatureVector.bind_parameters(values)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/ml/circuit/library/raw_feature_vector.py "view source code")
+`RawFeatureVector.bind_parameters(values)`
 
 Bind parameters.
 

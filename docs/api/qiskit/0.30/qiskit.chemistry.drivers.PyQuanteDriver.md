@@ -40,7 +40,7 @@ See [https://github.com/rpmuller/pyquante2](https://github.com/rpmuller/pyquante
 
 <span id="qiskit.chemistry.drivers.PyQuanteDriver.run" />
 
-`PyQuanteDriver.run()` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/pyquanted/pyquantedriver.py "view source code")
+`PyQuanteDriver.run()`
 
 Runs driver to produce a QMolecule output.
 

@@ -69,7 +69,7 @@ Returns True if the problem is compatible, False otherwise.
 
 <span id="qiskit.optimization.algorithms.MultiStartOptimizer.multi_start_solve" />
 
-`MultiStartOptimizer.multi_start_solve(minimize, problem)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/multistart_optimizer.py "view source code")
+`MultiStartOptimizer.multi_start_solve(minimize, problem)`
 
 Applies a multi start method given a local optimizer.
 

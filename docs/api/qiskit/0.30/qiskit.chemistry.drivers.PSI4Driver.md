@@ -35,7 +35,7 @@ See [http://www.psicode.org/](http://www.psicode.org/)
 
 <span id="qiskit.chemistry.drivers.PSI4Driver.run" />
 
-`PSI4Driver.run()` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/psi4d/psi4driver.py "view source code")
+`PSI4Driver.run()`
 
 Runs driver to produce a QMolecule output.
 
