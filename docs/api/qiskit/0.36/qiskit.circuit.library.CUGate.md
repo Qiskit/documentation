@@ -72,7 +72,7 @@ Create new CU gate.
 
 <span id="qiskit.circuit.library.CUGate.inverse" />
 
-`CUGate.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/u.py "view source code")
+`CUGate.inverse()`
 
 Return inverted CU gate.
 

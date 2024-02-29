@@ -40,7 +40,7 @@ Add new execution results to previous execution results
 
 <span id="qiskit.ignis.characterization.DragFitter.drag_amplitude" />
 
-`DragFitter.drag_amplitude(qind=- 1)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/characterization/calibrations/fitters.py "view source code")
+`DragFitter.drag_amplitude(qind=- 1)`
 
 Return the drag amplitude from the fit
 
@@ -77,7 +77,7 @@ Compute self.\_params and self.\_params\_err
 
 <span id="qiskit.ignis.characterization.DragFitter.guess_params" />
 
-`DragFitter.guess_params(qind=0)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/characterization/calibrations/fitters.py "view source code")
+`DragFitter.guess_params(qind=0)`
 
 Guess parameters for the drag fit
 
@@ -99,7 +99,7 @@ list
 
 <span id="qiskit.ignis.characterization.DragFitter.plot" />
 
-`DragFitter.plot(qind, series='0', ax=None, show_plot=False)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/characterization/calibrations/fitters.py "view source code")
+`DragFitter.plot(qind, series='0', ax=None, show_plot=False)`
 
 Plot the data and fit
 

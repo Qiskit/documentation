@@ -56,7 +56,7 @@ dict
 
 <span id="qiskit.providers.ibmq.RunnerResult.decode" />
 
-`classmethod RunnerResult.decode(data)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/runner_result.py "view source code")
+`classmethod RunnerResult.decode(data)`
 
 Decoding for results from Qiskit runtime jobs.
 
@@ -144,7 +144,7 @@ List\[str] or np.ndarray
 
 <span id="qiskit.providers.ibmq.RunnerResult.get_quasiprobabilities" />
 
-`RunnerResult.get_quasiprobabilities(experiment=None)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/runner_result.py "view source code")
+`RunnerResult.get_quasiprobabilities(experiment=None)`
 
 Get quasiprobabilites associated with one or more experiments.
 

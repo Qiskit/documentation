@@ -30,7 +30,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.LinearFunctionsSynthesis.run" />
 
-`LinearFunctionsSynthesis.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/synthesis/linear_functions_synthesis.py "view source code")
+`LinearFunctionsSynthesis.run(dag)`
 
 Run the LinearFunctionsSynthesis pass on dag. :type dag: `DAGCircuit` :param dag: input dag.
 

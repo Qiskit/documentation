@@ -122,7 +122,7 @@ the Provider responsible for the backend.
 
 <span id="qiskit.providers.ibmq.runtime.ProgramBackend.run" />
 
-`abstract ProgramBackend.run(circuits, timeout=None, **run_config)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/runtime/program/program_backend.py "view source code")
+`abstract ProgramBackend.run(circuits, timeout=None, **run_config)`
 
 Run on the backend.
 
