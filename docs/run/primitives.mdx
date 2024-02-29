@@ -92,6 +92,17 @@ estimator.run([(circuit1, observable1, param_values1),(circuit2, observable2, pa
 
 #### Sampler V1
 
+* Takes two parameters: circuits and parameter values.
+* Each parameter can be a single value or a list.
+* The length of the parameters must match.
+* Elements from each are aggregated.
+
+Example: 
+
+```python
+sampler.run([circuit1, circuit2, ...],[observable1, observable2, ...],[param_values1, param_values2, ...] )
+```
+
 #### Sampler V2
 
 * Takes one parameter: PUBs in the format  (`<circuit>`, `<parameter values>`, `<shots>`)
@@ -99,6 +110,12 @@ estimator.run([(circuit1, observable1, param_values1),(circuit2, observable2, pa
 * Obeys program outputs. Typically this is a bit array but can also be an array of complex numbers (measurement level 1). 
 * Returns raw data type. Data from each shot is returned (memory=True), and post-processing is done by using convenience methods.
 * Output data is grouped by output registers.
+
+Example: 
+
+```python
+sampler.run([(circuit1, param_values1, shots1),(circuit2, param_values2, shots_2) ])
+```
 
 ## Estimator
 
