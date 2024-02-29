@@ -36,7 +36,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.Optimize1qGatesDecomposition.run" />
 
-`Optimize1qGatesDecomposition.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/optimization/optimize_1q_decomposition.py "view source code")
+`Optimize1qGatesDecomposition.run(dag)`
 
 Run the Optimize1qGatesDecomposition pass on dag.
 

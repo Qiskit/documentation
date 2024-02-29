@@ -55,7 +55,7 @@ result_gate = result_gates[gate.name]
 
 <span id="qiskit.ignis.verification.GatesetTomographyFitter.fit" />
 
-`GatesetTomographyFitter.fit()` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/tomography/fitters/gateset_fitter.py "view source code")
+`GatesetTomographyFitter.fit()`
 
 Reconstruct a gate set from measurement data using optimization.
 
@@ -75,7 +75,7 @@ The gateset optimization process con/.sists of three phases: 1) Use linear inver
 
 <span id="qiskit.ignis.verification.GatesetTomographyFitter.linear_inversion" />
 
-`GatesetTomographyFitter.linear_inversion()` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/tomography/fitters/gateset_fitter.py "view source code")
+`GatesetTomographyFitter.linear_inversion()`
 
 Reconstruct a gate set from measurement data using linear inversion.
 

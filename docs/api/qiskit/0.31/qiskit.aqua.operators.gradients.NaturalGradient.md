@@ -39,7 +39,7 @@ where R(x) represents the penalization term.
 
 <span id="qiskit.aqua.operators.gradients.NaturalGradient.convert" />
 
-`NaturalGradient.convert(operator, params=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/gradients/natural_gradient.py "view source code")
+`NaturalGradient.convert(operator, params=None)`
 
 **Parameters**
 

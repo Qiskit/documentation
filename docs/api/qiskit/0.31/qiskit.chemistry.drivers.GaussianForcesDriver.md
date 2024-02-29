@@ -34,7 +34,7 @@ Gaussian™ 16 forces driver.
 
 <span id="qiskit.chemistry.drivers.GaussianForcesDriver.run" />
 
-`GaussianForcesDriver.run()` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/gaussiand/gaussian_forces_driver.py "view source code")
+`GaussianForcesDriver.run()`
 
 Runs driver to produce a WatsonHamiltonian output.
 
