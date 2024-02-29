@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeAlmaden
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeAlmaden" />
 
-`FakeAlmaden` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/almaden/fake_almaden.py "view source code")
+`FakeAlmaden` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/almaden/fake_almaden.py#L41-L58 "view source code")
 
 A fake Almaden backend.
 

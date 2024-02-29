@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeSydney
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeSydney" />
 
-`FakeSydney` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/sydney/fake_sydney.py "view source code")
+`FakeSydney` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/sydney/fake_sydney.py#L31-L38 "view source code")
 
 A fake 27 qubit backend.
 
