@@ -22,7 +22,7 @@ This method should initialize the module and use an exception if a component of 
 
 <span id="qiskit.aqua.components.reciprocals.Reciprocal.construct_circuit" />
 
-`abstract Reciprocal.construct_circuit(mode, register=None, circuit=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/reciprocals/reciprocal.py "view source code")
+`abstract Reciprocal.construct_circuit(mode, register=None, circuit=None)`
 
 Construct the initial state circuit.
 
@@ -40,7 +40,7 @@ The reciprocal circuit.
 
 <span id="qiskit.aqua.components.reciprocals.Reciprocal.sv_to_resvec" />
 
-`abstract Reciprocal.sv_to_resvec(statevector, num_q)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/reciprocals/reciprocal.py "view source code")
+`abstract Reciprocal.sv_to_resvec(statevector, num_q)`
 
 Convert statevector to result vector.
 

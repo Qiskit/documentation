@@ -186,7 +186,7 @@ Type of snapshot.
 
 <span id="qiskit.pulse.Snapshot.__call__" />
 
-`Snapshot.__call__()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/instructions/snapshot.py "view source code")
+`Snapshot.__call__()`
 
 Deprecated.
 

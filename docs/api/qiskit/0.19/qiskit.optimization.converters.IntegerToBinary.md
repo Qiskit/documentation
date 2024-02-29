@@ -39,7 +39,7 @@ Annealers. arxiv.org:1706.01945.
 
 <span id="qiskit.optimization.converters.IntegerToBinary.decode" />
 
-`IntegerToBinary.decode(result)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/converters/integer_to_binary.py "view source code")
+`IntegerToBinary.decode(result)`
 
 Convert the encoded problem (binary variables) back to the original (integer variables).
 
@@ -59,7 +59,7 @@ The result of the original problem.
 
 <span id="qiskit.optimization.converters.IntegerToBinary.encode" />
 
-`IntegerToBinary.encode(op, name=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/converters/integer_to_binary.py "view source code")
+`IntegerToBinary.encode(op, name=None)`
 
 Convert an integer problem into a new problem with binary variables.
 

@@ -56,7 +56,7 @@ Assemble a QasmQobjInstruction
 
 <span id="qiskit.extensions.Initialize.broadcast_arguments" />
 
-`Initialize.broadcast_arguments(qargs, cargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/extensions/quantum_initializer/initializer.py "view source code")
+`Initialize.broadcast_arguments(qargs, cargs)`
 
 Validation of the arguments.
 
@@ -107,7 +107,7 @@ updated if it was provided
 
 <span id="qiskit.extensions.Initialize.gates_to_uncompute" />
 
-`Initialize.gates_to_uncompute()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/extensions/quantum_initializer/initializer.py "view source code")
+`Initialize.gates_to_uncompute()`
 
 Call to create a circuit with gates that take the desired vector to zero.
 

@@ -39,7 +39,7 @@ Getter of the bit string represented the statevector.
 
 <span id="qiskit.chemistry.components.initial_states.HartreeFock.construct_circuit" />
 
-`HartreeFock.construct_circuit(mode='circuit', register=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/chemistry/components/initial_states/hartree_fock.py "view source code")
+`HartreeFock.construct_circuit(mode='circuit', register=None)`
 
 Construct the statevector of desired initial state.
 

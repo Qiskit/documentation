@@ -57,7 +57,7 @@ Return a numpy random.
 
 <span id="qiskit.aqua.algorithms.BernsteinVazirani.construct_circuit" />
 
-`BernsteinVazirani.construct_circuit(measurement=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/education/bernstein_vazirani.py "view source code")
+`BernsteinVazirani.construct_circuit(measurement=False)`
 
 Construct the quantum circuit
 

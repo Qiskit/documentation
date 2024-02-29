@@ -56,7 +56,7 @@ Returns the schedules with which the discriminator was fitted.
 
 <span id="qiskit.ignis.measurement.QuadraticIQDiscriminator.discriminate" />
 
-`QuadraticIQDiscriminator.discriminate(x_data)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/measurement/discriminator/iq_discriminators.py "view source code")
+`QuadraticIQDiscriminator.discriminate(x_data)`
 
 Applies the discriminator to x\_data.
 
@@ -76,7 +76,7 @@ The discriminated x\_data as a list of labels.
 
 <span id="qiskit.ignis.measurement.QuadraticIQDiscriminator.fit" />
 
-`QuadraticIQDiscriminator.fit()` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/measurement/discriminator/iq_discriminators.py "view source code")
+`QuadraticIQDiscriminator.fit()`
 
 Fits the discriminator using self.\_xdata and self.\_ydata.
 

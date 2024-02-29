@@ -51,7 +51,7 @@ Initialize a PulseSystemModel.
 
 <span id="qiskit.providers.aer.pulse.PulseSystemModel.calculate_channel_frequencies" />
 
-`PulseSystemModel.calculate_channel_frequencies(qubit_lo_freq=None)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.5/qiskit/providers/aer/pulse/pulse_system_model.py "view source code")
+`PulseSystemModel.calculate_channel_frequencies(qubit_lo_freq=None)`
 
 Calculate frequencies for each channel given qubit\_lo\_freq.
 
@@ -75,7 +75,7 @@ OrderedDict
 
 <span id="qiskit.providers.aer.pulse.PulseSystemModel.control_channel_index" />
 
-`PulseSystemModel.control_channel_index(label)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.5/qiskit/providers/aer/pulse/pulse_system_model.py "view source code")
+`PulseSystemModel.control_channel_index(label)`
 
 Return the index of the control channel with identifying label.
 
@@ -95,7 +95,7 @@ int or None
 
 <span id="qiskit.providers.aer.pulse.PulseSystemModel.from_backend" />
 
-`classmethod PulseSystemModel.from_backend(backend, subsystem_list=None)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.5/qiskit/providers/aer/pulse/pulse_system_model.py "view source code")
+`classmethod PulseSystemModel.from_backend(backend, subsystem_list=None)`
 
 Returns a PulseSystemModel constructed from an OpenPulse enabled backend object.
 

@@ -169,7 +169,7 @@ Add classical condition on register classical and value val.
 
 <span id="qiskit.circuit.library.YGate.control" />
 
-`YGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/y.py "view source code")
+`YGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
 Return a (mutli-)controlled-Y gate.
 
@@ -215,7 +215,7 @@ updated if it was provided
 
 <span id="qiskit.circuit.library.YGate.inverse" />
 
-`YGate.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/y.py "view source code")
+`YGate.inverse()`
 
 Return inverted Y gate ($Y{\dagger} = Y$)
 
@@ -307,7 +307,7 @@ Containing the definition.
 
 <span id="qiskit.circuit.library.YGate.to_matrix" />
 
-`YGate.to_matrix()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/y.py "view source code")
+`YGate.to_matrix()`
 
 Return a numpy.array for the Y gate.
 

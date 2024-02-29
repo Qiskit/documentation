@@ -155,7 +155,7 @@ Occupied time slots by this instruction.
 
 <span id="qiskit.pulse.instructions.Instruction.append" />
 
-`Instruction.append(schedule, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/instructions/instruction.py "view source code")
+`Instruction.append(schedule, name=None)`
 
 Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`.
 
@@ -172,7 +172,7 @@ Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `s
 
 <span id="qiskit.pulse.instructions.Instruction.ch_duration" />
 
-`Instruction.ch_duration(*channels)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/instructions/instruction.py "view source code")
+`Instruction.ch_duration(*channels)`
 
 Return duration of the supplied channels in this Instruction.
 
@@ -188,7 +188,7 @@ Return duration of the supplied channels in this Instruction.
 
 <span id="qiskit.pulse.instructions.Instruction.ch_start_time" />
 
-`Instruction.ch_start_time(*channels)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/instructions/instruction.py "view source code")
+`Instruction.ch_start_time(*channels)`
 
 Return minimum start time for supplied channels.
 
@@ -204,7 +204,7 @@ Return minimum start time for supplied channels.
 
 <span id="qiskit.pulse.instructions.Instruction.ch_stop_time" />
 
-`Instruction.ch_stop_time(*channels)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/instructions/instruction.py "view source code")
+`Instruction.ch_stop_time(*channels)`
 
 Return maximum start time for supplied channels.
 
@@ -220,7 +220,7 @@ Return maximum start time for supplied channels.
 
 <span id="qiskit.pulse.instructions.Instruction.draw" />
 
-`Instruction.draw(dt=1, style=None, filename=None, interp_method=None, scale=1, channels_to_plot=None, plot_all=False, plot_range=None, interactive=False, table=True, label=False, framechange=True, scaling=None, channels=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/instructions/instruction.py "view source code")
+`Instruction.draw(dt=1, style=None, filename=None, interp_method=None, scale=1, channels_to_plot=None, plot_all=False, plot_range=None, interactive=False, table=True, label=False, framechange=True, scaling=None, channels=None)`
 
 Plot the instruction.
 
@@ -253,7 +253,7 @@ matplotlib.figure
 
 <span id="qiskit.pulse.instructions.Instruction.flatten" />
 
-`Instruction.flatten()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/instructions/instruction.py "view source code")
+`Instruction.flatten()`
 
 Return itself as already single instruction.
 
@@ -265,7 +265,7 @@ Return itself as already single instruction.
 
 <span id="qiskit.pulse.instructions.Instruction.insert" />
 
-`Instruction.insert(start_time, schedule, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/instructions/instruction.py "view source code")
+`Instruction.insert(start_time, schedule, name=None)`
 
 Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted within `self` at `start_time`.
 
@@ -283,7 +283,7 @@ Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `s
 
 <span id="qiskit.pulse.instructions.Instruction.shift" />
 
-`Instruction.shift(time, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/instructions/instruction.py "view source code")
+`Instruction.shift(time, name=None)`
 
 Return a new schedule shifted forward by time.
 
@@ -300,7 +300,7 @@ Return a new schedule shifted forward by time.
 
 <span id="qiskit.pulse.instructions.Instruction.union" />
 
-`Instruction.union(*schedules, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/instructions/instruction.py "view source code")
+`Instruction.union(*schedules, name=None)`
 
 Return a new schedule which is the union of self and schedule.
 

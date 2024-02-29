@@ -80,7 +80,7 @@ boolean
 
 <span id="qiskit.aqua.components.variational_forms.VariationalForm.construct_circuit" />
 
-`abstract VariationalForm.construct_circuit(parameters, q=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/variational_forms/variational_form.py "view source code")
+`abstract VariationalForm.construct_circuit(parameters, q=None)`
 
 Construct the variational form, given its parameters.
 
@@ -101,7 +101,7 @@ A quantum circuit.
 
 <span id="qiskit.aqua.components.variational_forms.VariationalForm.get_entangler_map" />
 
-`static VariationalForm.get_entangler_map(map_type, num_qubits, offset=0)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/variational_forms/variational_form.py "view source code")
+`static VariationalForm.get_entangler_map(map_type, num_qubits, offset=0)`
 
 returns entangler map
 
@@ -109,7 +109,7 @@ returns entangler map
 
 <span id="qiskit.aqua.components.variational_forms.VariationalForm.validate_entangler_map" />
 
-`static VariationalForm.validate_entangler_map(entangler_map, num_qubits)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/variational_forms/variational_form.py "view source code")
+`static VariationalForm.validate_entangler_map(entangler_map, num_qubits)`
 
 validate entangler map
 

@@ -248,7 +248,7 @@ updated if it was provided
 
 <span id="qiskit.circuit.library.CHGate.inverse" />
 
-`CHGate.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/h.py "view source code")
+`CHGate.inverse()`
 
 Return inverted CH gate (itself).
 
@@ -340,7 +340,7 @@ Containing the definition.
 
 <span id="qiskit.circuit.library.CHGate.to_matrix" />
 
-`CHGate.to_matrix()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/h.py "view source code")
+`CHGate.to_matrix()`
 
 Return a numpy.array for the CH gate.
 

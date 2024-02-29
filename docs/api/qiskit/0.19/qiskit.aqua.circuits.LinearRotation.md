@@ -47,7 +47,7 @@ Returns the number of target qubits
 
 <span id="qiskit.aqua.circuits.LinearRotation.build" />
 
-`LinearRotation.build(qc, q, q_ancillas=None, params=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/circuits/linear_rotation.py "view source code")
+`LinearRotation.build(qc, q, q_ancillas=None, params=None)`
 
 Adds corresponding sub-circuit to given circuit
 

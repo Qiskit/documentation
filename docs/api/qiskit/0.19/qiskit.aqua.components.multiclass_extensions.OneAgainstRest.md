@@ -22,7 +22,7 @@ For an $n$-class problem, the **one-against-rest** method constructs $n$ SVM cla
 
 <span id="qiskit.aqua.components.multiclass_extensions.OneAgainstRest.predict" />
 
-`OneAgainstRest.predict(x)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/multiclass_extensions/one_against_rest.py "view source code")
+`OneAgainstRest.predict(x)`
 
 Applying multiple estimators for prediction.
 
@@ -54,7 +54,7 @@ Called internally to set `Estimator` and parameters :type estimator\_cls: `Calla
 
 <span id="qiskit.aqua.components.multiclass_extensions.OneAgainstRest.test" />
 
-`OneAgainstRest.test(x, y)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/multiclass_extensions/one_against_rest.py "view source code")
+`OneAgainstRest.test(x, y)`
 
 Testing multiple estimators each for distinguishing a pair of classes.
 
@@ -75,7 +75,7 @@ float
 
 <span id="qiskit.aqua.components.multiclass_extensions.OneAgainstRest.train" />
 
-`OneAgainstRest.train(x, y)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/multiclass_extensions/one_against_rest.py "view source code")
+`OneAgainstRest.train(x, y)`
 
 Training multiple estimators each for distinguishing a pair of classes.
 

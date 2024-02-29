@@ -20,7 +20,7 @@ Converters take an Operator and return a new Operator, generally isomorphic in s
 
 <span id="qiskit.aqua.operators.converters.ConverterBase.convert" />
 
-`abstract ConverterBase.convert(operator)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/converters/converter_base.py "view source code")
+`abstract ConverterBase.convert(operator)`
 
 Accept the Operator and return the converted Operator
 
