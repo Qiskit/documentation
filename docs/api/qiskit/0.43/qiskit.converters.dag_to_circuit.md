@@ -12,7 +12,7 @@ python_api_name: qiskit.converters.dag_to_circuit
 
 <span id="qiskit.converters.dag_to_circuit" />
 
-`dag_to_circuit(dag, copy_operations=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/converters/dag_to_circuit.py "view source code")
+`dag_to_circuit(dag, copy_operations=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/converters/dag_to_circuit.py "view source code")
 
 Build a `QuantumCircuit` object from a `DAGCircuit`.
 
@@ -29,7 +29,7 @@ the circuit representing the input dag.
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit

@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.IterativeAmplitudeEstimation
 
 <span id="qiskit.algorithms.IterativeAmplitudeEstimation" />
 
-`qiskit.algorithms.IterativeAmplitudeEstimation(epsilon_target, alpha, confint_method='beta', min_ratio=2, quantum_instance=None, sampler=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/amplitude_estimators/iae.py "view source code")
+`qiskit.algorithms.IterativeAmplitudeEstimation(epsilon_target, alpha, confint_method='beta', min_ratio=2, quantum_instance=None, sampler=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/amplitude_estimators/iae.py "view source code")
 
 Bases: [`AmplitudeEstimator`](qiskit.algorithms.AmplitudeEstimator "qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimator")
 
@@ -20,7 +20,7 @@ This class implements the Iterative Quantum Amplitude Estimation (IQAE) algorith
 
 It differs from the original QAE algorithm proposed by Brassard \[2] in that it does not rely on Quantum Phase Estimation, but is only based on Grover’s algorithm. IQAE iteratively applies carefully selected Grover iterations to find an estimate for the target amplitude.
 
-## References
+**References**
 
 **\[1]: Grinko, D., Gacon, J., Zoufal, C., & Woerner, S. (2019).**
 

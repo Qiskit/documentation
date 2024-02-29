@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CCXGate
 
 <span id="qiskit.circuit.library.CCXGate" />
 
-`CCXGate(label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/x.py "view source code")
+`CCXGate(label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 CCX gate, also known as Toffoli gate.
 
@@ -207,7 +207,7 @@ Add classical condition on register classical and value val.
 
 <span id="qiskit.circuit.library.CCXGate.control" />
 
-`CCXGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/x.py "view source code")
+`CCXGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 Controlled version of this gate.
 
@@ -251,7 +251,7 @@ updated if it was provided
 
 <span id="qiskit.circuit.library.CCXGate.inverse" />
 
-`CCXGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/x.py "view source code")
+`CCXGate.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 Return an inverted CCX gate (also a CCX).
 
@@ -343,7 +343,7 @@ Containing the definition.
 
 <span id="qiskit.circuit.library.CCXGate.to_matrix" />
 
-`CCXGate.to_matrix()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/x.py "view source code")
+`CCXGate.to_matrix()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 Return a numpy.array for the CCX gate.
 

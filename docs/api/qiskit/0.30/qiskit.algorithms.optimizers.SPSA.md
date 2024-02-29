@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.SPSA
 
 <span id="qiskit.algorithms.optimizers.SPSA" />
 
-`SPSA(maxiter=100, blocking=False, allowed_increase=None, trust_region=False, learning_rate=None, perturbation=None, last_avg=1, resamplings=1, perturbation_dims=None, second_order=False, regularization=None, hessian_delay=0, lse_solver=None, initial_hessian=None, callback=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/spsa.py "view source code")
+`SPSA(maxiter=100, blocking=False, allowed_increase=None, trust_region=False, learning_rate=None, perturbation=None, last_avg=1, resamplings=1, perturbation_dims=None, second_order=False, regularization=None, hessian_delay=0, lse_solver=None, initial_hessian=None, callback=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/spsa.py "view source code")
 
 Bases: `qiskit.algorithms.optimizers.optimizer.Optimizer`
 
@@ -36,7 +36,7 @@ The optimization process can includes a calibration phase if neither the `learni
   This component has some function that is normally random. If you want to reproduce behavior then you should set the random number generator seed in the algorithm\_globals (`qiskit.utils.algorithm_globals.random_seed = seed`).
 </Admonition>
 
-## Examples
+**Examples**
 
 This short example runs SPSA for the ground state calculation of the `Z ^ Z` observable where the ansatz is a `PauliTwoDesign` circuit.
 
@@ -65,7 +65,7 @@ two_spsa = SPSA(maxiter=300, second_order=True)
 result = two_spsa.optimize(ansatz.num_parameters, loss, initial_point=initial_point)
 ```
 
-## References
+**References**
 
 \[1]: J. C. Spall (1998). An Overview of the Simultaneous Perturbation Method for Efficient Optimization, Johns Hopkins APL Technical Digest, 19(4), 482–492. [Online at jhuapl.edu.](https://www.jhuapl.edu/SPSA/PDF-SPSA/Spall_An_Overview.PDF)
 
@@ -101,7 +101,7 @@ result = two_spsa.optimize(ansatz.num_parameters, loss, initial_point=initial_po
 
 <span id="qiskit.algorithms.optimizers.SPSA.calibrate" />
 
-`static SPSA.calibrate(loss, initial_point, c=0.2, stability_constant=0, target_magnitude=None, alpha=0.602, gamma=0.101, modelspace=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/spsa.py "view source code")
+`static SPSA.calibrate(loss, initial_point, c=0.2, stability_constant=0, target_magnitude=None, alpha=0.602, gamma=0.101, modelspace=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/spsa.py "view source code")
 
 Calibrate SPSA parameters with a powerseries as learning rate and perturbation coeffs.
 
@@ -136,7 +136,7 @@ tuple(generator, generator)
 
 <span id="qiskit.algorithms.optimizers.SPSA.estimate_stddev" />
 
-`static SPSA.estimate_stddev(loss, initial_point, avg=25)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/spsa.py "view source code")
+`static SPSA.estimate_stddev(loss, initial_point, avg=25)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/spsa.py "view source code")
 
 Estimate the standard deviation of the loss function.
 
@@ -148,7 +148,7 @@ Estimate the standard deviation of the loss function.
 
 <span id="qiskit.algorithms.optimizers.SPSA.get_support_level" />
 
-`SPSA.get_support_level()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/spsa.py "view source code")
+`SPSA.get_support_level()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/spsa.py "view source code")
 
 Get the support level dictionary.
 
@@ -179,7 +179,7 @@ grad
 
 <span id="qiskit.algorithms.optimizers.SPSA.optimize" />
 
-`SPSA.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/spsa.py "view source code")
+`SPSA.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/spsa.py "view source code")
 
 Perform optimization.
 

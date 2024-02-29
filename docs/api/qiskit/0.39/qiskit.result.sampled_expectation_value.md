@@ -10,7 +10,7 @@ python_api_name: qiskit.result.sampled_expectation_value
 
 <span id="qiskit.result.sampled_expectation_value" />
 
-`sampled_expectation_value(dist, oper)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/result/sampled_expval.py "view source code")
+`sampled_expectation_value(dist, oper)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/result/sampled_expval.py "view source code")
 
 Computes expectation value from a sampled distribution
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.utils.get_entangler_map
 
 <span id="qiskit.utils.get_entangler_map" />
 
-`get_entangler_map(map_type, num_qubits, offset=0)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/utils/entangler_map.py "view source code")
+`get_entangler_map(map_type, num_qubits, offset=0)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/utils/entangler_map.py "view source code")
 
 Utility method to get an entangler map among qubits.
 

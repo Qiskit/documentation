@@ -10,13 +10,13 @@ python_api_name: qiskit.extensions.UnitaryGate
 
 <span id="qiskit.extensions.UnitaryGate" />
 
-`qiskit.extensions.UnitaryGate(data, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/extensions/unitary.py "view source code")
+`qiskit.extensions.UnitaryGate(data, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/extensions/unitary.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
 Class quantum gates specified by a unitary matrix.
 
-## Example
+**Example**
 
 We can create a unitary gate from a unitary matrix then add it to a quantum circuit. The matrix can also be directly applied to the quantum circuit, see [`QuantumCircuit.unitary()`](qiskit.circuit.QuantumCircuit#unitary "qiskit.circuit.QuantumCircuit.unitary").
 

@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeCasablanca
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeCasablanca" />
 
-`FakeCasablanca`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.18/qiskit_ibm_runtime/fake_provider/backends/casablanca/fake_casablanca.py "view source code")
+`FakeCasablanca` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/casablanca/fake_casablanca.py "view source code")
 
 A fake 7 qubit backend.
 

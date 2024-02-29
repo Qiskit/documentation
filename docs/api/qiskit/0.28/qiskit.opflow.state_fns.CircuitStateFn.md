@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.state_fns.CircuitStateFn
 
 <span id="qiskit.opflow.state_fns.CircuitStateFn" />
 
-`CircuitStateFn(primitive=None, coeff=1.0, is_measurement=False, from_operator=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/state_fns/circuit_state_fn.py "view source code")
+`CircuitStateFn(primitive=None, coeff=1.0, is_measurement=False, from_operator=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/state_fns/circuit_state_fn.py "view source code")
 
 A class for state functions and measurements which are defined by the action of a QuantumCircuit starting from |0⟩, and stored using Terra’s `QuantumCircuit` class.
 

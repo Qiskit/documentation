@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation
 
 <span id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation" />
 
-`MaximumLikelihoodAmplitudeEstimation(num_oracle_circuits, state_preparation=None, grover_operator=None, objective_qubits=None, post_processing=None, a_factory=None, q_factory=None, i_objective=None, likelihood_evals=None, quantum_instance=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_estimators/mlae.py "view source code")
+`MaximumLikelihoodAmplitudeEstimation(num_oracle_circuits, state_preparation=None, grover_operator=None, objective_qubits=None, post_processing=None, a_factory=None, q_factory=None, i_objective=None, likelihood_evals=None, quantum_instance=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_estimators/mlae.py "view source code")
 
 Bases: `qiskit.aqua.algorithms.amplitude_estimators.ae_algorithm.AmplitudeEstimationAlgorithm`
 
@@ -18,7 +18,7 @@ The Maximum Likelihood Amplitude Estimation algorithm.
 
 This class implements the quantum amplitude estimation (QAE) algorithm without phase estimation, as introduced in \[1]. In comparison to the original QAE algorithm \[2], this implementation relies solely on different powers of the Grover operator and does not require additional evaluation qubits. Finally, the estimate is determined via a maximum likelihood estimation, which is why this class in named `MaximumLikelihoodAmplitudeEstimation`.
 
-## References
+**References**
 
 **\[1]: Suzuki, Y., Uno, S., Raymond, R., Tanaka, T., Onodera, T., & Yamamoto, N. (2019).**
 
@@ -47,7 +47,7 @@ Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://
 
 <span id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.confidence_interval" />
 
-`MaximumLikelihoodAmplitudeEstimation.confidence_interval(alpha, kind='fisher')`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_estimators/mlae.py "view source code")
+`MaximumLikelihoodAmplitudeEstimation.confidence_interval(alpha, kind='fisher')` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_estimators/mlae.py "view source code")
 
 Compute the alpha confidence interval using the method kind.
 
@@ -75,7 +75,7 @@ The specified confidence interval.
 
 <span id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.construct_circuits" />
 
-`MaximumLikelihoodAmplitudeEstimation.construct_circuits(measurement=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_estimators/mlae.py "view source code")
+`MaximumLikelihoodAmplitudeEstimation.construct_circuits(measurement=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_estimators/mlae.py "view source code")
 
 Construct the Amplitude Estimation w/o QPE quantum circuits.
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.optimization.algorithms.SlsqpOptimizationResult
 
 <span id="qiskit.optimization.algorithms.SlsqpOptimizationResult" />
 
-`SlsqpOptimizationResult(x, fval, variables, status, fx=None, its=None, imode=None, smode=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/algorithms/slsqp_optimizer.py "view source code")
+`SlsqpOptimizationResult(x, fval, variables, status, fx=None, its=None, imode=None, smode=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/algorithms/slsqp_optimizer.py "view source code")
 
 SLSQP optimization result, defines additional properties that may be returned by the optimizer.
 

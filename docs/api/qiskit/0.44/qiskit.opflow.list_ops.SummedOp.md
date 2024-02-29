@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.list_ops.SummedOp
 
 <span id="qiskit.opflow.list_ops.SummedOp" />
 
-`qiskit.opflow.list_ops.SummedOp(oplist, coeff=1.0, abelian=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/opflow/list_ops/summed_op.py "view source code")
+`qiskit.opflow.list_ops.SummedOp(oplist, coeff=1.0, abelian=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/opflow/list_ops/summed_op.py "view source code")
 
 Bases: [`ListOp`](qiskit.opflow.list_ops.ListOp "qiskit.opflow.list_ops.list_op.ListOp")
 
@@ -178,7 +178,7 @@ True, if other and self are equal, otherwise False.
 
 [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
 
-## Examples
+**Examples**
 
 ```python
 >>> from qiskit.opflow import X, Z

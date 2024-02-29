@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.components.neural_networks.QuantumGenerator
 
 <span id="qiskit.aqua.components.neural_networks.QuantumGenerator" />
 
-`QuantumGenerator(bounds, num_qubits, generator_circuit=None, init_params=None, optimizer=None, snapshot_dir=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/neural_networks/quantum_generator.py "view source code")
+`QuantumGenerator(bounds, num_qubits, generator_circuit=None, init_params=None, optimizer=None, snapshot_dir=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/neural_networks/quantum_generator.py "view source code")
 
 Quantum Generator.
 

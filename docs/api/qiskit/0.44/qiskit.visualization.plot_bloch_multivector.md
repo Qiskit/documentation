@@ -12,7 +12,7 @@ python_api_name: qiskit.visualization.plot_bloch_multivector
 
 <span id="qiskit.visualization.plot_bloch_multivector" />
 
-`qiskit.visualization.plot_bloch_multivector(state, title='', figsize=None, *, rho=None, reverse_bits=False, filename=None, font_size=None, title_font_size=None, title_pad=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/visualization/state_visualization.py "view source code")
+`qiskit.visualization.plot_bloch_multivector(state, title='', figsize=None, *, rho=None, reverse_bits=False, filename=None, font_size=None, title_font_size=None, title_pad=1)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/visualization/state_visualization.py "view source code")
 
 Plot a Bloch sphere for each qubit.
 
@@ -45,7 +45,7 @@ A matplotlib figure instance.
 *   [**MissingOptionalLibraryError**](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") – Requires matplotlib.
 *   [**VisualizationError**](visualization#qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – if input is not a valid N-qubit state.
 
-## Examples
+**Examples**
 
 ```python
 from qiskit import QuantumCircuit

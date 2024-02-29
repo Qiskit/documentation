@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.expectations.ExpectationBase
 
 <span id="qiskit.opflow.expectations.ExpectationBase" />
 
-`ExpectationBase`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/expectations/expectation_base.py "view source code")
+`ExpectationBase` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/expectations/expectation_base.py "view source code")
 
 A base for Expectation value converters. Expectations are converters which enable the computation of the expectation value of an Observable with respect to some state function. They traverse an Operator tree, replacing OperatorStateFn measurements with equivalent measurements which are more amenable to computation on quantum or classical hardware. For example, if one would like to measure the expectation value of an Operator `o` expressed as a sum of Paulis with respect to some state function, but only has access to diagonal measurements on Quantum hardware, we can create a measurement \~StateFn(o), use a `PauliExpectation` to convert it to a diagonal measurement and circuit pre-rotations to a append to the state, and sample this circuit on Quantum hardware with a CircuitSampler. All in all, this would be: `my_sampler.convert(my_expect.convert(~StateFn(o)) @ my_state).eval()`.
 

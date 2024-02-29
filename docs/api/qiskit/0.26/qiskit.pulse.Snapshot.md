@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.Snapshot
 
 <span id="qiskit.pulse.Snapshot" />
 
-`Snapshot(label, snapshot_type='statevector', name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/instructions/snapshot.py "view source code")
+`Snapshot(label, snapshot_type='statevector', name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/instructions/snapshot.py "view source code")
 
 An instruction targeted for simulators, to capture a moment in the simulation.
 
@@ -62,20 +62,20 @@ Create new snapshot.
 
 ## Attributes
 
-|                                                                                            |                                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`channel`](#qiskit.pulse.Snapshot.channel "qiskit.pulse.Snapshot.channel")                | Return the [`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel") that this instruction is scheduled on; trivially, a `SnapshotChannel`. |
-| [`channels`](#qiskit.pulse.Snapshot.channels "qiskit.pulse.Snapshot.channels")             | Returns the channels that this schedule uses.                                                                                                                                      |
-| [`duration`](#qiskit.pulse.Snapshot.duration "qiskit.pulse.Snapshot.duration")             | Duration of this instruction.                                                                                                                                                      |
-| [`id`](#qiskit.pulse.Snapshot.id "qiskit.pulse.Snapshot.id")                               | Unique identifier for this instruction.                                                                                                                                            |
-| [`instructions`](#qiskit.pulse.Snapshot.instructions "qiskit.pulse.Snapshot.instructions") | Iterable for getting instructions from Schedule tree.                                                                                                                              |
-| [`label`](#qiskit.pulse.Snapshot.label "qiskit.pulse.Snapshot.label")                      | Label of snapshot.                                                                                                                                                                 |
-| [`name`](#qiskit.pulse.Snapshot.name "qiskit.pulse.Snapshot.name")                         | Name of this instruction.                                                                                                                                                          |
-| [`operands`](#qiskit.pulse.Snapshot.operands "qiskit.pulse.Snapshot.operands")             | Return instruction operands.                                                                                                                                                       |
-| [`parameters`](#qiskit.pulse.Snapshot.parameters "qiskit.pulse.Snapshot.parameters")       | Parameters which determine the instruction behavior.                                                                                                                               |
-| [`start_time`](#qiskit.pulse.Snapshot.start_time "qiskit.pulse.Snapshot.start_time")       | Relative begin time of this instruction.                                                                                                                                           |
-| [`stop_time`](#qiskit.pulse.Snapshot.stop_time "qiskit.pulse.Snapshot.stop_time")          | Relative end time of this instruction.                                                                                                                                             |
-| [`type`](#qiskit.pulse.Snapshot.type "qiskit.pulse.Snapshot.type")                         | Type of snapshot.                                                                                                                                                                  |
+|                                                                                            |                                                                                                                                                              |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [`channel`](#qiskit.pulse.Snapshot.channel "qiskit.pulse.Snapshot.channel")                | Return the [`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel") that this instruction is scheduled on; trivially, a `SnapshotChannel`. |
+| [`channels`](#qiskit.pulse.Snapshot.channels "qiskit.pulse.Snapshot.channels")             | Returns the channels that this schedule uses.                                                                                                                |
+| [`duration`](#qiskit.pulse.Snapshot.duration "qiskit.pulse.Snapshot.duration")             | Duration of this instruction.                                                                                                                                |
+| [`id`](#qiskit.pulse.Snapshot.id "qiskit.pulse.Snapshot.id")                               | Unique identifier for this instruction.                                                                                                                      |
+| [`instructions`](#qiskit.pulse.Snapshot.instructions "qiskit.pulse.Snapshot.instructions") | Iterable for getting instructions from Schedule tree.                                                                                                        |
+| [`label`](#qiskit.pulse.Snapshot.label "qiskit.pulse.Snapshot.label")                      | Label of snapshot.                                                                                                                                           |
+| [`name`](#qiskit.pulse.Snapshot.name "qiskit.pulse.Snapshot.name")                         | Name of this instruction.                                                                                                                                    |
+| [`operands`](#qiskit.pulse.Snapshot.operands "qiskit.pulse.Snapshot.operands")             | Return instruction operands.                                                                                                                                 |
+| [`parameters`](#qiskit.pulse.Snapshot.parameters "qiskit.pulse.Snapshot.parameters")       | Parameters which determine the instruction behavior.                                                                                                         |
+| [`start_time`](#qiskit.pulse.Snapshot.start_time "qiskit.pulse.Snapshot.start_time")       | Relative begin time of this instruction.                                                                                                                     |
+| [`stop_time`](#qiskit.pulse.Snapshot.stop_time "qiskit.pulse.Snapshot.stop_time")          | Relative end time of this instruction.                                                                                                                       |
+| [`type`](#qiskit.pulse.Snapshot.type "qiskit.pulse.Snapshot.type")                         | Type of snapshot.                                                                                                                                            |
 
 ### append
 
@@ -172,11 +172,11 @@ Return maximum start time for supplied channels.
 
 `property channel`
 
-Return the [`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel") that this instruction is scheduled on; trivially, a `SnapshotChannel`.
+Return the [`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel") that this instruction is scheduled on; trivially, a `SnapshotChannel`.
 
 **Return type**
 
-[`SnapshotChannel`](qiskit.pulse.channels#qiskit.pulse.channels.SnapshotChannel "qiskit.pulse.channels.SnapshotChannel")
+[`SnapshotChannel`](qiskit.pulse.channels#snapshotchannel "qiskit.pulse.channels.SnapshotChannel")
 
 ### channels
 
@@ -188,7 +188,7 @@ Returns the channels that this schedule uses.
 
 **Return type**
 
-`Tuple`\[[`SnapshotChannel`](qiskit.pulse.channels#qiskit.pulse.channels.SnapshotChannel "qiskit.pulse.channels.SnapshotChannel")]
+`Tuple`\[[`SnapshotChannel`](qiskit.pulse.channels#snapshotchannel "qiskit.pulse.channels.SnapshotChannel")]
 
 ### draw
 
@@ -211,7 +211,7 @@ Plot the instruction.
 *   **table** (`bool`) – Draw event table for supported instructions
 *   **label** (`bool`) – Label individual instructions
 *   **framechange** (`bool`) – Add framechange indicators
-*   **channels** (`Optional`\[`List`\[[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]]) – A list of channel names to plot
+*   **channels** (`Optional`\[`List`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")]]) – A list of channel names to plot
 
 **Returns**
 

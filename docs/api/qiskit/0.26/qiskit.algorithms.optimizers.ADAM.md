@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.ADAM
 
 <span id="qiskit.algorithms.optimizers.ADAM" />
 
-`ADAM(maxiter=10000, tol=1e-06, lr=0.001, beta_1=0.9, beta_2=0.99, noise_factor=1e-08, eps=1e-10, amsgrad=False, snapshot_dir=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/optimizers/adam_amsgrad.py "view source code")
+`ADAM(maxiter=10000, tol=1e-06, lr=0.001, beta_1=0.9, beta_2=0.99, noise_factor=1e-08, eps=1e-10, amsgrad=False, snapshot_dir=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/optimizers/adam_amsgrad.py "view source code")
 
 Adam and AMSGRAD optimizers.
 
@@ -18,7 +18,7 @@ Adam \[1] is a gradient-based optimization algorithm that is relies on adaptive 
 
 AMSGRAD \[2] (a variant of Adam) uses a ‘long-term memory’ of past gradients and, thereby, improves convergence properties.
 
-## References
+**References**
 
 **\[1]: Kingma, Diederik & Ba, Jimmy (2014), Adam: A Method for Stochastic Optimization.**
 

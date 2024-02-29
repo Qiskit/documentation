@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.converters.AbelianGrouper
 
 <span id="qiskit.opflow.converters.AbelianGrouper" />
 
-`AbelianGrouper(traverse=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/converters/abelian_grouper.py "view source code")
+`AbelianGrouper(traverse=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/converters/abelian_grouper.py "view source code")
 
 The AbelianGrouper converts SummedOps into a sum of Abelian sums.
 

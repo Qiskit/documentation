@@ -12,11 +12,11 @@ python_api_name: qiskit.optimization.converters.QuadraticProgramToQubo
 
 <span id="qiskit.optimization.converters.QuadraticProgramToQubo" />
 
-`QuadraticProgramToQubo(penalty=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/converters/quadratic_program_to_qubo.py "view source code")
+`QuadraticProgramToQubo(penalty=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/converters/quadratic_program_to_qubo.py "view source code")
 
 Convert a given optimization problem to a new problem that is a QUBO.
 
-## Examples
+**Examples**
 
 ```python
 >>> from qiskit.optimization.problems import QuadraticProgram

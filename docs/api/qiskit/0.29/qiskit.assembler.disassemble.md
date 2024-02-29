@@ -10,7 +10,7 @@ python_api_name: qiskit.assembler.disassemble
 
 <span id="qiskit.assembler.disassemble" />
 
-`disassemble(qobj)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/assembler/disassemble.py "view source code")
+`disassemble(qobj)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/assembler/disassemble.py "view source code")
 
 Disassemble a qobj and return the circuits or pulse schedules, run\_config, and user header.
 

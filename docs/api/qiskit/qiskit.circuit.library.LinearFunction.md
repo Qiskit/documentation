@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.LinearFunction
 
 <span id="qiskit.circuit.library.LinearFunction" />
 
-`qiskit.circuit.library.LinearFunction(linear, validate_input=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/generalized_gates/linear_function.py "view source code")
+`qiskit.circuit.library.LinearFunction(linear, validate_input=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/generalized_gates/linear_function.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -18,7 +18,7 @@ A linear reversible circuit on n qubits.
 
 Internally, a linear function acting on n qubits is represented as a n x n matrix of 0s and 1s in numpy array format.
 
-A linear function can be synthesized into CX and SWAP gates using the Patel–Markov–Hayes algorithm, as implemented in `cnot_synth()` based on reference \[1].
+A linear function can be synthesized into CX and SWAP gates using the Patel–Markov–Hayes algorithm, as implemented in [`synth_cnot_count_full_pmh()`](synthesis#qiskit.synthesis.synth_cnot_count_full_pmh "qiskit.synthesis.synth_cnot_count_full_pmh") based on reference \[1].
 
 For efficiency, the internal n x n matrix is stored in the format expected by cnot\_synth, which is the big-endian (and not the little-endian) bit-ordering convention.
 

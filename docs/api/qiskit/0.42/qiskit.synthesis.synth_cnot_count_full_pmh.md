@@ -10,7 +10,7 @@ python_api_name: qiskit.synthesis.synth_cnot_count_full_pmh
 
 <span id="qiskit.synthesis.synth_cnot_count_full_pmh" />
 
-`synth_cnot_count_full_pmh(state, section_size=2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/synthesis/linear/graysynth.py "view source code")
+`synth_cnot_count_full_pmh(state, section_size=2)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/synthesis/linear/graysynth.py "view source code")
 
 Synthesize linear reversible circuits for all-to-all architecture using Patel, Markov and Hayes method.
 
@@ -33,7 +33,7 @@ a CX-only circuit implementing the linear transformation.
 
 **QiskitError** – when variable “state” isn’t of type numpy.ndarray
 
-## References
+**References**
 
 1.  Patel, Ketan N., Igor L. Markov, and John P. Hayes, *Optimal synthesis of linear reversible circuits*, Quantum Information & Computation 8.3 (2008): 282-294. [arXiv:quant-ph/0302002 \[quant-ph\]](https://arxiv.org/abs/quant-ph/0302002)
 

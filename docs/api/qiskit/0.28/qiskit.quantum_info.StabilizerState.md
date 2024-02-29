@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.StabilizerState
 
 <span id="qiskit.quantum_info.StabilizerState" />
 
-`StabilizerState(data, validate=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/states/stabilizerstate.py "view source code")
+`StabilizerState(data, validate=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/states/stabilizerstate.py "view source code")
 
 StabilizerState class. Stabilizer simulator using the convention from reference \[1]. Based on the internal class [`Clifford`](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford").
 
@@ -40,7 +40,7 @@ StabilizerState(StabilizerTable: ['+XX', '+ZZ'])
 1
 ```
 
-## References
+**References**
 
 1.  S. Aaronson, D. Gottesman, *Improved Simulation of Stabilizer Circuits*, Phys. Rev. A 70, 052328 (2004). [arXiv:quant-ph/0406196](https://arxiv.org/abs/quant-ph/0406196)
 

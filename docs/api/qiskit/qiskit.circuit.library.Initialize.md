@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.Initialize
 
 <span id="qiskit.circuit.library.Initialize" />
 
-`qiskit.circuit.library.Initialize(params, num_qubits=None, normalize=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/data_preparation/initializer.py "view source code")
+`qiskit.circuit.library.Initialize(params, num_qubits=None, normalize=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/data_preparation/initializer.py "view source code")
 
 Bases: [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 

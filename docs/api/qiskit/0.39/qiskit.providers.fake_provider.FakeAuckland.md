@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeAuckland
 
 <span id="qiskit.providers.fake_provider.FakeAuckland" />
 
-`FakeAuckland`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/fake_provider/backends/auckland/fake_auckland.py "view source code")
+`FakeAuckland` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/fake_provider/backends/auckland/fake_auckland.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_backend.FakeBackendV2`
 

@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.Session
 
 <span id="qiskit_ibm_runtime.Session" />
 
-`Session(service=None, backend=None, max_time=None)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.18/qiskit_ibm_runtime/session.py "view source code")
+`Session(service=None, backend=None, max_time=None)` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/session.py "view source code")
 
 Class for creating a flexible Qiskit Runtime session.
 
@@ -21,14 +21,22 @@ You can open a Qiskit Runtime session using this `Session` class and submit jobs
 For example:
 
 ```python
-from qiskit.test.reference_circuits import ReferenceCircuits
+from qiskit.circuit import QuantumCircuit, QuantumRegister, ClassicalRegister
 from qiskit_ibm_runtime import Sampler, Session, Options
+
+# Bell Circuit
+qr = QuantumRegister(2, name="qr")
+cr = ClassicalRegister(2, name="cr")
+qc = QuantumCircuit(qr, cr, name="bell")
+qc.h(qr[0])
+qc.cx(qr[0], qr[1])
+qc.measure(qr, cr)
 
 options = Options(optimization_level=3)
 
 with Session(backend="ibmq_qasm_simulator") as session:
     sampler = Sampler(session=session, options=options)
-    job = sampler.run(ReferenceCircuits.bell())
+    job = sampler.run(qc)
     print(f"Sampler job ID: {job.job_id()}")
     print(f"Sampler job result: {job.result()}")
 ```
@@ -39,7 +47,7 @@ Session constructor.
 
 *   **service** (`Optional`\[[`QiskitRuntimeService`](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.qiskit_runtime_service.QiskitRuntimeService")]) – Optional instance of the `QiskitRuntimeService` class. If `None`, the service associated with the backend, if known, is used. Otherwise `QiskitRuntimeService()` is used to initialize your default saved account.
 *   **backend** (`Union`\[`str`, [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend"), `None`]) – Optional instance of [`qiskit_ibm_runtime.IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.IBMBackend") class or string name of backend. An instance of `qiskit_ibm_provider.IBMBackend` will not work. If not specified, a backend will be selected automatically (IBM Cloud channel only).
-*   **max\_time** (`Union`\[`int`, `str`, `None`]) – (EXPERIMENTAL setting, can break between releases without warning) Maximum amount of time, a runtime session can be open before being forcibly closed. Can be specified as seconds (int) or a string like “2h 30m 40s”. This value must be less than the [system imposed maximum](https://docs.quantum.ibm.com/run/max-execution-time).
+*   **max\_time** (`Union`\[`int`, `str`, `None`]) – (EXPERIMENTAL setting, can break between releases without warning) Maximum amount of time, a runtime session can be open before being forcibly closed. Can be specified as seconds (int) or a string like “2h 30m 40s”. This value must be less than the [system imposed maximum](/run/max-execution-time).
 
 **Raises**
 
@@ -69,11 +77,11 @@ Return the session ID.
 
 **Return type**
 
-`str`
+`Optional`\[`str`]
 
 **Returns**
 
-Session ID. None until a job is submitted.
+Session ID. None if the backend is a simulator.
 
 ## Methods
 

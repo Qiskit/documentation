@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.QFT
 
 <span id="qiskit.circuit.library.QFT" />
 
-`qiskit.circuit.library.QFT(num_qubits=None, approximation_degree=0, do_swaps=True, inverse=False, insert_barriers=False, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/basis_change/qft.py "view source code")
+`qiskit.circuit.library.QFT(num_qubits=None, approximation_degree=0, do_swaps=True, inverse=False, insert_barriers=False, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/basis_change/qft.py "view source code")
 
 Bases: `BlueprintCircuit`
 
@@ -95,23 +95,11 @@ Whether the final swaps of the QFT are applied or not.
 
 True, if the final swaps are applied, False if not.
 
-<span id="qiskit.circuit.library.QFT.extension_lib" />
-
-### extension\_lib
-
-`= 'include "qelib1.inc";'`
-
 <span id="qiskit.circuit.library.QFT.global_phase" />
 
 ### global\_phase
 
 Return the global phase of the current circuit scope in radians.
-
-<span id="qiskit.circuit.library.QFT.header" />
-
-### header
-
-`= 'OPENQASM 2.0;'`
 
 <span id="qiskit.circuit.library.QFT.insert_barriers" />
 
@@ -127,7 +115,7 @@ True, if barriers are inserted, False if not.
 
 ### instances
 
-`= 226`
+`= 164`
 
 <span id="qiskit.circuit.library.QFT.layout" />
 
@@ -219,9 +207,13 @@ Returns a list of quantum bits in the order that the registers were added.
 
 <span id="qiskit.circuit.library.QFT.inverse" />
 
-`inverse()`
+`inverse(annotated=False)`
 
 Invert this circuit.
+
+**Parameters**
+
+**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – indicates whether the inverse gate can be implemented as an annotated gate. The value of this argument is ignored as the inverse of a QFT is an IQFT which is just another instance of [`QFT`](#qiskit.circuit.library.QFT "qiskit.circuit.library.QFT").
 
 **Returns**
 

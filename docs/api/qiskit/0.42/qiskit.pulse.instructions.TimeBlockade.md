@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.instructions.TimeBlockade
 
 <span id="qiskit.pulse.instructions.TimeBlockade" />
 
-`TimeBlockade(duration, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/instructions/directives.py "view source code")
+`TimeBlockade(duration, channel, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/instructions/directives.py "view source code")
 
 Bases: `qiskit.pulse.instructions.directives.Directive`
 
@@ -18,7 +18,7 @@ Pulse `TimeBlockade` directive.
 
 This instruction is intended to be used internally within the pulse builder, to convert [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") into [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock"). Because [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") cannot take an absolute instruction time interval, this directive helps the block representation to find the starting time of an instruction.
 
-## Example
+**Example**
 
 This schedule plays constant pulse at t0 = 120.
 

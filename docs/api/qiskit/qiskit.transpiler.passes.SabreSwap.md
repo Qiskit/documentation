@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.SabreSwap
 
 <span id="qiskit.transpiler.passes.SabreSwap" />
 
-`qiskit.transpiler.passes.SabreSwap(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/routing/sabre_swap.py "view source code")
+`qiskit.transpiler.passes.SabreSwap(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/routing/sabre_swap.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 

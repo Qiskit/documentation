@@ -12,7 +12,7 @@ python_api_name: qiskit.chemistry.algorithms.VQEAdapt
 
 <span id="qiskit.chemistry.algorithms.VQEAdapt" />
 
-`VQEAdapt(operator, var_form_base, optimizer, initial_point=None, excitation_pool=None, threshold=1e-05, delta=1, max_iterations=None, max_evals_grouped=1, aux_operators=None, quantum_instance=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/algorithms/minimum_eigen_solvers/vqe_adapt.py "view source code")
+`VQEAdapt(operator, var_form_base, optimizer, initial_point=None, excitation_pool=None, threshold=1e-05, delta=1, max_iterations=None, max_evals_grouped=1, aux_operators=None, quantum_instance=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/algorithms/minimum_eigen_solvers/vqe_adapt.py "view source code")
 
 DEPRECATED. The Adaptive VQE algorithm.
 

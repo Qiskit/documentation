@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.library.Drag
 
 <span id="qiskit.pulse.library.Drag" />
 
-`qiskit.pulse.library.Drag(duration, amp, sigma, beta, angle=None, name=None, limit_amplitude=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/pulse/library/symbolic_pulses.py "view source code")
+`qiskit.pulse.library.Drag(duration, amp, sigma, beta, angle=0.0, name=None, limit_amplitude=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/pulse/library/symbolic_pulses.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
@@ -40,7 +40,7 @@ Create new pulse instance.
 **Parameters**
 
 *   **duration** – Pulse length in terms of the sampling period dt.
-*   **amp** – The magnitude of the amplitude of the DRAG envelope. Complex amp support is deprecated.
+*   **amp** – The magnitude of the amplitude of the DRAG envelope.
 *   **sigma** – A measure of how wide or narrow the Gaussian peak is; described mathematically in the class docstring.
 *   **beta** – The correction amplitude.
 *   **angle** – The angle of the complex amplitude of the DRAG envelope. Default value 0.

@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.gradients.QFI
 
 <span id="qiskit.opflow.gradients.QFI" />
 
-`QFI(qfi_method='lin_comb_full')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/gradients/qfi.py "view source code")
+`QFI(qfi_method='lin_comb_full')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/gradients/qfi.py "view source code")
 
 Compute the Quantum Fisher Information (QFI).
 

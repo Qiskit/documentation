@@ -12,7 +12,7 @@ python_api_name: qiskit.pulse.library.drag
 
 <span id="qiskit.pulse.library.drag" />
 
-`drag(duration, amp, sigma, beta, name=None, zero_ends=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/library/discrete.py "view source code")
+`drag(duration, amp, sigma, beta, name=None, zero_ends=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/library/discrete.py "view source code")
 
 Generates Y-only correction DRAG [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform") for standard nonlinear oscillator (SNO) \[1].
 
@@ -26,7 +26,7 @@ where $g(x)$ is the function sampled in [`gaussian()`](qiskit.pulse.library.gaus
 
 If `zero_ends == True`, the samples from $g(x)$ are remapped as in [`gaussian()`](qiskit.pulse.library.gaussian "qiskit.pulse.library.gaussian").
 
-## References
+**References**
 
 1.  [*Gambetta, J. M., Motzoi, F., Merkel, S. T. & Wilhelm, F. K. “Analytic control methods for high-fidelity unitary operations in a weakly nonlinear oscillator.” Phys. Rev. A 83, 012308 (2011).*](http://dx.doi.org/10.1103/PhysRevA.83.012308)
 

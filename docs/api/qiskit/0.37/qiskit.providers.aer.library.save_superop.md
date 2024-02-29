@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.library.save_superop
 
 <span id="qiskit.providers.aer.library.save_superop" />
 
-`save_superop(self, label='superop', pershot=False)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/library/save_instructions/save_superop.py "view source code")
+`save_superop(self, label='superop', pershot=False)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/library/save_instructions/save_superop.py "view source code")
 
 Save the current state of the superop simulator.
 

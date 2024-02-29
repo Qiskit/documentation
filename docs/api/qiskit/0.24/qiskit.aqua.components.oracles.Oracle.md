@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.components.oracles.Oracle
 
 <span id="qiskit.aqua.components.oracles.Oracle" />
 
-`Oracle(*args, **kwargs)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/oracles/oracle.py "view source code")
+`Oracle(*args, **kwargs)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/oracles/oracle.py "view source code")
 
 Base class for oracles.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.PiecewiseChebyshev
 
 <span id="qiskit.circuit.library.PiecewiseChebyshev" />
 
-`PiecewiseChebyshev(f_x, degree=None, breakpoints=None, num_state_qubits=None, name='pw_cheb')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/arithmetic/piecewise_chebyshev.py "view source code")
+`PiecewiseChebyshev(f_x, degree=None, breakpoints=None, num_state_qubits=None, name='pw_cheb')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/arithmetic/piecewise_chebyshev.py "view source code")
 
 Bases: `qiskit.circuit.library.blueprintcircuit.BlueprintCircuit`
 
@@ -20,7 +20,7 @@ For a given function $f(x)$ and degree $d$, this class implements a piecewise po
 
 The values of the parameters are calculated according to \[1] and see \[2] for a more detailed explanation of the circuit construction and how it acts on the qubits.
 
-## Examples
+**Examples**
 
 ```python
 import numpy as np
@@ -37,7 +37,7 @@ qc.draw(output='mpl')
 
 ![../\_images/qiskit.circuit.library.PiecewiseChebyshev\_0\_0.png](/images/api/qiskit/0.38/qiskit.circuit.library.PiecewiseChebyshev_0_0.png)
 
-## References
+**References**
 
 **\[1]: Haener, T., Roetteler, M., & Svore, K. M. (2018).**
 

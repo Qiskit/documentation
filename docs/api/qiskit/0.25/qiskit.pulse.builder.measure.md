@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.builder.measure
 
 <span id="qiskit.pulse.builder.measure" />
 
-`measure(qubits, registers=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/builder.py "view source code")
+`measure(qubits, registers=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/builder.py "view source code")
 
 Measure a qubit within the currently active builder context.
 
@@ -53,11 +53,11 @@ assert reg == mem0
 **Parameters**
 
 *   **qubits** (`Union`\[`List`\[`int`], `int`]) – Physical qubit to measure.
-*   **registers** (`Union`\[`List`\[`NewType()`(`StorageLocation`, `Union`\[[`MemorySlot`](qiskit.pulse.channels#qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot"), [`RegisterSlot`](qiskit.pulse.channels#qiskit.pulse.channels.RegisterSlot "qiskit.pulse.channels.RegisterSlot")])], `NewType()`(`StorageLocation`, `Union`\[[`MemorySlot`](qiskit.pulse.channels#qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot"), [`RegisterSlot`](qiskit.pulse.channels#qiskit.pulse.channels.RegisterSlot "qiskit.pulse.channels.RegisterSlot")]), `None`]) – Register to store result in. If not selected the current behavior is to return the `MemorySlot` with the same index as `qubit`. This register will be returned.
+*   **registers** (`Union`\[`List`\[`NewType()`(`StorageLocation`, `Union`\[[`MemorySlot`](qiskit.pulse.channels#memoryslot "qiskit.pulse.channels.MemorySlot"), [`RegisterSlot`](qiskit.pulse.channels#registerslot "qiskit.pulse.channels.RegisterSlot")])], `NewType()`(`StorageLocation`, `Union`\[[`MemorySlot`](qiskit.pulse.channels#memoryslot "qiskit.pulse.channels.MemorySlot"), [`RegisterSlot`](qiskit.pulse.channels#registerslot "qiskit.pulse.channels.RegisterSlot")]), `None`]) – Register to store result in. If not selected the current behavior is to return the `MemorySlot` with the same index as `qubit`. This register will be returned.
 
 **Return type**
 
-`Union`\[`List`\[`NewType()`(`StorageLocation`, `Union`\[[`MemorySlot`](qiskit.pulse.channels#qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot"), [`RegisterSlot`](qiskit.pulse.channels#qiskit.pulse.channels.RegisterSlot "qiskit.pulse.channels.RegisterSlot")])], `NewType()`(`StorageLocation`, `Union`\[[`MemorySlot`](qiskit.pulse.channels#qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot"), [`RegisterSlot`](qiskit.pulse.channels#qiskit.pulse.channels.RegisterSlot "qiskit.pulse.channels.RegisterSlot")])]
+`Union`\[`List`\[`NewType()`(`StorageLocation`, `Union`\[[`MemorySlot`](qiskit.pulse.channels#memoryslot "qiskit.pulse.channels.MemorySlot"), [`RegisterSlot`](qiskit.pulse.channels#registerslot "qiskit.pulse.channels.RegisterSlot")])], `NewType()`(`StorageLocation`, `Union`\[[`MemorySlot`](qiskit.pulse.channels#memoryslot "qiskit.pulse.channels.MemorySlot"), [`RegisterSlot`](qiskit.pulse.channels#registerslot "qiskit.pulse.channels.RegisterSlot")])]
 
 **Returns**
 

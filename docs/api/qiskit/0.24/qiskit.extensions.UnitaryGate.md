@@ -12,7 +12,7 @@ python_api_name: qiskit.extensions.UnitaryGate
 
 <span id="qiskit.extensions.UnitaryGate" />
 
-`UnitaryGate(data, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/extensions/unitary.py "view source code")
+`UnitaryGate(data, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/extensions/unitary.py "view source code")
 
 Class for representing unitary gates
 

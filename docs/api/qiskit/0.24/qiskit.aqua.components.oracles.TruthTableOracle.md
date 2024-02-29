@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.components.oracles.TruthTableOracle
 
 <span id="qiskit.aqua.components.oracles.TruthTableOracle" />
 
-`TruthTableOracle(bitmaps, optimization=False, mct_mode='basic')`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/oracles/truth_table_oracle.py "view source code")
+`TruthTableOracle(bitmaps, optimization=False, mct_mode='basic')` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/oracles/truth_table_oracle.py "view source code")
 
 The Truth Table-based Quantum Oracle.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.verification.calculate_2q_epg
 
 <span id="qiskit.ignis.verification.calculate_2q_epg" />
 
-`calculate_2q_epg(gate_per_cliff, epc_2q, qubit_pair, list_epgs_1q=None, two_qubit_name='cx')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/rb_utils.py "view source code")
+`calculate_2q_epg(gate_per_cliff, epc_2q, qubit_pair, list_epgs_1q=None, two_qubit_name='cx')` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/rb_utils.py "view source code")
 
 Convert error per Clifford (EPC) into error per gate (EPG) of two qubit `cx` gates.
 
@@ -59,7 +59,7 @@ EPG without `list_epgs_1q`: 0.016107, with `list_epgs_1q`: 0.013622
   This function presupposes the basis gate consists of `u1`, `u2`, `u3` and `cx`.
 </Admonition>
 
-## References
+**References**
 
 \[1] D. C. McKay, S. Sheldon, J. A. Smolin, J. M. Chow, and J. M. Gambetta, “Three-Qubit Randomized Benchmarking,” Phys. Rev. Lett., vol. 122, no. 20, 2019 (arxiv:1712.06550).
 

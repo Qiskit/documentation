@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation
 
 <span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation" />
 
-`qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation(evaluation_schedule, minimizer=None, quantum_instance=None, sampler=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/amplitude_estimators/mlae.py "view source code")
+`qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation(evaluation_schedule, minimizer=None, quantum_instance=None, sampler=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/amplitude_estimators/mlae.py "view source code")
 
 Bases: [`AmplitudeEstimator`](qiskit.algorithms.AmplitudeEstimator "qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimator")
 
@@ -18,7 +18,7 @@ The Maximum Likelihood Amplitude Estimation algorithm.
 
 This class implements the quantum amplitude estimation (QAE) algorithm without phase estimation, as introduced in \[1]. In comparison to the original QAE algorithm \[2], this implementation relies solely on different powers of the Grover operator and does not require additional evaluation qubits. Finally, the estimate is determined via a maximum likelihood estimation, which is why this class in named `MaximumLikelihoodAmplitudeEstimation`.
 
-## References
+**References**
 
 **\[1]: Suzuki, Y., Uno, S., Raymond, R., Tanaka, T., Onodera, T., & Yamamoto, N. (2019).**
 

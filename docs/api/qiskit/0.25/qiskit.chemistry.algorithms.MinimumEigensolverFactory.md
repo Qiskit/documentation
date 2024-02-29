@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.algorithms.MinimumEigensolverFactory
 
 <span id="qiskit.chemistry.algorithms.MinimumEigensolverFactory" />
 
-`MinimumEigensolverFactory`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/ground_state_solvers/minimum_eigensolver_factories/minimum_eigensolver_factory.py "view source code")
+`MinimumEigensolverFactory` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/ground_state_solvers/minimum_eigensolver_factories/minimum_eigensolver_factory.py "view source code")
 
 A factory to construct a minimum eigensolver based on a qubit operator transformation.
 

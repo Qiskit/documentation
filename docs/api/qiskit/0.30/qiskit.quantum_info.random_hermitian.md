@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.random_hermitian
 
 <span id="qiskit.quantum_info.random_hermitian" />
 
-`random_hermitian(dims, traceless=False, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/operators/random.py "view source code")
+`random_hermitian(dims, traceless=False, seed=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/operators/random.py "view source code")
 
 Return a random hermitian Operator.
 

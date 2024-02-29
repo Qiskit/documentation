@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.library.YGate
 
 <span id="qiskit.circuit.library.YGate" />
 
-`YGate(label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/standard_gates/y.py "view source code")
+`YGate(label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/standard_gates/y.py "view source code")
 
 The single-qubit Pauli-Y gate ($\sigma_y$).
 

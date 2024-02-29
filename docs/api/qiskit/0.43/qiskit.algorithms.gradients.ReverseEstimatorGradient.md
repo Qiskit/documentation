@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.gradients.ReverseEstimatorGradient
 
 <span id="qiskit.algorithms.gradients.ReverseEstimatorGradient" />
 
-`ReverseEstimatorGradient(derivative_type=DerivativeType.REAL)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/gradients/reverse_gradient/reverse_gradient.py "view source code")
+`ReverseEstimatorGradient(derivative_type=DerivativeType.REAL)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/gradients/reverse_gradient/reverse_gradient.py "view source code")
 
 Bases: [`BaseEstimatorGradient`](qiskit.algorithms.gradients.BaseEstimatorGradient "qiskit.algorithms.gradients.base_estimator_gradient.BaseEstimatorGradient")
 

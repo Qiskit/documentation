@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.algorithms.QPE
 
 <span id="qiskit.aqua.algorithms.QPE" />
 
-`QPE(operator=None, state_in=None, iqft=None, num_time_slices=1, num_ancillae=1, expansion_mode='trotter', expansion_order=1, shallow_circuit_concat=False, quantum_instance=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/minimum_eigen_solvers/qpe.py "view source code")
+`QPE(operator=None, state_in=None, iqft=None, num_time_slices=1, num_ancillae=1, expansion_mode='trotter', expansion_order=1, shallow_circuit_concat=False, quantum_instance=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/minimum_eigen_solvers/qpe.py "view source code")
 
 The Quantum Phase Estimation algorithm.
 

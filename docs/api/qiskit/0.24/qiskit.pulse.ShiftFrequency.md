@@ -12,7 +12,7 @@ python_api_name: qiskit.pulse.ShiftFrequency
 
 <span id="qiskit.pulse.ShiftFrequency" />
 
-`ShiftFrequency(frequency, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/instructions/frequency.py "view source code")
+`ShiftFrequency(frequency, channel, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/instructions/frequency.py "view source code")
 
 Shift the channel frequency away from the current frequency.
 

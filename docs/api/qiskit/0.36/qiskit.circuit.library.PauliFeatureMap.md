@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.PauliFeatureMap
 
 <span id="qiskit.circuit.library.PauliFeatureMap" />
 
-`PauliFeatureMap(feature_dimension=None, reps=2, entanglement='full', alpha=2.0, paulis=None, data_map_func=None, parameter_prefix='x', insert_barriers=False, name='PauliFeatureMap')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/data_preparation/pauli_feature_map.py "view source code")
+`PauliFeatureMap(feature_dimension=None, reps=2, entanglement='full', alpha=2.0, paulis=None, data_map_func=None, parameter_prefix='x', insert_barriers=False, name='PauliFeatureMap')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/data_preparation/pauli_feature_map.py "view source code")
 
 Bases: `qiskit.circuit.library.n_local.n_local.NLocal`
 
@@ -44,7 +44,7 @@ For example, if the Pauli strings are chosen to be $P_0 = Z$ and $P_{0,1} = YY$ 
 
 Please refer to [`ZFeatureMap`](qiskit.circuit.library.ZFeatureMap "qiskit.circuit.library.ZFeatureMap") for the case $k = 1$, $P_0 = Z$ and to [`ZZFeatureMap`](qiskit.circuit.library.ZZFeatureMap "qiskit.circuit.library.ZZFeatureMap") for the case $k = 2$, $P_0 = Z$ and $P_{0,1} = ZZ$.
 
-## Examples
+**Examples**
 
 ```python
 >>> prep = PauliFeatureMap(2, reps=1, paulis=['ZZ'])
@@ -87,7 +87,7 @@ q_1: ┤ H ├────────────┤ X ├┤ U1(2.0*(pi - x[0]
 OrderedDict([('cx', 39), ('rx', 36), ('u1', 21), ('h', 15), ('ry', 12), ('rz', 12)])
 ```
 
-## References
+**References**
 
 **\[1]: Havlicek et al. (2018), Supervised learning with quantum enhanced feature spaces.**
 
@@ -112,7 +112,7 @@ Create a new Pauli expansion circuit.
 
 <span id="qiskit.circuit.library.PauliFeatureMap.pauli_block" />
 
-`PauliFeatureMap.pauli_block(pauli_string)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/data_preparation/pauli_feature_map.py "view source code")
+`PauliFeatureMap.pauli_block(pauli_string)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/data_preparation/pauli_feature_map.py "view source code")
 
 Get the Pauli block for the feature map circuit.
 
@@ -120,7 +120,7 @@ Get the Pauli block for the feature map circuit.
 
 <span id="qiskit.circuit.library.PauliFeatureMap.pauli_evolution" />
 
-`PauliFeatureMap.pauli_evolution(pauli_string, time)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/data_preparation/pauli_feature_map.py "view source code")
+`PauliFeatureMap.pauli_evolution(pauli_string, time)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/data_preparation/pauli_feature_map.py "view source code")
 
 Get the evolution block for the given pauli string.
 
@@ -348,7 +348,7 @@ The parameters used in the underlying circuit.
 
 This includes float values and duplicates.
 
-## Examples
+**Examples**
 
 ```python
 >>> # prepare circuit ...

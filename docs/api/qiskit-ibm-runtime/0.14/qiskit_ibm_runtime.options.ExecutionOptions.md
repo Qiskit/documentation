@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.options.ExecutionOptions
 
 <span id="qiskit_ibm_runtime.options.ExecutionOptions" />
 
-`ExecutionOptions(shots=4000, init_qubits=True)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.14/qiskit_ibm_runtime/options/execution_options.py "view source code")
+`ExecutionOptions(shots=4000, init_qubits=True)` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.14/qiskit_ibm_runtime/options/execution_options.py "view source code")
 
 Execution options.
 

@@ -10,13 +10,13 @@ python_api_name: qiskit.optimization.converters.IntegerToBinary
 
 <span id="qiskit.optimization.converters.IntegerToBinary" />
 
-`IntegerToBinary`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/converters/integer_to_binary.py "view source code")
+`IntegerToBinary` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/converters/integer_to_binary.py "view source code")
 
 Convert a [`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.QuadraticProgram") into new one by encoding integer with binary variables.
 
 This bounded-coefficient encoding used in this converted is proposed in \[1], Eq. (5).
 
-## Examples
+**Examples**
 
 ```python
 >>> from qiskit.optimization.problems import QuadraticProgram
@@ -27,7 +27,7 @@ This bounded-coefficient encoding used in this converted is proposed in \[1], Eq
 >>> problem2 = conv.encode(problem)
 ```
 
-## References
+**References**
 
 **\[1]: Sahar Karimi, Pooya Ronagh (2017), Practical Integer-to-Binary Mapping for Quantum**
 
@@ -39,7 +39,7 @@ Annealers. arxiv.org:1706.01945.
 
 <span id="qiskit.optimization.converters.IntegerToBinary.decode" />
 
-`IntegerToBinary.decode(result)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/converters/integer_to_binary.py "view source code")
+`IntegerToBinary.decode(result)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/converters/integer_to_binary.py "view source code")
 
 Convert the encoded problem (binary variables) back to the original (integer variables).
 
@@ -59,7 +59,7 @@ The result of the original problem.
 
 <span id="qiskit.optimization.converters.IntegerToBinary.encode" />
 
-`IntegerToBinary.encode(op, name=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/converters/integer_to_binary.py "view source code")
+`IntegerToBinary.encode(op, name=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/converters/integer_to_binary.py "view source code")
 
 Convert an integer problem into a new problem with binary variables.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.FunctionalPauliRotations
 
 <span id="qiskit.circuit.library.FunctionalPauliRotations" />
 
-`qiskit.circuit.library.FunctionalPauliRotations(num_state_qubits=None, basis='Y', name='F')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/arithmetic/functional_pauli_rotations.py "view source code")
+`qiskit.circuit.library.FunctionalPauliRotations(num_state_qubits=None, basis='Y', name='F')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/arithmetic/functional_pauli_rotations.py "view source code")
 
 Bases: `BlueprintCircuit`, [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 
@@ -62,29 +62,17 @@ Returns a list of classical bits in the order that the registers were added.
 
 ### data
 
-<span id="qiskit.circuit.library.FunctionalPauliRotations.extension_lib" />
-
-### extension\_lib
-
-`= 'include "qelib1.inc";'`
-
 <span id="qiskit.circuit.library.FunctionalPauliRotations.global_phase" />
 
 ### global\_phase
 
 Return the global phase of the current circuit scope in radians.
 
-<span id="qiskit.circuit.library.FunctionalPauliRotations.header" />
-
-### header
-
-`= 'OPENQASM 2.0;'`
-
 <span id="qiskit.circuit.library.FunctionalPauliRotations.instances" />
 
 ### instances
 
-`= 177`
+`= 176`
 
 <span id="qiskit.circuit.library.FunctionalPauliRotations.layout" />
 

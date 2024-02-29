@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.instructions.Play
 
 <span id="qiskit.pulse.instructions.Play" />
 
-`Play(pulse, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/instructions/play.py "view source code")
+`Play(pulse, channel, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/instructions/play.py "view source code")
 
 This instruction is responsible for applying a pulse on a channel.
 
@@ -21,7 +21,7 @@ Create a new pulse instruction.
 **Parameters**
 
 *   **pulse** (`Pulse`) – A pulse waveform description, such as [`SamplePulse`](qiskit.pulse.pulse_lib.SamplePulse "qiskit.pulse.pulse_lib.SamplePulse").
-*   **channel** ([`PulseChannel`](qiskit.pulse.channels#qiskit.pulse.channels.PulseChannel "qiskit.pulse.channels.PulseChannel")) – The channel to which the pulse is applied.
+*   **channel** ([`PulseChannel`](qiskit.pulse.channels#pulsechannel "qiskit.pulse.channels.PulseChannel")) – The channel to which the pulse is applied.
 *   **name** (`Optional`\[`str`]) – Name of the instruction for display purposes. Defaults to `pulse.name`.
 
 **Raises**
@@ -36,11 +36,11 @@ Create a new pulse instruction.
 
 `qiskit.pulse.channels.PulseChannel`
 
-Return the [`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel") that this instruction is scheduled on.
+Return the [`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel") that this instruction is scheduled on.
 
 **Return type**
 
-[`PulseChannel`](qiskit.pulse.channels#qiskit.pulse.channels.PulseChannel "qiskit.pulse.channels.PulseChannel")
+[`PulseChannel`](qiskit.pulse.channels#pulsechannel "qiskit.pulse.channels.PulseChannel")
 
 ### channels
 
@@ -52,7 +52,7 @@ Returns channels that this schedule uses.
 
 **Return type**
 
-`Tuple`\[[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]
+`Tuple`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")]
 
 ### command
 
@@ -172,7 +172,7 @@ Occupied time slots by this instruction.
 
 **Return type**
 
-`Dict`\[[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel"), `List`\[`Tuple`\[`int`, `int`]]]
+`Dict`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel"), `List`\[`Tuple`\[`int`, `int`]]]
 
 ## Methods
 
@@ -252,11 +252,11 @@ Plot the instruction.
 **Parameters**
 
 *   **dt** (`float`) – Time interval of samples
-*   **style** (*Optional\[*[*SchedStyle*](qiskit.visualization.pulse.qcstyle#qiskit.visualization.pulse.qcstyle.SchedStyle "qiskit.visualization.pulse.qcstyle.SchedStyle")*]*) – A style sheet to configure plot appearance
+*   **style** (*Optional\[*[*SchedStyle*](qiskit.visualization.pulse.qcstyle#schedstyle "qiskit.visualization.pulse.qcstyle.SchedStyle")*]*) – A style sheet to configure plot appearance
 *   **filename** (`Optional`\[`str`]) – Name required to save pulse image
 *   **interp\_method** (`Optional`\[`Callable`]) – A function for interpolation
 *   **scale** (`float`) – Relative visual scaling of waveform amplitudes
-*   **channels\_to\_plot** (`Optional`\[`List`\[[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]]) – Deprecated, see channels
+*   **channels\_to\_plot** (`Optional`\[`List`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")]]) – Deprecated, see channels
 *   **plot\_all** (`bool`) – Plot empty channels
 *   **plot\_range** (`Optional`\[`Tuple`\[`float`]]) – A tuple of time range to plot
 *   **interactive** (`bool`) – When set true show the circuit in a new window (this depends on the matplotlib backend being used supporting this)
@@ -264,7 +264,7 @@ Plot the instruction.
 *   **label** (`bool`) – Label individual instructions
 *   **framechange** (`bool`) – Add framechange indicators
 *   **scaling** (`Optional`\[`float`]) – Deprecated, see scale
-*   **channels** (`Optional`\[`List`\[[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]]) – A list of channel names to plot
+*   **channels** (`Optional`\[`List`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")]]) – A list of channel names to plot
 
 **Returns**
 

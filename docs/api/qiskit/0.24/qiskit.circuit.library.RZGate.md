@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.library.RZGate
 
 <span id="qiskit.circuit.library.RZGate" />
 
-`RZGate(phi, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/standard_gates/rz.py "view source code")
+`RZGate(phi, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/standard_gates/rz.py "view source code")
 
 Single-qubit rotation about the Z axis.
 

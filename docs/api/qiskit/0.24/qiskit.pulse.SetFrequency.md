@@ -12,7 +12,7 @@ python_api_name: qiskit.pulse.SetFrequency
 
 <span id="qiskit.pulse.SetFrequency" />
 
-`SetFrequency(frequency, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/instructions/frequency.py "view source code")
+`SetFrequency(frequency, channel, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/instructions/frequency.py "view source code")
 
 Set the channel frequency. This instruction operates on `PulseChannel` s. A `PulseChannel` creates pulses of the form
 

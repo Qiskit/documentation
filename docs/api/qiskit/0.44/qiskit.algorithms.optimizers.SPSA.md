@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.SPSA
 
 <span id="qiskit.algorithms.optimizers.SPSA" />
 
-`qiskit.algorithms.optimizers.SPSA(maxiter=100, blocking=False, allowed_increase=None, trust_region=False, learning_rate=None, perturbation=None, last_avg=1, resamplings=1, perturbation_dims=None, second_order=False, regularization=None, hessian_delay=0, lse_solver=None, initial_hessian=None, callback=None, termination_checker=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/optimizers/spsa.py "view source code")
+`qiskit.algorithms.optimizers.SPSA(maxiter=100, blocking=False, allowed_increase=None, trust_region=False, learning_rate=None, perturbation=None, last_avg=1, resamplings=1, perturbation_dims=None, second_order=False, regularization=None, hessian_delay=0, lse_solver=None, initial_hessian=None, callback=None, termination_checker=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/optimizers/spsa.py "view source code")
 
 Bases: [`Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.optimizer.Optimizer")
 
@@ -36,7 +36,7 @@ The optimization process can includes a calibration phase if neither the `learni
   This component has some function that is normally random. If you want to reproduce behavior then you should set the random number generator seed in the algorithm\_globals (`qiskit.utils.algorithm_globals.random_seed = seed`).
 </Admonition>
 
-## Examples
+**Examples**
 
 This short example runs SPSA for the ground state calculation of the `Z ^ Z` observable where the ansatz is a `PauliTwoDesign` circuit.
 
@@ -97,7 +97,7 @@ parameters, value, niter = spsa.optimize(2, objective, initial_point=[0.5, 0.5])
 print(f'SPSA completed after {niter} iterations')
 ```
 
-## References
+**References**
 
 \[1]: J. C. Spall (1998). An Overview of the Simultaneous Perturbation Method for Efficient Optimization, Johns Hopkins APL Technical Digest, 19(4), 482–492. [Online at jhuapl.edu.](https://www.jhuapl.edu/SPSA/PDF-SPSA/Spall_An_Overview.PDF)
 

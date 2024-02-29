@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.builder.num_qubits
 
 <span id="qiskit.pulse.builder.num_qubits" />
 
-`num_qubits()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/builder.py "view source code")
+`num_qubits()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/builder.py "view source code")
 
 Return number of qubits in the currently active backend.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.ZFeatureMap
 
 <span id="qiskit.circuit.library.ZFeatureMap" />
 
-`ZFeatureMap(feature_dimension, reps=2, data_map_func=None, insert_barriers=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/library/data_preparation/z_feature_map.py "view source code")
+`ZFeatureMap(feature_dimension, reps=2, data_map_func=None, insert_barriers=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/library/data_preparation/z_feature_map.py "view source code")
 
 The first order Pauli Z-evolution circuit.
 
@@ -28,7 +28,7 @@ On 3 qubits and with 2 repetitions the circuit is represented by:
 
 This is a sub-class of [`PauliFeatureMap`](qiskit.circuit.library.PauliFeatureMap "qiskit.circuit.library.PauliFeatureMap") where the Pauli strings are fixed as \[‘Z’]. As a result the first order expansion will be a circuit without entangling gates.
 
-## Examples
+**Examples**
 
 ```python
 >>> prep = ZFeatureMap(3, reps=3, insert_barriers=True)
@@ -864,7 +864,7 @@ Depth of circuit.
 
 int
 
-## Notes
+**Notes**
 
 The circuit depth and the DAG depth need not be the same.
 
@@ -954,7 +954,7 @@ Draw the quantum circuit. Use the output parameter to choose the drawing format:
 *   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – when an invalid output method is selected
 *   **ImportError** – when the output methods requires non-installed libraries.
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
@@ -1258,7 +1258,7 @@ a handle to the instruction that was just initialized
 
 [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-## Examples
+**Examples**
 
 Prepare a qubit in the state $(|0\rangle - |1\rangle) / \sqrt{2}$.
 
@@ -1377,7 +1377,7 @@ the inverted circuit
 
 **CircuitError** – if the circuit cannot be inverted.
 
-## Examples
+**Examples**
 
 **input:**
 
@@ -1756,7 +1756,7 @@ The number of qubits.
 
 Computes the number of tensor factors in the unitary (quantum) part of the circuit only.
 
-## Notes
+**Notes**
 
 This is here for backwards compatibility, and will be removed in a future release of Qiskit. You should call num\_unitary\_factors instead.
 
@@ -1778,7 +1778,7 @@ The parameters used in the underlying circuit.
 
 This includes float values and duplicates.
 
-## Examples
+**Examples**
 
 ```python
 >>> # prepare circuit ...
@@ -2181,7 +2181,7 @@ the circuit with reversed bit order.
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-## Examples
+**Examples**
 
 **input:**
 
@@ -2225,7 +2225,7 @@ the reversed circuit.
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-## Examples
+**Examples**
 
 **input:**
 
@@ -3142,7 +3142,7 @@ q_0: ┤ bottom ├ ⊗ q_0: ┤ top ├  = q_0: ─┤ top ├──
 *   **other** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The other circuit to tensor this circuit with.
 *   **inplace** (*bool*) – If True, modify the object. Otherwise return composed circuit.
 
-## Examples
+**Examples**
 
 ```python
 from qiskit import QuantumCircuit

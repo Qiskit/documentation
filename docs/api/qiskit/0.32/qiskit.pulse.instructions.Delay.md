@@ -10,13 +10,13 @@ python_api_name: qiskit.pulse.instructions.Delay
 
 <span id="qiskit.pulse.instructions.Delay" />
 
-`Delay(duration, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/instructions/delay.py "view source code")
+`Delay(duration, channel, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/instructions/delay.py "view source code")
 
 Bases: `qiskit.pulse.instructions.instruction.Instruction`
 
 A blocking instruction with no other effect. The delay is used for aligning and scheduling other instructions.
 
-## Example
+**Example**
 
 To schedule an instruction at time = 10, on a channel assigned to the variable `channel`, the following could be used:
 
@@ -198,7 +198,7 @@ A new schedule with `schedule` inserted with this instruction at t=0.
 
 <span id="qiskit.pulse.instructions.Delay.is_parameterized" />
 
-`Delay.is_parameterized()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/instructions/delay.py "view source code")
+`Delay.is_parameterized()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/instructions/delay.py "view source code")
 
 Return `True` iff the instruction is parameterized.
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plu
 
 <span id="qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names" />
 
-`qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/synthesis/plugin.py "view source code")
+`qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/synthesis/plugin.py "view source code")
 
 Return a list of installed unitary synthesis plugin names
 

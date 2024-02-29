@@ -12,7 +12,7 @@ python_api_name: qiskit.optimization.converters.QuadraticProgramConverter
 
 <span id="qiskit.optimization.converters.QuadraticProgramConverter" />
 
-`QuadraticProgramConverter`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/converters/quadratic_program_converter.py "view source code")
+`QuadraticProgramConverter` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/converters/quadratic_program_converter.py "view source code")
 
 An abstract class for converters of quadratic programs in Qiskit’s optimization module.
 

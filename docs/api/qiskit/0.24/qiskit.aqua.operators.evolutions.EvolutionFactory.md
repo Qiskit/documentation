@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.operators.evolutions.EvolutionFactory
 
 <span id="qiskit.aqua.operators.evolutions.EvolutionFactory" />
 
-`EvolutionFactory`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/evolutions/evolution_factory.py "view source code")
+`EvolutionFactory` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/evolutions/evolution_factory.py "view source code")
 
 A factory class for convenient automatic selection of an Evolution algorithm based on the Operator to be converted.
 

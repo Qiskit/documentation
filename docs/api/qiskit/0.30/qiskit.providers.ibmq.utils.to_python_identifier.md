@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.utils.to_python_identifier
 
 <span id="qiskit.providers.ibmq.utils.to_python_identifier" />
 
-`to_python_identifier(name)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.16/qiskit/providers/ibmq/utils/utils.py "view source code")
+`to_python_identifier(name)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.16/qiskit/providers/ibmq/utils/utils.py "view source code")
 
 Convert a name to a valid Python identifier.
 

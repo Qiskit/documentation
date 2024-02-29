@@ -1,0 +1,145 @@
+---
+title: LookaheadSwap
+description: API reference for qiskit.transpiler.passes.LookaheadSwap
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.LookaheadSwap
+---
+
+# LookaheadSwap
+
+<span id="qiskit.transpiler.passes.LookaheadSwap" />
+
+`qiskit.transpiler.passes.LookaheadSwap(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/routing/lookahead_swap.py "view source code")
+
+Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
+
+Map input circuit onto a backend topology via insertion of SWAPs.
+
+Implementation of Sven Jandura’s swap mapper submission for the 2018 Qiskit Developer Challenge, adapted to integrate into the transpiler architecture.
+
+The role of the swapper pass is to modify the starting circuit to be compatible with the target device’s topology (the set of two-qubit gates available on the hardware.) To do this, the pass will insert SWAP gates to relocate the virtual qubits for each upcoming gate onto a set of coupled physical qubits. However, as SWAP gates are particularly lossy, the goal is to accomplish this remapping while introducing the fewest possible additional SWAPs.
+
+This algorithm searches through the available combinations of SWAP gates by means of a narrowed best first/beam search, described as follows:
+
+*   Start with a layout of virtual qubits onto physical qubits.
+*   Find any gates in the input circuit which can be performed with the current layout and mark them as mapped.
+*   For all possible SWAP gates, calculate the layout that would result from their application and rank them according to the distance of the resulting layout over upcoming gates (see \_calc\_layout\_distance.)
+*   For the four (search\_width) highest-ranking SWAPs, repeat the above process on the layout that would be generated if they were applied.
+*   Repeat this process down to a depth of four (search\_depth) SWAPs away from the initial layout, for a total of 256 (search\_width^search\_depth) prospective layouts.
+*   Choose the layout which maximizes the number of two-qubit which could be performed. Add its mapped gates, including the SWAPs generated, to the output circuit.
+*   Repeat the above until all gates from the initial circuit are mapped.
+
+For more details on the algorithm, see Sven’s blog post: [https://medium.com/qiskit/improving-a-quantum-compiler-48410d7a7084](https://medium.com/qiskit/improving-a-quantum-compiler-48410d7a7084)
+
+LookaheadSwap initializer.
+
+**Parameters**
+
+*   **coupling\_map** (*Union\[*[*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")*,* [*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")*]*) – CouplingMap of the target backend.
+*   **search\_depth** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – lookahead tree depth when ranking best SWAP options.
+*   **search\_width** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – lookahead tree width when ranking best SWAP options.
+*   **fake\_run** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if true, it will only pretend to do routing, i.e., no swap is effectively added.
+
+## Attributes
+
+<span id="qiskit.transpiler.passes.LookaheadSwap.is_analysis_pass" />
+
+### is\_analysis\_pass
+
+Check if the pass is an analysis pass.
+
+If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+
+<span id="qiskit.transpiler.passes.LookaheadSwap.is_transformation_pass" />
+
+### is\_transformation\_pass
+
+Check if the pass is a transformation pass.
+
+If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+
+## Methods
+
+### execute
+
+<span id="qiskit.transpiler.passes.LookaheadSwap.execute" />
+
+`execute(passmanager_ir, state, callback=None)`
+
+Execute optimization task for input Qiskit IR.
+
+**Parameters**
+
+*   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+*   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+
+**Returns**
+
+Optimized Qiskit IR and state of the workflow.
+
+**Return type**
+
+[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+
+### name
+
+<span id="qiskit.transpiler.passes.LookaheadSwap.name" />
+
+`name()`
+
+Name of the pass.
+
+**Return type**
+
+[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+
+### run
+
+<span id="qiskit.transpiler.passes.LookaheadSwap.run" />
+
+`run(dag)`
+
+Run the LookaheadSwap pass on dag.
+
+**Parameters**
+
+**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – the directed acyclic graph to be mapped
+
+**Returns**
+
+**A dag mapped to be compatible with the coupling\_map in**
+
+the property\_set.
+
+**Return type**
+
+[DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+
+**Raises**
+
+*   [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if the coupling map or the layout are not
+*   **compatible with the DAG**\*\*, or \*\***if the coupling\_map=None** –
+
+### update\_status
+
+<span id="qiskit.transpiler.passes.LookaheadSwap.update_status" />
+
+`update_status(state, run_state)`
+
+Update workflow status.
+
+**Parameters**
+
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – Pass manager state to update.
+*   **run\_state** (*RunState*) – Completion status of current task.
+
+**Returns**
+
+Updated pass manager state.
+
+**Return type**
+
+[*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")
+

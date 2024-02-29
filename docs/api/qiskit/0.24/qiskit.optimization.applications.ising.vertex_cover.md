@@ -14,7 +14,7 @@ python_api_name: qiskit.optimization.applications.ising.vertex_cover
 
 Convert vertex cover instances into Pauli list Deal with Gset format. See [https://web.stanford.edu/\~yyye/yyye/Gset/](https://web.stanford.edu/~yyye/yyye/Gset/)
 
-## Functions
+**Functions**
 
 |                                                                                                                                                                                                  |                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------- |
@@ -22,9 +22,11 @@ Convert vertex cover instances into Pauli list Deal with Gset format. See [https
 | [`get_graph_solution`](#qiskit.optimization.applications.ising.vertex_cover.get_graph_solution "qiskit.optimization.applications.ising.vertex_cover.get_graph_solution")(x)                      | Get graph solution from binary string.                                             |
 | [`get_operator`](#qiskit.optimization.applications.ising.vertex_cover.get_operator "qiskit.optimization.applications.ising.vertex_cover.get_operator")(weight\_matrix)                           | Generate Hamiltonian for the vertex cover :param weight\_matrix: adjacency matrix. |
 
+### check\_full\_edge\_coverage
+
 <span id="qiskit.optimization.applications.ising.vertex_cover.check_full_edge_coverage" />
 
-`check_full_edge_coverage(x, w)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/vertex_cover.py "view source code")
+`check_full_edge_coverage(x, w)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/vertex_cover.py "view source code")
 
 **Parameters**
 
@@ -39,9 +41,11 @@ value of the cut.
 
 float
 
+### get\_graph\_solution
+
 <span id="qiskit.optimization.applications.ising.vertex_cover.get_graph_solution" />
 
-`get_graph_solution(x)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/vertex_cover.py "view source code")
+`get_graph_solution(x)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/vertex_cover.py "view source code")
 
 Get graph solution from binary string.
 
@@ -57,9 +61,11 @@ graph solution as binary numpy array.
 
 numpy.ndarray
 
+### get\_operator
+
 <span id="qiskit.optimization.applications.ising.vertex_cover.get_operator" />
 
-`get_operator(weight_matrix)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/vertex_cover.py "view source code")
+`get_operator(weight_matrix)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/vertex_cover.py "view source code")
 
 Generate Hamiltonian for the vertex cover :param weight\_matrix: adjacency matrix. :type weight\_matrix: numpy.ndarray
 

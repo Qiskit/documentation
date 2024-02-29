@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.AmplitudeEstimation
 
 <span id="qiskit.algorithms.AmplitudeEstimation" />
 
-`AmplitudeEstimation(num_eval_qubits, phase_estimation_circuit=None, iqft=None, quantum_instance=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/amplitude_estimators/ae.py "view source code")
+`AmplitudeEstimation(num_eval_qubits, phase_estimation_circuit=None, iqft=None, quantum_instance=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/amplitude_estimators/ae.py "view source code")
 
 The Quantum Phase Estimation-based Amplitude Estimation algorithm.
 
@@ -24,7 +24,7 @@ More evaluation qubits produce a finer sampling grid, therefore the accuracy of 
 
 Using a maximum likelihood post processing, this grid constraint can be circumvented. This improved estimator is implemented as well, see \[2] Appendix A for more detail.
 
-## References
+**References**
 
 **\[1]: Brassard, G., Hoyer, P., Mosca, M., & Tapp, A. (2000).**
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CXGate
 
 <span id="qiskit.circuit.library.CXGate" />
 
-`CXGate(label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/x.py "view source code")
+`CXGate(label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 Bases: [`qiskit.circuit.controlledgate.ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 
@@ -76,7 +76,7 @@ Create new CX gate.
 
 <span id="qiskit.circuit.library.CXGate.control" />
 
-`CXGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/x.py "view source code")
+`CXGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 Return a controlled-X gate with more control lines.
 
@@ -98,7 +98,7 @@ controlled version of this gate.
 
 <span id="qiskit.circuit.library.CXGate.inverse" />
 
-`CXGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/x.py "view source code")
+`CXGate.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 Return inverted CX gate (itself).
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.gradients.CircuitQFI
 
 <span id="qiskit.opflow.gradients.CircuitQFI" />
 
-`CircuitQFI`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/gradients/circuit_qfis/circuit_qfi.py "view source code")
+`CircuitQFI` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/gradients/circuit_qfis/circuit_qfi.py "view source code")
 
 Circuit to Quantum Fisher Information operator converter.
 

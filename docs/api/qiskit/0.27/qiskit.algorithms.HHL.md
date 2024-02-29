@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.HHL
 
 <span id="qiskit.algorithms.HHL" />
 
-`HHL(epsilon=0.01, expectation=None, quantum_instance=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/linear_solvers/hhl.py "view source code")
+`HHL(epsilon=0.01, expectation=None, quantum_instance=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/linear_solvers/hhl.py "view source code")
 
 Systems of linear equations arise naturally in many real-life applications in a wide range of areas, such as in the solution of Partial Differential Equations, the calibration of financial models, fluid simulation or numerical field calculation. The problem can be defined as, given a matrix $A\in\mathbb{C}^{N\times N}$ and a vector $\vec{b}\in\mathbb{C}^{N}$, find $\vec{x}\in\mathbb{C}^{N}$ satisfying $A\vec{x}=\vec{b}$.
 
@@ -18,7 +18,7 @@ A system of linear equations is called $s$-sparse if $A$ has at most $s$ non-zer
 
 The HHL is a quantum algorithm to estimate a function of the solution with running time complexity of $\mathcal{ O }(\log(N)s^{2}\kappa^{2}/\epsilon)$ when $A$ is a Hermitian matrix under the assumptions of efficient oracles for loading the data, Hamiltonian simulation and computing a function of the solution. This is an exponential speed up in the size of the system, however one crucial remark to keep in mind is that the classical algorithm returns the full solution, while the HHL can only approximate functions of the solution vector.
 
-## Examples
+**Examples**
 
 ```python
 import numpy as np
@@ -42,7 +42,7 @@ solution = hhl.solve(matrix, qc, observable)
 approx_result = solution.observable
 ```
 
-## References
+**References**
 
 \[1]: Harrow, A. W., Hassidim, A., Lloyd, S. (2009). Quantum algorithm for linear systems of equations. [Phys. Rev. Lett. 103, 15 (2009), 1–15.](https://doi.org/10.1103/PhysRevLett.103.150502)
 

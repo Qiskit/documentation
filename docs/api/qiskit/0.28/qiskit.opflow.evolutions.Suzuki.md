@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.evolutions.Suzuki
 
 <span id="qiskit.opflow.evolutions.Suzuki" />
 
-`Suzuki(reps=1, order=2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/evolutions/trotterizations/suzuki.py "view source code")
+`Suzuki(reps=1, order=2)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/evolutions/trotterizations/suzuki.py "view source code")
 
 Suzuki Trotter expansion, composing the evolution circuits of each Operator in the sum together by a recursive “bookends” strategy, repeating the whole composed circuit `reps` times.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.drivers.BasisType
 
 <span id="qiskit.chemistry.drivers.BasisType" />
 
-`BasisType(value)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/pyquanted/pyquantedriver.py "view source code")
+`BasisType(value)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/pyquanted/pyquantedriver.py "view source code")
 
 Bases: `enum.Enum`
 

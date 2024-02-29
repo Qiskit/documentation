@@ -22,7 +22,7 @@ on:
 jobs:
   e2e:
     name: End-to-end test
-    if: ${{ github.event_name == 'schedule' || github.event.pull_request.head.repo.full_name == github.repository }}
+    if: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -51,7 +51,7 @@ jobs:
           script: |
             const message = `Today's scheduled e2e test of the upload tool failed.
 
-            Please [check the logs](https://github.com/Qiskit/documentation/actions/runs/${context.workflow}).
+            Please [check the logs](https://github.com/Qiskit/documentation/actions/runs/${{ github.run_id }}/).
 
             > [!NOTE]
             > This issue was created by a GitHub action.

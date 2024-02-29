@@ -12,7 +12,7 @@ python_api_name: qiskit.chemistry.components.variational_forms.CHC
 
 <span id="qiskit.chemistry.components.variational_forms.CHC" />
 
-`CHC(num_qubits=None, reps=1, ladder=False, excitations=None, entanglement='full', initial_state=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/components/variational_forms/chc.py "view source code")
+`CHC(num_qubits=None, reps=1, ladder=False, excitations=None, entanglement='full', initial_state=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/components/variational_forms/chc.py "view source code")
 
 This trial wavefunction is the Compact Heuristic for Chemistry.
 

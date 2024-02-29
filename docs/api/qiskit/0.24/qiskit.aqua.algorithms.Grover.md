@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.algorithms.Grover
 
 <span id="qiskit.aqua.algorithms.Grover" />
 
-`Grover(oracle, good_state=None, state_preparation=None, iterations=1, sample_from_iterations=False, post_processing=None, grover_operator=None, quantum_instance=None, init_state=None, incremental=False, num_iterations=None, lam=None, rotation_counts=None, mct_mode=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/amplitude_amplifiers/grover.py "view source code")
+`Grover(oracle, good_state=None, state_preparation=None, iterations=1, sample_from_iterations=False, post_processing=None, grover_operator=None, quantum_instance=None, init_state=None, incremental=False, num_iterations=None, lam=None, rotation_counts=None, mct_mode=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/amplitude_amplifiers/grover.py "view source code")
 
 Grover’s Search algorithm.
 
@@ -51,7 +51,7 @@ $$
 
 For more information, see the [`GroverOperator`](qiskit.circuit.library.GroverOperator "qiskit.circuit.library.GroverOperator") in the circuit library.
 
-## References
+**References**
 
 **\[1]: L. K. Grover (1996), A fast quantum mechanical algorithm for database search,**
 
@@ -88,7 +88,7 @@ Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://
 *   [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – evaluate\_classically() missing from the input oracle
 *   **TypeError** – If `oracle` is of unsupported type.
 
-## References
+**References**
 
 **\[1]: Boyer et al., Tight bounds on quantum searching**
 
@@ -123,7 +123,7 @@ Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://
 *   [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – evaluate\_classically() missing from the input oracle
 *   **TypeError** – If `oracle` is of unsupported type.
 
-## References
+**References**
 
 **\[1]: Boyer et al., Tight bounds on quantum searching**
 

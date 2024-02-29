@@ -12,7 +12,7 @@ python_api_name: qiskit.quantum_info.Stinespring
 
 <span id="qiskit.quantum_info.Stinespring" />
 
-`Stinespring(data, input_dims=None, output_dims=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/quantum_info/operators/channel/stinespring.py "view source code")
+`Stinespring(data, input_dims=None, output_dims=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/quantum_info/operators/channel/stinespring.py "view source code")
 
 Stinespring representation of a quantum channel.
 
@@ -32,7 +32,7 @@ $$
 
 See reference \[1] for further details.
 
-## References
+**References**
 
 1.  C.J. Wood, J.D. Biamonte, D.G. Cory, *Tensor networks and graphical calculus for open quantum systems*, Quant. Inf. Comp. 15, 0579-0811 (2015). [arXiv:1111.6950 \[quant-ph\]](https://arxiv.org/abs/1111.6950)
 

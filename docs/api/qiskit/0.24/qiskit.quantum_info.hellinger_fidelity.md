@@ -12,7 +12,7 @@ python_api_name: qiskit.quantum_info.hellinger_fidelity
 
 <span id="qiskit.quantum_info.hellinger_fidelity" />
 
-`hellinger_fidelity(dist_p, dist_q)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/quantum_info/analysis/distance.py "view source code")
+`hellinger_fidelity(dist_p, dist_q)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/quantum_info/analysis/distance.py "view source code")
 
 Computes the Hellinger fidelity between two counts distributions.
 
@@ -33,7 +33,7 @@ Fidelity
 
 float
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumCircuit, execute, BasicAer
@@ -58,7 +58,7 @@ hellinger_fidelity(res1.get_counts(), res2.get_counts())
 1.0
 ```
 
-## References
+**References**
 
 [Quantum Fidelity @ wikipedia](https://en.wikipedia.org/wiki/Fidelity_of_quantum_states) [Hellinger Distance @ wikipedia](https://en.wikipedia.org/wiki/Hellinger_distance)
 

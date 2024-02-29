@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.verification.ProcessTomographyFitter
 
 <span id="qiskit.ignis.verification.ProcessTomographyFitter" />
 
-`ProcessTomographyFitter(result, circuits, meas_basis='Pauli', prep_basis='Pauli')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/tomography/fitters/process_fitter.py "view source code")
+`ProcessTomographyFitter(result, circuits, meas_basis='Pauli', prep_basis='Pauli')` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/tomography/fitters/process_fitter.py "view source code")
 
 Maximum-Likelihood estimation process tomography fitter.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.instructions.Acquire
 
 <span id="qiskit.pulse.instructions.Acquire" />
 
-`qiskit.pulse.instructions.Acquire(duration, channel, mem_slot=None, reg_slot=None, kernel=None, discriminator=None, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/pulse/instructions/acquire.py "view source code")
+`qiskit.pulse.instructions.Acquire(duration, channel, mem_slot=None, reg_slot=None, kernel=None, discriminator=None, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/pulse/instructions/acquire.py "view source code")
 
 Bases: [`Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.GroverOperator
 
 <span id="qiskit.circuit.library.GroverOperator" />
 
-`GroverOperator(oracle, state_preparation=None, zero_reflection=None, reflection_qubits=None, insert_barriers=False, mcx_mode='noancilla', name='Q')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/library/grover_operator.py "view source code")
+`GroverOperator(oracle, state_preparation=None, zero_reflection=None, reflection_qubits=None, insert_barriers=False, mcx_mode='noancilla', name='Q')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/library/grover_operator.py "view source code")
 
 The Grover operator.
 
@@ -59,7 +59,7 @@ $$
 
 where $\mathbb{I}_n$ is the identity on $n$ qubits. By default, this class implements the negative version $2 |0\rangle^{\otimes n} \langle 0|^{\otimes n} - \mathbb{I}_n$, since this can simply be implemented with a multi-controlled Z sandwiched by X gates on the target qubit and the introduced global phase does not matter for Grover’s algorithm.
 
-## Examples
+**Examples**
 
 ```python
 >>> from qiskit.circuit import QuantumCircuit
@@ -129,7 +129,7 @@ state_2: ┤2                ├┤1              ├┤ UCRZ(-pi/4) ├┤ H �
 «         └─────────────────┘└───────────────┘└────────────┘└───┘
 ```
 
-## References
+**References**
 
 **\[1]: L. K. Grover (1996), A fast quantum mechanical algorithm for database search,**
 
@@ -442,7 +442,7 @@ A copy of the circuit with bound parameters, if `inplace` is True, otherwise Non
 
 Optional([QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"))
 
-## Examples
+**Examples**
 
 Create a parameterized circuit and assign the parameters in-place.
 
@@ -959,7 +959,7 @@ Depth of circuit.
 
 int
 
-## Notes
+**Notes**
 
 The circuit depth and the DAG depth need not be the same.
 
@@ -1049,7 +1049,7 @@ Draw the quantum circuit. Use the output parameter to choose the drawing format:
 *   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – when an invalid output method is selected
 *   **ImportError** – when the output methods requires non-installed libraries.
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
@@ -1245,7 +1245,7 @@ a handle to the instruction that was just initialized
 
 [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-## Examples
+**Examples**
 
 Prepare a qubit in the state $(|0\rangle - |1\rangle) / \sqrt{2}$.
 
@@ -1348,7 +1348,7 @@ the inverted circuit
 
 **CircuitError** – if the circuit cannot be inverted.
 
-## Examples
+**Examples**
 
 **input:**
 
@@ -1691,7 +1691,7 @@ Return number of qubits.
 
 Computes the number of tensor factors in the unitary (quantum) part of the circuit only.
 
-## Notes
+**Notes**
 
 This is here for backwards compatibility, and will be removed in a future release of Qiskit. You should call num\_unitary\_factors instead.
 
@@ -1992,7 +1992,7 @@ the circuit with reversed bit order.
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-## Examples
+**Examples**
 
 **input:**
 
@@ -2036,7 +2036,7 @@ the reversed circuit.
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-## Examples
+**Examples**
 
 **input:**
 
@@ -2949,7 +2949,7 @@ q_0: ┤ bottom ├ ⊗ q_0: ┤ top ├  = q_0: ─┤ top ├──
 *   **other** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The other circuit to tensor this circuit with.
 *   **inplace** (*bool*) – If True, modify the object. Otherwise return composed circuit.
 
-## Examples
+**Examples**
 
 ```python
 from qiskit import QuantumCircuit

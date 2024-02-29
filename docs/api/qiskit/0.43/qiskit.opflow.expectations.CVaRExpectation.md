@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.expectations.CVaRExpectation
 
 <span id="qiskit.opflow.expectations.CVaRExpectation" />
 
-`CVaRExpectation(alpha, expectation=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/expectations/cvar_expectation.py "view source code")
+`CVaRExpectation(alpha, expectation=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/expectations/cvar_expectation.py "view source code")
 
 Bases: [`ExpectationBase`](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.expectation_base.ExpectationBase")
 
@@ -24,7 +24,7 @@ It is empirically shown, that this can lead to faster convergence for combinator
 
 Let $\alpha$ be a real number in $[0,1]$ which specifies the fraction of best observed samples which are used to compute the objective function. Observe that if $\alpha = 1$, CVaR is equivalent to a standard expectation value. Similarly, if $\alpha = 0$, then CVaR corresponds to using the best observed sample. Intermediate values of $\alpha$ interpolate between these two objective functions.
 
-## References
+**References**
 
 **\[1]: Barkoutsos, P. K., Nannicini, G., Robert, A., Tavernelli, I., and Woerner, S.,**
 
@@ -51,7 +51,7 @@ Let $\alpha$ be a real number in $[0,1]$ which specifies the fraction of best ob
 
 <span id="qiskit.opflow.expectations.CVaRExpectation.compute_variance" />
 
-`CVaRExpectation.compute_variance(exp_op)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/expectations/cvar_expectation.py "view source code")
+`CVaRExpectation.compute_variance(exp_op)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/expectations/cvar_expectation.py "view source code")
 
 Returns the variance of the CVaR calculation
 
@@ -79,7 +79,7 @@ list | float
 
 <span id="qiskit.opflow.expectations.CVaRExpectation.convert" />
 
-`CVaRExpectation.convert(operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/expectations/cvar_expectation.py "view source code")
+`CVaRExpectation.convert(operator)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/expectations/cvar_expectation.py "view source code")
 
 Return an expression that computes the CVaR expectation upon calling `eval`. :param operator: The operator to convert.
 

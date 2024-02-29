@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.algorithms.AmplitudeEstimation
 
 <span id="qiskit.aqua.algorithms.AmplitudeEstimation" />
 
-`AmplitudeEstimation(num_eval_qubits, state_preparation=None, grover_operator=None, objective_qubits=None, post_processing=None, phase_estimation_circuit=None, iqft=None, quantum_instance=None, a_factory=None, q_factory=None, i_objective=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_estimators/ae.py "view source code")
+`AmplitudeEstimation(num_eval_qubits, state_preparation=None, grover_operator=None, objective_qubits=None, post_processing=None, phase_estimation_circuit=None, iqft=None, quantum_instance=None, a_factory=None, q_factory=None, i_objective=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_estimators/ae.py "view source code")
 
 The Quantum Phase Estimation-based Amplitude Estimation algorithm.
 
@@ -24,7 +24,7 @@ More evaluation qubits produce a finer sampling grid, therefore the accuracy of 
 
 Using a maximum likelihood post processing, this grid constraint can be circumvented. This improved estimator is implemented as well, see \[2] Appendix A for more detail.
 
-## References
+**References**
 
 **\[1]: Brassard, G., Hoyer, P., Mosca, M., & Tapp, A. (2000).**
 

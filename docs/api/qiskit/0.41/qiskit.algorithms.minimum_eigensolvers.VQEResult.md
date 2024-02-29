@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.minimum_eigensolvers.VQEResult
 
 <span id="qiskit.algorithms.minimum_eigensolvers.VQEResult" />
 
-`VQEResult`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/minimum_eigensolvers/vqe.py "view source code")
+`VQEResult` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/minimum_eigensolvers/vqe.py "view source code")
 
 Bases: `qiskit.algorithms.variational_algorithm.VariationalResult`, [`qiskit.algorithms.minimum_eigensolvers.minimum_eigensolver.MinimumEigensolverResult`](qiskit.algorithms.minimum_eigensolvers.MinimumEigensolverResult "qiskit.algorithms.minimum_eigensolvers.minimum_eigensolver.MinimumEigensolverResult")
 

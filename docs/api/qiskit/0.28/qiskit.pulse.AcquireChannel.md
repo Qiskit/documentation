@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.AcquireChannel
 
 <span id="qiskit.pulse.AcquireChannel" />
 
-`AcquireChannel(index)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/channels.py "view source code")
+`AcquireChannel(index)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/channels.py "view source code")
 
 Acquire channels are used to collect data.
 
@@ -64,7 +64,7 @@ Return a new channel with the input Parameter assigned to value.
 
 **Return type**
 
-[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")
+[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")
 
 **Returns**
 

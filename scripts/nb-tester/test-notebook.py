@@ -23,6 +23,7 @@ import nbclient
 import nbconvert
 import nbformat
 from qiskit_ibm_runtime import QiskitRuntimeService
+from squeaky import clean_notebook
 
 NOTEBOOKS_GLOB = "docs/**/*.ipynb"
 NOTEBOOKS_EXCLUDE = [
@@ -94,7 +95,7 @@ def print_yellow(s: str, **kwargs):
     """
     Use ANSI escape codes to print yellow text
     """
-    print(f"\033[0;33m{str}\033[0m", **kwargs)
+    print(f"\033[0;33m{s}\033[0m", **kwargs)
 
 
 def extract_warnings(notebook: nbformat.NotebookNode) -> list[NotebookWarning]:
@@ -159,6 +160,7 @@ def _execute_notebook(filepath: Path, options: ExecuteOptions) -> nbformat.Noteb
     for cell in nb.cells:
         # Remove execution metadata to avoid noisy diffs.
         cell.metadata.pop("execution", None)
+    nb, _ = clean_notebook(nb)
     nbformat.write(nb, filepath)
     return nb
 

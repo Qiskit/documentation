@@ -10,7 +10,7 @@ python_api_name: qiskit.visualization.plot_gate_map
 
 <span id="qiskit.visualization.plot_gate_map" />
 
-`plot_gate_map(backend, figsize=None, plot_directed=False, label_qubits=True, qubit_size=None, line_width=4, font_size=None, qubit_color=None, qubit_labels=None, line_color=None, font_color='w', ax=None, filename=None, qubit_coordinates=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/visualization/gate_map.py "view source code")
+`plot_gate_map(backend, figsize=None, plot_directed=False, label_qubits=True, qubit_size=None, line_width=4, font_size=None, qubit_color=None, qubit_labels=None, line_color=None, font_color='w', ax=None, filename=None, qubit_coordinates=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/visualization/gate_map.py "view source code")
 
 Plots the gate map of a device.
 
@@ -44,7 +44,7 @@ Figure
 *   **QiskitError** – if tried to pass a simulator, or if the backend is None, but one of num\_qubits, mpl\_data, or cmap is None.
 *   **MissingOptionalLibraryError** – if matplotlib not installed.
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumCircuit, execute, IBMQ

@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.feature_maps.PauliZExpansion
 
 <span id="qiskit.aqua.components.feature_maps.PauliZExpansion" />
 
-`PauliZExpansion(feature_dimension, depth=2, entangler_map=None, entanglement='full', z_order=2, data_map_func=<function self_product>)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/feature_maps/pauli_z_expansion.py "view source code")
+`PauliZExpansion(feature_dimension, depth=2, entangler_map=None, entanglement='full', z_order=2, data_map_func=<function self_product>)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/feature_maps/pauli_z_expansion.py "view source code")
 
 DEPRECATED. The Pauli Z Expansion feature map.
 

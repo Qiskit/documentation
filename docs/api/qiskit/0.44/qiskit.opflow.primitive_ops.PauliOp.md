@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.primitive_ops.PauliOp
 
 <span id="qiskit.opflow.primitive_ops.PauliOp" />
 
-`qiskit.opflow.primitive_ops.PauliOp(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/opflow/primitive_ops/pauli_op.py "view source code")
+`qiskit.opflow.primitive_ops.PauliOp(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/opflow/primitive_ops/pauli_op.py "view source code")
 
 Bases: [`PrimitiveOp`](qiskit.opflow.primitive_ops.PrimitiveOp "qiskit.opflow.primitive_ops.primitive_op.PrimitiveOp")
 

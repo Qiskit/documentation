@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.algorithms.IterativeAmplitudeEstimationResult
 
 <span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimationResult" />
 
-`IterativeAmplitudeEstimationResult(a_dict=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/amplitude_estimators/iqae.py "view source code")
+`IterativeAmplitudeEstimationResult(a_dict=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/amplitude_estimators/iqae.py "view source code")
 
 IterativeAmplitudeEstimation Result.
 

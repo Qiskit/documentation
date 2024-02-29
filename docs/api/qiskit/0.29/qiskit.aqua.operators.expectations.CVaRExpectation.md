@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.operators.expectations.CVaRExpectation
 
 <span id="qiskit.aqua.operators.expectations.CVaRExpectation" />
 
-`CVaRExpectation(alpha, expectation=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/expectations/cvar_expectation.py "view source code")
+`CVaRExpectation(alpha, expectation=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/expectations/cvar_expectation.py "view source code")
 
 Bases: `qiskit.aqua.operators.expectations.expectation_base.ExpectationBase`
 
@@ -24,7 +24,7 @@ It is empirically shown, that this can lead to faster convergence for combinator
 
 Let $\alpha$ be a real number in $[0,1]$ which specifies the fraction of best observed samples which are used to compute the objective function. Observe that if $\alpha = 1$, CVaR is equivalent to a standard expectation value. Similarly, if $\alpha = 0$, then CVaR corresponds to using the best observed sample. Intermediate values of $\alpha$ interpolate between these two objective functions.
 
-## References
+**References**
 
 **\[1]: Barkoutsos, P. K., Nannicini, G., Robert, A., Tavernelli, I., and Woerner, S.,**
 
@@ -45,7 +45,7 @@ Let $\alpha$ be a real number in $[0,1]$ which specifies the fraction of best ob
 
 <span id="qiskit.aqua.operators.expectations.CVaRExpectation.compute_variance" />
 
-`CVaRExpectation.compute_variance(exp_op)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/expectations/cvar_expectation.py "view source code")
+`CVaRExpectation.compute_variance(exp_op)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/expectations/cvar_expectation.py "view source code")
 
 Returns the variance of the CVaR calculation
 
@@ -71,7 +71,7 @@ exp\_op.
 
 <span id="qiskit.aqua.operators.expectations.CVaRExpectation.convert" />
 
-`CVaRExpectation.convert(operator)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/expectations/cvar_expectation.py "view source code")
+`CVaRExpectation.convert(operator)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/expectations/cvar_expectation.py "view source code")
 
 Return an expression that computes the CVaR expectation upon calling `eval`. :type operator: `OperatorBase` :param operator: The operator to convert.
 

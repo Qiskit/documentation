@@ -1,3 +1,11 @@
+---
+title: discrete
+description: API reference for qiskit.pulse.library.discrete
+in_page_toc_min_heading_level: 1
+python_api_type: module
+python_api_name: qiskit.pulse.library.discrete
+---
+
 <span id="qiskit-pulse-library-discrete" />
 
 # qiskit.pulse.library.discrete
@@ -6,7 +14,7 @@ Module for builtin discrete pulses.
 
 Note the sampling strategy use for all discrete pulses is `midpoint`.
 
-## Functions
+**Functions**
 
 |                                                       |                                                                                                                                                            |
 | ----------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -23,3 +31,4 @@ Note the sampling strategy use for all discrete pulses is `midpoint`.
 | `square`(duration, amp\[, freq, phase, name])         | Generates square wave [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform").                                                         |
 | `triangle`(duration, amp\[, freq, phase, name])       | Generates triangle wave [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform").                                                       |
 | `zero`(duration\[, name])                             | Generates zero-sampled [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform").                                                        |
+

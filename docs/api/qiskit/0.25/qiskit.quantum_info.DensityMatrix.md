@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
 <span id="qiskit.quantum_info.DensityMatrix" />
 
-`DensityMatrix(data, dims=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/quantum_info/states/densitymatrix.py "view source code")
+`DensityMatrix(data, dims=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/quantum_info/states/densitymatrix.py "view source code")
 
 DensityMatrix class
 
@@ -400,7 +400,7 @@ The Numpy vector array of probabilities.
 
 np.array
 
-## Examples
+**Examples**
 
 Consider a 2-qubit product state $\rho=\rho_1\otimes\rho_0$ with $\rho_1=|+\rangle\!\langle+|$, $\rho_0=|0\rangle\!\langle0|$.
 
@@ -641,7 +641,7 @@ the dictionary form of the DensityMatrix.
 
 dict
 
-## Examples
+**Examples**
 
 The ket-form of a 2-qubit density matrix $rho = |-\rangle\!\langle -|\otimes |0\rangle\!\langle 0|$
 

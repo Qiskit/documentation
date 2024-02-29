@@ -12,7 +12,7 @@ python_api_name: qiskit.quantum_info.concurrence
 
 <span id="qiskit.quantum_info.concurrence" />
 
-`concurrence(state)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/quantum_info/states/measures.py "view source code")
+`concurrence(state)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/quantum_info/states/measures.py "view source code")
 
 Calculate the concurrence of a quantum state.
 
@@ -27,7 +27,7 @@ where $\rho_0 = Tr_1[|\psi\rangle\!\langle\psi|]$ is the reduced state from by t
 For density matrices the concurrence is only defined for 2-qubit states, it is given by:
 
 $$
-C(\rho) = \max(0, \lambda_1 - \lambda_2 - \lamda_3 - \lambda_4)
+C(\rho) = \max(0, \lambda_1 - \lambda_2 - \lambda_3 - \lambda_4)
 $$
 
 where $\lambda _1 \ge \lambda _2 \ge \lambda _3 \ge \lambda _4$ are the ordered eigenvalues of the matrix $R=\sqrt{\sqrt{\rho }(Y\otimes Y)\overline{\rho}(Y\otimes Y)\sqrt{\rho}}$.

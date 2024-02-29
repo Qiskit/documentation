@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.library.SaveStatevector
 
 <span id="qiskit.providers.aer.library.SaveStatevector" />
 
-`SaveStatevector(num_qubits, label='statevector', pershot=False, conditional=False)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/library/save_instructions/save_statevector.py "view source code")
+`SaveStatevector(num_qubits, label='statevector', pershot=False, conditional=False)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/library/save_instructions/save_statevector.py "view source code")
 
 Save statevector
 

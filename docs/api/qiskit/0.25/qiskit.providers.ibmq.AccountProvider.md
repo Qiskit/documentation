@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.AccountProvider
 
 <span id="qiskit.providers.ibmq.AccountProvider" />
 
-`AccountProvider(credentials, access_token)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.12/qiskit/providers/ibmq/accountprovider.py "view source code")
+`AccountProvider(credentials, access_token)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.12/qiskit/providers/ibmq/accountprovider.py "view source code")
 
 Provider for a single IBM Quantum Experience account.
 

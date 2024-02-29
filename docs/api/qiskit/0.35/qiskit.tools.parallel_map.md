@@ -10,7 +10,7 @@ python_api_name: qiskit.tools.parallel_map
 
 <span id="qiskit.tools.parallel_map" />
 
-`parallel_map(task, values, task_args=(), task_kwargs={}, num_processes=2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/tools/parallel.py "view source code")
+`parallel_map(task, values, task_args=(), task_kwargs={}, num_processes=2)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/tools/parallel.py "view source code")
 
 Parallel execution of a mapping of values to the function task. This is functionally equivalent to:
 

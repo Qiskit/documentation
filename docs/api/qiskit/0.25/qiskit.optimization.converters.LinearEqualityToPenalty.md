@@ -10,7 +10,7 @@ python_api_name: qiskit.optimization.converters.LinearEqualityToPenalty
 
 <span id="qiskit.optimization.converters.LinearEqualityToPenalty" />
 
-`LinearEqualityToPenalty(penalty=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/converters/linear_equality_to_penalty.py "view source code")
+`LinearEqualityToPenalty(penalty=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/converters/linear_equality_to_penalty.py "view source code")
 
 Convert a problem with only equality constraints to unconstrained with penalty terms.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.MSGate
 
 <span id="qiskit.circuit.library.MSGate" />
 
-`MSGate(num_qubits, theta, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/generalized_gates/gms.py "view source code")
+`MSGate(num_qubits, theta, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/generalized_gates/gms.py "view source code")
 
 Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 

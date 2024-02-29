@@ -12,7 +12,7 @@ python_api_name: qiskit.chemistry.drivers.GaussianDriver
 
 <span id="qiskit.chemistry.drivers.GaussianDriver" />
 
-`GaussianDriver(config='# rhf/sto-3g scf(conventional)\\n\\nh2 molecule\\n\\n0 1\\nH 0.0 0.0 0.0\\nH 0.0 0.0 0.735\\n\\n', molecule=None, basis='sto-3g', hf_method=<HFMethodType.RHF: 'rhf'>)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/drivers/gaussiand/gaussiandriver.py "view source code")
+`GaussianDriver(config='# rhf/sto-3g scf(conventional)\\n\\nh2 molecule\\n\\n0 1\\nH 0.0 0.0 0.0\\nH 0.0 0.0 0.735\\n\\n', molecule=None, basis='sto-3g', hf_method=<HFMethodType.RHF: 'rhf'>)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/drivers/gaussiand/gaussiandriver.py "view source code")
 
 Qiskit chemistry driver using the Gaussian™ 16 program.
 

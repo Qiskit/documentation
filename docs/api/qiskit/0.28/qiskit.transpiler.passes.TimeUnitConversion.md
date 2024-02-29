@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.TimeUnitConversion
 
 <span id="qiskit.transpiler.passes.TimeUnitConversion" />
 
-`TimeUnitConversion(inst_durations)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/scheduling/time_unit_conversion.py "view source code")
+`TimeUnitConversion(inst_durations)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/scheduling/time_unit_conversion.py "view source code")
 
 Choose a time unit to be used in the following time-aware passes, and make all circuit time units consistent with that.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.DoWhileController
 
 <span id="qiskit.transpiler.DoWhileController" />
 
-`qiskit.transpiler.DoWhileController(passes, options=None, do_while=None, **partial_controller)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/runningpassmanager.py "view source code")
+`qiskit.transpiler.DoWhileController(passes, options=None, do_while=None, **partial_controller)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/runningpassmanager.py "view source code")
 
 Bases: [`FlowController`](qiskit.transpiler.FlowController "qiskit.transpiler.runningpassmanager.FlowController")
 
@@ -20,9 +20,7 @@ Implements a set of passes in a do-while loop.
 
 <span id="qiskit.transpiler.DoWhileController.registered_controllers" />
 
-### registered\_controllers = \{'condition'
-
-`= {'condition':`
+### registered\_controllers
 
 `= {'condition': , 'do_while': }`
 

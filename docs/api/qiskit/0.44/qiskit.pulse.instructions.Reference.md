@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.instructions.Reference
 
 <span id="qiskit.pulse.instructions.Reference" />
 
-`qiskit.pulse.instructions.Reference(name, *extra_keys)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/pulse/instructions/reference.py "view source code")
+`qiskit.pulse.instructions.Reference(name, *extra_keys)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/pulse/instructions/reference.py "view source code")
 
 Bases: [`Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")
 
@@ -87,9 +87,7 @@ Returns unique key of the subroutine.
 
 <span id="qiskit.pulse.instructions.Reference.scope_delimiter" />
 
-### scope\_delimiter = '
-
-`= ':`
+### scope\_delimiter
 
 `= '::'`
 

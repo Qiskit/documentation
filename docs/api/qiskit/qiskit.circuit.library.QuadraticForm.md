@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.QuadraticForm
 
 <span id="qiskit.circuit.library.QuadraticForm" />
 
-`qiskit.circuit.library.QuadraticForm(num_result_qubits=None, quadratic=None, linear=None, offset=None, little_endian=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/arithmetic/quadratic_form.py "view source code")
+`qiskit.circuit.library.QuadraticForm(num_result_qubits=None, quadratic=None, linear=None, offset=None, little_endian=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/arithmetic/quadratic_form.py "view source code")
 
 Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
@@ -47,7 +47,7 @@ The implementation of this circuit is discussed in \[1], Fig. 6.
 *   **num\_result\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The number of qubits to encode the result. Called $m$ in the class documentation.
 *   **quadratic** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")*]] | None*) – A matrix containing the quadratic coefficients, $A$.
 *   **linear** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")*] | None*) – An array containing the linear coefficients, $b$.
-*   **offset** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – A constant offset, $c$.
+*   **offset** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression") *| None*) – A constant offset, $c$.
 *   **little\_endian** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Encode the result in little endianness.
 
 **Raises**
@@ -91,29 +91,17 @@ a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitI
 
 QuantumCircuitData
 
-<span id="qiskit.circuit.library.QuadraticForm.extension_lib" />
-
-### extension\_lib
-
-`= 'include "qelib1.inc";'`
-
 <span id="qiskit.circuit.library.QuadraticForm.global_phase" />
 
 ### global\_phase
 
 Return the global phase of the current circuit scope in radians.
 
-<span id="qiskit.circuit.library.QuadraticForm.header" />
-
-### header
-
-`= 'OPENQASM 2.0;'`
-
 <span id="qiskit.circuit.library.QuadraticForm.instances" />
 
 ### instances
 
-`= 340`
+`= 278`
 
 <span id="qiskit.circuit.library.QuadraticForm.layout" />
 
@@ -212,9 +200,6 @@ ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
 ```
 
 To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
-
-```python
-```
 
 ```python
 >>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector

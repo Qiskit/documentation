@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.XGate
 
 <span id="qiskit.circuit.library.XGate" />
 
-`XGate(label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/x.py "view source code")
+`XGate(label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 The single-qubit Pauli-X gate ($\sigma_x$).
 

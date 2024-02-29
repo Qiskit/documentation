@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.components.initial_states.VarFormBased
 
 <span id="qiskit.aqua.components.initial_states.VarFormBased" />
 
-`VarFormBased(var_form, params)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/initial_states/var_form_based.py "view source code")
+`VarFormBased(var_form, params)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/initial_states/var_form_based.py "view source code")
 
 The variational form based initial state.
 

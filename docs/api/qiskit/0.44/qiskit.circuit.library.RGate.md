@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.RGate
 
 <span id="qiskit.circuit.library.RGate" />
 
-`qiskit.circuit.library.RGate(theta, phi, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/standard_gates/r.py "view source code")
+`qiskit.circuit.library.RGate(theta, phi, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/standard_gates/r.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 

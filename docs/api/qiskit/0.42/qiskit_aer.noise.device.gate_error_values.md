@@ -10,7 +10,7 @@ python_api_name: qiskit_aer.noise.device.gate_error_values
 
 <span id="qiskit_aer.noise.device.gate_error_values" />
 
-`gate_error_values(properties)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/noise/device/parameters.py "view source code")
+`gate_error_values(properties)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/noise/device/parameters.py "view source code")
 
 Return gate error values from a devices BackendProperties.
 

@@ -10,9 +10,9 @@ python_api_name: qiskit.primitives.EstimatorResult
 
 <span id="qiskit.primitives.EstimatorResult" />
 
-`qiskit.primitives.EstimatorResult(values, metadata)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/primitives/base/estimator_result.py "view source code")
+`qiskit.primitives.EstimatorResult(values, metadata)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/primitives/base/estimator_result.py "view source code")
 
-Bases: `BasePrimitiveResult`
+Bases: `_BasePrimitiveResult`
 
 Result of Estimator.
 
@@ -29,18 +29,6 @@ where the i-th elements of `result` correspond to the circuit and observable giv
 
 ## Attributes
 
-<span id="qiskit.primitives.EstimatorResult.experiments" />
-
-### experiments
-
-Experiment data dicts in any inheriting result dataclass.
-
-<span id="qiskit.primitives.EstimatorResult.num_experiments" />
-
-### num\_experiments
-
-Number of experiments in any inheriting result dataclass.
-
 <span id="qiskit.primitives.EstimatorResult.values" />
 
 ### values
@@ -52,18 +40,4 @@ Number of experiments in any inheriting result dataclass.
 ### metadata
 
 `list[dict[str, Any]]`
-
-## Methods
-
-### decompose
-
-<span id="qiskit.primitives.EstimatorResult.decompose" />
-
-`decompose()`
-
-Generate single experiment result objects from self.
-
-**Return type**
-
-[*Iterator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator "(in Python v3.12)")\[*BasePrimitiveResult*]
 

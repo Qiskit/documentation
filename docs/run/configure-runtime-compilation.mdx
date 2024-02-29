@@ -1,6 +1,6 @@
 ---
 title: Configure runtime compilation
-description: How to use runtime compilation techniques
+description: How to configure runtime compilation in Qiskit Runtime.
 
 ---
 
@@ -23,6 +23,7 @@ The `optimization_level` setting specifies how much optimization to perform on t
 <Admonition>
   In primitive version 1, optimization levels 2 and 3 behave identically to level 1.  V2 primitives do not accept levels higher than 1. 
 </Admonition>
+
 
 <Table>
   <thead>
@@ -56,7 +57,7 @@ The `optimization_level` setting specifies how much optimization to perform on t
 </Table>
 
 <Admonition type="note">
-  If using an IBM Cloud Qiskit Runtime service instance with Q-CTRL performance management enabled, there is no need to specify runtime optimization or resilience levels, as the strategy includes an automatic preset.
+  If using an IBM Cloud&reg; Qiskit Runtime service instance with Q-CTRL performance management enabled, there is no need to specify runtime optimization or resilience levels, as the strategy includes an automatic preset.
   
   Q-CTRL defaults to `optimization_level=3` and `resilience_level=1`.
   Setting `optimization_level` or `resilience_level` equal to 0 will result in an
@@ -102,7 +103,7 @@ psi = RealAmplitudes(num_qubits=2, reps=2)
 H = SparsePauliOp.from_list([("II", 1), ("IZ", 2), ("XI", 3)])
 theta = [0, 1, 1, 2, 3, 5]
 
-pm = generate_preset_pass_manager(backend=backend)
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 psi = pm.run(psi)
 H = H.apply_layout(psi.layout)
 
@@ -156,7 +157,6 @@ sampler = Sampler(options=options, backend=backend)
   </TabItem>
 </Tabs>
 
-
 <span id="transpilation-table"></span>
 ## Advanced runtime compilation options
 
@@ -169,7 +169,6 @@ sampler = Sampler(options=options, backend=backend)
     Because all input must be ISA, options.transpilation.xxx will be ignored. 
   </TabItem>
 </Tabs>
-
 
 
 ## Next steps

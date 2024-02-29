@@ -12,7 +12,7 @@ python_api_name: qiskit.ignis.mitigation.expval_meas_mitigator_circuits
 
 <span id="qiskit.ignis.mitigation.expval_meas_mitigator_circuits" />
 
-`expval_meas_mitigator_circuits(num_qubits, method='CTMP', labels=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/mitigation/expval/circuits.py "view source code")
+`expval_meas_mitigator_circuits(num_qubits, method='CTMP', labels=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/mitigation/expval/circuits.py "view source code")
 
 Generate measurement error mitigator circuits and metadata.
 
@@ -40,7 +40,7 @@ tuple
 *   The `'tensored'` method will generate two input state circuits of the all 0 and all 1 states on number of qubits unless custom labels are specified. Ftting will return a [`TensoredExpvalMeasMitigator`](qiskit.ignis.mitigation.TensoredExpvalMeasMitigator "qiskit.ignis.mitigation.TensoredExpvalMeasMitigator"). This method assumes measurement errors are uncorrelated between qubits.
 *   The `'CTMP'` method will generate $n+2$ input state circuits unless custom labels are specified. The default input states are the all 0 state, the all 1 state, and the $n$ state with a single qubit in the 1 state and all others in the 0 state. Ftting will return a [`CTMPExpvalMeasMitigator`](qiskit.ignis.mitigation.CTMPExpvalMeasMitigator "qiskit.ignis.mitigation.CTMPExpvalMeasMitigator").
 
-## Example
+**Example**
 
 The following example shows calibrating a 5-qubit expectation value measurement error mitigator using the `'tensored'` method.
 

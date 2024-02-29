@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.qpy_serialization.load
 
 <span id="qiskit.circuit.qpy_serialization.load" />
 
-`load(file_obj)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/qpy_serialization.py "view source code")
+`load(file_obj)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/qpy_serialization.py "view source code")
 
 Load a QPY binary file
 

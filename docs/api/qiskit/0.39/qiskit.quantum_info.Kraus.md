@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.Kraus
 
 <span id="qiskit.quantum_info.Kraus" />
 
-`Kraus(data, input_dims=None, output_dims=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/quantum_info/operators/channel/kraus.py "view source code")
+`Kraus(data, input_dims=None, output_dims=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/quantum_info/operators/channel/kraus.py "view source code")
 
 Bases: `qiskit.quantum_info.operators.channel.quantum_channel.QuantumChannel`
 
@@ -30,7 +30,7 @@ $$
 
 See reference \[1] for further details.
 
-## References
+**References**
 
 1.  C.J. Wood, J.D. Biamonte, D.G. Cory, *Tensor networks and graphical calculus for open quantum systems*, Quant. Inf. Comp. 15, 0579-0811 (2015). [arXiv:1111.6950 \[quant-ph\]](https://arxiv.org/abs/1111.6950)
 
@@ -56,7 +56,7 @@ If the input or output dimensions are None, they will be automatically determine
 
 <span id="qiskit.quantum_info.Kraus.adjoint" />
 
-`Kraus.adjoint()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/quantum_info/operators/channel/kraus.py "view source code")
+`Kraus.adjoint()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/quantum_info/operators/channel/kraus.py "view source code")
 
 Return the adjoint quantum channel.
 
@@ -68,7 +68,7 @@ Return the adjoint quantum channel.
 
 <span id="qiskit.quantum_info.Kraus.compose" />
 
-`Kraus.compose(other, qargs=None, front=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/quantum_info/operators/channel/kraus.py "view source code")
+`Kraus.compose(other, qargs=None, front=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/quantum_info/operators/channel/kraus.py "view source code")
 
 Return the operator composition with another Kraus.
 
@@ -100,7 +100,7 @@ The composed Kraus.
 
 <span id="qiskit.quantum_info.Kraus.conjugate" />
 
-`Kraus.conjugate()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/quantum_info/operators/channel/kraus.py "view source code")
+`Kraus.conjugate()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/quantum_info/operators/channel/kraus.py "view source code")
 
 Return the conjugate quantum channel.
 
@@ -145,7 +145,7 @@ The right matrix multiplied Operator.
 
 <span id="qiskit.quantum_info.Kraus.expand" />
 
-`Kraus.expand(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/quantum_info/operators/channel/kraus.py "view source code")
+`Kraus.expand(other)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/quantum_info/operators/channel/kraus.py "view source code")
 
 Return the reverse-order tensor product with another Kraus.
 
@@ -183,7 +183,7 @@ Test if Choi-matrix is completely-positive (CP)
 
 <span id="qiskit.quantum_info.Kraus.is_cptp" />
 
-`Kraus.is_cptp(atol=None, rtol=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/quantum_info/operators/channel/kraus.py "view source code")
+`Kraus.is_cptp(atol=None, rtol=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/quantum_info/operators/channel/kraus.py "view source code")
 
 Return True if completely-positive trace-preserving.
 
@@ -269,7 +269,7 @@ BaseOperator
 
 <span id="qiskit.quantum_info.Kraus.tensor" />
 
-`Kraus.tensor(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/quantum_info/operators/channel/kraus.py "view source code")
+`Kraus.tensor(other)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/quantum_info/operators/channel/kraus.py "view source code")
 
 Return the tensor product with another Kraus.
 
@@ -325,7 +325,7 @@ Try to convert channel to a unitary representation Operator.
 
 <span id="qiskit.quantum_info.Kraus.transpose" />
 
-`Kraus.transpose()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/quantum_info/operators/channel/kraus.py "view source code")
+`Kraus.transpose()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/quantum_info/operators/channel/kraus.py "view source code")
 
 Return the transpose quantum channel.
 

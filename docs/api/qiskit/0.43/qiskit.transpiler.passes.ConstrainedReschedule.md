@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.ConstrainedReschedule
 
 <span id="qiskit.transpiler.passes.ConstrainedReschedule" />
 
-`ConstrainedReschedule(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/scheduling/alignments/reschedule.py "view source code")
+`ConstrainedReschedule(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/scheduling/alignments/reschedule.py "view source code")
 
 Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
@@ -18,7 +18,7 @@ Rescheduler pass that updates node start times to conform to the hardware alignm
 
 This pass shifts DAG node start times previously scheduled with one of the scheduling passes, e.g. [`ASAPScheduleAnalysis`](qiskit.transpiler.passes.ASAPScheduleAnalysis "qiskit.transpiler.passes.ASAPScheduleAnalysis") or [`ALAPScheduleAnalysis`](qiskit.transpiler.passes.ALAPScheduleAnalysis "qiskit.transpiler.passes.ALAPScheduleAnalysis"), so that every instruction start time satisfies alignment constraints.
 
-## Examples
+**Examples**
 
 We assume executing the following circuit on a backend with 16 dt of acquire alignment.
 
@@ -40,7 +40,7 @@ c: 1/════════════════════════╩
                              0
 ```
 
-## Notes
+**Notes**
 
 Your backend may execute circuits violating these alignment constraints. However, you may obtain erroneous measurement result because of the untracked phase originating in the instruction misalignment.
 
@@ -71,7 +71,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.ConstrainedReschedule.run" />
 
-`ConstrainedReschedule.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/scheduling/alignments/reschedule.py "view source code")
+`ConstrainedReschedule.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/scheduling/alignments/reschedule.py "view source code")
 
 Run rescheduler.
 

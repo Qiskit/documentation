@@ -10,7 +10,7 @@ python_api_name: qiskit.visualization.iplot_histogram
 
 <span id="qiskit.visualization.iplot_histogram" />
 
-`iplot_histogram(data, figsize=None, number_to_keep=None, sort='asc', legend=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/visualization/interactive/iplot_histogram.py "view source code")
+`iplot_histogram(data, figsize=None, number_to_keep=None, sort='asc', legend=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/visualization/interactive/iplot_histogram.py "view source code")
 
 Create a histogram representation.
 
@@ -28,7 +28,7 @@ Graphical representation of the input array using a vertical bars style graph.
 
 [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – When legend is provided and the length doesn’t match the input data.
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumCircuit, BasicAer, execute

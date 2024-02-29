@@ -10,7 +10,7 @@ python_api_name: qiskit.visualization.timeline.draw
 
 <span id="qiskit.visualization.timeline.draw" />
 
-`draw(program, style=None, time_range=None, disable_bits=None, show_clbits=None, show_idle=None, show_barriers=None, show_delays=None, show_labels=True, plotter='mpl', axis=None, filename=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/visualization/timeline/interface.py "view source code")
+`draw(program, style=None, time_range=None, disable_bits=None, show_clbits=None, show_idle=None, show_barriers=None, show_delays=None, show_labels=True, plotter='mpl', axis=None, filename=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/visualization/timeline/interface.py "view source code")
 
 Generate visualization data for scheduled circuit programs.
 
@@ -247,7 +247,7 @@ The stylesheet kwarg contains numerous options that define the style of the outp
 
 *   **layout.time\_axis\_map** – Callback function that determines the layout of horizontal axis labels. See `layouts` for more details. No default layout is set. (default None).
 
-## Examples
+**Examples**
 
 To visualize a scheduled circuit program, you can call this function with set of control arguments. Most of appearance of the output image can be controlled by the stylesheet.
 

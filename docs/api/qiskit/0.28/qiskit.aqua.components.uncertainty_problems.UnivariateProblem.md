@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.uncertainty_problems.UnivariateProblem
 
 <span id="qiskit.aqua.components.uncertainty_problems.UnivariateProblem" />
 
-`UnivariateProblem(uncertainty_model, univariate_objective, i_state=None, i_objective=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_problems/univariate_problem.py "view source code")
+`UnivariateProblem(uncertainty_model, univariate_objective, i_state=None, i_objective=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_problems/univariate_problem.py "view source code")
 
 Univariate uncertainty problem.
 

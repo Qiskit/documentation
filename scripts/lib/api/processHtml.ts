@@ -50,6 +50,7 @@ export function processHtml(options: {
   removeHtmlExtensionsInRelativeLinks($, $main);
   removePermalinks($main);
   removeDownloadSourceCode($main);
+  removeMatplotlibFigCaptions($main);
   handleSphinxDesignCards($, $main);
   addLanguageClassToCodeBlocks($, $main);
   replaceViewcodeLinksWithGitHub($, $main, determineGithubUrl);
@@ -126,6 +127,13 @@ export function removeDownloadSourceCode($main: Cheerio<any>): void {
   $main.find("p > a.reference.download.internal").closest("p").remove();
 }
 
+export function removeMatplotlibFigCaptions($main: Cheerio<any>): void {
+  $main
+    .find("figcaption, div.figure p.caption")
+    .has("span.caption-text a.download.internal.reference")
+    .remove();
+}
+
 /**
  * Flattens out sphinx-design cards, which are collapsible normally.
  *
@@ -162,12 +170,14 @@ export function addLanguageClassToCodeBlocks(
 }
 
 /**
- * Redirect URLS from sphinx.ext.viewcode to instead go to GitHub.
+ * Redirect URLS from `sphinx.ext.viewcode` to instead go to GitHub.
  *
  * These URLs will only go to the overall source code file, not the specific lines
  * of code. This function only changes the URLs; the DOM still needs to be modified
  * to remove the original `[source]` anchor element from Sphinx with our own `GitHub`
  * anchor element in the correct location.
+ *
+ * This does not impact links from `sphinx.ext.linkcode`.
  */
 export function replaceViewcodeLinksWithGitHub(
   $: CheerioAPI,
@@ -199,7 +209,11 @@ export function convertRubricsToHeaders(
   // <strong>
   function appropriateHtmlTag(html: string | null) {
     html = String(html);
-    return html == "Methods" || html == "Attributes" ? "h2" : "strong";
+    return html == "Methods" ||
+      html == "Methods Defined Here" ||
+      html == "Attributes"
+      ? "h2"
+      : "strong";
   }
 
   $main.find(".rubric").each((_, el) => {
@@ -271,7 +285,7 @@ export function processMembersAndSetMeta(
       .map((child) => {
         const $child = $(child);
         const id = $dl.find("dt").attr("id") || "";
-        const github = prepareGitHubLink($, $child);
+        const github = ` ${prepareGitHubLink($, $child)}`;
 
         const apiType = getApiType($dl);
 
@@ -305,6 +319,10 @@ export function processMembersAndSetMeta(
           if (id) {
             if (!priorApiType) {
               $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
+            } else if (!$child.attr("id")) {
+              // Overload methods have more than one <dt> tag, but only the first one
+              // contains an id.
+              return `<p><code>${$child.html()}</code>${github}</p>`;
             } else {
               // Inline methods
               $(`<h3>${getLastPartFromFullIdentifier(id)}</h3>`).insertBefore(
@@ -331,8 +349,13 @@ export function processMembersAndSetMeta(
 
           // Else, the attribute is embedded on the class
           const text = $child.text();
+
+          // Index of the default value of the attribute
           const equalIndex = text.indexOf("=");
-          const colonIndex = text.indexOf(":");
+          // Index of the attribute's type. The type should be
+          // found before the default value
+          const colonIndex = text.slice(0, equalIndex).indexOf(":");
+
           let name = text;
           let type: string | undefined;
           let value: string | undefined;
@@ -384,6 +407,9 @@ export function processMembersAndSetMeta(
  *
  * This returns the HTML string, rather than directly inserting into the HTML, because the insertion
  * logic is most easily handled by the calling code.
+ *
+ * This function works the same regardless of whether the Sphinx build used `sphinx.ext.viewcode`
+ * or `sphinx.ext.linkcode` because they have the same HTML structure.
  */
 export function prepareGitHubLink($: CheerioAPI, $child: Cheerio<any>): string {
   const originalLink = $child.find(".viewcode-link").closest("a");
@@ -402,7 +428,7 @@ export function maybeSetModuleMetadata(
 ): void {
   const modulePrefix = "module-";
   const moduleIdWithPrefix = $main
-    .find("span, section")
+    .find("span, section, div.section")
     .toArray()
     .map((el) => $(el).attr("id"))
     .find((id) => id?.startsWith(modulePrefix));

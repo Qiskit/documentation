@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.Job
 
 <span id="qiskit.providers.Job" />
 
-`Job`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/providers/job.py "view source code")
+`Job` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/providers/job.py "view source code")
 
 Bases: `object`
 

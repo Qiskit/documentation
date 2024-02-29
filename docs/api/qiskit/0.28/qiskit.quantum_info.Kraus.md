@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.Kraus
 
 <span id="qiskit.quantum_info.Kraus" />
 
-`Kraus(data, input_dims=None, output_dims=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/operators/channel/kraus.py "view source code")
+`Kraus(data, input_dims=None, output_dims=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/operators/channel/kraus.py "view source code")
 
 Kraus representation of a quantum channel.
 
@@ -28,7 +28,7 @@ $$
 
 See reference \[1] for further details.
 
-## References
+**References**
 
 1.  C.J. Wood, J.D. Biamonte, D.G. Cory, *Tensor networks and graphical calculus for open quantum systems*, Quant. Inf. Comp. 15, 0579-0811 (2015). [arXiv:1111.6950 \[quant-ph\]](https://arxiv.org/abs/1111.6950)
 

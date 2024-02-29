@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.IBMQProviderError
 
 <span id="qiskit.providers.ibmq.IBMQProviderError" />
 
-`IBMQProviderError(*message)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/exceptions.py "view source code")
+`IBMQProviderError(*message)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/exceptions.py "view source code")
 
 Errors related to provider handling.
 

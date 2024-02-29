@@ -10,7 +10,7 @@ python_api_name: qiskit.optimization.algorithms.OptimizationResult
 
 <span id="qiskit.optimization.algorithms.OptimizationResult" />
 
-`OptimizationResult(x, fval, variables, status, raw_results=None, samples=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/optimization_algorithm.py "view source code")
+`OptimizationResult(x, fval, variables, status, raw_results=None, samples=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/optimization_algorithm.py "view source code")
 
 Bases: `object`
 
@@ -20,7 +20,7 @@ The optimization algorithms return an object of the type `OptimizationResult` wi
 
 `OptimizationResult` allows users to get the value of a variable by specifying an index or a name as follows.
 
-## Examples
+**Examples**
 
 ```python
 >>> from qiskit.optimization import QuadraticProgram

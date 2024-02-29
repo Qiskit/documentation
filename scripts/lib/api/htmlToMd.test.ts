@@ -431,7 +431,7 @@ describe("sphinxHtmlToMarkdown", () => {
 
       <span id="qiskit_ibm_runtime.options.Options" />
 
-      \`Options(optimization_level=None, resilience_level=None, max_execution_time=None, transpilation=<factory>, resilience=<factory>, execution=<factory>, environment=<factory>, simulator=<factory>)\`[GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit_ibm_runtime/options/options.py "view source code")
+      \`Options(optimization_level=None, resilience_level=None, max_execution_time=None, transpilation=<factory>, resilience=<factory>, execution=<factory>, environment=<factory>, simulator=<factory>)\` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit_ibm_runtime/options/options.py "view source code")
       "
     `);
   });
@@ -639,7 +639,7 @@ Can be either (1) a dictionary mapping XX angle values to fidelity at that angle
 
       <span id="qiskit_ibm_runtime.Estimator.run" />
 
-      \`Estimator.run(circuits, observables, parameter_values=None, **kwargs)\`[GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit_ibm_runtime/estimator.py "view source code")
+      \`Estimator.run(circuits, observables, parameter_values=None, **kwargs)\` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit_ibm_runtime/estimator.py "view source code")
 
       Submit a request to the estimator primitive program.
       ",
@@ -732,7 +732,7 @@ By default this is sys.stdout.</p></li>
 
       <span id="qiskit_ibm_provider.job.job_monitor" />
 
-      \`job_monitor(job, interval=None, output=<_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>)\`[GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit_ibm_provider/job/job_monitor.py "view source code")
+      \`job_monitor(job, interval=None, output=<_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>)\` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit_ibm_provider/job/job_monitor.py "view source code")
 
       Monitor the status of an \`IBMJob\` instance.
 
@@ -784,7 +784,7 @@ By default this is sys.stdout.</p></li>
 
       <span id="qiskit_ibm_provider.job.IBMJobError" />
 
-      \`IBMJobError(*message)\`[GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit_ibm_provider/job/exceptions.py "view source code")
+      \`IBMJobError(*message)\` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit_ibm_provider/job/exceptions.py "view source code")
 
       Base class for errors raised by the job modules.
 
@@ -925,7 +925,7 @@ bits.</p>
 
       <span id="qiskit.dagcircuit.DAGCircuit" />
 
-      \`qiskit.dagcircuit.DAGCircuit\`[GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit/dagcircuit/dagcircuit.py "view source code")
+      \`qiskit.dagcircuit.DAGCircuit\` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit/dagcircuit/dagcircuit.py "view source code")
 
       Bases: \`object\`
 
@@ -1042,7 +1042,7 @@ bits.</p>
 <div role='main'>
 <div class="math notranslate nohighlight">
 \\[\\begin{split}CCX q_0, q_1, q_2 =
-    I \\otimes I \\otimes \vert 0 \\rangle \\langle 0\vert  + CX \\otimes \vert 1 \\rangle \\langle 1\vert  =
+    I \\otimes I \\otimes |0 \\rangle \\langle 0| + CX \\otimes |1 \\rangle \\langle 1| =
    \\begin{pmatrix}
         1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\\\
         0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\\\
@@ -1061,7 +1061,7 @@ bits.</p>
     ).toMatchInlineSnapshot(`
         "$$
         \\begin{split}CCX q_0, q_1, q_2 =
-            I \\otimes I \\otimes \vert 0 \\rangle \\langle 0\vert  + CX \\otimes \vert 1 \\rangle \\langle 1\vert  =
+            I \\otimes I \\otimes |0 \\rangle \\langle 0| + CX \\otimes |1 \\rangle \\langle 1| =
            \\begin{pmatrix}
                 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\\\
                 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0\\\\
@@ -1408,7 +1408,7 @@ test("test dt tag without id", async () => {
   ).toMatchInlineSnapshot(`
   "In addition to the public abstract methods, subclasses should also implement the following private methods:
   
-  \`classmethod _default_options()\`[GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit/providers/basicaer/qasm_simulator.py "view source code")
+  \`classmethod _default_options()\` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit/providers/basicaer/qasm_simulator.py "view source code")
   
   Return the default options
   
@@ -1423,47 +1423,6 @@ test("test dt tag without id", async () => {
   **Return type**
   
   [qiskit.providers.Options](qiskit.providers.Options#qiskit.providers.Options "qiskit.providers.Options")
-  "
-  `);
-});
-
-test("test replacement of the pipe character for `\vert` on math expressions", async () => {
-  expect(
-    await toMd(`
-    <div role="main">
-    <p class="rubric">Methods</p>
-    <table class="longtable docutils align-default">
-    <colgroup>
-    <col style="width: 10%" />
-    <col style="width: 90%" />
-    </colgroup>
-    <tbody>
-    <tr class="row-odd"><td><a class="reference internal" href="#text-with-pipe" title="text with pipe"></td>
-    <td><p>This is an example of using the | character outside of a math expression</p></td>
-    </tr>
-    <tr class="row-even"><td><a class="reference internal" href="#span-tag-math-expressions-with-pipe" title="(span tag) math expressions with pipe"></a></td>
-    <td><p>Example single pipe: <span class="math">\\(\\mathcal{Q}^k \\mathcal{A} |0\\rangle\\)</span>.</p></td>
-    <tr class="row-odd"><td><a class="reference internal" href="#span-tag-math-expressions-with-double-pipe" title="(span tag) math expressions with double pipe"></a></td>
-    <td><p>Example double pipe: The length of the vector x is <span class="math">\\(\\|x\\|_2\\)</span>.</p></td>
-    </tbody>
-    </table>
-    <p>This is a math expression outside the table: <div class="math">\\[\\mathcal{Q}^k \\mathcal{A} |0\\rangle\\]</div></p>
-    </div>
-    `),
-  ).toMatchInlineSnapshot(`
-  "## Methods
-
-  |                                                                                                |                                                                           |
-  | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-  | [](#text-with-pipe "text with pipe")                                                           | This is an example of using the \\| character outside of a math expression |
-  | [](#span-tag-math-expressions-with-pipe "(span tag) math expressions with pipe")               | Example single pipe: $\\mathcal{Q}^k \\mathcal{A} \\vert 0\\rangle$.          |
-  | [](#span-tag-math-expressions-with-double-pipe "(span tag) math expressions with double pipe") | Example double pipe: The length of the vector x is $\\|x\\|_2$.             |
-  
-  This is a math expression outside the table:
-  
-  $$
-  \\mathcal{Q}^k \\mathcal{A} \\vert 0\\rangle
-  $$
   "
   `);
 });

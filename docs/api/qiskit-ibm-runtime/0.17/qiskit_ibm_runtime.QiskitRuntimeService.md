@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
 <span id="qiskit_ibm_runtime.QiskitRuntimeService" />
 
-`QiskitRuntimeService(channel=None, token=None, url=None, filename=None, name=None, instance=None, proxies=None, verify=None, channel_strategy=None)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.17/qiskit_ibm_runtime/qiskit_runtime_service.py "view source code")
+`QiskitRuntimeService(channel=None, token=None, url=None, filename=None, name=None, instance=None, proxies=None, verify=None, channel_strategy=None)` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.17/qiskit_ibm_runtime/qiskit_runtime_service.py "view source code")
 
 Class for interacting with the Qiskit Runtime service.
 
@@ -213,7 +213,7 @@ Return all backends accessible via this account, subject to optional filtering.
     QiskitRuntimeService.backends(open_pulse=True)
     ```
 
-    For the full list of backend attributes, see the IBMBackend class documentation \<[https://docs.quantum.ibm.com/api/qiskit/providers\_models](https://docs.quantum.ibm.com/api/qiskit/providers_models)>
+    For the full list of backend attributes, see the IBMBackend class documentation \<[api/qiskit/providers\_models](/api/qiskit/providers_models)>
 
 **Return type**
 

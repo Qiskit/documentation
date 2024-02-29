@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.Layout
 
 <span id="qiskit.transpiler.Layout" />
 
-`Layout(input_dict=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/layout.py "view source code")
+`Layout(input_dict=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/layout.py "view source code")
 
 Two-ways dict to represent a Layout.
 

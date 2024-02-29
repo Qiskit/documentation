@@ -10,7 +10,7 @@ python_api_name: qiskit.visualization.plot_state_paulivec
 
 <span id="qiskit.visualization.plot_state_paulivec" />
 
-`plot_state_paulivec(state, title='', figsize=None, color=None, ax=None, *, rho=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/visualization/state_visualization.py "view source code")
+`plot_state_paulivec(state, title='', figsize=None, color=None, ax=None, *, rho=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/visualization/state_visualization.py "view source code")
 
 Plot the paulivec representation of a quantum state.
 
@@ -37,7 +37,7 @@ matplotlib.Figure
 *   **ImportError** – Requires matplotlib.
 *   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – if input is not a valid N-qubit state.
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumCircuit

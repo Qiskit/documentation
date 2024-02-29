@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.NFT
 
 <span id="qiskit.algorithms.optimizers.NFT" />
 
-`NFT(maxiter=None, maxfev=1024, disp=False, reset_interval=32)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/optimizers/nft.py "view source code")
+`NFT(maxiter=None, maxfev=1024, disp=False, reset_interval=32)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/optimizers/nft.py "view source code")
 
 Nakanishi-Fujii-Todo algorithm.
 
@@ -25,11 +25,11 @@ Built out using scipy framework, for details, please refer to [https://docs.scip
 *   **disp** (`bool`) – disp
 *   **reset\_interval** (`int`) – The minimum estimates directly once in `reset_interval` times.
 
-## Notes
+**Notes**
 
 In this optimization method, the optimization function have to satisfy three conditions written in [\[1\]\_](#id5).
 
-## References
+**References**
 
 **1**
 
@@ -50,11 +50,11 @@ Built out using scipy framework, for details, please refer to [https://docs.scip
 *   **disp** (`bool`) – disp
 *   **reset\_interval** (`int`) – The minimum estimates directly once in `reset_interval` times.
 
-## Notes
+**Notes**
 
 In this optimization method, the optimization function have to satisfy three conditions written in [\[1\]\_](#id6).
 
-## References
+**References**
 
 **1**
 

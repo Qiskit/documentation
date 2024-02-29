@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.library.RYGate
 
 <span id="qiskit.circuit.library.RYGate" />
 
-`RYGate(theta, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/standard_gates/ry.py "view source code")
+`RYGate(theta, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/standard_gates/ry.py "view source code")
 
 Single-qubit rotation about the Y axis.
 

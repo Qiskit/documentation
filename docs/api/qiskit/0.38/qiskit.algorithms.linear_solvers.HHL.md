@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.linear_solvers.HHL
 
 <span id="qiskit.algorithms.linear_solvers.HHL" />
 
-`HHL(epsilon=0.01, expectation=None, quantum_instance=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/linear_solvers/hhl.py "view source code")
+`HHL(epsilon=0.01, expectation=None, quantum_instance=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/linear_solvers/hhl.py "view source code")
 
 Bases: [`qiskit.algorithms.linear_solvers.linear_solver.LinearSolver`](qiskit.algorithms.linear_solvers.LinearSolver "qiskit.algorithms.linear_solvers.linear_solver.LinearSolver")
 
@@ -20,7 +20,7 @@ A system of linear equations is called $s$-sparse if $A$ has at most $s$ non-zer
 
 The HHL is a quantum algorithm to estimate a function of the solution with running time complexity of $\mathcal{ O }(\log(N)s^{2}\kappa^{2}/\epsilon)$ when $A$ is a Hermitian matrix under the assumptions of efficient oracles for loading the data, Hamiltonian simulation and computing a function of the solution. This is an exponential speed up in the size of the system, however one crucial remark to keep in mind is that the classical algorithm returns the full solution, while the HHL can only approximate functions of the solution vector.
 
-## Examples
+**Examples**
 
 ```python
 import numpy as np
@@ -44,7 +44,7 @@ solution = hhl.solve(matrix, qc, observable)
 approx_result = solution.observable
 ```
 
-## References
+**References**
 
 **\[1]: Harrow, A. W., Hassidim, A., Lloyd, S. (2009).**
 
@@ -66,7 +66,7 @@ Enhancing the Quantum Linear Systems Algorithm Using Richardson Extrapolation. [
 
 <span id="qiskit.algorithms.linear_solvers.HHL.construct_circuit" />
 
-`HHL.construct_circuit(matrix, vector, neg_vals=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/linear_solvers/hhl.py "view source code")
+`HHL.construct_circuit(matrix, vector, neg_vals=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/linear_solvers/hhl.py "view source code")
 
 Construct the HHL circuit.
 
@@ -94,7 +94,7 @@ The HHL circuit.
 
 <span id="qiskit.algorithms.linear_solvers.HHL.solve" />
 
-`HHL.solve(matrix, vector, observable=None, observable_circuit=None, post_processing=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/linear_solvers/hhl.py "view source code")
+`HHL.solve(matrix, vector, observable=None, observable_circuit=None, post_processing=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/linear_solvers/hhl.py "view source code")
 
 Tries to solve the given linear system of equations.
 

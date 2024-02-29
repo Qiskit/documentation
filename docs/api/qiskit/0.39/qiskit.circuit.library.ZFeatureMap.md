@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.ZFeatureMap
 
 <span id="qiskit.circuit.library.ZFeatureMap" />
 
-`ZFeatureMap(feature_dimension, reps=2, data_map_func=None, parameter_prefix='x', insert_barriers=False, name='ZFeatureMap')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/data_preparation/z_feature_map.py "view source code")
+`ZFeatureMap(feature_dimension, reps=2, data_map_func=None, parameter_prefix='x', insert_barriers=False, name='ZFeatureMap')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/data_preparation/z_feature_map.py "view source code")
 
 Bases: [`qiskit.circuit.library.data_preparation.pauli_feature_map.PauliFeatureMap`](qiskit.circuit.library.PauliFeatureMap "qiskit.circuit.library.data_preparation.pauli_feature_map.PauliFeatureMap")
 
@@ -30,7 +30,7 @@ On 3 qubits and with 2 repetitions the circuit is represented by:
 
 This is a sub-class of [`PauliFeatureMap`](qiskit.circuit.library.PauliFeatureMap "qiskit.circuit.library.PauliFeatureMap") where the Pauli strings are fixed as \[‘Z’]. As a result the first order expansion will be a circuit without entangling gates.
 
-## Examples
+**Examples**
 
 ```python
 >>> prep = ZFeatureMap(3, reps=3, insert_barriers=True)
@@ -323,7 +323,7 @@ The parameters used in the underlying circuit.
 
 This includes float values and duplicates.
 
-## Examples
+**Examples**
 
 ```python
 >>> # prepare circuit ...

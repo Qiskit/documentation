@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.converters.TwoQubitReduction
 
 <span id="qiskit.opflow.converters.TwoQubitReduction" />
 
-`TwoQubitReduction(num_particles)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/converters/two_qubit_reduction.py "view source code")
+`TwoQubitReduction(num_particles)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/converters/two_qubit_reduction.py "view source code")
 
 Two qubit reduction converter which eliminates the central and last qubit in a list of Pauli that has diagonal operators (Z,I) at those positions.
 

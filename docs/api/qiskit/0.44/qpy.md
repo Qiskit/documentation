@@ -55,9 +55,11 @@ and then loading that file will return a list with all the circuits
 
 ### API documentation
 
+### load
+
 <span id="qiskit.qpy.load" />
 
-`qiskit.qpy.load(file_obj, metadata_deserializer=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/qpy/interface.py "view source code")
+`qiskit.qpy.load(file_obj, metadata_deserializer=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/qpy/interface.py "view source code")
 
 Load a QPY binary file
 
@@ -100,9 +102,11 @@ The list of Qiskit programs contained in the QPY data. A list is always returned
 
 [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")\[[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit") | [*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")]
 
+### dump
+
 <span id="qiskit.qpy.dump" />
 
-`qiskit.qpy.dump(programs, file_obj, metadata_serializer=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/qpy/interface.py "view source code")
+`qiskit.qpy.dump(programs, file_obj, metadata_serializer=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/qpy/interface.py "view source code")
 
 Write QPY binary data to a file
 
@@ -155,9 +159,11 @@ Which will save the qpy serialized circuit to the provided file.
 
 These functions will raise a custom subclass of [`QiskitError`](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") if they encounter problems during serialization or deserialization.
 
+### QpyError
+
 <span id="qiskit.qpy.QpyError" />
 
-`qiskit.qpy.QpyError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/qpy/exceptions.py "view source code")
+`qiskit.qpy.QpyError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/qpy/exceptions.py "view source code")
 
 Errors raised by the qpy module.
 

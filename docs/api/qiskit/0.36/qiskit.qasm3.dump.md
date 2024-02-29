@@ -10,7 +10,7 @@ python_api_name: qiskit.qasm3.dump
 
 <span id="qiskit.qasm3.dump" />
 
-`dump(circuit, stream, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/qasm3/__init__.py "view source code")
+`dump(circuit, stream, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/qasm3/__init__.py "view source code")
 
 Serialize a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object as a OpenQASM3 stream to file-like object.
 

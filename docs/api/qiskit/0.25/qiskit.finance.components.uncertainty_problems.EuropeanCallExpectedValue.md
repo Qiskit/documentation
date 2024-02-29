@@ -10,7 +10,7 @@ python_api_name: qiskit.finance.components.uncertainty_problems.EuropeanCallExpe
 
 <span id="qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue" />
 
-`EuropeanCallExpectedValue(uncertainty_model, strike_price, c_approx, i_state=None, i_compare=None, i_objective=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/finance/components/uncertainty_problems/european_call_expected_value.py "view source code")
+`EuropeanCallExpectedValue(uncertainty_model, strike_price, c_approx, i_state=None, i_compare=None, i_objective=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/finance/components/uncertainty_problems/european_call_expected_value.py "view source code")
 
 The European Call Option Expected Value.
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.operators.gradients.Gradient
 
 <span id="qiskit.aqua.operators.gradients.Gradient" />
 
-`Gradient(grad_method='param_shift', **kwargs)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/gradients/gradient.py "view source code")
+`Gradient(grad_method='param_shift', **kwargs)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/gradients/gradient.py "view source code")
 
 Convert an operator expression to the first-order gradient.
 

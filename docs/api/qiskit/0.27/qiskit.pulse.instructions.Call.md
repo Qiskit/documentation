@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.instructions.Call
 
 <span id="qiskit.pulse.instructions.Call" />
 
-`Call(subroutine, value_dict=None, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/instructions/call.py "view source code")
+`Call(subroutine, value_dict=None, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/instructions/call.py "view source code")
 
 Pulse `Call` instruction.
 
@@ -221,7 +221,7 @@ Returns the channels that this schedule uses.
 
 **Return type**
 
-`Tuple`\[[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]
+`Tuple`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")]
 
 ### draw
 
@@ -244,7 +244,7 @@ Plot the instruction.
 *   **table** (`bool`) – Draw event table for supported instructions
 *   **label** (`bool`) – Label individual instructions
 *   **framechange** (`bool`) – Add framechange indicators
-*   **channels** (`Optional`\[`List`\[[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]]) – A list of channel names to plot
+*   **channels** (`Optional`\[`List`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")]]) – A list of channel names to plot
 
 **Returns**
 

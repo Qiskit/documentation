@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.ZZFeatureMap
 
 <span id="qiskit.circuit.library.ZZFeatureMap" />
 
-`ZZFeatureMap(feature_dimension, reps=2, entanglement='full', data_map_func=None, insert_barriers=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/data_preparation/zz_feature_map.py "view source code")
+`ZZFeatureMap(feature_dimension, reps=2, entanglement='full', data_map_func=None, insert_barriers=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/data_preparation/zz_feature_map.py "view source code")
 
 Second-order Pauli-Z evolution circuit.
 
@@ -28,7 +28,7 @@ For 3 qubits and 1 repetition and linear entanglement the circuit is represented
 
 where `φ` is a classical non-linear function, which defaults to `φ(x) = x` if and `φ(x,y) = (pi - x)(pi - y)`.
 
-## Examples
+**Examples**
 
 ```python
 >>> prep = ZZFeatureMap(2, reps=2)
@@ -231,7 +231,7 @@ The parameters used in the underlying circuit.
 
 This includes float values and duplicates.
 
-#### Examples
+**Examples**
 
 ```python
 >>> # prepare circuit ...
@@ -655,7 +655,7 @@ the composed circuit (returns None if inplace==True).
 *   **CircuitError** – if composing on the front.
 *   **QiskitError** – if `other` is wider or there are duplicate edge mappings.
 
-#### Examples
+**Examples**
 
 ```python
 >>> lhs.compose(rhs, qubits=[3, 2], inplace=True)
@@ -826,7 +826,7 @@ Depth of circuit.
 
 int
 
-#### Notes
+**Notes**
 
 The circuit depth and the DAG depth need not be the same.
 
@@ -1540,7 +1540,7 @@ Conditional nonlocal gates are also included.
 
 Computes the number of tensor factors in the unitary (quantum) part of the circuit only.
 
-#### Notes
+**Notes**
 
 This is here for backwards compatibility, and will be removed in a future release of Qiskit. You should call num\_unitary\_factors instead.
 

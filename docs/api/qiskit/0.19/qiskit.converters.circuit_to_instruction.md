@@ -10,7 +10,7 @@ python_api_name: qiskit.converters.circuit_to_instruction
 
 <span id="qiskit.converters.circuit_to_instruction" />
 
-`circuit_to_instruction(circuit, parameter_map=None, equivalence_library=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/converters/circuit_to_instruction.py "view source code")
+`circuit_to_instruction(circuit, parameter_map=None, equivalence_library=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/converters/circuit_to_instruction.py "view source code")
 
 Build an `Instruction` object from a `QuantumCircuit`.
 
@@ -34,7 +34,7 @@ an instruction equivalent to the action of the input circuit. Upon decomposition
 
 [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit

@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.Width
 
 <span id="qiskit.transpiler.passes.Width" />
 
-`Width(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/analysis/width.py "view source code")
+`Width(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/analysis/width.py "view source code")
 
 Calculate the width of a DAG circuit.
 

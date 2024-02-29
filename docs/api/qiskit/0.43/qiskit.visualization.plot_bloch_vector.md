@@ -12,7 +12,7 @@ python_api_name: qiskit.visualization.plot_bloch_vector
 
 <span id="qiskit.visualization.plot_bloch_vector" />
 
-`plot_bloch_vector(bloch, title='', ax=None, figsize=None, coord_type='cartesian', font_size=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/visualization/state_visualization.py "view source code")
+`plot_bloch_vector(bloch, title='', ax=None, figsize=None, coord_type='cartesian', font_size=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/visualization/state_visualization.py "view source code")
 
 Plot the Bloch sphere.
 
@@ -39,7 +39,7 @@ A matplotlib figure instance if `ax = None`.
 
 **MissingOptionalLibraryError** – Requires matplotlib.
 
-## Examples
+**Examples**
 
 ```python
 from qiskit.visualization import plot_bloch_vector

@@ -10,7 +10,7 @@ python_api_name: qiskit_aer.noise.depolarizing_error
 
 <span id="qiskit_aer.noise.depolarizing_error" />
 
-`depolarizing_error(param, num_qubits, standard_gates=None)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/noise/errors/standard_errors.py "view source code")
+`depolarizing_error(param, num_qubits, standard_gates=None)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/noise/errors/standard_errors.py "view source code")
 
 Return a depolarizing quantum error channel.
 

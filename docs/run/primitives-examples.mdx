@@ -1,6 +1,6 @@
 ---
 title: Primitives examples
-description: Practical examples of primitive usage
+description: Practical examples of using primitives in Qiskit Runtime.
 
 ---
 
@@ -13,7 +13,7 @@ To ensure faster and more efficient results, as of 1 March 2024, circuits and ob
 </Admonition>
 
 <Admonition type="note">
-    These examples all use the primitives from Qiskit Runtime, but you could use the base primitives instead. 
+    These examples all use the primitives from Qiskit&reg; Runtime, but you could use the base primitives instead. 
 </Admonition>
 
 ## Estimator examples
@@ -74,7 +74,7 @@ mat = np.real(random_hermitian(n_qubits, seed=1234))
 circuit = IQP(mat)
 observable = SparsePauliOp("Z" * n_qubits)
 
-pm = generate_preset_pass_manager(backend=backend)
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
 isa_observable = observable.apply_layout(isa_circuit.layout)
 
@@ -100,6 +100,7 @@ import numpy as np
 
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit.circuit.library import IQP
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit.quantum_info import SparsePauliOp, random_hermitian
 from qiskit_ibm_runtime import QiskitRuntimeService, EstimatorV2 as Estimator
 
@@ -159,7 +160,7 @@ observables = [
     SparsePauliOp("Z" * n_qubits),
 ]
 
-pm = generate_preset_pass_manager(backend=backend)
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuits = pm.run(circuits)
 isa_observables = [ob.apply_layout(isa_circuits[0].layout) for ob in observables]
 
@@ -252,7 +253,7 @@ parameter_values = [
 ]
 observable = SparsePauliOp("Z" * 127)
 
-pm = generate_preset_pass_manager(backend=backend)
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
 isa_observable = observable.apply_layout(isa_circuit.layout)
 
@@ -337,7 +338,7 @@ another_circuit = IQP(mat)
 observable = SparsePauliOp("X" * n_qubits)
 another_observable = SparsePauliOp("Y" * n_qubits)
 
-pm = generate_preset_pass_manager(backend=backend)
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
 another_isa_circuit = pm.run(another_circuit)
 isa_observable = observable.apply_layout(isa_circuit.layout)
@@ -399,7 +400,7 @@ mat = np.real(random_hermitian(n_qubits, seed=1234))
 circuit = IQP(mat)
 circuit.measure_all()
 
-pm = generate_preset_pass_manager(backend=backend)
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
 
 sampler = Sampler(backend)
@@ -442,11 +443,11 @@ circuits = [IQP(mat) for mat in mats]
 for circuit in circuits:
     circuit.measure_all()
 
-pm = generate_preset_pass_manager(backend=backend)
-isa_circuits = pm.run(circuits)    
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+isa_circuits = pm.run(circuits)
 
 sampler = Sampler(backend) 
-job = sampler.run(isa_circuits) 
+job = sampler.run(isa_circuits)
 result = job.result() 
 
 print(f" > Quasi-probability distribution: {result.quasi_dists}")
@@ -479,7 +480,7 @@ backend = service.least_busy(operational=True, simulator=False, min_num_qubits=1
 circuit = RealAmplitudes(num_qubits=127, reps=2)
 circuit.measure_all()
 
-pm = generate_preset_pass_manager(backend=backend)
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
 
 # Define three sets of parameters for the circuit
@@ -525,7 +526,7 @@ mat = np.real(random_hermitian(n_qubits, seed=rng))
 another_circuit = IQP(mat)
 another_circuit.measure_all()
 
-pm = generate_preset_pass_manager(backend=backend)
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
 another_isa_circuit = pm.run(another_circuit)
 

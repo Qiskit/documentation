@@ -1,3 +1,11 @@
+---
+title: knapsack
+description: API reference for qiskit.optimization.applications.ising.knapsack
+in_page_toc_min_heading_level: 1
+python_api_type: module
+python_api_name: qiskit.optimization.applications.ising.knapsack
+---
+
 <span id="qiskit-optimization-applications-ising-knapsack" />
 
 # qiskit.optimization.applications.ising.knapsack
@@ -8,10 +16,11 @@ In the Knapsack Problem we are given a list of objects that each has a weight an
 
 If we have the weights w\[i], the values v\[i] and the maximum weight W\_max. We express the solution as a binary array x\[i] where we have a 1 for the items we take in the solution set. We need to maximize sum(x\[i]\*v\[i]) while respecting W\_max >= sum(x\[i]\*w\[i])
 
-## Functions
+**Functions**
 
 |                                                    |                                                                                                                    |
 | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
 | `get_operator`(values, weights, max\_weight)       | Generate Hamiltonian for the knapsack problem.                                                                     |
 | `get_solution`(x, values)                          | Get the solution to the knapsack problem from the bitstring that represents to the ground state of the Hamiltonian |
 | `knapsack_value_weight`(solution, values, weights) | Get the total wight and value of the items taken in the knapsack.                                                  |
+

@@ -12,7 +12,7 @@ python_api_name: qiskit.algorithms.optimizers.DIRECT_L_RAND
 
 <span id="qiskit.algorithms.optimizers.DIRECT_L_RAND" />
 
-`qiskit.algorithms.optimizers.DIRECT_L_RAND(max_evals=1000)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/optimizers/nlopts/direct_l_rand.py "view source code")
+`qiskit.algorithms.optimizers.DIRECT_L_RAND(max_evals=1000)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/optimizers/nlopts/direct_l_rand.py "view source code")
 
 Bases: `NLoptOptimizer`
 

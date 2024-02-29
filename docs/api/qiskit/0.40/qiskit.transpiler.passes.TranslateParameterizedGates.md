@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.TranslateParameterizedGates
 
 <span id="qiskit.transpiler.passes.TranslateParameterizedGates" />
 
-`TranslateParameterizedGates(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/basis/translate_parameterized.py "view source code")
+`TranslateParameterizedGates(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/basis/translate_parameterized.py "view source code")
 
 Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -18,7 +18,7 @@ Translate parameterized gates to a supported basis set.
 
 Once a parameterized instruction is found that is not in the `supported_gates` list, the instruction is decomposed one level and the parameterized sub-blocks are recursively decomposed. The recursion is stopped once all parameterized gates are in `supported_gates`, or if a gate has no definition and a translation to the basis is attempted (this might happen e.g. for the `UGate` if it’s not in the specified gate list).
 
-## Example
+**Example**
 
 The following, multiply nested circuit:
 
@@ -87,7 +87,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.TranslateParameterizedGates.run" />
 
-`TranslateParameterizedGates.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/basis/translate_parameterized.py "view source code")
+`TranslateParameterizedGates.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/basis/translate_parameterized.py "view source code")
 
 Run the transpiler pass.
 

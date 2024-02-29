@@ -12,7 +12,7 @@ python_api_name: qiskit.optimization.problems.QuadraticProgramElement
 
 <span id="qiskit.optimization.problems.QuadraticProgramElement" />
 
-`QuadraticProgramElement(quadratic_program)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/problems/quadratic_program_element.py "view source code")
+`QuadraticProgramElement(quadratic_program)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/problems/quadratic_program_element.py "view source code")
 
 Interface class for all objects that have a parent QuadraticProgram.
 

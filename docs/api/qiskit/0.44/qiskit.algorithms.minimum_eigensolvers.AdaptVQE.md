@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.minimum_eigensolvers.AdaptVQE
 
 <span id="qiskit.algorithms.minimum_eigensolvers.AdaptVQE" />
 
-`qiskit.algorithms.minimum_eigensolvers.AdaptVQE(solver, *, gradient_threshold=1e-05, eigenvalue_threshold=1e-05, max_iterations=None, threshold=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/minimum_eigensolvers/adapt_vqe.py "view source code")
+`qiskit.algorithms.minimum_eigensolvers.AdaptVQE(solver, *, gradient_threshold=1e-05, eigenvalue_threshold=1e-05, max_iterations=None, threshold=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/minimum_eigensolvers/adapt_vqe.py "view source code")
 
 Bases: `VariationalAlgorithm`, [`MinimumEigensolver`](qiskit.algorithms.minimum_eigensolvers.MinimumEigensolver "qiskit.algorithms.minimum_eigensolvers.minimum_eigensolver.MinimumEigensolver")
 

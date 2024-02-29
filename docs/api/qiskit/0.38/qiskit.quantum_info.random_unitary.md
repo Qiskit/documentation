@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.random_unitary
 
 <span id="qiskit.quantum_info.random_unitary" />
 
-`random_unitary(dims, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/quantum_info/operators/random.py "view source code")
+`random_unitary(dims, seed=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/quantum_info/operators/random.py "view source code")
 
 Return a random unitary Operator.
 

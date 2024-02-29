@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.QNSPSA
 
 <span id="qiskit.algorithms.optimizers.QNSPSA" />
 
-`QNSPSA(fidelity, maxiter=100, blocking=True, allowed_increase=None, learning_rate=None, perturbation=None, last_avg=1, resamplings=1, perturbation_dims=None, regularization=None, hessian_delay=0, lse_solver=None, initial_hessian=None, callback=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/qnspsa.py "view source code")
+`QNSPSA(fidelity, maxiter=100, blocking=True, allowed_increase=None, learning_rate=None, perturbation=None, last_avg=1, resamplings=1, perturbation_dims=None, regularization=None, hessian_delay=0, lse_solver=None, initial_hessian=None, callback=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/qnspsa.py "view source code")
 
 The Quantum Natural SPSA (QN-SPSA) optimizer.
 
@@ -20,7 +20,7 @@ Compared to natural gradients, which require $\mathcal{O}(d^2)$ expectation valu
 
 The stochastic approximation of the natural gradient can be systematically improved by increasing the number of `resamplings`. This leads to a Monte Carlo-style convergence to the exact, analytic value.
 
-## Examples
+**Examples**
 
 This short example runs QN-SPSA for the ground state calculation of the `Z ^ Z` observable where the ansatz is a `PauliTwoDesign` circuit.
 
@@ -43,7 +43,7 @@ qnspsa = QNSPSA(fidelity, maxiter=300)
 result = qnspsa.optimize(ansatz.num_parameters, loss, initial_point=initial_point)
 ```
 
-## References
+**References**
 
 \[1] J. Gacon et al, “Simultaneous Perturbation Stochastic Approximation of the Quantum Fisher Information”, [arXiv:2103.09232](https://arxiv.org/abs/2103.09232)
 

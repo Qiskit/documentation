@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.SetPhase
 
 <span id="qiskit.pulse.SetPhase" />
 
-`SetPhase(phase, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/instructions/phase.py "view source code")
+`SetPhase(phase, channel, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/instructions/phase.py "view source code")
 
 The set phase instruction sets the phase of the proceeding pulses on that channel to `phase` radians.
 
@@ -27,7 +27,7 @@ Instantiate a set phase instruction, setting the output signal phase on `channel
 **Parameters**
 
 *   **phase** (`Union`\[`complex`, `ParameterExpression`]) – The rotation angle in radians.
-*   **channel** ([`PulseChannel`](qiskit.pulse.channels#qiskit.pulse.channels.PulseChannel "qiskit.pulse.channels.PulseChannel")) – The channel this instruction operates on.
+*   **channel** ([`PulseChannel`](qiskit.pulse.channels#pulsechannel "qiskit.pulse.channels.PulseChannel")) – The channel this instruction operates on.
 *   **name** (`Optional`\[`str`]) – Display name for this instruction.
 
 ### \_\_init\_\_
@@ -41,7 +41,7 @@ Instantiate a set phase instruction, setting the output signal phase on `channel
 **Parameters**
 
 *   **phase** (`Union`\[`complex`, `ParameterExpression`]) – The rotation angle in radians.
-*   **channel** ([`PulseChannel`](qiskit.pulse.channels#qiskit.pulse.channels.PulseChannel "qiskit.pulse.channels.PulseChannel")) – The channel this instruction operates on.
+*   **channel** ([`PulseChannel`](qiskit.pulse.channels#pulsechannel "qiskit.pulse.channels.PulseChannel")) – The channel this instruction operates on.
 *   **name** (`Optional`\[`str`]) – Display name for this instruction.
 
 ## Methods
@@ -62,19 +62,19 @@ Instantiate a set phase instruction, setting the output signal phase on `channel
 
 ## Attributes
 
-|                                                                                            |                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`channel`](#qiskit.pulse.SetPhase.channel "qiskit.pulse.SetPhase.channel")                | Return the [`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel") that this instruction is scheduled on. |
-| [`channels`](#qiskit.pulse.SetPhase.channels "qiskit.pulse.SetPhase.channels")             | Returns the channels that this schedule uses.                                                                                                      |
-| [`duration`](#qiskit.pulse.SetPhase.duration "qiskit.pulse.SetPhase.duration")             | Duration of this instruction.                                                                                                                      |
-| [`id`](#qiskit.pulse.SetPhase.id "qiskit.pulse.SetPhase.id")                               | Unique identifier for this instruction.                                                                                                            |
-| [`instructions`](#qiskit.pulse.SetPhase.instructions "qiskit.pulse.SetPhase.instructions") | Iterable for getting instructions from Schedule tree.                                                                                              |
-| [`name`](#qiskit.pulse.SetPhase.name "qiskit.pulse.SetPhase.name")                         | Name of this instruction.                                                                                                                          |
-| [`operands`](#qiskit.pulse.SetPhase.operands "qiskit.pulse.SetPhase.operands")             | Return instruction operands.                                                                                                                       |
-| [`parameters`](#qiskit.pulse.SetPhase.parameters "qiskit.pulse.SetPhase.parameters")       | Parameters which determine the instruction behavior.                                                                                               |
-| [`phase`](#qiskit.pulse.SetPhase.phase "qiskit.pulse.SetPhase.phase")                      | Return the rotation angle enacted by this instruction in radians.                                                                                  |
-| [`start_time`](#qiskit.pulse.SetPhase.start_time "qiskit.pulse.SetPhase.start_time")       | Relative begin time of this instruction.                                                                                                           |
-| [`stop_time`](#qiskit.pulse.SetPhase.stop_time "qiskit.pulse.SetPhase.stop_time")          | Relative end time of this instruction.                                                                                                             |
+|                                                                                            |                                                                                                                              |
+| ------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------- |
+| [`channel`](#qiskit.pulse.SetPhase.channel "qiskit.pulse.SetPhase.channel")                | Return the [`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel") that this instruction is scheduled on. |
+| [`channels`](#qiskit.pulse.SetPhase.channels "qiskit.pulse.SetPhase.channels")             | Returns the channels that this schedule uses.                                                                                |
+| [`duration`](#qiskit.pulse.SetPhase.duration "qiskit.pulse.SetPhase.duration")             | Duration of this instruction.                                                                                                |
+| [`id`](#qiskit.pulse.SetPhase.id "qiskit.pulse.SetPhase.id")                               | Unique identifier for this instruction.                                                                                      |
+| [`instructions`](#qiskit.pulse.SetPhase.instructions "qiskit.pulse.SetPhase.instructions") | Iterable for getting instructions from Schedule tree.                                                                        |
+| [`name`](#qiskit.pulse.SetPhase.name "qiskit.pulse.SetPhase.name")                         | Name of this instruction.                                                                                                    |
+| [`operands`](#qiskit.pulse.SetPhase.operands "qiskit.pulse.SetPhase.operands")             | Return instruction operands.                                                                                                 |
+| [`parameters`](#qiskit.pulse.SetPhase.parameters "qiskit.pulse.SetPhase.parameters")       | Parameters which determine the instruction behavior.                                                                         |
+| [`phase`](#qiskit.pulse.SetPhase.phase "qiskit.pulse.SetPhase.phase")                      | Return the rotation angle enacted by this instruction in radians.                                                            |
+| [`start_time`](#qiskit.pulse.SetPhase.start_time "qiskit.pulse.SetPhase.start_time")       | Relative begin time of this instruction.                                                                                     |
+| [`stop_time`](#qiskit.pulse.SetPhase.stop_time "qiskit.pulse.SetPhase.stop_time")          | Relative end time of this instruction.                                                                                       |
 
 ### append
 
@@ -171,11 +171,11 @@ Return maximum start time for supplied channels.
 
 `property channel`
 
-Return the [`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel") that this instruction is scheduled on.
+Return the [`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel") that this instruction is scheduled on.
 
 **Return type**
 
-[`PulseChannel`](qiskit.pulse.channels#qiskit.pulse.channels.PulseChannel "qiskit.pulse.channels.PulseChannel")
+[`PulseChannel`](qiskit.pulse.channels#pulsechannel "qiskit.pulse.channels.PulseChannel")
 
 ### channels
 
@@ -187,7 +187,7 @@ Returns the channels that this schedule uses.
 
 **Return type**
 
-`Tuple`\[[`PulseChannel`](qiskit.pulse.channels#qiskit.pulse.channels.PulseChannel "qiskit.pulse.channels.PulseChannel")]
+`Tuple`\[[`PulseChannel`](qiskit.pulse.channels#pulsechannel "qiskit.pulse.channels.PulseChannel")]
 
 ### draw
 
@@ -210,7 +210,7 @@ Plot the instruction.
 *   **table** (`bool`) – Draw event table for supported instructions
 *   **label** (`bool`) – Label individual instructions
 *   **framechange** (`bool`) – Add framechange indicators
-*   **channels** (`Optional`\[`List`\[[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]]) – A list of channel names to plot
+*   **channels** (`Optional`\[`List`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")]]) – A list of channel names to plot
 
 **Returns**
 

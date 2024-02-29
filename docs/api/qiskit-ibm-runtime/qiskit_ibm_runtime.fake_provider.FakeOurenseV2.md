@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeOurenseV2
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeOurenseV2" />
 
-`FakeOurenseV2`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.18/qiskit_ibm_runtime/fake_provider/backends/ourense/fake_ourense.py "view source code")
+`FakeOurenseV2` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/ourense/fake_ourense.py "view source code")
 
 A fake 5 qubit backend.
 
@@ -340,9 +340,9 @@ The `QubitProperties` object for the specified qubit. If a list of qubits is pro
 
 Run on the fake backend using a simulator.
 
-This method runs circuit jobs (an individual or a list of QuantumCircuit ) and pulse jobs (an individual or a list of Schedule or ScheduleBlock) using BasicAer or Aer simulator and returns a `Job` object.
+This method runs circuit jobs (an individual or a list of QuantumCircuit ) and pulse jobs (an individual or a list of Schedule or ScheduleBlock) using BasicAer simulator/ BasicSimulator or Aer simulator and returns a `Job` object.
 
-If qiskit-aer is installed, jobs will be run using AerSimulator with noise model of the fake backend. Otherwise, jobs will be run using BasicAer simulator without noise.
+If qiskit-aer is installed, jobs will be run using AerSimulator with noise model of the fake backend. Otherwise, jobs will be run using BasicAer simulator/ BasicSimulator simulator without noise.
 
 Currently noisy simulation of a pulse job is not supported yet in FakeBackendV2.
 

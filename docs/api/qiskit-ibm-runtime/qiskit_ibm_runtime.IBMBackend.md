@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
 <span id="qiskit_ibm_runtime.IBMBackend" />
 
-`IBMBackend(configuration, service, api_client, instance=None)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.18/qiskit_ibm_runtime/ibm_backend.py "view source code")
+`IBMBackend(configuration, service, api_client, instance=None)` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/ibm_backend.py "view source code")
 
 Backend class interfacing with an IBM Quantum backend.
 
@@ -130,7 +130,7 @@ IBMBackend constructor.
 
 *   **configuration** (`Union`\[`QasmBackendConfiguration`, `PulseBackendConfiguration`]) – Backend configuration.
 *   **service** ([`QiskitRuntimeService`](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.qiskit_runtime_service.QiskitRuntimeService")) – Instance of QiskitRuntimeService.
-*   **api\_client** (`BaseBackendClient`) – IBM client used to communicate with the server.
+*   **api\_client** (`RuntimeClient`) – IBM client used to communicate with the server.
 
 ## Attributes
 

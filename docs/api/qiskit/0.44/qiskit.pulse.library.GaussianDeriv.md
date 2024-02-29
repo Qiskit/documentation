@@ -12,7 +12,7 @@ python_api_name: qiskit.pulse.library.GaussianDeriv
 
 <span id="qiskit.pulse.library.GaussianDeriv" />
 
-`qiskit.pulse.library.GaussianDeriv(duration, amp, sigma, angle=0.0, name=None, limit_amplitude=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/pulse/library/symbolic_pulses.py "view source code")
+`qiskit.pulse.library.GaussianDeriv(duration, amp, sigma, angle=0.0, name=None, limit_amplitude=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/pulse/library/symbolic_pulses.py "view source code")
 
 An unnormalized Gaussian derivative pulse.
 
