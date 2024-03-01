@@ -53,11 +53,11 @@ best capabilities.
 
 ## V2 primitives
 
-Version 2 is first the major interface change since the introduction of Qiskit Runtime primitives. Based on user feedback, the new version introduces the following major new functions:
+Version 2 is first the major interface change since the introduction of Qiskit Runtime primitives. Based on user feedback, the new version introduces the following major changes:
 
-* A **new interface** that lets you specify a single circuit and multiple observables (if using Estimator) and parameter value sets for that circuit. 
+* The **new interface** lets you specify a single circuit and multiple observables (if using Estimator) and parameter value sets for that circuit. 
 * You can **turn on or off individual error mitigation and suppression methods**.
-* In addition to quasi-probabilities, you can choose to **get counts or per-shot measurements** from SamplerV2.
+* You can choose to **get counts or per-shot measurements** instead of quasi-probabilities from SamplerV2.
 * Due to scaling issues, SamplerV2 does not support specifying a resilience level, and EstimatorV2 supports only levels 0 - 2. 
 * To reduce the total execution time, v2 primitives only support **lightweight transpilation**. If you need more advanced transpilation, you can use the [Qiskit transpiler](advanced-runtime-options#runtime-compilation) (manually) or the [AI-driven transpilation service (premium users)](../transpile/qiskit-transpiler-service).
 
