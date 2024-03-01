@@ -16,13 +16,13 @@ import rehypeRemark from "rehype-remark";
 import remarkStringify from "remark-stringify";
 import remarkGfm from "remark-gfm";
 import { last, first, without, initial, tail } from "lodash";
-import { defaultHandlers, Handle, toMdast, all } from "hast-util-to-mdast";
+import { defaultHandlers, Handle, toMdast, all, H } from "hast-util-to-mdast";
 import { toText } from "hast-util-to-text";
 import remarkMath from "remark-math";
 import remarkMdx from "remark-mdx";
 import { MdxJsxFlowElement } from "mdast-util-mdx-jsx";
 import { visit } from "unist-util-visit";
-import { Emphasis, Root } from "mdast";
+import { Emphasis, Root, Content } from "mdast";
 
 import { processHtml } from "./processHtml";
 import { HtmlToMdResult } from "./HtmlToMdResult";
@@ -102,12 +102,12 @@ function prepareHandlers(meta: Metadata): Record<string, Handle> {
         return buildMathExpression(node, "inlineMath");
       }
 
-      if (node.properties.id && node.properties.className?.includes("target")) {
+      if (
+        node.properties.id &&
+        (node.properties.className?.includes("target") ||
+          node.children.length === 0)
+      ) {
         return [buildSpanId(node.properties.id), ...all(h, node)];
-      }
-
-      if (node.properties.id && node.children.length === 0) {
-        return buildSpanId(node.properties.id);
       }
 
       return all(h, node);
@@ -125,65 +125,21 @@ function prepareHandlers(meta: Metadata): Record<string, Handle> {
       return defaultHandlers.div(h, node);
     },
     dt(h, node: any) {
-      if (meta.apiType === "class" || meta.apiType === "module") {
-        return [
-          h(node, "strong", {
-            type: "strong",
-            children: all(h, node),
-          }),
-          { type: "text", value: " " },
-        ];
-      }
-      return h(node, "heading", {
-        type: "heading",
-        depth: 2,
-        children: all(h, node),
-      });
+      return buildDt(h, node, meta.apiType);
     },
     div(h, node: any): any {
       const nodeClasses = node.properties.className ?? [];
-
       if (nodeClasses.includes("admonition")) {
-        const titleNode = node.children.find(
-          (child: any) =>
-            child.properties.className?.includes("admonition-title"),
-        );
+        return buildDiv(node.children, nodeClasses, handlers, "admonition");
+      }
 
-        let type = "note";
-        if (nodeClasses.includes("warning")) {
-          type = "caution";
-        } else if (nodeClasses.includes("important")) {
-          type = "danger";
-        }
-
-        const otherChildren = without(node.children, titleNode);
-        return buildAdmonition({
-          title: toText(titleNode),
-          type,
-          children: otherChildren.map((node: any) =>
-            toMdast(node, { handlers }),
-          ),
-        });
-      } else if (nodeClasses.includes("deprecated")) {
-        const root = node.children[0];
-        const titleNode = root.children.find(
-          (child: any) =>
-            child.properties.className?.includes("versionmodified"),
+      if (nodeClasses.includes("deprecated")) {
+        return buildDiv(
+          node.children[0].children,
+          nodeClasses,
+          handlers,
+          "deprecated",
         );
-        const title = toText(titleNode).trim().replace(/:$/, "");
-        const otherChildren = without(root.children, titleNode);
-        return buildAdmonition({
-          title,
-          type: "danger",
-          children: [
-            {
-              type: "paragraph",
-              children: otherChildren.map((node: any) =>
-                toMdast(node, { handlers }),
-              ),
-            },
-          ],
-        });
       }
 
       return defaultHandlers.div(h, node);
@@ -222,6 +178,73 @@ function removeEmphasisSpaces(
       });
     }
   }
+}
+
+function findNodeWithProperty(nodeList: any[], propertyName: string) {
+  return nodeList.find(
+    (child: any) => child.properties.className?.includes(propertyName),
+  );
+}
+
+function buildDiv(
+  childrenList: any[],
+  nodeClasses: string[],
+  handlers: Record<string, Handle>,
+  divType: "admonition" | "deprecated",
+): MdxJsxFlowElement {
+  const titleNode = findNodeWithProperty(
+    childrenList,
+    divType == "admonition" ? "admonition-title" : "versionmodified",
+  );
+  const title = toText(titleNode).trim().replace(/:$/, "");
+  const otherChildren = without(childrenList, titleNode);
+
+  if (divType == "admonition") {
+    let type = "note";
+    if (nodeClasses.includes("warning")) {
+      type = "caution";
+    } else if (nodeClasses.includes("important")) {
+      type = "danger";
+    }
+
+    return buildAdmonition({
+      title: toText(titleNode),
+      type,
+      children: otherChildren.map((node: any) => toMdast(node, { handlers })),
+    });
+  }
+
+  return buildAdmonition({
+    title,
+    type: "danger",
+    children: [
+      {
+        type: "paragraph",
+        children: otherChildren.map((node: any) => toMdast(node, { handlers })),
+      },
+    ],
+  });
+}
+
+function buildDt(
+  h: H,
+  node: any,
+  apiType?: string,
+): void | Content | Content[] {
+  if (apiType === "class" || apiType === "module") {
+    return [
+      h(node, "strong", {
+        type: "strong",
+        children: all(h, node),
+      }),
+      { type: "text", value: " " },
+    ];
+  }
+  return h(node, "heading", {
+    type: "heading",
+    depth: 2,
+    children: all(h, node),
+  });
 }
 
 function buildAdmonition(options: {
