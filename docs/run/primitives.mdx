@@ -35,7 +35,7 @@ using Qiskit, you can find reference primitive implementations for local simulat
 Providers like Qiskit Runtime enable access to appropriate systems through native implementations of
 their own primitives.
 
-<Admonition type="note" title="Important">
+<Admonition type="caution" title="Important">
 To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](../transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. Users can still request that the primitives do no optimization of input circuits by specifying `optimization_level=0`.
 </Admonition>
 
@@ -144,7 +144,9 @@ The Sampler behaves differently, depending on what version you are using.
 
 <Tabs>
   <TabItem value="SamplerV2" label="SamplerV2">
-    SamplerV2 is simplified to focus on its core task of sampling the output register from execution of quantum circuits. It returns the samples, whose type is defined by the program, without weights and therefore no longer supports resilience levels. The result class, however, has methods to return weighted samples, such as counts and quasi-probabilities. It receives one or more PUBs as the inputs and returns quasi-probabilities, and optionally counts or per-shot measurements, as `PubResult`s.  Quasi-probability distributions are similar to regular
+    SamplerV2 is simplified to focus on its core task of sampling the output register from execution of quantum circuits. It returns the samples, whose type is defined by the program, without weights and therefore does not support resilience levels. The result class, however, has methods to return weighted samples, such as counts and quasi-probabilities. 
+    
+    It receives one or more PUBs as the inputs and returns quasi-probabilities, and optionally counts or per-shot measurements, as `PubResult`s.  Quasi-probability distributions are similar to regular
 probabilities, except they might include negative values, which can occur when using certain error mitigation techniques. The circuits
 can be parametrized, as long as the parameter values are also provided as input to the primitive.
   </TabItem>
@@ -183,5 +185,6 @@ The Qiskit Runtime primitives provide a more sophisticated implementation (for e
 <Admonition type="tip" title="Recommendations">
     - Read [Get started with primitives](primitives-get-started) to implement primitives in your work.
     - Review detailed [primitives examples.](primitives-examples)
+    - Read [Migrate to V2 primitives](../api/migration_guides/v2-primitives).
     - Practice with primitives by working through the [Cost function lesson](https://learning.quantum.ibm.com/course/variational-algorithm-design/cost-functions#primitives) in IBM Quantum&trade; Learning.
 </Admonition>
