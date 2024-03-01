@@ -601,9 +601,8 @@ Some companies require a special attribution notice. View a list of the companie
 - IBM Quantum&trade;
 </details>
 
-<Admonition type="note" title="Qiskit is an exception">
-  Although Qiskit is a registered trademark of IBM, we do not mark it as such.
-</Admonition>
+**Note**: Although Qiskit is a registered trademark of IBM, we do not mark it as such.
+
 
 See the Usage section of the IBM Quantum Experience Guide for guidance on when to use IBM and when to use IBM Quantum.
 
@@ -615,6 +614,4 @@ Use `&reg;` to get &reg; for registered trademarks.
 
 use `&trade;` to get &trade; for nonregistered trademarks.
 
-<Admonition type="caution">
-  Do not include trademarks in headings. The code will display rather than the symbol.
-</Admonition>
+⚠️ **Note**: Do not include trademarks in headings. The code will display rather than the symbol.
