@@ -64,23 +64,7 @@ async function generateMarkdownFile(
       handlers,
     })
     .use(remarkStringify, remarkStringifyOptions)
-    .use(() => (root: Root) => {
-      // merge contiguous emphasis
-      visit(root, "emphasis", (node, index, parent) => {
-        if (index === null || parent === null) return;
-        let nextIndex = index + 1;
-        while (parent.children[nextIndex]?.type === "emphasis") {
-          node.children.push(
-            ...((parent.children[nextIndex] as any).children ?? []),
-          );
-          nextIndex++;
-        }
-        parent.children.splice(index + 1, nextIndex - (index + 1));
-
-        removeEmphasisSpaces(node, index, parent, "initial");
-        removeEmphasisSpaces(node, index, parent, "tail");
-      });
-    })
+    .use(() => (root: Root) => visit(root, "emphasis", mergeContiguousEmphasis))
     .process(mainHtml);
 
   return mdFile.toString().replaceAll(`<!---->`, "");
@@ -142,6 +126,23 @@ function prepareHandlers(meta: Metadata): Record<string, Handle> {
   };
 
   return handlers;
+}
+
+function mergeContiguousEmphasis(
+  node: Emphasis,
+  index: number | null,
+  parent: any | null,
+): void {
+  if (index === null || parent === null) return;
+  let nextIndex = index + 1;
+  while (parent.children[nextIndex]?.type === "emphasis") {
+    node.children.push(...((parent.children[nextIndex] as any).children ?? []));
+    nextIndex++;
+  }
+  parent.children.splice(index + 1, nextIndex - (index + 1));
+
+  removeEmphasisSpaces(node, index, parent, "initial");
+  removeEmphasisSpaces(node, index, parent, "tail");
 }
 
 function removeEmphasisSpaces(
