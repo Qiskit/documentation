@@ -130,16 +130,11 @@ function prepareHandlers(meta: Metadata): Record<string, Handle> {
     div(h, node: any): any {
       const nodeClasses = node.properties.className ?? [];
       if (nodeClasses.includes("admonition")) {
-        return buildDiv(node.children, nodeClasses, handlers, "admonition");
+        return buildAdmonition(node, nodeClasses, handlers);
       }
 
       if (nodeClasses.includes("deprecated")) {
-        return buildDiv(
-          node.children[0].children,
-          nodeClasses,
-          handlers,
-          "deprecated",
-        );
+        return buildDeprecatedAdmonition(node, handlers);
       }
 
       return defaultHandlers.div(h, node);
@@ -186,46 +181,6 @@ function findNodeWithProperty(nodeList: any[], propertyName: string) {
   );
 }
 
-function buildDiv(
-  childrenList: any[],
-  nodeClasses: string[],
-  handlers: Record<string, Handle>,
-  divType: "admonition" | "deprecated",
-): MdxJsxFlowElement {
-  const titleNode = findNodeWithProperty(
-    childrenList,
-    divType == "admonition" ? "admonition-title" : "versionmodified",
-  );
-  const title = toText(titleNode).trim().replace(/:$/, "");
-  const otherChildren = without(childrenList, titleNode);
-
-  if (divType == "admonition") {
-    let type = "note";
-    if (nodeClasses.includes("warning")) {
-      type = "caution";
-    } else if (nodeClasses.includes("important")) {
-      type = "danger";
-    }
-
-    return buildAdmonition({
-      title: toText(titleNode),
-      type,
-      children: otherChildren.map((node: any) => toMdast(node, { handlers })),
-    });
-  }
-
-  return buildAdmonition({
-    title,
-    type: "danger",
-    children: [
-      {
-        type: "paragraph",
-        children: otherChildren.map((node: any) => toMdast(node, { handlers })),
-      },
-    ],
-  });
-}
-
 function buildDt(
   h: H,
   node: any,
@@ -247,12 +202,55 @@ function buildDt(
   });
 }
 
-function buildAdmonition(options: {
-  title: string;
-  type: string;
-  children: Array<any>;
-}): MdxJsxFlowElement {
-  const { title, type, children } = options;
+function buildAdmonition(
+  node: any,
+  nodeClasses: string[],
+  handlers: Record<string, Handle>,
+): MdxJsxFlowElement {
+  const titleNode = findNodeWithProperty(node.children, "admonition-title");
+  const children: Array<any> = without(node.children, titleNode).map(
+    (node: any) => toMdast(node, { handlers }),
+  );
+
+  let type = "note";
+  if (nodeClasses.includes("warning")) {
+    type = "caution";
+  } else if (nodeClasses.includes("important")) {
+    type = "danger";
+  }
+
+  return {
+    type: "mdxJsxFlowElement",
+    name: "Admonition",
+    attributes: [
+      {
+        type: "mdxJsxAttribute",
+        name: "title",
+        value: toText(titleNode),
+      },
+      {
+        type: "mdxJsxAttribute",
+        name: "type",
+        value: type,
+      },
+    ],
+    children,
+  };
+}
+
+function buildDeprecatedAdmonition(
+  node: any,
+  handlers: Record<string, Handle>,
+): MdxJsxFlowElement {
+  const titleNode = findNodeWithProperty(
+    node.children[0].children,
+    "versionmodified",
+  );
+  const title = toText(titleNode).trim().replace(/:$/, "");
+  const otherChildren: Array<any> = without(node.children[0].children, titleNode).map(
+    (node: any) => toMdast(node, { handlers }),
+  );
+
   return {
     type: "mdxJsxFlowElement",
     name: "Admonition",
@@ -265,10 +263,15 @@ function buildAdmonition(options: {
       {
         type: "mdxJsxAttribute",
         name: "type",
-        value: type,
+        value: "danger",
       },
     ],
-    children,
+    children: [
+      {
+        type: "paragraph",
+        children: otherChildren,
+      },
+    ],
   };
 }
 
