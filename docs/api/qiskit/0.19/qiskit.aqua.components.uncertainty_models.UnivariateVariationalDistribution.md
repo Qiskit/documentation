@@ -54,7 +54,7 @@ returns values
 
 <span id="qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.build" />
 
-`UnivariateVariationalDistribution.build(qc, q, q_ancillas=None, params=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/uncertainty_models/univariate_variational_distribution.py "view source code")
+`UnivariateVariationalDistribution.build(qc, q, q_ancillas=None, params=None)`
 
 ### build\_controlled
 
@@ -193,7 +193,7 @@ returns required ancillas controlled
 
 <span id="qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.set_probabilities" />
 
-`UnivariateVariationalDistribution.set_probabilities(quantum_instance)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/uncertainty_models/univariate_variational_distribution.py "view source code")
+`UnivariateVariationalDistribution.set_probabilities(quantum_instance)`
 
 Set Probabilities
 

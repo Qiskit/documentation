@@ -38,7 +38,7 @@ Creates a PhaseOracle object
 
 <span id="qiskit.circuit.library.PhaseOracle.evaluate_bitstring" />
 
-`PhaseOracle.evaluate_bitstring(bitstring)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/phase_oracle.py "view source code")
+`PhaseOracle.evaluate_bitstring(bitstring)`
 
 Evaluate the oracle on a bitstring. This evaluation is done classically without any quantum circuit.
 
@@ -60,7 +60,7 @@ bool
 
 <span id="qiskit.circuit.library.PhaseOracle.from_dimacs_file" />
 
-`classmethod PhaseOracle.from_dimacs_file(filename)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/phase_oracle.py "view source code")
+`classmethod PhaseOracle.from_dimacs_file(filename)`
 
 Create a PhaseOracle from the string in the DIMACS format.
 

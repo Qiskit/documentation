@@ -160,7 +160,7 @@ Initialize a QasmBackendConfiguration Object
 
 <span id="qiskit.providers.models.QasmBackendConfiguration.from_dict" />
 
-`classmethod QasmBackendConfiguration.from_dict(data)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/models/backendconfiguration.py "view source code")
+`classmethod QasmBackendConfiguration.from_dict(data)`
 
 Create a new GateConfig object from a dictionary.
 
@@ -180,7 +180,7 @@ The GateConfig from the input dictionary.
 
 <span id="qiskit.providers.models.QasmBackendConfiguration.to_dict" />
 
-`QasmBackendConfiguration.to_dict()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/models/backendconfiguration.py "view source code")
+`QasmBackendConfiguration.to_dict()`
 
 Return a dictionary format representation of the GateConfig.
 

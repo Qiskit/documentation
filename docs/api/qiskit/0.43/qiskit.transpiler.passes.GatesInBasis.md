@@ -41,7 +41,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.GatesInBasis.run" />
 
-`GatesInBasis.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/utils/gates_basis.py "view source code")
+`GatesInBasis.run(dag)`
 
 Run the GatesInBasis pass on dag.
 

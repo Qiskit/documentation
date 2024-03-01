@@ -46,7 +46,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.Optimize1qGatesSimpleCommutation.run" />
 
-`Optimize1qGatesSimpleCommutation.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/optimization/optimize_1q_commutation.py "view source code")
+`Optimize1qGatesSimpleCommutation.run(dag)`
 
 **Parameters**
 

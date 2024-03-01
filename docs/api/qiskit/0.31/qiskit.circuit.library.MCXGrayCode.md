@@ -26,7 +26,7 @@ Create new MCX gate.
 
 <span id="qiskit.circuit.library.MCXGrayCode.inverse" />
 
-`MCXGrayCode.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/x.py "view source code")
+`MCXGrayCode.inverse()`
 
 Invert this gate. The MCX is its own inverse.
 

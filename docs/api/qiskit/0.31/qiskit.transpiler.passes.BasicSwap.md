@@ -39,7 +39,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.BasicSwap.run" />
 
-`BasicSwap.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/routing/basic_swap.py "view source code")
+`BasicSwap.run(dag)`
 
 Run the BasicSwap pass on dag.
 

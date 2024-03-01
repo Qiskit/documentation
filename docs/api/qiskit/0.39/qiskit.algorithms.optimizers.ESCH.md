@@ -36,7 +36,7 @@ NLopt global optimizer, derivative-free. For further detail, please refer to
 
 <span id="qiskit.algorithms.optimizers.ESCH.get_nlopt_optimizer" />
 
-`ESCH.get_nlopt_optimizer()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/optimizers/nlopts/esch.py "view source code")
+`ESCH.get_nlopt_optimizer()`
 
 Return NLopt optimizer type
 

@@ -44,7 +44,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.RemoveDiagonalGatesBeforeMeasure.run" />
 
-`RemoveDiagonalGatesBeforeMeasure.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/transpiler/passes/optimization/remove_diagonal_gates_before_measure.py "view source code")
+`RemoveDiagonalGatesBeforeMeasure.run(dag)`
 
 Run the RemoveDiagonalGatesBeforeMeasure pass on dag.
 

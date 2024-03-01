@@ -89,7 +89,7 @@ Return a numpy random.
 
 <span id="qiskit.aqua.algorithms.HHL.construct_circuit" />
 
-`HHL.construct_circuit(measurement=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/linear_solvers/hhl.py "view source code")
+`HHL.construct_circuit(measurement=False)`
 
 Construct the HHL circuit.
 
@@ -109,7 +109,7 @@ the QuantumCircuit object for the constructed circuit
 
 <span id="qiskit.aqua.algorithms.HHL.expand_to_hermitian" />
 
-`static HHL.expand_to_hermitian(matrix, vector)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/linear_solvers/hhl.py "view source code")
+`static HHL.expand_to_hermitian(matrix, vector)`
 
 Expand a non-hermitian matrix A to a hermitian matrix by \[\[0, A.H], \[A, 0]] and expand vector b to \[b.conj, b].
 
@@ -130,7 +130,7 @@ tuple(np.array, np.array)
 
 <span id="qiskit.aqua.algorithms.HHL.expand_to_powerdim" />
 
-`static HHL.expand_to_powerdim(matrix, vector)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/linear_solvers/hhl.py "view source code")
+`static HHL.expand_to_powerdim(matrix, vector)`
 
 Expand a matrix to the next-larger 2\*\*n dimensional matrix with ones on the diagonal and zeros on the off-diagonal and expand the vector with zeros accordingly.
 
@@ -151,7 +151,7 @@ tuple(np.array, np.array)
 
 <span id="qiskit.aqua.algorithms.HHL.matrix_resize" />
 
-`static HHL.matrix_resize(matrix, vector)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/linear_solvers/hhl.py "view source code")
+`static HHL.matrix_resize(matrix, vector)`
 
 Resizes matrix if necessary
 

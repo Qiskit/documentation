@@ -356,7 +356,7 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 <span id="qiskit.chemistry.core.MolecularGroundStateResult.has_dipole" />
 
-`MolecularGroundStateResult.has_dipole()` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/chemistry/core/chemistry_operator.py "view source code")
+`MolecularGroundStateResult.has_dipole()`
 
 Returns whether dipole moment is present in result or not
 
@@ -368,7 +368,7 @@ Returns whether dipole moment is present in result or not
 
 <span id="qiskit.chemistry.core.MolecularGroundStateResult.has_observables" />
 
-`MolecularGroundStateResult.has_observables()` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/chemistry/core/chemistry_operator.py "view source code")
+`MolecularGroundStateResult.has_observables()`
 
 Returns whether result has aux op observables such as spin, num particles
 

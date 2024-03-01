@@ -68,7 +68,7 @@ Create new CRY gate.
 
 <span id="qiskit.circuit.library.CRYGate.inverse" />
 
-`CRYGate.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/ry.py "view source code")
+`CRYGate.inverse()`
 
 Return inverse CRY gate (i.e. with the negative rotation angle).
 

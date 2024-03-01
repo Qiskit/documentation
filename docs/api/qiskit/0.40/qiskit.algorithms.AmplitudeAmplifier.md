@@ -22,7 +22,7 @@ The interface for amplification algorithms.
 
 <span id="qiskit.algorithms.AmplitudeAmplifier.amplify" />
 
-`abstract AmplitudeAmplifier.amplify(amplification_problem)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/amplitude_amplifiers/amplitude_amplifier.py "view source code")
+`abstract AmplitudeAmplifier.amplify(amplification_problem)`
 
 Run the amplification algorithm.
 

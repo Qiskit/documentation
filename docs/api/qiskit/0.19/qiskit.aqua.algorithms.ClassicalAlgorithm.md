@@ -26,7 +26,7 @@ Return a numpy random.
 
 <span id="qiskit.aqua.algorithms.ClassicalAlgorithm.run" />
 
-`ClassicalAlgorithm.run()` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/classical_algorithm.py "view source code")
+`ClassicalAlgorithm.run()`
 
 Execute the classical algorithm.
 

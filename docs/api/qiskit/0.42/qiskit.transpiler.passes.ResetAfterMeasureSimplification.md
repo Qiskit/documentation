@@ -32,7 +32,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.ResetAfterMeasureSimplification.run" />
 
-`ResetAfterMeasureSimplification.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/optimization/reset_after_measure_simplification.py "view source code")
+`ResetAfterMeasureSimplification.run(dag)`
 
 Run the pass on a dag.
 

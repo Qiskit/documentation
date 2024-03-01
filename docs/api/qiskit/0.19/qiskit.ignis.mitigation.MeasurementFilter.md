@@ -39,7 +39,7 @@ return the state label ordering of the cal matrix
 
 <span id="qiskit.ignis.mitigation.MeasurementFilter.apply" />
 
-`MeasurementFilter.apply(raw_data, method='least_squares')` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/mitigation/measurement/filters.py "view source code")
+`MeasurementFilter.apply(raw_data, method='least_squares')`
 
 Apply the calibration matrix to results.
 

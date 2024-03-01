@@ -26,7 +26,7 @@ Validate and reformat transport layer inputs to initialize. :param qubit\_freq\_
 
 <span id="qiskit.providers.models.PulseDefaults.from_dict" />
 
-`classmethod PulseDefaults.from_dict(data)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/models/pulsedefaults.py "view source code")
+`classmethod PulseDefaults.from_dict(data)`
 
 Create a new PulseDefaults object from a dictionary.
 
@@ -48,7 +48,7 @@ The PulseDefaults from the input dictionary.
 
 <span id="qiskit.providers.models.PulseDefaults.to_dict" />
 
-`PulseDefaults.to_dict()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/models/pulsedefaults.py "view source code")
+`PulseDefaults.to_dict()`
 
 Return a dictionary format representation of the PulseDefaults. :returns: The dictionary form of the PulseDefaults. :rtype: dict
 

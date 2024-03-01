@@ -45,7 +45,7 @@ Initialize a UchannelLOSchema object
 
 <span id="qiskit.providers.models.UchannelLO.from_dict" />
 
-`classmethod UchannelLO.from_dict(data)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/models/backendconfiguration.py "view source code")
+`classmethod UchannelLO.from_dict(data)`
 
 Create a new UchannelLO object from a dictionary.
 
@@ -65,7 +65,7 @@ The UchannelLO from the input dictionary.
 
 <span id="qiskit.providers.models.UchannelLO.to_dict" />
 
-`UchannelLO.to_dict()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/models/backendconfiguration.py "view source code")
+`UchannelLO.to_dict()`
 
 Return a dictionary format representation of the UChannelLO.
 

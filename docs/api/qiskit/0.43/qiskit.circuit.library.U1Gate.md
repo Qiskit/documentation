@@ -85,7 +85,7 @@ Create new U1 gate.
 
 <span id="qiskit.circuit.library.U1Gate.control" />
 
-`U1Gate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/u1.py "view source code")
+`U1Gate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
 Return a (multi-)controlled-U1 gate.
 
@@ -109,7 +109,7 @@ controlled version of this gate.
 
 <span id="qiskit.circuit.library.U1Gate.inverse" />
 
-`U1Gate.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/u1.py "view source code")
+`U1Gate.inverse()`
 
 Return inverted U1 gate ($U1(\lambda)^{\dagger} = U1(-\lambda)$)
 

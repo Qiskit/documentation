@@ -29,7 +29,7 @@ A base class that represents an approximate circuit.
 
 <span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.build" />
 
-`abstract ApproximateCircuit.build(thetas)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/synthesis/aqc/approximate.py "view source code")
+`abstract ApproximateCircuit.build(thetas)`
 
 #### Constructs this circuit out of the parameters(thetas). Parameter values must be set before
 

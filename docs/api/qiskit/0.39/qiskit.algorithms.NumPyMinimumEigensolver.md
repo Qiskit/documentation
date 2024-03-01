@@ -28,7 +28,7 @@ The NumPyMinimumEigensolver class has been superseded by the [`qiskit.algorithms
 
 <span id="qiskit.algorithms.NumPyMinimumEigensolver.compute_minimum_eigenvalue" />
 
-`NumPyMinimumEigensolver.compute_minimum_eigenvalue(operator, aux_operators=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/minimum_eigen_solvers/numpy_minimum_eigen_solver.py "view source code")
+`NumPyMinimumEigensolver.compute_minimum_eigenvalue(operator, aux_operators=None)`
 
 Computes minimum eigenvalue. Operator and aux\_operators can be supplied here and if not None will override any already set into algorithm so it can be reused with different operators. While an operator is required by algorithms, aux\_operators are optional. To ‘remove’ a previous aux\_operators array use an empty list here.
 
@@ -49,7 +49,7 @@ MinimumEigensolverResult
 
 <span id="qiskit.algorithms.NumPyMinimumEigensolver.supports_aux_operators" />
 
-`classmethod NumPyMinimumEigensolver.supports_aux_operators()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/minimum_eigen_solvers/numpy_minimum_eigen_solver.py "view source code")
+`classmethod NumPyMinimumEigensolver.supports_aux_operators()`
 
 Whether computing the expectation value of auxiliary operators is supported.
 

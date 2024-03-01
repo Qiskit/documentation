@@ -136,7 +136,7 @@ numpy.ndarray
 
 <span id="qiskit.finance.data_providers.WikipediaDataProvider.run" />
 
-`WikipediaDataProvider.run()` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/finance/data_providers/wikipedia_data_provider.py "view source code")
+`WikipediaDataProvider.run()`
 
 Loads data, thus enabling get\_similarity\_matrix and get\_covariance\_matrix methods in the base class.
 

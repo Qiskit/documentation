@@ -62,7 +62,7 @@ str
 
 <span id="qiskit.providers.fake_provider.FakeTenerife.properties" />
 
-`FakeTenerife.properties()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/fake_provider/backends/tenerife/fake_tenerife.py "view source code")
+`FakeTenerife.properties()`
 
 Returns a snapshot of device properties as recorded on 8/30/19.
 

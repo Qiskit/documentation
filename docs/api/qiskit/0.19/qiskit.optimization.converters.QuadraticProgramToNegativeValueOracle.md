@@ -35,7 +35,7 @@ arxiv:1912.04088.
 
 <span id="qiskit.optimization.converters.QuadraticProgramToNegativeValueOracle.encode" />
 
-`QuadraticProgramToNegativeValueOracle.encode(problem)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/0.7.3/qiskit/optimization/converters/quadratic_program_to_negative_value_oracle.py "view source code")
+`QuadraticProgramToNegativeValueOracle.encode(problem)`
 
 A helper function that converts a QUBO into an oracle that recognizes negative numbers.
 

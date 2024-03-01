@@ -43,7 +43,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.Layout2qDistance.run" />
 
-`Layout2qDistance.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/layout/layout_2q_distance.py "view source code")
+`Layout2qDistance.run(dag)`
 
 Run the Layout2qDistance pass on dag. :param dag: DAG to evaluate. :type dag: DAGCircuit
 

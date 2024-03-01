@@ -26,7 +26,7 @@ Returns the number of target qubits
 
 <span id="qiskit.aqua.components.uncertainty_models.UncertaintyModel.build" />
 
-`abstract UncertaintyModel.build(qc, q, q_ancillas=None, params=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/uncertainty_models/uncertainty_model.py "view source code")
+`abstract UncertaintyModel.build(qc, q, q_ancillas=None, params=None)`
 
 Adds corresponding sub-circuit to given circuit
 

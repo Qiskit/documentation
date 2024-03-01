@@ -33,7 +33,7 @@ Base class of Sampler that calculates quasi-probabilities of bitstrings from qua
 
 <span id="qiskit.primitives.BaseSampler.close" />
 
-`abstract BaseSampler.close()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/primitives/base_sampler.py "view source code")
+`abstract BaseSampler.close()`
 
 Close the session and free resources
 

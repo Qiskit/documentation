@@ -98,7 +98,7 @@ Validation of the arguments.
 
 <span id="qiskit.circuit.WhileLoopOp.c_if" />
 
-`WhileLoopOp.c_if(classical, val)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/controlflow/while_loop.py "view source code")
+`WhileLoopOp.c_if(classical, val)`
 
 Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
 
@@ -198,7 +198,7 @@ Containing the definition.
 
 <span id="qiskit.circuit.WhileLoopOp.replace_blocks" />
 
-`WhileLoopOp.replace_blocks(blocks)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/controlflow/while_loop.py "view source code")
+`WhileLoopOp.replace_blocks(blocks)`
 
 Replace blocks and return new instruction. :param blocks: Tuple of QuantumCircuits to replace in instruction.
 

@@ -20,7 +20,7 @@ DEPRECATED. Quantum Fourier Transform Circuit.
 
 <span id="qiskit.aqua.circuits.FourierTransformCircuits.construct_circuit" />
 
-`static FourierTransformCircuits.construct_circuit(circuit=None, qubits=None, inverse=False, approximation_degree=0, do_swaps=True)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/circuits/fourier_transform_circuits.py "view source code")
+`static FourierTransformCircuits.construct_circuit(circuit=None, qubits=None, inverse=False, approximation_degree=0, do_swaps=True)`
 
 Construct the circuit representing the desired state vector.
 

@@ -95,7 +95,7 @@ print(f"Found minimum {x_opt} at a value of {fx_opt} using {nfevs} evaluations."
 
 <span id="qiskit.algorithms.optimizers.GradientDescent.get_support_level" />
 
-`GradientDescent.get_support_level()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/optimizers/gradient_descent.py "view source code")
+`GradientDescent.get_support_level()`
 
 Get the support level dictionary.
 
@@ -126,7 +126,7 @@ grad
 
 <span id="qiskit.algorithms.optimizers.GradientDescent.minimize" />
 
-`GradientDescent.minimize(fun, x0, jac=None, bounds=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/optimizers/gradient_descent.py "view source code")
+`GradientDescent.minimize(fun, x0, jac=None, bounds=None)`
 
 Minimize the scalar function.
 

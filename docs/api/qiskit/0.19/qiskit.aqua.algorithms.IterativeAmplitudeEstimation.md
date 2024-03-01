@@ -139,7 +139,7 @@ Return a numpy random.
 
 <span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.construct_circuit" />
 
-`IterativeAmplitudeEstimation.construct_circuit(k, measurement=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/amplitude_estimators/iqae.py "view source code")
+`IterativeAmplitudeEstimation.construct_circuit(k, measurement=False)`
 
 Construct the circuit Q^k A |0>.
 

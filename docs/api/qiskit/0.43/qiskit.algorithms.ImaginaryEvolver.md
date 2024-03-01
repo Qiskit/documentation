@@ -30,7 +30,7 @@ The ImaginaryEvolver interface has been superseded by the `qiskit.algorithms.tim
 
 <span id="qiskit.algorithms.ImaginaryEvolver.evolve" />
 
-`abstract ImaginaryEvolver.evolve(evolution_problem)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/evolvers/imaginary_evolver.py "view source code")
+`abstract ImaginaryEvolver.evolve(evolution_problem)`
 
 Perform imaginary time evolution $\exp(-\tau H)|\Psi\rangle$.
 

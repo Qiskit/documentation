@@ -274,7 +274,7 @@ Occupied time slots by this instruction.
 
 <span id="qiskit.pulse.instructions.Acquire.__call__" />
 
-`Acquire.__call__(channel=None, mem_slot=None, reg_slots=None, mem_slots=None, reg_slot=None, kernel=None, discriminator=None, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/instructions/acquire.py "view source code")
+`Acquire.__call__(channel=None, mem_slot=None, reg_slots=None, mem_slots=None, reg_slot=None, kernel=None, discriminator=None, name=None)`
 
 Return new `Acquire` that is fully instantiated with its channels.
 

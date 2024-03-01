@@ -39,7 +39,7 @@ where R(x) represents the penalization term.
 
 <span id="qiskit.opflow.gradients.NaturalGradient.convert" />
 
-`NaturalGradient.convert(operator, params=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/opflow/gradients/natural_gradient.py "view source code")
+`NaturalGradient.convert(operator, params=None)`
 
 **Parameters**
 

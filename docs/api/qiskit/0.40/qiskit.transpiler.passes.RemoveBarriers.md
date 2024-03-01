@@ -51,7 +51,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.RemoveBarriers.run" />
 
-`RemoveBarriers.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/utils/remove_barriers.py "view source code")
+`RemoveBarriers.run(dag)`
 
 Run the RemoveBarriers pass on dag.
 

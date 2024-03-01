@@ -34,7 +34,7 @@ Evolves an initial state $|\Psi\rangle$ for a time $t$ under a Hamiltonian $H$, 
 
 <span id="qiskit.algorithms.SciPyRealEvolver.evolve" />
 
-`SciPyRealEvolver.evolve(evolution_problem)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/time_evolvers/classical_methods/scipy_real_evolver.py "view source code")
+`SciPyRealEvolver.evolve(evolution_problem)`
 
 Perform real time evolution $\exp(-i t H)|\Psi\rangle$.
 

@@ -52,7 +52,7 @@ returns variable register
 
 <span id="qiskit.aqua.components.oracles.CustomCircuitOracle.construct_circuit" />
 
-`CustomCircuitOracle.construct_circuit()` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/oracles/custom_circuit_oracle.py "view source code")
+`CustomCircuitOracle.construct_circuit()`
 
 Construct the oracle circuit.
 

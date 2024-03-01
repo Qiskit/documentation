@@ -32,7 +32,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.NumTensorFactors.run" />
 
-`NumTensorFactors.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/analysis/num_tensor_factors.py "view source code")
+`NumTensorFactors.run(dag)`
 
 Run the NumTensorFactors pass on dag.
 

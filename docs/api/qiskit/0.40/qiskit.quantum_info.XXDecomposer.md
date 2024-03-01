@@ -32,7 +32,7 @@ A class for optimal decomposition of 2-qubit unitaries into 2-qubit basis gates 
 
 <span id="qiskit.quantum_info.XXDecomposer.num_basis_gates" />
 
-`XXDecomposer.num_basis_gates(unitary)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/synthesis/xx_decompose/decomposer.py "view source code")
+`XXDecomposer.num_basis_gates(unitary)`
 
 Counts the number of gates that would be emitted during re-synthesis.
 

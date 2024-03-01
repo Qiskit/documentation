@@ -184,7 +184,7 @@ Occupied time slots by this instruction.
 
 <span id="qiskit.pulse.instructions.ShiftPhase.__call__" />
 
-`ShiftPhase.__call__(channel)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/instructions/phase.py "view source code")
+`ShiftPhase.__call__(channel)`
 
 Return a new ShiftPhase instruction supporting the deprecated syntax of FrameChange.
 

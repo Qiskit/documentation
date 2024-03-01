@@ -48,7 +48,7 @@ IBMBackendService constructor.
 
 <span id="qiskit_ibm_provider.IBMBackendService.backends" />
 
-`IBMBackendService.backends(name=None, filters=None, min_num_qubits=None, instance=None, dynamic_circuits=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_backend_service.py "view source code")
+`IBMBackendService.backends(name=None, filters=None, min_num_qubits=None, instance=None, dynamic_circuits=None, **kwargs)`
 
 Return all backends accessible via this account, subject to optional filtering.
 
@@ -107,7 +107,7 @@ The list of available backends that match the filter.
 
 <span id="qiskit_ibm_provider.IBMBackendService.jobs" />
 
-`IBMBackendService.jobs(limit=10, skip=0, backend_name=None, status=None, start_datetime=None, end_datetime=None, job_tags=None, descending=True, instance=None, legacy=False)` [GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_backend_service.py "view source code")
+`IBMBackendService.jobs(limit=10, skip=0, backend_name=None, status=None, start_datetime=None, end_datetime=None, job_tags=None, descending=True, instance=None, legacy=False)`
 
 Return a list of jobs, subject to optional filtering.
 
@@ -149,7 +149,7 @@ A list of `IBMJob` instances.
 
 <span id="qiskit_ibm_provider.IBMBackendService.retrieve_job" />
 
-`IBMBackendService.retrieve_job(job_id)` [GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_backend_service.py "view source code")
+`IBMBackendService.retrieve_job(job_id)`
 
 Return a single job.
 

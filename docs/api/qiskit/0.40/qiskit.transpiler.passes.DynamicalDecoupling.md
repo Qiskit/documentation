@@ -100,7 +100,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.DynamicalDecoupling.run" />
 
-`DynamicalDecoupling.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/scheduling/dynamical_decoupling.py "view source code")
+`DynamicalDecoupling.run(dag)`
 
 Run the DynamicalDecoupling pass on dag.
 

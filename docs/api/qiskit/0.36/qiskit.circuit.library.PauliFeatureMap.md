@@ -112,7 +112,7 @@ Create a new Pauli expansion circuit.
 
 <span id="qiskit.circuit.library.PauliFeatureMap.pauli_block" />
 
-`PauliFeatureMap.pauli_block(pauli_string)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/data_preparation/pauli_feature_map.py "view source code")
+`PauliFeatureMap.pauli_block(pauli_string)`
 
 Get the Pauli block for the feature map circuit.
 
@@ -120,7 +120,7 @@ Get the Pauli block for the feature map circuit.
 
 <span id="qiskit.circuit.library.PauliFeatureMap.pauli_evolution" />
 
-`PauliFeatureMap.pauli_evolution(pauli_string, time)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/data_preparation/pauli_feature_map.py "view source code")
+`PauliFeatureMap.pauli_evolution(pauli_string, time)`
 
 Get the evolution block for the given pauli string.
 

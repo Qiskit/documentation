@@ -34,7 +34,7 @@ This trial wavefunction is a Unitary Vibrational Coupled-Cluster Single and Doub
 
 <span id="qiskit.chemistry.components.variational_forms.UVCC.compute_excitation_lists" />
 
-`static UVCC.compute_excitation_lists(basis, degrees)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/components/variational_forms/uvcc.py "view source code")
+`static UVCC.compute_excitation_lists(basis, degrees)`
 
 Compute the list with all possible excitation for given orders
 
@@ -59,7 +59,7 @@ List of excitation indexes in terms of modes and modals
 
 <span id="qiskit.chemistry.components.variational_forms.UVCC.construct_circuit" />
 
-`UVCC.construct_circuit(parameters, q=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/components/variational_forms/uvcc.py "view source code")
+`UVCC.construct_circuit(parameters, q=None)`
 
 Construct the variational form, given its parameters.
 
@@ -85,7 +85,7 @@ Quantum Circuit a quantum circuit with given parameters
 
 <span id="qiskit.chemistry.components.variational_forms.UVCC.excitations_in_qubit_format" />
 
-`UVCC.excitations_in_qubit_format()` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/components/variational_forms/uvcc.py "view source code")
+`UVCC.excitations_in_qubit_format()`
 
 #### Gives the list of excitation indexes in terms of qubit indexes rather
 

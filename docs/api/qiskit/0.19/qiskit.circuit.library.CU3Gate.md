@@ -247,7 +247,7 @@ updated if it was provided
 
 <span id="qiskit.circuit.library.CU3Gate.inverse" />
 
-`CU3Gate.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/u3.py "view source code")
+`CU3Gate.inverse()`
 
 Return inverted CU3 gate.
 

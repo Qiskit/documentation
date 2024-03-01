@@ -73,7 +73,7 @@ Compute self.\_params and self.\_params\_err
 
 <span id="qiskit.ignis.characterization.T2Fitter.plot" />
 
-`T2Fitter.plot(qind, series='0', ax=None, show_plot=False)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/characterization/coherence/fitters.py "view source code")
+`T2Fitter.plot(qind, series='0', ax=None, show_plot=False)`
 
 Plot coherence data.
 

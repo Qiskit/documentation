@@ -91,7 +91,7 @@ Create new CSWAP gate.
 
 <span id="qiskit.circuit.library.CSwapGate.inverse" />
 
-`CSwapGate.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/swap.py "view source code")
+`CSwapGate.inverse()`
 
 Return inverse CSwap gate (itself).
 

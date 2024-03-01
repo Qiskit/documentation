@@ -80,7 +80,7 @@ Create new XX-YY gate.
 
 <span id="qiskit.circuit.library.XXMinusYYGate.inverse" />
 
-`XXMinusYYGate.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/xx_minus_yy.py "view source code")
+`XXMinusYYGate.inverse()`
 
 Inverse gate.
 
@@ -90,7 +90,7 @@ Inverse gate.
 
 <span id="qiskit.circuit.library.XXMinusYYGate.power" />
 
-`XXMinusYYGate.power(exponent)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/xx_minus_yy.py "view source code")
+`XXMinusYYGate.power(exponent)`
 
 Raise gate to a power.
 

@@ -47,7 +47,7 @@ Initialize a PassManagerConfig object
 
 <span id="qiskit.transpiler.PassManagerConfig.from_backend" />
 
-`classmethod PassManagerConfig.from_backend(backend, **pass_manager_options)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passmanager_config.py "view source code")
+`classmethod PassManagerConfig.from_backend(backend, **pass_manager_options)`
 
 Construct a configuration based on a backend and user input.
 

@@ -28,7 +28,7 @@ CircuitGradient - uses quantum techniques to get derivatives of circuits Derivat
 
 <span id="qiskit.opflow.gradients.CircuitGradient.convert" />
 
-`abstract CircuitGradient.convert(operator, params=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/opflow/gradients/circuit_gradients/circuit_gradient.py "view source code")
+`abstract CircuitGradient.convert(operator, params=None)`
 
 **Parameters**
 

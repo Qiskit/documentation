@@ -62,7 +62,7 @@ $$
 
 <span id="qiskit.algorithms.gradients.BaseQGT.run" />
 
-`BaseQGT.run(circuits, parameter_values, parameters=None, **options)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/gradients/base_qgt.py "view source code")
+`BaseQGT.run(circuits, parameter_values, parameters=None, **options)`
 
 Run the job of the QGTs on the given circuits.
 
@@ -91,7 +91,7 @@ The job object of the QGTs of the expectation values. The i-th result correspond
 
 <span id="qiskit.algorithms.gradients.BaseQGT.update_default_options" />
 
-`BaseQGT.update_default_options(**options)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/gradients/base_qgt.py "view source code")
+`BaseQGT.update_default_options(**options)`
 
 Update the gradient’s default options setting.
 

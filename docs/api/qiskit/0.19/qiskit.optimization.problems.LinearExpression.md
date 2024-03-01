@@ -63,7 +63,7 @@ The parent QuadraticProgram.
 
 <span id="qiskit.optimization.problems.LinearExpression.__getitem__" />
 
-`LinearExpression.__getitem__(i)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/problems/linear_expression.py "view source code")
+`LinearExpression.__getitem__(i)`
 
 Returns the i-th coefficient where i can be a variable name or index.
 
@@ -83,7 +83,7 @@ The coefficient corresponding to the addressed variable.
 
 <span id="qiskit.optimization.problems.LinearExpression.evaluate" />
 
-`LinearExpression.evaluate(x)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/problems/linear_expression.py "view source code")
+`LinearExpression.evaluate(x)`
 
 Evaluate the linear expression for given variables.
 
@@ -103,7 +103,7 @@ The value of the linear expression given the variable values.
 
 <span id="qiskit.optimization.problems.LinearExpression.to_array" />
 
-`LinearExpression.to_array()` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/problems/linear_expression.py "view source code")
+`LinearExpression.to_array()`
 
 Returns the coefficients of the linear expression as array.
 
@@ -119,7 +119,7 @@ An array with the coefficients corresponding to the linear expression.
 
 <span id="qiskit.optimization.problems.LinearExpression.to_dict" />
 
-`LinearExpression.to_dict(use_name=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/problems/linear_expression.py "view source code")
+`LinearExpression.to_dict(use_name=False)`
 
 Returns the coefficients of the linear expression as dictionary, either using variable names or indices as keys.
 

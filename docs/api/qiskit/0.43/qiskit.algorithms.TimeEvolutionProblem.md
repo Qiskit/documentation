@@ -100,7 +100,7 @@ dict\[[Parameter](qiskit.circuit.Parameter "qiskit.circuit.Parameter"), complex]
 
 <span id="qiskit.algorithms.TimeEvolutionProblem.validate_params" />
 
-`TimeEvolutionProblem.validate_params()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/time_evolvers/time_evolution_problem.py "view source code")
+`TimeEvolutionProblem.validate_params()`
 
 Checks if all parameters present in the Hamiltonian are also present in the dictionary that maps them to values.
 

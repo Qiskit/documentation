@@ -42,7 +42,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.Unroll3qOrMore.run" />
 
-`Unroll3qOrMore.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/transpiler/passes/basis/unroll_3q_or_more.py "view source code")
+`Unroll3qOrMore.run(dag)`
 
 Run the Unroll3qOrMore pass on dag.
 

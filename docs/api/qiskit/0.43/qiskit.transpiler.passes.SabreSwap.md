@@ -94,7 +94,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.SabreSwap.run" />
 
-`SabreSwap.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/routing/sabre_swap.py "view source code")
+`SabreSwap.run(dag)`
 
 Run the SabreSwap pass on dag.
 

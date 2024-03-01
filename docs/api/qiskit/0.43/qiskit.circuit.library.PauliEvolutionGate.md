@@ -76,7 +76,7 @@ q_1: ┤1                         ├
 
 <span id="qiskit.circuit.library.PauliEvolutionGate.validate_parameter" />
 
-`PauliEvolutionGate.validate_parameter(parameter)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/pauli_evolution.py "view source code")
+`PauliEvolutionGate.validate_parameter(parameter)`
 
 Gate parameters should be int, float, or ParameterExpression
 

@@ -57,7 +57,7 @@ returns variable register
 
 <span id="qiskit.aqua.circuits.ESOP.construct_circuit" />
 
-`ESOP.construct_circuit(circuit=None, variable_register=None, output_register=None, output_idx=None, ancillary_register=None, mct_mode='basic')` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/circuits/boolean_logical_circuits.py "view source code")
+`ESOP.construct_circuit(circuit=None, variable_register=None, output_register=None, output_idx=None, ancillary_register=None, mct_mode='basic')`
 
 Construct circuit.
 

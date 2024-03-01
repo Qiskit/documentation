@@ -40,7 +40,7 @@ If specified, default is a function that gets called for objects that can’t ot
 
 <span id="qiskit.providers.ibmq.runtime.RuntimeEncoder.default" />
 
-`RuntimeEncoder.default(obj)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.16/qiskit/providers/ibmq/runtime/utils.py "view source code")
+`RuntimeEncoder.default(obj)`
 
 Implement this method in a subclass such that it returns a serializable object for `o`, or calls the base implementation (to raise a `TypeError`).
 

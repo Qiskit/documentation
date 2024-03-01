@@ -47,7 +47,7 @@ Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://
 
 <span id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.confidence_interval" />
 
-`MaximumLikelihoodAmplitudeEstimation.confidence_interval(alpha, kind='fisher')` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_estimators/mlae.py "view source code")
+`MaximumLikelihoodAmplitudeEstimation.confidence_interval(alpha, kind='fisher')`
 
 Compute the alpha confidence interval using the method kind.
 
@@ -75,7 +75,7 @@ The specified confidence interval.
 
 <span id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.construct_circuits" />
 
-`MaximumLikelihoodAmplitudeEstimation.construct_circuits(measurement=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_estimators/mlae.py "view source code")
+`MaximumLikelihoodAmplitudeEstimation.construct_circuits(measurement=False)`
 
 Construct the Amplitude Estimation w/o QPE quantum circuits.
 

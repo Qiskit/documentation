@@ -58,7 +58,7 @@ Create new U gate.
 
 <span id="qiskit.circuit.library.UGate.control" />
 
-`UGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/standard_gates/u.py "view source code")
+`UGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
 Return a (multi-)controlled-U gate.
 
@@ -80,7 +80,7 @@ controlled version of this gate.
 
 <span id="qiskit.circuit.library.UGate.inverse" />
 
-`UGate.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/standard_gates/u.py "view source code")
+`UGate.inverse()`
 
 Return inverted U gate.
 

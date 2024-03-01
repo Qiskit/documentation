@@ -52,7 +52,7 @@ returns value
 
 <span id="qiskit.aqua.circuits.FixedValueComparator.build" />
 
-`FixedValueComparator.build(qc, q, q_ancillas=None, params=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/circuits/fixed_value_comparator.py "view source code")
+`FixedValueComparator.build(qc, q, q_ancillas=None, params=None)`
 
 Adds corresponding sub-circuit to given circuit
 
@@ -161,7 +161,7 @@ returns number of qubits controlled
 
 <span id="qiskit.aqua.circuits.FixedValueComparator.required_ancillas" />
 
-`FixedValueComparator.required_ancillas()` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/circuits/fixed_value_comparator.py "view source code")
+`FixedValueComparator.required_ancillas()`
 
 returns required ancillas
 
@@ -169,7 +169,7 @@ returns required ancillas
 
 <span id="qiskit.aqua.circuits.FixedValueComparator.required_ancillas_controlled" />
 
-`FixedValueComparator.required_ancillas_controlled()` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/circuits/fixed_value_comparator.py "view source code")
+`FixedValueComparator.required_ancillas_controlled()`
 
 returns required ancillas controlled
 

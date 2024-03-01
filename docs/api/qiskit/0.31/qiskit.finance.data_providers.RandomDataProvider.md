@@ -140,7 +140,7 @@ an asset-to-asset similarity matrix.
 
 <span id="qiskit.finance.data_providers.RandomDataProvider.run" />
 
-`RandomDataProvider.run()` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/finance/data_providers/random_data_provider.py "view source code")
+`RandomDataProvider.run()`
 
 Generates data pseudo-randomly, thus enabling get\_similarity\_matrix and get\_covariance\_matrix methods in the base class.
 

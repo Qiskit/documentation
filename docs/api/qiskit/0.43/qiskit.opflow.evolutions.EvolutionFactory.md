@@ -24,7 +24,7 @@ Deprecated: A factory class for convenient automatic selection of an Evolution a
 
 <span id="qiskit.opflow.evolutions.EvolutionFactory.build" />
 
-`static EvolutionFactory.build(operator=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/evolutions/evolution_factory.py "view source code")
+`static EvolutionFactory.build(operator=None)`
 
 A factory method for convenient automatic selection of an Evolution algorithm based on the Operator to be converted.
 

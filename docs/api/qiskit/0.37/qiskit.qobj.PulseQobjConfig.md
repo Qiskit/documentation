@@ -40,7 +40,7 @@ Instantiate a PulseQobjConfig object.
 
 <span id="qiskit.qobj.PulseQobjConfig.from_dict" />
 
-`classmethod PulseQobjConfig.from_dict(data)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/qobj/pulse_qobj.py "view source code")
+`classmethod PulseQobjConfig.from_dict(data)`
 
 Create a new PulseQobjConfig object from a dictionary.
 
@@ -60,7 +60,7 @@ The object from the input dictionary.
 
 <span id="qiskit.qobj.PulseQobjConfig.to_dict" />
 
-`PulseQobjConfig.to_dict()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/qobj/pulse_qobj.py "view source code")
+`PulseQobjConfig.to_dict()`
 
 Return a dictionary format representation of the Pulse Qobj config.
 

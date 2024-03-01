@@ -43,7 +43,7 @@ Aer implementation of Sampler class.
 
 <span id="qiskit_aer.primitives.Sampler.close" />
 
-`Sampler.close()` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/primitives/sampler.py "view source code")
+`Sampler.close()`
 
 Close the session and free resources
 

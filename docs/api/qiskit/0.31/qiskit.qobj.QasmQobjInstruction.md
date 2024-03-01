@@ -39,7 +39,7 @@ Instantiate a new QasmQobjInstruction object.
 
 <span id="qiskit.qobj.QasmQobjInstruction.from_dict" />
 
-`classmethod QasmQobjInstruction.from_dict(data)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/qobj/qasm_qobj.py "view source code")
+`classmethod QasmQobjInstruction.from_dict(data)`
 
 Create a new QasmQobjInstruction object from a dictionary.
 
@@ -59,7 +59,7 @@ The object from the input dictionary.
 
 <span id="qiskit.qobj.QasmQobjInstruction.to_dict" />
 
-`QasmQobjInstruction.to_dict()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/qobj/qasm_qobj.py "view source code")
+`QasmQobjInstruction.to_dict()`
 
 Return a dictionary format representation of the Instruction.
 

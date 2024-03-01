@@ -52,7 +52,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.CheckCXDirection.run" />
 
-`CheckCXDirection.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/transpiler/passes/utils/check_cx_direction.py "view source code")
+`CheckCXDirection.run(dag)`
 
 Run the CheckCXDirection pass on dag.
 

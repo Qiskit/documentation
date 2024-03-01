@@ -28,7 +28,7 @@ This is suitable for those situations in which the all-zeros state is the desire
 
 <span id="qiskit.aqua.components.initial_states.Zero.construct_circuit" />
 
-`Zero.construct_circuit(mode='circuit', register=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/initial_states/zero.py "view source code")
+`Zero.construct_circuit(mode='circuit', register=None)`
 
 Construct the statevector of desired initial state.
 

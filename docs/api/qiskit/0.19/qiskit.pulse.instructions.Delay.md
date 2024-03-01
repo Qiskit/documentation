@@ -176,7 +176,7 @@ Occupied time slots by this instruction.
 
 <span id="qiskit.pulse.instructions.Delay.__call__" />
 
-`Delay.__call__(channel)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/instructions/delay.py "view source code")
+`Delay.__call__(channel)`
 
 Return new `Delay` that is fully instantiated with both `duration` and a `channel`.
 

@@ -45,7 +45,7 @@ the configuration for the backend.
 
 <span id="qiskit.providers.fake_provider.FakeOpenPulse3Q.defaults" />
 
-`FakeOpenPulse3Q.defaults()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/fake_provider/fake_openpulse_3q.py "view source code")
+`FakeOpenPulse3Q.defaults()`
 
 ### name
 

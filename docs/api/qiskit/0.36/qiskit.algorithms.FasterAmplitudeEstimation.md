@@ -51,7 +51,7 @@ Due to the iterative version of the QPE, this algorithm does not require any add
 
 <span id="qiskit.algorithms.FasterAmplitudeEstimation.construct_circuit" />
 
-`FasterAmplitudeEstimation.construct_circuit(estimation_problem, k, measurement=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/amplitude_estimators/fae.py "view source code")
+`FasterAmplitudeEstimation.construct_circuit(estimation_problem, k, measurement=False)`
 
 Construct the circuit $Q^k X |0\rangle>$.
 
@@ -75,7 +75,7 @@ The circuit $Q^k X |0\rangle$.
 
 <span id="qiskit.algorithms.FasterAmplitudeEstimation.estimate" />
 
-`FasterAmplitudeEstimation.estimate(estimation_problem)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/amplitude_estimators/fae.py "view source code")
+`FasterAmplitudeEstimation.estimate(estimation_problem)`
 
 Run the amplitude estimation algorithm.
 

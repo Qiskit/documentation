@@ -32,7 +32,7 @@ Constructs a quadratic objective function.
 
 <span id="qiskit.optimization.problems.QuadraticObjective.evaluate" />
 
-`QuadraticObjective.evaluate(x)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_objective.py "view source code")
+`QuadraticObjective.evaluate(x)`
 
 Evaluate the quadratic objective for given variable values.
 
@@ -52,7 +52,7 @@ The value of the quadratic objective given the variable values.
 
 <span id="qiskit.optimization.problems.QuadraticObjective.evaluate_gradient" />
 
-`QuadraticObjective.evaluate_gradient(x)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_objective.py "view source code")
+`QuadraticObjective.evaluate_gradient(x)`
 
 Evaluate the gradient of the quadratic objective for given variable values.
 

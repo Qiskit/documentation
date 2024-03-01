@@ -52,7 +52,7 @@ Initialize a GateConfig object
 
 <span id="qiskit.providers.models.GateConfig.from_dict" />
 
-`classmethod GateConfig.from_dict(data)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/models/backendconfiguration.py "view source code")
+`classmethod GateConfig.from_dict(data)`
 
 Create a new GateConfig object from a dictionary.
 
@@ -72,7 +72,7 @@ The GateConfig from the input dictionary.
 
 <span id="qiskit.providers.models.GateConfig.to_dict" />
 
-`GateConfig.to_dict()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/models/backendconfiguration.py "view source code")
+`GateConfig.to_dict()`
 
 Return a dictionary format representation of the GateConfig.
 

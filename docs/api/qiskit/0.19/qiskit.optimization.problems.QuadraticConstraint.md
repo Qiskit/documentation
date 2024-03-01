@@ -129,7 +129,7 @@ The sense of the constraint.
 
 <span id="qiskit.optimization.problems.QuadraticConstraint.evaluate" />
 
-`QuadraticConstraint.evaluate(x)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/problems/quadratic_constraint.py "view source code")
+`QuadraticConstraint.evaluate(x)`
 
 Evaluate the left-hand-side of the constraint.
 

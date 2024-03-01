@@ -117,7 +117,7 @@ Set of units used in this instruction durations.
 
 <span id="qiskit_ibm_provider.transpiler.passes.scheduling.DynamicCircuitInstructionDurations.update" />
 
-`DynamicCircuitInstructionDurations.update(inst_durations, dt=None)` [GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/transpiler/passes/scheduling/utils.py "view source code")
+`DynamicCircuitInstructionDurations.update(inst_durations, dt=None)`
 
 Update self with inst\_durations (inst\_durations overwrite self). Overrides the default durations for certain hardcoded instructions.
 

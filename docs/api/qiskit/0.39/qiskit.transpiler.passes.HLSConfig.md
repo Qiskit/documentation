@@ -37,7 +37,7 @@ Creates a high-level-synthesis config.
 
 <span id="qiskit.transpiler.passes.HLSConfig.set_methods" />
 
-`HLSConfig.set_methods(hls_name, hls_methods)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/transpiler/passes/synthesis/high_level_synthesis.py "view source code")
+`HLSConfig.set_methods(hls_name, hls_methods)`
 
 Sets the list of synthesis methods for a given higher-level-object. This overwrites the lists of methods if also set previously.
 

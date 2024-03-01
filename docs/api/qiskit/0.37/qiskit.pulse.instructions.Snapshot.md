@@ -156,7 +156,7 @@ A new schedule with `schedule` inserted with this instruction at t=0.
 
 <span id="qiskit.pulse.instructions.Snapshot.is_parameterized" />
 
-`Snapshot.is_parameterized()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/pulse/instructions/snapshot.py "view source code")
+`Snapshot.is_parameterized()`
 
 Return True iff the instruction is parameterized.
 

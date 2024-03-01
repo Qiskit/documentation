@@ -38,7 +38,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.Unroller.run" />
 
-`Unroller.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/basis/unroller.py "view source code")
+`Unroller.run(dag)`
 
 Run the Unroller pass on dag.
 

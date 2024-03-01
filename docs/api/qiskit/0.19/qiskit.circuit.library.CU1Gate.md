@@ -178,7 +178,7 @@ Add classical condition on register classical and value val.
 
 <span id="qiskit.circuit.library.CU1Gate.control" />
 
-`CU1Gate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/u1.py "view source code")
+`CU1Gate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
 Controlled version of this gate.
 
@@ -222,7 +222,7 @@ updated if it was provided
 
 <span id="qiskit.circuit.library.CU1Gate.inverse" />
 
-`CU1Gate.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/u1.py "view source code")
+`CU1Gate.inverse()`
 
 Return inverted CU1 gate ($CU1(\lambda){\dagger} = CU1(-\lambda)$)
 

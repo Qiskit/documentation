@@ -90,7 +90,7 @@ Return setting
 
 <span id="qiskit.aqua.components.optimizers.GSLS.get_support_level" />
 
-`GSLS.get_support_level()` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/gsls.py "view source code")
+`GSLS.get_support_level()`
 
 Return support level dictionary.
 
@@ -106,7 +106,7 @@ A dictionary containing the support levels for different options.
 
 <span id="qiskit.aqua.components.optimizers.GSLS.gradient_approximation" />
 
-`GSLS.gradient_approximation(n, x, x_value, directions, sample_set_x, sample_set_y)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/gsls.py "view source code")
+`GSLS.gradient_approximation(n, x, x_value, directions, sample_set_x, sample_set_y)`
 
 Construct gradient approximation from given sample.
 
@@ -154,7 +154,7 @@ grad
 
 <span id="qiskit.aqua.components.optimizers.GSLS.ls_optimize" />
 
-`GSLS.ls_optimize(n, obj_fun, initial_point, var_lb, var_ub)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/gsls.py "view source code")
+`GSLS.ls_optimize(n, obj_fun, initial_point, var_lb, var_ub)`
 
 Run the line search optimization.
 
@@ -182,7 +182,7 @@ Final iterate as a vector, corresponding objective function value, number of eva
 
 <span id="qiskit.aqua.components.optimizers.GSLS.optimize" />
 
-`GSLS.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/gsls.py "view source code")
+`GSLS.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
 Perform optimization.
 
@@ -220,7 +220,7 @@ Print algorithm-specific options.
 
 <span id="qiskit.aqua.components.optimizers.GSLS.sample_points" />
 
-`GSLS.sample_points(n, x, num_points)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/gsls.py "view source code")
+`GSLS.sample_points(n, x, num_points)`
 
 Sample `num_points` points around `x` on the `n`-sphere of specified radius.
 
@@ -244,7 +244,7 @@ A tuple containing the sampling points and the directions.
 
 <span id="qiskit.aqua.components.optimizers.GSLS.sample_set" />
 
-`GSLS.sample_set(n, x, var_lb, var_ub, num_points)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/gsls.py "view source code")
+`GSLS.sample_set(n, x, var_lb, var_ub, num_points)`
 
 Construct sample set of given size.
 

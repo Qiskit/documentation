@@ -62,7 +62,7 @@ Default error messages for various kinds of errors. The keys in this dictionary 
 
 <span id="qiskit.validation.ModelTypeValidator.check_type" />
 
-`ModelTypeValidator.check_type(value, attr, data, **_)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/validation/base.py "view source code")
+`ModelTypeValidator.check_type(value, attr, data, **_)`
 
 Validates a value against the correct type of the field.
 
@@ -139,7 +139,7 @@ Helper method to make a ValidationError with an error message from `self.error_m
 
 <span id="qiskit.validation.ModelTypeValidator.make_error_serialize" />
 
-`ModelTypeValidator.make_error_serialize(key, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/validation/base.py "view source code")
+`ModelTypeValidator.make_error_serialize(key, **kwargs)`
 
 Helper method to return a ValidationError from \_serialize.
 

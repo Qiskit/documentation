@@ -48,7 +48,7 @@ Linear discriminant analysis discriminator for IQ data.
 
 <span id="qiskit.ignis.measurement.LinearIQDiscriminator.discriminate" />
 
-`LinearIQDiscriminator.discriminate(x_data)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/measurement/discriminator/iq_discriminators.py "view source code")
+`LinearIQDiscriminator.discriminate(x_data)`
 
 Applies the discriminator to x\_data.
 
@@ -68,7 +68,7 @@ The discriminated x\_data as a list of labels.
 
 <span id="qiskit.ignis.measurement.LinearIQDiscriminator.fit" />
 
-`LinearIQDiscriminator.fit()` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/measurement/discriminator/iq_discriminators.py "view source code")
+`LinearIQDiscriminator.fit()`
 
 Fits the discriminator using self.\_xdata and self.\_ydata.
 

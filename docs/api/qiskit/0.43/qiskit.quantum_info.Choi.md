@@ -76,7 +76,7 @@ Return the adjoint quantum channel.
 
 <span id="qiskit.quantum_info.Choi.compose" />
 
-`Choi.compose(other, qargs=None, front=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/operators/channel/choi.py "view source code")
+`Choi.compose(other, qargs=None, front=False)`
 
 Return the operator composition with another Choi.
 
@@ -110,7 +110,7 @@ The composed Choi.
 
 <span id="qiskit.quantum_info.Choi.conjugate" />
 
-`Choi.conjugate()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/operators/channel/choi.py "view source code")
+`Choi.conjugate()`
 
 Return the conjugate quantum channel.
 
@@ -161,7 +161,7 @@ The right matrix multiplied Operator.
 
 <span id="qiskit.quantum_info.Choi.expand" />
 
-`Choi.expand(other)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/operators/channel/choi.py "view source code")
+`Choi.expand(other)`
 
 Return the reverse-order tensor product with another Choi.
 
@@ -303,7 +303,7 @@ BaseOperator
 
 <span id="qiskit.quantum_info.Choi.tensor" />
 
-`Choi.tensor(other)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/operators/channel/choi.py "view source code")
+`Choi.tensor(other)`
 
 Return the tensor product with another Choi.
 
@@ -365,7 +365,7 @@ Try to convert channel to a unitary representation Operator.
 
 <span id="qiskit.quantum_info.Choi.transpose" />
 
-`Choi.transpose()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/operators/channel/choi.py "view source code")
+`Choi.transpose()`
 
 Return the transpose quantum channel.
 
