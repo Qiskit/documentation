@@ -247,9 +247,10 @@ function buildDeprecatedAdmonition(
     "versionmodified",
   );
   const title = toText(titleNode).trim().replace(/:$/, "");
-  const otherChildren: Array<any> = without(node.children[0].children, titleNode).map(
-    (node: any) => toMdast(node, { handlers }),
-  );
+  const otherChildren: Array<any> = without(
+    node.children[0].children,
+    titleNode,
+  ).map((node: any) => toMdast(node, { handlers }));
 
   return {
     type: "mdxJsxFlowElement",
