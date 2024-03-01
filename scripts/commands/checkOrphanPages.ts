@@ -21,26 +21,25 @@ import { hideBin } from "yargs/helpers";
 
 interface Arguments {
   [x: string]: unknown;
-  apis: boolean;
+  currentApis: boolean;
   devApis: boolean;
   historicalApis: boolean;
-  qiskitReleaseNotes: boolean;
   skipBrokenHistorical: boolean;
 }
 
 // The steps to this script are:
-//   1. Enter each folder within docs
-//   2. Create a list of files in the _toc
-//   3. Collect the list of files in directory
-//   4. Check if each file in directory is in _toc
+//  ✅ 1. Enter each folder within docs
+//  ✅ 2. Create a list of files in the _toc
+//  ✅ 3. Collect the list of files in directory
+//  ✅ 4. Check if each file in directory is in _toc
 
 // Needed features:
-//   - Check api docs if desired
+//  ✅ - Check api docs if desired
 //   - Include command in .github/workflows/main.yml
 const readArgs = (): Arguments => {
   return yargs(hideBin(process.argv))
     .version(false)
-    .option("apis", {
+    .option("current-apis", {
       type: "boolean",
       default: false,
       description: "Check the links in the current API docs.",
@@ -57,34 +56,18 @@ const readArgs = (): Arguments => {
         "Check the links in the historical API docs, e.g. `api/qiskit/0.44`. " +
         "Warning: this is slow.",
     })
-    .option("skip-broken-historical", {
-      type: "boolean",
-      default: false,
-      description:
-        "Don't check historical releases that are known to still fail (currently all of Qiskit). " +
-        "Intended to be used alongside `--historical-apis`.",
-    })
-    .option("qiskit-release-notes", {
-      type: "boolean",
-      default: false,
-      description: "Check the pages in the `api/qiskit/release-notes` folder.",
-    })
     .parseSync();
 };
 
 async function main() {
   const args = readArgs();
 
-
-
   // DETERMINE THE TOC FILES TO CHECK AGAINST
   const tocFiles = await determineTocFiles(args);
-  console.log("\n Globs found: \n" );
-  console.log(tocFiles)
 
+  // SET PASS/FAIL STATUS
   let allGood = true;
-  const orphanPages:string[] = [];
-
+  const orphanPages = [];
 
   for (tocFile of tocFiles) {
     // LOAD JSON CONTENTS OF TOC FILE
@@ -108,7 +91,6 @@ async function main() {
       }
     }
   }
-
   if (!allGood) {
     console.error("\n There's some orphaned pages!  These files need a home: \n", orphanPages);
     process.exit(1);
@@ -131,15 +113,23 @@ async function collectDirFiles(directory: string): Promise<string[]> {
 
 // Collect directories to look through
 async function determineTocFiles(args: Arguments): Promise<string[]> {
-  // const mdGlobs = ["docs/**/_toc.json", "!./docs/api/**"];
-  const mdGlobs = ["docs/**/_toc.json", "!./docs/api/qiskit/**", "!./docs/api/qiskit-ibm-runtime/**","!./docs/api/qiskit-ibm-provider/**"];
-  return await globby(mdGlobs);
+  const globs = ["docs/**/_toc.json", "!./docs/api/**"];
+  if (args.currentApis) {
+    globs.push("docs/api/*/_toc.json");
+  }
+  if (args.devApis) {
+    globs.push("docs/api/{qiskit,qiskit-ibm-runtime,qiskit-ibm-provider}/dev/_toc.json");
+  }
+  if (args.historicalApis) {
+    globs.push("docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/[0-9]*/_toc.json")
+  }
+  return await globby(globs);
 
 };
 
 // Collect files referenced in _toc file
 function collectTocFileContents(children: string[]): string[] {
-  const urls:[string] = [];
+  const urls = [];
 
   for (const child of children) {
     // If there's any children, enter recursion to get urls
@@ -177,63 +167,5 @@ function isIterable(obj) {
   }
   return typeof obj[Symbol.iterator] === 'function';
 };
-
-//  Collect files in directory
-async function collectDocPages() {
-
-};
-
-
-const PROVIDER_GLOBS_TO_LOAD = ["docs/api/qiskit/*.md"];
-const RUNTIME_GLOBS_TO_LOAD = [
-  "docs/api/qiskit/providers_models.md",
-  "docs/run/max-execution-time.mdx",
-  "docs/run/configure-error-mitigation.mdx",
-];
-const QISKIT_GLOBS_TO_LOAD = [
-  "docs/build/circuit-construction.ipynb",
-  "docs/build/pulse.ipynb",
-  "docs/start/install.mdx",
-  "docs/api/qiskit/release-notes/0.44.md",
-  "docs/api/qiskit/release-notes/index.md",
-  "docs/api/qiskit-ibm-provider/index.md",
-  "docs/api/qiskit-ibm-provider/ibm_jupyter.md",
-];
-
-async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
-  const currentBatch = await determineCurrentDocsFileBatch(args);
-  const result = [currentBatch];
-
-  if (args.devApis) {
-    const devBatches = await determineDevFileBatches();
-    result.push(...devBatches);
-  }
-
-  const provider = await determineHistoricalFileBatches(
-    "qiskit-ibm-provider",
-    PROVIDER_GLOBS_TO_LOAD,
-    args.historicalApis,
-  );
-  const runtime = await determineHistoricalFileBatches(
-    "qiskit-ibm-runtime",
-    RUNTIME_GLOBS_TO_LOAD,
-    args.historicalApis,
-  );
-
-  const qiskit = await determineHistoricalFileBatches(
-    "qiskit",
-    QISKIT_GLOBS_TO_LOAD,
-    args.historicalApis && !args.skipBrokenHistorical,
-    args.qiskitReleaseNotes,
-  );
-
-  result.push(...provider, ...runtime, ...qiskit);
-
-  if (args.qiskitReleaseNotes) {
-    result.push(await determineQiskitLegacyReleaseNotes());
-  }
-
-  return result;
-}
 
 main().then(() => process.exit());
