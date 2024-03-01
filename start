@@ -12,6 +12,7 @@
 # that they have been altered from the originals.
 
 import subprocess
+import sys
 from pathlib import Path
 from typing import Iterator
 
@@ -30,6 +31,11 @@ def translation_volume_mounts() -> Iterator[str]:
 
 
 def main() -> None:
+    print(
+        "Warning: this may be using an outdated version of the app. Run "
+        + "`docker pull qiskit/documentation` to check for updates.",
+        file=sys.stderr,
+    )
     subprocess.run(
         # Keep this aligned with the Dockerfile at the root of the repository.
         [

@@ -92,6 +92,8 @@ API name.
 
 For translations, put the language code in front of the URL, like http://localhost:3000/es/start or http://localhost:3000/fr/start. You can find the language codes by looking in the `translations/` folder.
 
+Warning: `./start` does not check if there is a new version of the docs application available. Run `docker pull qiskit/documentation` to update to the latest version of the app.
+
 ## Preview the docs in PRs
 
 Contributors with write access to this repository can use live previews of the docs: GitHub will deploy a website using your changes.
