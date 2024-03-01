@@ -603,7 +603,6 @@ Some companies require a special attribution notice. View a list of the companie
 
 **Note**: Although Qiskit is a registered trademark of IBM, we do not mark it as such.
 
-
 See the Usage section of the IBM Quantum Experience Guide for guidance on when to use IBM and when to use IBM Quantum.
 
 ### Trademark symbols
