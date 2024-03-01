@@ -1,4 +1,3 @@
-
 // This code is a Qiskit project.
 //
 // (C) Copyright IBM 2024.
@@ -17,14 +16,11 @@ import { globby } from "globby";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 
-
-
 interface Arguments {
   [x: string]: unknown;
   currentApis: boolean;
   devApis: boolean;
   historicalApis: boolean;
-  skipBrokenHistorical: boolean;
 }
 
 // The steps to this script are:
@@ -73,16 +69,16 @@ async function main() {
     // LOAD JSON CONTENTS OF TOC FILE
     console.log("Checking toc in:", tocFile);
     const jsonFileContents = await fs.readFile(tocFile, "utf-8");
-    const children = JSON.parse(jsonFileContents).children; 
-    const files:[string] = [];
-  
+    const children = JSON.parse(jsonFileContents).children;
+    const files: [string] = [];
+
     // COLLECT ALL URLS REFERENCED IN TOC FILE
     const fileContents = await collectTocFileContents(children);
     const flatFileContents = flattenArray(fileContents);
     flatFileContents[0] = flatFileContents[0] + "/index";
 
     // NOW COLLECT ALL FILES IN THE DIRECTORY
-    const dir = tocFile.replace('_toc.json', '');
+    const dir = tocFile.replace("_toc.json", "");
     const dirFiles = await collectDirFiles(dir);
     for (file of dirFiles) {
       if (!flatFileContents.includes(file)) {
@@ -92,21 +88,25 @@ async function main() {
     }
   }
   if (!allGood) {
-    console.error("\n There's some orphaned pages!  These files need a home: \n", orphanPages);
+    console.error(
+      "\n There's some orphaned pages!  These files need a home: \n",
+      orphanPages,
+    );
     process.exit(1);
   }
   console.log("\nNo orphan pages found ✅\n");
 }
 
-
 // Collect all files in a given directory
 async function collectDirFiles(directory: string): Promise<string[]> {
-  const fileGlob = [directory +"/*.md",
-                    directory +"/*.mdx",
-                    directory + "/*.ipynb"];
+  const fileGlob = [
+    directory + "/*.md",
+    directory + "/*.mdx",
+    directory + "/*.ipynb",
+  ];
   const fileList = await globby(fileGlob);
-  const processedFileList = fileList.map( (fileName) => 
-    fileName.replace('docs', '').replace('.mdx', '').replace('.ipynb', '')
+  const processedFileList = fileList.map((fileName) =>
+    fileName.replace("docs", "").replace(".mdx", "").replace(".ipynb", ""),
   );
   return processedFileList;
 }
@@ -118,14 +118,17 @@ async function determineTocFiles(args: Arguments): Promise<string[]> {
     globs.push("docs/api/*/_toc.json");
   }
   if (args.devApis) {
-    globs.push("docs/api/{qiskit,qiskit-ibm-runtime,qiskit-ibm-provider}/dev/_toc.json");
+    globs.push(
+      "docs/api/{qiskit,qiskit-ibm-runtime,qiskit-ibm-provider}/dev/_toc.json",
+    );
   }
   if (args.historicalApis) {
-    globs.push("docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/[0-9]*/_toc.json")
+    globs.push(
+      "docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/[0-9]*/_toc.json",
+    );
   }
   return await globby(globs);
-
-};
+}
 
 // Collect files referenced in _toc file
 function collectTocFileContents(children: string[]): string[] {
@@ -133,7 +136,7 @@ function collectTocFileContents(children: string[]): string[] {
 
   for (const child of children) {
     // If there's any children, enter recursion to get urls
-    if ('children' in child) {
+    if ("children" in child) {
       const childUrls = collectTocFileContents(child.children);
       urls.push(childUrls);
     }
@@ -141,23 +144,19 @@ function collectTocFileContents(children: string[]): string[] {
     else {
       urls.push(child.url);
     }
-  };
+  }
   return urls;
-};
+}
 
 function flattenArray(urlArray: [string[]]): [string[]] {
-  return urlArray.reduce(
-    (flattenedArray, childElement) => {
-      if (Array.isArray(childElement)) {
-        flattenedArray.push(...flattenArray(childElement));
-      }
-      else {
-        flattenedArray.push(childElement);
-      }
-      return flattenedArray;
-    },
-    [],
-  );
+  return urlArray.reduce((flattenedArray, childElement) => {
+    if (Array.isArray(childElement)) {
+      flattenedArray.push(...flattenArray(childElement));
+    } else {
+      flattenedArray.push(childElement);
+    }
+    return flattenedArray;
+  }, []);
 }
 
 function isIterable(obj) {
@@ -165,7 +164,7 @@ function isIterable(obj) {
   if (obj == null) {
     return false;
   }
-  return typeof obj[Symbol.iterator] === 'function';
-};
+  return typeof obj[Symbol.iterator] === "function";
+}
 
 main().then(() => process.exit());
