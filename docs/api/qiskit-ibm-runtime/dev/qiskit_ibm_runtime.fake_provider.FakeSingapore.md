@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeSingapore
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeSingapore" />
 
-`FakeSingapore` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/backends/singapore/fake_singapore.py "view source code")
+`FakeSingapore` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/singapore/fake_singapore.py#L41-L58 "view source code")
 
 A fake Singapore backend.
 
@@ -137,7 +137,7 @@ Provider
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeSingapore.run" />
 
-`run(run_input, **kwargs)`
+`run(run_input, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/fake_backend.py#L545-L574 "view source code")
 
 Main job in simulator
 

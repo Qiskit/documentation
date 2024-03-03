@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.Sampler
 
 <span id="qiskit_ibm_runtime.Sampler" />
 
-`Sampler(backend=None, session=None, options=None)` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/sampler.py "view source code")
+`Sampler(backend=None, session=None, options=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/sampler.py#L35-L184 "view source code")
 
 Class for interacting with Qiskit Runtime Sampler primitive service.
 
@@ -122,7 +122,7 @@ Submitted job. The result of the job is an instance of `qiskit.primitives.Sample
 
 <span id="qiskit_ibm_runtime.Sampler.set_options" />
 
-`set_options(**fields)`
+`set_options(**fields)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/base_primitive.py#L216-L222 "view source code")
 
 Set options values for the sampler.
 
