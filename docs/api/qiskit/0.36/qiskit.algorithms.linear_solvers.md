@@ -1,7 +1,7 @@
 ---
 title: linear_solvers
 description: API reference for qiskit.algorithms.linear_solvers
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.algorithms.linear_solvers
 ---
