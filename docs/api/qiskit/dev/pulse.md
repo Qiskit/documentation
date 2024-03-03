@@ -1,7 +1,7 @@
 ---
 title: pulse
 description: API reference for qiskit.pulse
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.pulse
 ---
@@ -246,7 +246,7 @@ Return a new schedule with implicit acquires from the measurement mapping replac
 
 **Parameters**
 
-*   **schedule** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")  *|*[*Instruction*](#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")) – Schedule to be aligned.
+*   **schedule** (*ScheduleComponent*) – Schedule to be aligned.
 *   **meas\_map** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]]*) – List of lists of qubits that are measured together.
 
 **Returns**
@@ -255,7 +255,7 @@ A `Schedule` with the additional acquisition instructions.
 
 **Return type**
 
-[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
+[Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
 
 ### align\_measures
 
@@ -365,7 +365,7 @@ Optimization pass to replace identical pulses.
 
 **Parameters**
 
-**schedules** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*qiskit.pulse.schedule.Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")*]*) – Schedules to compress.
+**schedules** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")*]*) – Schedules to compress.
 
 **Returns**
 
@@ -373,7 +373,7 @@ Compressed schedules.
 
 **Return type**
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[qiskit.pulse.schedule.Schedule](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")]
+[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")]
 
 ### flatten
 
@@ -895,7 +895,7 @@ with pulse.build(backend):
 
 **Parameters**
 
-**qubits** ([*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – Tuple or list of ordered qubits of the form (control\_qubit, target\_qubit).
+**qubits** (*Iterable\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – Tuple or list of ordered qubits of the form (control\_qubit, target\_qubit).
 
 **Returns**
 
@@ -903,7 +903,7 @@ List of control channels associated with the supplied ordered list of qubits.
 
 **Return type**
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[qiskit.pulse.channels.ControlChannel](qiskit.pulse.channels.ControlChannel "qiskit.pulse.channels.ControlChannel")]
+[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[chans.ControlChannel]
 
 ### drive\_channel
 
@@ -1270,8 +1270,8 @@ Currently, the backend calibrated gates are provided in the form of [`Schedule`]
 
 *   **target** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")  *|*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") *| None*) – Target circuit or pulse schedule to call.
 *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Optional. A unique name of subroutine if defined. When the name is explicitly provided, one cannot call different schedule blocks with the same name.
-*   **value\_dict** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")*\[ParameterValueType, ParameterValueType] | None*) – Optional. Parameters assigned to the `target` program. If this dictionary is provided, the `target` program is copied and then stored in the main built schedule and its parameters are assigned to the given values. This dictionary is keyed on [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects, allowing parameter name collision to be avoided.
-*   **kw\_params** (*ParameterValueType*) – Alternative way to provide parameters. Since this is keyed on the string parameter name, the parameters having the same name are all updated together. If you want to avoid name collision, use `value_dict` with [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects instead.
+*   **value\_dict** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")*\[ParameterValueType, ParameterValueType] | None*) – Optional. Parameters assigned to the `target` program. If this dictionary is provided, the `target` program is copied and then stored in the main built schedule and its parameters are assigned to the given values. This dictionary is keyed on [`Parameter`](circuit#qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects, allowing parameter name collision to be avoided.
+*   **kw\_params** (*ParameterValueType*) – Alternative way to provide parameters. Since this is keyed on the string parameter name, the parameters having the same name are all updated together. If you want to avoid name collision, use `value_dict` with [`Parameter`](circuit#qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects instead.
 
 ### delay
 
@@ -1532,7 +1532,7 @@ hahn_echo.draw()
 
 **Parameters**
 
-**duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – Duration of this context. This should be larger than the schedule duration.
+**duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*ParameterExpression*](circuit#qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – Duration of this context. This should be larger than the schedule duration.
 
 **Yields**
 
@@ -1540,7 +1540,7 @@ None
 
 **Return type**
 
-Generator\[None, None, None]
+Generator\[(None, None, None)]
 
 **Notes**
 
@@ -1585,7 +1585,7 @@ udd_sched.draw()
 
 **Parameters**
 
-*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – Duration of context. This should be larger than the schedule duration.
+*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*ParameterExpression*](circuit#qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – Duration of context. This should be larger than the schedule duration.
 *   **func** (*Callable\[\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*],* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – A function that takes an index of sub-schedule and returns the fractional coordinate of of that sub-schedule. The returned value should be defined within \[0, 1]. The pulse index starts from 1.
 
 **Yields**
@@ -1594,7 +1594,7 @@ None
 
 **Return type**
 
-Generator\[None, None, None]
+Generator\[(None, None, None)]
 
 **Notes**
 
@@ -1635,7 +1635,7 @@ None
 
 **Return type**
 
-[*Generator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Generator "(in Python v3.12)")\[None, None, None]
+Generator\[(None, None, None)]
 
 ### align\_right
 
@@ -1672,7 +1672,7 @@ None
 
 **Return type**
 
-[*Generator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Generator "(in Python v3.12)")\[None, None, None]
+Generator\[(None, None, None)]
 
 ### align\_sequential
 
@@ -1709,7 +1709,7 @@ None
 
 **Return type**
 
-[*Generator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Generator "(in Python v3.12)")\[None, None, None]
+Generator\[(None, None, None)]
 
 ### frequency\_offset
 
@@ -1746,7 +1746,7 @@ assert len(pulse_prog.instructions) == 4
 **Parameters**
 
 *   **frequency** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Amount of frequency offset in Hz.
-*   **channels** (*PulseChannel*) – Channels to offset frequency of.
+*   **channels** (*chans.PulseChannel*) – Channels to offset frequency of.
 *   **compensate\_phase** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Compensate for accumulated phase accumulated with respect to the channels’ frame at its initial frequency.
 
 **Yields**
@@ -1755,7 +1755,7 @@ None
 
 **Return type**
 
-[*Generator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Generator "(in Python v3.12)")\[None, None, None]
+Generator\[(None, None, None)]
 
 ### phase\_offset
 
@@ -1784,7 +1784,7 @@ assert len(pulse_prog.instructions) == 3
 **Parameters**
 
 *   **phase** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Amount of phase offset in radians.
-*   **channels** (*PulseChannel*) – Channels to offset phase of.
+*   **channels** (*chans.PulseChannel*) – Channels to offset phase of.
 
 **Yields**
 
@@ -1792,7 +1792,7 @@ None
 
 **Return type**
 
-[*Generator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Generator "(in Python v3.12)")\[None, None, None]
+Generator\[(None, None, None)]
 
 ### Macros
 
@@ -1903,7 +1903,7 @@ The `register`s the qubit measurement results will be stored in.
 
 **Return type**
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[qiskit.pulse.channels.MemorySlot](qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot")]
+[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[chans.MemorySlot]
 
 ### delay\_qubits
 
@@ -2052,7 +2052,7 @@ with pulse.build(backend):
 
 **Return type**
 
-[set](https://docs.python.org/3/library/stdtypes.html#set "(in Python v3.12)")\[[qiskit.pulse.channels.Channel](#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]
+[set](https://docs.python.org/3/library/stdtypes.html#set "(in Python v3.12)")\[chans.Channel]
 
 ### samples\_to\_seconds
 
@@ -2098,9 +2098,9 @@ The number of samples for the time to elapse
 
 ## Configuration
 
-|                                                                                                         |                                                                                                                                                                                                                                                                                                                              |
-| ------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`InstructionScheduleMap`](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap")() | Mapping from [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") [`qiskit.circuit.Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") names and qubits to [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") s. In particular, the mapping is formatted as type::. |
+|                                                                                                         |                                                                                                                                                                                                                                                                                                                                      |
+| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [`InstructionScheduleMap`](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap")() | Mapping from [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") [`qiskit.circuit.Instruction`](circuit#qiskit.circuit.Instruction "qiskit.circuit.Instruction") names and qubits to [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") s. In particular, the mapping is formatted as type::. |
 
 ## Exceptions
 

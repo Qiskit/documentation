@@ -41,9 +41,9 @@ SparsePauliOp(['II', 'XZ'],
 
   *   `to_matrix(sparse=True)` since `scipy.sparse` cannot have objects as elements.
   *   `to_operator()` since [`Operator`](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator") does not support objects.
-  *   `sort`, `argsort` since [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") does not support comparison.
-  *   `equiv` since [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") cannot be converted into complex.
-  *   `chop` since [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") does not support absolute value.
+  *   `sort`, `argsort` since [`ParameterExpression`](circuit#qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") does not support comparison.
+  *   `equiv` since [`ParameterExpression`](circuit#qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") cannot be converted into complex.
+  *   `chop` since [`ParameterExpression`](circuit#qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") does not support absolute value.
 </Admonition>
 
 Initialize an operator object.
@@ -241,7 +241,7 @@ Bind the free `Parameter`s in the coefficients to provided values.
 
 **Parameters**
 
-*   **parameters** (*Mapping\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*,* [*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*] | Sequence\[*[*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*]*) – The values to bind the parameters to.
+*   **parameters** (*Mapping\[*[*Parameter*](circuit#qiskit.circuit.Parameter "qiskit.circuit.Parameter")*,* [*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")  *|*[*ParameterExpression*](circuit#qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*] | Sequence\[*[*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")  *|*[*ParameterExpression*](circuit#qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*]*) – The values to bind the parameters to.
 *   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `False`, a copy of the operator with the bound parameters is returned. If `True` the operator itself is modified.
 
 **Returns**
@@ -612,6 +612,30 @@ matrix iterator object for the PauliList.
 **Return type**
 
 MatrixIterator
+
+### noncommutation\_graph
+
+<span id="qiskit.quantum_info.SparsePauliOp.noncommutation_graph" />
+
+`noncommutation_graph(qubit_wise)`
+
+Create the non-commutation graph of this SparsePauliOp.
+
+This transforms the measurement operator grouping problem into graph coloring problem. The constructed graph contains one node for each Pauli. The nodes will be connecting for any two Pauli terms that do \_not\_ commute.
+
+**Parameters**
+
+**qubit\_wise** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – whether the commutation rule is applied to the whole operator, or on a per-qubit basis.
+
+**Returns**
+
+**the non-commutation graph with nodes for each Pauli and edges**
+
+indicating a non-commutation relation. Each node will hold the index of the Pauli term it corresponds to in its data. The edges of the graph hold no data.
+
+**Return type**
+
+[rustworkx.PyGraph](https://www.rustworkx.org/apiref/rustworkx.PyGraph.html#rustworkx.PyGraph "(in rustworkx v0.14)")
 
 ### output\_dims
 

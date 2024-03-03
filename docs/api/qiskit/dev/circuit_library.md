@@ -1,7 +1,7 @@
 ---
 title: library
 description: API reference for qiskit.circuit.library
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.circuit.library
 ---
@@ -38,7 +38,7 @@ The library is organized in several sections.
 
 ## Standard gates
 
-These operations are reversible unitary gates and they all subclass [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). As a consequence, they all have the methods [`to_matrix()`](qiskit.circuit.Gate#to_matrix "qiskit.circuit.Gate.to_matrix"), [`power()`](qiskit.circuit.Gate#power "qiskit.circuit.Gate.power"), and [`control()`](qiskit.circuit.Gate#control "qiskit.circuit.Gate.control"), which we can generally only apply to unitary operations.
+These operations are reversible unitary gates and they all subclass [`Gate`](circuit#qiskit.circuit.Gate "qiskit.circuit.Gate"). As a consequence, they all have the methods [`to_matrix()`](circuit#qiskit.circuit.Gate.to_matrix "qiskit.circuit.Gate.to_matrix"), [`power()`](circuit#qiskit.circuit.Gate.power "qiskit.circuit.Gate.power"), and [`control()`](circuit#qiskit.circuit.Gate.control "qiskit.circuit.Gate.control"), which we can generally only apply to unitary operations.
 
 For example:
 
@@ -122,18 +122,18 @@ print(gate.control(1).to_matrix())  # CX (controlled X) gate
 
 Directives are operations to the quantum stack that are meant to be interpreted by the backend or the transpiler. In general, the transpiler or backend might optionally ignore them if there is no implementation for them.
 
-|                                                                                                     |                      |
-| --------------------------------------------------------------------------------------------------- | -------------------- |
-| [`Barrier`](qiskit.circuit.library.Barrier "qiskit.circuit.library.Barrier")(num\_qubits\[, label]) | Barrier instruction. |
+|                                  |                                                                                                                                                          |
+| -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Barrier`(num\_qubits\[, label]) | A directive for circuit compilation to separate pieces of a circuit so that any optimizations or re-writes are constrained to only act between barriers. |
 
 ## Standard Operations
 
 Operations are non-reversible changes in the quantum state of the circuit.
 
-|                                                                                                           |                                                 |
-| --------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| [`Measure`](qiskit.circuit.library.Measure "qiskit.circuit.library.Measure")(\*args\[, \_force\_mutable]) | Quantum measurement in the computational basis. |
-| [`Reset`](qiskit.circuit.library.Reset "qiskit.circuit.library.Reset")(\*args\[, \_force\_mutable])       | Qubit reset.                                    |
+|                                        |                                                           |
+| -------------------------------------- | --------------------------------------------------------- |
+| `Measure`(\*args\[, \_force\_mutable]) | Quantum measurement in the computational basis.           |
+| `Reset`(\*args\[, \_force\_mutable])   | Incoherently reset a qubit to the $\lvert0\rangle$ state. |
 
 ## Generalized Gates
 

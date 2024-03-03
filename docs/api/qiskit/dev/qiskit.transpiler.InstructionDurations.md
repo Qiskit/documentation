@@ -56,7 +56,7 @@ Some instructions may have a parameter dependent duration.
 
 **Parameters**
 
-*   **inst** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")) – An instruction or its name to be queried.
+*   **inst** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*qiskit.circuit.Instruction*](circuit#qiskit.circuit.Instruction "qiskit.circuit.Instruction")) – An instruction or its name to be queried.
 *   **qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – Qubit indices that the instruction acts on.
 *   **unit** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The unit of duration to be returned. It must be ‘s’ or ‘dt’.
 *   **parameters** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | None*) – The value of the parameters of the desired instruction.

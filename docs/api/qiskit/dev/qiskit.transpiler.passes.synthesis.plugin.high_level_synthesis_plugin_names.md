@@ -18,7 +18,7 @@ Return a list of plugin names installed for a given high level object name
 
 **Parameters**
 
-**op\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The operation name to find the installed plugins for. For example, if you provide `"clifford"` as the input it will find all the installed clifford synthesis plugins that can synthesize [`Clifford`](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford") objects. The name refers to the [`Operation.name`](qiskit.circuit.Operation#name "qiskit.circuit.Operation.name") attribute of the relevant objects.
+**op\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The operation name to find the installed plugins for. For example, if you provide `"clifford"` as the input it will find all the installed clifford synthesis plugins that can synthesize [`Clifford`](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford") objects. The name refers to the [`Operation.name`](circuit#qiskit.circuit.Operation.name "qiskit.circuit.Operation.name") attribute of the relevant objects.
 
 **Returns**
 

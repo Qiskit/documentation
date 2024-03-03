@@ -123,7 +123,7 @@ A list of instruction names that the backend supports.
 
 ### operations
 
-A list of [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") instances that the backend supports.
+A list of [`Instruction`](circuit#qiskit.circuit.Instruction "qiskit.circuit.Instruction") instances that the backend supports.
 
 <span id="qiskit.providers.fake_provider.GenericBackendV2.options" />
 
@@ -219,7 +219,7 @@ This is required to be implemented if the backend supports Pulse scheduling.
 
 **Parameters**
 
-**qubits** ([*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – Tuple or list of qubits of the form `(control_qubit, target_qubit)`.
+**qubits** (*Iterable\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – Tuple or list of qubits of the form `(control_qubit, target_qubit)`.
 
 **Returns**
 

@@ -1,7 +1,7 @@
 ---
 title: utils
 description: API reference for qiskit.utils
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.utils
 ---
@@ -173,7 +173,7 @@ Given a SI unit prefix and value, apply the prefix to convert to standard SI uni
 
 **Parameters**
 
-*   **value** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – The number to apply prefix to.
+*   **value** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*ParameterExpression*](circuit#qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – The number to apply prefix to.
 *   **unit** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – String prefix.
 
 **Returns**
@@ -182,7 +182,7 @@ Converted value.
 
 **Return type**
 
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") | [ParameterExpression](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")
+[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") | [ParameterExpression](circuit#qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")
 
 <Admonition title="Note" type="note">
   This may induce tiny value error due to internal representation of float object. See [https://docs.python.org/3/tutorial/floatingpoint.html](https://docs.python.org/3/tutorial/floatingpoint.html) for details.
@@ -194,7 +194,7 @@ Converted value.
 
 **Return type**
 
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") | [ParameterExpression](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")
+[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") | [ParameterExpression](circuit#qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")
 
 ### detach\_prefix
 
@@ -271,7 +271,7 @@ A helper function for calling a custom function with python [`ProcessPoolExecuto
 
 <span id="qiskit.utils.parallel_map" />
 
-`qiskit.utils.parallel_map(task, values, task_args=(), task_kwargs={}, num_processes=2)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/utils/parallel.py "view source code")
+`qiskit.utils.parallel_map(task, values, task_args=(), task_kwargs={}, num_processes=1)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/utils/parallel.py "view source code")
 
 Parallel execution of a mapping of values to the function task. This is functionally equivalent to:
 
@@ -360,7 +360,7 @@ Qiskit has several features that are enabled only if certain *optional* dependen
 | **qiskit.utils.optionals.HAS\_SKLEARN**       | Some of the gradient functions in `opflow.gradients` use regularisation methods from [Scikit Learn](https://scikit-learn.org/stable/).                                                                                                                                                                                                                                                                                                      |
 | **qiskit.utils.optionals.HAS\_SKQUANT**       | Some of the optimisers in `algorithms.optimizers` are based on those found in [Scikit Quant](https://github.com/scikit-quant/scikit-quant), which must be installed to use them.                                                                                                                                                                                                                                                            |
 | **qiskit.utils.optionals.HAS\_SQSNOBFIT**     | [SQSnobFit](https://pypi.org/project/SQSnobFit/) is a library for the “stable noisy optimization by branch and fit” algorithm. It is used by the `SNOBFIT` optimizer.                                                                                                                                                                                                                                                                       |
-| **qiskit.utils.optionals.HAS\_SYMENGINE**     | [Symengine](https://github.com/symengine/symengine) is a fast C++ backend for the symbolic-manipulation library [Sympy](https://www.sympy.org/en/index.html). Qiskit uses special methods from Symengine to accelerate its handling of [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter")s if available.                                                                                                                    |
+| **qiskit.utils.optionals.HAS\_SYMENGINE**     | [Symengine](https://github.com/symengine/symengine) is a fast C++ backend for the symbolic-manipulation library [Sympy](https://www.sympy.org/en/index.html). Qiskit uses special methods from Symengine to accelerate its handling of [`Parameter`](circuit#qiskit.circuit.Parameter "qiskit.circuit.Parameter")s if available.                                                                                                            |
 | **qiskit.utils.optionals.HAS\_TESTTOOLS**     | Qiskit’s test suite has more advanced functionality available if the optional [testtools](https://pypi.org/project/testtools/) library is installed. This is generally only needed for Qiskit developers.                                                                                                                                                                                                                                   |
 | **qiskit.utils.optionals.HAS\_TWEEDLEDUM**    | [Tweedledum](https://github.com/boschmitt/tweedledum) is an extension library for synthesis and optimization of circuits that may involve classical oracles. Qiskit’s [`PhaseOracle`](qiskit.circuit.library.PhaseOracle "qiskit.circuit.library.PhaseOracle") uses this, which is used in turn by amplification algorithms via the `AmplificationProblem`.                                                                                 |
 | **qiskit.utils.optionals.HAS\_Z3**            | [Z3](https://github.com/Z3Prover/z3) is a theorem prover, used in the `CrosstalkAdaptiveSchedule` and [`HoareOptimizer`](qiskit.transpiler.passes.HoareOptimizer "qiskit.transpiler.passes.HoareOptimizer") transpiler passes.                                                                                                                                                                                                              |
