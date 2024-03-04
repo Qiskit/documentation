@@ -377,7 +377,7 @@ service = QiskitRuntimeService()
 options = Options()
 options.resilience_level = 1
 options.optimization_level = 1
-backend = service.backend("ibmq_qasm_simulator")
+backend = service.least_busy(operational=True, simulator=False)
 
 sampler = Sampler(backend, options=options)
 ```

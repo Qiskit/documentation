@@ -609,7 +609,7 @@ Use Estimator to determine the expectation values of multiple circuit-observable
   <TabItem value="EstimatorV2" label="EstimatorV2">
     ```python
 service = QiskitRuntimeService()
-backend = service.get_backend("ibmq_qasm_simulator")
+backend = service.least_busy(operational=True, simulator=False)
 
 pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 

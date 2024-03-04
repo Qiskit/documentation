@@ -35,7 +35,8 @@ class. The session starts when its first job begins execution.
     ``` python
 from qiskit_ibm_runtime import Session, Samplerv2 as Sampler, Estimatorv2 as Estimator
 
-session = Session(service=service, backend="ibmq_qasm_simulator")
+backend = service.least_busy(operational=True, simulator=False)
+session = Session(service=service, backend="backend")
 estimator = Estimator(session=session)
 sampler = Sampler(session=session)
 ```
@@ -45,7 +46,8 @@ sampler = Sampler(session=session)
     ``` python
 from qiskit_ibm_runtime import Session, Sampler, Estimator
 
-session = Session(service=service, backend="ibmq_qasm_simulator")
+backend = service.least_busy(operational=True, simulator=False)
+session = Session(service=service, backend="backend")
 estimator = Estimator(session=session)
 sampler = Sampler(session=session)
 ```
@@ -59,7 +61,8 @@ The context manager automatically opens and closes the session.
 <Tabs>
   <TabItem value="PrimV2" label="V2 primitives">
     ``` python
-with Session(service=service, backend="ibmq_qasm_simulator"):
+backend = service.least_busy(operational=True, simulator=False)    
+with Session(service=service, backend="backend"):
   estimatorv2 = Estimatorv2()
   samplerv2 = Samplerv2()
 ```
@@ -67,27 +70,28 @@ with Session(service=service, backend="ibmq_qasm_simulator"):
 
   <TabItem value="PrimV1" label="V1 primitives">
     ``` python
-with Session(service=service, backend="ibmq_qasm_simulator"):
+backend = service.least_busy(operational=True, simulator=False)    
+with Session(service=service, backend="backend"):
   estimator = Estimator()
   sampler = Sampler()
 ```
   </TabItem>
 </Tabs>
 
-When you start a session,  you must specify a system or simulator. This can be done by specifying its name or by passing a `backend` object. 
+When you start a session,  you must specify a system. This can be done by specifying its name or by passing a `backend` object. 
 
-**Specify a system or simulator by name**
+**Specify a system by name**
 
 ``` python
 service = QiskitRuntimeService()
-with Session(service=service, backend="ibmq_qasm_simulator"):
+with Session(service=service, backend="ibm_sherbrooke"):
     ...
 ```
 
 **Pass a `backend` object** 
 
 ``` python
-backend = service.get_backend("ibmq_qasm_simulator")
+backend = service.least_busy(operational=True, simulator=False)
 with Session(backend=backend):
   ...
 ```
@@ -95,7 +99,7 @@ with Session(backend=backend):
 <span id="specify-length"></span>
 ## Session length
 
-You can define the maximum session timeout with the max_time parameter. This should exceed the longest job's execution time and be within the system's limits. 
+You can define the maximum session timeout with the `max_time` parameter. This should exceed the longest job's execution time and be within the system's limits. 
 
 ``` python
 with Session(service=service, backend=backend, max_time="25m"):
@@ -218,8 +222,9 @@ For a comprehensive overview of a session's configuration and status, use the  `
 from qiskit_ibm_runtime import QiskitRuntimeService, EstimatorV2 as Estimator
 
 service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False)
 
-with Session(service=service, backend="ibmq_qasm_simulator") as session:
+with Session(service=service, backend="backend") as session:
     estimator = Estimator()
     job = estimator.run([(circuit, observable)])
     print(session.details())
@@ -231,8 +236,9 @@ with Session(service=service, backend="ibmq_qasm_simulator") as session:
 from qiskit_ibm_runtime import QiskitRuntimeService
 
 service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False)
 
-with Session(service=service, backend="ibmq_qasm_simulator") as session:
+with Session(service=service, backend="backend") as session:
     estimator = Estimator()
     job = estimator.run(circuit, observable)
     print(session.details())
