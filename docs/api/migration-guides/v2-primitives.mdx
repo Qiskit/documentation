@@ -343,29 +343,55 @@ For examples of using options, see the [Error mitigation](#error-mit) and [Trans
 
 **Advanced options:**
 
-{/*Need to verify which options actually make it into Sampler.  Possibly some of the last 5 will.*/}
+#### Estimator advanced options
 
-| Category   | Option                   | Description                                                                                                                                                                                                                             | Default        | Notes          |
-|------------|--------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------|----------------|
-|            | optimization_level       | How much optimization to perform on the circuits.                                                                                                                                                                                       | 1              |                |
-|            | resilience_level         | How much resilience to build against errors.                                                                                                                                                                                            | 1              | Estimator only |
-|            | dynamical_decoupling     | The dynamical decoupling sequence to use.                                                                                                                                                                                               | None           |                |
-|            | seed_estimator           | Seed used to control sampling.                                                                                                                                                                                                          | None           | Estimator only |
-| resilience | measure_noise_mitigation | Whether to enable measurement error mitigation method.                                                                                                                                                                                  | True           | Estimator only |
-| resilience | zne_noise_factors        | An list of real valued noise factors that determine by what amount the circuits' noise is amplified.                                                                                                                                    |                | Estimator only |
-| resilience | zne_extrapolator         | An extrapolation strategy. One or more of ``multi_exponential``,  ``single_exponential``, ``double_exponential``, ``linear``.                                                                                                           |                | Estimator only |
-| resilience | zne_stderr_threshold     | A standard error threshold for accepting the ZNE result of Pauli basis expectation values when using ZNE mitigation.                                                                                                                    |                | Estimator only |
-| resilience | pec_mitigation           | Whether to turn on the PEC error mitigation method.                                                                                                                                                                                     | False          | Estimator only |
-| resilience | pec_max_overhead         | Specify a maximum sampling overhead for the PEC sampling noise model. If None the full learned model will be sampled.                                                                                                              |                | Estimator only |
-| execution  | shots                    | Number of repetitions of each circuit, for sampling.                                                                                                                                                                                    |                |                |
-| execution  | init_qubits              | Whether to reset the qubits to the ground state for each shot.                                                                                                                                                                          | True           |                |
-| execution  | samples                  | The number of samples of each measurement circuit to run. This is used when twirling or resilience levels 1, 2 is enabled. If None it will  be calculated automatically based on the ``shots`` and ``shots_per_sample`` (if specified). |                | Estimator only |
-| execution  | shots_per_sample         | The number of shots per sample of each measurement  circuit to run. This is used when twirling or resilience levels 1, 2, 3.  If None it will be calculated automatically based on the ``shots`` and ``samples`` (if specified).        |                | Estimator only |
-| execution  | interleave_samples       | If True interleave samples from different measurement circuits when running.                                                                                                                                                            | False          | Estimator only |
-| twirling   | gates                    | Whether to apply 2-qubit gate twirling.                                                                                                                                                                                                 | False          | Estimator only |
-| twirling   | measure                  | Whether to apply measurement twirling.                                                                                                                                                                                                  | True           | Estimator only |
-| twirling   | strategy                 | Specify the strategy of twirling qubits in identified layers of  2-qubit twirled gates.                                                                                                                                                 | `active-accum` | Estimator only |
+| Category                          | qiskit-ibm-runtime       | Type                                              | Default                   |
+|-----------------------------------|--------------------------|---------------------------------------------------|---------------------------|
+|                                   | default_precision        | float                                             | 0.02                      |
+|                                   | default_shots            | int \| None                                       | None                      |
+|                                   | seed_estimator           | int \| None                                       | None                      |
+|                                   | optimization_level       | int                                               | 1                         |
+|                                   | resilience_level         | int                                               | 1                         |
+| dynamical_decoupling              | enable                   | bool                                              | False                     |
+| dynamical_decoupling              | sequence_type            | Literal["XX", "XpXm", "XY4"]                      | “XX”                      |
+| dynamical_decoupling              | extra_slack_distribution | Literal["middle", "edges"]                        | middle                    |
+| dynamical_decoupling              | scheduling_method        | Literal["alap", "asap"]                           | alap                      |
+| execution                         | rep_delay                | float                                             | backend.default_rep_delay |
+| execution                         | init_qubits              | bool                                              | true                      |
+| resilience                        | measure_mitigation       | bool                                              | true                      |
+| resilience                        | zne_mitigation           | bool                                              | false                     |
+| resilience                        | pec_mitigation           | bool                                              | false                     |
+| resilience.zne                    | noise_factors            | list[float]                                       | (1, 3, 5)                 |
+| resilience.zne                    | extrapolator             | "exponential\|linear\|polynomial_degree_[1-7]”    | ("exponential", "linear") |
+| resilience.pec                    | max_overhead             | float                                             | None                      |
+| resilience.pec                    | noise_gain               | float \| “auto”                                   | “auto”                    |
+| resilience.layer_noise_learning   | max_layers_to_learn      | int                                               | 20                        |
+| resilience.layer_noise_learning   | shots_per_randomization  | int                                               | 128                       |
+| resilience.layer_noise_learning   | num_randomizations       | int                                               | 32                        |
+| resilience.layer_noise_learning   | layer_pair_depths        | list[int]                                         | (0, 1, 2, 4, 16, 32)      |
+| resilience.measure_noise_learning | num_randomizations       | int                                               | 32                        |
+| resilience.measure_noise_learning | shots_per_randomization  | int \| “auto”                                     | “auto”                    |
+| twirling                          | enable_gates             | bool                                              | False                     |
+| twirling                          | enable_measure           | bool                                              | True                      |
+| twirling                          | num_randomizations       | int \| “auto”                                     | “auto”                    |
+| twirling                          | shots_per_randomization  | int \| “auto”                                     | “auto”                    |
+| twirling                          | strategy                 | "active", "active-accum", "active-circuit", "all" | active-accum              |
+| simulator                         | coupling_map             |                                                   | None                      |
+| simulator                         | basis gates              |                                                   | None                      |
+| simulator                         | noise_model              |                                                   | None                      |
+| simulator                         | seed_simulator           |                                                   | None                      |
 
+#### Sampler advanced options
+
+| Category             | qiskit-ibm-runtime       | Type                          | Default                                   |
+|----------------------|--------------------------|-------------------------------|-------------------------------------------|
+|                      | default_shots            | int                           | 4096                                      |
+| dynamical_decoupling | enable                   | bool                          | False                                     |
+| dynamical_decoupling | sequence_type            | Literal["XX", "XpXm", "XY4"]  | “XX”                                      |
+| dynamical_decoupling | extra_slack_distribution | Literal["middle", "edges"]    | middle                                    |
+| dynamical_decoupling | scheduling_method        | Literal["alap", "asap"]       | alap                                      |
+| execution            | rep_delay                | float                         | backend.configuration().default_rep_delay |
+| execution            | init_qubits              | bool                          | true                                      |
 
 <span id="error-mit"></span>
 ### Error mitigation
@@ -542,7 +568,7 @@ sampler = Sampler (options=options, backend=backend)
    estimator.options.twirling.gates = True
    ```
 
-3. Review all the options EstimatorV2 supports [insert link] and make updates accordingly.
+3. Review all the [supported options](https://docs.quantum.ibm.com/api/qiskit-ibm-runtime/options) and make updates accordingly.
 4. Group each circuit you want to run with the observables and parameter values you want to apply to the circuit in a tuple (a PUB). For example, use `(circuit1, observable1, parameter_set1)` if you want to run `circuit1` with `observable1` and `parameter_set1`. 
   
   1. You might need to reshape your arrays of observables or parameter sets if you want to apply their outer product. For example, an array of observables of shape (4, 1) and an array of parameter sets of shape (1, 6) will give you a result of (4, 6) expectation values. See the [Numpy broadcasting rules](https://numpy.org/doc/stable/user/basics.broadcasting.html) for more details.
@@ -932,7 +958,7 @@ print(f" > Expectation values job 2: {another_result.values}")
    sampler = Sampler(backend)
    sampler.options.optimization_level = 1
    ```
-3. Review all the options SamplerV2 supports [insert link] and make updates accordingly.
+3. Review all the [supported options](https://docs.quantum.ibm.com/api/qiskit-ibm-runtime/options) and make updates accordingly.
 4. Group each circuit you want to run with the observables and parameter values you want to apply to the circuit in a tuple (a PUB). For example, use `(circuit1, parameter_set1)` if you want to run `circuit1` with `parameter_set1`. 
    You can optionally specify the shots you want for that specific PUB. 
 5. Update the sampler `run()` method to pass in the list of PUBs. For example, `run([(circuit1, parameter_set1)])`.
