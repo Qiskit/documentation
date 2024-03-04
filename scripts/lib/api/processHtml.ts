@@ -314,98 +314,138 @@ function processMember(
   apiType: string,
   id: string,
 ) {
-  const github = prepareGitHubLink($child, apiType === "method");
+  const githubSourceLink = prepareGitHubLink($child, apiType === "method");
 
   findByText($, $main, "em.property", apiType).remove();
 
   if (apiType == "class") {
-    return `<span class="target" id="${id}"/><p><code>${$child.html()}</code>${github}</p>`;
+    return `<span class="target" id="${id}"/><p><code>${$child.html()}</code>${githubSourceLink}</p>`;
   }
 
   if (apiType == "property") {
-    if (!priorApiType && id) {
+    return processProperty($child, $dl, priorApiType, id, githubSourceLink);
+  }
+
+  if (apiType == "method") {
+    return processMethod($, $child, $dl, priorApiType, id, githubSourceLink);
+  }
+
+  if (apiType == "attribute") {
+    return processAttribute($child, $dl, priorApiType, id, githubSourceLink);
+  }
+
+  if (apiType === "function" || apiType === "exception") {
+    return processFunctionOrException($child, $dl, id, githubSourceLink);
+  }
+
+  throw new Error(`Unhandled Python type: ${apiType}`);
+}
+
+function processProperty(
+  $child: Cheerio<any>,
+  $dl: Cheerio<any>,
+  priorApiType: string | undefined,
+  id: string,
+  githubSourceLink: string,
+) {
+  if (!priorApiType && id) {
+    $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
+  }
+
+  const signature = $child.find("em").text()?.replace(/^:\s+/, "");
+  if (signature.trim().length === 0) return;
+  return `<span class="target" id='${id}'/><p><code>${signature}</code>${githubSourceLink}</p>`;
+}
+
+function processMethod(
+  $: CheerioAPI,
+  $child: Cheerio<any>,
+  $dl: Cheerio<any>,
+  priorApiType: string | undefined,
+  id: string,
+  githubSourceLink: string,
+) {
+  if (id) {
+    if (!priorApiType) {
+      $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
+    } else if (!$child.attr("id")) {
+      // Overload methods have more than one <dt> tag, but only the first one
+      // contains an id.
+      return `<p><code>${$child.html()}</code>${githubSourceLink}</p>`;
+    } else {
+      // Inline methods
+      $(`<h3>${getLastPartFromFullIdentifier(id)}</h3>`).insertBefore($dl);
+    }
+  }
+
+  return `<span class="target" id='${id}'/><p><code>${$child.html()}</code>${githubSourceLink}</p>`;
+}
+
+function processAttribute(
+  $child: Cheerio<any>,
+  $dl: Cheerio<any>,
+  priorApiType: string | undefined,
+  id: string,
+  githubSourceLink: string,
+) {
+  if (!priorApiType) {
+    if (id) {
       $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
     }
 
     const signature = $child.find("em").text()?.replace(/^:\s+/, "");
     if (signature.trim().length === 0) return;
-    return `<span class="target" id='${id}'/><p><code>${signature}</code>${github}</p>`;
+    return `<span class="target" id='${id}'/><p><code>${signature}</code>${githubSourceLink}</p>`;
   }
 
-  if (apiType == "method") {
-    if (id) {
-      if (!priorApiType) {
-        $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
-      } else if (!$child.attr("id")) {
-        // Overload methods have more than one <dt> tag, but only the first one
-        // contains an id.
-        return `<p><code>${$child.html()}</code>${github}</p>`;
-      } else {
-        // Inline methods
-        $(`<h3>${getLastPartFromFullIdentifier(id)}</h3>`).insertBefore($dl);
-      }
-    }
+  // Else, the attribute is embedded on the class
+  const text = $child.text();
 
-    return `<span class="target" id='${id}'/><p><code>${$child.html()}</code>${github}</p>`;
+  // Index of the default value of the attribute
+  let equalIndex = text.indexOf("=");
+  if (equalIndex == -1) {
+    equalIndex = text.length;
+  }
+  // Index of the attribute's type. The type should be
+  // found before the default value
+  let colonIndex = text.slice(0, equalIndex).indexOf(":");
+  if (colonIndex == -1) {
+    colonIndex = text.length;
   }
 
-  if (apiType == "attribute") {
-    if (!priorApiType) {
-      if (id) {
-        $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
-      }
+  // The attributes have the following shape: name [: type] [= value]
+  const name = text.slice(0, Math.min(colonIndex, equalIndex)).trim();
+  const type = text
+    .slice(Math.min(colonIndex + 1, equalIndex), equalIndex)
+    .trim();
+  const value = text.slice(equalIndex, text.length).trim();
 
-      const signature = $child.find("em").text()?.replace(/^:\s+/, "");
-      if (signature.trim().length === 0) return;
-      return `<span class="target" id='${id}'/><p><code>${signature}</code>${github}</p>`;
-    }
+  const output = [`<span class="target" id='${id}'/><h3>${name}</h3>`];
+  if (type) {
+    output.push(`<p><code>${type}</code></p>`);
+  }
+  if (value) {
+    output.push(`<p><code>${value}</code></p>`);
+  }
+  return output.join("\n");
+}
 
-    // Else, the attribute is embedded on the class
-    const text = $child.text();
+function processFunctionOrException(
+  $child: Cheerio<any>,
+  $dl: Cheerio<any>,
+  id: string,
+  githubSourceLink: string,
+) {
+  const descriptionHtml = `<span class="target" id="${id}"/><p><code>${$child.html()}</code>${githubSourceLink}</p>`;
 
-    // Index of the default value of the attribute
-    let equalIndex = text.indexOf("=");
-    if (equalIndex == -1) {
-      equalIndex = text.length;
-    }
-    // Index of the attribute's type. The type should be
-    // found before the default value
-    let colonIndex = text.slice(0, equalIndex).indexOf(":");
-    if (colonIndex == -1) {
-      colonIndex = text.length;
-    }
-
-    // The attributes have the following shape: name [: type] [= value]
-    const name = text.slice(0, Math.min(colonIndex, equalIndex)).trim();
-    const type = text
-      .slice(Math.min(colonIndex + 1, equalIndex), equalIndex)
-      .trim();
-    const value = text.slice(equalIndex, text.length).trim();
-
-    const output = [`<span class="target" id='${id}'/><h3>${name}</h3>`];
-    if (type) {
-      output.push(`<p><code>${type}</code></p>`);
-    }
-    if (value) {
-      output.push(`<p><code>${value}</code></p>`);
-    }
-    return output.join("\n");
+  const pageHeading = $dl.siblings("h1").text();
+  if (id.endsWith(pageHeading) && pageHeading != "") {
+    // Page is already dedicated to apiType; no heading needed
+    return descriptionHtml;
   }
 
-  if (apiType === "function" || apiType === "exception") {
-    const descriptionHtml = `<span class="target" id="${id}"/><p><code>${$child.html()}</code>${github}</p>`;
-
-    const pageHeading = $dl.siblings("h1").text();
-    if (id.endsWith(pageHeading) && pageHeading != "") {
-      // Page is already dedicated to apiType; no heading needed
-      return descriptionHtml;
-    }
-
-    const apiName = id.split(".").slice(-1)[0];
-    return `<h3>${apiName}</h3>${descriptionHtml}`;
-  }
-
-  throw new Error(`Unhandled Python type: ${apiType}`);
+  const apiName = id.split(".").slice(-1)[0];
+  return `<h3>${apiName}</h3>${descriptionHtml}`;
 }
 
 /**
