@@ -16,18 +16,15 @@ Version 2 of the primitives is introduced with a new base class for both Sampler
 Based on user feedback, this version introduces the following major new functions:
 
 * A new interface that lets you specify a single circuit and multiple observables (if using Estimator) and parameter value sets for that circuit. Previously, you had to specify the  same circuit multiple times to match the size of the data to be combined.
-* SamplerV2 
+* SamplerV2 is simplified to focus on its core task of sampling the output register from execution of quantum circuits. This has resulted the the following specific changes: 
+  - It returns the samples, whose type is defined by the program, without weights and therefore no longer supports resilience levels. 
+  - The output data is separated by the output register names and has connivence methods like `get_counts()` to help with migration. This also enables future support for circuits with classical control flow.
   - Returns the outputs (bitstrings) from every shot, rather than providing a counts-like return (quasi-probabilities). The result class, however, has methods to return weighted samples, such as counts.
-  - Returns data from separate `ClassicalRegisters`. This enables derived classes to implement Sampler support for circuits with classical control flows.
-  - No longer supports resilience levels (error mitigation).  
+  - Has a new `shots` argument in the `run()` method that enables you to specify different shots for each input block. 
 * EstimatorV2 
-  - Has a new `precision` argument in the `run()` method that specifies the targeted precision of the expectation value estimates.
-  - Does not support resilience level 3.  This is because resilience level 3 in V1 Estimator uses Probabilistic Error Cancellation (PEC), which is proven to give unbiased results at the cost of exponential processing time.  You can, however, still use PEC as the error mitigation method by using the `pec_mitigation` option.
+  - Has a new `precision` argument in the `run()` method that specifies the targeted precision of the expectation value estimates. This value replaced `shots` from V1 to give a more accuate description of its function. 
+  - Does not support resilience level 3.  Resilience level 3 of V1 Estimator uses Probabilistic Error Cancellation (PEC), which is proven to give unbiased results at the cost of exponential processing time. To make this trade-off more obvious, EstimatorV2 does not support resilience level 3. You can, however, still use PEC as the error mitigation method by using the `pec_mitigation` option.
 * Both V2 primitives let you turn on or off individual error mitigation / suppression methods.
-
-<Admonition type="caution" title="Important">
-To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](../../transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. Users can still request that the primitives do no optimization of input circuits by specifying `optimization_level=0`.
-</Admonition>
 
 ## Major changes
 
