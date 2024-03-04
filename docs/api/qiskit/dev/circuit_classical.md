@@ -94,7 +94,7 @@ A unary expression.
 
 <span id="qiskit.circuit.classical.expr.Unary.Op" />
 
-`Op(value)`
+`Op(value)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py "view source code")
 
 Enumeration of the opcodes for unary operations.
 
@@ -133,7 +133,7 @@ A binary expression.
 
 <span id="qiskit.circuit.classical.expr.Binary.Op" />
 
-`Op(value)`
+`Op(value)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py "view source code")
 
 Enumeration of the opcodes for binary operations.
 
