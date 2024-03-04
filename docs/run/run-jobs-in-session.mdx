@@ -63,8 +63,8 @@ The context manager automatically opens and closes the session.
     ``` python
 backend = service.least_busy(operational=True, simulator=False)    
 with Session(service=service, backend="backend"):
-  estimatorv2 = Estimatorv2()
-  samplerv2 = Samplerv2()
+  estimatorv2 = EstimatorV2()
+  samplerv2 = SamplerV2()
 ```
   </TabItem>
 
@@ -165,7 +165,7 @@ A session can handle multiple primitives, allowing for various operations within
 <Tabs>
   <TabItem value="PrimV2" label="V2 primitives">
     ```python
-from qiskit_ibm_runtime import Session, Samplerv2 as Sampler, EstimatorV2 as Estimator
+from qiskit_ibm_runtime import Session, SamplerV2 as Sampler, EstimatorV2 as Estimator
 
 with Session(backend=backend):
     sampler = Sampler()
@@ -176,10 +176,10 @@ with Session(backend=backend):
     print(f" > Counts: {result[0].data.meas.get_counts()}")
 
     job = estimator.run([(circuit, observable)])
-    result = job.result() 
+    result = job.result()
     print(f" > Expectation value: {result[0].data.evs}")
     print(f" > Metadata: {result[0].metadata}")
-    ```
+```
   </TabItem>
 
   <TabItem value="PrimV1" label="V1 primitives">
