@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.library.RGate
 
 `qiskit.circuit.library.RGate(theta, phi, label=None, *, duration=None, unit='dt')` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/r.py "view source code")
 
-Bases: [`Gate`](circuit#qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
 Rotation θ around the cos(φ)x + sin(φ)y axis.
 
@@ -129,7 +129,7 @@ Return the number of qubits.
 
 ### params
 
-The parameters of this `Instruction`. Ideally these will be gate angles.
+return instruction params.
 
 <span id="qiskit.circuit.library.RGate.unit" />
 
@@ -149,7 +149,7 @@ Invert this gate as: $r(θ, φ)^dagger = r(-θ, φ)$
 
 **Parameters**
 
-**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](circuit#qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](circuit#qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always a [`RGate`](#qiskit.circuit.library.RGate "qiskit.circuit.library.RGate") with an inverted parameter value.
+**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an `AnnotatedOperation` with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always a [`RGate`](#qiskit.circuit.library.RGate "qiskit.circuit.library.RGate") with an inverted parameter value.
 
 **Returns**
 

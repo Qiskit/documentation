@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.library.RYYGate
 
 `qiskit.circuit.library.RYYGate(theta, label=None, *, duration=None, unit='dt')` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/ryy.py "view source code")
 
-Bases: [`Gate`](circuit#qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
 A parametric 2-qubit $Y \otimes Y$ interaction (rotation about YY).
 
@@ -155,7 +155,7 @@ Return the number of qubits.
 
 ### params
 
-The parameters of this `Instruction`. Ideally these will be gate angles.
+return instruction params.
 
 <span id="qiskit.circuit.library.RYYGate.unit" />
 
@@ -175,7 +175,7 @@ Return inverse RYY gate (i.e. with the negative rotation angle).
 
 **Parameters**
 
-**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](circuit#qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](circuit#qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always a [`RYYGate`](#qiskit.circuit.library.RYYGate "qiskit.circuit.library.RYYGate") with an inverted parameter value.
+**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an `AnnotatedOperation` with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always a [`RYYGate`](#qiskit.circuit.library.RYYGate "qiskit.circuit.library.RYYGate") with an inverted parameter value.
 
 **Returns**
 

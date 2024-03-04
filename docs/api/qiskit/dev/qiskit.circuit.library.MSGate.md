@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.library.MSGate
 
 `qiskit.circuit.library.MSGate(num_qubits, theta, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/gms.py "view source code")
 
-Bases: [`Gate`](circuit#qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
 MSGate has been deprecated. Please use `GMS` in `qiskit.circuit.generalized_gates` instead.
 
@@ -113,7 +113,7 @@ Return the number of qubits.
 
 ### params
 
-The parameters of this `Instruction`. Ideally these will be gate angles.
+return instruction params.
 
 <span id="qiskit.circuit.library.MSGate.unit" />
 

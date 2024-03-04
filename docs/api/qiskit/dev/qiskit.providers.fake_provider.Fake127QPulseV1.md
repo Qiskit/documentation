@@ -57,7 +57,7 @@ FakeBackend initializer.
 
 ### dirname
 
-`= '/home/vsts/work/1/s/.tox/docs/lib/python3.8/site-packages/qiskit/providers/fake_provider/backends_v1/fake_127q_pulse'`
+`= '/home/runner/work/qiskit/qiskit/.tox/docs/lib/python3.9/site-packages/qiskit/providers/fake_provider/backends_v1/fake_127q_pulse'`
 
 <span id="qiskit.providers.fake_provider.Fake127QPulseV1.options" />
 

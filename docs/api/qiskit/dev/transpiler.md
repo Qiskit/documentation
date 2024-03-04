@@ -1,7 +1,7 @@
 ---
 title: transpiler
 description: API reference for qiskit.transpiler
-in_page_toc_min_heading_level: 2
+in_page_toc_min_heading_level: 1
 python_api_type: module
 python_api_name: qiskit.transpiler
 ---
@@ -242,7 +242,7 @@ Instructions:
             Error Rate: 0.2
 ```
 
-This [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") represents a 3 qubit backend that supports [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate") between qubits 0 and 1, [`UGate`](qiskit.circuit.library.UGate "qiskit.circuit.library.UGate") on qubits 0 and 1, [`RZGate`](qiskit.circuit.library.RZGate "qiskit.circuit.library.RZGate"), [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate"), and [`RYGate`](qiskit.circuit.library.RYGate "qiskit.circuit.library.RYGate") on qubits 1 and 2, [`CZGate`](qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate") between qubits 1 and 2, and qubits 2 and 0, and [`Measure`](circuit#qiskit.circuit.Measure "qiskit.circuit.Measure") on all qubits.
+This [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") represents a 3 qubit backend that supports [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate") between qubits 0 and 1, [`UGate`](qiskit.circuit.library.UGate "qiskit.circuit.library.UGate") on qubits 0 and 1, [`RZGate`](qiskit.circuit.library.RZGate "qiskit.circuit.library.RZGate"), [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate"), and [`RYGate`](qiskit.circuit.library.RYGate "qiskit.circuit.library.RYGate") on qubits 1 and 2, [`CZGate`](qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate") between qubits 1 and 2, and qubits 2 and 0, and [`Measure`](qiskit.circuit.library.Measure "qiskit.circuit.library.Measure") on all qubits.
 
 There are also specific data structures to represent a specific subset of information from the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target"). For example, the [`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") class is used to solely represent the connectivity constraints of a backend as a directed graph. A coupling map can be generated from a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") using the [`Target.build_coupling_map()`](qiskit.transpiler.Target#build_coupling_map "qiskit.transpiler.Target.build_coupling_map") method. These data structures typically pre-date the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") class but are still used by some transpiler passes that do not work natively with a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") instance yet or when dealing with backends that aren’t using the latest [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") interface.
 
@@ -535,7 +535,7 @@ Next, for the heuristic stage, 2 passes are used by default:
 
 *   [`SabreLayout`](qiskit.transpiler.passes.SabreLayout "qiskit.transpiler.passes.SabreLayout"): Selects a layout by starting from an initial random layout and then repeatedly running a routing algorithm (by default [`SabreSwap`](qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap")) both forward and backward over the circuit, using the permutation caused by swap insertions to adjust that initial random layout. For more details you can refer to the paper describing the algorithm: [arXiv:1809.02573](https://arxiv.org/abs/1809.02573) [`SabreLayout`](qiskit.transpiler.passes.SabreLayout "qiskit.transpiler.passes.SabreLayout") is used to select a layout if a perfect layout isn’t found for optimization levels 1, 2, and 3.
 *   [`TrivialLayout`](qiskit.transpiler.passes.TrivialLayout "qiskit.transpiler.passes.TrivialLayout"): Always used for the layout at optimization level 0.
-*   [`DenseLayout`](qiskit.transpiler.passes.DenseLayout "qiskit.transpiler.passes.DenseLayout"): Finds the sub-graph of the device with greatest connectivity that has the same number of qubits as the circuit. Used for optimization level 1 if there are control flow operations (such as [`IfElseOp`](circuit#qiskit.circuit.IfElseOp "qiskit.circuit.IfElseOp")) present in the circuit.
+*   [`DenseLayout`](qiskit.transpiler.passes.DenseLayout "qiskit.transpiler.passes.DenseLayout"): Finds the sub-graph of the device with greatest connectivity that has the same number of qubits as the circuit. Used for optimization level 1 if there are control flow operations (such as [`IfElseOp`](qiskit.circuit.IfElseOp "qiskit.circuit.IfElseOp")) present in the circuit.
 
 Let’s see what layouts are automatically picked at various optimization levels. The circuits returned by [`qiskit.compiler.transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") are annotated with this initial layout information, and we can view this layout selection graphically using [`qiskit.visualization.plot_circuit_layout()`](qiskit.visualization.plot_circuit_layout "qiskit.visualization.plot_circuit_layout"):
 
@@ -738,7 +738,7 @@ circ.draw(output='mpl')
 
 ![../\_images/transpiler-16.png](/images/api/qiskit/dev/transpiler-16.png)
 
-You can see here that the transpiler inserted [`Delay`](circuit#qiskit.circuit.Delay "qiskit.circuit.Delay") instructions to account for idle time on each qubit. To get a better idea of the timing of the circuit we can also look at it with the `timeline.draw()` function:
+You can see here that the transpiler inserted [`Delay`](qiskit.circuit.Delay "qiskit.circuit.Delay") instructions to account for idle time on each qubit. To get a better idea of the timing of the circuit we can also look at it with the `timeline.draw()` function:
 
 ![../\_images/transpiler-17.png](/images/api/qiskit/dev/transpiler-17.png)
 
@@ -785,7 +785,7 @@ D ░░░░░░░░░░▒▒▒▒▒▒░░░
 C ░░░░░░░░░░░░░░░░▒▒░
 ```
 
-However, the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") representation is not accurate enough to represent this model. In the circuit representation, the corresponding [`circuit.Qubit`](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit") is occupied by the stimulus microwave signal during the first half of the interval, and the [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit") is only occupied at the very end of the interval.
+However, the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") representation is not accurate enough to represent this model. In the circuit representation, the corresponding [`circuit.Qubit`](qiskit.circuit.Qubit "qiskit.circuit.Qubit") is occupied by the stimulus microwave signal during the first half of the interval, and the [`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.Clbit") is only occupied at the very end of the interval.
 
 The lack of precision representing the physical model may induce edge cases in the scheduling:
 
@@ -799,7 +799,7 @@ c: 1/╡ c_0=0x1 ╞═╩═
      └─────────┘ 0
 ```
 
-In this example, a user may intend to measure the state of `q_1` after the [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.library.XGate") is applied to `q_0`. This is the correct interpretation from the viewpoint of topological node ordering, i.e. The [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.library.XGate") node comes in front of the [`Measure`](circuit#qiskit.circuit.Measure "qiskit.circuit.Measure") node. However, according to the measurement model above, the data in the register is unchanged during the application of the stimulus, so two nodes are simultaneously operated. If one tries to alap-schedule this circuit, it may return following circuit:
+In this example, a user may intend to measure the state of `q_1` after the [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.library.XGate") is applied to `q_0`. This is the correct interpretation from the viewpoint of topological node ordering, i.e. The [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.library.XGate") node comes in front of the [`Measure`](qiskit.circuit.library.Measure "qiskit.circuit.library.Measure") node. However, according to the measurement model above, the data in the register is unchanged during the application of the stimulus, so two nodes are simultaneously operated. If one tries to alap-schedule this circuit, it may return following circuit:
 
 ```python
      ┌────────────────┐   ┌───┐

@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.library.U2Gate
 
 `qiskit.circuit.library.U2Gate(phi, lam, label=None, *, duration=None, unit='dt')` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/u2.py "view source code")
 
-Bases: [`Gate`](circuit#qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
 Single-qubit rotation about the X+Z axis.
 
@@ -165,7 +165,7 @@ Return the number of qubits.
 
 ### params
 
-The parameters of this `Instruction`. Ideally these will be gate angles.
+return instruction params.
 
 <span id="qiskit.circuit.library.U2Gate.unit" />
 
@@ -187,7 +187,7 @@ $U2(\phi, \lambda)^{\dagger} =U2(-\lambda-\pi, -\phi+\pi))$
 
 **Parameters**
 
-**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](circuit#qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](circuit#qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always a [`U2Gate`](#qiskit.circuit.library.U2Gate "qiskit.circuit.library.U2Gate") with inverse parameter values.
+**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an `AnnotatedOperation` with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always a [`U2Gate`](#qiskit.circuit.library.U2Gate "qiskit.circuit.library.U2Gate") with inverse parameter values.
 
 **Returns**
 

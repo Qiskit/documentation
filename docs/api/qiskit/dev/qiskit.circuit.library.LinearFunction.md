@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.library.LinearFunction
 
 `qiskit.circuit.library.LinearFunction(linear, validate_input=False)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/linear_function.py "view source code")
 
-Bases: [`Gate`](circuit#qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
 A linear reversible circuit on n qubits.
 
@@ -158,7 +158,7 @@ Returns the original circuit used to construct this linear function (including N
 
 ### params
 
-The parameters of this `Instruction`. Ideally these will be gate angles.
+return instruction params.
 
 <span id="qiskit.circuit.library.LinearFunction.unit" />
 

@@ -1,7 +1,7 @@
 ---
 title: providers
 description: API reference for qiskit.providers
-in_page_toc_min_heading_level: 2
+in_page_toc_min_heading_level: 1
 python_api_type: module
 python_api_name: qiskit.providers
 ---
@@ -133,7 +133,7 @@ If you have a quantum device or simulator that you would like to integrate with 
 >
 > *   Implement a [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") subclass and its [`run()`](qiskit.providers.BackendV2#run "qiskit.providers.BackendV2.run") method.
 >
->     *   Add any custom gates for the backend’s basis to the session [`EquivalenceLibrary`](circuit#qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary") instance.
+>     *   Add any custom gates for the backend’s basis to the session [`EquivalenceLibrary`](qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary") instance.
 >
 > *   Implement a [`JobV1`](qiskit.providers.JobV1 "qiskit.providers.JobV1") subclass that handles interacting with a running job.
 
@@ -247,7 +247,7 @@ The key piece of the [`Backend`](qiskit.providers.Backend "qiskit.providers.Back
 
 #### Custom Basis Gates
 
-1.  If your backend doesn’t use gates in the Qiskit circuit library ([`qiskit.circuit.library`](circuit_library#module-qiskit.circuit.library "qiskit.circuit.library")) you can integrate support for this into your provider. The basic method for doing this is first to define a [`Gate`](circuit#qiskit.circuit.Gate "qiskit.circuit.Gate") subclass for each custom gate in the basis set. For example:
+1.  If your backend doesn’t use gates in the Qiskit circuit library ([`qiskit.circuit.library`](circuit_library#module-qiskit.circuit.library "qiskit.circuit.library")) you can integrate support for this into your provider. The basic method for doing this is first to define a [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") subclass for each custom gate in the basis set. For example:
 
     ```python
     import numpy as np
@@ -502,8 +502,8 @@ Below is a table of example access patterns in [`BackendV1`](qiskit.providers.Ba
 | `backend.properties().t1(0)`                                           | `backend.qubit_properties(0).t1`                                       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | `backend.properties().t2(0)`                                           | `backend.qubit_properties(0).t2`                                       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | `backend.properties().frequency(0)`                                    | `backend.qubit_properties(0).frequency`                                |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| `backend.properties().readout_error(0)`                                | `backend.target["measure"][(0,)].error`                                | In [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") the error rate for the `Measure` operation on a given qubit is used to model the readout error. However a [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") can implement multiple measurement types and list them separately in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target").                                                                                                  |
-| `backend.properties().readout_length(0)`                               | `backend.target["measure"][(0,)].duration`                             | In [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") the duration for the `Measure` operation on a given qubit is used to model the readout length. However, a [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") can implement multiple measurement types and list them separately in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target").                                                                                                  |
+| `backend.properties().readout_error(0)`                                | `backend.target["measure"][(0,)].error`                                | In [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") the error rate for the [`Measure`](qiskit.circuit.library.Measure "qiskit.circuit.library.Measure") operation on a given qubit is used to model the readout error. However a [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") can implement multiple measurement types and list them separately in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target").                               |
+| `backend.properties().readout_length(0)`                               | `backend.target["measure"][(0,)].duration`                             | In [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") the duration for the [`Measure`](qiskit.circuit.library.Measure "qiskit.circuit.library.Measure") operation on a given qubit is used to model the readout length. However, a [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") can implement multiple measurement types and list them separately in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target").                               |
 
 There is also a [`BackendV2Converter`](qiskit.providers.BackendV2Converter "qiskit.providers.BackendV2Converter") class available that enables you to wrap a [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1") object with a [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") interface.
 

@@ -62,10 +62,10 @@ Register a low-level, custom pulse definition for the given gate.
 
 **Parameters**
 
-*   **gate** (*Union\[*[*Gate*](circuit#qiskit.circuit.Gate "qiskit.circuit.Gate")*,* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – Gate information.
+*   **gate** (*Union\[*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")*,* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – Gate information.
 *   **qubits** (*Union\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*, Tuple\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]]*) – List of qubits to be measured.
 *   **schedule** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")) – Schedule information.
-*   **params** (*Optional\[List\[Union\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*,* [*Parameter*](circuit#qiskit.circuit.Parameter "qiskit.circuit.Parameter")*]]]*) – A list of parameters.
+*   **params** (*Optional\[List\[Union\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*,* [*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*]]]*) – A list of parameters.
 
 **Raises**
 
@@ -121,10 +121,10 @@ Apply an operation to the output of the circuit.
 
 **Parameters**
 
-*   **op** ([*qiskit.circuit.Operation*](circuit#qiskit.circuit.Operation "qiskit.circuit.Operation")) – the operation associated with the DAG node
-*   **qargs** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – qubits that op will be applied to
-*   **cargs** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]*) – cbits that op will be applied to
-*   **check** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True` (default), this function will enforce that the [`DAGCircuit`](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") data-structure invariants are maintained (all `qargs` are [`Qubit`](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")s, all are in the DAG, etc). If `False`, the caller *must* uphold these invariants itself, but the cost of several checks will be skipped. This is most useful when building a new DAG from a source of known-good nodes.
+*   **op** ([*qiskit.circuit.Operation*](qiskit.circuit.Operation "qiskit.circuit.Operation")) – the operation associated with the DAG node
+*   **qargs** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – qubits that op will be applied to
+*   **cargs** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]*) – cbits that op will be applied to
+*   **check** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True` (default), this function will enforce that the [`DAGCircuit`](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") data-structure invariants are maintained (all `qargs` are [`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.Qubit")s, all are in the DAG, etc). If `False`, the caller *must* uphold these invariants itself, but the cost of several checks will be skipped. This is most useful when building a new DAG from a source of known-good nodes.
 
 **Returns**
 
@@ -148,10 +148,10 @@ Apply an operation to the input of the circuit.
 
 **Parameters**
 
-*   **op** ([*qiskit.circuit.Operation*](circuit#qiskit.circuit.Operation "qiskit.circuit.Operation")) – the operation associated with the DAG node
-*   **qargs** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – qubits that op will be applied to
-*   **cargs** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]*) – cbits that op will be applied to
-*   **check** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True` (default), this function will enforce that the [`DAGCircuit`](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") data-structure invariants are maintained (all `qargs` are [`Qubit`](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")s, all are in the DAG, etc). If `False`, the caller *must* uphold these invariants itself, but the cost of several checks will be skipped. This is most useful when building a new DAG from a source of known-good nodes.
+*   **op** ([*qiskit.circuit.Operation*](qiskit.circuit.Operation "qiskit.circuit.Operation")) – the operation associated with the DAG node
+*   **qargs** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – qubits that op will be applied to
+*   **cargs** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]*) – cbits that op will be applied to
+*   **check** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True` (default), this function will enforce that the [`DAGCircuit`](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") data-structure invariants are maintained (all `qargs` are [`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.Qubit")s, all are in the DAG, etc). If `False`, the caller *must* uphold these invariants itself, but the cost of several checks will be skipped. This is most useful when building a new DAG from a source of known-good nodes.
 
 **Returns**
 
@@ -232,8 +232,8 @@ A subset of input wires of `other` are mapped to a subset of output wires of thi
 **Parameters**
 
 *   **other** ([*DAGCircuit*](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – circuit to compose with self
-*   **qubits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – qubits of self to compose onto.
-*   **clbits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")*|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – clbits of self to compose onto.
+*   **qubits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – qubits of self to compose onto.
+*   **clbits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – clbits of self to compose onto.
 *   **front** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, front composition will be performed (not implemented yet)
 *   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, modify the object. Otherwise return composed circuit.
 
@@ -391,7 +391,7 @@ Finds locations in the circuit, by mapping the Qubit and Clbit to positional ind
 
 **Parameters**
 
-**bit** ([*Bit*](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit")) – The bit to locate.
+**bit** ([*Bit*](qiskit.circuit.Bit "qiskit.circuit.Bit")) – The bit to locate.
 
 **Returns**
 
@@ -563,7 +563,7 @@ Iterator for nodes that affect a given wire.
 
 **Parameters**
 
-*   **wire** ([*Bit*](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit")) – the wire to be looked at.
+*   **wire** ([*Bit*](qiskit.circuit.Bit "qiskit.circuit.Bit")) – the wire to be looked at.
 *   **only\_ops** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – True if only the ops nodes are wanted; otherwise, all nodes are returned.
 
 **Yields**
@@ -608,7 +608,7 @@ Get the list of “op” nodes in the dag.
 
 **Parameters**
 
-*   **op** ([*Type*](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type")) – [`qiskit.circuit.Operation`](circuit#qiskit.circuit.Operation "qiskit.circuit.Operation") subclass op nodes to return. If None, return all op nodes.
+*   **op** ([*Type*](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type")) – [`qiskit.circuit.Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") subclass op nodes to return. If None, return all op nodes.
 *   **include\_directives** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – include barrier, snapshot etc.
 
 **Returns**
@@ -649,7 +649,7 @@ This method does not consider any classical data dependency in the `DAGCircuit`,
 
 **Parameters**
 
-**qubit** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The output qubit for which we want to find the causal cone.
+**qubit** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The output qubit for which we want to find the causal cone.
 
 **Returns**
 
@@ -657,7 +657,7 @@ The set of qubits whose interactions affect `qubit`.
 
 **Return type**
 
-Set\[[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")]
+Set\[[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")]
 
 ### quantum\_predecessors
 
@@ -701,11 +701,11 @@ Remove classical bits from the circuit. All bits MUST be idle. Any registers wit
 
 **Parameters**
 
-**clbits** (*List\[*[*Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]*) – The bits to remove.
+**clbits** (*List\[*[*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]*) – The bits to remove.
 
 **Raises**
 
-[**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – a clbit is not a [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit"), is not in the circuit, or is not idle.
+[**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – a clbit is not a [`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.Clbit"), is not in the circuit, or is not idle.
 
 ### remove\_cregs
 
@@ -777,11 +777,11 @@ Remove quantum bits from the circuit. All bits MUST be idle. Any registers with 
 
 **Parameters**
 
-**qubits** (*List\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – The bits to remove.
+**qubits** (*List\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – The bits to remove.
 
 **Raises**
 
-[**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – a qubit is not a [`Qubit`](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit"), is not in the circuit, or is not idle.
+[**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – a qubit is not a [`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.Qubit"), is not in the circuit, or is not idle.
 
 ### replace\_block\_with\_op
 
@@ -796,8 +796,8 @@ This is used to consolidate a block of DAGOpNodes into a single operation. A typ
 **Parameters**
 
 *   **node\_block** (*List\[*[*DAGNode*](qiskit.dagcircuit.DAGNode "qiskit.dagcircuit.DAGNode")*]*) – A list of dag nodes that represents the node block to be replaced
-*   **op** ([*qiskit.circuit.Operation*](circuit#qiskit.circuit.Operation "qiskit.circuit.Operation")) – The operation to replace the block with
-*   **wire\_pos\_map** (*Dict\[*[*Bit*](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The dictionary mapping the bits to their positions in the output `qargs` or `cargs`. This is necessary to reconstruct the arg order over multiple gates in the combined single op node. If a [`Bit`](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit") is not in the dictionary, it will not be added to the args; this can be useful when dealing with control-flow operations that have inherent bits in their `condition` or `target` fields.
+*   **op** ([*qiskit.circuit.Operation*](qiskit.circuit.Operation "qiskit.circuit.Operation")) – The operation to replace the block with
+*   **wire\_pos\_map** (*Dict\[*[*Bit*](qiskit.circuit.Bit "qiskit.circuit.Bit")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The dictionary mapping the bits to their positions in the output `qargs` or `cargs`. This is necessary to reconstruct the arg order over multiple gates in the combined single op node. If a [`Bit`](qiskit.circuit.Bit "qiskit.circuit.Bit") is not in the dictionary, it will not be added to the args; this can be useful when dealing with control-flow operations that have inherent bits in their `condition` or `target` fields.
 *   **cycle\_check** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – When set to True this method will check that replacing the provided `node_block` with a single node would introduce a cycle (which would invalidate the `DAGCircuit`) and will raise a `DAGCircuitError` if a cycle would be introduced. This checking comes with a run time penalty. If you can guarantee that your input `node_block` is a contiguous block and won’t introduce a cycle when it’s contracted to a single node, this can be set to `False` to improve the runtime performance of this method.
 
 **Raises**
@@ -884,7 +884,7 @@ the circuit size
 
 **Raises**
 
-[**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – if an unknown [`ControlFlowOp`](circuit#qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp") is present in a call with `recurse=True`, or any control flow is present in a non-recursive call.
+[**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – if an unknown [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp") is present in a call with `recurse=True`, or any control flow is present in a non-recursive call.
 
 ### substitute\_node
 
@@ -897,7 +897,7 @@ Replace an DAGOpNode with a single operation. qargs, cargs and conditions for th
 **Parameters**
 
 *   **node** ([*DAGOpNode*](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")) – Node to be replaced
-*   **op** ([*qiskit.circuit.Operation*](circuit#qiskit.circuit.Operation "qiskit.circuit.Operation")) – The [`qiskit.circuit.Operation`](circuit#qiskit.circuit.Operation "qiskit.circuit.Operation") instance to be added to the DAG
+*   **op** ([*qiskit.circuit.Operation*](qiskit.circuit.Operation "qiskit.circuit.Operation")) – The [`qiskit.circuit.Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") instance to be added to the DAG
 *   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Optional, default False. If True, existing DAG node will be modified to include op. Otherwise, a new DAG node will be used.
 *   **propagate\_condition** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Optional, default True. If True, a condition on the `node` to be replaced will be applied to the new `op`. This is the legacy behaviour. If either node is a control-flow operation, this will be ignored. If the `op` already has a condition, [`DAGCircuitError`](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") is raised.
 
@@ -926,8 +926,8 @@ Replace one node with dag.
 
 *   **node** ([*DAGOpNode*](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")) – node to substitute
 *   **input\_dag** ([*DAGCircuit*](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – circuit that will substitute the node
-*   **wires** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Bit*](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit")*] | Dict\[*[*Bit*](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit")*,* [*Bit*](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit")*]*) – gives an order for (qu)bits in the input circuit. If a list, then the bits refer to those in the `input_dag`, and the order gets matched to the node wires by qargs first, then cargs, then conditions. If a dictionary, then a mapping of bits in the `input_dag` to those that the `node` acts on.
-*   **propagate\_condition** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True` (default), then any `condition` attribute on the operation within `node` is propagated to each node in the `input_dag`. If `False`, then the `input_dag` is assumed to faithfully implement suitable conditional logic already. This is ignored for [`ControlFlowOp`](circuit#qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp")s (i.e. treated as if it is `False`); replacements of those must already fulfill the same conditional logic or this function would be close to useless for them.
+*   **wires** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Bit*](qiskit.circuit.Bit "qiskit.circuit.Bit")*] | Dict\[*[*Bit*](qiskit.circuit.Bit "qiskit.circuit.Bit")*,* [*Bit*](qiskit.circuit.Bit "qiskit.circuit.Bit")*]*) – gives an order for (qu)bits in the input circuit. If a list, then the bits refer to those in the `input_dag`, and the order gets matched to the node wires by qargs first, then cargs, then conditions. If a dictionary, then a mapping of bits in the `input_dag` to those that the `node` acts on.
+*   **propagate\_condition** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True` (default), then any `condition` attribute on the operation within `node` is propagated to each node in the `input_dag`. If `False`, then the `input_dag` is assumed to faithfully implement suitable conditional logic already. This is ignored for [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp")s (i.e. treated as if it is `False`); replacements of those must already fulfill the same conditional logic or this function would be close to useless for them.
 
 **Returns**
 

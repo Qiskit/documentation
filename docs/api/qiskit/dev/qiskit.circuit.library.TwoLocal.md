@@ -116,13 +116,13 @@ q_2: ┤ X ├─░──────┤ X ├─░─┤ X ├─░─┤ X 
 **Parameters**
 
 *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The number of qubits of the two-local circuit.
-*   **rotation\_blocks** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*type*](https://docs.python.org/3/library/functions.html#type "(in Python v3.12)")  *|*[*qiskit.circuit.Instruction*](circuit#qiskit.circuit.Instruction "qiskit.circuit.Instruction")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*type*](https://docs.python.org/3/library/functions.html#type "(in Python v3.12)")  *|*[*qiskit.circuit.Instruction*](circuit#qiskit.circuit.Instruction "qiskit.circuit.Instruction")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*] | None*) – The gates used in the rotation layer. Can be specified via the name of a gate (e.g. `'ry'`) or the gate type itself (e.g. [`RYGate`](qiskit.circuit.library.RYGate "qiskit.circuit.library.RYGate")). If only one gate is provided, the gate same gate is applied to each qubit. If a list of gates is provided, all gates are applied to each qubit in the provided order. See the Examples section for more detail.
-*   **entanglement\_blocks** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*type*](https://docs.python.org/3/library/functions.html#type "(in Python v3.12)")  *|*[*qiskit.circuit.Instruction*](circuit#qiskit.circuit.Instruction "qiskit.circuit.Instruction")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*type*](https://docs.python.org/3/library/functions.html#type "(in Python v3.12)")  *|*[*qiskit.circuit.Instruction*](circuit#qiskit.circuit.Instruction "qiskit.circuit.Instruction")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*] | None*) – The gates used in the entanglement layer. Can be specified in the same format as `rotation_blocks`.
+*   **rotation\_blocks** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*type*](https://docs.python.org/3/library/functions.html#type "(in Python v3.12)")  *|*[*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*type*](https://docs.python.org/3/library/functions.html#type "(in Python v3.12)")  *|*[*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*] | None*) – The gates used in the rotation layer. Can be specified via the name of a gate (e.g. `'ry'`) or the gate type itself (e.g. [`RYGate`](qiskit.circuit.library.RYGate "qiskit.circuit.library.RYGate")). If only one gate is provided, the gate same gate is applied to each qubit. If a list of gates is provided, all gates are applied to each qubit in the provided order. See the Examples section for more detail.
+*   **entanglement\_blocks** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*type*](https://docs.python.org/3/library/functions.html#type "(in Python v3.12)")  *|*[*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*type*](https://docs.python.org/3/library/functions.html#type "(in Python v3.12)")  *|*[*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*] | None*) – The gates used in the entanglement layer. Can be specified in the same format as `rotation_blocks`.
 *   **entanglement** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]] | Callable\[\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*],* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]]*) – Specifies the entanglement structure. Can be a string (`'full'`, `'linear'`, `'reverse_linear'`, `'circular'` or `'sca'`), a list of integer-pairs specifying the indices of qubits entangled with one another, or a callable returning such a list provided with the index of the entanglement layer. Default to `'full'` entanglement. Note that if `entanglement_blocks = 'cx'`, then `'full'` entanglement provides the same unitary as `'reverse_linear'` but the latter option has fewer entangling gates. See the Examples section for more detail.
 *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Specifies how often a block consisting of a rotation layer and entanglement layer is repeated.
 *   **skip\_unentangled\_qubits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True`, the single qubit gates are only applied to qubits that are entangled with another qubit. If `False`, the single qubit gates are applied to each qubit in the ansatz. Defaults to `False`.
 *   **skip\_final\_rotation\_layer** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `False`, a rotation layer is added at the end of the ansatz. If `True`, no rotation layer is added.
-*   **parameter\_prefix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The parameterized gates require a parameter to be defined, for which we use instances of [`Parameter`](circuit#qiskit.circuit.Parameter "qiskit.circuit.Parameter"). The name of each parameter will be this specified prefix plus its index.
+*   **parameter\_prefix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The parameterized gates require a parameter to be defined, for which we use instances of [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter"). The name of each parameter will be this specified prefix plus its index.
 *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True`, barriers are inserted in between each layer. If `False`, no barriers are inserted. Defaults to `False`.
 *   **initial\_state** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| None*) – A [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object to prepend to the circuit.
 *   **flatten** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – Set this to `True` to output a flat circuit instead of nesting it inside multiple layers of gate objects. By default currently the contents of the output circuit will be wrapped in nested objects for cleaner visualization. However, if you’re using this circuit for anything besides visualization its **strongly** recommended to set this flag to `True` to avoid a large performance overhead for parameter binding.
@@ -209,7 +209,7 @@ If barriers are inserted in between the layers or not.
 
 ### instances
 
-`= 449`
+`= 417`
 
 <span id="qiskit.circuit.library.TwoLocal.layout" />
 
@@ -235,35 +235,11 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 
 Return the number of ancilla qubits.
 
-<span id="qiskit.circuit.library.TwoLocal.num_captured_vars" />
-
-### num\_captured\_vars
-
-The number of runtime classical variables in the circuit marked as captured from an enclosing scope.
-
-This is the length of the `iter_captured_vars()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.TwoLocal.num_input_vars "qiskit.circuit.library.TwoLocal.num_input_vars") must be zero.
-
 <span id="qiskit.circuit.library.TwoLocal.num_clbits" />
 
 ### num\_clbits
 
 Return number of classical bits.
-
-<span id="qiskit.circuit.library.TwoLocal.num_declared_vars" />
-
-### num\_declared\_vars
-
-The number of runtime classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
-
-This is the length of the `iter_declared_vars()` iterable.
-
-<span id="qiskit.circuit.library.TwoLocal.num_input_vars" />
-
-### num\_input\_vars
-
-The number of runtime classical variables in the circuit marked as circuit inputs.
-
-This is the length of the `iter_input_vars()` iterable. If this is non-zero, [`num_captured_vars`](#qiskit.circuit.library.TwoLocal.num_captured_vars "qiskit.circuit.library.TwoLocal.num_captured_vars") must be zero.
 
 <span id="qiskit.circuit.library.TwoLocal.num_layers" />
 
@@ -285,7 +261,7 @@ The number of layers in the circuit.
 
 The number of total parameters that can be set to distinct values.
 
-This does not change when the parameters are bound or exchanged for same parameters, and therefore is different from `num_parameters` which counts the number of unique [`Parameter`](circuit#qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects currently in the circuit.
+This does not change when the parameters are bound or exchanged for same parameters, and therefore is different from `num_parameters` which counts the number of unique [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects currently in the circuit.
 
 **Returns**
 
@@ -304,14 +280,6 @@ Returns the number of qubits in this circuit.
 **Returns**
 
 The number of qubits.
-
-<span id="qiskit.circuit.library.TwoLocal.num_vars" />
-
-### num\_vars
-
-The number of runtime classical variables in the circuit.
-
-This is the length of the `iter_vars()` iterable.
 
 <span id="qiskit.circuit.library.TwoLocal.op_start_times" />
 
@@ -431,5 +399,5 @@ Overloading to handle the special case of 1 qubit where the entanglement are ign
 
 **Return type**
 
-Sequence\[Sequence\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")]]
+[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.12)")\[[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.12)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")]]
 

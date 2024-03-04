@@ -12,7 +12,7 @@ python_api_name: qiskit.primitives.BackendSampler
 
 `qiskit.primitives.BackendSampler(backend, options=None, bound_pass_manager=None, skip_transpilation=False)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/primitives/backend_sampler.py "view source code")
 
-Bases: [`BaseSamplerV1`](qiskit.primitives.BaseSamplerV1 "qiskit.primitives.base.base_sampler.BaseSamplerV1")\[[`PrimitiveJob`](qiskit.primitives.PrimitiveJob "qiskit.primitives.primitive_job.PrimitiveJob")\[[`SamplerResult`](qiskit.primitives.SamplerResult "qiskit.primitives.base.sampler_result.SamplerResult")]]
+Bases: `BaseSamplerV1`\[`PrimitiveJob`\[[`SamplerResult`](qiskit.primitives.SamplerResult "qiskit.primitives.base.sampler_result.SamplerResult")]]
 
 A `BaseSampler` implementation that provides an interface for leveraging the sampler interface from any backend.
 
@@ -22,10 +22,10 @@ Initialize a new BackendSampler
 
 **Parameters**
 
-*   **backend** – Required: the backend to run the sampler primitive on
-*   **options** – Default options.
-*   **bound\_pass\_manager** – An optional pass manager to run after parameter binding.
-*   **skip\_transpilation** – If this is set to True the internal compilation of the input circuits is skipped and the circuit objects will be directly executed when this objected is called.
+*   **backend** ([*BackendV1*](qiskit.providers.BackendV1 "qiskit.providers.BackendV1")  *|*[*BackendV2*](qiskit.providers.BackendV2 "qiskit.providers.BackendV2")) – Required: the backend to run the sampler primitive on
+*   **options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)") *| None*) – Default options.
+*   **bound\_pass\_manager** ([*PassManager*](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") *| None*) – An optional pass manager to run after parameter binding.
+*   **skip\_transpilation** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If this is set to True the internal compilation of the input circuits is skipped and the circuit objects will be directly executed when this objected is called.
 
 **Raises**
 

@@ -16,7 +16,7 @@ Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in P
 
 The high-level-synthesis config allows to specify a list of “methods” used by [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis") transformation pass to synthesize different types of higher-level objects.
 
-A higher-level object is an object of type [`Operation`](circuit#qiskit.circuit.Operation "qiskit.circuit.Operation") (e.g., [`Clifford`](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford") or [`LinearFunction`](qiskit.circuit.library.LinearFunction "qiskit.circuit.library.LinearFunction")). Each object is referred to by its [`name`](circuit#qiskit.circuit.Operation.name "qiskit.circuit.Operation.name") field (e.g., `"clifford"` for [`Clifford`](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford") objects), and the applicable synthesis methods are tied to this name.
+A higher-level object is an object of type [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") (e.g., [`Clifford`](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford") or [`LinearFunction`](qiskit.circuit.library.LinearFunction "qiskit.circuit.library.LinearFunction")). Each object is referred to by its [`name`](qiskit.circuit.Operation#name "qiskit.circuit.Operation.name") field (e.g., `"clifford"` for [`Clifford`](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford") objects), and the applicable synthesis methods are tied to this name.
 
 In the config, each method is specified in one of several ways:
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.library.StatePreparation
 
 `qiskit.circuit.library.StatePreparation(params, num_qubits=None, inverse=False, label=None, normalize=False)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/state_preparation.py "view source code")
 
-Bases: [`Gate`](circuit#qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
 Complex amplitude state preparation.
 
@@ -132,7 +132,7 @@ Return the number of qubits.
 
 ### params
 
-The parameters of this `Instruction`. Ideally these will be gate angles.
+return instruction params.
 
 <span id="qiskit.circuit.library.StatePreparation.unit" />
 

@@ -120,7 +120,7 @@ A list of instruction names that the backend supports.
 
 ### operations
 
-A list of [`Instruction`](circuit#qiskit.circuit.Instruction "qiskit.circuit.Instruction") instances that the backend supports.
+A list of [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") instances that the backend supports.
 
 <span id="qiskit.providers.basic_provider.BasicSimulator.options" />
 
@@ -363,7 +363,7 @@ Run an experiment (circuit) and return a single experiment result.
 
 **Parameters**
 
-**experiment** ([*QasmQobjExperiment*](qiskit.qobj.QasmQobjExperiment "qiskit.qobj.QasmQobjExperiment")) – experiment from qobj experiments list
+**experiment** ([*QasmQobjExperiment*](qiskit.qobj.QasmQobjExperiment "qiskit.qobj.qasm_qobj.QasmQobjExperiment")) – experiment from qobj experiments list
 
 **Returns**
 

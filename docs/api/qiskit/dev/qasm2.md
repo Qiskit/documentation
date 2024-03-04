@@ -1,7 +1,7 @@
 ---
 title: qasm2
 description: API reference for qiskit.qasm2
-in_page_toc_min_heading_level: 2
+in_page_toc_min_heading_level: 1
 python_api_type: module
 python_api_name: qiskit.qasm2
 ---
@@ -327,7 +327,7 @@ circuits = [
 ]
 ```
 
-Sometimes you may want to influence the [`Gate`](circuit#qiskit.circuit.Gate "qiskit.circuit.Gate") objects that the importer emits for given named instructions. Gates that are defined by the statement `include "qelib1.inc";` will automatically be associated with a suitable Qiskit circuit-library gate, but you can extend this:
+Sometimes you may want to influence the [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") objects that the importer emits for given named instructions. Gates that are defined by the statement `include "qelib1.inc";` will automatically be associated with a suitable Qiskit circuit-library gate, but you can extend this:
 
 ```python
 from qiskit.circuit import Gate
@@ -488,7 +488,7 @@ In particular, in the legacy importers:
 
     The quadruple-controlled $X$ gate., corresponding to [`C4XGate`](qiskit.circuit.library.C4XGate "qiskit.circuit.library.C4XGate").
 
-*   if *any* `opaque` or `gate` definition was given for the name `delay`, they attempt to output a [`Delay`](circuit#qiskit.circuit.Delay "qiskit.circuit.Delay") instruction at each call. To function, this expects a definition compatible with `opaque delay(t) q;`, where the time `t` is given in units of `dt`. The importer will raise errors on construction if there was not exactly one parameter and one qubit, or if the parameter is not integer-valued.
+*   if *any* `opaque` or `gate` definition was given for the name `delay`, they attempt to output a [`Delay`](qiskit.circuit.Delay "qiskit.circuit.Delay") instruction at each call. To function, this expects a definition compatible with `opaque delay(t) q;`, where the time `t` is given in units of `dt`. The importer will raise errors on construction if there was not exactly one parameter and one qubit, or if the parameter is not integer-valued.
 
 *   the additional scientific-calculator functions `asin`, `acos` and `atan` are available.
 
@@ -511,7 +511,7 @@ A tuple containing the exact include\_path used by the legacy Qiskit converter.
 On *all* the gates defined in Qiskit’s legacy version of `qelib1.inc` and the `delay` instruction, it does not matter how the gates are actually defined and used, the legacy importer will always attempt to output its custom objects for them. This can result in errors during the circuit construction, even after a successful parse. There is no way to emulate this buggy behaviour with [`qiskit.qasm2`](#module-qiskit.qasm2 "qiskit.qasm2"); only an `include "qelib1.inc";` statement or the custom\_instructions argument can cause built-in Qiskit instructions to be used, and the signatures of these match each other.
 
 <Admonition title="Note" type="note">
-  Circuits imported with [`load()`](#qiskit.qasm2.load "qiskit.qasm2.load") and [`loads()`](#qiskit.qasm2.loads "qiskit.qasm2.loads") with the above legacy-compatibility settings should compare equal to those created by Qiskit’s legacy importer, provided no non-`qelib1.inc` user gates are defined. User-defined gates are handled slightly differently in the new importer, and while they should have equivalent [`definition`](circuit#qiskit.circuit.Instruction.definition "qiskit.circuit.Instruction.definition") fields on inspection, this module uses a custom class to lazily load the definition when it is requested (like most Qiskit objects), rather than eagerly creating it during the parse. Qiskit’s comparison rules for gates will see these two objects as unequal, although any pass through [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") for a particular backend should produce the same output circuits.
+  Circuits imported with [`load()`](#qiskit.qasm2.load "qiskit.qasm2.load") and [`loads()`](#qiskit.qasm2.loads "qiskit.qasm2.loads") with the above legacy-compatibility settings should compare equal to those created by Qiskit’s legacy importer, provided no non-`qelib1.inc` user gates are defined. User-defined gates are handled slightly differently in the new importer, and while they should have equivalent [`definition`](qiskit.circuit.Instruction#definition "qiskit.circuit.Instruction.definition") fields on inspection, this module uses a custom class to lazily load the definition when it is requested (like most Qiskit objects), rather than eagerly creating it during the parse. Qiskit’s comparison rules for gates will see these two objects as unequal, although any pass through [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") for a particular backend should produce the same output circuits.
 </Admonition>
 
 <span id="qasm2-alternatives" />

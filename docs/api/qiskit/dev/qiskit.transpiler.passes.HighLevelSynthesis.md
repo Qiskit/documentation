@@ -16,7 +16,7 @@ Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.trans
 
 Synthesize higher-level objects and unroll custom definitions.
 
-The input to this pass is a DAG that may contain higher-level objects, including abstract mathematical objects (e.g., objects of type [`LinearFunction`](qiskit.circuit.library.LinearFunction "qiskit.circuit.library.LinearFunction")), annotated operations (objects of type [`AnnotatedOperation`](circuit#qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")), and custom gates.
+The input to this pass is a DAG that may contain higher-level objects, including abstract mathematical objects (e.g., objects of type [`LinearFunction`](qiskit.circuit.library.LinearFunction "qiskit.circuit.library.LinearFunction")), annotated operations (objects of type `AnnotatedOperation`), and custom gates.
 
 In the most common use-case when either `basis_gates` or `target` is specified, all higher-level objects are synthesized, so the output is a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") without such objects. More precisely, every gate in the output DAG is either directly supported by the target, or is in `equivalence_library`.
 
@@ -80,9 +80,9 @@ Execute optimization task for input Qiskit IR.
 
 **Parameters**
 
-*   **passmanager\_ir** (*PassManagerIR*) – Qiskit IR to optimize.
-*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-*   **callback** (*Callable*) – A callback function which is caller per execution of optimization task.
+*   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+*   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
 
 **Returns**
 
@@ -90,7 +90,7 @@ Optimized Qiskit IR and state of the workflow.
 
 **Return type**
 
-[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[PassManagerIR, [PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.PassManagerState")]
+[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
 
 ### name
 

@@ -28,7 +28,7 @@ Instantiate a set phase instruction, setting the output signal phase on `channel
 
 **Parameters**
 
-*   **phase** ([*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")  *|*[*ParameterExpression*](circuit#qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – The rotation angle in radians.
+*   **phase** ([*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – The rotation angle in radians.
 *   **channel** (*PulseChannel*) – The channel this instruction operates on.
 *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Display name for this instruction.
 

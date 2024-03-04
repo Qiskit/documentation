@@ -190,7 +190,7 @@ Evolve a quantum state by the operator.
 
 **Parameters**
 
-*   **other** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*circuit.Instruction*](circuit#qiskit.circuit.Instruction "qiskit.circuit.Instruction")) – The operator to evolve by.
+*   **other** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")) – The operator to evolve by.
 *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – a list of Statevector subsystem positions to apply the operator on.
 
 **Returns**
@@ -262,7 +262,7 @@ The statevector is initialized in the state $|{0,\ldots,0}\rangle$ of the same n
 
 **Parameters**
 
-**instruction** ([*qiskit.circuit.Instruction*](circuit#qiskit.circuit.Instruction "qiskit.circuit.Instruction")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – instruction or circuit
+**instruction** ([*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – instruction or circuit
 
 **Returns**
 

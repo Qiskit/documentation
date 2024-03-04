@@ -30,7 +30,7 @@ Creates a new set channel frequency instruction.
 
 **Parameters**
 
-*   **frequency** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*ParameterExpression*](circuit#qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – New frequency of the channel in Hz.
+*   **frequency** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – New frequency of the channel in Hz.
 *   **channel** (*PulseChannel*) – The channel this instruction operates on.
 *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of this set channel frequency instruction.
 

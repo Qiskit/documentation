@@ -22,7 +22,7 @@ EchoRZXWeylDecomposition pass.
 
 **Parameters**
 
-*   **instruction\_schedule\_map** ([*InstructionScheduleMap*](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap")) – the mapping from circuit [`Instruction`](circuit#qiskit.circuit.Instruction "qiskit.circuit.Instruction") names and arguments to [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule")s.
+*   **instruction\_schedule\_map** ([*InstructionScheduleMap*](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap")) – the mapping from circuit [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") names and arguments to [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule")s.
 *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") representing the target backend, if both `instruction_schedule_map` and `target` are specified then this argument will take precedence and `instruction_schedule_map` will be ignored.
 
 ## Attributes
@@ -55,9 +55,9 @@ Execute optimization task for input Qiskit IR.
 
 **Parameters**
 
-*   **passmanager\_ir** (*PassManagerIR*) – Qiskit IR to optimize.
-*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-*   **callback** (*Callable*) – A callback function which is caller per execution of optimization task.
+*   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+*   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
 
 **Returns**
 
@@ -65,7 +65,7 @@ Optimized Qiskit IR and state of the workflow.
 
 **Return type**
 
-[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[PassManagerIR, [PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.PassManagerState")]
+[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
 
 ### name
 

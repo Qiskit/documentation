@@ -46,8 +46,8 @@ which maps the qubits at each position to their final position after any swap in
 
 There are three public attributes associated with the class, however these are mostly provided for backwards compatibility and represent the internal state from the transpiler. They are defined as:
 
-> *   [`initial_layout`](#qiskit.transpiler.TranspileLayout.initial_layout "qiskit.transpiler.TranspileLayout.initial_layout") - This attribute is used to model the permutation caused by the [Layout Stage](transpiler#layout-stage) it contains a [`Layout`](qiskit.transpiler.Layout "qiskit.transpiler.Layout") object that maps the input [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")s [`Qubit`](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit") objects to the position in the output `QuantumCircuit.qubits` list.
-> *   [`input_qubit_mapping`](#qiskit.transpiler.TranspileLayout.input_qubit_mapping "qiskit.transpiler.TranspileLayout.input_qubit_mapping") - This attribute is used to retain input ordering of the original [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object. It maps the virtual [`Qubit`](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit") object from the original circuit (and [`initial_layout`](#qiskit.transpiler.TranspileLayout.initial_layout "qiskit.transpiler.TranspileLayout.initial_layout")) to its corresponding position in [`QuantumCircuit.qubits`](qiskit.circuit.QuantumCircuit#qubits "qiskit.circuit.QuantumCircuit.qubits") in the original circuit. This is needed when computing the permutation of the `Operator` of the circuit (and used by [`Operator.from_circuit()`](qiskit.quantum_info.Operator#from_circuit "qiskit.quantum_info.Operator.from_circuit")).
+> *   [`initial_layout`](#qiskit.transpiler.TranspileLayout.initial_layout "qiskit.transpiler.TranspileLayout.initial_layout") - This attribute is used to model the permutation caused by the [Layout Stage](transpiler#layout-stage) it contains a [`Layout`](qiskit.transpiler.Layout "qiskit.transpiler.Layout") object that maps the input [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")s [`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.Qubit") objects to the position in the output `QuantumCircuit.qubits` list.
+> *   [`input_qubit_mapping`](#qiskit.transpiler.TranspileLayout.input_qubit_mapping "qiskit.transpiler.TranspileLayout.input_qubit_mapping") - This attribute is used to retain input ordering of the original [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object. It maps the virtual [`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.Qubit") object from the original circuit (and [`initial_layout`](#qiskit.transpiler.TranspileLayout.initial_layout "qiskit.transpiler.TranspileLayout.initial_layout")) to its corresponding position in [`QuantumCircuit.qubits`](qiskit.circuit.QuantumCircuit#qubits "qiskit.circuit.QuantumCircuit.qubits") in the original circuit. This is needed when computing the permutation of the `Operator` of the circuit (and used by [`Operator.from_circuit()`](qiskit.quantum_info.Operator#from_circuit "qiskit.quantum_info.Operator.from_circuit")).
 > *   [`final_layout`](#qiskit.transpiler.TranspileLayout.final_layout "qiskit.transpiler.TranspileLayout.final_layout") - This is a [`Layout`](qiskit.transpiler.Layout "qiskit.transpiler.Layout") object used to model the output permutation caused ny any [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate")s inserted into the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") during the [Routing Stage](transpiler#routing-stage). It maps the output circuit’s qubits from `QuantumCircuit.qubits` in the output circuit to the final position after routing. It is **not** a mapping from the original input circuit’s position to the final position at the end of the transpiled circuit. If you need this you can use the [`final_index_layout()`](#qiskit.transpiler.TranspileLayout.final_index_layout "qiskit.transpiler.TranspileLayout.final_index_layout") to generate this. If this is set to `None` this indicates that routing was not run and it can be considered equivalent to a trivial layout with the qubits from the output circuit’s [`qubits`](qiskit.circuit.QuantumCircuit#qubits "qiskit.circuit.QuantumCircuit.qubits") list.
 
 ## Attributes
@@ -200,7 +200,7 @@ A layout array that maps a position in the array to its new position in the outp
 
 Return a [`Layout`](qiskit.transpiler.Layout "qiskit.transpiler.Layout") object for the initial layout.
 
-This returns a mapping of virtual [`Qubit`](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit") objects in the input circuit to the physical qubit selected during layout. This is analogous to the [`initial_layout`](#qiskit.transpiler.TranspileLayout.initial_layout "qiskit.transpiler.TranspileLayout.initial_layout") attribute.
+This returns a mapping of virtual [`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.Qubit") objects in the input circuit to the physical qubit selected during layout. This is analogous to the [`initial_layout`](#qiskit.transpiler.TranspileLayout.initial_layout "qiskit.transpiler.TranspileLayout.initial_layout") attribute.
 
 **Parameters**
 
@@ -208,7 +208,7 @@ This returns a mapping of virtual [`Qubit`](circuit#qiskit.circuit.Qubit "qiskit
 
 **Returns**
 
-A layout object mapping the input circuit’s [`Qubit`](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit") objects to the selected physical qubits.
+A layout object mapping the input circuit’s [`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.Qubit") objects to the selected physical qubits.
 
 **Return type**
 

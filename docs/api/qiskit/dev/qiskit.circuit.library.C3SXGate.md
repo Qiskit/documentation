@@ -80,7 +80,7 @@ Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
 ### definition
 
-Return definition in terms of other basic gates. If the gate has open controls, as determined from [`ctrl_state`](#qiskit.circuit.library.C3SXGate.ctrl_state "qiskit.circuit.library.C3SXGate.ctrl_state"), the returned definition is conjugated with X without changing the internal `_definition`.
+Return definition in terms of other basic gates. If the gate has open controls, as determined from self.ctrl\_state, the returned definition is conjugated with X without changing the internal \_definition.
 
 <span id="qiskit.circuit.library.C3SXGate.duration" />
 

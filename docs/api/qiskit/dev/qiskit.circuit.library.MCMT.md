@@ -37,7 +37,7 @@ Create a new multi-control multi-target gate.
 
 **Parameters**
 
-*   **gate** ([*Gate*](circuit#qiskit.circuit.Gate "qiskit.circuit.Gate") *| Callable\[\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*,* [*circuit.Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*,* [*circuit.Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*],* [*circuit.Instruction*](circuit#qiskit.circuit.Instruction "qiskit.circuit.Instruction")*]*) – The gate to be applied controlled on the control qubits and applied to the target qubits. Can be either a Gate or a circuit method. If it is a callable, it will be casted to a Gate.
+*   **gate** ([*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate") *| Callable\[\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*,* [*circuit.Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*,* [*circuit.Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*],* [*circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")*]*) – The gate to be applied controlled on the control qubits and applied to the target qubits. Can be either a Gate or a circuit method. If it is a callable, it will be casted to a Gate.
 *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of control qubits.
 *   **num\_target\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of target qubits.
 
@@ -76,7 +76,7 @@ Return the circuit data (instructions and context).
 
 **Returns**
 
-a list-like object containing the [`CircuitInstruction`](circuit#qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
+a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
 
 **Return type**
 
@@ -92,7 +92,7 @@ Return the global phase of the current circuit scope in radians.
 
 ### instances
 
-`= 218`
+`= 196`
 
 <span id="qiskit.circuit.library.MCMT.layout" />
 
@@ -124,35 +124,11 @@ Return the number of ancillas.
 
 Return the number of ancilla qubits.
 
-<span id="qiskit.circuit.library.MCMT.num_captured_vars" />
-
-### num\_captured\_vars
-
-The number of runtime classical variables in the circuit marked as captured from an enclosing scope.
-
-This is the length of the `iter_captured_vars()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.MCMT.num_input_vars "qiskit.circuit.library.MCMT.num_input_vars") must be zero.
-
 <span id="qiskit.circuit.library.MCMT.num_clbits" />
 
 ### num\_clbits
 
 Return number of classical bits.
-
-<span id="qiskit.circuit.library.MCMT.num_declared_vars" />
-
-### num\_declared\_vars
-
-The number of runtime classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
-
-This is the length of the `iter_declared_vars()` iterable.
-
-<span id="qiskit.circuit.library.MCMT.num_input_vars" />
-
-### num\_input\_vars
-
-The number of runtime classical variables in the circuit marked as circuit inputs.
-
-This is the length of the `iter_input_vars()` iterable. If this is non-zero, [`num_captured_vars`](#qiskit.circuit.library.MCMT.num_captured_vars "qiskit.circuit.library.MCMT.num_captured_vars") must be zero.
 
 <span id="qiskit.circuit.library.MCMT.num_parameters" />
 
@@ -165,14 +141,6 @@ The number of parameter objects in the circuit.
 ### num\_qubits
 
 Return number of qubits.
-
-<span id="qiskit.circuit.library.MCMT.num_vars" />
-
-### num\_vars
-
-The number of runtime classical variables in the circuit.
-
-This is the length of the `iter_vars()` iterable.
 
 <span id="qiskit.circuit.library.MCMT.op_start_times" />
 
@@ -196,7 +164,7 @@ List of integers representing instruction start times. The index corresponds to 
 
 The parameters defined in the circuit.
 
-This attribute returns the [`Parameter`](circuit#qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](circuit#qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
+This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
 
 **Examples**
 
@@ -228,7 +196,7 @@ q: ┤ U(angle_1,angle_2,angle_10) ├
 ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
 ```
 
-To respect numerical sorting, a [`ParameterVector`](circuit#qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
+To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
 
 ```python
 >>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector
@@ -246,7 +214,7 @@ ParameterView([
 
 **Returns**
 
-The sorted [`Parameter`](circuit#qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit.
+The sorted [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit.
 
 <span id="qiskit.circuit.library.MCMT.prefix" />
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.library.GlobalPhaseGate
 
 `qiskit.circuit.library.GlobalPhaseGate(phase, label=None, *, duration=None, unit='dt')` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/global_phase.py "view source code")
 
-Bases: [`Gate`](circuit#qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
 The global phase gate ($e^{i\theta}$).
 
@@ -31,7 +31,7 @@ $$
 
 **Parameters**
 
-*   **phase** ([*ParameterExpression*](circuit#qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The value of phase it takes.
+*   **phase** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The value of phase it takes.
 *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – An optional label for the gate.
 
 ## Attributes
@@ -123,7 +123,7 @@ Return the number of qubits.
 
 ### params
 
-The parameters of this `Instruction`. Ideally these will be gate angles.
+return instruction params.
 
 <span id="qiskit.circuit.library.GlobalPhaseGate.unit" />
 
@@ -145,7 +145,7 @@ $\text{GlobalPhaseGate}(\lambda)^{\dagger} = \text{GlobalPhaseGate}(-\lambda)$
 
 **Parameters**
 
-**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](circuit#qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](circuit#qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse is always another [`GlobalPhaseGate`](#qiskit.circuit.library.GlobalPhaseGate "qiskit.circuit.library.GlobalPhaseGate") with an inverted parameter value.
+**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an `AnnotatedOperation` with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse is always another [`GlobalPhaseGate`](#qiskit.circuit.library.GlobalPhaseGate "qiskit.circuit.library.GlobalPhaseGate") with an inverted parameter value.
 
 **Returns**
 

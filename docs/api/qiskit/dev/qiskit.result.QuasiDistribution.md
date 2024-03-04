@@ -161,7 +161,7 @@ Method from Smolin et al., Phys. Rev. Lett. 108, 070502 (2012).
 
 `pop(k[, d]) → v, remove specified key and return the corresponding value.`
 
-If key is not found, d is returned if given, otherwise KeyError is raised
+If key is not found, default is returned if given, otherwise KeyError is raised
 
 ### popitem
 

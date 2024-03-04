@@ -107,8 +107,8 @@ Create a parametric pulse.
 **Parameters**
 
 *   **pulse\_type** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Display name of this pulse shape.
-*   **duration** ([*ParameterExpression*](circuit#qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Duration of pulse.
-*   **parameters** (*Mapping\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*,* [*ParameterExpression*](circuit#qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")  *|*[*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")*] | None*) – Dictionary of pulse parameters that defines the pulse envelope.
+*   **duration** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Duration of pulse.
+*   **parameters** (*Mapping\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*,* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")  *|*[*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")*] | None*) – Dictionary of pulse parameters that defines the pulse envelope.
 *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Display name for this particular pulse envelope.
 *   **limit\_amplitude** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – If `True`, then limit the absolute value of the amplitude of the waveform to 1. The default is `True` and the amplitude is constrained to 1.
 *   **envelope** (*sym.Expr | None*) – Pulse envelope expression.

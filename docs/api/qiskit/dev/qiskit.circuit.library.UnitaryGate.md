@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.library.UnitaryGate
 
 `qiskit.circuit.library.UnitaryGate(data, label=None, check_input=True)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/unitary.py "view source code")
 
-Bases: [`Gate`](circuit#qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
 Class quantum gates specified by a unitary matrix.
 
@@ -38,7 +38,7 @@ Create a gate from a numeric unitary matrix.
 
 **Parameters**
 
-*   **data** ([*numpy.ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")  *|*[*Gate*](circuit#qiskit.circuit.Gate "qiskit.circuit.Gate") *| BaseOperator*) – Unitary operator.
+*   **data** ([*numpy.ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")  *|*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate") *| BaseOperator*) – Unitary operator.
 *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Unitary name for backend \[Default: `None`].
 *   **check\_input** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If set to `False` this asserts the input is known to be unitary and the checking to validate this will be skipped. This should only ever be used if you know the input is unitary, setting this to `False` and passing in a non-unitary matrix will result unexpected behavior and errors.
 
@@ -135,7 +135,7 @@ Return the number of qubits.
 
 ### params
 
-The parameters of this `Instruction`. Ideally these will be gate angles.
+return instruction params.
 
 <span id="qiskit.circuit.library.UnitaryGate.unit" />
 
@@ -182,7 +182,7 @@ Controlled version of gate.
 
 **Return type**
 
-[ControlledGate](circuit#qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") | [AnnotatedOperation](circuit#qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")
+[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") | AnnotatedOperation
 
 ### inverse
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.library.HamiltonianGate
 
 `qiskit.circuit.library.HamiltonianGate(data, time, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/hamiltonian_gate.py "view source code")
 
-Bases: [`Gate`](circuit#qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
 Class for representing evolution by a Hamiltonian operator as a gate.
 
@@ -20,8 +20,8 @@ This gate resolves to a [`UnitaryGate`](qiskit.circuit.library.UnitaryGate "qisk
 
 **Parameters**
 
-*   **data** (*np.ndarray |* [*Gate*](circuit#qiskit.circuit.Gate "qiskit.circuit.Gate") *| BaseOperator*) – A hermitian operator.
-*   **time** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*ParameterExpression*](circuit#qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – Time evolution parameter.
+*   **data** (*np.ndarray |* [*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate") *| BaseOperator*) – A hermitian operator.
+*   **time** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – Time evolution parameter.
 *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Unitary name for backend \[Default: `None`].
 
 **Raises**
@@ -117,7 +117,7 @@ Return the number of qubits.
 
 ### params
 
-The parameters of this `Instruction`. Ideally these will be gate angles.
+return instruction params.
 
 <span id="qiskit.circuit.library.HamiltonianGate.unit" />
 

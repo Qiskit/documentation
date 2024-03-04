@@ -160,7 +160,7 @@ The second step of the reduction consists in replacing these qubits with the pos
 
 **Parameters**
 
-**operator** ([*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")) – The to-be-tapered operator.
+**operator** ([*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.operators.symplectic.sparse_pauli_op.SparsePauliOp")) – The to-be-tapered operator.
 
 **Returns**
 
@@ -180,7 +180,7 @@ Operate the second part of the tapering. This function assumes that the input op
 
 **Parameters**
 
-**operator** ([*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")) – Partially tapered operator resulting from a call to [`convert_clifford()`](#qiskit.quantum_info.Z2Symmetries.convert_clifford "qiskit.quantum_info.Z2Symmetries.convert_clifford").
+**operator** ([*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.operators.symplectic.sparse_pauli_op.SparsePauliOp")) – Partially tapered operator resulting from a call to [`convert_clifford()`](#qiskit.quantum_info.Z2Symmetries.convert_clifford "qiskit.quantum_info.Z2Symmetries.convert_clifford").
 
 **Returns**
 

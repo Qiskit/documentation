@@ -43,7 +43,7 @@ Adds at the end physical\_qubits that map each bit in reg.
 
 **Parameters**
 
-**reg** ([*Register*](circuit#qiskit.circuit.Register "qiskit.circuit.Register")) – A (qu)bit Register. For example, QuantumRegister(3, ‘qr’).
+**reg** ([*Register*](qiskit.circuit.Register "qiskit.circuit.Register")) – A (qu)bit Register. For example, QuantumRegister(3, ‘qr’).
 
 ### combine\_into\_edge\_map
 
@@ -238,7 +238,7 @@ The list of bits must exactly match the virtual bits in this layout.
 
 **Parameters**
 
-**bits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Bit*](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit")*]*) – the bits to reorder.
+**bits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Bit*](qiskit.circuit.Bit "qiskit.circuit.Bit")*]*) – the bits to reorder.
 
 **Returns**
 
