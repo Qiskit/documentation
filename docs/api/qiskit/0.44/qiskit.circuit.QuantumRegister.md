@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.QuantumRegister
 
 <span id="qiskit.circuit.QuantumRegister" />
 
-`qiskit.circuit.QuantumRegister(size=None, name=None, bits=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/quantumregister.py "view source code")
+`qiskit.circuit.QuantumRegister(size=None, name=None, bits=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/quantumregister.py "view source code")
 
 Bases: [`Register`](qiskit.circuit.Register "qiskit.circuit.register.Register")
 

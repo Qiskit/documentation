@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.eigensolvers.Eigensolver
 
 <span id="qiskit.algorithms.eigensolvers.Eigensolver" />
 
-`qiskit.algorithms.eigensolvers.Eigensolver`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/eigensolvers/eigensolver.py "view source code")
+`qiskit.algorithms.eigensolvers.Eigensolver` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/eigensolvers/eigensolver.py "view source code")
 
 Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 

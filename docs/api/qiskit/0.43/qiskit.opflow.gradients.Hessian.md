@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.gradients.Hessian
 
 <span id="qiskit.opflow.gradients.Hessian" />
 
-`Hessian(hess_method='param_shift', **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/gradients/hessian.py "view source code")
+`Hessian(hess_method='param_shift', **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/gradients/hessian.py "view source code")
 
 Bases: [`HessianBase`](qiskit.opflow.gradients.HessianBase "qiskit.opflow.gradients.hessian_base.HessianBase")
 
@@ -28,7 +28,7 @@ Deprecated: Compute the Hessian of an expected value.
 
 <span id="qiskit.opflow.gradients.Hessian.convert" />
 
-`Hessian.convert(operator, params=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/gradients/hessian.py "view source code")
+`Hessian.convert(operator, params=None)`
 
 **Parameters**
 
@@ -49,7 +49,7 @@ An operator whose evaluation yields the Hessian
 
 <span id="qiskit.opflow.gradients.Hessian.get_hessian" />
 
-`Hessian.get_hessian(operator, params=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/gradients/hessian.py "view source code")
+`Hessian.get_hessian(operator, params=None)`
 
 Get the Hessian for the given operator w\.r.t. the given parameters
 

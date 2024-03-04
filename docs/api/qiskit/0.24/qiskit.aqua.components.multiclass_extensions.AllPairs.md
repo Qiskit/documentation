@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.components.multiclass_extensions.AllPairs
 
 <span id="qiskit.aqua.components.multiclass_extensions.AllPairs" />
 
-`AllPairs`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/multiclass_extensions/all_pairs.py "view source code")
+`AllPairs` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/multiclass_extensions/all_pairs.py "view source code")
 
 The All-Pairs multiclass extension.
 

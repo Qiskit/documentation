@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.Layout2qDistance
 
 <span id="qiskit.transpiler.passes.Layout2qDistance" />
 
-`qiskit.transpiler.passes.Layout2qDistance(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/layout/layout_2q_distance.py "view source code")
+`qiskit.transpiler.passes.Layout2qDistance(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/layout/layout_2q_distance.py "view source code")
 
 Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 

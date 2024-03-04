@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.utils.reduce_dim_to_via_pca
 
 <span id="qiskit.aqua.utils.reduce_dim_to_via_pca" />
 
-`reduce_dim_to_via_pca(x, dim)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/utils/dataset_helper.py "view source code")
+`reduce_dim_to_via_pca(x, dim)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/utils/dataset_helper.py "view source code")
 
 Reduce the data dimension via pca
 

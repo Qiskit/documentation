@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.PauliGate
 
 <span id="qiskit.circuit.library.PauliGate" />
 
-`PauliGate(label)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/generalized_gates/pauli.py "view source code")
+`PauliGate(label)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/generalized_gates/pauli.py "view source code")
 
 Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -37,7 +37,7 @@ Create a new gate.
 
 <span id="qiskit.circuit.library.PauliGate.inverse" />
 
-`PauliGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/generalized_gates/pauli.py "view source code")
+`PauliGate.inverse()`
 
 Return inverted pauli gate (itself).
 
@@ -45,7 +45,7 @@ Return inverted pauli gate (itself).
 
 <span id="qiskit.circuit.library.PauliGate.validate_parameter" />
 
-`PauliGate.validate_parameter(parameter)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/generalized_gates/pauli.py "view source code")
+`PauliGate.validate_parameter(parameter)`
 
 Gate parameters should be int, float, or ParameterExpression
 

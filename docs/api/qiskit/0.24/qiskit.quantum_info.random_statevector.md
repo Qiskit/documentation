@@ -12,7 +12,7 @@ python_api_name: qiskit.quantum_info.random_statevector
 
 <span id="qiskit.quantum_info.random_statevector" />
 
-`random_statevector(dims, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/quantum_info/states/random.py "view source code")
+`random_statevector(dims, seed=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/quantum_info/states/random.py "view source code")
 
 Generator a random Statevector.
 

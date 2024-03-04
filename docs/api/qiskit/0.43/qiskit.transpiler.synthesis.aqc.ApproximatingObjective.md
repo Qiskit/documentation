@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.synthesis.aqc.ApproximatingObjective
 
 <span id="qiskit.transpiler.synthesis.aqc.ApproximatingObjective" />
 
-`ApproximatingObjective`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/synthesis/aqc/approximate.py "view source code")
+`ApproximatingObjective` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/synthesis/aqc/approximate.py "view source code")
 
 Bases: `ABC`
 
@@ -24,7 +24,7 @@ A base class for an optimization problem definition. An implementing class must 
 
 <span id="qiskit.transpiler.synthesis.aqc.ApproximatingObjective.gradient" />
 
-`abstract ApproximatingObjective.gradient(param_values)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/synthesis/aqc/approximate.py "view source code")
+`abstract ApproximatingObjective.gradient(param_values)`
 
 Computes a gradient with respect to parameters given a vector of parameter values.
 
@@ -46,7 +46,7 @@ an array of gradient values.
 
 <span id="qiskit.transpiler.synthesis.aqc.ApproximatingObjective.objective" />
 
-`abstract ApproximatingObjective.objective(param_values)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/synthesis/aqc/approximate.py "view source code")
+`abstract ApproximatingObjective.objective(param_values)`
 
 Computes a value of the objective function given a vector of parameter values.
 

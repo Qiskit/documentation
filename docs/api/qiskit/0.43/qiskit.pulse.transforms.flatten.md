@@ -12,7 +12,7 @@ python_api_name: qiskit.pulse.transforms.flatten
 
 <span id="qiskit.pulse.transforms.flatten" />
 
-`flatten(program)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/transforms/canonicalization.py "view source code")
+`flatten(program)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/transforms/canonicalization.py "view source code")
 
 Flatten (inline) any called nodes into a Schedule tree with no nested children.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.assembler.RunConfig
 
 <span id="qiskit.assembler.RunConfig" />
 
-`RunConfig(shots=None, seed_simulator=None, memory=None, parameter_binds=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/assembler/run_config.py "view source code")
+`RunConfig(shots=None, seed_simulator=None, memory=None, parameter_binds=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/assembler/run_config.py "view source code")
 
 Bases: `SimpleNamespace`
 
@@ -74,7 +74,7 @@ Initialize a RunConfig object
 
 <span id="qiskit.assembler.RunConfig.from_dict" />
 
-`classmethod RunConfig.from_dict(data)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/assembler/run_config.py "view source code")
+`classmethod RunConfig.from_dict(data)`
 
 Create a new RunConfig object from a dictionary.
 
@@ -96,7 +96,7 @@ The RunConfig from the input dictionary.
 
 <span id="qiskit.assembler.RunConfig.to_dict" />
 
-`RunConfig.to_dict()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/assembler/run_config.py "view source code")
+`RunConfig.to_dict()`
 
 Return a dictionary format representation of the RunConfig
 

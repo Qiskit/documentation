@@ -10,7 +10,7 @@ python_api_name: qiskit.optimization.problems.Variable
 
 <span id="qiskit.optimization.problems.Variable" />
 
-`Variable(quadratic_program, name, lowerbound=0, upperbound=1e+20, vartype=<VarType.CONTINUOUS: 0>)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/variable.py "view source code")
+`Variable(quadratic_program, name, lowerbound=0, upperbound=1e+20, vartype=<VarType.CONTINUOUS: 0>)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/variable.py "view source code")
 
 Bases: `qiskit.optimization.problems.quadratic_program_element.QuadraticProgramElement`
 
@@ -38,7 +38,7 @@ The variables is exposed by the top-level QuadraticProgram class in QuadraticPro
 
 <span id="qiskit.optimization.problems.Variable.as_tuple" />
 
-`Variable.as_tuple()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/variable.py "view source code")
+`Variable.as_tuple()`
 
 Returns a tuple corresponding to this variable.
 

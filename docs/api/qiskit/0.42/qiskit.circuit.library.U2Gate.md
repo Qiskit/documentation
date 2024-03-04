@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.U2Gate
 
 <span id="qiskit.circuit.library.U2Gate" />
 
-`U2Gate(phi, lam, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/u2.py "view source code")
+`U2Gate(phi, lam, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/u2.py "view source code")
 
 Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -82,7 +82,7 @@ Create new U2 gate.
 
 <span id="qiskit.circuit.library.U2Gate.inverse" />
 
-`U2Gate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/u2.py "view source code")
+`U2Gate.inverse()`
 
 Return inverted U2 gate.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.optimization.algorithms.ADMMOptimizer
 
 <span id="qiskit.optimization.algorithms.ADMMOptimizer" />
 
-`ADMMOptimizer(qubo_optimizer=None, continuous_optimizer=None, params=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/algorithms/admm_optimizer.py "view source code")
+`ADMMOptimizer(qubo_optimizer=None, continuous_optimizer=None, params=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/algorithms/admm_optimizer.py "view source code")
 
 An implementation of the ADMM-based heuristic.
 
@@ -38,7 +38,7 @@ Optimization on Classical and Quantum Computers. arXiv preprint arXiv:2001.02069
 
 <span id="qiskit.optimization.algorithms.ADMMOptimizer.get_compatibility_msg" />
 
-`ADMMOptimizer.get_compatibility_msg(problem)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/algorithms/admm_optimizer.py "view source code")
+`ADMMOptimizer.get_compatibility_msg(problem)`
 
 Checks whether a given problem can be solved with the optimizer implementing this method.
 
@@ -82,7 +82,7 @@ Returns True if the problem is compatible, False otherwise.
 
 <span id="qiskit.optimization.algorithms.ADMMOptimizer.solve" />
 
-`ADMMOptimizer.solve(problem)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/algorithms/admm_optimizer.py "view source code")
+`ADMMOptimizer.solve(problem)`
 
 Tries to solves the given problem using ADMM algorithm.
 

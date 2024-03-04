@@ -22,7 +22,7 @@ python_api_name: qiskit.utils
 
 <span id="qiskit.utils.add_deprecation_to_docstring" />
 
-`qiskit.utils.add_deprecation_to_docstring(func, msg, *, since, pending)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/utils/deprecation.py "view source code")
+`qiskit.utils.add_deprecation_to_docstring(func, msg, *, since, pending)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/utils/deprecation.py "view source code")
 
 Dynamically insert the deprecation message into `func`’s docstring.
 
@@ -37,7 +37,7 @@ Dynamically insert the deprecation message into `func`’s docstring.
 
 <span id="qiskit.utils.deprecate_arg" />
 
-`qiskit.utils.deprecate_arg(name, *, since, additional_msg=None, deprecation_description=None, pending=False, package_name='qiskit', new_alias=None, predicate=None, removal_timeline='no earlier than 3 months after the release date')`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/utils/deprecation.py "view source code")
+`qiskit.utils.deprecate_arg(name, *, since, additional_msg=None, deprecation_description=None, pending=False, package_name='qiskit', new_alias=None, predicate=None, removal_timeline='no earlier than 3 months after the release date')` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/utils/deprecation.py "view source code")
 
 Decorator to indicate an argument has been deprecated in some way.
 
@@ -67,7 +67,7 @@ Callable
 
 <span id="qiskit.utils.deprecate_arguments" />
 
-`qiskit.utils.deprecate_arguments(kwarg_map, category=<class 'DeprecationWarning'>, *, since=None)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/utils/deprecation.py "view source code")
+`qiskit.utils.deprecate_arguments(kwarg_map, category=<class 'DeprecationWarning'>, *, since=None)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/utils/deprecation.py "view source code")
 
 Deprecated. Instead, use @deprecate\_arg.
 
@@ -89,7 +89,7 @@ Callable
 
 <span id="qiskit.utils.deprecate_func" />
 
-`qiskit.utils.deprecate_func(*, since, additional_msg=None, pending=False, package_name='qiskit', removal_timeline='no earlier than 3 months after the release date', is_property=False)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/utils/deprecation.py "view source code")
+`qiskit.utils.deprecate_func(*, since, additional_msg=None, pending=False, package_name='qiskit', removal_timeline='no earlier than 3 months after the release date', is_property=False)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/utils/deprecation.py "view source code")
 
 Decorator to indicate a function has been deprecated.
 
@@ -118,7 +118,7 @@ Callable
 
 <span id="qiskit.utils.deprecate_function" />
 
-`qiskit.utils.deprecate_function(msg, stacklevel=2, category=<class 'DeprecationWarning'>, *, since=None)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/utils/deprecation.py "view source code")
+`qiskit.utils.deprecate_function(msg, stacklevel=2, category=<class 'DeprecationWarning'>, *, since=None)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/utils/deprecation.py "view source code")
 
 Deprecated. Instead, use @deprecate\_func.
 
@@ -141,7 +141,7 @@ Callable
 
 <span id="qiskit.utils.local_hardware_info" />
 
-`qiskit.utils.local_hardware_info()`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/utils/multiprocessing.py "view source code")
+`qiskit.utils.local_hardware_info()` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/utils/multiprocessing.py "view source code")
 
 Basic hardware information about the local machine.
 
@@ -159,7 +159,7 @@ The hardware information.
 
 <span id="qiskit.utils.is_main_process" />
 
-`qiskit.utils.is_main_process()`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/utils/multiprocessing.py "view source code")
+`qiskit.utils.is_main_process()` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/utils/multiprocessing.py "view source code")
 
 Checks whether the current process is the main one
 
@@ -167,7 +167,7 @@ Checks whether the current process is the main one
 
 <span id="qiskit.utils.apply_prefix" />
 
-`qiskit.utils.apply_prefix(value, unit)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/utils/units.py "view source code")
+`qiskit.utils.apply_prefix(value, unit)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/utils/units.py "view source code")
 
 Given a SI unit prefix and value, apply the prefix to convert to standard SI unit.
 
@@ -200,7 +200,7 @@ Converted value.
 
 <span id="qiskit.utils.detach_prefix" />
 
-`qiskit.utils.detach_prefix(value, decimal=None)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/utils/units.py "view source code")
+`qiskit.utils.detach_prefix(value, decimal=None)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/utils/units.py "view source code")
 
 Given a SI unit value, find the most suitable prefix to scale the value.
 
@@ -244,7 +244,7 @@ A tuple of scaled value and prefix.
 
 <span id="qiskit.utils.wrap_method" />
 
-`qiskit.utils.wrap_method(cls, name, *, before=None, after=None)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/utils/classtools.py "view source code")
+`qiskit.utils.wrap_method(cls, name, *, before=None, after=None)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/utils/classtools.py "view source code")
 
 Wrap the functionality the instance- or class method `cls.name` with additional behaviour `before` and `after`.
 
@@ -271,7 +271,7 @@ A helper function for calling a custom function with python [`ProcessPoolExecuto
 
 <span id="qiskit.utils.parallel_map" />
 
-`qiskit.utils.parallel_map(task, values, task_args=(), task_kwargs={}, num_processes=2)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/utils/parallel.py "view source code")
+`qiskit.utils.parallel_map(task, values, task_args=(), task_kwargs={}, num_processes=2)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/utils/parallel.py "view source code")
 
 Parallel execution of a mapping of values to the function task. This is functionally equivalent to:
 
@@ -383,7 +383,7 @@ from qiskit.utils import LazyImportTester
 
 <span id="qiskit.utils.LazyDependencyManager" />
 
-`qiskit.utils.LazyDependencyManager(*, name=None, callback=None, install=None, msg=None)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py "view source code")
+`qiskit.utils.LazyDependencyManager(*, name=None, callback=None, install=None, msg=None)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py "view source code")
 
 A mananger for some optional features that are expensive to import, or to verify the existence of.
 
@@ -444,13 +444,9 @@ Create a context, during which the value of the dependency manager will be `Fals
 
 ### require\_in\_call
 
-### require\_in\_call
-
 <span id="qiskit.utils.LazyDependencyManager.require_in_call" />
 
 `require_in_call(feature_or_callable: Callable) → Callable`
-
-<span id="qiskit.utils.LazyDependencyManager.require_in_call" />
 
 `require_in_call(feature_or_callable: str) → Callable[[Callable], Callable]`
 
@@ -470,13 +466,9 @@ Callable
 
 ### require\_in\_instance
 
-### require\_in\_instance
-
 <span id="qiskit.utils.LazyDependencyManager.require_in_instance" />
 
 `require_in_instance(feature_or_class: Type) → Type`
-
-<span id="qiskit.utils.LazyDependencyManager.require_in_instance" />
 
 `require_in_instance(feature_or_class: str) → Callable[[Type], Type]`
 
@@ -512,7 +504,7 @@ Eagerly attempt to import the dependencies in this object, and raise an exceptio
 
 <span id="qiskit.utils.LazyImportTester" />
 
-`qiskit.utils.LazyImportTester(name_map_or_modules, *, name=None, callback=None, install=None, msg=None)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py "view source code")
+`qiskit.utils.LazyImportTester(name_map_or_modules, *, name=None, callback=None, install=None, msg=None)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py "view source code")
 
 A lazy dependency tester for importable Python modules. Any required objects will only be imported at the point that this object is tested for its Boolean value.
 
@@ -526,7 +518,7 @@ A lazy dependency tester for importable Python modules. Any required objects wil
 
 <span id="qiskit.utils.LazySubprocessTester" />
 
-`qiskit.utils.LazySubprocessTester(command, *, name=None, callback=None, install=None, msg=None)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py "view source code")
+`qiskit.utils.LazySubprocessTester(command, *, name=None, callback=None, install=None, msg=None)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py "view source code")
 
 A lazy checker that a command-line tool is available. The command will only be run once, at the point that this object is checked for its Boolean value.
 

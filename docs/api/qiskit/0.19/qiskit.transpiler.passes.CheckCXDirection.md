@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.CheckCXDirection
 
 <span id="qiskit.transpiler.passes.CheckCXDirection" />
 
-`CheckCXDirection(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/transpiler/passes/utils/check_cx_direction.py "view source code")
+`CheckCXDirection(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/transpiler/passes/utils/check_cx_direction.py "view source code")
 
 Check if the CNOTs follow the right direction with respect to the coupling map.
 
@@ -52,7 +52,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.CheckCXDirection.run" />
 
-`CheckCXDirection.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/transpiler/passes/utils/check_cx_direction.py "view source code")
+`CheckCXDirection.run(dag)`
 
 Run the CheckCXDirection pass on dag.
 

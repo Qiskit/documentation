@@ -14,7 +14,7 @@ python_api_name: qiskit.providers.ibmq.experiment.IBMExperimentEntryExists
 
 <span id="qiskit.providers.ibmq.experiment.IBMExperimentEntryExists" />
 
-`IBMExperimentEntryExists(*message)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/experiment/exceptions.py "view source code")
+`IBMExperimentEntryExists(*message)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/experiment/exceptions.py "view source code")
 
 Errors raised when an experiment entry already exists.
 

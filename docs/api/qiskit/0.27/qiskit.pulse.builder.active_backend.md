@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.builder.active_backend
 
 <span id="qiskit.pulse.builder.active_backend" />
 
-`active_backend()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/builder.py "view source code")
+`active_backend()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/builder.py "view source code")
 
 Get the backend of the currently active builder context.
 

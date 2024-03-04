@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.verification.composite_pauli_z
 
 <span id="qiskit.ignis.verification.composite_pauli_z" />
 
-`composite_pauli_z(qn)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/entanglement/analysis.py "view source code")
+`composite_pauli_z(qn)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/entanglement/analysis.py "view source code")
 
 Generates n tensored pauli z matrix upon input of qubit number
 

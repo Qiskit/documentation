@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.operators.legacy.Z2Symmetries
 
 <span id="qiskit.aqua.operators.legacy.Z2Symmetries" />
 
-`Z2Symmetries(symmetries, sq_paulis, sq_list, tapering_values=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/legacy/weighted_pauli_operator.py "view source code")
+`Z2Symmetries(symmetries, sq_paulis, sq_list, tapering_values=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/legacy/weighted_pauli_operator.py "view source code")
 
 Z2 Symmetries
 
@@ -61,7 +61,7 @@ returns tapering values
 
 <span id="qiskit.aqua.operators.legacy.Z2Symmetries.consistent_tapering" />
 
-`Z2Symmetries.consistent_tapering(operator)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/legacy/weighted_pauli_operator.py "view source code")
+`Z2Symmetries.consistent_tapering(operator)`
 
 Tapering the operator with the same manner of how this tapered operator is created. i.e., using the same Cliffords and tapering values.
 
@@ -85,7 +85,7 @@ TaperedWeightedPauliOperator
 
 <span id="qiskit.aqua.operators.legacy.Z2Symmetries.copy" />
 
-`Z2Symmetries.copy()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/legacy/weighted_pauli_operator.py "view source code")
+`Z2Symmetries.copy()`
 
 Get a copy of self.
 
@@ -101,7 +101,7 @@ copy
 
 <span id="qiskit.aqua.operators.legacy.Z2Symmetries.find_Z2_symmetries" />
 
-`classmethod Z2Symmetries.find_Z2_symmetries(operator)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/legacy/weighted_pauli_operator.py "view source code")
+`classmethod Z2Symmetries.find_Z2_symmetries(operator)`
 
 Finds Z2 Pauli-type symmetries of an Operator.
 
@@ -119,7 +119,7 @@ single-qubit X, single-qubit list.
 
 <span id="qiskit.aqua.operators.legacy.Z2Symmetries.is_empty" />
 
-`Z2Symmetries.is_empty()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/legacy/weighted_pauli_operator.py "view source code")
+`Z2Symmetries.is_empty()`
 
 Check the z2\_symmetries is empty or not.
 
@@ -135,7 +135,7 @@ bool
 
 <span id="qiskit.aqua.operators.legacy.Z2Symmetries.taper" />
 
-`Z2Symmetries.taper(operator, tapering_values=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/legacy/weighted_pauli_operator.py "view source code")
+`Z2Symmetries.taper(operator, tapering_values=None)`
 
 Taper an operator based on the z2\_symmetries info and sector defined by tapering\_values. The tapering\_values will be stored into the resulted operator for a record.
 
@@ -162,7 +162,7 @@ list\[[WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator
 
 <span id="qiskit.aqua.operators.legacy.Z2Symmetries.two_qubit_reduction" />
 
-`static Z2Symmetries.two_qubit_reduction(operator, num_particles)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/legacy/weighted_pauli_operator.py "view source code")
+`static Z2Symmetries.two_qubit_reduction(operator, num_particles)`
 
 Eliminates the central and last qubit in a list of Pauli that has diagonal operators (Z,I) at those positions
 

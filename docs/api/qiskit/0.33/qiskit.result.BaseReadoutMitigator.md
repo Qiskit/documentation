@@ -10,7 +10,7 @@ python_api_name: qiskit.result.BaseReadoutMitigator
 
 <span id="qiskit.result.BaseReadoutMitigator" />
 
-`BaseReadoutMitigator`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/result/mitigation/base_readout_mitigator.py "view source code")
+`BaseReadoutMitigator` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/result/mitigation/base_readout_mitigator.py "view source code")
 
 Bases: `abc.ABC`
 
@@ -22,7 +22,7 @@ Base readout error mitigator class.
 
 <span id="qiskit.result.BaseReadoutMitigator.expectation_value" />
 
-`abstract BaseReadoutMitigator.expectation_value(data, diagonal, qubits=None, clbits=None, shots=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/result/mitigation/base_readout_mitigator.py "view source code")
+`abstract BaseReadoutMitigator.expectation_value(data, diagonal, qubits=None, clbits=None, shots=None)`
 
 Calculate the expectation value of a diagonal Hermitian operator.
 
@@ -46,7 +46,7 @@ The mean and an upper bound of the standard deviation of operator expectation va
 
 <span id="qiskit.result.BaseReadoutMitigator.quasi_probabilities" />
 
-`abstract BaseReadoutMitigator.quasi_probabilities(data, qubits=None, clbits=None, shots=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/result/mitigation/base_readout_mitigator.py "view source code")
+`abstract BaseReadoutMitigator.quasi_probabilities(data, qubits=None, clbits=None, shots=None)`
 
 Convert counts to a dictionary of quasi-probabilities
 

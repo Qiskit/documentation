@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.BackendV2
 
 <span id="qiskit.providers.BackendV2" />
 
-`BackendV2(provider=None, name=None, description=None, online_date=None, backend_version=None, **fields)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/backend.py "view source code")
+`BackendV2(provider=None, name=None, description=None, online_date=None, backend_version=None, **fields)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/backend.py "view source code")
 
 Bases: [`qiskit.providers.backend.Backend`](qiskit.providers.Backend "qiskit.providers.backend.Backend"), `abc.ABC`
 
@@ -43,7 +43,7 @@ Initialize a BackendV2 based backend
 
 <span id="qiskit.providers.BackendV2.acquire_channel" />
 
-`BackendV2.acquire_channel(qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/backend.py "view source code")
+`BackendV2.acquire_channel(qubit)`
 
 Return the acquisition channel for the given qubit.
 
@@ -65,7 +65,7 @@ The Qubit measurement acquisition line.
 
 <span id="qiskit.providers.BackendV2.control_channel" />
 
-`BackendV2.control_channel(qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/backend.py "view source code")
+`BackendV2.control_channel(qubits)`
 
 Return the secondary drive channel for the given qubit
 
@@ -93,7 +93,7 @@ List\[[ControlChannel](qiskit.pulse.channels.ControlChannel "qiskit.pulse.channe
 
 <span id="qiskit.providers.BackendV2.drive_channel" />
 
-`BackendV2.drive_channel(qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/backend.py "view source code")
+`BackendV2.drive_channel(qubit)`
 
 Return the drive channel for the given qubit.
 
@@ -115,7 +115,7 @@ The Qubit drive channel
 
 <span id="qiskit.providers.BackendV2.measure_channel" />
 
-`BackendV2.measure_channel(qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/backend.py "view source code")
+`BackendV2.measure_channel(qubit)`
 
 Return the measure stimulus channel for the given qubit.
 
@@ -137,7 +137,7 @@ The Qubit measurement stimulus line
 
 <span id="qiskit.providers.BackendV2.qubit_properties" />
 
-`BackendV2.qubit_properties(qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/backend.py "view source code")
+`BackendV2.qubit_properties(qubit)`
 
 Return QubitProperties for a given qubit.
 
@@ -163,7 +163,7 @@ qubit\_properties
 
 <span id="qiskit.providers.BackendV2.run" />
 
-`abstract BackendV2.run(run_input, **options)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/backend.py "view source code")
+`abstract BackendV2.run(run_input, **options)`
 
 Run on the backend.
 
@@ -186,7 +186,7 @@ The job object for the run
 
 <span id="qiskit.providers.BackendV2.set_options" />
 
-`BackendV2.set_options(**fields)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/backend.py "view source code")
+`BackendV2.set_options(**fields)`
 
 Set the options fields for the backend
 

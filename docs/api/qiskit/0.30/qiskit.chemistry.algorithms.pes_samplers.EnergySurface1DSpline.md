@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.algorithms.pes_samplers.EnergySurface1DSpline
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.EnergySurface1DSpline" />
 
-`EnergySurface1DSpline`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/potentials/energy_surface_spline.py "view source code")
+`EnergySurface1DSpline` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/potentials/energy_surface_spline.py "view source code")
 
 Bases: `qiskit.chemistry.algorithms.pes_samplers.potentials.potential_base.EnergySurfaceBase`
 
@@ -26,7 +26,7 @@ This allows for fitting BOPES sampler results or potential energy surfaces.
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.EnergySurface1DSpline.eval" />
 
-`EnergySurface1DSpline.eval(x)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/potentials/energy_surface_spline.py "view source code")
+`EnergySurface1DSpline.eval(x)`
 
 After fitting the data to the fit function, predict the energy at a point x.
 
@@ -46,7 +46,7 @@ Value of surface fit in point x.
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.EnergySurface1DSpline.fit" />
 
-`EnergySurface1DSpline.fit(xdata, ydata, initial_vals=None, bounds_list=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/potentials/energy_surface_spline.py "view source code")
+`EnergySurface1DSpline.fit(xdata, ydata, initial_vals=None, bounds_list=None)`
 
 Fits surface to data.
 
@@ -65,7 +65,7 @@ Fits surface to data.
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.EnergySurface1DSpline.get_equilibrium_geometry" />
 
-`EnergySurface1DSpline.get_equilibrium_geometry(scaling=1.0)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/potentials/energy_surface_spline.py "view source code")
+`EnergySurface1DSpline.get_equilibrium_geometry(scaling=1.0)`
 
 Returns the geometry for the minimal energy (scaled by ‘scaling’) Default units (scaling=1.0) are Angstroms. Scale by 1E-10 to get meters. :type scaling: `float` :param scaling: scaling factor
 
@@ -81,7 +81,7 @@ equilibrium geometry
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.EnergySurface1DSpline.get_minimal_energy" />
 
-`EnergySurface1DSpline.get_minimal_energy(scaling=1.0)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/potentials/energy_surface_spline.py "view source code")
+`EnergySurface1DSpline.get_minimal_energy(scaling=1.0)`
 
 Returns the value of the minimal energy (scaled by ‘scaling’) Default units (scaling=1.0) are J/mol. Scale appropriately for Hartrees. :type scaling: `float` :param scaling: scaling factor
 
@@ -97,7 +97,7 @@ minimum energy
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.EnergySurface1DSpline.get_trust_region" />
 
-`EnergySurface1DSpline.get_trust_region()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/potentials/energy_surface_spline.py "view source code")
+`EnergySurface1DSpline.get_trust_region()`
 
 Get the trust region.
 

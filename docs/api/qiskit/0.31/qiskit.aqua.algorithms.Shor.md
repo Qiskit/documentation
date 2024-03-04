@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.algorithms.Shor
 
 <span id="qiskit.aqua.algorithms.Shor" />
 
-`Shor(N=15, a=2, quantum_instance=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/factorizers/shor.py "view source code")
+`Shor(N=15, a=2, quantum_instance=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/factorizers/shor.py "view source code")
 
 Bases: `qiskit.aqua.algorithms.quantum_algorithm.QuantumAlgorithm`
 
@@ -44,7 +44,7 @@ See also [https://arxiv.org/abs/quant-ph/0205095](https://arxiv.org/abs/quant-ph
 
 <span id="qiskit.aqua.algorithms.Shor.construct_circuit" />
 
-`Shor.construct_circuit(measurement=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/factorizers/shor.py "view source code")
+`Shor.construct_circuit(measurement=False)`
 
 Construct circuit.
 
@@ -64,7 +64,7 @@ Quantum circuit.
 
 <span id="qiskit.aqua.algorithms.Shor.modinv" />
 
-`static Shor.modinv(a, m)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/factorizers/shor.py "view source code")
+`static Shor.modinv(a, m)`
 
 Returns the modular multiplicative inverse of a with respect to the modulus m.
 

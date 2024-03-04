@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.optimizers.SNOBFIT
 
 <span id="qiskit.aqua.components.optimizers.SNOBFIT" />
 
-`SNOBFIT(maxiter=1000, maxfail=10, maxmp=None, verbose=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/optimizers/snobfit.py "view source code")
+`SNOBFIT(maxiter=1000, maxfail=10, maxmp=None, verbose=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/optimizers/snobfit.py "view source code")
 
 Stable Noisy Optimization by Branch and FIT algorithm.
 

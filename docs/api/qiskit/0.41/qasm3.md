@@ -1,7 +1,7 @@
 ---
 title: qasm3
 description: API reference for qiskit.qasm3
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.qasm3
 ---
@@ -26,7 +26,7 @@ The high-level functions are simply [`dump()`](#qiskit.qasm3.dump "qiskit.qasm3.
 
 <span id="qiskit.qasm3.dump" />
 
-`dump(circuit, stream, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/qasm3/__init__.py "view source code")
+`dump(circuit, stream, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/qasm3/__init__.py "view source code")
 
 Serialize a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object as a OpenQASM3 stream to file-like object.
 
@@ -44,7 +44,7 @@ Serialize a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.Qua
 
 <span id="qiskit.qasm3.dumps" />
 
-`dumps(circuit, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/qasm3/__init__.py "view source code")
+`dumps(circuit, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/qasm3/__init__.py "view source code")
 
 Serialize a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object in an OpenQASM3 string.
 
@@ -65,7 +65,7 @@ Both of these exporter functions are single-use wrappers around the main [`Expor
 
 <span id="qiskit.qasm3.Exporter" />
 
-`Exporter(includes=('stdgates.inc',), basis_gates=('U',), disable_constants=False, alias_classical_registers=False, indent='  ')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/qasm3/exporter.py "view source code")
+`Exporter(includes=('stdgates.inc',), basis_gates=('U',), disable_constants=False, alias_classical_registers=False, indent='  ')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/qasm3/exporter.py "view source code")
 
 QASM3 exporter main class.
 
@@ -99,7 +99,7 @@ All of these interfaces will raise [`QASM3ExporterError`](#qiskit.qasm3.QASM3Exp
 
 <span id="qiskit.qasm3.QASM3ExporterError" />
 
-`QASM3ExporterError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/qasm3/exceptions.py "view source code")
+`QASM3ExporterError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/qasm3/exceptions.py "view source code")
 
 An error raised during running the OpenQASM 3 exporter.
 
@@ -123,7 +123,7 @@ Currently only two high-level functions are offered, as Qiskit support for impor
 
 <span id="qiskit.qasm3.load" />
 
-`load(filename)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/qasm3/__init__.py "view source code")
+`load(filename)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/qasm3/__init__.py "view source code")
 
 Load an OpenQASM 3 program from the file `filename`.
 
@@ -147,7 +147,7 @@ a circuit representation of the OpenQASM 3 program.
 
 <span id="qiskit.qasm3.loads" />
 
-`loads(program)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/qasm3/__init__.py "view source code")
+`loads(program)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/qasm3/__init__.py "view source code")
 
 Load an OpenQASM 3 program from the given string.
 
@@ -173,7 +173,7 @@ Both of these two functions raise [`QASM3ImporterError`](#qiskit.qasm3.QASM3Impo
 
 <span id="qiskit.qasm3.QASM3ImporterError" />
 
-`QASM3ImporterError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/qasm3/exceptions.py "view source code")
+`QASM3ImporterError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/qasm3/exceptions.py "view source code")
 
 An error raised during the OpenQASM 3 importer.
 

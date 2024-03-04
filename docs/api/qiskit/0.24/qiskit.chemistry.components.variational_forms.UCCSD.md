@@ -12,7 +12,7 @@ python_api_name: qiskit.chemistry.components.variational_forms.UCCSD
 
 <span id="qiskit.chemistry.components.variational_forms.UCCSD" />
 
-`UCCSD(num_orbitals, num_particles, reps=1, active_occupied=None, active_unoccupied=None, initial_state=None, qubit_mapping='parity', two_qubit_reduction=True, num_time_slices=1, shallow_circuit_concat=True, z2_symmetries=None, method_singles='both', method_doubles='ucc', excitation_type='sd', same_spin_doubles=True, skip_commute_test=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/components/variational_forms/uccsd.py "view source code")
+`UCCSD(num_orbitals, num_particles, reps=1, active_occupied=None, active_unoccupied=None, initial_state=None, qubit_mapping='parity', two_qubit_reduction=True, num_time_slices=1, shallow_circuit_concat=True, z2_symmetries=None, method_singles='both', method_doubles='ucc', excitation_type='sd', same_spin_doubles=True, skip_commute_test=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/components/variational_forms/uccsd.py "view source code")
 
 This trial wavefunction is a Unitary Coupled-Cluster Single and Double excitations variational form. For more information, see [https://arxiv.org/abs/1805.04340](https://arxiv.org/abs/1805.04340) And for the singlet q-UCCD (full) and pair q-UCCD) see: [https://arxiv.org/abs/1911.10864](https://arxiv.org/abs/1911.10864)
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.ImaginaryEvolver
 
 <span id="qiskit.algorithms.ImaginaryEvolver" />
 
-`ImaginaryEvolver`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/evolvers/imaginary_evolver.py "view source code")
+`ImaginaryEvolver` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/evolvers/imaginary_evolver.py "view source code")
 
 Bases: `abc.ABC`
 
@@ -22,7 +22,7 @@ Interface for Quantum Imaginary Time Evolution.
 
 <span id="qiskit.algorithms.ImaginaryEvolver.evolve" />
 
-`abstract ImaginaryEvolver.evolve(evolution_problem)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/evolvers/imaginary_evolver.py "view source code")
+`abstract ImaginaryEvolver.evolve(evolution_problem)`
 
 Perform imaginary time evolution $\exp(-\tau H)|\Psi\rangle$.
 

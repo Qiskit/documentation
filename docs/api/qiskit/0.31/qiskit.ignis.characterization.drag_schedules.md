@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.characterization.drag_schedules
 
 <span id="qiskit.ignis.characterization.drag_schedules" />
 
-`drag_schedules(beta_list, qubits, pulse_amp, pulse_width, pulse_sigma=None, width_sigma_ratio=4, drives=None, inst_map=None, meas_map=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/characterization/calibrations/pulse_schedules.py "view source code")
+`drag_schedules(beta_list, qubits, pulse_amp, pulse_width, pulse_sigma=None, width_sigma_ratio=4, drives=None, inst_map=None, meas_map=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/characterization/calibrations/pulse_schedules.py "view source code")
 
 Generates schedules for a drag experiment doing a pulse then the - pulse
 

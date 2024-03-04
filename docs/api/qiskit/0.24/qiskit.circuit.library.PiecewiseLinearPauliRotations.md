@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.library.PiecewiseLinearPauliRotations
 
 <span id="qiskit.circuit.library.PiecewiseLinearPauliRotations" />
 
-`PiecewiseLinearPauliRotations(num_state_qubits=None, breakpoints=None, slopes=None, offsets=None, basis='Y', name='pw_lin')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/arithmetic/piecewise_linear_pauli_rotations.py "view source code")
+`PiecewiseLinearPauliRotations(num_state_qubits=None, breakpoints=None, slopes=None, offsets=None, basis='Y', name='pw_lin')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/arithmetic/piecewise_linear_pauli_rotations.py "view source code")
 
 Piecewise-linearly-controlled Pauli rotations.
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.ParameterVector
 
 <span id="qiskit.circuit.ParameterVector" />
 
-`ParameterVector(name, length=0)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/parametervector.py "view source code")
+`ParameterVector(name, length=0)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/parametervector.py "view source code")
 
 ParameterVector class to quickly generate lists of parameters.
 

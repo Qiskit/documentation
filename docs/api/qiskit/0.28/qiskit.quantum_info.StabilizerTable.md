@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.StabilizerTable
 
 <span id="qiskit.quantum_info.StabilizerTable" />
 
-`StabilizerTable(data, phase=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/operators/symplectic/stabilizer_table.py "view source code")
+`StabilizerTable(data, phase=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/operators/symplectic/stabilizer_table.py "view source code")
 
 Symplectic representation of a list Stabilizer matrices.
 

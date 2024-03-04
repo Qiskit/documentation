@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.CountOps
 
 <span id="qiskit.transpiler.passes.CountOps" />
 
-`CountOps(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/analysis/count_ops.py "view source code")
+`CountOps(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/analysis/count_ops.py "view source code")
 
 Bases: [`qiskit.transpiler.basepasses.AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
@@ -32,7 +32,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.CountOps.run" />
 
-`CountOps.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/analysis/count_ops.py "view source code")
+`CountOps.run(dag)`
 
 Run the CountOps pass on dag.
 

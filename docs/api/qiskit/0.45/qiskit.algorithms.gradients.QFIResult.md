@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.gradients.QFIResult
 
 <span id="qiskit.algorithms.gradients.QFIResult" />
 
-`qiskit.algorithms.gradients.QFIResult(qfis, metadata, options)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/gradients/qfi_result.py "view source code")
+`qiskit.algorithms.gradients.QFIResult(qfis, metadata, options)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/gradients/qfi_result.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 

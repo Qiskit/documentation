@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeCambridgeV2
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeCambridgeV2" />
 
-`FakeCambridgeV2`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/backends/cambridge/fake_cambridge.py "view source code")
+`FakeCambridgeV2` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/backends/cambridge/fake_cambridge.py "view source code")
 
 A fake Cambridge backend.
 

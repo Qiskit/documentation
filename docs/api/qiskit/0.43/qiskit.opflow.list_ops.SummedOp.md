@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.list_ops.SummedOp
 
 <span id="qiskit.opflow.list_ops.SummedOp" />
 
-`SummedOp(oplist, coeff=1.0, abelian=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/list_ops/summed_op.py "view source code")
+`SummedOp(oplist, coeff=1.0, abelian=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/list_ops/summed_op.py "view source code")
 
 Bases: [`ListOp`](qiskit.opflow.list_ops.ListOp "qiskit.opflow.list_ops.list_op.ListOp")
 
@@ -34,7 +34,7 @@ Deprecated: A class for lazily representing sums of Operators. Often Operators c
 
 <span id="qiskit.opflow.list_ops.SummedOp.add" />
 
-`SummedOp.add(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/list_ops/summed_op.py "view source code")
+`SummedOp.add(other)`
 
 Return Operator addition of `self` and `other`, overloaded by `+`.
 
@@ -60,7 +60,7 @@ A `SummedOp` equivalent to the sum of self and other.
 
 <span id="qiskit.opflow.list_ops.SummedOp.collapse_summands" />
 
-`SummedOp.collapse_summands()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/list_ops/summed_op.py "view source code")
+`SummedOp.collapse_summands()`
 
 Return Operator by simplifying duplicate operators.
 
@@ -80,7 +80,7 @@ A simplified `SummedOp` equivalent to self.
 
 <span id="qiskit.opflow.list_ops.SummedOp.equals" />
 
-`SummedOp.equals(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/list_ops/summed_op.py "view source code")
+`SummedOp.equals(other)`
 
 Check if other is equal to self.
 
@@ -116,7 +116,7 @@ True
 
 <span id="qiskit.opflow.list_ops.SummedOp.reduce" />
 
-`SummedOp.reduce()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/list_ops/summed_op.py "view source code")
+`SummedOp.reduce()`
 
 Try collapsing list or trees of sums.
 
@@ -136,7 +136,7 @@ A collapsed version of self, if possible.
 
 <span id="qiskit.opflow.list_ops.SummedOp.to_circuit" />
 
-`SummedOp.to_circuit()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/list_ops/summed_op.py "view source code")
+`SummedOp.to_circuit()`
 
 Returns the quantum circuit, representing the SummedOp. In the first step, the SummedOp is converted to MatrixOp. This is straightforward for most operators, but it is not supported for operators containing parameterized PrimitiveOps (in that case, OpflowError is raised). In the next step, the MatrixOp representation of SummedOp is converted to circuit. In most cases, if the summands themselves are unitary operators, the SummedOp itself is non-unitary and can not be converted to circuit. In that case, ExtensionError is raised in the underlying modules.
 
@@ -159,7 +159,7 @@ The circuit representation of the summed operator.
 
 <span id="qiskit.opflow.list_ops.SummedOp.to_matrix_op" />
 
-`SummedOp.to_matrix_op(massive=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/list_ops/summed_op.py "view source code")
+`SummedOp.to_matrix_op(massive=False)`
 
 Returns an equivalent Operator composed of only NumPy-based primitives, such as `MatrixOp` and `VectorStateFn`.
 
@@ -173,7 +173,7 @@ Returns an equivalent Operator composed of only NumPy-based primitives, such as 
 
 <span id="qiskit.opflow.list_ops.SummedOp.to_pauli_op" />
 
-`SummedOp.to_pauli_op(massive=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/list_ops/summed_op.py "view source code")
+`SummedOp.to_pauli_op(massive=False)`
 
 Returns an equivalent Operator composed of only Pauli-based primitives, such as `PauliOp`.
 

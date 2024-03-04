@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.characterization.AngleCalCXFitter
 
 <span id="qiskit.ignis.characterization.AngleCalCXFitter" />
 
-`AngleCalCXFitter(backend_result, xdata, qubits, fit_p0, fit_bounds)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/characterization/gates/fitters.py "view source code")
+`AngleCalCXFitter(backend_result, xdata, qubits, fit_p0, fit_bounds)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/characterization/gates/fitters.py "view source code")
 
 Bases: `qiskit.ignis.characterization.fitters.BaseGateFitter`
 
@@ -38,7 +38,7 @@ Add new execution results to previous execution results
 
 <span id="qiskit.ignis.characterization.AngleCalCXFitter.angle_err" />
 
-`AngleCalCXFitter.angle_err(qind=- 1)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/characterization/gates/fitters.py "view source code")
+`AngleCalCXFitter.angle_err(qind=- 1)`
 
 Return the gate angle error
 
@@ -75,7 +75,7 @@ Compute self.\_params and self.\_params\_err
 
 <span id="qiskit.ignis.characterization.AngleCalCXFitter.plot" />
 
-`AngleCalCXFitter.plot(qind, series='0', ax=None, show_plot=False)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/characterization/gates/fitters.py "view source code")
+`AngleCalCXFitter.plot(qind, series='0', ax=None, show_plot=False)`
 
 Plot err data.
 

@@ -1,7 +1,7 @@
 ---
 title: quantum_info
 description: API reference for qiskit.quantum_info
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.quantum_info
 ---
@@ -62,7 +62,7 @@ python_api_name: qiskit.quantum_info
 
 <span id="qiskit.quantum_info.average_gate_fidelity" />
 
-`qiskit.quantum_info.average_gate_fidelity(channel, target=None, require_cp=True, require_tp=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/operators/measures.py "view source code")
+`qiskit.quantum_info.average_gate_fidelity(channel, target=None, require_cp=True, require_tp=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/operators/measures.py "view source code")
 
 Return the average gate fidelity of a noisy quantum channel.
 
@@ -100,7 +100,7 @@ The average gate fidelity $F_{\text{ave}}$.
 
 <span id="qiskit.quantum_info.process_fidelity" />
 
-`qiskit.quantum_info.process_fidelity(channel, target=None, require_cp=True, require_tp=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/operators/measures.py "view source code")
+`qiskit.quantum_info.process_fidelity(channel, target=None, require_cp=True, require_tp=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/operators/measures.py "view source code")
 
 Return the process fidelity of a noisy quantum channel.
 
@@ -145,7 +145,7 @@ The process fidelity $F_{\text{pro}}$.
 
 <span id="qiskit.quantum_info.gate_error" />
 
-`qiskit.quantum_info.gate_error(channel, target=None, require_cp=True, require_tp=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/operators/measures.py "view source code")
+`qiskit.quantum_info.gate_error(channel, target=None, require_cp=True, require_tp=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/operators/measures.py "view source code")
 
 Return the gate error of a noisy quantum channel.
 
@@ -180,7 +180,7 @@ The average gate error $E$.
 
 <span id="qiskit.quantum_info.diamond_norm" />
 
-`qiskit.quantum_info.diamond_norm(choi, solver='SCS', **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/operators/measures.py "view source code")
+`qiskit.quantum_info.diamond_norm(choi, solver='SCS', **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/operators/measures.py "view source code")
 
 Return the diamond norm of the input quantum channel object.
 
@@ -220,7 +220,7 @@ J. Watrous. “Simpler semidefinite programs for completely bounded norms”, ar
 
 <span id="qiskit.quantum_info.state_fidelity" />
 
-`qiskit.quantum_info.state_fidelity(state1, state2, validate=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/states/measures.py "view source code")
+`qiskit.quantum_info.state_fidelity(state1, state2, validate=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/states/measures.py "view source code")
 
 Return the state fidelity between two quantum states.
 
@@ -254,7 +254,7 @@ The state fidelity $F(\rho_1, \rho_2)$.
 
 <span id="qiskit.quantum_info.purity" />
 
-`qiskit.quantum_info.purity(state, validate=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/states/measures.py "view source code")
+`qiskit.quantum_info.purity(state, validate=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/states/measures.py "view source code")
 
 Calculate the purity of a quantum state.
 
@@ -285,7 +285,7 @@ the purity $Tr[\rho^2]$.
 
 <span id="qiskit.quantum_info.concurrence" />
 
-`qiskit.quantum_info.concurrence(state)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/states/measures.py "view source code")
+`qiskit.quantum_info.concurrence(state)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/states/measures.py "view source code")
 
 Calculate the concurrence of a quantum state.
 
@@ -327,7 +327,7 @@ The concurrence.
 
 <span id="qiskit.quantum_info.entropy" />
 
-`qiskit.quantum_info.entropy(state, base=2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/states/measures.py "view source code")
+`qiskit.quantum_info.entropy(state, base=2)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/states/measures.py "view source code")
 
 Calculate the von-Neumann entropy of a quantum state.
 
@@ -358,7 +358,7 @@ The von-Neumann entropy S(rho).
 
 <span id="qiskit.quantum_info.entanglement_of_formation" />
 
-`qiskit.quantum_info.entanglement_of_formation(state)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/states/measures.py "view source code")
+`qiskit.quantum_info.entanglement_of_formation(state)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/states/measures.py "view source code")
 
 Calculate the entanglement of formation of quantum state.
 
@@ -386,7 +386,7 @@ The entanglement of formation.
 
 <span id="qiskit.quantum_info.mutual_information" />
 
-`qiskit.quantum_info.mutual_information(state, base=2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/states/measures.py "view source code")
+`qiskit.quantum_info.mutual_information(state, base=2)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/states/measures.py "view source code")
 
 Calculate the mutual information of a bipartite state.
 
@@ -422,7 +422,7 @@ The mutual information $I(\rho_{AB})$.
 
 <span id="qiskit.quantum_info.negativity" />
 
-`qiskit.quantum_info.negativity(state, qargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/states/measures.py "view source code")
+`qiskit.quantum_info.negativity(state, qargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/states/measures.py "view source code")
 
 Calculates the negativity.
 
@@ -453,7 +453,7 @@ Negativity value of the quantum state
 
 <span id="qiskit.quantum_info.partial_trace" />
 
-`qiskit.quantum_info.partial_trace(state, qargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/states/utils.py "view source code")
+`qiskit.quantum_info.partial_trace(state, qargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/states/utils.py "view source code")
 
 Return reduced density matrix by tracing out part of quantum state.
 
@@ -480,7 +480,7 @@ The reduced density matrix.
 
 <span id="qiskit.quantum_info.schmidt_decomposition" />
 
-`qiskit.quantum_info.schmidt_decomposition(state, qargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/states/utils.py "view source code")
+`qiskit.quantum_info.schmidt_decomposition(state, qargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/states/utils.py "view source code")
 
 Return the Schmidt Decomposition of a pure quantum state.
 
@@ -526,7 +526,7 @@ list of tuples `(s, u, v)`, where `s` (float) are the Schmidt coefficients $\lam
 
 <span id="qiskit.quantum_info.shannon_entropy" />
 
-`qiskit.quantum_info.shannon_entropy(pvec, base=2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/states/utils.py "view source code")
+`qiskit.quantum_info.shannon_entropy(pvec, base=2)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/states/utils.py "view source code")
 
 Compute the Shannon entropy of a probability vector.
 
@@ -555,7 +555,7 @@ The Shannon entropy H(pvec).
 
 <span id="qiskit.quantum_info.commutator" />
 
-`qiskit.quantum_info.commutator(a, b)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/operators/utils/commutator.py "view source code")
+`qiskit.quantum_info.commutator(a, b)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/operators/utils/commutator.py "view source code")
 
 Compute commutator of a and b.
 
@@ -580,7 +580,7 @@ The commutator
 
 <span id="qiskit.quantum_info.anti_commutator" />
 
-`qiskit.quantum_info.anti_commutator(a, b)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/operators/utils/anti_commutator.py "view source code")
+`qiskit.quantum_info.anti_commutator(a, b)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/operators/utils/anti_commutator.py "view source code")
 
 Compute anti-commutator of a and b.
 
@@ -605,7 +605,7 @@ The anti-commutator
 
 <span id="qiskit.quantum_info.double_commutator" />
 
-`qiskit.quantum_info.double_commutator(a, b, c, *, commutator=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/operators/utils/double_commutator.py "view source code")
+`qiskit.quantum_info.double_commutator(a, b, c, *, commutator=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/operators/utils/double_commutator.py "view source code")
 
 Compute symmetric double commutator of a, b and c.
 
@@ -652,7 +652,7 @@ Methods of Molecular Quantum Mechanics. 2nd Edition, Academic Press, 1992. ISBN 
 
 <span id="qiskit.quantum_info.random_statevector" />
 
-`qiskit.quantum_info.random_statevector(dims, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/states/random.py "view source code")
+`qiskit.quantum_info.random_statevector(dims, seed=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/states/random.py "view source code")
 
 Generator a random Statevector.
 
@@ -675,7 +675,7 @@ the random statevector.
 
 <span id="qiskit.quantum_info.random_density_matrix" />
 
-`qiskit.quantum_info.random_density_matrix(dims, rank=None, method='Hilbert-Schmidt', seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/states/random.py "view source code")
+`qiskit.quantum_info.random_density_matrix(dims, rank=None, method='Hilbert-Schmidt', seed=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/states/random.py "view source code")
 
 Generator a random DensityMatrix.
 
@@ -702,7 +702,7 @@ the random density matrix.
 
 <span id="qiskit.quantum_info.random_unitary" />
 
-`qiskit.quantum_info.random_unitary(dims, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/operators/random.py "view source code")
+`qiskit.quantum_info.random_unitary(dims, seed=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/operators/random.py "view source code")
 
 Return a random unitary Operator.
 
@@ -725,7 +725,7 @@ a unitary operator.
 
 <span id="qiskit.quantum_info.random_hermitian" />
 
-`qiskit.quantum_info.random_hermitian(dims, traceless=False, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/operators/random.py "view source code")
+`qiskit.quantum_info.random_hermitian(dims, traceless=False, seed=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/operators/random.py "view source code")
 
 Return a random hermitian Operator.
 
@@ -749,7 +749,7 @@ a Hermitian operator.
 
 <span id="qiskit.quantum_info.random_pauli" />
 
-`qiskit.quantum_info.random_pauli(num_qubits, group_phase=False, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/operators/symplectic/random.py "view source code")
+`qiskit.quantum_info.random_pauli(num_qubits, group_phase=False, seed=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/operators/symplectic/random.py "view source code")
 
 Return a random Pauli.
 
@@ -771,7 +771,7 @@ a random Pauli
 
 <span id="qiskit.quantum_info.random_clifford" />
 
-`qiskit.quantum_info.random_clifford(num_qubits, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/operators/symplectic/random.py "view source code")
+`qiskit.quantum_info.random_clifford(num_qubits, seed=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/operators/symplectic/random.py "view source code")
 
 Return a random Clifford operator.
 
@@ -798,7 +798,7 @@ a random Clifford operator.
 
 <span id="qiskit.quantum_info.random_quantum_channel" />
 
-`qiskit.quantum_info.random_quantum_channel(input_dims=None, output_dims=None, rank=None, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/operators/random.py "view source code")
+`qiskit.quantum_info.random_quantum_channel(input_dims=None, output_dims=None, rank=None, seed=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/operators/random.py "view source code")
 
 Return a random CPTP quantum channel.
 
@@ -827,7 +827,7 @@ a quantum channel operator.
 
 <span id="qiskit.quantum_info.random_cnotdihedral" />
 
-`qiskit.quantum_info.random_cnotdihedral(num_qubits, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/operators/dihedral/random.py "view source code")
+`qiskit.quantum_info.random_cnotdihedral(num_qubits, seed=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/operators/dihedral/random.py "view source code")
 
 Return a random CNOTDihedral element.
 
@@ -848,7 +848,7 @@ a random CNOTDihedral element.
 
 <span id="qiskit.quantum_info.random_pauli_table" />
 
-`qiskit.quantum_info.random_pauli_table(num_qubits, size=1, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/operators/symplectic/random.py "view source code")
+`qiskit.quantum_info.random_pauli_table(num_qubits, size=1, seed=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/operators/symplectic/random.py "view source code")
 
 Return a random PauliTable.
 
@@ -870,7 +870,7 @@ a random PauliTable.
 
 <span id="qiskit.quantum_info.random_pauli_list" />
 
-`qiskit.quantum_info.random_pauli_list(num_qubits, size=1, seed=None, phase=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/operators/symplectic/random.py "view source code")
+`qiskit.quantum_info.random_pauli_list(num_qubits, size=1, seed=None, phase=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/operators/symplectic/random.py "view source code")
 
 Return a random PauliList.
 
@@ -893,7 +893,7 @@ a random PauliList.
 
 <span id="qiskit.quantum_info.random_stabilizer_table" />
 
-`qiskit.quantum_info.random_stabilizer_table(num_qubits, size=1, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/operators/symplectic/random.py "view source code")
+`qiskit.quantum_info.random_stabilizer_table(num_qubits, size=1, seed=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/operators/symplectic/random.py "view source code")
 
 DEPRECATED: Return a random StabilizerTable.
 
@@ -921,7 +921,7 @@ a random StabilizerTable.
 
 <span id="qiskit.quantum_info.hellinger_distance" />
 
-`qiskit.quantum_info.hellinger_distance(dist_p, dist_q)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/analysis/distance.py "view source code")
+`qiskit.quantum_info.hellinger_distance(dist_p, dist_q)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/analysis/distance.py "view source code")
 
 Computes the Hellinger distance between two counts distributions.
 
@@ -946,7 +946,7 @@ Distance
 
 <span id="qiskit.quantum_info.hellinger_fidelity" />
 
-`qiskit.quantum_info.hellinger_fidelity(dist_p, dist_q)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/analysis/distance.py "view source code")
+`qiskit.quantum_info.hellinger_fidelity(dist_p, dist_q)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/analysis/distance.py "view source code")
 
 Computes the Hellinger fidelity between two counts distributions.
 
@@ -1019,7 +1019,7 @@ hellinger_fidelity(res1.get_counts(), res2.get_counts())
 
 <span id="qiskit.quantum_info.decompose_clifford" />
 
-`qiskit.quantum_info.decompose_clifford(clifford, method=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/synthesis/clifford_decompose.py "view source code")
+`qiskit.quantum_info.decompose_clifford(clifford, method=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/synthesis/clifford_decompose.py "view source code")
 
 DEPRECATED: Decompose a Clifford operator into a QuantumCircuit.
 

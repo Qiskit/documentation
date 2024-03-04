@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.core.ChemistryOperator
 
 <span id="qiskit.chemistry.core.ChemistryOperator" />
 
-`ChemistryOperator`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/core/chemistry_operator.py "view source code")
+`ChemistryOperator` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/core/chemistry_operator.py "view source code")
 
 Bases: `abc.ABC`
 
@@ -22,7 +22,7 @@ Base class for ChemistryOperator.
 
 <span id="qiskit.chemistry.core.ChemistryOperator.process_algorithm_result" />
 
-`ChemistryOperator.process_algorithm_result(algo_result)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/core/chemistry_operator.py "view source code")
+`ChemistryOperator.process_algorithm_result(algo_result)`
 
 Takes the algorithm result and processes it as required, e.g. by combination of any parts that were classically computed, for the final result.
 
@@ -42,7 +42,7 @@ Final chemistry result computed from the algorithm result
 
 <span id="qiskit.chemistry.core.ChemistryOperator.run" />
 
-`abstract ChemistryOperator.run(qmolecule)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/core/chemistry_operator.py "view source code")
+`abstract ChemistryOperator.run(qmolecule)`
 
 Convert the qmolecule, according to the ChemistryOperator, into an Operator that can be given to a QuantumAlgorithm
 

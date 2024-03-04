@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.IBMQBackend
 
 <span id="qiskit.providers.ibmq.IBMQBackend" />
 
-`IBMQBackend(configuration, provider, credentials, api)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.7/qiskit/providers/ibmq/ibmqbackend.py "view source code")
+`IBMQBackend(configuration, provider, credentials, api)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.7/qiskit/providers/ibmq/ibmqbackend.py "view source code")
 
 Backend class interfacing with an IBM Quantum Experience device.
 
@@ -61,7 +61,7 @@ IBMQBackend constructor.
 
 <span id="qiskit.providers.ibmq.IBMQBackend.active_jobs" />
 
-`IBMQBackend.active_jobs(limit=10)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.7/qiskit/providers/ibmq/ibmqbackend.py "view source code")
+`IBMQBackend.active_jobs(limit=10)`
 
 Return the unfinished jobs submitted to this backend.
 
@@ -99,7 +99,7 @@ the configuration for the backend.
 
 <span id="qiskit.providers.ibmq.IBMQBackend.defaults" />
 
-`IBMQBackend.defaults(refresh=False)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.7/qiskit/providers/ibmq/ibmqbackend.py "view source code")
+`IBMQBackend.defaults(refresh=False)`
 
 Return the pulse defaults for the backend.
 
@@ -119,7 +119,7 @@ The backend pulse defaults or `None` if the backend does not support pulse.
 
 <span id="qiskit.providers.ibmq.IBMQBackend.job_limit" />
 
-`IBMQBackend.job_limit()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.7/qiskit/providers/ibmq/ibmqbackend.py "view source code")
+`IBMQBackend.job_limit()`
 
 Return the job limit for the backend.
 
@@ -155,7 +155,7 @@ The job limit for the backend, with this provider.
 
 <span id="qiskit.providers.ibmq.IBMQBackend.jobs" />
 
-`IBMQBackend.jobs(limit=10, skip=0, status=None, job_name=None, start_datetime=None, end_datetime=None, job_tags=None, job_tags_operator='OR', descending=True, db_filter=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.7/qiskit/providers/ibmq/ibmqbackend.py "view source code")
+`IBMQBackend.jobs(limit=10, skip=0, status=None, job_name=None, start_datetime=None, end_datetime=None, job_tags=None, job_tags_operator='OR', descending=True, db_filter=None)`
 
 Return the jobs submitted to this backend, subject to optional filtering.
 
@@ -235,7 +235,7 @@ str
 
 <span id="qiskit.providers.ibmq.IBMQBackend.properties" />
 
-`IBMQBackend.properties(refresh=False, datetime=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.7/qiskit/providers/ibmq/ibmqbackend.py "view source code")
+`IBMQBackend.properties(refresh=False, datetime=None)`
 
 Return the backend properties, subject to optional filtering.
 
@@ -272,7 +272,7 @@ the Provider responsible for the backend.
 
 <span id="qiskit.providers.ibmq.IBMQBackend.remaining_jobs_count" />
 
-`IBMQBackend.remaining_jobs_count()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.7/qiskit/providers/ibmq/ibmqbackend.py "view source code")
+`IBMQBackend.remaining_jobs_count()`
 
 Return the number of remaining jobs that could be submitted to the backend.
 
@@ -298,7 +298,7 @@ The remaining number of jobs a user could submit to the backend, with this provi
 
 <span id="qiskit.providers.ibmq.IBMQBackend.retrieve_job" />
 
-`IBMQBackend.retrieve_job(job_id)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.7/qiskit/providers/ibmq/ibmqbackend.py "view source code")
+`IBMQBackend.retrieve_job(job_id)`
 
 Return a single job submitted to this backend.
 
@@ -322,7 +322,7 @@ The job with the given ID.
 
 <span id="qiskit.providers.ibmq.IBMQBackend.run" />
 
-`IBMQBackend.run(qobj, job_name=None, job_share_level=None, job_tags=None, validate_qobj=False)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.7/qiskit/providers/ibmq/ibmqbackend.py "view source code")
+`IBMQBackend.run(qobj, job_name=None, job_share_level=None, job_tags=None, validate_qobj=False)`
 
 Run a Qobj asynchronously.
 
@@ -366,7 +366,7 @@ The job to be executed, an instance derived from BaseJob.
 
 <span id="qiskit.providers.ibmq.IBMQBackend.status" />
 
-`IBMQBackend.status()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.7/qiskit/providers/ibmq/ibmqbackend.py "view source code")
+`IBMQBackend.status()`
 
 Return the backend status.
 

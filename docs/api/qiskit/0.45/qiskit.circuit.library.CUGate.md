@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CUGate
 
 <span id="qiskit.circuit.library.CUGate" />
 
-`qiskit.circuit.library.CUGate(theta, phi, lam, gamma, label=None, ctrl_state=None, *, duration=None, unit='dt', _base_label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/u.py "view source code")
+`qiskit.circuit.library.CUGate(theta, phi, lam, gamma, label=None, ctrl_state=None, *, duration=None, unit='dt', _base_label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/u.py "view source code")
 
 Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 

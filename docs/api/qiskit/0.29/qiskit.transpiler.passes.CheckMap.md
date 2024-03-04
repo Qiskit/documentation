@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.CheckMap
 
 <span id="qiskit.transpiler.passes.CheckMap" />
 
-`CheckMap(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/utils/check_map.py "view source code")
+`CheckMap(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/utils/check_map.py "view source code")
 
 Bases: `qiskit.transpiler.basepasses.AnalysisPass`
 
@@ -38,7 +38,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.CheckMap.run" />
 
-`CheckMap.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/utils/check_map.py "view source code")
+`CheckMap.run(dag)`
 
 Run the CheckMap pass on dag.
 

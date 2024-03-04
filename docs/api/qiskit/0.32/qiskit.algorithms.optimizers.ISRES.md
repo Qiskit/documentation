@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.ISRES
 
 <span id="qiskit.algorithms.optimizers.ISRES" />
 
-`ISRES(max_evals=1000)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/nlopts/isres.py "view source code")
+`ISRES(max_evals=1000)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/nlopts/isres.py "view source code")
 
 Bases: `qiskit.algorithms.optimizers.nlopts.nloptimizer.NLoptOptimizer`
 
@@ -34,7 +34,7 @@ NLopt global optimizer, derivative-free. For further detail, please refer to [ht
 
 <span id="qiskit.algorithms.optimizers.ISRES.get_nlopt_optimizer" />
 
-`ISRES.get_nlopt_optimizer()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/nlopts/isres.py "view source code")
+`ISRES.get_nlopt_optimizer()`
 
 Return NLopt optimizer type
 

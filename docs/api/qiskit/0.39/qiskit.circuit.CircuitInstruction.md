@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.CircuitInstruction
 
 <span id="qiskit.circuit.CircuitInstruction" />
 
-`CircuitInstruction(operation, qubits=(), clbits=())`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuitdata.py "view source code")
+`CircuitInstruction(operation, qubits=(), clbits=())` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuitdata.py "view source code")
 
 Bases: `object`
 
@@ -26,7 +26,7 @@ A single instruction in a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qisk
 
 <span id="qiskit.circuit.CircuitInstruction.copy" />
 
-`CircuitInstruction.copy()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuitdata.py "view source code")
+`CircuitInstruction.copy()`
 
 Return a shallow copy of the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction").
 
@@ -38,7 +38,7 @@ Return a shallow copy of the [`CircuitInstruction`](qiskit.circuit.CircuitInstru
 
 <span id="qiskit.circuit.CircuitInstruction.replace" />
 
-`CircuitInstruction.replace(operation=None, qubits=None, clbits=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuitdata.py "view source code")
+`CircuitInstruction.replace(operation=None, qubits=None, clbits=None)`
 
 Return a new [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction") with the given fields replaced.
 

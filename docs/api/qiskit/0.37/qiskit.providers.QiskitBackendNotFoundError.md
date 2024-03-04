@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.QiskitBackendNotFoundError
 
 <span id="qiskit.providers.QiskitBackendNotFoundError" />
 
-`QiskitBackendNotFoundError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/exceptions.py "view source code")
+`QiskitBackendNotFoundError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/exceptions.py "view source code")
 
 Base class for errors raised while looking for a backend.
 

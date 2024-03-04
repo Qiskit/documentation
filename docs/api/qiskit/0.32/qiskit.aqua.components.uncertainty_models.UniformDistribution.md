@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.uncertainty_models.UniformDistribution
 
 <span id="qiskit.aqua.components.uncertainty_models.UniformDistribution" />
 
-`UniformDistribution(num_target_qubits, low=0, high=1)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_models/uniform_distribution.py "view source code")
+`UniformDistribution(num_target_qubits, low=0, high=1)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_models/uniform_distribution.py "view source code")
 
 Bases: `qiskit.aqua.components.uncertainty_models.univariate_distribution.UnivariateDistribution`
 
@@ -30,7 +30,7 @@ Uniform distribution is defined by the number of qubits that should be used to r
 
 <span id="qiskit.aqua.components.uncertainty_models.UniformDistribution.build" />
 
-`UniformDistribution.build(qc, q, q_ancillas=None, params=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_models/uniform_distribution.py "view source code")
+`UniformDistribution.build(qc, q, q_ancillas=None, params=None)`
 
 ### build\_controlled
 
@@ -153,7 +153,7 @@ list
 
 <span id="qiskit.aqua.components.uncertainty_models.UniformDistribution.required_ancillas" />
 
-`UniformDistribution.required_ancillas()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_models/uniform_distribution.py "view source code")
+`UniformDistribution.required_ancillas()`
 
 returns required ancillas
 
@@ -161,7 +161,7 @@ returns required ancillas
 
 <span id="qiskit.aqua.components.uncertainty_models.UniformDistribution.required_ancillas_controlled" />
 
-`UniformDistribution.required_ancillas_controlled()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_models/uniform_distribution.py "view source code")
+`UniformDistribution.required_ancillas_controlled()`
 
 returns required ancillas controlled
 

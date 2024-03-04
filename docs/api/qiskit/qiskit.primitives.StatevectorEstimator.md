@@ -10,7 +10,7 @@ python_api_name: qiskit.primitives.StatevectorEstimator
 
 <span id="qiskit.primitives.StatevectorEstimator" />
 
-`qiskit.primitives.StatevectorEstimator(*, default_precision=0.0, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/primitives/statevector_estimator.py "view source code")
+`qiskit.primitives.StatevectorEstimator(*, default_precision=0.0, seed=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/primitives/statevector_estimator.py "view source code")
 
 Bases: [`BaseEstimatorV2`](qiskit.primitives.BaseEstimatorV2 "qiskit.primitives.base.base_estimator.BaseEstimatorV2")
 

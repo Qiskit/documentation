@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.characterization.BaseGateFitter
 
 <span id="qiskit.ignis.characterization.BaseGateFitter" />
 
-`BaseGateFitter(description, backend_result, xdata, qubits, fit_fun, fit_p0, fit_bounds, circuit_names, series=None, expected_state='0')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/characterization/fitters.py "view source code")
+`BaseGateFitter(description, backend_result, xdata, qubits, fit_fun, fit_p0, fit_bounds, circuit_names, series=None, expected_state='0')` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/characterization/fitters.py "view source code")
 
 Base class for fitters of gate errors
 
@@ -173,7 +173,7 @@ Compute self.\_params and self.\_params\_err
 
 <span id="qiskit.ignis.characterization.BaseGateFitter.plot" />
 
-`BaseGateFitter.plot(qind, series='0', ax=None, show_plot=True)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/characterization/fitters.py "view source code")
+`BaseGateFitter.plot(qind, series='0', ax=None, show_plot=True)`
 
 Plot err data.
 

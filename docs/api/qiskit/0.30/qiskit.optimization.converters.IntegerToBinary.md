@@ -10,7 +10,7 @@ python_api_name: qiskit.optimization.converters.IntegerToBinary
 
 <span id="qiskit.optimization.converters.IntegerToBinary" />
 
-`IntegerToBinary`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/converters/integer_to_binary.py "view source code")
+`IntegerToBinary` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/converters/integer_to_binary.py "view source code")
 
 Bases: `qiskit.optimization.converters.quadratic_program_converter.QuadraticProgramConverter`
 
@@ -41,7 +41,7 @@ Annealers. arxiv.org:1706.01945.
 
 <span id="qiskit.optimization.converters.IntegerToBinary.convert" />
 
-`IntegerToBinary.convert(problem)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/converters/integer_to_binary.py "view source code")
+`IntegerToBinary.convert(problem)`
 
 Convert an integer problem into a new problem with binary variables.
 
@@ -65,7 +65,7 @@ The converted problem, that contains no integer variables.
 
 <span id="qiskit.optimization.converters.IntegerToBinary.interpret" />
 
-`IntegerToBinary.interpret(x)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/converters/integer_to_binary.py "view source code")
+`IntegerToBinary.interpret(x)`
 
 Convert back the converted problem (binary variables) to the original (integer variables).
 

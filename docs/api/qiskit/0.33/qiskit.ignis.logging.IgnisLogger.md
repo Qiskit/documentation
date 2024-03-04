@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.logging.IgnisLogger
 
 <span id="qiskit.ignis.logging.IgnisLogger" />
 
-`IgnisLogger(name, level=0)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/logging/ignis_logging.py "view source code")
+`IgnisLogger(name, level=0)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/logging/ignis_logging.py "view source code")
 
 Bases: `logging.Logger`
 
@@ -59,7 +59,7 @@ Loop through all handlers for this logger and its parents in the logger hierarch
 
 <span id="qiskit.ignis.logging.IgnisLogger.configure" />
 
-`IgnisLogger.configure(sh, conf_file_exists)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/logging/ignis_logging.py "view source code")
+`IgnisLogger.configure(sh, conf_file_exists)`
 
 Internal configuration method of IgnisLogger. Should only be called by IgnisLogger
 
@@ -96,7 +96,7 @@ logger.debug(“Houston, we have a %s”, “thorny problem”, exc\_info=1)
 
 <span id="qiskit.ignis.logging.IgnisLogger.disable_file_logging" />
 
-`IgnisLogger.disable_file_logging()`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/logging/ignis_logging.py "view source code")
+`IgnisLogger.disable_file_logging()`
 
 Disable file logging for this logger object (note there is a single object for a given logger name
 
@@ -104,7 +104,7 @@ Disable file logging for this logger object (note there is a single object for a
 
 <span id="qiskit.ignis.logging.IgnisLogger.enable_file_logging" />
 
-`IgnisLogger.enable_file_logging()`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/logging/ignis_logging.py "view source code")
+`IgnisLogger.enable_file_logging()`
 
 Enable file logging for this logger object (note there is a single object for a given logger name
 
@@ -244,7 +244,7 @@ logger.log(level, “We have a %s”, “mysterious problem”, exc\_info=1)
 
 <span id="qiskit.ignis.logging.IgnisLogger.log_to_file" />
 
-`IgnisLogger.log_to_file(**kwargs)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/logging/ignis_logging.py "view source code")
+`IgnisLogger.log_to_file(**kwargs)`
 
 Log key:value pairs to a log file.
 

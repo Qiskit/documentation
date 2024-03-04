@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.StagedPassManager
 
 <span id="qiskit.transpiler.StagedPassManager" />
 
-`StagedPassManager(stages=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passmanager.py "view source code")
+`StagedPassManager(stages=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passmanager.py "view source code")
 
 Bases: [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.passmanager.PassManager")
 
@@ -53,7 +53,7 @@ Initialize a new StagedPassManager object
 
 <span id="qiskit.transpiler.StagedPassManager.append" />
 
-`StagedPassManager.append(passes, max_iteration=None, **flow_controller_conditions)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passmanager.py "view source code")
+`StagedPassManager.append(passes, max_iteration=None, **flow_controller_conditions)`
 
 Append a Pass Set to the schedule of passes.
 
@@ -77,7 +77,7 @@ Append a Pass Set to the schedule of passes.
 
 <span id="qiskit.transpiler.StagedPassManager.draw" />
 
-`StagedPassManager.draw(filename=None, style=None, raw=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passmanager.py "view source code")
+`StagedPassManager.draw(filename=None, style=None, raw=False)`
 
 Draw the staged pass manager.
 
@@ -87,7 +87,7 @@ Draw the staged pass manager.
 
 <span id="qiskit.transpiler.StagedPassManager.passes" />
 
-`StagedPassManager.passes()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passmanager.py "view source code")
+`StagedPassManager.passes()`
 
 Return a list structure of the appended passes and its options.
 
@@ -105,7 +105,7 @@ A list of pass sets, as defined in `append()`.
 
 <span id="qiskit.transpiler.StagedPassManager.remove" />
 
-`StagedPassManager.remove(index)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passmanager.py "view source code")
+`StagedPassManager.remove(index)`
 
 Removes a particular pass in the scheduler.
 
@@ -123,7 +123,7 @@ Removes a particular pass in the scheduler.
 
 <span id="qiskit.transpiler.StagedPassManager.replace" />
 
-`StagedPassManager.replace(index, passes, max_iteration=None, **flow_controller_conditions)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passmanager.py "view source code")
+`StagedPassManager.replace(index, passes, max_iteration=None, **flow_controller_conditions)`
 
 Replace a particular pass in the scheduler.
 
@@ -148,7 +148,7 @@ Replace a particular pass in the scheduler.
 
 <span id="qiskit.transpiler.StagedPassManager.run" />
 
-`StagedPassManager.run(circuits, output_name=None, callback=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passmanager.py "view source code")
+`StagedPassManager.run(circuits, output_name=None, callback=None)`
 
 Run all the passes on the specified `circuits`.
 
@@ -216,9 +216,7 @@ Expanded Pass manager stages including `pre_` and `post_` phases.
 
 <span id="qiskit.transpiler.StagedPassManager.invalid_stage_regex" />
 
-### invalid\_stage\_regex = re.compile('\\\s|\\\\+|\\\\-|\\\\\*|\\\\/|\\\\\\\\|\\\\%|\\\\\<|\\\\>|\\\\@|\\\\!|\\\\\~|\\\\^|\\\\&|\\\\
-
-`= re.compile('\\s|\\+|\\-|\\*|\\/|\\\\|\\%|\\<|\\>|\\@|\\!|\\~|\\^|\\&|\\:`
+### invalid\_stage\_regex
 
 `= re.compile('\\s|\\+|\\-|\\*|\\/|\\\\|\\%|\\<|\\>|\\@|\\!|\\~|\\^|\\&|\\:|\\[|\\]|\\{|\\}|\\(|\\)')`
 

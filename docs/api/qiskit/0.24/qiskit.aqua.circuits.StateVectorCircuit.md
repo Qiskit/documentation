@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.circuits.StateVectorCircuit
 
 <span id="qiskit.aqua.circuits.StateVectorCircuit" />
 
-`StateVectorCircuit(state_vector)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/circuits/statevector_circuit.py "view source code")
+`StateVectorCircuit(state_vector)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/circuits/statevector_circuit.py "view source code")
 
 Arbitrary State-Vector Circuit.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.ConsolidateBlocks
 
 <span id="qiskit.transpiler.passes.ConsolidateBlocks" />
 
-`ConsolidateBlocks(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/optimization/consolidate_blocks.py "view source code")
+`ConsolidateBlocks(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/optimization/consolidate_blocks.py "view source code")
 
 Bases: `qiskit.transpiler.basepasses.TransformationPass`
 
@@ -44,7 +44,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.ConsolidateBlocks.run" />
 
-`ConsolidateBlocks.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/optimization/consolidate_blocks.py "view source code")
+`ConsolidateBlocks.run(dag)`
 
 Run the ConsolidateBlocks pass on dag.
 

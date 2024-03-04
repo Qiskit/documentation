@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.PassManager
 
 <span id="qiskit.transpiler.PassManager" />
 
-`qiskit.transpiler.PassManager(passes=None, max_iteration=1000)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passmanager.py "view source code")
+`qiskit.transpiler.PassManager(passes=None, max_iteration=1000)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passmanager.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 

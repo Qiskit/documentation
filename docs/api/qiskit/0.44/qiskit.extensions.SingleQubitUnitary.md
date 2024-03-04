@@ -10,7 +10,7 @@ python_api_name: qiskit.extensions.SingleQubitUnitary
 
 <span id="qiskit.extensions.SingleQubitUnitary" />
 
-`qiskit.extensions.SingleQubitUnitary(unitary_matrix, mode='ZYZ', up_to_diagonal=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/extensions/quantum_initializer/squ.py "view source code")
+`qiskit.extensions.SingleQubitUnitary(unitary_matrix, mode='ZYZ', up_to_diagonal=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/extensions/quantum_initializer/squ.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 

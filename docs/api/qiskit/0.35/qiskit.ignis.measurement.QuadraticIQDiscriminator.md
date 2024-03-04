@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.measurement.QuadraticIQDiscriminator
 
 <span id="qiskit.ignis.measurement.QuadraticIQDiscriminator" />
 
-`QuadraticIQDiscriminator(cal_results, qubit_mask, expected_states=None, standardize=False, schedules=None, discriminator_parameters=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/measurement/discriminator/iq_discriminators.py "view source code")
+`QuadraticIQDiscriminator(cal_results, qubit_mask, expected_states=None, standardize=False, schedules=None, discriminator_parameters=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/measurement/discriminator/iq_discriminators.py "view source code")
 
 Bases: `qiskit.ignis.measurement.discriminator.iq_discriminators.IQDiscriminationFitter`
 
@@ -48,7 +48,7 @@ Quadratic discriminant analysis discriminator for IQ data.
 
 <span id="qiskit.ignis.measurement.QuadraticIQDiscriminator.discriminate" />
 
-`QuadraticIQDiscriminator.discriminate(x_data)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/measurement/discriminator/iq_discriminators.py "view source code")
+`QuadraticIQDiscriminator.discriminate(x_data)`
 
 Applies the discriminator to x\_data.
 
@@ -68,7 +68,7 @@ The discriminated x\_data as a list of labels.
 
 <span id="qiskit.ignis.measurement.QuadraticIQDiscriminator.fit" />
 
-`QuadraticIQDiscriminator.fit()`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/measurement/discriminator/iq_discriminators.py "view source code")
+`QuadraticIQDiscriminator.fit()`
 
 Fits the discriminator using self.\_xdata and self.\_ydata.
 

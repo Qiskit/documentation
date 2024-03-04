@@ -285,9 +285,9 @@ export function processMembersAndSetMeta(
       .map((child) => {
         const $child = $(child);
         const id = $dl.find("dt").attr("id") || "";
-        const github = prepareGitHubLink($, $child);
-
         const apiType = getApiType($dl);
+
+        const github = prepareGitHubLink($child, apiType === "method");
 
         if (child.name !== "dt" || !apiType) {
           return `<div>${$child.html()}</div>`;
@@ -319,6 +319,10 @@ export function processMembersAndSetMeta(
           if (id) {
             if (!priorApiType) {
               $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
+            } else if (!$child.attr("id")) {
+              // Overload methods have more than one <dt> tag, but only the first one
+              // contains an id.
+              return `<p><code>${$child.html()}</code>${github}</p>`;
             } else {
               // Inline methods
               $(`<h3>${getLastPartFromFullIdentifier(id)}</h3>`).insertBefore(
@@ -345,8 +349,13 @@ export function processMembersAndSetMeta(
 
           // Else, the attribute is embedded on the class
           const text = $child.text();
+
+          // Index of the default value of the attribute
           const equalIndex = text.indexOf("=");
-          const colonIndex = text.indexOf(":");
+          // Index of the attribute's type. The type should be
+          // found before the default value
+          const colonIndex = text.slice(0, equalIndex).indexOf(":");
+
           let name = text;
           let type: string | undefined;
           let value: string | undefined;
@@ -401,15 +410,25 @@ export function processMembersAndSetMeta(
  *
  * This function works the same regardless of whether the Sphinx build used `sphinx.ext.viewcode`
  * or `sphinx.ext.linkcode` because they have the same HTML structure.
+ *
+ * If the link corresponds to a method, we only return a link if it has line numbers included,
+ * which implies that the link came from `sphinx.ext.linkcode` rather than `sphinx.ext.viewcode`.
+ * That's because the owning class will already have a link to the relevant file; it's
+ * noisy and not helpful to repeat the same link without line numbers for the individual methods.
  */
-export function prepareGitHubLink($: CheerioAPI, $child: Cheerio<any>): string {
+export function prepareGitHubLink(
+  $child: Cheerio<any>,
+  isMethod: boolean,
+): string {
   const originalLink = $child.find(".viewcode-link").closest("a");
   if (originalLink.length === 0) {
     return "";
   }
   const href = originalLink.attr("href")!;
-  originalLink.remove();
-  return `<a href="${href}" title="view source code">GitHub</a>`;
+  originalLink.first().remove();
+  return !isMethod || href.includes(".py#")
+    ? ` <a href="${href}" title="view source code">GitHub</a>`
+    : "";
 }
 
 export function maybeSetModuleMetadata(

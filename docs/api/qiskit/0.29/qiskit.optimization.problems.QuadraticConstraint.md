@@ -10,7 +10,7 @@ python_api_name: qiskit.optimization.problems.QuadraticConstraint
 
 <span id="qiskit.optimization.problems.QuadraticConstraint" />
 
-`QuadraticConstraint(quadratic_program, name, linear, quadratic, sense, rhs)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_constraint.py "view source code")
+`QuadraticConstraint(quadratic_program, name, linear, quadratic, sense, rhs)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_constraint.py "view source code")
 
 Bases: `qiskit.optimization.problems.constraint.Constraint`
 
@@ -33,7 +33,7 @@ Constructs a quadratic constraint, consisting of a linear and a quadratic term.
 
 <span id="qiskit.optimization.problems.QuadraticConstraint.evaluate" />
 
-`QuadraticConstraint.evaluate(x)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_constraint.py "view source code")
+`QuadraticConstraint.evaluate(x)`
 
 Evaluate the left-hand-side of the constraint.
 

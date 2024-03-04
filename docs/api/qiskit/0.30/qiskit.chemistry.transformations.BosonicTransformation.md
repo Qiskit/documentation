@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.transformations.BosonicTransformation
 
 <span id="qiskit.chemistry.transformations.BosonicTransformation" />
 
-`BosonicTransformation(qubit_mapping=<BosonicQubitMappingType.DIRECT: 'direct'>, transformation_type=<BosonicTransformationType.HARMONIC: 'harmonic'>, basis_size=2, truncation=3)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/transformations/bosonic_transformation.py "view source code")
+`BosonicTransformation(qubit_mapping=<BosonicQubitMappingType.DIRECT: 'direct'>, transformation_type=<BosonicTransformationType.HARMONIC: 'harmonic'>, basis_size=2, truncation=3)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/transformations/bosonic_transformation.py "view source code")
 
 Bases: `qiskit.chemistry.transformations.transformation.Transformation`
 
@@ -29,7 +29,7 @@ A vibronic Hamiltonian operator representing the energy of the nuclei in the mol
 
 <span id="qiskit.chemistry.transformations.BosonicTransformation.build_hopping_operators" />
 
-`BosonicTransformation.build_hopping_operators(excitations='sd')`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/transformations/bosonic_transformation.py "view source code")
+`BosonicTransformation.build_hopping_operators(excitations='sd')`
 
 **Parameters**
 
@@ -47,7 +47,7 @@ Dict of hopping operators, dict of commutativity types and dict of excitation in
 
 <span id="qiskit.chemistry.transformations.BosonicTransformation.get_default_filter_criterion" />
 
-`BosonicTransformation.get_default_filter_criterion()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/transformations/bosonic_transformation.py "view source code")
+`BosonicTransformation.get_default_filter_criterion()`
 
 Returns a default filter criterion method to filter the eigenvalues computed by the eigen solver. For more information see also aqua.algorithms.eigen\_solvers.NumPyEigensolver.filter\_criterion. In the fermionic case the default filter ensures that the number of particles is being preserved.
 
@@ -59,7 +59,7 @@ Returns a default filter criterion method to filter the eigenvalues computed by 
 
 <span id="qiskit.chemistry.transformations.BosonicTransformation.interpret" />
 
-`BosonicTransformation.interpret(raw_result)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/transformations/bosonic_transformation.py "view source code")
+`BosonicTransformation.interpret(raw_result)`
 
 Interprets an EigenstateResult in the context of this transformation.
 
@@ -79,7 +79,7 @@ An vibronic structure result.
 
 <span id="qiskit.chemistry.transformations.BosonicTransformation.transform" />
 
-`BosonicTransformation.transform(driver, aux_operators=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/transformations/bosonic_transformation.py "view source code")
+`BosonicTransformation.transform(driver, aux_operators=None)`
 
 Transformation to qubit operator from the driver
 

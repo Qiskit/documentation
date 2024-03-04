@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.optimizers.CG
 
 <span id="qiskit.aqua.components.optimizers.CG" />
 
-`CG(maxiter=20, disp=False, gtol=1e-05, tol=None, eps=1.4901161193847656e-08)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/optimizers/cg.py "view source code")
+`CG(maxiter=20, disp=False, gtol=1e-05, tol=None, eps=1.4901161193847656e-08)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/optimizers/cg.py "view source code")
 
 Bases: `qiskit.aqua.components.optimizers.optimizer.Optimizer`
 
@@ -34,7 +34,7 @@ Uses scipy.optimize.minimize CG. For further detail, please refer to [https://do
 
 <span id="qiskit.aqua.components.optimizers.CG.get_support_level" />
 
-`CG.get_support_level()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/optimizers/cg.py "view source code")
+`CG.get_support_level()`
 
 Return support level dictionary
 
@@ -65,7 +65,7 @@ grad
 
 <span id="qiskit.aqua.components.optimizers.CG.optimize" />
 
-`CG.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/optimizers/cg.py "view source code")
+`CG.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
 Perform optimization.
 

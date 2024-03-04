@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.Options
 
 <span id="qiskit.providers.Options" />
 
-`Options`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/providers/options.py "view source code")
+`Options` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/providers/options.py "view source code")
 
 Bases: `types.SimpleNamespace`
 
@@ -24,7 +24,7 @@ This class is the abstract class that all backend options are based on. The prop
 
 <span id="qiskit.providers.Options.get" />
 
-`Options.get(field, default=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/providers/options.py "view source code")
+`Options.get(field, default=None)`
 
 Get an option value for a given key.
 
@@ -32,7 +32,7 @@ Get an option value for a given key.
 
 <span id="qiskit.providers.Options.update_options" />
 
-`Options.update_options(**fields)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/providers/options.py "view source code")
+`Options.update_options(**fields)`
 
 Update options with kwargs
 

@@ -1,7 +1,7 @@
 ---
 title: plugin
 description: API reference for qiskit.transpiler.preset_passmanagers.plugin
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.transpiler.preset_passmanagers.plugin
 ---
@@ -101,7 +101,7 @@ Note that the entry point `name = path` is a single string not a Python expressi
 
 <span id="qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins" />
 
-`qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins(stage_name)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/preset_passmanagers/plugin.py "view source code")
+`qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins(stage_name)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/preset_passmanagers/plugin.py "view source code")
 
 Get a list of installed plugins for a stage.
 
@@ -125,7 +125,7 @@ plugins
 
 <span id="qiskit.transpiler.preset_passmanagers.plugin.passmanager_stage_plugins" />
 
-`qiskit.transpiler.preset_passmanagers.plugin.passmanager_stage_plugins(stage)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/preset_passmanagers/plugin.py "view source code")
+`qiskit.transpiler.preset_passmanagers.plugin.passmanager_stage_plugins(stage)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/preset_passmanagers/plugin.py "view source code")
 
 Return a dict with, for each stage name, the class type of the plugin.
 

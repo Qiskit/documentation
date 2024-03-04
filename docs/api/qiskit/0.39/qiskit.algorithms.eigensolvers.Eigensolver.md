@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.eigensolvers.Eigensolver
 
 <span id="qiskit.algorithms.eigensolvers.Eigensolver" />
 
-`Eigensolver`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/eigensolvers/eigensolver.py "view source code")
+`Eigensolver` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/eigensolvers/eigensolver.py "view source code")
 
 Bases: `abc.ABC`
 
@@ -24,7 +24,7 @@ Algorithms that can compute eigenvalues for an operator may implement this inter
 
 <span id="qiskit.algorithms.eigensolvers.Eigensolver.compute_eigenvalues" />
 
-`abstract Eigensolver.compute_eigenvalues(operator, aux_operators=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/eigensolvers/eigensolver.py "view source code")
+`abstract Eigensolver.compute_eigenvalues(operator, aux_operators=None)`
 
 Computes the minimum eigenvalue. The `operator` and `aux_operators` are supplied here. While an `operator` is required by algorithms, `aux_operators` are optional.
 
@@ -45,7 +45,7 @@ An eigensolver result.
 
 <span id="qiskit.algorithms.eigensolvers.Eigensolver.supports_aux_operators" />
 
-`classmethod Eigensolver.supports_aux_operators()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/eigensolvers/eigensolver.py "view source code")
+`classmethod Eigensolver.supports_aux_operators()`
 
 Whether computing the expectation value of auxiliary operators is supported.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.BaseBackend
 
 <span id="qiskit.providers.BaseBackend" />
 
-`BaseBackend(configuration, provider=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/basebackend.py "view source code")
+`BaseBackend(configuration, provider=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/basebackend.py "view source code")
 
 Base class for backends.
 
@@ -33,7 +33,7 @@ This method should initialize the module and its configuration, and raise an exc
 
 <span id="qiskit.providers.BaseBackend.configuration" />
 
-`BaseBackend.configuration()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/basebackend.py "view source code")
+`BaseBackend.configuration()`
 
 Return the backend configuration.
 
@@ -49,7 +49,7 @@ the configuration for the backend.
 
 <span id="qiskit.providers.BaseBackend.name" />
 
-`BaseBackend.name()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/basebackend.py "view source code")
+`BaseBackend.name()`
 
 Return the backend name.
 
@@ -65,7 +65,7 @@ str
 
 <span id="qiskit.providers.BaseBackend.properties" />
 
-`BaseBackend.properties()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/basebackend.py "view source code")
+`BaseBackend.properties()`
 
 Return the backend properties.
 
@@ -81,7 +81,7 @@ the configuration for the backend. If the backend does not support properties, i
 
 <span id="qiskit.providers.BaseBackend.provider" />
 
-`BaseBackend.provider()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/basebackend.py "view source code")
+`BaseBackend.provider()`
 
 Return the backend Provider.
 
@@ -97,7 +97,7 @@ the Provider responsible for the backend.
 
 <span id="qiskit.providers.BaseBackend.run" />
 
-`abstract BaseBackend.run(qobj)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/basebackend.py "view source code")
+`abstract BaseBackend.run(qobj)`
 
 Run a Qobj on the the backend.
 
@@ -109,7 +109,7 @@ Run a Qobj on the the backend.
 
 <span id="qiskit.providers.BaseBackend.status" />
 
-`BaseBackend.status()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/basebackend.py "view source code")
+`BaseBackend.status()`
 
 Return the backend status.
 
@@ -125,7 +125,7 @@ the status of the backend.
 
 <span id="qiskit.providers.BaseBackend.version" />
 
-`BaseBackend.version()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/basebackend.py "view source code")
+`BaseBackend.version()`
 
 Return the backend version.
 

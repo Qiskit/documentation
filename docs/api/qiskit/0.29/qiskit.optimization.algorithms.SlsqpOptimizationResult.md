@@ -10,7 +10,7 @@ python_api_name: qiskit.optimization.algorithms.SlsqpOptimizationResult
 
 <span id="qiskit.optimization.algorithms.SlsqpOptimizationResult" />
 
-`SlsqpOptimizationResult(x, fval, variables, status, fx=None, its=None, imode=None, smode=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/slsqp_optimizer.py "view source code")
+`SlsqpOptimizationResult(x, fval, variables, status, fx=None, its=None, imode=None, smode=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/slsqp_optimizer.py "view source code")
 
 Bases: `qiskit.optimization.algorithms.optimization_algorithm.OptimizationResult`
 

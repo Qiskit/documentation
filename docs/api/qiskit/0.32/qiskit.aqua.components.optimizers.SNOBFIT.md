@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.optimizers.SNOBFIT
 
 <span id="qiskit.aqua.components.optimizers.SNOBFIT" />
 
-`SNOBFIT(maxiter=1000, maxfail=10, maxmp=None, verbose=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/optimizers/snobfit.py "view source code")
+`SNOBFIT(maxiter=1000, maxfail=10, maxmp=None, verbose=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/optimizers/snobfit.py "view source code")
 
 Bases: `qiskit.aqua.components.optimizers.optimizer.Optimizer`
 
@@ -37,7 +37,7 @@ Uses skquant.opt installed with pip install scikit-quant. For further detail, pl
 
 <span id="qiskit.aqua.components.optimizers.SNOBFIT.get_support_level" />
 
-`SNOBFIT.get_support_level()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/optimizers/snobfit.py "view source code")
+`SNOBFIT.get_support_level()`
 
 Returns support level dictionary.
 
@@ -68,7 +68,7 @@ grad
 
 <span id="qiskit.aqua.components.optimizers.SNOBFIT.optimize" />
 
-`SNOBFIT.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/optimizers/snobfit.py "view source code")
+`SNOBFIT.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
 Runs the optimization.
 

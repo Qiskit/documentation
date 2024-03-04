@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.optimizers.AQGD
 
 <span id="qiskit.aqua.components.optimizers.AQGD" />
 
-`AQGD(maxiter=1000, eta=1.0, tol=1e-06, disp=False, momentum=0.25, param_tol=1e-06, averaging=10)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/optimizers/aqgd.py "view source code")
+`AQGD(maxiter=1000, eta=1.0, tol=1e-06, disp=False, momentum=0.25, param_tol=1e-06, averaging=10)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/optimizers/aqgd.py "view source code")
 
 Analytic Quantum Gradient Descent (AQGD) with Epochs optimizer. Performs gradient descent optimization with a momentum term, analytic gradients, and customized step length schedule for parametrized quantum gates, i.e. Pauli Rotations. See, for example:
 

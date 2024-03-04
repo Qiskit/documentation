@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.GradientDescent
 
 <span id="qiskit.algorithms.optimizers.GradientDescent" />
 
-`GradientDescent(maxiter=100, learning_rate=0.01, tol=1e-07, callback=None, perturbation=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/optimizers/gradient_descent.py "view source code")
+`GradientDescent(maxiter=100, learning_rate=0.01, tol=1e-07, callback=None, perturbation=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/optimizers/gradient_descent.py "view source code")
 
 Bases: [`SteppableOptimizer`](qiskit.algorithms.optimizers.SteppableOptimizer "qiskit.algorithms.optimizers.steppable_optimizer.SteppableOptimizer")
 
@@ -143,7 +143,7 @@ To see other libraries that use this interface one can visit: [https://optuna.re
 
 <span id="qiskit.algorithms.optimizers.GradientDescent.ask" />
 
-`GradientDescent.ask()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/optimizers/gradient_descent.py "view source code")
+`GradientDescent.ask()`
 
 Returns an object with the data needed to evaluate the gradient.
 
@@ -159,7 +159,7 @@ If this object contains a gradient function the gradient can be evaluated direct
 
 <span id="qiskit.algorithms.optimizers.GradientDescent.continue_condition" />
 
-`GradientDescent.continue_condition()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/optimizers/gradient_descent.py "view source code")
+`GradientDescent.continue_condition()`
 
 Condition that indicates the optimization process should come to an end.
 
@@ -179,7 +179,7 @@ bool
 
 <span id="qiskit.algorithms.optimizers.GradientDescent.create_result" />
 
-`GradientDescent.create_result()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/optimizers/gradient_descent.py "view source code")
+`GradientDescent.create_result()`
 
 Creates a result of the optimization process.
 
@@ -199,7 +199,7 @@ The result of the optimization process.
 
 <span id="qiskit.algorithms.optimizers.GradientDescent.evaluate" />
 
-`GradientDescent.evaluate(ask_data)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/optimizers/gradient_descent.py "view source code")
+`GradientDescent.evaluate(ask_data)`
 
 Evaluates the gradient.
 
@@ -223,7 +223,7 @@ The data containing the gradient evaluation.
 
 <span id="qiskit.algorithms.optimizers.GradientDescent.get_support_level" />
 
-`GradientDescent.get_support_level()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/optimizers/gradient_descent.py "view source code")
+`GradientDescent.get_support_level()`
 
 Get the support level dictionary.
 
@@ -321,7 +321,7 @@ The options dictionary may be used internally by a given optimizer to pass addit
 
 <span id="qiskit.algorithms.optimizers.GradientDescent.start" />
 
-`GradientDescent.start(fun, x0, jac=None, bounds=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/optimizers/gradient_descent.py "view source code")
+`GradientDescent.start(fun, x0, jac=None, bounds=None)`
 
 Populates the state of the optimizer with the data provided and sets all the counters to 0.
 
@@ -350,7 +350,7 @@ This method composes [`ask()`](qiskit.algorithms.optimizers.GradientDescent#ask 
 
 <span id="qiskit.algorithms.optimizers.GradientDescent.tell" />
 
-`GradientDescent.tell(ask_data, tell_data)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/optimizers/gradient_descent.py "view source code")
+`GradientDescent.tell(ask_data, tell_data)`
 
 Updates `x` by an ammount proportional to the learning rate and value of the gradient at that point.
 

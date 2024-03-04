@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeEssexV2
 
 <span id="qiskit.providers.fake_provider.FakeEssexV2" />
 
-`FakeEssexV2`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/fake_provider/backends/essex/fake_essex.py "view source code")
+`FakeEssexV2` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/fake_provider/backends/essex/fake_essex.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_backend.FakeBackendV2`
 

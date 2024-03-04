@@ -10,7 +10,7 @@ python_api_name: qiskit.optimization.algorithms.GroverOptimizer
 
 <span id="qiskit.optimization.algorithms.GroverOptimizer" />
 
-`GroverOptimizer(num_value_qubits, num_iterations=3, quantum_instance=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/algorithms/grover_optimizer.py "view source code")
+`GroverOptimizer(num_value_qubits, num_iterations=3, quantum_instance=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/algorithms/grover_optimizer.py "view source code")
 
 Uses Grover Adaptive Search (GAS) to find the minimum of a QUBO function.
 
@@ -44,7 +44,7 @@ The quantum instance used in the algorithm.
 
 <span id="qiskit.optimization.algorithms.GroverOptimizer.get_compatibility_msg" />
 
-`GroverOptimizer.get_compatibility_msg(problem)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/algorithms/grover_optimizer.py "view source code")
+`GroverOptimizer.get_compatibility_msg(problem)`
 
 Checks whether a given problem can be solved with this optimizer.
 
@@ -86,7 +86,7 @@ Returns True if the problem is compatible, False otherwise.
 
 <span id="qiskit.optimization.algorithms.GroverOptimizer.solve" />
 
-`GroverOptimizer.solve(problem)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/algorithms/grover_optimizer.py "view source code")
+`GroverOptimizer.solve(problem)`
 
 Tries to solves the given problem using the grover optimizer.
 

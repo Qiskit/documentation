@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.neural_networks.PyTorchDiscriminator
 
 <span id="qiskit.aqua.components.neural_networks.PyTorchDiscriminator" />
 
-`PyTorchDiscriminator(n_features=1, n_out=1)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/neural_networks/pytorch_discriminator.py "view source code")
+`PyTorchDiscriminator(n_features=1, n_out=1)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/neural_networks/pytorch_discriminator.py "view source code")
 
 Discriminator based on PyTorch
 
@@ -43,7 +43,7 @@ object
 
 <span id="qiskit.aqua.components.neural_networks.PyTorchDiscriminator.get_label" />
 
-`PyTorchDiscriminator.get_label(x, detach=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/neural_networks/pytorch_discriminator.py "view source code")
+`PyTorchDiscriminator.get_label(x, detach=False)`
 
 Get data sample labels, i.e. true or fake.
 
@@ -64,7 +64,7 @@ torch.Tensor
 
 <span id="qiskit.aqua.components.neural_networks.PyTorchDiscriminator.gradient_penalty" />
 
-`PyTorchDiscriminator.gradient_penalty(x, lambda_=5.0, k=0.01, c=1.0)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/neural_networks/pytorch_discriminator.py "view source code")
+`PyTorchDiscriminator.gradient_penalty(x, lambda_=5.0, k=0.01, c=1.0)`
 
 Compute gradient penalty for discriminator optimization
 
@@ -87,7 +87,7 @@ torch.Tensor
 
 <span id="qiskit.aqua.components.neural_networks.PyTorchDiscriminator.load_model" />
 
-`PyTorchDiscriminator.load_model(load_dir)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/neural_networks/pytorch_discriminator.py "view source code")
+`PyTorchDiscriminator.load_model(load_dir)`
 
 Load discriminator model
 
@@ -99,7 +99,7 @@ Load discriminator model
 
 <span id="qiskit.aqua.components.neural_networks.PyTorchDiscriminator.loss" />
 
-`PyTorchDiscriminator.loss(x, y, weights=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/neural_networks/pytorch_discriminator.py "view source code")
+`PyTorchDiscriminator.loss(x, y, weights=None)`
 
 Loss function
 
@@ -121,7 +121,7 @@ torch.Tensor
 
 <span id="qiskit.aqua.components.neural_networks.PyTorchDiscriminator.save_model" />
 
-`PyTorchDiscriminator.save_model(snapshot_dir)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/neural_networks/pytorch_discriminator.py "view source code")
+`PyTorchDiscriminator.save_model(snapshot_dir)`
 
 Save discriminator model
 
@@ -133,7 +133,7 @@ Save discriminator model
 
 <span id="qiskit.aqua.components.neural_networks.PyTorchDiscriminator.set_seed" />
 
-`PyTorchDiscriminator.set_seed(seed)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/neural_networks/pytorch_discriminator.py "view source code")
+`PyTorchDiscriminator.set_seed(seed)`
 
 Set seed.
 
@@ -145,7 +145,7 @@ Set seed.
 
 <span id="qiskit.aqua.components.neural_networks.PyTorchDiscriminator.train" />
 
-`PyTorchDiscriminator.train(data, weights, penalty=True, quantum_instance=None, shots=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/neural_networks/pytorch_discriminator.py "view source code")
+`PyTorchDiscriminator.train(data, weights, penalty=True, quantum_instance=None, shots=None)`
 
 Perform one training step w\.r.t. to the discriminator’s parameters
 

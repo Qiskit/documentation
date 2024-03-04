@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.WeightedAdder
 
 <span id="qiskit.circuit.library.WeightedAdder" />
 
-`qiskit.circuit.library.WeightedAdder(num_state_qubits=None, weights=None, name='adder')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/arithmetic/weighted_adder.py "view source code")
+`qiskit.circuit.library.WeightedAdder(num_state_qubits=None, weights=None, name='adder')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/arithmetic/weighted_adder.py "view source code")
 
 Bases: `BlueprintCircuit`
 

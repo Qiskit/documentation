@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.ControlChannel
 
 <span id="qiskit.pulse.ControlChannel" />
 
-`ControlChannel(index)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/channels.py "view source code")
+`ControlChannel(index)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/channels.py "view source code")
 
 Control channels provide supplementary control over the qubit to the drive channel. These are often associated with multi-qubit gate operations. They may not map trivially to a particular qubit index.
 

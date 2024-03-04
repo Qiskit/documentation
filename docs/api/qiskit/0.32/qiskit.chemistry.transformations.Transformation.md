@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.transformations.Transformation
 
 <span id="qiskit.chemistry.transformations.Transformation" />
 
-`Transformation`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/transformations/transformation.py "view source code")
+`Transformation` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/transformations/transformation.py "view source code")
 
 Bases: `abc.ABC`
 
@@ -22,7 +22,7 @@ Base class for transformation to qubit operators for chemistry problems
 
 <span id="qiskit.chemistry.transformations.Transformation.build_hopping_operators" />
 
-`abstract Transformation.build_hopping_operators(excitations='sd')`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/transformations/transformation.py "view source code")
+`abstract Transformation.build_hopping_operators(excitations='sd')`
 
 Builds the product of raising and lowering operators (basic excitation operators)
 
@@ -40,7 +40,7 @@ Returns:
 
 <span id="qiskit.chemistry.transformations.Transformation.get_default_filter_criterion" />
 
-`Transformation.get_default_filter_criterion()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/transformations/transformation.py "view source code")
+`Transformation.get_default_filter_criterion()`
 
 Returns a default filter criterion method to filter the eigenvalues computed by the eigen solver. For more information see also aqua.algorithms.eigen\_solvers.NumPyEigensolver.filter\_criterion.
 
@@ -52,7 +52,7 @@ Returns a default filter criterion method to filter the eigenvalues computed by 
 
 <span id="qiskit.chemistry.transformations.Transformation.interpret" />
 
-`abstract Transformation.interpret(raw_result)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/transformations/transformation.py "view source code")
+`abstract Transformation.interpret(raw_result)`
 
 Interprets an EigenstateResult in the context of this transformation.
 
@@ -72,7 +72,7 @@ An “interpreted” eigenstate result.
 
 <span id="qiskit.chemistry.transformations.Transformation.transform" />
 
-`abstract Transformation.transform(driver, aux_operators=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/transformations/transformation.py "view source code")
+`abstract Transformation.transform(driver, aux_operators=None)`
 
 Transformation from the `driver` to a qubit operator.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.mitigation.TensoredExpvalMeasMitigator
 
 <span id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator" />
 
-`TensoredExpvalMeasMitigator(amats)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/mitigation/expval/tensored_mitigator.py "view source code")
+`TensoredExpvalMeasMitigator(amats)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/mitigation/expval/tensored_mitigator.py "view source code")
 
 Bases: `qiskit.ignis.mitigation.expval.base_meas_mitigator.BaseExpvalMeasMitigator`
 
@@ -32,7 +32,7 @@ Initialize a TensorMeasurementMitigator
 
 <span id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.assignment_fidelity" />
 
-`TensoredExpvalMeasMitigator.assignment_fidelity(qubits=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/mitigation/expval/tensored_mitigator.py "view source code")
+`TensoredExpvalMeasMitigator.assignment_fidelity(qubits=None)`
 
 Return the measurement assignment fidelity on the specified qubits.
 
@@ -54,7 +54,7 @@ float
 
 <span id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.assignment_matrix" />
 
-`TensoredExpvalMeasMitigator.assignment_matrix(qubits=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/mitigation/expval/tensored_mitigator.py "view source code")
+`TensoredExpvalMeasMitigator.assignment_matrix(qubits=None)`
 
 Return the measurement assignment matrix for specified qubits.
 
@@ -76,7 +76,7 @@ np.ndarray
 
 <span id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.expectation_value" />
 
-`TensoredExpvalMeasMitigator.expectation_value(counts, diagonal=None, qubits=None, clbits=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/mitigation/expval/tensored_mitigator.py "view source code")
+`TensoredExpvalMeasMitigator.expectation_value(counts, diagonal=None, qubits=None, clbits=None)`
 
 Compute the mitigated expectation value of a diagonal observable.
 
@@ -107,7 +107,7 @@ The `clbits` kwarg is used to marginalize the input counts dictionary over the s
 
 <span id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.mitigation_matrix" />
 
-`TensoredExpvalMeasMitigator.mitigation_matrix(qubits=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/mitigation/expval/tensored_mitigator.py "view source code")
+`TensoredExpvalMeasMitigator.mitigation_matrix(qubits=None)`
 
 Return the measurement mitigation matrix for the specified qubits.
 

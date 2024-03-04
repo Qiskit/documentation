@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.CommutationChecker
 
 <span id="qiskit.circuit.CommutationChecker" />
 
-`CommutationChecker`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/commutation_checker.py "view source code")
+`CommutationChecker` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/commutation_checker.py "view source code")
 
 Bases: `object`
 
@@ -22,7 +22,7 @@ This code is essentially copy-pasted from commutative\_analysis.py. This code cl
 
 <span id="qiskit.circuit.CommutationChecker.commute" />
 
-`CommutationChecker.commute(op1, qargs1, cargs1, op2, qargs2, cargs2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/commutation_checker.py "view source code")
+`CommutationChecker.commute(op1, qargs1, cargs1, op2, qargs2, cargs2)`
 
 Checks if two Operations commute.
 

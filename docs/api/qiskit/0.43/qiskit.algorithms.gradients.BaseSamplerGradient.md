@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.gradients.BaseSamplerGradient
 
 <span id="qiskit.algorithms.gradients.BaseSamplerGradient" />
 
-`BaseSamplerGradient(sampler, options=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/gradients/base_sampler_gradient.py "view source code")
+`BaseSamplerGradient(sampler, options=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/gradients/base_sampler_gradient.py "view source code")
 
 Bases: `ABC`
 
@@ -29,7 +29,7 @@ Base class for a `SamplerGradient` to compute the gradients of the sampling prob
 
 <span id="qiskit.algorithms.gradients.BaseSamplerGradient.run" />
 
-`BaseSamplerGradient.run(circuits, parameter_values, parameters=None, **options)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/gradients/base_sampler_gradient.py "view source code")
+`BaseSamplerGradient.run(circuits, parameter_values, parameters=None, **options)`
 
 Run the job of the sampler gradient on the given circuits.
 
@@ -58,7 +58,7 @@ The job object of the gradients of the sampling probability. The i-th result cor
 
 <span id="qiskit.algorithms.gradients.BaseSamplerGradient.update_default_options" />
 
-`BaseSamplerGradient.update_default_options(**options)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/gradients/base_sampler_gradient.py "view source code")
+`BaseSamplerGradient.update_default_options(**options)`
 
 Update the gradient’s default options setting.
 

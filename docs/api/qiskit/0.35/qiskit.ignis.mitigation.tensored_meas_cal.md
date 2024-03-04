@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.mitigation.tensored_meas_cal
 
 <span id="qiskit.ignis.mitigation.tensored_meas_cal" />
 
-`tensored_meas_cal(mit_pattern=None, qr=None, cr=None, circlabel='')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/mitigation/measurement/circuits.py "view source code")
+`tensored_meas_cal(mit_pattern=None, qr=None, cr=None, circlabel='')` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/mitigation/measurement/circuits.py "view source code")
 
 Return a list of calibration circuits
 

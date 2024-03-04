@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.QuantumInstance
 
 <span id="qiskit.aqua.QuantumInstance" />
 
-`QuantumInstance(backend, shots=1024, seed_simulator=None, max_credits=10, basis_gates=None, coupling_map=None, initial_layout=None, pass_manager=None, seed_transpiler=None, optimization_level=None, backend_options=None, noise_model=None, timeout=None, wait=5.0, skip_qobj_validation=True, measurement_error_mitigation_cls=None, cals_matrix_refresh_period=30, measurement_error_mitigation_shots=None, job_callback=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/quantum_instance.py "view source code")
+`QuantumInstance(backend, shots=1024, seed_simulator=None, max_credits=10, basis_gates=None, coupling_map=None, initial_layout=None, pass_manager=None, seed_transpiler=None, optimization_level=None, backend_options=None, noise_model=None, timeout=None, wait=5.0, skip_qobj_validation=True, measurement_error_mitigation_cls=None, cals_matrix_refresh_period=30, measurement_error_mitigation_shots=None, job_callback=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/quantum_instance.py "view source code")
 
 Bases: `object`
 
@@ -52,7 +52,7 @@ Quantum Instance holds a Qiskit Terra backend as well as configuration for circu
 
 <span id="qiskit.aqua.QuantumInstance.assemble" />
 
-`QuantumInstance.assemble(circuits)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/quantum_instance.py "view source code")
+`QuantumInstance.assemble(circuits)`
 
 assemble circuits
 
@@ -64,7 +64,7 @@ assemble circuits
 
 <span id="qiskit.aqua.QuantumInstance.cals_matrix" />
 
-`QuantumInstance.cals_matrix(qubit_index=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/quantum_instance.py "view source code")
+`QuantumInstance.cals_matrix(qubit_index=None)`
 
 Get the stored calibration matrices and its timestamp.
 
@@ -84,7 +84,7 @@ The calibration matrix and the creation timestamp if qubit\_index is not None ot
 
 <span id="qiskit.aqua.QuantumInstance.execute" />
 
-`QuantumInstance.execute(circuits, had_transpiled=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/quantum_instance.py "view source code")
+`QuantumInstance.execute(circuits, had_transpiled=False)`
 
 A wrapper to interface with quantum backend.
 
@@ -109,7 +109,7 @@ assembling to the qobj.
 
 <span id="qiskit.aqua.QuantumInstance.maybe_refresh_cals_matrix" />
 
-`QuantumInstance.maybe_refresh_cals_matrix(timestamp=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/quantum_instance.py "view source code")
+`QuantumInstance.maybe_refresh_cals_matrix(timestamp=None)`
 
 Calculate the time difference from the query of last time.
 
@@ -129,7 +129,7 @@ Whether or not refresh the cals\_matrix
 
 <span id="qiskit.aqua.QuantumInstance.reset_execution_results" />
 
-`QuantumInstance.reset_execution_results()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/quantum_instance.py "view source code")
+`QuantumInstance.reset_execution_results()`
 
 Reset execution results
 
@@ -141,7 +141,7 @@ Reset execution results
 
 <span id="qiskit.aqua.QuantumInstance.set_config" />
 
-`QuantumInstance.set_config(**kwargs)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/quantum_instance.py "view source code")
+`QuantumInstance.set_config(**kwargs)`
 
 Set configurations for the quantum instance.
 
@@ -149,7 +149,7 @@ Set configurations for the quantum instance.
 
 <span id="qiskit.aqua.QuantumInstance.transpile" />
 
-`QuantumInstance.transpile(circuits)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/quantum_instance.py "view source code")
+`QuantumInstance.transpile(circuits)`
 
 A wrapper to transpile circuits to allow algorithm access the transpiled circuits. :type circuits: `Union`\[`QuantumCircuit`, `List`\[`QuantumCircuit`]] :param circuits: circuits to transpile
 

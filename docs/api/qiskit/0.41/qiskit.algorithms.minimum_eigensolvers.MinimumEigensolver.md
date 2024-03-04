@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.minimum_eigensolvers.MinimumEigensolver
 
 <span id="qiskit.algorithms.minimum_eigensolvers.MinimumEigensolver" />
 
-`MinimumEigensolver`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/minimum_eigensolvers/minimum_eigensolver.py "view source code")
+`MinimumEigensolver` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/minimum_eigensolvers/minimum_eigensolver.py "view source code")
 
 Bases: `abc.ABC`
 
@@ -24,7 +24,7 @@ Algorithms that can compute a minimum eigenvalue for an operator may implement t
 
 <span id="qiskit.algorithms.minimum_eigensolvers.MinimumEigensolver.compute_minimum_eigenvalue" />
 
-`abstract MinimumEigensolver.compute_minimum_eigenvalue(operator, aux_operators=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/minimum_eigensolvers/minimum_eigensolver.py "view source code")
+`abstract MinimumEigensolver.compute_minimum_eigenvalue(operator, aux_operators=None)`
 
 Computes the minimum eigenvalue. The `operator` and `aux_operators` are supplied here. While an `operator` is required by algorithms, `aux_operators` are optional.
 
@@ -45,7 +45,7 @@ A minimum eigensolver result.
 
 <span id="qiskit.algorithms.minimum_eigensolvers.MinimumEigensolver.supports_aux_operators" />
 
-`classmethod MinimumEigensolver.supports_aux_operators()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/minimum_eigensolvers/minimum_eigensolver.py "view source code")
+`classmethod MinimumEigensolver.supports_aux_operators()`
 
 Whether computing the expectation value of auxiliary operators is supported.
 

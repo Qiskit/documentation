@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.BIPMapping
 
 <span id="qiskit.transpiler.passes.BIPMapping" />
 
-`BIPMapping(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/routing/bip_mapping.py "view source code")
+`BIPMapping(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/routing/bip_mapping.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -91,7 +91,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.BIPMapping.run" />
 
-`BIPMapping.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/routing/bip_mapping.py "view source code")
+`BIPMapping.run(dag)`
 
 Run the BIPMapping pass on dag, assuming the number of virtual qubits (defined in dag) and the number of physical qubits (defined in coupling\_map) are the same.
 

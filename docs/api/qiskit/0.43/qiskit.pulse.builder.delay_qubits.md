@@ -12,7 +12,7 @@ python_api_name: qiskit.pulse.builder.delay_qubits
 
 <span id="qiskit.pulse.builder.delay_qubits" />
 
-`delay_qubits(duration, *qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/builder.py "view source code")
+`delay_qubits(duration, *qubits)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/builder.py "view source code")
 
 Insert delays on all of the `channels.Channel`s that correspond to the input `qubits` at the same time.
 

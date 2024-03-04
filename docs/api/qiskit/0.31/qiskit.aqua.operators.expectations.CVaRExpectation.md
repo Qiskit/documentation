@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.operators.expectations.CVaRExpectation
 
 <span id="qiskit.aqua.operators.expectations.CVaRExpectation" />
 
-`CVaRExpectation(alpha, expectation=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/expectations/cvar_expectation.py "view source code")
+`CVaRExpectation(alpha, expectation=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/expectations/cvar_expectation.py "view source code")
 
 Bases: `qiskit.aqua.operators.expectations.expectation_base.ExpectationBase`
 
@@ -45,7 +45,7 @@ Let $\alpha$ be a real number in $[0,1]$ which specifies the fraction of best ob
 
 <span id="qiskit.aqua.operators.expectations.CVaRExpectation.compute_variance" />
 
-`CVaRExpectation.compute_variance(exp_op)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/expectations/cvar_expectation.py "view source code")
+`CVaRExpectation.compute_variance(exp_op)`
 
 Returns the variance of the CVaR calculation
 
@@ -71,7 +71,7 @@ exp\_op.
 
 <span id="qiskit.aqua.operators.expectations.CVaRExpectation.convert" />
 
-`CVaRExpectation.convert(operator)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/expectations/cvar_expectation.py "view source code")
+`CVaRExpectation.convert(operator)`
 
 Return an expression that computes the CVaR expectation upon calling `eval`. :type operator: `OperatorBase` :param operator: The operator to convert.
 

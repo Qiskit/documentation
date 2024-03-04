@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.AQGD
 
 <span id="qiskit.algorithms.optimizers.AQGD" />
 
-`qiskit.algorithms.optimizers.AQGD(maxiter=1000, eta=1.0, tol=1e-06, momentum=0.25, param_tol=1e-06, averaging=10)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/optimizers/aqgd.py "view source code")
+`qiskit.algorithms.optimizers.AQGD(maxiter=1000, eta=1.0, tol=1e-06, momentum=0.25, param_tol=1e-06, averaging=10)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/optimizers/aqgd.py "view source code")
 
 Bases: [`Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.optimizer.Optimizer")
 

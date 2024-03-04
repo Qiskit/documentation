@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.SciPyImaginaryEvolver
 
 <span id="qiskit.algorithms.SciPyImaginaryEvolver" />
 
-`SciPyImaginaryEvolver(num_timesteps)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/time_evolvers/classical_methods/scipy_imaginary_evolver.py "view source code")
+`SciPyImaginaryEvolver(num_timesteps)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/time_evolvers/classical_methods/scipy_imaginary_evolver.py "view source code")
 
 Bases: [`ImaginaryTimeEvolver`](qiskit.algorithms.ImaginaryTimeEvolver "qiskit.algorithms.time_evolvers.imaginary_time_evolver.ImaginaryTimeEvolver")
 
@@ -34,7 +34,7 @@ Evolves an initial state $|\Psi\rangle$ for an imaginary time $\tau = it$ under 
 
 <span id="qiskit.algorithms.SciPyImaginaryEvolver.evolve" />
 
-`SciPyImaginaryEvolver.evolve(evolution_problem)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/time_evolvers/classical_methods/scipy_imaginary_evolver.py "view source code")
+`SciPyImaginaryEvolver.evolve(evolution_problem)`
 
 Perform imaginary time evolution $\exp(-\tau H)|\Psi\rangle$.
 

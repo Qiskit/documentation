@@ -10,7 +10,7 @@ python_api_name: qiskit.optimization.converters.InequalityToEquality
 
 <span id="qiskit.optimization.converters.InequalityToEquality" />
 
-`InequalityToEquality(mode='auto')`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/converters/inequality_to_equality.py "view source code")
+`InequalityToEquality(mode='auto')` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/converters/inequality_to_equality.py "view source code")
 
 Bases: `qiskit.optimization.converters.quadratic_program_converter.QuadraticProgramConverter`
 
@@ -47,7 +47,7 @@ To chose the type of slack variables. There are 3 options for mode.
 
 <span id="qiskit.optimization.converters.InequalityToEquality.convert" />
 
-`InequalityToEquality.convert(problem)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/converters/inequality_to_equality.py "view source code")
+`InequalityToEquality.convert(problem)`
 
 Convert a problem with inequality constraints into one with only equality constraints.
 
@@ -73,7 +73,7 @@ The converted problem, that contain only equality constraints.
 
 <span id="qiskit.optimization.converters.InequalityToEquality.interpret" />
 
-`InequalityToEquality.interpret(x)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/converters/inequality_to_equality.py "view source code")
+`InequalityToEquality.interpret(x)`
 
 Convert a result of a converted problem into that of the original problem.
 

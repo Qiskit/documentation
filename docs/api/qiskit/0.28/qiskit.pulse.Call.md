@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.Call
 
 <span id="qiskit.pulse.Call" />
 
-`Call(subroutine, value_dict=None, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/instructions/call.py "view source code")
+`Call(subroutine, value_dict=None, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/instructions/call.py "view source code")
 
 Pulse `Call` instruction.
 

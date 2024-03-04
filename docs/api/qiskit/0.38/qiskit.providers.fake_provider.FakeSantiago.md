@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeSantiago
 
 <span id="qiskit.providers.fake_provider.FakeSantiago" />
 
-`FakeSantiago`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/fake_provider/backends/santiago/fake_santiago.py "view source code")
+`FakeSantiago` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/fake_provider/backends/santiago/fake_santiago.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_pulse_backend.FakePulseBackend`
 

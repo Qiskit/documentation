@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.FlowController
 
 <span id="qiskit.transpiler.FlowController" />
 
-`qiskit.transpiler.FlowController(passes, options, **partial_controller)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/runningpassmanager.py "view source code")
+`qiskit.transpiler.FlowController(passes, options, **partial_controller)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/runningpassmanager.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
@@ -22,9 +22,7 @@ This class is a base class for multiple types of working list. When you iterate 
 
 <span id="qiskit.transpiler.FlowController.registered_controllers" />
 
-### registered\_controllers = \{'condition'
-
-`= {'condition':`
+### registered\_controllers
 
 `= {'condition': , 'do_while': }`
 

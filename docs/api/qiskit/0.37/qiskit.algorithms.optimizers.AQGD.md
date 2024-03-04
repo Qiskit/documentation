@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.AQGD
 
 <span id="qiskit.algorithms.optimizers.AQGD" />
 
-`AQGD(maxiter=1000, eta=1.0, tol=1e-06, momentum=0.25, param_tol=1e-06, averaging=10)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/optimizers/aqgd.py "view source code")
+`AQGD(maxiter=1000, eta=1.0, tol=1e-06, momentum=0.25, param_tol=1e-06, averaging=10)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/optimizers/aqgd.py "view source code")
 
 Bases: [`qiskit.algorithms.optimizers.optimizer.Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.optimizer.Optimizer")
 
@@ -44,7 +44,7 @@ Performs Analytical Quantum Gradient Descent (AQGD) with Epochs.
 
 <span id="qiskit.algorithms.optimizers.AQGD.get_support_level" />
 
-`AQGD.get_support_level()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/optimizers/aqgd.py "view source code")
+`AQGD.get_support_level()`
 
 Support level dictionary
 
@@ -85,7 +85,7 @@ grad
 
 <span id="qiskit.algorithms.optimizers.AQGD.minimize" />
 
-`AQGD.minimize(fun, x0, jac=None, bounds=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/optimizers/aqgd.py "view source code")
+`AQGD.minimize(fun, x0, jac=None, bounds=None)`
 
 Minimize the scalar function.
 

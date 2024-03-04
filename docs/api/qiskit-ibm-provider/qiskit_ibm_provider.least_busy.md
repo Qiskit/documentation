@@ -12,7 +12,7 @@ python_api_name: qiskit_ibm_provider.least_busy
 
 <span id="qiskit_ibm_provider.least_busy" />
 
-`least_busy(backends)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/__init__.py "view source code")
+`least_busy(backends)` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/__init__.py#L104-L140 "view source code")
 
 Return the least busy backend from a list.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.algorithms.Simon
 
 <span id="qiskit.aqua.algorithms.Simon" />
 
-`Simon(oracle, quantum_instance=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/education/simon.py "view source code")
+`Simon(oracle, quantum_instance=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/education/simon.py "view source code")
 
 Bases: `qiskit.aqua.algorithms.quantum_algorithm.QuantumAlgorithm`
 
@@ -31,7 +31,7 @@ Note: the [`TruthTableOracle`](qiskit.aqua.components.oracles.TruthTableOracle "
 
 <span id="qiskit.aqua.algorithms.Simon.construct_circuit" />
 
-`Simon.construct_circuit(measurement=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/education/simon.py "view source code")
+`Simon.construct_circuit(measurement=False)`
 
 Construct the quantum circuit
 

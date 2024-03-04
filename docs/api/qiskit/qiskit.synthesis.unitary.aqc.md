@@ -1,7 +1,7 @@
 ---
 title: aqc
 description: API reference for qiskit.synthesis.unitary.aqc
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.synthesis.unitary.aqc
 ---
@@ -131,7 +131,7 @@ This uses a helper function, [`make_cnot_network`](#qiskit.synthesis.unitary.aqc
 
 <span id="qiskit.synthesis.unitary.aqc.make_cnot_network" />
 
-`qiskit.synthesis.unitary.aqc.make_cnot_network(num_qubits, network_layout='spin', connectivity_type='full', depth=0)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/synthesis/unitary/aqc/cnot_structures.py "view source code")
+`qiskit.synthesis.unitary.aqc.make_cnot_network(num_qubits, network_layout='spin', connectivity_type='full', depth=0)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/synthesis/unitary/aqc/cnot_structures.py "view source code")
 
 Generates a network consisting of building blocks each containing a CNOT gate and possibly some single-qubit ones. This network models a quantum operator in question. Note, each building block has 2 input and outputs corresponding to a pair of qubits. What we actually return here is a chain of indices of qubit pairs shared by every building block in a row.
 

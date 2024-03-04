@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.ConstrainedReschedule
 
 <span id="qiskit.transpiler.passes.ConstrainedReschedule" />
 
-`ConstrainedReschedule(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/scheduling/alignments/reschedule.py "view source code")
+`ConstrainedReschedule(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/scheduling/alignments/reschedule.py "view source code")
 
 Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
@@ -71,7 +71,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.ConstrainedReschedule.run" />
 
-`ConstrainedReschedule.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/scheduling/alignments/reschedule.py "view source code")
+`ConstrainedReschedule.run(dag)`
 
 Run rescheduler.
 

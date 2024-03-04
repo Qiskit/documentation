@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.uncertainty_problems.MultivariateProblem
 
 <span id="qiskit.aqua.components.uncertainty_problems.MultivariateProblem" />
 
-`MultivariateProblem(uncertainty_model, aggregation_function, univariate_objective, conditions=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/uncertainty_problems/multivariate_problem.py "view source code")
+`MultivariateProblem(uncertainty_model, aggregation_function, univariate_objective, conditions=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/uncertainty_problems/multivariate_problem.py "view source code")
 
 Multivariate Uncertainty Problem.
 
@@ -35,7 +35,7 @@ Returns the number of target qubits
 
 <span id="qiskit.aqua.components.uncertainty_problems.MultivariateProblem.build" />
 
-`MultivariateProblem.build(qc, q, q_ancillas=None, params=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/uncertainty_problems/multivariate_problem.py "view source code")
+`MultivariateProblem.build(qc, q, q_ancillas=None, params=None)`
 
 Adds corresponding sub-circuit to given circuit
 
@@ -144,7 +144,7 @@ returns number of qubits controlled
 
 <span id="qiskit.aqua.components.uncertainty_problems.MultivariateProblem.required_ancillas" />
 
-`MultivariateProblem.required_ancillas()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/uncertainty_problems/multivariate_problem.py "view source code")
+`MultivariateProblem.required_ancillas()`
 
 returns required ancillas
 
@@ -160,7 +160,7 @@ returns required ancillas controlled
 
 <span id="qiskit.aqua.components.uncertainty_problems.MultivariateProblem.value_to_estimation" />
 
-`MultivariateProblem.value_to_estimation(value)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/uncertainty_problems/multivariate_problem.py "view source code")
+`MultivariateProblem.value_to_estimation(value)`
 
 value to estimate
 

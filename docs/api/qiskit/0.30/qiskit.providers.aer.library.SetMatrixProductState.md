@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.library.SetMatrixProductState
 
 <span id="qiskit.providers.aer.library.SetMatrixProductState" />
 
-`SetMatrixProductState(state)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/providers/aer/library/set_instructions/set_matrix_product_state.py "view source code")
+`SetMatrixProductState(state)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/providers/aer/library/set_instructions/set_matrix_product_state.py "view source code")
 
 Bases: `qiskit.circuit.instruction.Instruction`
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.components.variational_forms.CHC
 
 <span id="qiskit.chemistry.components.variational_forms.CHC" />
 
-`CHC(num_qubits=None, reps=1, ladder=False, excitations=None, entanglement='full', initial_state=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/components/variational_forms/chc.py "view source code")
+`CHC(num_qubits=None, reps=1, ladder=False, excitations=None, entanglement='full', initial_state=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/components/variational_forms/chc.py "view source code")
 
 Bases: `qiskit.aqua.components.variational_forms.variational_form.VariationalForm`
 
@@ -37,7 +37,7 @@ The trial wavefunction is as defined in Ollitrault Pauline J., Chemical science 
 
 <span id="qiskit.chemistry.components.variational_forms.CHC.construct_circuit" />
 
-`CHC.construct_circuit(parameters, q=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/components/variational_forms/chc.py "view source code")
+`CHC.construct_circuit(parameters, q=None)`
 
 Construct the variational form, given its parameters.
 

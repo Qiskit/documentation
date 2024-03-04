@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.Quaternion
 
 <span id="qiskit.quantum_info.Quaternion" />
 
-`qiskit.quantum_info.Quaternion(data)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/synthesis/quaternion.py "view source code")
+`qiskit.quantum_info.Quaternion(data)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/synthesis/quaternion.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 

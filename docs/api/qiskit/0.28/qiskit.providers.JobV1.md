@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.JobV1
 
 <span id="qiskit.providers.JobV1" />
 
-`JobV1(backend, job_id, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/providers/job.py "view source code")
+`JobV1(backend, job_id, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/providers/job.py "view source code")
 
 Class to handle jobs
 

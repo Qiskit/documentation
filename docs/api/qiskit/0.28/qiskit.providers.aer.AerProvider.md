@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.AerProvider
 
 <span id="qiskit.providers.aer.AerProvider" />
 
-`AerProvider`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/aerprovider.py "view source code")
+`AerProvider` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/aerprovider.py "view source code")
 
 Provider for Qiskit Aer backends.
 

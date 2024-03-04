@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.FilterOpNodes
 
 <span id="qiskit.transpiler.passes.FilterOpNodes" />
 
-`qiskit.transpiler.passes.FilterOpNodes(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/transpiler/passes/utils/filter_op_nodes.py "view source code")
+`qiskit.transpiler.passes.FilterOpNodes(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/transpiler/passes/utils/filter_op_nodes.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 

@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_provider.IBMProvider
 
 <span id="qiskit_ibm_provider.IBMProvider" />
 
-`IBMProvider(token=None, url=None, name=None, instance=None, proxies=None, verify=None)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.8/qiskit_ibm_provider/ibm_provider.py "view source code")
+`IBMProvider(token=None, url=None, name=None, instance=None, proxies=None, verify=None)` [GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.8/qiskit_ibm_provider/ibm_provider.py "view source code")
 
 Provides access to the IBM Quantum services available to an account.
 

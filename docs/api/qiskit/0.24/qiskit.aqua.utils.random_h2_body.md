@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.utils.random_h2_body
 
 <span id="qiskit.aqua.utils.random_h2_body" />
 
-`random_h2_body(N, M)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/utils/random_matrix_generator.py "view source code")
+`random_h2_body(N, M)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/utils/random_matrix_generator.py "view source code")
 
 Generate a random two body integrals.
 

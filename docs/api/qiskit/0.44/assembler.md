@@ -1,7 +1,7 @@
 ---
 title: assembler
 description: API reference for qiskit.assembler
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.assembler
 ---
@@ -24,7 +24,7 @@ python_api_name: qiskit.assembler
 
 <span id="qiskit.assembler.assemble_circuits" />
 
-`qiskit.assembler.assemble_circuits(circuits, run_config, qobj_id, qobj_header)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/assembler/assemble_circuits.py "view source code")
+`qiskit.assembler.assemble_circuits(circuits, run_config, qobj_id, qobj_header)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/assembler/assemble_circuits.py "view source code")
 
 Assembles a list of circuits into a qobj that can be run on the backend.
 
@@ -69,7 +69,7 @@ qobj = assemble_circuits(circuits=[qc],
 
 <span id="qiskit.assembler.assemble_schedules" />
 
-`qiskit.assembler.assemble_schedules(schedules, qobj_id, qobj_header, run_config)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/assembler/assemble_schedules.py "view source code")
+`qiskit.assembler.assemble_schedules(schedules, qobj_id, qobj_header, run_config)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/assembler/assemble_schedules.py "view source code")
 
 Assembles a list of schedules into a qobj that can be run on the backend.
 
@@ -135,7 +135,7 @@ pulseQobj = assemble_schedules(schedules=[schedule],
 
 <span id="qiskit.assembler.disassemble" />
 
-`qiskit.assembler.disassemble(qobj)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/assembler/disassemble.py "view source code")
+`qiskit.assembler.disassemble(qobj)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/assembler/disassemble.py "view source code")
 
 Disassemble a qobj and return the circuits or pulse schedules, run\_config, and user header.
 

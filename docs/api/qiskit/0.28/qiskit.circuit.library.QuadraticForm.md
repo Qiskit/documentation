@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.QuadraticForm
 
 <span id="qiskit.circuit.library.QuadraticForm" />
 
-`QuadraticForm(num_result_qubits=None, quadratic=None, linear=None, offset=None, little_endian=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/arithmetic/quadratic_form.py "view source code")
+`QuadraticForm(num_result_qubits=None, quadratic=None, linear=None, offset=None, little_endian=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/arithmetic/quadratic_form.py "view source code")
 
 Implements a quadratic form on binary variables encoded in qubit registers.
 

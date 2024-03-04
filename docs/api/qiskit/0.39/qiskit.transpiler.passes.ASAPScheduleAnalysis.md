@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.ASAPScheduleAnalysis
 
 <span id="qiskit.transpiler.passes.ASAPScheduleAnalysis" />
 
-`ASAPScheduleAnalysis(durations)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/transpiler/passes/scheduling/scheduling/asap.py "view source code")
+`ASAPScheduleAnalysis(durations)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/transpiler/passes/scheduling/scheduling/asap.py "view source code")
 
 Bases: `qiskit.transpiler.passes.scheduling.scheduling.base_scheduler.BaseScheduler`
 
@@ -38,7 +38,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.ASAPScheduleAnalysis.run" />
 
-`ASAPScheduleAnalysis.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/transpiler/passes/scheduling/scheduling/asap.py "view source code")
+`ASAPScheduleAnalysis.run(dag)`
 
 Run the ASAPSchedule pass on dag.
 

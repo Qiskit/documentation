@@ -12,7 +12,7 @@ python_api_name: qiskit.qasm.QasmHTMLStyle
 
 <span id="qiskit.qasm.QasmHTMLStyle" />
 
-`QasmHTMLStyle`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/qasm/pygments/lexer.py "view source code")
+`QasmHTMLStyle` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/qasm/pygments/lexer.py "view source code")
 
 A style for OpenQasm in a HTML env (e.g. Jupyter widget).
 

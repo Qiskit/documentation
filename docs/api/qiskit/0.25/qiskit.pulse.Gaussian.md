@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.Gaussian
 
 <span id="qiskit.pulse.Gaussian" />
 
-`Gaussian(duration, amp, sigma, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/library/parametric_pulses.py "view source code")
+`Gaussian(duration, amp, sigma, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/library/parametric_pulses.py "view source code")
 
 A truncated pulse envelope shaped according to the Gaussian function whose mean is centered at the center of the pulse (duration / 2):
 

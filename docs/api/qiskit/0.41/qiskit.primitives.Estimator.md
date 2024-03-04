@@ -10,7 +10,7 @@ python_api_name: qiskit.primitives.Estimator
 
 <span id="qiskit.primitives.Estimator" />
 
-`Estimator(circuits: Iterable[QuantumCircuit] | QuantumCircuit | None = None, observables: Iterable[SparsePauliOp] | SparsePauliOp | None = None, parameters: Iterable[Iterable[Parameter]] | None = None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/primitives/estimator.py "view source code")
+`Estimator(circuits: Iterable[QuantumCircuit] | QuantumCircuit | None = None, observables: Iterable[SparsePauliOp] | SparsePauliOp | None = None, parameters: Iterable[Iterable[Parameter]] | None = None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/primitives/estimator.py "view source code")
 
 Bases: [`qiskit.primitives.base.base_estimator.BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.base.base_estimator.BaseEstimator")
 
@@ -38,7 +38,7 @@ Reference implementation of [`BaseEstimator`](qiskit.primitives.BaseEstimator "q
 
 <span id="qiskit.primitives.Estimator.close" />
 
-`Estimator.close()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/primitives/estimator.py "view source code")
+`Estimator.close()`
 
 Close the session and free resources
 

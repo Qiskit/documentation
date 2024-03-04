@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.builder.shift_frequency
 
 <span id="qiskit.pulse.builder.shift_frequency" />
 
-`shift_frequency(frequency, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/pulse/builder.py "view source code")
+`shift_frequency(frequency, channel, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/pulse/builder.py "view source code")
 
 Shift the `frequency` of a pulse `channel`.
 

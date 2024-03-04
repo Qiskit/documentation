@@ -10,7 +10,7 @@ python_api_name: qiskit.primitives.PrimitiveJob
 
 <span id="qiskit.primitives.PrimitiveJob" />
 
-`qiskit.primitives.PrimitiveJob(function, *args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/primitives/primitive_job.py "view source code")
+`qiskit.primitives.PrimitiveJob(function, *args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/primitives/primitive_job.py "view source code")
 
 Bases: [`BasePrimitiveJob`](qiskit.primitives.BasePrimitiveJob "qiskit.primitives.base.base_primitive_job.BasePrimitiveJob")\[`ResultT`, [`JobStatus`](qiskit.providers.JobStatus "qiskit.providers.jobstatus.JobStatus")]
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.expectations.AerPauliExpectation
 
 <span id="qiskit.opflow.expectations.AerPauliExpectation" />
 
-`AerPauliExpectation`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/opflow/expectations/aer_pauli_expectation.py "view source code")
+`AerPauliExpectation` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/opflow/expectations/aer_pauli_expectation.py "view source code")
 
 Bases: `qiskit.opflow.expectations.expectation_base.ExpectationBase`
 
@@ -22,7 +22,7 @@ An Expectation converter for using Aer’s operator snapshot to take expectation
 
 <span id="qiskit.opflow.expectations.AerPauliExpectation.compute_variance" />
 
-`AerPauliExpectation.compute_variance(exp_op)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/opflow/expectations/aer_pauli_expectation.py "view source code")
+`AerPauliExpectation.compute_variance(exp_op)`
 
 Compute the variance of the expectation estimator. Because Aer takes this expectation with matrix multiplication, the estimation is exact and the variance is always 0, but we need to return those values in a way which matches the Operator’s structure.
 
@@ -42,7 +42,7 @@ The variances or lists thereof (if exp\_op contains ListOps) of the expectation 
 
 <span id="qiskit.opflow.expectations.AerPauliExpectation.convert" />
 
-`AerPauliExpectation.convert(operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/opflow/expectations/aer_pauli_expectation.py "view source code")
+`AerPauliExpectation.convert(operator)`
 
 Accept an Operator and return a new Operator with the Pauli measurements replaced by AerSnapshot-based expectation circuits.
 

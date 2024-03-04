@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.drivers.Molecule
 
 <span id="qiskit.chemistry.drivers.Molecule" />
 
-`Molecule(geometry, multiplicity=1, charge=0, degrees_of_freedom=None, masses=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/molecule.py "view source code")
+`Molecule(geometry, multiplicity=1, charge=0, degrees_of_freedom=None, masses=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/molecule.py "view source code")
 
 Bases: `object`
 
@@ -36,7 +36,7 @@ This module implements an interface for a driver-independent, i.e. generic molec
 
 <span id="qiskit.chemistry.drivers.Molecule.absolute_angle" />
 
-`classmethod Molecule.absolute_angle(angle, geometry, atom_trio)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/molecule.py "view source code")
+`classmethod Molecule.absolute_angle(angle, geometry, atom_trio)`
 
 **Parameters**
 
@@ -56,7 +56,7 @@ end geometry
 
 <span id="qiskit.chemistry.drivers.Molecule.absolute_bending" />
 
-`classmethod Molecule.absolute_bending(bend, geometry, atom_trio)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/molecule.py "view source code")
+`classmethod Molecule.absolute_bending(bend, geometry, atom_trio)`
 
 **Parameters**
 
@@ -76,7 +76,7 @@ end geometry
 
 <span id="qiskit.chemistry.drivers.Molecule.absolute_distance" />
 
-`classmethod Molecule.absolute_distance(distance, geometry, atom_pair)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/molecule.py "view source code")
+`classmethod Molecule.absolute_distance(distance, geometry, atom_pair)`
 
 **Parameters**
 
@@ -96,7 +96,7 @@ end geometry
 
 <span id="qiskit.chemistry.drivers.Molecule.absolute_stretching" />
 
-`classmethod Molecule.absolute_stretching(perturbation, geometry, atom_pair)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/molecule.py "view source code")
+`classmethod Molecule.absolute_stretching(perturbation, geometry, atom_pair)`
 
 **Parameters**
 
@@ -116,7 +116,7 @@ end geometry
 
 <span id="qiskit.chemistry.drivers.Molecule.relative_bending" />
 
-`classmethod Molecule.relative_bending(bend, geometry, atom_trio)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/molecule.py "view source code")
+`classmethod Molecule.relative_bending(bend, geometry, atom_trio)`
 
 **Parameters**
 
@@ -136,7 +136,7 @@ end geometry
 
 <span id="qiskit.chemistry.drivers.Molecule.relative_stretching" />
 
-`classmethod Molecule.relative_stretching(perturbation, geometry, atom_pair)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/molecule.py "view source code")
+`classmethod Molecule.relative_stretching(perturbation, geometry, atom_pair)`
 
 **Parameters**
 

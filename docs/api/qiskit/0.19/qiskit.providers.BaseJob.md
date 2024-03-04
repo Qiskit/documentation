@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.BaseJob
 
 <span id="qiskit.providers.BaseJob" />
 
-`BaseJob(backend, job_id)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/basejob.py "view source code")
+`BaseJob(backend, job_id)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/basejob.py "view source code")
 
 Class to handle asynchronous jobs
 
@@ -27,7 +27,7 @@ Initializes the asynchronous job.
 
 <span id="qiskit.providers.BaseJob.backend" />
 
-`BaseJob.backend()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/basejob.py "view source code")
+`BaseJob.backend()`
 
 Return the backend where this job was executed.
 
@@ -39,7 +39,7 @@ Return the backend where this job was executed.
 
 <span id="qiskit.providers.BaseJob.cancel" />
 
-`abstract BaseJob.cancel()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/basejob.py "view source code")
+`abstract BaseJob.cancel()`
 
 Attempt to cancel the job.
 
@@ -47,7 +47,7 @@ Attempt to cancel the job.
 
 <span id="qiskit.providers.BaseJob.cancelled" />
 
-`BaseJob.cancelled()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/basejob.py "view source code")
+`BaseJob.cancelled()`
 
 Return whether the job has been cancelled.
 
@@ -59,7 +59,7 @@ Return whether the job has been cancelled.
 
 <span id="qiskit.providers.BaseJob.done" />
 
-`BaseJob.done()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/basejob.py "view source code")
+`BaseJob.done()`
 
 Return whether the job has successfully run.
 
@@ -71,7 +71,7 @@ Return whether the job has successfully run.
 
 <span id="qiskit.providers.BaseJob.in_final_state" />
 
-`BaseJob.in_final_state()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/basejob.py "view source code")
+`BaseJob.in_final_state()`
 
 Return whether the job is in a final job state.
 
@@ -83,7 +83,7 @@ Return whether the job is in a final job state.
 
 <span id="qiskit.providers.BaseJob.job_id" />
 
-`BaseJob.job_id()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/basejob.py "view source code")
+`BaseJob.job_id()`
 
 Return a unique id identifying the job.
 
@@ -95,7 +95,7 @@ Return a unique id identifying the job.
 
 <span id="qiskit.providers.BaseJob.result" />
 
-`abstract BaseJob.result()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/basejob.py "view source code")
+`abstract BaseJob.result()`
 
 Return the results of the job.
 
@@ -103,7 +103,7 @@ Return the results of the job.
 
 <span id="qiskit.providers.BaseJob.running" />
 
-`BaseJob.running()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/basejob.py "view source code")
+`BaseJob.running()`
 
 Return whether the job is actively running.
 
@@ -115,7 +115,7 @@ Return whether the job is actively running.
 
 <span id="qiskit.providers.BaseJob.status" />
 
-`abstract BaseJob.status()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/basejob.py "view source code")
+`abstract BaseJob.status()`
 
 Return the status of the job, among the values of `JobStatus`.
 
@@ -123,7 +123,7 @@ Return the status of the job, among the values of `JobStatus`.
 
 <span id="qiskit.providers.BaseJob.submit" />
 
-`abstract BaseJob.submit()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/basejob.py "view source code")
+`abstract BaseJob.submit()`
 
 Submit the job to the backend for execution.
 
@@ -131,7 +131,7 @@ Submit the job to the backend for execution.
 
 <span id="qiskit.providers.BaseJob.wait_for_final_state" />
 
-`BaseJob.wait_for_final_state(timeout=None, wait=5, callback=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/basejob.py "view source code")
+`BaseJob.wait_for_final_state(timeout=None, wait=5, callback=None)`
 
 Poll the job status until it progresses to a final state such as `DONE` or `ERROR`.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.Barrier
 
 <span id="qiskit.circuit.library.Barrier" />
 
-`qiskit.circuit.library.Barrier(num_qubits, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/barrier.py "view source code")
+`qiskit.circuit.library.Barrier(num_qubits, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/barrier.py "view source code")
 
 Bases: [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 

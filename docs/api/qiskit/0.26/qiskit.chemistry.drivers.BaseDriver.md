@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.drivers.BaseDriver
 
 <span id="qiskit.chemistry.drivers.BaseDriver" />
 
-`BaseDriver(molecule=None, basis='sto3g', hf_method='rhf', supports_molecule=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/base_driver.py "view source code")
+`BaseDriver(molecule=None, basis='sto3g', hf_method='rhf', supports_molecule=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/base_driver.py "view source code")
 
 Base class for Qiskit’s chemistry drivers.
 

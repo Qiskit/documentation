@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.ResetAfterMeasureSimplification
 
 <span id="qiskit.transpiler.passes.ResetAfterMeasureSimplification" />
 
-`ResetAfterMeasureSimplification(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/transpiler/passes/optimization/reset_after_measure_simplification.py "view source code")
+`ResetAfterMeasureSimplification(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/transpiler/passes/optimization/reset_after_measure_simplification.py "view source code")
 
 Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -32,7 +32,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.ResetAfterMeasureSimplification.run" />
 
-`ResetAfterMeasureSimplification.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/transpiler/passes/optimization/reset_after_measure_simplification.py "view source code")
+`ResetAfterMeasureSimplification.run(dag)`
 
 Run the pass on a dag.
 

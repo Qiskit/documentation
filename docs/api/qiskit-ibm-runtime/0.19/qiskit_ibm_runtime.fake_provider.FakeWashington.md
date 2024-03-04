@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeWashington
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeWashington" />
 
-`FakeWashington`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.19/qiskit_ibm_runtime/fake_provider/backends/washington/fake_washington.py "view source code")
+`FakeWashington` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.19/qiskit_ibm_runtime/fake_provider/backends/washington/fake_washington.py "view source code")
 
 A fake 127 qubit backend.
 

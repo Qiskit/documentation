@@ -10,7 +10,7 @@ python_api_name: qiskit_aer.quantum_info.AerDensityMatrix
 
 <span id="qiskit_aer.quantum_info.AerDensityMatrix" />
 
-`AerDensityMatrix(data, dims=None, **configs)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/quantum_info/states/aer_densitymatrix.py "view source code")
+`AerDensityMatrix(data, dims=None, **configs)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/quantum_info/states/aer_densitymatrix.py "view source code")
 
 Bases: [`qiskit.quantum_info.states.densitymatrix.DensityMatrix`](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.states.densitymatrix.DensityMatrix")
 
@@ -36,7 +36,7 @@ The `dims` kwarg is used to `AerDensityMatrix` constructor.
 
 <span id="qiskit_aer.quantum_info.AerDensityMatrix.conjugate" />
 
-`AerDensityMatrix.conjugate()`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/quantum_info/states/aer_densitymatrix.py "view source code")
+`AerDensityMatrix.conjugate()`
 
 Return the conjugate of the density matrix.
 
@@ -120,7 +120,7 @@ QuantumState
 
 <span id="qiskit_aer.quantum_info.AerDensityMatrix.expand" />
 
-`AerDensityMatrix.expand(other)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/quantum_info/states/aer_densitymatrix.py "view source code")
+`AerDensityMatrix.expand(other)`
 
 Return the tensor product state other ⊗ self. :param other: a quantum state object. :type other: AerDensityMatrix
 
@@ -161,7 +161,7 @@ complex
 
 <span id="qiskit_aer.quantum_info.AerDensityMatrix.from_instruction" />
 
-`classmethod AerDensityMatrix.from_instruction(instruction)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/quantum_info/states/aer_densitymatrix.py "view source code")
+`classmethod AerDensityMatrix.from_instruction(instruction)`
 
 Return the output density matrix of an instruction.
 
@@ -187,7 +187,7 @@ the final density matrix.
 
 <span id="qiskit_aer.quantum_info.AerDensityMatrix.from_int" />
 
-`static AerDensityMatrix.from_int(i, dims)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/quantum_info/states/aer_densitymatrix.py "view source code")
+`static AerDensityMatrix.from_int(i, dims)`
 
 Return a computational basis state density matrix.
 
@@ -215,7 +215,7 @@ The `dims` kwarg can be an integer or an iterable of integers.
 
 <span id="qiskit_aer.quantum_info.AerDensityMatrix.from_label" />
 
-`classmethod AerDensityMatrix.from_label(label)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/quantum_info/states/aer_densitymatrix.py "view source code")
+`classmethod AerDensityMatrix.from_label(label)`
 
 Return a tensor product of Pauli X,Y,Z eigenstates.
 
@@ -280,7 +280,7 @@ tuple
 
 <span id="qiskit_aer.quantum_info.AerDensityMatrix.metadata" />
 
-`AerDensityMatrix.metadata()`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/quantum_info/states/aer_densitymatrix.py "view source code")
+`AerDensityMatrix.metadata()`
 
 Return result metadata of an operation that executed lastly.
 
@@ -394,7 +394,7 @@ Return the purity of the quantum state.
 
 <span id="qiskit_aer.quantum_info.AerDensityMatrix.reset" />
 
-`AerDensityMatrix.reset(qargs=None)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/quantum_info/states/aer_densitymatrix.py "view source code")
+`AerDensityMatrix.reset(qargs=None)`
 
 Reset state or subsystems to the 0-state.
 
@@ -463,7 +463,7 @@ Additional Information:
 
 <span id="qiskit_aer.quantum_info.AerDensityMatrix.sample_memory" />
 
-`AerDensityMatrix.sample_memory(shots, qargs=None)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/quantum_info/states/aer_densitymatrix.py "view source code")
+`AerDensityMatrix.sample_memory(shots, qargs=None)`
 
 Sample a list of qubit measurement outcomes in the computational basis.
 
@@ -490,7 +490,7 @@ Additional Information:
 
 <span id="qiskit_aer.quantum_info.AerDensityMatrix.seed" />
 
-`AerDensityMatrix.seed(value=None)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/quantum_info/states/aer_densitymatrix.py "view source code")
+`AerDensityMatrix.seed(value=None)`
 
 Set the seed for the quantum state RNG.
 
@@ -498,7 +498,7 @@ Set the seed for the quantum state RNG.
 
 <span id="qiskit_aer.quantum_info.AerDensityMatrix.tensor" />
 
-`AerDensityMatrix.tensor(other)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/quantum_info/states/aer_densitymatrix.py "view source code")
+`AerDensityMatrix.tensor(other)`
 
 Return the tensor product state self ⊗ other. :param other: a quantum state object. :type other: AerDensityMatrix
 
@@ -604,7 +604,7 @@ Convert to Operator
 
 <span id="qiskit_aer.quantum_info.AerDensityMatrix.to_statevector" />
 
-`AerDensityMatrix.to_statevector(atol=None, rtol=None)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/quantum_info/states/aer_densitymatrix.py "view source code")
+`AerDensityMatrix.to_statevector(atol=None, rtol=None)`
 
 Return a statevector from a pure density matrix. :param atol: Absolute tolerance for checking operation validity. :type atol: float :param rtol: Relative tolerance for checking operation validity. :type rtol: float
 

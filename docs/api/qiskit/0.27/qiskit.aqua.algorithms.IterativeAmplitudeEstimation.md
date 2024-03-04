@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.algorithms.IterativeAmplitudeEstimation
 
 <span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation" />
 
-`IterativeAmplitudeEstimation(epsilon, alpha, confint_method='beta', min_ratio=2, state_preparation=None, grover_operator=None, objective_qubits=None, post_processing=None, a_factory=None, q_factory=None, i_objective=None, initial_state=None, quantum_instance=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_estimators/iqae.py "view source code")
+`IterativeAmplitudeEstimation(epsilon, alpha, confint_method='beta', min_ratio=2, state_preparation=None, grover_operator=None, objective_qubits=None, post_processing=None, a_factory=None, q_factory=None, i_objective=None, initial_state=None, quantum_instance=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_estimators/iqae.py "view source code")
 
 The Iterative Amplitude Estimation algorithm.
 

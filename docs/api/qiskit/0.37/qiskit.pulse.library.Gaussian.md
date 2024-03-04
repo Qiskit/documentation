@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.library.Gaussian
 
 <span id="qiskit.pulse.library.Gaussian" />
 
-`Gaussian(duration, amp, sigma, name=None, limit_amplitude=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/pulse/library/symbolic_pulses.py "view source code")
+`Gaussian(duration, amp, sigma, name=None, limit_amplitude=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/pulse/library/symbolic_pulses.py "view source code")
 
 Bases: [`qiskit.pulse.library.symbolic_pulses.SymbolicPulse`](qiskit.pulse.library.SymbolicPulse "qiskit.pulse.library.symbolic_pulses.SymbolicPulse")
 

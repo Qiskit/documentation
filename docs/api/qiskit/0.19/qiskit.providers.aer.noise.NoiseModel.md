@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.noise.NoiseModel
 
 <span id="qiskit.providers.aer.noise.NoiseModel" />
 
-`NoiseModel(basis_gates=None)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.5/qiskit/providers/aer/noise/noise_model.py "view source code")
+`NoiseModel(basis_gates=None)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.5/qiskit/providers/aer/noise/noise_model.py "view source code")
 
 Noise model class for Qiskit Aer simulators.
 
@@ -80,7 +80,7 @@ Return the set of noisy qubits for this noise model.
 
 <span id="qiskit.providers.aer.noise.NoiseModel.add_all_qubit_quantum_error" />
 
-`NoiseModel.add_all_qubit_quantum_error(error, instructions, warnings=True)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.5/qiskit/providers/aer/noise/noise_model.py "view source code")
+`NoiseModel.add_all_qubit_quantum_error(error, instructions, warnings=True)`
 
 Add a quantum error to the noise model that applies to all qubits.
 
@@ -102,7 +102,7 @@ If the error object is ideal it will not be added to the model.
 
 <span id="qiskit.providers.aer.noise.NoiseModel.add_all_qubit_readout_error" />
 
-`NoiseModel.add_all_qubit_readout_error(error, warnings=True)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.5/qiskit/providers/aer/noise/noise_model.py "view source code")
+`NoiseModel.add_all_qubit_readout_error(error, warnings=True)`
 
 Add a single-qubit readout error that applies measure on all qubits.
 
@@ -123,7 +123,7 @@ If the error object is ideal it will not be added to the model.
 
 <span id="qiskit.providers.aer.noise.NoiseModel.add_basis_gates" />
 
-`NoiseModel.add_basis_gates(instructions, warnings=True)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.5/qiskit/providers/aer/noise/noise_model.py "view source code")
+`NoiseModel.add_basis_gates(instructions, warnings=True)`
 
 Add additional gates to the noise model basis\_gates.
 
@@ -138,7 +138,7 @@ This should be used to add any gates that are identified by a custom gate label 
 
 <span id="qiskit.providers.aer.noise.NoiseModel.add_nonlocal_quantum_error" />
 
-`NoiseModel.add_nonlocal_quantum_error(error, instructions, qubits, noise_qubits, warnings=True)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.5/qiskit/providers/aer/noise/noise_model.py "view source code")
+`NoiseModel.add_nonlocal_quantum_error(error, instructions, qubits, noise_qubits, warnings=True)`
 
 Add a non-local quantum error to the noise model.
 
@@ -162,7 +162,7 @@ If the error object is ideal it will not be added to the model.
 
 <span id="qiskit.providers.aer.noise.NoiseModel.add_quantum_error" />
 
-`NoiseModel.add_quantum_error(error, instructions, qubits, warnings=True)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.5/qiskit/providers/aer/noise/noise_model.py "view source code")
+`NoiseModel.add_quantum_error(error, instructions, qubits, warnings=True)`
 
 Add a quantum error to the noise model.
 
@@ -185,7 +185,7 @@ If the error object is ideal it will not be added to the model.
 
 <span id="qiskit.providers.aer.noise.NoiseModel.add_readout_error" />
 
-`NoiseModel.add_readout_error(error, qubits, warnings=True)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.5/qiskit/providers/aer/noise/noise_model.py "view source code")
+`NoiseModel.add_readout_error(error, qubits, warnings=True)`
 
 Add a readout error to the noise model.
 
@@ -207,7 +207,7 @@ If the error object is ideal it will not be added to the model.
 
 <span id="qiskit.providers.aer.noise.NoiseModel.from_backend" />
 
-`classmethod NoiseModel.from_backend(backend, gate_error=True, readout_error=True, thermal_relaxation=True, temperature=0, gate_lengths=None, gate_length_units='ns', standard_gates=True)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.5/qiskit/providers/aer/noise/noise_model.py "view source code")
+`classmethod NoiseModel.from_backend(backend, gate_error=True, readout_error=True, thermal_relaxation=True, temperature=0, gate_lengths=None, gate_length_units='ns', standard_gates=True)`
 
 Return a noise model derived from a devices backend properties.
 
@@ -270,7 +270,7 @@ An approximate noise model for the device backend.
 
 <span id="qiskit.providers.aer.noise.NoiseModel.from_dict" />
 
-`static NoiseModel.from_dict(noise_dict)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.5/qiskit/providers/aer/noise/noise_model.py "view source code")
+`static NoiseModel.from_dict(noise_dict)`
 
 Load NoiseModel from a dictionary.
 
@@ -294,7 +294,7 @@ the noise model.
 
 <span id="qiskit.providers.aer.noise.NoiseModel.reset" />
 
-`NoiseModel.reset()`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.5/qiskit/providers/aer/noise/noise_model.py "view source code")
+`NoiseModel.reset()`
 
 Reset the noise model.
 
@@ -302,7 +302,7 @@ Reset the noise model.
 
 <span id="qiskit.providers.aer.noise.NoiseModel.set_x90_single_qubit_gates" />
 
-`NoiseModel.set_x90_single_qubit_gates(instructions)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.5/qiskit/providers/aer/noise/noise_model.py "view source code")
+`NoiseModel.set_x90_single_qubit_gates(instructions)`
 
 Declares X90 based gates for noise model.
 
@@ -318,7 +318,7 @@ Declares X90 based gates for noise model.
 
 <span id="qiskit.providers.aer.noise.NoiseModel.to_dict" />
 
-`NoiseModel.to_dict(serializable=False)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.5/qiskit/providers/aer/noise/noise_model.py "view source code")
+`NoiseModel.to_dict(serializable=False)`
 
 Return the noise model as a dictionary.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.Unroller
 
 <span id="qiskit.transpiler.passes.Unroller" />
 
-`Unroller(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/basis/unroller.py "view source code")
+`Unroller(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/basis/unroller.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -43,7 +43,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.Unroller.run" />
 
-`Unroller.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/basis/unroller.py "view source code")
+`Unroller.run(dag)`
 
 Run the Unroller pass on dag.
 

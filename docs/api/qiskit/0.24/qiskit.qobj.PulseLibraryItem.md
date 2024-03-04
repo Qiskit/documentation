@@ -12,7 +12,7 @@ python_api_name: qiskit.qobj.PulseLibraryItem
 
 <span id="qiskit.qobj.PulseLibraryItem" />
 
-`PulseLibraryItem(name, samples)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/qobj/pulse_qobj.py "view source code")
+`PulseLibraryItem(name, samples)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/qobj/pulse_qobj.py "view source code")
 
 An item in a pulse library.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.ClassicalRegister
 
 <span id="qiskit.circuit.ClassicalRegister" />
 
-`qiskit.circuit.ClassicalRegister(size=None, name=None, bits=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/classicalregister.py "view source code")
+`qiskit.circuit.ClassicalRegister(size=None, name=None, bits=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/classicalregister.py "view source code")
 
 Bases: [`Register`](qiskit.circuit.Register "qiskit.circuit.register.Register")
 

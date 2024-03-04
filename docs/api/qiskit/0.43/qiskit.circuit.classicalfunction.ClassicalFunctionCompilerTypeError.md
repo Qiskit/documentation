@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.classicalfunction.ClassicalFunctionCompilerTypeE
 
 <span id="qiskit.circuit.classicalfunction.ClassicalFunctionCompilerTypeError" />
 
-`ClassicalFunctionCompilerTypeError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/classicalfunction/exceptions.py "view source code")
+`ClassicalFunctionCompilerTypeError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/classicalfunction/exceptions.py "view source code")
 
 ClassicalFunction compiler type error. The classicalfunction function fails at type checking time.
 

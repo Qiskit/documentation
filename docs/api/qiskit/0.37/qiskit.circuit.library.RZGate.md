@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.RZGate
 
 <span id="qiskit.circuit.library.RZGate" />
 
-`RZGate(phi, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/standard_gates/rz.py "view source code")
+`RZGate(phi, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/standard_gates/rz.py "view source code")
 
 Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -56,7 +56,7 @@ Create new RZ gate.
 
 <span id="qiskit.circuit.library.RZGate.control" />
 
-`RZGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/standard_gates/rz.py "view source code")
+`RZGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
 Return a (multi-)controlled-RZ gate.
 
@@ -78,7 +78,7 @@ controlled version of this gate.
 
 <span id="qiskit.circuit.library.RZGate.inverse" />
 
-`RZGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/standard_gates/rz.py "view source code")
+`RZGate.inverse()`
 
 Return inverted RZ gate
 

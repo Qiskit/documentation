@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.optimizers.SPSA
 
 <span id="qiskit.aqua.components.optimizers.SPSA" />
 
-`SPSA(max_trials=1000, save_steps=1, last_avg=1, c0=0.6283185307179586, c1=0.1, c2=0.602, c3=0.101, c4=0, skip_calibration=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/spsa.py "view source code")
+`SPSA(max_trials=1000, save_steps=1, last_avg=1, c0=0.6283185307179586, c1=0.1, c2=0.602, c3=0.101, c4=0, skip_calibration=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/spsa.py "view source code")
 
 Simultaneous Perturbation Stochastic Approximation (SPSA) optimizer.
 
@@ -102,7 +102,7 @@ Return setting
 
 <span id="qiskit.aqua.components.optimizers.SPSA.get_support_level" />
 
-`SPSA.get_support_level()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/spsa.py "view source code")
+`SPSA.get_support_level()`
 
 return support level dictionary
 
@@ -133,7 +133,7 @@ grad
 
 <span id="qiskit.aqua.components.optimizers.SPSA.optimize" />
 
-`SPSA.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/spsa.py "view source code")
+`SPSA.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
 Perform optimization.
 

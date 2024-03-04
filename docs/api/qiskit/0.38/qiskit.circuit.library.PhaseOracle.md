@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.PhaseOracle
 
 <span id="qiskit.circuit.library.PhaseOracle" />
 
-`PhaseOracle(expression, synthesizer=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/phase_oracle.py "view source code")
+`PhaseOracle(expression, synthesizer=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/phase_oracle.py "view source code")
 
 Bases: [`qiskit.circuit.quantumcircuit.QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
@@ -35,7 +35,7 @@ Creates a PhaseOracle object
 
 <span id="qiskit.circuit.library.PhaseOracle.evaluate_bitstring" />
 
-`PhaseOracle.evaluate_bitstring(bitstring)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/phase_oracle.py "view source code")
+`PhaseOracle.evaluate_bitstring(bitstring)`
 
 Evaluate the oracle on a bitstring. This evaluation is done classically without any quantum circuit.
 
@@ -55,7 +55,7 @@ True if the bitstring is a good state, False otherwise.
 
 <span id="qiskit.circuit.library.PhaseOracle.from_dimacs_file" />
 
-`classmethod PhaseOracle.from_dimacs_file(filename)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/phase_oracle.py "view source code")
+`classmethod PhaseOracle.from_dimacs_file(filename)`
 
 Create a PhaseOracle from the string in the DIMACS format.
 

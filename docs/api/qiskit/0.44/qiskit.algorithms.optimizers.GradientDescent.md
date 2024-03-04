@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.GradientDescent
 
 <span id="qiskit.algorithms.optimizers.GradientDescent" />
 
-`qiskit.algorithms.optimizers.GradientDescent(maxiter=100, learning_rate=0.01, tol=1e-07, callback=None, perturbation=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/optimizers/gradient_descent.py "view source code")
+`qiskit.algorithms.optimizers.GradientDescent(maxiter=100, learning_rate=0.01, tol=1e-07, callback=None, perturbation=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/optimizers/gradient_descent.py "view source code")
 
 Bases: [`SteppableOptimizer`](qiskit.algorithms.optimizers.SteppableOptimizer "qiskit.algorithms.optimizers.steppable_optimizer.SteppableOptimizer")
 

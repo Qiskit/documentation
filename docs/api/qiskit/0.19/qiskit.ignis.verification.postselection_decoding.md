@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.verification.postselection_decoding
 
 <span id="qiskit.ignis.verification.postselection_decoding" />
 
-`postselection_decoding(results)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/topological_codes/fitters.py "view source code")
+`postselection_decoding(results)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/topological_codes/fitters.py "view source code")
 
 Calculates the logical error probability using postselection decoding.
 

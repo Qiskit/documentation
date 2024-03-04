@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.drivers.GaussianLogResult
 
 <span id="qiskit.chemistry.drivers.GaussianLogResult" />
 
-`GaussianLogResult(log)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/gaussiand/gaussian_log_result.py "view source code")
+`GaussianLogResult(log)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/gaussiand/gaussian_log_result.py "view source code")
 
 Bases: `object`
 
@@ -32,7 +32,7 @@ This result allows access to selected data from the log file that is not availab
 
 <span id="qiskit.chemistry.drivers.GaussianLogResult.get_watson_hamiltonian" />
 
-`GaussianLogResult.get_watson_hamiltonian(normalize=True)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/gaussiand/gaussian_log_result.py "view source code")
+`GaussianLogResult.get_watson_hamiltonian(normalize=True)`
 
 Get the force constants as a WatsonHamiltonian
 

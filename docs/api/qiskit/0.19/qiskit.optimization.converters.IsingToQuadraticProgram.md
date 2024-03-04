@@ -10,7 +10,7 @@ python_api_name: qiskit.optimization.converters.IsingToQuadraticProgram
 
 <span id="qiskit.optimization.converters.IsingToQuadraticProgram" />
 
-`IsingToQuadraticProgram(linear=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/converters/ising_to_quadratic_program.py "view source code")
+`IsingToQuadraticProgram(linear=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/converters/ising_to_quadratic_program.py "view source code")
 
 Convert a qubit operator into a quadratic program
 
@@ -24,7 +24,7 @@ Convert a qubit operator into a quadratic program
 
 <span id="qiskit.optimization.converters.IsingToQuadraticProgram.encode" />
 
-`IsingToQuadraticProgram.encode(qubit_op, offset=0.0)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/converters/ising_to_quadratic_program.py "view source code")
+`IsingToQuadraticProgram.encode(qubit_op, offset=0.0)`
 
 Convert a qubit operator and a shift value into a quadratic program
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.optimization.problems.QuadraticExpression
 
 <span id="qiskit.optimization.problems.QuadraticExpression" />
 
-`QuadraticExpression(quadratic_program, coefficients)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_expression.py "view source code")
+`QuadraticExpression(quadratic_program, coefficients)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_expression.py "view source code")
 
 Bases: `qiskit.optimization.problems.quadratic_program_element.QuadraticProgramElement`
 
@@ -31,7 +31,7 @@ The quadratic expression can be defined via an array, a list, a sparse matrix, o
 
 <span id="qiskit.optimization.problems.QuadraticExpression.evaluate" />
 
-`QuadraticExpression.evaluate(x)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_expression.py "view source code")
+`QuadraticExpression.evaluate(x)`
 
 Evaluate the quadratic expression for given variables: x \* Q \* x.
 
@@ -51,7 +51,7 @@ The value of the quadratic expression given the variable values.
 
 <span id="qiskit.optimization.problems.QuadraticExpression.evaluate_gradient" />
 
-`QuadraticExpression.evaluate_gradient(x)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_expression.py "view source code")
+`QuadraticExpression.evaluate_gradient(x)`
 
 Evaluate the gradient of the quadratic expression for given variables.
 
@@ -71,7 +71,7 @@ The value of the gradient quadratic expression given the variable values.
 
 <span id="qiskit.optimization.problems.QuadraticExpression.to_array" />
 
-`QuadraticExpression.to_array(symmetric=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_expression.py "view source code")
+`QuadraticExpression.to_array(symmetric=False)`
 
 Returns the coefficients of the quadratic expression as array.
 
@@ -91,7 +91,7 @@ An array with the coefficients corresponding to the quadratic expression.
 
 <span id="qiskit.optimization.problems.QuadraticExpression.to_dict" />
 
-`QuadraticExpression.to_dict(symmetric=False, use_name=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_expression.py "view source code")
+`QuadraticExpression.to_dict(symmetric=False, use_name=False)`
 
 Returns the coefficients of the quadratic expression as dictionary, either using tuples of variable names or indices as keys.
 

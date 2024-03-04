@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeJohannesburg
 
 <span id="qiskit.providers.fake_provider.FakeJohannesburg" />
 
-`FakeJohannesburg`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/fake_provider/backends/johannesburg/fake_johannesburg.py "view source code")
+`FakeJohannesburg` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/fake_provider/backends/johannesburg/fake_johannesburg.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_qasm_backend.FakeQasmBackend`
 

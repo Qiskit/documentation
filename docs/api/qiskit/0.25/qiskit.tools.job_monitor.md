@@ -10,7 +10,7 @@ python_api_name: qiskit.tools.job_monitor
 
 <span id="qiskit.tools.job_monitor" />
 
-`job_monitor(job, interval=None, quiet=False, output=<_io.TextIOWrapper name='<stdout>' mode='w' encoding='UTF-8'>)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/tools/monitor/job_monitor.py "view source code")
+`job_monitor(job, interval=None, quiet=False, output=<_io.TextIOWrapper name='<stdout>' mode='w' encoding='UTF-8'>)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/tools/monitor/job_monitor.py "view source code")
 
 Monitor the status of a IBMQJob instance.
 

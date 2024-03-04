@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.IterativeAmplitudeEstimation
 
 <span id="qiskit.algorithms.IterativeAmplitudeEstimation" />
 
-`IterativeAmplitudeEstimation(epsilon_target, alpha, confint_method='beta', min_ratio=2, quantum_instance=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/amplitude_estimators/iae.py "view source code")
+`IterativeAmplitudeEstimation(epsilon_target, alpha, confint_method='beta', min_ratio=2, quantum_instance=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/amplitude_estimators/iae.py "view source code")
 
 The Iterative Amplitude Estimation algorithm.
 

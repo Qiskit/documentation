@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.U1Gate
 
 <span id="qiskit.circuit.library.U1Gate" />
 
-`U1Gate(theta, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/u1.py "view source code")
+`U1Gate(theta, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/u1.py "view source code")
 
 Single-qubit rotation about the Z axis.
 
@@ -177,7 +177,7 @@ Add classical condition on register classical and value val.
 
 <span id="qiskit.circuit.library.U1Gate.control" />
 
-`U1Gate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/u1.py "view source code")
+`U1Gate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
 Return a (mutli-)controlled-U1 gate.
 
@@ -221,7 +221,7 @@ updated if it was provided
 
 <span id="qiskit.circuit.library.U1Gate.inverse" />
 
-`U1Gate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/u1.py "view source code")
+`U1Gate.inverse()`
 
 Return inverted U1 gate ($U1(\lambda){\dagger} = U1(-\lambda)$)
 
@@ -313,7 +313,7 @@ Containing the definition.
 
 <span id="qiskit.circuit.library.U1Gate.to_matrix" />
 
-`U1Gate.to_matrix()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/u1.py "view source code")
+`U1Gate.to_matrix()`
 
 Return a numpy.array for the U1 gate.
 

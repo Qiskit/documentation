@@ -10,7 +10,7 @@ python_api_name: qiskit_aer.library.SaveState
 
 <span id="qiskit_aer.library.SaveState" />
 
-`SaveState(num_qubits, label=None, pershot=False, conditional=False)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/library/save_instructions/save_state.py "view source code")
+`SaveState(num_qubits, label=None, pershot=False, conditional=False)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/library/save_instructions/save_state.py "view source code")
 
 Bases: `qiskit_aer.library.save_instructions.save_data.SaveSingleData`
 

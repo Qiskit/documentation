@@ -1,7 +1,7 @@
 ---
 title: utils
 description: API reference for qiskit.utils
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.utils
 ---
@@ -109,7 +109,7 @@ from qiskit.utils import LazyImportTester
 
 <span id="qiskit.utils.LazyDependencyManager" />
 
-`LazyDependencyManager(*, name=None, callback=None, install=None, msg=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/utils/lazy_tester.py "view source code")
+`LazyDependencyManager(*, name=None, callback=None, install=None, msg=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/utils/lazy_tester.py "view source code")
 
 A mananger for some optional features that are expensive to import, or to verify the existence of.
 
@@ -170,13 +170,9 @@ Create a context, during which the value of the dependency manager will be `Fals
 
 ### require\_in\_call
 
-### require\_in\_call
-
 <span id="qiskit.utils.LazyDependencyManager.require_in_call" />
 
 `require_in_call(feature_or_callable: Callable) → Callable`
-
-<span id="qiskit.utils.LazyDependencyManager.require_in_call" />
 
 `require_in_call(feature_or_callable: str) → Callable[[Callable], Callable]`
 
@@ -196,13 +192,9 @@ Callable
 
 ### require\_in\_instance
 
-### require\_in\_instance
-
 <span id="qiskit.utils.LazyDependencyManager.require_in_instance" />
 
 `require_in_instance(feature_or_class: Type) → Type`
-
-<span id="qiskit.utils.LazyDependencyManager.require_in_instance" />
 
 `require_in_instance(feature_or_class: str) → Callable[[Type], Type]`
 
@@ -238,7 +230,7 @@ Eagerly attempt to import the dependencies in this object, and raise an exceptio
 
 <span id="qiskit.utils.LazyImportTester" />
 
-`LazyImportTester(name_map_or_modules, *, name=None, callback=None, install=None, msg=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/utils/lazy_tester.py "view source code")
+`LazyImportTester(name_map_or_modules, *, name=None, callback=None, install=None, msg=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/utils/lazy_tester.py "view source code")
 
 A lazy dependency tester for importable Python modules. Any required objects will only be imported at the point that this object is tested for its Boolean value.
 
@@ -252,7 +244,7 @@ A lazy dependency tester for importable Python modules. Any required objects wil
 
 <span id="qiskit.utils.LazySubprocessTester" />
 
-`LazySubprocessTester(command, *, name=None, callback=None, install=None, msg=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/utils/lazy_tester.py "view source code")
+`LazySubprocessTester(command, *, name=None, callback=None, install=None, msg=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/utils/lazy_tester.py "view source code")
 
 A lazy checker that a command-line tool is available. The command will only be run once, at the point that this object is checked for its Boolean value.
 

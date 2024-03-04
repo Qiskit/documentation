@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.components.optimizers.NFT
 
 <span id="qiskit.aqua.components.optimizers.NFT" />
 
-`NFT(maxiter=None, maxfev=1024, disp=False, reset_interval=32)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/optimizers/nft.py "view source code")
+`NFT(maxiter=None, maxfev=1024, disp=False, reset_interval=32)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/optimizers/nft.py "view source code")
 
 Nakanishi-Fujii-Todo algorithm.
 

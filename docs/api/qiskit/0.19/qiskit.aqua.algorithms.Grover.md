@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.algorithms.Grover
 
 <span id="qiskit.aqua.algorithms.Grover" />
 
-`Grover(oracle, init_state=None, incremental=False, num_iterations=1, mct_mode='basic', quantum_instance=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/amplitude_amplifiers/grover.py "view source code")
+`Grover(oracle, init_state=None, incremental=False, num_iterations=1, mct_mode='basic', quantum_instance=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/amplitude_amplifiers/grover.py "view source code")
 
 The Grover’s Search algorithm.
 
@@ -79,7 +79,7 @@ Return a numpy random.
 
 <span id="qiskit.aqua.algorithms.Grover.construct_circuit" />
 
-`Grover.construct_circuit(measurement=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/amplitude_amplifiers/grover.py "view source code")
+`Grover.construct_circuit(measurement=False)`
 
 Construct the quantum circuit
 

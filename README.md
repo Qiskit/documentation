@@ -92,6 +92,8 @@ API name.
 
 For translations, put the language code in front of the URL, like http://localhost:3000/es/start or http://localhost:3000/fr/start. You can find the language codes by looking in the `translations/` folder.
 
+Warning: `./start` does not check if there is a new version of the docs application available. Run `docker pull qiskit/documentation` to update to the latest version of the app.
+
 ## Preview the docs in PRs
 
 Contributors with write access to this repository can use live previews of the docs: GitHub will deploy a website using your changes.
@@ -148,7 +150,13 @@ page, click "Summary", then download "Executed notebooks".
 ## Lint notebooks
 
 We use [`squeaky`](https://github.com/frankharkins/squeaky) to lint our
-notebooks. To check if a notebook needs linting:
+notebooks. First install `tox` using [pipx](https://pipx.pypa.io/stable/).
+
+```sh
+pipx install tox
+```
+
+To check if a notebook needs linting:
 
 ```sh
 # Check all notebooks in ./docs
@@ -172,25 +180,33 @@ about it.
 
 ## Check for broken links
 
-CI will check for broken links. You can also check locally:
+We have two broken link checkers: for internal links and for external links.
+
+To check internal links:
 
 ```bash
-# Only check for internal broken links
-npm run check:links
+# Only check non-API docs
+npm run check:internal-links
 
-# Enable the validation of external links
-npm run check:links -- --external
-
-# By default, only the non-API docs are checked. You can add any of the
-# below arguments to also check API docs.
-npm run check:links -- --current-apis --dev-apis --historical-apis --qiskit-release-notes
+# You can add any of the below arguments to also check API docs.
+npm run check:internal-links -- --current-apis --dev-apis --historical-apis --qiskit-release-notes
 
 # However, `--historical-apis` currently has failing versions, so you may
 # want to add `--skip-broken-historical`.
-npm run check:links -- --historical-apis --skip-broken-historical
+npm run check:internal-links -- --historical-apis --skip-broken-historical
 
 # Or, run all the checks. Although this only checks non-API docs.
 npm run check
+```
+
+To check external links:
+
+```bash
+# Specify the files you want after `--`
+npm run check:external-links -- docs/run/index.md docs/run/circuit-execution.mdx
+
+# You can also use globs
+npm run check:external-links -- 'docs/run/*' '!docs/run/index.mdx'
 ```
 
 ## Check file metadata
@@ -254,12 +270,11 @@ It's possible to write broken pages that crash when loaded. This is usually due 
 To check that all the non-API docs render:
 
 1. Start up the local preview with `./start` by following the instructions at [Preview the docs locally](#preview-the-docs-locally)
-2. In a new tab, `npm run check-pages-render`
+2. In a new tab, `npm run check:pages-render -- --non-api`
 
-You can also check that API docs and translations render by using any of these arguments: `npm run check-pages-render -- --qiskit-release-notes --current-apis --dev-apis --historical-apis --translations`. Warning that this is exponentially slower.
+You can also check that API docs and translations render by using any of these arguments: `npm run check:pages-render -- --non-api --qiskit-release-notes --current-apis --dev-apis --historical-apis --translations`. Warning that this is exponentially slower.
 
-CI will check on every PR that non-API docs correctly render. We also run a nightly cron job to check the API docs and
-translations.
+CI will check on every PR that any changed files render correctly. We also run a weekly cron job to check that every page renders correctly.
 
 ## Format TypeScript files
 
@@ -584,8 +599,9 @@ Some companies require a special attribution notice. View a list of the companie
 - IBM&reg;
 - IBM Cloud&reg;
 - IBM Quantum&trade;
-- Qiskit&reg;
 </details>
+
+**Note**: Although Qiskit is a registered trademark of IBM, we do not mark it as such.
 
 See the Usage section of the IBM Quantum Experience Guide for guidance on when to use IBM and when to use IBM Quantum.
 
@@ -597,6 +613,4 @@ Use `&reg;` to get &reg; for registered trademarks.
 
 use `&trade;` to get &trade; for nonregistered trademarks.
 
-<Admonition type="caution">
-  Do not include trademarks in headings. The code will display rather than the symbol.
-</Admonition
+⚠️ **Note**: Do not include trademarks in headings. The code will display rather than the symbol.

@@ -10,7 +10,7 @@ python_api_name: qiskit.primitives.BaseSampler
 
 <span id="qiskit.primitives.BaseSampler" />
 
-`BaseSampler(circuits: Iterable[QuantumCircuit] | QuantumCircuit | None = None, parameters: Iterable[Iterable[Parameter]] | None = None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/primitives/base/base_sampler.py "view source code")
+`BaseSampler(circuits: Iterable[QuantumCircuit] | QuantumCircuit | None = None, parameters: Iterable[Iterable[Parameter]] | None = None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/primitives/base/base_sampler.py "view source code")
 
 Bases: `qiskit.primitives.base.base_primitive.BasePrimitive`
 
@@ -34,7 +34,7 @@ Base class of Sampler that calculates quasi-probabilities of bitstrings from qua
 
 <span id="qiskit.primitives.BaseSampler.close" />
 
-`BaseSampler.close()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/primitives/base/base_sampler.py "view source code")
+`BaseSampler.close()`
 
 Close the session and free resources
 
@@ -42,7 +42,7 @@ Close the session and free resources
 
 <span id="qiskit.primitives.BaseSampler.run" />
 
-`BaseSampler.run(circuits, parameter_values=None, **run_options)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/primitives/base/base_sampler.py "view source code")
+`BaseSampler.run(circuits, parameter_values=None, **run_options)`
 
 Run the job of the sampling of bitstrings.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.primitive_ops.TaperedPauliSumOp
 
 <span id="qiskit.opflow.primitive_ops.TaperedPauliSumOp" />
 
-`TaperedPauliSumOp(primitive, z2_symmetries, coeff=1.0)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/opflow/primitive_ops/tapered_pauli_sum_op.py "view source code")
+`TaperedPauliSumOp(primitive, z2_symmetries, coeff=1.0)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/opflow/primitive_ops/tapered_pauli_sum_op.py "view source code")
 
 Bases: [`qiskit.opflow.primitive_ops.pauli_sum_op.PauliSumOp`](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.pauli_sum_op.PauliSumOp")
 
@@ -32,7 +32,7 @@ Class for PauliSumOp after tapering
 
 <span id="qiskit.opflow.primitive_ops.TaperedPauliSumOp.assign_parameters" />
 
-`TaperedPauliSumOp.assign_parameters(param_dict)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/opflow/primitive_ops/tapered_pauli_sum_op.py "view source code")
+`TaperedPauliSumOp.assign_parameters(param_dict)`
 
 Binds scalar values to any Terra `Parameters` in the coefficients or primitives of the Operator, or substitutes one `Parameter` for another. This method differs from Terra’s `assign_parameters` in that it also supports lists of values to assign for a give `Parameter`, in which case self will be copied for each parameterization in the binding list(s), and all the copies will be returned in an `OpList`. If lists of parameterizations are used, every `Parameter` in the param\_dict must have the same length list of parameterizations.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.PauliGate
 
 <span id="qiskit.circuit.library.PauliGate" />
 
-`PauliGate(label)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/generalized_gates/pauli.py "view source code")
+`PauliGate(label)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/generalized_gates/pauli.py "view source code")
 
 A multi-qubit Pauli gate.
 

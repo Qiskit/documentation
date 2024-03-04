@@ -10,7 +10,7 @@ python_api_name: qiskit.converters.circuit_to_instruction
 
 <span id="qiskit.converters.circuit_to_instruction" />
 
-`circuit_to_instruction(circuit, parameter_map=None, equivalence_library=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/converters/circuit_to_instruction.py "view source code")
+`circuit_to_instruction(circuit, parameter_map=None, equivalence_library=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/converters/circuit_to_instruction.py "view source code")
 
 Build an `Instruction` object from a `QuantumCircuit`.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.expectations.AerPauliExpectation
 
 <span id="qiskit.opflow.expectations.AerPauliExpectation" />
 
-`qiskit.opflow.expectations.AerPauliExpectation`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/expectations/aer_pauli_expectation.py "view source code")
+`qiskit.opflow.expectations.AerPauliExpectation` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/expectations/aer_pauli_expectation.py "view source code")
 
 Bases: [`ExpectationBase`](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.expectation_base.ExpectationBase")
 

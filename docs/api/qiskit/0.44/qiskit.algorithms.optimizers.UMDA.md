@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.UMDA
 
 <span id="qiskit.algorithms.optimizers.UMDA" />
 
-`qiskit.algorithms.optimizers.UMDA(maxiter=100, size_gen=20, alpha=0.5, callback=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/optimizers/umda.py "view source code")
+`qiskit.algorithms.optimizers.UMDA(maxiter=100, size_gen=20, alpha=0.5, callback=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/optimizers/umda.py "view source code")
 
 Bases: [`Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.optimizer.Optimizer")
 

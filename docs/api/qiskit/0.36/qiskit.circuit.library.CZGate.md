@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CZGate
 
 <span id="qiskit.circuit.library.CZGate" />
 
-`CZGate(label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/z.py "view source code")
+`CZGate(label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/z.py "view source code")
 
 Bases: `qiskit.circuit.controlledgate.ControlledGate`
 
@@ -49,7 +49,7 @@ Create new CZ gate.
 
 <span id="qiskit.circuit.library.CZGate.inverse" />
 
-`CZGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/z.py "view source code")
+`CZGate.inverse()`
 
 Return inverted CZ gate (itself).
 

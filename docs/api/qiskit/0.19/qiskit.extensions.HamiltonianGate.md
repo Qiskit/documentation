@@ -10,7 +10,7 @@ python_api_name: qiskit.extensions.HamiltonianGate
 
 <span id="qiskit.extensions.HamiltonianGate" />
 
-`HamiltonianGate(data, time, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/extensions/hamiltonian_gate.py "view source code")
+`HamiltonianGate(data, time, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/extensions/hamiltonian_gate.py "view source code")
 
 Class for representing evolution by a Hermitian Hamiltonian operator as a gate. This gate resolves to a UnitaryGate U(t) = exp(-1j \* t \* H), which can be decomposed into basis gates if it is 2 qubits or less, or simulated directly in Aer for more qubits.
 
@@ -66,7 +66,7 @@ Add a decomposition of the instruction to the SessionEquivalenceLibrary.
 
 <span id="qiskit.extensions.HamiltonianGate.adjoint" />
 
-`HamiltonianGate.adjoint()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/extensions/hamiltonian_gate.py "view source code")
+`HamiltonianGate.adjoint()`
 
 Return the adjoint of the unitary.
 
@@ -149,7 +149,7 @@ Add classical condition on register classical and value val.
 
 <span id="qiskit.extensions.HamiltonianGate.conjugate" />
 
-`HamiltonianGate.conjugate()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/extensions/hamiltonian_gate.py "view source code")
+`HamiltonianGate.conjugate()`
 
 Return the conjugate of the Hamiltonian.
 
@@ -205,7 +205,7 @@ updated if it was provided
 
 <span id="qiskit.extensions.HamiltonianGate.inverse" />
 
-`HamiltonianGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/extensions/hamiltonian_gate.py "view source code")
+`HamiltonianGate.inverse()`
 
 Return the adjoint of the unitary.
 
@@ -263,7 +263,7 @@ To which to\_matrix is self.to\_matrix^exponent.
 
 <span id="qiskit.extensions.HamiltonianGate.qasm" />
 
-`HamiltonianGate.qasm()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/extensions/hamiltonian_gate.py "view source code")
+`HamiltonianGate.qasm()`
 
 Raise an error, as QASM is not defined for the HamiltonianGate.
 
@@ -295,7 +295,7 @@ Containing the definition.
 
 <span id="qiskit.extensions.HamiltonianGate.to_matrix" />
 
-`HamiltonianGate.to_matrix()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/extensions/hamiltonian_gate.py "view source code")
+`HamiltonianGate.to_matrix()`
 
 Return matrix for the unitary.
 
@@ -303,7 +303,7 @@ Return matrix for the unitary.
 
 <span id="qiskit.extensions.HamiltonianGate.transpose" />
 
-`HamiltonianGate.transpose()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/extensions/hamiltonian_gate.py "view source code")
+`HamiltonianGate.transpose()`
 
 Return the transpose of the Hamiltonian.
 

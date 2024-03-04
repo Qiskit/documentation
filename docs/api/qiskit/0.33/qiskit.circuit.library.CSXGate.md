@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CSXGate
 
 <span id="qiskit.circuit.library.CSXGate" />
 
-`CSXGate(label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/library/standard_gates/sx.py "view source code")
+`CSXGate(label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/library/standard_gates/sx.py "view source code")
 
 Bases: `qiskit.circuit.controlledgate.ControlledGate`
 

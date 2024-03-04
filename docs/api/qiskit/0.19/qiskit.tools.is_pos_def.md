@@ -10,7 +10,7 @@ python_api_name: qiskit.tools.is_pos_def
 
 <span id="qiskit.tools.is_pos_def" />
 
-`is_pos_def(x)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/tools/qi/qi.py "view source code")
+`is_pos_def(x)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/tools/qi/qi.py "view source code")
 
 Return is\_pos\_def.
 

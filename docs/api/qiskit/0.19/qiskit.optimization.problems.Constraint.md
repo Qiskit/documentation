@@ -10,7 +10,7 @@ python_api_name: qiskit.optimization.problems.Constraint
 
 <span id="qiskit.optimization.problems.Constraint" />
 
-`Constraint(quadratic_program, name, sense, rhs)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/problems/constraint.py "view source code")
+`Constraint(quadratic_program, name, sense, rhs)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/problems/constraint.py "view source code")
 
 Abstract Constraint Class.
 
@@ -95,7 +95,7 @@ The sense of the constraint.
 
 <span id="qiskit.optimization.problems.Constraint.evaluate" />
 
-`abstract Constraint.evaluate(x)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/problems/constraint.py "view source code")
+`abstract Constraint.evaluate(x)`
 
 Evaluate left-hand-side of constraint for given values of variables.
 

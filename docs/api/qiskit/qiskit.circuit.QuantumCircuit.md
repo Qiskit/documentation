@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
 <span id="qiskit.circuit.QuantumCircuit" />
 
-`qiskit.circuit.QuantumCircuit(*regs, name=None, global_phase=0, metadata=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/quantumcircuit.py "view source code")
+`qiskit.circuit.QuantumCircuit(*regs, name=None, global_phase=0, metadata=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/quantumcircuit.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
@@ -346,13 +346,9 @@ a handle to the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit
 
 ### assign\_parameters
 
-### assign\_parameters
-
 <span id="qiskit.circuit.QuantumCircuit.assign_parameters" />
 
 `assign_parameters(parameters: Mapping[Parameter, ParameterExpression | float] | Sequence[ParameterExpression | float], inplace: Literal[False] = False, *, flat_input: bool = False, strict: bool = True) → QuantumCircuit`
-
-<span id="qiskit.circuit.QuantumCircuit.assign_parameters" />
 
 `assign_parameters(parameters: Mapping[Parameter, ParameterExpression | float] | Sequence[ParameterExpression | float], inplace: Literal[True] = False, *, flat_input: bool = False, strict: bool = True) → None`
 
@@ -1345,13 +1341,9 @@ The circuit index of an [`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.cir
 
 ### for\_loop
 
-### for\_loop
-
 <span id="qiskit.circuit.QuantumCircuit.for_loop" />
 
 `for_loop(indexset: Iterable[int], loop_parameter: Parameter | None, body: None, qubits: None, clbits: None, *, label: str | None) → ForLoopContext`
-
-<span id="qiskit.circuit.QuantumCircuit.for_loop" />
 
 `for_loop(indexset: Iterable[int], loop_parameter: Parameter | None, body: QuantumCircuit, qubits: Sequence[Qubit | QuantumRegister | int | slice | Sequence[Qubit | int]], clbits: Sequence[Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int]], *, label: str | None) → InstructionSet`
 
@@ -1497,13 +1489,9 @@ list of (instruction, qargs, cargs).
 
 ### get\_parameter
 
-### get\_parameter
-
 <span id="qiskit.circuit.QuantumCircuit.get_parameter" />
 
 `get_parameter(name: str, default: T) → Parameter | T`
-
-<span id="qiskit.circuit.QuantumCircuit.get_parameter" />
 
 `get_parameter(name: str, default: ellipsis = Ellipsis) → Parameter`
 
@@ -1695,13 +1683,9 @@ A handle to the instruction created.
 
 ### if\_test
 
-### if\_test
-
 <span id="qiskit.circuit.QuantumCircuit.if_test" />
 
 `if_test(condition: tuple[ClassicalRegister | Clbit, int], true_body: None, qubits: None, clbits: None, *, label: str | None) → IfContext`
-
-<span id="qiskit.circuit.QuantumCircuit.if_test" />
 
 `if_test(condition: tuple[ClassicalRegister | Clbit, int], true_body: QuantumCircuit, qubits: Sequence[Qubit | QuantumRegister | int | slice | Sequence[Qubit | int]], clbits: Sequence[Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int]], *, label: str | None = None) → InstructionSet`
 
@@ -3028,13 +3012,9 @@ A handle to the instructions created.
 
 ### switch
 
-### switch
-
 <span id="qiskit.circuit.QuantumCircuit.switch" />
 
 `switch(target: Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int], cases: None, qubits: None, clbits: None, *, label: str | None) → SwitchContext`
-
-<span id="qiskit.circuit.QuantumCircuit.switch" />
 
 `switch(target: Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int], cases: Iterable[Tuple[Any, QuantumCircuit]], qubits: Sequence[Qubit | QuantumRegister | int | slice | Sequence[Qubit | int]], clbits: Sequence[Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int]], *, label: str | None) → InstructionSet`
 
@@ -3323,13 +3303,9 @@ circuit.unitary(matrix, [0, 1])
 
 ### while\_loop
 
-### while\_loop
-
 <span id="qiskit.circuit.QuantumCircuit.while_loop" />
 
 `while_loop(condition: tuple[ClassicalRegister | Clbit, int] | expr.Expr, body: None, qubits: None, clbits: None, *, label: str | None) → WhileLoopContext`
-
-<span id="qiskit.circuit.QuantumCircuit.while_loop" />
 
 `while_loop(condition: tuple[ClassicalRegister | Clbit, int] | expr.Expr, body: QuantumCircuit, qubits: Sequence[Qubit | QuantumRegister | int | slice | Sequence[Qubit | int]], clbits: Sequence[Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int]], *, label: str | None) → InstructionSet`
 

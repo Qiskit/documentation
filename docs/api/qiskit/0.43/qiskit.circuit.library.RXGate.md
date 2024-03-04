@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.RXGate
 
 <span id="qiskit.circuit.library.RXGate" />
 
-`RXGate(theta, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/rx.py "view source code")
+`RXGate(theta, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/rx.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -46,7 +46,7 @@ Create new RX gate.
 
 <span id="qiskit.circuit.library.RXGate.control" />
 
-`RXGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/rx.py "view source code")
+`RXGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
 Return a (multi-)controlled-RX gate.
 
@@ -70,7 +70,7 @@ controlled version of this gate.
 
 <span id="qiskit.circuit.library.RXGate.inverse" />
 
-`RXGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/rx.py "view source code")
+`RXGate.inverse()`
 
 Return inverted RX gate.
 
@@ -82,7 +82,7 @@ $RX(\lambda)^{\dagger} = RX(-\lambda)$
 
 <span id="qiskit.circuit.library.RXGate.power" />
 
-`RXGate.power(exponent)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/rx.py "view source code")
+`RXGate.power(exponent)`
 
 Raise gate to a power.
 

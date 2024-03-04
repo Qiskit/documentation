@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.converters.AbelianGrouper
 
 <span id="qiskit.opflow.converters.AbelianGrouper" />
 
-`AbelianGrouper(traverse=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/converters/abelian_grouper.py "view source code")
+`AbelianGrouper(traverse=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/converters/abelian_grouper.py "view source code")
 
 Bases: `qiskit.opflow.converters.converter_base.ConverterBase`
 
@@ -28,7 +28,7 @@ Meaning, it will traverse the Operator, and when it finds a SummedOp, it will ev
 
 <span id="qiskit.opflow.converters.AbelianGrouper.convert" />
 
-`AbelianGrouper.convert(operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/converters/abelian_grouper.py "view source code")
+`AbelianGrouper.convert(operator)`
 
 Check if operator is a SummedOp, in which case covert it into a sum of mutually commuting sums, or if the Operator contains sub-Operators and `traverse` is True, attempt to convert any sub-Operators.
 
@@ -48,7 +48,7 @@ The converted Operator.
 
 <span id="qiskit.opflow.converters.AbelianGrouper.group_subops" />
 
-`classmethod AbelianGrouper.group_subops(list_op)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/converters/abelian_grouper.py "view source code")
+`classmethod AbelianGrouper.group_subops(list_op)`
 
 Given a ListOp, attempt to group into Abelian ListOps of the same type.
 

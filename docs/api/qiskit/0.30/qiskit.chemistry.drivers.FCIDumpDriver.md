@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.drivers.FCIDumpDriver
 
 <span id="qiskit.chemistry.drivers.FCIDumpDriver" />
 
-`FCIDumpDriver(fcidump_input, atoms=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/fcidumpd/fcidumpdriver.py "view source code")
+`FCIDumpDriver(fcidump_input, atoms=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/fcidumpd/fcidumpdriver.py "view source code")
 
 Bases: `qiskit.chemistry.drivers.fermionic_driver.FermionicDriver`
 
@@ -39,7 +39,7 @@ A determinant based full configuration interaction program, Computer Physics Com
 
 <span id="qiskit.chemistry.drivers.FCIDumpDriver.dump" />
 
-`static FCIDumpDriver.dump(q_mol, outpath, orbsym=None, isym=1)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/fcidumpd/fcidumpdriver.py "view source code")
+`static FCIDumpDriver.dump(q_mol, outpath, orbsym=None, isym=1)`
 
 Convenience method to produce an FCIDump output file.
 
@@ -58,7 +58,7 @@ Convenience method to produce an FCIDump output file.
 
 <span id="qiskit.chemistry.drivers.FCIDumpDriver.run" />
 
-`FCIDumpDriver.run()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/fcidumpd/fcidumpdriver.py "view source code")
+`FCIDumpDriver.run()`
 
 Constructs a QMolecule instance out of a FCIDump file.
 

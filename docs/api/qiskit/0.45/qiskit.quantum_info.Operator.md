@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.Operator
 
 <span id="qiskit.quantum_info.Operator" />
 
-`qiskit.quantum_info.Operator(data, input_dims=None, output_dims=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/quantum_info/operators/operator.py "view source code")
+`qiskit.quantum_info.Operator(data, input_dims=None, output_dims=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/quantum_info/operators/operator.py "view source code")
 
 Bases: `LinearOp`
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.Stinespring
 
 <span id="qiskit.quantum_info.Stinespring" />
 
-`Stinespring(data, input_dims=None, output_dims=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/quantum_info/operators/channel/stinespring.py "view source code")
+`Stinespring(data, input_dims=None, output_dims=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/quantum_info/operators/channel/stinespring.py "view source code")
 
 Bases: `qiskit.quantum_info.operators.channel.quantum_channel.QuantumChannel`
 
@@ -70,7 +70,7 @@ Return the adjoint quantum channel.
 
 <span id="qiskit.quantum_info.Stinespring.compose" />
 
-`Stinespring.compose(other, qargs=None, front=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/quantum_info/operators/channel/stinespring.py "view source code")
+`Stinespring.compose(other, qargs=None, front=False)`
 
 Return the operator composition with another Stinespring.
 
@@ -102,7 +102,7 @@ The composed Stinespring.
 
 <span id="qiskit.quantum_info.Stinespring.conjugate" />
 
-`Stinespring.conjugate()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/quantum_info/operators/channel/stinespring.py "view source code")
+`Stinespring.conjugate()`
 
 Return the conjugate quantum channel.
 
@@ -147,7 +147,7 @@ The right matrix multiplied Operator.
 
 <span id="qiskit.quantum_info.Stinespring.expand" />
 
-`Stinespring.expand(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/quantum_info/operators/channel/stinespring.py "view source code")
+`Stinespring.expand(other)`
 
 Return the reverse-order tensor product with another Stinespring.
 
@@ -185,7 +185,7 @@ Test if Choi-matrix is completely-positive (CP)
 
 <span id="qiskit.quantum_info.Stinespring.is_cptp" />
 
-`Stinespring.is_cptp(atol=None, rtol=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/quantum_info/operators/channel/stinespring.py "view source code")
+`Stinespring.is_cptp(atol=None, rtol=None)`
 
 Return True if completely-positive trace-preserving.
 
@@ -271,7 +271,7 @@ BaseOperator
 
 <span id="qiskit.quantum_info.Stinespring.tensor" />
 
-`Stinespring.tensor(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/quantum_info/operators/channel/stinespring.py "view source code")
+`Stinespring.tensor(other)`
 
 Return the tensor product with another Stinespring.
 
@@ -327,7 +327,7 @@ Try to convert channel to a unitary representation Operator.
 
 <span id="qiskit.quantum_info.Stinespring.transpose" />
 
-`Stinespring.transpose()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/quantum_info/operators/channel/stinespring.py "view source code")
+`Stinespring.transpose()`
 
 Return the transpose quantum channel.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.verification.AccreditationCircuits
 
 <span id="qiskit.ignis.verification.AccreditationCircuits" />
 
-`AccreditationCircuits(target_circ, two_qubit_gate='cx', coupling_map=None, seed=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/accreditation/circuits.py "view source code")
+`AccreditationCircuits(target_circ, two_qubit_gate='cx', coupling_map=None, seed=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/accreditation/circuits.py "view source code")
 
 Bases: `object`
 
@@ -37,7 +37,7 @@ Initialize the circuit generation class parse into layers
 
 <span id="qiskit.ignis.verification.AccreditationCircuits.generate_circuits" />
 
-`AccreditationCircuits.generate_circuits(num_trap)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/accreditation/circuits.py "view source code")
+`AccreditationCircuits.generate_circuits(num_trap)`
 
 Generate quantum circuits for accreditation
 
@@ -59,7 +59,7 @@ tuple
 
 <span id="qiskit.ignis.verification.AccreditationCircuits.target_circuit" />
 
-`AccreditationCircuits.target_circuit(target_circ, two_qubit_gate='cx', coupling_map=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/accreditation/circuits.py "view source code")
+`AccreditationCircuits.target_circuit(target_circ, two_qubit_gate='cx', coupling_map=None)`
 
 Load target circuit in to class, and parse into layers
 

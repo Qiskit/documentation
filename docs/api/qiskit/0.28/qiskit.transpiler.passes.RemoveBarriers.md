@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.RemoveBarriers
 
 <span id="qiskit.transpiler.passes.RemoveBarriers" />
 
-`RemoveBarriers(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/utils/remove_barriers.py "view source code")
+`RemoveBarriers(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/utils/remove_barriers.py "view source code")
 
 Return a circuit with any barrier removed.
 

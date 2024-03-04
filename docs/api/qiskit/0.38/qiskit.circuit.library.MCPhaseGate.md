@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.MCPhaseGate
 
 <span id="qiskit.circuit.library.MCPhaseGate" />
 
-`MCPhaseGate(lam, num_ctrl_qubits, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/standard_gates/p.py "view source code")
+`MCPhaseGate(lam, num_ctrl_qubits, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/standard_gates/p.py "view source code")
 
 Bases: [`qiskit.circuit.controlledgate.ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 
@@ -45,7 +45,7 @@ Create new MCPhase gate.
 
 <span id="qiskit.circuit.library.MCPhaseGate.control" />
 
-`MCPhaseGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/standard_gates/p.py "view source code")
+`MCPhaseGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
 Controlled version of this gate.
 
@@ -67,7 +67,7 @@ controlled version of this gate.
 
 <span id="qiskit.circuit.library.MCPhaseGate.inverse" />
 
-`MCPhaseGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/standard_gates/p.py "view source code")
+`MCPhaseGate.inverse()`
 
 Return inverted MCU1 gate ($MCU1(\lambda){\dagger} = MCU1(-\lambda)$)
 

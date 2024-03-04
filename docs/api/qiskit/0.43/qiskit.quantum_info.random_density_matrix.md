@@ -12,7 +12,7 @@ python_api_name: qiskit.quantum_info.random_density_matrix
 
 <span id="qiskit.quantum_info.random_density_matrix" />
 
-`random_density_matrix(dims, rank=None, method='Hilbert-Schmidt', seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/states/random.py "view source code")
+`random_density_matrix(dims, rank=None, method='Hilbert-Schmidt', seed=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/states/random.py "view source code")
 
 Generator a random DensityMatrix.
 

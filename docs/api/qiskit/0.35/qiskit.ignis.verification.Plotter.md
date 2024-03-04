@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.verification.Plotter
 
 <span id="qiskit.ignis.verification.Plotter" />
 
-`Plotter(label)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/entanglement/analysis.py "view source code")
+`Plotter(label)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/entanglement/analysis.py "view source code")
 
 Bases: `object`
 
@@ -22,7 +22,7 @@ Various plots of the ground state in MQC and PO experiments
 
 <span id="qiskit.ignis.verification.Plotter.get_fourier_info" />
 
-`Plotter.get_fourier_info(qn, x, y, y_m, p_dict)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/entanglement/analysis.py "view source code")
+`Plotter.get_fourier_info(qn, x, y, y_m, p_dict)`
 
 Get fourier trans. data/plot of both mqc and po exps. :type qn: `int` :param qn: Number of qubits :type x: `array` :param x: Phase series :type y: `array` :param y: Counts series :type y\_m: `array` :param y\_m: Mitigated counts series :type p\_dict: `Dict` :param p\_dict: probabilities dictionary
 
@@ -43,7 +43,7 @@ The fourier transform data
 
 <span id="qiskit.ignis.verification.Plotter.sin_plotter" />
 
-`Plotter.sin_plotter(x, y, y_m=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/entanglement/analysis.py "view source code")
+`Plotter.sin_plotter(x, y, y_m=None)`
 
 Make sin plot of counts in both mqc and po exps. :type x: `array` :param x: Phase series :type y: `array` :param y: Counts series :type y\_m: `Optional`\[`array`] :param y\_m: Mitigated counts series
 
@@ -55,7 +55,7 @@ Make sin plot of counts in both mqc and po exps. :type x: `array` :param x: Phas
 
 <span id="qiskit.ignis.verification.Plotter.title_maker" />
 
-`Plotter.title_maker()`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/entanglement/analysis.py "view source code")
+`Plotter.title_maker()`
 
 Make title depending on type of exp.
 

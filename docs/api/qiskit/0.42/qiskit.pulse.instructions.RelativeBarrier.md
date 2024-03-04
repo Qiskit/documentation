@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.instructions.RelativeBarrier
 
 <span id="qiskit.pulse.instructions.RelativeBarrier" />
 
-`RelativeBarrier(*channels, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/instructions/directives.py "view source code")
+`RelativeBarrier(*channels, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/instructions/directives.py "view source code")
 
 Bases: `qiskit.pulse.instructions.directives.Directive`
 

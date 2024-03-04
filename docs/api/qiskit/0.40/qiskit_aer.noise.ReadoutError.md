@@ -10,7 +10,7 @@ python_api_name: qiskit_aer.noise.ReadoutError
 
 <span id="qiskit_aer.noise.ReadoutError" />
 
-`ReadoutError(probabilities, atol=1e-08)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/noise/errors/readout_error.py "view source code")
+`ReadoutError(probabilities, atol=1e-08)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/noise/errors/readout_error.py "view source code")
 
 Bases: `object`
 
@@ -57,7 +57,7 @@ probabilities[3] = [P("00"|"11"), P("01"|"11"), P("10"|"11"), P("11"|"11")]
 
 <span id="qiskit_aer.noise.ReadoutError.compose" />
 
-`ReadoutError.compose(other, front=False)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/noise/errors/readout_error.py "view source code")
+`ReadoutError.compose(other, front=False)`
 
 Return the composition readout error other \* self.
 
@@ -85,7 +85,7 @@ The composition readout error.
 
 <span id="qiskit_aer.noise.ReadoutError.copy" />
 
-`ReadoutError.copy()`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/noise/errors/readout_error.py "view source code")
+`ReadoutError.copy()`
 
 Make a copy of current ReadoutError.
 
@@ -93,7 +93,7 @@ Make a copy of current ReadoutError.
 
 <span id="qiskit_aer.noise.ReadoutError.dot" />
 
-`ReadoutError.dot(other)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/noise/errors/readout_error.py "view source code")
+`ReadoutError.dot(other)`
 
 Return the composition readout error self \* other.
 
@@ -118,7 +118,7 @@ The composition readout error.
 
 <span id="qiskit_aer.noise.ReadoutError.expand" />
 
-`ReadoutError.expand(other)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/noise/errors/readout_error.py "view source code")
+`ReadoutError.expand(other)`
 
 Return the tensor product readout error self ⊗ other.
 
@@ -142,7 +142,7 @@ the tensor product readout error other ⊗ self.
 
 <span id="qiskit_aer.noise.ReadoutError.ideal" />
 
-`ReadoutError.ideal()`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/noise/errors/readout_error.py "view source code")
+`ReadoutError.ideal()`
 
 Return True if current error object is an identity
 
@@ -150,7 +150,7 @@ Return True if current error object is an identity
 
 <span id="qiskit_aer.noise.ReadoutError.power" />
 
-`ReadoutError.power(n)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/noise/errors/readout_error.py "view source code")
+`ReadoutError.power(n)`
 
 Return the compose of the readout error with itself n times.
 
@@ -174,7 +174,7 @@ the n-times composition channel.
 
 <span id="qiskit_aer.noise.ReadoutError.set_atol" />
 
-`classmethod ReadoutError.set_atol(value)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/noise/errors/readout_error.py "view source code")
+`classmethod ReadoutError.set_atol(value)`
 
 Set the class default absolute tolerance parameter for float comparisons.
 
@@ -182,7 +182,7 @@ Set the class default absolute tolerance parameter for float comparisons.
 
 <span id="qiskit_aer.noise.ReadoutError.set_rtol" />
 
-`classmethod ReadoutError.set_rtol(value)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/noise/errors/readout_error.py "view source code")
+`classmethod ReadoutError.set_rtol(value)`
 
 Set the class default relative tolerance parameter for float comparisons.
 
@@ -190,7 +190,7 @@ Set the class default relative tolerance parameter for float comparisons.
 
 <span id="qiskit_aer.noise.ReadoutError.tensor" />
 
-`ReadoutError.tensor(other)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/noise/errors/readout_error.py "view source code")
+`ReadoutError.tensor(other)`
 
 Return the tensor product readout error self ⊗ other.
 
@@ -214,7 +214,7 @@ the tensor product readout error self ⊗ other.
 
 <span id="qiskit_aer.noise.ReadoutError.to_dict" />
 
-`ReadoutError.to_dict()`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/noise/errors/readout_error.py "view source code")
+`ReadoutError.to_dict()`
 
 Return the current error as a dictionary.
 
@@ -222,7 +222,7 @@ Return the current error as a dictionary.
 
 <span id="qiskit_aer.noise.ReadoutError.to_instruction" />
 
-`ReadoutError.to_instruction()`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/noise/errors/readout_error.py "view source code")
+`ReadoutError.to_instruction()`
 
 Convert the ReadoutError to a circuit Instruction.
 

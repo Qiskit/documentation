@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.operators.gradients.CircuitGradient
 
 <span id="qiskit.aqua.operators.gradients.CircuitGradient" />
 
-`CircuitGradient`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/gradients/circuit_gradients/circuit_gradient.py "view source code")
+`CircuitGradient` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/gradients/circuit_gradients/circuit_gradient.py "view source code")
 
 Bases: `qiskit.aqua.operators.converters.converter_base.ConverterBase`
 
@@ -28,7 +28,7 @@ CircuitGradient - uses quantum techniques to get derivatives of circuits Derivat
 
 <span id="qiskit.aqua.operators.gradients.CircuitGradient.convert" />
 
-`abstract CircuitGradient.convert(operator, params=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/gradients/circuit_gradients/circuit_gradient.py "view source code")
+`abstract CircuitGradient.convert(operator, params=None)`
 
 **Parameters**
 

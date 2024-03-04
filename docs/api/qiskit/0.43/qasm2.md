@@ -1,7 +1,7 @@
 ---
 title: qasm2
 description: API reference for qiskit.qasm2
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.qasm2
 ---
@@ -32,7 +32,7 @@ This module contains two public functions, both of which create a [`QuantumCircu
 
 <span id="qiskit.qasm2.load" />
 
-`load(filename, *, include_path=('.',), include_input_directory='append', custom_instructions=(), custom_classical=(), strict=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/qasm2/__init__.py "view source code")
+`load(filename, *, include_path=('.',), include_input_directory='append', custom_instructions=(), custom_classical=(), strict=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/qasm2/__init__.py "view source code")
 
 Parse an OpenQASM 2 program from a file into a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"). The given path should be ASCII or UTF-8 encoded, and contain the OpenQASM 2 program.
 
@@ -57,7 +57,7 @@ A circuit object representing the same OpenQASM 2 program.
 
 <span id="qiskit.qasm2.loads" />
 
-`loads(string, *, include_path=('.',), custom_instructions=(), custom_classical=(), strict=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/qasm2/__init__.py "view source code")
+`loads(string, *, include_path=('.',), custom_instructions=(), custom_classical=(), strict=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/qasm2/__init__.py "view source code")
 
 Parse an OpenQASM 2 program from a string into a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
 
@@ -87,7 +87,7 @@ You can extend the quantum components of the OpenQASM 2 language by passing an i
 
 <span id="qiskit.qasm2.CustomInstruction" />
 
-`CustomInstruction(name, num_params, num_qubits, constructor, builtin=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/qasm2/parse.py "view source code")
+`CustomInstruction(name, num_params, num_qubits, constructor, builtin=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/qasm2/parse.py "view source code")
 
 Information about a custom instruction that should be defined during the parse.
 
@@ -123,7 +123,7 @@ This module defines a generic error type that derives from `QiskitError` that ca
 
 <span id="qiskit.qasm2.QASM2Error" />
 
-`QASM2Error(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/qasm2/exceptions.py "view source code")
+`QASM2Error(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/qasm2/exceptions.py "view source code")
 
 A general error raised by the OpenQASM 2 interoperation layer.
 
@@ -135,7 +135,7 @@ In cases where the lexer or parser fails due to an invalid OpenQASM 2 file, the 
 
 <span id="qiskit.qasm2.QASM2ParseError" />
 
-`QASM2ParseError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/qasm2/exceptions.py "view source code")
+`QASM2ParseError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/qasm2/exceptions.py "view source code")
 
 An error raised because of a failure to parse an OpenQASM 2 file.
 

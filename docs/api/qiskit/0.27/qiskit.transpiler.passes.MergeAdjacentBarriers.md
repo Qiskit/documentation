@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.MergeAdjacentBarriers
 
 <span id="qiskit.transpiler.passes.MergeAdjacentBarriers" />
 
-`MergeAdjacentBarriers(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/transpiler/passes/utils/merge_adjacent_barriers.py "view source code")
+`MergeAdjacentBarriers(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/transpiler/passes/utils/merge_adjacent_barriers.py "view source code")
 
 Return a circuit with any adjacent barriers merged together.
 

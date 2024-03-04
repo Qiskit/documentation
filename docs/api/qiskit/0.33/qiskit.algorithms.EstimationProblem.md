@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.EstimationProblem
 
 <span id="qiskit.algorithms.EstimationProblem" />
 
-`EstimationProblem(state_preparation, objective_qubits, grover_operator=None, post_processing=None, is_good_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/algorithms/amplitude_estimators/estimation_problem.py "view source code")
+`EstimationProblem(state_preparation, objective_qubits, grover_operator=None, post_processing=None, is_good_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/algorithms/amplitude_estimators/estimation_problem.py "view source code")
 
 Bases: `object`
 
@@ -32,7 +32,7 @@ This class contains all problem-specific information required to run an amplitud
 
 <span id="qiskit.algorithms.EstimationProblem.rescale" />
 
-`EstimationProblem.rescale(scaling_factor)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/algorithms/amplitude_estimators/estimation_problem.py "view source code")
+`EstimationProblem.rescale(scaling_factor)`
 
 Rescale the good state amplitude in the estimation problem.
 

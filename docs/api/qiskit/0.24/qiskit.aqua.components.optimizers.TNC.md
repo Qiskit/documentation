@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.components.optimizers.TNC
 
 <span id="qiskit.aqua.components.optimizers.TNC" />
 
-`TNC(maxiter=100, disp=False, accuracy=0, ftol=- 1, xtol=- 1, gtol=- 1, tol=None, eps=1e-08)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/optimizers/tnc.py "view source code")
+`TNC(maxiter=100, disp=False, accuracy=0, ftol=- 1, xtol=- 1, gtol=- 1, tol=None, eps=1e-08)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/optimizers/tnc.py "view source code")
 
 Truncated Newton (TNC) optimizer.
 

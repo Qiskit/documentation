@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.PhaseEstimationScale
 
 <span id="qiskit.algorithms.PhaseEstimationScale" />
 
-`PhaseEstimationScale(bound)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/phase_estimators/phase_estimation_scale.py "view source code")
+`PhaseEstimationScale(bound)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/phase_estimators/phase_estimation_scale.py "view source code")
 
 Set and use a bound on eigenvalues of a Hermitian operator in order to ensure phases are in the desired range and to convert measured phases into eigenvectors.
 

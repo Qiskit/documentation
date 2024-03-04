@@ -10,7 +10,7 @@ python_api_name: qiskit.passmanager.ConditionalController
 
 <span id="qiskit.passmanager.ConditionalController" />
 
-`qiskit.passmanager.ConditionalController(tasks=(), condition=None, *, options=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/passmanager/flow_controllers.py "view source code")
+`qiskit.passmanager.ConditionalController(tasks=(), condition=None, *, options=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/passmanager/flow_controllers.py "view source code")
 
 Bases: [`BaseController`](qiskit.passmanager.BaseController "qiskit.passmanager.base_tasks.BaseController")
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeQasmSimulator
 
 <span id="qiskit.providers.fake_provider.FakeQasmSimulator" />
 
-`qiskit.providers.fake_provider.FakeQasmSimulator`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/providers/fake_provider/fake_qasm_simulator.py "view source code")
+`qiskit.providers.fake_provider.FakeQasmSimulator` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/providers/fake_provider/fake_qasm_simulator.py "view source code")
 
 Bases: `FakeBackend`
 

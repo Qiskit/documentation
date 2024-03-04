@@ -10,7 +10,7 @@ python_api_name: qiskit.tools.qft
 
 <span id="qiskit.tools.qft" />
 
-`qft(circ, q, n)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/tools/qi/qi.py "view source code")
+`qft(circ, q, n)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/tools/qi/qi.py "view source code")
 
 n-qubit QFT on q in circ.
 

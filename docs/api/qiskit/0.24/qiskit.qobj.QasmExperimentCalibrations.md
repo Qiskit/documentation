@@ -12,7 +12,7 @@ python_api_name: qiskit.qobj.QasmExperimentCalibrations
 
 <span id="qiskit.qobj.QasmExperimentCalibrations" />
 
-`QasmExperimentCalibrations(gates)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/qobj/qasm_qobj.py "view source code")
+`QasmExperimentCalibrations(gates)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/qobj/qasm_qobj.py "view source code")
 
 A container for any calibrations data. The gates attribute contains a list of GateCalibrations.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.SuperOp
 
 <span id="qiskit.quantum_info.SuperOp" />
 
-`SuperOp(data, input_dims=None, output_dims=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/operators/channel/superop.py "view source code")
+`SuperOp(data, input_dims=None, output_dims=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/operators/channel/superop.py "view source code")
 
 Superoperator representation of a quantum channel.
 

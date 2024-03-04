@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeBoeblingenV2
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeBoeblingenV2" />
 
-`FakeBoeblingenV2`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.19/qiskit_ibm_runtime/fake_provider/backends/boeblingen/fake_boeblingen.py "view source code")
+`FakeBoeblingenV2` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.19/qiskit_ibm_runtime/fake_provider/backends/boeblingen/fake_boeblingen.py "view source code")
 
 A fake Boeblingen V2 backend.
 

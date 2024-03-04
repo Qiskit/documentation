@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.SteppableOptimizer
 
 <span id="qiskit.algorithms.optimizers.SteppableOptimizer" />
 
-`SteppableOptimizer(maxiter=100)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/optimizers/steppable_optimizer.py "view source code")
+`SteppableOptimizer(maxiter=100)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/optimizers/steppable_optimizer.py "view source code")
 
 Bases: [`qiskit.algorithms.optimizers.optimizer.Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.optimizer.Optimizer")
 
@@ -77,7 +77,7 @@ To see other libraries that use this interface one can visit: [https://optuna.re
 
 <span id="qiskit.algorithms.optimizers.SteppableOptimizer.ask" />
 
-`SteppableOptimizer.ask()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/optimizers/steppable_optimizer.py "view source code")
+`SteppableOptimizer.ask()`
 
 Ask the optimizer for a set of points to evaluate.
 
@@ -95,7 +95,7 @@ An object containing the data needed to make the funciton evaluation to advance 
 
 <span id="qiskit.algorithms.optimizers.SteppableOptimizer.continue_condition" />
 
-`SteppableOptimizer.continue_condition()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/optimizers/steppable_optimizer.py "view source code")
+`SteppableOptimizer.continue_condition()`
 
 Condition that indicates the optimization process should continue.
 
@@ -111,7 +111,7 @@ Condition that indicates the optimization process should continue.
 
 <span id="qiskit.algorithms.optimizers.SteppableOptimizer.create_result" />
 
-`abstract SteppableOptimizer.create_result()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/optimizers/steppable_optimizer.py "view source code")
+`abstract SteppableOptimizer.create_result()`
 
 Returns the result of the optimization.
 
@@ -129,7 +129,7 @@ The result of the optimization process.
 
 <span id="qiskit.algorithms.optimizers.SteppableOptimizer.evaluate" />
 
-`abstract SteppableOptimizer.evaluate(ask_data)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/optimizers/steppable_optimizer.py "view source code")
+`abstract SteppableOptimizer.evaluate(ask_data)`
 
 Evaluates the function according to the instructions contained in `ask_data`.
 
@@ -182,7 +182,7 @@ grad
 
 <span id="qiskit.algorithms.optimizers.SteppableOptimizer.minimize" />
 
-`SteppableOptimizer.minimize(fun, x0, jac=None, bounds=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/optimizers/steppable_optimizer.py "view source code")
+`SteppableOptimizer.minimize(fun, x0, jac=None, bounds=None)`
 
 Minimizes the function.
 
@@ -237,7 +237,7 @@ The options dictionary may be used internally by a given optimizer to pass addit
 
 <span id="qiskit.algorithms.optimizers.SteppableOptimizer.start" />
 
-`abstract SteppableOptimizer.start(fun, x0, jac=None, bounds=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/optimizers/steppable_optimizer.py "view source code")
+`abstract SteppableOptimizer.start(fun, x0, jac=None, bounds=None)`
 
 Populates the state of the optimizer with the data provided and sets all the counters to 0.
 
@@ -256,7 +256,7 @@ Populates the state of the optimizer with the data provided and sets all the cou
 
 <span id="qiskit.algorithms.optimizers.SteppableOptimizer.step" />
 
-`SteppableOptimizer.step()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/optimizers/steppable_optimizer.py "view source code")
+`SteppableOptimizer.step()`
 
 Performs one step in the optimization process.
 
@@ -270,7 +270,7 @@ This method composes [`ask()`](qiskit.algorithms.optimizers.SteppableOptimizer#a
 
 <span id="qiskit.algorithms.optimizers.SteppableOptimizer.tell" />
 
-`SteppableOptimizer.tell(ask_data, tell_data)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/optimizers/steppable_optimizer.py "view source code")
+`SteppableOptimizer.tell(ask_data, tell_data)`
 
 Updates the optimization state using the results of the function evaluation.
 

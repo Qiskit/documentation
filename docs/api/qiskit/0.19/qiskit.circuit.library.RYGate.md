@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.RYGate
 
 <span id="qiskit.circuit.library.RYGate" />
 
-`RYGate(theta, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/ry.py "view source code")
+`RYGate(theta, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/ry.py "view source code")
 
 Single-qubit rotation about the Y axis.
 
@@ -149,7 +149,7 @@ Add classical condition on register classical and value val.
 
 <span id="qiskit.circuit.library.RYGate.control" />
 
-`RYGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/ry.py "view source code")
+`RYGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
 Return a (mutli-)controlled-RY gate.
 
@@ -193,7 +193,7 @@ updated if it was provided
 
 <span id="qiskit.circuit.library.RYGate.inverse" />
 
-`RYGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/ry.py "view source code")
+`RYGate.inverse()`
 
 Return inverted RY gate.
 
@@ -287,7 +287,7 @@ Containing the definition.
 
 <span id="qiskit.circuit.library.RYGate.to_matrix" />
 
-`RYGate.to_matrix()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/ry.py "view source code")
+`RYGate.to_matrix()`
 
 Return a numpy.array for the RY gate.
 

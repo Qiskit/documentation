@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.algorithms.BernsteinVazirani
 
 <span id="qiskit.aqua.algorithms.BernsteinVazirani" />
 
-`BernsteinVazirani(oracle, quantum_instance=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/education/bernstein_vazirani.py "view source code")
+`BernsteinVazirani(oracle, quantum_instance=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/education/bernstein_vazirani.py "view source code")
 
 Bases: `qiskit.aqua.algorithms.quantum_algorithm.QuantumAlgorithm`
 
@@ -29,7 +29,7 @@ The Bernstein-Vazirani algorithm is an extension / restriction of the Deutsch-Jo
 
 <span id="qiskit.aqua.algorithms.BernsteinVazirani.construct_circuit" />
 
-`BernsteinVazirani.construct_circuit(measurement=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/education/bernstein_vazirani.py "view source code")
+`BernsteinVazirani.construct_circuit(measurement=False)`
 
 Construct the quantum circuit
 

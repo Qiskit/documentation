@@ -29,7 +29,6 @@ const SYNTHETIC_FILES: string[] = [
 
 interface Arguments {
   [x: string]: unknown;
-  external: boolean;
   currentApis: boolean;
   devApis: boolean;
   historicalApis: boolean;
@@ -40,12 +39,6 @@ interface Arguments {
 const readArgs = (): Arguments => {
   return yargs(hideBin(process.argv))
     .version(false)
-    .option("external", {
-      type: "boolean",
-      default: false,
-      description:
-        "Should external links be checked? This slows down the script, but is useful to check.",
-    })
     .option("current-apis", {
       type: "boolean",
       default: false,
@@ -91,7 +84,7 @@ async function main() {
 
   let allGood = true;
   for (const fileBatch of fileBatches) {
-    const allValidLinks = await fileBatch.check(args.external, otherFiles);
+    const allValidLinks = await fileBatch.checkInternalLinks(otherFiles);
     if (!allValidLinks) {
       allGood = false;
     }
@@ -172,8 +165,11 @@ async function determineCurrentDocsFileBatch(
     "!docs/api/qiskit/release-notes/*",
   ];
   const toLoad = [
-    // The 0.46 docs are used by migration guides.
-    "docs/api/qiskit/0.46/*.md",
+    // These docs are used by the migration guides.
+    "docs/api/qiskit/0.46/{algorithms,opflow,execute}.md",
+    "docs/api/qiskit/0.46/qiskit.{algorithms,extensions,opflow}.*",
+    "docs/api/qiskit/0.46/qiskit.utils.QuantumInstance.md",
+    "docs/api/qiskit/0.46/qiskit.primitives.Base{Estimator,Sampler}.md",
     "docs/api/qiskit/0.44/qiskit.extensions.{Hamiltonian,Unitary}Gate.md",
     "docs/api/qiskit/release-notes/index.md",
   ];
@@ -200,11 +196,12 @@ async function determineCurrentDocsFileBatch(
 
   let description: string;
   if (args.currentApis && args.qiskitReleaseNotes) {
-    description = "non-API docs, current API docs, and Qiskit release notes";
+    description =
+      "non-API docs, current API docs, and latest Qiskit release note";
   } else if (args.currentApis) {
     description = "non-API docs and current API docs";
   } else if (args.qiskitReleaseNotes) {
-    description = "non-API docs and Qiskit release notes";
+    description = "non-API docs and latest Qiskit release note";
   } else {
     description = "non-API docs";
   }
@@ -254,23 +251,25 @@ async function determineHistoricalFileBatches(
     const toCheck: string[] = [];
     const toLoad = [...extraGlobsToLoad];
 
+    // Qiskit legacy release notes (< 0.45) have their own FileBatch, and we don't
+    // need to check them here.
+    const isBeforeQiskit0_45 = projectName === "qiskit" && +folder.name < 0.45;
+    if (!checkHistoricalApiDocs && isBeforeQiskit0_45) {
+      continue;
+    }
+
     if (checkHistoricalApiDocs) {
       toCheck.push(
         `docs/api/${projectName}/${folder.name}/*`,
         `public/api/${projectName}/${folder.name}/objects.inv`,
       );
-    } else {
-      toLoad.push(`docs/api/${projectName}/${folder.name}/*`);
     }
 
-    if (checkSeparateReleaseNotes) {
-      // Qiskit legacy release notes (< 0.45) have their own FileBatch, and we don't
-      // need to check them here
-      if (projectName == "qiskit" && +folder.name < 0.45) {
-        continue;
-      }
-
+    if (checkSeparateReleaseNotes && !isBeforeQiskit0_45) {
       toCheck.push(`docs/api/${projectName}/release-notes/${folder.name}.md`);
+      if (!checkHistoricalApiDocs) {
+        toLoad.push(`docs/api/${projectName}/${folder.name}/*`);
+      }
     }
 
     const fileBatch = await FileBatch.fromGlobs(

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.UniformDistribution
 
 <span id="qiskit.circuit.library.UniformDistribution" />
 
-`UniformDistribution(num_qubits, name='P(X)')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/probability_distributions/uniform.py "view source code")
+`UniformDistribution(num_qubits, name='P(X)')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/probability_distributions/uniform.py "view source code")
 
 Bases: `qiskit.circuit.quantumcircuit.QuantumCircuit`
 

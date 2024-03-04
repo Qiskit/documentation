@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.circuits.WeightedSumOperator
 
 <span id="qiskit.aqua.circuits.WeightedSumOperator" />
 
-`WeightedSumOperator(num_state_qubits, weights, i_state=None, i_sum=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/circuits/weighted_sum_operator.py "view source code")
+`WeightedSumOperator(num_state_qubits, weights, i_state=None, i_sum=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/circuits/weighted_sum_operator.py "view source code")
 
 Adds q^T \* w to separate register for non-negative integer weights w.
 
@@ -55,7 +55,7 @@ returns weights
 
 <span id="qiskit.aqua.circuits.WeightedSumOperator.build" />
 
-`WeightedSumOperator.build(qc, q, q_ancillas=None, params=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/circuits/weighted_sum_operator.py "view source code")
+`WeightedSumOperator.build(qc, q, q_ancillas=None, params=None)`
 
 Adds corresponding sub-circuit to given circuit
 
@@ -164,7 +164,7 @@ returns number of qubits controlled
 
 <span id="qiskit.aqua.circuits.WeightedSumOperator.get_required_sum_qubits" />
 
-`static WeightedSumOperator.get_required_sum_qubits(weights)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/circuits/weighted_sum_operator.py "view source code")
+`static WeightedSumOperator.get_required_sum_qubits(weights)`
 
 get required sum qubits
 
@@ -172,7 +172,7 @@ get required sum qubits
 
 <span id="qiskit.aqua.circuits.WeightedSumOperator.required_ancillas" />
 
-`WeightedSumOperator.required_ancillas()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/circuits/weighted_sum_operator.py "view source code")
+`WeightedSumOperator.required_ancillas()`
 
 required ancillas
 
@@ -180,7 +180,7 @@ required ancillas
 
 <span id="qiskit.aqua.circuits.WeightedSumOperator.required_ancillas_controlled" />
 
-`WeightedSumOperator.required_ancillas_controlled()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/circuits/weighted_sum_operator.py "view source code")
+`WeightedSumOperator.required_ancillas_controlled()`
 
 returns required ancillas controlled
 

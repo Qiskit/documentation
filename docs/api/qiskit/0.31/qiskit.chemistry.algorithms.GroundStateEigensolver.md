@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.algorithms.GroundStateEigensolver
 
 <span id="qiskit.chemistry.algorithms.GroundStateEigensolver" />
 
-`GroundStateEigensolver(transformation, solver)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/ground_state_solvers/ground_state_eigensolver.py "view source code")
+`GroundStateEigensolver(transformation, solver)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/ground_state_solvers/ground_state_eigensolver.py "view source code")
 
 Bases: `qiskit.chemistry.algorithms.ground_state_solvers.ground_state_solver.GroundStateSolver`
 
@@ -27,7 +27,7 @@ Ground state computation using a minimum eigensolver.
 
 <span id="qiskit.chemistry.algorithms.GroundStateEigensolver.evaluate_operators" />
 
-`GroundStateEigensolver.evaluate_operators(state, operators)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/ground_state_solvers/ground_state_eigensolver.py "view source code")
+`GroundStateEigensolver.evaluate_operators(state, operators)`
 
 Evaluates additional operators at the given state.
 
@@ -48,7 +48,7 @@ The expectation value of the given operator(s). The return type will be identica
 
 <span id="qiskit.chemistry.algorithms.GroundStateEigensolver.returns_groundstate" />
 
-`GroundStateEigensolver.returns_groundstate()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/ground_state_solvers/ground_state_eigensolver.py "view source code")
+`GroundStateEigensolver.returns_groundstate()`
 
 Whether the eigensolver returns the ground state or only ground state energy.
 
@@ -60,7 +60,7 @@ Whether the eigensolver returns the ground state or only ground state energy.
 
 <span id="qiskit.chemistry.algorithms.GroundStateEigensolver.solve" />
 
-`GroundStateEigensolver.solve(driver, aux_operators=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/ground_state_solvers/ground_state_eigensolver.py "view source code")
+`GroundStateEigensolver.solve(driver, aux_operators=None)`
 
 Compute Ground State properties.
 

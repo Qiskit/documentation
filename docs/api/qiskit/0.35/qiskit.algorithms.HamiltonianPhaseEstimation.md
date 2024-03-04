@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.HamiltonianPhaseEstimation
 
 <span id="qiskit.algorithms.HamiltonianPhaseEstimation" />
 
-`HamiltonianPhaseEstimation(num_evaluation_qubits, quantum_instance=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/phase_estimators/hamiltonian_phase_estimation.py "view source code")
+`HamiltonianPhaseEstimation(num_evaluation_qubits, quantum_instance=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/phase_estimators/hamiltonian_phase_estimation.py "view source code")
 
 Bases: `object`
 
@@ -57,7 +57,7 @@ T.E. O’Brien, B. Tarasinski, B.M. Terhal [arXiv:1809.09697](https://arxiv.org/
 
 <span id="qiskit.algorithms.HamiltonianPhaseEstimation.estimate" />
 
-`HamiltonianPhaseEstimation.estimate(hamiltonian, state_preparation=None, evolution=None, bound=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/phase_estimators/hamiltonian_phase_estimation.py "view source code")
+`HamiltonianPhaseEstimation.estimate(hamiltonian, state_preparation=None, evolution=None, bound=None)`
 
 Run the Hamiltonian phase estimation algorithm.
 

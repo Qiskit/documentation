@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.VQD
 
 <span id="qiskit.algorithms.VQD" />
 
-`VQD(ansatz=None, k=2, betas=None, optimizer=None, initial_point=None, gradient=None, expectation=None, include_custom=False, max_evals_grouped=1, callback=None, quantum_instance=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/eigen_solvers/vqd.py "view source code")
+`VQD(ansatz=None, k=2, betas=None, optimizer=None, initial_point=None, gradient=None, expectation=None, include_custom=False, max_evals_grouped=1, callback=None, quantum_instance=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/eigen_solvers/vqd.py "view source code")
 
 Bases: `qiskit.algorithms.variational_algorithm.VariationalAlgorithm`, [`qiskit.algorithms.eigen_solvers.eigen_solver.Eigensolver`](qiskit.algorithms.Eigensolver "qiskit.algorithms.eigen_solvers.eigen_solver.Eigensolver")
 
@@ -48,7 +48,7 @@ The length of the *initial\_point* list value must match the number of the param
 
 <span id="qiskit.algorithms.VQD.compute_eigenvalues" />
 
-`VQD.compute_eigenvalues(operator, aux_operators=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/eigen_solvers/vqd.py "view source code")
+`VQD.compute_eigenvalues(operator, aux_operators=None)`
 
 Computes eigenvalues. Operator and aux\_operators can be supplied here and if not None will override any already set into algorithm so it can be reused with different operators. While an operator is required by algorithms, aux\_operators are optional. To ‘remove’ a previous aux\_operators array use an empty list here.
 
@@ -69,7 +69,7 @@ EigensolverResult
 
 <span id="qiskit.algorithms.VQD.construct_circuit" />
 
-`VQD.construct_circuit(parameter, operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/eigen_solvers/vqd.py "view source code")
+`VQD.construct_circuit(parameter, operator)`
 
 Return the circuits used to compute the expectation value.
 
@@ -90,7 +90,7 @@ A list of the circuits used to compute the expectation value.
 
 <span id="qiskit.algorithms.VQD.construct_expectation" />
 
-`VQD.construct_expectation(parameter, operator, return_expectation=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/eigen_solvers/vqd.py "view source code")
+`VQD.construct_expectation(parameter, operator, return_expectation=False)`
 
 Generate the ansatz circuit and expectation value measurement, and return their runnable composition.
 
@@ -117,7 +117,7 @@ The Operator equalling the measurement of the ansatz `StateFn` by the Observable
 
 <span id="qiskit.algorithms.VQD.get_energy_evaluation" />
 
-`VQD.get_energy_evaluation(step, operator, return_expectation=False, prev_states=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/eigen_solvers/vqd.py "view source code")
+`VQD.get_energy_evaluation(step, operator, return_expectation=False, prev_states=None)`
 
 Returns a function handle to evaluates the energy at given parameters for the ansatz.
 
@@ -147,7 +147,7 @@ A callable that computes and returns the energy of the hamiltonian of each param
 
 <span id="qiskit.algorithms.VQD.print_settings" />
 
-`VQD.print_settings()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/eigen_solvers/vqd.py "view source code")
+`VQD.print_settings()`
 
 Preparing the setting of VQD into a string.
 
@@ -163,7 +163,7 @@ str
 
 <span id="qiskit.algorithms.VQD.supports_aux_operators" />
 
-`classmethod VQD.supports_aux_operators()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/eigen_solvers/vqd.py "view source code")
+`classmethod VQD.supports_aux_operators()`
 
 Whether computing the expectation value of auxiliary operators is supported.
 

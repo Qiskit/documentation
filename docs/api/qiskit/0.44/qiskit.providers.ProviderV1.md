@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ProviderV1
 
 <span id="qiskit.providers.ProviderV1" />
 
-`qiskit.providers.ProviderV1`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/providers/provider.py "view source code")
+`qiskit.providers.ProviderV1` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/providers/provider.py "view source code")
 
 Bases: [`Provider`](qiskit.providers.Provider "qiskit.providers.provider.Provider"), [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.Options
 
 <span id="qiskit.providers.Options" />
 
-`Options(**kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/options.py "view source code")
+`Options(**kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/options.py "view source code")
 
 Bases: `Mapping`
 
@@ -88,7 +88,7 @@ ValueError: ...
 
 <span id="qiskit.providers.Options.set_validator" />
 
-`Options.set_validator(field, validator_value)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/options.py "view source code")
+`Options.set_validator(field, validator_value)`
 
 Set an optional validator for a field in the options
 
@@ -117,7 +117,7 @@ In this case whenever the `"shots"` option is updated by the user it will enforc
 
 <span id="qiskit.providers.Options.update_options" />
 
-`Options.update_options(**fields)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/options.py "view source code")
+`Options.update_options(**fields)`
 
 Update options with kwargs
 

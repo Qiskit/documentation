@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.models.UchannelLO
 
 <span id="qiskit.providers.models.UchannelLO" />
 
-`qiskit.providers.models.UchannelLO(q, scale)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/models/backendconfiguration.py "view source code")
+`qiskit.providers.models.UchannelLO(q, scale)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/models/backendconfiguration.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 

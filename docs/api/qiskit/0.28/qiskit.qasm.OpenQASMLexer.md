@@ -10,7 +10,7 @@ python_api_name: qiskit.qasm.OpenQASMLexer
 
 <span id="qiskit.qasm.OpenQASMLexer" />
 
-`OpenQASMLexer(*args, **kwds)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/qasm/pygments/lexer.py "view source code")
+`OpenQASMLexer(*args, **kwds)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/qasm/pygments/lexer.py "view source code")
 
 A pygments lexer for OpenQasm.
 

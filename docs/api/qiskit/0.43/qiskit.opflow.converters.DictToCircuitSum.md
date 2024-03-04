@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.converters.DictToCircuitSum
 
 <span id="qiskit.opflow.converters.DictToCircuitSum" />
 
-`DictToCircuitSum(traverse=True, convert_dicts=True, convert_vectors=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/converters/dict_to_circuit_sum.py "view source code")
+`DictToCircuitSum(traverse=True, convert_dicts=True, convert_vectors=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/converters/dict_to_circuit_sum.py "view source code")
 
 Bases: [`ConverterBase`](qiskit.opflow.converters.ConverterBase "qiskit.opflow.converters.converter_base.ConverterBase")
 
@@ -34,7 +34,7 @@ Deprecated: Converts `DictStateFns` or `VectorStateFns` to equivalent `CircuitSt
 
 <span id="qiskit.opflow.converters.DictToCircuitSum.convert" />
 
-`DictToCircuitSum.convert(operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/converters/dict_to_circuit_sum.py "view source code")
+`DictToCircuitSum.convert(operator)`
 
 Convert the Operator to `CircuitStateFns`, recursively if `traverse` is True.
 

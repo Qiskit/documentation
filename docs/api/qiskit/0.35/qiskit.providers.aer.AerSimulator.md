@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.AerSimulator
 
 <span id="qiskit.providers.aer.AerSimulator" />
 
-`AerSimulator(configuration=None, properties=None, provider=None, **backend_options)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/backends/aer_simulator.py "view source code")
+`AerSimulator(configuration=None, properties=None, provider=None, **backend_options)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/backends/aer_simulator.py "view source code")
 
 Bases: `qiskit.providers.aer.backends.aerbackend.AerBackend`
 
@@ -185,7 +185,7 @@ This method should initialize the module and its configuration, and raise an exc
 
 <span id="qiskit.providers.aer.AerSimulator.available_devices" />
 
-`AerSimulator.available_devices()`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/backends/aer_simulator.py "view source code")
+`AerSimulator.available_devices()`
 
 Return the available simulation methods.
 
@@ -193,7 +193,7 @@ Return the available simulation methods.
 
 <span id="qiskit.providers.aer.AerSimulator.available_methods" />
 
-`AerSimulator.available_methods()`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/backends/aer_simulator.py "view source code")
+`AerSimulator.available_methods()`
 
 Return the available simulation methods.
 
@@ -209,7 +209,7 @@ Reset the simulator options to default values.
 
 <span id="qiskit.providers.aer.AerSimulator.configuration" />
 
-`AerSimulator.configuration()`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/backends/aer_simulator.py "view source code")
+`AerSimulator.configuration()`
 
 Return the simulator backend configuration.
 
@@ -243,7 +243,7 @@ backend does not support pulse.
 
 <span id="qiskit.providers.aer.AerSimulator.from_backend" />
 
-`classmethod AerSimulator.from_backend(backend, **options)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/backends/aer_simulator.py "view source code")
+`classmethod AerSimulator.from_backend(backend, **options)`
 
 Initialize simulator from backend.
 
@@ -251,7 +251,7 @@ Initialize simulator from backend.
 
 <span id="qiskit.providers.aer.AerSimulator.name" />
 
-`AerSimulator.name()`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/backends/aer_simulator.py "view source code")
+`AerSimulator.name()`
 
 Format backend name string for simulator
 
@@ -339,7 +339,7 @@ The simulation job.
 
 <span id="qiskit.providers.aer.AerSimulator.set_option" />
 
-`AerSimulator.set_option(key, value)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/backends/aer_simulator.py "view source code")
+`AerSimulator.set_option(key, value)`
 
 Special handling for setting backend options.
 

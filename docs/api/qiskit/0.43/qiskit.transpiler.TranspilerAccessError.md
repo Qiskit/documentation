@@ -12,7 +12,7 @@ python_api_name: qiskit.transpiler.TranspilerAccessError
 
 <span id="qiskit.transpiler.TranspilerAccessError" />
 
-`TranspilerAccessError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/exceptions.py "view source code")
+`TranspilerAccessError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/exceptions.py "view source code")
 
 DEPRECATED: Exception of access error in the transpiler passes.
 

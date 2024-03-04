@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.HighLevelSynthesis
 
 <span id="qiskit.transpiler.passes.HighLevelSynthesis" />
 
-`HighLevelSynthesis(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/synthesis/high_level_synthesis.py "view source code")
+`HighLevelSynthesis(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/synthesis/high_level_synthesis.py "view source code")
 
 Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -40,7 +40,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.HighLevelSynthesis.run" />
 
-`HighLevelSynthesis.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/synthesis/high_level_synthesis.py "view source code")
+`HighLevelSynthesis.run(dag)`
 
 Run the HighLevelSynthesis pass on dag. :type dag: [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit") :param dag: input dag.
 

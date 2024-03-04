@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.PhaseEstimation
 
 <span id="qiskit.algorithms.PhaseEstimation" />
 
-`PhaseEstimation(num_evaluation_qubits, quantum_instance=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/phase_estimators/phase_estimation.py "view source code")
+`PhaseEstimation(num_evaluation_qubits, quantum_instance=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/phase_estimators/phase_estimation.py "view source code")
 
 Bases: `qiskit.algorithms.phase_estimators.phase_estimator.PhaseEstimator`
 
@@ -61,7 +61,7 @@ Quantum Computation and Quantum Information: 10th Anniversary Edition (10th ed.)
 
 <span id="qiskit.algorithms.PhaseEstimation.construct_circuit" />
 
-`PhaseEstimation.construct_circuit(unitary, state_preparation=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/phase_estimators/phase_estimation.py "view source code")
+`PhaseEstimation.construct_circuit(unitary, state_preparation=None)`
 
 Return the circuit to be executed to estimate phases.
 
@@ -75,7 +75,7 @@ This circuit includes as sub-circuits the core phase estimation circuit, with th
 
 <span id="qiskit.algorithms.PhaseEstimation.estimate" />
 
-`PhaseEstimation.estimate(unitary=None, state_preparation=None, pe_circuit=None, num_unitary_qubits=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/phase_estimators/phase_estimation.py "view source code")
+`PhaseEstimation.estimate(unitary=None, state_preparation=None, pe_circuit=None, num_unitary_qubits=None)`
 
 Build a phase estimation circuit and run the corresponding algorithm.
 
@@ -96,7 +96,7 @@ An instance of qiskit.algorithms.phase\_estimator\_result.PhaseEstimationResult.
 
 <span id="qiskit.algorithms.PhaseEstimation.estimate_from_pe_circuit" />
 
-`PhaseEstimation.estimate_from_pe_circuit(pe_circuit, num_unitary_qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/phase_estimators/phase_estimation.py "view source code")
+`PhaseEstimation.estimate_from_pe_circuit(pe_circuit, num_unitary_qubits)`
 
 Run the the phase estimation algorithm on a phase estimation circuit
 

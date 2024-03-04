@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.SciPyOptimizer
 
 <span id="qiskit.algorithms.optimizers.SciPyOptimizer" />
 
-`SciPyOptimizer(method, options=None, max_evals_grouped=1, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/optimizers/scipy_optimizer.py "view source code")
+`SciPyOptimizer(method, options=None, max_evals_grouped=1, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/optimizers/scipy_optimizer.py "view source code")
 
 Bases: [`qiskit.algorithms.optimizers.optimizer.Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.optimizer.Optimizer")
 
@@ -31,7 +31,7 @@ For further detail, please refer to [https://docs.scipy.org/doc/scipy/reference/
 
 <span id="qiskit.algorithms.optimizers.SciPyOptimizer.get_support_level" />
 
-`SciPyOptimizer.get_support_level()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/optimizers/scipy_optimizer.py "view source code")
+`SciPyOptimizer.get_support_level()`
 
 Return support level dictionary
 
@@ -62,7 +62,7 @@ grad
 
 <span id="qiskit.algorithms.optimizers.SciPyOptimizer.minimize" />
 
-`SciPyOptimizer.minimize(fun, x0, jac=None, bounds=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/optimizers/scipy_optimizer.py "view source code")
+`SciPyOptimizer.minimize(fun, x0, jac=None, bounds=None)`
 
 Minimize the scalar function.
 

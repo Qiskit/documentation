@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.MCMTVChain
 
 <span id="qiskit.circuit.library.MCMTVChain" />
 
-`MCMTVChain(gate, num_ctrl_qubits, num_target_qubits, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/library/generalized_gates/mcmt.py "view source code")
+`MCMTVChain(gate, num_ctrl_qubits, num_target_qubits, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/library/generalized_gates/mcmt.py "view source code")
 
 Bases: `qiskit.circuit.library.generalized_gates.mcmt.MCMT`
 
@@ -75,7 +75,7 @@ Create a new multi-control multi-target gate.
 
 <span id="qiskit.circuit.library.MCMTVChain.inverse" />
 
-`MCMTVChain.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/library/generalized_gates/mcmt.py "view source code")
+`MCMTVChain.inverse()`
 
 Return the inverse MCMT circuit, which is itself.
 

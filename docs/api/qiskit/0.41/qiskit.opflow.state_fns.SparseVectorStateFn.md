@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.state_fns.SparseVectorStateFn
 
 <span id="qiskit.opflow.state_fns.SparseVectorStateFn" />
 
-`SparseVectorStateFn(primitive, coeff=1.0, is_measurement=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/state_fns/sparse_vector_state_fn.py "view source code")
+`SparseVectorStateFn(primitive, coeff=1.0, is_measurement=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/state_fns/sparse_vector_state_fn.py "view source code")
 
 Bases: [`qiskit.opflow.state_fns.state_fn.StateFn`](qiskit.opflow.state_fns.StateFn "qiskit.opflow.state_fns.state_fn.StateFn")
 
@@ -35,7 +35,7 @@ This class uses `scipy.sparse.spmatrix` for the internal representation.
 
 <span id="qiskit.opflow.state_fns.SparseVectorStateFn.add" />
 
-`SparseVectorStateFn.add(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/state_fns/sparse_vector_state_fn.py "view source code")
+`SparseVectorStateFn.add(other)`
 
 Return Operator addition of self and other, overloaded by `+`.
 
@@ -55,7 +55,7 @@ An `OperatorBase` equivalent to the sum of self and other.
 
 <span id="qiskit.opflow.state_fns.SparseVectorStateFn.adjoint" />
 
-`SparseVectorStateFn.adjoint()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/state_fns/sparse_vector_state_fn.py "view source code")
+`SparseVectorStateFn.adjoint()`
 
 Return a new Operator equal to the Operator’s adjoint (conjugate transpose), overloaded by `~`. For StateFns, this also turns the StateFn into a measurement.
 
@@ -71,7 +71,7 @@ An `OperatorBase` equivalent to the adjoint of self.
 
 <span id="qiskit.opflow.state_fns.SparseVectorStateFn.equals" />
 
-`SparseVectorStateFn.equals(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/state_fns/sparse_vector_state_fn.py "view source code")
+`SparseVectorStateFn.equals(other)`
 
 Evaluate Equality between Operators, overloaded by `==`. Only returns True if self and other are of the same representation (e.g. a DictStateFn and CircuitStateFn will never be equal, even if their vector representations are equal), their underlying primitives are equal (this means for ListOps, OperatorStateFns, or EvolvedOps the equality is evaluated recursively downwards), and their coefficients are equal.
 
@@ -91,7 +91,7 @@ A bool equal to the equality of self and other.
 
 <span id="qiskit.opflow.state_fns.SparseVectorStateFn.eval" />
 
-`SparseVectorStateFn.eval(front=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/state_fns/sparse_vector_state_fn.py "view source code")
+`SparseVectorStateFn.eval(front=None)`
 
 Evaluate the Operator’s underlying function, either on a binary string or another Operator. A square binary Operator can be defined as a function taking a binary function to another binary function. This method returns the value of that function for a given StateFn or binary string. For example, `op.eval('0110').eval('1110')` can be seen as querying the Operator’s matrix representation by row 6 and column 14, and will return the complex value at those “indices.” Similarly for a StateFn, `op.eval('1011')` will return the complex value at row 11 of the vector representation of the StateFn, as all StateFns are defined to be evaluated from Zero implicitly (i.e. it is as if `.eval('0000')` is already called implicitly to always “indexing” from column 0).
 
@@ -113,7 +113,7 @@ The output of the Operator’s evaluation function. If self is a `StateFn`, the 
 
 <span id="qiskit.opflow.state_fns.SparseVectorStateFn.primitive_strings" />
 
-`SparseVectorStateFn.primitive_strings()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/state_fns/sparse_vector_state_fn.py "view source code")
+`SparseVectorStateFn.primitive_strings()`
 
 Return a set of strings describing the primitives contained in the Operator. For example, `{'QuantumCircuit', 'Pauli'}`. For hierarchical Operators, such as `ListOps`, this can help illuminate the primitives represented in the various recursive levels, and therefore which conversions can be applied.
 
@@ -129,7 +129,7 @@ A set of strings describing the primitives contained within the Operator.
 
 <span id="qiskit.opflow.state_fns.SparseVectorStateFn.sample" />
 
-`SparseVectorStateFn.sample(shots=1024, massive=False, reverse_endianness=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/state_fns/sparse_vector_state_fn.py "view source code")
+`SparseVectorStateFn.sample(shots=1024, massive=False, reverse_endianness=False)`
 
 Sample the state function as a normalized probability distribution. Returns dict of bitstrings in order of probability, with values being probability.
 
@@ -151,7 +151,7 @@ A dict containing pairs sampled strings from the State function and sampling fre
 
 <span id="qiskit.opflow.state_fns.SparseVectorStateFn.to_circuit_op" />
 
-`SparseVectorStateFn.to_circuit_op()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/state_fns/sparse_vector_state_fn.py "view source code")
+`SparseVectorStateFn.to_circuit_op()`
 
 Convert this state function to a `CircuitStateFn`.
 
@@ -163,7 +163,7 @@ Convert this state function to a `CircuitStateFn`.
 
 <span id="qiskit.opflow.state_fns.SparseVectorStateFn.to_dict_fn" />
 
-`SparseVectorStateFn.to_dict_fn()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/state_fns/sparse_vector_state_fn.py "view source code")
+`SparseVectorStateFn.to_dict_fn()`
 
 Convert this state function to a `DictStateFn`.
 
@@ -179,7 +179,7 @@ A new DictStateFn equivalent to `self`.
 
 <span id="qiskit.opflow.state_fns.SparseVectorStateFn.to_matrix" />
 
-`SparseVectorStateFn.to_matrix(massive=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/state_fns/sparse_vector_state_fn.py "view source code")
+`SparseVectorStateFn.to_matrix(massive=False)`
 
 Return NumPy representation of the Operator. Represents the evaluation of the Operator’s underlying function on every combination of basis binary strings. Warn if more than 16 qubits to force having to set `massive=True` if such a large vector is desired.
 
@@ -195,7 +195,7 @@ The NumPy `ndarray` equivalent to this Operator.
 
 <span id="qiskit.opflow.state_fns.SparseVectorStateFn.to_matrix_op" />
 
-`SparseVectorStateFn.to_matrix_op(massive=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/state_fns/sparse_vector_state_fn.py "view source code")
+`SparseVectorStateFn.to_matrix_op(massive=False)`
 
 Return a `VectorStateFn` for this `StateFn`.
 
@@ -215,7 +215,7 @@ A VectorStateFn equivalent to self.
 
 <span id="qiskit.opflow.state_fns.SparseVectorStateFn.to_spmatrix" />
 
-`SparseVectorStateFn.to_spmatrix()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/state_fns/sparse_vector_state_fn.py "view source code")
+`SparseVectorStateFn.to_spmatrix()`
 
 Return SciPy sparse matrix representation of the Operator. Represents the evaluation of the Operator’s underlying function on every combination of basis binary strings.
 

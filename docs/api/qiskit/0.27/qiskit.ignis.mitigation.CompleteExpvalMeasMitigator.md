@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.mitigation.CompleteExpvalMeasMitigator
 
 <span id="qiskit.ignis.mitigation.CompleteExpvalMeasMitigator" />
 
-`CompleteExpvalMeasMitigator(amat)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/mitigation/expval/complete_mitigator.py "view source code")
+`CompleteExpvalMeasMitigator(amat)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/mitigation/expval/complete_mitigator.py "view source code")
 
 N-qubit measurement error mitigator.
 

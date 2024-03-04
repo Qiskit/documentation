@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.GatesInBasis
 
 <span id="qiskit.transpiler.passes.GatesInBasis" />
 
-`GatesInBasis(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/passes/utils/gates_basis.py "view source code")
+`GatesInBasis(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/passes/utils/gates_basis.py "view source code")
 
 Bases: `qiskit.transpiler.basepasses.AnalysisPass`
 
@@ -36,7 +36,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.GatesInBasis.run" />
 
-`GatesInBasis.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/passes/utils/gates_basis.py "view source code")
+`GatesInBasis.run(dag)`
 
 Run the GatesInBasis pass on dag.
 

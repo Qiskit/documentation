@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.verification.RepetitionCode
 
 <span id="qiskit.ignis.verification.RepetitionCode" />
 
-`RepetitionCode(d, T=0)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/topological_codes/circuits.py "view source code")
+`RepetitionCode(d, T=0)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/topological_codes/circuits.py "view source code")
 
 Bases: `object`
 
@@ -33,7 +33,7 @@ No measurements are added to the circuit if T=0. Otherwise T rounds are added, f
 
 <span id="qiskit.ignis.verification.RepetitionCode.get_circuit_list" />
 
-`RepetitionCode.get_circuit_list()`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/topological_codes/circuits.py "view source code")
+`RepetitionCode.get_circuit_list()`
 
 **Returns**
 
@@ -47,7 +47,7 @@ circuit\_list
 
 <span id="qiskit.ignis.verification.RepetitionCode.process_results" />
 
-`RepetitionCode.process_results(raw_results)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/topological_codes/circuits.py "view source code")
+`RepetitionCode.process_results(raw_results)`
 
 **Parameters**
 
@@ -71,7 +71,7 @@ The circuits must be executed outside of this class, so that their is full freed
 
 <span id="qiskit.ignis.verification.RepetitionCode.readout" />
 
-`RepetitionCode.readout()`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/topological_codes/circuits.py "view source code")
+`RepetitionCode.readout()`
 
 Readout of all code qubits, which corresponds to a logical measurement as well as allowing for a measurement of the syndrome to be inferred.
 
@@ -79,7 +79,7 @@ Readout of all code qubits, which corresponds to a logical measurement as well a
 
 <span id="qiskit.ignis.verification.RepetitionCode.syndrome_measurement" />
 
-`RepetitionCode.syndrome_measurement(reset=True, barrier=False)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/topological_codes/circuits.py "view source code")
+`RepetitionCode.syndrome_measurement(reset=True, barrier=False)`
 
 Application of a syndrome measurement round.
 
@@ -92,7 +92,7 @@ Application of a syndrome measurement round.
 
 <span id="qiskit.ignis.verification.RepetitionCode.x" />
 
-`RepetitionCode.x(logs=('0', '1'), barrier=False)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/topological_codes/circuits.py "view source code")
+`RepetitionCode.x(logs=('0', '1'), barrier=False)`
 
 Applies a logical x to the circuits for the given logical values.
 

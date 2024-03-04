@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.preset_passmanagers.plugin.PassManagerStagePl
 
 <span id="qiskit.transpiler.preset_passmanagers.plugin.PassManagerStagePlugin" />
 
-`PassManagerStagePlugin`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/preset_passmanagers/plugin.py "view source code")
+`PassManagerStagePlugin` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/preset_passmanagers/plugin.py "view source code")
 
 Bases: `ABC`
 
@@ -26,7 +26,7 @@ A `PassManagerStagePlugin` object can be added to an external package and integr
 
 <span id="qiskit.transpiler.preset_passmanagers.plugin.PassManagerStagePlugin.pass_manager" />
 
-`abstract PassManagerStagePlugin.pass_manager(pass_manager_config, optimization_level=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/preset_passmanagers/plugin.py "view source code")
+`abstract PassManagerStagePlugin.pass_manager(pass_manager_config, optimization_level=None)`
 
 This method is designed to return a [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") for the stage this implements
 

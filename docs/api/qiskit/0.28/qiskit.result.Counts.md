@@ -10,7 +10,7 @@ python_api_name: qiskit.result.Counts
 
 <span id="qiskit.result.Counts" />
 
-`Counts(data, time_taken=None, creg_sizes=None, memory_slots=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/result/counts.py "view source code")
+`Counts(data, time_taken=None, creg_sizes=None, memory_slots=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/result/counts.py "view source code")
 
 A class to store a counts result from a circuit execution.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.transforms.AlignLeft
 
 <span id="qiskit.pulse.transforms.AlignLeft" />
 
-`AlignLeft`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/transforms/alignments.py "view source code")
+`AlignLeft` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/transforms/alignments.py "view source code")
 
 Bases: [`AlignmentKind`](pulse#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.alignments.AlignmentKind")
 
@@ -28,7 +28,7 @@ Create new left-justified context.
 
 <span id="qiskit.pulse.transforms.AlignLeft.align" />
 
-`AlignLeft.align(schedule)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/transforms/alignments.py "view source code")
+`AlignLeft.align(schedule)`
 
 Reallocate instructions according to the policy.
 

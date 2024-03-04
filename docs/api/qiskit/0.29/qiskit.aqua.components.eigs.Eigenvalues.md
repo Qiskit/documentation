@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.eigs.Eigenvalues
 
 <span id="qiskit.aqua.components.eigs.Eigenvalues" />
 
-`Eigenvalues`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/eigs/eigs.py "view source code")
+`Eigenvalues` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/eigs/eigs.py "view source code")
 
 Bases: `abc.ABC`
 
@@ -24,7 +24,7 @@ This method should initialize the module and use an exception if a component of 
 
 <span id="qiskit.aqua.components.eigs.Eigenvalues.construct_circuit" />
 
-`abstract Eigenvalues.construct_circuit(mode, register=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/eigs/eigs.py "view source code")
+`abstract Eigenvalues.construct_circuit(mode, register=None)`
 
 Construct the eigenvalue estimation quantum circuit.
 
@@ -49,7 +49,7 @@ object for the eigenvalue estimation circuit.
 
 <span id="qiskit.aqua.components.eigs.Eigenvalues.construct_inverse" />
 
-`Eigenvalues.construct_inverse(mode, circuit)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/eigs/eigs.py "view source code")
+`Eigenvalues.construct_inverse(mode, circuit)`
 
 Construct the inverse eigenvalue estimation quantum circuit.
 
@@ -77,7 +77,7 @@ circuit.
 
 <span id="qiskit.aqua.components.eigs.Eigenvalues.get_register_sizes" />
 
-`abstract Eigenvalues.get_register_sizes()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/eigs/eigs.py "view source code")
+`abstract Eigenvalues.get_register_sizes()`
 
 get register sizes
 
@@ -85,7 +85,7 @@ get register sizes
 
 <span id="qiskit.aqua.components.eigs.Eigenvalues.get_scaling" />
 
-`abstract Eigenvalues.get_scaling()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/eigs/eigs.py "view source code")
+`abstract Eigenvalues.get_scaling()`
 
 get scaling
 

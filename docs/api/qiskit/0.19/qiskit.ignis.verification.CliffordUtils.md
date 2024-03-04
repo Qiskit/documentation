@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.verification.CliffordUtils
 
 <span id="qiskit.ignis.verification.CliffordUtils" />
 
-`CliffordUtils(num_qubits=2, group_tables=None, elmnt=None, gatelist=None, elmnt_key=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/clifford_utils.py "view source code")
+`CliffordUtils(num_qubits=2, group_tables=None, elmnt=None, gatelist=None, elmnt_key=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/clifford_utils.py "view source code")
 
 Class for util functions for the Clifford group.
 
@@ -28,7 +28,7 @@ Class for util functions for the Clifford group.
 
 <span id="qiskit.ignis.verification.CliffordUtils.clifford1_gates" />
 
-`CliffordUtils.clifford1_gates(idx)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/clifford_utils.py "view source code")
+`CliffordUtils.clifford1_gates(idx)`
 
 Make a single qubit Clifford gate.
 
@@ -48,7 +48,7 @@ list
 
 <span id="qiskit.ignis.verification.CliffordUtils.clifford1_gates_table" />
 
-`CliffordUtils.clifford1_gates_table()`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/clifford_utils.py "view source code")
+`CliffordUtils.clifford1_gates_table()`
 
 Generate a table of all 1-qubit Clifford gates.
 
@@ -64,7 +64,7 @@ dict
 
 <span id="qiskit.ignis.verification.CliffordUtils.clifford2_gates" />
 
-`CliffordUtils.clifford2_gates(idx)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/clifford_utils.py "view source code")
+`CliffordUtils.clifford2_gates(idx)`
 
 Make a 2-qubit Clifford gate.
 
@@ -84,7 +84,7 @@ list
 
 <span id="qiskit.ignis.verification.CliffordUtils.clifford2_gates_table" />
 
-`CliffordUtils.clifford2_gates_table()`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/clifford_utils.py "view source code")
+`CliffordUtils.clifford2_gates_table()`
 
 Generate a table of all 2-qubit Clifford gates.
 
@@ -100,7 +100,7 @@ dict
 
 <span id="qiskit.ignis.verification.CliffordUtils.clifford_from_gates" />
 
-`CliffordUtils.clifford_from_gates(num_qubits, gatelist)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/clifford_utils.py "view source code")
+`CliffordUtils.clifford_from_gates(num_qubits, gatelist)`
 
 Generate a Clifford object from a list of gates.
 
@@ -121,7 +121,7 @@ A Clifford class object corresponding to composing the given list of gates.
 
 <span id="qiskit.ignis.verification.CliffordUtils.compose_gates" />
 
-`CliffordUtils.compose_gates(cliff, gatelist)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/clifford_utils.py "view source code")
+`CliffordUtils.compose_gates(cliff, gatelist)`
 
 Add gates to a Clifford object from a list of gates.
 
@@ -146,7 +146,7 @@ A Clifford class object, after composing cliff and the gates from gatelist.
 
 <span id="qiskit.ignis.verification.CliffordUtils.cx_gates" />
 
-`CliffordUtils.cx_gates(gatelist, ctrl, tgt)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/clifford_utils.py "view source code")
+`CliffordUtils.cx_gates(gatelist, ctrl, tgt)`
 
 Adds a controlled-x gate on qubits ctrl and tgt to a given list of gates.
 
@@ -168,7 +168,7 @@ list
 
 <span id="qiskit.ignis.verification.CliffordUtils.elmnt" />
 
-`CliffordUtils.elmnt()`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/clifford_utils.py "view source code")
+`CliffordUtils.elmnt()`
 
 Return a Clifford object.
 
@@ -176,7 +176,7 @@ Return a Clifford object.
 
 <span id="qiskit.ignis.verification.CliffordUtils.elmnt_key" />
 
-`CliffordUtils.elmnt_key()`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/clifford_utils.py "view source code")
+`CliffordUtils.elmnt_key()`
 
 Return a unique index of a Clifford object.
 
@@ -184,7 +184,7 @@ Return a unique index of a Clifford object.
 
 <span id="qiskit.ignis.verification.CliffordUtils.find_inverse_gates" />
 
-`CliffordUtils.find_inverse_gates(num_qubits, gatelist)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/clifford_utils.py "view source code")
+`CliffordUtils.find_inverse_gates(num_qubits, gatelist)`
 
 Find the inverse of a Clifford gate.
 
@@ -209,7 +209,7 @@ list
 
 <span id="qiskit.ignis.verification.CliffordUtils.find_key" />
 
-`CliffordUtils.find_key(cliff, num_qubits)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/clifford_utils.py "view source code")
+`CliffordUtils.find_key(cliff, num_qubits)`
 
 Find the Clifford index.
 
@@ -230,7 +230,7 @@ int
 
 <span id="qiskit.ignis.verification.CliffordUtils.gatelist" />
 
-`CliffordUtils.gatelist()`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/clifford_utils.py "view source code")
+`CliffordUtils.gatelist()`
 
 Return a list of gates corresponding to a Clifford object.
 
@@ -238,7 +238,7 @@ Return a list of gates corresponding to a Clifford object.
 
 <span id="qiskit.ignis.verification.CliffordUtils.group_tables" />
 
-`CliffordUtils.group_tables()`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/clifford_utils.py "view source code")
+`CliffordUtils.group_tables()`
 
 Return the Clifford group tables.
 
@@ -246,7 +246,7 @@ Return the Clifford group tables.
 
 <span id="qiskit.ignis.verification.CliffordUtils.h_gates" />
 
-`CliffordUtils.h_gates(gatelist, q, h)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/clifford_utils.py "view source code")
+`CliffordUtils.h_gates(gatelist, q, h)`
 
 Append a hadamard gate on qubit q to a given list of gates.
 
@@ -275,7 +275,7 @@ list
 
 <span id="qiskit.ignis.verification.CliffordUtils.load_clifford_table" />
 
-`CliffordUtils.load_clifford_table(picklefile='cliffords2.pickle')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/clifford_utils.py "view source code")
+`CliffordUtils.load_clifford_table(picklefile='cliffords2.pickle')`
 
 Load pickled files of the tables of 1 and 2 qubit Clifford group tables.
 
@@ -295,7 +295,7 @@ dict
 
 <span id="qiskit.ignis.verification.CliffordUtils.load_tables" />
 
-`CliffordUtils.load_tables(num_qubits)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/clifford_utils.py "view source code")
+`CliffordUtils.load_tables(num_qubits)`
 
 Return the Clifford group tables.
 
@@ -319,7 +319,7 @@ dict
 
 <span id="qiskit.ignis.verification.CliffordUtils.num_qubits" />
 
-`CliffordUtils.num_qubits()`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/clifford_utils.py "view source code")
+`CliffordUtils.num_qubits()`
 
 Return the number of qubits of the Clifford object.
 
@@ -327,7 +327,7 @@ Return the number of qubits of the Clifford object.
 
 <span id="qiskit.ignis.verification.CliffordUtils.pauli_gates" />
 
-`CliffordUtils.pauli_gates(gatelist, q, pauli)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/clifford_utils.py "view source code")
+`CliffordUtils.pauli_gates(gatelist, q, pauli)`
 
 Append a pauli gate on qubit q to a given list of gates.
 
@@ -357,7 +357,7 @@ list
 
 <span id="qiskit.ignis.verification.CliffordUtils.pickle_clifford_table" />
 
-`CliffordUtils.pickle_clifford_table(picklefile='cliffords2.pickle', num_qubits=2)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/clifford_utils.py "view source code")
+`CliffordUtils.pickle_clifford_table(picklefile='cliffords2.pickle', num_qubits=2)`
 
 Create pickled versions of the 1 or 2 qubit Clifford group tables.
 
@@ -374,7 +374,7 @@ Create pickled versions of the 1 or 2 qubit Clifford group tables.
 
 <span id="qiskit.ignis.verification.CliffordUtils.random_gates" />
 
-`CliffordUtils.random_gates(num_qubits, rand_seed=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/clifford_utils.py "view source code")
+`CliffordUtils.random_gates(num_qubits, rand_seed=None)`
 
 Pick a random Clifford gate on num\_qubits.
 
@@ -400,7 +400,7 @@ list
 
 <span id="qiskit.ignis.verification.CliffordUtils.v_gates" />
 
-`CliffordUtils.v_gates(gatelist, q, v)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/clifford_utils.py "view source code")
+`CliffordUtils.v_gates(gatelist, q, v)`
 
 Adds an axis-swap gate V or W on qubit q to a given list of gates.
 

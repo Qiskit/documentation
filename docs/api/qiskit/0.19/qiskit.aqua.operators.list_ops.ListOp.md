@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.operators.list_ops.ListOp
 
 <span id="qiskit.aqua.operators.list_ops.ListOp" />
 
-`ListOp(oplist, combo_fn=<function ListOp.<lambda>>, coeff=1.0, abelian=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/list_ops/list_op.py "view source code")
+`ListOp(oplist, combo_fn=<function ListOp.<lambda>>, coeff=1.0, abelian=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/list_ops/list_op.py "view source code")
 
 A Class for manipulating List Operators, and parent class to `SummedOp`, `ComposedOp`, and `TensoredOp`.
 
@@ -132,7 +132,7 @@ The Operators defining the ListOp
 
 <span id="qiskit.aqua.operators.list_ops.ListOp.__getitem__" />
 
-`ListOp.__getitem__(offset)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/list_ops/list_op.py "view source code")
+`ListOp.__getitem__(offset)`
 
 Allows array-indexing style access to the Operators in `oplist`.
 
@@ -152,7 +152,7 @@ The `OperatorBase` at index `offset` of `oplist`.
 
 <span id="qiskit.aqua.operators.list_ops.ListOp.__len__" />
 
-`ListOp.__len__()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/list_ops/list_op.py "view source code")
+`ListOp.__len__()`
 
 Length of `oplist`.
 
@@ -188,7 +188,7 @@ An `OperatorBase` equivalent to product of self and scalar.
 
 <span id="qiskit.aqua.operators.list_ops.ListOp.add" />
 
-`ListOp.add(other)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/list_ops/list_op.py "view source code")
+`ListOp.add(other)`
 
 Return Operator addition of self and other, overloaded by `+`.
 
@@ -208,7 +208,7 @@ An `OperatorBase` equivalent to the sum of self and other.
 
 <span id="qiskit.aqua.operators.list_ops.ListOp.adjoint" />
 
-`ListOp.adjoint()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/list_ops/list_op.py "view source code")
+`ListOp.adjoint()`
 
 Return a new Operator equal to the Operator’s adjoint (conjugate transpose), overloaded by `~`. For StateFns, this also turns the StateFn into a measurement.
 
@@ -224,7 +224,7 @@ An `OperatorBase` equivalent to the adjoint of self.
 
 <span id="qiskit.aqua.operators.list_ops.ListOp.assign_parameters" />
 
-`ListOp.assign_parameters(param_dict)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/list_ops/list_op.py "view source code")
+`ListOp.assign_parameters(param_dict)`
 
 Binds scalar values to any Terra `Parameters` in the coefficients or primitives of the Operator, or substitutes one `Parameter` for another. This method differs from Terra’s `assign_parameters` in that it also supports lists of values to assign for a give `Parameter`, in which case self will be copied for each parameterization in the binding list(s), and all the copies will be returned in an `OpList`. If lists of parameterizations are used, every `Parameter` in the param\_dict must have the same length list of parameterizations.
 
@@ -256,7 +256,7 @@ Same as assign\_parameters, but maintained for consistency with QuantumCircuit i
 
 <span id="qiskit.aqua.operators.list_ops.ListOp.compose" />
 
-`ListOp.compose(other)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/list_ops/list_op.py "view source code")
+`ListOp.compose(other)`
 
 Return Operator Composition between self and other (linear algebra-style: A\@B(x) = A(B(x))), overloaded by `@`.
 
@@ -282,7 +282,7 @@ An `OperatorBase` equivalent to the function composition of self and other.
 
 <span id="qiskit.aqua.operators.list_ops.ListOp.equals" />
 
-`ListOp.equals(other)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/list_ops/list_op.py "view source code")
+`ListOp.equals(other)`
 
 Evaluate Equality between Operators, overloaded by `==`. Only returns True if self and other are of the same representation (e.g. a DictStateFn and CircuitStateFn will never be equal, even if their vector representations are equal), their underlying primitives are equal (this means for ListOps, OperatorStateFns, or EvolvedOps the equality is evaluated recursively downwards), and their coefficients are equal.
 
@@ -302,7 +302,7 @@ A bool equal to the equality of self and other.
 
 <span id="qiskit.aqua.operators.list_ops.ListOp.eval" />
 
-`ListOp.eval(front=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/list_ops/list_op.py "view source code")
+`ListOp.eval(front=None)`
 
 Evaluate the Operator’s underlying function, either on a binary string or another Operator. A square binary Operator can be defined as a function taking a binary function to another binary function. This method returns the value of that function for a given StateFn or binary string. For example, `op.eval('0110').eval('1110')` can be seen as querying the Operator’s matrix representation by row 6 and column 14, and will return the complex value at those “indices.” Similarly for a StateFn, `op.eval('1011')` will return the complex value at row 11 of the vector representation of the StateFn, as all StateFns are defined to be evaluated from Zero implicitly (i.e. it is as if `.eval('0000')` is already called implicitly to always “indexing” from column 0).
 
@@ -330,7 +330,7 @@ The output of the `oplist` Operators’ evaluation function, combined with the `
 
 <span id="qiskit.aqua.operators.list_ops.ListOp.exp_i" />
 
-`ListOp.exp_i()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/list_ops/list_op.py "view source code")
+`ListOp.exp_i()`
 
 Return an `OperatorBase` equivalent to an exponentiation of self \* -i, e^(-i\*op).
 
@@ -342,7 +342,7 @@ Return an `OperatorBase` equivalent to an exponentiation of self \* -i, e^(-i\*o
 
 <span id="qiskit.aqua.operators.list_ops.ListOp.log_i" />
 
-`ListOp.log_i(massive=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/list_ops/list_op.py "view source code")
+`ListOp.log_i(massive=False)`
 
 Return a `MatrixOp` equivalent to log(H)/-i for this operator H. This function is the effective inverse of exp\_i, equivalent to finding the Hermitian Operator which produces self when exponentiated. For proper ListOps, applies `log_i` to all ops in oplist.
 
@@ -354,7 +354,7 @@ Return a `MatrixOp` equivalent to log(H)/-i for this operator H. This function i
 
 <span id="qiskit.aqua.operators.list_ops.ListOp.mul" />
 
-`ListOp.mul(scalar)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/list_ops/list_op.py "view source code")
+`ListOp.mul(scalar)`
 
 Returns the scalar multiplication of the Operator, overloaded by `*`, including support for Terra’s `Parameters`, which can be bound to values later (via `bind_parameters`).
 
@@ -390,7 +390,7 @@ An `OperatorBase` equivalent to the negation of self.
 
 <span id="qiskit.aqua.operators.list_ops.ListOp.power" />
 
-`ListOp.power(exponent)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/list_ops/list_op.py "view source code")
+`ListOp.power(exponent)`
 
 Return Operator composed with self multiple times, overloaded by `**`.
 
@@ -410,7 +410,7 @@ An `OperatorBase` equivalent to self composed with itself exponent times.
 
 <span id="qiskit.aqua.operators.list_ops.ListOp.primitive_strings" />
 
-`ListOp.primitive_strings()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/list_ops/list_op.py "view source code")
+`ListOp.primitive_strings()`
 
 Return a set of strings describing the primitives contained in the Operator. For example, `{'QuantumCircuit', 'Pauli'}`. For hierarchical Operators, such as `ListOps`, this can help illuminate the primitives represented in the various recursive levels, and therefore which conversions can be applied.
 
@@ -426,7 +426,7 @@ A set of strings describing the primitives contained within the Operator.
 
 <span id="qiskit.aqua.operators.list_ops.ListOp.reduce" />
 
-`ListOp.reduce()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/list_ops/list_op.py "view source code")
+`ListOp.reduce()`
 
 Try collapsing the Operator structure, usually after some type of conversion, e.g. trying to add Operators in a SummedOp or delete needless IGates in a CircuitOp. If no reduction is available, just returns self.
 
@@ -442,7 +442,7 @@ The reduced `OperatorBase`.
 
 <span id="qiskit.aqua.operators.list_ops.ListOp.tensor" />
 
-`ListOp.tensor(other)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/list_ops/list_op.py "view source code")
+`ListOp.tensor(other)`
 
 Return tensor product between self and other, overloaded by `^`. Note: You must be conscious of Qiskit’s big-endian bit printing convention. Meaning, X.tensor(Y) produces an X on qubit 0 and an Y on qubit 1, or X⨂Y, but would produce a QuantumCircuit which looks like
 
@@ -466,7 +466,7 @@ An `OperatorBase` equivalent to the tensor product of self and other.
 
 <span id="qiskit.aqua.operators.list_ops.ListOp.tensorpower" />
 
-`ListOp.tensorpower(other)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/list_ops/list_op.py "view source code")
+`ListOp.tensorpower(other)`
 
 Return tensor product with self multiple times, overloaded by `^`.
 
@@ -486,7 +486,7 @@ An `OperatorBase` equivalent to the tensorpower of self by other.
 
 <span id="qiskit.aqua.operators.list_ops.ListOp.to_circuit_op" />
 
-`ListOp.to_circuit_op()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/list_ops/list_op.py "view source code")
+`ListOp.to_circuit_op()`
 
 Returns an equivalent Operator composed of only QuantumCircuit-based primitives, such as `CircuitOp` and `CircuitStateFn`.
 
@@ -498,7 +498,7 @@ Returns an equivalent Operator composed of only QuantumCircuit-based primitives,
 
 <span id="qiskit.aqua.operators.list_ops.ListOp.to_legacy_op" />
 
-`ListOp.to_legacy_op(massive=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/list_ops/list_op.py "view source code")
+`ListOp.to_legacy_op(massive=False)`
 
 Attempt to return the Legacy Operator representation of the Operator. If self is a `SummedOp` of `PauliOps`, will attempt to convert to `WeightedPauliOperator`, and otherwise will simply convert to `MatrixOp` and then to `MatrixOperator`. The Legacy Operators cannot represent `StateFns` or proper `ListOps` (meaning not one of the `ListOp` subclasses), so an error will be thrown if this method is called on such an Operator. Also, Legacy Operators cannot represent unbound Parameter coeffs, so an error will be thrown if any are present in self.
 
@@ -520,7 +520,7 @@ The `LegacyBaseOperator` representing this Operator.
 
 <span id="qiskit.aqua.operators.list_ops.ListOp.to_matrix" />
 
-`ListOp.to_matrix(massive=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/list_ops/list_op.py "view source code")
+`ListOp.to_matrix(massive=False)`
 
 Return NumPy representation of the Operator. Represents the evaluation of the Operator’s underlying function on every combination of basis binary strings. Warn if more than 16 qubits to force having to set `massive=True` if such a large vector is desired.
 
@@ -536,7 +536,7 @@ The NumPy `ndarray` equivalent to this Operator.
 
 <span id="qiskit.aqua.operators.list_ops.ListOp.to_matrix_op" />
 
-`ListOp.to_matrix_op(massive=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/list_ops/list_op.py "view source code")
+`ListOp.to_matrix_op(massive=False)`
 
 Returns an equivalent Operator composed of only NumPy-based primitives, such as `MatrixOp` and `VectorStateFn`.
 
@@ -548,7 +548,7 @@ Returns an equivalent Operator composed of only NumPy-based primitives, such as 
 
 <span id="qiskit.aqua.operators.list_ops.ListOp.to_pauli_op" />
 
-`ListOp.to_pauli_op(massive=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/list_ops/list_op.py "view source code")
+`ListOp.to_pauli_op(massive=False)`
 
 Returns an equivalent Operator composed of only Pauli-based primitives, such as `PauliOp`.
 
@@ -560,7 +560,7 @@ Returns an equivalent Operator composed of only Pauli-based primitives, such as 
 
 <span id="qiskit.aqua.operators.list_ops.ListOp.to_spmatrix" />
 
-`ListOp.to_spmatrix()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/list_ops/list_op.py "view source code")
+`ListOp.to_spmatrix()`
 
 Returns SciPy sparse matrix representation of the Operator.
 
@@ -576,7 +576,7 @@ CSR sparse matrix representation of the Operator, or List thereof.
 
 <span id="qiskit.aqua.operators.list_ops.ListOp.traverse" />
 
-`ListOp.traverse(convert_fn, coeff=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/list_ops/list_op.py "view source code")
+`ListOp.traverse(convert_fn, coeff=None)`
 
 Apply the convert\_fn to each node in the oplist.
 

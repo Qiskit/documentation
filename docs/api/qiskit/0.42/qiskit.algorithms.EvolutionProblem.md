@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.EvolutionProblem
 
 <span id="qiskit.algorithms.EvolutionProblem" />
 
-`EvolutionProblem(hamiltonian, time, initial_state=None, aux_operators=None, truncation_threshold=1e-12, t_param=None, param_value_dict=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/evolvers/evolution_problem.py "view source code")
+`EvolutionProblem(hamiltonian, time, initial_state=None, aux_operators=None, truncation_threshold=1e-12, t_param=None, param_value_dict=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/evolvers/evolution_problem.py "view source code")
 
 Bases: `object`
 
@@ -40,7 +40,7 @@ This class is the input to time evolution algorithms and must contain informatio
 
 <span id="qiskit.algorithms.EvolutionProblem.validate_params" />
 
-`EvolutionProblem.validate_params()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/evolvers/evolution_problem.py "view source code")
+`EvolutionProblem.validate_params()`
 
 Checks if all parameters present in the Hamiltonian are also present in the dictionary that maps them to values.
 

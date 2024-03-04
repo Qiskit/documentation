@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.YGate
 
 <span id="qiskit.circuit.library.YGate" />
 
-`qiskit.circuit.library.YGate(label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/standard_gates/y.py "view source code")
+`qiskit.circuit.library.YGate(label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/standard_gates/y.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 

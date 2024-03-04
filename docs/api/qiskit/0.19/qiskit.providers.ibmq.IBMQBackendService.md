@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.IBMQBackendService
 
 <span id="qiskit.providers.ibmq.IBMQBackendService" />
 
-`IBMQBackendService(provider)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.7/qiskit/providers/ibmq/ibmqbackendservice.py "view source code")
+`IBMQBackendService(provider)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.7/qiskit/providers/ibmq/ibmqbackendservice.py "view source code")
 
 Backend namespace for an IBM Quantum Experience account provider.
 
@@ -45,7 +45,7 @@ IBMQBackendService constructor.
 
 <span id="qiskit.providers.ibmq.IBMQBackendService.__call__" />
 
-`IBMQBackendService.__call__(name=None, filters=None, timeout=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.7/qiskit/providers/ibmq/ibmqbackendservice.py "view source code")
+`IBMQBackendService.__call__(name=None, filters=None, timeout=None, **kwargs)`
 
 Return all backends accessible via this provider, subject to optional filtering.
 
@@ -83,7 +83,7 @@ The list of available backends that match the filter.
 
 <span id="qiskit.providers.ibmq.IBMQBackendService.jobs" />
 
-`IBMQBackendService.jobs(limit=10, skip=0, backend_name=None, status=None, job_name=None, start_datetime=None, end_datetime=None, job_tags=None, job_tags_operator='OR', descending=True, db_filter=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.7/qiskit/providers/ibmq/ibmqbackendservice.py "view source code")
+`IBMQBackendService.jobs(limit=10, skip=0, backend_name=None, status=None, job_name=None, start_datetime=None, end_datetime=None, job_tags=None, job_tags_operator='OR', descending=True, db_filter=None)`
 
 Return a list of jobs, subject to optional filtering.
 
@@ -150,7 +150,7 @@ A list of `IBMQJob` instances.
 
 <span id="qiskit.providers.ibmq.IBMQBackendService.retrieve_job" />
 
-`IBMQBackendService.retrieve_job(job_id)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.7/qiskit/providers/ibmq/ibmqbackendservice.py "view source code")
+`IBMQBackendService.retrieve_job(job_id)`
 
 Return a single job.
 

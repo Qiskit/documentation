@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.EchoRZXWeylDecomposition
 
 <span id="qiskit.transpiler.passes.EchoRZXWeylDecomposition" />
 
-`EchoRZXWeylDecomposition(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/optimization/echo_rzx_weyl_decomposition.py "view source code")
+`EchoRZXWeylDecomposition(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/optimization/echo_rzx_weyl_decomposition.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -43,7 +43,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.EchoRZXWeylDecomposition.run" />
 
-`EchoRZXWeylDecomposition.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/optimization/echo_rzx_weyl_decomposition.py "view source code")
+`EchoRZXWeylDecomposition.run(dag)`
 
 Run the EchoRZXWeylDecomposition pass on dag.
 

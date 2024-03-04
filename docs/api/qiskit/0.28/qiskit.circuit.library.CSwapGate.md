@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CSwapGate
 
 <span id="qiskit.circuit.library.CSwapGate" />
 
-`CSwapGate(label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/swap.py "view source code")
+`CSwapGate(label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/swap.py "view source code")
 
 Controlled-SWAP gate, also known as the Fredkin gate.
 

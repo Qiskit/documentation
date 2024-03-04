@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.primitive_ops.Z2Symmetries
 
 <span id="qiskit.opflow.primitive_ops.Z2Symmetries" />
 
-`qiskit.opflow.primitive_ops.Z2Symmetries(symmetries, sq_paulis, sq_list, tapering_values=None, tol=1e-14)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/opflow/primitive_ops/tapered_pauli_sum_op.py "view source code")
+`qiskit.opflow.primitive_ops.Z2Symmetries(symmetries, sq_paulis, sq_list, tapering_values=None, tol=1e-14)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/opflow/primitive_ops/tapered_pauli_sum_op.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 

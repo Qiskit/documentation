@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.feature_maps.PauliExpansion
 
 <span id="qiskit.aqua.components.feature_maps.PauliExpansion" />
 
-`PauliExpansion(feature_dimension, depth=2, entangler_map=None, entanglement='full', paulis=None, data_map_func=<function self_product>)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/feature_maps/pauli_expansion.py "view source code")
+`PauliExpansion(feature_dimension, depth=2, entangler_map=None, entanglement='full', paulis=None, data_map_func=<function self_product>)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/feature_maps/pauli_expansion.py "view source code")
 
 DEPRECATED. The Pauli Expansion feature map.
 
@@ -53,7 +53,7 @@ returns whether or not the sub-class support parameterized circuit
 
 <span id="qiskit.aqua.components.feature_maps.PauliExpansion.construct_circuit" />
 
-`PauliExpansion.construct_circuit(x, qr=None, inverse=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/feature_maps/pauli_expansion.py "view source code")
+`PauliExpansion.construct_circuit(x, qr=None, inverse=False)`
 
 Construct the second order expansion based on given data.
 

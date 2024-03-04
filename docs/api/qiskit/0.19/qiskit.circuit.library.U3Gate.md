@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.U3Gate
 
 <span id="qiskit.circuit.library.U3Gate" />
 
-`U3Gate(theta, phi, lam, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/u3.py "view source code")
+`U3Gate(theta, phi, lam, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/u3.py "view source code")
 
 Generic single-qubit rotation gate with 3 Euler angles.
 
@@ -166,7 +166,7 @@ Add classical condition on register classical and value val.
 
 <span id="qiskit.circuit.library.U3Gate.control" />
 
-`U3Gate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/u3.py "view source code")
+`U3Gate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
 Return a (mutli-)controlled-U3 gate.
 
@@ -210,7 +210,7 @@ updated if it was provided
 
 <span id="qiskit.circuit.library.U3Gate.inverse" />
 
-`U3Gate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/u3.py "view source code")
+`U3Gate.inverse()`
 
 Return inverted U3 gate.
 
@@ -304,7 +304,7 @@ Containing the definition.
 
 <span id="qiskit.circuit.library.U3Gate.to_matrix" />
 
-`U3Gate.to_matrix()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/u3.py "view source code")
+`U3Gate.to_matrix()`
 
 Return a Numpy.array for the U3 gate.
 

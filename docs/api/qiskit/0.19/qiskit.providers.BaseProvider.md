@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.BaseProvider
 
 <span id="qiskit.providers.BaseProvider" />
 
-`BaseProvider(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/baseprovider.py "view source code")
+`BaseProvider(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/baseprovider.py "view source code")
 
 Base class for a Backend Provider.
 
@@ -20,7 +20,7 @@ Base class for a Backend Provider.
 
 <span id="qiskit.providers.BaseProvider.backends" />
 
-`abstract BaseProvider.backends(name=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/baseprovider.py "view source code")
+`abstract BaseProvider.backends(name=None, **kwargs)`
 
 Return a list of backends matching the specified filtering.
 
@@ -43,7 +43,7 @@ list\[[BaseBackend](qiskit.providers.BaseBackend "qiskit.providers.BaseBackend")
 
 <span id="qiskit.providers.BaseProvider.get_backend" />
 
-`BaseProvider.get_backend(name=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/baseprovider.py "view source code")
+`BaseProvider.get_backend(name=None, **kwargs)`
 
 Return a single backend matching the specified filtering.
 

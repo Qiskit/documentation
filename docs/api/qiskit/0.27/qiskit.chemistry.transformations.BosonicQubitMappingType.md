@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.transformations.BosonicQubitMappingType
 
 <span id="qiskit.chemistry.transformations.BosonicQubitMappingType" />
 
-`BosonicQubitMappingType(value)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/transformations/bosonic_transformation.py "view source code")
+`BosonicQubitMappingType(value)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/transformations/bosonic_transformation.py "view source code")
 
 BosonicQubitMappingType enum
 

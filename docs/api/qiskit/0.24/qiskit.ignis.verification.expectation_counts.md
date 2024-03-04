@@ -12,7 +12,7 @@ python_api_name: qiskit.ignis.verification.expectation_counts
 
 <span id="qiskit.ignis.verification.expectation_counts" />
 
-`expectation_counts(counts)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/tomography/data.py "view source code")
+`expectation_counts(counts)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/tomography/data.py "view source code")
 
 Converts count dict to an expectation counts dict.
 
