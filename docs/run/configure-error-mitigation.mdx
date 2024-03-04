@@ -50,11 +50,11 @@ To ensure faster and more efficient results, as of 1 March 2024, circuits and ob
   <TabItem value="PrimV2" label="V2 primitives">
     In V2, Estimator supports the following resilience levels.  Sampler does not support resilience levels. 
 
-| Resilience Level | Definition                                                                                            | Technique                                |
-|------------------|-------------------------------------------------------------------------------------------------------|------------------------------------------|
-| 0                | No mitigation                                                                                         | None                                     |
-| 1 [Default]      | Minimal mitigation costs: Mitigate error associated with readout errors                               | Readout error mitigation                 |
-| 2                | Medium mitigation costs. Typically reduces bias in estimators, but is not guaranteed to be zero-bias. | Level 1 + Zero Noise Extrapolation (ZNE) |
+| Resilience Level | Definition                                                                                            | Technique                                                                 |
+|------------------|-------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|
+| 0                | No mitigation                                                                                         | None                                                                      |
+| 1 [Default]      | Minimal mitigation costs: Mitigate error associated with readout errors                               | Twirled Readout Error eXtinction  (TREX) measurement twirling             |
+| 2                | Medium mitigation costs. Typically reduces bias in estimators, but is not guaranteed to be zero-bias. | Level 1 + Zero Noise Extrapolation (ZNE) and TREX gate twirling 
 
   </TabItem>
 
@@ -107,7 +107,8 @@ No error mitigation is applied to the user program.
 <details>
 <summary>Resilience Level 1</summary>
 
-Level 1 applies **readout error mitigation**. It reduces measurement error
+Level 1 applies **readout error mitigation** and **measurement twirling** by applying a model-free technique known
+as Twirled Readout Error eXtinction (TREX). It reduces measurement error
 by diagonalizing the noise channel associated with measurement by
 randomly flipping qubits through X gates immediately before measurement. A
 rescaling term from the diagonal noise channel is learned by
@@ -123,7 +124,7 @@ values](https://arxiv.org/abs/2012.09738).
 <details>
 <summary>Resilience Level 2</summary>
 
-Level 2 applies the **error mitigation techniques included in level 1** and uses the **Zero Noise Extrapolation method (ZNE)**.  ZNE computes an
+Level 2 applies the **error mitigation techniques included in level 1** and also applies **gate twirling** and uses the **Zero Noise Extrapolation method (ZNE)**.  ZNE computes an
 expectation value of the observable for different noise factors
 (amplification stage) and then uses the measured expectation values to
 infer the ideal expectation value at the zero-noise limit (extrapolation
@@ -176,7 +177,7 @@ print(asdict(estimator.options))
 
 <Admonition type="info" title="Note">
 
-As you increase the resilience level, you will be able to use additional methods to improve the accuracy of your result. However, because the methods become more advanced with each level, they require additional sampling overhead (time) to generate more accurate expectation values. Note that higher resilience levels do not guarantee better quality. Higher levels only mean greater overhead. Each method has its strengths and weaknesses. For example, ZNE (Zero Noise Extrapolation) is good for deeper circuits. PEC can mitigate arbitrary errors but may not work in practice because of its large overhead.
+As you increase the resilience level, you will be able to use additional methods to improve the accuracy of your result. However, because the methods become more advanced with each level, they require additional sampling overhead (time) to generate more accurate expectation values. Note that higher resilience levels do not guarantee better quality. Higher levels only mean greater overhead. Each method has its strengths and weaknesses. For example, TREX (Twirled Readout Error eXtinction) is good for shallow circuits because of its readout error mitigation, whereas ZNE (Zero Noise Extrapolation) is good for deeper circuits. PEC can mitigate arbitrary errors but may not work in practice because of its large overhead.
 </Admonition>
 
 ## Configure Estimator (V1) with resilience levels
@@ -384,13 +385,11 @@ sampler = Sampler(backend, options=options)
 <span id="advanced-error"></span>
 ## Custom error settings
 
-With Estimator V2, you can turn on and off individual error mitigation and suppression methods.
+With Estimator V2, you can turn on and off individual error mitigation and suppression methods, including dynamical decoupling, gate and measurement twirling, measurement error mitigation, and ZNE.
 
 <span id="advanced-options"></span>
 ## Custom error settings (V2 primitives)
-With the V2 primitives, you can turn on and off individual error mitigation and suppression methods. {/*See the API reference for the most up-to-date information on available options.*/}
-
-See the [API reference](../api/qiskit-ibm-runtime/options) for the list of available options.                                                                                                                                               | `active-accum` | Estimator only |
+With the V2 primitives, you can turn on and off individual error mitigation and suppression methods. See the [API reference](/api/qiskit-ibm-runtime/options) for the list of available options.
 
 <Tabs>
   <TabItem value="EstimatorV2" label="V2 Estimator">
@@ -403,10 +402,12 @@ backend = service.least_busy(operational=True, simulator=False)
 
 estimator = Estimator(backend)
 options = estimator.options
-
+# Turn on gate twirling.
+options.twirling.gates = True
 # Turn on measurement error mitigation.
 options.resilience.measure_noise_mitigation = True
 
+print(f">>> gate twirling is turned on: {estimator.options.twirling.gates}")
 print(f">>> measurement error mitigation is turned on: {estimator.options.resilience.measure_noise_mitigation}")
 ```
   </TabItem>
@@ -434,9 +435,8 @@ from qiskit_ibm_runtime import SamplerV2 as Sampler, Options
 # Estimator and Sampler now have different options
 options = sampler.options
 
-# ZNE options
-options.resilience.zne_mitigation = True
-options.resilience.zne_extrapolator = "exponential"
+options.default_shots = 2500
+options.dynamical_decoupling.enable = True
 ```
   </TabItem>
 
