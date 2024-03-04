@@ -10,22 +10,22 @@ python_api_name: qiskit.transpiler.StagedPassManager
 
 <span id="qiskit.transpiler.StagedPassManager" />
 
-`qiskit.transpiler.StagedPassManager(stages=None, **kwargs)`
+`qiskit.transpiler.StagedPassManager(stages=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passmanager.py "view source code")
 
 Bases: [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.passmanager.PassManager")
 
-A Pass manager pipeline built up of individual stages
+A pass manager pipeline built from individual stages.
 
 This class enables building a compilation pipeline out of fixed stages. Each `StagedPassManager` defines a list of stages which are executed in a fixed order, and each stage is defined as a standalone [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") instance. There are also `pre_` and `post_` stages for each defined stage. This enables easily composing and replacing different stages and also adding hook points to enable programmatic modifications to a pipeline. When using a staged pass manager you are not able to modify the individual passes and are only able to modify stages.
 
-By default instances of `StagedPassManager` define a typical full compilation pipeline from an abstract virtual circuit to one that is optimized and capable of running on the specified backend. The default pre-defined stages are:
+By default, instances of `StagedPassManager` define a typical full compilation pipeline from an abstract virtual circuit to one that is optimized and capable of running on the specified backend. The default pre-defined stages are:
 
-1.  `init` - any initial passes that are run before we start embedding the circuit to the backend
-2.  `layout` - This stage runs layout and maps the virtual qubits in the circuit to the physical qubits on a backend
-3.  `routing` - This stage runs after a layout has been run and will insert any necessary gates to move the qubit states around until it can be run on backend’s coupling map.
-4.  `translation` - Perform the basis gate translation, in other words translate the gates in the circuit to the target backend’s basis set
-5.  `optimization` - The main optimization loop, this will typically run in a loop trying to optimize the circuit until a condition (such as fixed depth) is reached.
-6.  `scheduling` - Any hardware aware scheduling passes
+1.  `init` - Initial passes to run before embedding the circuit to the backend.
+2.  `layout` - Maps the virtual qubits in the circuit to the physical qubits on the backend.
+3.  `routing` - Inserts gates as needed to move the qubit states around until the circuit can be run with the chosen layout on the backend’s coupling map.
+4.  `translation` - Translates the gates in the circuit to the target backend’s basis gate set.
+5.  `optimization` - Optimizes the circuit to reduce the cost of executing it. These passes will typically run in a loop until a convergence criteria is met. For example, the convergence criteria might be that the circuit depth does not decrease in successive iterations.
+6.  `scheduling` - Hardware-aware passes that schedule the operations in the circuit.
 
 <Admonition title="Note" type="note">
   For backwards compatibility the relative positioning of these default stages will remain stable moving forward. However, new stages may be added to the default stage list in between current stages. For example, in a future release a new phase, something like `logical_optimization`, could be added immediately after the existing `init` stage in the default stage list. This would preserve compatibility for pre-existing `StagedPassManager` users as the relative positions of the stage are preserved so the behavior will not change between releases.
@@ -55,9 +55,7 @@ Expanded Pass manager stages including `pre_` and `post_` phases.
 
 <span id="qiskit.transpiler.StagedPassManager.invalid_stage_regex" />
 
-### invalid\_stage\_regex = re.compile('\\\s|\\\\+|\\\\-|\\\\\*|\\\\/|\\\\\\\\|\\\\%|\\\\\<|\\\\>|\\\\@|\\\\!|\\\\\~|\\\\^|\\\\&|\\\\
-
-`= re.compile('\\s|\\+|\\-|\\*|\\/|\\\\|\\%|\\<|\\>|\\@|\\!|\\~|\\^|\\&|\\:`
+### invalid\_stage\_regex
 
 `= re.compile('\\s|\\+|\\-|\\*|\\/|\\\\|\\%|\\<|\\>|\\@|\\!|\\~|\\^|\\&|\\:|\\[|\\]|\\{|\\}|\\(|\\)')`
 
@@ -73,23 +71,17 @@ Pass manager stages
 
 <span id="qiskit.transpiler.StagedPassManager.append" />
 
-`append(passes, max_iteration=None, **flow_controller_conditions)`
+`append(passes)`
 
 Append a Pass Set to the schedule of passes.
 
 **Parameters**
 
-*   **passes** (*BasePass | Sequence\[BasePass |* [*FlowController*](qiskit.transpiler.FlowController "qiskit.transpiler.FlowController")*]*) – A set of passes (a pass set) to be added to schedule. A pass set is a list of passes that are controlled by the same flow controller. If a single pass is provided, the pass set will only have that pass a single element. It is also possible to append a [`FlowController`](qiskit.transpiler.FlowController "qiskit.transpiler.runningpassmanager.FlowController") instance and the rest of the parameter will be ignored.
-*   **max\_iteration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – max number of iterations of passes.
-*   **flow\_controller\_conditions** (*Any*) – control flow plugins.
+**passes** (*Task |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[Task]*) – A set of transpiler passes to be added to schedule.
 
 **Raises**
 
 [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if a pass in passes is not a proper pass.
-
-<Admonition title="See also" type="note">
-  `RunningPassManager.add_flow_controller()` for more information about the control flow plugins.
-</Admonition>
 
 ### draw
 
@@ -98,22 +90,6 @@ Append a Pass Set to the schedule of passes.
 `draw(filename=None, style=None, raw=False)`
 
 Draw the staged pass manager.
-
-### passes
-
-<span id="qiskit.transpiler.StagedPassManager.passes" />
-
-`passes()`
-
-Return a list structure of the appended passes and its options.
-
-**Returns**
-
-A list of pass sets, as defined in `append()`.
-
-**Return type**
-
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)"), qiskit.transpiler.basepasses.BasePass]]
 
 ### remove
 
@@ -125,40 +101,30 @@ Removes a particular pass in the scheduler.
 
 **Parameters**
 
-**index** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Pass index to replace, based on the position in passes().
+**index** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Pass index to remove, based on the position in [`passes()`](transpiler_passes#module-qiskit.transpiler.passes "qiskit.transpiler.passes").
 
 **Raises**
 
-[**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if the index is not found.
+[**PassManagerError**](passmanager#qiskit.passmanager.PassManagerError "qiskit.passmanager.PassManagerError") – If the index is not found.
 
 ### replace
 
 <span id="qiskit.transpiler.StagedPassManager.replace" />
 
-`replace(index, passes, max_iteration=None, **flow_controller_conditions)`
+`replace(index, passes)`
 
 Replace a particular pass in the scheduler.
 
 **Parameters**
 
 *   **index** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Pass index to replace, based on the position in passes().
-*   **passes** (*BasePass |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[BasePass]*) – A pass set (as defined in [`qiskit.transpiler.PassManager.append()`](qiskit.transpiler.PassManager#append "qiskit.transpiler.PassManager.append")) to be added to the pass manager schedule.
-*   **max\_iteration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – max number of iterations of passes.
-*   **flow\_controller\_conditions** (*Any*) – control flow plugins.
-
-**Raises**
-
-[**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if a pass in passes is not a proper pass or index not found.
-
-<Admonition title="See also" type="note">
-  `RunningPassManager.add_flow_controller()` for more information about the control flow plugins.
-</Admonition>
+*   **passes** (*BasePass |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[BasePass]*) – A pass set to be added to the pass manager schedule.
 
 ### run
 
 <span id="qiskit.transpiler.StagedPassManager.run" />
 
-`run(circuits, output_name=None, callback=None)`
+`run(circuits, output_name=None, callback=None, num_processes=None)`
 
 Run all the passes on the specified `circuits`.
 
@@ -180,6 +146,10 @@ Run all the passes on the specified `circuits`.
     count (int): the index for the pass execution
     ```
 
+    <Admonition title="Note" type="note">
+      Beware that the keyword arguments here are different to those used by the generic [`BasePassManager`](qiskit.passmanager.BasePassManager "qiskit.passmanager.BasePassManager"). This pass manager will translate those arguments into the form described above.
+    </Admonition>
+
     The exact arguments pass expose the internals of the pass manager and are subject to change as the pass manager internals change. If you intend to reuse a callback function over multiple releases be sure to check that the arguments being passed are the same.
 
     To use the callback feature you define a function that will take in kwargs dict and access the variables. For example:
@@ -193,6 +163,8 @@ Run all the passes on the specified `circuits`.
         count = kwargs['count']
         ...
     ```
+
+*   **num\_processes** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The maximum number of parallel processes to launch if parallel execution is enabled. This argument overrides `num_processes` in the user configuration file, and the `QISKIT_NUM_PROCS` environment variable. If set to `None` the system default or local user configuration will be used.
 
 **Returns**
 
@@ -208,9 +180,13 @@ The transformed circuit(s).
 
 `to_flow_controller()`
 
-Linearize this manager into a single [`FlowController`](qiskit.transpiler.FlowController "qiskit.transpiler.FlowController"), so that it can be nested inside another [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager").
+Linearize this manager into a single [`FlowControllerLinear`](qiskit.passmanager.FlowControllerLinear "qiskit.passmanager.FlowControllerLinear"), so that it can be nested inside another pass manager.
+
+**Returns**
+
+A linearized pass manager.
 
 **Return type**
 
-[*FlowController*](qiskit.transpiler.FlowController "qiskit.transpiler.runningpassmanager.FlowController")
+[*FlowControllerLinear*](qiskit.passmanager.FlowControllerLinear "qiskit.passmanager.flow_controllers.FlowControllerLinear")
 

@@ -1,0 +1,37 @@
+---
+title: marginal_distribution
+description: API reference for qiskit.result.marginal_distribution
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.result.marginal_distribution
+---
+
+# qiskit.result.marginal\_distribution
+
+<span id="qiskit.result.marginal_distribution" />
+
+`marginal_distribution(counts, indices=None, format_marginal=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/result/utils.py "view source code")
+
+Marginalize counts from an experiment over some indices of interest.
+
+Unlike [`marginal_counts()`](qiskit.result.marginal_counts "qiskit.result.marginal_counts") this function respects the order of the input `indices`. If the input `indices` list is specified then the order the bit indices are specified will be the output order of the bitstrings in the marginalized output.
+
+**Parameters**
+
+*   **counts** (`dict`) – result to be marginalized
+*   **indices** (`Optional`\[`Sequence`\[`int`]]) – The bit positions of interest to marginalize over. If `None` (default), do not marginalize at all.
+*   **format\_marginal** (`bool`) – Default: False. If True, takes the output of marginalize and formats it with placeholders between cregs and for non-indices.
+
+**Returns**
+
+A marginalized dictionary
+
+**Return type**
+
+dict(str, int)
+
+**Raises**
+
+*   **QiskitError** – If any value in `indices` is invalid or the `counts` dict
+*   **is invalid.** –
+

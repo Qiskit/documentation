@@ -1,0 +1,135 @@
+---
+title: InstructionSet
+description: API reference for qiskit.circuit.InstructionSet
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.InstructionSet
+---
+
+# InstructionSet
+
+<span id="qiskit.circuit.InstructionSet" />
+
+`InstructionSet(circuit_cregs=None, *, resource_requester=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/instructionset.py "view source code")
+
+Bases: `object`
+
+Instruction collection, and their contexts.
+
+New collection of instructions.
+
+The context (qargs and cargs that each instruction is attached to) is also stored separately for each instruction.
+
+**Parameters**
+
+*   **circuit\_cregs** (*list\[*[*ClassicalRegister*](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")*]*) –
+
+    Optional. List of cregs of the circuit to which the instruction is added. Default: None.
+
+    <Admonition title="Deprecated since version qiskit-terra" type="danger">
+      0.19 The classical registers are insufficient to access all classical resources in a circuit, as there may be loose classical bits as well. It can also cause integer indices to be resolved incorrectly if any registers overlap. Instead, pass a complete requester to the `resource_requester` argument.
+    </Admonition>
+
+*   **resource\_requester** (`Optional`\[`Callable`]) –
+
+    A callable that takes in the classical resource used in the condition, verifies that it is present in the attached circuit, resolves any indices into concrete [`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.Clbit") instances, and returns the concrete resource. If this is not given, specifying a condition with an index is forbidden, and all concrete [`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.Clbit") and [`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") resources will be assumed to be valid.
+
+    <Admonition title="Note" type="note">
+      The callback `resource_requester` is called once for each call to [`c_if()`](qiskit.circuit.InstructionSet#c_if "qiskit.circuit.InstructionSet.c_if"), and assumes that a call implies that the resource will now be used. It may throw an error if the resource is not valid for usage.
+    </Admonition>
+
+**Raises**
+
+**CircuitError** – if both `resource_requester` and `circuit_cregs` are passed. Only one of these may be passed, and it should be `resource_requester`.
+
+## Methods
+
+### add
+
+<span id="qiskit.circuit.InstructionSet.add" />
+
+`InstructionSet.add(instruction, qargs=None, cargs=None)`
+
+Add an instruction and its context (where it is attached).
+
+### c\_if
+
+<span id="qiskit.circuit.InstructionSet.c_if" />
+
+`InstructionSet.c_if(classical, val)`
+
+Set a classical equality condition on all the instructions in this set between the [`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") or [`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.Clbit") `classical` and value `val`.
+
+<Admonition title="Note" type="note">
+  This is a setter method, not an additive one. Calling this multiple times will silently override any previously set condition on any of the contained instructions; it does not stack.
+</Admonition>
+
+**Parameters**
+
+*   **classical** (`Union`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit"), [`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.classicalregister.ClassicalRegister"), `int`]) – the classical resource the equality condition should be on. If this is given as an integer, it will be resolved into a [`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.Clbit") using the same conventions as the circuit these instructions are attached to.
+*   **val** (`int`) – the value the classical resource should be equal to.
+
+**Return type**
+
+[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+
+**Returns**
+
+This same instance of [`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet"), but now mutated to have the given equality condition.
+
+**Raises**
+
+**CircuitError** – if the passed classical resource is invalid, or otherwise not resolvable to a concrete resource that these instructions are permitted to access.
+
+**Example**
+
+```python
+from qiskit import ClassicalRegister, QuantumRegister, QuantumCircuit
+
+qr = QuantumRegister(2)
+cr = ClassicalRegister(2)
+qc = QuantumCircuit(qr, cr)
+qc.h(range(2))
+qc.measure(range(2), range(2))
+
+# apply x gate if the classical register has the value 2 (10 in binary)
+qc.x(0).c_if(cr, 2)
+
+# apply y gate if bit 0 is set to 1
+qc.y(1).c_if(0, 1)
+
+qc.draw('mpl')
+```
+
+([Source code](qiskit-circuit-InstructionSet-c_if-1.py), [png](qiskit-circuit-InstructionSet-c_if-1.png), [hires.png](qiskit-circuit-InstructionSet-c_if-1.hires.png), [pdf](qiskit-circuit-InstructionSet-c_if-1.pdf))
+
+![../\_images/qiskit-circuit-InstructionSet-c\_if-1.png](/images/api/qiskit/0.40/qiskit-circuit-InstructionSet-c_if-1.png)
+
+### inverse
+
+<span id="qiskit.circuit.InstructionSet.inverse" />
+
+`InstructionSet.inverse()`
+
+Invert all instructions.
+
+## Attributes
+
+<span id="qiskit.circuit.InstructionSet.cargs" />
+
+### cargs
+
+Legacy getter for the cargs components of an instruction set. This does not support mutation.
+
+<span id="qiskit.circuit.InstructionSet.instructions" />
+
+### instructions
+
+Legacy getter for the instruction components of an instruction set. This does not support mutation.
+
+<span id="qiskit.circuit.InstructionSet.qargs" />
+
+### qargs
+
+Legacy getter for the qargs components of an instruction set. This does not support mutation.
+

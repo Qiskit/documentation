@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.Session
 
 <span id="qiskit_ibm_runtime.Session" />
 
-`Session(service=None, backend=None, max_time=None)`
+`Session(service=None, backend=None, max_time=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/session.py#L40-L336 "view source code")
 
 Class for creating a flexible Qiskit Runtime session.
 
@@ -21,14 +21,22 @@ You can open a Qiskit Runtime session using this `Session` class and submit jobs
 For example:
 
 ```python
-from qiskit.test.reference_circuits import ReferenceCircuits
+from qiskit.circuit import QuantumCircuit, QuantumRegister, ClassicalRegister
 from qiskit_ibm_runtime import Sampler, Session, Options
+
+# Bell Circuit
+qr = QuantumRegister(2, name="qr")
+cr = ClassicalRegister(2, name="cr")
+qc = QuantumCircuit(qr, cr, name="bell")
+qc.h(qr[0])
+qc.cx(qr[0], qr[1])
+qc.measure(qr, cr)
 
 options = Options(optimization_level=3)
 
 with Session(backend="ibmq_qasm_simulator") as session:
     sampler = Sampler(session=session, options=options)
-    job = sampler.run(ReferenceCircuits.bell())
+    job = sampler.run(qc)
     print(f"Sampler job ID: {job.job_id()}")
     print(f"Sampler job result: {job.result()}")
 ```
@@ -39,7 +47,7 @@ Session constructor.
 
 *   **service** (`Optional`\[[`QiskitRuntimeService`](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.qiskit_runtime_service.QiskitRuntimeService")]) – Optional instance of the `QiskitRuntimeService` class. If `None`, the service associated with the backend, if known, is used. Otherwise `QiskitRuntimeService()` is used to initialize your default saved account.
 *   **backend** (`Union`\[`str`, [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend"), `None`]) – Optional instance of [`qiskit_ibm_runtime.IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.IBMBackend") class or string name of backend. An instance of `qiskit_ibm_provider.IBMBackend` will not work. If not specified, a backend will be selected automatically (IBM Cloud channel only).
-*   **max\_time** (`Union`\[`int`, `str`, `None`]) – (EXPERIMENTAL setting, can break between releases without warning) Maximum amount of time, a runtime session can be open before being forcibly closed. Can be specified as seconds (int) or a string like “2h 30m 40s”. This value must be less than the [system imposed maximum](https://qiskit.org/documentation/partners/qiskit_ibm_runtime/faqs/max_execution_time.html).
+*   **max\_time** (`Union`\[`int`, `str`, `None`]) – (EXPERIMENTAL setting, can break between releases without warning) Maximum amount of time, a runtime session can be open before being forcibly closed. Can be specified as seconds (int) or a string like “2h 30m 40s”. This value must be less than the [system imposed maximum](/run/max-execution-time).
 
 **Raises**
 
@@ -69,11 +77,11 @@ Return the session ID.
 
 **Return type**
 
-`str`
+`Optional`\[`str`]
 
 **Returns**
 
-Session ID. None until a job runs in the session.
+Session ID. None if the backend is a simulator.
 
 ## Methods
 
@@ -97,7 +105,7 @@ Backend for this session. None if unknown.
 
 <span id="qiskit_ibm_runtime.Session.cancel" />
 
-`cancel()`
+`cancel()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/session.py#L194-L198 "view source code")
 
 Cancel all pending jobs in a session.
 
@@ -109,7 +117,7 @@ Cancel all pending jobs in a session.
 
 <span id="qiskit_ibm_runtime.Session.close" />
 
-`close()`
+`close()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/session.py#L200-L206 "view source code")
 
 Close the session so new jobs will no longer be accepted, but existing queued or running jobs will run to completion. The session will be terminated once there are no more pending jobs.
 
@@ -121,13 +129,13 @@ Close the session so new jobs will no longer be accepted, but existing queued or
 
 <span id="qiskit_ibm_runtime.Session.details" />
 
-`details()`
+`details()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/session.py#L242-L278 "view source code")
 
 Return session details.
 
 **Returns**
 
-id: id of the session. backend\_name: backend used for the session. interactive\_timeout: The maximum idle time (in seconds) between jobs that is allowed to occur before the session is deactivated. max\_time: Maximum allowed time (in seconds) for the session, subject to plan limits. active\_timeout: The maximum time (in seconds) a session can stay active. state: State of the session - open, active, inactive, or closed. accepting\_jobs: Whether or not the session is accepting jobs. last\_job\_started: Timestamp of when the last job in the session started. last\_job\_completed: Timestamp of when the last job in the session completed. started\_at: Timestamp of when the session was started. closed\_at: Timestamp of when the session was closed.
+id: id of the session. backend\_name: backend used for the session. interactive\_timeout: The maximum idle time (in seconds) between jobs that is allowed to occur before the session is deactivated. max\_time: Maximum allowed time (in seconds) for the session, subject to plan limits. active\_timeout: The maximum time (in seconds) a session can stay active. state: State of the session - open, active, inactive, or closed. accepting\_jobs: Whether or not the session is accepting jobs. last\_job\_started: Timestamp of when the last job in the session started. last\_job\_completed: Timestamp of when the last job in the session completed. started\_at: Timestamp of when the session was started. closed\_at: Timestamp of when the session was closed. activated\_at: Timestamp of when the session state was changed to active.
 
 **Return type**
 
@@ -137,13 +145,13 @@ A dictionary with the sessions details, including
 
 <span id="qiskit_ibm_runtime.Session.from_id" />
 
-`classmethod from_id(session_id, service=None, backend=None)`
+`classmethod from_id(session_id, service=None, backend=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/session.py#L298-L323 "view source code")
 
 Construct a Session object with a given session\_id
 
 **Parameters**
 
-*   **session\_id** (`str`) – the id of the session to be created. This can be an already existing session id.
+*   **session\_id** (`str`) – the id of the session to be created. This must be an already existing session id.
 *   **service** (`Optional`\[[`QiskitRuntimeService`](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.qiskit_runtime_service.QiskitRuntimeService")]) – instance of the `QiskitRuntimeService` class.
 *   **backend** (`Union`\[`str`, [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend"), `None`]) – instance of [`qiskit_ibm_runtime.IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.IBMBackend") class or string name of backend.
 
@@ -159,14 +167,14 @@ A new Session with the given `session_id`
 
 <span id="qiskit_ibm_runtime.Session.run" />
 
-`run(program_id, inputs, options=None, callback=None, result_decoder=None)`
+`run(program_id, inputs, options=None, callback=None, result_decoder=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/session.py#L149-L192 "view source code")
 
 Run a program in the session.
 
 **Parameters**
 
 *   **program\_id** (`str`) – Program ID.
-*   **inputs** (`Union`\[`Dict`, [`ParameterNamespace`](qiskit_ibm_runtime.ParameterNamespace "qiskit_ibm_runtime.runtime_program.ParameterNamespace")]) – Program input parameters. These input values are passed to the runtime program.
+*   **inputs** (`Dict`) – Program input parameters. These input values are passed to the runtime program.
 *   **options** (`Optional`\[`Dict`]) – Runtime options that control the execution environment. See [`qiskit_ibm_runtime.RuntimeOptions`](qiskit_ibm_runtime.RuntimeOptions "qiskit_ibm_runtime.RuntimeOptions") for all available options.
 *   **callback** (`Optional`\[`Callable`]) – Callback function to be invoked for any interim results and final result.
 
@@ -182,7 +190,7 @@ Submitted job.
 
 <span id="qiskit_ibm_runtime.Session.status" />
 
-`status()`
+`status()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/session.py#L216-L240 "view source code")
 
 Return current session status.
 

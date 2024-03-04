@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.models.BackendConfiguration
 
 <span id="qiskit.providers.models.BackendConfiguration" />
 
-`qiskit.providers.models.BackendConfiguration(backend_name, backend_version, n_qubits, basis_gates, gates, local, simulator, conditional, open_pulse, memory, max_shots, coupling_map, supported_instructions=None, dynamic_reprate_enabled=False, rep_delay_range=None, default_rep_delay=None, max_experiments=None, sample_name=None, n_registers=None, register_map=None, configurable=None, credits_required=None, online_date=None, display_name=None, description=None, tags=None, dt=None, dtm=None, processor_type=None, parametric_pulses=None, **kwargs)`
+`qiskit.providers.models.BackendConfiguration(backend_name, backend_version, n_qubits, basis_gates, gates, local, simulator, conditional, open_pulse, memory, max_shots, coupling_map, supported_instructions=None, dynamic_reprate_enabled=False, rep_delay_range=None, default_rep_delay=None, max_experiments=None, sample_name=None, n_registers=None, register_map=None, configurable=None, credits_required=None, online_date=None, display_name=None, description=None, tags=None, dt=None, dtm=None, processor_type=None, parametric_pulses=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/providers/models/backendconfiguration.py "view source code")
 
 Bases: [`QasmBackendConfiguration`](qiskit.providers.models.QasmBackendConfiguration "qiskit.providers.models.backendconfiguration.QasmBackendConfiguration")
 
@@ -64,7 +64,7 @@ Initialize a QasmBackendConfiguration Object
 
 *   **credits\_required** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – True if backend requires credits to run a job.
 
-*   **online\_date** (*datetime*) – The date that the device went online
+*   **online\_date** ([*datetime.datetime*](https://docs.python.org/3/library/datetime.html#datetime.datetime "(in Python v3.12)")) – The date that the device went online
 
 *   **display\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Alternate name field for the backend
 

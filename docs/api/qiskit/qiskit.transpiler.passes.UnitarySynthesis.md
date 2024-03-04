@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.UnitarySynthesis
 
 <span id="qiskit.transpiler.passes.UnitarySynthesis" />
 
-`qiskit.transpiler.passes.UnitarySynthesis(*args, **kwargs)`
+`qiskit.transpiler.passes.UnitarySynthesis(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/synthesis/unitary_synthesis.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -34,6 +34,10 @@ This pass can approximate 2-qubit unitaries given some gate fidelities (either v
 *   **plugin\_config** – Optional extra configuration arguments (as a `dict`) which are passed directly to the specified unitary synthesis plugin. By default, this will have no effect as the default plugin has no extra arguments. Refer to the documentation of your unitary synthesis plugin on how to use this.
 *   **target** – The optional [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") for the target device the pass is compiling for. If specified this will supersede the values set for `basis_gates`, `coupling_map`, and `backend_props`.
 
+**Raises**
+
+[**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if `method` was specified but is not found in the installed plugins list. The list of installed plugins can be queried with [`unitary_synthesis_plugin_names()`](qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names "qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names")
+
 ## Attributes
 
 <span id="qiskit.transpiler.passes.UnitarySynthesis.is_analysis_pass" />
@@ -54,13 +58,39 @@ If the pass is a TransformationPass, that means that the pass can manipulate the
 
 ## Methods
 
+### execute
+
+<span id="qiskit.transpiler.passes.UnitarySynthesis.execute" />
+
+`execute(passmanager_ir, state, callback=None)`
+
+Execute optimization task for input Qiskit IR.
+
+**Parameters**
+
+*   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+*   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+
+**Returns**
+
+Optimized Qiskit IR and state of the workflow.
+
+**Return type**
+
+[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+
 ### name
 
 <span id="qiskit.transpiler.passes.UnitarySynthesis.name" />
 
 `name()`
 
-Return the name of the pass.
+Name of the pass.
+
+**Return type**
+
+[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
 
 ### run
 
@@ -78,11 +108,28 @@ Run the UnitarySynthesis pass on `dag`.
 
 Output dag with UnitaryGates synthesized to target basis.
 
-**Raises**
-
-[**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if `method` was specified for the class and is not found in the installed plugins list. The list of installed plugins can be queried with [`unitary_synthesis_plugin_names()`](qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names "qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names")
-
 **Return type**
 
 [*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")
+
+### update\_status
+
+<span id="qiskit.transpiler.passes.UnitarySynthesis.update_status" />
+
+`update_status(state, run_state)`
+
+Update workflow status.
+
+**Parameters**
+
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – Pass manager state to update.
+*   **run\_state** (*RunState*) – Completion status of current task.
+
+**Returns**
+
+Updated pass manager state.
+
+**Return type**
+
+[*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")
 

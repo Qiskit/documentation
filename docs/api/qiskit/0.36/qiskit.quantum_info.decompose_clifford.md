@@ -1,0 +1,37 @@
+---
+title: decompose_clifford
+description: API reference for qiskit.quantum_info.decompose_clifford
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.quantum_info.decompose_clifford
+---
+
+# qiskit.quantum\_info.decompose\_clifford
+
+<span id="qiskit.quantum_info.decompose_clifford" />
+
+`decompose_clifford(clifford, method=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/synthesis/clifford_decompose.py "view source code")
+
+Decompose a Clifford operator into a QuantumCircuit.
+
+For N \<= 3 qubits this is based on optimal CX cost decomposition from reference \[1]. For N > 3 qubits this is done using the general non-optimal greedy compilation routine from reference \[3], which typically yields better CX cost compared to the AG method in \[2].
+
+**Parameters**
+
+*   **clifford** ([*Clifford*](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")) – a clifford operator.
+*   **method** (*str*) – Optional, a synthesis method (‘AG’ or ‘greedy’). If set this overrides optimal decomposition for N \<=3 qubits.
+
+**Returns**
+
+a circuit implementation of the Clifford.
+
+**Return type**
+
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+
+**References**
+
+1.  S. Bravyi, D. Maslov, *Hadamard-free circuits expose the structure of the Clifford group*, [arXiv:2003.09412 \[quant-ph\]](https://arxiv.org/abs/2003.09412)
+2.  S. Aaronson, D. Gottesman, *Improved Simulation of Stabilizer Circuits*, Phys. Rev. A 70, 052328 (2004). [arXiv:quant-ph/0406196](https://arxiv.org/abs/quant-ph/0406196)
+3.  Sergey Bravyi, Shaohan Hu, Dmitri Maslov, Ruslan Shaydulin, *Clifford Circuit Optimization with Templates and Symbolic Pauli Gates*, [arXiv:2105.02291 \[quant-ph\]](https://arxiv.org/abs/2105.02291)
+

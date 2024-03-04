@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.TwoLocal
 
 <span id="qiskit.circuit.library.TwoLocal" />
 
-`qiskit.circuit.library.TwoLocal(num_qubits=None, rotation_blocks=None, entanglement_blocks=None, entanglement='full', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='TwoLocal', flatten=None)`
+`qiskit.circuit.library.TwoLocal(num_qubits=None, rotation_blocks=None, entanglement_blocks=None, entanglement='full', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='TwoLocal', flatten=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/n_local/two_local.py "view source code")
 
 Bases: [`NLocal`](qiskit.circuit.library.NLocal "qiskit.circuit.library.n_local.n_local.NLocal")
 
@@ -43,7 +43,7 @@ Barriers can be inserted in between the different layers for better visualizatio
 
 For each parameterized gate a new parameter is generated using a `ParameterVector`. The name of these parameters can be chosen using the `parameter_prefix`.
 
-## Examples
+**Examples**
 
 ```python
 >>> two = TwoLocal(3, 'ry', 'cx', 'linear', reps=2, insert_barriers=True)
@@ -173,12 +173,6 @@ The blocks in the entanglement layers.
 
 The blocks in the entanglement layers.
 
-<span id="qiskit.circuit.library.TwoLocal.extension_lib" />
-
-### extension\_lib
-
-`= 'include "qelib1.inc";'`
-
 <span id="qiskit.circuit.library.TwoLocal.flatten" />
 
 ### flatten
@@ -189,13 +183,7 @@ Returns whether the circuit is wrapped in nested gates/instructions or flattened
 
 ### global\_phase
 
-Return the global phase of the circuit in radians.
-
-<span id="qiskit.circuit.library.TwoLocal.header" />
-
-### header
-
-`= 'OPENQASM 2.0;'`
+Return the global phase of the current circuit scope in radians.
 
 <span id="qiskit.circuit.library.TwoLocal.initial_state" />
 
@@ -221,7 +209,7 @@ If barriers are inserted in between the layers or not.
 
 ### instances
 
-`= 127`
+`= 412`
 
 <span id="qiskit.circuit.library.TwoLocal.layout" />
 
@@ -317,7 +305,7 @@ The parameters used in the underlying circuit.
 
 This includes float values and duplicates.
 
-## Examples
+**Examples**
 
 ```python
 >>> # prepare circuit ...

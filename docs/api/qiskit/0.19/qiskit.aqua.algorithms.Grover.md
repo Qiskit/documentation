@@ -1,0 +1,134 @@
+---
+title: Grover
+description: API reference for qiskit.aqua.algorithms.Grover
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.algorithms.Grover
+---
+
+# Grover
+
+<span id="qiskit.aqua.algorithms.Grover" />
+
+`Grover(oracle, init_state=None, incremental=False, num_iterations=1, mct_mode='basic', quantum_instance=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/amplitude_amplifiers/grover.py "view source code")
+
+The Grover’s Search algorithm.
+
+Grover’s Search is a well known quantum algorithm for searching through unstructured collections of records for particular targets with quadratic speedup compared to classical algorithms.
+
+Given a set $X$ of $N$ elements $X=\{x_1,x_2,\ldots,x_N\}$ and a boolean function $f : X \rightarrow \{0,1\}$, the goal of an unstructured-search problem is to find an element $x^* \in X$ such that $f(x^*)=1$.
+
+Unstructured search is often alternatively formulated as a database search problem, in which, given a database, the goal is to find in it an item that meets some specification.
+
+The search is called *unstructured* because there are no guarantees as to how the database is ordered. On a sorted database, for instance, one could perform binary search to find an element in $\mathbb{O}(\log N)$ worst-case time. Instead, in an unstructured-search problem, there is no prior knowledge about the contents of the database. With classical circuits, there is no alternative but to perform a linear number of queries to find the target element. Conversely, Grover’s Search algorithm allows to solve the unstructured-search problem on a quantum computer in $\mathcal{O}(\sqrt{N})$ queries.
+
+All that is needed for carrying out a search is an oracle from Aqua’s [`oracles`](qiskit.aqua.components.oracles#module-qiskit.aqua.components.oracles "qiskit.aqua.components.oracles") module for specifying the search criterion, which basically indicates a hit or miss for any given record. More formally, an oracle $O_f$ is an object implementing a boolean function $f$ as specified above. Given an input $x \in X$, $O_f$ implements $f(x)$. The details of how $O_f$ works are unimportant; Grover’s search algorithm treats the oracle as a black box.
+
+For example the [`LogicalExpressionOracle`](qiskit.aqua.components.oracles.LogicalExpressionOracle "qiskit.aqua.components.oracles.LogicalExpressionOracle") can take as input a SAT problem in [DIMACS CNF format](http://www.satcompetition.org/2009/format-benchmarks2009.html) and be used with Grover algorithm to find a satisfiable assignment.
+
+**Parameters**
+
+*   **oracle** ([`Oracle`](qiskit.aqua.components.oracles.Oracle "qiskit.aqua.components.oracles.oracle.Oracle")) – The oracle component
+*   **init\_state** (`Optional`\[[`InitialState`](qiskit.aqua.components.initial_states.InitialState "qiskit.aqua.components.initial_states.initial_state.InitialState")]) – An optional initial quantum state. If None (default) then Grover’s Search by default uses uniform superposition to initialize its quantum state. However, an initial state may be supplied, if useful, for example, if the user has some prior knowledge regarding where the search target(s) might be located.
+*   **incremental** (`bool`) – Whether to use incremental search mode (True) or not (False). Supplied *num\_iterations* is ignored when True and instead the search task will be carried out in successive rounds, using circuits built with incrementally higher number of iterations for the repetition of the amplitude amplification until a target is found or the maximal number $\log N$ ($N$ being the total number of elements in the set from the oracle used) of iterations is reached. The implementation follows Section 4 of Boyer et al. \<[https://arxiv.org/abs/quant-ph/9605034](https://arxiv.org/abs/quant-ph/9605034)>
+*   **num\_iterations** (`int`) – How many times the marking and reflection phase sub-circuit is repeated to amplify the amplitude(s) of the target(s). Has a minimum value of 1.
+*   **mct\_mode** (`str`) – Multi-Control Toffoli mode (‘basic’ | ‘basic-dirty-ancilla’ | ‘advanced’ | ‘noancilla’)
+*   **quantum\_instance** (`Union`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance"), [`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend"), `None`]) – Quantum Instance or Backend
+
+**Raises**
+
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – evaluate\_classically() missing from the input oracle
+
+## Attributes
+
+### backend
+
+<span id="qiskit.aqua.algorithms.Grover.backend" />
+
+`qiskit.providers.basebackend.BaseBackend`
+
+Returns backend.
+
+**Return type**
+
+[`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend")
+
+### qc\_amplitude\_amplification\_iteration
+
+qc amplitude amplification iteration
+
+### quantum\_instance
+
+<span id="qiskit.aqua.algorithms.Grover.quantum_instance" />
+
+`Union[None, qiskit.aqua.quantum_instance.QuantumInstance]`
+
+Returns quantum instance.
+
+**Return type**
+
+`Optional`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance")]
+
+### random
+
+Return a numpy random.
+
+## Methods
+
+### construct\_circuit
+
+<span id="qiskit.aqua.algorithms.Grover.construct_circuit" />
+
+`Grover.construct_circuit(measurement=False)`
+
+Construct the quantum circuit
+
+**Parameters**
+
+**measurement** (*bool*) – Boolean flag to indicate if measurement should be included in the circuit.
+
+**Returns**
+
+the QuantumCircuit object for the constructed circuit
+
+**Return type**
+
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+
+### run
+
+<span id="qiskit.aqua.algorithms.Grover.run" />
+
+`Grover.run(quantum_instance=None, **kwargs)`
+
+Execute the algorithm with selected backend.
+
+**Parameters**
+
+*   **quantum\_instance** (`Union`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance"), [`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend"), `None`]) – the experimental setting.
+*   **kwargs** (*dict*) – kwargs
+
+**Returns**
+
+results of an algorithm.
+
+**Return type**
+
+dict
+
+**Raises**
+
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
+
+### set\_backend
+
+<span id="qiskit.aqua.algorithms.Grover.set_backend" />
+
+`Grover.set_backend(backend, **kwargs)`
+
+Sets backend with configuration.
+
+**Return type**
+
+`None`
+

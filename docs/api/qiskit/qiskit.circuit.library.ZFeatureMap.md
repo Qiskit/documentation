@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.ZFeatureMap
 
 <span id="qiskit.circuit.library.ZFeatureMap" />
 
-`qiskit.circuit.library.ZFeatureMap(feature_dimension, reps=2, data_map_func=None, parameter_prefix='x', insert_barriers=False, name='ZFeatureMap')`
+`qiskit.circuit.library.ZFeatureMap(feature_dimension, reps=2, data_map_func=None, parameter_prefix='x', insert_barriers=False, name='ZFeatureMap')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/data_preparation/z_feature_map.py "view source code")
 
 Bases: [`PauliFeatureMap`](qiskit.circuit.library.PauliFeatureMap "qiskit.circuit.library.data_preparation.pauli_feature_map.PauliFeatureMap")
 
@@ -30,7 +30,7 @@ On 3 qubits and with 2 repetitions the circuit is represented by:
 
 This is a sub-class of [`PauliFeatureMap`](qiskit.circuit.library.PauliFeatureMap "qiskit.circuit.library.PauliFeatureMap") where the Pauli strings are fixed as \[‘Z’]. As a result the first order expansion will be a circuit without entangling gates.
 
-## Examples
+**Examples**
 
 ```python
 >>> prep = ZFeatureMap(3, reps=3, insert_barriers=True)
@@ -129,12 +129,6 @@ The entanglement strategy, see `get_entangler_map()` for more detail on how the 
 
 ### entanglement\_blocks
 
-<span id="qiskit.circuit.library.ZFeatureMap.extension_lib" />
-
-### extension\_lib
-
-`= 'include "qelib1.inc";'`
-
 <span id="qiskit.circuit.library.ZFeatureMap.feature_dimension" />
 
 ### feature\_dimension
@@ -155,13 +149,7 @@ Returns whether the circuit is wrapped in nested gates/instructions or flattened
 
 ### global\_phase
 
-Return the global phase of the circuit in radians.
-
-<span id="qiskit.circuit.library.ZFeatureMap.header" />
-
-### header
-
-`= 'OPENQASM 2.0;'`
+Return the global phase of the current circuit scope in radians.
 
 <span id="qiskit.circuit.library.ZFeatureMap.initial_state" />
 
@@ -187,7 +175,7 @@ If barriers are inserted in between the layers or not.
 
 ### instances
 
-`= 131`
+`= 162`
 
 <span id="qiskit.circuit.library.ZFeatureMap.layout" />
 
@@ -273,7 +261,7 @@ The parameters used in the underlying circuit.
 
 This includes float values and duplicates.
 
-## Examples
+**Examples**
 
 ```python
 >>> # prepare circuit ...

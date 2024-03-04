@@ -10,26 +10,26 @@ python_api_name: qiskit.transpiler.passes.TimeUnitConversion
 
 <span id="qiskit.transpiler.passes.TimeUnitConversion" />
 
-`qiskit.transpiler.passes.TimeUnitConversion(*args, **kwargs)`
+`qiskit.transpiler.passes.TimeUnitConversion(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/scheduling/time_unit_conversion.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
 Choose a time unit to be used in the following time-aware passes, and make all circuit time units consistent with that.
 
-This pass will add a .duration metadata to each op whose duration is known, which will be used by subsequent scheduling passes for scheduling.
+This pass will add a [`Instruction.duration`](qiskit.circuit.Instruction#duration "qiskit.circuit.Instruction.duration") metadata to each op whose duration is known which will be used by subsequent scheduling passes for scheduling.
 
-If dt (dt in seconds) is known to transpiler, the unit ‘dt’ is chosen. Otherwise, the unit to be selected depends on what units are used in delays and instruction durations:
+If `dt` (in seconds) is known to transpiler, the unit `'dt'` is chosen. Otherwise, the unit to be selected depends on what units are used in delays and instruction durations:
 
-*   ‘s’: if they are all in SI units.
-*   ‘dt’: if they are all in the unit ‘dt’.
-*   raise error: if they are a mix of SI units and ‘dt’.
+*   `'s'`: if they are all in SI units.
+*   `'dt'`: if they are all in the unit `'dt'`.
+*   raise error: if they are a mix of SI units and `'dt'`.
 
 TimeUnitAnalysis initializer.
 
 **Parameters**
 
 *   **inst\_durations** ([*InstructionDurations*](qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations")) – A dictionary of durations of instructions.
-*   **target** – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") representing the target backend, if both `inst_durations` and this are specified then this argument will take precedence and `inst_durations` will be ignored.
+*   **target** – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") representing the target backend, if both `inst_durations` and `target` are specified then this argument will take precedence and `inst_durations` will be ignored.
 
 ## Attributes
 
@@ -51,13 +51,39 @@ If the pass is a TransformationPass, that means that the pass can manipulate the
 
 ## Methods
 
+### execute
+
+<span id="qiskit.transpiler.passes.TimeUnitConversion.execute" />
+
+`execute(passmanager_ir, state, callback=None)`
+
+Execute optimization task for input Qiskit IR.
+
+**Parameters**
+
+*   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+*   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+
+**Returns**
+
+Optimized Qiskit IR and state of the workflow.
+
+**Return type**
+
+[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+
 ### name
 
 <span id="qiskit.transpiler.passes.TimeUnitConversion.name" />
 
 `name()`
 
-Return the name of the pass.
+Name of the pass.
+
+**Return type**
+
+[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
 
 ### run
 
@@ -82,4 +108,25 @@ DAG with consistent timing and op nodes annotated with duration.
 **Raises**
 
 [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if the units are not unifiable
+
+### update\_status
+
+<span id="qiskit.transpiler.passes.TimeUnitConversion.update_status" />
+
+`update_status(state, run_state)`
+
+Update workflow status.
+
+**Parameters**
+
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – Pass manager state to update.
+*   **run\_state** (*RunState*) – Completion status of current task.
+
+**Returns**
+
+Updated pass manager state.
+
+**Return type**
+
+[*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")
 

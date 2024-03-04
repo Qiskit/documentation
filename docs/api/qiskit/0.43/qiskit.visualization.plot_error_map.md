@@ -1,0 +1,51 @@
+---
+title: plot_error_map
+description: API reference for qiskit.visualization.plot_error_map
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.visualization.plot_error_map
+---
+
+<span id="qiskit-visualization-plot-error-map" />
+
+# qiskit.visualization.plot\_error\_map
+
+<span id="qiskit.visualization.plot_error_map" />
+
+`plot_error_map(backend, figsize=(12, 9), show_title=True, qubit_coordinates=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/visualization/gate_map.py "view source code")
+
+Plots the error map of a given backend.
+
+**Parameters**
+
+*   **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.Backend")) – Given backend.
+*   **figsize** (*tuple*) – Figure size in inches.
+*   **show\_title** (*bool*) – Show the title or not.
+*   **qubit\_coordinates** (*Sequence*) – An optional sequence input (list or array being the most common) of 2d coordinates for each qubit. The length of the sequence much mast the number of qubits on the backend. The sequence should be the planar coordinates in a 0-based square grid where each qubit is located.
+
+**Returns**
+
+A matplotlib figure showing error map.
+
+**Return type**
+
+Figure
+
+**Raises**
+
+*   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – The backend does not provide gate errors for the ‘sx’ gate.
+*   **MissingOptionalLibraryError** – If seaborn is not installed
+
+**Example**
+
+```python
+from qiskit import QuantumCircuit, execute
+from qiskit.visualization import plot_error_map
+from qiskit.providers.fake_provider import FakeVigoV2
+
+backend = FakeVigoV2()
+plot_error_map(backend)
+```
+
+![../\_images/qiskit-visualization-plot\_error\_map-1.png](/images/api/qiskit/0.43/qiskit-visualization-plot_error_map-1.png)
+

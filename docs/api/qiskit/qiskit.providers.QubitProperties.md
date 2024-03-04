@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.QubitProperties
 
 <span id="qiskit.providers.QubitProperties" />
 
-`qiskit.providers.QubitProperties(t1=None, t2=None, frequency=None)`
+`qiskit.providers.QubitProperties(t1=None, t2=None, frequency=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/providers/backend.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
@@ -18,7 +18,7 @@ A representation of the properties of a qubit on a backend.
 
 This class provides the optional properties that a backend can provide for a qubit. These represent the set of qubit properties that Qiskit can currently work with if present. However if your backend provides additional properties of qubits you should subclass this to add additional custom attributes for those custom/additional properties provided by the backend.
 
-Create a new `QubitProperties` object
+Create a new [`QubitProperties`](#qiskit.providers.QubitProperties "qiskit.providers.QubitProperties") object.
 
 **Parameters**
 

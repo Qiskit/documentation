@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.AlignMeasures
 
 <span id="qiskit.transpiler.passes.AlignMeasures" />
 
-`qiskit.transpiler.passes.AlignMeasures(*args, **kwargs)`
+`qiskit.transpiler.passes.AlignMeasures(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/scheduling/alignments/align_measures.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -26,7 +26,7 @@ Measurement alignment is required if a backend only allows triggering `measure` 
 
 In Qiskit SDK, the duration of delay can take arbitrary value in units of `dt`, thus circuits involving delays may violate the above alignment constraint (i.e. misalignment). This pass shifts measurement instructions to a new time position to fix the misalignment, by inserting extra delay right before the measure instructions. The input of this pass should be scheduled [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit"), thus one should select one of the scheduling passes ([`ALAPSchedule`](qiskit.transpiler.passes.ALAPSchedule "qiskit.transpiler.passes.ALAPSchedule") or `ASAPSchedule`) before calling this.
 
-## Examples
+**Examples**
 
 We assume executing the following circuit on a backend with `alignment=16`.
 
@@ -50,14 +50,14 @@ c: 1/════════════════════════╩
 
 This pass always inserts a positive delay before measurements rather than reducing other delays.
 
-## Notes
+**Notes**
 
 The Backend may allow users to execute circuits violating the alignment constraint. However, it may return meaningless measurement data mainly due to the phase error.
 
 Create new pass.
 
 <Admonition title="Deprecated since version 0.21.0_pending" type="danger">
-  The class `qiskit.transpiler.passes.scheduling.alignments.align_measures.AlignMeasures` is pending deprecation as of qiskit-terra 0.21.0. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. Instead, use [`ConstrainedReschedule`](qiskit.transpiler.passes.ConstrainedReschedule "qiskit.transpiler.passes.ConstrainedReschedule"), which performs the same function but also supports aligning to additional timing constraints.
+  The class `qiskit.transpiler.passes.scheduling.alignments.align_measures.AlignMeasures` is pending deprecation as of qiskit 0.21.0. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. Instead, use [`ConstrainedReschedule`](qiskit.transpiler.passes.ConstrainedReschedule "qiskit.transpiler.passes.ConstrainedReschedule"), which performs the same function but also supports aligning to additional timing constraints.
 </Admonition>
 
 **Parameters**
@@ -84,13 +84,39 @@ If the pass is a TransformationPass, that means that the pass can manipulate the
 
 ## Methods
 
+### execute
+
+<span id="qiskit.transpiler.passes.AlignMeasures.execute" />
+
+`execute(passmanager_ir, state, callback=None)`
+
+Execute optimization task for input Qiskit IR.
+
+**Parameters**
+
+*   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+*   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+
+**Returns**
+
+Optimized Qiskit IR and state of the workflow.
+
+**Return type**
+
+[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+
 ### name
 
 <span id="qiskit.transpiler.passes.AlignMeasures.name" />
 
 `name()`
 
-Return the name of the pass.
+Name of the pass.
+
+**Return type**
+
+[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
 
 ### run
 
@@ -115,4 +141,25 @@ DAG with consistent timing and op nodes annotated with duration.
 **Raises**
 
 [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – If circuit is not scheduled.
+
+### update\_status
+
+<span id="qiskit.transpiler.passes.AlignMeasures.update_status" />
+
+`update_status(state, run_state)`
+
+Update workflow status.
+
+**Parameters**
+
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – Pass manager state to update.
+*   **run\_state** (*RunState*) – Completion status of current task.
+
+**Returns**
+
+Updated pass manager state.
+
+**Return type**
+
+[*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")
 

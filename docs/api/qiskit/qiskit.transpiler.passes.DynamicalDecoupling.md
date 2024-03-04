@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.DynamicalDecoupling
 
 <span id="qiskit.transpiler.passes.DynamicalDecoupling" />
 
-`qiskit.transpiler.passes.DynamicalDecoupling(*args, **kwargs)`
+`qiskit.transpiler.passes.DynamicalDecoupling(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/scheduling/dynamical_decoupling.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -29,6 +29,20 @@ from qiskit.circuit.library import XGate
 from qiskit.transpiler import PassManager, InstructionDurations
 from qiskit.transpiler.passes import ALAPSchedule, DynamicalDecoupling
 from qiskit.visualization import timeline_drawer
+
+# Because the legacy passes do not propagate the scheduling information correctly, it is
+# necessary to run a no-op "re-schedule" before the output circuits can be drawn.
+def draw(circuit):
+    from qiskit import transpile
+
+    scheduled = transpile(
+        circuit,
+        optimization_level=0,
+        instruction_durations=InstructionDurations(),
+        scheduling_method="alap",
+    )
+    return timeline_drawer(scheduled)
+
 circ = QuantumCircuit(4)
 circ.h(0)
 circ.cx(0, 1)
@@ -45,7 +59,7 @@ dd_sequence = [XGate(), XGate()]
 pm = PassManager([ALAPSchedule(durations),
                   DynamicalDecoupling(durations, dd_sequence)])
 circ_dd = pm.run(circ)
-timeline_drawer(circ_dd)
+draw(circ_dd)
 
 # Uhrig sequence on qubit 0
 n = 8
@@ -63,7 +77,7 @@ pm = PassManager(
     ]
 )
 circ_dd = pm.run(circ)
-timeline_drawer(circ_dd)
+draw(circ_dd)
 ```
 
 ![../\_images/qiskit-transpiler-passes-DynamicalDecoupling-1\_00.png](/images/api/qiskit/qiskit-transpiler-passes-DynamicalDecoupling-1_00.png)
@@ -73,7 +87,7 @@ timeline_drawer(circ_dd)
 Dynamical decoupling initializer.
 
 <Admonition title="Deprecated since version 0.21.0_pending" type="danger">
-  The class `qiskit.transpiler.passes.scheduling.dynamical_decoupling.DynamicalDecoupling` is pending deprecation as of qiskit-terra 0.21.0. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. Instead, use [`PadDynamicalDecoupling`](qiskit.transpiler.passes.PadDynamicalDecoupling "qiskit.transpiler.passes.PadDynamicalDecoupling"), which performs the same function but requires scheduling and alignment analysis passes to run prior to it.
+  The class `qiskit.transpiler.passes.scheduling.dynamical_decoupling.DynamicalDecoupling` is pending deprecation as of qiskit 0.21.0. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. Instead, use [`PadDynamicalDecoupling`](qiskit.transpiler.passes.PadDynamicalDecoupling "qiskit.transpiler.passes.PadDynamicalDecoupling"), which performs the same function but requires scheduling and alignment analysis passes to run prior to it.
 </Admonition>
 
 **Parameters**
@@ -105,13 +119,39 @@ If the pass is a TransformationPass, that means that the pass can manipulate the
 
 ## Methods
 
+### execute
+
+<span id="qiskit.transpiler.passes.DynamicalDecoupling.execute" />
+
+`execute(passmanager_ir, state, callback=None)`
+
+Execute optimization task for input Qiskit IR.
+
+**Parameters**
+
+*   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+*   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+
+**Returns**
+
+Optimized Qiskit IR and state of the workflow.
+
+**Return type**
+
+[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+
 ### name
 
 <span id="qiskit.transpiler.passes.DynamicalDecoupling.name" />
 
 `name()`
 
-Return the name of the pass.
+Name of the pass.
+
+**Return type**
+
+[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
 
 ### run
 
@@ -138,4 +178,25 @@ where possible.
 **Raises**
 
 [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if the circuit is not mapped on physical qubits.
+
+### update\_status
+
+<span id="qiskit.transpiler.passes.DynamicalDecoupling.update_status" />
+
+`update_status(state, run_state)`
+
+Update workflow status.
+
+**Parameters**
+
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – Pass manager state to update.
+*   **run\_state** (*RunState*) – Completion status of current task.
+
+**Returns**
+
+Updated pass manager state.
+
+**Return type**
+
+[*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")
 

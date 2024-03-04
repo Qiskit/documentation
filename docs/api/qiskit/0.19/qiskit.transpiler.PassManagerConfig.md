@@ -1,0 +1,33 @@
+---
+title: PassManagerConfig
+description: API reference for qiskit.transpiler.PassManagerConfig
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.PassManagerConfig
+---
+
+# PassManagerConfig
+
+<span id="qiskit.transpiler.PassManagerConfig" />
+
+`PassManagerConfig(initial_layout=None, basis_gates=None, coupling_map=None, layout_method=None, routing_method=None, backend_properties=None, seed_transpiler=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/transpiler/passmanager_config.py "view source code")
+
+Pass Manager Configuration.
+
+Initialize a PassManagerConfig object
+
+**Parameters**
+
+*   **initial\_layout** ([*Layout*](qiskit.transpiler.Layout "qiskit.transpiler.Layout")) – Initial position of virtual qubits on physical qubits.
+*   **basis\_gates** (*list*) – List of basis gate names to unroll to.
+*   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – Directed graph represented a coupling map.
+*   **layout\_method** (*str*) – the pass to use for choosing initial qubit placement.
+*   **routing\_method** (*str*) – the pass to use for routing qubits on the architecture.
+*   **backend\_properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – Properties returned by a backend, including information on gate errors, readout errors, qubit coherence times, etc.
+*   **seed\_transpiler** (*int*) – Sets random seed for the stochastic parts of the transpiler.
+
+## Methods
+
+|   |
+| - |
+

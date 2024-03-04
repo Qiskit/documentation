@@ -249,7 +249,7 @@ The stylesheet kwarg contains numerous options that define the style of the outp
 
 *   **layout.time\_axis\_map** – Callback function that determines the layout of horizontal axis labels. See `layouts` for more details. No default layout is set. (default None).
 
-## Examples
+**Examples**
 
 To visualize a scheduled circuit program, you can call this function with set of control arguments. Most of appearance of the output image can be controlled by the stylesheet.
 
@@ -258,13 +258,13 @@ Drawing with the default stylesheet.
 ```python
 from qiskit import QuantumCircuit, transpile, schedule
 from qiskit.visualization.timeline import draw
-from qiskit.providers.fake_provider import FakeBoeblingen
+from qiskit.providers.fake_provider import GenericBackendV2
 
 qc = QuantumCircuit(2)
 qc.h(0)
 qc.cx(0,1)
 
-qc = transpile(qc, FakeBoeblingen(), scheduling_method='alap', layout_method='trivial')
+qc = transpile(qc, GenericBackendV2(5), scheduling_method='alap', layout_method='trivial')
 draw(qc)
 ```
 
@@ -275,13 +275,13 @@ Drawing with the simple stylesheet.
 ```python
 from qiskit import QuantumCircuit, transpile, schedule
 from qiskit.visualization.timeline import draw, IQXSimple
-from qiskit.providers.fake_provider import FakeBoeblingen
+from qiskit.providers.fake_provider import GenericBackendV2
 
 qc = QuantumCircuit(2)
 qc.h(0)
 qc.cx(0,1)
 
-qc = transpile(qc, FakeBoeblingen(), scheduling_method='alap', layout_method='trivial')
+qc = transpile(qc, GenericBackendV2(5), scheduling_method='alap', layout_method='trivial')
 draw(qc, style=IQXSimple())
 ```
 
@@ -292,13 +292,13 @@ Drawing with the stylesheet suited for program debugging.
 ```python
 from qiskit import QuantumCircuit, transpile, schedule
 from qiskit.visualization.timeline import draw, IQXDebugging
-from qiskit.providers.fake_provider import FakeBoeblingen
+from qiskit.providers.fake_provider import GenericBackendV2
 
 qc = QuantumCircuit(2)
 qc.h(0)
 qc.cx(0,1)
 
-qc = transpile(qc, FakeBoeblingen(), scheduling_method='alap', layout_method='trivial')
+qc = transpile(qc, GenericBackendV2(5), scheduling_method='alap', layout_method='trivial')
 draw(qc, style=IQXDebugging())
 ```
 

@@ -10,19 +10,19 @@ python_api_name: qiskit.transpiler.passes.CollectMultiQBlocks
 
 <span id="qiskit.transpiler.passes.CollectMultiQBlocks" />
 
-`qiskit.transpiler.passes.CollectMultiQBlocks(*args, **kwargs)`
+`qiskit.transpiler.passes.CollectMultiQBlocks(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/optimization/collect_multiqubit_blocks.py "view source code")
 
 Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
-Collect sequences of uninterrupted gates acting on groups of qubits. max\_block\_size specifies the maximum number of qubits that can be acted upon by any single group of gates
+Collect sequences of uninterrupted gates acting on groups of qubits. `max_block_size` specifies the maximum number of qubits that can be acted upon by any single group of gates
 
-Traverse the DAG and find blocks of gates that act consecutively on groups of qubits. Write the blocks to propert\_set as a list of blocks of the form:
+Traverse the DAG and find blocks of gates that act consecutively on groups of qubits. Write the blocks to `property_set` as a list of blocks of the form:
 
 ```python
 [[g0, g1, g2], [g4, g5]]
 ```
 
-Blocks are reported in a valid topological order. Further, the gates within each block are also reported in topological order Some gates may not be present in any block (e.g. if the number of operands is greater than max\_block\_size)
+Blocks are reported in a valid topological order. Further, the gates within each block are also reported in topological order Some gates may not be present in any block (e.g. if the number of operands is greater than `max_block_size`)
 
 A Disjoint Set Union data structure (DSU) is used to maintain blocks as gates are processed. This data structure points each qubit to a set at all times and the sets correspond to current blocks. These change over time and the data structure allows these changes to be done quickly.
 
@@ -46,6 +46,28 @@ If the pass is a TransformationPass, that means that the pass can manipulate the
 
 ## Methods
 
+### execute
+
+<span id="qiskit.transpiler.passes.CollectMultiQBlocks.execute" />
+
+`execute(passmanager_ir, state, callback=None)`
+
+Execute optimization task for input Qiskit IR.
+
+**Parameters**
+
+*   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+*   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+
+**Returns**
+
+Optimized Qiskit IR and state of the workflow.
+
+**Return type**
+
+[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+
 ### find\_set
 
 <span id="qiskit.transpiler.passes.CollectMultiQBlocks.find_set" />
@@ -60,7 +82,11 @@ DSU function for finding root of set of items If my parent is myself, I am the r
 
 `name()`
 
-Return the name of the pass.
+Name of the pass.
+
+**Return type**
+
+[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
 
 ### run
 
@@ -83,4 +109,25 @@ After the execution, `property_set['block_list']` is set to a list of tuples of 
 `union_set(set1, set2)`
 
 DSU function for unioning two sets together Find the roots of each set. Then assign one to have the other as its parent, thus liking the sets. Merges smaller set into larger set in order to have better runtime
+
+### update\_status
+
+<span id="qiskit.transpiler.passes.CollectMultiQBlocks.update_status" />
+
+`update_status(state, run_state)`
+
+Update workflow status.
+
+**Parameters**
+
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – Pass manager state to update.
+*   **run\_state** (*RunState*) – Completion status of current task.
+
+**Returns**
+
+Updated pass manager state.
+
+**Return type**
+
+[*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")
 

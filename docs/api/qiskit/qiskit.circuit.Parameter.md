@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.Parameter
 
 <span id="qiskit.circuit.Parameter" />
 
-`qiskit.circuit.Parameter(name, uuid=None)`
+`qiskit.circuit.Parameter(name, *, uuid=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/parameter.py "view source code")
 
 Bases: [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")
 
@@ -18,7 +18,7 @@ Parameter Class for variable parameters.
 
 A parameter is a variable value that is not required to be fixed at circuit definition.
 
-## Examples
+**Examples**
 
 Construct a variable-rotation X gate using circuit parameters.
 
@@ -34,7 +34,7 @@ qc.rx(phi, 0)
 qc.draw('mpl')
 
 # bind the parameters after circuit to create a bound circuit
-bc = qc.bind_parameters({phi: 3.14})
+bc = qc.assign_parameters({phi: 3.14})
 bc.measure_all()
 bc.draw('mpl')
 ```
@@ -47,7 +47,8 @@ Create a new named [`Parameter`](#qiskit.circuit.Parameter "qiskit.circuit.Param
 
 **Parameters**
 
-**name** – name of the `Parameter`, used for visual representation. This can be any unicode string, e.g. “ϕ”.
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – name of the `Parameter`, used for visual representation. This can be any unicode string, e.g. “ϕ”.
+*   **uuid** (*UUID | None*) – For advanced usage only. Override the UUID of this parameter, in order to make it compare equal to some other parameter object. By default, two parameters with the same name do not compare equal to help catch shadowing bugs when two circuits containing the same named parameters are spurious combined. Setting the `uuid` field when creating two parameters to the same thing (along with the same name) allows them to be equal. This is useful during serialization and deserialization.
 
 ## Attributes
 
@@ -62,6 +63,14 @@ Returns the name of the [`Parameter`](#qiskit.circuit.Parameter "qiskit.circuit.
 ### parameters
 
 Returns a set of the unbound Parameters in the expression.
+
+<span id="qiskit.circuit.Parameter.uuid" />
+
+### uuid
+
+Returns the [`UUID`](https://docs.python.org/3/library/uuid.html#uuid.UUID "(in Python v3.12)") of the [`Parameter`](#qiskit.circuit.Parameter "qiskit.circuit.Parameter").
+
+In advanced use cases, this property can be passed to the [`Parameter`](#qiskit.circuit.Parameter "qiskit.circuit.Parameter") constructor to produce an instance that compares equal to another instance.
 
 ## Methods
 
@@ -108,15 +117,11 @@ Assign one parameter to a value, which can either be numeric or another paramete
 **Parameters**
 
 *   **parameter** ([*Parameter*](#qiskit.circuit.Parameter "qiskit.circuit.Parameter")) – A parameter in this expression whose value will be updated.
-*   **value** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The new value to bind to.
+*   **value** – The new value to bind to.
 
 **Returns**
 
 A new expression parameterized by any parameters which were not bound by assignment.
-
-**Return type**
-
-[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")
 
 ### bind
 
@@ -212,6 +217,38 @@ Return whether the expression is real
 `log()`
 
 Logarithm of a ParameterExpression
+
+### numeric
+
+<span id="qiskit.circuit.Parameter.numeric" />
+
+`numeric()`
+
+Return a Python number representing this object, using the most restrictive of [`int`](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)"), [`float`](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") and [`complex`](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)") that is valid for this object.
+
+In general, an [`int`](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") is only returned if the expression only involved symbolic integers. If floating-point values were used during the evaluation, the return value will be a [`float`](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") regardless of whether the represented value is an integer. This is because floating-point values “infect” symbolic computations by their inexact nature, and symbolic libraries will use inexact floating-point semantics not exact real-number semantics when they are involved. If you want to assert that all floating-point calculations *were* carried out at infinite precision (i.e. [`float`](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") could represent every intermediate value exactly), you can use [`float.is_integer()`](https://docs.python.org/3/library/stdtypes.html#float.is_integer "(in Python v3.12)") to check if the return float represents an integer and cast it using [`int`](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") if so. This would be an unusual pattern; typically one requires this by only ever using explicitly [`Rational`](https://docs.python.org/3/library/numbers.html#numbers.Rational "(in Python v3.12)") objects while working with symbolic expressions.
+
+This is more reliable and performant than using [`is_real()`](#qiskit.circuit.Parameter.is_real "qiskit.circuit.Parameter.is_real") followed by calling [`float`](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") or [`complex`](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)"), as in some cases [`is_real()`](#qiskit.circuit.Parameter.is_real "qiskit.circuit.Parameter.is_real") needs to force a floating-point evaluation to determine an accurate result to work around bugs in the upstream symbolic libraries.
+
+**Returns**
+
+A Python number representing the object.
+
+**Raises**
+
+[**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – if there are unbound parameters.
+
+**Return type**
+
+[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") | [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") | [complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")
+
+### sign
+
+<span id="qiskit.circuit.Parameter.sign" />
+
+`sign()`
+
+Sign of a ParameterExpression
 
 ### sin
 

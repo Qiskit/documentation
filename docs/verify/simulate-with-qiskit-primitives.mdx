@@ -1,15 +1,13 @@
 ---
-title: Simulate with Qiskit primitives
-description: Simulate with Qiskit reference primitives. How to compute an expectation value with the Estimator primitive, and how to compute circuit output probabilities with the Sampler primitive
+title: Exact simulation with Qiskit primitives
+description: How to perform exact simulation of quantum circuits using primitives in Qiskit.
 ---
 
-# Simulate with Qiskit primitives
+# Exact simulation with Qiskit primitives
 
 The reference primitives in Qiskit can perform local statevector simulations, which is useful for quickly prototyping algorithms. 
 
 The `Estimator` primitive can compute an expectation value, and the `Sampler` primitive can compute circuit output probabilities. 
-
-For import instructions, see the topic [Where should I import the primitive from?](../run/primitives#import-primitives)
 
 ## Compute an expectation value with the `Estimator` primitive
 
@@ -27,7 +25,7 @@ Follow these instructions to get the expected value of an observable for a given
   estimator = BackendEstimator(backend)
   ```
 
-  There are some providers that implement primitives natively (see [this page](https://qiskit.org/providers/#primitives) for more details).
+  There are some providers that implement primitives natively (see [the Qiskit Ecosystem page](https://qiskit.github.io/ecosystem/#primitives) for more details).
 </Admonition>
 
 ### Initialize observables
@@ -43,7 +41,7 @@ observable = SparsePauliOp(["II", "XX", "YY", "ZZ"], coeffs=[1, 1, -1, 1])
 
 ### Initialize QuantumCircuit
 
-Next, create the [`qiskit.circuit.QuantumCircuit`](../api/qiskit/qiskit.circuit.QuantumCircuit)s for which you want to obtain the expected value.
+Next, create the [`qiskit.circuit.QuantumCircuit`](../api/qiskit/qiskit.circuit.QuantumCircuit) for which you want to obtain the expected value.
 
 ```python
 from qiskit import QuantumCircuit
@@ -51,10 +49,10 @@ from qiskit import QuantumCircuit
 qc = QuantumCircuit(2)
 qc.h(0)
 qc.cx(0,1)
-qc.draw("mpl")
+qc.draw("mpl", style="iqp")
 ```
 
-![Initial QuantumCircuit](/images/verify/simulate-with-qiskit-primitives/estimator-initialize.png)
+![Initial QuantumCircuit](/images/verify/simulate-with-qiskit-primitives/estimator-initialize.png "Initial QuantumCircuit")
 
 <Admonition type="note">
   The [`qiskit.circuit.QuantumCircuit`](../api/qiskit/qiskit.circuit.QuantumCircuit) you pass to [`qiskit.primitives.Estimator`](../api/qiskit/qiskit.primitives.Estimator) must not include any measurements.
@@ -116,7 +114,7 @@ theta = Parameter('θ')
 param_qc = QuantumCircuit(2)
 param_qc.ry(theta, 0)
 param_qc.cx(0,1)
-print(param_qc.draw())
+print(param_qc.draw(style="iqp"))
 ```
 
 ```
@@ -255,7 +253,7 @@ Follow these instructions to get the probability distribution of a quantum circu
   sampler = BackendSampler(backend)
   ```
 
-  There are some providers that implement primitives natively (see [this page](http://qiskit.org/providers/#primitives) for more details).
+  There are some providers that implement primitives natively (see [the Qiskit Ecosystem page](https://qiskit.github.io/ecosystem#providers) for more details).
 </Admonition>
 
 ### Initialize QuantumCircuit
@@ -269,10 +267,10 @@ qc = QuantumCircuit(2)
 qc.h(0)
 qc.cx(0,1)
 qc.measure_all()
-qc.draw("mpl")
+qc.draw("mpl", style="iqp")
 ```
 
-![Initial QuantumCircuit](/images/verify/simulate-with-qiskit-primitives/sampler-initialize.png)
+![Initial QuantumCircuit](/images/verify/simulate-with-qiskit-primitives/sampler-initialize.png "Initial QuantumCircuit")
 
 <Admonition type="note">
 The [`qiskit.circuit.QuantumCircuit`](../api/qiskit/qiskit.circuit.QuantumCircuit) you pass to [`qiskit.primitives.Sampler`](../api/qiskit/qiskit.primitives.Sampler) must include measurements.
@@ -306,9 +304,9 @@ While this example only uses one [`qiskit.circuit.QuantumCircuit`](../api/qiskit
 
 ### Get the probability distribution
 
-From these results you can extract the quasi-probability distributions with the attribute [`qiskit.primitives.Sampler.quasi_dists`](../api/qiskit/qiskit.primitives.Sampler#quasi_dists).
+From these results you can extract the quasi-probability distributions with the attribute [`qiskit.primitives.SamplerResult.quasi_dists`](../api/qiskit/qiskit.primitives.SamplerResult#quasi_dists).
 
-Even though there is only one circuit in this example, [`qiskit.primitives.Sampler.quasi_dists`](../api/qiskit/qiskit.primitives.Sampler#quasi_dists) returns a list of [`qiskit.result.QuasiDistribution`](../api/qiskit/qiskit.result.QuasiDistribution)s.
+Even though there is only one circuit in this example, [`qiskit.primitives.SamplerResult.quasi_dists`](../api/qiskit/qiskit.primitives.SamplerResult#quasi_dists) returns a list of [`qiskit.result.QuasiDistribution`](../api/qiskit/qiskit.result.QuasiDistribution)s.
 `result.quasi_dists[i]` is the quasi-probability distribution of the `i`<sup>th</sup> circuit.
 
 <Admonition type="note">
@@ -351,7 +349,7 @@ param_qc = QuantumCircuit(2)
 param_qc.ry(theta, 0)
 param_qc.cx(0,1)
 param_qc.measure_all()
-print(param_qc.draw())
+print(param_qc.draw(style="iqp"))
 ```
 
 ```
@@ -453,3 +451,13 @@ print(result)
 ```python
 SamplerResult(quasi_dists=[{0: 0.5205078125, 3: 0.4794921875}], metadata=[{'shots': 2048}])
 ```
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+  - For higher-performance simulation that can handle larger circuits, or to incorporate noise models into your simulation, see [Exact and noisy simulation with Qiskit Aer primitives](simulate-with-qiskit-aer).
+  - To learn how to use Quantum Composer for simulation, try the [Explore gates and circuits with the Quantum Composer](https://learning.quantum.ibm.com/tutorial/explore-gates-and-circuits-with-the-quantum-composer) tutorial.
+  - Read the [Qiskit Estimator API](/api/qiskit/qiskit.primitives.Estimator) reference.
+  - Read the [Qiskit Sampler API](/api/qiskit/qiskit.primitives.Sampler) reference.
+  - Learn how to run on a physical system in the [Run](../run) section.
+</Admonition>

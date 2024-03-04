@@ -1,0 +1,46 @@
+---
+title: average_gate_fidelity
+description: API reference for qiskit.quantum_info.average_gate_fidelity
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.quantum_info.average_gate_fidelity
+---
+
+# qiskit.quantum\_info.average\_gate\_fidelity
+
+<span id="qiskit.quantum_info.average_gate_fidelity" />
+
+`average_gate_fidelity(channel, target=None, require_cp=True, require_tp=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/operators/measures.py "view source code")
+
+Return the average gate fidelity of a noisy quantum channel.
+
+The average gate fidelity $F_{\text{ave}}$ is given by
+
+$$
+\begin{split}F_{\text{ave}}(\mathcal{E}, U)
+    &= \int d\psi \langle\psi|U^\dagger
+        \mathcal{E}(|\psi\rangle\!\langle\psi|)U|\psi\rangle \\
+    &= \frac{d F_{\text{pro}}(\mathcal{E}, U) + 1}{d + 1}\end{split}
+$$
+
+where $F_{\text{pro}}(\mathcal{E}, U)$ is the [`process_fidelity()`](qiskit.quantum_info.process_fidelity "qiskit.quantum_info.process_fidelity") of the input quantum *channel* $\mathcal{E}$ with a *target* unitary $U$, and $d$ is the dimension of the *channel*.
+
+**Parameters**
+
+*   **channel** (*QuantumChannel or* [*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – noisy quantum channel.
+*   **target** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator") *or None*) – target unitary operator. If None target is the identity operator \[Default: None].
+*   **require\_cp** (*bool*) – check if input and target channels are completely-positive and if non-CP log warning containing negative eigenvalues of Choi-matrix \[Default: True].
+*   **require\_tp** (*bool*) – check if input and target channels are trace-preserving and if non-TP log warning containing negative eigenvalues of partial Choi-matrix $Tr_{\mbox{out}}[\mathcal{E}] - I$ \[Default: True].
+
+**Returns**
+
+The average gate fidelity $F_{\text{ave}}$.
+
+**Return type**
+
+float
+
+**Raises**
+
+**QiskitError** – if the channel and target do not have the same dimensions, or have different input and output dimensions.
+

@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.library.CSXGate
 
 <span id="qiskit.circuit.library.CSXGate" />
 
-`qiskit.circuit.library.CSXGate(label=None, ctrl_state=None)`
+`qiskit.circuit.library.CSXGate(*args, _force_mutable=False, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/sx.py "view source code")
 
-Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
+Bases: [`SingletonControlledGate`](circuit_singleton#qiskit.circuit.singleton.SingletonControlledGate "qiskit.circuit.singleton.SingletonControlledGate")
 
 Controlled-√X gate.
 
@@ -30,14 +30,14 @@ q_1: ┤ √X ├
 **Matrix representation:**
 
 $$
-\begin{split}C\sqrt{X} \ q_0, q_1 =
+C\sqrt{X} \ q_0, q_1 =
 I \otimes |0 \rangle\langle 0| + \sqrt{X} \otimes |1 \rangle\langle 1|  =
     \begin{pmatrix}
         1 & 0 & 0 & 0 \\
         0 & (1 + i) / 2 & 0 & (1 - i) / 2 \\
         0 & 0 & 1 & 0 \\
         0 & (1 - i) / 2 & 0 & (1 + i) / 2
-    \end{pmatrix}\end{split}
+    \end{pmatrix}
 $$
 
 <Admonition title="Note" type="note">
@@ -51,20 +51,47 @@ $$
   ```
 
   $$
-  \begin{split}C\sqrt{X}\ q_1, q_0 =
+  C\sqrt{X}\ q_1, q_0 =
       |0 \rangle\langle 0| \otimes I + |1 \rangle\langle 1| \otimes \sqrt{X} =
       \begin{pmatrix}
           1 & 0 & 0 & 0 \\
           0 & 1 & 0 & 0 \\
           0 & 0 & (1 + i) / 2 & (1 - i) / 2 \\
           0 & 0 & (1 - i) / 2 & (1 + i) / 2
-      \end{pmatrix}\end{split}
+      \end{pmatrix}
   $$
 </Admonition>
 
 Create new CSX gate.
 
 ## Attributes
+
+<span id="qiskit.circuit.library.CSXGate.base_class" />
+
+### base\_class
+
+Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+
+The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.CSXGate.base_class "qiskit.circuit.library.CSXGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
+
+This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+
+```python
+>>> isinstance(XGate(), XGate)
+True
+>>> type(XGate()) is XGate
+False
+>>> XGate().base_class is XGate
+True
+```
+
+In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+
+<span id="qiskit.circuit.library.CSXGate.condition" />
+
+### condition
+
+The classical condition on the instruction.
 
 <span id="qiskit.circuit.library.CSXGate.condition_bits" />
 
@@ -101,6 +128,14 @@ Get the duration.
 ### label
 
 Return instruction label
+
+<span id="qiskit.circuit.library.CSXGate.mutable" />
+
+### mutable
+
+Is this instance is a mutable unique instance or not.
+
+If this attribute is `False` the gate instance is a shared singleton and is not mutable.
 
 <span id="qiskit.circuit.library.CSXGate.name" />
 

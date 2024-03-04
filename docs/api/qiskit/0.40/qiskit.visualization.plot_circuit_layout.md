@@ -1,0 +1,62 @@
+---
+title: plot_circuit_layout
+description: API reference for qiskit.visualization.plot_circuit_layout
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.visualization.plot_circuit_layout
+---
+
+# qiskit.visualization.plot\_circuit\_layout
+
+<span id="qiskit.visualization.plot_circuit_layout" />
+
+`plot_circuit_layout(circuit, backend, view='virtual', qubit_coordinates=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/visualization/gate_map.py "view source code")
+
+Plot the layout of a circuit transpiled for a given target backend.
+
+**Parameters**
+
+*   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – Input quantum circuit.
+*   **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.Backend")) – Target backend.
+*   **view** (*str*) – Layout view: either ‘virtual’ or ‘physical’.
+*   **qubit\_coordinates** (*Sequence*) – An optional sequence input (list or array being the most common) of 2d coordinates for each qubit. The length of the sequence much mast the number of qubits on the backend. The sequence should be the planar coordinates in a 0-based square grid where each qubit is located.
+
+**Returns**
+
+A matplotlib figure showing layout.
+
+**Return type**
+
+Figure
+
+**Raises**
+
+*   **QiskitError** – Invalid view type given.
+*   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – Circuit has no layout attribute.
+
+**Example**
+
+```python
+import numpy as np
+from qiskit import QuantumCircuit, transpile
+from qiskit.providers.fake_provider import FakeVigoV2
+from qiskit.visualization import plot_circuit_layout
+from qiskit.tools.monitor import job_monitor
+from qiskit.providers.fake_provider import FakeVigoV2
+import matplotlib.pyplot as plt
+
+ghz = QuantumCircuit(3, 3)
+ghz.h(0)
+for idx in range(1,3):
+    ghz.cx(0,idx)
+ghz.measure(range(3), range(3))
+
+backend = FakeVigoV2()
+new_circ_lv3 = transpile(ghz, backend=backend, optimization_level=3)
+plot_circuit_layout(new_circ_lv3, backend)
+```
+
+([Source code](qiskit-visualization-plot_circuit_layout-1.py), [png](qiskit-visualization-plot_circuit_layout-1.png), [hires.png](qiskit-visualization-plot_circuit_layout-1.hires.png), [pdf](qiskit-visualization-plot_circuit_layout-1.pdf))
+
+![../\_images/qiskit-visualization-plot\_circuit\_layout-1.png](/images/api/qiskit/0.40/qiskit-visualization-plot_circuit_layout-1.png)
+

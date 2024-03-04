@@ -10,13 +10,13 @@ python_api_name: qiskit.transpiler.passes.UnrollForLoops
 
 <span id="qiskit.transpiler.passes.UnrollForLoops" />
 
-`qiskit.transpiler.passes.UnrollForLoops(*args, **kwargs)`
+`qiskit.transpiler.passes.UnrollForLoops(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/utils/unroll_forloops.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
 `UnrollForLoops` transpilation pass unrolls for-loops when possible.
 
-Things like for x in \{0, 3, 4} \{rx(x) qr\[1];} will turn into rx(0) qr\[1]; rx(3) qr\[1]; rx(4) qr\[1];.
+Things like `for x in {0, 3, 4} {rx(x) qr[1];}` will turn into `rx(0) qr[1]; rx(3) qr[1]; rx(4) qr[1];`.
 
 <Admonition title="Note" type="note">
   The `UnrollForLoops` unrolls only one level of block depth. No inner loop will be considered by `max_target_depth`.
@@ -46,13 +46,39 @@ If the pass is a TransformationPass, that means that the pass can manipulate the
 
 ## Methods
 
+### execute
+
+<span id="qiskit.transpiler.passes.UnrollForLoops.execute" />
+
+`execute(passmanager_ir, state, callback=None)`
+
+Execute optimization task for input Qiskit IR.
+
+**Parameters**
+
+*   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+*   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+
+**Returns**
+
+Optimized Qiskit IR and state of the workflow.
+
+**Return type**
+
+[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+
 ### name
 
 <span id="qiskit.transpiler.passes.UnrollForLoops.name" />
 
 `name()`
 
-Return the name of the pass.
+Name of the pass.
+
+**Return type**
+
+[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
 
 ### run
 
@@ -60,7 +86,7 @@ Return the name of the pass.
 
 `run(dag)`
 
-Run the UnrollForLoops pass on dag.
+Run the UnrollForLoops pass on `dag`.
 
 **Parameters**
 
@@ -73,4 +99,25 @@ Transformed DAG.
 **Return type**
 
 [DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+
+### update\_status
+
+<span id="qiskit.transpiler.passes.UnrollForLoops.update_status" />
+
+`update_status(state, run_state)`
+
+Update workflow status.
+
+**Parameters**
+
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – Pass manager state to update.
+*   **run\_state** (*RunState*) – Completion status of current task.
+
+**Returns**
+
+Updated pass manager state.
+
+**Return type**
+
+[*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")
 

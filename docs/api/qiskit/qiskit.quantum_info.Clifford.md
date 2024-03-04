@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.Clifford
 
 <span id="qiskit.quantum_info.Clifford" />
 
-`qiskit.quantum_info.Clifford(data, validate=True, copy=True)`
+`qiskit.quantum_info.Clifford(data, validate=True, copy=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/quantum_info/operators/symplectic/clifford.py "view source code")
 
 Bases: `BaseOperator`, `AdjointMixin`, [`Operation`](qiskit.circuit.Operation "qiskit.circuit.operation.Operation")
 
@@ -55,7 +55,7 @@ Clifford: Stabilizer = ['+XX', '+ZZ'], Destabilizer = ['+IZ', '+XI']
 
 **Circuit Conversion**
 
-Clifford operators can be initialized from circuits containing *only* the following Clifford gates: [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate"), [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.library.XGate"), [`YGate`](qiskit.circuit.library.YGate "qiskit.circuit.library.YGate"), [`ZGate`](qiskit.circuit.library.ZGate "qiskit.circuit.library.ZGate"), [`HGate`](qiskit.circuit.library.HGate "qiskit.circuit.library.HGate"), [`SGate`](qiskit.circuit.library.SGate "qiskit.circuit.library.SGate"), [`SdgGate`](qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate"), [`SXGate`](qiskit.circuit.library.SXGate "qiskit.circuit.library.SXGate"), [`SXdgGate`](qiskit.circuit.library.SXdgGate "qiskit.circuit.library.SXdgGate"), [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate"), [`CZGate`](qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate"), [`CYGate`](qiskit.circuit.library.CYGate "qiskit.circuit.library.CYGate"), `DXGate`, [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate"), [`iSwapGate`](qiskit.circuit.library.iSwapGate "qiskit.circuit.library.iSwapGate"), [`ECRGate`](qiskit.circuit.library.ECRGate "qiskit.circuit.library.ECRGate"). They can be converted back into a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), or [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") object using the [`to_circuit()`](#qiskit.quantum_info.Clifford.to_circuit "qiskit.quantum_info.Clifford.to_circuit") or [`to_instruction()`](#qiskit.quantum_info.Clifford.to_instruction "qiskit.quantum_info.Clifford.to_instruction") methods respectively. Note that this decomposition is not necessarily optimal in terms of number of gates.
+Clifford operators can be initialized from circuits containing *only* the following Clifford gates: [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate"), [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.library.XGate"), [`YGate`](qiskit.circuit.library.YGate "qiskit.circuit.library.YGate"), [`ZGate`](qiskit.circuit.library.ZGate "qiskit.circuit.library.ZGate"), [`HGate`](qiskit.circuit.library.HGate "qiskit.circuit.library.HGate"), [`SGate`](qiskit.circuit.library.SGate "qiskit.circuit.library.SGate"), [`SdgGate`](qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate"), [`SXGate`](qiskit.circuit.library.SXGate "qiskit.circuit.library.SXGate"), [`SXdgGate`](qiskit.circuit.library.SXdgGate "qiskit.circuit.library.SXdgGate"), [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate"), [`CZGate`](qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate"), [`CYGate`](qiskit.circuit.library.CYGate "qiskit.circuit.library.CYGate"), `DXGate`, [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate"), [`iSwapGate`](qiskit.circuit.library.iSwapGate "qiskit.circuit.library.iSwapGate"), [`ECRGate`](qiskit.circuit.library.ECRGate "qiskit.circuit.library.ECRGate"), [`LinearFunction`](qiskit.circuit.library.LinearFunction "qiskit.circuit.library.LinearFunction"), [`PermutationGate`](qiskit.circuit.library.PermutationGate "qiskit.circuit.library.PermutationGate"). They can be converted back into a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), or [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") object using the [`to_circuit()`](#qiskit.quantum_info.Clifford.to_circuit "qiskit.quantum_info.Clifford.to_circuit") or [`to_instruction()`](#qiskit.quantum_info.Clifford.to_instruction "qiskit.quantum_info.Clifford.to_instruction") methods respectively. Note that this decomposition is not necessarily optimal in terms of number of gates.
 
 <Admonition title="Note" type="note">
   A minimally generating set of gates for Clifford circuits is the [`HGate`](qiskit.circuit.library.HGate "qiskit.circuit.library.HGate") and [`SGate`](qiskit.circuit.library.SGate "qiskit.circuit.library.SGate") gate and *either* the [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate") or [`CZGate`](qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate") two-qubit gate.
@@ -63,7 +63,7 @@ Clifford operators can be initialized from circuits containing *only* the follow
 
 Clifford operators can also be converted to [`Operator`](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator") objects using the [`to_operator()`](#qiskit.quantum_info.Clifford.to_operator "qiskit.quantum_info.Clifford.to_operator") method. This is done via decomposing to a circuit, and then simulating the circuit as a unitary operator.
 
-## References
+**References**
 
 1.  S. Aaronson, D. Gottesman, *Improved Simulation of Stabilizer Circuits*, Phys. Rev. A 70, 052328 (2004). [arXiv:quant-ph/0406196](https://arxiv.org/abs/quant-ph/0406196)
 
@@ -94,16 +94,6 @@ The destabilizer x array for the symplectic representation.
 ### destab\_z
 
 The destabilizer z array for the symplectic representation.
-
-<span id="qiskit.quantum_info.Clifford.destabilizer" />
-
-### destabilizer
-
-Return the destabilizer block of the StabilizerTable.
-
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  The property `qiskit.quantum_info.operators.symplectic.clifford.Clifford.destabilizer` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. Use Clifford.destab properties instead.
-</Admonition>
 
 <span id="qiskit.quantum_info.Clifford.dim" />
 
@@ -165,31 +155,11 @@ The stabilizer x array for the symplectic representation.
 
 The stabilizer array for the symplectic representation.
 
-<span id="qiskit.quantum_info.Clifford.stabilizer" />
-
-### stabilizer
-
-Return the stabilizer block of the StabilizerTable.
-
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  The property `qiskit.quantum_info.operators.symplectic.clifford.Clifford.stabilizer` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. Use Clifford.stab properties instead.
-</Admonition>
-
 <span id="qiskit.quantum_info.Clifford.symplectic_matrix" />
 
 ### symplectic\_matrix
 
 Return boolean symplectic matrix.
-
-<span id="qiskit.quantum_info.Clifford.table" />
-
-### table
-
-Return StabilizerTable
-
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  The property `qiskit.quantum_info.operators.symplectic.clifford.Clifford.table` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. Use Clifford.stab and Clifford.destab properties instead.
-</Admonition>
 
 <span id="qiskit.quantum_info.Clifford.x" />
 
@@ -390,6 +360,28 @@ The labels correspond to the single-qubit Cliffords are
     *   +Z
     *   +Y
 
+### from\_linear\_function
+
+<span id="qiskit.quantum_info.Clifford.from_linear_function" />
+
+`classmethod from_linear_function(linear_function)`
+
+Create a Clifford from a Linear Function.
+
+If the linear function is represented by a nxn binary invertible matrix A, then the corresponding Clifford has symplectic matrix \[\[A^t, 0], \[0, A^\{-1}]].
+
+**Parameters**
+
+**linear\_function** ([*LinearFunction*](qiskit.circuit.library.LinearFunction "qiskit.circuit.library.LinearFunction")) – A linear function to be converted.
+
+**Returns**
+
+the Clifford object for this linear function.
+
+**Return type**
+
+[Clifford](#qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")
+
 ### from\_matrix
 
 <span id="qiskit.quantum_info.Clifford.from_matrix" />
@@ -442,6 +434,26 @@ the Clifford object for the operator.
 
 [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the input is not a Clifford operator.
 
+### from\_permutation
+
+<span id="qiskit.quantum_info.Clifford.from_permutation" />
+
+`classmethod from_permutation(permutation_gate)`
+
+Create a Clifford from a PermutationGate.
+
+**Parameters**
+
+**permutation\_gate** ([*PermutationGate*](qiskit.circuit.library.PermutationGate "qiskit.circuit.library.PermutationGate")) – A permutation to be converted.
+
+**Returns**
+
+the Clifford object for this permutation.
+
+**Return type**
+
+[Clifford](#qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")
+
 ### input\_dims
 
 <span id="qiskit.quantum_info.Clifford.input_dims" />
@@ -484,7 +496,7 @@ the n-times composed operator.
 
 **Return type**
 
-[Pauli](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
+[Clifford](#qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")
 
 **Raises**
 
@@ -560,7 +572,7 @@ a circuit implementation of the Clifford.
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-## References
+**References**
 
 1.  S. Bravyi, D. Maslov, *Hadamard-free circuits expose the structure of the Clifford group*, [arXiv:2003.09412 \[quant-ph\]](https://arxiv.org/abs/2003.09412)
 2.  S. Aaronson, D. Gottesman, *Improved Simulation of Stabilizer Circuits*, Phys. Rev. A 70, 052328 (2004). [arXiv:quant-ph/0406196](https://arxiv.org/abs/quant-ph/0406196)

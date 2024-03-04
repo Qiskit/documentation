@@ -10,15 +10,42 @@ python_api_name: qiskit.circuit.library.Reset
 
 <span id="qiskit.circuit.library.Reset" />
 
-`qiskit.circuit.library.Reset`
+`qiskit.circuit.library.Reset(*args, _force_mutable=False, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/reset.py "view source code")
 
-Bases: [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
+Bases: [`SingletonInstruction`](circuit_singleton#qiskit.circuit.singleton.SingletonInstruction "qiskit.circuit.singleton.SingletonInstruction")
 
 Qubit reset.
 
 Create new reset instruction.
 
 ## Attributes
+
+<span id="qiskit.circuit.library.Reset.base_class" />
+
+### base\_class
+
+Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+
+The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.Reset.base_class "qiskit.circuit.library.Reset.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
+
+This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+
+```python
+>>> isinstance(XGate(), XGate)
+True
+>>> type(XGate()) is XGate
+False
+>>> XGate().base_class is XGate
+True
+```
+
+In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+
+<span id="qiskit.circuit.library.Reset.condition" />
+
+### condition
+
+The classical condition on the instruction.
 
 <span id="qiskit.circuit.library.Reset.condition_bits" />
 
@@ -49,6 +76,14 @@ Get the duration.
 ### label
 
 Return instruction label
+
+<span id="qiskit.circuit.library.Reset.mutable" />
+
+### mutable
+
+Is this instance is a mutable unique instance or not.
+
+If this attribute is `False` the gate instance is a shared singleton and is not mutable.
 
 <span id="qiskit.circuit.library.Reset.name" />
 
@@ -155,21 +190,23 @@ a copy of the current instruction, with the name updated if it was provided
 
 <span id="qiskit.circuit.library.Reset.inverse" />
 
-`inverse()`
+`inverse(annotated=False)`
 
 Invert this instruction.
 
-If the instruction is composite (i.e. has a definition), then its definition will be recursively inverted.
+If annotated is False, the inverse instruction is implemented as a fresh instruction with the recursively inverted definition.
 
-Special instructions inheriting from Instruction can implement their own inverse (e.g. T and Tdg, Barrier, etc.)
+If annotated is True, the inverse instruction is implemented as [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation"), and corresponds to the given instruction annotated with the “inverse modifier”.
+
+Special instructions inheriting from Instruction can implement their own inverse (e.g. T and Tdg, Barrier, etc.) In particular, they can choose how to handle the argument `annotated` which may include ignoring it and always returning a concrete gate class if the inverse is defined as a standard gate.
+
+**Parameters**
+
+**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if set to True the output inverse gate will be returned as [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation").
 
 **Returns**
 
-a fresh instruction for the inverse
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+The inverse operation.
 
 **Raises**
 
@@ -182,20 +219,6 @@ a fresh instruction for the inverse
 `is_parameterized()`
 
 Return True .IFF. instruction is parameterized else False
-
-### qasm
-
-<span id="qiskit.circuit.library.Reset.qasm" />
-
-`qasm()`
-
-Return a default OpenQASM string for the instruction.
-
-Derived instructions may override this to print in a different format (e.g. `measure q[0] -> c[0];`).
-
-<Admonition title="Deprecated since version 0.25.0" type="danger">
-  The method `qiskit.circuit.instruction.Instruction.qasm()` is deprecated as of qiskit-terra 0.25.0. It will be removed no earlier than 3 months after the release date. Correct exporting to OpenQASM 2 is the responsibility of a larger exporter; it cannot safely be done on an object-by-object basis without context. No replacement will be provided, because the premise is wrong.
-</Admonition>
 
 ### repeat
 
@@ -260,6 +283,16 @@ are self and other equal up to parameter expressions.
 **Return type**
 
 [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+
+### to\_mutable
+
+<span id="qiskit.circuit.library.Reset.to_mutable" />
+
+`to_mutable()`
+
+Return a mutable copy of this gate.
+
+This method will return a new mutable copy of this gate instance. If a singleton instance is being used this will be a new unique instance that can be mutated. If the instance is already mutable it will be a deepcopy of that instance.
 
 ### validate\_parameter
 

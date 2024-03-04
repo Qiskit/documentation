@@ -12,7 +12,7 @@ python_api_name: qiskit.visualization.pass_manager_drawer
 
 <span id="qiskit.visualization.pass_manager_drawer" />
 
-`qiskit.visualization.pass_manager_drawer(pass_manager, filename=None, style=None, raw=False)`
+`qiskit.visualization.pass_manager_drawer(pass_manager, filename=None, style=None, raw=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/visualization/pass_manager_visualization.py "view source code")
 
 Draws the pass manager.
 
@@ -38,7 +38,7 @@ PIL.Image or None
 *   [**MissingOptionalLibraryError**](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") – when nxpd or pydot not installed.
 *   [**VisualizationError**](visualization#qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – If raw=True and filename=None.
 
-## Example
+**Example**
 
 ```python
  %matplotlib inline

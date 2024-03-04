@@ -1,0 +1,93 @@
+---
+title: MolecularGroundStateEnergy
+description: API reference for qiskit.chemistry.applications.MolecularGroundStateEnergy
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.applications.MolecularGroundStateEnergy
+---
+
+# MolecularGroundStateEnergy
+
+<span id="qiskit.chemistry.applications.MolecularGroundStateEnergy" />
+
+`MolecularGroundStateEnergy(driver, solver=None, transformation=<TransformationType.FULL: 'full'>, qubit_mapping=<QubitMappingType.PARITY: 'parity'>, two_qubit_reduction=True, freeze_core=False, orbital_reduction=None, z2symmetry_reduction=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/applications/molecular_ground_state_energy.py "view source code")
+
+Bases: `object`
+
+Molecular ground state energy chemistry application
+
+**Parameters**
+
+*   **driver** (`FermionicDriver`) – Chemistry driver
+*   **solver** (`Optional`\[`MinimumEigensolver`]) – An Aqua MinimumEigensolver. This can be provided on the constructor or via the solver property, or via the callback on [`compute_energy()`](qiskit.chemistry.applications.MolecularGroundStateEnergy#compute_energy "qiskit.chemistry.applications.MolecularGroundStateEnergy.compute_energy")
+*   **transformation** (`TransformationType`) – full or particle\_hole
+*   **qubit\_mapping** (`QubitMappingType`) – jordan\_wigner, parity or bravyi\_kitaev
+*   **two\_qubit\_reduction** (`bool`) – Whether two qubit reduction should be used, when parity mapping only
+*   **freeze\_core** (`bool`) – Whether to freeze core orbitals when possible
+*   **orbital\_reduction** (`Optional`\[`List`\[`int`]]) – Orbital list to be frozen or removed
+*   **z2symmetry\_reduction** (`Union`\[`str`, `List`\[`int`], `None`]) – If z2 symmetry reduction should be applied to the qubit operators that are computed. Setting ‘auto’ will use an automatic computation of the correct sector. If from other experiments, with the z2symmetry logic, the sector is known, then the tapering values of that sector can be provided (a list of int of values -1, and 1). The default is None meaning no symmetry reduction is done. See also [`Hamiltonian`](qiskit.chemistry.core.Hamiltonian "qiskit.chemistry.core.Hamiltonian") which has the core processing behind this class.
+
+## Methods
+
+### compute\_energy
+
+<span id="qiskit.chemistry.applications.MolecularGroundStateEnergy.compute_energy" />
+
+`MolecularGroundStateEnergy.compute_energy(callback=None)`
+
+Compute the ground state energy of the molecule that was supplied via the driver
+
+**Parameters**
+
+**callback** (`Optional`\[`Callable`\[\[`List`, `int`, `str`, `bool`, `Z2Symmetries`], `MinimumEigensolver`]]) – If not None will be called with the following values num\_particles, num\_orbitals, qubit\_mapping, two\_qubit\_reduction, z2\_symmetries in that order. This information can then be used to setup chemistry specific component(s) that are needed by the chosen MinimumEigensolver. The MinimumEigensolver can then be built and returned from this callback for use as the solver here.
+
+**Return type**
+
+`MolecularGroundStateResult`
+
+**Returns**
+
+A molecular ground state result
+
+**Raises**
+
+[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – If no MinimumEigensolver was given and no callback is being used that could supply one instead.
+
+### get\_default\_solver
+
+<span id="qiskit.chemistry.applications.MolecularGroundStateEnergy.get_default_solver" />
+
+`static MolecularGroundStateEnergy.get_default_solver(quantum_instance)`
+
+Get the default solver callback that can be used with [`compute_energy()`](qiskit.chemistry.applications.MolecularGroundStateEnergy#compute_energy "qiskit.chemistry.applications.MolecularGroundStateEnergy.compute_energy") :type quantum\_instance: `Union`\[`QuantumInstance`, `Backend`, `BaseBackend`] :param quantum\_instance: A Backend/Quantum Instance for the solver to run on
+
+**Return type**
+
+`Optional`\[`Callable`\[\[`List`, `int`, `str`, `bool`, `Z2Symmetries`], `MinimumEigensolver`]]
+
+**Returns**
+
+Default solver callback
+
+## Attributes
+
+<span id="qiskit.chemistry.applications.MolecularGroundStateEnergy.driver" />
+
+### driver
+
+Returns chemistry driver
+
+**Return type**
+
+`FermionicDriver`
+
+<span id="qiskit.chemistry.applications.MolecularGroundStateEnergy.solver" />
+
+### solver
+
+Returns minimum eigen solver
+
+**Return type**
+
+`MinimumEigensolver`
+

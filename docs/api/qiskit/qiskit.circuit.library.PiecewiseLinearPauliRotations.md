@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.PiecewiseLinearPauliRotations
 
 <span id="qiskit.circuit.library.PiecewiseLinearPauliRotations" />
 
-`qiskit.circuit.library.PiecewiseLinearPauliRotations(num_state_qubits=None, breakpoints=None, slopes=None, offsets=None, basis='Y', name='pw_lin')`
+`qiskit.circuit.library.PiecewiseLinearPauliRotations(num_state_qubits=None, breakpoints=None, slopes=None, offsets=None, basis='Y', name='pw_lin')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/arithmetic/piecewise_linear_pauli_rotations.py "view source code")
 
 Bases: [`FunctionalPauliRotations`](qiskit.circuit.library.FunctionalPauliRotations "qiskit.circuit.library.arithmetic.functional_pauli_rotations.FunctionalPauliRotations")
 
@@ -19,10 +19,10 @@ Piecewise-linearly-controlled Pauli rotations.
 For a piecewise linear (not necessarily continuous) function $f(x)$, which is defined through breakpoints, slopes and offsets as follows. Suppose the breakpoints $(x_0, ..., x_J)$ are a subset of $[0, 2^n-1]$, where $n$ is the number of state qubits. Further on, denote the corresponding slopes and offsets by $a_j$ and $b_j$ respectively. Then f(x) is defined as:
 
 $$
-\begin{split}f(x) = \begin{cases}
+f(x) = \begin{cases}
     0, x < x_0 \\
     a_j (x - x_j) + b_j, x_j \leq x < x_{j+1}
-    \end{cases}\end{split}
+    \end{cases}
 $$
 
 where we implicitly assume $x_{J+1} = 2^n$.
@@ -94,29 +94,17 @@ True, if 0 is the first breakpoint, otherwise False.
 
 ### data
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.extension_lib" />
-
-### extension\_lib
-
-`= 'include "qelib1.inc";'`
-
 <span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.global_phase" />
 
 ### global\_phase
 
-Return the global phase of the circuit in radians.
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.header" />
-
-### header
-
-`= 'OPENQASM 2.0;'`
+Return the global phase of the current circuit scope in radians.
 
 <span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.instances" />
 
 ### instances
 
-`= 410`
+`= 266`
 
 <span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.layout" />
 

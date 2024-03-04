@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.GRY
 
 <span id="qiskit.circuit.library.GRY" />
 
-`qiskit.circuit.library.GRY(num_qubits, theta)`
+`qiskit.circuit.library.GRY(num_qubits, theta)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/generalized_gates/gr.py "view source code")
 
 Bases: [`GR`](qiskit.circuit.library.GR "qiskit.circuit.library.generalized_gates.gr.GR")
 
@@ -83,29 +83,17 @@ a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitI
 
 QuantumCircuitData
 
-<span id="qiskit.circuit.library.GRY.extension_lib" />
-
-### extension\_lib
-
-`= 'include "qelib1.inc";'`
-
 <span id="qiskit.circuit.library.GRY.global_phase" />
 
 ### global\_phase
 
-Return the global phase of the circuit in radians.
-
-<span id="qiskit.circuit.library.GRY.header" />
-
-### header
-
-`= 'OPENQASM 2.0;'`
+Return the global phase of the current circuit scope in radians.
 
 <span id="qiskit.circuit.library.GRY.instances" />
 
 ### instances
 
-`= 142`
+`= 164`
 
 <span id="qiskit.circuit.library.GRY.layout" />
 
@@ -173,7 +161,7 @@ The parameters defined in the circuit.
 
 This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
 
-## Examples
+**Examples**
 
 The snippet below shows that insertion order of parameters does not matter.
 
@@ -204,9 +192,6 @@ ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
 ```
 
 To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
-
-```python
-```
 
 ```python
 >>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector

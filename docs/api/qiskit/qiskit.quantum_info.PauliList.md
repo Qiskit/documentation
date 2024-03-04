@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.PauliList
 
 <span id="qiskit.quantum_info.PauliList" />
 
-`qiskit.quantum_info.PauliList(data)`
+`qiskit.quantum_info.PauliList(data)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/quantum_info/operators/symplectic/pauli_list.py "view source code")
 
 Bases: `BasePauli`, `LinearMixin`, `GroupMixin`
 
@@ -632,7 +632,7 @@ the n-times composed operator.
 
 **Return type**
 
-[Pauli](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
+[Clifford](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")
 
 **Raises**
 

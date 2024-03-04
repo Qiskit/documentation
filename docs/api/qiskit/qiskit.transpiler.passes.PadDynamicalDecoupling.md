@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.PadDynamicalDecoupling
 
 <span id="qiskit.transpiler.passes.PadDynamicalDecoupling" />
 
-`qiskit.transpiler.passes.PadDynamicalDecoupling(*args, **kwargs)`
+`qiskit.transpiler.passes.PadDynamicalDecoupling(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/scheduling/padding/dynamical_decoupling.py "view source code")
 
 Bases: `BasePadding`
 
@@ -18,7 +18,7 @@ Dynamical decoupling insertion pass.
 
 This pass works on a scheduled, physical circuit. It scans the circuit for idle periods of time (i.e. those containing delay instructions) and inserts a DD sequence of gates in those spots. These gates amount to the identity, so do not alter the logical action of the circuit, but have the effect of mitigating decoherence in those idle periods.
 
-As a special case, the pass allows a length-1 sequence (e.g. \[XGate()]). In this case the DD insertion happens only when the gate inverse can be absorbed into a neighboring gate in the circuit (so we would still be replacing Delay with something that is equivalent to the identity). This can be used, for instance, as a Hahn echo.
+As a special case, the pass allows a length-1 sequence (e.g. `[XGate()]`). In this case the DD insertion happens only when the gate inverse can be absorbed into a neighboring gate in the circuit (so we would still be replacing Delay with something that is equivalent to the identity). This can be used, for instance, as a Hahn echo.
 
 This pass ensures that the inserted sequence preserves the circuit exactly (including global phase).
 
@@ -98,7 +98,7 @@ Dynamical decoupling initializer.
     > *   ”middle”: Put the extra slack to the interval at the middle of the sequence.
     > *   ”edges”: Divide the extra slack as evenly as possible into intervals at beginning and end of the sequence.
 
-*   **target** – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") representing the target backend, if both `durations` and this are specified then this argument will take precedence and `durations` will be ignored.
+*   **target** – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") representing the target backend. Target takes precedence over other arguments when they can be inferred from target. Therefore specifying target as well as other arguments like `durations` or `pulse_alignment` will cause those other arguments to be ignored.
 
 **Raises**
 
@@ -126,13 +126,39 @@ If the pass is a TransformationPass, that means that the pass can manipulate the
 
 ## Methods
 
+### execute
+
+<span id="qiskit.transpiler.passes.PadDynamicalDecoupling.execute" />
+
+`execute(passmanager_ir, state, callback=None)`
+
+Execute optimization task for input Qiskit IR.
+
+**Parameters**
+
+*   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+*   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+
+**Returns**
+
+Optimized Qiskit IR and state of the workflow.
+
+**Return type**
+
+[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+
 ### name
 
 <span id="qiskit.transpiler.passes.PadDynamicalDecoupling.name" />
 
 `name()`
 
-Return the name of the pass.
+Name of the pass.
+
+**Return type**
+
+[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
 
 ### run
 
@@ -157,4 +183,25 @@ DAG with idle time filled with instructions.
 **Raises**
 
 [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – When a particular node is not scheduled, likely some transform pass is inserted before this node is called.
+
+### update\_status
+
+<span id="qiskit.transpiler.passes.PadDynamicalDecoupling.update_status" />
+
+`update_status(state, run_state)`
+
+Update workflow status.
+
+**Parameters**
+
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – Pass manager state to update.
+*   **run\_state** (*RunState*) – Completion status of current task.
+
+**Returns**
+
+Updated pass manager state.
+
+**Return type**
+
+[*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")
 

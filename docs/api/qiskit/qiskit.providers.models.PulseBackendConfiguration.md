@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.models.PulseBackendConfiguration
 
 <span id="qiskit.providers.models.PulseBackendConfiguration" />
 
-`qiskit.providers.models.PulseBackendConfiguration(backend_name, backend_version, n_qubits, basis_gates, gates, local, simulator, conditional, open_pulse, memory, max_shots, coupling_map, n_uchannels, u_channel_lo, meas_levels, qubit_lo_range, meas_lo_range, dt, dtm, rep_times, meas_kernels, discriminators, hamiltonian=None, channel_bandwidth=None, acquisition_latency=None, conditional_latency=None, meas_map=None, max_experiments=None, sample_name=None, n_registers=None, register_map=None, configurable=None, credits_required=None, online_date=None, display_name=None, description=None, tags=None, channels=None, **kwargs)`
+`qiskit.providers.models.PulseBackendConfiguration(backend_name, backend_version, n_qubits, basis_gates, gates, local, simulator, conditional, open_pulse, memory, max_shots, coupling_map, n_uchannels, u_channel_lo, meas_levels, qubit_lo_range, meas_lo_range, dt, dtm, rep_times, meas_kernels, discriminators, hamiltonian=None, channel_bandwidth=None, acquisition_latency=None, conditional_latency=None, meas_map=None, max_experiments=None, sample_name=None, n_registers=None, register_map=None, configurable=None, credits_required=None, online_date=None, display_name=None, description=None, tags=None, channels=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/providers/models/backendconfiguration.py "view source code")
 
 Bases: [`QasmBackendConfiguration`](qiskit.providers.models.QasmBackendConfiguration "qiskit.providers.models.backendconfiguration.QasmBackendConfiguration")
 
@@ -53,7 +53,7 @@ Initialize a backend configuration that contains all the extra configuration tha
 *   **register\_map** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – An array of dimension n\_qubits X n\_registers that specifies whether a qubit can store a measurement in a certain register slot.
 *   **configurable** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – True if the backend is configurable, if the backend is a simulator
 *   **credits\_required** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – True if backend requires credits to run a job.
-*   **online\_date** (*datetime*) – The date that the device went online
+*   **online\_date** ([*datetime.datetime*](https://docs.python.org/3/library/datetime.html#datetime.datetime "(in Python v3.12)")) – The date that the device went online
 *   **display\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Alternate name field for the backend
 *   **description** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – A description for the backend
 *   **tags** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – A list of string tags to describe the backend
@@ -108,18 +108,13 @@ Qubit measurement acquisition line.
 
 <span id="qiskit.providers.models.PulseBackendConfiguration.control" />
 
-`control(qubits=None, channel=None)`
+`control(qubits=None)`
 
 Return the secondary drive channel for the given qubit – typically utilized for controlling multiqubit interactions. This channel is derived from other channels.
 
-<Admonition title="Deprecated since version 0.19.0" type="danger">
-  `qiskit.providers.models.backendconfiguration.PulseBackendConfiguration.control()`’s argument `channel` is deprecated as of qiskit-terra 0.19.0. It will be removed no earlier than 3 months after the release date. Instead, use the `qubits` argument. This method will now return accurate ControlChannels determined by qubit indices.
-</Admonition>
-
 **Parameters**
 
-*   **qubits** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – Tuple or list of qubits of the form (control\_qubit, target\_qubit).
-*   **channel** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Deprecated.
+**qubits** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – Tuple or list of qubits of the form (control\_qubit, target\_qubit).
 
 **Raises**
 

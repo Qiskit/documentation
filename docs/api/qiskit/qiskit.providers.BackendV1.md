@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.BackendV1
 
 <span id="qiskit.providers.BackendV1" />
 
-`qiskit.providers.BackendV1(configuration, provider=None, **fields)`
+`qiskit.providers.BackendV1(configuration, provider=None, **fields)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/providers/backend.py "view source code")
 
 Bases: [`Backend`](qiskit.providers.Backend "qiskit.providers.backend.Backend"), [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 
@@ -19,6 +19,28 @@ Abstract class for Backends
 This abstract class is to be used for all Backend objects created by a provider. There are several classes of information contained in a Backend. The first are the attributes of the class itself. These should be used to defined the immutable characteristics of the backend. The `options` attribute of the backend is used to contain the dynamic user configurable options of the backend. It should be used more for runtime options that configure how the backend is used. For example, something like a `shots` field for a backend that runs experiments which would contain an int for how many shots to execute. The `properties` attribute is optionally defined [`BackendProperties`](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") object and is used to return measured properties, or properties of a backend that may change over time. The simplest example of this would be a version string, which will change as a backend is updated, but also could be something like noise parameters for backends that run experiments.
 
 This first version of the Backend abstract class is written to be mostly backwards compatible with the legacy providers interface. This includes reusing the model objects [`BackendProperties`](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") and [`BackendConfiguration`](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration"). This was done to ease the transition for users and provider maintainers to the new versioned providers. Expect, future versions of this abstract class to change the data model and interface.
+
+Subclasses of this should override the public method [`run()`](#qiskit.providers.BackendV1.run "qiskit.providers.BackendV1.run") and the internal [`_default_options()`](#qiskit.providers.BackendV1._default_options "qiskit.providers.BackendV1._default_options"):
+
+### \_default\_options
+
+<span id="qiskit.providers.BackendV1._default_options" />
+
+`abstract classmethod _default_options()`
+
+Return the default options
+
+This method will return a [`qiskit.providers.Options`](qiskit.providers.Options "qiskit.providers.Options") subclass object that will be used for the default options. These should be the default parameters to use for the options of the backend.
+
+**Returns**
+
+**A options object with**
+
+default values set
+
+**Return type**
+
+[qiskit.providers.Options](qiskit.providers.Options "qiskit.providers.Options")
 
 Initialize a backend class
 
@@ -33,8 +55,6 @@ Initialize a backend class
 [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – if input field not a valid options
 
 In addition to the public abstract methods, subclasses should also implement the following private methods:
-
-<span id="undefined" />
 
 `abstract classmethod _default_options()`
 
@@ -146,7 +166,7 @@ This method returns a [`Job`](qiskit.providers.Job "qiskit.providers.Job") objec
 
 **Parameters**
 
-*   **run\_input** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – An individual or a list of `QuantumCircuit` or [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") objects to run on the backend. For legacy providers migrating to the new versioned providers, provider interface a [`QasmQobj`](qiskit.qobj.QasmQobj "qiskit.qobj.QasmQobj") or [`PulseQobj`](qiskit.qobj.PulseQobj "qiskit.qobj.PulseQobj") objects should probably be supported too (but deprecated) for backwards compatibility. Be sure to update the docstrings of subclasses implementing this method to document that. New provider implementations should not do this though as [`qiskit.qobj`](qobj#module-qiskit.qobj "qiskit.qobj") will be deprecated and removed along with the legacy providers interface.
+*   **run\_input** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – An individual or a list of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") objects to run on the backend. For legacy providers migrating to the new versioned providers, provider interface a [`QasmQobj`](qiskit.qobj.QasmQobj "qiskit.qobj.QasmQobj") or [`PulseQobj`](qiskit.qobj.PulseQobj "qiskit.qobj.PulseQobj") objects should probably be supported too (but deprecated) for backwards compatibility. Be sure to update the docstrings of subclasses implementing this method to document that. New provider implementations should not do this though as [`qiskit.qobj`](qobj#module-qiskit.qobj "qiskit.qobj") will be deprecated and removed along with the legacy providers interface.
 *   **options** – Any kwarg options to pass to the backend for running the config. If a key is also present in the options attribute/object then the expectation is that the value specified will be used instead of what’s set in the options object.
 
 **Returns**

@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env python3
 # This code is a Qiskit project.
 #
 # (C) Copyright IBM 2023.
@@ -11,10 +11,53 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 
-# Keep this aligned with the Dockerfile at the root of the repository.
-docker run \
-  -v "$(pwd)"/docs:/home/node/app/docs \
-  -v "$(pwd)"/public/images:/home/node/app/packages/preview/public/images \
-  -p 3000:3000 \
-  -p 5001:5001 \
-  qiskit/documentation
+import subprocess
+import sys
+from pathlib import Path
+from typing import Iterator
+
+PWD = Path(__file__).parent
+
+
+def translation_volume_mounts() -> Iterator[str]:
+    """Return the CLI args to mount each language in the translations/ folder.
+
+    Unlike the root `Dockerfile`, we cannot use `-v $PWD/translations:/home/node/app/docs` because
+    Docker complains that the volume is already mounted when we mount the `/docs` folder. So, instead
+    we need to be more specific to mount each language's folder.
+    """
+    for folder in PWD.glob("translations/*"):
+        yield from ["-v", f"{folder}:/home/node/app/docs/{folder.name}"]
+
+
+def main() -> None:
+    print(
+        "Warning: this may be using an outdated version of the app. Run "
+        + "`docker pull qiskit/documentation` to check for updates.",
+        file=sys.stderr,
+    )
+    subprocess.run(
+        # Keep this aligned with the Dockerfile at the root of the repository.
+        [
+            "docker",
+            "run",
+            "-v",
+            f"{PWD}/docs:/home/node/app/docs",
+            *translation_volume_mounts(),
+            "-v",
+            f"{PWD}/public:/home/node/app/packages/preview/public",
+            "-p",
+            "3000:3000",
+            "-p",
+            "5001:5001",
+            "qiskit/documentation",
+        ],
+        check=True,
+    )
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except KeyboardInterrupt:
+        pass

@@ -47,37 +47,44 @@ If you’d like to work directly with a preset pass manager you can use the [`ge
 
 ```python
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
-from qiskit.providers.fake_provider import FakeLagosV2
+from qiskit.providers.fake_provider import GenericBackendV2
 
-backend = FakeLagosV2()
+backend = GenericBackendV2(num_qubits=5)
 pass_manager = generate_preset_pass_manager(3, backend)
 ```
 
-which will generate a [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager") object for optimization level 3 targeting the [`FakeLagosV2`](qiskit.providers.fake_provider.FakeLagosV2 "qiskit.providers.fake_provider.FakeLagosV2") backend (equivalent to what is used internally by [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") with `backend=FakeLagosV2()` and `optimization_level=3`). You can use this just like you would any other [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager"). However, because it is a [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager") it also makes it easy to compose and/or replace stages of the pipeline. For example, if you wanted to run a custom scheduling stage using dynamical decoupling (via the [`PadDynamicalDecoupling`](qiskit.transpiler.passes.PadDynamicalDecoupling "qiskit.transpiler.passes.PadDynamicalDecoupling") pass) and also add initial logical optimization prior to routing, you would do something like (building off the previous example):
+which will generate a [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager") object for optimization level 3 targeting the [`GenericBackendV2`](qiskit.providers.fake_provider.GenericBackendV2 "qiskit.providers.fake_provider.GenericBackendV2") backend (equivalent to what is used internally by [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") with `backend=GenericBackendV2(5)` and `optimization_level=3`). You can use this just like you would any other [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager"). However, because it is a [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager") it also makes it easy to compose and/or replace stages of the pipeline. For example, if you wanted to run a custom scheduling stage using dynamical decoupling (via the [`PadDynamicalDecoupling`](qiskit.transpiler.passes.PadDynamicalDecoupling "qiskit.transpiler.passes.PadDynamicalDecoupling") pass) and also add initial logical optimization prior to routing, you would do something like (building off the previous example):
 
 ```python
-from qiskit.circuit.library import XGate, HGate, RXGate, PhaseGate, TGate, TdgGate
+import numpy as np
+from qiskit.circuit.library import HGate, PhaseGate, RXGate, TdgGate, TGate, XGate
 from qiskit.transpiler import PassManager
-from qiskit.transpiler.passes import ALAPScheduleAnalysis, PadDynamicalDecoupling
-from qiskit.transpiler.passes import CXCancellation, InverseCancellation
+from qiskit.transpiler.passes import (
+    ALAPScheduleAnalysis,
+    CXCancellation,
+    InverseCancellation,
+    PadDynamicalDecoupling,
+)
 
-backend_durations = backend.target.durations()
 dd_sequence = [XGate(), XGate()]
-scheduling_pm = PassManager([
-    ALAPScheduleAnalysis(backend_durations),
-    PadDynamicalDecoupling(backend_durations, dd_sequence),
-])
+scheduling_pm = PassManager(
+    [
+        ALAPScheduleAnalysis(target=backend.target),
+        PadDynamicalDecoupling(target=backend.target, dd_sequence=dd_sequence),
+    ]
+)
 inverse_gate_list = [
     HGate(),
     (RXGate(np.pi / 4), RXGate(-np.pi / 4)),
     (PhaseGate(np.pi / 4), PhaseGate(-np.pi / 4)),
     (TGate(), TdgGate()),
-
-])
-logical_opt = PassManager([
-    CXCancellation(),
-    InverseCancellation([HGate(), (RXGate(np.pi / 4), RXGate(-np.pi / 4))
-])
+]
+logical_opt = PassManager(
+    [
+        CXCancellation(),
+        InverseCancellation(inverse_gate_list),
+    ]
+)
 
 
 # Add pre-layout stage to run extra logical optimization
@@ -86,11 +93,11 @@ pass_manager.pre_layout = logical_opt
 pass_manager.scheduling = scheduling_pm
 ```
 
-Then when [`run()`](qiskit.transpiler.StagedPassManager#run "qiskit.transpiler.StagedPassManager.run") is called on `pass_manager` the `logical_opt` [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") will be called prior to the `layout` stage and for the `scheduling` stage our custom [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") `scheduling_pm` will be used.
+Now, when the staged pass manager is run via the [`run()`](qiskit.transpiler.StagedPassManager#run "qiskit.transpiler.StagedPassManager.run") method, the `logical_opt` pass manager will be called before the `layout` stage, and the `scheduling_pm` pass manager will be used for the `scheduling` stage instead of the default.
 
 ## Custom Pass Managers
 
-In addition to modifying preset pass managers, it is also possible to construct a pass manager to build an entirely custom pipeline for transforming input circuits. You can leverage the [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager") class directly to do this. You can define arbitrary stage names and populate them with a [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") instance. For example:
+In addition to modifying preset pass managers, it is also possible to construct a pass manager to build an entirely custom pipeline for transforming input circuits. You can use the [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager") class directly to do this. You can define arbitrary stage names and populate them with a [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") instance. For example, the following code creates a new [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager") that has 2 stages, `init` and `translation`.:
 
 ```python
 from qiskit.transpiler.passes import (
@@ -98,6 +105,7 @@ from qiskit.transpiler.passes import (
     Collect2qBlocks,
     ConsolidateBlocks,
     UnitarySynthesis,
+    Unroll3qOrMore,
 )
 from qiskit.transpiler import PassManager, StagedPassManager
 
@@ -116,9 +124,9 @@ staged_pm = StagedPassManager(
 )
 ```
 
-will create a new [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager") that has 2 stages `init` and `translation`. There is no limit on the number of stages you can put in a custom [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager") instance.
+There is no limit on the number of stages you can put in a [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager").
 
-The [Stage Generator Functions](transpiler_preset#stage-generators) functions may be useful for the construction of custom pass managers. They generate stages which provide common functionality used in many pass managers. For example, [`generate_embed_passmanager()`](transpiler_preset#qiskit.transpiler.preset_passmanagers.common.generate_embed_passmanager "qiskit.transpiler.preset_passmanagers.common.generate_embed_passmanager") can be used to generate a stage to “embed” a selected initial [`Layout`](qiskit.transpiler.Layout "qiskit.transpiler.Layout") from a layout pass to the specified target device.
+The [Stage Generator Functions](transpiler_preset#stage-generators) may be useful for the construction of custom `generate_embed_passmanager` generates a [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") to “embed” a selected initial [`Layout`](qiskit.transpiler.Layout "qiskit.transpiler.Layout") from a layout pass to the specified target device.
 
 ## Representing Quantum Computers
 
@@ -416,14 +424,21 @@ Below are a description of the default transpiler stages and the problems they s
 
 When writing a quantum circuit you are free to use any quantum gate (unitary operator) that you like, along with a collection of non-gate operations such as qubit measurements and reset operations. However, most quantum devices only natively support a handful of quantum gates and non-gate operations. The allowed instructions for a given backend can be found by querying the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") for the devices:
 
+```python
+from qiskit.providers.fake_provider import GenericBackendV2
+backend = GenericBackendV2(5)
+
+print(backend.target)
+```
+
 Every quantum circuit run on the target device must be expressed using only these instructions. For example, to run a simple phase estimation circuit:
 
 ```python
 import numpy as np
 from qiskit import QuantumCircuit
-from qiskit.providers.fake_provider import FakeVigoV2
+from qiskit.providers.fake_provider import GenericBackendV2
 
-backend = FakeVigoV2()
+backend = GenericBackendV2(5)
 
 qc = QuantumCircuit(2, 1)
 
@@ -437,14 +452,14 @@ qc.draw(output='mpl')
 
 ![../\_images/transpiler-4.png](/images/api/qiskit/transpiler-4.png)
 
-We have $H$, $X$, and controlled-$P$ gates, none of which are in our device’s basis gate set, and thus must be translated. This translation is taken care of for us in the `qiskit.execute()` function. However, we can transpile the circuit to show what it will look like in the native gate set of the target IBM Quantum device (the [`FakeVigoV2`](qiskit.providers.fake_provider.FakeVigoV2 "qiskit.providers.fake_provider.FakeVigoV2") backend is a fake backend that models the historical IBM Vigo 5 qubit device for test purposes):
+We have $H$, $X$, and controlled-$P$ gates, none of which are in our device’s basis gate set, and thus must be translated. We can transpile the circuit to show what it will look like in the native gate set of the target IBM Quantum device (the [`GenericBackendV2`](qiskit.providers.fake_provider.GenericBackendV2 "qiskit.providers.fake_provider.GenericBackendV2") class generates a fake backend with a specified number of qubits for test purposes):
 
 ```python
 from qiskit import transpile
 from qiskit import QuantumCircuit
-from qiskit.providers.fake_provider import FakeVigoV2
+from qiskit.providers.fake_provider import GenericBackendV2
 
-backend = FakeVigoV2()
+backend = GenericBackendV2(5)
 
 qc = QuantumCircuit(2, 1)
 
@@ -474,11 +489,11 @@ Second, although we had a single controlled gate, the fact that it was not in th
 
 It is important to highlight two special cases:
 
-1.  If A swap gate is not a native gate and must be decomposed this requires three CNOT gates: .. code-block:
+1.  If A swap gate is not a native gate and must be decomposed this requires three CNOT gates:
 
     ```python
-    from qiskit.providers.fake_provider import FakeVigoV2
-    backend = FakeVigoV2()
+    from qiskit.providers.fake_provider import GenericBackendV2
+    backend = GenericBackendV2(5)
 
     print(backend.operation_names)
     ```
@@ -511,24 +526,24 @@ Quantum circuits are abstract entities whose qubits are “virtual” representa
 
 ![../\_images/mapping.png](/images/api/qiskit/mapping.png)
 
-By default, qiskit will do this mapping for you. The choice of mapping depends on the properties of the circuit, the particular device you are targeting, and the optimization level that is chosen. The choice of initial layout is extremely important for minimizing the number of swap operations needed to map the input circuit onto the device topology and for minimizing the loss due to non-uniform noise properties across a device. Due to the importance of this stage, the preset pass managers try a few different methods to find the best layout. Typically this involves 2 steps: first, trying to find a “perfect” layout (a layout which does not require any swap operations) and then, a heuristic pass that tries to find the best layout to use if a perfect layout cannot be found. For the first stage there are 2 passes typically used for this:
+By default, qiskit will do this mapping for you. The choice of mapping depends on the properties of the circuit, the particular device you are targeting, and the optimization level that is chosen. The choice of initial layout is extremely important for minimizing the number of swap operations needed to map the input circuit onto the device topology and for minimizing the loss due to non-uniform noise properties across a device. Due to the importance of this stage, the preset pass managers try a few different methods to find the best layout. Typically this involves 2 steps: first, trying to find a “perfect” layout (a layout which does not require any swap operations), and then, a heuristic pass that tries to find the best layout to use if a perfect layout cannot be found. There are 2 passes typically used for the first stage:
 
 *   [`VF2Layout`](qiskit.transpiler.passes.VF2Layout "qiskit.transpiler.passes.VF2Layout"): Models layout selection as a subgraph isomorphism problem and tries to find a subgraph of the connectivity graph that is isomorphic to the graph of 2 qubit interactions in the circuit. If more than one isomorphic mapping is found a scoring heuristic is run to select the mapping which would result in the lowest average error when executing the circuit.
-*   [`TrivialLayout`](qiskit.transpiler.passes.TrivialLayout "qiskit.transpiler.passes.TrivialLayout"): Map each virtual qubit to the same numbered physical qubit on the device, i.e. `[0,1,2,3,4]` -> `[0,1,2,3,4]`. This is historical behavior used only in `optimization_level=1` to try to find a perfect layout. If it fails to do so, [`VF2Layout`](qiskit.transpiler.passes.VF2Layout "qiskit.transpiler.passes.VF2Layout") is tried next).
+*   [`TrivialLayout`](qiskit.transpiler.passes.TrivialLayout "qiskit.transpiler.passes.TrivialLayout"): Maps each virtual qubit to the same numbered physical qubit on the device, i.e. `[0,1,2,3,4]` -> `[0,1,2,3,4]`. This is historical behavior used only in `optimization_level=1` to try to find a perfect layout. If it fails to do so, [`VF2Layout`](qiskit.transpiler.passes.VF2Layout "qiskit.transpiler.passes.VF2Layout") is tried next.
 
 Next, for the heuristic stage, 2 passes are used by default:
 
-*   [`SabreLayout`](qiskit.transpiler.passes.SabreLayout "qiskit.transpiler.passes.SabreLayout"): Selects a layout by starting from an initial random layout and then repeatedly running a routing algorithm (by default [`SabreSwap`](qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap")) both forwards and backwards over the circuit using the permutation caused by swap insertions to adjust that initial random layout. For more details you can refer to the paper describing the algorithm: [arXiv:1809.02573](https://arxiv.org/abs/1809.02573) [`SabreLayout`](qiskit.transpiler.passes.SabreLayout "qiskit.transpiler.passes.SabreLayout") is use to select a layout if a perfect layout isn’t found for optimization levels 1, 2, and 3.
-*   [`TrivialLayout`](qiskit.transpiler.passes.TrivialLayout "qiskit.transpiler.passes.TrivialLayout"): Always used for the layout at optimization level 0
-*   [`DenseLayout`](qiskit.transpiler.passes.DenseLayout "qiskit.transpiler.passes.DenseLayout"): Find the sub-graph of the device with greatest connectivity that has the same number of qubits as the circuit. Used for optimization level 1 if there are control flow operations (such as [`IfElseOp`](qiskit.circuit.IfElseOp "qiskit.circuit.IfElseOp")) present in the circuit.
+*   [`SabreLayout`](qiskit.transpiler.passes.SabreLayout "qiskit.transpiler.passes.SabreLayout"): Selects a layout by starting from an initial random layout and then repeatedly running a routing algorithm (by default [`SabreSwap`](qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap")) both forward and backward over the circuit, using the permutation caused by swap insertions to adjust that initial random layout. For more details you can refer to the paper describing the algorithm: [arXiv:1809.02573](https://arxiv.org/abs/1809.02573) [`SabreLayout`](qiskit.transpiler.passes.SabreLayout "qiskit.transpiler.passes.SabreLayout") is used to select a layout if a perfect layout isn’t found for optimization levels 1, 2, and 3.
+*   [`TrivialLayout`](qiskit.transpiler.passes.TrivialLayout "qiskit.transpiler.passes.TrivialLayout"): Always used for the layout at optimization level 0.
+*   [`DenseLayout`](qiskit.transpiler.passes.DenseLayout "qiskit.transpiler.passes.DenseLayout"): Finds the sub-graph of the device with greatest connectivity that has the same number of qubits as the circuit. Used for optimization level 1 if there are control flow operations (such as [`IfElseOp`](qiskit.circuit.IfElseOp "qiskit.circuit.IfElseOp")) present in the circuit.
 
 Let’s see what layouts are automatically picked at various optimization levels. The circuits returned by [`qiskit.compiler.transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") are annotated with this initial layout information, and we can view this layout selection graphically using [`qiskit.visualization.plot_circuit_layout()`](qiskit.visualization.plot_circuit_layout "qiskit.visualization.plot_circuit_layout"):
 
 ```python
 from qiskit import QuantumCircuit, transpile
 from qiskit.visualization import plot_circuit_layout
-from qiskit.providers.fake_provider import FakeVigo
-backend = FakeVigo()
+from qiskit.providers.fake_provider import Fake5QV1
+backend = Fake5QV1()
 
 ghz = QuantumCircuit(3, 3)
 ghz.h(0)
@@ -545,8 +560,8 @@ ghz.draw(output='mpl')
     > ```python
     > from qiskit import QuantumCircuit, transpile
     > from qiskit.visualization import plot_circuit_layout
-    > from qiskit.providers.fake_provider import FakeVigo
-    > backend = FakeVigo()
+    > from qiskit.providers.fake_provider import Fake5QV1
+    > backend = Fake5QV1()
     >
     > ghz = QuantumCircuit(3, 3)
     > ghz.h(0)
@@ -565,8 +580,8 @@ ghz.draw(output='mpl')
     > ```python
     > from qiskit import QuantumCircuit, transpile
     > from qiskit.visualization import plot_circuit_layout
-    > from qiskit.providers.fake_provider import FakeVigo
-    > backend = FakeVigo()
+    > from qiskit.providers.fake_provider import Fake5QV1
+    > backend = Fake5QV1()
     >
     > ghz = QuantumCircuit(3, 3)
     > ghz.h(0)
@@ -585,8 +600,8 @@ It is possible to override automatic layout selection by specifying an initial l
 ```python
 from qiskit import QuantumCircuit, transpile
 from qiskit.visualization import plot_circuit_layout
-from qiskit.providers.fake_provider import FakeVigo
-backend = FakeVigo()
+from qiskit.providers.fake_provider import Fake5QV1
+backend = Fake5QV1()
 
 ghz = QuantumCircuit(3, 3)
 ghz.h(0)
@@ -611,7 +626,7 @@ plot_circuit_layout(my_ghz, backend)
 
 In order to implement a 2-qubit gate between qubits in a quantum circuit that are not directly connected on a quantum device, one or more swap gates must be inserted into the circuit to move the qubit states around until they are adjacent on the device gate map. Each swap gate typically represents an expensive and noisy operation to perform. Thus, finding the minimum number of swap gates needed to map a circuit onto a given device, is an important step (if not the most important) in the whole execution process.
 
-However, as with many important things in life, finding the optimal swap mapping is hard. In fact it is in a class of problems called NP-hard, and is thus prohibitively expensive to compute for all but the smallest quantum devices and input circuits. To get around this, by default Qiskit uses a stochastic heuristic algorithm called [`SabreSwap`](qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap") to compute a good, but not necessarily optimal swap mapping. The use of a stochastic method means the circuits generated by [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") (or [`execute()`](execute#qiskit.execute_function.execute "qiskit.execute_function.execute") that calls [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") internally) are not guaranteed to be the same over repeated runs. Indeed, running the same circuit repeatedly will in general result in a distribution of circuit depths and gate counts at the output.
+However, as with many important things in life, finding the optimal swap mapping is hard. In fact it is in a class of problems called NP-hard, and is thus prohibitively expensive to compute for all but the smallest quantum devices and input circuits. To get around this, by default Qiskit uses a stochastic heuristic algorithm called [`SabreSwap`](qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap") to compute a good, but not necessarily optimal swap mapping. The use of a stochastic method means the circuits generated by [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") are not guaranteed to be the same over repeated runs. Indeed, running the same circuit repeatedly will in general result in a distribution of circuit depths and gate counts at the output.
 
 In order to highlight this, we run a GHZ circuit 100 times, using a “bad” (disconnected) initial\_layout:
 
@@ -620,8 +635,8 @@ In order to highlight this, we run a GHZ circuit 100 times, using a “bad” (d
 ```python
 import matplotlib.pyplot as plt
 from qiskit import QuantumCircuit, transpile
-from qiskit.providers.fake_provider import FakeAuckland
-backend = FakeAuckland()
+from qiskit.providers.fake_provider import GenericBackendV2
+backend = GenericBackendV2(16)
 
 ghz = QuantumCircuit(15)
 ghz.h(0)
@@ -664,8 +679,8 @@ Decomposing quantum circuits into the basis gate set of the target device, and t
 ```python
 import matplotlib.pyplot as plt
 from qiskit import QuantumCircuit, transpile
-from qiskit.providers.fake_provider import FakeAuckland
-backend = FakeAuckland()
+from qiskit.providers.fake_provider import GenericBackendV2
+backend = GenericBackendV2(16)
 
 ghz = QuantumCircuit(15)
 ghz.h(0)
@@ -701,7 +716,7 @@ plt.show()
 
 ### Scheduling Stage
 
-After the circuit has been translated to the target basis, mapped to the device, and optimized, a scheduling phase can be applied to optionally account for all the idle time in the circuit. At a high level the scheduling can be thought of as inserting delays into the circuit to account for idle time on the qubits between the execution of instructions. For example, if we start with a circuit such as:
+After the circuit has been translated to the target basis, mapped to the device, and optimized, a scheduling phase can be applied to optionally account for all the idle time in the circuit. At a high level, the scheduling can be thought of as inserting delays into the circuit to account for idle time on the qubits between the execution of instructions. For example, if we start with a circuit such as:
 
 ![../\_images/transpiler-15.png](/images/api/qiskit/transpiler-15.png)
 
@@ -709,9 +724,9 @@ we can then call [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.comp
 
 ```python
 from qiskit import QuantumCircuit, transpile
-from qiskit.providers.fake_provider import FakeBoeblingen
+from qiskit.providers.fake_provider import GenericBackendV2
 
-backend = FakeBoeblingen()
+backend = GenericBackendV2(5)
 
 ghz = QuantumCircuit(5)
 ghz.h(0)
@@ -727,15 +742,15 @@ You can see here that the transpiler inserted [`Delay`](qiskit.circuit.Delay "qi
 
 ![../\_images/transpiler-17.png](/images/api/qiskit/transpiler-17.png)
 
-The scheduling of a circuit involves two parts, analysis and constraint mapping followed by a padding pass. The first part requires running a scheduling analysis pass such as `ALAPSchedulingAnalysis` or `ASAPSchedulingAnalysis` which analyzes the circuit and records the start time of each instruction in the circuit using a scheduling algorithm (“as late as possible” for `ALAPSchedulingAnalysis` and “as soon as possible” for `ASAPSchedulingAnalysis`) in the property set. Once the circuit has an initial scheduling additional passes can be run to account for any timing constraints on the target backend, such as alignment constraints. This is typically done with the [`ConstrainedReschedule`](qiskit.transpiler.passes.ConstrainedReschedule "qiskit.transpiler.passes.ConstrainedReschedule") pass which will adjust the scheduling set in the property set to the constraints of the target backend. Once all the scheduling and adjustments/rescheduling are finished a padding pass, such as [`PadDelay`](qiskit.transpiler.passes.PadDelay "qiskit.transpiler.passes.PadDelay") or [`PadDynamicalDecoupling`](qiskit.transpiler.passes.PadDynamicalDecoupling "qiskit.transpiler.passes.PadDynamicalDecoupling") is run to insert the instructions into the circuit, which completes the scheduling.
+The scheduling of a circuit involves two parts: analysis and constraint mapping, followed by a padding pass. The first part requires running a scheduling analysis pass such as `ALAPSchedulingAnalysis` or `ASAPSchedulingAnalysis` which analyzes the circuit and records the start time of each instruction in the circuit using a scheduling algorithm (“as late as possible” for `ALAPSchedulingAnalysis` and “as soon as possible” for `ASAPSchedulingAnalysis`) in the property set. Once the circuit has an initial scheduling, additional passes can be run to account for any timing constraints on the target backend, such as alignment constraints. This is typically done with the [`ConstrainedReschedule`](qiskit.transpiler.passes.ConstrainedReschedule "qiskit.transpiler.passes.ConstrainedReschedule") pass which will adjust the scheduling set in the property set to the constraints of the target backend. Once all the scheduling and adjustments/rescheduling are finished, a padding pass, such as [`PadDelay`](qiskit.transpiler.passes.PadDelay "qiskit.transpiler.passes.PadDelay") or [`PadDynamicalDecoupling`](qiskit.transpiler.passes.PadDynamicalDecoupling "qiskit.transpiler.passes.PadDynamicalDecoupling") is run to insert the instructions into the circuit, which completes the scheduling.
 
 #### Scheduling Analysis with control flow instructions
 
-When scheduling analysis passes run there are additional constraints on classical conditions and control flow instructions in a circuit. This section covers the details of these additional constraints that any scheduling pass will need to account for.
+When running scheduling analysis passes on a circuit, you must keep in mind that there are additional constraints on classical conditions and control flow instructions. This section covers the details of these additional constraints that any scheduling pass will need to account for.
 
-##### Policy of topological node ordering in scheduling
+##### Topological node ordering in scheduling
 
-The DAG representation of `QuantumCircuit` respects the node ordering also in the classical register wires, though theoretically two conditional instructions conditioned on the same register could commute, i.e. read-access to the classical register doesn’t change its state.
+The DAG representation of `QuantumCircuit` respects the node ordering in the classical register wires, though theoretically two conditional instructions conditioned on the same register could commute, i.e. read-access to the classical register doesn’t change its state.
 
 ```python
 qc = QuantumCircuit(2, 1)
@@ -744,7 +759,7 @@ qc.x(0).c_if(0, True)
 qc.x(1).c_if(0, True)
 ```
 
-The scheduler SHOULD comply with above topological ordering policy of the DAG circuit. Accordingly, the asap-scheduled circuit will become
+The scheduler SHOULD comply with the above topological ordering policy of the DAG circuit. Accordingly, the asap-scheduled circuit will become
 
 ```python
      ┌────────────────┐   ┌───┐
@@ -757,11 +772,11 @@ c: 1/══════════════════╡ c_0=0x1 ╞╡ c_
                        └─────────┘└─────────┘
 ```
 
-Note that this scheduling might be inefficient in some cases, because the second conditional operation can start without waiting the delay of 100 dt. However, such optimization should be done by another pass, otherwise scheduling may break topological ordering of the original circuit.
+Note that this scheduling might be inefficient in some cases, because the second conditional operation could start without waiting for the 100 dt delay. However, any additional optimization should be done in a different pass, not to break the topological ordering of the original circuit.
 
-##### Realistic control flow scheduling respecting for microarchitecture
+##### Realistic control flow scheduling (respecting microarchitecture)
 
-In the dispersive QND readout scheme, qubit is measured with microwave stimulus to qubit (Q) followed by resonator ring-down (depopulation). This microwave signal is recorded in the buffer memory (B) with hardware kernel, then a discriminated (D) binary value is moved to the classical register (C). The sequence from t0 to t1 of the measure instruction interval might be modeled as follows:
+In the dispersive QND readout scheme, the qubit (Q) is measured by sending a microwave stimulus, followed by a resonator ring-down (depopulation). This microwave signal is recorded in the buffer memory (B) with the hardware kernel, then a discriminated (D) binary value is moved to the classical register (C). A sequence from t0 to t1 of the measure instruction interval could be modeled as follows:
 
 ```python
 Q ░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░
@@ -770,9 +785,9 @@ D ░░░░░░░░░░▒▒▒▒▒▒░░░
 C ░░░░░░░░░░░░░░░░▒▒░
 ```
 
-However, `QuantumCircuit` representation is not enough accurate to represent this model. In the circuit representation, thus `Qubit` is occupied by the stimulus microwave signal during the first half of the interval, and `Clbit` is only occupied at the very end of the interval.
+However, the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") representation is not accurate enough to represent this model. In the circuit representation, the corresponding [`circuit.Qubit`](qiskit.circuit.Qubit "qiskit.circuit.Qubit") is occupied by the stimulus microwave signal during the first half of the interval, and the [`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.Clbit") is only occupied at the very end of the interval.
 
-This precise model may induce weird edge case.
+The lack of precision representing the physical model may induce edge cases in the scheduling:
 
 ```python
         ┌───┐
@@ -784,7 +799,7 @@ c: 1/╡ c_0=0x1 ╞═╩═
      └─────────┘ 0
 ```
 
-In this example, user may intend to measure the state of `q_1`, after `XGate` is applied to the `q_0`. This is correct interpretation from viewpoint of the topological node ordering, i.e. x gate node come in front of the measure node. However, according to the measurement model above, the data in the register is unchanged during the stimulus, thus two nodes are simultaneously operated. If one alap-schedule this circuit, it may return following circuit.
+In this example, a user may intend to measure the state of `q_1` after the [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.library.XGate") is applied to `q_0`. This is the correct interpretation from the viewpoint of topological node ordering, i.e. The [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.library.XGate") node comes in front of the [`Measure`](qiskit.circuit.library.Measure "qiskit.circuit.library.Measure") node. However, according to the measurement model above, the data in the register is unchanged during the application of the stimulus, so two nodes are simultaneously operated. If one tries to alap-schedule this circuit, it may return following circuit:
 
 ```python
      ┌────────────────┐   ┌───┐
@@ -796,7 +811,7 @@ c: 1/══════════════════╡ c_0=0x1 ╞═╩
                        └─────────┘ 0
 ```
 
-Note that there is no delay on `q_1` wire, and the measure instruction immediately start after t=0, while the conditional gate starts after the delay. It looks like the topological ordering between the nodes are flipped in the scheduled view. This behavior can be understood by considering the control flow model described above,
+Note that there is no delay on the `q_1` wire, and the measure instruction immediately starts after t=0, while the conditional gate starts after the delay. It looks like the topological ordering between the nodes is flipped in the scheduled view. This behavior can be understood by considering the control flow model described above,
 
 ```python
 : Quantum Circuit, first-measure
@@ -814,11 +829,11 @@ D ░░░░░░░░░░▒▒▒▒▒▒░░░
 C ░░░░░░░░░░░░░░░░▒▒░
 ```
 
-Since there is no qubit register (Q0, Q1) overlap, the node ordering is determined by the shared classical register C. As you can see, the execution order is still preserved on C, i.e. read C then apply `XGate`, finally store the measured outcome in C. Because `DAGOpNode` cannot define different durations for associated registers, the time ordering of two nodes is inverted anyways.
+Since there is no qubit register overlap between Q0 and Q1, the node ordering is determined by the shared classical register C. As you can see, the execution order is still preserved on C, i.e. read C then apply `XGate`, finally store the measured outcome in C. But because `DAGOpNode` cannot define different durations for the associated registers, the time ordering of the two nodes is inverted.
 
-This behavior can be controlled by `clbit_write_latency` and `conditional_latency`. The former parameter determines the delay of the register write-access from the beginning of the measure instruction t0, and another parameter determines the delay of conditional gate operation from t0 which comes from the register read-access. These information might be found in the backend configuration and then should be copied to the pass manager property set before the pass is called.
+This behavior can be controlled by `clbit_write_latency` and `conditional_latency`. `clbit_write_latency` determines the delay of the register write-access from the beginning of the measure instruction (t0), while `conditional_latency` determines the delay of conditional gate operations with respect to t0, which is determined by the register read-access. This information is accessible in the backend configuration and should be copied to the pass manager property set before the pass is called.
 
-By default latencies, the alap-scheduled circuit of above example may become
+Due to default latencies, the alap-scheduled circuit of above example may become
 
 ```python
         ┌───┐
@@ -830,10 +845,10 @@ c: 1/╡ c_0=0x1 ╞═╩═
      └─────────┘ 0
 ```
 
-If the backend microarchitecture supports smart scheduling of the control flow, i.e. it may separately schedule qubit and classical register, insertion of the delay yields unnecessary longer total execution time.
+If the backend microarchitecture supports smart scheduling of the control flow instructions, such as separately scheduling qubits and classical registers, the insertion of the delay yields an unnecessarily longer total execution time.
 
 ```python
-: Quantum Circuit, first-xgate
+: Quantum Circuit, first-XGate
 0 ░▒▒▒░░░░░░░░░░░░░░░
 1 ░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░
 
@@ -846,7 +861,7 @@ Q ░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░
 C ░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░ (zero latency, scheduled after C0 read-access)
 ```
 
-However this result is much more intuitive in the topological ordering view. If finite conditional latency is provided, for example, 30 dt, the circuit is scheduled as follows.
+However, this result is much more intuitive in the topological ordering view. If a finite conditional latency value is provided, for example, 30 dt, the circuit is scheduled as follows:
 
 ```python
      ┌───────────────┐   ┌───┐
@@ -882,80 +897,97 @@ See [https://arxiv.org/abs/2102.01682](https://arxiv.org/abs/2102.01682) for mor
 
 |                                                                                                                                       |                                                                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target")(\[description, num\_qubits, dt, ...])                                 | The intent of the `Target` object is to inform Qiskit's compiler about the constraints of a particular backend so the compiler can compile an input circuit to something that works and is optimized for a device. |
-| [`InstructionProperties`](qiskit.transpiler.InstructionProperties "qiskit.transpiler.InstructionProperties")(\[duration, error, ...]) | A representation of the properties of a gate implementation.                                                                                                                                                       |
+| [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target")(\[description, num\_qubits, dt, ...])                                 | The intent of the `Target` object is to inform Qiskit's compiler about the constraints of a particular backend so the compiler can compile an input circuit to something that works and is optimized for a device. |
+| [`InstructionProperties`](qiskit.transpiler.InstructionProperties "qiskit.transpiler.InstructionProperties")(\[duration, error, ...]) | A representation of the properties of a gate implementation.                                                                                                                                                       |
 
 ### Pass Manager Construction
 
-|                                                                                                                                       |                                                                        |
-| ------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager")(\[stages])                           | A Pass manager pipeline built up of individual stages                  |
-| [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")(\[passes, max\_iteration])                             | Manager for a set of Passes and their scheduling during transpilation. |
-| [`PassManagerConfig`](qiskit.transpiler.PassManagerConfig "qiskit.transpiler.PassManagerConfig")(\[initial\_layout, ...])             | Pass Manager Configuration.                                            |
-| [`PropertySet`](qiskit.transpiler.PropertySet "qiskit.transpiler.PropertySet")                                                        | A default dictionary-like object                                       |
-| [`FlowController`](qiskit.transpiler.FlowController "qiskit.transpiler.FlowController")(passes, options, ...)                         | Base class for multiple types of working list.                         |
-| [`ConditionalController`](qiskit.transpiler.ConditionalController "qiskit.transpiler.ConditionalController")(passes\[, options, ...]) | Implements a set of passes under a certain condition.                  |
-| [`DoWhileController`](qiskit.transpiler.DoWhileController "qiskit.transpiler.DoWhileController")(passes\[, options, do\_while])       | Implements a set of passes in a do-while loop.                         |
+|                                                                                                                           |                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager")(\[stages])               | A pass manager pipeline built from individual stages.                  |
+| [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")(\[passes, max\_iteration])                 | Manager for a set of Passes and their scheduling during transpilation. |
+| [`PassManagerConfig`](qiskit.transpiler.PassManagerConfig "qiskit.transpiler.PassManagerConfig")(\[initial\_layout, ...]) | Pass Manager Configuration.                                            |
 
 ### Layout and Topology
 
 |                                                                                                                          |                                                        |
 | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------ |
 | [`Layout`](qiskit.transpiler.Layout "qiskit.transpiler.Layout")(\[input\_dict])                                          | Two-ways dict to represent a Layout.                   |
-| [`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")(\[couplinglist, description])             | Directed graph specifying fixed coupling.              |
-| [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout")(initial\_layout, ...\[, ...]) | Layout attributes from output circuit from transpiler. |
+| [`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")(\[couplinglist, description])             | Directed graph specifying fixed coupling.              |
+| [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout")(initial\_layout, ...\[, ...]) | Layout attributes from output circuit from transpiler. |
 
 ### Scheduling
 
 |                                                                                                                                          |                                                                   |
 | ---------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| [`InstructionDurations`](qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations")(\[instruction\_durations, dt]) | Helper class to provide durations of instructions for scheduling. |
-
-### Fenced Objects
-
-|                                                                                                                           |                                                              |
-| ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| [`FencedDAGCircuit`](qiskit.transpiler.FencedDAGCircuit "qiskit.transpiler.FencedDAGCircuit")(dag\_circuit\_instance)     | A dag circuit that cannot be modified (via remove\_op\_node) |
-| [`FencedPropertySet`](qiskit.transpiler.FencedPropertySet "qiskit.transpiler.FencedPropertySet")(property\_set\_instance) | A property set that cannot be written (via \_\_setitem\_\_)  |
+| [`InstructionDurations`](qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations")(\[instruction\_durations, dt]) | Helper class to provide durations of instructions for scheduling. |
 
 ### Abstract Passes
 
 |                                                                                                                         |                                                      |
 | ----------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
-| [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.TransformationPass")(\*args, \*\*kwargs) | A transformation pass: change DAG, not property set. |
-| [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.AnalysisPass")(\*args, \*\*kwargs)                   | An analysis pass: change property set, not DAG.      |
+| [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.TransformationPass")(\*args, \*\*kwargs) | A transformation pass: change DAG, not property set. |
+| [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.AnalysisPass")(\*args, \*\*kwargs)                   | An analysis pass: change property set, not DAG.      |
 
 ### Exceptions
 
+### TranspilerError
+
 <span id="qiskit.transpiler.TranspilerError" />
 
-`qiskit.transpiler.TranspilerError(*message)`
+`qiskit.transpiler.TranspilerError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/exceptions.py "view source code")
 
 Exceptions raised during transpilation.
 
 Set the error message.
 
+### TranspilerAccessError
+
 <span id="qiskit.transpiler.TranspilerAccessError" />
 
-`qiskit.transpiler.TranspilerAccessError(*message)`
+`qiskit.transpiler.TranspilerAccessError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/exceptions.py "view source code")
 
 DEPRECATED: Exception of access error in the transpiler passes.
 
 Set the error message.
 
+### CouplingError
+
 <span id="qiskit.transpiler.CouplingError" />
 
-`qiskit.transpiler.CouplingError(*msg)`
+`qiskit.transpiler.CouplingError(*msg)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/exceptions.py "view source code")
 
 Base class for errors raised by the coupling graph object.
 
 Set the error message.
 
+### LayoutError
+
 <span id="qiskit.transpiler.LayoutError" />
 
-`qiskit.transpiler.LayoutError(*msg)`
+`qiskit.transpiler.LayoutError(*msg)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/exceptions.py "view source code")
 
 Errors raised by the layout object.
+
+Set the error message.
+
+### CircuitTooWideForTarget
+
+<span id="qiskit.transpiler.CircuitTooWideForTarget" />
+
+`qiskit.transpiler.CircuitTooWideForTarget(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/exceptions.py "view source code")
+
+Error raised if the circuit is too wide for the target.
+
+Set the error message.
+
+### InvalidLayoutError
+
+<span id="qiskit.transpiler.InvalidLayoutError" />
+
+`qiskit.transpiler.InvalidLayoutError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/exceptions.py "view source code")
+
+Error raised when a user provided layout is invalid.
 
 Set the error message.
 

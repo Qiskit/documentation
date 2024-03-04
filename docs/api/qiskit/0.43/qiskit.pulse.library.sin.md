@@ -1,0 +1,36 @@
+---
+title: sin
+description: API reference for qiskit.pulse.library.sin
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.library.sin
+---
+
+<span id="qiskit-pulse-library-sin" />
+
+# qiskit.pulse.library.sin
+
+<span id="qiskit.pulse.library.sin" />
+
+`sin(duration, amp, freq=None, phase=0, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/library/discrete.py "view source code")
+
+Generates sine wave [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform").
+
+For $A=$ `amp`, $\omega=$ `freq`, and $\phi=$ `phase`, applies the midpoint sampling strategy to generate a discrete pulse sampled from the continuous function:
+
+$$
+f(x) = A \sin(2 \pi \omega x + \phi)
+$$
+
+**Parameters**
+
+*   **duration** (*int*) – Duration of pulse. Must be greater than zero.
+*   **amp** (*complex*) – Pulse amplitude.
+*   **freq** (*float | None*) – Pulse frequency, units of 1/dt. If `None` defaults to single cycle.
+*   **phase** (*float*) – Pulse phase.
+*   **name** (*str | None*) – Name of pulse.
+
+**Return type**
+
+[*Waveform*](qiskit.pulse.library.Waveform "qiskit.pulse.library.waveform.Waveform")
+

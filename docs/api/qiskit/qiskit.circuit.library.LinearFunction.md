@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.LinearFunction
 
 <span id="qiskit.circuit.library.LinearFunction" />
 
-`qiskit.circuit.library.LinearFunction(linear, validate_input=False)`
+`qiskit.circuit.library.LinearFunction(linear, validate_input=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/generalized_gates/linear_function.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -18,7 +18,7 @@ A linear reversible circuit on n qubits.
 
 Internally, a linear function acting on n qubits is represented as a n x n matrix of 0s and 1s in numpy array format.
 
-A linear function can be synthesized into CX and SWAP gates using the Patel–Markov–Hayes algorithm, as implemented in `cnot_synth()` based on reference \[1].
+A linear function can be synthesized into CX and SWAP gates using the Patel–Markov–Hayes algorithm, as implemented in [`synth_cnot_count_full_pmh()`](synthesis#qiskit.synthesis.synth_cnot_count_full_pmh "qiskit.synthesis.synth_cnot_count_full_pmh") based on reference \[1].
 
 For efficiency, the internal n x n matrix is stored in the format expected by cnot\_synth, which is the big-endian (and not the little-endian) bit-ordering convention.
 
@@ -35,11 +35,11 @@ q_2: ─────
 is represented by a 3x3 linear matrix
 
 $$
-\begin{split}\begin{pmatrix}
+\begin{pmatrix}
     1 & 0 & 0 \\
     1 & 1 & 0 \\
     0 & 0 & 1
-\end{pmatrix}\end{split}
+\end{pmatrix}
 $$
 
 **References:**
@@ -50,14 +50,41 @@ Create a new linear function.
 
 **Parameters**
 
-*   **LinearFunction** (*linear (*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*] or ndarray\[*[*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")*] or QuantumCircuit or*) – or PermutationGate or Clifford): data from which a linear function can be constructed. It can be either a nxn matrix (describing the linear transformation), a permutation (which is a special case of a linear function), another linear function, a clifford (when it corresponds to a linear function), or a quantum circuit composed of linear gates (CX and SWAP) and other objects described above, including nested subcircuits.
-*   **validate\_input** – if True, performs more expensive input validation checks, such as checking that a given n x n matrix is invertible.
+*   **linear** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*] | np.ndarray\[*[*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")*] |* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*LinearFunction*](#qiskit.circuit.library.LinearFunction "qiskit.circuit.library.LinearFunction")  *|*[*PermutationGate*](qiskit.circuit.library.PermutationGate "qiskit.circuit.library.PermutationGate")  *|*[*Clifford*](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")) – data from which a linear function can be constructed. It can be either a nxn matrix (describing the linear transformation), a permutation (which is a special case of a linear function), another linear function, a clifford (when it corresponds to a linear function), or a quantum circuit composed of linear gates (CX and SWAP) and other objects described above, including nested subcircuits.
+*   **validate\_input** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if True, performs more expensive input validation checks, such as checking that a given n x n matrix is invertible.
 
 **Raises**
 
 [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the input is invalid: either the input matrix is not square or not invertible, or the input quantum circuit contains non-linear objects (for example, a Hadamard gate, or a Clifford that does not correspond to a linear function).
 
 ## Attributes
+
+<span id="qiskit.circuit.library.LinearFunction.base_class" />
+
+### base\_class
+
+Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+
+The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.LinearFunction.base_class "qiskit.circuit.library.LinearFunction.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
+
+This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+
+```python
+>>> isinstance(XGate(), XGate)
+True
+>>> type(XGate()) is XGate
+False
+>>> XGate().base_class is XGate
+True
+```
+
+In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+
+<span id="qiskit.circuit.library.LinearFunction.condition" />
+
+### condition
+
+The classical condition on the instruction.
 
 <span id="qiskit.circuit.library.LinearFunction.condition_bits" />
 
@@ -94,6 +121,14 @@ Return instruction label
 ### linear
 
 Returns the n x n matrix representing this linear function.
+
+<span id="qiskit.circuit.library.LinearFunction.mutable" />
+
+### mutable
+
+Is this instance is a mutable unique instance or not.
+
+If this attribute is `False` the gate instance is a shared singleton and is not mutable.
 
 <span id="qiskit.circuit.library.LinearFunction.name" />
 

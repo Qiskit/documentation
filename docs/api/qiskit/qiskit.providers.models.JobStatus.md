@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.models.JobStatus
 
 <span id="qiskit.providers.models.JobStatus" />
 
-`qiskit.providers.models.JobStatus(job_id, status, status_msg, **kwargs)`
+`qiskit.providers.models.JobStatus(job_id, status, status_msg, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/providers/models/jobstatus.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
@@ -62,13 +62,11 @@ Create a new JobStatus object from a dictionary.
 
 **Returns**
 
-**The `JobStatus` from the input**
-
-dictionary.
+The `JobStatus` from the input dictionary.
 
 **Return type**
 
-qiskit.providers.model.JobStatus
+[JobStatus](#qiskit.providers.models.JobStatus "qiskit.providers.models.JobStatus")
 
 ### to\_dict
 

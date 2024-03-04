@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.RealAmplitudes
 
 <span id="qiskit.circuit.library.RealAmplitudes" />
 
-`qiskit.circuit.library.RealAmplitudes(num_qubits=None, entanglement='reverse_linear', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='RealAmplitudes', flatten=None)`
+`qiskit.circuit.library.RealAmplitudes(num_qubits=None, entanglement='reverse_linear', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='RealAmplitudes', flatten=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/n_local/real_amplitudes.py "view source code")
 
 Bases: [`TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.n_local.two_local.TwoLocal")
 
@@ -34,7 +34,7 @@ The entanglement can be set using the `entanglement` keyword as string or a list
 
 If some qubits are not entangled with other qubits it makes sense to not apply rotation gates on these qubits, since a sequence of $Y$ rotations can be reduced to a single $Y$ rotation with summed rotation angles.
 
-## Examples
+**Examples**
 
 ```python
 >>> ansatz = RealAmplitudes(3, reps=2)  # create the circuit on 3 qubits
@@ -110,7 +110,6 @@ q_3: ┤ RY(θ[2]) ├┤ X ├┤ RY(θ[5]) ├──────────�
 *   **entanglement** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]] | Callable\[\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*],* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]]*) – Specifies the entanglement structure. Can be a string (‘full’, ‘linear’ ‘reverse\_linear, ‘circular’ or ‘sca’), a list of integer-pairs specifying the indices of qubits entangled with one another, or a callable returning such a list provided with the index of the entanglement layer. Default to ‘reverse\_linear’ entanglement. Note that ‘reverse\_linear’ entanglement provides the same unitary as ‘full’ with fewer entangling gates. See the Examples section of [`TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.TwoLocal") for more detail.
 *   **initial\_state** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| None*) – A QuantumCircuit object to prepend to the circuit.
 *   **skip\_unentangled\_qubits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, the single qubit gates are only applied to qubits that are entangled with another qubit. If False, the single qubit gates are applied to each qubit in the Ansatz. Defaults to False.
-*   **skip\_unentangled\_qubits** – If True, the single qubit gates are only applied to qubits that are entangled with another qubit. If False, the single qubit gates are applied to each qubit in the Ansatz. Defaults to False.
 *   **skip\_final\_rotation\_layer** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If False, a rotation layer is added at the end of the ansatz. If True, no rotation layer is added.
 *   **parameter\_prefix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The parameterized gates require a parameter to be defined, for which we use [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector").
 *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, barriers are inserted in between each layer. If False, no barriers are inserted.
@@ -162,12 +161,6 @@ The blocks in the entanglement layers.
 
 The blocks in the entanglement layers.
 
-<span id="qiskit.circuit.library.RealAmplitudes.extension_lib" />
-
-### extension\_lib
-
-`= 'include "qelib1.inc";'`
-
 <span id="qiskit.circuit.library.RealAmplitudes.flatten" />
 
 ### flatten
@@ -178,13 +171,7 @@ Returns whether the circuit is wrapped in nested gates/instructions or flattened
 
 ### global\_phase
 
-Return the global phase of the circuit in radians.
-
-<span id="qiskit.circuit.library.RealAmplitudes.header" />
-
-### header
-
-`= 'OPENQASM 2.0;'`
+Return the global phase of the current circuit scope in radians.
 
 <span id="qiskit.circuit.library.RealAmplitudes.initial_state" />
 
@@ -210,7 +197,7 @@ If barriers are inserted in between the layers or not.
 
 ### instances
 
-`= 127`
+`= 412`
 
 <span id="qiskit.circuit.library.RealAmplitudes.layout" />
 
@@ -306,7 +293,7 @@ The parameters used in the underlying circuit.
 
 This includes float values and duplicates.
 
-## Examples
+**Examples**
 
 ```python
 >>> # prepare circuit ...

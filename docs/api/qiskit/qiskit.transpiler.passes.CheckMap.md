@@ -10,13 +10,13 @@ python_api_name: qiskit.transpiler.passes.CheckMap
 
 <span id="qiskit.transpiler.passes.CheckMap" />
 
-`qiskit.transpiler.passes.CheckMap(*args, **kwargs)`
+`qiskit.transpiler.passes.CheckMap(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/utils/check_map.py "view source code")
 
 Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
 Check if a DAG circuit is already mapped to a coupling map.
 
-Check if a DAGCircuit is mapped to coupling\_map by checking that all 2-qubit interactions are laid out to be on adjacent qubits in the global coupling map of the device, setting the property set field (either specified with `property_set_field` or the default `is_swap_mapped`) to `True` or `False` accordingly. Note this does not validate directionality of the connectivity between qubits. If you need to check gates are implemented in a native direction for a target use the [`CheckGateDirection`](qiskit.transpiler.passes.CheckGateDirection "qiskit.transpiler.passes.CheckGateDirection") pass instead.
+Check if a DAGCircuit is mapped to `coupling_map` by checking that all 2-qubit interactions are laid out to be on adjacent qubits in the global coupling map of the device, setting the property set field (either specified with `property_set_field` or the default `is_swap_mapped`) to `True` or `False` accordingly. Note this does not validate directionality of the connectivity between qubits. If you need to check gates are implemented in a native direction for a target use the [`CheckGateDirection`](qiskit.transpiler.passes.CheckGateDirection "qiskit.transpiler.passes.CheckGateDirection") pass instead.
 
 CheckMap initializer.
 
@@ -45,13 +45,39 @@ If the pass is a TransformationPass, that means that the pass can manipulate the
 
 ## Methods
 
+### execute
+
+<span id="qiskit.transpiler.passes.CheckMap.execute" />
+
+`execute(passmanager_ir, state, callback=None)`
+
+Execute optimization task for input Qiskit IR.
+
+**Parameters**
+
+*   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+*   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+
+**Returns**
+
+Optimized Qiskit IR and state of the workflow.
+
+**Return type**
+
+[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+
 ### name
 
 <span id="qiskit.transpiler.passes.CheckMap.name" />
 
 `name()`
 
-Return the name of the pass.
+Name of the pass.
+
+**Return type**
+
+[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
 
 ### run
 
@@ -66,4 +92,25 @@ If dag is mapped to coupling\_map, the property is\_swap\_mapped is set to True 
 **Parameters**
 
 **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – DAG to map.
+
+### update\_status
+
+<span id="qiskit.transpiler.passes.CheckMap.update_status" />
+
+`update_status(state, run_state)`
+
+Update workflow status.
+
+**Parameters**
+
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – Pass manager state to update.
+*   **run\_state** (*RunState*) – Completion status of current task.
+
+**Returns**
+
+Updated pass manager state.
+
+**Return type**
+
+[*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")
 

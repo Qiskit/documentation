@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.PulseGates
 
 <span id="qiskit.transpiler.passes.PulseGates" />
 
-`qiskit.transpiler.passes.PulseGates(*args, **kwargs)`
+`qiskit.transpiler.passes.PulseGates(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/calibration/pulse_gate.py "view source code")
 
 Bases: `CalibrationBuilder`
 
@@ -33,7 +33,7 @@ Create new pass.
 **Parameters**
 
 *   **inst\_map** – Instruction schedule map that user may override.
-*   **target** – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") representing the target backend, if both `inst_map` and this are specified then it updates instructions in the `target` with `inst_map`.
+*   **target** – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") representing the target backend, if both `inst_map` and `target` are specified then it updates instructions in the `target` with `inst_map`.
 
 ## Attributes
 
@@ -54,6 +54,28 @@ Check if the pass is a transformation pass.
 If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
 
 ## Methods
+
+### execute
+
+<span id="qiskit.transpiler.passes.PulseGates.execute" />
+
+`execute(passmanager_ir, state, callback=None)`
+
+Execute optimization task for input Qiskit IR.
+
+**Parameters**
+
+*   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+*   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+
+**Returns**
+
+Optimized Qiskit IR and state of the workflow.
+
+**Return type**
+
+[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
 
 ### get\_calibration
 
@@ -86,7 +108,11 @@ Return Schedule of target gate instruction.
 
 `name()`
 
-Return the name of the pass.
+Name of the pass.
+
+**Return type**
+
+[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
 
 ### run
 
@@ -128,4 +154,25 @@ Return `True` is calibration can be provided.
 **Return type**
 
 [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+
+### update\_status
+
+<span id="qiskit.transpiler.passes.PulseGates.update_status" />
+
+`update_status(state, run_state)`
+
+Update workflow status.
+
+**Parameters**
+
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – Pass manager state to update.
+*   **run\_state** (*RunState*) – Completion status of current task.
+
+**Returns**
+
+Updated pass manager state.
+
+**Return type**
+
+[*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")
 

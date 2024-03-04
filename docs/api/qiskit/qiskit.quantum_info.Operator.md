@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.Operator
 
 <span id="qiskit.quantum_info.Operator" />
 
-`qiskit.quantum_info.Operator(data, input_dims=None, output_dims=None)`
+`qiskit.quantum_info.Operator(data, input_dims=None, output_dims=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/quantum_info/operators/operator.py "view source code")
 
 Bases: `LinearOp`
 
@@ -199,6 +199,39 @@ The right matrix multiplied Operator.
 <Admonition title="Note" type="note">
   The dot product can be obtained using the `@` binary operator. Hence `a.dot(b)` is equivalent to `a @ b`.
 </Admonition>
+
+### draw
+
+<span id="qiskit.quantum_info.Operator.draw" />
+
+`draw(output=None, **drawer_args)`
+
+Return a visualization of the Operator.
+
+**repr**: String of the state’s `__repr__`.
+
+**text**: ASCII TextMatrix that can be printed in the console.
+
+**latex**: An IPython Latex object for displaying in Jupyter Notebooks.
+
+**latex\_source**: Raw, uncompiled ASCII source to generate array using LaTeX.
+
+**Parameters**
+
+*   **output** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Select the output method to use for drawing the state. Valid choices are repr, text, latex, latex\_source, Default is repr.
+*   **drawer\_args** – Arguments to be passed directly to the relevant drawing function or constructor (TextMatrix(), array\_to\_latex()). See the relevant function under qiskit.visualization for that function’s documentation.
+
+**Returns**
+
+Drawing of the Operator.
+
+**Return type**
+
+[`str`](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") or `TextMatrix` or `IPython.display.Latex`
+
+**Raises**
+
+[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – when an invalid output method is selected.
 
 ### equiv
 

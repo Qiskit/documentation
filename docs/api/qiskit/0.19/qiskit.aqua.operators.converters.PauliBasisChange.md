@@ -1,0 +1,268 @@
+---
+title: PauliBasisChange
+description: API reference for qiskit.aqua.operators.converters.PauliBasisChange
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.operators.converters.PauliBasisChange
+---
+
+# PauliBasisChange
+
+<span id="qiskit.aqua.operators.converters.PauliBasisChange" />
+
+`PauliBasisChange(destination_basis=None, traverse=True, replacement_fn=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/converters/pauli_basis_change.py "view source code")
+
+Converter for changing Paulis into other bases. By default, the diagonal basis composed only of Pauli \{Z, I}^n is used as the destination basis to which to convert. Meaning, if a Pauli containing X or Y terms is passed in, which cannot be sampled or evolved natively on some Quantum hardware, the Pauli can be replaced by a composition of a change of basis circuit and a Pauli composed of only Z and I terms (diagonal), which can be evolved or sampled natively on the Quantum hardware.
+
+The replacement function determines how the `PauliOps` should be replaced by their computed change-of-basis `CircuitOps` and destination `PauliOps`. Several convenient out-of-the-box replacement functions have been added as static methods, such as `measurement_replacement_fn`.
+
+This class uses the typical basis change method found in most Quantum Computing textbooks (such as on page 210 of Nielsen and Chuang’s, “Quantum Computation and Quantum Information”, ISBN: 978-1-107-00217-3), which involves diagonalizing the single-qubit Paulis with H and S† gates, mapping the eigenvectors of the diagonalized origin Pauli to the diagonalized destination Pauli using CNOTS, and then de-diagonalizing any single qubit Paulis to their non-diagonal destination values. Many other methods are possible, as well as variations on this method, such as the placement of the CNOT chains.
+
+**Parameters**
+
+*   **destination\_basis** (`Union`\[[`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.operators.pauli.Pauli"), [`PauliOp`](qiskit.aqua.operators.primitive_ops.PauliOp "qiskit.aqua.operators.primitive_ops.pauli_op.PauliOp"), `None`]) – The Pauli into the basis of which the operators will be converted. If None is specified, the destination basis will be the diagonal (\{I, Z}^n) basis requiring only single qubit rotations.
+
+*   **traverse** (`bool`) – If true and the operator passed into convert contains sub-Operators, such as ListOp, traverse the Operator and apply the conversion to every applicable sub-operator within it.
+
+*   **replacement\_fn** (`Optional`\[`Callable`]) –
+
+    A function specifying what to do with the basis-change `CircuitOp` and destination `PauliOp` when converting an Operator and replacing converted values. By default, this will be
+
+    > 1.  For StateFns (or Measurements): replacing the StateFn with ComposedOp(StateFn(d), c) where c is the conversion circuit and d is the destination Pauli, so the overall beginning and ending operators are equivalent.
+    > 2.  For non-StateFn Operators: replacing the origin p with c·d·c†, where c is the conversion circuit and d is the destination, so the overall beginning and ending operators are equivalent.
+
+## Attributes
+
+### destination
+
+<span id="qiskit.aqua.operators.converters.PauliBasisChange.destination" />
+
+`Optional[qiskit.aqua.operators.primitive_ops.pauli_op.PauliOp]`
+
+The destination `PauliOp`, or `None` if using the default destination, the diagonal basis.
+
+**Return type**
+
+`Optional`\[[`PauliOp`](qiskit.aqua.operators.primitive_ops.PauliOp "qiskit.aqua.operators.primitive_ops.pauli_op.PauliOp")]
+
+## Methods
+
+### construct\_cnot\_chain
+
+<span id="qiskit.aqua.operators.converters.PauliBasisChange.construct_cnot_chain" />
+
+`PauliBasisChange.construct_cnot_chain(diag_pauli_op1, diag_pauli_op2)`
+
+Construct a `CircuitOp` (or `PauliOp` if equal to the identity) which takes the eigenvectors of `diag_pauli_op1` to the eigenvectors of `diag_pauli_op2`, assuming both are diagonal (or performing this operation on their diagonalized Paulis implicitly if not). This works by the insight that the eigenvalue of a diagonal Pauli’s eigenvector is equal to or -1 if the parity is 1 and 1 if the parity is 0, or 1 - (2 \* parity). Therefore, using CNOTs, we can write the parity of diag\_pauli\_op1’s significant bits onto some qubit, and then write out that parity onto diag\_pauli\_op2’s significant bits.
+
+**Parameters**
+
+*   **diag\_pauli\_op1** ([`PauliOp`](qiskit.aqua.operators.primitive_ops.PauliOp "qiskit.aqua.operators.primitive_ops.pauli_op.PauliOp")) – The origin `PauliOp`.
+*   **diag\_pauli\_op2** ([`PauliOp`](qiskit.aqua.operators.primitive_ops.PauliOp "qiskit.aqua.operators.primitive_ops.pauli_op.PauliOp")) – The destination `PauliOp`.
+
+**Return type**
+
+[`PrimitiveOp`](qiskit.aqua.operators.primitive_ops.PrimitiveOp "qiskit.aqua.operators.primitive_ops.primitive_op.PrimitiveOp")
+
+**Returns**
+
+The `PrimitiveOp` performs the mapping.
+
+### convert
+
+<span id="qiskit.aqua.operators.converters.PauliBasisChange.convert" />
+
+`PauliBasisChange.convert(operator)`
+
+Given a `PauliOp`, or an Operator containing `PauliOps` if `_traverse` is True, converts each Pauli into the basis specified by self.\_destination and a basis-change-circuit, calls `replacement_fn` with these two Operators, and replaces the `PauliOps` with the output of `replacement_fn`. For example, for the built-in `operator_replacement_fn` below, each PauliOp p will be replaced by the composition of the basis-change Clifford `CircuitOp` c with the destination PauliOp d and c†, such that p = c·d·c†, up to global phase.
+
+**Parameters**
+
+**operator** ([`OperatorBase`](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.operator_base.OperatorBase")) – The Operator to convert.
+
+**Return type**
+
+[`OperatorBase`](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.operator_base.OperatorBase")
+
+**Returns**
+
+The converted Operator.
+
+### get\_cob\_circuit
+
+<span id="qiskit.aqua.operators.converters.PauliBasisChange.get_cob_circuit" />
+
+`PauliBasisChange.get_cob_circuit(origin)`
+
+Construct an Operator which maps the +1 and -1 eigenvectors of the origin Pauli to the +1 and -1 eigenvectors of the destination Pauli. It does so by
+
+1.  converting any |i+⟩ or |i+⟩ eigenvector bits in the origin to |+⟩ and |-⟩ with S†s, then
+2.  converting any |+⟩ or |+⟩ eigenvector bits in the converted origin to |0⟩ and |1⟩ with Hs, then
+3.  writing the parity of the significant (Z-measured, rather than I) bits in the origin to a single “origin anchor bit,” using cnots, which will hold the parity of these bits,
+4.  swapping the parity of the pauli anchor bit into a destination anchor bit using a swap gate (only if they are different, if there are any bits which are significant in both origin and dest, we set both anchors to one of these bits to avoid a swap).
+5.  writing the parity of the destination anchor bit into the other significant bits of the destination,
+6.  converting the |0⟩ and |1⟩ significant eigenvector bits to |+⟩ and |-⟩ eigenvector bits in the destination where the destination demands it (e.g. pauli.x == true for a bit), using Hs 8) converting the |+⟩ and |-⟩ significant eigenvector bits to |i+⟩ and |i-⟩ eigenvector bits in the destination where the destination demands it (e.g. pauli.x == true and pauli.z == true for a bit), using Ss
+
+**Parameters**
+
+**origin** (`Union`\[[`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.operators.pauli.Pauli"), [`PauliOp`](qiskit.aqua.operators.primitive_ops.PauliOp "qiskit.aqua.operators.primitive_ops.pauli_op.PauliOp")]) – The `Pauli` or `PauliOp` to map.
+
+**Return type**
+
+(\<class ‘qiskit.aqua.operators.primitive\_ops.primitive\_op.PrimitiveOp’>, \<class ‘qiskit.aqua.operators.primitive\_ops.pauli\_op.PauliOp’>)
+
+**Returns**
+
+A tuple of a `PrimitiveOp` which equals the basis change mapping and a `PauliOp` which equals the destination basis.
+
+**Raises**
+
+*   **TypeError** – Attempting to convert from non-Pauli origin.
+*   **ValueError** – Attempting to change a non-identity Pauli to an identity Pauli, or vice versa.
+
+### get\_diagonal\_pauli\_op
+
+<span id="qiskit.aqua.operators.converters.PauliBasisChange.get_diagonal_pauli_op" />
+
+`PauliBasisChange.get_diagonal_pauli_op(pauli_op)`
+
+Get the diagonal `PualiOp` to which `pauli_op` could be rotated with only single-qubit operations.
+
+**Parameters**
+
+**pauli\_op** ([`PauliOp`](qiskit.aqua.operators.primitive_ops.PauliOp "qiskit.aqua.operators.primitive_ops.pauli_op.PauliOp")) – The `PauliOp` whose diagonal to compute.
+
+**Return type**
+
+[`PauliOp`](qiskit.aqua.operators.primitive_ops.PauliOp "qiskit.aqua.operators.primitive_ops.pauli_op.PauliOp")
+
+**Returns**
+
+The diagonal `PauliOp`.
+
+### get\_diagonalizing\_clifford
+
+<span id="qiskit.aqua.operators.converters.PauliBasisChange.get_diagonalizing_clifford" />
+
+`PauliBasisChange.get_diagonalizing_clifford(pauli)`
+
+Construct a `CircuitOp` with only single-qubit gates which takes the eigenvectors of `pauli` to eigenvectors composed only of |0⟩ and |1⟩ tensor products. Equivalently, finds the basis-change circuit to take `pauli` to a diagonal `PauliOp` composed only of Z and I tensor products.
+
+Note, underlying Pauli bits are in Qiskit endianness, so we need to reverse before we begin composing with Operator flow.
+
+**Parameters**
+
+**pauli** (`Union`\[[`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.operators.pauli.Pauli"), [`PauliOp`](qiskit.aqua.operators.primitive_ops.PauliOp "qiskit.aqua.operators.primitive_ops.pauli_op.PauliOp")]) – the `Pauli` or `PauliOp` to whose diagonalizing circuit to compute.
+
+**Return type**
+
+[`OperatorBase`](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.operator_base.OperatorBase")
+
+**Returns**
+
+The diagonalizing `CircuitOp`.
+
+### get\_tpb\_pauli
+
+<span id="qiskit.aqua.operators.converters.PauliBasisChange.get_tpb_pauli" />
+
+`PauliBasisChange.get_tpb_pauli(list_op)`
+
+Gets the Pauli (not `PauliOp`!) whose diagonalizing single-qubit rotations is a superset of the diagonalizing single-qubit rotations for each of the Paulis in `list_op`. TBP stands for Tensor Product Basis.
+
+**Parameters**
+
+**list\_op** ([`ListOp`](qiskit.aqua.operators.list_ops.ListOp "qiskit.aqua.operators.list_ops.list_op.ListOp")) – the `ListOp` whose TBP Pauli to return.
+
+**Return type**
+
+[`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.operators.pauli.Pauli")
+
+**Returns**
+
+The TBP Pauli.
+
+### measurement\_replacement\_fn
+
+<span id="qiskit.aqua.operators.converters.PauliBasisChange.measurement_replacement_fn" />
+
+`static PauliBasisChange.measurement_replacement_fn(cob_instr_op, dest_pauli_op)`
+
+A built-in convenience replacement function which produces measurements isomorphic to an `OperatorStateFn` measurement holding the origin `PauliOp`.
+
+**Parameters**
+
+*   **cob\_instr\_op** ([`CircuitOp`](qiskit.aqua.operators.primitive_ops.CircuitOp "qiskit.aqua.operators.primitive_ops.circuit_op.CircuitOp")) – The basis-change `CircuitOp`.
+*   **dest\_pauli\_op** ([`PauliOp`](qiskit.aqua.operators.primitive_ops.PauliOp "qiskit.aqua.operators.primitive_ops.pauli_op.PauliOp")) – The destination `PauliOp`.
+
+**Return type**
+
+[`OperatorBase`](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.operator_base.OperatorBase")
+
+**Returns**
+
+The `~StateFn @ CircuitOp` composition equivalent to a measurement by the original `PauliOp`.
+
+### operator\_replacement\_fn
+
+<span id="qiskit.aqua.operators.converters.PauliBasisChange.operator_replacement_fn" />
+
+`static PauliBasisChange.operator_replacement_fn(cob_instr_op, dest_pauli_op)`
+
+A built-in convenience replacement function which produces Operators isomorphic to the origin `PauliOp`.
+
+**Parameters**
+
+*   **cob\_instr\_op** ([`CircuitOp`](qiskit.aqua.operators.primitive_ops.CircuitOp "qiskit.aqua.operators.primitive_ops.circuit_op.CircuitOp")) – The basis-change `CircuitOp`.
+*   **dest\_pauli\_op** ([`PauliOp`](qiskit.aqua.operators.primitive_ops.PauliOp "qiskit.aqua.operators.primitive_ops.pauli_op.PauliOp")) – The destination `PauliOp`.
+
+**Return type**
+
+[`OperatorBase`](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.operator_base.OperatorBase")
+
+**Returns**
+
+The `~CircuitOp @ PauliOp @ CircuitOp` composition isomorphic to the original `PauliOp`.
+
+### pad\_paulis\_to\_equal\_length
+
+<span id="qiskit.aqua.operators.converters.PauliBasisChange.pad_paulis_to_equal_length" />
+
+`PauliBasisChange.pad_paulis_to_equal_length(pauli_op1, pauli_op2)`
+
+If `pauli_op1` and `pauli_op2` do not act over the same number of qubits, pad identities to the end of the shorter of the two so they are of equal length. Padding is applied to the end of the Paulis. Note that the Terra represents Paulis in big-endian order, so this will appear as padding to the beginning of the Pauli x and z bit arrays.
+
+**Parameters**
+
+*   **pauli\_op1** ([`PauliOp`](qiskit.aqua.operators.primitive_ops.PauliOp "qiskit.aqua.operators.primitive_ops.pauli_op.PauliOp")) – A pauli\_op to possibly pad.
+*   **pauli\_op2** ([`PauliOp`](qiskit.aqua.operators.primitive_ops.PauliOp "qiskit.aqua.operators.primitive_ops.pauli_op.PauliOp")) – A pauli\_op to possibly pad.
+
+**Return type**
+
+(\<class ‘qiskit.aqua.operators.primitive\_ops.pauli\_op.PauliOp’>, \<class ‘qiskit.aqua.operators.primitive\_ops.pauli\_op.PauliOp’>)
+
+**Returns**
+
+A tuple containing the padded PauliOps.
+
+### statefn\_replacement\_fn
+
+<span id="qiskit.aqua.operators.converters.PauliBasisChange.statefn_replacement_fn" />
+
+`static PauliBasisChange.statefn_replacement_fn(cob_instr_op, dest_pauli_op)`
+
+A built-in convenience replacement function which produces state functions isomorphic to an `OperatorStateFn` state function holding the origin `PauliOp`.
+
+**Parameters**
+
+*   **cob\_instr\_op** ([`CircuitOp`](qiskit.aqua.operators.primitive_ops.CircuitOp "qiskit.aqua.operators.primitive_ops.circuit_op.CircuitOp")) – The basis-change `CircuitOp`.
+*   **dest\_pauli\_op** ([`PauliOp`](qiskit.aqua.operators.primitive_ops.PauliOp "qiskit.aqua.operators.primitive_ops.pauli_op.PauliOp")) – The destination `PauliOp`.
+
+**Return type**
+
+[`OperatorBase`](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.operator_base.OperatorBase")
+
+**Returns**
+
+The `~CircuitOp @ StateFn` composition equivalent to a state function defined by the original `PauliOp`.
+

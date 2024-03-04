@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.SolovayKitaev
 
 <span id="qiskit.transpiler.passes.SolovayKitaev" />
 
-`qiskit.transpiler.passes.SolovayKitaev(*args, **kwargs)`
+`qiskit.transpiler.passes.SolovayKitaev(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/synthesis/solovay_kitaev_synthesis.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -39,7 +39,7 @@ q_0: ┤ H ├┤ T ├┤ H ├
 
 with an L2-error of approximately 0.01.
 
-## Examples
+**Examples**
 
 Per default, the basis gate set is `["t", "tdg", "h"]`:
 
@@ -90,7 +90,7 @@ approx = generate_basic_approximations(basis, depth=3)
 skd = SolovayKitaev(recursion_degree=2, basic_approximations=approx)
 ```
 
-## References
+**References**
 
 **\[1]: Kitaev, A Yu (1997). Quantum computations: algorithms and error correction.**
 
@@ -125,13 +125,39 @@ If the pass is a TransformationPass, that means that the pass can manipulate the
 
 ## Methods
 
+### execute
+
+<span id="qiskit.transpiler.passes.SolovayKitaev.execute" />
+
+`execute(passmanager_ir, state, callback=None)`
+
+Execute optimization task for input Qiskit IR.
+
+**Parameters**
+
+*   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+*   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+
+**Returns**
+
+Optimized Qiskit IR and state of the workflow.
+
+**Return type**
+
+[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+
 ### name
 
 <span id="qiskit.transpiler.passes.SolovayKitaev.name" />
 
 `name()`
 
-Return the name of the pass.
+Name of the pass.
+
+**Return type**
+
+[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
 
 ### run
 
@@ -156,4 +182,25 @@ Output dag with 1q gates synthesized in the discrete target basis.
 **Return type**
 
 [*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")
+
+### update\_status
+
+<span id="qiskit.transpiler.passes.SolovayKitaev.update_status" />
+
+`update_status(state, run_state)`
+
+Update workflow status.
+
+**Parameters**
+
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – Pass manager state to update.
+*   **run\_state** (*RunState*) – Completion status of current task.
+
+**Returns**
+
+Updated pass manager state.
+
+**Return type**
+
+[*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")
 

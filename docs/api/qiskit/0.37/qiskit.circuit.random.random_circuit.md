@@ -1,0 +1,49 @@
+---
+title: random_circuit
+description: API reference for qiskit.circuit.random.random_circuit
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.circuit.random.random_circuit
+---
+
+# qiskit.circuit.random.random\_circuit
+
+<span id="qiskit.circuit.random.random_circuit" />
+
+`random_circuit(num_qubits, depth, max_operands=3, measure=False, conditional=False, reset=False, seed=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/random/utils.py "view source code")
+
+Generate random circuit of arbitrary size and form.
+
+This function will generate a random circuit by randomly selecting gates from the set of standard gates in [`qiskit.extensions`](extensions#module-qiskit.extensions "qiskit.extensions"). For example:
+
+```python
+from qiskit.circuit.random import random_circuit
+
+circ = random_circuit(2, 2, measure=True)
+circ.draw(output='mpl')
+```
+
+![../\_images/qiskit.circuit.random.random\_circuit\_0\_0.png](/images/api/qiskit/0.37/qiskit.circuit.random.random_circuit_0_0.png)
+
+**Parameters**
+
+*   **num\_qubits** (*int*) – number of quantum wires
+*   **depth** (*int*) – layers of operations (i.e. critical path length)
+*   **max\_operands** (*int*) – maximum operands of each gate (between 1 and 3)
+*   **measure** (*bool*) – if True, measure all qubits at the end
+*   **conditional** (*bool*) – if True, insert middle measurements and conditionals
+*   **reset** (*bool*) – if True, insert middle resets
+*   **seed** (*int*) – sets random seed (optional)
+
+**Returns**
+
+constructed circuit
+
+**Return type**
+
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+
+**Raises**
+
+**CircuitError** – when invalid options given
+

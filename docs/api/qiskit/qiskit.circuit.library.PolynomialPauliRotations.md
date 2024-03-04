@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.PolynomialPauliRotations
 
 <span id="qiskit.circuit.library.PolynomialPauliRotations" />
 
-`qiskit.circuit.library.PolynomialPauliRotations(num_state_qubits=None, coeffs=None, basis='Y', name='poly')`
+`qiskit.circuit.library.PolynomialPauliRotations(num_state_qubits=None, coeffs=None, basis='Y', name='poly')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/arithmetic/polynomial_pauli_rotations.py "view source code")
 
 Bases: [`FunctionalPauliRotations`](qiskit.circuit.library.FunctionalPauliRotations "qiskit.circuit.library.arithmetic.functional_pauli_rotations.FunctionalPauliRotations")
 
@@ -112,29 +112,17 @@ Return the degree of the polynomial, equals to the number of coefficients minus 
 
 The degree of the polynomial. If the coefficients have not been set, return 0.
 
-<span id="qiskit.circuit.library.PolynomialPauliRotations.extension_lib" />
-
-### extension\_lib
-
-`= 'include "qelib1.inc";'`
-
 <span id="qiskit.circuit.library.PolynomialPauliRotations.global_phase" />
 
 ### global\_phase
 
-Return the global phase of the circuit in radians.
-
-<span id="qiskit.circuit.library.PolynomialPauliRotations.header" />
-
-### header
-
-`= 'OPENQASM 2.0;'`
+Return the global phase of the current circuit scope in radians.
 
 <span id="qiskit.circuit.library.PolynomialPauliRotations.instances" />
 
 ### instances
 
-`= 324`
+`= 209`
 
 <span id="qiskit.circuit.library.PolynomialPauliRotations.layout" />
 
@@ -158,11 +146,11 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 
 ### num\_ancilla\_qubits
 
-Deprecated. Use num\_ancillas instead.
+The minimum number of ancilla qubits in the circuit.
 
-<Admonition title="Deprecated since version 0.16.0" type="danger">
-  The property `qiskit.circuit.library.arithmetic.polynomial_pauli_rotations.PolynomialPauliRotations.num_ancilla_qubits` is deprecated as of qiskit-terra 0.16.0. It will be removed no earlier than 3 months after the release date. Instead, use the property [`num_ancillas`](#qiskit.circuit.library.PolynomialPauliRotations.num_ancillas "qiskit.circuit.library.PolynomialPauliRotations.num_ancillas").
-</Admonition>
+**Returns**
+
+The minimal number of ancillas required.
 
 <span id="qiskit.circuit.library.PolynomialPauliRotations.num_ancillas" />
 

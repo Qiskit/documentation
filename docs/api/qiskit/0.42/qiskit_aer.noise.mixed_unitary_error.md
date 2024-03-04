@@ -1,0 +1,34 @@
+---
+title: mixed_unitary_error
+description: API reference for qiskit_aer.noise.mixed_unitary_error
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_aer.noise.mixed_unitary_error
+---
+
+# qiskit\_aer.noise.mixed\_unitary\_error
+
+<span id="qiskit_aer.noise.mixed_unitary_error" />
+
+`mixed_unitary_error(noise_ops)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/noise/errors/standard_errors.py "view source code")
+
+Return a mixed unitary quantum error channel.
+
+The input should be a list of pairs `(U[j], p[j])`, where `U[j]` is a unitary matrix and `p[j]` is a probability. All probabilities must sum to 1 for the input ops to be valid.
+
+**Parameters**
+
+**noise\_ops** (*list\[pair\[matrix, double]]*) – unitary error matrices.
+
+**Returns**
+
+The quantum error object.
+
+**Return type**
+
+[QuantumError](qiskit_aer.noise.QuantumError "qiskit_aer.noise.QuantumError")
+
+**Raises**
+
+**NoiseError** – if error parameters are invalid.
+

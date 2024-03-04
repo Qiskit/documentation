@@ -1,0 +1,130 @@
+---
+title: BIPMapping
+description: API reference for qiskit.transpiler.passes.BIPMapping
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.BIPMapping
+---
+
+# BIPMapping
+
+<span id="qiskit.transpiler.passes.BIPMapping" />
+
+`qiskit.transpiler.passes.BIPMapping(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/routing/bip_mapping.py "view source code")
+
+Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
+
+Map a DAGCircuit onto a given `coupling_map`, allocating qubits and adding swap gates.
+
+The BIP mapper tries to find the best layout and routing at once by solving a BIP (binary integer programming) problem as described in \[1].
+
+The BIP problem represents the layer-by-layer mapping of 2-qubit gates, assuming all the gates in a layer can be run on the `coupling_map`. In the problem, the variables $w$ represent the layout of qubits for each layer and the variables $x$ represent which pair of qubits should be swapped in between layers. Based on the values in the solution of the BIP problem, the mapped circuit will be constructed.
+
+The BIP mapper depends on `docplex` to represent the BIP problem and CPLEX (`cplex`) to solve it. Those packages can be installed with `pip install qiskit-terra[bip-mapper]`. Since the free version of CPLEX can solve only small BIP problems, i.e. mapping of circuits with less than about 5 qubits, the paid version of CPLEX may be needed to map larger circuits.
+
+If you want to fix physical qubits to be used in the mapping (e.g. running Quantum Volume circuits), you need to supply `qubit_subset`, i.e. list of physical qubits to be used within the `coupling_map`. Please do not use `initial_layout` for that purpose because the BIP mapper gracefully ignores `initial_layout` (and tries to determines its best layout).
+
+<Admonition title="Warning" type="caution">
+  The BIP mapper does not scale very well with respect to the number of qubits or gates. For example, it may not work with `qubit_subset` beyond 10 qubits because the BIP solver (CPLEX) may not find any solution within the default time limit.
+</Admonition>
+
+**References:**
+
+\[1] G. Nannicini et al. “Optimal qubit assignment and routing via integer programming.” [arXiv:2106.06446](https://arxiv.org/abs/2106.06446)
+
+BIPMapping initializer.
+
+<Admonition title="Deprecated since version 0.24.0" type="danger">
+  The class `qiskit.transpiler.passes.routing.bip_mapping.BIPMapping` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. This has been replaced by a new transpiler plugin package: qiskit-bip-mapper. More details can be found here: [https://github.com/qiskit-community/qiskit-bip-mapper](https://github.com/qiskit-community/qiskit-bip-mapper)
+</Admonition>
+
+**Parameters**
+
+*   **coupling\_map** (*Union\[*[*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")*,* [*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")*]*) – Directed graph represented a coupling map.
+
+*   **qubit\_subset** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – Sublist of physical qubits to be used in the mapping. If None, all qubits in the coupling\_map will be considered.
+
+*   **objective** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) –
+
+    Type of objective function to be minimized:
+
+    *   **`'gate_error'`: Approximate gate error of the circuit, which is given as the sum of**
+
+        negative logarithm of 2q-gate fidelities in the circuit. It takes into account only the 2q-gate (CNOT) errors reported in `backend_prop` and ignores the other errors in such as 1q-gates, SPAMs and idle times.
+
+    *   `'depth'`: Depth (number of 2q-gate layers) of the circuit.
+
+    *   `'balanced'`: \[Default] Weighted sum of `'gate_error'` and `'depth'`
+
+*   **backend\_prop** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – Backend properties object containing 2q-gate gate errors, which are required in computing certain types of objective function such as `'gate_error'` or `'balanced'`. If this is not available, default\_cx\_error\_rate is used instead.
+
+*   **time\_limit** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Time limit for solving BIP in seconds
+
+*   **threads** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of threads to be allowed for CPLEX to solve BIP
+
+*   **max\_swaps\_inbetween\_layers** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of swaps allowed in between layers. If None, automatically set. Large value could decrease the probability to build infeasible BIP problem but also could reduce the chance of finding a feasible solution within the `time_limit`.
+
+*   **depth\_obj\_weight** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Weight of depth objective in `'balanced'` objective. The balanced objective is the sum of error\_rate + depth\_obj\_weight \* depth.
+
+*   **default\_cx\_error\_rate** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Default CX error rate to be used if backend\_prop is not available.
+
+**Raises**
+
+*   [**MissingOptionalLibraryError**](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") – if cplex or docplex are not installed.
+*   [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if invalid options are specified.
+
+## Attributes
+
+<span id="qiskit.transpiler.passes.BIPMapping.is_analysis_pass" />
+
+### is\_analysis\_pass
+
+Check if the pass is an analysis pass.
+
+If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+
+<span id="qiskit.transpiler.passes.BIPMapping.is_transformation_pass" />
+
+### is\_transformation\_pass
+
+Check if the pass is a transformation pass.
+
+If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+
+## Methods
+
+### name
+
+<span id="qiskit.transpiler.passes.BIPMapping.name" />
+
+`name()`
+
+Return the name of the pass.
+
+### run
+
+<span id="qiskit.transpiler.passes.BIPMapping.run" />
+
+`run(dag)`
+
+Run the BIPMapping pass on dag, assuming the number of virtual qubits (defined in dag) and the number of physical qubits (defined in coupling\_map) are the same.
+
+**Parameters**
+
+**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – DAG to map.
+
+**Returns**
+
+**A mapped DAG. If there is no 2q-gate in DAG or it fails to map,**
+
+returns the original dag.
+
+**Return type**
+
+[DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+
+**Raises**
+
+*   [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if the number of virtual and physical qubits are not the same.
+*   [**AssertionError**](https://docs.python.org/3/library/exceptions.html#AssertionError "(in Python v3.12)") – if the final layout is not valid.
+

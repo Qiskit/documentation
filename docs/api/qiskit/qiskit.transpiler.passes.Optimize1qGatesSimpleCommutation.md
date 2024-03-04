@@ -10,13 +10,13 @@ python_api_name: qiskit.transpiler.passes.Optimize1qGatesSimpleCommutation
 
 <span id="qiskit.transpiler.passes.Optimize1qGatesSimpleCommutation" />
 
-`qiskit.transpiler.passes.Optimize1qGatesSimpleCommutation(*args, **kwargs)`
+`qiskit.transpiler.passes.Optimize1qGatesSimpleCommutation(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/optimization/optimize_1q_commutation.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
-Optimizes 1Q gate strings interrupted by 2Q gates by commuting the components and re- synthesizing the results. The commutation rules are stored in commutation\_table.
+Optimizes 1Q gate strings interrupted by 2Q gates by commuting the components and resynthesizing the results. The commutation rules are stored in `commutation_table`.
 
-**NOTE: In addition to those mentioned in commutation\_table, this pass has some limitations:**
+**NOTE: In addition to those mentioned in `commutation_table`, this pass has some limitations:**
 
 *   Does not handle multiple commutations in a row without intermediate progress.
 *   Can only commute into positions where there are pre-existing runs.
@@ -48,13 +48,39 @@ If the pass is a TransformationPass, that means that the pass can manipulate the
 
 ## Methods
 
+### execute
+
+<span id="qiskit.transpiler.passes.Optimize1qGatesSimpleCommutation.execute" />
+
+`execute(passmanager_ir, state, callback=None)`
+
+Execute optimization task for input Qiskit IR.
+
+**Parameters**
+
+*   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+*   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+
+**Returns**
+
+Optimized Qiskit IR and state of the workflow.
+
+**Return type**
+
+[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+
 ### name
 
 <span id="qiskit.transpiler.passes.Optimize1qGatesSimpleCommutation.name" />
 
 `name()`
 
-Return the name of the pass.
+Name of the pass.
+
+**Return type**
+
+[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
 
 ### run
 
@@ -73,4 +99,25 @@ the optimized DAG.
 **Return type**
 
 [DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+
+### update\_status
+
+<span id="qiskit.transpiler.passes.Optimize1qGatesSimpleCommutation.update_status" />
+
+`update_status(state, run_state)`
+
+Update workflow status.
+
+**Parameters**
+
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – Pass manager state to update.
+*   **run\_state** (*RunState*) – Completion status of current task.
+
+**Returns**
+
+Updated pass manager state.
+
+**Return type**
+
+[*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")
 

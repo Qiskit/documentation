@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.PiecewiseChebyshev
 
 <span id="qiskit.circuit.library.PiecewiseChebyshev" />
 
-`qiskit.circuit.library.PiecewiseChebyshev(f_x, degree=None, breakpoints=None, num_state_qubits=None, name='pw_cheb')`
+`qiskit.circuit.library.PiecewiseChebyshev(f_x, degree=None, breakpoints=None, num_state_qubits=None, name='pw_cheb')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/arithmetic/piecewise_chebyshev.py "view source code")
 
 Bases: `BlueprintCircuit`
 
@@ -20,7 +20,7 @@ For a given function $f(x)$ and degree $d$, this class implements a piecewise po
 
 The values of the parameters are calculated according to \[1] and see \[2] for a more detailed explanation of the circuit construction and how it acts on the qubits.
 
-## Examples
+**Examples**
 
 ```python
 import numpy as np
@@ -37,7 +37,7 @@ qc.draw(output='mpl')
 
 ![../\_images/qiskit-circuit-library-PiecewiseChebyshev-1.png](/images/api/qiskit/qiskit-circuit-library-PiecewiseChebyshev-1.png)
 
-## References
+**References**
 
 **\[1]: Haener, T., Roetteler, M., & Svore, K. M. (2018).**
 
@@ -101,12 +101,6 @@ The degree of the polynomials.
 
 The degree of the polynomials.
 
-<span id="qiskit.circuit.library.PiecewiseChebyshev.extension_lib" />
-
-### extension\_lib
-
-`= 'include "qelib1.inc";'`
-
 <span id="qiskit.circuit.library.PiecewiseChebyshev.f_x" />
 
 ### f\_x
@@ -121,19 +115,13 @@ The function to be approximated.
 
 ### global\_phase
 
-Return the global phase of the circuit in radians.
-
-<span id="qiskit.circuit.library.PiecewiseChebyshev.header" />
-
-### header
-
-`= 'OPENQASM 2.0;'`
+Return the global phase of the current circuit scope in radians.
 
 <span id="qiskit.circuit.library.PiecewiseChebyshev.instances" />
 
 ### instances
 
-`= 321`
+`= 206`
 
 <span id="qiskit.circuit.library.PiecewiseChebyshev.layout" />
 

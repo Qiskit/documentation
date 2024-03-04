@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.options.ResilienceOptions
 
 <span id="qiskit_ibm_runtime.options.ResilienceOptions" />
 
-`ResilienceOptions(noise_amplifier=None, noise_factors=None, extrapolator=None)`
+`ResilienceOptions(noise_amplifier=None, noise_factors=None, extrapolator=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/options/resilience_options.py#L34-L91 "view source code")
 
 Resilience options.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.ConstrainedReschedule
 
 <span id="qiskit.transpiler.passes.ConstrainedReschedule" />
 
-`qiskit.transpiler.passes.ConstrainedReschedule(*args, **kwargs)`
+`qiskit.transpiler.passes.ConstrainedReschedule(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/scheduling/alignments/reschedule.py "view source code")
 
 Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
@@ -18,7 +18,7 @@ Rescheduler pass that updates node start times to conform to the hardware alignm
 
 This pass shifts DAG node start times previously scheduled with one of the scheduling passes, e.g. [`ASAPScheduleAnalysis`](qiskit.transpiler.passes.ASAPScheduleAnalysis "qiskit.transpiler.passes.ASAPScheduleAnalysis") or [`ALAPScheduleAnalysis`](qiskit.transpiler.passes.ALAPScheduleAnalysis "qiskit.transpiler.passes.ALAPScheduleAnalysis"), so that every instruction start time satisfies alignment constraints.
 
-## Examples
+**Examples**
 
 We assume executing the following circuit on a backend with 16 dt of acquire alignment.
 
@@ -40,7 +40,7 @@ c: 1/════════════════════════╩
                              0
 ```
 
-## Notes
+**Notes**
 
 Your backend may execute circuits violating these alignment constraints. However, you may obtain erroneous measurement result because of the untracked phase originating in the instruction misalignment.
 
@@ -73,13 +73,39 @@ If the pass is a TransformationPass, that means that the pass can manipulate the
 
 ## Methods
 
+### execute
+
+<span id="qiskit.transpiler.passes.ConstrainedReschedule.execute" />
+
+`execute(passmanager_ir, state, callback=None)`
+
+Execute optimization task for input Qiskit IR.
+
+**Parameters**
+
+*   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+*   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+
+**Returns**
+
+Optimized Qiskit IR and state of the workflow.
+
+**Return type**
+
+[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+
 ### name
 
 <span id="qiskit.transpiler.passes.ConstrainedReschedule.name" />
 
 `name()`
 
-Return the name of the pass.
+Name of the pass.
+
+**Return type**
+
+[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
 
 ### run
 
@@ -125,4 +151,25 @@ Based on the configurations above, the rescheduler pass takes the following stra
 **Raises**
 
 [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – If circuit is not scheduled.
+
+### update\_status
+
+<span id="qiskit.transpiler.passes.ConstrainedReschedule.update_status" />
+
+`update_status(state, run_state)`
+
+Update workflow status.
+
+**Parameters**
+
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – Pass manager state to update.
+*   **run\_state** (*RunState*) – Completion status of current task.
+
+**Returns**
+
+Updated pass manager state.
+
+**Return type**
+
+[*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")
 

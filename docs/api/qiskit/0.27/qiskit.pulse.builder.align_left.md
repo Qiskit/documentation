@@ -1,0 +1,40 @@
+---
+title: align_left
+description: API reference for qiskit.pulse.builder.align_left
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.builder.align_left
+---
+
+# qiskit.pulse.builder.align\_left
+
+<span id="qiskit.pulse.builder.align_left" />
+
+`align_left()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/builder.py "view source code")
+
+Left alignment pulse scheduling context.
+
+Pulse instructions within this context are scheduled as early as possible by shifting them left to the earliest available time.
+
+Examples:
+
+```python
+from qiskit import pulse
+
+d0 = pulse.DriveChannel(0)
+d1 = pulse.DriveChannel(1)
+
+with pulse.build() as pulse_prog:
+    with pulse.align_left():
+        # this pulse will start at t=0
+        pulse.play(pulse.Constant(100, 1.0), d0)
+        # this pulse will start at t=0
+        pulse.play(pulse.Constant(20, 1.0), d1)
+
+assert pulse_prog.ch_start_time(d0) == pulse_prog.ch_start_time(d1)
+```
+
+**Return type**
+
+`AbstractContextManager`\[`None`]
+

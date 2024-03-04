@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.ValidatePulseGates
 
 <span id="qiskit.transpiler.passes.ValidatePulseGates" />
 
-`qiskit.transpiler.passes.ValidatePulseGates(*args, **kwargs)`
+`qiskit.transpiler.passes.ValidatePulseGates(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/scheduling/alignments/pulse_gate_validation.py "view source code")
 
 Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
@@ -20,7 +20,7 @@ This is a control electronics aware analysis pass.
 
 Quantum gates (instructions) are often implemented with shaped analog stimulus signals. These signals may be digitally stored in the waveform memory of the control electronics and converted into analog voltage signals by electronic components known as digital to analog converters (DAC).
 
-In Qiskit SDK, we can define the pulse-level implementation of custom quantum gate instructions, as a [pulse gate](https://qiskit.org/documentation/tutorials/circuits_advanced/05_pulse_gates.html), thus user gates should satisfy all waveform memory constraints imposed by the backend.
+In Qiskit SDK, we can define the pulse-level implementation of custom quantum gate instructions, as a [pulse gate](/build/pulse), thus user gates should satisfy all waveform memory constraints imposed by the backend.
 
 This pass validates all attached calibration entries and raises `TranspilerError` to kill the transpilation process if any invalid calibration entry is found. This pass saves users from waiting until job execution time to get an invalid pulse error from the backend control electronics.
 
@@ -51,13 +51,39 @@ If the pass is a TransformationPass, that means that the pass can manipulate the
 
 ## Methods
 
+### execute
+
+<span id="qiskit.transpiler.passes.ValidatePulseGates.execute" />
+
+`execute(passmanager_ir, state, callback=None)`
+
+Execute optimization task for input Qiskit IR.
+
+**Parameters**
+
+*   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+*   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+
+**Returns**
+
+Optimized Qiskit IR and state of the workflow.
+
+**Return type**
+
+[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+
 ### name
 
 <span id="qiskit.transpiler.passes.ValidatePulseGates.name" />
 
 `name()`
 
-Return the name of the pass.
+Name of the pass.
+
+**Return type**
+
+[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
 
 ### run
 
@@ -82,4 +108,25 @@ DAG with consistent timing and op nodes annotated with duration.
 **Raises**
 
 [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – When pulse gate violate pulse controller constraints.
+
+### update\_status
+
+<span id="qiskit.transpiler.passes.ValidatePulseGates.update_status" />
+
+`update_status(state, run_state)`
+
+Update workflow status.
+
+**Parameters**
+
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – Pass manager state to update.
+*   **run\_state** (*RunState*) – Completion status of current task.
+
+**Returns**
+
+Updated pass manager state.
+
+**Return type**
+
+[*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")
 

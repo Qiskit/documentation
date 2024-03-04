@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.InstructionSet
 
 <span id="qiskit.circuit.InstructionSet" />
 
-`qiskit.circuit.InstructionSet(*, resource_requester=None)`
+`qiskit.circuit.InstructionSet(*, resource_requester=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/instructionset.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
@@ -89,7 +89,7 @@ This same instance of [`InstructionSet`](#qiskit.circuit.InstructionSet "qiskit.
 
 [InstructionSet](#qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
 
-## Example
+**Example**
 
 ```python
 from qiskit import ClassicalRegister, QuantumRegister, QuantumCircuit
@@ -115,7 +115,7 @@ qc.draw('mpl')
 
 <span id="qiskit.circuit.InstructionSet.inverse" />
 
-`inverse()`
+`inverse(annotated=False)`
 
 Invert all instructions.
 

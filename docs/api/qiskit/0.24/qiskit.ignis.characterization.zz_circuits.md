@@ -1,0 +1,34 @@
+---
+title: zz_circuits
+description: API reference for qiskit.ignis.characterization.zz_circuits
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.ignis.characterization.zz_circuits
+---
+
+<span id="qiskit-ignis-characterization-zz-circuits" />
+
+# qiskit.ignis.characterization.zz\_circuits
+
+<span id="qiskit.ignis.characterization.zz_circuits" />
+
+`zz_circuits(num_of_gates, gate_time, qubits, spectators, nosc=5)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/characterization/hamiltonian/circuits.py "view source code")
+
+Generates circuit for measuring ZZ. Two Ramsey experiments, the first with the spectator in the ground state, the second with the spectator in the excited state
+
+**Parameters**
+
+*   **num\_of\_gates** (*list of integers*) – the number of identity gates in each circuit. Must be in an increasing order.
+*   **gate\_time** (*float*) – time of running a single gate.
+*   **qubits** (*list of integers*) – indices of the qubits to measure and perform the Ramsey
+*   **spectators** (*list of integers*) – indices of the qubits to flip the state (ie measure the ZZ between qubits and spectators). Must be the same length as qubits
+*   **nosc** (*int*) – number of oscillations to induce using the phase gate
+
+**Returns**
+
+A list of QuantumCircuit xdata: a list of delay times osc\_freq: the induced oscillation frequency
+
+**Raises**
+
+**ValueError** – If the number of qubits differs from the number of spectators
+

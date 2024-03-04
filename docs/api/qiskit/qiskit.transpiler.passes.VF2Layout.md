@@ -10,11 +10,11 @@ python_api_name: qiskit.transpiler.passes.VF2Layout
 
 <span id="qiskit.transpiler.passes.VF2Layout" />
 
-`qiskit.transpiler.passes.VF2Layout(*args, **kwargs)`
+`qiskit.transpiler.passes.VF2Layout(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/layout/vf2_layout.py "view source code")
 
 Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
-A pass for choosing a Layout of a circuit onto a Coupling graph, as a a subgraph isomorphism problem, solved by VF2++.
+A pass for choosing a Layout of a circuit onto a Coupling graph, as a subgraph isomorphism problem, solved by VF2++.
 
 If a solution is found that means there is a “perfect layout” and that no further swap mapping or routing is needed. If a solution is found the layout will be set in the property set as `property_set['layout']`. However, if no solution is found, no `property_set['layout']` is set. The stopping reason is set in `property_set['VF2Layout_stop_reason']` in all the cases and will be one of the values enumerated in `VF2LayoutStopReason` which has the following values:
 
@@ -22,7 +22,7 @@ If a solution is found that means there is a “perfect layout” and that no fu
 > *   `"nonexistent solution"`: If no perfect layout was found.
 > *   `">2q gates in basis"`: If VF2Layout can’t work with basis
 
-By default this pass will construct a heuristic scoring map based on the the error rates in the provided `target` (or `properties` if `target` is not provided). However, analysis passes can be run prior to this pass and set `vf2_avg_error_map` in the property set with a `ErrorMap` instance. If a value is `NaN` that is treated as an ideal edge For example if an error map is created as:
+By default, this pass will construct a heuristic scoring map based on the error rates in the provided `target` (or `properties` if `target` is not provided). However, analysis passes can be run prior to this pass and set `vf2_avg_error_map` in the property set with a `ErrorMap` instance. If a value is `NaN` that is treated as an ideal edge For example if an error map is created as:
 
 ```python
 from qiskit.transpiler.passes.layout.vf2_utils import ErrorMap
@@ -72,13 +72,39 @@ If the pass is a TransformationPass, that means that the pass can manipulate the
 
 ## Methods
 
+### execute
+
+<span id="qiskit.transpiler.passes.VF2Layout.execute" />
+
+`execute(passmanager_ir, state, callback=None)`
+
+Execute optimization task for input Qiskit IR.
+
+**Parameters**
+
+*   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+*   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+
+**Returns**
+
+Optimized Qiskit IR and state of the workflow.
+
+**Return type**
+
+[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+
 ### name
 
 <span id="qiskit.transpiler.passes.VF2Layout.name" />
 
 `name()`
 
-Return the name of the pass.
+Name of the pass.
+
+**Return type**
+
+[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
 
 ### run
 
@@ -87,4 +113,25 @@ Return the name of the pass.
 `run(dag)`
 
 run the layout method
+
+### update\_status
+
+<span id="qiskit.transpiler.passes.VF2Layout.update_status" />
+
+`update_status(state, run_state)`
+
+Update workflow status.
+
+**Parameters**
+
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – Pass manager state to update.
+*   **run\_state** (*RunState*) – Completion status of current task.
+
+**Returns**
+
+Updated pass manager state.
+
+**Return type**
+
+[*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")
 

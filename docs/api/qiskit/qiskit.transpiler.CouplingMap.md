@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.CouplingMap
 
 <span id="qiskit.transpiler.CouplingMap" />
 
-`qiskit.transpiler.CouplingMap(couplinglist=None, description=None)`
+`qiskit.transpiler.CouplingMap(couplinglist=None, description=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/coupling.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
@@ -184,7 +184,7 @@ The undirected distance
 
 Draws the coupling map.
 
-This function calls the [`graphviz_draw()`](https://qiskit.org/ecosystem/rustworkx/apiref/rustworkx.visualization.graphviz_draw.html#rustworkx.visualization.graphviz_draw "(in rustworkx v0.13.2)") function from the `rustworkx` package to draw the [`CouplingMap`](#qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") object.
+This function calls the [`graphviz_draw()`](https://www.rustworkx.org/apiref/rustworkx.visualization.graphviz_draw.html#rustworkx.visualization.graphviz_draw "(in rustworkx v0.14)") function from the `rustworkx` package to draw the [`CouplingMap`](#qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") object.
 
 **Returns**
 
@@ -370,13 +370,14 @@ Directionality matters, i.e. a neighbor must be reachable by going one hop in th
 
 <span id="qiskit.transpiler.CouplingMap.reduce" />
 
-`reduce(mapping)`
+`reduce(mapping, check_if_connected=True)`
 
 Returns a reduced coupling map that corresponds to the subgraph of qubits selected in the mapping.
 
 **Parameters**
 
-**mapping** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – A mapping of reduced qubits to device qubits.
+*   **mapping** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – A mapping of reduced qubits to device qubits.
+*   **check\_if\_connected** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if True, checks that the reduced coupling map is connected.
 
 **Returns**
 
@@ -422,18 +423,4 @@ List
 `size()`
 
 Return the number of physical qubits in this graph.
-
-### subgraph
-
-<span id="qiskit.transpiler.CouplingMap.subgraph" />
-
-`subgraph(nodelist)`
-
-Return a CouplingMap object for a subgraph of self.
-
-nodelist (list): list of integer node labels
-
-<Admonition title="Deprecated since version 0.20.0" type="danger">
-  The method `qiskit.transpiler.coupling.CouplingMap.subgraph()` is deprecated as of qiskit-terra 0.20.0. It will be removed no earlier than 3 months after the release date. Instead, use [`reduce()`](#qiskit.transpiler.CouplingMap.reduce "qiskit.transpiler.CouplingMap.reduce"). It does the same thing, but preserves nodelist order.
-</Admonition>
 

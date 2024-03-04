@@ -10,15 +10,15 @@ python_api_name: qiskit.circuit.library.C3SXGate
 
 <span id="qiskit.circuit.library.C3SXGate" />
 
-`qiskit.circuit.library.C3SXGate(label=None, ctrl_state=None)`
+`qiskit.circuit.library.C3SXGate(*args, _force_mutable=False, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/x.py "view source code")
 
-Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
+Bases: [`SingletonControlledGate`](circuit_singleton#qiskit.circuit.singleton.SingletonControlledGate "qiskit.circuit.singleton.SingletonControlledGate")
 
 The 3-qubit controlled sqrt-X gate.
 
 This implementation is based on Page 17 of \[1].
 
-## References
+**References**
 
 \[1] Barenco et al., 1995. [https://arxiv.org/pdf/quant-ph/9503016.pdf](https://arxiv.org/pdf/quant-ph/9503016.pdf)
 
@@ -26,10 +26,37 @@ Create a new 3-qubit controlled sqrt-X gate.
 
 **Parameters**
 
-*   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *or None*) – An optional label for the gate \[Default: None]
-*   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *or*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
+*   **label** – An optional label for the gate \[Default: `None`]
+*   **ctrl\_state** – control state expressed as integer, string (e.g.\`\`’110’`), or ``None`. If `None`, use all 1s.
 
 ## Attributes
+
+<span id="qiskit.circuit.library.C3SXGate.base_class" />
+
+### base\_class
+
+Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+
+The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.C3SXGate.base_class "qiskit.circuit.library.C3SXGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
+
+This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+
+```python
+>>> isinstance(XGate(), XGate)
+True
+>>> type(XGate()) is XGate
+False
+>>> XGate().base_class is XGate
+True
+```
+
+In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+
+<span id="qiskit.circuit.library.C3SXGate.condition" />
+
+### condition
+
+The classical condition on the instruction.
 
 <span id="qiskit.circuit.library.C3SXGate.condition_bits" />
 
@@ -66,6 +93,14 @@ Get the duration.
 ### label
 
 Return instruction label
+
+<span id="qiskit.circuit.library.C3SXGate.mutable" />
+
+### mutable
+
+Is this instance is a mutable unique instance or not.
+
+If this attribute is `False` the gate instance is a shared singleton and is not mutable.
 
 <span id="qiskit.circuit.library.C3SXGate.name" />
 
@@ -126,16 +161,4 @@ List of gate parameters.
 ### unit
 
 Get the time unit of duration.
-
-## Methods
-
-### qasm
-
-<span id="qiskit.circuit.library.C3SXGate.qasm" />
-
-`qasm()`
-
-<Admonition title="Deprecated since version 0.25.0" type="danger">
-  The method `qiskit.circuit.library.standard_gates.x.C3SXGate.qasm()` is deprecated as of qiskit-terra 0.25.0. It will be removed no earlier than 3 months after the release date.
-</Admonition>
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.transforms.AlignLeft
 
 <span id="qiskit.pulse.transforms.AlignLeft" />
 
-`qiskit.pulse.transforms.AlignLeft`
+`qiskit.pulse.transforms.AlignLeft` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/pulse/transforms/alignments.py "view source code")
 
 Bases: [`AlignmentKind`](pulse#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.alignments.AlignmentKind")
 
@@ -49,20 +49,4 @@ Schedule with reallocated instructions.
 **Return type**
 
 [*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
-
-### to\_dict
-
-<span id="qiskit.pulse.transforms.AlignLeft.to_dict" />
-
-`to_dict()`
-
-Returns dictionary to represent this alignment.
-
-<Admonition title="Deprecated since version 0.21" type="danger">
-  The method `qiskit.pulse.transforms.alignments.AlignmentKind.to_dict()` is deprecated as of qiskit-terra 0.21. It will be removed no earlier than 3 months after the release date.
-</Admonition>
-
-**Return type**
-
-[*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.12)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)"), [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")]
 

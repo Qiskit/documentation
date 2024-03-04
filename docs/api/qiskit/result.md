@@ -20,13 +20,15 @@ python_api_name: qiskit.result
 
 |                                                                                                       |                                                            |
 | ----------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| [`Result`](qiskit.result.Result "qiskit.result.Result")(backend\_name, backend\_version, ...\[, ...]) | Model for Results.                                         |
+| [`Result`](qiskit.result.Result "qiskit.result.Result")(backend\_name, backend\_version, ...\[, ...]) | Model for Results.                                         |
 | [`ResultError`](qiskit.result.ResultError "qiskit.result.ResultError")(error)                         | Exceptions raised due to errors in result output.          |
-| [`Counts`](qiskit.result.Counts "qiskit.result.Counts")(data\[, time\_taken, creg\_sizes, ...])       | A class to store a counts result from a circuit execution. |
+| [`Counts`](qiskit.result.Counts "qiskit.result.Counts")(data\[, time\_taken, creg\_sizes, ...])       | A class to store a counts result from a circuit execution. |
+
+### marginal\_counts
 
 <span id="qiskit.result.marginal_counts" />
 
-`qiskit.result.marginal_counts(result, indices=None, inplace=False, format_marginal=False, marginalize_memory=True)`
+`qiskit.result.marginal_counts(result, indices=None, inplace=False, format_marginal=False, marginalize_memory=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/result/utils.py "view source code")
 
 Marginalize counts from an experiment over some indices of interest.
 
@@ -52,9 +54,11 @@ the observed counts, marginalized to only account for frequency of observations 
 
 [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – in case of invalid indices to marginalize over.
 
+### marginal\_distribution
+
 <span id="qiskit.result.marginal_distribution" />
 
-`qiskit.result.marginal_distribution(counts, indices=None, format_marginal=False)`
+`qiskit.result.marginal_distribution(counts, indices=None, format_marginal=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/result/utils.py "view source code")
 
 Marginalize counts from an experiment over some indices of interest.
 
@@ -79,9 +83,11 @@ A marginalized dictionary
 *   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – If any value in `indices` is invalid or the `counts` dict
 *   **is invalid.** –
 
+### marginal\_memory
+
 <span id="qiskit.result.marginal_memory" />
 
-`qiskit.result.marginal_memory(memory, indices=None, int_return=False, hex_return=False, avg_data=False, parallel_threshold=1000)`
+`qiskit.result.marginal_memory(memory, indices=None, int_return=False, hex_return=False, avg_data=False, parallel_threshold=1000)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/result/utils.py "view source code")
 
 Marginalize shot memory
 
@@ -112,14 +118,16 @@ marginal\_memory
 
 |                                                                                                               |                                                          |
 | ------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
-| [`ProbDistribution`](qiskit.result.ProbDistribution "qiskit.result.ProbDistribution")(data\[, shots])         | A generic dict-like class for probability distributions. |
-| [`QuasiDistribution`](qiskit.result.QuasiDistribution "qiskit.result.QuasiDistribution")(data\[, shots, ...]) | A dict-like class for representing quasi-probabilities.  |
+| [`ProbDistribution`](qiskit.result.ProbDistribution "qiskit.result.ProbDistribution")(data\[, shots])         | A generic dict-like class for probability distributions. |
+| [`QuasiDistribution`](qiskit.result.QuasiDistribution "qiskit.result.QuasiDistribution")(data\[, shots, ...]) | A dict-like class for representing quasi-probabilities.  |
 
 ## Expectation values
 
+### sampled\_expectation\_value
+
 <span id="qiskit.result.sampled_expectation_value" />
 
-`qiskit.result.sampled_expectation_value(dist, oper)`
+`qiskit.result.sampled_expectation_value(dist, oper)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/result/sampled_expval.py "view source code")
 
 Computes expectation value from a sampled distribution
 
@@ -128,7 +136,7 @@ Note that passing a raw dict requires bit-string keys.
 **Parameters**
 
 *   **dist** ([*Counts*](qiskit.result.Counts "qiskit.result.Counts")  *or*[*QuasiDistribution*](qiskit.result.QuasiDistribution "qiskit.result.QuasiDistribution")  *or*[*ProbDistribution*](qiskit.result.ProbDistribution "qiskit.result.ProbDistribution")  *or*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – Input sampled distribution
-*   **oper** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *or*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *or*[*PauliOp*](qiskit.opflow.primitive_ops.PauliOp "qiskit.opflow.primitive_ops.PauliOp")  *or*[*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")  *or*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")) – The operator for the observable
+*   **oper** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *or*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *or PauliOp or PauliSumOp or*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")) – The operator for the observable
 
 **Returns**
 
@@ -148,5 +156,5 @@ The expectation value
 | --------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
 | [`BaseReadoutMitigator`](qiskit.result.BaseReadoutMitigator "qiskit.result.BaseReadoutMitigator")()                                     | Base readout error mitigator class.             |
 | [`CorrelatedReadoutMitigator`](qiskit.result.CorrelatedReadoutMitigator "qiskit.result.CorrelatedReadoutMitigator")(assignment\_matrix) | N-qubit readout error mitigator.                |
-| [`LocalReadoutMitigator`](qiskit.result.LocalReadoutMitigator "qiskit.result.LocalReadoutMitigator")(\[assignment\_matrices, ...])      | 1-qubit tensor product readout error mitigator. |
+| [`LocalReadoutMitigator`](qiskit.result.LocalReadoutMitigator "qiskit.result.LocalReadoutMitigator")(\[assignment\_matrices, ...])      | 1-qubit tensor product readout error mitigator. |
 

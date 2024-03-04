@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlu
 
 <span id="qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin" />
 
-`qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin`
+`qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/synthesis/plugin.py "view source code")
 
 Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 
@@ -24,14 +24,17 @@ This abstract class defines the interface for high-level synthesis plugins.
 
 <span id="qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin.run" />
 
-`abstract run(high_level_object, **options)`
+`abstract run(high_level_object, coupling_map=None, target=None, qubits=None, **options)`
 
 Run synthesis for the given Operation.
 
 **Parameters**
 
-*   **high\_level\_object** ([*Operation*](qiskit.circuit.Operation "qiskit.circuit.Operation")) – The Operation to synthesize to a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") object
-*   **options** – The optional kwargs.
+*   **high\_level\_object** ([*Operation*](qiskit.circuit.Operation "qiskit.circuit.Operation")) – The Operation to synthesize to a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") object.
+*   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – The coupling map of the backend in case synthesis is done on a physical circuit.
+*   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – A target representing the target backend.
+*   **qubits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – List of qubits over which the operation is defined in case synthesis is done on a physical circuit.
+*   **options** – Additional method-specific optional kwargs.
 
 **Returns**
 

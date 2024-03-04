@@ -1,0 +1,99 @@
+---
+title: ParameterExpression
+description: API reference for qiskit.circuit.ParameterExpression
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.ParameterExpression
+---
+
+# ParameterExpression
+
+<span id="qiskit.circuit.ParameterExpression" />
+
+`ParameterExpression(symbol_map, expr)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/parameterexpression.py "view source code")
+
+ParameterExpression class to enable creating expressions of Parameters.
+
+Create a new ParameterExpression.
+
+Not intended to be called directly, but to be instantiated via operations on other Parameter or ParameterExpression objects.
+
+**Parameters**
+
+*   **symbol\_map** (*dict*) – Mapping of Parameter instances to the sympy.Symbol serving as their placeholder in expr.
+*   **expr** (*sympy.Expr*) – Expression of sympy.Symbols.
+
+## Attributes
+
+### parameters
+
+Returns a set of the unbound Parameters in the expression.
+
+## Methods
+
+### \_\_mul\_\_
+
+<span id="qiskit.circuit.ParameterExpression.__mul__" />
+
+`ParameterExpression.__mul__(other)`
+
+### bind
+
+<span id="qiskit.circuit.ParameterExpression.bind" />
+
+`ParameterExpression.bind(parameter_values)`
+
+Binds the provided set of parameters to their corresponding values.
+
+**Parameters**
+
+**parameter\_values** (*dict*) – Mapping of Parameter instances to the numeric value to which they will be bound.
+
+**Raises**
+
+*   **CircuitError** –
+
+    *   If parameter\_values contains Parameters outside those in self. - If a non-numeric value is passed in parameter\_values.
+
+*   **ZeroDivisionError** –
+
+    *   If binding the provided values requires division by zero.
+
+**Returns**
+
+**a new expression parameterized by any parameters**
+
+which were not bound by parameter\_values.
+
+**Return type**
+
+[ParameterExpression](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")
+
+### subs
+
+<span id="qiskit.circuit.ParameterExpression.subs" />
+
+`ParameterExpression.subs(parameter_map)`
+
+Returns a new Expression with replacement Parameters.
+
+**Parameters**
+
+**parameter\_map** (*dict*) – Mapping from Parameters in self to the Parameter instances with which they should be replaced.
+
+**Raises**
+
+**CircuitError** –
+
+*   If parameter\_map contains Parameters outside those in self. - If the replacement Parameters in parameter\_map would result in a name conflict in the generated expression.
+
+**Returns**
+
+**a new expression with the specified parameters**
+
+replaced.
+
+**Return type**
+
+[ParameterExpression](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")
+

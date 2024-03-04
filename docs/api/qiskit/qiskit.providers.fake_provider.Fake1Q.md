@@ -10,9 +10,9 @@ python_api_name: qiskit.providers.fake_provider.Fake1Q
 
 <span id="qiskit.providers.fake_provider.Fake1Q" />
 
-`qiskit.providers.fake_provider.Fake1Q`
+`qiskit.providers.fake_provider.Fake1Q` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/providers/fake_provider/fake_1q.py "view source code")
 
-Bases: `FakeBackend`
+Bases: [`FakeBackend`](providers_fake_provider#qiskit.providers.fake_provider.FakeBackend "qiskit.providers.fake_provider.fake_backend.FakeBackend")
 
 A fake 1Q backend.
 

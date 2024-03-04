@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.library.CYGate
 
 <span id="qiskit.circuit.library.CYGate" />
 
-`qiskit.circuit.library.CYGate(label=None, ctrl_state=None)`
+`qiskit.circuit.library.CYGate(*args, _force_mutable=False, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/y.py "view source code")
 
-Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
+Bases: [`SingletonControlledGate`](circuit_singleton#qiskit.circuit.singleton.SingletonControlledGate "qiskit.circuit.singleton.SingletonControlledGate")
 
 Controlled-Y gate.
 
@@ -30,14 +30,14 @@ q_1: ┤ Y ├
 **Matrix representation:**
 
 $$
-\begin{split}CY\ q_0, q_1 =
+CY\ q_0, q_1 =
 I \otimes |0 \rangle\langle 0| + Y \otimes |1 \rangle\langle 1|  =
     \begin{pmatrix}
         1 & 0 & 0 & 0 \\
         0 & 0 & 0 & -i \\
         0 & 0 & 1 & 0 \\
         0 & i & 0 & 0
-    \end{pmatrix}\end{split}
+    \end{pmatrix}
 $$
 
 <Admonition title="Note" type="note">
@@ -51,20 +51,47 @@ $$
   ```
 
   $$
-  \begin{split}CY\ q_1, q_0 =
+  CY\ q_1, q_0 =
       |0 \rangle\langle 0| \otimes I + |1 \rangle\langle 1| \otimes Y =
       \begin{pmatrix}
           1 & 0 & 0 & 0 \\
           0 & 1 & 0 & 0 \\
           0 & 0 & 0 & -i \\
           0 & 0 & i & 0
-      \end{pmatrix}\end{split}
+      \end{pmatrix}
   $$
 </Admonition>
 
 Create new CY gate.
 
 ## Attributes
+
+<span id="qiskit.circuit.library.CYGate.base_class" />
+
+### base\_class
+
+Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+
+The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.CYGate.base_class "qiskit.circuit.library.CYGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
+
+This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+
+```python
+>>> isinstance(XGate(), XGate)
+True
+>>> type(XGate()) is XGate
+False
+>>> XGate().base_class is XGate
+True
+```
+
+In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+
+<span id="qiskit.circuit.library.CYGate.condition" />
+
+### condition
+
+The classical condition on the instruction.
 
 <span id="qiskit.circuit.library.CYGate.condition_bits" />
 
@@ -101,6 +128,14 @@ Get the duration.
 ### label
 
 Return instruction label
+
+<span id="qiskit.circuit.library.CYGate.mutable" />
+
+### mutable
+
+Is this instance is a mutable unique instance or not.
+
+If this attribute is `False` the gate instance is a shared singleton and is not mutable.
 
 <span id="qiskit.circuit.library.CYGate.name" />
 
@@ -168,7 +203,19 @@ Get the time unit of duration.
 
 <span id="qiskit.circuit.library.CYGate.inverse" />
 
-`inverse()`
+`inverse(annotated=False)`
 
 Return inverted CY gate (itself).
+
+**Parameters**
+
+**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as this gate is self-inverse.
+
+**Returns**
+
+inverse gate (self-inverse).
+
+**Return type**
+
+[CYGate](#qiskit.circuit.library.CYGate "qiskit.circuit.library.CYGate")
 

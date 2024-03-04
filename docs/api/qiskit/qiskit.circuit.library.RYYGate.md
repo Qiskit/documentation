@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.RYYGate
 
 <span id="qiskit.circuit.library.RYYGate" />
 
-`qiskit.circuit.library.RYYGate(theta, label=None)`
+`qiskit.circuit.library.RYYGate(theta, label=None, *, duration=None, unit='dt')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/ryy.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -33,13 +33,15 @@ q_1: ┤0        ├
 **Matrix Representation:**
 
 $$
- \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}R_{YY}(\theta) = \exp\left(-i \th Y{\otimes}Y\right) =
+\newcommand{\rotationangle}{\frac{\theta}{2}}
+
+R_{YY}(\theta) = \exp\left(-i \rotationangle Y{\otimes}Y\right) =
     \begin{pmatrix}
-        \cos\left(\th\right)   & 0           & 0           & i\sin\left(\th\right) \\
-        0           & \cos\left(\th\right)   & -i\sin\left(\th\right) & 0 \\
-        0           & -i\sin\left(\th\right) & \cos\left(\th\right)   & 0 \\
-        i\sin\left(\th\right)  & 0           & 0           & \cos\left(\th\right)
-    \end{pmatrix}\end{split}\end{aligned}\end{align} 
+        \cos\left(\rotationangle\right) & 0 & 0 & i\sin\left(\rotationangle\right) \\
+        0 & \cos\left(\rotationangle\right) & -i\sin\left(\rotationangle\right) & 0 \\
+        0 & -i\sin\left(\rotationangle\right) & \cos\left(\rotationangle\right) & 0 \\
+        i\sin\left(\rotationangle\right) & 0 & 0 & \cos\left(\rotationangle\right)
+    \end{pmatrix}
 $$
 
 **Examples:**
@@ -53,18 +55,45 @@ $$
 > $$
 >
 > $$
-> \begin{split}R_{YY}\left(\theta = \frac{\pi}{2}\right) = \frac{1}{\sqrt{2}}
+> R_{YY}\left(\theta = \frac{\pi}{2}\right) = \frac{1}{\sqrt{2}}
 >                         \begin{pmatrix}
 >                             1 & 0 & 0 & i \\
 >                             0 & 1 & -i & 0 \\
 >                             0 & -i & 1 & 0 \\
 >                             i & 0 & 0 & 1
->                         \end{pmatrix}\end{split}
+>                         \end{pmatrix}
 > $$
 
 Create new RYY gate.
 
 ## Attributes
+
+<span id="qiskit.circuit.library.RYYGate.base_class" />
+
+### base\_class
+
+Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+
+The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.RYYGate.base_class "qiskit.circuit.library.RYYGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
+
+This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+
+```python
+>>> isinstance(XGate(), XGate)
+True
+>>> type(XGate()) is XGate
+False
+>>> XGate().base_class is XGate
+True
+```
+
+In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+
+<span id="qiskit.circuit.library.RYYGate.condition" />
+
+### condition
+
+The classical condition on the instruction.
 
 <span id="qiskit.circuit.library.RYYGate.condition_bits" />
 
@@ -95,6 +124,14 @@ Get the duration.
 ### label
 
 Return instruction label
+
+<span id="qiskit.circuit.library.RYYGate.mutable" />
+
+### mutable
+
+Is this instance is a mutable unique instance or not.
+
+If this attribute is `False` the gate instance is a shared singleton and is not mutable.
 
 <span id="qiskit.circuit.library.RYYGate.name" />
 
@@ -132,9 +169,21 @@ Get the time unit of duration.
 
 <span id="qiskit.circuit.library.RYYGate.inverse" />
 
-`inverse()`
+`inverse(annotated=False)`
 
 Return inverse RYY gate (i.e. with the negative rotation angle).
+
+**Parameters**
+
+**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always a [`RYYGate`](#qiskit.circuit.library.RYYGate "qiskit.circuit.library.RYYGate") with an inverted parameter value.
+
+**Returns**
+
+inverse gate.
+
+**Return type**
+
+[RYYGate](#qiskit.circuit.library.RYYGate "qiskit.circuit.library.RYYGate")
 
 ### power
 

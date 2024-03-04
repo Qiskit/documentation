@@ -10,13 +10,17 @@ python_api_name: qiskit.result.QuasiDistribution
 
 <span id="qiskit.result.QuasiDistribution" />
 
-`qiskit.result.QuasiDistribution(data, shots=None, stddev_upper_bound=None)`
+`qiskit.result.QuasiDistribution(data, shots=None, stddev_upper_bound=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/result/distributions/quasi.py "view source code")
 
 Bases: [`dict`](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
 
 A dict-like class for representing quasi-probabilities.
 
 Builds a quasiprobability distribution object.
+
+<Admonition title="Note" type="note">
+  The quasiprobability values might include floating-point errors. `QuasiDistribution.__repr__` rounds using `numpy.round()` and the parameter `ndigits` can be manipulated with the class attribute `__ndigits__`. The default is `15`.
+</Admonition>
 
 **Parameters**
 
@@ -147,7 +151,7 @@ Nearest probability distribution. float: Euclidean (L2) distance of distribution
 
 [ProbDistribution](qiskit.result.ProbDistribution "qiskit.result.ProbDistribution")
 
-## Notes
+**Notes**
 
 Method from Smolin et al., Phys. Rev. Lett. 108, 070502 (2012).
 

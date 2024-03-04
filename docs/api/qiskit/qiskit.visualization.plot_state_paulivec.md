@@ -12,7 +12,7 @@ python_api_name: qiskit.visualization.plot_state_paulivec
 
 <span id="qiskit.visualization.plot_state_paulivec" />
 
-`qiskit.visualization.plot_state_paulivec(state, title='', figsize=None, color=None, ax=None, *, rho=None, filename=None)`
+`qiskit.visualization.plot_state_paulivec(state, title='', figsize=None, color=None, ax=None, *, filename=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/visualization/state_visualization.py "view source code")
 
 Plot the Pauli-vector representation of a quantum state as bar graph.
 
@@ -25,17 +25,13 @@ $$
 
 This function plots the coefficients $\mathrm{Tr}(\sigma\rho)$ as bar graph.
 
-<Admonition title="Deprecated since version 0.15.1" type="danger">
-  `qiskit.visualization.state_visualization.plot_state_paulivec()`’s argument `rho` is deprecated as of qiskit-terra 0.15.1. It will be removed no earlier than 3 months after the release date. Instead, use the argument `state`, which behaves identically.
-</Admonition>
-
 **Parameters**
 
 *   **state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") *or ndarray*) – an N-qubit quantum state.
 *   **title** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – a string that represents the plot title
 *   **figsize** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – Figure size in inches.
 *   **color** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")  *or*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Color of the coefficient value bars.
-*   **ax** ([*matplotlib.axes.Axes*](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html#matplotlib.axes.Axes "(in Matplotlib v3.8.0)")) – An optional Axes object to be used for the visualization output. If none is specified a new matplotlib Figure will be created and used. Additionally, if specified there will be no returned Figure since it is redundant.
+*   **ax** ([*matplotlib.axes.Axes*](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html#matplotlib.axes.Axes "(in Matplotlib v3.8.3)")) – An optional Axes object to be used for the visualization output. If none is specified a new matplotlib Figure will be created and used. Additionally, if specified there will be no returned Figure since it is redundant.
 
 **Returns**
 
@@ -43,14 +39,14 @@ The matplotlib.Figure of the visualization if the `ax` kwarg is not set
 
 **Return type**
 
-[`matplotlib.figure.Figure`](https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure "(in Matplotlib v3.8.0)")
+[`matplotlib.figure.Figure`](https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure "(in Matplotlib v3.8.3)")
 
 **Raises**
 
 *   [**MissingOptionalLibraryError**](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") – Requires matplotlib.
 *   [**VisualizationError**](visualization#qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – if input is not a valid N-qubit state.
 
-## Examples
+**Examples**
 
 ```python
 # You can set a color for all the bars.

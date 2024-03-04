@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.library.iSwapGate
 
 <span id="qiskit.circuit.library.iSwapGate" />
 
-`qiskit.circuit.library.iSwapGate(label=None)`
+`qiskit.circuit.library.iSwapGate(*args, _force_mutable=False, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/iswap.py "view source code")
 
-Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+Bases: [`SingletonGate`](circuit_singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate")
 
 iSWAP gate.
 
@@ -41,20 +41,20 @@ q_1: ┤ S ├─────┤ X ├──■──┤ H ├
 **Matrix Representation:**
 
 $$
-\begin{split}iSWAP = R_{XX+YY}\left(-\frac{\pi}{2}\right)
+iSWAP = R_{XX+YY}\left(-\frac{\pi}{2}\right)
   = \exp\left(i \frac{\pi}{4} \left(X{\otimes}X+Y{\otimes}Y\right)\right) =
     \begin{pmatrix}
         1 & 0 & 0 & 0 \\
         0 & 0 & i & 0 \\
         0 & i & 0 & 0 \\
         0 & 0 & 0 & 1
-    \end{pmatrix}\end{split}
+    \end{pmatrix}
 $$
 
 This gate is equivalent to a SWAP up to a diagonal.
 
 $$
-\begin{split}iSWAP =
+iSWAP =
    \begin{pmatrix}
        1 & 0 & 0 & 0 \\
        0 & 0 & 1 & 0 \\
@@ -66,12 +66,39 @@ $$
        0 & i & 0 & 0 \\
        0 & 0 & i & 0 \\
        0 & 0 & 0 & 1
-   \end{pmatrix}\end{split}
+   \end{pmatrix}
 $$
 
 Create new iSwap gate.
 
 ## Attributes
+
+<span id="qiskit.circuit.library.iSwapGate.base_class" />
+
+### base\_class
+
+Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+
+The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.iSwapGate.base_class "qiskit.circuit.library.iSwapGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
+
+This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+
+```python
+>>> isinstance(XGate(), XGate)
+True
+>>> type(XGate()) is XGate
+False
+>>> XGate().base_class is XGate
+True
+```
+
+In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+
+<span id="qiskit.circuit.library.iSwapGate.condition" />
+
+### condition
+
+The classical condition on the instruction.
 
 <span id="qiskit.circuit.library.iSwapGate.condition_bits" />
 
@@ -102,6 +129,14 @@ Get the duration.
 ### label
 
 Return instruction label
+
+<span id="qiskit.circuit.library.iSwapGate.mutable" />
+
+### mutable
+
+Is this instance is a mutable unique instance or not.
+
+If this attribute is `False` the gate instance is a shared singleton and is not mutable.
 
 <span id="qiskit.circuit.library.iSwapGate.name" />
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.EfficientSU2
 
 <span id="qiskit.circuit.library.EfficientSU2" />
 
-`qiskit.circuit.library.EfficientSU2(num_qubits=None, su2_gates=None, entanglement='reverse_linear', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='EfficientSU2', flatten=None)`
+`qiskit.circuit.library.EfficientSU2(num_qubits=None, su2_gates=None, entanglement='reverse_linear', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='EfficientSU2', flatten=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/n_local/efficient_su2.py "view source code")
 
 Bases: [`TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.n_local.two_local.TwoLocal")
 
@@ -34,7 +34,7 @@ On 3 qubits and using the Pauli $Y$ and $Z$ su2\_gates as single qubit gates, th
 
 See [`RealAmplitudes`](qiskit.circuit.library.RealAmplitudes "qiskit.circuit.library.RealAmplitudes") for more detail on the possible arguments and options such as skipping unentanglement qubits, which apply here too.
 
-## Examples
+**Examples**
 
 ```python
 >>> circuit = EfficientSU2(3, reps=1)
@@ -123,12 +123,6 @@ The blocks in the entanglement layers.
 
 The blocks in the entanglement layers.
 
-<span id="qiskit.circuit.library.EfficientSU2.extension_lib" />
-
-### extension\_lib
-
-`= 'include "qelib1.inc";'`
-
 <span id="qiskit.circuit.library.EfficientSU2.flatten" />
 
 ### flatten
@@ -139,13 +133,7 @@ Returns whether the circuit is wrapped in nested gates/instructions or flattened
 
 ### global\_phase
 
-Return the global phase of the circuit in radians.
-
-<span id="qiskit.circuit.library.EfficientSU2.header" />
-
-### header
-
-`= 'OPENQASM 2.0;'`
+Return the global phase of the current circuit scope in radians.
 
 <span id="qiskit.circuit.library.EfficientSU2.initial_state" />
 
@@ -171,7 +159,7 @@ If barriers are inserted in between the layers or not.
 
 ### instances
 
-`= 127`
+`= 166`
 
 <span id="qiskit.circuit.library.EfficientSU2.layout" />
 
@@ -267,7 +255,7 @@ The parameters used in the underlying circuit.
 
 This includes float values and duplicates.
 
-## Examples
+**Examples**
 
 ```python
 >>> # prepare circuit ...
