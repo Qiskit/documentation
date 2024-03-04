@@ -559,6 +559,32 @@ sampler = Sampler (options=options, backend=backend)
   </TabItem>
 </Tabs>
 
+### Job status
+
+The V2 primitives have a new `RuntimeJobV2` class, which inherits from `BasePrimitiveJob`. The `status()` method of this new class returns a string instead of JobStatus enum from Qiskit. See the [API reference](../runtime/tags/jobs#tags__jobs__operations__RuntimeJobV2) for details.
+
+<Tabs>
+  <TabItem value="V2" label="V2 primitives">
+```python
+job = estimator.run(...)
+
+# check if a job is still running
+print(f"Job {job.job_id()} is still running: {job.status() == "RUNNING"}")
+``` 
+  </TabItem>
+
+  <TabItem value="V1" label="V1 primitives">
+```python
+from qiskit.providers.jobstatus import JobStatus
+
+job = estimator.run(...)
+
+#check if a job is still running
+print(f"Job {job.job_id()} is still running: {job.status() is JobStatus.RUNNING}")
+``` 
+  </TabItem>
+</Tabs>
+
 ## Steps to migrate to EstimatorV2
 
 1. Replace `from qiskit_ibm_runtime import Estimator` with `from qiskit_ibm_runtime import EstimatorV2 as Estimator`.
