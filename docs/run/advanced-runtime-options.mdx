@@ -114,15 +114,12 @@ See the Optimization level table in the
    The optimization level option is a "first-level option", and can be set as follows:
 
 ```python
-from qiskit_ibm_runtime import Estimator, Options
+from qiskit_ibm_runtime import EstimatorV2 as Estimator
 
-options = Options(optimization_level=1)
+estimator = Estimator(session=backend, options={"optimization_level": 1})
 
 # or..
-options = Options()
-options.optimization_level = 1
-
-estimator = Estimator(session=backend, options=options)
+estimator.options.optimization_level = 1
 ```
 
 To turn off all optional runtime compilation steps, you must set `optimization_level=0`.  V2 primitives do not support any advanced transpilation options. 
