@@ -7,25 +7,19 @@ description: Migrate from using the original primitives (Estimator and Sampler) 
 <span id="v2-primitives"></span>
 # Migrate to the Qiskit Runtime V2 primitives
 
-This guide describes what changed in the Qiskit Runtime V2 primitives and why, describes each new primitive in detail, and gives examples to help you migrate code from using the legacy primitives to the V2 primitives.  The examples in the guide all use the Qiskit Runtime primitives, but in general, the same changes apply to the other primitive implementations.  The functions unique to Qiskit Runtime such as error mitigation remain unique to Qiskit Runtime. For information about the changes to the Qiskit reference primitives (now called *statevector* primitives), see (the qiskit.primitives section)[qiskit-1.0-features#qiskit.primitives] in the Qiskit 1.0 feature changes page. 
+This guide describes what changed in the Qiskit Runtime V2 primitives and why, describes each new primitive in detail, and gives examples to help you migrate code from using the legacy primitives to the V2 primitives.  The examples in the guide all use the Qiskit Runtime primitives, but in general, the same changes apply to the other primitive implementations.  The functions unique to Qiskit Runtime such as error mitigation remain unique to Qiskit Runtime. 
+
+For information about the changes to the Qiskit reference primitives (now called *statevector* primitives), see (the qiskit.primitives section)[qiskit-1.0-features#qiskit.primitives] in the Qiskit 1.0 feature changes page.  See [StatevectorSampler](/api/qiskit/qiskit.primitives.StatevectorSampler) and [StatevectorEstimator](/api/qiskit/qiskit.primitives.StatevectorEstimator) for V2 primitive reference implementations.
 
 ## Overview
 
-Version 2 of the primitives is introduced with a new base class for both Sampler and Estimator ([BaseSamplerV2](/api/qiskit/qiskit.primitives.BaseSamplerV2) and [BaseEstimatorV2](/api/qiskit/qiskit.primitives.BaseEstimatorV2)), along with new types for their inputs and outputs. The emphasis of this new version is on performing vectorized calls to the primitive `.run()` methods so that you can efficiently specify sweeps over parameter value sets and observables. See [StatevectorSampler](/api/qiskit/qiskit.primitives.StatevectorSampler) and [StatevectorEstimator](/api/qiskit/qiskit.primitives.StatevectorEstimator) for V2 primitive reference implementations.
+Version 2 of the primitives is introduced with a new base class for both Sampler and Estimator ([BaseSamplerV2](/api/qiskit/qiskit.primitives.BaseSamplerV2) and [BaseEstimatorV2](/api/qiskit/qiskit.primitives.BaseEstimatorV2)), along with new types for their inputs and outputs. 
 
-Based on user feedback, this version introduces the following major new functions:
+The new interface lets you specify a single circuit and multiple observables (if using Estimator) and parameter value sets for that circuit, so that sweeps over parameter value sets and observables can be efficiently specified. Previously, you had to specify the same circuit multiple times to match the size of the data to be combined.  Also, while you can still use `optimization_level` and `resilience_level` (if using Estimator) as the simple knobs, V2 primitives give you the flexibility to turn on or off individual error mitigation / suppression methods to customize them for your needs.
 
-* The new interface lets you specify a single circuit and multiple observables (if using Estimator) and parameter value sets for that circuit, so that sweeps over parameter value sets and observables can be efficiently specified. Previously, you had to specify the same circuit multiple times to match the size of the data to be combined.
+To reduce the total job execution time, V2 primitives only accept circuits and observables that use instructions supported by the target system (referred to as instruction set architecture (ISA) circuits and observables). V2 primitives do not perform layout, routing, and translation operations but continue to optimize the circuits if you specify `optimization_level>0`.  See the [transpilation documentation](../../transpile) for instructions to transform circuits.
 
-* The new interface also includes the flexibility to explicitly turn on or off other individual error mitigation/suppression methods.
-
-* To reduce the total job execution time, V2 primitives only accept circuits and observables that use instructions supported by the target system (referred to as instruction set architecture (ISA) circuits and observables). V2 primitives will no longer perform layout, routing, and translation operations but continue to optimize the circuits if you specify `optimization_level>0`.  See the [transpilation documentation](../../transpile) for instructions to transform circuits.
-
-* EstimatorV2 has gained a `precision` argument in the `run()` method that specifies the targeted precision of the expectation value estimates. Analogously, V2 Sampler has the `shots` argument in its `run()` method. 
-
-* Resilience level 3 of V1 Estimator uses Probabilistic Error Cancellation (PEC), which is proven to give unbiased results at the cost of exponential processing time. To make this trade-off more obvious, EstimatorV2 does not support resilience level 3. You can, however, still use PEC as the error mitigation method by specifying the `pec_mitigation` option.
-
-* SamplerV2 is simplified to focus on its core task of sampling the output register from quantum circuit execution. It returns the samples, whose type is defined by the program, without weights.  Therefore, it does not support resilience levels. The output data is separated by the output register names and has convenience methods like `get_counts()` to help with migration. This also enables future support for circuits with classical control flow.
+SamplerV2 is simplified to focus on its core task of sampling the output register from execution of quantum circuits. It returns the samples, whose type is defined by the program, without weights. The output data is also separated by the output register names defined by the program. This change enables future support for circuits with classical control flow.
 
 
 ## Major changes
@@ -76,6 +70,13 @@ Both `SamplerV2` and `EstimatorV2` take one or more *primitive unified blocs* (P
 * SamplerV2 PUB format: (`<circuit>`, `<parameter values>`, `<shots>`), where `<parameter values>`and `<shots>` are optional.
 * EstimatorV2 PUB format: (`<circuit>`, `<observables>`, `<parameter values>`, `<precision>`), where `<parameter values>`and `<precision>` are optional.
     Numpy [broadcasting rules](https://numpy.org/doc/stable/user/basics.broadcasting.html) are used when combining observables and parameter values.
+    
+Additionally, the following changes have been made:
+
+* EstimatorV2 has gained a `precision` argument in the `run()` method that specifies the targeted precision of the expectation value estimates. 
+* SamplerV2 has the `shots` argument in its `run()` method. 
+* EstimatorV2 does not support resilience level 3.  This is because resilience level 3 in V1 Estimator uses Probabilistic Error Cancellation (PEC), which is proven to give unbiased results at the cost of exponential processing time. You can, however, still use PEC as the error mitigation method by specifying the `pec_mitigation` option.
+* Because SamplerV2 returns samples without postprocessing, it does not support resilience levels. 
 
 ##### Examples
 
@@ -108,7 +109,8 @@ The output is now in the (`PubResult`)[/api/qiskit/qiskit.primitives.PubResult] 
 * SamplerV2 returns per-shot measurements in the form of **bitstrings** or
    **counts**, instead of the quasi-probability distributions from the V1
    interface. The bitstrings show the measurement outcomes, preserving the shot
-   order in which they were measured. 
+   order in which they were measured.  
+* SamplerV2 has convenience methods like `get_counts()` to help with migration.    
 * The V2 Sampler result objects organize data in terms of their **input circuits' classical register names**, for
    compatibility with dynamic circuits.  By default, the classical register name is `meas`, as shown in the following example.  When defining your circuit, if you create one or more classical registers with a non-default name, you would use that name to get those results. 
 
@@ -530,6 +532,28 @@ sampler = Sampler (options=options, backend=backend)
 ``` 
   </TabItem>
 </Tabs>
+
+## Steps to migrate to EstimatorV2
+
+1. Replace `from qiskit_ibm_runtime import Estimator` with `from qiskit_ibm_runtime import EstimatorV2 as Estimator`.
+2. Remove any `from qiskit_ibm_runtime import Options` statements, since the `Options` class is not used by V2 primitives. You can instead pass options as a dictionary when initializing the `Estimator` class (for example `estimator = Estimator(backend, options={“twirling”: {“gates”: True}})`), or set them after initialization:
+   ```python
+   estimator = Estimator(backend)
+   estimator.options.twirling.gates = True
+   ```
+
+3. Review all the options EstimatorV2 supports [insert link] and make updates accordingly.
+4. Group each circuit you want to run with the observables and parameter values you want to apply to the circuit in a tuple (a PUB). For example, use `(circuit1, observable1, parameter_set1)` if you want to run `circuit1` with `observable1` and `parameter_set1`. 
+  a. You might need to reshape your arrays of observables or parameter sets if you want to apply their outer product. For example, an array of observables of shape (4, 1) and an array of parameter sets of shape (1, 6) will give you a result of (4, 6) expectation values. See the (Numpy broadcasting rules)[https://numpy.org/doc/stable/user/basics.broadcasting.html] for more details.
+  b. You can optionally specify the precision you want for that specific PUB. 
+5. Update the estimator `run()` method to pass in the list of PUBs. For example, `run([(circuit1, observable1, parameter_set1)])`.
+  You can optionally specify a `precision` here, which would apply to all PUBs.
+6. EstimatorV2 job results are grouped by PUBs. You can see the expectation value and standard error for each PUB by indexing to it. For example:
+```python
+pub_result = job.result()[0]
+print(f">>> Expectation values: {pub_result.data.evs}")
+print(f">>> Standard errors: {pub_result.data.stds}")
+```
 
 ## Estimator full examples
 
