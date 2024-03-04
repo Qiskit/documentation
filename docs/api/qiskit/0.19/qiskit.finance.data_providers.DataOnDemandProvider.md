@@ -143,7 +143,7 @@ numpy.ndarray
 
 <span id="qiskit.finance.data_providers.DataOnDemandProvider.run" />
 
-`DataOnDemandProvider.run()` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/finance/data_providers/data_on_demand_provider.py "view source code")
+`DataOnDemandProvider.run()`
 
 Loads data, thus enabling get\_similarity\_matrix and get\_covariance\_matrix methods in the base class.
 

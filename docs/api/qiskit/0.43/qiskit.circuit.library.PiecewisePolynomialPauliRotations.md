@@ -90,7 +90,7 @@ Enhancing the Quantum Linear Systems Algorithm using Richardson Extrapolation. [
 
 <span id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.evaluate" />
 
-`PiecewisePolynomialPauliRotations.evaluate(x)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/arithmetic/piecewise_polynomial_pauli_rotations.py "view source code")
+`PiecewisePolynomialPauliRotations.evaluate(x)`
 
 Classically evaluate the piecewise polynomial rotation.
 

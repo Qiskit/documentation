@@ -34,7 +34,7 @@ NLopt global optimizer, derivative-free. For further detail, please refer to [ht
 
 <span id="qiskit.algorithms.optimizers.CRS.get_nlopt_optimizer" />
 
-`CRS.get_nlopt_optimizer()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/optimizers/nlopts/crs.py "view source code")
+`CRS.get_nlopt_optimizer()`
 
 Return NLopt optimizer type
 

@@ -20,7 +20,7 @@ A factory class for convenient automatic selection of an Expectation based on th
 
 <span id="qiskit.aqua.operators.expectations.ExpectationFactory.build" />
 
-`static ExpectationFactory.build(operator, backend=None, include_custom=True)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/expectations/expectation_factory.py "view source code")
+`static ExpectationFactory.build(operator, backend=None, include_custom=True)`
 
 A factory method for convenient automatic selection of an Expectation based on the Operator to be converted and backend used to sample the expectation value.
 

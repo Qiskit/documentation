@@ -122,7 +122,7 @@ Submitted job. The result of the job is an instance of `qiskit.primitives.Sample
 
 <span id="qiskit_ibm_runtime.Sampler.set_options" />
 
-`set_options(**fields)`
+`set_options(**fields)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/base_primitive.py#L216-L222 "view source code")
 
 Set options values for the sampler.
 

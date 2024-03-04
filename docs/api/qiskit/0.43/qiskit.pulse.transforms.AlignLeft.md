@@ -28,7 +28,7 @@ Create new left-justified context.
 
 <span id="qiskit.pulse.transforms.AlignLeft.align" />
 
-`AlignLeft.align(schedule)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/transforms/alignments.py "view source code")
+`AlignLeft.align(schedule)`
 
 Reallocate instructions according to the policy.
 

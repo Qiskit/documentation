@@ -92,6 +92,8 @@ API name.
 
 For translations, put the language code in front of the URL, like http://localhost:3000/es/start or http://localhost:3000/fr/start. You can find the language codes by looking in the `translations/` folder.
 
+Warning: `./start` does not check if there is a new version of the docs application available. Run `docker pull qiskit/documentation` to update to the latest version of the app.
+
 ## Preview the docs in PRs
 
 Contributors with write access to this repository can use live previews of the docs: GitHub will deploy a website using your changes.
@@ -597,8 +599,9 @@ Some companies require a special attribution notice. View a list of the companie
 - IBM&reg;
 - IBM Cloud&reg;
 - IBM Quantum&trade;
-- Qiskit&reg;
 </details>
+
+**Note**: Although Qiskit is a registered trademark of IBM, we do not mark it as such.
 
 See the Usage section of the IBM Quantum Experience Guide for guidance on when to use IBM and when to use IBM Quantum.
 
@@ -610,6 +613,4 @@ Use `&reg;` to get &reg; for registered trademarks.
 
 use `&trade;` to get &trade; for nonregistered trademarks.
 
-<Admonition type="caution">
-  Do not include trademarks in headings. The code will display rather than the symbol.
-</Admonition
+⚠️ **Note**: Do not include trademarks in headings. The code will display rather than the symbol.

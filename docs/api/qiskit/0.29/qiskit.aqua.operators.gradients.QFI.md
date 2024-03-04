@@ -37,7 +37,7 @@ $$
 
 <span id="qiskit.aqua.operators.gradients.QFI.convert" />
 
-`QFI.convert(operator, params=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/gradients/qfi.py "view source code")
+`QFI.convert(operator, params=None)`
 
 **Parameters**
 

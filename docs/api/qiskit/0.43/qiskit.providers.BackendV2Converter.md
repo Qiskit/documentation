@@ -46,7 +46,7 @@ Initialize a BackendV2 converter instance based on a BackendV1 instance.
 
 <span id="qiskit.providers.BackendV2Converter.acquire_channel" />
 
-`BackendV2Converter.acquire_channel(qubit)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/backend_compat.py "view source code")
+`BackendV2Converter.acquire_channel(qubit)`
 
 Return the acquisition channel for the given qubit.
 
@@ -70,7 +70,7 @@ The Qubit measurement acquisition line.
 
 <span id="qiskit.providers.BackendV2Converter.control_channel" />
 
-`BackendV2Converter.control_channel(qubits)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/backend_compat.py "view source code")
+`BackendV2Converter.control_channel(qubits)`
 
 Return the secondary drive channel for the given qubit
 
@@ -100,7 +100,7 @@ List\[[ControlChannel](qiskit.pulse.channels.ControlChannel "qiskit.pulse.channe
 
 <span id="qiskit.providers.BackendV2Converter.drive_channel" />
 
-`BackendV2Converter.drive_channel(qubit)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/backend_compat.py "view source code")
+`BackendV2Converter.drive_channel(qubit)`
 
 Return the drive channel for the given qubit.
 
@@ -124,7 +124,7 @@ The Qubit drive channel
 
 <span id="qiskit.providers.BackendV2Converter.measure_channel" />
 
-`BackendV2Converter.measure_channel(qubit)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/backend_compat.py "view source code")
+`BackendV2Converter.measure_channel(qubit)`
 
 Return the measure stimulus channel for the given qubit.
 
@@ -176,7 +176,7 @@ qubit\_properties
 
 <span id="qiskit.providers.BackendV2Converter.run" />
 
-`BackendV2Converter.run(run_input, **options)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/backend_compat.py "view source code")
+`BackendV2Converter.run(run_input, **options)`
 
 Run on the backend.
 

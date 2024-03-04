@@ -61,7 +61,7 @@ A new schedule with `schedule` a this instruction at t=0.
 
 <span id="qiskit.pulse.instructions.Call.assigned_subroutine" />
 
-`Call.assigned_subroutine()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/instructions/call.py "view source code")
+`Call.assigned_subroutine()`
 
 Returns this subroutine with the parameters assigned.
 

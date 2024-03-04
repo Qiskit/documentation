@@ -36,7 +36,7 @@ This driver does not use Gaussian 16 interfacing code, as certain data such as f
 
 <span id="qiskit.chemistry.drivers.GaussianLogDriver.run" />
 
-`GaussianLogDriver.run()` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/gaussiand/gaussian_log_driver.py "view source code")
+`GaussianLogDriver.run()`
 
 Runs the driver to produce a result given the supplied job control file.
 

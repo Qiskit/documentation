@@ -103,7 +103,7 @@ The list of available backends that match the filter.
 
 <span id="qiskit_ibm_provider.IBMBackendService.jobs" />
 
-`jobs(limit=10, skip=0, backend_name=None, status=None, start_datetime=None, end_datetime=None, job_tags=None, descending=True, instance=None, legacy=False)`
+`jobs(limit=10, skip=0, backend_name=None, status=None, start_datetime=None, end_datetime=None, job_tags=None, descending=True, instance=None, legacy=False)` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/ibm_backend_service.py#L220-L368 "view source code")
 
 Return a list of jobs, subject to optional filtering.
 
@@ -143,7 +143,7 @@ A list of `IBMJob` instances.
 
 <span id="qiskit_ibm_provider.IBMBackendService.retrieve_job" />
 
-`retrieve_job(job_id)`
+`retrieve_job(job_id)` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/ibm_backend_service.py#L621-L662 "view source code")
 
 Return a single job.
 

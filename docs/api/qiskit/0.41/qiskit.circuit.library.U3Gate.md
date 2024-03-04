@@ -74,7 +74,7 @@ Create new U3 gate.
 
 <span id="qiskit.circuit.library.U3Gate.control" />
 
-`U3Gate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/u3.py "view source code")
+`U3Gate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
 Return a (multi-)controlled-U3 gate.
 
@@ -96,7 +96,7 @@ controlled version of this gate.
 
 <span id="qiskit.circuit.library.U3Gate.inverse" />
 
-`U3Gate.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/u3.py "view source code")
+`U3Gate.inverse()`
 
 Return inverted U3 gate.
 

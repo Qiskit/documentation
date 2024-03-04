@@ -47,7 +47,7 @@ An example where the learning rate is an iterator and we supply the analytic gra
 
 <span id="qiskit.algorithms.optimizers.GradientDescent.get_support_level" />
 
-`GradientDescent.get_support_level()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/gradient_descent.py "view source code")
+`GradientDescent.get_support_level()`
 
 Get the support level dictionary.
 
@@ -78,7 +78,7 @@ grad
 
 <span id="qiskit.algorithms.optimizers.GradientDescent.optimize" />
 
-`GradientDescent.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/gradient_descent.py "view source code")
+`GradientDescent.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
 Perform optimization.
 

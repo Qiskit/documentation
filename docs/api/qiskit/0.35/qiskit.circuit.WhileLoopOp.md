@@ -97,7 +97,7 @@ Validation of the arguments.
 
 <span id="qiskit.circuit.WhileLoopOp.c_if" />
 
-`WhileLoopOp.c_if(classical, val)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/controlflow/while_loop.py "view source code")
+`WhileLoopOp.c_if(classical, val)`
 
 Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
 

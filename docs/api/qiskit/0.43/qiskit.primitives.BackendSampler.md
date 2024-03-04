@@ -81,7 +81,7 @@ Set options values for the estimator.
 
 <span id="qiskit.primitives.BackendSampler.set_transpile_options" />
 
-`BackendSampler.set_transpile_options(**fields)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/primitives/backend_sampler.py "view source code")
+`BackendSampler.set_transpile_options(**fields)`
 
 Set the transpiler options for transpiler. :param \*\*fields: The fields to update the options.
 

@@ -37,7 +37,7 @@ This driver uses the Gaussian open-source Gaussian 16 interfacing code in order 
 
 <span id="qiskit.chemistry.drivers.GaussianDriver.run" />
 
-`GaussianDriver.run()` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/gaussiand/gaussiandriver.py "view source code")
+`GaussianDriver.run()`
 
 Runs driver to produce a QMolecule output.
 

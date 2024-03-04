@@ -46,7 +46,7 @@ Assemble a QasmQobjInstruction
 
 <span id="qiskit.circuit.library.Reset.broadcast_arguments" />
 
-`Reset.broadcast_arguments(qargs, cargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/reset.py "view source code")
+`Reset.broadcast_arguments(qargs, cargs)`
 
 Validation of the arguments.
 

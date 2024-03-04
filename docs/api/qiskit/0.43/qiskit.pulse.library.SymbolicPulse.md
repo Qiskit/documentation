@@ -163,7 +163,7 @@ Visualization output data. The returned data type depends on the `plotter`. If m
 
 <span id="qiskit.pulse.library.SymbolicPulse.get_waveform" />
 
-`SymbolicPulse.get_waveform()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/library/symbolic_pulses.py "view source code")
+`SymbolicPulse.get_waveform()`
 
 Return a Waveform with samples filled according to the formula that the pulse represents and the parameter values it contains.
 
@@ -192,7 +192,7 @@ A waveform representation of this pulse.
 
 <span id="qiskit.pulse.library.SymbolicPulse.is_parameterized" />
 
-`SymbolicPulse.is_parameterized()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/library/symbolic_pulses.py "view source code")
+`SymbolicPulse.is_parameterized()`
 
 Return True iff the instruction is parameterized.
 
@@ -206,7 +206,7 @@ bool
 
 <span id="qiskit.pulse.library.SymbolicPulse.validate_parameters" />
 
-`SymbolicPulse.validate_parameters()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/library/symbolic_pulses.py "view source code")
+`SymbolicPulse.validate_parameters()`
 
 Validate parameters.
 

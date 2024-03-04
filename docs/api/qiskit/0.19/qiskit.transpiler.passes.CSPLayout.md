@@ -59,7 +59,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.CSPLayout.run" />
 
-`CSPLayout.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/transpiler/passes/layout/csp_layout.py "view source code")
+`CSPLayout.run(dag)`
 
 Run a pass on the DAGCircuit. This is implemented by the pass developer.
 

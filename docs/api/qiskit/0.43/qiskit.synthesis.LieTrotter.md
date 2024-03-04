@@ -47,7 +47,7 @@ $$
 
 <span id="qiskit.synthesis.LieTrotter.synthesize" />
 
-`LieTrotter.synthesize(evolution)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/synthesis/evolution/lie_trotter.py "view source code")
+`LieTrotter.synthesize(evolution)`
 
 Synthesize an `qiskit.circuit.library.PauliEvolutionGate`.
 

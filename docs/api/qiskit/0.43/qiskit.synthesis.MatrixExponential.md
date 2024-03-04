@@ -26,7 +26,7 @@ This class synthesis the exponential of operators by calculating their exponenti
 
 <span id="qiskit.synthesis.MatrixExponential.synthesize" />
 
-`MatrixExponential.synthesize(evolution)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/synthesis/evolution/matrix_synthesis.py "view source code")
+`MatrixExponential.synthesize(evolution)`
 
 Synthesize an `qiskit.circuit.library.PauliEvolutionGate`.
 

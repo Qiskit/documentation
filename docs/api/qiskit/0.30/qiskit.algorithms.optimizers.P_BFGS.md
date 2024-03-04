@@ -68,7 +68,7 @@ grad
 
 <span id="qiskit.algorithms.optimizers.P_BFGS.optimize" />
 
-`P_BFGS.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/p_bfgs.py "view source code")
+`P_BFGS.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
 Perform optimization.
 

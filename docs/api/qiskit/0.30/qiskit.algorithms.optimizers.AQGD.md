@@ -44,7 +44,7 @@ Performs Analytical Quantum Gradient Descent (AQGD) with Epochs.
 
 <span id="qiskit.algorithms.optimizers.AQGD.get_support_level" />
 
-`AQGD.get_support_level()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/aqgd.py "view source code")
+`AQGD.get_support_level()`
 
 Support level dictionary
 
@@ -85,7 +85,7 @@ grad
 
 <span id="qiskit.algorithms.optimizers.AQGD.optimize" />
 
-`AQGD.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/aqgd.py "view source code")
+`AQGD.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
 Perform optimization.
 

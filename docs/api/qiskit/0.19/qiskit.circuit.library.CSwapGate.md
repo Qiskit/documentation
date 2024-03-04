@@ -262,7 +262,7 @@ updated if it was provided
 
 <span id="qiskit.circuit.library.CSwapGate.inverse" />
 
-`CSwapGate.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/swap.py "view source code")
+`CSwapGate.inverse()`
 
 Return inverse CSwap gate (itself).
 
@@ -354,7 +354,7 @@ Containing the definition.
 
 <span id="qiskit.circuit.library.CSwapGate.to_matrix" />
 
-`CSwapGate.to_matrix()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/swap.py "view source code")
+`CSwapGate.to_matrix()`
 
 Return a numpy.array for the Fredkin (CSWAP) gate.
 

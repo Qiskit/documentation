@@ -218,7 +218,7 @@ a copy of the current instruction, with the name updated if it was provided
 
 <span id="qiskit.circuit.ControlledGate.inverse" />
 
-`ControlledGate.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/controlledgate.py "view source code")
+`ControlledGate.inverse()`
 
 Invert this gate by calling inverse on the base gate.
 

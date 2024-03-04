@@ -36,7 +36,7 @@ Initialize a BackendStatus object
 
 <span id="qiskit.providers.models.BackendStatus.from_dict" />
 
-`classmethod BackendStatus.from_dict(data)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/models/backendstatus.py "view source code")
+`classmethod BackendStatus.from_dict(data)`
 
 Create a new BackendStatus object from a dictionary.
 
@@ -56,7 +56,7 @@ The BackendStatus from the input dictionary.
 
 <span id="qiskit.providers.models.BackendStatus.to_dict" />
 
-`BackendStatus.to_dict()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/models/backendstatus.py "view source code")
+`BackendStatus.to_dict()`
 
 Return a dictionary format representation of the BackendStatus.
 

@@ -67,7 +67,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.ConstrainedReschedule.run" />
 
-`ConstrainedReschedule.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/transpiler/passes/scheduling/alignments/reschedule.py "view source code")
+`ConstrainedReschedule.run(dag)`
 
 Run rescheduler.
 

@@ -26,7 +26,7 @@ It is used as the return value from \*\_nodes() functions and can be supplied to
 
 <span id="qiskit.dagcircuit.DAGDepNode.copy" />
 
-`DAGDepNode.copy()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/dagcircuit/dagdepnode.py "view source code")
+`DAGDepNode.copy()`
 
 Function to copy a DAGDepNode object. :returns: a copy of a DAGDepNode object. :rtype: DAGDepNode
 
@@ -36,7 +36,7 @@ Function to copy a DAGDepNode object. :returns: a copy of a DAGDepNode object. :
 
 <span id="qiskit.dagcircuit.DAGDepNode.semantic_eq" />
 
-`static DAGDepNode.semantic_eq(node1, node2)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/dagcircuit/dagdepnode.py "view source code")
+`static DAGDepNode.semantic_eq(node1, node2)`
 
 Check if DAG nodes are considered equivalent, e.g., as a node\_match for nx.is\_isomorphic.
 

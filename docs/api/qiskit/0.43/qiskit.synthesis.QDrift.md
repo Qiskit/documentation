@@ -35,7 +35,7 @@ The QDrift Trotterization method, which selects each each term in the Trotteriza
 
 <span id="qiskit.synthesis.QDrift.synthesize" />
 
-`QDrift.synthesize(evolution)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/synthesis/evolution/qdrift.py "view source code")
+`QDrift.synthesize(evolution)`
 
 Synthesize an `qiskit.circuit.library.PauliEvolutionGate`.
 

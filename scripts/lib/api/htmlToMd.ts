@@ -16,13 +16,13 @@ import rehypeRemark from "rehype-remark";
 import remarkStringify from "remark-stringify";
 import remarkGfm from "remark-gfm";
 import { last, first, without, initial, tail } from "lodash";
-import { defaultHandlers, Handle, toMdast, all } from "hast-util-to-mdast";
+import { defaultHandlers, Handle, toMdast, all, H } from "hast-util-to-mdast";
 import { toText } from "hast-util-to-text";
 import remarkMath from "remark-math";
 import remarkMdx from "remark-mdx";
 import { MdxJsxFlowElement } from "mdast-util-mdx-jsx";
 import { visit } from "unist-util-visit";
-import { Emphasis, Root } from "mdast";
+import { Emphasis, Root, Content } from "mdast";
 
 import { processHtml } from "./processHtml";
 import { HtmlToMdResult } from "./HtmlToMdResult";
@@ -64,23 +64,7 @@ async function generateMarkdownFile(
       handlers,
     })
     .use(remarkStringify, remarkStringifyOptions)
-    .use(() => (root: Root) => {
-      // merge contiguous emphasis
-      visit(root, "emphasis", (node, index, parent) => {
-        if (index === null || parent === null) return;
-        let nextIndex = index + 1;
-        while (parent.children[nextIndex]?.type === "emphasis") {
-          node.children.push(
-            ...((parent.children[nextIndex] as any).children ?? []),
-          );
-          nextIndex++;
-        }
-        parent.children.splice(index + 1, nextIndex - (index + 1));
-
-        removeEmphasisSpaces(node, index, parent, "initial");
-        removeEmphasisSpaces(node, index, parent, "tail");
-      });
-    })
+    .use(() => (root: Root) => visit(root, "emphasis", mergeContiguousEmphasis))
     .process(mainHtml);
 
   return mdFile.toString().replaceAll(`<!---->`, "");
@@ -102,12 +86,12 @@ function prepareHandlers(meta: Metadata): Record<string, Handle> {
         return buildMathExpression(node, "inlineMath");
       }
 
-      if (node.properties.id && node.properties.className?.includes("target")) {
+      if (
+        node.properties.id &&
+        (node.properties.className?.includes("target") ||
+          node.children.length === 0)
+      ) {
         return [buildSpanId(node.properties.id), ...all(h, node)];
-      }
-
-      if (node.properties.id && node.children.length === 0) {
-        return buildSpanId(node.properties.id);
       }
 
       return all(h, node);
@@ -125,65 +109,16 @@ function prepareHandlers(meta: Metadata): Record<string, Handle> {
       return defaultHandlers.div(h, node);
     },
     dt(h, node: any) {
-      if (meta.apiType === "class" || meta.apiType === "module") {
-        return [
-          h(node, "strong", {
-            type: "strong",
-            children: all(h, node),
-          }),
-          { type: "text", value: " " },
-        ];
-      }
-      return h(node, "heading", {
-        type: "heading",
-        depth: 2,
-        children: all(h, node),
-      });
+      return buildDt(h, node, meta.apiType);
     },
     div(h, node: any): any {
       const nodeClasses = node.properties.className ?? [];
-
       if (nodeClasses.includes("admonition")) {
-        const titleNode = node.children.find(
-          (child: any) =>
-            child.properties.className?.includes("admonition-title"),
-        );
+        return buildAdmonition(node, nodeClasses, handlers);
+      }
 
-        let type = "note";
-        if (nodeClasses.includes("warning")) {
-          type = "caution";
-        } else if (nodeClasses.includes("important")) {
-          type = "danger";
-        }
-
-        const otherChildren = without(node.children, titleNode);
-        return buildAdmonition({
-          title: toText(titleNode),
-          type,
-          children: otherChildren.map((node: any) =>
-            toMdast(node, { handlers }),
-          ),
-        });
-      } else if (nodeClasses.includes("deprecated")) {
-        const root = node.children[0];
-        const titleNode = root.children.find(
-          (child: any) =>
-            child.properties.className?.includes("versionmodified"),
-        );
-        const title = toText(titleNode).trim().replace(/:$/, "");
-        const otherChildren = without(root.children, titleNode);
-        return buildAdmonition({
-          title,
-          type: "danger",
-          children: [
-            {
-              type: "paragraph",
-              children: otherChildren.map((node: any) =>
-                toMdast(node, { handlers }),
-              ),
-            },
-          ],
-        });
+      if (nodeClasses.includes("deprecated")) {
+        return buildDeprecatedAdmonition(node, handlers);
       }
 
       return defaultHandlers.div(h, node);
@@ -191,6 +126,23 @@ function prepareHandlers(meta: Metadata): Record<string, Handle> {
   };
 
   return handlers;
+}
+
+function mergeContiguousEmphasis(
+  node: Emphasis,
+  index: number | null,
+  parent: any | null,
+): void {
+  if (index === null || parent === null) return;
+  let nextIndex = index + 1;
+  while (parent.children[nextIndex]?.type === "emphasis") {
+    node.children.push(...((parent.children[nextIndex] as any).children ?? []));
+    nextIndex++;
+  }
+  parent.children.splice(index + 1, nextIndex - (index + 1));
+
+  removeEmphasisSpaces(node, index, parent, "initial");
+  removeEmphasisSpaces(node, index, parent, "tail");
 }
 
 function removeEmphasisSpaces(
@@ -224,12 +176,83 @@ function removeEmphasisSpaces(
   }
 }
 
-function buildAdmonition(options: {
-  title: string;
-  type: string;
-  children: Array<any>;
-}): MdxJsxFlowElement {
-  const { title, type, children } = options;
+function findNodeWithProperty(nodeList: any[], propertyName: string) {
+  return nodeList.find(
+    (child: any) => child.properties.className?.includes(propertyName),
+  );
+}
+
+function buildDt(
+  h: H,
+  node: any,
+  apiType?: string,
+): void | Content | Content[] {
+  if (apiType === "class" || apiType === "module") {
+    return [
+      h(node, "strong", {
+        type: "strong",
+        children: all(h, node),
+      }),
+      { type: "text", value: " " },
+    ];
+  }
+  return h(node, "heading", {
+    type: "heading",
+    depth: 2,
+    children: all(h, node),
+  });
+}
+
+function buildAdmonition(
+  node: any,
+  nodeClasses: string[],
+  handlers: Record<string, Handle>,
+): MdxJsxFlowElement {
+  const titleNode = findNodeWithProperty(node.children, "admonition-title");
+  const children: Array<any> = without(node.children, titleNode).map(
+    (node: any) => toMdast(node, { handlers }),
+  );
+
+  let type = "note";
+  if (nodeClasses.includes("warning")) {
+    type = "caution";
+  } else if (nodeClasses.includes("important")) {
+    type = "danger";
+  }
+
+  return {
+    type: "mdxJsxFlowElement",
+    name: "Admonition",
+    attributes: [
+      {
+        type: "mdxJsxAttribute",
+        name: "title",
+        value: toText(titleNode),
+      },
+      {
+        type: "mdxJsxAttribute",
+        name: "type",
+        value: type,
+      },
+    ],
+    children,
+  };
+}
+
+function buildDeprecatedAdmonition(
+  node: any,
+  handlers: Record<string, Handle>,
+): MdxJsxFlowElement {
+  const titleNode = findNodeWithProperty(
+    node.children[0].children,
+    "versionmodified",
+  );
+  const title = toText(titleNode).trim().replace(/:$/, "");
+  const otherChildren: Array<any> = without(
+    node.children[0].children,
+    titleNode,
+  ).map((node: any) => toMdast(node, { handlers }));
+
   return {
     type: "mdxJsxFlowElement",
     name: "Admonition",
@@ -242,10 +265,15 @@ function buildAdmonition(options: {
       {
         type: "mdxJsxAttribute",
         name: "type",
-        value: type,
+        value: "danger",
       },
     ],
-    children,
+    children: [
+      {
+        type: "paragraph",
+        children: otherChildren,
+      },
+    ],
   };
 }
 

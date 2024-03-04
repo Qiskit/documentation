@@ -48,7 +48,7 @@ Find the index of the provided bit within this register.
 
 <span id="qiskit.circuit.QuantumRegister.qasm" />
 
-`QuantumRegister.qasm()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/quantumregister.py "view source code")
+`QuantumRegister.qasm()`
 
 Return OPENQASM string for this register.
 

@@ -46,7 +46,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.FullAncillaAllocation.run" />
 
-`FullAncillaAllocation.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/layout/full_ancilla_allocation.py "view source code")
+`FullAncillaAllocation.run(dag)`
 
 Run the FullAncillaAllocation pass on dag.
 
@@ -76,7 +76,7 @@ returns the same dag circuit, unmodified
 
 <span id="qiskit.transpiler.passes.FullAncillaAllocation.validate_layout" />
 
-`static FullAncillaAllocation.validate_layout(layout_qubits, dag_qubits)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/layout/full_ancilla_allocation.py "view source code")
+`static FullAncillaAllocation.validate_layout(layout_qubits, dag_qubits)`
 
 Checks if all the qregs in layout\_qregs already exist in dag\_qregs. Otherwise, raise.
 

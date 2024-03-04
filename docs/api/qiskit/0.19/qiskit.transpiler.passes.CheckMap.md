@@ -50,7 +50,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.CheckMap.run" />
 
-`CheckMap.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/transpiler/passes/utils/check_map.py "view source code")
+`CheckMap.run(dag)`
 
 Run the CheckMap pass on dag.
 

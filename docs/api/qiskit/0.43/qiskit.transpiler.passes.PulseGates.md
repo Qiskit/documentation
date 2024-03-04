@@ -43,7 +43,7 @@ Create new pass.
 
 <span id="qiskit.transpiler.passes.PulseGates.get_calibration" />
 
-`PulseGates.get_calibration(node_op, qubits)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/calibration/pulse_gate.py "view source code")
+`PulseGates.get_calibration(node_op, qubits)`
 
 Gets the calibrated schedule for the given instruction and qubits.
 
@@ -102,7 +102,7 @@ A DAG with calibrations added to it.
 
 <span id="qiskit.transpiler.passes.PulseGates.supported" />
 
-`PulseGates.supported(node_op, qubits)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/calibration/pulse_gate.py "view source code")
+`PulseGates.supported(node_op, qubits)`
 
 Determine if a given node supports the calibration.
 

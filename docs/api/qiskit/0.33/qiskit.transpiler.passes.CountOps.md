@@ -32,7 +32,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.CountOps.run" />
 
-`CountOps.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/passes/analysis/count_ops.py "view source code")
+`CountOps.run(dag)`
 
 Run the CountOps pass on dag.
 

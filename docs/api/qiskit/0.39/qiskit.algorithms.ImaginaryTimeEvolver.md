@@ -22,7 +22,7 @@ Interface for Quantum Imaginary Time Evolution.
 
 <span id="qiskit.algorithms.ImaginaryTimeEvolver.evolve" />
 
-`abstract ImaginaryTimeEvolver.evolve(evolution_problem)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/time_evolvers/imaginary_time_evolver.py "view source code")
+`abstract ImaginaryTimeEvolver.evolve(evolution_problem)`
 
 Perform imaginary time evolution $\exp(-\tau H)|\Psi\rangle$.
 

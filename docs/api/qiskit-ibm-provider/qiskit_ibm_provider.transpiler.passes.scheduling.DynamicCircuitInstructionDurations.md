@@ -56,7 +56,7 @@ DynamicInstructionDurations
 
 <span id="qiskit_ibm_provider.transpiler.passes.scheduling.DynamicCircuitInstructionDurations.from_target" />
 
-`classmethod from_target(target)`
+`classmethod from_target(target)` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/transpiler/passes/scheduling/utils.py#L211-L230 "view source code")
 
 Construct a `DynamicInstructionDurations` object from the target.
 
@@ -121,7 +121,7 @@ Set of units used in this instruction durations.
 
 <span id="qiskit_ibm_provider.transpiler.passes.scheduling.DynamicCircuitInstructionDurations.update" />
 
-`update(inst_durations, dt=None)`
+`update(inst_durations, dt=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/transpiler/passes/scheduling/utils.py#L232-L278 "view source code")
 
 Update self with inst\_durations (inst\_durations overwrite self). Overrides the default durations for certain hardcoded instructions.
 

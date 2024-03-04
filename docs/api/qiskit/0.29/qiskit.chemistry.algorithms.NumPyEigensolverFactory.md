@@ -29,7 +29,7 @@ A factory to construct a NumPyEigensolver.
 
 <span id="qiskit.chemistry.algorithms.NumPyEigensolverFactory.get_solver" />
 
-`NumPyEigensolverFactory.get_solver(transformation)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/excited_states_solvers/eigensolver_factories/numpy_eigensolver_factory.py "view source code")
+`NumPyEigensolverFactory.get_solver(transformation)`
 
 Returns a NumPyEigensolver with the desired filter
 

@@ -31,7 +31,7 @@ Note: the [`TruthTableOracle`](qiskit.aqua.components.oracles.TruthTableOracle "
 
 <span id="qiskit.aqua.algorithms.DeutschJozsa.construct_circuit" />
 
-`DeutschJozsa.construct_circuit(measurement=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/education/deutsch_jozsa.py "view source code")
+`DeutschJozsa.construct_circuit(measurement=False)`
 
 Construct the quantum circuit
 

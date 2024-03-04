@@ -40,7 +40,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.InverseCancellation.run" />
 
-`InverseCancellation.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/optimization/inverse_cancellation.py "view source code")
+`InverseCancellation.run(dag)`
 
 Run the InverseCancellation pass on dag.
 

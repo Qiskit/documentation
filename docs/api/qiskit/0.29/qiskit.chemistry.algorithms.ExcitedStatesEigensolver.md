@@ -27,7 +27,7 @@ The calculation of excited states via an Eigensolver algorithm
 
 <span id="qiskit.chemistry.algorithms.ExcitedStatesEigensolver.solve" />
 
-`ExcitedStatesEigensolver.solve(driver, aux_operators=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/excited_states_solvers/excited_states_eigensolver.py "view source code")
+`ExcitedStatesEigensolver.solve(driver, aux_operators=None)`
 
 Compute Ground and Excited States properties.
 

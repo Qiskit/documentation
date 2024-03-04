@@ -103,7 +103,7 @@ boolean
 
 <span id="qiskit.aqua.components.variational_forms.RY.construct_circuit" />
 
-`RY.construct_circuit(parameters, q=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/variational_forms/ry.py "view source code")
+`RY.construct_circuit(parameters, q=None)`
 
 Construct the variational form, given its parameters.
 

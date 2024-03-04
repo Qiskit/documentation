@@ -57,7 +57,7 @@ A new schedule with `schedule` a this instruction at t=0.
 
 <span id="qiskit.pulse.instructions.Play.assign_parameters" />
 
-`Play.assign_parameters(value_dict)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/instructions/play.py "view source code")
+`Play.assign_parameters(value_dict)`
 
 Modify and return self with parameters assigned according to the input.
 
@@ -190,7 +190,7 @@ A new schedule with `schedule` inserted with this instruction at t=0.
 
 <span id="qiskit.pulse.instructions.Play.is_parameterized" />
 
-`Play.is_parameterized()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/instructions/play.py "view source code")
+`Play.is_parameterized()`
 
 Return True iff the instruction is parameterized.
 

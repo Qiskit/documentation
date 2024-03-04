@@ -44,7 +44,7 @@ Add a decomposition of the instruction to the SessionEquivalenceLibrary.
 
 <span id="qiskit.providers.aer.extensions.Snapshot.assemble" />
 
-`Snapshot.assemble()` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/extensions/snapshot.py "view source code")
+`Snapshot.assemble()`
 
 Assemble a QasmQobjInstruction
 
@@ -103,7 +103,7 @@ updated if it was provided
 
 <span id="qiskit.providers.aer.extensions.Snapshot.define_snapshot_register" />
 
-`static Snapshot.define_snapshot_register(circuit, label=None, qubits=None)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/extensions/snapshot.py "view source code")
+`static Snapshot.define_snapshot_register(circuit, label=None, qubits=None)`
 
 Defines qubits to snapshot for all snapshot methods
 
@@ -111,7 +111,7 @@ Defines qubits to snapshot for all snapshot methods
 
 <span id="qiskit.providers.aer.extensions.Snapshot.inverse" />
 
-`Snapshot.inverse()` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/extensions/snapshot.py "view source code")
+`Snapshot.inverse()`
 
 Special case. Return self.
 

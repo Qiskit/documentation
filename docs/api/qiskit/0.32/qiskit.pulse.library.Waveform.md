@@ -31,7 +31,7 @@ Create new sample pulse command.
 
 <span id="qiskit.pulse.library.Waveform.assign_parameters" />
 
-`Waveform.assign_parameters(value_dict)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/library/waveform.py "view source code")
+`Waveform.assign_parameters(value_dict)`
 
 Return a new pulse with parameters assigned.
 
@@ -101,7 +101,7 @@ Visualization output data. The returned data type depends on the `plotter`. If m
 
 <span id="qiskit.pulse.library.Waveform.is_parameterized" />
 
-`Waveform.is_parameterized()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/library/waveform.py "view source code")
+`Waveform.is_parameterized()`
 
 Return True iff the instruction is parameterized.
 

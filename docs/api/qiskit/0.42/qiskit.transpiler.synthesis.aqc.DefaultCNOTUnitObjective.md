@@ -27,7 +27,7 @@ A naive implementation of the objective function based on CNOT units.
 
 <span id="qiskit.transpiler.synthesis.aqc.DefaultCNOTUnitObjective.gradient" />
 
-`DefaultCNOTUnitObjective.gradient(param_values)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/synthesis/aqc/cnot_unit_objective.py "view source code")
+`DefaultCNOTUnitObjective.gradient(param_values)`
 
 Computes a gradient with respect to parameters given a vector of parameter values.
 
@@ -47,7 +47,7 @@ an array of gradient values.
 
 <span id="qiskit.transpiler.synthesis.aqc.DefaultCNOTUnitObjective.objective" />
 
-`DefaultCNOTUnitObjective.objective(param_values)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/synthesis/aqc/cnot_unit_objective.py "view source code")
+`DefaultCNOTUnitObjective.objective(param_values)`
 
 Computes a value of the objective function given a vector of parameter values.
 

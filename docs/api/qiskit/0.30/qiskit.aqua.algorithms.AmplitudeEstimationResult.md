@@ -54,7 +54,7 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 <span id="qiskit.aqua.algorithms.AmplitudeEstimationResult.from_dict" />
 
-`static AmplitudeEstimationResult.from_dict(a_dict)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_estimators/ae.py "view source code")
+`static AmplitudeEstimationResult.from_dict(a_dict)`
 
 create new object from a dictionary
 

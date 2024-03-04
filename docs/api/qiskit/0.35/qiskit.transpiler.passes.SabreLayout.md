@@ -47,7 +47,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.SabreLayout.run" />
 
-`SabreLayout.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/layout/sabre_layout.py "view source code")
+`SabreLayout.run(dag)`
 
 Run the SabreLayout pass on dag.
 

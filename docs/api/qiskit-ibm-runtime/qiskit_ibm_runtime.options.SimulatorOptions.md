@@ -83,7 +83,7 @@ Set backend for simulation. This method changes noise\_model, coupling\_map, bas
 
 <span id="qiskit_ibm_runtime.options.SimulatorOptions.validate_simulator_options" />
 
-`static validate_simulator_options(simulator_options)`
+`static validate_simulator_options(simulator_options)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/options/simulator_options.py#L61-L69 "view source code")
 
 Validate that simulator options are legal. :raises ValueError: if any simulator option is not supported
 

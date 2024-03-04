@@ -51,7 +51,7 @@ Create new S gate.
 
 <span id="qiskit.circuit.library.SGate.inverse" />
 
-`SGate.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/s.py "view source code")
+`SGate.inverse()`
 
 Return inverse of S (SdgGate).
 
@@ -61,7 +61,7 @@ Return inverse of S (SdgGate).
 
 <span id="qiskit.circuit.library.SGate.power" />
 
-`SGate.power(exponent)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/s.py "view source code")
+`SGate.power(exponent)`
 
 Raise gate to a power.
 

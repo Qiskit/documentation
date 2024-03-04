@@ -47,7 +47,7 @@ Create new Tdg gate.
 
 <span id="qiskit.circuit.library.TdgGate.inverse" />
 
-`TdgGate.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/t.py "view source code")
+`TdgGate.inverse()`
 
 Return inverse Tdg gate (i.e. T).
 

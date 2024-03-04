@@ -58,7 +58,7 @@ Returns the number of target qubits
 
 <span id="qiskit.aqua.circuits.PolynomialRotation.build" />
 
-`PolynomialRotation.build(qc, q, q_target, q_ancillas=None, reverse=0)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/circuits/polynomial_rotation.py "view source code")
+`PolynomialRotation.build(qc, q, q_target, q_ancillas=None, reverse=0)`
 
 Build the circuit.
 
@@ -168,7 +168,7 @@ returns number of qubits controlled
 
 <span id="qiskit.aqua.circuits.PolynomialRotation.required_ancillas" />
 
-`PolynomialRotation.required_ancillas()` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/circuits/polynomial_rotation.py "view source code")
+`PolynomialRotation.required_ancillas()`
 
 returns required ancillas
 
@@ -176,7 +176,7 @@ returns required ancillas
 
 <span id="qiskit.aqua.circuits.PolynomialRotation.required_ancillas_controlled" />
 
-`PolynomialRotation.required_ancillas_controlled()` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/circuits/polynomial_rotation.py "view source code")
+`PolynomialRotation.required_ancillas_controlled()`
 
 returns required ancillas controlled
 

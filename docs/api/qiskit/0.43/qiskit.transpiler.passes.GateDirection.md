@@ -63,7 +63,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.GateDirection.run" />
 
-`GateDirection.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/utils/gate_direction.py "view source code")
+`GateDirection.run(dag)`
 
 Run the GateDirection pass on dag.
 

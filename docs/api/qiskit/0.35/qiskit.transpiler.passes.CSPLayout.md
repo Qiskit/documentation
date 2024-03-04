@@ -47,7 +47,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.CSPLayout.run" />
 
-`CSPLayout.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/layout/csp_layout.py "view source code")
+`CSPLayout.run(dag)`
 
 run the layout method
 

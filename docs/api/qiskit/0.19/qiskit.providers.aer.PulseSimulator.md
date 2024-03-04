@@ -92,7 +92,7 @@ the configuration for the backend.
 
 <span id="qiskit.providers.aer.PulseSimulator.defaults" />
 
-`PulseSimulator.defaults()` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.5/qiskit/providers/aer/backends/pulse_simulator.py "view source code")
+`PulseSimulator.defaults()`
 
 Return defaults.
 
@@ -156,7 +156,7 @@ the Provider responsible for the backend.
 
 <span id="qiskit.providers.aer.PulseSimulator.run" />
 
-`PulseSimulator.run(qobj, system_model, backend_options=None, validate=False)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.5/qiskit/providers/aer/backends/pulse_simulator.py "view source code")
+`PulseSimulator.run(qobj, system_model, backend_options=None, validate=False)`
 
 Run a qobj on system\_model.
 

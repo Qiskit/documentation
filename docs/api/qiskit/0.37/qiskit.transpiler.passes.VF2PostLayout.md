@@ -54,7 +54,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.VF2PostLayout.run" />
 
-`VF2PostLayout.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/layout/vf2_post_layout.py "view source code")
+`VF2PostLayout.run(dag)`
 
 run the layout method
 

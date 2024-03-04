@@ -157,7 +157,7 @@ qubit\_properties
 
 <span id="qiskit.providers.fake_provider.FakeBackend5QV2.run" />
 
-`FakeBackend5QV2.run(run_input, **options)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/fake_provider/fake_backend_v2.py "view source code")
+`FakeBackend5QV2.run(run_input, **options)`
 
 Run on the backend.
 

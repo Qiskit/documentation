@@ -33,7 +33,7 @@ Model for RunConfig.
 
 <span id="qiskit.qobj.QasmQobjConfig.from_dict" />
 
-`classmethod QasmQobjConfig.from_dict(data)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/qobj/qasm_qobj.py "view source code")
+`classmethod QasmQobjConfig.from_dict(data)`
 
 Create a new QasmQobjConfig object from a dictionary.
 
@@ -53,7 +53,7 @@ The object from the input dictionary.
 
 <span id="qiskit.qobj.QasmQobjConfig.to_dict" />
 
-`QasmQobjConfig.to_dict()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/qobj/qasm_qobj.py "view source code")
+`QasmQobjConfig.to_dict()`
 
 Return a dictionary format representation of the QASM Qobj config.
 

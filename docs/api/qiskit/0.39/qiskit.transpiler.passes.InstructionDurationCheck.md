@@ -43,7 +43,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.InstructionDurationCheck.run" />
 
-`InstructionDurationCheck.run(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/transpiler/passes/scheduling/alignments/check_durations.py "view source code")
+`InstructionDurationCheck.run(dag)`
 
 Run duration validation passes.
 

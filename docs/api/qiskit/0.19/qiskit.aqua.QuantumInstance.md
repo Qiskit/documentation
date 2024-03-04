@@ -122,7 +122,7 @@ checks if skip qobj validation
 
 <span id="qiskit.aqua.QuantumInstance.assemble" />
 
-`QuantumInstance.assemble(circuits)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/quantum_instance.py "view source code")
+`QuantumInstance.assemble(circuits)`
 
 assemble circuits
 
@@ -130,7 +130,7 @@ assemble circuits
 
 <span id="qiskit.aqua.QuantumInstance.cals_matrix" />
 
-`QuantumInstance.cals_matrix(qubit_index=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/quantum_instance.py "view source code")
+`QuantumInstance.cals_matrix(qubit_index=None)`
 
 Get the stored calibration matrices and its timestamp.
 
@@ -154,7 +154,7 @@ tuple(np.ndarray, int)
 
 <span id="qiskit.aqua.QuantumInstance.execute" />
 
-`QuantumInstance.execute(circuits, had_transpiled=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/quantum_instance.py "view source code")
+`QuantumInstance.execute(circuits, had_transpiled=False)`
 
 A wrapper to interface with quantum backend.
 
@@ -179,7 +179,7 @@ assembling to the qobj.
 
 <span id="qiskit.aqua.QuantumInstance.maybe_refresh_cals_matrix" />
 
-`QuantumInstance.maybe_refresh_cals_matrix(timestamp=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/quantum_instance.py "view source code")
+`QuantumInstance.maybe_refresh_cals_matrix(timestamp=None)`
 
 Calculate the time difference from the query of last time.
 
@@ -195,7 +195,7 @@ bool
 
 <span id="qiskit.aqua.QuantumInstance.set_config" />
 
-`QuantumInstance.set_config(**kwargs)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/quantum_instance.py "view source code")
+`QuantumInstance.set_config(**kwargs)`
 
 Set configurations for the quantum instance.
 
@@ -203,7 +203,7 @@ Set configurations for the quantum instance.
 
 <span id="qiskit.aqua.QuantumInstance.transpile" />
 
-`QuantumInstance.transpile(circuits)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/quantum_instance.py "view source code")
+`QuantumInstance.transpile(circuits)`
 
 A wrapper to transpile circuits to allow algorithm access the transpiled circuits. :param circuits: circuits to transpile :type circuits: QuantumCircuit or list\[QuantumCircuit]
 

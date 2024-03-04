@@ -38,7 +38,7 @@ Reference implementation of [`BaseEstimator`](qiskit.primitives.BaseEstimator "q
 
 <span id="qiskit.primitives.Estimator.close" />
 
-`Estimator.close()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/primitives/estimator.py "view source code")
+`Estimator.close()`
 
 Close the session and free resources
 

@@ -53,7 +53,7 @@ Create new CPhase gate.
 
 <span id="qiskit.circuit.library.CPhaseGate.control" />
 
-`CPhaseGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/p.py "view source code")
+`CPhaseGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
 Controlled version of this gate.
 
@@ -75,7 +75,7 @@ controlled version of this gate.
 
 <span id="qiskit.circuit.library.CPhaseGate.inverse" />
 
-`CPhaseGate.inverse()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/p.py "view source code")
+`CPhaseGate.inverse()`
 
 Return inverted CPhase gate ($CPhase(\lambda){\dagger} = CPhase(-\lambda)$)
 
@@ -83,7 +83,7 @@ Return inverted CPhase gate ($CPhase(\lambda){\dagger} = CPhase(-\lambda)$)
 
 <span id="qiskit.circuit.library.CPhaseGate.power" />
 
-`CPhaseGate.power(exponent)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/p.py "view source code")
+`CPhaseGate.power(exponent)`
 
 Raise gate to a power.
 

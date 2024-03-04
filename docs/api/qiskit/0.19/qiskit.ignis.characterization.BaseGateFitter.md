@@ -173,7 +173,7 @@ Compute self.\_params and self.\_params\_err
 
 <span id="qiskit.ignis.characterization.BaseGateFitter.plot" />
 
-`BaseGateFitter.plot(qind, series='0', ax=None, show_plot=True)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/characterization/fitters.py "view source code")
+`BaseGateFitter.plot(qind, series='0', ax=None, show_plot=True)`
 
 Plot err data.
 

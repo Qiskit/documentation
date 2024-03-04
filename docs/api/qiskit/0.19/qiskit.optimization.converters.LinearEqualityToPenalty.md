@@ -20,7 +20,7 @@ Convert a problem with only equality constraints to unconstrained with penalty t
 
 <span id="qiskit.optimization.converters.LinearEqualityToPenalty.encode" />
 
-`LinearEqualityToPenalty.encode(op, penalty_factor=100000.0, name=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/converters/linear_equality_to_penalty.py "view source code")
+`LinearEqualityToPenalty.encode(op, penalty_factor=100000.0, name=None)`
 
 Convert a problem with equality constraints into an unconstrained problem.
 

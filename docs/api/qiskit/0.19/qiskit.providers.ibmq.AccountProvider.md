@@ -60,7 +60,7 @@ AccountProvider constructor.
 
 <span id="qiskit.providers.ibmq.AccountProvider.backends" />
 
-`AccountProvider.backends(name=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.7/qiskit/providers/ibmq/accountprovider.py "view source code")
+`AccountProvider.backends(name=None, **kwargs)`
 
 Return all backends accessible via this provider, subject to optional filtering.
 

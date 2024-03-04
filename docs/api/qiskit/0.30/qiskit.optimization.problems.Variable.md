@@ -38,7 +38,7 @@ The variables is exposed by the top-level QuadraticProgram class in QuadraticPro
 
 <span id="qiskit.optimization.problems.Variable.as_tuple" />
 
-`Variable.as_tuple()` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/variable.py "view source code")
+`Variable.as_tuple()`
 
 Returns a tuple corresponding to this variable.
 
