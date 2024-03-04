@@ -170,7 +170,7 @@ with Session(service, backend=backend) as session:
     result = job.result()
     
 # Step 4: Postprocess the results
-print(f" > Counts: {result[0].data.evs}")
+print(f" > Counts: {result[0].data.meas.get_counts()}")
 
 # save results of program execution
 # note: saved items must be serializable
