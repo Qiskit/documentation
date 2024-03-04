@@ -113,7 +113,7 @@ async function collectDirFiles(directory: string): Promise<string[]> {
 
 // Collect directories to look through
 async function determineTocFiles(args: Arguments): Promise<string[]> {
-  const globs = ["docs/**/_toc.json", "!./docs/api/**"];
+  const globs = ["docs/**/_toc.json", "!docs/api/**"];
   if (args.currentApis) {
     globs.push("docs/api/*/_toc.json");
   }
