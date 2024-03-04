@@ -15,23 +15,20 @@ import fs from "fs/promises";
 import { globby } from "globby";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
+import { flattenDeep } from "lodash";
 
 interface Arguments {
   [x: string]: unknown;
   currentApis: boolean;
   devApis: boolean;
   historicalApis: boolean;
-}
+};
 
-// The steps to this script are:
-//  ✅ 1. Enter each folder within docs
-//  ✅ 2. Create a list of files in the _toc
-//  ✅ 3. Collect the list of files in directory
-//  ✅ 4. Check if each file in directory is in _toc
+const ALLOWED_ORPHANS = [
+  '/api/qiskit/qiskit.primitives.BaseEstimator',
+  '/api/qiskit/qiskit.primitives.BaseSampler',
+];
 
-// Needed features:
-//  ✅ - Check api docs if desired
-//   - Include command in .github/workflows/main.yml
 const readArgs = (): Arguments => {
   return yargs(hideBin(process.argv))
     .version(false)
@@ -49,8 +46,7 @@ const readArgs = (): Arguments => {
       type: "boolean",
       default: false,
       description:
-        "Check the links in the historical API docs, e.g. `api/qiskit/0.44`. " +
-        "Warning: this is slow.",
+        "Check the links in the historical API docs, e.g. `api/qiskit/0.44`. ",
     })
     .parseSync();
 };
@@ -58,30 +54,17 @@ const readArgs = (): Arguments => {
 async function main() {
   const args = readArgs();
 
-  // DETERMINE THE TOC FILES TO CHECK AGAINST
   const tocFiles = await determineTocFiles(args);
 
-  // SET PASS/FAIL STATUS
   let allGood = true;
   const orphanPages = [];
 
   for (tocFile of tocFiles) {
-    // LOAD JSON CONTENTS OF TOC FILE
-    console.log("Checking toc in:", tocFile);
-    const jsonFileContents = await fs.readFile(tocFile, "utf-8");
-    const children = JSON.parse(jsonFileContents).children;
-    const files: [string] = [];
-
-    // COLLECT ALL URLS REFERENCED IN TOC FILE
-    const fileContents = await collectTocFileContents(children);
-    const flatFileContents = flattenArray(fileContents);
-    flatFileContents[0] = flatFileContents[0] + "/index";
-
-    // NOW COLLECT ALL FILES IN THE DIRECTORY
+    tocUrls = await getTocUrls(tocFile);
     const dir = tocFile.replace("_toc.json", "");
     const dirFiles = await collectDirFiles(dir);
     for (file of dirFiles) {
-      if (!flatFileContents.includes(file)) {
+      if (!tocUrls.includes(file) && !ALLOWED_ORPHANS.includes(file)) {
         allGood = false;
         orphanPages.push(file);
       }
@@ -97,7 +80,22 @@ async function main() {
   console.log("\nNo orphan pages found ✅\n");
 }
 
-// Collect all files in a given directory
+
+async function getTocUrls(filePath: string): Set<string> {
+  console.log("Checking toc in:", tocFile);
+  const jsonFileContents = await fs.readFile(tocFile, "utf-8");
+  const children = JSON.parse(jsonFileContents).children;
+  const files: [string] = [];
+  
+  const fileContents = await collectTocFileContents(children);
+  const flatFileContents = flattenDeep(fileContents);
+  const indexPageUrl = flatFileContents[0] + "/index";
+  flatFileContents.push(indexPageUrl);
+  const tocUrlSet = new Set(flatFileContents);
+  
+  return flatFileContents;
+};
+
 async function collectDirFiles(directory: string): Promise<string[]> {
   const fileGlob = [
     directory + "/*.md",
@@ -106,12 +104,11 @@ async function collectDirFiles(directory: string): Promise<string[]> {
   ];
   const fileList = await globby(fileGlob);
   const processedFileList = fileList.map((fileName) =>
-    fileName.replace("docs", "").replace(".mdx", "").replace(".ipynb", ""),
+    fileName.replace("docs", "").replace(".mdx", "").replace(".ipynb", "").replace(".md", ""),
   );
   return processedFileList;
-}
+};
 
-// Collect directories to look through
 async function determineTocFiles(args: Arguments): Promise<string[]> {
   const globs = ["docs/**/_toc.json", "!docs/api/**"];
   if (args.currentApis) {
@@ -130,17 +127,15 @@ async function determineTocFiles(args: Arguments): Promise<string[]> {
   return await globby(globs);
 }
 
-// Collect files referenced in _toc file
+
 function collectTocFileContents(children: string[]): string[] {
   const urls = [];
 
   for (const child of children) {
-    // If there's any children, enter recursion to get urls
     if ("children" in child) {
       const childUrls = collectTocFileContents(child.children);
       urls.push(childUrls);
     }
-    // Just add url if there's no children
     else {
       urls.push(child.url);
     }
@@ -148,23 +143,5 @@ function collectTocFileContents(children: string[]): string[] {
   return urls;
 }
 
-function flattenArray(urlArray: [string[]]): [string[]] {
-  return urlArray.reduce((flattenedArray, childElement) => {
-    if (Array.isArray(childElement)) {
-      flattenedArray.push(...flattenArray(childElement));
-    } else {
-      flattenedArray.push(childElement);
-    }
-    return flattenedArray;
-  }, []);
-}
-
-function isIterable(obj) {
-  // checks for null and undefined
-  if (obj == null) {
-    return false;
-  }
-  return typeof obj[Symbol.iterator] === "function";
-}
 
 main().then(() => process.exit());
