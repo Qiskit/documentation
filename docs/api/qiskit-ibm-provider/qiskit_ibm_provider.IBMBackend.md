@@ -326,7 +326,7 @@ Version of the backend being provided. This is not the same as `BackendV2.versio
 
 <span id="qiskit_ibm_provider.IBMBackend.acquire_channel" />
 
-`acquire_channel(qubit)`
+`acquire_channel(qubit)` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/ibm_backend.py#L710-L716 "view source code")
 
 Return the acquisition channel for the given qubit.
 
