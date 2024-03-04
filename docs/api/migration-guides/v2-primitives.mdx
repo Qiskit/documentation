@@ -607,7 +607,7 @@ Use Estimator to determine the expectation values of multiple circuit-observable
 
 <Tabs>
   <TabItem value="EstimatorV2" label="EstimatorV2">
-    ```python
+```python
 service = QiskitRuntimeService()
 backend = service.least_busy(operational=True, simulator=False)
 
@@ -638,11 +638,11 @@ print(f">>> Expectation values 2: {pub_result_2.data.evs}")
 print(f">>> Standard errors 2: {pub_result_2.data.stds}")
 print(f">>> Expectation values 3: {pub_result_3.data.evs}")
 print(f">>> Standard errors 3: {pub_result_3.data.stds}")
-  ```  
+```  
   </TabItem>
 
   <TabItem value="EstimatorV1" label="Estimator (V1)">
-    ```python
+```python
 import numpy as np
 from qiskit.circuit.library import IQP
 from qiskit.quantum_info import SparsePauliOp, random_hermitian
@@ -674,7 +674,7 @@ job = estimator.run(isa_circuits, isa_observables)
 result = job.result()
  
 print(f" > Expectation values: {result.values}")  
-  ```  
+```  
   </TabItem>
 </Tabs>
 
@@ -801,7 +801,7 @@ Explore sessions and advanced options to optimize circuit performance on quantum
 
 <Tabs>
   <TabItem value="EstimatorV2" label="EstimatorV2">
-    ```python
+```python
 import numpy as np
 from qiskit.circuit.library import IQP
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
@@ -846,11 +846,11 @@ with Session(service=service, backend=backend) as session:
     # second job
     print(f" > Another Expectation value: {another_result[0].data.evs}")
     print(f" > More Metadata: {another_result[0].metadata}")
-  ```  
+```  
   </TabItem>
 
   <TabItem value="EstimatorV1" label="Estimator (V1)">
-    ```python
+```python
 import numpy as np
 from qiskit.circuit.library import IQP
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
@@ -906,7 +906,7 @@ Use Sampler to determine the counts or quasi-probability distribution of a singl
 {/*Verified 2/28 */}
 <Tabs>
   <TabItem value="SamplerV2" label="SamplerV2">
-    ```python
+```python
 import numpy as np
 from qiskit.circuit.library import IQP
 from qiskit.quantum_info import random_hermitian
@@ -966,7 +966,7 @@ Use Sampler to determine the counts or quasi-probability distributions of multip
 
 <Tabs>
   <TabItem value="SamplerV2" label="SamplerV2">
-    ```python
+```python
 import numpy as np
 from qiskit.circuit.library import IQP
 from qiskit.quantum_info import random_hermitian
@@ -992,11 +992,11 @@ job = sampler.run([(isa_circuits)])
 result = job.result() 
 
 print(f" > Counts: {result[0].data.meas.get_counts()}") 
-  ```  
+```  
   </TabItem>
 
   <TabItem value="SamplerV1" label="Sampler (V1)">
-    ```python
+```python
 import numpy as np
 from qiskit.circuit.library import IQP
 from qiskit.quantum_info import random_hermitian
@@ -1031,14 +1031,14 @@ Run several experiments in a single job, leveraging parameter values to increase
 
 <Tabs>
   <TabItem value="SamplerV2" label="SamplerV2">
-    ```python 
+```python 
 import numpy as np
 from qiskit.circuit.library import RealAmplitudes
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit_ibm_runtime import QiskitRuntimeService
 
 # Step 1: Map classical inputs to a quantum problem
-num_qubits = 5
+num_qubits = 127
 circuit = RealAmplitudes(num_qubits=num_qubits, reps=2)
 circuit.measure_all()
 
@@ -1071,7 +1071,7 @@ print(f" >> Counts for the meas output register: {pub_result.data.meas.get_count
   </TabItem>
 
   <TabItem value="SamplerV1" label="Sampler (V1)">
-  ```python
+```python
 import numpy as np
 from qiskit.circuit.library import RealAmplitudes
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
@@ -1118,7 +1118,7 @@ Explore sessions and advanced options to optimize circuit performance on quantum
 
 <Tabs>
   <TabItem value="SamplerV2" label="SamplerV2">
-    ```python
+```python
 import numpy as np
 from qiskit.circuit.library import IQP
 from qiskit.quantum_info import random_hermitian
@@ -1154,11 +1154,11 @@ print(f" > Counts for job 1: {result[0].data.meas.get_counts()}")
  
 # second job 
 print(f" > Counts for job 2: {another_result[0].data.meas.get_counts()}")
-  ```  
+```  
   </TabItem>
 
   <TabItem value="SamplerV1" label="Sampler (V1)">
-    ```python
+```python
 import numpy as np
 from qiskit.circuit.library import IQP
 from qiskit.quantum_info import random_hermitian
