@@ -353,7 +353,7 @@ For examples of using options, see the [Error mitigation](#error-mit) and [Trans
 |                                   | optimization_level       | int                                               | 1                         |
 |                                   | resilience_level         | int                                               | 1                         |
 | dynamical_decoupling              | enable                   | bool                                              | False                     |
-| dynamical_decoupling              | sequence_type            | Literal[`XX`, `XpXm`, `XY4`]                      | “XX”                      |
+| dynamical_decoupling              | sequence_type            | Literal[`XX`, `XpXm`, `XY4`]                      | `XX`                      |
 | dynamical_decoupling              | extra_slack_distribution | Literal[`middle`, `edges`]                        | middle                    |
 | dynamical_decoupling              | scheduling_method        | Literal[`alap`, `asap`]                           | alap                      |
 | execution                         | rep_delay                | float                                             | backend.default_rep_delay |
@@ -362,20 +362,20 @@ For examples of using options, see the [Error mitigation](#error-mit) and [Trans
 | resilience                        | zne_mitigation           | bool                                              | false                     |
 | resilience                        | pec_mitigation           | bool                                              | false                     |
 | resilience.zne                    | noise_factors            | list[float]                                       | (1, 3, 5)                 |
-| resilience.zne                    | extrapolator             | "exponential\|linear\|polynomial_degree_[1-7]”    | ("exponential", "linear") |
+| resilience.zne                    | extrapolator             | `exponential\|linear\|polynomial_degree_[1-7]`    | (`exponential`, `linear`) |
 | resilience.pec                    | max_overhead             | float                                             | None                      |
-| resilience.pec                    | noise_gain               | float \| “auto”                                   | “auto”                    |
+| resilience.pec                    | noise_gain               | float \| `auto`                                   | `auto`                    |
 | resilience.layer_noise_learning   | max_layers_to_learn      | int                                               | 20                        |
 | resilience.layer_noise_learning   | shots_per_randomization  | int                                               | 128                       |
 | resilience.layer_noise_learning   | num_randomizations       | int                                               | 32                        |
 | resilience.layer_noise_learning   | layer_pair_depths        | list[int]                                         | (0, 1, 2, 4, 16, 32)      |
 | resilience.measure_noise_learning | num_randomizations       | int                                               | 32                        |
-| resilience.measure_noise_learning | shots_per_randomization  | int \| “auto”                                     | “auto”                    |
+| resilience.measure_noise_learning | shots_per_randomization  | int \| `auto`                                     | `auto`                    |
 | twirling                          | enable_gates             | bool                                              | False                     |
 | twirling                          | enable_measure           | bool                                              | True                      |
-| twirling                          | num_randomizations       | int \| “auto”                                     | “auto”                    |
-| twirling                          | shots_per_randomization  | int \| “auto”                                     | “auto”                    |
-| twirling                          | strategy                 | `active`, `active-accum`, `active-circuit`, `all` | active-accum              |
+| twirling                          | num_randomizations       | int \| `auto`                                     | `auto`                    |
+| twirling                          | shots_per_randomization  | int \| `auto`                                     | `auto`                    |
+| twirling                          | strategy                 | `active`, `active-accum`, `active-circuit`, `all` | `active-accum`            |
 | simulator                         | coupling_map             |                                                   | None                      |
 | simulator                         | basis gates              |                                                   | None                      |
 | simulator                         | noise_model              |                                                   | None                      |
@@ -387,7 +387,7 @@ For examples of using options, see the [Error mitigation](#error-mit) and [Trans
 |----------------------|--------------------------|-------------------------------|-------------------------------------------|
 |                      | default_shots            | int                           | 4096                                      |
 | dynamical_decoupling | enable                   | bool                          | False                                     |
-| dynamical_decoupling | sequence_type            | Literal[`XX`, `XpXm`, `XY4`]  | “XX”                                      |
+| dynamical_decoupling | sequence_type            | Literal[`XX`, `XpXm`, `XY4`]  | `XX`                                      |
 | dynamical_decoupling | extra_slack_distribution | Literal[`middle`, `edges`]    | middle                                    |
 | dynamical_decoupling | scheduling_method        | Literal[`alap`, `asap`]       | alap                                      |
 | execution            | rep_delay                | float                         | backend.configuration().default_rep_delay |
