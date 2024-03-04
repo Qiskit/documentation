@@ -22,11 +22,11 @@ interface Arguments {
   currentApis: boolean;
   devApis: boolean;
   historicalApis: boolean;
-};
+}
 
 const ALLOWED_ORPHANS = [
-  '/api/qiskit/qiskit.primitives.BaseEstimator',
-  '/api/qiskit/qiskit.primitives.BaseSampler',
+  "/api/qiskit/qiskit.primitives.BaseEstimator",
+  "/api/qiskit/qiskit.primitives.BaseSampler",
 ];
 
 const readArgs = (): Arguments => {
@@ -80,21 +80,20 @@ async function main() {
   console.log("\nNo orphan pages found ✅\n");
 }
 
-
 async function getTocUrls(filePath: string): Set<string> {
   console.log("Checking toc in:", tocFile);
   const jsonFileContents = await fs.readFile(tocFile, "utf-8");
   const children = JSON.parse(jsonFileContents).children;
   const files: [string] = [];
-  
+
   const fileContents = await collectTocFileContents(children);
   const flatFileContents = flattenDeep(fileContents);
   const indexPageUrl = flatFileContents[0] + "/index";
   flatFileContents.push(indexPageUrl);
   const tocUrlSet = new Set(flatFileContents);
-  
+
   return flatFileContents;
-};
+}
 
 async function collectDirFiles(directory: string): Promise<string[]> {
   const fileGlob = [
@@ -104,10 +103,14 @@ async function collectDirFiles(directory: string): Promise<string[]> {
   ];
   const fileList = await globby(fileGlob);
   const processedFileList = fileList.map((fileName) =>
-    fileName.replace("docs", "").replace(".mdx", "").replace(".ipynb", "").replace(".md", ""),
+    fileName
+      .replace("docs", "")
+      .replace(".mdx", "")
+      .replace(".ipynb", "")
+      .replace(".md", ""),
   );
   return processedFileList;
-};
+}
 
 async function determineTocFiles(args: Arguments): Promise<string[]> {
   const globs = ["docs/**/_toc.json", "!docs/api/**"];
@@ -127,7 +130,6 @@ async function determineTocFiles(args: Arguments): Promise<string[]> {
   return await globby(globs);
 }
 
-
 function collectTocFileContents(children: string[]): string[] {
   const urls = [];
 
@@ -135,13 +137,11 @@ function collectTocFileContents(children: string[]): string[] {
     if ("children" in child) {
       const childUrls = collectTocFileContents(child.children);
       urls.push(childUrls);
-    }
-    else {
+    } else {
       urls.push(child.url);
     }
   }
   return urls;
 }
-
 
 main().then(() => process.exit());

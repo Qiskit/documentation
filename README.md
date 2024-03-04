@@ -210,7 +210,8 @@ npm run check:external-links -- 'docs/run/*' '!docs/run/index.mdx'
 ```
 
 ## Check for orphan pages
-Every file should have a home in one of the `_toc.json` files.  If for some reason a page should *not* have a home, add it to the `ALLOWED_ORPHANS` list in `scripts/checkOrphanPages.ts`.
+
+Every file should have a home in one of the `_toc.json` files. If for some reason a page should _not_ have a home, add it to the `ALLOWED_ORPHANS` list in `scripts/checkOrphanPages.ts`.
 
 To check for orphaned pages, run:
 
