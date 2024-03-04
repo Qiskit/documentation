@@ -9,11 +9,11 @@ description: Migrate from using the original primitives (Estimator and Sampler) 
 
 This guide describes what changed in the Qiskit Runtime V2 primitives and why, describes each new primitive in detail, and gives examples to help you migrate code from using the legacy primitives to the V2 primitives.  The examples in the guide all use the Qiskit Runtime primitives, but in general, the same changes apply to the other primitive implementations.  The functions unique to Qiskit Runtime such as error mitigation remain unique to Qiskit Runtime. 
 
-For information about the changes to the Qiskit reference primitives (now called *statevector* primitives), see (the qiskit.primitives section)[qiskit-1.0-features#qiskit.primitives] in the Qiskit 1.0 feature changes page.  See [StatevectorSampler](/api/qiskit/qiskit.primitives.StatevectorSampler) and [StatevectorEstimator](/api/qiskit/qiskit.primitives.StatevectorEstimator) for V2 primitive reference implementations.
+For information about the changes to the Qiskit reference primitives (now called *statevector* primitives), see (the qiskit.primitives section)[qiskit-1.0-features#qiskit.primitives] in the Qiskit 1.0 feature changes page.  See [StatevectorSampler](../api/qiskit/qiskit.primitives.StatevectorSampler) and [StatevectorEstimator](../api/qiskit/qiskit.primitives.StatevectorEstimator) for V2 primitive reference implementations.
 
 ## Overview
 
-Version 2 of the primitives is introduced with a new base class for both Sampler and Estimator ([BaseSamplerV2](/api/qiskit/qiskit.primitives.BaseSamplerV2) and [BaseEstimatorV2](/api/qiskit/qiskit.primitives.BaseEstimatorV2)), along with new types for their inputs and outputs. 
+Version 2 of the primitives is introduced with a new base class for both Sampler and Estimator ([BaseSamplerV2](../api/qiskit/qiskit.primitives.BaseSamplerV2) and [BaseEstimatorV2](../api/qiskit/qiskit.primitives.BaseEstimatorV2)), along with new types for their inputs and outputs. 
 
 The new interface lets you specify a single circuit and multiple observables (if using Estimator) and parameter value sets for that circuit, so that sweeps over parameter value sets and observables can be efficiently specified. Previously, you had to specify the same circuit multiple times to match the size of the data to be combined.  Also, while you can still use `optimization_level` and `resilience_level` (if using Estimator) as the simple knobs, V2 primitives give you the flexibility to turn on or off individual error mitigation / suppression methods to customize them for your needs.
 
@@ -103,9 +103,10 @@ sampler.run([(circuit1, None, 123), (circuit2, None, 456)])
 
 #### Output
 
-The output is now in the (`PubResult`)[/api/qiskit/qiskit.primitives.PubResult] format. A `PubResult` is the data and metadata resulting from a single PUB’s execution.
+The output is now in the [`PubResult`](../api/qiskit/qiskit.primitives.PubResult) format. A `PubResult` is the data and metadata resulting from a single PUB’s execution.
 
 * V2 Estimator continues to return expectation values.
+* The `data` portion of a V2 Estimator PubResult contains both expectation values and standard errors (`stds`). V1 returned variance in metadata.
 * V2 Sampler returns per-shot measurements in the form of **bitstrings** or
    **counts**, instead of the quasi-probability distributions from the V1
    interface. The bitstrings show the measurement outcomes, preserving the shot
@@ -131,38 +132,6 @@ The output is now in the (`PubResult`)[/api/qiskit/qiskit.primitives.PubResult] 
     meas: 2/══════════════╩══╩═
                           0  1
     ```
-
-##### Example that uses different output registers
-
-{/*From the boxnote.*/}
-
-```python
-from qiskit import ClassicalRegister, QuantumRegister, QuantumCircuit
-from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
-from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
-
-alpha = ClassicalRegister(5, "alpha") 
-beta = ClassicalRegister(7, "beta")
-qreg = QuantumRegister(12)
-
-circuit = QuantumCircuit(qreg, alpha, beta)
-circuit.h(0)
-circuit.measure(qreg[:5], alpha)
-circuit.measure(qreg[5:], beta)
-
-service = QiskitRuntimeService()
-backend = service.least_busy(operational=True, simulator=False, min_num_qubits=12)
-pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
-isa_circuit = pm.run(circuit)
-
-sampler = Sampler(backend)
-job = sampler.run([(isa_circuit,)])
-result = job.result()
-# Get results for the first (and only) PUB
-pub_result = result[0]
-print(f" >> Counts for the alpha output register: {pub_result.data.alpha.get_counts()}")
-print(f" >> Counts for the beta output register: {pub_result.data.beta.get_counts()}")
-```
 
 #### Estimator examples (input and output)   
 
@@ -236,6 +205,38 @@ print(f" >> Counts for the beta output register: {pub_result.data.beta.get_count
 ```
   </TabItem>
 </Tabs>
+
+Example that uses different output registers
+
+{/*From the boxnote.*/}
+
+```python
+from qiskit import ClassicalRegister, QuantumRegister, QuantumCircuit
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
+
+alpha = ClassicalRegister(5, "alpha") 
+beta = ClassicalRegister(7, "beta")
+qreg = QuantumRegister(12)
+
+circuit = QuantumCircuit(qreg, alpha, beta)
+circuit.h(0)
+circuit.measure(qreg[:5], alpha)
+circuit.measure(qreg[5:], beta)
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=12)
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+isa_circuit = pm.run(circuit)
+
+sampler = Sampler(backend)
+job = sampler.run([(isa_circuit,)])
+result = job.result()
+# Get results for the first (and only) PUB
+pub_result = result[0]
+print(f" >> Counts for the alpha output register: {pub_result.data.alpha.get_counts()}")
+print(f" >> Counts for the beta output register: {pub_result.data.beta.get_counts()}")
+```
 
 ### Options
 
@@ -337,73 +338,20 @@ sampler.set_options(shots=2000, optimization_level=0)
 
 ### Advanced options
 
-Additional advanced options are available in V2 primitives. {/*See the API reference for the most up-to-date information on available options.*/}
+Additional advanced options are available in V2 primitives. See the [API reference](../api/qiskit-ibm-runtime/options) for the list of available options.
 
 For examples of using options, see the [Error mitigation](#error-mit) and [Transpilation](#transpilation) sections. 
 
-#### Estimator Advanced options
-
-
-| Category                          | qiskit-ibm-runtime       | Type                                              | Default                   |
-|-----------------------------------|--------------------------|---------------------------------------------------|---------------------------|
-|                                   | default_precision        | float                                             | 0.02                      |
-|                                   | default_shots            | int \| None                                       | None                      |
-|                                   | seed_estimator           | int \| None                                       | None                      |
-|                                   | optimization_level       | int                                               | 1                         |
-|                                   | resilience_level         | int                                               | 1                         |
-| dynamical_decoupling              | enable                   | bool                                              | False                     |
-| dynamical_decoupling              | sequence_type            | Literal[`XX`, `XpXm`, `XY4`]                      | `XX`                      |
-| dynamical_decoupling              | extra_slack_distribution | Literal[`middle`, `edges`]                        | middle                    |
-| dynamical_decoupling              | scheduling_method        | Literal[`alap`, `asap`]                           | alap                      |
-| execution                         | rep_delay                | float                                             | backend.default_rep_delay |
-| execution                         | init_qubits              | bool                                              | true                      |
-| resilience                        | measure_mitigation       | bool                                              | true                      |
-| resilience                        | zne_mitigation           | bool                                              | false                     |
-| resilience                        | pec_mitigation           | bool                                              | false                     |
-| resilience.zne                    | noise_factors            | list[float]                                       | (1, 3, 5)                 |
-| resilience.zne                    | extrapolator             | `exponential\|linear\|polynomial_degree_[1-7]`    | (`exponential`, `linear`) |
-| resilience.pec                    | max_overhead             | float                                             | None                      |
-| resilience.pec                    | noise_gain               | float \| `auto`                                   | `auto`                    |
-| resilience.layer_noise_learning   | max_layers_to_learn      | int                                               | 20                        |
-| resilience.layer_noise_learning   | shots_per_randomization  | int                                               | 128                       |
-| resilience.layer_noise_learning   | num_randomizations       | int                                               | 32                        |
-| resilience.layer_noise_learning   | layer_pair_depths        | list[int]                                         | (0, 1, 2, 4, 16, 32)      |
-| resilience.measure_noise_learning | num_randomizations       | int                                               | 32                        |
-| resilience.measure_noise_learning | shots_per_randomization  | int \| `auto`                                     | `auto`                    |
-| twirling                          | enable_gates             | bool                                              | False                     |
-| twirling                          | enable_measure           | bool                                              | True                      |
-| twirling                          | num_randomizations       | int \| `auto`                                     | `auto`                    |
-| twirling                          | shots_per_randomization  | int \| `auto`                                     | `auto`                    |
-| twirling                          | strategy                 | `active`, `active-accum`, `active-circuit`, `all` | `active-accum`            |
-| simulator                         | coupling_map             |                                                   | None                      |
-| simulator                         | basis gates              |                                                   | None                      |
-| simulator                         | noise_model              |                                                   | None                      |
-| simulator                         | seed_simulator           |                                                   | None                      |
-
-
-#### Sampler advanced options
-
-| Category             | qiskit-ibm-runtime       | Type                          | Default                                   |
-|----------------------|--------------------------|-------------------------------|-------------------------------------------|
-|                      | default_shots            | int                           | 4096                                      |
-| dynamical_decoupling | enable                   | bool                          | False                                     |
-| dynamical_decoupling | sequence_type            | Literal[`XX`, `XpXm`, `XY4`]  | `XX`                                      |
-| dynamical_decoupling | extra_slack_distribution | Literal[`middle`, `edges`]    | middle                                    |
-| dynamical_decoupling | scheduling_method        | Literal[`alap`, `asap`]       | alap                                      |
-| execution            | rep_delay                | float                         | backend.configuration().default_rep_delay |
-| execution            | init_qubits              | bool                          | true                                      |
 
 <span id="error-mit"></span>
-### Error mitigation
+### Error mitigation and suppression
 
-* V2 Sampler does not support `resilience_level`. However, you can apply gate / measurement twirling to your circuits using the `dynamical_decoupling` and `twirling` methods.
-* V2 Estimator supports `resilience_level` 0-2, as described in the following table. You can also explicitly turn on / off individual error mitigation / suppression methods, including gate and measurement twirling, measurement error mitigation, and ZNE.
+* V2 Sampler does not support `resilience_level`. 
+* V2 Estimator supports `resilience_level` 0-2, as described in the following table. You can also explicitly turn on / off individual error mitigation / suppression methods.
 
     | Level 1                   | Level 2                   |
     |---------------------------|---------------------------|
-    | Measurement twirling      | Measurement twirling      |
     | Readout error mitigation  | Readout error mitigation  |
-    |                           | Gate twirling             |
     |                           | ZNE                       |
 
 {/*Verified EstimatorV2. 2/23 */}
@@ -419,12 +367,9 @@ backend = service.least_busy(operational=True, simulator=False)
 
 estimator = Estimator(backend)
 options = estimator.options
-# Turn on gate twirling.
-options.twirling.gates = True
 # Turn on measurement error mitigation.
 options.resilience.measure_noise_mitigation = True
 
-print(f">>> gate twirling is turned on: {estimator.options.twirling.gates}")
 print(f">>> measurement error mitigation is turned on: {estimator.options.resilience.measure_noise_mitigation}")
 ```
   </TabItem>
@@ -454,10 +399,10 @@ backend = service.least_busy(operational=True, simulator=False)
 
 sampler = Sampler(backend)
 options = sampler.options
-# Turn on gate twirling.
-options.twirling.gates = True
+# Turn on dynamical decoupling.
+options.dynamical_decoupling.enable = True
 
-print(f">>> gate twirling is turned on: {sampler.options.twirling.gates}")
+print(f">>> dynamical decoupling is turned on: {sampler.options.dynamical_decoupling.enable}")
 ```
   </TabItem>
 
@@ -588,13 +533,13 @@ print(f"Job {job.job_id()} is still running: {job.status() is JobStatus.RUNNING}
 ## Steps to migrate to V2 Estimator
 
 1. Replace `from qiskit_ibm_runtime import Estimator` with `from qiskit_ibm_runtime import EstimatorV2 as Estimator`.
-2. Remove any `from qiskit_ibm_runtime import Options` statements, since the `Options` class is not used by V2 primitives. You can instead pass options as a dictionary when initializing the `Estimator` class (for example `estimator = Estimator(backend, options={“twirling”: {“gates”: True}})`), or set them after initialization:
+2. Remove any `from qiskit_ibm_runtime import Options` statements, since the `Options` class is not used by V2 primitives. You can instead pass options as a dictionary when initializing the `Estimator` class (for example `estimator = Estimator(backend, options={“dynamical_decoupling”: {“enable”: True}})`), or set them after initialization:
    ```python
    estimator = Estimator(backend)
-   estimator.options.twirling.gates = True
+   estimator.options.dynamical_decoupling.enable = True
    ```
 
-3. Review all the [supported options](https://docs.quantum.ibm.com/api/qiskit-ibm-runtime/options) and make updates accordingly.
+3. Review all the [supported options](../qiskit-ibm-runtime/options) and make updates accordingly.
 4. Group each circuit you want to run with the observables and parameter values you want to apply to the circuit in a tuple (a PUB). For example, use `(circuit1, observable1, parameter_set1)` if you want to run `circuit1` with `observable1` and `parameter_set1`. 
   
   1. You might need to reshape your arrays of observables or parameter sets if you want to apply their outer product. For example, an array of observables of shape (4, 1) and an array of parameter sets of shape (1, 6) will give you a result of (4, 6) expectation values. See the [Numpy broadcasting rules](https://numpy.org/doc/stable/user/basics.broadcasting.html) for more details.
@@ -984,7 +929,7 @@ print(f" > Expectation values job 2: {another_result.values}")
    sampler = Sampler(backend)
    sampler.options.optimization_level = 1
    ```
-3. Review all the [supported options](https://docs.quantum.ibm.com/api/qiskit-ibm-runtime/options) and make updates accordingly.
+3. Review all the [supported options](../api/qiskit-ibm-runtime/options) and make updates accordingly.
 4. Group each circuit you want to run with the observables and parameter values you want to apply to the circuit in a tuple (a PUB). For example, use `(circuit1, parameter_set1)` if you want to run `circuit1` with `parameter_set1`. 
    You can optionally specify the shots you want for that specific PUB. 
 5. Update the sampler `run()` method to pass in the list of PUBs. For example, `run([(circuit1, parameter_set1)])`.
