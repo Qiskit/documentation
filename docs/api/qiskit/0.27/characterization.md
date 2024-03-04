@@ -1,7 +1,7 @@
 ---
 title: characterization
 description: API reference for qiskit.ignis.characterization
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.ignis.characterization
 ---
