@@ -24,10 +24,10 @@ interface Arguments {
   historicalApis: boolean;
 }
 
-const ALLOWED_ORPHANS = [
+const ALLOWED_ORPHANS = new Set([
   "/api/qiskit/qiskit.primitives.BaseEstimator",
   "/api/qiskit/qiskit.primitives.BaseSampler",
-];
+]);
 
 const readArgs = (): Arguments => {
   return yargs(hideBin(process.argv))
@@ -64,7 +64,7 @@ async function main() {
     const dir = tocFile.replace("_toc.json", "");
     const dirFiles = await collectDirFiles(dir);
     for (file of dirFiles) {
-      if (!tocUrls.includes(file) && !ALLOWED_ORPHANS.includes(file)) {
+      if (!tocUrls.has(file) && !ALLOWED_ORPHANS.has(file)) {
         allGood = false;
         orphanPages.push(file);
       }
@@ -92,7 +92,7 @@ async function getTocUrls(filePath: string): Set<string> {
   flatFileContents.push(indexPageUrl);
   const tocUrlSet = new Set(flatFileContents);
 
-  return flatFileContents;
+  return tocUrlSet;
 }
 
 async function collectDirFiles(directory: string): Promise<string[]> {
