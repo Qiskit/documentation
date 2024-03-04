@@ -22,7 +22,7 @@ import { ObjectsInv } from "./objectsInv";
 import { sphinxHtmlToMarkdown } from "./htmlToMd";
 import { saveImages } from "./saveImages";
 import { generateToc } from "./generateToc";
-import { HtmlToMdResult } from "./HtmlToMdResult";
+import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
 import { mergeClassMembers } from "./mergeClassMembers";
 import flattenFolders from "./flattenFolders";
 import { updateLinks } from "./updateLinks";
@@ -58,7 +58,7 @@ export async function runConversionPipeline(
     },
   );
 
-  let results: Array<HtmlToMdResult & { url: string }> = [];
+  let results: Array<HtmlToMdResultWithUrl> = [];
   for (const file of files) {
     const html = await readFile(join(htmlPath, file), "utf-8");
     const result = await sphinxHtmlToMarkdown({
@@ -78,14 +78,6 @@ export async function runConversionPipeline(
     const { dir, name } = parse(`${markdownPath}/${file}`);
     let url = `/${relative(`${getRoot()}/docs`, dir)}/${name}`;
     results.push({ ...result, url });
-
-    if (
-      pkg.isLatest() &&
-      pkg.hasSeparateReleaseNotes &&
-      file.endsWith("release_notes.html")
-    ) {
-      addNewReleaseNotes(pkg);
-    }
   }
 
   const allImages = uniqBy(
@@ -111,36 +103,9 @@ export async function runConversionPipeline(
   for (const result of results) {
     let path = urlToPath(result.url);
 
-    // Historical or dev versions with a single release notes file should not
-    // modify the current API's file.
-    if (
-      !pkg.hasSeparateReleaseNotes &&
-      !pkg.isLatest() &&
-      path.endsWith("release-notes.md")
-    ) {
-      continue;
-    }
-
-    // Dev versions haven't been released yet and we don't want to modify the release notes
-    // of prior versions
-    if (pkg.isDev() && path.endsWith("release-notes.md")) {
-      continue;
-    }
-
-    if (pkg.hasSeparateReleaseNotes && path.endsWith("release-notes.md")) {
-      const baseUrl = pkg.isHistorical()
-        ? `/api/${pkg.name}/${pkg.versionWithoutPatch}`
-        : `/api/${pkg.name}`;
-
-      // Convert the relative links to absolute links
-      result.markdown = transformLinks(result.markdown, (link, _) =>
-        link.startsWith("http") || link.startsWith("#") || link.startsWith("/")
-          ? link
-          : `${baseUrl}/${link}`,
-      );
-
-      await writeReleaseNoteForVersion(pkg, result.markdown);
-      continue;
+    if (path.endsWith("release-notes.md")) {
+      const shouldUse = await handleReleaseNotesFile(result, pkg);
+      if (!shouldUse) continue;
     }
 
     await writeFile(path, result.markdown);
@@ -153,17 +118,7 @@ export async function runConversionPipeline(
     JSON.stringify(toc, null, 2) + "\n",
   );
 
-  // Add the new release entry to the _toc.json for all historical API versions.
-  // We don't need to add any entries in projects with a single release notes file.
-  if (pkg.isLatest() && pkg.hasSeparateReleaseNotes) {
-    await updateHistoricalTocFiles(pkg);
-  }
-
-  if (pkg.isLatest() && pkg.hasSeparateReleaseNotes) {
-    console.log("Generating release-notes/index");
-    const markdown = generateReleaseNotesIndex(pkg);
-    await writeFile(`${markdownPath}/release-notes/index.md`, markdown);
-  }
+  await maybeUpdateReleaseNotesFolder(pkg, markdownPath);
 
   console.log("Generating version file");
   const pkg_json = { name: pkg.name, version: pkg.version };
@@ -177,6 +132,61 @@ export async function runConversionPipeline(
     console.log("Saving images");
     await saveImages(allImages, `${htmlPath}/_images`, pkg);
   }
+}
+
+/**
+ * Determine what to do with release-notes.md, such as simply ignoring it.
+ *
+ * @returns true if the release notes file should be used.
+ */
+async function handleReleaseNotesFile(
+  result: HtmlToMdResultWithUrl,
+  pkg: Pkg,
+): Promise<boolean> {
+  // Dev versions haven't been released yet and we don't want to modify the release notes
+  // of prior versions.
+  if (pkg.isDev()) {
+    return false;
+  }
+
+  // When the release notes are a single file, only use them if this is the latest version rather
+  // than a historical release.
+  if (!pkg.hasSeparateReleaseNotes) {
+    return pkg.isLatest();
+  }
+
+  // Else, there is a distinct release note per version. So, we use the release note but
+  // have custom logic to handle it.
+
+  const baseUrl = pkg.isHistorical()
+    ? `/api/${pkg.name}/${pkg.versionWithoutPatch}`
+    : `/api/${pkg.name}`;
+  result.markdown = transformLinks(result.markdown, (link, _) =>
+    link.startsWith("http") || link.startsWith("#") || link.startsWith("/")
+      ? link
+      : `${baseUrl}/${link}`,
+  );
+
+  await writeReleaseNoteForVersion(pkg, result.markdown);
+  return false;
+}
+
+/**
+ * If there was a new release notes file, update the release notes index page and _toc.json for
+ * every docs version.
+ */
+async function maybeUpdateReleaseNotesFolder(
+  pkg: Pkg,
+  markdownPath: string,
+): Promise<void> {
+  if (!pkg.hasSeparateReleaseNotes || !pkg.isLatest()) {
+    return;
+  }
+  addNewReleaseNotes(pkg);
+  await updateHistoricalTocFiles(pkg);
+  console.log("Generating release-notes/index");
+  const indexMarkdown = generateReleaseNotesIndex(pkg);
+  await writeFile(`${markdownPath}/release-notes/index.md`, indexMarkdown);
 }
 
 function urlToPath(url: string) {
