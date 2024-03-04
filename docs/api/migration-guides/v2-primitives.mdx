@@ -544,8 +544,9 @@ sampler = Sampler (options=options, backend=backend)
 
 3. Review all the options EstimatorV2 supports [insert link] and make updates accordingly.
 4. Group each circuit you want to run with the observables and parameter values you want to apply to the circuit in a tuple (a PUB). For example, use `(circuit1, observable1, parameter_set1)` if you want to run `circuit1` with `observable1` and `parameter_set1`. 
-  a. You might need to reshape your arrays of observables or parameter sets if you want to apply their outer product. For example, an array of observables of shape (4, 1) and an array of parameter sets of shape (1, 6) will give you a result of (4, 6) expectation values. See the (Numpy broadcasting rules)[https://numpy.org/doc/stable/user/basics.broadcasting.html] for more details.
-  b. You can optionally specify the precision you want for that specific PUB. 
+  
+  1. You might need to reshape your arrays of observables or parameter sets if you want to apply their outer product. For example, an array of observables of shape (4, 1) and an array of parameter sets of shape (1, 6) will give you a result of (4, 6) expectation values. See the [Numpy broadcasting rules](https://numpy.org/doc/stable/user/basics.broadcasting.html) for more details.
+  2. You can optionally specify the precision you want for that specific PUB. 
 5. Update the estimator `run()` method to pass in the list of PUBs. For example, `run([(circuit1, observable1, parameter_set1)])`.
   You can optionally specify a `precision` here, which would apply to all PUBs.
 6. EstimatorV2 job results are grouped by PUBs. You can see the expectation value and standard error for each PUB by indexing to it. For example:
