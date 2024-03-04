@@ -104,8 +104,8 @@ export async function runConversionPipeline(
     let path = urlToPath(result.url);
 
     if (path.endsWith("release-notes.md")) {
-      const shouldUse = await handleReleaseNotesFile(result, pkg);
-      if (!shouldUse) continue;
+      const shouldWriteResult = await handleReleaseNotesFile(result, pkg);
+      if (!shouldWriteResult) continue;
     }
 
     await writeFile(path, result.markdown);
@@ -137,7 +137,7 @@ export async function runConversionPipeline(
 /**
  * Determine what to do with release-notes.md, such as simply ignoring it.
  *
- * @returns true if the release notes file should be used.
+ * @returns true if the release notes file should be written.
  */
 async function handleReleaseNotesFile(
   result: HtmlToMdResultWithUrl,
