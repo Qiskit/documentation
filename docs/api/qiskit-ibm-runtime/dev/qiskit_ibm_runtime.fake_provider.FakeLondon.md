@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeLondon
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeLondon" />
 
-`FakeLondon` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/london/fake_london.py#L39-L54 "view source code")
+`FakeLondon` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/backends/london/fake_london.py "view source code")
 
 A fake 5 qubit backend.
 
@@ -135,7 +135,7 @@ Provider
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeLondon.run" />
 
-`run(run_input, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/fake_backend.py#L545-L574 "view source code")
+`run(run_input, **kwargs)`
 
 Main job in simulator
 

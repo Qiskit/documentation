@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeBogotaV2
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeBogotaV2" />
 
-`FakeBogotaV2` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/bogota/fake_bogota.py#L21-L28 "view source code")
+`FakeBogotaV2` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/backends/bogota/fake_bogota.py "view source code")
 
 A fake 5 qubit backend.
 
@@ -244,7 +244,7 @@ AcquireChannel
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeBogotaV2.control_channel" />
 
-`control_channel(qubits)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/fake_backend.py#L284-L304 "view source code")
+`control_channel(qubits)`
 
 Return the secondary drive channel for the given qubit
 
@@ -268,7 +268,7 @@ List\[ControlChannel]
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeBogotaV2.drive_channel" />
 
-`drive_channel(qubit)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/fake_backend.py#L239-L252 "view source code")
+`drive_channel(qubit)`
 
 Return the drive channel for the given qubit.
 
@@ -286,7 +286,7 @@ DriveChannel
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeBogotaV2.measure_channel" />
 
-`measure_channel(qubit)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/fake_backend.py#L254-L267 "view source code")
+`measure_channel(qubit)`
 
 Return the measure stimulus channel for the given qubit.
 
@@ -330,7 +330,7 @@ The `QubitProperties` object for the specified qubit. If a list of qubits is pro
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeBogotaV2.run" />
 
-`run(run_input, **options)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/fake_backend.py#L306-L365 "view source code")
+`run(run_input, **options)`
 
 Run on the fake backend using a simulator.
 

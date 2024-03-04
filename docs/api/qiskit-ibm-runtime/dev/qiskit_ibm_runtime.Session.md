@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.Session
 
 <span id="qiskit_ibm_runtime.Session" />
 
-`Session(service=None, backend=None, max_time=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/session.py#L40-L336 "view source code")
+`Session(service=None, backend=None, max_time=None)` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/session.py "view source code")
 
 Class for creating a flexible Qiskit Runtime session.
 
@@ -105,7 +105,7 @@ Backend for this session. None if unknown.
 
 <span id="qiskit_ibm_runtime.Session.cancel" />
 
-`cancel()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/session.py#L194-L198 "view source code")
+`cancel()`
 
 Cancel all pending jobs in a session.
 
@@ -117,7 +117,7 @@ Cancel all pending jobs in a session.
 
 <span id="qiskit_ibm_runtime.Session.close" />
 
-`close()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/session.py#L200-L206 "view source code")
+`close()`
 
 Close the session so new jobs will no longer be accepted, but existing queued or running jobs will run to completion. The session will be terminated once there are no more pending jobs.
 
@@ -129,7 +129,7 @@ Close the session so new jobs will no longer be accepted, but existing queued or
 
 <span id="qiskit_ibm_runtime.Session.details" />
 
-`details()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/session.py#L242-L278 "view source code")
+`details()`
 
 Return session details.
 
@@ -145,7 +145,7 @@ A dictionary with the sessions details, including
 
 <span id="qiskit_ibm_runtime.Session.from_id" />
 
-`classmethod from_id(session_id, service=None, backend=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/session.py#L298-L323 "view source code")
+`classmethod from_id(session_id, service=None, backend=None)`
 
 Construct a Session object with a given session\_id
 
@@ -167,7 +167,7 @@ A new Session with the given `session_id`
 
 <span id="qiskit_ibm_runtime.Session.run" />
 
-`run(program_id, inputs, options=None, callback=None, result_decoder=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/session.py#L149-L192 "view source code")
+`run(program_id, inputs, options=None, callback=None, result_decoder=None)`
 
 Run a program in the session.
 
@@ -190,7 +190,7 @@ Submitted job.
 
 <span id="qiskit_ibm_runtime.Session.status" />
 
-`status()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/session.py#L216-L240 "view source code")
+`status()`
 
 Return current session status.
 

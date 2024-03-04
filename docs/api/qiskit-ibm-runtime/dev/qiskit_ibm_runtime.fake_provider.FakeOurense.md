@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeOurense
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeOurense" />
 
-`FakeOurense` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/ourense/fake_ourense.py#L37-L50 "view source code")
+`FakeOurense` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/backends/ourense/fake_ourense.py "view source code")
 
 A fake 5 qubit backend.
 
@@ -133,7 +133,7 @@ Provider
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeOurense.run" />
 
-`run(run_input, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/fake_backend.py#L545-L574 "view source code")
+`run(run_input, **kwargs)`
 
 Main job in simulator
 

@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAna
 
 <span id="qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAnalysis" />
 
-`ALAPScheduleAnalysis(durations)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/transpiler/passes/scheduling/scheduler.py#L427-L644 "view source code")
+`ALAPScheduleAnalysis(durations)` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/transpiler/passes/scheduling/scheduler.py "view source code")
 
 Dynamic circuits as-late-as-possible (ALAP) scheduling analysis pass.
 
