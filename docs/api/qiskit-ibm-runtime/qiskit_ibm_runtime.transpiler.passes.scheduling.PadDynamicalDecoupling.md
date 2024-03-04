@@ -253,7 +253,7 @@ Name of the pass.
 
 <span id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling.run" />
 
-`run(dag)`
+`run(dag)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/transpiler/passes/scheduling/block_base_padder.py#L91-L115 "view source code")
 
 Run the padding pass on `dag`.
 

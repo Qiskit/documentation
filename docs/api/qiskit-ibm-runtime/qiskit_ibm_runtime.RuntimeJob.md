@@ -162,7 +162,7 @@ Return the usage estimation infromation for this job.
 
 <span id="qiskit_ibm_runtime.RuntimeJob.backend" />
 
-`backend(timeout=None)`
+`backend(timeout=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/runtime_job.py#L251-L265 "view source code")
 
 Return the backend where this job was executed. Retrieve data again if backend is None.
 

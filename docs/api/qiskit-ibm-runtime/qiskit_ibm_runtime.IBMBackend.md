@@ -352,7 +352,7 @@ Version of the backend being provided. This is not the same as `BackendV2.versio
 
 <span id="qiskit_ibm_runtime.IBMBackend.__call__" />
 
-`__call__()`
+`__call__()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/ibm_backend.py#L506-L508 "view source code")
 
 Call self as a function.
 
