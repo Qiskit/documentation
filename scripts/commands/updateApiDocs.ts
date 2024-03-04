@@ -67,17 +67,37 @@ const readArgs = (): Arguments => {
 zxMain(async () => {
   const args = readArgs();
 
-  // Determine the minor version, e.g. 0.44.0 -> 0.44
+  if (args.historical && args.dev) {
+    throw new Error(
+      `${args.package} ${args.version} cannot be historical and dev at the same time. Please remove at least only one of these two arguments: --historical, --dev.`,
+    );
+  }
+
+  const minorVersion = determineMinorVersion(args);
+  const type = args.historical ? "historical" : args.dev ? "dev" : "latest";
+  const pkg = await Pkg.fromArgs(
+    args.package,
+    args.version,
+    minorVersion,
+    type,
+  );
+
+  const sphinxArtifactFolder = await prepareSphinxFolder(pkg, args);
+  const markdownOutputFolder = await prepareMarkdownOutputFolder(pkg);
+
+  console.log(`Run pipeline for ${pkg.name}:${pkg.versionWithoutPatch}`);
+  await runConversionPipeline(
+    `${sphinxArtifactFolder}/artifact`,
+    markdownOutputFolder,
+    pkg,
+  );
+});
+
+function determineMinorVersion(args: Arguments): string {
   const versionMatch = args.version.match(/^(\d+\.\d+)/);
   if (versionMatch === null) {
     throw new Error(
       `Invalid --version. Expected the format 0.44.0, but received ${args.version}`,
-    );
-  }
-
-  if (args.historical && args.dev) {
-    throw new Error(
-      `${args.package} ${args.version} cannot be historical and dev at the same time. Please remove at least only one of these two arguments: --historical, --dev.`,
     );
   }
 
@@ -88,15 +108,10 @@ zxMain(async () => {
     );
   }
 
-  const type = args.historical ? "historical" : args.dev ? "dev" : "latest";
+  return versionMatch[0];
+}
 
-  const pkg = await Pkg.fromArgs(
-    args.package,
-    args.version,
-    versionMatch[0],
-    type,
-  );
-
+async function prepareSphinxFolder(pkg: Pkg, args: Arguments): Promise<string> {
   const sphinxArtifactFolder = pkg.sphinxArtifactFolder();
   if (
     args.skipDownload &&
@@ -108,7 +123,10 @@ zxMain(async () => {
   } else {
     await downloadSphinxArtifact(pkg, sphinxArtifactFolder);
   }
+  return sphinxArtifactFolder;
+}
 
+async function prepareMarkdownOutputFolder(pkg: Pkg): Promise<string> {
   const outputDir = pkg.outputDir(`${getRoot()}/docs`);
   if (!pkg.isLatest() && !(await pathExists(outputDir))) {
     await mkdirp(outputDir);
@@ -118,11 +136,5 @@ zxMain(async () => {
     );
     await rmFilesInFolder(outputDir);
   }
-
-  console.log(`Run pipeline for ${pkg.name}:${pkg.versionWithoutPatch}`);
-  await runConversionPipeline(
-    `${sphinxArtifactFolder}/artifact`,
-    outputDir,
-    pkg,
-  );
-});
+  return outputDir;
+}
