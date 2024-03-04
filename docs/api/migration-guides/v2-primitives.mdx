@@ -15,16 +15,18 @@ Version 2 of the primitives is introduced with a new base class for both Sampler
 
 Based on user feedback, this version introduces the following major new functions:
 
-* A new interface that lets you specify a single circuit and multiple observables (if using Estimator) and parameter value sets for that circuit. Previously, you had to specify the  same circuit multiple times to match the size of the data to be combined.
-* The ability to turn on or off individual error mitigation / suppression methods.
-* SamplerV2 is simplified to focus on its core task of sampling the output register from execution of quantum circuits. This has resulted the the following specific changes: 
-  - It returns the samples, whose type is defined by the program, without weights and therefore no longer supports resilience levels. 
-  - The output data is separated by the output register names and has convenience methods like `get_counts()` to help with migration. This also enables future support for circuits with classical control flow.
-  - Returns the outputs (bitstrings) from every shot, rather than providing a counts-like return (quasi-probabilities). The result class, however, has methods to return weighted samples, such as counts.
-  - Has a new `shots` argument in the `run()` method that enables you to specify different shots for each input block. 
-* EstimatorV2 
-  - Has a new `precision` argument in the `run()` method that specifies the targeted precision of the expectation value estimates. This value replaced `shots` from V1 to give a more accurate description of its function. 
-  - Does not support resilience level 3.  Resilience level 3 of V1 Estimator uses Probabilistic Error Cancellation (PEC), which is proven to give unbiased results at the cost of exponential processing time. To make this trade-off more obvious, EstimatorV2 does not support resilience level 3. You can, however, still use PEC as the error mitigation method by using the `pec_mitigation` option.
+* The new interface lets you specify a single circuit and multiple observables (if using Estimator) and parameter value sets for that circuit, so that sweeps over parameter value sets and observables can be efficiently specified. Previously, you had to specify the same circuit multiple times to match the size of the data to be combined.
+
+* The new interface also includes the flexibility to explicitly turn on or off other individual error mitigation/suppression methods.
+
+* To reduce the total job execution time, V2 primitives only accept circuits and observables that use instructions supported by the target system (referred to as instruction set architecture (ISA) circuits and observables). V2 primitives will no longer perform layout, routing, and translation operations but continue to optimize the circuits if you specify `optimization_level>0`.  See the [transpilation documentation](../../transpile) for instructions to transform circuits.
+
+* EstimatorV2 has gained a `precision` argument in the `run()` method that specifies the targeted precision of the expectation value estimates. Analogously, V2 Sampler has the `shots` argument in its `run()` method. 
+
+* Resilience level 3 of V1 Estimator uses Probabilistic Error Cancellation (PEC), which is proven to give unbiased results at the cost of exponential processing time. To make this trade-off more obvious, EstimatorV2 does not support resilience level 3. You can, however, still use PEC as the error mitigation method by specifying the `pec_mitigation` option.
+
+* SamplerV2 is simplified to focus on its core task of sampling the output register from quantum circuit execution. It returns the samples, whose type is defined by the program, without weights.  Therefore, it does not support resilience levels. The output data is separated by the output register names and has convenience methods like `get_counts()` to help with migration. This also enables future support for circuits with classical control flow.
+
 
 ## Major changes
 
