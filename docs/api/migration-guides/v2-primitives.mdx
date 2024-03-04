@@ -550,11 +550,11 @@ sampler = Sampler (options=options, backend=backend)
 5. Update the estimator `run()` method to pass in the list of PUBs. For example, `run([(circuit1, observable1, parameter_set1)])`.
   You can optionally specify a `precision` here, which would apply to all PUBs.
 6. EstimatorV2 job results are grouped by PUBs. You can see the expectation value and standard error for each PUB by indexing to it. For example:
-```python
-pub_result = job.result()[0]
-print(f">>> Expectation values: {pub_result.data.evs}")
-print(f">>> Standard errors: {pub_result.data.stds}")
-```
+  ```python
+  pub_result = job.result()[0]
+  print(f">>> Expectation values: {pub_result.data.evs}")
+  print(f">>> Standard errors: {pub_result.data.stds}")
+  ```
 
 ## Estimator full examples
 
@@ -938,11 +938,11 @@ print(f" > Expectation values job 2: {another_result.values}")
 5. Update the sampler `run()` method to pass in the list of PUBs. For example, `run([(circuit1, parameter_set1)])`.
   You can optionally specify `shots` here, which would apply to all PUBs.
 6. SamplerV2 job results are grouped by PUBs. You can see the output data for each PUB by indexing to it. While SamplerV2 returns unweighted samples, the result class has a convenience method to get counts instead. For example:
-```python
-pub_result = job.result()[0]
-print(f">>> Counts: {pub_result.data.meas.get_counts()}")
-print(f">>> Per-shot measurement: {pub_result.data.meas.get_bitstrings()}")
-```
+  ```python
+  pub_result = job.result()[0]
+  print(f">>> Counts: {pub_result.data.meas.get_counts()}")
+  print(f">>> Per-shot measurement: {pub_result.data.meas.get_bitstrings()}")
+  ```
 
 ## Sampler full examples
 
