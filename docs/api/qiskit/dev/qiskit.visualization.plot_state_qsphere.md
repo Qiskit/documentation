@@ -20,7 +20,7 @@ Plot the qsphere representation of a quantum state. Here, the size of the points
 
 *   **state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") *or ndarray*) – an N-qubit quantum state.
 *   **figsize** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – Figure size in inches.
-*   **ax** ([*matplotlib.axes.Axes*](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html#matplotlib.axes.Axes "(in Matplotlib v3.8.2)")) – An optional Axes object to be used for the visualization output. If none is specified a new matplotlib Figure will be created and used. Additionally, if specified there will be no returned Figure since it is redundant.
+*   **ax** ([*matplotlib.axes.Axes*](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html#matplotlib.axes.Axes "(in Matplotlib v3.8.3)")) – An optional Axes object to be used for the visualization output. If none is specified a new matplotlib Figure will be created and used. Additionally, if specified there will be no returned Figure since it is redundant.
 *   **show\_state\_labels** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – An optional boolean indicating whether to show labels for each basis state.
 *   **show\_state\_phases** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – An optional boolean indicating whether to show the phase for each basis state.
 *   **use\_degrees** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – An optional boolean indicating whether to use radians or degrees for the phase values in the plot.
@@ -31,7 +31,7 @@ A matplotlib figure instance if the `ax` kwarg is not set
 
 **Return type**
 
-[`matplotlib.figure.Figure`](https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure "(in Matplotlib v3.8.2)")
+[`matplotlib.figure.Figure`](https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure "(in Matplotlib v3.8.3)")
 
 **Raises**
 

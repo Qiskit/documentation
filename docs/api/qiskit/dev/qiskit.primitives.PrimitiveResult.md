@@ -18,8 +18,8 @@ A container for multiple pub results and global metadata.
 
 **Parameters**
 
-*   **pub\_results** (*Iterable\[T]*) – Pub results.
-*   **metadata** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*, Any] | None*) – Metadata that is common to all pub results; metadata specific to particular pubs should be placed in their metadata fields. Keys are expected to be strings.
+*   **pub\_results** – Pub results.
+*   **metadata** – Metadata that is common to all pub results; metadata specific to particular pubs should be placed in their metadata fields. Keys are expected to be strings.
 
 ## Attributes
 

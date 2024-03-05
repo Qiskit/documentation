@@ -55,7 +55,7 @@ FakeBackend initializer.
 
 ### dirname
 
-`= '/home/runner/work/qiskit/qiskit/.tox/docs/lib/python3.9/site-packages/qiskit/providers/fake_provider/backends_v1/fake_5q'`
+`= '/home/vsts/work/1/s/.tox/docs/lib/python3.8/site-packages/qiskit/providers/fake_provider/backends_v1/fake_5q'`
 
 <span id="qiskit.providers.fake_provider.Fake5QV1.options" />
 

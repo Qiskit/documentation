@@ -12,11 +12,11 @@ python_api_name: qiskit.circuit.library.Initialize
 
 `qiskit.circuit.library.Initialize(params, num_qubits=None, normalize=False)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/initializer.py "view source code")
 
-Bases: [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
+Bases: [`Instruction`](circuit#qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 
 Complex amplitude initialization.
 
-Class that initializes some flexible collection of qubit registers, implemented by calling the [`StatePreparation`](qiskit.circuit.library.StatePreparation "qiskit.circuit.library.StatePreparation") class. Note that `Initialize` is an [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") and not a [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") since it contains a reset instruction, which is not unitary.
+Class that initializes some flexible collection of qubit registers, implemented by calling the [`StatePreparation`](qiskit.circuit.library.StatePreparation "qiskit.circuit.library.StatePreparation") class. Note that `Initialize` is an [`Instruction`](circuit#qiskit.circuit.Instruction "qiskit.circuit.Instruction") and not a [`Gate`](circuit#qiskit.circuit.Gate "qiskit.circuit.Gate") since it contains a reset instruction, which is not unitary.
 
 **Parameters**
 

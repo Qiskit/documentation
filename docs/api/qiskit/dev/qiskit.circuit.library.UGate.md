@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.library.UGate
 
 `qiskit.circuit.library.UGate(theta, phi, lam, label=None, *, duration=None, unit='dt')` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/u.py "view source code")
 
-Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+Bases: [`Gate`](circuit#qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
 Generic single-qubit rotation gate with 3 Euler angles.
 
@@ -143,7 +143,7 @@ Return the number of qubits.
 
 ### params
 
-return instruction params.
+The parameters of this `Instruction`. Ideally these will be gate angles.
 
 <span id="qiskit.circuit.library.UGate.unit" />
 
@@ -174,7 +174,7 @@ controlled version of this gate.
 
 **Return type**
 
-[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+[ControlledGate](circuit#qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
 
 ### inverse
 
@@ -188,7 +188,7 @@ $U(\theta,\phi,\lambda)^{\dagger} =U(-\theta,-\lambda,-\phi))$
 
 **Parameters**
 
-**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an `AnnotatedOperation` with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always a [`UGate`](#qiskit.circuit.library.UGate "qiskit.circuit.library.UGate") with inverse parameter values.
+**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](circuit#qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](circuit#qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always a [`UGate`](#qiskit.circuit.library.UGate "qiskit.circuit.library.UGate") with inverse parameter values.
 
 **Returns**
 

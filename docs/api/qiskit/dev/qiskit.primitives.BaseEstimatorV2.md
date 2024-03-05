@@ -14,7 +14,7 @@ python_api_name: qiskit.primitives.BaseEstimatorV2
 
 Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 
-Estimator base class version 2.
+Estimator V2 base class.
 
 An estimator estimates expectation values for provided quantum circuit and observable combinations.
 
@@ -41,5 +41,5 @@ A job object that contains results.
 
 **Return type**
 
-BasePrimitiveJob\[[PrimitiveResult](qiskit.primitives.PrimitiveResult "qiskit.primitives.PrimitiveResult")\[[PubResult](qiskit.primitives.PubResult "qiskit.primitives.PubResult")]]
+[BasePrimitiveJob](qiskit.primitives.BasePrimitiveJob "qiskit.primitives.BasePrimitiveJob")\[[PrimitiveResult](qiskit.primitives.PrimitiveResult "qiskit.primitives.PrimitiveResult")\[[PubResult](qiskit.primitives.PubResult "qiskit.primitives.PubResult")]]
 

@@ -111,7 +111,7 @@ Return the number of qubits.
 
 ### params
 
-return instruction params.
+The parameters of this `Instruction`. Ideally these will be gate angles.
 
 <span id="qiskit.circuit.classicalfunction.BooleanExpression.unit" />
 
@@ -190,7 +190,7 @@ A tuple with single arguments.
 
 **Return type**
 
-[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)"), [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")]]
+Iterable\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)"), [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")]]
 
 ### c\_if
 
@@ -212,7 +212,7 @@ Set a classical equality condition on this instruction between the register or c
 
 Return the controlled version of itself.
 
-Implemented either as a controlled gate (ref. [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")) or as an annotated operation (ref. `AnnotatedOperation`).
+Implemented either as a controlled gate (ref. [`ControlledGate`](circuit#qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")) or as an annotated operation (ref. [`AnnotatedOperation`](circuit#qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")).
 
 **Parameters**
 
@@ -247,7 +247,7 @@ a copy of the current instruction, with the name updated if it was provided
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](circuit#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
 ### from\_dimacs\_file
 
@@ -279,13 +279,13 @@ Invert this instruction.
 
 If annotated is False, the inverse instruction is implemented as a fresh instruction with the recursively inverted definition.
 
-If annotated is True, the inverse instruction is implemented as `AnnotatedOperation`, and corresponds to the given instruction annotated with the “inverse modifier”.
+If annotated is True, the inverse instruction is implemented as [`AnnotatedOperation`](circuit#qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation"), and corresponds to the given instruction annotated with the “inverse modifier”.
 
 Special instructions inheriting from Instruction can implement their own inverse (e.g. T and Tdg, Barrier, etc.) In particular, they can choose how to handle the argument `annotated` which may include ignoring it and always returning a concrete gate class if the inverse is defined as a standard gate.
 
 **Parameters**
 
-**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if set to True the output inverse gate will be returned as `AnnotatedOperation`.
+**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if set to True the output inverse gate will be returned as [`AnnotatedOperation`](circuit#qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation").
 
 **Returns**
 
@@ -301,7 +301,7 @@ The inverse operation.
 
 `is_parameterized()`
 
-Return True .IFF. instruction is parameterized else False
+Return whether the `Instruction` contains [compile-time parameters](circuit#circuit-compile-time-parameters).
 
 ### power
 
@@ -345,7 +345,7 @@ Containing the definition.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](circuit#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
 **Raises**
 
@@ -369,7 +369,7 @@ sub-instructions reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](circuit#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
 ### simulate
 

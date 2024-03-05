@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.library.U3Gate
 
 `qiskit.circuit.library.U3Gate(theta, phi, lam, label=None, *, duration=None, unit='dt')` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/u3.py "view source code")
 
-Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+Bases: [`Gate`](circuit#qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
 Generic single-qubit rotation gate with 3 Euler angles.
 
@@ -160,7 +160,7 @@ Return the number of qubits.
 
 ### params
 
-return instruction params.
+The parameters of this `Instruction`. Ideally these will be gate angles.
 
 <span id="qiskit.circuit.library.U3Gate.unit" />
 
@@ -182,7 +182,7 @@ Return a (multi-)controlled-U3 gate.
 
 *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of control qubits.
 *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – An optional label for the gate \[Default: `None`]
-*   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – control state expressed as integer, string (e.g.\`\`’110’`), or ``None`. If `None`, use all 1s.
+*   **ctrl\_state** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – control state expressed as integer, string (e.g.\`\`’110’`), or ``None`. If `None`, use all 1s.
 *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – indicates whether the controlled gate can be implemented as an annotated gate.
 
 **Returns**
@@ -191,7 +191,7 @@ controlled version of this gate.
 
 **Return type**
 
-[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+[ControlledGate](circuit#qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
 
 ### inverse
 
@@ -205,7 +205,7 @@ $U3(\theta,\phi,\lambda)^{\dagger} =U3(-\theta,-\lambda,-\phi))$
 
 **Parameters**
 
-**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an `AnnotatedOperation` with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always a [`U3Gate`](#qiskit.circuit.library.U3Gate "qiskit.circuit.library.U3Gate") with inverse parameter values.
+**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](circuit#qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](circuit#qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always a [`U3Gate`](#qiskit.circuit.library.U3Gate "qiskit.circuit.library.U3Gate") with inverse parameter values.
 
 **Returns**
 

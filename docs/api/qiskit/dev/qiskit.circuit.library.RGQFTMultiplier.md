@@ -73,7 +73,7 @@ Return the circuit data (instructions and context).
 
 **Returns**
 
-a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
+a list-like object containing the [`CircuitInstruction`](circuit#qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
 
 **Return type**
 
@@ -89,7 +89,7 @@ Return the global phase of the current circuit scope in radians.
 
 ### instances
 
-`= 417`
+`= 449`
 
 <span id="qiskit.circuit.library.RGQFTMultiplier.layout" />
 
@@ -115,11 +115,35 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 
 Return the number of ancilla qubits.
 
+<span id="qiskit.circuit.library.RGQFTMultiplier.num_captured_vars" />
+
+### num\_captured\_vars
+
+The number of runtime classical variables in the circuit marked as captured from an enclosing scope.
+
+This is the length of the `iter_captured_vars()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.RGQFTMultiplier.num_input_vars "qiskit.circuit.library.RGQFTMultiplier.num_input_vars") must be zero.
+
 <span id="qiskit.circuit.library.RGQFTMultiplier.num_clbits" />
 
 ### num\_clbits
 
 Return number of classical bits.
+
+<span id="qiskit.circuit.library.RGQFTMultiplier.num_declared_vars" />
+
+### num\_declared\_vars
+
+The number of runtime classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
+
+This is the length of the `iter_declared_vars()` iterable.
+
+<span id="qiskit.circuit.library.RGQFTMultiplier.num_input_vars" />
+
+### num\_input\_vars
+
+The number of runtime classical variables in the circuit marked as circuit inputs.
+
+This is the length of the `iter_input_vars()` iterable. If this is non-zero, [`num_captured_vars`](#qiskit.circuit.library.RGQFTMultiplier.num_captured_vars "qiskit.circuit.library.RGQFTMultiplier.num_captured_vars") must be zero.
 
 <span id="qiskit.circuit.library.RGQFTMultiplier.num_parameters" />
 
@@ -153,6 +177,14 @@ The number of state qubits, i.e. the number of bits in each input register.
 
 The number of state qubits.
 
+<span id="qiskit.circuit.library.RGQFTMultiplier.num_vars" />
+
+### num\_vars
+
+The number of runtime classical variables in the circuit.
+
+This is the length of the `iter_vars()` iterable.
+
 <span id="qiskit.circuit.library.RGQFTMultiplier.op_start_times" />
 
 ### op\_start\_times
@@ -175,7 +207,7 @@ List of integers representing instruction start times. The index corresponds to 
 
 The parameters defined in the circuit.
 
-This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
+This attribute returns the [`Parameter`](circuit#qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](circuit#qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
 
 **Examples**
 
@@ -207,7 +239,7 @@ q: ┤ U(angle_1,angle_2,angle_10) ├
 ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
 ```
 
-To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
+To respect numerical sorting, a [`ParameterVector`](circuit#qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
 
 ```python
 >>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector
@@ -225,7 +257,7 @@ ParameterView([
 
 **Returns**
 
-The sorted [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit.
+The sorted [`Parameter`](circuit#qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit.
 
 <span id="qiskit.circuit.library.RGQFTMultiplier.prefix" />
 

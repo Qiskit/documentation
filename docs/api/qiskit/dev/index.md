@@ -10,7 +10,7 @@ python_api_name: qiskit
 
 # API Reference
 
-*   [Quantum Circuits (`qiskit.circuit`)](circuit)
+*   [Quantum circuit model (`qiskit.circuit`)](circuit)
 *   [Circuit Library (`qiskit.circuit.library`)](circuit_library)
 *   [Classical expressions (`qiskit.circuit.classical`)](circuit_classical)
 *   [Singleton instructions (`qiskit.circuit.singleton`)](circuit_singleton)
@@ -42,7 +42,6 @@ python_api_name: qiskit
 *   [Preset Passmanagers (`qiskit.transpiler.preset_passmanagers`)](transpiler_preset)
 *   [Transpiler Stage Plugin Interface (`qiskit.transpiler.preset_passmanagers.plugin`)](transpiler_plugins)
 *   [Synthesis Plugins (`qiskit.transpiler.passes.synthesis.plugin`)](transpiler_synthesis_plugins)
-*   [Built-in Transpiler Synthesis Plugins](transpiler_builtin_plugins)
 *   [Utilities (`qiskit.utils`)](utils)
 *   [Top-level exceptions (`qiskit.exceptions`)](exceptions)
 

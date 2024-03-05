@@ -75,7 +75,7 @@ Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
 ### definition
 
-Return definition in terms of other basic gates. If the gate has open controls, as determined from self.ctrl\_state, the returned definition is conjugated with X without changing the internal \_definition.
+Return definition in terms of other basic gates. If the gate has open controls, as determined from [`ctrl_state`](#qiskit.circuit.library.C4XGate.ctrl_state "qiskit.circuit.library.C4XGate.ctrl_state"), the returned definition is conjugated with X without changing the internal `_definition`.
 
 <span id="qiskit.circuit.library.C4XGate.duration" />
 
@@ -180,7 +180,7 @@ controlled version of this gate.
 
 **Return type**
 
-[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+[ControlledGate](circuit#qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
 
 ### inverse
 
@@ -192,7 +192,7 @@ Invert this gate. The C4X is its own inverse.
 
 **Parameters**
 
-**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an `AnnotatedOperation` with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as this gate is self-inverse.
+**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](circuit#qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](circuit#qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as this gate is self-inverse.
 
 **Returns**
 

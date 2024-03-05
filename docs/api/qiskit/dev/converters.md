@@ -30,8 +30,8 @@ Build a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircui
 
 *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – the input circuit.
 *   **copy\_operations** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Deep copy the operation objects in the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") for the output [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit"). This should only be set to `False` if the input [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") will not be used anymore as the operations in the output [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") will be shared instances and modifications to operations in the [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") will be reflected in the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") (and vice versa).
-*   **qubit\_order** (*Iterable\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*] or None*) – the order that the qubits should be indexed in the output DAG. Defaults to the same order as in the circuit.
-*   **clbit\_order** (*Iterable\[*[*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*] or None*) – the order that the clbits should be indexed in the output DAG. Defaults to the same order as in the circuit.
+*   **qubit\_order** (*Iterable\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*] or None*) – the order that the qubits should be indexed in the output DAG. Defaults to the same order as in the circuit.
+*   **clbit\_order** (*Iterable\[*[*Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")*] or None*) – the order that the clbits should be indexed in the output DAG. Defaults to the same order as in the circuit.
 
 **Returns**
 
@@ -112,7 +112,7 @@ circuit.draw('mpl')
 
 `qiskit.converters.circuit_to_instruction(circuit, parameter_map=None, equivalence_library=None, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/converters/circuit_to_instruction.py "view source code")
 
-Build an [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") object from a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
+Build an [`Instruction`](circuit#qiskit.circuit.Instruction "qiskit.circuit.Instruction") object from a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
 
 The instruction is anonymous (not tied to a named quantum register), and so can be inserted into another circuit. The instruction will have the same string name as the circuit.
 
@@ -120,7 +120,7 @@ The instruction is anonymous (not tied to a named quantum register), and so can 
 
 *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – the input circuit.
 *   **parameter\_map** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – For parameterized circuits, a mapping from parameters in the circuit to parameters to be used in the instruction. If None, existing circuit parameters will also parameterize the instruction.
-*   **equivalence\_library** ([*EquivalenceLibrary*](qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary")) – Optional equivalence library where the converted instruction will be registered.
+*   **equivalence\_library** ([*EquivalenceLibrary*](circuit#qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary")) – Optional equivalence library where the converted instruction will be registered.
 *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Optional instruction label.
 
 **Raises**
@@ -133,7 +133,7 @@ an instruction equivalent to the action of the input circuit. Upon decomposition
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](circuit#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
 **Example**
 
@@ -157,7 +157,7 @@ circuit_to_instruction(circ)
 
 `qiskit.converters.circuit_to_gate(circuit, parameter_map=None, equivalence_library=None, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/converters/circuit_to_gate.py "view source code")
 
-Build a [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") object from a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
+Build a [`Gate`](circuit#qiskit.circuit.Gate "qiskit.circuit.Gate") object from a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
 
 The gate is anonymous (not tied to a named quantum register), and so can be inserted into another circuit. The gate will have the same string name as the circuit.
 
@@ -165,7 +165,7 @@ The gate is anonymous (not tied to a named quantum register), and so can be inse
 
 *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – the input circuit.
 *   **parameter\_map** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – For parameterized circuits, a mapping from parameters in the circuit to parameters to be used in the gate. If None, existing circuit parameters will also parameterize the Gate.
-*   **equivalence\_library** ([*EquivalenceLibrary*](qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary")) – Optional equivalence library where the converted gate will be registered.
+*   **equivalence\_library** ([*EquivalenceLibrary*](circuit#qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary")) – Optional equivalence library where the converted gate will be registered.
 *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Optional gate label.
 
 **Raises**
@@ -178,7 +178,7 @@ a Gate equivalent to the action of the input circuit. Upon decomposition, this g
 
 **Return type**
 
-[Gate](qiskit.circuit.Gate "qiskit.circuit.Gate")
+[Gate](circuit#qiskit.circuit.Gate "qiskit.circuit.Gate")
 
 ### dagdependency\_to\_circuit
 

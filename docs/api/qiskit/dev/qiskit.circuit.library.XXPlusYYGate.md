@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.library.XXPlusYYGate
 
 `qiskit.circuit.library.XXPlusYYGate(theta, beta=0, label='(XX+YY)', *, duration=None, unit='dt')` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/xx_plus_yy.py "view source code")
 
-Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+Bases: [`Gate`](circuit#qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
 XX+YY interaction gate.
 
@@ -72,8 +72,8 @@ Create new XX+YY gate.
 
 **Parameters**
 
-*   **theta** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The rotation angle.
-*   **beta** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The phase angle.
+*   **theta** ([*ParameterExpression*](circuit#qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The rotation angle.
+*   **beta** ([*ParameterExpression*](circuit#qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The phase angle.
 *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – The label of the gate.
 
 ## Attributes
@@ -165,7 +165,7 @@ Return the number of qubits.
 
 ### params
 
-return instruction params.
+The parameters of this `Instruction`. Ideally these will be gate angles.
 
 <span id="qiskit.circuit.library.XXPlusYYGate.unit" />
 
@@ -185,7 +185,7 @@ Return inverse XX+YY gate (i.e. with the negative rotation angle and same phase 
 
 **Parameters**
 
-**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an `AnnotatedOperation` with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always a [`XXPlusYYGate`](#qiskit.circuit.library.XXPlusYYGate "qiskit.circuit.library.XXPlusYYGate") with inverse parameter values.
+**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](circuit#qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](circuit#qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always a [`XXPlusYYGate`](#qiskit.circuit.library.XXPlusYYGate "qiskit.circuit.library.XXPlusYYGate") with inverse parameter values.
 
 **Returns**
 

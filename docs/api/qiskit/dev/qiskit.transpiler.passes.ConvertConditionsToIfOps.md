@@ -16,7 +16,7 @@ Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.trans
 
 Convert instructions whose `condition` attribute is set to a non-`None` value into the equivalent single-statement `IfElseBlock`.
 
-This is a simple pass aimed at easing the conversion from the old style of using [`InstructionSet.c_if()`](qiskit.circuit.InstructionSet#c_if "qiskit.circuit.InstructionSet.c_if") into the new style of using more complex conditional logic.
+This is a simple pass aimed at easing the conversion from the old style of using [`InstructionSet.c_if()`](circuit#qiskit.circuit.InstructionSet.c_if "qiskit.circuit.InstructionSet.c_if") into the new style of using more complex conditional logic.
 
 ## Attributes
 
@@ -48,9 +48,9 @@ Execute optimization task for input Qiskit IR.
 
 **Parameters**
 
-*   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
-*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-*   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+*   **passmanager\_ir** (*PassManagerIR*) – Qiskit IR to optimize.
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+*   **callback** (*Callable*) – A callback function which is caller per execution of optimization task.
 
 **Returns**
 
@@ -58,7 +58,7 @@ Optimized Qiskit IR and state of the workflow.
 
 **Return type**
 
-[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[PassManagerIR, [PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.PassManagerState")]
 
 ### name
 

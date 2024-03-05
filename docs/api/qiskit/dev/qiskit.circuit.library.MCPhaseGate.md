@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.library.MCPhaseGate
 
 `qiskit.circuit.library.MCPhaseGate(lam, num_ctrl_qubits, label=None, *, duration=None, unit='dt', _base_label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/p.py "view source code")
 
-Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
+Bases: [`ControlledGate`](circuit#qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 
 Multi-controlled-Phase gate.
 
@@ -90,7 +90,7 @@ Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
 ### definition
 
-Return definition in terms of other basic gates. If the gate has open controls, as determined from self.ctrl\_state, the returned definition is conjugated with X without changing the internal \_definition.
+Return definition in terms of other basic gates. If the gate has open controls, as determined from [`ctrl_state`](#qiskit.circuit.library.MCPhaseGate.ctrl_state "qiskit.circuit.library.MCPhaseGate.ctrl_state"), the returned definition is conjugated with X without changing the internal `_definition`.
 
 <span id="qiskit.circuit.library.MCPhaseGate.duration" />
 
@@ -195,7 +195,7 @@ controlled version of this gate.
 
 **Return type**
 
-[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+[ControlledGate](circuit#qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
 
 ### inverse
 

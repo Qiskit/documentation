@@ -375,7 +375,7 @@ A kraus instruction for the channel.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](circuit#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
 **Raises**
 

@@ -16,7 +16,7 @@ Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.trans
 
 Choose a time unit to be used in the following time-aware passes, and make all circuit time units consistent with that.
 
-This pass will add a [`Instruction.duration`](qiskit.circuit.Instruction#duration "qiskit.circuit.Instruction.duration") metadata to each op whose duration is known which will be used by subsequent scheduling passes for scheduling.
+This pass will add a [`Instruction.duration`](circuit#qiskit.circuit.Instruction.duration "qiskit.circuit.Instruction.duration") metadata to each op whose duration is known which will be used by subsequent scheduling passes for scheduling.
 
 If `dt` (in seconds) is known to transpiler, the unit `'dt'` is chosen. Otherwise, the unit to be selected depends on what units are used in delays and instruction durations:
 
@@ -61,9 +61,9 @@ Execute optimization task for input Qiskit IR.
 
 **Parameters**
 
-*   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
-*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-*   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+*   **passmanager\_ir** (*PassManagerIR*) – Qiskit IR to optimize.
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+*   **callback** (*Callable*) – A callback function which is caller per execution of optimization task.
 
 **Returns**
 
@@ -71,7 +71,7 @@ Optimized Qiskit IR and state of the workflow.
 
 **Return type**
 
-[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[PassManagerIR, [PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.PassManagerState")]
 
 ### name
 

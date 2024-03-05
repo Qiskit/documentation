@@ -8,5 +8,5 @@ python_api_name: qiskit.primitives.BaseSampler
 
 # BaseSampler
 
-alias of `BaseSamplerV1`
+alias of [`BaseSamplerV1`](qiskit.primitives.BaseSamplerV1 "qiskit.primitives.base.base_sampler.BaseSamplerV1")
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.library.UCPauliRotGate
 
 `qiskit.circuit.library.UCPauliRotGate(angle_list, rot_axis)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/uc_pauli_rot.py "view source code")
 
-Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+Bases: [`Gate`](circuit#qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
 Uniformly controlled Pauli rotations.
 
@@ -112,7 +112,7 @@ Return the number of qubits.
 
 ### params
 
-return instruction params.
+The parameters of this `Instruction`. Ideally these will be gate angles.
 
 <span id="qiskit.circuit.library.UCPauliRotGate.unit" />
 

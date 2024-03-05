@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.library.RZXGate
 
 `qiskit.circuit.library.RZXGate(theta, label=None, *, duration=None, unit='dt')` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/rzx.py "view source code")
 
-Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+Bases: [`Gate`](circuit#qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
 A parametric 2-qubit $Z \otimes X$ interaction (rotation about ZX).
 
@@ -195,7 +195,7 @@ Return the number of qubits.
 
 ### params
 
-return instruction params.
+The parameters of this `Instruction`. Ideally these will be gate angles.
 
 <span id="qiskit.circuit.library.RZXGate.unit" />
 
@@ -219,7 +219,7 @@ Return inverse RZX gate (i.e. with the negative rotation angle).
 
 **when set to `True`, this is typically used to return an**
 
-`AnnotatedOperation` with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always a [`RZXGate`](#qiskit.circuit.library.RZXGate "qiskit.circuit.library.RZXGate") with an inverted parameter value.
+[`AnnotatedOperation`](circuit#qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](circuit#qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always a [`RZXGate`](#qiskit.circuit.library.RZXGate "qiskit.circuit.library.RZXGate") with an inverted parameter value.
 
 **Returns:**
 

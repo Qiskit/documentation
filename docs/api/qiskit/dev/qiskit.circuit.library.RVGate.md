@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.library.RVGate
 
 `qiskit.circuit.library.RVGate(v_x, v_y, v_z, basis='U')` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/rv.py "view source code")
 
-Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+Bases: [`Gate`](circuit#qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
 Rotation around arbitrary rotation axis $v$ where $|v|$ is angle of rotation in radians.
 
@@ -138,7 +138,7 @@ Return the number of qubits.
 
 ### params
 
-return instruction params.
+The parameters of this `Instruction`. Ideally these will be gate angles.
 
 <span id="qiskit.circuit.library.RVGate.unit" />
 

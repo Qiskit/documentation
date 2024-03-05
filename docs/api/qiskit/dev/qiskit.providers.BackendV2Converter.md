@@ -34,8 +34,8 @@ Initialize a BackendV2 converter instance based on a BackendV1 instance.
 **Parameters**
 
 *   **backend** ([*BackendV1*](qiskit.providers.BackendV1 "qiskit.providers.BackendV1")) – The input [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1") based backend to wrap in a [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") interface
-*   **name\_mapping** (*Optional\[Dict\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*, Any]]*) – An optional dictionary that maps custom gate/operation names in `backend` to an [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") object representing that gate/operation. By default most standard gates names are mapped to the standard gate object from [`qiskit.circuit.library`](circuit_library#module-qiskit.circuit.library "qiskit.circuit.library") this only needs to be specified if the input `backend` defines gates in names outside that set.
-*   **add\_delay** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If set to true a [`Delay`](qiskit.circuit.Delay "qiskit.circuit.Delay") operation will be added to the target as a supported operation for all qubits
+*   **name\_mapping** (*Optional\[Dict\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*, Any]]*) – An optional dictionary that maps custom gate/operation names in `backend` to an [`Operation`](circuit#qiskit.circuit.Operation "qiskit.circuit.Operation") object representing that gate/operation. By default most standard gates names are mapped to the standard gate object from [`qiskit.circuit.library`](circuit_library#module-qiskit.circuit.library "qiskit.circuit.library") this only needs to be specified if the input `backend` defines gates in names outside that set.
+*   **add\_delay** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If set to true a [`Delay`](circuit#qiskit.circuit.Delay "qiskit.circuit.Delay") operation will be added to the target as a supported operation for all qubits
 *   **filter\_faulty** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If the [`BackendProperties`](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") object (if present) for `backend` has any qubits or gates flagged as non-operational filter those from the output target.
 
 ## Attributes
@@ -104,7 +104,7 @@ A list of instruction names that the backend supports.
 
 ### operations
 
-A list of [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") instances that the backend supports.
+A list of [`Instruction`](circuit#qiskit.circuit.Instruction "qiskit.circuit.Instruction") instances that the backend supports.
 
 <span id="qiskit.providers.BackendV2Converter.options" />
 

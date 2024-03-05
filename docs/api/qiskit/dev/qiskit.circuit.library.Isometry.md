@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.library.Isometry
 
 `qiskit.circuit.library.Isometry(isometry, num_ancillas_zero, num_ancillas_dirty, epsilon=1e-10)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/isometry.py "view source code")
 
-Bases: [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
+Bases: [`Instruction`](circuit#qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 
 Decomposition of arbitrary isometries from $m$ to $n$ qubits.
 
@@ -122,7 +122,7 @@ Return the number of qubits.
 
 ### params
 
-return instruction params.
+The parameters of this `Instruction`. Ideally these will be gate angles.
 
 <span id="qiskit.circuit.library.Isometry.unit" />
 
@@ -150,13 +150,13 @@ Invert this instruction.
 
 If annotated is False, the inverse instruction is implemented as a fresh instruction with the recursively inverted definition.
 
-If annotated is True, the inverse instruction is implemented as `AnnotatedOperation`, and corresponds to the given instruction annotated with the “inverse modifier”.
+If annotated is True, the inverse instruction is implemented as [`AnnotatedOperation`](circuit#qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation"), and corresponds to the given instruction annotated with the “inverse modifier”.
 
 Special instructions inheriting from Instruction can implement their own inverse (e.g. T and Tdg, Barrier, etc.) In particular, they can choose how to handle the argument `annotated` which may include ignoring it and always returning a concrete gate class if the inverse is defined as a standard gate.
 
 **Parameters**
 
-**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if set to True the output inverse gate will be returned as `AnnotatedOperation`.
+**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if set to True the output inverse gate will be returned as [`AnnotatedOperation`](circuit#qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation").
 
 **Returns**
 

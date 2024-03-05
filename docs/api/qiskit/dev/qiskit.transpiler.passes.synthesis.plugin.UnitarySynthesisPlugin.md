@@ -92,7 +92,7 @@ Do note that this dictionary might not be complete or could be empty as it depen
 
 Return whether the plugin supports taking `gate_errors_by_qubit`
 
-This differs from `supports_gate_errors`/`gate_errors` by using a different view of the same data. Instead of being keyed by gate name this is keyed by qubit and uses [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") instances to represent gates (instead of gate names).
+This differs from `supports_gate_errors`/`gate_errors` by using a different view of the same data. Instead of being keyed by gate name this is keyed by qubit and uses [`Gate`](circuit#qiskit.circuit.Gate "qiskit.circuit.Gate") instances to represent gates (instead of gate names).
 
 `gate_errors_by_qubit` will be a dictionary in the form of `{(qubits,): [Gate, error]}`. For example:
 
@@ -132,7 +132,7 @@ Do note that this dictionary might not be complete or could be empty as it depen
 
 Return whether the plugin supports taking `gate_lengths_by_qubit`
 
-This differs from `supports_gate_lengths`/`gate_lengths` by using a different view of the same data. Instead of being keyed by gate name this is keyed by qubit and uses [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") instances to represent gates (instead of gate names)
+This differs from `supports_gate_lengths`/`gate_lengths` by using a different view of the same data. Instead of being keyed by gate name this is keyed by qubit and uses [`Gate`](circuit#qiskit.circuit.Gate "qiskit.circuit.Gate") instances to represent gates (instead of gate names)
 
 `gate_lengths_by_qubit` will be a dictionary in the form of `{(qubits,): [Gate, length]}`. For example:
 
