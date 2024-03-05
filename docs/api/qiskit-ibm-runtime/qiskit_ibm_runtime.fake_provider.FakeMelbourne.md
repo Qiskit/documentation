@@ -74,7 +74,7 @@ str
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeMelbourne.properties" />
 
-`properties()`
+`properties()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/melbourne/fake_melbourne.py#L89-L95 "view source code")
 
 Returns a snapshot of device properties
 

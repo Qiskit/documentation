@@ -70,7 +70,7 @@ Transpilation options.
 
 <span id="qiskit_ibm_runtime.options.TranspilationOptions.validate_transpilation_options" />
 
-`static validate_transpilation_options(transpilation_options)`
+`static validate_transpilation_options(transpilation_options)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/options/transpilation_options.py#L68-L97 "view source code")
 
 Validate that transpilation options are legal. :raises ValueError: if any transpilation option is not supported :raises ValueError: if layout\_method is not in LayoutMethodType or None. :raises ValueError: if routing\_method is not in RoutingMethodType or None. :raises ValueError: if approximation\_degree in not None or in the range 0.0 to 1.0.
 

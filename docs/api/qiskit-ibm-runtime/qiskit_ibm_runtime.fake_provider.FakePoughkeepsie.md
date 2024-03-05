@@ -78,7 +78,7 @@ str
 
 <span id="qiskit_ibm_runtime.fake_provider.FakePoughkeepsie.properties" />
 
-`properties()`
+`properties()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/poughkeepsie/fake_poughkeepsie.py#L122-L128 "view source code")
 
 Returns a snapshot of device properties
 

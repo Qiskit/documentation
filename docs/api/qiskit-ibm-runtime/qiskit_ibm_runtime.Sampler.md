@@ -96,7 +96,7 @@ Session used by this primitive, or `None` if session is not used.
 
 <span id="qiskit_ibm_runtime.Sampler.run" />
 
-`run(circuits, parameter_values=None, **kwargs)`
+`run(circuits, parameter_values=None, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/sampler.py#L102-L130 "view source code")
 
 Submit a request to the sampler primitive.
 

@@ -76,7 +76,7 @@ str
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeTenerife.properties" />
 
-`properties()`
+`properties()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/tenerife/fake_tenerife.py#L62-L68 "view source code")
 
 Returns a snapshot of device properties as recorded on 8/30/19.
 
