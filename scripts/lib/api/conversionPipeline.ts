@@ -14,8 +14,7 @@ import { join, parse, relative } from "path";
 import { readFile, writeFile } from "fs/promises";
 
 import { globby } from "globby";
-import { uniq, uniqBy } from "lodash";
-import { mkdirp } from "mkdirp";
+import { uniqBy } from "lodash";
 import transformLinks from "transform-markdown-links";
 
 import { ObjectsInv } from "./objectsInv";
@@ -51,15 +50,13 @@ export async function runConversionPipeline(
     files,
   );
 
-  await createNecessaryDirs(initialResults);
-  await copyImages(pkg, htmlPath, initialResults);
-
   const results = await postProcessResults(
     pkg,
     maybeObjectsInv,
     initialResults,
   );
   await writeMarkdownResults(pkg, results);
+  await copyImages(pkg, htmlPath, results);
   await maybeObjectsInv?.write(pkg.outputDir("public"));
   await writeTocFile(pkg, markdownPath, results);
   await writeVersionFile(pkg, markdownPath);
@@ -115,17 +112,6 @@ async function convertFilesToMarkdown(
     results.push({ ...result, url });
   }
   return results;
-}
-
-async function createNecessaryDirs(
-  results: HtmlToMdResultWithUrl[],
-): Promise<void> {
-  const dirsNeeded = uniq(
-    results.map((result) => parse(urlToPath(result.url)).dir),
-  );
-  for (const dir of dirsNeeded) {
-    await mkdirp(dir);
-  }
 }
 
 async function copyImages(
