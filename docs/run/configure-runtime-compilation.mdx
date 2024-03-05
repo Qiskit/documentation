@@ -87,7 +87,7 @@ pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 psi = pm.run(psi)
 H = H.apply_layout(psi.layout)
 
-estimator = Estimator (backend=backend)
+estimator = Estimator(backend=backend)
 
 estimator.options.optimization_level = 1
 
@@ -184,9 +184,9 @@ sampler = Sampler(backend)
 
 # Turn on dynamical decoupling with sequence XpXm.
 sampler.options.dynamical_decoupling.enable = True
-sampler.options.dynamical_decoupling.scheduling_method = "XpXm"
+sampler.options.dynamical_decoupling.sequence_type = "XpXm"
 
-print(f">>> dynamical decoupling sequence to use: {sampler.options.dynamical_decoupling.scheduling_method}")
+print(f">>> dynamical decoupling sequence to use: {sampler.options.dynamical_decoupling.sequence_type}")
 ``` 
   </TabItem>
 

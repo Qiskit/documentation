@@ -157,7 +157,8 @@ The output is now in the [`PubResult`](../api/qiskit/qiskit.primitives.PubResult
     evs = job.result().values
 
     # Estimator V2: Execute 1 circuit with 4 observables and 2 parameter sets
-    job = estimator_v2.run([(circuit, [[obs1, obs2, obs3, obs4]], [[vals1], [vals2]])])
+    
+    job = estimator_v2.run([(circuit, [[obs1], [obs2], [obs3], [obs4]], [[vals1], [vals2]])])
     evs = job.result()[0].data.evs
 ```
   </TabItem>
@@ -265,9 +266,9 @@ estimator = Estimator(backend, options={"resilience_level": 2})
 # Setting options after primitive initialization
 # This uses auto complete.
 estimator.options.optimization_level = 1
-estimator.options.execution.shots = 4000
+estimator.options.default_shots = 4000
 # This does bulk update.
-estimator.options.update(shots=4000, optimization_level=1)
+estimator.options.update(default_shots=4000, optimization_level=1)
 
 # Print the dictionary format.
 # Server defaults are used for unset options.
@@ -371,9 +372,9 @@ estimator = Estimator(backend, options={"resilience_level": 2})
 # Setting options after primitive initialization
 # This uses auto complete.
 estimator.options.optimization_level = 1
-estimator.options.execution.shots = 4000
+estimator.options.default_shots = 4000
 # This does bulk update.
-estimator.options.update(shots=4000, optimization_level=1)
+estimator.options.update(default_shots=4000, optimization_level=1)
 
 # Print the dictionary format.
 # Server defaults are used for unset options.
@@ -456,10 +457,11 @@ estimator = Estimator(backend)
 # Set optimization level to 0.
 estimator.options.optimization_level = 0
 # Turn on dynamical decoupling with sequence XpXm.
-estimator.options.dynamical_decoupling = "XpXm"
+estimator.options.dynamical_decoupling.enable = True
+estimator.options.dynamical_decoupling.sequence_type = "XpXm"
 
 print(f">>> optimization level to use: {estimator.options.optimization_level}")
-print(f">>> dynamical decoupling sequence to use: {estimator.options.dynamical_decoupling}")
+print(f">>> dynamical decoupling sequence to use: {estimator.options.dynamical_decoupling.sequence_type}")
   ```  
   </TabItem>
 
@@ -666,15 +668,11 @@ isa_observables = [ob.apply_layout(isa_circuits[0].layout) for ob in observables
 
 estimator = Estimator(backend)
 job = estimator.run([(isa_circuits[0], isa_observables[0]),(isa_circuits[1], isa_observables[1]),(isa_circuits[2], isa_observables[2])])
-pub_result = job.result()[0]
-pub_result_2 = job.result()[1]
-pub_result_3 = job.result()[2]
-print(f">>> Expectation values 1: {pub_result.data.evs}")
-print(f">>> Standard errors 1: {pub_result.data.stds}")
-print(f">>> Expectation values 2: {pub_result_2.data.evs}")
-print(f">>> Standard errors 2: {pub_result_2.data.stds}")
-print(f">>> Expectation values 3: {pub_result_3.data.evs}")
-print(f">>> Standard errors 3: {pub_result_3.data.stds}")
+job_result = job.result()
+for idx in range(len(job_result)):
+    pub_result = job_result[idx]
+    print(f">>> Expectation values for PUB {idx}: {pub_result.data.evs}")
+    print(f">>> Standard errors for PUB {idx}: {pub_result.data.stds}")
 ```  
   </TabItem>
 
@@ -767,7 +765,7 @@ from qiskit_ibm_runtime import EstimatorV2 as Estimator
 reshaped_ops = np.fromiter(isa_observables, dtype=object)
 reshaped_ops = reshaped_ops.reshape((4, 1))
 
-estimator = Estimator(backend, options={"shots": int(1e4)})
+estimator = Estimator(backend, options={"default_shots": int(1e4)})
 job = estimator.run([(chsh_isa_circuit, reshaped_ops, individual_phases)])
 # Get results for the first (and only) PUB
 pub_result = job.result()[0]

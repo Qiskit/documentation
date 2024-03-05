@@ -133,7 +133,7 @@ Then, in step 3 of the pattern, you execute the target circuit on the system cho
     ```python
 # source_files/my_qiskit_pattern_resource_management.py
 
-from qiskit_ibm_runtime import QiskitRuntimeService, Session, Samplerv2 as Sampler, Options
+from qiskit_ibm_runtime import QiskitRuntimeService, Session, Samplerv2 as Sampler
 from qiskit.circuit.random import random_circuit
 from quantum_serverless_tools.selectors import IBMLeastNoisyQPUSelector
 
@@ -160,14 +160,9 @@ target_circuit = selector.optimized_circuit
 # target_circuit = pm.run(abstract_circuit)
 
 # Step 3: Execute the target circuit
-with Session(service, backend=backend) as session:
-    sampler = Sampler(
-        options=Options(
-            execution={"shots": 1024}
-        )
-    )
-    job = sampler.run([(target_circuit)])
-    result = job.result()
+sampler = Sampler(backend=backend, options={"default_shots": 1024})
+job = sampler.run([(target_circuit,)])
+result = job.result()
     
 # Step 4: Postprocess the results
 print(f" > Counts: {result[0].data.meas.get_counts()}")

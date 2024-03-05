@@ -391,12 +391,12 @@ backend = service.least_busy(operational=True, simulator=False)
 estimator = Estimator(backend)
 options = estimator.options
 # Turn on gate twirling.
-options.twirling.gates = True
+options.twirling.enable_gates = True
 # Turn on measurement error mitigation.
-options.resilience.measure_noise_mitigation = True
+options.resilience.measure_mitigation = True
 
-print(f">>> gate twirling is turned on: {estimator.options.twirling.gates}")
-print(f">>> measurement error mitigation is turned on: {estimator.options.resilience.measure_noise_mitigation}")
+print(f">>> gate twirling is turned on: {estimator.options.twirling.enable_gates}")
+print(f">>> measurement error mitigation is turned on: {estimator.options.resilience.measure_mitigation}")
 ```
   </TabItem>
 
@@ -409,7 +409,7 @@ options = sampler.options
 
 options.dynamical_decoupling.enable = True
 
-print(f">>> dynamical decoupling is turned on: {sampler.options.twirling.gates}")
+print(f">>> dynamical decoupling is turned on: {sampler.options.dynamical_decoupling.enable}")
 ```
   </TabItem>
 </Tabs>

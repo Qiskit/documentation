@@ -36,7 +36,7 @@ class. The session starts when its first job begins execution.
 from qiskit_ibm_runtime import Session, Samplerv2 as Sampler, Estimatorv2 as Estimator
 
 backend = service.least_busy(operational=True, simulator=False)
-session = Session(service=service, backend="backend")
+session = Session(service=service, backend=backend)
 estimator = Estimator(session=session)
 sampler = Sampler(session=session)
 ```
@@ -47,7 +47,7 @@ sampler = Sampler(session=session)
 from qiskit_ibm_runtime import Session, Sampler, Estimator
 
 backend = service.least_busy(operational=True, simulator=False)
-session = Session(service=service, backend="backend")
+session = Session(service=service, backend=backend)
 estimator = Estimator(session=session)
 sampler = Sampler(session=session)
 ```
@@ -62,7 +62,7 @@ The context manager automatically opens and closes the session.
   <TabItem value="PrimV2" label="V2 primitives">
     ``` python
 backend = service.least_busy(operational=True, simulator=False)    
-with Session(service=service, backend="backend"):
+with Session(service=service, backend=backend):
   estimatorv2 = EstimatorV2()
   samplerv2 = SamplerV2()
 ```
@@ -71,7 +71,7 @@ with Session(service=service, backend="backend"):
   <TabItem value="PrimV1" label="V1 primitives">
     ``` python
 backend = service.least_busy(operational=True, simulator=False)    
-with Session(service=service, backend="backend"):
+with Session(service=service, backend=backend):
   estimator = Estimator()
   sampler = Sampler()
 ```
@@ -238,7 +238,7 @@ from qiskit_ibm_runtime import QiskitRuntimeService
 service = QiskitRuntimeService()
 backend = service.least_busy(operational=True, simulator=False)
 
-with Session(service=service, backend="backend") as session:
+with Session(service=service, backend=backend) as session:
     estimator = Estimator()
     job = estimator.run(circuit, observable)
     print(session.details())
