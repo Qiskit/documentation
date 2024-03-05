@@ -54,7 +54,7 @@ To ensure faster and more efficient results, as of 1 March 2024, circuits and ob
 |------------------|-------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|
 | 0                | No mitigation                                                                                         | None                                                                      |
 | 1 [Default]      | Minimal mitigation costs: Mitigate error associated with readout errors                               | Twirled Readout Error eXtinction  (TREX) measurement twirling             |
-| 2                | Medium mitigation costs. Typically reduces bias in estimators, but is not guaranteed to be zero-bias. | Level 1 + Zero Noise Extrapolation (ZNE) and TREX gate twirling 
+| 2                | Medium mitigation costs. Typically reduces bias in estimators, but is not guaranteed to be zero-bias. | Level 1 + Zero Noise Extrapolation (ZNE) and gate twirling 
 
   </TabItem>
 
@@ -153,7 +153,6 @@ observables. The following code uses Zero Noise Extrapolation by simply
 setting `resilience_level 2`.
 
 ```python
-from dataclasses import asdict
 from qiskit_ibm_runtime import QiskitRuntimeService
 from qiskit_ibm_runtime import EstimatorV2 as Estimator
 
@@ -162,17 +161,6 @@ backend = service.least_busy(operational=True, simulator=False)
 
 # Setting options during primitive initialization
 estimator = Estimator(backend, options={"resilience_level": 2})
-
-# Setting options after primitive initialization
-# This uses auto complete.
-estimator.options.optimization_level = 1
-estimator.options.execution.shots = 4000
-# This does bulk update.
-estimator.options.update(shots=4000, optimization_level=1)
-
-# Print the dictionary format.
-# Server defaults are used for unset options.
-print(asdict(estimator.options))
 ```
 
 <Admonition type="info" title="Note">

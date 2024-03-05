@@ -1201,6 +1201,10 @@ isa_circuit = pm.run(circuit)
 another_isa_circuit = pm.run(another_circuit)
  
 service = QiskitRuntimeService()
+
+# Turn on dynamical decoupling with sequence XpXm.
+sampler.options.dynamical_decoupling.enable = True
+sampler.options.dynamical_decoupling.sequence_type = "XpXm"
  
 backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
  
