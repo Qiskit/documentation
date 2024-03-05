@@ -41,17 +41,14 @@ test("qiskit-sphinx-theme", async () => {
   //   - images
   //   - release notes
 
-  let docsBaseFolder;
-  let publicBaseFolder;
+  let docsBaseFolder = "docs";
+  let publicBaseFolder = "public";
   if (USE_TMPDIR) {
     const tmpDir = await mkdtemp(
       path.join(os.tmpdir(), "qiskit-sphinx-theme-test-"),
     );
-    docsBaseFolder = path.join(tmpDir, "docs");
-    publicBaseFolder = path.join(tmpDir, "public");
-  } else {
-    docsBaseFolder = "docs";
-    publicBaseFolder = "public";
+    docsBaseFolder = path.join(tmpDir, docsBaseFolder);
+    publicBaseFolder = path.join(tmpDir, publicBaseFolder);
   }
 
   const pkg = new Pkg({
