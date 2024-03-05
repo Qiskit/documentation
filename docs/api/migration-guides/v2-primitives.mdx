@@ -938,7 +938,7 @@ print(f" > Expectation values job 2: {another_result.values}")
 ## Steps to migrate to V2 Sampler
 
 1. Replace `from qiskit_ibm_runtime import Sampler` with `from qiskit_ibm_runtime import SamplerV2 as Sampler`.
-2. Remove any `from qiskit_ibm_runtime import Options` statements, since the `Options` class is not used by V2 primitives. You can instead pass options as a dictionary when initializing the `Sampler` class (for example `sampler = Sampler(backend, options={“optimization_level”: 1})`), or set them after initialization:
+2. Remove any `from qiskit_ibm_runtime import Options` statements, since the `Options` class is not used by V2 primitives. You can instead pass options as a dictionary when initializing the `Sampler` class (for example `sampler = Sampler(backend, options={“default_shots”: 1024})`), or set them after initialization:
    ```python
    sampler = Sampler(backend)
    sampler.options.optimization_level = 1
