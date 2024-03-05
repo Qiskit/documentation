@@ -34,7 +34,7 @@ A matplotlib figure instance.
 
 **Return type**
 
-[`matplotlib.figure.Figure`](https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure "(in Matplotlib v3.8.2)")
+[`matplotlib.figure.Figure`](https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure "(in Matplotlib v3.8.3)")
 
 **Raises**
 

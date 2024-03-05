@@ -114,7 +114,7 @@ Options for the primitives.
 
 <span id="qiskit_ibm_runtime.options.Options.validate_options" />
 
-`static validate_options(options)`
+`static validate_options(options)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/options/options.py#L165-L190 "view source code")
 
 Validate that program inputs (options) are valid :raises ValueError: if optimization\_level is outside the allowed range. :raises ValueError: if max\_execution\_time is outside the allowed range.
 

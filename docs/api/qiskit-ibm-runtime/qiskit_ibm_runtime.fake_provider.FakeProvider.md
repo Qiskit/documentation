@@ -30,7 +30,7 @@ Only filtering backends by name is implemented. This class contains all fake V1 
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeProvider.backends" />
 
-`backends(name=None, **kwargs)`
+`backends(name=None, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/fake_provider.py#L160-L161 "view source code")
 
 Return a list of backends matching the specified filtering.
 

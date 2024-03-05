@@ -137,7 +137,7 @@ If barriers are inserted in between the layers or not.
 
 ### instances
 
-`= 271`
+`= 266`
 
 <span id="qiskit.circuit.library.QAOAAnsatz.layout" />
 
@@ -177,11 +177,35 @@ BaseOperator or OperatorBase or [QuantumCircuit](qiskit.circuit.QuantumCircuit "
 
 Return the number of ancilla qubits.
 
+<span id="qiskit.circuit.library.QAOAAnsatz.num_captured_vars" />
+
+### num\_captured\_vars
+
+The number of runtime classical variables in the circuit marked as captured from an enclosing scope.
+
+This is the length of the `iter_captured_vars()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.QAOAAnsatz.num_input_vars "qiskit.circuit.library.QAOAAnsatz.num_input_vars") must be zero.
+
 <span id="qiskit.circuit.library.QAOAAnsatz.num_clbits" />
 
 ### num\_clbits
 
 Return number of classical bits.
+
+<span id="qiskit.circuit.library.QAOAAnsatz.num_declared_vars" />
+
+### num\_declared\_vars
+
+The number of runtime classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
+
+This is the length of the `iter_declared_vars()` iterable.
+
+<span id="qiskit.circuit.library.QAOAAnsatz.num_input_vars" />
+
+### num\_input\_vars
+
+The number of runtime classical variables in the circuit marked as circuit inputs.
+
+This is the length of the `iter_input_vars()` iterable. If this is non-zero, [`num_captured_vars`](#qiskit.circuit.library.QAOAAnsatz.num_captured_vars "qiskit.circuit.library.QAOAAnsatz.num_captured_vars") must be zero.
 
 <span id="qiskit.circuit.library.QAOAAnsatz.num_layers" />
 
@@ -216,6 +240,14 @@ The number of parameters originally available in the circuit.
 <span id="qiskit.circuit.library.QAOAAnsatz.num_qubits" />
 
 ### num\_qubits
+
+<span id="qiskit.circuit.library.QAOAAnsatz.num_vars" />
+
+### num\_vars
+
+The number of runtime classical variables in the circuit.
+
+This is the length of the `iter_vars()` iterable.
 
 <span id="qiskit.circuit.library.QAOAAnsatz.op_start_times" />
 

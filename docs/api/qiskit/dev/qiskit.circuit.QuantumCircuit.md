@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
 <span id="qiskit.circuit.QuantumCircuit" />
 
-`qiskit.circuit.QuantumCircuit(*regs, name=None, global_phase=0, metadata=None)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py "view source code")
+`qiskit.circuit.QuantumCircuit(*regs, name=None, global_phase=0, metadata=None, inputs=(), captures=(), declarations=())` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
@@ -47,9 +47,20 @@ A circuit is a list of instructions bound to some registers.
 
 *   **metadata** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – Arbitrary key value metadata to associate with the circuit. This gets stored as free-form data in a dict in the [`metadata`](#qiskit.circuit.QuantumCircuit.metadata "qiskit.circuit.QuantumCircuit.metadata") attribute. It will not be directly used in the circuit.
 
+*   **inputs** (*Iterable\[*[*expr.Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var")*]*) – any variables to declare as `input` runtime variables for this circuit. These should already be existing [`expr.Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") nodes that you build from somewhere else; if you need to create the inputs as well, use [`QuantumCircuit.add_input()`](#qiskit.circuit.QuantumCircuit.add_input "qiskit.circuit.QuantumCircuit.add_input"). The variables given in this argument will be passed directly to [`add_input()`](#qiskit.circuit.QuantumCircuit.add_input "qiskit.circuit.QuantumCircuit.add_input"). A circuit cannot have both `inputs` and `captures`.
+
+*   **captures** (*Iterable\[*[*expr.Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var")*]*) – any variables that that this circuit scope should capture from a containing scope. The variables given here will be passed directly to [`add_capture()`](#qiskit.circuit.QuantumCircuit.add_capture "qiskit.circuit.QuantumCircuit.add_capture"). A circuit cannot have both `inputs` and `captures`.
+
+*   **declarations** (*Mapping\[*[*expr.Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var")*,* [*expr.Expr*](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr")*] | Iterable\[Tuple\[*[*expr.Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var")*,* [*expr.Expr*](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr")*]]*) –
+
+    any variables that this circuit should declare and initialize immediately. You can order this input so that later declarations depend on earlier ones (including inputs or captures). If you need to depend on values that will be computed later at runtime, use [`add_var()`](#qiskit.circuit.QuantumCircuit.add_var "qiskit.circuit.QuantumCircuit.add_var") at an appropriate point in the circuit execution.
+
+    This argument is intended for convenient circuit initialization when you already have a set of created variables. The variables used here will be directly passed to [`add_var()`](#qiskit.circuit.QuantumCircuit.add_var "qiskit.circuit.QuantumCircuit.add_var"), which you can use directly if this is the first time you are creating the variable.
+
 **Raises**
 
-[**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the circuit name, if given, is not valid.
+*   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the circuit name, if given, is not valid.
+*   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if both `inputs` and `captures` are given.
 
 **Examples**
 
@@ -173,11 +184,35 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 
 Return the number of ancilla qubits.
 
+<span id="qiskit.circuit.QuantumCircuit.num_captured_vars" />
+
+### num\_captured\_vars
+
+The number of runtime classical variables in the circuit marked as captured from an enclosing scope.
+
+This is the length of the [`iter_captured_vars()`](#qiskit.circuit.QuantumCircuit.iter_captured_vars "qiskit.circuit.QuantumCircuit.iter_captured_vars") iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.QuantumCircuit.num_input_vars "qiskit.circuit.QuantumCircuit.num_input_vars") must be zero.
+
 <span id="qiskit.circuit.QuantumCircuit.num_clbits" />
 
 ### num\_clbits
 
 Return number of classical bits.
+
+<span id="qiskit.circuit.QuantumCircuit.num_declared_vars" />
+
+### num\_declared\_vars
+
+The number of runtime classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
+
+This is the length of the [`iter_declared_vars()`](#qiskit.circuit.QuantumCircuit.iter_declared_vars "qiskit.circuit.QuantumCircuit.iter_declared_vars") iterable.
+
+<span id="qiskit.circuit.QuantumCircuit.num_input_vars" />
+
+### num\_input\_vars
+
+The number of runtime classical variables in the circuit marked as circuit inputs.
+
+This is the length of the [`iter_input_vars()`](#qiskit.circuit.QuantumCircuit.iter_input_vars "qiskit.circuit.QuantumCircuit.iter_input_vars") iterable. If this is non-zero, [`num_captured_vars`](#qiskit.circuit.QuantumCircuit.num_captured_vars "qiskit.circuit.QuantumCircuit.num_captured_vars") must be zero.
 
 <span id="qiskit.circuit.QuantumCircuit.num_parameters" />
 
@@ -190,6 +225,14 @@ The number of parameter objects in the circuit.
 ### num\_qubits
 
 Return number of qubits.
+
+<span id="qiskit.circuit.QuantumCircuit.num_vars" />
+
+### num\_vars
+
+The number of runtime classical variables in the circuit.
+
+This is the length of the [`iter_vars()`](#qiskit.circuit.QuantumCircuit.iter_vars "qiskit.circuit.QuantumCircuit.iter_vars") iterable.
 
 <span id="qiskit.circuit.QuantumCircuit.op_start_times" />
 
@@ -306,6 +349,49 @@ Register a low-level, custom pulse definition for the given gate.
 
 [**Exception**](https://docs.python.org/3/library/exceptions.html#Exception "(in Python v3.12)") – if the gate is of type string and params is None.
 
+### add\_capture
+
+<span id="qiskit.circuit.QuantumCircuit.add_capture" />
+
+`add_capture(var)`
+
+Add a variable to the circuit that it should capture from a scope it will be contained within.
+
+This method requires a [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") node to enforce that you’ve got a handle to one, because you will need to declare the same variable using the same object into the outer circuit.
+
+This is a low-level method, which is only really useful if you are manually constructing control-flow operations. You typically will not need to call this method, assuming you are using the builder interface for control-flow scopes (`with` context-manager statements for [`if_test()`](#qiskit.circuit.QuantumCircuit.if_test "qiskit.circuit.QuantumCircuit.if_test") and the other scoping constructs). The builder interface will automatically make the inner scopes closures on your behalf by capturing any variables that are used within them.
+
+**Parameters**
+
+**var** ([*Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.expr.Var")) – the variable to capture from an enclosing scope.
+
+**Raises**
+
+[**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the variable cannot be created due to shadowing an existing variable.
+
+### add\_input
+
+<span id="qiskit.circuit.QuantumCircuit.add_input" />
+
+`add_input(name_or_var: str, type_: Type, /) → Var`
+
+`add_input(name_or_var: Var, type_: None = None, /) → Var`
+
+Register a variable as an input to the circuit.
+
+**Parameters**
+
+*   **name\_or\_var** – either a string name, or an existing [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") node to use as the input variable.
+*   **type** – if the name is given as a string, then this must be a [`Type`](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type") to use for the variable. If the variable is given as an existing [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var"), then this must not be given, and will instead be read from the object itself.
+
+**Returns**
+
+the variable created, or the same variable as was passed in.
+
+**Raises**
+
+[**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the variable cannot be created due to shadowing an existing variable.
+
 ### add\_register
 
 <span id="qiskit.circuit.QuantumCircuit.add_register" />
@@ -313,6 +399,98 @@ Register a low-level, custom pulse definition for the given gate.
 `add_register(*regs)`
 
 Add registers.
+
+### add\_uninitialized\_var
+
+<span id="qiskit.circuit.QuantumCircuit.add_uninitialized_var" />
+
+`add_uninitialized_var(var, /)`
+
+Add a variable with no initializer.
+
+In most cases, you should use [`add_var()`](#qiskit.circuit.QuantumCircuit.add_var "qiskit.circuit.QuantumCircuit.add_var") to initialize the variable. To use this function, you must already hold a [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") instance, as the use of the function typically only makes sense in copying contexts.
+
+<Admonition title="Warning" type="caution">
+  Qiskit makes no assertions about what an uninitialized variable will evaluate to at runtime, and some hardware may reject this as an error.
+
+  You should treat this function with caution, and as a low-level primitive that is useful only in special cases of programmatically rebuilding two like circuits.
+</Admonition>
+
+**Parameters**
+
+**var** ([*Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.expr.Var")) – the variable to add.
+
+### add\_var
+
+<span id="qiskit.circuit.QuantumCircuit.add_var" />
+
+`add_var(name_or_var, /, initial)`
+
+Add a classical variable with automatic storage and scope to this circuit.
+
+The variable is considered to have been “declared” at the beginning of the circuit, but it only becomes initialized at the point of the circuit that you call this method, so it can depend on variables defined before it.
+
+**Parameters**
+
+*   **name\_or\_var** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*expr.Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var")) – either a string of the variable name, or an existing instance of [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") to re-use. Variables cannot shadow names that are already in use within the circuit.
+
+*   **initial** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) –
+
+    the value to initialize this variable with. If the first argument was given as a string name, the type of the resulting variable is inferred from the initial expression; to control this more manually, either use `Var.new()` to manually construct a new variable with the desired type, or use [`expr.cast()`](circuit_classical#qiskit.circuit.classical.expr.cast "qiskit.circuit.classical.expr.cast") to cast the initializer to the desired type.
+
+    This must be either a [`Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") node, or a value that can be lifted to one using `expr.lift`.
+
+**Returns**
+
+The created variable. If a [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") instance was given, the exact same object will be returned.
+
+**Raises**
+
+[**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the variable cannot be created due to shadowing an existing variable.
+
+**Return type**
+
+[expr.Var](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var")
+
+**Examples**
+
+Define a new variable given just a name and an initializer expression:
+
+```python
+from qiskit.circuit import QuantumCircuit
+
+qc = QuantumCircuit(2)
+my_var = qc.add_var("my_var", False)
+```
+
+Reuse a variable that may have been taken from a related circuit, or otherwise constructed manually, and initialize it to some more complicated expression:
+
+```python
+from qiskit.circuit import QuantumCircuit, QuantumRegister, ClassicalRegister
+from qiskit.circuit.classical import expr, types
+
+my_var = expr.Var.new("my_var", types.Uint(8))
+
+cr1 = ClassicalRegister(8, "cr1")
+cr2 = ClassicalRegister(8, "cr2")
+qc = QuantumCircuit(QuantumRegister(8), cr1, cr2)
+
+# Get some measurement results into each register.
+qc.h(0)
+for i in range(1, 8):
+    qc.cx(0, i)
+qc.measure(range(8), cr1)
+
+qc.reset(range(8))
+qc.h(0)
+for i in range(1, 8):
+    qc.cx(0, i)
+qc.measure(range(8), cr2)
+
+# Now when we add the variable, it is initialized using the runtime state of the two
+# classical registers we measured into above.
+qc.add_var(my_var, expr.bit_and(cr1, cr2))
+```
 
 ### append
 
@@ -749,6 +927,10 @@ Return a copy of self with the same structure but empty.
 *   name, calibrations and other metadata
 *   global phase
 *   all the qubits and clbits, including the registers
+
+<Admonition title="Warning" type="caution">
+  If the circuit contains any local variable declarations (those added by the `declarations` argument to the circuit constructor, or using [`add_var()`](#qiskit.circuit.QuantumCircuit.add_var "qiskit.circuit.QuantumCircuit.add_var")), they will be **uninitialized** in the output circuit. You will need to manually add store instructions for them (see [`Store`](qiskit.circuit.Store "qiskit.circuit.Store") and [`QuantumCircuit.store()`](#qiskit.circuit.QuantumCircuit.store "qiskit.circuit.QuantumCircuit.store")) to initialize them.
+</Admonition>
 
 **Parameters**
 
@@ -1537,6 +1719,66 @@ assert qc.get_parameter("my_param", None) is my_param
 assert qc.get_parameter("unknown_param", None) is None
 ```
 
+<Admonition title="See also" type="note">
+  **[`get_var()`](#qiskit.circuit.QuantumCircuit.get_var "qiskit.circuit.QuantumCircuit.get_var")**
+
+  A similar method, but for [`expr.Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") run-time variables instead of [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") compile-time parameters.
+</Admonition>
+
+### get\_var
+
+<span id="qiskit.circuit.QuantumCircuit.get_var" />
+
+`get_var(name: str, default: T) → Var | T`
+
+`get_var(name: str, default: ellipsis = Ellipsis) → Var`
+
+Retrieve a variable that is accessible in this circuit scope by name.
+
+**Parameters**
+
+*   **name** – the name of the variable to retrieve.
+*   **default** – if given, this value will be returned if the variable is not present. If it is not given, a [`KeyError`](https://docs.python.org/3/library/exceptions.html#KeyError "(in Python v3.12)") is raised instead.
+
+**Returns**
+
+The corresponding variable.
+
+**Raises**
+
+[**KeyError**](https://docs.python.org/3/library/exceptions.html#KeyError "(in Python v3.12)") – if no default is given, but the variable does not exist.
+
+**Examples**
+
+Retrieve a variable by name from a circuit:
+
+```python
+from qiskit.circuit import QuantumCircuit
+
+# Create a circuit and create a variable in it.
+qc = QuantumCircuit()
+my_var = qc.add_var("my_var", False)
+
+# We can use 'my_var' as a variable, but let's say we've lost the Python object and
+# need to retrieve it.
+my_var_again = qc.get_var("my_var")
+
+assert my_var is my_var_again
+```
+
+Get a variable from a circuit by name, returning some default if it is not present:
+
+```python
+assert qc.get_var("my_var", None) is my_var
+assert qc.get_var("unknown_variable", None) is None
+```
+
+<Admonition title="See also" type="note">
+  **[`get_parameter()`](#qiskit.circuit.QuantumCircuit.get_parameter "qiskit.circuit.QuantumCircuit.get_parameter")**
+
+  A similar method, but for [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") compile-time parameters instead of [`expr.Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") run-time variables.
+</Admonition>
+
 ### h
 
 <span id="qiskit.circuit.QuantumCircuit.h" />
@@ -1591,6 +1833,10 @@ whether a matching parameter is assignable in this circuit.
   **[`QuantumCircuit.get_parameter()`](#qiskit.circuit.QuantumCircuit.get_parameter "qiskit.circuit.QuantumCircuit.get_parameter")**
 
   Retrieve the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") instance from this circuit by name.
+
+  **[`QuantumCircuit.has_var()`](#qiskit.circuit.QuantumCircuit.has_var "qiskit.circuit.QuantumCircuit.has_var")**
+
+  A similar method to this, but for run-time [`expr.Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") variables instead of compile-time [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter")s.
 </Admonition>
 
 ### has\_register
@@ -1612,6 +1858,36 @@ True if the register is contained in this circuit.
 **Return type**
 
 [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+
+### has\_var
+
+<span id="qiskit.circuit.QuantumCircuit.has_var" />
+
+`has_var(name_or_var, /)`
+
+Check whether a variable is accessible in this scope.
+
+**Parameters**
+
+**name\_or\_var** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*expr.Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var")) – the variable, or name of a variable to check. If this is a [`expr.Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") node, the variable must be exactly the given one for this function to return `True`.
+
+**Returns**
+
+whether a matching variable is accessible.
+
+**Return type**
+
+[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+
+<Admonition title="See also" type="note">
+  **[`QuantumCircuit.get_var()`](#qiskit.circuit.QuantumCircuit.get_var "qiskit.circuit.QuantumCircuit.get_var")**
+
+  Retrieve the [`expr.Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") instance from this circuit by name.
+
+  **[`QuantumCircuit.has_parameter()`](#qiskit.circuit.QuantumCircuit.has_parameter "qiskit.circuit.QuantumCircuit.has_parameter")**
+
+  A similar method to this, but for compile-time [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter")s instead of run-time [`expr.Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") variables.
+</Admonition>
 
 ### id
 
@@ -1900,6 +2176,56 @@ A handle to the instructions created.
 **Return type**
 
 [*InstructionSet*](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+
+### iter\_captured\_vars
+
+<span id="qiskit.circuit.QuantumCircuit.iter_captured_vars" />
+
+`iter_captured_vars()`
+
+Get an iterable over all runtime classical variables that are captured by this circuit scope from a containing scope. This excludes input variables (see [`iter_input_vars()`](#qiskit.circuit.QuantumCircuit.iter_input_vars "qiskit.circuit.QuantumCircuit.iter_input_vars")) and locally declared variables (see [`iter_declared_vars()`](#qiskit.circuit.QuantumCircuit.iter_declared_vars "qiskit.circuit.QuantumCircuit.iter_declared_vars")).
+
+**Return type**
+
+[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")\[[*Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.expr.Var")]
+
+### iter\_declared\_vars
+
+<span id="qiskit.circuit.QuantumCircuit.iter_declared_vars" />
+
+`iter_declared_vars()`
+
+Get an iterable over all runtime classical variables that are declared with automatic storage duration in this scope. This excludes input variables (see [`iter_input_vars()`](#qiskit.circuit.QuantumCircuit.iter_input_vars "qiskit.circuit.QuantumCircuit.iter_input_vars")) and captured variables (see [`iter_captured_vars()`](#qiskit.circuit.QuantumCircuit.iter_captured_vars "qiskit.circuit.QuantumCircuit.iter_captured_vars")).
+
+**Return type**
+
+[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")\[[*Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.expr.Var")]
+
+### iter\_input\_vars
+
+<span id="qiskit.circuit.QuantumCircuit.iter_input_vars" />
+
+`iter_input_vars()`
+
+Get an iterable over all runtime classical variables that are declared as inputs to this circuit scope. This excludes locally declared variables (see [`iter_declared_vars()`](#qiskit.circuit.QuantumCircuit.iter_declared_vars "qiskit.circuit.QuantumCircuit.iter_declared_vars")) and captured variables (see [`iter_captured_vars()`](#qiskit.circuit.QuantumCircuit.iter_captured_vars "qiskit.circuit.QuantumCircuit.iter_captured_vars")).
+
+**Return type**
+
+[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")\[[*Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.expr.Var")]
+
+### iter\_vars
+
+<span id="qiskit.circuit.QuantumCircuit.iter_vars" />
+
+`iter_vars()`
+
+Get an iterable over all runtime classical variables in scope within this circuit.
+
+This method will iterate over all variables in scope. For more fine-grained iterators, see [`iter_declared_vars()`](#qiskit.circuit.QuantumCircuit.iter_declared_vars "qiskit.circuit.QuantumCircuit.iter_declared_vars"), [`iter_input_vars()`](#qiskit.circuit.QuantumCircuit.iter_input_vars "qiskit.circuit.QuantumCircuit.iter_input_vars") and [`iter_captured_vars()`](#qiskit.circuit.QuantumCircuit.iter_captured_vars "qiskit.circuit.QuantumCircuit.iter_captured_vars").
+
+**Return type**
+
+[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")\[[*Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.expr.Var")]
 
 ### mcp
 
@@ -2986,6 +3312,35 @@ Total number of gate operations.
 **Return type**
 
 [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+
+### store
+
+<span id="qiskit.circuit.QuantumCircuit.store" />
+
+`store(lvalue, rvalue, /)`
+
+Store the result of the given runtime classical expression `rvalue` in the memory location defined by `lvalue`.
+
+Typically `lvalue` will be a [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") node and `rvalue` will be some [`Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") to write into it, but anything that [`expr.lift()`](circuit_classical#qiskit.circuit.classical.expr.lift "qiskit.circuit.classical.expr.lift") can raise to an [`Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") is permissible in both places, and it will be called on them.
+
+**Parameters**
+
+*   **lvalue** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – a valid specifier for a memory location in the circuit. This will typically be a [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") node, but you can also write to [`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.Clbit") or [`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") memory locations if your hardware supports it. The memory location must already be present in the circuit.
+*   **rvalue** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – a runtime classical expression whose result should be written into the given memory location.
+
+**Return type**
+
+[*InstructionSet*](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+
+<Admonition title="See also" type="note">
+  **[`Store`](qiskit.circuit.Store "qiskit.circuit.Store")**
+
+  The backing [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") class that represents this operation.
+
+  **[`add_var()`](#qiskit.circuit.QuantumCircuit.add_var "qiskit.circuit.QuantumCircuit.add_var")**
+
+  Create a new variable in the circuit that can be written to with this method.
+</Admonition>
 
 ### swap
 

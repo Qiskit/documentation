@@ -116,7 +116,7 @@ Name of the pass.
 
 <span id="qiskit_ibm_provider.transpiler.passes.scheduling.PadDelay.run" />
 
-`run(dag)`
+`run(dag)` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/transpiler/passes/scheduling/block_base_padder.py#L91-L117 "view source code")
 
 Run the padding pass on `dag`.
 

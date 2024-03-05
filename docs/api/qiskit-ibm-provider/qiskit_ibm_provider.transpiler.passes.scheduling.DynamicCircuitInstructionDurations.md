@@ -36,7 +36,7 @@ Dynamic circuit instruction durations.
 
 <span id="qiskit_ibm_provider.transpiler.passes.scheduling.DynamicCircuitInstructionDurations.from_backend" />
 
-`classmethod from_backend(backend)`
+`classmethod from_backend(backend)` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/transpiler/passes/scheduling/utils.py#L155-L209 "view source code")
 
 Construct a `DynamicInstructionDurations` object from the backend.
 

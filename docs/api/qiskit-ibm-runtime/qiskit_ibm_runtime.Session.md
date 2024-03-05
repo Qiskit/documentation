@@ -89,7 +89,7 @@ Session ID. None if the backend is a simulator.
 
 <span id="qiskit_ibm_runtime.Session.backend" />
 
-`backend()`
+`backend()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/session.py#L208-L214 "view source code")
 
 Return backend for this session.
 

@@ -46,7 +46,7 @@ IBMBackendService constructor.
 
 <span id="qiskit_ibm_provider.IBMBackendService.backends" />
 
-`backends(name=None, filters=None, min_num_qubits=None, instance=None, dynamic_circuits=None, **kwargs)`
+`backends(name=None, filters=None, min_num_qubits=None, instance=None, dynamic_circuits=None, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/ibm_backend_service.py#L118-L218 "view source code")
 
 Return all backends accessible via this account, subject to optional filtering.
 

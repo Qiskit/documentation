@@ -124,11 +124,35 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 
 Return the number of ancilla qubits.
 
+<span id="qiskit.circuit.library.VBERippleCarryAdder.num_captured_vars" />
+
+### num\_captured\_vars
+
+The number of runtime classical variables in the circuit marked as captured from an enclosing scope.
+
+This is the length of the `iter_captured_vars()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.VBERippleCarryAdder.num_input_vars "qiskit.circuit.library.VBERippleCarryAdder.num_input_vars") must be zero.
+
 <span id="qiskit.circuit.library.VBERippleCarryAdder.num_clbits" />
 
 ### num\_clbits
 
 Return number of classical bits.
+
+<span id="qiskit.circuit.library.VBERippleCarryAdder.num_declared_vars" />
+
+### num\_declared\_vars
+
+The number of runtime classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
+
+This is the length of the `iter_declared_vars()` iterable.
+
+<span id="qiskit.circuit.library.VBERippleCarryAdder.num_input_vars" />
+
+### num\_input\_vars
+
+The number of runtime classical variables in the circuit marked as circuit inputs.
+
+This is the length of the `iter_input_vars()` iterable. If this is non-zero, [`num_captured_vars`](#qiskit.circuit.library.VBERippleCarryAdder.num_captured_vars "qiskit.circuit.library.VBERippleCarryAdder.num_captured_vars") must be zero.
 
 <span id="qiskit.circuit.library.VBERippleCarryAdder.num_parameters" />
 
@@ -151,6 +175,14 @@ The number of state qubits, i.e. the number of bits in each input register.
 **Returns**
 
 The number of state qubits.
+
+<span id="qiskit.circuit.library.VBERippleCarryAdder.num_vars" />
+
+### num\_vars
+
+The number of runtime classical variables in the circuit.
+
+This is the length of the `iter_vars()` iterable.
 
 <span id="qiskit.circuit.library.VBERippleCarryAdder.op_start_times" />
 

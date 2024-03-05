@@ -1,16 +1,16 @@
 ---
 title: SolovayKitaevSynthesis
-description: API reference for qiskit.transpiler.passes.SolovayKitaevSynthesis
+description: API reference for qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis
 in_page_toc_min_heading_level: 1
 python_api_type: class
-python_api_name: qiskit.transpiler.passes.SolovayKitaevSynthesis
+python_api_name: qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis
 ---
 
 # SolovayKitaevSynthesis
 
-<span id="qiskit.transpiler.passes.SolovayKitaevSynthesis" />
+<span id="qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis" />
 
-`qiskit.transpiler.passes.SolovayKitaevSynthesis` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/solovay_kitaev_synthesis.py "view source code")
+`qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/solovay_kitaev_synthesis.py "view source code")
 
 Bases: [`UnitarySynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin")
 
@@ -40,43 +40,43 @@ The number of times the decomposition is recursively improved. If None, defaults
 
 ## Attributes
 
-<span id="qiskit.transpiler.passes.SolovayKitaevSynthesis.max_qubits" />
+<span id="qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis.max_qubits" />
 
 ### max\_qubits
 
 Maximum number of supported qubits is `1`.
 
-<span id="qiskit.transpiler.passes.SolovayKitaevSynthesis.min_qubits" />
+<span id="qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis.min_qubits" />
 
 ### min\_qubits
 
 Minimum number of supported qubits is `1`.
 
-<span id="qiskit.transpiler.passes.SolovayKitaevSynthesis.supported_bases" />
+<span id="qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis.supported_bases" />
 
 ### supported\_bases
 
 The plugin does not support bases for synthesis.
 
-<span id="qiskit.transpiler.passes.SolovayKitaevSynthesis.supports_basis_gates" />
+<span id="qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis.supports_basis_gates" />
 
 ### supports\_basis\_gates
 
 The plugin does not support basis gates. By default it synthesis to the `["h", "t", "tdg"]` gate basis.
 
-<span id="qiskit.transpiler.passes.SolovayKitaevSynthesis.supports_coupling_map" />
+<span id="qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis.supports_coupling_map" />
 
 ### supports\_coupling\_map
 
 The plugin does not support coupling maps.
 
-<span id="qiskit.transpiler.passes.SolovayKitaevSynthesis.supports_gate_errors" />
+<span id="qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis.supports_gate_errors" />
 
 ### supports\_gate\_errors
 
 The plugin does not support gate errors.
 
-<span id="qiskit.transpiler.passes.SolovayKitaevSynthesis.supports_gate_errors_by_qubit" />
+<span id="qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis.supports_gate_errors_by_qubit" />
 
 ### supports\_gate\_errors\_by\_qubit
 
@@ -97,13 +97,13 @@ Do note that this dictionary might not be complete or could be empty as it depen
 
 This defaults to False
 
-<span id="qiskit.transpiler.passes.SolovayKitaevSynthesis.supports_gate_lengths" />
+<span id="qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis.supports_gate_lengths" />
 
 ### supports\_gate\_lengths
 
 The plugin does not support gate lengths.
 
-<span id="qiskit.transpiler.passes.SolovayKitaevSynthesis.supports_gate_lengths_by_qubit" />
+<span id="qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis.supports_gate_lengths_by_qubit" />
 
 ### supports\_gate\_lengths\_by\_qubit
 
@@ -126,19 +126,19 @@ Do note that this dictionary might not be complete or could be empty as it depen
 
 This defaults to False
 
-<span id="qiskit.transpiler.passes.SolovayKitaevSynthesis.supports_natural_direction" />
+<span id="qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis.supports_natural_direction" />
 
 ### supports\_natural\_direction
 
 The plugin does not support natural direction, it does not assume bidirectional two qubit gates.
 
-<span id="qiskit.transpiler.passes.SolovayKitaevSynthesis.supports_pulse_optimize" />
+<span id="qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis.supports_pulse_optimize" />
 
 ### supports\_pulse\_optimize
 
 The plugin does not support optimization of pulses.
 
-<span id="qiskit.transpiler.passes.SolovayKitaevSynthesis.supports_target" />
+<span id="qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis.supports_target" />
 
 ### supports\_target
 
@@ -152,7 +152,7 @@ By default this will be `False` since the plugin interface predates the [`Target
 
 ### run
 
-<span id="qiskit.transpiler.passes.SolovayKitaevSynthesis.run" />
+<span id="qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis.run" />
 
 `run(unitary, **options)`
 
