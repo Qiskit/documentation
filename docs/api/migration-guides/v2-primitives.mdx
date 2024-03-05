@@ -1043,7 +1043,8 @@ for circuit in circuits:
     circuit.measure_all()
 
 pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
-isa_circuits = pm.run(circuit)    
+isa_circuits = pm.run(circuits)    
+pubs = [(qc,) for qc in isa_circuits]
  
 sampler = Sampler(backend) 
 job = sampler.run([(isa_circuits)])
