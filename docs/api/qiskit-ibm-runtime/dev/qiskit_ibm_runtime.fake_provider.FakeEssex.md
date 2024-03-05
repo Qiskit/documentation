@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeEssex
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeEssex" />
 
-`FakeEssex` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/backends/essex/fake_essex.py "view source code")
+`FakeEssex` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/backends/essex/fake_essex.py#L39-L54 "view source code")
 
 A fake 5 qubit backend.
 
@@ -135,7 +135,7 @@ Provider
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeEssex.run" />
 
-`run(run_input, **kwargs)`
+`run(run_input, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L545-L574 "view source code")
 
 Main job in simulator
 

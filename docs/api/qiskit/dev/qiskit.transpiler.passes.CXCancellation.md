@@ -16,6 +16,10 @@ Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.trans
 
 Cancel back-to-back `cx` gates in dag.
 
+<Admonition title="Deprecated since version 1.1.0" type="danger">
+  The class `qiskit.transpiler.passes.optimization.cx_cancellation.CXCancellation` is deprecated as of qiskit 1.1.0. It will be removed no earlier than 3 months after the release date. Instead, use [`InverseCancellation`](qiskit.transpiler.passes.InverseCancellation "qiskit.transpiler.passes.InverseCancellation"), which is a more generic pass.
+</Admonition>
+
 ## Attributes
 
 <span id="qiskit.transpiler.passes.CXCancellation.is_analysis_pass" />

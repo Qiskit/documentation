@@ -1,7 +1,7 @@
 ---
 title: qiskit
 description: API reference for qiskit
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit
 ---
@@ -42,7 +42,6 @@ python_api_name: qiskit
 *   [Preset Passmanagers (`qiskit.transpiler.preset_passmanagers`)](transpiler_preset)
 *   [Transpiler Stage Plugin Interface (`qiskit.transpiler.preset_passmanagers.plugin`)](transpiler_plugins)
 *   [Synthesis Plugins (`qiskit.transpiler.passes.synthesis.plugin`)](transpiler_synthesis_plugins)
-*   [Built-in Transpiler Synthesis Plugins](transpiler_builtin_plugins)
 *   [Utilities (`qiskit.utils`)](utils)
 *   [Top-level exceptions (`qiskit.exceptions`)](exceptions)
 
