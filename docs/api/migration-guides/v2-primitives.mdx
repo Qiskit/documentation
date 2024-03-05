@@ -105,8 +105,8 @@ The output is now in the [`PubResult`](../api/qiskit/qiskit.primitives.PubResult
 
 * V2 Estimator continues to return expectation values.
 * The `data` portion of a V2 Estimator PubResult contains both expectation values and standard errors (`stds`). V1 returned variance in metadata.
-* V2 Sampler returns per-shot measurements in the form of **bitstrings** or
-   **counts**, instead of the quasi-probability distributions from the V1
+* V2 Sampler returns per-shot measurements in the form of **bitstrings**,
+   instead of the quasi-probability distributions from the V1
    interface. The bitstrings show the measurement outcomes, preserving the shot
    order in which they were measured.  
 * V2 Sampler has convenience methods like `get_counts()` to help with migration.    
@@ -368,18 +368,13 @@ service = QiskitRuntimeService()
 backend = service.least_busy(operational=True, simulator=False)
 
 # Setting options during primitive initialization
-estimator = Estimator(backend, options={"resilience_level": 2})
+estimator = Estimator(backend)
 
-# Setting options after primitive initialization
-# This uses auto complete.
-estimator.options.optimization_level = 1
-estimator.options.default_shots = 4000
-# This does bulk update.
-estimator.options.update(default_shots=4000, optimization_level=1)
+# Set resilience_level to 0
+estimator.options. resilience_level = 0
 
-# Print the dictionary format.
-# Server defaults are used for unset options.
-print(asdict(estimator.options))
+# Turn on measurement error mitigation
+estimator.options.resilience.measure_mitigation = True
 ```
   </TabItem>
 
@@ -454,7 +449,7 @@ options.resilience_level = 2
 
 V2 primitives support only ISA circuits. Because the primitives do not perform layout, routing, and translation operations, the corresponding transpilation options from V1 are not supported.  For Estimator, you can still use `optimization_level` to indicate how much optimization the primitives should apply to the ISA circuits. The valid values are 0 and 1. 
 
-Dynamical decoupling is no longer added for `optimization_level=1`. You can, however, enable it by using the `dynamical_decoupling` option.
+Dynamical decoupling is no longer automatically added for `optimization_level=1`. You can, however, enable it by using the `dynamical_decoupling` option.
 
 
 ### Job status
@@ -887,7 +882,7 @@ print(f" > Expectation values job 2: {another_result.values}")
   ```python
   pub_result = job.result()[0]
   print(f">>> Counts: {pub_result.data.meas.get_counts()}")
-  print(f">>> Per-shot measurement: {pub_result.data.meas.get_bitstrings()}")
+  print(f">>> Per-shot measurement: {pub_result.data.meas.get_counts()}")
   ```
 
 ## Sampler full examples
