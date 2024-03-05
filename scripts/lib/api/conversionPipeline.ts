@@ -62,12 +62,14 @@ export async function runConversionPipeline(
     maybeObjectsInv,
     initialResults,
   );
+
+  // Warning: the sequence of operations often matters.
   await writeMarkdownResults(pkg, docsBaseFolder, results);
   await copyImages(pkg, htmlPath, publicBaseFolder, results);
   await maybeObjectsInv?.write(pkg.outputDir(publicBaseFolder));
+  await maybeUpdateReleaseNotesFolder(pkg, markdownPath);
   await writeTocFile(pkg, markdownPath, results);
   await writeVersionFile(pkg, markdownPath);
-  await maybeUpdateReleaseNotesFolder(pkg, markdownPath);
 }
 
 async function determineFilePaths(
