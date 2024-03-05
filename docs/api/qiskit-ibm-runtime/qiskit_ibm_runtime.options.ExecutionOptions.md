@@ -43,7 +43,7 @@ Execution options.
 
 <span id="qiskit_ibm_runtime.options.ExecutionOptions.validate_execution_options" />
 
-`static validate_execution_options(execution_options)`
+`static validate_execution_options(execution_options)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/options/execution_options.py#L39-L47 "view source code")
 
 Validate that execution options are legal. :raises ValueError: if any execution option is not supported
 

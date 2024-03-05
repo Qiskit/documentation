@@ -53,7 +53,7 @@ Resilience options.
 
 <span id="qiskit_ibm_runtime.options.ResilienceOptions.validate_resilience_options" />
 
-`static validate_resilience_options(resilience_options)`
+`static validate_resilience_options(resilience_options)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/options/resilience_options.py#L60-L91 "view source code")
 
 Validate that resilience options are legal. :raises ValueError: if any resilience option is not supported :raises ValueError: if noise\_amplifier is not in NoiseAmplifierType. :raises ValueError: if extrapolator is not in ExtrapolatorType. :raises ValueError: if extrapolator == “QuarticExtrapolator” and number of noise\_factors \< 5. :raises ValueError: if extrapolator == “CubicExtrapolator” and number of noise\_factors \< 4.
 

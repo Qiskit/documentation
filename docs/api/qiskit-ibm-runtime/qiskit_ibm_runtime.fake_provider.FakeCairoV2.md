@@ -226,7 +226,7 @@ Version of the backend being provided. This is not the same as `BackendV2.versio
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeCairoV2.acquire_channel" />
 
-`acquire_channel(qubit)`
+`acquire_channel(qubit)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/fake_backend.py#L269-L282 "view source code")
 
 Return the acquisition channel for the given qubit.
 
