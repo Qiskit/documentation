@@ -407,14 +407,13 @@ service = QiskitRuntimeService()
 backend = service.least_busy(operational=True, simulator=False)
 
 # Setting options during primitive initialization
-sampler = Sampler(backend, options={"optimization_level": 1})
+sampler = Sampler(backend, options={"default_shots": 4096})
 
 # Setting options after primitive initialization
 # This uses auto complete.
-sampler.options.optimization_level = 1
-sampler.options.execution.init_qubits = False
+sampler.options.dynamical_decoupling.enable = True
 # This does bulk update.  The value for default_shots is overridden if you specify shots with run() or in the PUB.
-sampler.options.update(default_shots=4000, optimization_level=1)
+sampler.options.update(default_shots=1024, dynamical_decoupling={"sequence_type": "XpXm"})
 
 # Print the dictionary format.
 # Server defaults are used for unset options.
