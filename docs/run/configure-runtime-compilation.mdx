@@ -70,26 +70,35 @@ The `optimization_level` setting specifies how much optimization to perform on t
 
 <Tabs>
   <TabItem value="EstimatorV2" label="V2 Estimator">
-        ```python
-from qiskit_ibm_runtime import QiskitRuntimeService
-from qiskit_ibm_runtime import EstimatorV2 as Estimator
+```python
+from qiskit_ibm_runtime import QiskitRuntimeService, EstimatorV2 as Estimator
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+from qiskit.circuit.library import RealAmplitudes
+from qiskit.quantum_info import SparsePauliOp
 
 service = QiskitRuntimeService()
 backend = service.least_busy(operational=True, simulator=False)
 
-estimator = Estimator(backend)
-# Set optimization level to 0.
-estimator.options.optimization_level = 0
-# Turn on dynamical decoupling with sequence XpXm.
-estimator.options.dynamical_decoupling = "XpXm"
+psi = RealAmplitudes(num_qubits=2, reps=2)
+H = SparsePauliOp.from_list([("II", 1), ("IZ", 2), ("XI", 3)])
+theta = [0, 1, 1, 2, 3, 5]
 
-print(f">>> optimization level to use: {estimator.options.optimization_level}")
-print(f">>> dynamical decoupling sequence to use: {estimator.options.dynamical_decoupling}")
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+psi = pm.run(psi)
+H = H.apply_layout(psi.layout)
+
+estimator = Estimator (backend=backend)
+
+estimator.options.optimization_level = 1
+
+job = estimator.run([(psi, H, theta)])
+
+psi1_H1 = job.result()[0]
   ```  
   </TabItem>
 
   <TabItem value="EstimatorV1" label="Estimator (V1)">
-    ```python
+```python
 from qiskit_ibm_runtime import QiskitRuntimeService, Estimator, Options
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit.circuit.library import RealAmplitudes
