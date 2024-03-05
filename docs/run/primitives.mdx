@@ -144,10 +144,9 @@ The Sampler behaves differently, depending on what version you are using.
 
 <Tabs>
   <TabItem value="SamplerV2" label="V2 Sampler">
-    V2 Sampler is simplified to focus on its core task of sampling the output register from execution of quantum circuits. It returns the samples, whose type is defined by the program, without weights and therefore does not support resilience levels. The result class, however, has methods to return weighted samples, such as counts and quasi-probabilities. 
+    V2 Sampler is simplified to focus on its core task of sampling the output register from execution of quantum circuits. It returns the samples, whose type is defined by the program, without weights and therefore does not support resilience levels. The result class, however, has methods to return weighted samples, such as counts. 
     
-    It receives one or more PUBs as the inputs and returns quasi-probabilities, and optionally counts or per-shot measurements, as `PubResult`s.  Quasi-probability distributions are similar to regular
-probabilities, except they might include negative values, which can occur when using certain error mitigation techniques. The circuits
+    It receives one or more PUBs as the inputs and returns counts or per-shot measurements, as `PubResult`s.  The circuits
 can be parametrized, as long as the parameter values are also provided as input to the primitive.
   </TabItem>
 
@@ -166,7 +165,7 @@ The `qiskit.primitives` module enables the development of primitive-style quantu
 designed to simplify switching between different types of systems. The module provides three separate classes
 for each primitive type:
 
-1. `Sampler` and `Estimator`
+1. `StatevectorSampler` and `StatevectorEstimator`
 
 These classes are reference implementations of both primitives and use the simulator built in to Qiskit. They leverage the Qiskit `quantum_info` module in the background, producing results based on ideal statevector simulations.
 

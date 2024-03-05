@@ -163,7 +163,7 @@ target_circuit = selector.optimized_circuit
 with Session(service, backend=backend) as session:
     sampler = Sampler(
         options=Options(
-            execution={"shots": 1024}, transpilation={"skip_transpilation": True}
+            execution={"shots": 1024}
         )
     )
     job = sampler.run([(target_circuit)])
