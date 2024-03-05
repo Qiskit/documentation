@@ -45,10 +45,16 @@ ${markdown}
       const descriptionSuffix = pkg.hasSeparateReleaseNotes
         ? `in ${pkg.title}${versionStr}`
         : `to ${pkg.title}`;
+
+      let maxHeadingLevel = 2;
+      if (pkg.name == "qiskit") {
+        maxHeadingLevel = +pkg.versionWithoutPatch >= 0.45 ? 3 : 4;
+      }
+
       result.markdown = `---
 title: ${pkg.title}${versionStr} release notes
 description: Changes made ${descriptionSuffix}
-in_page_toc_max_heading_level: 2
+in_page_toc_max_heading_level: ${maxHeadingLevel}
 ---
 
 ${markdown}
