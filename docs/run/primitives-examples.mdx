@@ -44,7 +44,7 @@ mat = np.real(random_hermitian(n_qubits, seed=1234))
 circuit = IQP(mat)
 observable = SparsePauliOp("Z" * n_qubits)
 
-pm = generate_preset_pass_manager(backend=backend)
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
 isa_observable = observable.apply_layout(isa_circuit.layout) 
 
@@ -123,14 +123,16 @@ observables = [
 # Get ISA circuits
 
 for qc, obs in zip(circuits, observables):
-    isa_circuit = 
+    isa_circuit = pm.run(qc)
     isa_obs = obs.apply_layout(isa_circuit.layout)
     pubs.append((isa_circuit, isa_obs))
 
 estimator = Estimator(backend)
 job = estimator.run(pubs)
+job_result = job.result()
 
 for idx in range(len(pubs)):
+    pub_result = job_result[idx]
     print(f">>> Expectation values for PUB {idx}: {pub_result.data.evs}")
     print(f">>> Standard errors for PUB {idx}: {pub_result.data.stds}")
 ```  
@@ -223,7 +225,7 @@ from qiskit_ibm_runtime import EstimatorV2 as Estimator
 reshaped_ops = np.fromiter(isa_observables, dtype=object)
 reshaped_ops = reshaped_ops.reshape((4, 1))
 
-estimator = Estimator(backend, options={"shots": int(1e4)})
+estimator = Estimator(backend, options={"default_shots": int(1e4)})
 job = estimator.run([(chsh_isa_circuit, reshaped_ops, individual_phases)])
 # Get results for the first (and only) PUB
 pub_result = job.result()[0]
