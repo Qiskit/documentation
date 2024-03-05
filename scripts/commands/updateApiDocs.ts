@@ -10,13 +10,12 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { mkdirp } from "mkdirp";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 
 import { Pkg } from "../lib/api/Pkg";
 import { zxMain } from "../lib/zx";
-import { pathExists, getRoot, rmFilesInFolder } from "../lib/fs";
+import { pathExists, rmFilesInFolder } from "../lib/fs";
 import { downloadSphinxArtifact } from "../lib/api/sphinxArtifacts";
 import { runConversionPipeline } from "../lib/api/conversionPipeline";
 
@@ -83,12 +82,13 @@ zxMain(async () => {
   );
 
   const sphinxArtifactFolder = await prepareSphinxFolder(pkg, args);
-  const markdownOutputFolder = await prepareMarkdownOutputFolder(pkg);
+  await deleteExistingMarkdown(pkg);
 
   console.log(`Run pipeline for ${pkg.name}:${pkg.versionWithoutPatch}`);
   await runConversionPipeline(
     `${sphinxArtifactFolder}/artifact`,
-    markdownOutputFolder,
+    "docs",
+    "public",
     pkg,
   );
 });
@@ -126,15 +126,12 @@ async function prepareSphinxFolder(pkg: Pkg, args: Arguments): Promise<string> {
   return sphinxArtifactFolder;
 }
 
-async function prepareMarkdownOutputFolder(pkg: Pkg): Promise<string> {
-  const outputDir = pkg.outputDir(`${getRoot()}/docs`);
-  if (!pkg.isLatest() && !(await pathExists(outputDir))) {
-    await mkdirp(outputDir);
-  } else {
+async function deleteExistingMarkdown(pkg: Pkg): Promise<void> {
+  const markdownDir = pkg.outputDir("docs");
+  if (pkg.isLatest() || (await pathExists(markdownDir))) {
     console.log(
       `Deleting existing markdown for ${pkg.name}:${pkg.versionWithoutPatch}`,
     );
-    await rmFilesInFolder(outputDir);
+    await rmFilesInFolder(markdownDir);
   }
-  return outputDir;
 }

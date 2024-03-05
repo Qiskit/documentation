@@ -13,6 +13,7 @@
 import { join, parse, relative } from "path";
 import { readFile, writeFile } from "fs/promises";
 
+import { mkdirp } from "mkdirp";
 import { globby } from "globby";
 import { uniqBy } from "lodash";
 import transformLinks from "transform-markdown-links";
@@ -29,7 +30,7 @@ import { specialCaseResults } from "./specialCaseResults";
 import addFrontMatter from "./addFrontMatter";
 import { dedupeHtmlIdsFromResults } from "./dedupeHtmlIds";
 import { Pkg } from "./Pkg";
-import { pathExists, getRoot } from "../fs";
+import { pathExists } from "../fs";
 import {
   addNewReleaseNotes,
   generateReleaseNotesIndex,
@@ -39,13 +40,19 @@ import {
 
 export async function runConversionPipeline(
   htmlPath: string,
-  markdownPath: string,
+  docsBaseFolder: string,
+  publicBaseFolder: string,
   pkg: Pkg,
 ) {
-  const [files, maybeObjectsInv] = await determineFilePaths(htmlPath, pkg);
+  const [files, markdownPath, maybeObjectsInv] = await determineFilePaths(
+    htmlPath,
+    docsBaseFolder,
+    pkg,
+  );
   let initialResults = await convertFilesToMarkdown(
     pkg,
     htmlPath,
+    docsBaseFolder,
     markdownPath,
     files,
   );
@@ -55,9 +62,9 @@ export async function runConversionPipeline(
     maybeObjectsInv,
     initialResults,
   );
-  await writeMarkdownResults(pkg, results);
-  await copyImages(pkg, htmlPath, results);
-  await maybeObjectsInv?.write(pkg.outputDir("public"));
+  await writeMarkdownResults(pkg, docsBaseFolder, results);
+  await copyImages(pkg, htmlPath, publicBaseFolder, results);
+  await maybeObjectsInv?.write(pkg.outputDir(publicBaseFolder));
   await writeTocFile(pkg, markdownPath, results);
   await writeVersionFile(pkg, markdownPath);
   await maybeUpdateReleaseNotesFolder(pkg, markdownPath);
@@ -65,8 +72,9 @@ export async function runConversionPipeline(
 
 async function determineFilePaths(
   htmlPath: string,
+  docsBaseFolder: string,
   pkg: Pkg,
-): Promise<[string[], ObjectsInv | undefined]> {
+): Promise<[string[], string, ObjectsInv | undefined]> {
   const maybeObjectsInv = await (pkg.hasObjectsInv()
     ? ObjectsInv.fromFile(htmlPath)
     : undefined);
@@ -81,12 +89,15 @@ async function determineFilePaths(
       cwd: htmlPath,
     },
   );
-  return [files, maybeObjectsInv];
+  const markdownPath = pkg.outputDir(docsBaseFolder);
+  await mkdirp(markdownPath);
+  return [files, markdownPath, maybeObjectsInv];
 }
 
 async function convertFilesToMarkdown(
   pkg: Pkg,
   htmlPath: string,
+  docsBaseFolder: string,
   markdownPath: string,
   filePaths: string[],
 ): Promise<HtmlToMdResultWithUrl[]> {
@@ -108,7 +119,7 @@ async function convertFilesToMarkdown(
     }
 
     const { dir, name } = parse(`${markdownPath}/${file}`);
-    let url = `/${relative(`${getRoot()}/docs`, dir)}/${name}`;
+    let url = `/${relative(docsBaseFolder, dir)}/${name}`;
     results.push({ ...result, url });
   }
   return results;
@@ -117,6 +128,7 @@ async function convertFilesToMarkdown(
 async function copyImages(
   pkg: Pkg,
   htmlPath: string,
+  publicBaseFolder: string,
   results: HtmlToMdResultWithUrl[],
 ): Promise<void> {
   // Some historical versions don't have the `_images` folder in the artifact store in Box (https://ibm.ent.box.com/folder/246867452622)
@@ -126,7 +138,7 @@ async function copyImages(
     results.flatMap((result) => result.images),
     (image) => image.fileName,
   );
-  await saveImages(allImages, `${htmlPath}/_images`, pkg);
+  await saveImages(allImages, `${htmlPath}/_images`, publicBaseFolder, pkg);
 }
 
 async function postProcessResults(
@@ -145,11 +157,11 @@ async function postProcessResults(
 
 async function writeMarkdownResults(
   pkg: Pkg,
+  docsBaseFolder: string,
   results: HtmlToMdResultWithUrl[],
 ): Promise<void> {
   for (const result of results) {
-    let path = urlToPath(result.url);
-
+    let path = `${docsBaseFolder}${result.url}.md`;
     if (path.endsWith("release-notes.md")) {
       const shouldWriteResult = await handleReleaseNotesFile(result, pkg);
       if (!shouldWriteResult) continue;
@@ -234,8 +246,4 @@ async function writeVersionFile(pkg: Pkg, markdownPath: string): Promise<void> {
     `${markdownPath}/_package.json`,
     JSON.stringify(pkg_json, null, 2) + "\n",
   );
-}
-
-function urlToPath(url: string) {
-  return `${getRoot()}/docs${url}.md`;
 }
