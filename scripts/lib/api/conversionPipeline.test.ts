@@ -34,7 +34,7 @@ import { Pkg } from "./Pkg";
 //
 // However, don't check the output in to version control! Use
 // `git clean -fd` and set this value back to `true`.
-const USE_TMPDIR = false;
+const USE_TMPDIR = true;
 
 test("qiskit-sphinx-theme", async () => {
   // The integration test currently does not test these mechanisms:
