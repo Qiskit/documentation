@@ -1047,10 +1047,11 @@ isa_circuits = pm.run(circuits)
 pubs = [(qc,) for qc in isa_circuits]
  
 sampler = Sampler(backend) 
-job = sampler.run([(isa_circuits)])
+job = sampler.run(pubs)
 result = job.result() 
 
-print(f" > Counts: {result[0].data.meas.get_counts()}") 
+for idx, pub_result in enumerate(result):
+    print(f" > Counts for pub {idx}: {pub_result.data.meas.get_counts()}")
 ```  
   </TabItem>
 
