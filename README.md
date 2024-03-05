@@ -347,6 +347,22 @@ Follow the same process above for new API docs, other than:
 
 If the version is not for the latest stable minor release series, then add `--historical` to the arguments. For example, use `--historical` if the latest stable release is 0.45.\* but you're generating docs for the patch release 0.44.3.
 
+### View diff for `objects.inv`
+
+Since `objects.inv` is compressed, we can't review changes through `git diff`. Git _does_ tell you if the file has changed, but this isn't that helpful as the compressed file can be different even if the uncompressed contents are the same.
+If you want to see the diff for the uncompressed contents, first install [`sphobjinv`](https://github.com/bskinn/sphobjinv).
+
+```sh
+pipx install sphobjinv
+```
+
+The add the following to your `.gitconfig` (usually found at `~/.gitconfig`).
+
+```
+[diff "objects_inv"]
+  textconv = sh -c 'sphobjinv convert plain "$0" -'
+```
+
 # How to write the documentation
 
 We use [MDX](https://mdxjs.com), which is like normal markdown but adds extensions for custom components we have.
