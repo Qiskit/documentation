@@ -43,6 +43,33 @@ export async function runConversionPipeline(
   markdownPath: string,
   pkg: Pkg,
 ) {
+  const [files, maybeObjectsInv] = await determineFilePaths(htmlPath, pkg);
+  let initialResults = await convertFilesToMarkdown(
+    pkg,
+    htmlPath,
+    markdownPath,
+    files,
+  );
+
+  await createNecessaryDirs(initialResults);
+  await copyImages(pkg, htmlPath, initialResults);
+
+  const results = await postProcessResults(
+    pkg,
+    maybeObjectsInv,
+    initialResults,
+  );
+  await writeMarkdownResults(pkg, results);
+  await maybeObjectsInv?.write(pkg.outputDir("public"));
+  await writeTocFile(pkg, markdownPath, results);
+  await writeVersionFile(pkg, markdownPath);
+  await maybeUpdateReleaseNotesFolder(pkg, markdownPath);
+}
+
+async function determineFilePaths(
+  htmlPath: string,
+  pkg: Pkg,
+): Promise<[string[], ObjectsInv | undefined]> {
   const maybeObjectsInv = await (pkg.hasObjectsInv()
     ? ObjectsInv.fromFile(htmlPath)
     : undefined);
@@ -57,9 +84,17 @@ export async function runConversionPipeline(
       cwd: htmlPath,
     },
   );
+  return [files, maybeObjectsInv];
+}
 
-  let results: Array<HtmlToMdResultWithUrl> = [];
-  for (const file of files) {
+async function convertFilesToMarkdown(
+  pkg: Pkg,
+  htmlPath: string,
+  markdownPath: string,
+  filePaths: string[],
+): Promise<HtmlToMdResultWithUrl[]> {
+  const results = [];
+  for (const file of filePaths) {
     const html = await readFile(join(htmlPath, file), "utf-8");
     const result = await sphinxHtmlToMarkdown({
       html,
@@ -79,27 +114,53 @@ export async function runConversionPipeline(
     let url = `/${relative(`${getRoot()}/docs`, dir)}/${name}`;
     results.push({ ...result, url });
   }
+  return results;
+}
 
-  const allImages = uniqBy(
-    results.flatMap((result) => result.images),
-    (image) => image.fileName,
-  );
-
+async function createNecessaryDirs(
+  results: HtmlToMdResultWithUrl[],
+): Promise<void> {
   const dirsNeeded = uniq(
     results.map((result) => parse(urlToPath(result.url)).dir),
   );
   for (const dir of dirsNeeded) {
     await mkdirp(dir);
   }
+}
 
-  results = await mergeClassMembers(results);
+async function copyImages(
+  pkg: Pkg,
+  htmlPath: string,
+  results: HtmlToMdResultWithUrl[],
+): Promise<void> {
+  // Some historical versions don't have the `_images` folder in the artifact store in Box (https://ibm.ent.box.com/folder/246867452622)
+  if (pkg.isHistorical() && !(await pathExists(`${htmlPath}/_images`))) return;
+  console.log("Saving images");
+  const allImages = uniqBy(
+    results.flatMap((result) => result.images),
+    (image) => image.fileName,
+  );
+  await saveImages(allImages, `${htmlPath}/_images`, pkg);
+}
+
+async function postProcessResults(
+  pkg: Pkg,
+  maybeObjectsInv: ObjectsInv | undefined,
+  initialResults: HtmlToMdResultWithUrl[],
+): Promise<HtmlToMdResultWithUrl[]> {
+  const results = await mergeClassMembers(initialResults);
   flattenFolders(results);
   specialCaseResults(results);
   await updateLinks(results, maybeObjectsInv);
   await dedupeHtmlIdsFromResults(results);
   addFrontMatter(results, pkg);
+  return results;
+}
 
-  await maybeObjectsInv?.write(pkg.outputDir("public"));
+async function writeMarkdownResults(
+  pkg: Pkg,
+  results: HtmlToMdResultWithUrl[],
+): Promise<void> {
   for (const result of results) {
     let path = urlToPath(result.url);
 
@@ -109,28 +170,6 @@ export async function runConversionPipeline(
     }
 
     await writeFile(path, result.markdown);
-  }
-
-  console.log("Generating toc");
-  const toc = generateToc(pkg, results);
-  await writeFile(
-    `${markdownPath}/_toc.json`,
-    JSON.stringify(toc, null, 2) + "\n",
-  );
-
-  await maybeUpdateReleaseNotesFolder(pkg, markdownPath);
-
-  console.log("Generating version file");
-  const pkg_json = { name: pkg.name, version: pkg.version };
-  await writeFile(
-    `${markdownPath}/_package.json`,
-    JSON.stringify(pkg_json, null, 2) + "\n",
-  );
-
-  if (!pkg.isHistorical() || (await pathExists(`${htmlPath}/_images`))) {
-    // Some historical versions don't have the `_images` folder in the artifact store in Box (https://ibm.ent.box.com/folder/246867452622)
-    console.log("Saving images");
-    await saveImages(allImages, `${htmlPath}/_images`, pkg);
   }
 }
 
@@ -187,6 +226,28 @@ async function maybeUpdateReleaseNotesFolder(
   console.log("Generating release-notes/index");
   const indexMarkdown = generateReleaseNotesIndex(pkg);
   await writeFile(`${markdownPath}/release-notes/index.md`, indexMarkdown);
+}
+
+async function writeTocFile(
+  pkg: Pkg,
+  markdownPath: string,
+  results: HtmlToMdResultWithUrl[],
+): Promise<void> {
+  console.log("Generating toc");
+  const toc = generateToc(pkg, results);
+  await writeFile(
+    `${markdownPath}/_toc.json`,
+    JSON.stringify(toc, null, 2) + "\n",
+  );
+}
+
+async function writeVersionFile(pkg: Pkg, markdownPath: string): Promise<void> {
+  console.log("Generating version file");
+  const pkg_json = { name: pkg.name, version: pkg.version };
+  await writeFile(
+    `${markdownPath}/_package.json`,
+    JSON.stringify(pkg_json, null, 2) + "\n",
+  );
 }
 
 function urlToPath(url: string) {
