@@ -75,10 +75,13 @@ print(f">>> Metadata: {result.metadata[0]}")
   </TabItem>
 </Tabs>
 
-### Primitive initialization (V2)
+### Primitive initialization 
 
-With the V2 primitives, you can specify options when initializing the primitive. 
+You can specify options when initializing the primitive. 
 
+
+<Tabs>
+  <TabItem value="PrimV2" label="V2 primitives">
  ```python 
 from qiskit_ibm_runtime import QiskitRuntimeService
 from qiskit_ibm_runtime import EstimatorV2 as Estimator
@@ -89,6 +92,21 @@ backend = service.least_busy(operational=True, simulator=False)
 # Setting options during primitive initialization
 estimator = Estimator(backend, options={"resilience_level": 2})
 ```
+  </TabItem>
+
+  <TabItem value="PrimV1" label="V1 primitives">
+ ```python 
+from qiskit_ibm_runtime import QiskitRuntimeService
+from qiskit_ibm_runtime import Estimator
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False)
+
+# Setting options during primitive initialization
+estimator = Estimator(backend, options={"resilience_level": 2})
+```
+  </TabItem>
+</Tabs>
 
 ### Run() method
 
@@ -96,6 +114,7 @@ You can pass in options by using the `run()` method. This overwrites the options
 
 <Tabs>
   <TabItem value="PrimV2" label="V2 primitives">
+In V2, the only options you can pass to `run()` are options defined in the interface.  That is, `shots` for Sampler and `precision` for Estimator.
 ```python
 # Sample two circuits at 128 shots each.
 sampler.run([(circuit1,), (circuit2,)], shots=128)
@@ -104,7 +123,7 @@ sampler.run([(circuit1,), (circuit2,)], shots=128)
   </TabItem>
 
   <TabItem value="PrimV1" label="V1 primitives">
-Because most users will only overwrite a few options at the job level, it is not necessary to specify the category the options are in. The code below, for example, specifies `shots=1024` instead of `execution={"shots": 1024}` (which is also valid). 
+You can pass any options to `run()`. Because most users will only overwrite a few options at the job level, it is not necessary to specify the category the options are in. The code below, for example, specifies `shots=1024` instead of `execution={"shots": 1024}` (which is also valid). 
 ```python
 estimator = Estimator(session=backend, options=options)
 result = estimator.run(circuit, observable, shots=1024).result()
