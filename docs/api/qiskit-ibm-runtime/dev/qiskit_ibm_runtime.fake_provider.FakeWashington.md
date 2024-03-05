@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeWashington
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeWashington" />
 
-`FakeWashington` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/backends/washington/fake_washington.py "view source code")
+`FakeWashington` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/backends/washington/fake_washington.py#L31-L38 "view source code")
 
 A fake 127 qubit backend.
 
@@ -117,7 +117,7 @@ str
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeWashington.properties" />
 
-`properties()`
+`properties()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_qasm_backend.py#L44-L48 "view source code")
 
 Returns a snapshot of device properties
 
@@ -145,7 +145,7 @@ Provider
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeWashington.run" />
 
-`run(run_input, **kwargs)`
+`run(run_input, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L545-L574 "view source code")
 
 Main job in simulator
 

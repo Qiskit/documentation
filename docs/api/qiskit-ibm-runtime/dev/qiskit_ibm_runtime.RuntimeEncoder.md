@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.RuntimeEncoder
 
 <span id="qiskit_ibm_runtime.RuntimeEncoder" />
 
-`RuntimeEncoder(*, skipkeys=False, ensure_ascii=True, check_circular=True, allow_nan=True, sort_keys=False, indent=None, separators=None, default=None)` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/utils/json.py "view source code")
+`RuntimeEncoder(*, skipkeys=False, ensure_ascii=True, check_circular=True, allow_nan=True, sort_keys=False, indent=None, separators=None, default=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/utils/json.py#L196-L279 "view source code")
 
 JSON Encoder used by runtime service.
 
