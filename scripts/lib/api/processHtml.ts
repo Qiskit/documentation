@@ -293,10 +293,24 @@ export function processMembersAndSetMeta(
       .toArray()
       .map((child) => {
         const $child = $(child);
+        const githubSourceLink = prepareGitHubLink(
+          $child,
+          apiType === "method",
+        );
+
         if (child.name !== "dt" || !apiType) {
           return `<div>${$child.html()}</div>`;
         }
-        return processMember($, $main, $child, $dl, priorApiType, apiType, id);
+        return processMember(
+          $,
+          $main,
+          $child,
+          $dl,
+          priorApiType,
+          apiType,
+          id,
+          githubSourceLink,
+        );
       })
       .join("\n");
 
@@ -312,9 +326,8 @@ function processMember(
   priorApiType: string | undefined,
   apiType: string,
   id: string,
+  githubSourceLink: string,
 ) {
-  const githubSourceLink = prepareGitHubLink($child, apiType === "method");
-
   findByText($, $main, "em.property", apiType).remove();
 
   if (apiType == "class") {
