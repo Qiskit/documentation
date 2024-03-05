@@ -1,7 +1,7 @@
 ---
 title: max_cut
 description: API reference for qiskit.optimization.applications.ising.max_cut
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.optimization.applications.ising.max_cut
 ---

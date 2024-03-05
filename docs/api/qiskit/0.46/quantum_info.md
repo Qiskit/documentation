@@ -1,7 +1,7 @@
 ---
 title: quantum_info
 description: API reference for qiskit.quantum_info
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.quantum_info
 ---

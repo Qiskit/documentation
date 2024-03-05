@@ -23,9 +23,9 @@ import { visit } from "unist-util-visit";
 import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
 import { remarkStringifyOptions } from "./commonParserConfig";
 
-export async function mergeClassMembers<T extends HtmlToMdResultWithUrl>(
-  results: T[],
-): Promise<T[]> {
+export async function mergeClassMembers(
+  results: HtmlToMdResultWithUrl[],
+): Promise<HtmlToMdResultWithUrl[]> {
   const resultsWithName = results.filter(
     (result) => !isEmpty(result.meta.apiName),
   );
@@ -52,6 +52,7 @@ export async function mergeClassMembers<T extends HtmlToMdResultWithUrl>(
       (member) => member.meta.apiType === "method",
     );
 
+    clazz.images.push(...members.map((member) => member.images).flat());
     try {
       // inject members markdown
       clazz.markdown = (

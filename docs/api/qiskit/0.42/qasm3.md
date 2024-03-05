@@ -1,7 +1,7 @@
 ---
 title: qasm3
 description: API reference for qiskit.qasm3
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.qasm3
 ---

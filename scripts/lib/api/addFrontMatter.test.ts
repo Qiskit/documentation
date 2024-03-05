@@ -47,6 +47,15 @@ test("addFrontMatter()", () => {
       isReleaseNotes: false,
     },
     {
+      markdown: "# My module",
+      meta: {
+        apiName: "quantum_software",
+        apiType: "module",
+      },
+      images: [],
+      isReleaseNotes: false,
+    },
+    {
       markdown: "# Some release notes!",
       meta: {},
       images: [],
@@ -82,6 +91,16 @@ python_api_name: quantum_software.MyClass
 ---
 
 # Python API
+`,
+    `---
+title: quantum_software
+description: API reference for quantum_software
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: quantum_software
+---
+
+# My module
 `,
     `---
 title: My Quantum Project 0.1 release notes
