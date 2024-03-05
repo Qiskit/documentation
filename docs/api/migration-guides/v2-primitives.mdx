@@ -74,9 +74,10 @@ Both `SamplerV2` and `EstimatorV2` take one or more *primitive unified blocs* (P
 Additionally, the following changes have been made:
 
 * V2 Estimator has gained a `precision` argument in the `run()` method that specifies the targeted precision of the expectation value estimates. 
-* V2 Sampler has the `shots` argument in its `run()` method. 
 * V2 Estimator does not support resilience level 3.  This is because resilience level 3 in V1 Estimator uses Probabilistic Error Cancellation (PEC), which is proven to give unbiased results at the cost of exponential processing time. You can, however, still use PEC as the error mitigation method by specifying the `pec_mitigation` option.
+* V2 Sampler has the `shots` argument in its `run()` method. 
 * Because V2 Sampler returns samples without postprocessing, it does not support resilience levels. 
+* V2 Sampler does not currently support `optimization_level`.
 
 ##### Examples
 
@@ -248,6 +249,8 @@ Options are specified differently in the V2 primitives in these ways:
 - If you do not specify a value for an option, it is given a special value of `Unset` and the server defaults are used. 
 - For V2 primitives, the `options` attribute is the `dataclass` Python type.  You can use the built-in `asdict` method to convert it to a dictionary. 
 
+See the [API reference](../api/qiskit-ibm-runtime/options) for the list of available options.
+
 {/*Verified EstimatorV2. 2/23 */}
 
 <Tabs>
@@ -334,13 +337,6 @@ sampler.set_options(shots=2000, optimization_level=0)
   ```  
   </TabItem>
 </Tabs>
-
-### Advanced options
-
-Additional advanced options are available in V2 primitives. See the [API reference](../api/qiskit-ibm-runtime/options) for the list of available options.
-
-For examples of using options, see the [Error mitigation](#error-mit) and [Transpilation](#transpilation) sections. 
-
 
 <span id="error-mit"></span>
 ### Error mitigation and suppression

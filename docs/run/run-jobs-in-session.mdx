@@ -32,7 +32,7 @@ class. The session starts when its first job begins execution.
 
 <Tabs>
   <TabItem value="PrimV2" label="V2 primitives">
-    ``` python
+``` python
 from qiskit_ibm_runtime import Session, Samplerv2 as Sampler, Estimatorv2 as Estimator
 
 backend = service.least_busy(operational=True, simulator=False)
@@ -43,7 +43,7 @@ sampler = Sampler(session=session)
   </TabItem>
 
   <TabItem value="PrimV1" label="V1 primitives">
-    ``` python
+``` python
 from qiskit_ibm_runtime import Session, Sampler, Estimator
 
 backend = service.least_busy(operational=True, simulator=False)
@@ -60,7 +60,7 @@ The context manager automatically opens and closes the session.
 
 <Tabs>
   <TabItem value="PrimV2" label="V2 primitives">
-    ``` python
+``` python
 backend = service.least_busy(operational=True, simulator=False)    
 with Session(service=service, backend=backend):
   estimatorv2 = EstimatorV2()
@@ -69,7 +69,7 @@ with Session(service=service, backend=backend):
   </TabItem>
 
   <TabItem value="PrimV1" label="V1 primitives">
-    ``` python
+``` python
 backend = service.least_busy(operational=True, simulator=False)    
 with Session(service=service, backend=backend):
   estimator = Estimator()

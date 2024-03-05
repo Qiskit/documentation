@@ -70,12 +70,17 @@ job = estimator.run([(target_circuit, target_observable)])
 result = job.result()
 
 
-# Step 4: Postprocess the results
-print(result)
-
+# Step 4: Postprocess the Estimator V1 results
+# print(result)
 # save results of program execution
 # note: saved items must be serializable
-save_result(result.values)
+# save_result(result.values)
+
+# Step 4: Postprocess the Estimator V2 results
+print(result)
+# save results of program execution
+# note: saved items must be serializable
+save_result(result[0].data.evs)
 ```
 
 Please refer to our guides on how to configure your pattern to [accept input arguments](https://qiskit-extensions.github.io/quantum-serverless/getting_started/basic/02_arguments_and_results.html) and [handle external python dependencies](https://qiskit-extensions.github.io/quantum-serverless/getting_started/basic/03_dependencies.html).
