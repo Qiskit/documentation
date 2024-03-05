@@ -1,7 +1,7 @@
 ---
 title: passes
 description: API reference for qiskit.transpiler.passes
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.transpiler.passes
 ---
@@ -143,6 +143,8 @@ Decomposition templates and cost values.
 
 ## Synthesis
 
+The synthesis transpiler plugin documentation can be found in the [`qiskit.transpiler.passes.synthesis.plugin`](transpiler_synthesis_plugins#module-qiskit.transpiler.passes.synthesis.plugin "qiskit.transpiler.passes.synthesis.plugin") page.
+
 |                                                                                                                                                                        |                                                                                                                                                                                                                                                                            |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [`UnitarySynthesis`](qiskit.transpiler.passes.UnitarySynthesis "qiskit.transpiler.passes.UnitarySynthesis")(\*args, \*\*kwargs)                                        | Synthesize gates according to their basis gates.                                                                                                                                                                                                                           |
@@ -150,8 +152,6 @@ Decomposition templates and cost values.
 | [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis")(\*args, \*\*kwargs)                                  | Synthesize higher-level objects and unroll custom definitions.                                                                                                                                                                                                             |
 | [`HLSConfig`](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.HLSConfig")(\[use\_default\_on\_unspecified])                                               | The high-level-synthesis config allows to specify a list of "methods" used by [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis") transformation pass to synthesize different types of higher-level objects. |
 | [`SolovayKitaev`](qiskit.transpiler.passes.SolovayKitaev "qiskit.transpiler.passes.SolovayKitaev")(\*args, \*\*kwargs)                                                 | Approximately decompose 1q gates to a discrete basis using the Solovay-Kitaev algorithm.                                                                                                                                                                                   |
-| [`SolovayKitaevSynthesis`](qiskit.transpiler.passes.SolovayKitaevSynthesis "qiskit.transpiler.passes.SolovayKitaevSynthesis")()                                        | A Solovay-Kitaev Qiskit unitary synthesis plugin.                                                                                                                                                                                                                          |
-| [`AQCSynthesisPlugin`](qiskit.transpiler.passes.AQCSynthesisPlugin "qiskit.transpiler.passes.AQCSynthesisPlugin")()                                                    | An AQC-based Qiskit unitary synthesis plugin.                                                                                                                                                                                                                              |
 
 ## Post Layout (Post transpile qubit selection)
 
