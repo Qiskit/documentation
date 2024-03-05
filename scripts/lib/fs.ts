@@ -33,5 +33,5 @@ export async function pathExists(path: string) {
  * Deletes all the files in the folder, but preserves subfolders.
  */
 export async function rmFilesInFolder(dir: string): Promise<void> {
-  await $`find ${dir}/* -maxdepth 0 -type f | xargs rm -f {}`;
+  await $`find ${dir}/* -maxdepth 0 -type f | xargs rm -f {}`.quiet();
 }
