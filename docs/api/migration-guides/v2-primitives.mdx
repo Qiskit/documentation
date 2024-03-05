@@ -940,7 +940,7 @@ print(f" > Expectation values job 2: {another_result.values}")
 2. Remove any `from qiskit_ibm_runtime import Options` statements, since the `Options` class is not used by V2 primitives. You can instead pass options as a dictionary when initializing the `Sampler` class (for example `sampler = Sampler(backend, options={“default_shots”: 1024})`), or set them after initialization:
    ```python
    sampler = Sampler(backend)
-   sampler.options.optimization_level = 1
+   sampler.options.default_shots = 1024
    ```
 3. Review all the [supported options](../api/qiskit-ibm-runtime/options) and make updates accordingly.
 4. Group each circuit you want to run with the observables and parameter values you want to apply to the circuit in a tuple (a PUB). For example, use `(circuit1, parameter_set1)` if you want to run `circuit1` with `parameter_set1`. 
