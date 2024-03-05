@@ -65,7 +65,7 @@ qc.measure_all()
 
 job = sampler.run([(qc)])
 result = job.result()
-print(f" > Counts: {result[0].data.evs}")
+print(f" > Counts: {result[0].data.meas.get_counts()}")
 ```
   </TabItem>
 
