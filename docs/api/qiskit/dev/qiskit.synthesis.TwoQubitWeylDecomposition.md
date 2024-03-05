@@ -45,7 +45,10 @@ Passing non-None fidelity to specializations is treated as an assertion, raising
 2.  B. Kraus, J. I. Cirac, *Optimal Creation of Entanglement Using a Two-Qubit Gate*, [arXiv:0011050 \[quant-ph\]](https://arxiv.org/abs/quant-ph/0011050)
 3.  B. Drury, P. J. Love, *Constructive Quantum Shannon Decomposition from Cartan Involutions*, [arXiv:0806.4015 \[quant-ph\]](https://arxiv.org/abs/0806.4015)
 
-Perform the Weyl chamber decomposition, and optionally choose a specialized subclass.
+**Parameters**
+
+*   **unitary\_matrix** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – The unitary to decompose.
+*   **fidelity** – The target fidelity of the decomposed operation.
 
 ## Attributes
 
