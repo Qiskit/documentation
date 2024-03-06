@@ -193,9 +193,7 @@ async function handleReleaseNotesFile(
   if (!pkg.hasSeparateReleaseNotes) {
     // Deal with Reno issue: https://github.com/Qiskit/documentation/issues/978
     if (pkg.name === "qiskit-ibm-runtime") {
-      result.markdown = result.markdown
-        .replace("# HACK FOR RENO ISSUE", "")
-        .replaceAll('id="hack-for-reno-issue-', 'id="release-notes-');
+      result.markdown = result.markdown.replace("# HACK FOR RENO ISSUE", "");
     }
     return pkg.isLatest();
   }
