@@ -90,7 +90,7 @@ RuntimeOptions constructor.
 
 <span id="qiskit_ibm_runtime.RuntimeOptions.validate" />
 
-`validate(channel)`
+`validate(channel)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_options.py#L76-L106 "view source code")
 
 Validate options.
 
