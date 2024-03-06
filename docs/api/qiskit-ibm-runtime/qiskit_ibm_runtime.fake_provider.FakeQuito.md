@@ -89,7 +89,7 @@ BackendConfiguration
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeQuito.defaults" />
 
-`defaults()`
+`defaults()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/fake_pulse_backend.py#L29-L33 "view source code")
 
 Returns a snapshot of device defaults
 

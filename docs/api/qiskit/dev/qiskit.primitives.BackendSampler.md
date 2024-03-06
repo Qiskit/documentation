@@ -12,7 +12,7 @@ python_api_name: qiskit.primitives.BackendSampler
 
 `qiskit.primitives.BackendSampler(backend, options=None, bound_pass_manager=None, skip_transpilation=False)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/primitives/backend_sampler.py "view source code")
 
-Bases: `BaseSamplerV1`\[`PrimitiveJob`\[[`SamplerResult`](qiskit.primitives.SamplerResult "qiskit.primitives.base.sampler_result.SamplerResult")]]
+Bases: [`BaseSamplerV1`](qiskit.primitives.BaseSamplerV1 "qiskit.primitives.base.base_sampler.BaseSamplerV1")\[[`PrimitiveJob`](qiskit.primitives.PrimitiveJob "qiskit.primitives.primitive_job.PrimitiveJob")\[[`SamplerResult`](qiskit.primitives.SamplerResult "qiskit.primitives.base.sampler_result.SamplerResult")]]
 
 A `BaseSampler` implementation that provides an interface for leveraging the sampler interface from any backend.
 

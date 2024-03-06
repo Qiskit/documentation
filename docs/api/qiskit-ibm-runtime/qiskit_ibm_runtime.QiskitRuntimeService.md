@@ -141,7 +141,7 @@ self
 
 <span id="qiskit_ibm_runtime.QiskitRuntimeService.active_account" />
 
-`active_account()`
+`active_account()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/qiskit_runtime_service.py#L708-L714 "view source code")
 
 Return the IBM Quantum account currently in use for the session.
 

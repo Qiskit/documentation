@@ -104,7 +104,7 @@ Session used by this primitive, or `None` if session is not used.
 
 <span id="qiskit_ibm_runtime.Estimator.run" />
 
-`run(circuits, observables, parameter_values=None, **kwargs)`
+`run(circuits, observables, parameter_values=None, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/estimator.py#L114-L148 "view source code")
 
 Submit a request to the estimator primitive.
 

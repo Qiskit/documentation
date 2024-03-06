@@ -87,7 +87,7 @@ Return the backend where this job was executed.
 
 <span id="qiskit_ibm_provider.job.IBMCompositeJob.backend_options" />
 
-`backend_options()`
+`backend_options()` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/job/ibm_composite_job.py#L891-L904 "view source code")
 
 Return the backend configuration options used for this job.
 

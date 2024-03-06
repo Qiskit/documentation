@@ -62,12 +62,14 @@ export async function runConversionPipeline(
     maybeObjectsInv,
     initialResults,
   );
+
+  // Warning: the sequence of operations often matters.
   await writeMarkdownResults(pkg, docsBaseFolder, results);
   await copyImages(pkg, htmlPath, publicBaseFolder, results);
   await maybeObjectsInv?.write(pkg.outputDir(publicBaseFolder));
+  await maybeUpdateReleaseNotesFolder(pkg, markdownPath);
   await writeTocFile(pkg, markdownPath, results);
   await writeVersionFile(pkg, markdownPath);
-  await maybeUpdateReleaseNotesFolder(pkg, markdownPath);
 }
 
 async function determineFilePaths(
@@ -189,6 +191,10 @@ async function handleReleaseNotesFile(
   // When the release notes are a single file, only use them if this is the latest version rather
   // than a historical release.
   if (!pkg.hasSeparateReleaseNotes) {
+    // Deal with Reno issue: https://github.com/Qiskit/documentation/issues/978
+    if (pkg.name === "qiskit-ibm-runtime") {
+      result.markdown = result.markdown.replace("# HACK FOR RENO ISSUE", "");
+    }
     return pkg.isLatest();
   }
 

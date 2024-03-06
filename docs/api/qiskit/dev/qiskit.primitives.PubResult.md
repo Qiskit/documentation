@@ -20,7 +20,7 @@ Initialize a pub result.
 
 **Parameters**
 
-*   **data** (*DataBin*) – Result data.
+*   **data** ([*DataBin*](qiskit.primitives.DataBin "qiskit.primitives.DataBin")) – Result data.
 *   **metadata** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*, Any] | None*) – Metadata specific to this pub. Keys are expected to be strings.
 
 ## Attributes

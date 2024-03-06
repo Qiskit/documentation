@@ -1,7 +1,7 @@
 ---
 title: plugin
 description: API reference for qiskit.transpiler.passes.synthesis.plugin
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.transpiler.passes.synthesis.plugin
 ---
@@ -23,6 +23,24 @@ This module defines the plugin interfaces for the synthesis transpiler passes in
 The plugin interfaces are built using setuptools [entry points](https://setuptools.readthedocs.io/en/latest/userguide/entry_point.html) which enable packages external to qiskit to advertise they include a synthesis plugin.
 
 See [`qiskit.transpiler.preset_passmanagers.plugin`](transpiler_plugins#module-qiskit.transpiler.preset_passmanagers.plugin "qiskit.transpiler.preset_passmanagers.plugin") for details on how to write plugins for transpiler stages.
+
+## Synthesis Plugin API
+
+### Unitary Synthesis Plugin API
+
+|                                                                                                                                                                                           |                                                           |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| [`UnitarySynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin")()                         | Abstract unitary synthesis plugin class                   |
+| [`UnitarySynthesisPluginManager`](qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPluginManager "qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPluginManager")()    | Unitary Synthesis plugin manager class                    |
+| [`unitary_synthesis_plugin_names`](qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names "qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names")() | Return a list of installed unitary synthesis plugin names |
+
+### High-Level Synthesis Plugin API
+
+|                                                                                                                                                                                                            |                                                                            |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| [`HighLevelSynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin")()                                    | Abstract high-level synthesis plugin class.                                |
+| [`HighLevelSynthesisPluginManager`](qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPluginManager "qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPluginManager")()               | Class tracking the installed high-level-synthesis plugins.                 |
+| [`high_level_synthesis_plugin_names`](qiskit.transpiler.passes.synthesis.plugin.high_level_synthesis_plugin_names "qiskit.transpiler.passes.synthesis.plugin.high_level_synthesis_plugin_names")(op\_name) | Return a list of plugin names installed for a given high level object name |
 
 ## Writing Plugins
 
@@ -170,29 +188,110 @@ high_level_synthesis_plugin_names("clifford")
 
 will return a list of all the installed Clifford synthesis plugins.
 
-### Available Plugins
+## Available Plugins
 
 High-level synthesis plugins that are directly available in Qiskit include plugins for synthesizing [`Clifford`](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford") objects, [`LinearFunction`](qiskit.circuit.library.LinearFunction "qiskit.circuit.library.LinearFunction") objects, and [`PermutationGate`](qiskit.circuit.library.PermutationGate "qiskit.circuit.library.PermutationGate") objects. Some of these plugins implicitly target all-to-all connectivity. This is not a practical limitation since [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.synthesis.high_level_synthesis.HighLevelSynthesis") typically runs before layout and routing, which will ensure that the final circuit adheres to the device connectivity by inserting additional SWAP gates. A good example is the permutation synthesis plugin `ACGSynthesisPermutation` which can synthesize any permutation with at most 2 layers of SWAP gates. On the other hand, some plugins implicitly target linear connectivity. Typically, the synthesizing circuits have larger depth and the number of gates, however no additional SWAP gates would be inserted if the following layout pass chose a consecutive line of qubits inside the topology of the device. A good example of this is the permutation synthesis plugin `KMSSynthesisPermutation` which can synthesize any permutation of `n` qubits in depth `n`. Typically, it is difficult to know in advance which of the two approaches: synthesizing circuits for all-to-all connectivity and inserting SWAP gates vs. synthesizing circuits for linear connectivity and inserting less or no SWAP gates lead a better final circuit, so it likely makes sense to try both and see which gives better results. Finally, some plugins can target a given connectivity, and hence should be run after the layout is set. In this case the synthesized circuit automatically adheres to the topology of the device. A good example of this is the permutation synthesis plugin `TokenSwapperSynthesisPermutation` which is able to synthesize arbitrary permutations with respect to arbitrary coupling maps. For more detail, please refer to description of each individual plugin.
 
-## Plugin API
+Below are the synthesis plugin classes available in Qiskit. These classes should not be used directly, but instead should be used through the plugin interface documented above. The classes are listed here to ease finding the documentation for each of the included plugins and to ease the comparison between different synthesis methods for a given object.
 
 <span id="id3" />
 
 ### Unitary Synthesis Plugins
 
-|                                                                                                                                                                                           |                                                           |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
-| [`UnitarySynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin")()                         | Abstract unitary synthesis plugin class                   |
-| [`UnitarySynthesisPluginManager`](qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPluginManager "qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPluginManager")()    | Unitary Synthesis plugin manager class                    |
-| [`unitary_synthesis_plugin_names`](qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names "qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names")() | Return a list of installed unitary synthesis plugin names |
+<span id="module-qiskit.transpiler.passes.synthesis.aqc_plugin" />
+
+<span id="aqc-synthesis-plugin-in-qiskit-transpiler-passes-synthesis-aqc-plugin" />
+
+#### AQC Synthesis Plugin (in [`qiskit.transpiler.passes.synthesis.aqc_plugin`](#module-qiskit.transpiler.passes.synthesis.aqc_plugin "qiskit.transpiler.passes.synthesis.aqc_plugin"))
+
+|                                                                                                                                                               |                                               |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
+| [`AQCSynthesisPlugin`](qiskit.transpiler.passes.synthesis.aqc_plugin.AQCSynthesisPlugin "qiskit.transpiler.passes.synthesis.aqc_plugin.AQCSynthesisPlugin")() | An AQC-based Qiskit unitary synthesis plugin. |
+
+<span id="module-qiskit.transpiler.passes.synthesis.unitary_synthesis" />
+
+<span id="unitary-synthesis-plugin-in-qiskit-transpiler-passes-synthesis-unitary-synthesis" />
+
+#### Unitary Synthesis Plugin (in [`qiskit.transpiler.passes.synthesis.unitary_synthesis`](#module-qiskit.transpiler.passes.synthesis.unitary_synthesis "qiskit.transpiler.passes.synthesis.unitary_synthesis"))
+
+|                                                                                                                                                                                            |                                       |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------- |
+| [`DefaultUnitarySynthesis`](qiskit.transpiler.passes.synthesis.unitary_synthesis.DefaultUnitarySynthesis "qiskit.transpiler.passes.synthesis.unitary_synthesis.DefaultUnitarySynthesis")() | The default unitary synthesis plugin. |
+
+<span id="module-qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis" />
+
+<span id="solovay-kitaev-synthesis-plugin-in-qiskit-transpiler-passes-synthesis-solovay-kitaev-synthesis" />
+
+#### Solovay-Kitaev Synthesis Plugin (in [`qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis`](#module-qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis "qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis"))
+
+|                                                                                                                                                                                                       |                                                   |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
+| [`SolovayKitaevSynthesis`](qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis "qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis")() | A Solovay-Kitaev Qiskit unitary synthesis plugin. |
+
+### High Level Synthesis
+
+For each high-level object we give a table that lists all of its plugins available directly in Qiskit. We include the name of the plugin, the class of the plugin, the targeted connectivity map and optionally additional information. Recall the plugins should be used via the previously described [`HLSConfig`](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.HLSConfig"), for example:
+
+```python
+HLSConfig(permutation=["kms"])
+```
+
+creates a high-level synthesis configuration that uses the `kms` plugin for synthesizing [`PermutationGate`](qiskit.circuit.library.PermutationGate "qiskit.circuit.library.PermutationGate") objects – i.e. those with `name = "permutation"`. In this case, the plugin name is “kms”, the plugin class is [`KMSSynthesisPermutation`](qiskit.transpiler.passes.synthesis.high_level_synthesis.KMSSynthesisPermutation "qiskit.transpiler.passes.synthesis.high_level_synthesis.KMSSynthesisPermutation"). This particular synthesis algorithm created a circuit adhering to the linear nearest-neighbor connectivity.
+
+<span id="module-qiskit.transpiler.passes.synthesis.high_level_synthesis" />
 
 <span id="id4" />
 
-### High-Level Synthesis Plugins
+#### High Level Synthesis Plugins
 
-|                                                                                                                                                                                                            |                                                                            |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| [`HighLevelSynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin")()                                    | Abstract high-level synthesis plugin class.                                |
-| [`HighLevelSynthesisPluginManager`](qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPluginManager "qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPluginManager")()               | Class tracking the installed high-level-synthesis plugins.                 |
-| [`high_level_synthesis_plugin_names`](qiskit.transpiler.passes.synthesis.plugin.high_level_synthesis_plugin_names "qiskit.transpiler.passes.synthesis.plugin.high_level_synthesis_plugin_names")(op\_name) | Return a list of plugin names installed for a given high level object name |
+##### Clifford Synthesis
+
+| Plugin name | Plugin class                                                                                                                                                                                         | Targeted connectivity | Description                                                           |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- | --------------------------------------------------------------------- |
+| `"ag"`      | [`AGSynthesisClifford`](qiskit.transpiler.passes.synthesis.high_level_synthesis.AGSynthesisClifford "qiskit.transpiler.passes.synthesis.high_level_synthesis.AGSynthesisClifford")                   | all-to-all            | greedily optimizes CX-count                                           |
+| `"bm"`      | [`BMSynthesisClifford`](qiskit.transpiler.passes.synthesis.high_level_synthesis.BMSynthesisClifford "qiskit.transpiler.passes.synthesis.high_level_synthesis.BMSynthesisClifford")                   | all-to-all            | optimal count for n=2,3; used in `"default"` for n=2,3                |
+| `"greedy"`  | [`GreedySynthesisClifford`](qiskit.transpiler.passes.synthesis.high_level_synthesis.GreedySynthesisClifford "qiskit.transpiler.passes.synthesis.high_level_synthesis.GreedySynthesisClifford")       | all-to-all            | greedily optimizes CX-count; used in `"default"` for n>=4             |
+| `"layers"`  | [`LayerSynthesisClifford`](qiskit.transpiler.passes.synthesis.high_level_synthesis.LayerSynthesisClifford "qiskit.transpiler.passes.synthesis.high_level_synthesis.LayerSynthesisClifford")          | all-to-all            |                                                                       |
+| `"lnn"`     | [`LayerLnnSynthesisClifford`](qiskit.transpiler.passes.synthesis.high_level_synthesis.LayerLnnSynthesisClifford "qiskit.transpiler.passes.synthesis.high_level_synthesis.LayerLnnSynthesisClifford") | linear                | many CX-gates but guarantees CX-depth of at most 7\*n+2               |
+| `"default"` | [`DefaultSynthesisClifford`](qiskit.transpiler.passes.synthesis.high_level_synthesis.DefaultSynthesisClifford "qiskit.transpiler.passes.synthesis.high_level_synthesis.DefaultSynthesisClifford")    | all-to-all            | usually best for optimizing CX-count (and optimal CX-count for n=2,3) |
+
+|                                                                                                                                                                                                        |                                                                                                                                                            |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`AGSynthesisClifford`](qiskit.transpiler.passes.synthesis.high_level_synthesis.AGSynthesisClifford "qiskit.transpiler.passes.synthesis.high_level_synthesis.AGSynthesisClifford")()                   | Clifford synthesis plugin based on the Aaronson-Gottesman method.                                                                                          |
+| [`BMSynthesisClifford`](qiskit.transpiler.passes.synthesis.high_level_synthesis.BMSynthesisClifford "qiskit.transpiler.passes.synthesis.high_level_synthesis.BMSynthesisClifford")()                   | Clifford synthesis plugin based on the Bravyi-Maslov method.                                                                                               |
+| [`GreedySynthesisClifford`](qiskit.transpiler.passes.synthesis.high_level_synthesis.GreedySynthesisClifford "qiskit.transpiler.passes.synthesis.high_level_synthesis.GreedySynthesisClifford")()       | Clifford synthesis plugin based on the greedy synthesis Bravyi-Hu-Maslov-Shaydulin method.                                                                 |
+| [`LayerSynthesisClifford`](qiskit.transpiler.passes.synthesis.high_level_synthesis.LayerSynthesisClifford "qiskit.transpiler.passes.synthesis.high_level_synthesis.LayerSynthesisClifford")()          | Clifford synthesis plugin based on the Bravyi-Maslov method to synthesize Cliffords into layers.                                                           |
+| [`LayerLnnSynthesisClifford`](qiskit.transpiler.passes.synthesis.high_level_synthesis.LayerLnnSynthesisClifford "qiskit.transpiler.passes.synthesis.high_level_synthesis.LayerLnnSynthesisClifford")() | Clifford synthesis plugin based on the Bravyi-Maslov method to synthesize Cliffords into layers, with each layer synthesized adhering to LNN connectivity. |
+| [`DefaultSynthesisClifford`](qiskit.transpiler.passes.synthesis.high_level_synthesis.DefaultSynthesisClifford "qiskit.transpiler.passes.synthesis.high_level_synthesis.DefaultSynthesisClifford")()    | The default clifford synthesis plugin.                                                                                                                     |
+
+##### Linear Function Synthesis
+
+| Plugin name | Plugin class                                                                                                                                                                                                        | Targeted connectivity | Description                                           |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- | ----------------------------------------------------- |
+| `"kms"`     | [`KMSSynthesisLinearFunction`](qiskit.transpiler.passes.synthesis.high_level_synthesis.KMSSynthesisLinearFunction "qiskit.transpiler.passes.synthesis.high_level_synthesis.KMSSynthesisLinearFunction")             | linear                | many CX-gates but guarantees CX-depth of at most 5\*n |
+| `"pmh"`     | [`PMHSynthesisLinearFunction`](qiskit.transpiler.passes.synthesis.high_level_synthesis.PMHSynthesisLinearFunction "qiskit.transpiler.passes.synthesis.high_level_synthesis.PMHSynthesisLinearFunction")             | all-to-all            | greedily optimizes CX-count; used in `"default"`      |
+| `"default"` | [`DefaultSynthesisLinearFunction`](qiskit.transpiler.passes.synthesis.high_level_synthesis.DefaultSynthesisLinearFunction "qiskit.transpiler.passes.synthesis.high_level_synthesis.DefaultSynthesisLinearFunction") | all-to-all            | best for optimizing CX-count                          |
+
+|                                                                                                                                                                                                                       |                                                                               |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| [`KMSSynthesisLinearFunction`](qiskit.transpiler.passes.synthesis.high_level_synthesis.KMSSynthesisLinearFunction "qiskit.transpiler.passes.synthesis.high_level_synthesis.KMSSynthesisLinearFunction")()             | Linear function synthesis plugin based on the Kutin-Moulton-Smithline method. |
+| [`PMHSynthesisLinearFunction`](qiskit.transpiler.passes.synthesis.high_level_synthesis.PMHSynthesisLinearFunction "qiskit.transpiler.passes.synthesis.high_level_synthesis.PMHSynthesisLinearFunction")()             | Linear function synthesis plugin based on the Patel-Markov-Hayes method.      |
+| [`DefaultSynthesisLinearFunction`](qiskit.transpiler.passes.synthesis.high_level_synthesis.DefaultSynthesisLinearFunction "qiskit.transpiler.passes.synthesis.high_level_synthesis.DefaultSynthesisLinearFunction")() | The default linear function synthesis plugin.                                 |
+
+##### Permutation Synthesis
+
+| Plugin name       | Plugin class                                                                                                                                                                                                              | Targeted connectivity | Description                                              |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- | -------------------------------------------------------- |
+| `"basic"`         | [`BasicSynthesisPermutation`](qiskit.transpiler.passes.synthesis.high_level_synthesis.BasicSynthesisPermutation "qiskit.transpiler.passes.synthesis.high_level_synthesis.BasicSynthesisPermutation")                      | all-to-all            | optimal SWAP-count; used in `"default"`                  |
+| `"acg"`           | [`ACGSynthesisPermutation`](qiskit.transpiler.passes.synthesis.high_level_synthesis.ACGSynthesisPermutation "qiskit.transpiler.passes.synthesis.high_level_synthesis.ACGSynthesisPermutation")                            | all-to-all            | guarantees SWAP-depth of at most 2                       |
+| `"kms"`           | [`KMSSynthesisPermutation`](qiskit.transpiler.passes.synthesis.high_level_synthesis.KMSSynthesisPermutation "qiskit.transpiler.passes.synthesis.high_level_synthesis.KMSSynthesisPermutation")                            | linear                | many SWAP-gates, but guarantees SWAP-depth of at most n  |
+| `"token_swapper"` | [`TokenSwapperSynthesisPermutation`](qiskit.transpiler.passes.synthesis.high_level_synthesis.TokenSwapperSynthesisPermutation "qiskit.transpiler.passes.synthesis.high_level_synthesis.TokenSwapperSynthesisPermutation") | any                   | greedily optimizes SWAP-count for arbitrary connectivity |
+| `"default"`       | [`BasicSynthesisPermutation`](qiskit.transpiler.passes.synthesis.high_level_synthesis.BasicSynthesisPermutation "qiskit.transpiler.passes.synthesis.high_level_synthesis.BasicSynthesisPermutation")                      | all-to-all            | best for optimizing SWAP-count                           |
+
+|                                                                                                                                                                                                                             |                                                                                 |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| [`BasicSynthesisPermutation`](qiskit.transpiler.passes.synthesis.high_level_synthesis.BasicSynthesisPermutation "qiskit.transpiler.passes.synthesis.high_level_synthesis.BasicSynthesisPermutation")()                      | The permutation synthesis plugin based on sorting.                              |
+| [`ACGSynthesisPermutation`](qiskit.transpiler.passes.synthesis.high_level_synthesis.ACGSynthesisPermutation "qiskit.transpiler.passes.synthesis.high_level_synthesis.ACGSynthesisPermutation")()                            | The permutation synthesis plugin based on the Alon, Chung, Graham method.       |
+| [`KMSSynthesisPermutation`](qiskit.transpiler.passes.synthesis.high_level_synthesis.KMSSynthesisPermutation "qiskit.transpiler.passes.synthesis.high_level_synthesis.KMSSynthesisPermutation")()                            | The permutation synthesis plugin based on the Kutin, Moulton, Smithline method. |
+| [`TokenSwapperSynthesisPermutation`](qiskit.transpiler.passes.synthesis.high_level_synthesis.TokenSwapperSynthesisPermutation "qiskit.transpiler.passes.synthesis.high_level_synthesis.TokenSwapperSynthesisPermutation")() | The permutation synthesis plugin based on the token swapper algorithm.          |
 

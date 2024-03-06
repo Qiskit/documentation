@@ -1,7 +1,7 @@
 ---
 title: classical
 description: API reference for qiskit.circuit.classical
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.circuit.classical
 ---
@@ -60,15 +60,33 @@ All subclasses are responsible for setting their `type` attribute in their `__in
 
 These objects are mutable and should not be reused in a different location without a copy.
 
-The entry point from general circuit objects to the expression system is by wrapping the object in a [`Var`](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") node and associating a [`Type`](#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type") with it.
+The base for dynamic variables is the [`Var`](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var"), which can be either an arbitrarily typed runtime variable, or a wrapper around a [`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.Clbit") or [`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister").
 
 <span id="qiskit.circuit.classical.expr.Var" />
 
-`final class qiskit.circuit.classical.expr.Var(var, type)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py "view source code")
+`final class qiskit.circuit.classical.expr.Var(var, type, *, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py "view source code")
 
 A classical variable.
 
+These variables take two forms: a new-style variable that owns its storage location and has an associated name; and an old-style variable that wraps a [`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.Clbit") or [`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") instance that is owned by some containing circuit. In general, construction of variables for use in programs should use `Var.new()` or [`QuantumCircuit.add_var()`](qiskit.circuit.QuantumCircuit#add_var "qiskit.circuit.QuantumCircuit.add_var").
+
 Variables are immutable after construction, so they can be used as dictionary keys.
+
+<span id="qiskit.circuit.classical.expr.Var.name" />
+
+### name
+
+`str | None`
+
+The name of the variable. This is required to exist if the backing [`var`](#qiskit.circuit.classical.expr.Var.var "qiskit.circuit.classical.expr.Var.var") attribute is a [`UUID`](https://docs.python.org/3/library/uuid.html#uuid.UUID "(in Python v3.12)"), i.e. if it is a new-style variable, and must be `None` if it is an old-style variable.
+
+<span id="qiskit.circuit.classical.expr.Var.var" />
+
+### var
+
+`qiskit.circuit.Clbit | qiskit.circuit.ClassicalRegister | uuid.UUID`
+
+A reference to the backing data storage of the [`Var`](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") instance. When lifting old-style [`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.Clbit") or [`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") instances into a [`Var`](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var"), this is exactly the [`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.Clbit") or [`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister"). If the variable is a new-style classical variable (one that owns its own storage separate to the old [`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.Clbit")/[`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") model), this field will be a [`UUID`](https://docs.python.org/3/library/uuid.html#uuid.UUID "(in Python v3.12)") to uniquely identify it.
 
 Similarly, literals used in comparison (such as integers) should be lifted to [`Value`](#qiskit.circuit.classical.expr.Value "qiskit.circuit.classical.expr.Value") nodes with associated types.
 
@@ -94,7 +112,7 @@ A unary expression.
 
 <span id="qiskit.circuit.classical.expr.Unary.Op" />
 
-`Op(value)`
+`Op(value)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py "view source code")
 
 Enumeration of the opcodes for unary operations.
 
@@ -133,7 +151,7 @@ A binary expression.
 
 <span id="qiskit.circuit.classical.expr.Binary.Op" />
 
-`Op(value)`
+`Op(value)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py "view source code")
 
 Enumeration of the opcodes for binary operations.
 
@@ -286,6 +304,8 @@ Value(5, Uint(4))
 **Return type**
 
 [Expr](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr")
+
+Typically you should create memory-owning [`Var`](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") instances by using the [`QuantumCircuit.add_var()`](qiskit.circuit.QuantumCircuit#add_var "qiskit.circuit.QuantumCircuit.add_var") method to declare them in some circuit context, since a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") will not accept an [`Expr`](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") that contains variables that are not already declared in it, since it needs to know how to allocate the storage and how the variable will be initialized. However, should you want to do this manually, you should use the low-level `Var.new()` call to safely generate a named variable for usage.
 
 You can manually specify casts in cases where the cast is allowed in explicit form, but may be lossy (such as the cast of a higher precision [`Uint`](#qiskit.circuit.classical.types.Uint "qiskit.circuit.classical.types.Uint") to a lower precision one).
 
@@ -756,7 +776,7 @@ Two expressions can be compared for direct structural equality by using the buil
 
 Do these two expressions have exactly the same tree structure, up to some key function for the [`Var`](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.expr.Var") objects?
 
-In other words, are these two expressions the exact same trees, except we compare the `Var.var` fields by calling the appropriate `*_var_key` function on them, and comparing that output for equality. This function does not allow any semantic “equivalences” such as asserting that `a == b` is equivalent to `b == a`; the evaluation order of the operands could, in general, cause such a statement to be false (consider hypothetical `extern` functions that access global state).
+In other words, are these two expressions the exact same trees, except we compare the [`Var.var`](#qiskit.circuit.classical.expr.Var.var "qiskit.circuit.classical.expr.Var.var") fields by calling the appropriate `*_var_key` function on them, and comparing that output for equality. This function does not allow any semantic “equivalences” such as asserting that `a == b` is equivalent to `b == a`; the evaluation order of the operands could, in general, cause such a statement to be false (consider hypothetical `extern` functions that access global state).
 
 There’s no requirements on the key functions, except that their outputs should have general `__eq__` methods. If a key function returns `None`, the variable will be used verbatim instead.
 
@@ -764,7 +784,7 @@ There’s no requirements on the key functions, except that their outputs should
 
 *   **left** ([*expr.Expr*](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.expr.Expr")) – one of the [`Expr`](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.expr.Expr") nodes.
 *   **right** ([*expr.Expr*](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.expr.Expr")) – the other [`Expr`](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.expr.Expr") node.
-*   **left\_var\_key** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)")*\[\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")*],* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")*] | None*) – a callable whose output should be used when comparing `Var.var` attributes. If this argument is `None` or its output is `None` for a given variable in `left`, the variable will be used verbatim.
+*   **left\_var\_key** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)")*\[\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")*],* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")*] | None*) – a callable whose output should be used when comparing [`Var.var`](#qiskit.circuit.classical.expr.Var.var "qiskit.circuit.classical.expr.Var.var") attributes. If this argument is `None` or its output is `None` for a given variable in `left`, the variable will be used verbatim.
 *   **right\_var\_key** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)")*\[\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")*],* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")*] | None*) – same as `left_var_key`, but used on the variables in `right` instead.
 
 **Return type**
@@ -794,6 +814,54 @@ Comparing the same two expressions, but this time using mapping functions that a
 >>> expr.structurally_equivalent(left, right, left_key, right_key)
 True
 ```
+
+Some expressions have associated memory locations, and others may be purely temporary. You can use [`is_lvalue()`](#qiskit.circuit.classical.expr.is_lvalue "qiskit.circuit.classical.expr.is_lvalue") to determine whether an expression has an associated memory location.
+
+### is\_lvalue
+
+<span id="qiskit.circuit.classical.expr.is_lvalue" />
+
+`qiskit.circuit.classical.expr.is_lvalue(node, /)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/visitors.py "view source code")
+
+Return whether this expression can be used in l-value positions, that is, whether it has a well-defined location in memory, such as one that might be writeable.
+
+Being an l-value is a necessary but not sufficient for this location to be writeable; it is permissible that a larger object containing this memory location may not allow writing from the scope that attempts to write to it. This would be an access property of the containing program, however, and not an inherent property of the expression system.
+
+**Examples**
+
+Literal values are never l-values; there’s no memory location associated with (for example) the constant `1`:
+
+```python
+>>> from qiskit.circuit.classical import expr
+>>> expr.is_lvalue(expr.lift(2))
+False
+```
+
+[`Var`](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.expr.Var") nodes are always l-values, because they always have some associated memory location:
+
+```python
+>>> from qiskit.circuit.classical import types
+>>> from qiskit.circuit import Clbit
+>>> expr.is_lvalue(expr.Var.new("a", types.Bool()))
+True
+>>> expr.is_lvalue(expr.lift(Clbit()))
+True
+```
+
+Currently there are no unary or binary operations on variables that can produce an l-value expression, but it is likely in the future that some sort of “indexing” operation will be added, which could produce l-values:
+
+```python
+>>> a = expr.Var.new("a", types.Uint(8))
+>>> b = expr.Var.new("b", types.Uint(8))
+>>> expr.is_lvalue(a) and expr.is_lvalue(b)
+True
+>>> expr.is_lvalue(expr.bit_and(a, b))
+False
+```
+
+**Return type**
+
+[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
 
 <span id="module-qiskit.circuit.classical.types" />
 
