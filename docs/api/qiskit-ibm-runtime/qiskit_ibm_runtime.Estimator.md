@@ -8,5 +8,5 @@ python_api_name: qiskit_ibm_runtime.Estimator
 
 # Estimator
 
-alias of `EstimatorV1`
+alias of [`EstimatorV1`](qiskit_ibm_runtime.EstimatorV1 "qiskit_ibm_runtime.estimator.EstimatorV1")
 
