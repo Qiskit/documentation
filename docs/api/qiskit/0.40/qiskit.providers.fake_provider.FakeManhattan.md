@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeManhattan
 
 <span id="qiskit.providers.fake_provider.FakeManhattan" />
 
-`FakeManhattan`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/fake_provider/backends/manhattan/fake_manhattan.py "view source code")
+`FakeManhattan` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/fake_provider/backends/manhattan/fake_manhattan.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_pulse_backend.FakePulseBackend`
 

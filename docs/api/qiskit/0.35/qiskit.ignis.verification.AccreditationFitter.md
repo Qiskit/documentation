@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.verification.AccreditationFitter
 
 <span id="qiskit.ignis.verification.AccreditationFitter" />
 
-`AccreditationFitter`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/accreditation/fitters.py "view source code")
+`AccreditationFitter` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/accreditation/fitters.py "view source code")
 
 Bases: `object`
 
@@ -31,7 +31,7 @@ Data can be input either as qiskit result objects, or as lists of bitstrings (th
 
 <span id="qiskit.ignis.verification.AccreditationFitter.AppendResults" />
 
-`AccreditationFitter.AppendResults(results, postp_list, v_zero)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/accreditation/fitters.py "view source code")
+`AccreditationFitter.AppendResults(results, postp_list, v_zero)`
 
 Single run of accreditation protocol, data input as qiskit result object assumed to be single shot
 
@@ -49,7 +49,7 @@ Single run of accreditation protocol, data input as qiskit result object assumed
 
 <span id="qiskit.ignis.verification.AccreditationFitter.AppendStrings" />
 
-`AccreditationFitter.AppendStrings(strings, postp_list, v_zero)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/accreditation/fitters.py "view source code")
+`AccreditationFitter.AppendStrings(strings, postp_list, v_zero)`
 
 Single run of accreditation protocol, data input as a list of output strings
 
@@ -63,7 +63,7 @@ Single run of accreditation protocol, data input as a list of output strings
 
 <span id="qiskit.ignis.verification.AccreditationFitter.FullAccreditation" />
 
-`AccreditationFitter.FullAccreditation(confidence)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/accreditation/fitters.py "view source code")
+`AccreditationFitter.FullAccreditation(confidence)`
 
 This function computes the bound on variation distance based and the confidence interval desired. This protocol is from \[1] and fully treats non-Markovian errors
 
@@ -87,7 +87,7 @@ dict
 
 <span id="qiskit.ignis.verification.AccreditationFitter.MeanAccreditation" />
 
-`AccreditationFitter.MeanAccreditation(confidence)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/accreditation/fitters.py "view source code")
+`AccreditationFitter.MeanAccreditation(confidence)`
 
 This function computes the bound on variation distance based and the confidence interval desired. This protocol is from \[2] and assumes Markovianity but gives an improved bound
 
@@ -107,7 +107,7 @@ dict
 
 <span id="qiskit.ignis.verification.AccreditationFitter.Reset" />
 
-`AccreditationFitter.Reset()`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/accreditation/fitters.py "view source code")
+`AccreditationFitter.Reset()`
 
 Reset the accreditation class object
 
@@ -115,7 +115,7 @@ Reset the accreditation class object
 
 <span id="qiskit.ignis.verification.AccreditationFitter.bound_variation_distance" />
 
-`AccreditationFitter.bound_variation_distance(theta)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/accreditation/fitters.py "view source code")
+`AccreditationFitter.bound_variation_distance(theta)`
 
 DEPRECATED-This function computes the bound on variation distance based and the confidence :param theta: number between 0 and 1 :type theta: float
 
@@ -127,7 +127,7 @@ DEPRECATED-This function computes the bound on variation distance based and the 
 
 <span id="qiskit.ignis.verification.AccreditationFitter.single_protocol_run" />
 
-`AccreditationFitter.single_protocol_run(results, postp_list, v_zero)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/accreditation/fitters.py "view source code")
+`AccreditationFitter.single_protocol_run(results, postp_list, v_zero)`
 
 DEPRECATED-Single protocol run of accreditation protocol :param results: results of the quantum job :type results: Result :param postp\_list: list of strings used to post-process outputs :type postp\_list: list :param v\_zero: position of target :type v\_zero: int
 

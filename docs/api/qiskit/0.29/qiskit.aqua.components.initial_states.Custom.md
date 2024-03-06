@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.initial_states.Custom
 
 <span id="qiskit.aqua.components.initial_states.Custom" />
 
-`Custom(num_qubits, state='zero', state_vector=None, circuit=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/initial_states/custom.py "view source code")
+`Custom(num_qubits, state='zero', state_vector=None, circuit=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/initial_states/custom.py "view source code")
 
 Bases: `qiskit.aqua.components.initial_states.initial_state.InitialState`
 
@@ -43,7 +43,7 @@ The custom initial state will be set from the *circuit*, the *state\_vector*, or
 
 <span id="qiskit.aqua.components.initial_states.Custom.construct_circuit" />
 
-`Custom.construct_circuit(mode='circuit', register=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/initial_states/custom.py "view source code")
+`Custom.construct_circuit(mode='circuit', register=None)`
 
 Construct the statevector of desired initial state.
 

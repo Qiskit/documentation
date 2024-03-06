@@ -12,7 +12,7 @@ python_api_name: qiskit.pulse.Schedule
 
 <span id="qiskit.pulse.Schedule" />
 
-`Schedule(*schedules, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/schedule.py "view source code")
+`Schedule(*schedules, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/schedule.py "view source code")
 
 A quantum program *schedule* with exact time constraints for its instructions, operating over all input signal *channels* and supporting special syntaxes for building.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.finance.components.uncertainty_problems.FixedIncomeExpec
 
 <span id="qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue" />
 
-`FixedIncomeExpectedValue(uncertainty_model, A, b, cash_flow, c_approx, i_state=None, i_objective=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/finance/components/uncertainty_problems/fixed_income_expected_value.py "view source code")
+`FixedIncomeExpectedValue(uncertainty_model, A, b, cash_flow, c_approx, i_state=None, i_objective=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/finance/components/uncertainty_problems/fixed_income_expected_value.py "view source code")
 
 Bases: `qiskit.aqua.components.uncertainty_problems.uncertainty_problem.UncertaintyProblem`
 
@@ -36,7 +36,7 @@ Constructor.
 
 <span id="qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.build" />
 
-`FixedIncomeExpectedValue.build(qc, q, q_ancillas=None, params=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/finance/components/uncertainty_problems/fixed_income_expected_value.py "view source code")
+`FixedIncomeExpectedValue.build(qc, q, q_ancillas=None, params=None)`
 
 Adds corresponding sub-circuit to given circuit
 
@@ -145,7 +145,7 @@ returns number of qubits controlled
 
 <span id="qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.required_ancillas" />
 
-`FixedIncomeExpectedValue.required_ancillas()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/finance/components/uncertainty_problems/fixed_income_expected_value.py "view source code")
+`FixedIncomeExpectedValue.required_ancillas()`
 
 returns required ancillas
 
@@ -153,7 +153,7 @@ returns required ancillas
 
 <span id="qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.required_ancillas_controlled" />
 
-`FixedIncomeExpectedValue.required_ancillas_controlled()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/finance/components/uncertainty_problems/fixed_income_expected_value.py "view source code")
+`FixedIncomeExpectedValue.required_ancillas_controlled()`
 
 returns required ancillas controlled
 
@@ -161,7 +161,7 @@ returns required ancillas controlled
 
 <span id="qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.value_to_estimation" />
 
-`FixedIncomeExpectedValue.value_to_estimation(value)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/finance/components/uncertainty_problems/fixed_income_expected_value.py "view source code")
+`FixedIncomeExpectedValue.value_to_estimation(value)`
 
 value to estimate
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.operators.gradients.CircuitQFI
 
 <span id="qiskit.aqua.operators.gradients.CircuitQFI" />
 
-`CircuitQFI`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/gradients/circuit_qfis/circuit_qfi.py "view source code")
+`CircuitQFI` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/gradients/circuit_qfis/circuit_qfi.py "view source code")
 
 Circuit to Quantum Fisher Information operator converter.
 

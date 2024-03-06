@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.utils.CircuitFactory
 
 <span id="qiskit.aqua.utils.CircuitFactory" />
 
-`CircuitFactory(num_target_qubits)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/utils/circuit_factory.py "view source code")
+`CircuitFactory(num_target_qubits)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/utils/circuit_factory.py "view source code")
 
 Base class for CircuitFactories
 
@@ -26,7 +26,7 @@ Returns the number of target qubits
 
 <span id="qiskit.aqua.utils.CircuitFactory.build" />
 
-`abstract CircuitFactory.build(qc, q, q_ancillas=None, params=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/utils/circuit_factory.py "view source code")
+`abstract CircuitFactory.build(qc, q, q_ancillas=None, params=None)`
 
 Adds corresponding sub-circuit to given circuit
 
@@ -41,7 +41,7 @@ Adds corresponding sub-circuit to given circuit
 
 <span id="qiskit.aqua.utils.CircuitFactory.build_controlled" />
 
-`CircuitFactory.build_controlled(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/utils/circuit_factory.py "view source code")
+`CircuitFactory.build_controlled(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
 
 Adds corresponding controlled sub-circuit to given circuit
 
@@ -57,7 +57,7 @@ Adds corresponding controlled sub-circuit to given circuit
 
 <span id="qiskit.aqua.utils.CircuitFactory.build_controlled_inverse" />
 
-`CircuitFactory.build_controlled_inverse(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/utils/circuit_factory.py "view source code")
+`CircuitFactory.build_controlled_inverse(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
 
 Adds controlled inverse of corresponding sub-circuit to given circuit
 
@@ -73,7 +73,7 @@ Adds controlled inverse of corresponding sub-circuit to given circuit
 
 <span id="qiskit.aqua.utils.CircuitFactory.build_controlled_inverse_power" />
 
-`CircuitFactory.build_controlled_inverse_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/utils/circuit_factory.py "view source code")
+`CircuitFactory.build_controlled_inverse_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
 
 Adds controlled, inverse, power of corresponding circuit. May be overridden if a more efficient implementation is possible
 
@@ -81,7 +81,7 @@ Adds controlled, inverse, power of corresponding circuit. May be overridden if a
 
 <span id="qiskit.aqua.utils.CircuitFactory.build_controlled_power" />
 
-`CircuitFactory.build_controlled_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/utils/circuit_factory.py "view source code")
+`CircuitFactory.build_controlled_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
 
 Adds controlled power of corresponding circuit. May be overridden if a more efficient implementation is possible
 
@@ -89,7 +89,7 @@ Adds controlled power of corresponding circuit. May be overridden if a more effi
 
 <span id="qiskit.aqua.utils.CircuitFactory.build_inverse" />
 
-`CircuitFactory.build_inverse(qc, q, q_ancillas=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/utils/circuit_factory.py "view source code")
+`CircuitFactory.build_inverse(qc, q, q_ancillas=None)`
 
 Adds inverse of corresponding sub-circuit to given circuit
 
@@ -103,7 +103,7 @@ Adds inverse of corresponding sub-circuit to given circuit
 
 <span id="qiskit.aqua.utils.CircuitFactory.build_inverse_power" />
 
-`CircuitFactory.build_inverse_power(qc, q, power, q_ancillas=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/utils/circuit_factory.py "view source code")
+`CircuitFactory.build_inverse_power(qc, q, power, q_ancillas=None)`
 
 Adds inverse power of corresponding circuit. May be overridden if a more efficient implementation is possible
 
@@ -111,7 +111,7 @@ Adds inverse power of corresponding circuit. May be overridden if a more efficie
 
 <span id="qiskit.aqua.utils.CircuitFactory.build_power" />
 
-`CircuitFactory.build_power(qc, q, power, q_ancillas=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/utils/circuit_factory.py "view source code")
+`CircuitFactory.build_power(qc, q, power, q_ancillas=None)`
 
 Adds power of corresponding circuit. May be overridden if a more efficient implementation is possible
 
@@ -119,7 +119,7 @@ Adds power of corresponding circuit. May be overridden if a more efficient imple
 
 <span id="qiskit.aqua.utils.CircuitFactory.get_num_qubits" />
 
-`CircuitFactory.get_num_qubits()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/utils/circuit_factory.py "view source code")
+`CircuitFactory.get_num_qubits()`
 
 returns number of qubits
 
@@ -127,7 +127,7 @@ returns number of qubits
 
 <span id="qiskit.aqua.utils.CircuitFactory.get_num_qubits_controlled" />
 
-`CircuitFactory.get_num_qubits_controlled()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/utils/circuit_factory.py "view source code")
+`CircuitFactory.get_num_qubits_controlled()`
 
 returns number of qubits controlled
 
@@ -135,7 +135,7 @@ returns number of qubits controlled
 
 <span id="qiskit.aqua.utils.CircuitFactory.required_ancillas" />
 
-`CircuitFactory.required_ancillas()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/utils/circuit_factory.py "view source code")
+`CircuitFactory.required_ancillas()`
 
 returns required ancillas
 
@@ -143,7 +143,7 @@ returns required ancillas
 
 <span id="qiskit.aqua.utils.CircuitFactory.required_ancillas_controlled" />
 
-`CircuitFactory.required_ancillas_controlled()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/utils/circuit_factory.py "view source code")
+`CircuitFactory.required_ancillas_controlled()`
 
 returns required ancillas controlled
 

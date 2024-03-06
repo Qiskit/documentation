@@ -28,10 +28,16 @@ ${result.meta.hardcodedFrontmatter}
 ${markdown}
 `;
     } else if (result.meta.apiName) {
+      // For class, exception, and function pages, it's useful to have
+      // the code object's own h1 show up in the page table of contents
+      // so that people can quickly scroll up to the code object, since
+      // it is non-trivial, like having the class constructor. But for
+      // module pages, showing the h1 in the page ToC is noisy.
+      const toc_min_level = result.meta.apiType === "module" ? 2 : 1;
       result.markdown = `---
 title: ${getLastPartFromFullIdentifier(result.meta.apiName)}
 description: API reference for ${result.meta.apiName}
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: ${toc_min_level}
 python_api_type: ${result.meta.apiType}
 python_api_name: ${result.meta.apiName}
 ---
@@ -45,10 +51,11 @@ ${markdown}
       const descriptionSuffix = pkg.hasSeparateReleaseNotes
         ? `in ${pkg.title}${versionStr}`
         : `to ${pkg.title}`;
+      const maxHeadingLevel = pkg.name == "qiskit" ? 3 : 2;
       result.markdown = `---
 title: ${pkg.title}${versionStr} release notes
 description: Changes made ${descriptionSuffix}
-in_page_toc_max_heading_level: 2
+in_page_toc_max_heading_level: ${maxHeadingLevel}
 ---
 
 ${markdown}

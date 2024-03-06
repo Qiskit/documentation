@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.PauliList
 
 <span id="qiskit.quantum_info.PauliList" />
 
-`PauliList(data)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/operators/symplectic/pauli_list.py "view source code")
+`PauliList(data)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/operators/symplectic/pauli_list.py "view source code")
 
 List of N-qubit Pauli operators.
 

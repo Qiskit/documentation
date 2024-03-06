@@ -14,7 +14,7 @@ python_api_name: qiskit.providers.ibmq.managed.ManagedResults
 
 <span id="qiskit.providers.ibmq.managed.ManagedResults" />
 
-`ManagedResults(job_set, backend_name, success)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/managed/managedresults.py "view source code")
+`ManagedResults(job_set, backend_name, success)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/managed/managedresults.py "view source code")
 
 Bases: `object`
 
@@ -52,7 +52,7 @@ Whether all experiments were successful.
 
 <span id="qiskit.providers.ibmq.managed.ManagedResults.combine_results" />
 
-`ManagedResults.combine_results()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/managed/managedresults.py "view source code")
+`ManagedResults.combine_results()`
 
 Combine results from all jobs into a single Result.
 
@@ -82,7 +82,7 @@ all jobs.
 
 <span id="qiskit.providers.ibmq.managed.ManagedResults.data" />
 
-`ManagedResults.data(experiment)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/managed/managedresults.py "view source code")
+`ManagedResults.data(experiment)`
 
 Get the raw data for an experiment.
 
@@ -118,7 +118,7 @@ Refer to the [`Result.data()`](qiskit.result.Result#data "qiskit.result.Result.d
 
 <span id="qiskit.providers.ibmq.managed.ManagedResults.get_counts" />
 
-`ManagedResults.get_counts(experiment)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/managed/managedresults.py "view source code")
+`ManagedResults.get_counts(experiment)`
 
 Get the histogram data of an experiment.
 
@@ -147,7 +147,7 @@ Refer to the [`Result.get_counts()`](qiskit.result.Result#get_counts "qiskit.res
 
 <span id="qiskit.providers.ibmq.managed.ManagedResults.get_memory" />
 
-`ManagedResults.get_memory(experiment)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/managed/managedresults.py "view source code")
+`ManagedResults.get_memory(experiment)`
 
 Get the sequence of memory states (readouts) for each shot. The data from the experiment is a list of format \[‘00000’, ‘01000’, ‘10100’, ‘10100’, ‘11101’, ‘11100’, ‘00101’, …, ‘01010’]
 
@@ -176,7 +176,7 @@ Refer to the [`Result.get_memory()`](qiskit.result.Result#get_memory "qiskit.res
 
 <span id="qiskit.providers.ibmq.managed.ManagedResults.get_statevector" />
 
-`ManagedResults.get_statevector(experiment, decimals=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/managed/managedresults.py "view source code")
+`ManagedResults.get_statevector(experiment, decimals=None)`
 
 Get the final statevector of an experiment.
 
@@ -206,7 +206,7 @@ Refer to the [`Result.get_statevector()`](qiskit.result.Result#get_statevector "
 
 <span id="qiskit.providers.ibmq.managed.ManagedResults.get_unitary" />
 
-`ManagedResults.get_unitary(experiment, decimals=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/managed/managedresults.py "view source code")
+`ManagedResults.get_unitary(experiment, decimals=None)`
 
 Get the final unitary of an experiment.
 

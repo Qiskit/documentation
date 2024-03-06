@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.neural_networks.GenerativeNetwork
 
 <span id="qiskit.aqua.components.neural_networks.GenerativeNetwork" />
 
-`GenerativeNetwork`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/neural_networks/generative_network.py "view source code")
+`GenerativeNetwork` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/neural_networks/generative_network.py "view source code")
 
 Bases: `abc.ABC`
 
@@ -24,7 +24,7 @@ This method should initialize the module, but raise an exception if a required c
 
 <span id="qiskit.aqua.components.neural_networks.GenerativeNetwork.get_output" />
 
-`abstract GenerativeNetwork.get_output(quantum_instance, params, shots)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/neural_networks/generative_network.py "view source code")
+`abstract GenerativeNetwork.get_output(quantum_instance, params, shots)`
 
 Apply quantum/classical neural network to given input and get the respective output
 
@@ -46,7 +46,7 @@ Neural network output
 
 <span id="qiskit.aqua.components.neural_networks.GenerativeNetwork.loss" />
 
-`abstract GenerativeNetwork.loss()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/neural_networks/generative_network.py "view source code")
+`abstract GenerativeNetwork.loss()`
 
 Loss function used for optimization
 
@@ -54,7 +54,7 @@ Loss function used for optimization
 
 <span id="qiskit.aqua.components.neural_networks.GenerativeNetwork.set_discriminator" />
 
-`abstract GenerativeNetwork.set_discriminator(discriminator)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/neural_networks/generative_network.py "view source code")
+`abstract GenerativeNetwork.set_discriminator(discriminator)`
 
 Set discriminator network.
 
@@ -70,7 +70,7 @@ Set discriminator network.
 
 <span id="qiskit.aqua.components.neural_networks.GenerativeNetwork.set_seed" />
 
-`abstract GenerativeNetwork.set_seed(seed)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/neural_networks/generative_network.py "view source code")
+`abstract GenerativeNetwork.set_seed(seed)`
 
 Set seed.
 
@@ -86,7 +86,7 @@ Set seed.
 
 <span id="qiskit.aqua.components.neural_networks.GenerativeNetwork.train" />
 
-`abstract GenerativeNetwork.train(quantum_instance=None, shots=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/neural_networks/generative_network.py "view source code")
+`abstract GenerativeNetwork.train(quantum_instance=None, shots=None)`
 
 Perform one training step w\.r.t to the generator’s parameters
 

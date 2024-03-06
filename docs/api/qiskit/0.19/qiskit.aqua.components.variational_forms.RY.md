@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.variational_forms.RY
 
 <span id="qiskit.aqua.components.variational_forms.RY" />
 
-`RY(num_qubits, depth=3, entangler_map=None, entanglement='full', initial_state=None, entanglement_gate='cz', skip_unentangled_qubits=False, skip_final_ry=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/variational_forms/ry.py "view source code")
+`RY(num_qubits, depth=3, entangler_map=None, entanglement='full', initial_state=None, entanglement_gate='cz', skip_unentangled_qubits=False, skip_final_ry=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/variational_forms/ry.py "view source code")
 
 DEPRECATED. The RY Variational Form.
 
@@ -103,7 +103,7 @@ boolean
 
 <span id="qiskit.aqua.components.variational_forms.RY.construct_circuit" />
 
-`RY.construct_circuit(parameters, q=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/variational_forms/ry.py "view source code")
+`RY.construct_circuit(parameters, q=None)`
 
 Construct the variational form, given its parameters.
 

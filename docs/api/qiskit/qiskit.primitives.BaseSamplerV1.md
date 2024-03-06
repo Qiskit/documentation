@@ -10,7 +10,7 @@ python_api_name: qiskit.primitives.BaseSamplerV1
 
 <span id="qiskit.primitives.BaseSamplerV1" />
 
-`qiskit.primitives.BaseSamplerV1(*, options=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/primitives/base/base_sampler.py "view source code")
+`qiskit.primitives.BaseSamplerV1(*, options=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/primitives/base/base_sampler.py "view source code")
 
 Bases: `BasePrimitive`, [`Generic`](https://docs.python.org/3/library/typing.html#typing.Generic "(in Python v3.12)")\[`T`]
 

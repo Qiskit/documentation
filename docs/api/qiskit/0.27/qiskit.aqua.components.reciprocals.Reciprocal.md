@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.reciprocals.Reciprocal
 
 <span id="qiskit.aqua.components.reciprocals.Reciprocal" />
 
-`Reciprocal`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/reciprocals/reciprocal.py "view source code")
+`Reciprocal` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/reciprocals/reciprocal.py "view source code")
 
 Base class for reciprocal calculation.
 

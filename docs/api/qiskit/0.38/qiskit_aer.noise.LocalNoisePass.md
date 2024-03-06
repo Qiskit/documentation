@@ -10,7 +10,7 @@ python_api_name: qiskit_aer.noise.LocalNoisePass
 
 <span id="qiskit_aer.noise.LocalNoisePass" />
 
-`LocalNoisePass(func, op_types=None, method='append')`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/noise/passes/local_noise_pass.py "view source code")
+`LocalNoisePass(func, op_types=None, method='append')` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/noise/passes/local_noise_pass.py "view source code")
 
 Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -63,7 +63,7 @@ Return the name of the pass.
 
 <span id="qiskit_aer.noise.LocalNoisePass.run" />
 
-`LocalNoisePass.run(dag)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/noise/passes/local_noise_pass.py "view source code")
+`LocalNoisePass.run(dag)`
 
 Run the LocalNoisePass pass on dag. :type dag: [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit") :param dag: DAG to be changed.
 

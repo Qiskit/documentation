@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.HRSCumulativeMultiplier
 
 <span id="qiskit.circuit.library.HRSCumulativeMultiplier" />
 
-`qiskit.circuit.library.HRSCumulativeMultiplier(num_state_qubits, num_result_qubits=None, adder=None, name='HRSCumulativeMultiplier')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/arithmetic/multipliers/hrs_cumulative_multiplier.py "view source code")
+`qiskit.circuit.library.HRSCumulativeMultiplier(num_state_qubits, num_result_qubits=None, adder=None, name='HRSCumulativeMultiplier')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/arithmetic/multipliers/hrs_cumulative_multiplier.py "view source code")
 
 Bases: `Multiplier`
 

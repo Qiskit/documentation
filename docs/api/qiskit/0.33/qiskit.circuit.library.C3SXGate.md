@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.C3SXGate
 
 <span id="qiskit.circuit.library.C3SXGate" />
 
-`C3SXGate(label=None, ctrl_state=None, *, angle=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/library/standard_gates/x.py "view source code")
+`C3SXGate(label=None, ctrl_state=None, *, angle=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 Bases: `qiskit.circuit.controlledgate.ControlledGate`
 
@@ -36,7 +36,7 @@ Create a new 3-qubit controlled sqrt-X gate.
 
 <span id="qiskit.circuit.library.C3SXGate.inverse" />
 
-`C3SXGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/library/standard_gates/x.py "view source code")
+`C3SXGate.inverse()`
 
 Invert this gate. The C3X is its own inverse.
 

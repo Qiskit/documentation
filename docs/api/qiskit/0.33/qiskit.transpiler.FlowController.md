@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.FlowController
 
 <span id="qiskit.transpiler.FlowController" />
 
-`FlowController(passes, options, **partial_controller)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/runningpassmanager.py "view source code")
+`FlowController(passes, options, **partial_controller)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/runningpassmanager.py "view source code")
 
 Bases: `object`
 
@@ -24,7 +24,7 @@ This class is a base class for multiple types of working list. When you iterate 
 
 <span id="qiskit.transpiler.FlowController.add_flow_controller" />
 
-`classmethod FlowController.add_flow_controller(name, controller)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/runningpassmanager.py "view source code")
+`classmethod FlowController.add_flow_controller(name, controller)`
 
 Adds a flow controller.
 
@@ -37,7 +37,7 @@ Adds a flow controller.
 
 <span id="qiskit.transpiler.FlowController.controller_factory" />
 
-`classmethod FlowController.controller_factory(passes, options, **partial_controller)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/runningpassmanager.py "view source code")
+`classmethod FlowController.controller_factory(passes, options, **partial_controller)`
 
 Constructs a flow controller based on the partially evaluated controller arguments.
 
@@ -63,7 +63,7 @@ A FlowController instance.
 
 <span id="qiskit.transpiler.FlowController.dump_passes" />
 
-`FlowController.dump_passes()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/runningpassmanager.py "view source code")
+`FlowController.dump_passes()`
 
 Fetches the passes added to this flow controller.
 
@@ -79,7 +79,7 @@ dict
 
 <span id="qiskit.transpiler.FlowController.remove_flow_controller" />
 
-`classmethod FlowController.remove_flow_controller(name)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/runningpassmanager.py "view source code")
+`classmethod FlowController.remove_flow_controller(name)`
 
 Removes a flow controller.
 
@@ -95,9 +95,7 @@ Removes a flow controller.
 
 <span id="qiskit.transpiler.FlowController.registered_controllers" />
 
-### registered\_controllers = \{'condition'
-
-`= {'condition':`
+### registered\_controllers
 
 `= {'condition': , 'do_while': }`
 

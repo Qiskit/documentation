@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.StabilizerState
 
 <span id="qiskit.quantum_info.StabilizerState" />
 
-`StabilizerState(data, validate=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/states/stabilizerstate.py "view source code")
+`StabilizerState(data, validate=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/states/stabilizerstate.py "view source code")
 
 Bases: `QuantumState`
 
@@ -61,7 +61,7 @@ Initialize a StabilizerState object.
 
 <span id="qiskit.quantum_info.StabilizerState.conjugate" />
 
-`StabilizerState.conjugate()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/states/stabilizerstate.py "view source code")
+`StabilizerState.conjugate()`
 
 Return the conjugate of the operator.
 
@@ -91,7 +91,7 @@ Return tuple of input dimension for specified subsystems.
 
 <span id="qiskit.quantum_info.StabilizerState.equiv" />
 
-`StabilizerState.equiv(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/states/stabilizerstate.py "view source code")
+`StabilizerState.equiv(other)`
 
 Return True if the two generating sets generate the same stabilizer group.
 
@@ -113,7 +113,7 @@ bool
 
 <span id="qiskit.quantum_info.StabilizerState.evolve" />
 
-`StabilizerState.evolve(other, qargs=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/states/stabilizerstate.py "view source code")
+`StabilizerState.evolve(other, qargs=None)`
 
 Evolve a stabilizer state by a Clifford operator.
 
@@ -141,7 +141,7 @@ the output stabilizer state.
 
 <span id="qiskit.quantum_info.StabilizerState.expand" />
 
-`StabilizerState.expand(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/states/stabilizerstate.py "view source code")
+`StabilizerState.expand(other)`
 
 Return the tensor product stabilzier state other ⊗ self.
 
@@ -167,7 +167,7 @@ the tensor product operator other ⊗ self.
 
 <span id="qiskit.quantum_info.StabilizerState.expectation_value" />
 
-`StabilizerState.expectation_value(oper, qargs=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/states/stabilizerstate.py "view source code")
+`StabilizerState.expectation_value(oper, qargs=None)`
 
 Compute the expectation value of a Pauli operator.
 
@@ -194,7 +194,7 @@ complex
 
 <span id="qiskit.quantum_info.StabilizerState.is_valid" />
 
-`StabilizerState.is_valid(atol=None, rtol=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/states/stabilizerstate.py "view source code")
+`StabilizerState.is_valid(atol=None, rtol=None)`
 
 Return True if a valid StabilizerState.
 
@@ -204,7 +204,7 @@ Return True if a valid StabilizerState.
 
 <span id="qiskit.quantum_info.StabilizerState.measure" />
 
-`StabilizerState.measure(qargs=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/states/stabilizerstate.py "view source code")
+`StabilizerState.measure(qargs=None)`
 
 Measure subsystems and return outcome and post-measure state.
 
@@ -230,7 +230,7 @@ tuple
 
 <span id="qiskit.quantum_info.StabilizerState.probabilities" />
 
-`StabilizerState.probabilities(qargs=None, decimals=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/states/stabilizerstate.py "view source code")
+`StabilizerState.probabilities(qargs=None, decimals=None)`
 
 Return the subsystem measurement probability vector.
 
@@ -255,7 +255,7 @@ np.array
 
 <span id="qiskit.quantum_info.StabilizerState.probabilities_dict" />
 
-`StabilizerState.probabilities_dict(qargs=None, decimals=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/states/stabilizerstate.py "view source code")
+`StabilizerState.probabilities_dict(qargs=None, decimals=None)`
 
 Return the subsystem measurement probability dictionary.
 
@@ -282,7 +282,7 @@ dict
 
 <span id="qiskit.quantum_info.StabilizerState.purity" />
 
-`StabilizerState.purity()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/states/stabilizerstate.py "view source code")
+`StabilizerState.purity()`
 
 Return the purity of the quantum state, which equals to 1, since it is always a pure state.
 
@@ -304,7 +304,7 @@ double
 
 <span id="qiskit.quantum_info.StabilizerState.reset" />
 
-`StabilizerState.reset(qargs=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/states/stabilizerstate.py "view source code")
+`StabilizerState.reset(qargs=None)`
 
 Reset state or subsystems to the 0-state.
 
@@ -359,7 +359,7 @@ Additional Information:
 
 <span id="qiskit.quantum_info.StabilizerState.sample_memory" />
 
-`StabilizerState.sample_memory(shots, qargs=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/states/stabilizerstate.py "view source code")
+`StabilizerState.sample_memory(shots, qargs=None)`
 
 Sample a list of qubit measurement outcomes in the computational basis.
 
@@ -398,7 +398,7 @@ Set the seed for the quantum state RNG.
 
 <span id="qiskit.quantum_info.StabilizerState.tensor" />
 
-`StabilizerState.tensor(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/states/stabilizerstate.py "view source code")
+`StabilizerState.tensor(other)`
 
 Return the tensor product stabilzier state self ⊗ other.
 
@@ -424,7 +424,7 @@ the tensor product operator self ⊗ other.
 
 <span id="qiskit.quantum_info.StabilizerState.to_operator" />
 
-`StabilizerState.to_operator()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/states/stabilizerstate.py "view source code")
+`StabilizerState.to_operator()`
 
 Convert state to matrix operator class
 
@@ -434,7 +434,7 @@ Convert state to matrix operator class
 
 <span id="qiskit.quantum_info.StabilizerState.trace" />
 
-`StabilizerState.trace()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/states/stabilizerstate.py "view source code")
+`StabilizerState.trace()`
 
 Return the trace of the stabilizer state as a density matrix, which equals to 1, since it is always a pure state.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.ShiftFrequency
 
 <span id="qiskit.pulse.ShiftFrequency" />
 
-`ShiftFrequency(frequency, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/instructions/frequency.py "view source code")
+`ShiftFrequency(frequency, channel, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/instructions/frequency.py "view source code")
 
 Bases: `qiskit.pulse.instructions.instruction.Instruction`
 
@@ -184,7 +184,7 @@ A new schedule with `schedule` inserted with this instruction at t=0.
 
 <span id="qiskit.pulse.ShiftFrequency.is_parameterized" />
 
-`ShiftFrequency.is_parameterized()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/instructions/frequency.py "view source code")
+`ShiftFrequency.is_parameterized()`
 
 Return True iff the instruction is parameterized.
 

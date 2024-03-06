@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.Instruction
 
 <span id="qiskit.circuit.Instruction" />
 
-`Instruction(name, num_qubits, num_clbits, params, duration=None, unit='dt', label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/instruction.py "view source code")
+`Instruction(name, num_qubits, num_clbits, params, duration=None, unit='dt', label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/instruction.py "view source code")
 
 Bases: [`qiskit.circuit.operation.Operation`](qiskit.circuit.Operation "qiskit.circuit.operation.Operation")
 
@@ -39,7 +39,7 @@ Create a new instruction.
 
 <span id="qiskit.circuit.Instruction.add_decomposition" />
 
-`Instruction.add_decomposition(decomposition)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/instruction.py "view source code")
+`Instruction.add_decomposition(decomposition)`
 
 Add a decomposition of the instruction to the SessionEquivalenceLibrary.
 
@@ -47,7 +47,7 @@ Add a decomposition of the instruction to the SessionEquivalenceLibrary.
 
 <span id="qiskit.circuit.Instruction.assemble" />
 
-`Instruction.assemble()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/instruction.py "view source code")
+`Instruction.assemble()`
 
 Assemble a QasmQobjInstruction
 
@@ -55,7 +55,7 @@ Assemble a QasmQobjInstruction
 
 <span id="qiskit.circuit.Instruction.broadcast_arguments" />
 
-`Instruction.broadcast_arguments(qargs, cargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/instruction.py "view source code")
+`Instruction.broadcast_arguments(qargs, cargs)`
 
 Validation of the arguments.
 
@@ -76,7 +76,7 @@ Validation of the arguments.
 
 <span id="qiskit.circuit.Instruction.c_if" />
 
-`Instruction.c_if(classical, val)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/instruction.py "view source code")
+`Instruction.c_if(classical, val)`
 
 Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
 
@@ -88,7 +88,7 @@ Set a classical equality condition on this instruction between the register or c
 
 <span id="qiskit.circuit.Instruction.copy" />
 
-`Instruction.copy(name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/instruction.py "view source code")
+`Instruction.copy(name=None)`
 
 Copy of the instruction.
 
@@ -110,7 +110,7 @@ updated if it was provided
 
 <span id="qiskit.circuit.Instruction.inverse" />
 
-`Instruction.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/instruction.py "view source code")
+`Instruction.inverse()`
 
 Invert this instruction.
 
@@ -134,7 +134,7 @@ a fresh instruction for the inverse
 
 <span id="qiskit.circuit.Instruction.is_parameterized" />
 
-`Instruction.is_parameterized()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/instruction.py "view source code")
+`Instruction.is_parameterized()`
 
 Return True .IFF. instruction is parameterized else False
 
@@ -142,7 +142,7 @@ Return True .IFF. instruction is parameterized else False
 
 <span id="qiskit.circuit.Instruction.qasm" />
 
-`Instruction.qasm()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/instruction.py "view source code")
+`Instruction.qasm()`
 
 Return a default OpenQASM string for the instruction.
 
@@ -152,7 +152,7 @@ Derived instructions may override this to print in a different format (e.g. meas
 
 <span id="qiskit.circuit.Instruction.repeat" />
 
-`Instruction.repeat(n)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/instruction.py "view source code")
+`Instruction.repeat(n)`
 
 Creates an instruction with gate repeated n amount of times.
 
@@ -176,7 +176,7 @@ Containing the definition.
 
 <span id="qiskit.circuit.Instruction.reverse_ops" />
 
-`Instruction.reverse_ops()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/instruction.py "view source code")
+`Instruction.reverse_ops()`
 
 For a composite instruction, reverse the order of sub-instructions.
 
@@ -196,7 +196,7 @@ sub-instructions reversed.
 
 <span id="qiskit.circuit.Instruction.soft_compare" />
 
-`Instruction.soft_compare(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/instruction.py "view source code")
+`Instruction.soft_compare(other)`
 
 Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
 
@@ -216,7 +216,7 @@ bool
 
 <span id="qiskit.circuit.Instruction.validate_parameter" />
 
-`Instruction.validate_parameter(parameter)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/instruction.py "view source code")
+`Instruction.validate_parameter(parameter)`
 
 Instruction parameters has no validation or normalization.
 

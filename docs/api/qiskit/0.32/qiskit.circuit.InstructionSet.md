@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.InstructionSet
 
 <span id="qiskit.circuit.InstructionSet" />
 
-`InstructionSet`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/instructionset.py "view source code")
+`InstructionSet` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/instructionset.py "view source code")
 
 Bases: `object`
 
@@ -26,7 +26,7 @@ The context (qargs and cargs that each instruction is attached to) is also store
 
 <span id="qiskit.circuit.InstructionSet.add" />
 
-`InstructionSet.add(gate, qargs, cargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/instructionset.py "view source code")
+`InstructionSet.add(gate, qargs, cargs)`
 
 Add an instruction and its context (where it is attached).
 
@@ -34,7 +34,7 @@ Add an instruction and its context (where it is attached).
 
 <span id="qiskit.circuit.InstructionSet.c_if" />
 
-`InstructionSet.c_if(classical, val)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/instructionset.py "view source code")
+`InstructionSet.c_if(classical, val)`
 
 Add condition on classical register to all instructions.
 
@@ -42,7 +42,7 @@ Add condition on classical register to all instructions.
 
 <span id="qiskit.circuit.InstructionSet.inverse" />
 
-`InstructionSet.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/instructionset.py "view source code")
+`InstructionSet.inverse()`
 
 Invert all instructions.
 

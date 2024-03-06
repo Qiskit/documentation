@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.optimizers.AQGD
 
 <span id="qiskit.aqua.components.optimizers.AQGD" />
 
-`AQGD(maxiter=1000, eta=3.0, tol=1e-06, disp=False, momentum=0.25)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/aqgd.py "view source code")
+`AQGD(maxiter=1000, eta=3.0, tol=1e-06, disp=False, momentum=0.25)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/aqgd.py "view source code")
 
 Analytic Quantum Gradient Descent (AQGD) optimizer.
 
@@ -91,7 +91,7 @@ Return setting
 
 <span id="qiskit.aqua.components.optimizers.AQGD.converged" />
 
-`AQGD.converged(objval, n=2)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/aqgd.py "view source code")
+`AQGD.converged(objval, n=2)`
 
 Determines if the objective function has converged by finding the difference between the current value and the previous n values.
 
@@ -112,7 +112,7 @@ bool
 
 <span id="qiskit.aqua.components.optimizers.AQGD.deriv" />
 
-`AQGD.deriv(j, params, obj)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/aqgd.py "view source code")
+`AQGD.deriv(j, params, obj)`
 
 Obtains the analytical quantum derivative of the objective function with respect to the jth parameter.
 
@@ -134,7 +134,7 @@ float
 
 <span id="qiskit.aqua.components.optimizers.AQGD.get_support_level" />
 
-`AQGD.get_support_level()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/aqgd.py "view source code")
+`AQGD.get_support_level()`
 
 Return support level dictionary
 
@@ -165,7 +165,7 @@ grad
 
 <span id="qiskit.aqua.components.optimizers.AQGD.optimize" />
 
-`AQGD.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/aqgd.py "view source code")
+`AQGD.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
 Perform optimization.
 
@@ -221,7 +221,7 @@ The options dictionary may be used internally by a given optimizer to pass addit
 
 <span id="qiskit.aqua.components.optimizers.AQGD.update" />
 
-`AQGD.update(j, params, deriv, mprev)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/aqgd.py "view source code")
+`AQGD.update(j, params, deriv, mprev)`
 
 Updates the jth parameter based on the derivative and previous momentum
 

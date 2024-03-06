@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.Clifford
 
 <span id="qiskit.quantum_info.Clifford" />
 
-`Clifford(data, validate=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/symplectic/clifford.py "view source code")
+`Clifford(data, validate=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/symplectic/clifford.py "view source code")
 
 An N-qubit unitary operator from the Clifford group.
 
@@ -115,7 +115,7 @@ Return a clone with qargs set
 
 <span id="qiskit.quantum_info.Clifford.__getitem__" />
 
-`Clifford.__getitem__(key)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/symplectic/clifford.py "view source code")
+`Clifford.__getitem__(key)`
 
 Return a stabilizer Pauli row
 
@@ -151,7 +151,7 @@ BaseOperator
 
 <span id="qiskit.quantum_info.Clifford.adjoint" />
 
-`Clifford.adjoint()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/symplectic/clifford.py "view source code")
+`Clifford.adjoint()`
 
 Return the conjugate transpose of the Clifford
 
@@ -159,7 +159,7 @@ Return the conjugate transpose of the Clifford
 
 <span id="qiskit.quantum_info.Clifford.compose" />
 
-`Clifford.compose(other, qargs=None, front=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/symplectic/clifford.py "view source code")
+`Clifford.compose(other, qargs=None, front=False)`
 
 Return the composed operator.
 
@@ -189,7 +189,7 @@ Composition (`@`) is defined as left matrix multiplication for matrix operators.
 
 <span id="qiskit.quantum_info.Clifford.conjugate" />
 
-`Clifford.conjugate()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/symplectic/clifford.py "view source code")
+`Clifford.conjugate()`
 
 Return the conjugate of the Clifford.
 
@@ -205,7 +205,7 @@ Make a deep copy of current operator.
 
 <span id="qiskit.quantum_info.Clifford.dot" />
 
-`Clifford.dot(other, qargs=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/symplectic/clifford.py "view source code")
+`Clifford.dot(other, qargs=None)`
 
 Return the right multiplied operator self \* other.
 
@@ -230,7 +230,7 @@ The operator self \* other.
 
 <span id="qiskit.quantum_info.Clifford.expand" />
 
-`Clifford.expand(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/symplectic/clifford.py "view source code")
+`Clifford.expand(other)`
 
 Return the tensor product operator other ⊗ self.
 
@@ -250,7 +250,7 @@ the tensor product operator other ⊗ self.
 
 <span id="qiskit.quantum_info.Clifford.from_circuit" />
 
-`static Clifford.from_circuit(circuit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/symplectic/clifford.py "view source code")
+`static Clifford.from_circuit(circuit)`
 
 Initialize from a QuantumCircuit or Instruction.
 
@@ -274,7 +274,7 @@ the Clifford object for the instruction.
 
 <span id="qiskit.quantum_info.Clifford.from_dict" />
 
-`static Clifford.from_dict(obj)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/symplectic/clifford.py "view source code")
+`static Clifford.from_dict(obj)`
 
 Load a Clifford from a dictionary
 
@@ -282,7 +282,7 @@ Load a Clifford from a dictionary
 
 <span id="qiskit.quantum_info.Clifford.from_label" />
 
-`static Clifford.from_label(label)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/symplectic/clifford.py "view source code")
+`static Clifford.from_label(label)`
 
 Return a tensor product of single-qubit Clifford gates.
 
@@ -340,7 +340,7 @@ Return tuple of input dimension for specified subsystems.
 
 <span id="qiskit.quantum_info.Clifford.is_unitary" />
 
-`Clifford.is_unitary()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/symplectic/clifford.py "view source code")
+`Clifford.is_unitary()`
 
 Return True if the Clifford table is valid.
 
@@ -474,7 +474,7 @@ BaseOperator
 
 <span id="qiskit.quantum_info.Clifford.tensor" />
 
-`Clifford.tensor(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/symplectic/clifford.py "view source code")
+`Clifford.tensor(other)`
 
 Return the tensor product operator self ⊗ other.
 
@@ -494,7 +494,7 @@ the tensor product operator self ⊗ other.
 
 <span id="qiskit.quantum_info.Clifford.to_circuit" />
 
-`Clifford.to_circuit()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/symplectic/clifford.py "view source code")
+`Clifford.to_circuit()`
 
 Return a QuantumCircuit implementing the Clifford.
 
@@ -517,7 +517,7 @@ a circuit implementation of the Clifford.
 
 <span id="qiskit.quantum_info.Clifford.to_dict" />
 
-`Clifford.to_dict()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/symplectic/clifford.py "view source code")
+`Clifford.to_dict()`
 
 Return dictionary represenation of Clifford object.
 
@@ -525,7 +525,7 @@ Return dictionary represenation of Clifford object.
 
 <span id="qiskit.quantum_info.Clifford.to_instruction" />
 
-`Clifford.to_instruction()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/symplectic/clifford.py "view source code")
+`Clifford.to_instruction()`
 
 Return a Gate instruction implementing the Clifford.
 
@@ -533,7 +533,7 @@ Return a Gate instruction implementing the Clifford.
 
 <span id="qiskit.quantum_info.Clifford.to_matrix" />
 
-`Clifford.to_matrix()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/symplectic/clifford.py "view source code")
+`Clifford.to_matrix()`
 
 Convert operator to Numpy matrix.
 
@@ -541,7 +541,7 @@ Convert operator to Numpy matrix.
 
 <span id="qiskit.quantum_info.Clifford.to_operator" />
 
-`Clifford.to_operator()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/symplectic/clifford.py "view source code")
+`Clifford.to_operator()`
 
 Convert to an Operator object.
 
@@ -549,7 +549,7 @@ Convert to an Operator object.
 
 <span id="qiskit.quantum_info.Clifford.transpose" />
 
-`Clifford.transpose()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/symplectic/clifford.py "view source code")
+`Clifford.transpose()`
 
 Return the transpose of the Clifford.
 

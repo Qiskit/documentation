@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.MCMT
 
 <span id="qiskit.circuit.library.MCMT" />
 
-`qiskit.circuit.library.MCMT(gate, num_ctrl_qubits, num_target_qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/mcmt.py "view source code")
+`qiskit.circuit.library.MCMT(gate, num_ctrl_qubits, num_target_qubits)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/mcmt.py "view source code")
 
 Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
@@ -92,7 +92,7 @@ Return the global phase of the current circuit scope in radians.
 
 ### instances
 
-`= 196`
+`= 192`
 
 <span id="qiskit.circuit.library.MCMT.layout" />
 
@@ -124,11 +124,35 @@ Return the number of ancillas.
 
 Return the number of ancilla qubits.
 
+<span id="qiskit.circuit.library.MCMT.num_captured_vars" />
+
+### num\_captured\_vars
+
+The number of runtime classical variables in the circuit marked as captured from an enclosing scope.
+
+This is the length of the `iter_captured_vars()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.MCMT.num_input_vars "qiskit.circuit.library.MCMT.num_input_vars") must be zero.
+
 <span id="qiskit.circuit.library.MCMT.num_clbits" />
 
 ### num\_clbits
 
 Return number of classical bits.
+
+<span id="qiskit.circuit.library.MCMT.num_declared_vars" />
+
+### num\_declared\_vars
+
+The number of runtime classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
+
+This is the length of the `iter_declared_vars()` iterable.
+
+<span id="qiskit.circuit.library.MCMT.num_input_vars" />
+
+### num\_input\_vars
+
+The number of runtime classical variables in the circuit marked as circuit inputs.
+
+This is the length of the `iter_input_vars()` iterable. If this is non-zero, [`num_captured_vars`](#qiskit.circuit.library.MCMT.num_captured_vars "qiskit.circuit.library.MCMT.num_captured_vars") must be zero.
 
 <span id="qiskit.circuit.library.MCMT.num_parameters" />
 
@@ -141,6 +165,14 @@ The number of parameter objects in the circuit.
 ### num\_qubits
 
 Return number of qubits.
+
+<span id="qiskit.circuit.library.MCMT.num_vars" />
+
+### num\_vars
+
+The number of runtime classical variables in the circuit.
+
+This is the length of the `iter_vars()` iterable.
 
 <span id="qiskit.circuit.library.MCMT.op_start_times" />
 

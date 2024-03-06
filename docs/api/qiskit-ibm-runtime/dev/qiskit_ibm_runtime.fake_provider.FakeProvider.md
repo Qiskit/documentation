@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeProvider
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeProvider" />
 
-`FakeProvider`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_provider.py "view source code")
+`FakeProvider` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_provider.py#L152-L221 "view source code")
 
 Fake provider containing fake V1 backends.
 
@@ -53,7 +53,7 @@ list\[Backend]
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeProvider.get_backend" />
 
-`get_backend(name=None, **kwargs)`
+`get_backend(name=None, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_provider.py#L159-L168 "view source code")
 
 Return a single backend matching the specified filtering.
 

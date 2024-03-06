@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.Measure
 
 <span id="qiskit.circuit.library.Measure" />
 
-`Measure`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/measure.py "view source code")
+`Measure` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/measure.py "view source code")
 
 Bases: `qiskit.circuit.instruction.Instruction`
 
@@ -24,7 +24,7 @@ Create new measurement instruction.
 
 <span id="qiskit.circuit.library.Measure.broadcast_arguments" />
 
-`Measure.broadcast_arguments(qargs, cargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/measure.py "view source code")
+`Measure.broadcast_arguments(qargs, cargs)`
 
 Validation of the arguments.
 

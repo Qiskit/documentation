@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.ParameterVector
 
 <span id="qiskit.circuit.ParameterVector" />
 
-`ParameterVector(name, length=0)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/parametervector.py "view source code")
+`ParameterVector(name, length=0)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/parametervector.py "view source code")
 
 Bases: `object`
 
@@ -22,7 +22,7 @@ ParameterVector class to quickly generate lists of parameters.
 
 <span id="qiskit.circuit.ParameterVector.index" />
 
-`ParameterVector.index(value)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/parametervector.py "view source code")
+`ParameterVector.index(value)`
 
 Returns first index of value.
 
@@ -30,7 +30,7 @@ Returns first index of value.
 
 <span id="qiskit.circuit.ParameterVector.resize" />
 
-`ParameterVector.resize(length)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/parametervector.py "view source code")
+`ParameterVector.resize(length)`
 
 Resize the parameter vector.
 

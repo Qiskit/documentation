@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.components.uncertainty_models.BernoulliDistribution
 
 <span id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution" />
 
-`BernoulliDistribution(p, low=0, high=1)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/uncertainty_models/bernoulli_distribution.py "view source code")
+`BernoulliDistribution(p, low=0, high=1)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/uncertainty_models/bernoulli_distribution.py "view source code")
 
 The Univariate Bernoulli Distribution.
 

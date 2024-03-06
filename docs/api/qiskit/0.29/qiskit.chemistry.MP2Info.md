@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.MP2Info
 
 <span id="qiskit.chemistry.MP2Info" />
 
-`MP2Info(qmolecule, threshold=1e-12)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/mp2info.py "view source code")
+`MP2Info(qmolecule, threshold=1e-12)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/mp2info.py "view source code")
 
 Bases: `object`
 
@@ -41,7 +41,7 @@ A utility class for MP2 info
 
 <span id="qiskit.chemistry.MP2Info.mp2_get_term_info" />
 
-`MP2Info.mp2_get_term_info(excitation_list, freeze_core=False, orbital_reduction=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/mp2info.py "view source code")
+`MP2Info.mp2_get_term_info(excitation_list, freeze_core=False, orbital_reduction=None)`
 
 With a reduced active space the set of used excitations can be less than allowing all available excitations. Given a (sub)set of excitations in the space this will return a list of correlation coefficients and a list of correlation energies ordered as per the excitation list provided.
 
@@ -67,7 +67,7 @@ Tuple(list, list)
 
 <span id="qiskit.chemistry.MP2Info.mp2_terms" />
 
-`MP2Info.mp2_terms(freeze_core=False, orbital_reduction=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/mp2info.py "view source code")
+`MP2Info.mp2_terms(freeze_core=False, orbital_reduction=None)`
 
 Gets the set of MP2 terms for the molecule taking into account index adjustments due to frozen core and/or other orbital reduction
 

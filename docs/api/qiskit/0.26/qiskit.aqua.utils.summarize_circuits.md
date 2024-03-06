@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.utils.summarize_circuits
 
 <span id="qiskit.aqua.utils.summarize_circuits" />
 
-`summarize_circuits(circuits)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/utils/circuit_utils.py "view source code")
+`summarize_circuits(circuits)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/utils/circuit_utils.py "view source code")
 
 ## Summarize circuits based on QuantumCircuit, and five metrics are summarized.
 

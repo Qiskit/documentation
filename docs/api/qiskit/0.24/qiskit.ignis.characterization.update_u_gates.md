@@ -12,7 +12,7 @@ python_api_name: qiskit.ignis.characterization.update_u_gates
 
 <span id="qiskit.ignis.characterization.update_u_gates" />
 
-`update_u_gates(drag_params, pi2_pulse_schedules=None, qubits=None, inst_map=None, drives=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/characterization/calibrations/ibmq_utils.py "view source code")
+`update_u_gates(drag_params, pi2_pulse_schedules=None, qubits=None, inst_map=None, drives=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/characterization/calibrations/ibmq_utils.py "view source code")
 
 Update the cmd\_def with new single qubit gate values
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.CollectAndCollapse
 
 <span id="qiskit.transpiler.passes.CollectAndCollapse" />
 
-`CollectAndCollapse(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/optimization/collect_and_collapse.py "view source code")
+`CollectAndCollapse(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/optimization/collect_and_collapse.py "view source code")
 
 Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -42,7 +42,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.CollectAndCollapse.run" />
 
-`CollectAndCollapse.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/optimization/collect_and_collapse.py "view source code")
+`CollectAndCollapse.run(dag)`
 
 Run the CollectLinearFunctions pass on dag. :param dag: the DAG to be optimized. :type dag: DAGCircuit
 

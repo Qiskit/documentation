@@ -12,7 +12,7 @@ python_api_name: qiskit.pulse.builder.set_phase
 
 <span id="qiskit.pulse.builder.set_phase" />
 
-`set_phase(phase, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/builder.py "view source code")
+`set_phase(phase, channel, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/builder.py "view source code")
 
 Set the `phase` of a pulse `channel`.
 

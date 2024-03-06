@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.converters.CircuitSampler
 
 <span id="qiskit.opflow.converters.CircuitSampler" />
 
-`qiskit.opflow.converters.CircuitSampler(backend, statevector=None, param_qobj=False, attach_results=False, caching='last')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/converters/circuit_sampler.py "view source code")
+`qiskit.opflow.converters.CircuitSampler(backend, statevector=None, param_qobj=False, attach_results=False, caching='last')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/converters/circuit_sampler.py "view source code")
 
 Bases: [`ConverterBase`](qiskit.opflow.converters.ConverterBase "qiskit.opflow.converters.converter_base.ConverterBase")
 

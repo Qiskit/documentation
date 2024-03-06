@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.instructions.Call
 
 <span id="qiskit.pulse.instructions.Call" />
 
-`Call(subroutine, value_dict=None, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/pulse/instructions/call.py "view source code")
+`Call(subroutine, value_dict=None, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/pulse/instructions/call.py "view source code")
 
 Bases: `qiskit.pulse.instructions.instruction.Instruction`
 
@@ -61,7 +61,7 @@ A new schedule with `schedule` a this instruction at t=0.
 
 <span id="qiskit.pulse.instructions.Call.assigned_subroutine" />
 
-`Call.assigned_subroutine()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/pulse/instructions/call.py "view source code")
+`Call.assigned_subroutine()`
 
 Returns this subroutine with the parameters assigned.
 
@@ -182,7 +182,7 @@ A new schedule with `schedule` inserted with this instruction at t=0.
 
 <span id="qiskit.pulse.instructions.Call.is_parameterized" />
 
-`Call.is_parameterized()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/pulse/instructions/call.py "view source code")
+`Call.is_parameterized()`
 
 Return True iff the instruction is parameterized.
 

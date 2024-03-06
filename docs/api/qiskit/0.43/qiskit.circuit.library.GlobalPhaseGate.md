@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.GlobalPhaseGate
 
 <span id="qiskit.circuit.library.GlobalPhaseGate" />
 
-`GlobalPhaseGate(phase, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/global_phase.py "view source code")
+`GlobalPhaseGate(phase, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/global_phase.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -40,7 +40,7 @@ $$
 
 <span id="qiskit.circuit.library.GlobalPhaseGate.inverse" />
 
-`GlobalPhaseGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/global_phase.py "view source code")
+`GlobalPhaseGate.inverse()`
 
 Return inverted GLobalPhaseGate gate.
 

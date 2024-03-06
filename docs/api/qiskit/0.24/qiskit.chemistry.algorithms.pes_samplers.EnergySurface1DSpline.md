@@ -12,7 +12,7 @@ python_api_name: qiskit.chemistry.algorithms.pes_samplers.EnergySurface1DSpline
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.EnergySurface1DSpline" />
 
-`EnergySurface1DSpline`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/algorithms/pes_samplers/potentials/energy_surface_spline.py "view source code")
+`EnergySurface1DSpline` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/algorithms/pes_samplers/potentials/energy_surface_spline.py "view source code")
 
 A simple cubic spline interpolation for the potential energy surface.
 

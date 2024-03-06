@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.GroverOperator
 
 <span id="qiskit.circuit.library.GroverOperator" />
 
-`GroverOperator(oracle, state_preparation=None, zero_reflection=None, reflection_qubits=None, insert_barriers=False, mcx_mode='noancilla', name='Q')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/grover_operator.py "view source code")
+`GroverOperator(oracle, state_preparation=None, zero_reflection=None, reflection_qubits=None, insert_barriers=False, mcx_mode='noancilla', name='Q')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/grover_operator.py "view source code")
 
 Bases: [`qiskit.circuit.quantumcircuit.QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 

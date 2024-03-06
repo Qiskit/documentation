@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.XXDecomposer
 
 <span id="qiskit.quantum_info.XXDecomposer" />
 
-`qiskit.quantum_info.XXDecomposer(basis_fidelity=1.0, euler_basis='U', embodiments=None, backup_optimizer=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/quantum_info/synthesis/xx_decompose/decomposer.py "view source code")
+`qiskit.quantum_info.XXDecomposer(basis_fidelity=1.0, euler_basis='U', embodiments=None, backup_optimizer=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/quantum_info/synthesis/xx_decompose/decomposer.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 

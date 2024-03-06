@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.Reset
 
 <span id="qiskit.circuit.library.Reset" />
 
-`Reset`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/reset.py "view source code")
+`Reset` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/reset.py "view source code")
 
 Bases: [`qiskit.circuit.instruction.Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 
@@ -40,7 +40,7 @@ Assemble a QasmQobjInstruction
 
 <span id="qiskit.circuit.library.Reset.broadcast_arguments" />
 
-`Reset.broadcast_arguments(qargs, cargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/reset.py "view source code")
+`Reset.broadcast_arguments(qargs, cargs)`
 
 Validation of the arguments.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.ml.datasets.gaussian
 
 <span id="qiskit.ml.datasets.gaussian" />
 
-`gaussian(training_size, test_size, n, plot_data=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/ml/datasets/gaussian.py "view source code")
+`gaussian(training_size, test_size, n, plot_data=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/ml/datasets/gaussian.py "view source code")
 
 returns gaussian dataset
 

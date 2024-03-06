@@ -12,7 +12,7 @@ python_api_name: qiskit.quantum_info.random_cnotdihedral
 
 <span id="qiskit.quantum_info.random_cnotdihedral" />
 
-`random_cnotdihedral(num_qubits, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/operators/dihedral/random.py "view source code")
+`random_cnotdihedral(num_qubits, seed=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/operators/dihedral/random.py "view source code")
 
 Return a random CNOTDihedral element.
 

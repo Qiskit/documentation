@@ -10,7 +10,7 @@ python_api_name: qiskit.dagcircuit.DAGDepNode
 
 <span id="qiskit.dagcircuit.DAGDepNode" />
 
-`DAGDepNode(type=None, op=None, name=None, qargs=None, cargs=None, condition=None, successors=None, predecessors=None, reachable=None, matchedwith=None, successorstovisit=None, isblocked=None, qindices=None, cindices=None, nid=- 1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/dagcircuit/dagdepnode.py "view source code")
+`DAGDepNode(type=None, op=None, name=None, qargs=None, cargs=None, condition=None, successors=None, predecessors=None, reachable=None, matchedwith=None, successorstovisit=None, isblocked=None, qindices=None, cindices=None, nid=- 1)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/dagcircuit/dagdepnode.py "view source code")
 
 Object to represent the information at a node in the DAGDependency().
 

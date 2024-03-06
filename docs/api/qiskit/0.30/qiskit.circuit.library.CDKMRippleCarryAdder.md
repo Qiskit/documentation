@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CDKMRippleCarryAdder
 
 <span id="qiskit.circuit.library.CDKMRippleCarryAdder" />
 
-`CDKMRippleCarryAdder(num_state_qubits, kind='full', name='CDKMRippleCarryAdder')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/arithmetic/adders/cdkm_ripple_carry_adder.py "view source code")
+`CDKMRippleCarryAdder(num_state_qubits, kind='full', name='CDKMRippleCarryAdder')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/arithmetic/adders/cdkm_ripple_carry_adder.py "view source code")
 
 Bases: `qiskit.circuit.library.arithmetic.adders.adder.Adder`
 

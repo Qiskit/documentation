@@ -1,7 +1,7 @@
 ---
 title: fake_provider
 description: API reference for qiskit.providers.fake_provider
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.providers.fake_provider
 ---
@@ -83,7 +83,7 @@ The V1 fake backends are based on a set of base classes:
 
 <span id="qiskit.providers.fake_provider.FakeBackend" />
 
-`qiskit.providers.fake_provider.FakeBackend(configuration, time_alive=10)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/providers/fake_provider/fake_backend.py "view source code")
+`qiskit.providers.fake_provider.FakeBackend(configuration, time_alive=10)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/providers/fake_provider/fake_backend.py "view source code")
 
 This is a dummy backend just for testing purposes.
 
@@ -96,7 +96,7 @@ FakeBackend initializer.
 
 <span id="qiskit.providers.fake_provider.FakeQasmBackend" />
 
-`qiskit.providers.fake_provider.FakeQasmBackend`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/providers/fake_provider/fake_qasm_backend.py "view source code")
+`qiskit.providers.fake_provider.FakeQasmBackend` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/providers/fake_provider/fake_qasm_backend.py "view source code")
 
 A fake OpenQASM backend.
 
@@ -109,7 +109,7 @@ FakeBackend initializer.
 
 <span id="qiskit.providers.fake_provider.FakePulseBackend" />
 
-`qiskit.providers.fake_provider.FakePulseBackend`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/providers/fake_provider/fake_pulse_backend.py "view source code")
+`qiskit.providers.fake_provider.FakePulseBackend` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/providers/fake_provider/fake_pulse_backend.py "view source code")
 
 A fake pulse backend.
 

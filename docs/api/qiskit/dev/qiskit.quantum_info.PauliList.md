@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.PauliList
 
 <span id="qiskit.quantum_info.PauliList" />
 
-`qiskit.quantum_info.PauliList(data)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/pauli_list.py "view source code")
+`qiskit.quantum_info.PauliList(data)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/pauli_list.py "view source code")
 
 Bases: `BasePauli`, `LinearMixin`, `GroupMixin`
 
@@ -605,6 +605,30 @@ matrix iterator object for the PauliList.
 **Return type**
 
 MatrixIterator
+
+### noncommutation\_graph
+
+<span id="qiskit.quantum_info.PauliList.noncommutation_graph" />
+
+`noncommutation_graph(qubit_wise)`
+
+Create the non-commutation graph of this PauliList.
+
+This transforms the measurement operator grouping problem into graph coloring problem. The constructed graph contains one node for each Pauli. The nodes will be connecting for any two Pauli terms that do \_not\_ commute.
+
+**Parameters**
+
+**qubit\_wise** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – whether the commutation rule is applied to the whole operator, or on a per-qubit basis.
+
+**Returns**
+
+**the non-commutation graph with nodes for each Pauli and edges**
+
+indicating a non-commutation relation. Each node will hold the index of the Pauli term it corresponds to in its data. The edges of the graph hold no data.
+
+**Return type**
+
+[rustworkx.PyGraph](https://www.rustworkx.org/apiref/rustworkx.PyGraph.html#rustworkx.PyGraph "(in rustworkx v0.14)")
 
 ### output\_dims
 

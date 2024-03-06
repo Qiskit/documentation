@@ -1,7 +1,7 @@
 ---
 title: passes
 description: API reference for qiskit.transpiler.passes
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.transpiler.passes
 ---
@@ -95,7 +95,7 @@ python_api_name: qiskit.transpiler.passes
 
 <span id="qiskit.transpiler.passes.rzx_templates" />
 
-`qiskit.transpiler.passes.rzx_templates(template_list=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/calibration/rzx_templates.py "view source code")
+`qiskit.transpiler.passes.rzx_templates(template_list=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/calibration/rzx_templates.py "view source code")
 
 Convenience function to get the cost\_dict and templates for template matching.
 

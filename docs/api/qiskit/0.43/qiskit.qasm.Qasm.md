@@ -10,7 +10,7 @@ python_api_name: qiskit.qasm.Qasm
 
 <span id="qiskit.qasm.Qasm" />
 
-`Qasm(filename=None, data=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/qasm/qasm.py "view source code")
+`Qasm(filename=None, data=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/qasm/qasm.py "view source code")
 
 Bases: `object`
 
@@ -26,7 +26,7 @@ Create an OPENQASM circuit object.
 
 <span id="qiskit.qasm.Qasm.generate_tokens" />
 
-`Qasm.generate_tokens()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/qasm/qasm.py "view source code")
+`Qasm.generate_tokens()`
 
 Returns a generator of the tokens.
 
@@ -36,7 +36,7 @@ Returns a generator of the tokens.
 
 <span id="qiskit.qasm.Qasm.parse" />
 
-`Qasm.parse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/qasm/qasm.py "view source code")
+`Qasm.parse()`
 
 Parse the data.
 
@@ -46,7 +46,7 @@ Parse the data.
 
 <span id="qiskit.qasm.Qasm.return_filename" />
 
-`Qasm.return_filename()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/qasm/qasm.py "view source code")
+`Qasm.return_filename()`
 
 Return the filename.
 

@@ -1,7 +1,7 @@
 ---
 title: tools
 description: API reference for qiskit.tools
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.tools
 ---
@@ -24,7 +24,7 @@ A helper function for calling a custom function with python `ProcessPoolExecutor
 
 <span id="qiskit.tools.parallel_map" />
 
-`qiskit.tools.parallel_map(task, values, task_args=(), task_kwargs={}, num_processes=2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/tools/parallel.py "view source code")
+`qiskit.tools.parallel_map(task, values, task_args=(), task_kwargs={}, num_processes=2)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/tools/parallel.py "view source code")
 
 Parallel execution of a mapping of values to the function task. This is functionally equivalent to:
 
@@ -81,7 +81,7 @@ A helper module to get IBM backend information and submitted job status.
 
 <span id="qiskit.tools.job_monitor" />
 
-`qiskit.tools.job_monitor(job, interval=None, quiet=False, output=<_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>, line_discipline='\r')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/tools/monitor/job_monitor.py "view source code")
+`qiskit.tools.job_monitor(job, interval=None, quiet=False, output=<_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>, line_discipline='\r')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/tools/monitor/job_monitor.py "view source code")
 
 Monitor the status of a IBMQJob instance.
 
@@ -115,7 +115,7 @@ job_monitor(job_sim)
 
 <span id="qiskit.tools.backend_monitor" />
 
-`qiskit.tools.backend_monitor(backend)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/tools/monitor/overview.py "view source code")
+`qiskit.tools.backend_monitor(backend)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/tools/monitor/overview.py "view source code")
 
 Monitor a single IBMQ backend.
 
@@ -136,7 +136,7 @@ Examples: .. code-block:: python
 
 <span id="qiskit.tools.backend_overview" />
 
-`qiskit.tools.backend_overview()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/tools/monitor/overview.py "view source code")
+`qiskit.tools.backend_overview()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/tools/monitor/overview.py "view source code")
 
 Gives overview information on all the IBMQ backends that are available.
 
@@ -159,7 +159,7 @@ A helper component for publishing and subscribing to events.
 
 <span id="qiskit.tools.events.TextProgressBar" />
 
-`qiskit.tools.events.TextProgressBar(output_handler=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/tools/events/progressbar.py "view source code")
+`qiskit.tools.events.TextProgressBar(output_handler=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/tools/events/progressbar.py "view source code")
 
 A simple text-based progress bar.
 

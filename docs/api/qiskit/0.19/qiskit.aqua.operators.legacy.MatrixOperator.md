@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.operators.legacy.MatrixOperator
 
 <span id="qiskit.aqua.operators.legacy.MatrixOperator" />
 
-`MatrixOperator(matrix, basis=None, z2_symmetries=None, atol=1e-12, name=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/legacy/matrix_operator.py "view source code")
+`MatrixOperator(matrix, basis=None, z2_symmetries=None, atol=1e-12, name=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/legacy/matrix_operator.py "view source code")
 
 Operators relevant for quantum applications
 
@@ -74,7 +74,7 @@ returns z2 symmetries
 
 <span id="qiskit.aqua.operators.legacy.MatrixOperator.__mul__" />
 
-`MatrixOperator.__mul__(other)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/legacy/matrix_operator.py "view source code")
+`MatrixOperator.__mul__(other)`
 
 Overload \* operation. Only support two Operators have the same representation mode.
 
@@ -94,13 +94,13 @@ the multiplied Operator.
 
 <span id="qiskit.aqua.operators.legacy.MatrixOperator.add" />
 
-`MatrixOperator.add(other, copy=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/legacy/matrix_operator.py "view source code")
+`MatrixOperator.add(other, copy=False)`
 
 ### chop
 
 <span id="qiskit.aqua.operators.legacy.MatrixOperator.chop" />
 
-`MatrixOperator.chop(threshold=None, copy=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/legacy/matrix_operator.py "view source code")
+`MatrixOperator.chop(threshold=None, copy=False)`
 
 Eliminate the real and imagine part of coeff in each pauli by threshold. If pauli’s coeff is less then threshold in both real and imagine parts, the pauli is removed. To align the internal representations, all available representations are chopped. The chopped result is stored back to original property. Note: if coeff is real-only, the imag part is skipped.
 
@@ -121,7 +121,7 @@ self or copy
 
 <span id="qiskit.aqua.operators.legacy.MatrixOperator.construct_evaluation_circuit" />
 
-`MatrixOperator.construct_evaluation_circuit(wave_function, statevector_mode=True, use_simulator_snapshot_mode=None, circuit_name_prefix='')`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/legacy/matrix_operator.py "view source code")
+`MatrixOperator.construct_evaluation_circuit(wave_function, statevector_mode=True, use_simulator_snapshot_mode=None, circuit_name_prefix='')`
 
 Construct the circuits for evaluation.
 
@@ -146,7 +146,7 @@ list\[[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCirc
 
 <span id="qiskit.aqua.operators.legacy.MatrixOperator.copy" />
 
-`MatrixOperator.copy()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/legacy/matrix_operator.py "view source code")
+`MatrixOperator.copy()`
 
 Get a copy of self.
 
@@ -154,7 +154,7 @@ Get a copy of self.
 
 <span id="qiskit.aqua.operators.legacy.MatrixOperator.evaluate_with_result" />
 
-`MatrixOperator.evaluate_with_result(result, statevector_mode=True, use_simulator_snapshot_mode=None, circuit_name_prefix='')`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/legacy/matrix_operator.py "view source code")
+`MatrixOperator.evaluate_with_result(result, statevector_mode=True, use_simulator_snapshot_mode=None, circuit_name_prefix='')`
 
 Use the executed result with operator to get the evaluated value.
 
@@ -181,7 +181,7 @@ float
 
 <span id="qiskit.aqua.operators.legacy.MatrixOperator.evaluate_with_statevector" />
 
-`MatrixOperator.evaluate_with_statevector(quantum_state)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/legacy/matrix_operator.py "view source code")
+`MatrixOperator.evaluate_with_statevector(quantum_state)`
 
 **Parameters**
 
@@ -203,7 +203,7 @@ float
 
 <span id="qiskit.aqua.operators.legacy.MatrixOperator.evolve" />
 
-`MatrixOperator.evolve(state_in, evo_time=0, num_time_slices=0, expansion_mode='trotter', expansion_order=1)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/legacy/matrix_operator.py "view source code")
+`MatrixOperator.evolve(state_in, evo_time=0, num_time_slices=0, expansion_mode='trotter', expansion_order=1)`
 
 Carry out the eoh evolution for the operator under supplied specifications.
 
@@ -232,7 +232,7 @@ numpy.array
 
 <span id="qiskit.aqua.operators.legacy.MatrixOperator.is_empty" />
 
-`MatrixOperator.is_empty()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/legacy/matrix_operator.py "view source code")
+`MatrixOperator.is_empty()`
 
 Check Operator is empty or not.
 
@@ -248,7 +248,7 @@ bool
 
 <span id="qiskit.aqua.operators.legacy.MatrixOperator.print_details" />
 
-`MatrixOperator.print_details()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/legacy/matrix_operator.py "view source code")
+`MatrixOperator.print_details()`
 
 **Returns**
 
@@ -262,13 +262,13 @@ str
 
 <span id="qiskit.aqua.operators.legacy.MatrixOperator.sub" />
 
-`MatrixOperator.sub(other, copy=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/legacy/matrix_operator.py "view source code")
+`MatrixOperator.sub(other, copy=False)`
 
 ### to\_opflow
 
 <span id="qiskit.aqua.operators.legacy.MatrixOperator.to_opflow" />
 
-`MatrixOperator.to_opflow()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/legacy/matrix_operator.py "view source code")
+`MatrixOperator.to_opflow()`
 
 to op flow
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.result.Result
 
 <span id="qiskit.result.Result" />
 
-`Result(backend_name, backend_version, qobj_id, job_id, success, results, date=None, status=None, header=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/result/result.py "view source code")
+`Result(backend_name, backend_version, qobj_id, job_id, success, results, date=None, status=None, header=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/result/result.py "view source code")
 
 Model for Results.
 

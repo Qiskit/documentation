@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.DenseLayout
 
 <span id="qiskit.transpiler.passes.DenseLayout" />
 
-`DenseLayout(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/layout/dense_layout.py "view source code")
+`DenseLayout(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/layout/dense_layout.py "view source code")
 
 Bases: `qiskit.transpiler.basepasses.AnalysisPass`
 
@@ -43,7 +43,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.DenseLayout.run" />
 
-`DenseLayout.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/layout/dense_layout.py "view source code")
+`DenseLayout.run(dag)`
 
 Run the DenseLayout pass on dag.
 

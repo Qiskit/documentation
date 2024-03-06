@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.PhaseEstimationScale
 
 <span id="qiskit.algorithms.PhaseEstimationScale" />
 
-`PhaseEstimationScale(bound)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/phase_estimators/phase_estimation_scale.py "view source code")
+`PhaseEstimationScale(bound)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/phase_estimators/phase_estimation_scale.py "view source code")
 
 Bases: `object`
 
@@ -32,7 +32,7 @@ Increasing `bound` decreases the part of the interval $[0, 1)$ that is used to m
 
 <span id="qiskit.algorithms.PhaseEstimationScale.from_pauli_sum" />
 
-`classmethod PhaseEstimationScale.from_pauli_sum(pauli_sum)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/phase_estimators/phase_estimation_scale.py "view source code")
+`classmethod PhaseEstimationScale.from_pauli_sum(pauli_sum)`
 
 Create a PhaseEstimationScale from a SummedOp representing a sum of Pauli Operators.
 
@@ -58,7 +58,7 @@ A `PhaseEstimationScale` object
 
 <span id="qiskit.algorithms.PhaseEstimationScale.scale_phase" />
 
-`PhaseEstimationScale.scale_phase(phi, id_coefficient=0.0)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/phase_estimators/phase_estimation_scale.py "view source code")
+`PhaseEstimationScale.scale_phase(phi, id_coefficient=0.0)`
 
 Convert a phase into an eigenvalue.
 
@@ -81,7 +81,7 @@ An eigenvalue computed from the input phase.
 
 <span id="qiskit.algorithms.PhaseEstimationScale.scale_phases" />
 
-`PhaseEstimationScale.scale_phases(phases, id_coefficient=0.0)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/phase_estimators/phase_estimation_scale.py "view source code")
+`PhaseEstimationScale.scale_phases(phases, id_coefficient=0.0)`
 
 Convert a list or dict of phases to eigenvalues.
 

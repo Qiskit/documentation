@@ -10,7 +10,7 @@ python_api_name: qiskit.primitives.BaseEstimator
 
 <span id="qiskit.primitives.BaseEstimator" />
 
-`BaseEstimator(circuits: Iterable[QuantumCircuit] | QuantumCircuit | None = None, observables: Iterable[SparsePauliOp] | SparsePauliOp | None = None, parameters: Iterable[Iterable[Parameter]] | None = None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/primitives/base/base_estimator.py "view source code")
+`BaseEstimator(circuits: Iterable[QuantumCircuit] | QuantumCircuit | None = None, observables: Iterable[SparsePauliOp] | SparsePauliOp | None = None, parameters: Iterable[Iterable[Parameter]] | None = None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/primitives/base/base_estimator.py "view source code")
 
 Bases: `qiskit.primitives.base.base_primitive.BasePrimitive`
 
@@ -37,7 +37,7 @@ Creating an instance of an Estimator, or using one in a `with` context opens a s
 
 <span id="qiskit.primitives.BaseEstimator.close" />
 
-`BaseEstimator.close()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/primitives/base/base_estimator.py "view source code")
+`BaseEstimator.close()`
 
 Close the session and free resources
 
@@ -45,7 +45,7 @@ Close the session and free resources
 
 <span id="qiskit.primitives.BaseEstimator.run" />
 
-`BaseEstimator.run(circuits, observables, parameter_values=None, **run_options)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/primitives/base/base_estimator.py "view source code")
+`BaseEstimator.run(circuits, observables, parameter_values=None, **run_options)`
 
 Run the job of the estimation of expectation value(s).
 

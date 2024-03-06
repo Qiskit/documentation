@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.mitigation.CTMPExpvalMeasMitigator
 
 <span id="qiskit.ignis.mitigation.CTMPExpvalMeasMitigator" />
 
-`CTMPExpvalMeasMitigator(generators, rates, num_qubits=None, seed=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/mitigation/expval/ctmp_mitigator.py "view source code")
+`CTMPExpvalMeasMitigator(generators, rates, num_qubits=None, seed=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/mitigation/expval/ctmp_mitigator.py "view source code")
 
 Bases: `qiskit.ignis.mitigation.expval.base_meas_mitigator.BaseExpvalMeasMitigator`
 
@@ -50,7 +50,7 @@ float
 
 <span id="qiskit.ignis.mitigation.CTMPExpvalMeasMitigator.assignment_matrix" />
 
-`CTMPExpvalMeasMitigator.assignment_matrix(qubits=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/mitigation/expval/ctmp_mitigator.py "view source code")
+`CTMPExpvalMeasMitigator.assignment_matrix(qubits=None)`
 
 Return the measurement assignment matrix for specified qubits.
 
@@ -72,7 +72,7 @@ np.ndarray
 
 <span id="qiskit.ignis.mitigation.CTMPExpvalMeasMitigator.expectation_value" />
 
-`CTMPExpvalMeasMitigator.expectation_value(counts, diagonal=None, qubits=None, clbits=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/mitigation/expval/ctmp_mitigator.py "view source code")
+`CTMPExpvalMeasMitigator.expectation_value(counts, diagonal=None, qubits=None, clbits=None)`
 
 Compute the mitigated expectation value of a diagonal observable.
 
@@ -103,7 +103,7 @@ The `clbits` kwarg is used to marginalize the input counts dictionary over the s
 
 <span id="qiskit.ignis.mitigation.CTMPExpvalMeasMitigator.generator_matrix" />
 
-`CTMPExpvalMeasMitigator.generator_matrix(qubits=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/mitigation/expval/ctmp_mitigator.py "view source code")
+`CTMPExpvalMeasMitigator.generator_matrix(qubits=None)`
 
 Return the generator matrix on the specified qubits.
 
@@ -125,7 +125,7 @@ sps.coo\_matrix
 
 <span id="qiskit.ignis.mitigation.CTMPExpvalMeasMitigator.mitigation_matrix" />
 
-`CTMPExpvalMeasMitigator.mitigation_matrix(qubits=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/mitigation/expval/ctmp_mitigator.py "view source code")
+`CTMPExpvalMeasMitigator.mitigation_matrix(qubits=None)`
 
 Return the measurement mitigation matrix for the specified qubits.
 
@@ -169,7 +169,7 @@ int
 
 <span id="qiskit.ignis.mitigation.CTMPExpvalMeasMitigator.noise_strength" />
 
-`CTMPExpvalMeasMitigator.noise_strength(qubits=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/mitigation/expval/ctmp_mitigator.py "view source code")
+`CTMPExpvalMeasMitigator.noise_strength(qubits=None)`
 
 Return the noise strength $gamma$ on the specified qubits
 
@@ -254,7 +254,7 @@ int
 
 <span id="qiskit.ignis.mitigation.CTMPExpvalMeasMitigator.seed" />
 
-`CTMPExpvalMeasMitigator.seed(value=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/mitigation/expval/ctmp_mitigator.py "view source code")
+`CTMPExpvalMeasMitigator.seed(value=None)`
 
 Set the seed for the quantum state RNG.
 

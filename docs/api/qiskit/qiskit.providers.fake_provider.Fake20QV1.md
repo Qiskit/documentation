@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.Fake20QV1
 
 <span id="qiskit.providers.fake_provider.Fake20QV1" />
 
-`qiskit.providers.fake_provider.Fake20QV1`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/providers/fake_provider/backends_v1/fake_20q/fake_20q.py "view source code")
+`qiskit.providers.fake_provider.Fake20QV1` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/providers/fake_provider/backends_v1/fake_20q/fake_20q.py "view source code")
 
 Bases: [`FakeQasmBackend`](providers_fake_provider#qiskit.providers.fake_provider.FakeQasmBackend "qiskit.providers.fake_provider.fake_qasm_backend.FakeQasmBackend")
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.CollectMultiQBlocks
 
 <span id="qiskit.transpiler.passes.CollectMultiQBlocks" />
 
-`CollectMultiQBlocks(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/optimization/collect_multiqubit_blocks.py "view source code")
+`CollectMultiQBlocks(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/optimization/collect_multiqubit_blocks.py "view source code")
 
 Bases: [`qiskit.transpiler.basepasses.AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
@@ -32,7 +32,7 @@ A Disjont Set Union data structure (DSU) is used to maintain blocks as gates are
 
 <span id="qiskit.transpiler.passes.CollectMultiQBlocks.find_set" />
 
-`CollectMultiQBlocks.find_set(index)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/optimization/collect_multiqubit_blocks.py "view source code")
+`CollectMultiQBlocks.find_set(index)`
 
 DSU function for finding root of set of items If my parent is myself, I am the root. Otherwise we recursively find the root for my parent. After that, we assign my parent to be my root, saving recursion in the future.
 
@@ -48,7 +48,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.CollectMultiQBlocks.run" />
 
-`CollectMultiQBlocks.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/optimization/collect_multiqubit_blocks.py "view source code")
+`CollectMultiQBlocks.run(dag)`
 
 Run the CollectMultiQBlocks pass on dag.
 
@@ -62,7 +62,7 @@ After the execution, `property_set['block_list']` is set to a list of tuples of 
 
 <span id="qiskit.transpiler.passes.CollectMultiQBlocks.union_set" />
 
-`CollectMultiQBlocks.union_set(set1, set2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/optimization/collect_multiqubit_blocks.py "view source code")
+`CollectMultiQBlocks.union_set(set1, set2)`
 
 DSU function for unioning two sets together Find the roots of each set. Then assign one to have the other as its parent, thus liking the sets. Merges smaller set into larger set in order to have better runtime
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.synthesis.aqc.ApproximateCircuit
 
 <span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit" />
 
-`ApproximateCircuit(num_qubits, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/synthesis/aqc/approximate.py "view source code")
+`ApproximateCircuit(num_qubits, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/synthesis/aqc/approximate.py "view source code")
 
 Bases: [`qiskit.circuit.quantumcircuit.QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), `abc.ABC`
 
@@ -27,7 +27,7 @@ A base class that represents an approximate circuit.
 
 <span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.build" />
 
-`abstract ApproximateCircuit.build(thetas)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/synthesis/aqc/approximate.py "view source code")
+`abstract ApproximateCircuit.build(thetas)`
 
 #### Constructs this circuit out of the parameters(thetas). Parameter values must be set before
 

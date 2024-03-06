@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.algorithms.EigensolverResult
 
 <span id="qiskit.aqua.algorithms.EigensolverResult" />
 
-`EigensolverResult(a_dict=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/eigen_solvers/eigen_solver.py "view source code")
+`EigensolverResult(a_dict=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/eigen_solvers/eigen_solver.py "view source code")
 
 Bases: `qiskit.aqua.algorithms.algorithm_result.AlgorithmResult`
 
@@ -54,7 +54,7 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 <span id="qiskit.aqua.algorithms.EigensolverResult.from_dict" />
 
-`static EigensolverResult.from_dict(a_dict)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/eigen_solvers/eigen_solver.py "view source code")
+`static EigensolverResult.from_dict(a_dict)`
 
 create new object from a dictionary
 

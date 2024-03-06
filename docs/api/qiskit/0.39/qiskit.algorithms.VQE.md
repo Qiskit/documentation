@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.VQE
 
 <span id="qiskit.algorithms.VQE" />
 
-`VQE(ansatz=None, optimizer=None, initial_point=None, gradient=None, expectation=None, include_custom=False, max_evals_grouped=1, callback=None, quantum_instance=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/minimum_eigen_solvers/vqe.py "view source code")
+`VQE(ansatz=None, optimizer=None, initial_point=None, gradient=None, expectation=None, include_custom=False, max_evals_grouped=1, callback=None, quantum_instance=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/minimum_eigen_solvers/vqe.py "view source code")
 
 Bases: `qiskit.algorithms.variational_algorithm.VariationalAlgorithm`, [`qiskit.algorithms.minimum_eigen_solvers.minimum_eigen_solver.MinimumEigensolver`](qiskit.algorithms.MinimumEigensolver "qiskit.algorithms.minimum_eigen_solvers.minimum_eigen_solver.MinimumEigensolver")
 
@@ -76,7 +76,7 @@ optimizer = partial(minimize, method="L-BFGS-B")
 
 <span id="qiskit.algorithms.VQE.compute_minimum_eigenvalue" />
 
-`VQE.compute_minimum_eigenvalue(operator, aux_operators=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/minimum_eigen_solvers/vqe.py "view source code")
+`VQE.compute_minimum_eigenvalue(operator, aux_operators=None)`
 
 Computes minimum eigenvalue. Operator and aux\_operators can be supplied here and if not None will override any already set into algorithm so it can be reused with different operators. While an operator is required by algorithms, aux\_operators are optional. To ‘remove’ a previous aux\_operators array use an empty list here.
 
@@ -97,7 +97,7 @@ MinimumEigensolverResult
 
 <span id="qiskit.algorithms.VQE.construct_circuit" />
 
-`VQE.construct_circuit(parameter, operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/minimum_eigen_solvers/vqe.py "view source code")
+`VQE.construct_circuit(parameter, operator)`
 
 Return the circuits used to compute the expectation value.
 
@@ -118,7 +118,7 @@ A list of the circuits used to compute the expectation value.
 
 <span id="qiskit.algorithms.VQE.construct_expectation" />
 
-`VQE.construct_expectation(parameter, operator, return_expectation=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/minimum_eigen_solvers/vqe.py "view source code")
+`VQE.construct_expectation(parameter, operator, return_expectation=False)`
 
 Generate the ansatz circuit and expectation value measurement, and return their runnable composition.
 
@@ -145,7 +145,7 @@ The Operator equalling the measurement of the ansatz `StateFn` by the Observable
 
 <span id="qiskit.algorithms.VQE.get_energy_evaluation" />
 
-`VQE.get_energy_evaluation(operator, return_expectation=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/minimum_eigen_solvers/vqe.py "view source code")
+`VQE.get_energy_evaluation(operator, return_expectation=False)`
 
 Returns a function handle to evaluates the energy at given parameters for the ansatz.
 
@@ -172,7 +172,7 @@ Energy of the hamiltonian of each parameter, and, optionally, the expectation co
 
 <span id="qiskit.algorithms.VQE.print_settings" />
 
-`VQE.print_settings()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/minimum_eigen_solvers/vqe.py "view source code")
+`VQE.print_settings()`
 
 Preparing the setting of VQE into a string.
 
@@ -188,7 +188,7 @@ str
 
 <span id="qiskit.algorithms.VQE.supports_aux_operators" />
 
-`classmethod VQE.supports_aux_operators()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/minimum_eigen_solvers/vqe.py "view source code")
+`classmethod VQE.supports_aux_operators()`
 
 Whether computing the expectation value of auxiliary operators is supported.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.IMFIL
 
 <span id="qiskit.algorithms.optimizers.IMFIL" />
 
-`IMFIL(maxiter=1000)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/imfil.py "view source code")
+`IMFIL(maxiter=1000)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/imfil.py "view source code")
 
 IMplicit FILtering algorithm.
 

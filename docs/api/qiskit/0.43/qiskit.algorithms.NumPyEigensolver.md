@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.NumPyEigensolver
 
 <span id="qiskit.algorithms.NumPyEigensolver" />
 
-`NumPyEigensolver(k=1, filter_criterion=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/eigen_solvers/numpy_eigen_solver.py "view source code")
+`NumPyEigensolver(k=1, filter_criterion=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/eigen_solvers/numpy_eigen_solver.py "view source code")
 
 Bases: [`Eigensolver`](qiskit.algorithms.Eigensolver "qiskit.algorithms.eigen_solvers.eigen_solver.Eigensolver")
 
@@ -41,7 +41,7 @@ NumPy Eigensolver computes up to the first $k$ eigenvalues of a complex-valued s
 
 <span id="qiskit.algorithms.NumPyEigensolver.compute_eigenvalues" />
 
-`NumPyEigensolver.compute_eigenvalues(operator, aux_operators=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/eigen_solvers/numpy_eigen_solver.py "view source code")
+`NumPyEigensolver.compute_eigenvalues(operator, aux_operators=None)`
 
 Computes eigenvalues. Operator and aux\_operators can be supplied here and if not None will override any already set into algorithm so it can be reused with different operators. While an operator is required by algorithms, aux\_operators are optional. To ‘remove’ a previous aux\_operators array use an empty list here.
 
@@ -64,7 +64,7 @@ EigensolverResult
 
 <span id="qiskit.algorithms.NumPyEigensolver.supports_aux_operators" />
 
-`classmethod NumPyEigensolver.supports_aux_operators()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/eigen_solvers/numpy_eigen_solver.py "view source code")
+`classmethod NumPyEigensolver.supports_aux_operators()`
 
 Whether computing the expectation value of auxiliary operators is supported.
 

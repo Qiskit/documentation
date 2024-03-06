@@ -1,7 +1,7 @@
 ---
 title: exceptions
 description: API reference for qiskit.exceptions
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.exceptions
 ---
@@ -26,7 +26,7 @@ All Qiskit-related exceptions raised by Qiskit are subclasses of the base:
 
 <span id="qiskit.exceptions.QiskitError" />
 
-`qiskit.exceptions.QiskitError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/exceptions.py "view source code")
+`qiskit.exceptions.QiskitError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/exceptions.py "view source code")
 
 Base class for errors raised by Qiskit.
 
@@ -44,7 +44,7 @@ Qiskit has several optional features that depend on other packages that are not 
 
 <span id="qiskit.exceptions.MissingOptionalLibraryError" />
 
-`qiskit.exceptions.MissingOptionalLibraryError(libname, name, pip_install=None, msg=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/exceptions.py "view source code")
+`qiskit.exceptions.MissingOptionalLibraryError(libname, name, pip_install=None, msg=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/exceptions.py "view source code")
 
 Raised when an optional library is missing.
 
@@ -56,7 +56,7 @@ Two more uncommon errors relate to failures in reading user-configuration files,
 
 <span id="qiskit.exceptions.QiskitUserConfigError" />
 
-`qiskit.exceptions.QiskitUserConfigError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/exceptions.py "view source code")
+`qiskit.exceptions.QiskitUserConfigError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/exceptions.py "view source code")
 
 Raised when an error is encountered reading a user config file.
 
@@ -66,7 +66,7 @@ Set the error message.
 
 <span id="qiskit.exceptions.InvalidFileError" />
 
-`qiskit.exceptions.InvalidFileError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/exceptions.py "view source code")
+`qiskit.exceptions.InvalidFileError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/exceptions.py "view source code")
 
 Raised when the file provided is not valid for the specific task.
 
@@ -80,7 +80,7 @@ Some particular features of Qiskit may raise custom warnings. In general, Qiskit
 
 <span id="qiskit.exceptions.QiskitWarning" />
 
-`qiskit.exceptions.QiskitWarning`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/exceptions.py "view source code")
+`qiskit.exceptions.QiskitWarning` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/exceptions.py "view source code")
 
 Common subclass of warnings for Qiskit-specific warnings being raised.
 
@@ -90,7 +90,7 @@ Related to [`MissingOptionalLibraryError`](#qiskit.exceptions.MissingOptionalLib
 
 <span id="qiskit.exceptions.OptionalDependencyImportWarning" />
 
-`qiskit.exceptions.OptionalDependencyImportWarning`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/exceptions.py "view source code")
+`qiskit.exceptions.OptionalDependencyImportWarning` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/exceptions.py "view source code")
 
 Raised when an optional library raises errors during its import.
 
@@ -104,7 +104,7 @@ When experimental features are being used, Qiskit will raise [`ExperimentalWarni
 
 <span id="qiskit.exceptions.ExperimentalWarning" />
 
-`qiskit.exceptions.ExperimentalWarning`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/exceptions.py "view source code")
+`qiskit.exceptions.ExperimentalWarning` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/exceptions.py "view source code")
 
 Raised when an experimental feature is being used.
 

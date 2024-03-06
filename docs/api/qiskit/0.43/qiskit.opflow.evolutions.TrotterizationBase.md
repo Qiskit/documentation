@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.evolutions.TrotterizationBase
 
 <span id="qiskit.opflow.evolutions.TrotterizationBase" />
 
-`TrotterizationBase(reps=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/evolutions/trotterizations/trotterization_base.py "view source code")
+`TrotterizationBase(reps=1)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/evolutions/trotterizations/trotterization_base.py "view source code")
 
 Bases: [`EvolutionBase`](qiskit.opflow.evolutions.EvolutionBase "qiskit.opflow.evolutions.evolution_base.EvolutionBase")
 
@@ -28,7 +28,7 @@ Deprecated: A base for Trotterization methods, algorithms for approximating expo
 
 <span id="qiskit.opflow.evolutions.TrotterizationBase.convert" />
 
-`abstract TrotterizationBase.convert(operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/evolutions/trotterizations/trotterization_base.py "view source code")
+`abstract TrotterizationBase.convert(operator)`
 
 Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`.
 

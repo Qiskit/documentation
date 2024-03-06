@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.Pauli
 
 <span id="qiskit.quantum_info.Pauli" />
 
-`qiskit.quantum_info.Pauli(data=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/quantum_info/operators/symplectic/pauli.py "view source code")
+`qiskit.quantum_info.Pauli(data=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/quantum_info/operators/symplectic/pauli.py "view source code")
 
 Bases: `BasePauli`
 

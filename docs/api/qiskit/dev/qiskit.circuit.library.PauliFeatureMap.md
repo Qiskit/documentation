@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.PauliFeatureMap
 
 <span id="qiskit.circuit.library.PauliFeatureMap" />
 
-`qiskit.circuit.library.PauliFeatureMap(feature_dimension=None, reps=2, entanglement='full', alpha=2.0, paulis=None, data_map_func=None, parameter_prefix='x', insert_barriers=False, name='PauliFeatureMap')`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/pauli_feature_map.py "view source code")
+`qiskit.circuit.library.PauliFeatureMap(feature_dimension=None, reps=2, entanglement='full', alpha=2.0, paulis=None, data_map_func=None, parameter_prefix='x', insert_barriers=False, name='PauliFeatureMap')` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/pauli_feature_map.py "view source code")
 
 Bases: [`NLocal`](qiskit.circuit.library.NLocal "qiskit.circuit.library.n_local.n_local.NLocal")
 
@@ -208,7 +208,7 @@ If barriers are inserted in between the layers or not.
 
 ### instances
 
-`= 206`
+`= 202`
 
 <span id="qiskit.circuit.library.PauliFeatureMap.layout" />
 
@@ -234,11 +234,35 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 
 Return the number of ancilla qubits.
 
+<span id="qiskit.circuit.library.PauliFeatureMap.num_captured_vars" />
+
+### num\_captured\_vars
+
+The number of runtime classical variables in the circuit marked as captured from an enclosing scope.
+
+This is the length of the `iter_captured_vars()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.PauliFeatureMap.num_input_vars "qiskit.circuit.library.PauliFeatureMap.num_input_vars") must be zero.
+
 <span id="qiskit.circuit.library.PauliFeatureMap.num_clbits" />
 
 ### num\_clbits
 
 Return number of classical bits.
+
+<span id="qiskit.circuit.library.PauliFeatureMap.num_declared_vars" />
+
+### num\_declared\_vars
+
+The number of runtime classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
+
+This is the length of the `iter_declared_vars()` iterable.
+
+<span id="qiskit.circuit.library.PauliFeatureMap.num_input_vars" />
+
+### num\_input\_vars
+
+The number of runtime classical variables in the circuit marked as circuit inputs.
+
+This is the length of the `iter_input_vars()` iterable. If this is non-zero, [`num_captured_vars`](#qiskit.circuit.library.PauliFeatureMap.num_captured_vars "qiskit.circuit.library.PauliFeatureMap.num_captured_vars") must be zero.
 
 <span id="qiskit.circuit.library.PauliFeatureMap.num_layers" />
 
@@ -269,6 +293,14 @@ Returns the number of qubits in this circuit.
 **Returns**
 
 The number of qubits.
+
+<span id="qiskit.circuit.library.PauliFeatureMap.num_vars" />
+
+### num\_vars
+
+The number of runtime classical variables in the circuit.
+
+This is the length of the `iter_vars()` iterable.
 
 <span id="qiskit.circuit.library.PauliFeatureMap.op_start_times" />
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.RCCXGate
 
 <span id="qiskit.circuit.library.RCCXGate" />
 
-`RCCXGate(label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/library/standard_gates/x.py "view source code")
+`RCCXGate(label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 Bases: `qiskit.circuit.gate.Gate`
 

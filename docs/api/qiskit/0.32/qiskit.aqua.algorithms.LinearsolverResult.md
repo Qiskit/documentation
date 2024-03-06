@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.algorithms.LinearsolverResult
 
 <span id="qiskit.aqua.algorithms.LinearsolverResult" />
 
-`LinearsolverResult(a_dict=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/linear_solvers/linear_solver_result.py "view source code")
+`LinearsolverResult(a_dict=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/linear_solvers/linear_solver_result.py "view source code")
 
 Bases: `qiskit.aqua.algorithms.algorithm_result.AlgorithmResult`
 
@@ -54,7 +54,7 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 <span id="qiskit.aqua.algorithms.LinearsolverResult.from_dict" />
 
-`static LinearsolverResult.from_dict(a_dict)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/linear_solvers/linear_solver_result.py "view source code")
+`static LinearsolverResult.from_dict(a_dict)`
 
 create new object from a dictionary
 

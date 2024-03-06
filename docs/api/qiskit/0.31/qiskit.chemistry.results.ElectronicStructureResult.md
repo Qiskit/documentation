@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.results.ElectronicStructureResult
 
 <span id="qiskit.chemistry.results.ElectronicStructureResult" />
 
-`ElectronicStructureResult(a_dict=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/results/electronic_structure_result.py "view source code")
+`ElectronicStructureResult(a_dict=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/results/electronic_structure_result.py "view source code")
 
 Bases: `qiskit.chemistry.results.eigenstate_result.EigenstateResult`
 
@@ -66,7 +66,7 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 <span id="qiskit.chemistry.results.ElectronicStructureResult.has_dipole" />
 
-`ElectronicStructureResult.has_dipole()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/results/electronic_structure_result.py "view source code")
+`ElectronicStructureResult.has_dipole()`
 
 Returns whether dipole moment is present in result or not
 
@@ -78,7 +78,7 @@ Returns whether dipole moment is present in result or not
 
 <span id="qiskit.chemistry.results.ElectronicStructureResult.has_observables" />
 
-`ElectronicStructureResult.has_observables()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/results/electronic_structure_result.py "view source code")
+`ElectronicStructureResult.has_observables()`
 
 Returns whether result has aux op observables such as spin, num particles
 

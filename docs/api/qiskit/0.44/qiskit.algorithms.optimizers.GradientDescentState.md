@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.GradientDescentState
 
 <span id="qiskit.algorithms.optimizers.GradientDescentState" />
 
-`qiskit.algorithms.optimizers.GradientDescentState(x, fun, jac, nfev, njev, nit, stepsize, learning_rate)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/optimizers/gradient_descent.py "view source code")
+`qiskit.algorithms.optimizers.GradientDescentState(x, fun, jac, nfev, njev, nit, stepsize, learning_rate)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/optimizers/gradient_descent.py "view source code")
 
 Bases: [`OptimizerState`](qiskit.algorithms.optimizers.OptimizerState "qiskit.algorithms.optimizers.steppable_optimizer.OptimizerState")
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.transforms.AlignEquispaced
 
 <span id="qiskit.pulse.transforms.AlignEquispaced" />
 
-`AlignEquispaced(duration)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/pulse/transforms/alignments.py "view source code")
+`AlignEquispaced(duration)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/pulse/transforms/alignments.py "view source code")
 
 Bases: `qiskit.pulse.transforms.alignments.AlignmentKind`
 
@@ -30,7 +30,7 @@ Create new equispaced context.
 
 <span id="qiskit.pulse.transforms.AlignEquispaced.align" />
 
-`AlignEquispaced.align(schedule)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/pulse/transforms/alignments.py "view source code")
+`AlignEquispaced.align(schedule)`
 
 Reallocate instructions according to the policy.
 
@@ -52,7 +52,7 @@ Schedule with reallocated instructions.
 
 <span id="qiskit.pulse.transforms.AlignEquispaced.to_dict" />
 
-`AlignEquispaced.to_dict()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/pulse/transforms/alignments.py "view source code")
+`AlignEquispaced.to_dict()`
 
 Returns dictionary to represent this alignment.
 

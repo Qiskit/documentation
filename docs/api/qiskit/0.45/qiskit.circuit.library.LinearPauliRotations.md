@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.LinearPauliRotations
 
 <span id="qiskit.circuit.library.LinearPauliRotations" />
 
-`qiskit.circuit.library.LinearPauliRotations(num_state_qubits=None, slope=1, offset=0, basis='Y', name='LinRot')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/arithmetic/linear_pauli_rotations.py "view source code")
+`qiskit.circuit.library.LinearPauliRotations(num_state_qubits=None, slope=1, offset=0, basis='Y', name='LinRot')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/arithmetic/linear_pauli_rotations.py "view source code")
 
 Bases: [`FunctionalPauliRotations`](qiskit.circuit.library.FunctionalPauliRotations "qiskit.circuit.library.arithmetic.functional_pauli_rotations.FunctionalPauliRotations")
 

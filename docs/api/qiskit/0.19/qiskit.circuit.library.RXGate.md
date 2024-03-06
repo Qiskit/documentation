@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.RXGate
 
 <span id="qiskit.circuit.library.RXGate" />
 
-`RXGate(theta, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/rx.py "view source code")
+`RXGate(theta, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/rx.py "view source code")
 
 Single-qubit rotation about the X axis.
 
@@ -149,7 +149,7 @@ Add classical condition on register classical and value val.
 
 <span id="qiskit.circuit.library.RXGate.control" />
 
-`RXGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/rx.py "view source code")
+`RXGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
 Return a (mutli-)controlled-RX gate.
 
@@ -193,7 +193,7 @@ updated if it was provided
 
 <span id="qiskit.circuit.library.RXGate.inverse" />
 
-`RXGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/rx.py "view source code")
+`RXGate.inverse()`
 
 Return inverted RX gate.
 
@@ -287,7 +287,7 @@ Containing the definition.
 
 <span id="qiskit.circuit.library.RXGate.to_matrix" />
 
-`RXGate.to_matrix()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/rx.py "view source code")
+`RXGate.to_matrix()`
 
 Return a numpy.array for the RX gate.
 

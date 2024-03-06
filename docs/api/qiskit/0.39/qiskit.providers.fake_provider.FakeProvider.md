@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeProvider
 
 <span id="qiskit.providers.fake_provider.FakeProvider" />
 
-`FakeProvider`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/fake_provider/fake_provider.py "view source code")
+`FakeProvider` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/fake_provider/fake_provider.py "view source code")
 
 Bases: [`qiskit.providers.provider.ProviderV1`](qiskit.providers.ProviderV1 "qiskit.providers.provider.ProviderV1")
 
@@ -24,7 +24,7 @@ Only filtering backends by name is implemented. This class contains all fake V1 
 
 <span id="qiskit.providers.fake_provider.FakeProvider.backends" />
 
-`FakeProvider.backends(name=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/fake_provider/fake_provider.py "view source code")
+`FakeProvider.backends(name=None, **kwargs)`
 
 Return a list of backends matching the specified filtering.
 
@@ -47,7 +47,7 @@ list\[[Backend](qiskit.providers.Backend "qiskit.providers.Backend")]
 
 <span id="qiskit.providers.fake_provider.FakeProvider.get_backend" />
 
-`FakeProvider.get_backend(name=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/fake_provider/fake_provider.py "view source code")
+`FakeProvider.get_backend(name=None, **kwargs)`
 
 Return a single backend matching the specified filtering.
 

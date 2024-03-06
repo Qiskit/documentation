@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.logging.IgnisLogging
 
 <span id="qiskit.ignis.logging.IgnisLogging" />
 
-`IgnisLogging(log_config_path=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/logging/ignis_logging.py "view source code")
+`IgnisLogging(log_config_path=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/logging/ignis_logging.py "view source code")
 
 Bases: `object`
 
@@ -36,7 +36,7 @@ max\_rotations: \<count> - maximum number of log files to rotate (oldest file is
 
 <span id="qiskit.ignis.logging.IgnisLogging.default_datetime_fmt" />
 
-`IgnisLogging.default_datetime_fmt()`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/logging/ignis_logging.py "view source code")
+`IgnisLogging.default_datetime_fmt()`
 
 Get the default date time format used for writing log entries
 
@@ -52,7 +52,7 @@ Default date time format
 
 <span id="qiskit.ignis.logging.IgnisLogging.get_file_handler" />
 
-`IgnisLogging.get_file_handler()`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/logging/ignis_logging.py "view source code")
+`IgnisLogging.get_file_handler()`
 
 Configure and retrieve the RotatingFileHandler object. Called on demand the first time IgnisLoggers needs to write to a file
 
@@ -68,7 +68,7 @@ RotatingFileHandler
 
 <span id="qiskit.ignis.logging.IgnisLogging.get_log_file" />
 
-`IgnisLogging.get_log_file()`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/logging/ignis_logging.py "view source code")
+`IgnisLogging.get_log_file()`
 
 Get the name of the log file
 
@@ -84,7 +84,7 @@ Name of the log file
 
 <span id="qiskit.ignis.logging.IgnisLogging.get_logger" />
 
-`IgnisLogging.get_logger(name)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/logging/ignis_logging.py "view source code")
+`IgnisLogging.get_logger(name)`
 
 Return an IgnisLogger object
 

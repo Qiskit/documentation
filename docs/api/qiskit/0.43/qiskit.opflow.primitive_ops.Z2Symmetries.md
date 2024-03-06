@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.primitive_ops.Z2Symmetries
 
 <span id="qiskit.opflow.primitive_ops.Z2Symmetries" />
 
-`Z2Symmetries(symmetries, sq_paulis, sq_list, tapering_values=None, tol=1e-14)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/primitive_ops/tapered_pauli_sum_op.py "view source code")
+`Z2Symmetries(symmetries, sq_paulis, sq_list, tapering_values=None, tol=1e-14)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/primitive_ops/tapered_pauli_sum_op.py "view source code")
 
 Bases: `object`
 
@@ -40,7 +40,7 @@ Deprecated: Z2 Symmetries
 
 <span id="qiskit.opflow.primitive_ops.Z2Symmetries.consistent_tapering" />
 
-`Z2Symmetries.consistent_tapering(operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/primitive_ops/tapered_pauli_sum_op.py "view source code")
+`Z2Symmetries.consistent_tapering(operator)`
 
 Tapering the operator with the same manner of how this tapered operator is created. i.e., using the same Cliffords and tapering values.
 
@@ -66,7 +66,7 @@ The tapered operator
 
 <span id="qiskit.opflow.primitive_ops.Z2Symmetries.convert_clifford" />
 
-`Z2Symmetries.convert_clifford(operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/primitive_ops/tapered_pauli_sum_op.py "view source code")
+`Z2Symmetries.convert_clifford(operator)`
 
 This method operates the first part of the tapering. It converts the operator by composing it with the clifford unitaries defined in the current symmetry.
 
@@ -92,7 +92,7 @@ This method operates the first part of the tapering. It converts the operator by
 
 <span id="qiskit.opflow.primitive_ops.Z2Symmetries.copy" />
 
-`Z2Symmetries.copy()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/primitive_ops/tapered_pauli_sum_op.py "view source code")
+`Z2Symmetries.copy()`
 
 Get a copy of self. :returns: copy
 
@@ -106,7 +106,7 @@ Get a copy of self. :returns: copy
 
 <span id="qiskit.opflow.primitive_ops.Z2Symmetries.find_Z2_symmetries" />
 
-`classmethod Z2Symmetries.find_Z2_symmetries(operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/primitive_ops/tapered_pauli_sum_op.py "view source code")
+`classmethod Z2Symmetries.find_Z2_symmetries(operator)`
 
 Finds Z2 Pauli-type symmetries of an Operator.
 
@@ -124,7 +124,7 @@ a z2\_symmetries object contains symmetries, single-qubit X, single-qubit list.
 
 <span id="qiskit.opflow.primitive_ops.Z2Symmetries.is_empty" />
 
-`Z2Symmetries.is_empty()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/primitive_ops/tapered_pauli_sum_op.py "view source code")
+`Z2Symmetries.is_empty()`
 
 Check the z2\_symmetries is empty or not. :returns: Empty or not
 
@@ -138,7 +138,7 @@ bool
 
 <span id="qiskit.opflow.primitive_ops.Z2Symmetries.taper" />
 
-`Z2Symmetries.taper(operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/primitive_ops/tapered_pauli_sum_op.py "view source code")
+`Z2Symmetries.taper(operator)`
 
 Taper an operator based on the z2\_symmetries info and sector defined by tapering\_values. The tapering\_values will be stored into the resulted operator for a record.
 
@@ -168,7 +168,7 @@ If tapering\_values is None
 
 <span id="qiskit.opflow.primitive_ops.Z2Symmetries.taper_clifford" />
 
-`Z2Symmetries.taper_clifford(operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/primitive_ops/tapered_pauli_sum_op.py "view source code")
+`Z2Symmetries.taper_clifford(operator)`
 
 This method operates the second part of the tapering. This function assumes that the input operators have already been transformed using [`convert_clifford()`](qiskit.opflow.primitive_ops.Z2Symmetries#convert_clifford "qiskit.opflow.primitive_ops.Z2Symmetries.convert_clifford"). The redundant qubits due to the symmetries are dropped and replaced by their two possible eigenvalues. The tapering\_values will be stored into the resulted operator for a record.
 

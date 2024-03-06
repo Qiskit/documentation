@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.FlowController
 
 <span id="qiskit.transpiler.FlowController" />
 
-`FlowController(passes, options, **partial_controller)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/runningpassmanager.py "view source code")
+`FlowController(passes, options, **partial_controller)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/runningpassmanager.py "view source code")
 
 Base class for multiple types of working list.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.operators.evolutions.PauliTrotterEvolution
 
 <span id="qiskit.aqua.operators.evolutions.PauliTrotterEvolution" />
 
-`PauliTrotterEvolution(trotter_mode='trotter', reps=1)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/evolutions/pauli_trotter_evolution.py "view source code")
+`PauliTrotterEvolution(trotter_mode='trotter', reps=1)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/evolutions/pauli_trotter_evolution.py "view source code")
 
 An Evolution algorithm replacing exponentiated sums of Paulis by changing them each to the Z basis, rotating with an rZ, changing back, and trotterizing.
 
@@ -46,7 +46,7 @@ TrotterizationBase used to evolve SummedOps.
 
 <span id="qiskit.aqua.operators.evolutions.PauliTrotterEvolution.convert" />
 
-`PauliTrotterEvolution.convert(operator)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/evolutions/pauli_trotter_evolution.py "view source code")
+`PauliTrotterEvolution.convert(operator)`
 
 Traverse the operator, replacing `EvolvedOps` with `CircuitOps` containing trotterized evolutions equalling the exponentiation of -i \* operator.
 
@@ -66,7 +66,7 @@ The converted operator.
 
 <span id="qiskit.aqua.operators.evolutions.PauliTrotterEvolution.evolution_for_abelian_paulisum" />
 
-`PauliTrotterEvolution.evolution_for_abelian_paulisum(op_sum)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/evolutions/pauli_trotter_evolution.py "view source code")
+`PauliTrotterEvolution.evolution_for_abelian_paulisum(op_sum)`
 
 Evolution for abelian pauli sum
 
@@ -78,7 +78,7 @@ Evolution for abelian pauli sum
 
 <span id="qiskit.aqua.operators.evolutions.PauliTrotterEvolution.evolution_for_pauli" />
 
-`PauliTrotterEvolution.evolution_for_pauli(pauli_op)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/evolutions/pauli_trotter_evolution.py "view source code")
+`PauliTrotterEvolution.evolution_for_pauli(pauli_op)`
 
 Compute evolution Operator for a single Pauli using a `PauliBasisChange`.
 

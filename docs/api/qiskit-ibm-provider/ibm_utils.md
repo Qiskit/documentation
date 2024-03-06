@@ -1,7 +1,7 @@
 ---
 title: utils
 description: API reference for qiskit_ibm_provider.utils
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit_ibm_provider.utils
 ---
@@ -44,7 +44,7 @@ Message broker for the Publisher / Subscriber mechanism
 
 <span id="qiskit_ibm_provider.utils.pubsub.Publisher" />
 
-`Publisher`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/utils/pubsub.py "view source code")
+`Publisher` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/utils/pubsub.py#L140-L155 "view source code")
 
 Represents a “publisher”.
 
@@ -58,7 +58,7 @@ Publisher().publish("event", args, ... )
 
 <span id="qiskit_ibm_provider.utils.pubsub.Publisher.publish" />
 
-`publish(event, *args, **kwargs)`
+`publish(event, *args, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/utils/pubsub.py#L152-L155 "view source code")
 
 Triggers an event, and associates some data to it, so if there are any subscribers, their callback will be called synchronously.
 
@@ -68,7 +68,7 @@ Triggers an event, and associates some data to it, so if there are any subscribe
 
 <span id="qiskit_ibm_provider.utils.pubsub.Subscriber" />
 
-`Subscriber`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/utils/pubsub.py "view source code")
+`Subscriber` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/utils/pubsub.py#L158-L182 "view source code")
 
 Represents a “subscriber”.
 
@@ -78,7 +78,7 @@ Every component (class) can become a [`Subscriber`](#qiskit_ibm_provider.utils.p
 
 <span id="qiskit_ibm_provider.utils.pubsub.Subscriber.clear" />
 
-`clear()`
+`clear()` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/utils/pubsub.py#L180-L182 "view source code")
 
 Unsubscribe everything
 
@@ -90,7 +90,7 @@ Unsubscribe everything
 
 <span id="qiskit_ibm_provider.utils.pubsub.Subscriber.subscribe" />
 
-`subscribe(event, callback)`
+`subscribe(event, callback)` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/utils/pubsub.py#L168-L173 "view source code")
 
 Subscribes to an event, associating a callback function to that event, so when the event occurs, the callback will be called.
 
@@ -104,7 +104,7 @@ This is a blocking call, so try to keep callbacks as lightweight as possible.
 
 <span id="qiskit_ibm_provider.utils.pubsub.Subscriber.unsubscribe" />
 
-`unsubscribe(event, callback)`
+`unsubscribe(event, callback)` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/utils/pubsub.py#L175-L178 "view source code")
 
 Unsubscribe a pair event-callback, so the callback will not be called anymore when the event occurs.
 

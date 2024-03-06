@@ -10,7 +10,7 @@ python_api_name: qiskit.passmanager.FlowController
 
 <span id="qiskit.passmanager.FlowController" />
 
-`qiskit.passmanager.FlowController(options=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/passmanager/flow_controllers.py "view source code")
+`qiskit.passmanager.FlowController(options=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/passmanager/flow_controllers.py "view source code")
 
 Bases: [`BaseController`](qiskit.passmanager.BaseController "qiskit.passmanager.base_tasks.BaseController")
 
@@ -54,9 +54,7 @@ This creates a nested flow controller that runs when the value `x` in the [`Prop
 
 <span id="qiskit.passmanager.FlowController.registered_controllers" />
 
-### registered\_controllers = \{'condition'
-
-`= {'condition':`
+### registered\_controllers
 
 `= {'condition': , 'do_while': }`
 

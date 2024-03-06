@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.state_fidelities.ComputeUncompute
 
 <span id="qiskit.algorithms.state_fidelities.ComputeUncompute" />
 
-`qiskit.algorithms.state_fidelities.ComputeUncompute(sampler, options=None, local=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/state_fidelities/compute_uncompute.py "view source code")
+`qiskit.algorithms.state_fidelities.ComputeUncompute(sampler, options=None, local=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/state_fidelities/compute_uncompute.py "view source code")
 
 Bases: [`BaseStateFidelity`](qiskit.algorithms.state_fidelities.BaseStateFidelity "qiskit.algorithms.state_fidelities.base_state_fidelity.BaseStateFidelity")
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.Measure
 
 <span id="qiskit.circuit.library.Measure" />
 
-`qiskit.circuit.library.Measure(*args, _force_mutable=False, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/measure.py "view source code")
+`qiskit.circuit.library.Measure(*args, _force_mutable=False, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/measure.py "view source code")
 
 Bases: [`SingletonInstruction`](circuit_singleton#qiskit.circuit.singleton.SingletonInstruction "qiskit.circuit.singleton.SingletonInstruction")
 

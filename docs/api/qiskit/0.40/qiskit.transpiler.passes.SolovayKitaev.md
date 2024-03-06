@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.SolovayKitaev
 
 <span id="qiskit.transpiler.passes.SolovayKitaev" />
 
-`SolovayKitaev(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/synthesis/solovay_kitaev_synthesis.py "view source code")
+`SolovayKitaev(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/synthesis/solovay_kitaev_synthesis.py "view source code")
 
 Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -107,7 +107,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.SolovayKitaev.run" />
 
-`SolovayKitaev.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/synthesis/solovay_kitaev_synthesis.py "view source code")
+`SolovayKitaev.run(dag)`
 
 Run the `SolovayKitaev` pass on dag.
 

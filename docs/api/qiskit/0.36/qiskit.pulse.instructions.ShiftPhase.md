@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.instructions.ShiftPhase
 
 <span id="qiskit.pulse.instructions.ShiftPhase" />
 
-`ShiftPhase(phase, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/instructions/phase.py "view source code")
+`ShiftPhase(phase, channel, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/instructions/phase.py "view source code")
 
 Bases: `qiskit.pulse.instructions.instruction.Instruction`
 
@@ -162,7 +162,7 @@ A new schedule with `schedule` inserted with this instruction at t=0.
 
 <span id="qiskit.pulse.instructions.ShiftPhase.is_parameterized" />
 
-`ShiftPhase.is_parameterized()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/instructions/phase.py "view source code")
+`ShiftPhase.is_parameterized()`
 
 Return True iff the instruction is parameterized.
 

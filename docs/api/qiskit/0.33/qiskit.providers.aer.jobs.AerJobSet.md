@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.jobs.AerJobSet
 
 <span id="qiskit.providers.aer.jobs.AerJobSet" />
 
-`AerJobSet(backend, job_id, fn, experiments, executor=None)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/providers/aer/jobs/aerjobset.py "view source code")
+`AerJobSet(backend, job_id, fn, experiments, executor=None)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/providers/aer/jobs/aerjobset.py "view source code")
 
 Bases: `qiskit.providers.job.JobV1`
 
@@ -46,7 +46,7 @@ Return the backend where this job was executed.
 
 <span id="qiskit.providers.aer.jobs.AerJobSet.cancel" />
 
-`AerJobSet.cancel()`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/providers/aer/jobs/aerjobset.py "view source code")
+`AerJobSet.cancel()`
 
 Cancel all jobs in this job set.
 
@@ -82,7 +82,7 @@ Return whether the job has successfully run.
 
 <span id="qiskit.providers.aer.jobs.AerJobSet.executor" />
 
-`AerJobSet.executor()`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/providers/aer/jobs/aerjobset.py "view source code")
+`AerJobSet.executor()`
 
 Return the executor for this job
 
@@ -102,7 +102,7 @@ Return whether the job is in a final job state such as `DONE` or `ERROR`.
 
 <span id="qiskit.providers.aer.jobs.AerJobSet.job" />
 
-`AerJobSet.job(experiment)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/providers/aer/jobs/aerjobset.py "view source code")
+`AerJobSet.job(experiment)`
 
 Retrieve the job used to submit the specified experiment and its index.
 
@@ -144,7 +144,7 @@ Return a unique id identifying the job.
 
 <span id="qiskit.providers.aer.jobs.AerJobSet.result" />
 
-`AerJobSet.result(timeout=None)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/providers/aer/jobs/aerjobset.py "view source code")
+`AerJobSet.result(timeout=None)`
 
 Return the results of the jobs as a single Result object.
 
@@ -182,7 +182,7 @@ Return whether the job is actively running.
 
 <span id="qiskit.providers.aer.jobs.AerJobSet.status" />
 
-`AerJobSet.status(worker)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/providers/aer/jobs/aerjobset.py "view source code")
+`AerJobSet.status(worker)`
 
 Return the status of each job in this set.
 
@@ -202,7 +202,7 @@ A list of job statuses.
 
 <span id="qiskit.providers.aer.jobs.AerJobSet.submit" />
 
-`AerJobSet.submit()`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/providers/aer/jobs/aerjobset.py "view source code")
+`AerJobSet.submit()`
 
 Execute this set of jobs on an executor.
 
@@ -246,7 +246,7 @@ Poll the job status until it progresses to a final state such as `DONE` or `ERRO
 
 <span id="qiskit.providers.aer.jobs.AerJobSet.worker" />
 
-`AerJobSet.worker(experiment)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/providers/aer/jobs/aerjobset.py "view source code")
+`AerJobSet.worker(experiment)`
 
 Retrieve the index of job.
 
@@ -276,7 +276,7 @@ list or integer value of the job id
 
 <span id="qiskit.providers.aer.jobs.AerJobSet.worker_job" />
 
-`AerJobSet.worker_job(worker)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/providers/aer/jobs/aerjobset.py "view source code")
+`AerJobSet.worker_job(worker)`
 
 Retrieve the job specified with job’s id
 
@@ -300,7 +300,7 @@ A list of `AerJob` instances that represents the submitted jobs.
 
 <span id="qiskit.providers.aer.jobs.AerJobSet.worker_results" />
 
-`AerJobSet.worker_results(worker, timeout=None)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/providers/aer/jobs/aerjobset.py "view source code")
+`AerJobSet.worker_results(worker, timeout=None)`
 
 Return the result of the jobs specified with worker\_id.
 

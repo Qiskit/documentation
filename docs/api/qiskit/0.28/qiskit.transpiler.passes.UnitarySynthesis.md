@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.UnitarySynthesis
 
 <span id="qiskit.transpiler.passes.UnitarySynthesis" />
 
-`UnitarySynthesis(basis_gates, approximation_degree=1, coupling_map=None, backend_props=None, pulse_optimize=None, natural_direction=None, synth_gates=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/synthesis/unitary_synthesis.py "view source code")
+`UnitarySynthesis(basis_gates, approximation_degree=1, coupling_map=None, backend_props=None, pulse_optimize=None, natural_direction=None, synth_gates=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/synthesis/unitary_synthesis.py "view source code")
 
 Synthesize gates according to their basis gates.
 

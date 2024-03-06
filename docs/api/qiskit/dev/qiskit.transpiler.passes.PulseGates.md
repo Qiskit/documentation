@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.PulseGates
 
 <span id="qiskit.transpiler.passes.PulseGates" />
 
-`qiskit.transpiler.passes.PulseGates(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/transpiler/passes/calibration/pulse_gate.py "view source code")
+`qiskit.transpiler.passes.PulseGates(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/transpiler/passes/calibration/pulse_gate.py "view source code")
 
 Bases: `CalibrationBuilder`
 

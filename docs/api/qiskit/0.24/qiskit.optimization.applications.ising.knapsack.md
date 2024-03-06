@@ -1,7 +1,7 @@
 ---
 title: knapsack
 description: API reference for qiskit.optimization.applications.ising.knapsack
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.optimization.applications.ising.knapsack
 ---
@@ -30,7 +30,7 @@ If we have the weights w\[i], the values v\[i] and the maximum weight W\_max. We
 
 <span id="qiskit.optimization.applications.ising.knapsack.get_operator" />
 
-`get_operator(values, weights, max_weight)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/knapsack.py "view source code")
+`get_operator(values, weights, max_weight)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/knapsack.py "view source code")
 
 Generate Hamiltonian for the knapsack problem.
 
@@ -69,7 +69,7 @@ operator for the Hamiltonian float: a constant shift for the obj function.
 
 <span id="qiskit.optimization.applications.ising.knapsack.get_solution" />
 
-`get_solution(x, values)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/knapsack.py "view source code")
+`get_solution(x, values)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/knapsack.py "view source code")
 
 Get the solution to the knapsack problem from the bitstring that represents to the ground state of the Hamiltonian
 
@@ -92,7 +92,7 @@ numpy.ndarray
 
 <span id="qiskit.optimization.applications.ising.knapsack.knapsack_value_weight" />
 
-`knapsack_value_weight(solution, values, weights)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/knapsack.py "view source code")
+`knapsack_value_weight(solution, values, weights)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/knapsack.py "view source code")
 
 Get the total wight and value of the items taken in the knapsack.
 

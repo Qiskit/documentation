@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.library.Drag
 
 <span id="qiskit.pulse.library.Drag" />
 
-`Drag(duration, amp, sigma, beta, name=None, limit_amplitude=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/library/parametric_pulses.py "view source code")
+`Drag(duration, amp, sigma, beta, name=None, limit_amplitude=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/library/parametric_pulses.py "view source code")
 
 Bases: `qiskit.pulse.library.parametric_pulses.ParametricPulse`
 
@@ -90,7 +90,7 @@ Visualization output data. The returned data type depends on the `plotter`. If m
 
 <span id="qiskit.pulse.library.Drag.get_waveform" />
 
-`Drag.get_waveform()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/library/parametric_pulses.py "view source code")
+`Drag.get_waveform()`
 
 Return a Waveform with samples filled according to the formula that the pulse represents and the parameter values it contains.
 
@@ -114,7 +114,7 @@ Return True iff the instruction is parameterized.
 
 <span id="qiskit.pulse.library.Drag.validate_parameters" />
 
-`Drag.validate_parameters()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/library/parametric_pulses.py "view source code")
+`Drag.validate_parameters()`
 
 Validate parameters.
 

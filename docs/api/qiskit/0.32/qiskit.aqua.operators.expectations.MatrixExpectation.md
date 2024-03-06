@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.operators.expectations.MatrixExpectation
 
 <span id="qiskit.aqua.operators.expectations.MatrixExpectation" />
 
-`MatrixExpectation`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/expectations/matrix_expectation.py "view source code")
+`MatrixExpectation` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/expectations/matrix_expectation.py "view source code")
 
 Bases: `qiskit.aqua.operators.expectations.expectation_base.ExpectationBase`
 
@@ -22,7 +22,7 @@ An Expectation converter which converts Operator measurements to be matrix-based
 
 <span id="qiskit.aqua.operators.expectations.MatrixExpectation.compute_variance" />
 
-`MatrixExpectation.compute_variance(exp_op)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/expectations/matrix_expectation.py "view source code")
+`MatrixExpectation.compute_variance(exp_op)`
 
 Compute the variance of the expectation estimator. Because this expectation works by matrix multiplication, the estimation is exact and the variance is always 0, but we need to return those values in a way which matches the Operator’s structure.
 
@@ -42,7 +42,7 @@ The variances or lists thereof (if exp\_op contains ListOps) of the expectation 
 
 <span id="qiskit.aqua.operators.expectations.MatrixExpectation.convert" />
 
-`MatrixExpectation.convert(operator)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/expectations/matrix_expectation.py "view source code")
+`MatrixExpectation.convert(operator)`
 
 Accept an Operator and return a new Operator with the Pauli measurements replaced by Matrix based measurements.
 

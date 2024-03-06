@@ -10,7 +10,7 @@ python_api_name: qiskit.qobj.QasmQobjExperiment
 
 <span id="qiskit.qobj.QasmQobjExperiment" />
 
-`QasmQobjExperiment(config=None, header=None, instructions=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/qobj/qasm_qobj.py "view source code")
+`QasmQobjExperiment(config=None, header=None, instructions=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/qobj/qasm_qobj.py "view source code")
 
 A QASM Qobj Experiment.
 
@@ -30,7 +30,7 @@ Instatiate a QasmQobjExperiment.
 
 <span id="qiskit.qobj.QasmQobjExperiment.from_dict" />
 
-`classmethod QasmQobjExperiment.from_dict(data)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/qobj/qasm_qobj.py "view source code")
+`classmethod QasmQobjExperiment.from_dict(data)`
 
 Create a new QasmQobjExperiment object from a dictionary.
 
@@ -50,7 +50,7 @@ The object from the input dictionary.
 
 <span id="qiskit.qobj.QasmQobjExperiment.to_dict" />
 
-`QasmQobjExperiment.to_dict()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/qobj/qasm_qobj.py "view source code")
+`QasmQobjExperiment.to_dict()`
 
 Return a dictionary format representation of the Experiment.
 

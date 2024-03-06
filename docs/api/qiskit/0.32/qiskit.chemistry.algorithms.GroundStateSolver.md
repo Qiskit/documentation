@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.algorithms.GroundStateSolver
 
 <span id="qiskit.chemistry.algorithms.GroundStateSolver" />
 
-`GroundStateSolver(transformation)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/ground_state_solvers/ground_state_solver.py "view source code")
+`GroundStateSolver(transformation)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/ground_state_solvers/ground_state_solver.py "view source code")
 
 Bases: `abc.ABC`
 
@@ -26,7 +26,7 @@ The ground state calculation interface
 
 <span id="qiskit.chemistry.algorithms.GroundStateSolver.evaluate_operators" />
 
-`abstract GroundStateSolver.evaluate_operators(state, operators)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/ground_state_solvers/ground_state_solver.py "view source code")
+`abstract GroundStateSolver.evaluate_operators(state, operators)`
 
 Evaluates additional operators at the given state.
 
@@ -47,7 +47,7 @@ The expectation value of the given operator(s). The return type will be identica
 
 <span id="qiskit.chemistry.algorithms.GroundStateSolver.returns_groundstate" />
 
-`abstract GroundStateSolver.returns_groundstate()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/ground_state_solvers/ground_state_solver.py "view source code")
+`abstract GroundStateSolver.returns_groundstate()`
 
 Whether this class returns only the ground state energy or also the ground state itself.
 
@@ -63,7 +63,7 @@ True, if this class also returns the ground state in the results object. False o
 
 <span id="qiskit.chemistry.algorithms.GroundStateSolver.solve" />
 
-`abstract GroundStateSolver.solve(driver, aux_operators=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/ground_state_solvers/ground_state_solver.py "view source code")
+`abstract GroundStateSolver.solve(driver, aux_operators=None)`
 
 Compute the ground state energy of the molecule that was supplied via the driver.
 

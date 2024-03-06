@@ -10,7 +10,7 @@ python_api_name: qiskit.optimization.problems.LinearConstraint
 
 <span id="qiskit.optimization.problems.LinearConstraint" />
 
-`LinearConstraint(quadratic_program, name, linear, sense, rhs)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/linear_constraint.py "view source code")
+`LinearConstraint(quadratic_program, name, linear, sense, rhs)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/linear_constraint.py "view source code")
 
 Bases: `qiskit.optimization.problems.constraint.Constraint`
 
@@ -30,7 +30,7 @@ Representation of a linear constraint.
 
 <span id="qiskit.optimization.problems.LinearConstraint.evaluate" />
 
-`LinearConstraint.evaluate(x)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/linear_constraint.py "view source code")
+`LinearConstraint.evaluate(x)`
 
 Evaluate the left-hand-side of the constraint.
 

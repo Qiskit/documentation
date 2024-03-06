@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.verification.CNOTDihedral
 
 <span id="qiskit.ignis.verification.CNOTDihedral" />
 
-`CNOTDihedral(data, validate=True)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/randomized_benchmarking/dihedral.py "view source code")
+`CNOTDihedral(data, validate=True)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/randomized_benchmarking/dihedral.py "view source code")
 
 Bases: `qiskit.quantum_info.operators.base_operator.BaseOperator`
 
@@ -29,7 +29,7 @@ Initialize a CNOTDihedral operator object.
 
 <span id="qiskit.ignis.verification.CNOTDihedral.adjoint" />
 
-`CNOTDihedral.adjoint()`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/randomized_benchmarking/dihedral.py "view source code")
+`CNOTDihedral.adjoint()`
 
 Return the conjugate transpose of the CNOTDihedral element
 
@@ -37,7 +37,7 @@ Return the conjugate transpose of the CNOTDihedral element
 
 <span id="qiskit.ignis.verification.CNOTDihedral.cnot" />
 
-`CNOTDihedral.cnot(i, j)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/randomized_benchmarking/dihedral.py "view source code")
+`CNOTDihedral.cnot(i, j)`
 
 Apply a CNOT gate to this element. Left multiply the element by CNOT\_\{i,j}.
 
@@ -45,7 +45,7 @@ Apply a CNOT gate to this element. Left multiply the element by CNOT\_\{i,j}.
 
 <span id="qiskit.ignis.verification.CNOTDihedral.compose" />
 
-`CNOTDihedral.compose(other, qargs=None, front=False)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/randomized_benchmarking/dihedral.py "view source code")
+`CNOTDihedral.compose(other, qargs=None, front=False)`
 
 Return the composed operator.
 
@@ -76,7 +76,7 @@ Composition (`@`) is defined as left matrix multiplication for matrix operators.
 
 <span id="qiskit.ignis.verification.CNOTDihedral.conjugate" />
 
-`CNOTDihedral.conjugate()`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/randomized_benchmarking/dihedral.py "view source code")
+`CNOTDihedral.conjugate()`
 
 Return the conjugate of the CNOTDihedral element.
 
@@ -92,7 +92,7 @@ Make a deep copy of current operator.
 
 <span id="qiskit.ignis.verification.CNOTDihedral.dot" />
 
-`CNOTDihedral.dot(other, qargs=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/randomized_benchmarking/dihedral.py "view source code")
+`CNOTDihedral.dot(other, qargs=None)`
 
 Return the right multiplied operator self \* other.
 
@@ -118,7 +118,7 @@ The operator self \* other.
 
 <span id="qiskit.ignis.verification.CNOTDihedral.expand" />
 
-`CNOTDihedral.expand(other)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/randomized_benchmarking/dihedral.py "view source code")
+`CNOTDihedral.expand(other)`
 
 Return the tensor product operator: other tensor self.
 
@@ -138,7 +138,7 @@ the tensor product operator: other tensor other.
 
 <span id="qiskit.ignis.verification.CNOTDihedral.flip" />
 
-`CNOTDihedral.flip(i)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/randomized_benchmarking/dihedral.py "view source code")
+`CNOTDihedral.flip(i)`
 
 Apply X to this element. Left multiply the element by X\_i.
 
@@ -146,7 +146,7 @@ Apply X to this element. Left multiply the element by X\_i.
 
 <span id="qiskit.ignis.verification.CNOTDihedral.from_circuit" />
 
-`CNOTDihedral.from_circuit(circuit)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/randomized_benchmarking/dihedral.py "view source code")
+`CNOTDihedral.from_circuit(circuit)`
 
 Initialize from a QuantumCircuit or Instruction.
 
@@ -178,7 +178,7 @@ Return tuple of input dimension for specified subsystems.
 
 <span id="qiskit.ignis.verification.CNOTDihedral.is_cnotdihedral" />
 
-`CNOTDihedral.is_cnotdihedral()`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/randomized_benchmarking/dihedral.py "view source code")
+`CNOTDihedral.is_cnotdihedral()`
 
 Return True if input is a CNOTDihedral element.
 
@@ -194,7 +194,7 @@ Return tuple of output dimension for specified subsystems.
 
 <span id="qiskit.ignis.verification.CNOTDihedral.phase" />
 
-`CNOTDihedral.phase(k, i)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/randomized_benchmarking/dihedral.py "view source code")
+`CNOTDihedral.phase(k, i)`
 
 Apply an k-th power of T to this element. Left multiply the element by T\_i^k.
 
@@ -252,7 +252,7 @@ BaseOperator
 
 <span id="qiskit.ignis.verification.CNOTDihedral.tensor" />
 
-`CNOTDihedral.tensor(other)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/randomized_benchmarking/dihedral.py "view source code")
+`CNOTDihedral.tensor(other)`
 
 Return the tensor product operator: self tensor other.
 
@@ -272,7 +272,7 @@ the tensor product operator: self tensor other.
 
 <span id="qiskit.ignis.verification.CNOTDihedral.to_circuit" />
 
-`CNOTDihedral.to_circuit()`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/randomized_benchmarking/dihedral.py "view source code")
+`CNOTDihedral.to_circuit()`
 
 Return a QuantumCircuit implementing the CNOT-Dihedral element.
 
@@ -297,7 +297,7 @@ Decompose 1 and 2-qubit CNOTDihedral elements.
 
 <span id="qiskit.ignis.verification.CNOTDihedral.to_instruction" />
 
-`CNOTDihedral.to_instruction()`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/randomized_benchmarking/dihedral.py "view source code")
+`CNOTDihedral.to_instruction()`
 
 Return a Gate instruction implementing the CNOTDihedral object.
 
@@ -305,7 +305,7 @@ Return a Gate instruction implementing the CNOTDihedral object.
 
 <span id="qiskit.ignis.verification.CNOTDihedral.to_matrix" />
 
-`CNOTDihedral.to_matrix()`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/randomized_benchmarking/dihedral.py "view source code")
+`CNOTDihedral.to_matrix()`
 
 Convert operator to Numpy matrix.
 
@@ -313,7 +313,7 @@ Convert operator to Numpy matrix.
 
 <span id="qiskit.ignis.verification.CNOTDihedral.to_operator" />
 
-`CNOTDihedral.to_operator()`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/randomized_benchmarking/dihedral.py "view source code")
+`CNOTDihedral.to_operator()`
 
 Convert to an Operator object.
 
@@ -321,7 +321,7 @@ Convert to an Operator object.
 
 <span id="qiskit.ignis.verification.CNOTDihedral.transpose" />
 
-`CNOTDihedral.transpose()`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/randomized_benchmarking/dihedral.py "view source code")
+`CNOTDihedral.transpose()`
 
 Return the transpose of the CNOT-Dihedral element.
 

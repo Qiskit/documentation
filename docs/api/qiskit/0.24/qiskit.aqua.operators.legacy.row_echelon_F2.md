@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.operators.legacy.row_echelon_F2
 
 <span id="qiskit.aqua.operators.legacy.row_echelon_F2" />
 
-`row_echelon_F2(matrix_in)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/legacy/common.py "view source code")
+`row_echelon_F2(matrix_in)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/legacy/common.py "view source code")
 
 Computes the row Echelon form of a binary matrix on the binary finite field
 

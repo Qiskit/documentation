@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.DIRECT_L
 
 <span id="qiskit.algorithms.optimizers.DIRECT_L" />
 
-`DIRECT_L(max_evals=1000)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/algorithms/optimizers/nlopts/direct_l.py "view source code")
+`DIRECT_L(max_evals=1000)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/algorithms/optimizers/nlopts/direct_l.py "view source code")
 
 Bases: `qiskit.algorithms.optimizers.nlopts.nloptimizer.NLoptOptimizer`
 
@@ -34,7 +34,7 @@ NLopt global optimizer, derivative-free. For further detail, please refer to [ht
 
 <span id="qiskit.algorithms.optimizers.DIRECT_L.get_nlopt_optimizer" />
 
-`DIRECT_L.get_nlopt_optimizer()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/algorithms/optimizers/nlopts/direct_l.py "view source code")
+`DIRECT_L.get_nlopt_optimizer()`
 
 Return NLopt optimizer type
 

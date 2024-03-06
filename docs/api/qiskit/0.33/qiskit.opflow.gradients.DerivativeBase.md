@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.gradients.DerivativeBase
 
 <span id="qiskit.opflow.gradients.DerivativeBase" />
 
-`DerivativeBase`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/opflow/gradients/derivative_base.py "view source code")
+`DerivativeBase` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/opflow/gradients/derivative_base.py "view source code")
 
 Bases: `qiskit.opflow.converters.converter_base.ConverterBase`
 
@@ -28,7 +28,7 @@ CircuitGradient - uses quantum techniques to get derivatives of circuits Derivat
 
 <span id="qiskit.opflow.gradients.DerivativeBase.convert" />
 
-`abstract DerivativeBase.convert(operator, params=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/opflow/gradients/derivative_base.py "view source code")
+`abstract DerivativeBase.convert(operator, params=None)`
 
 **Parameters**
 
@@ -51,7 +51,7 @@ An operator whose evaluation yields the gradient, Hessian or QFI.
 
 <span id="qiskit.opflow.gradients.DerivativeBase.gradient_wrapper" />
 
-`DerivativeBase.gradient_wrapper(operator, bind_params, grad_params=None, backend=None, expectation=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/opflow/gradients/derivative_base.py "view source code")
+`DerivativeBase.gradient_wrapper(operator, bind_params, grad_params=None, backend=None, expectation=None)`
 
 Get a callable function which provides the respective gradient, Hessian or QFI for given parameter values. This callable can be used as gradient function for optimizers.
 
@@ -75,7 +75,7 @@ Function to compute a gradient, Hessian or QFI. The function takes an iterable a
 
 <span id="qiskit.opflow.gradients.DerivativeBase.parameter_expression_grad" />
 
-`static DerivativeBase.parameter_expression_grad(param_expr, param)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/opflow/gradients/derivative_base.py "view source code")
+`static DerivativeBase.parameter_expression_grad(param_expr, param)`
 
 Get the derivative of a parameter expression w\.r.t. the given parameter.
 

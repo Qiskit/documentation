@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.LogNormalDistribution
 
 <span id="qiskit.circuit.library.LogNormalDistribution" />
 
-`LogNormalDistribution(num_qubits, mu=None, sigma=None, bounds=None, upto_diag=False, name='P(X)')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/probability_distributions/lognormal.py "view source code")
+`LogNormalDistribution(num_qubits, mu=None, sigma=None, bounds=None, upto_diag=False, name='P(X)')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/probability_distributions/lognormal.py "view source code")
 
 A circuit to encode a discretized log-normal distribution in qubit amplitudes.
 

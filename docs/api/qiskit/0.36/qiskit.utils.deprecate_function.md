@@ -10,7 +10,7 @@ python_api_name: qiskit.utils.deprecate_function
 
 <span id="qiskit.utils.deprecate_function" />
 
-`deprecate_function(msg, stacklevel=2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/utils/deprecation.py "view source code")
+`deprecate_function(msg, stacklevel=2)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/utils/deprecation.py "view source code")
 
 Emit a warning prior to calling decorated function.
 

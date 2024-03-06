@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.circuits.PiecewiseLinearRotation
 
 <span id="qiskit.aqua.circuits.PiecewiseLinearRotation" />
 
-`PiecewiseLinearRotation(breakpoints, slopes, offsets, num_state_qubits, basis='Y', i_state=None, i_target=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/circuits/piecewise_linear_rotation.py "view source code")
+`PiecewiseLinearRotation(breakpoints, slopes, offsets, num_state_qubits, basis='Y', i_state=None, i_target=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/circuits/piecewise_linear_rotation.py "view source code")
 
 *DEPRECATED.* Piecewise-linearly-controlled rotation.
 
@@ -46,7 +46,7 @@ Returns the number of target qubits
 
 <span id="qiskit.aqua.circuits.PiecewiseLinearRotation.build" />
 
-`PiecewiseLinearRotation.build(qc, q, q_ancillas=None, params=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/circuits/piecewise_linear_rotation.py "view source code")
+`PiecewiseLinearRotation.build(qc, q, q_ancillas=None, params=None)`
 
 Build the circuit.
 
@@ -132,7 +132,7 @@ Adds power of corresponding circuit. May be overridden if a more efficient imple
 
 <span id="qiskit.aqua.circuits.PiecewiseLinearRotation.evaluate" />
 
-`PiecewiseLinearRotation.evaluate(x)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/circuits/piecewise_linear_rotation.py "view source code")
+`PiecewiseLinearRotation.evaluate(x)`
 
 Classically evaluate the piecewise linear rotation
 
@@ -168,7 +168,7 @@ returns number of qubits controlled
 
 <span id="qiskit.aqua.circuits.PiecewiseLinearRotation.required_ancillas" />
 
-`PiecewiseLinearRotation.required_ancillas()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/circuits/piecewise_linear_rotation.py "view source code")
+`PiecewiseLinearRotation.required_ancillas()`
 
 Return the number of required ancillas.
 

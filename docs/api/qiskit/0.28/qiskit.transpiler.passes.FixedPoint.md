@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.FixedPoint
 
 <span id="qiskit.transpiler.passes.FixedPoint" />
 
-`FixedPoint(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/utils/fixed_point.py "view source code")
+`FixedPoint(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/utils/fixed_point.py "view source code")
 
 Check if a property reached a fixed point.
 

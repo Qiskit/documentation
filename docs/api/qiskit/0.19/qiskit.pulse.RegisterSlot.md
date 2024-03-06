@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.RegisterSlot
 
 <span id="qiskit.pulse.RegisterSlot" />
 
-`RegisterSlot(index)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/channels.py "view source code")
+`RegisterSlot(index)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/channels.py "view source code")
 
 Classical resister slot channels represent classical registers (low-latency classical memory).
 

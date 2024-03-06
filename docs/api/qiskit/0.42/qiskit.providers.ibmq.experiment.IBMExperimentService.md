@@ -14,7 +14,7 @@ python_api_name: qiskit.providers.ibmq.experiment.IBMExperimentService
 
 <span id="qiskit.providers.ibmq.experiment.IBMExperimentService" />
 
-`IBMExperimentService(provider)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/experiment/ibm_experiment_service.py "view source code")
+`IBMExperimentService(provider)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/experiment/ibm_experiment_service.py "view source code")
 
 Bases: `object`
 
@@ -70,7 +70,7 @@ IBMExperimentService constructor.
 
 <span id="qiskit.providers.ibmq.experiment.IBMExperimentService.analysis_result" />
 
-`IBMExperimentService.analysis_result(result_id, json_decoder=<class 'json.decoder.JSONDecoder'>)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/experiment/ibm_experiment_service.py "view source code")
+`IBMExperimentService.analysis_result(result_id, json_decoder=<class 'json.decoder.JSONDecoder'>)`
 
 Retrieve a previously stored experiment.
 
@@ -100,7 +100,7 @@ Retrieved analysis result.
 
 <span id="qiskit.providers.ibmq.experiment.IBMExperimentService.analysis_results" />
 
-`IBMExperimentService.analysis_results(limit=10, json_decoder=<class 'json.decoder.JSONDecoder'>, device_components=None, device_components_operator=None, experiment_id=None, result_type=None, result_type_operator=None, backend_name=None, quality=None, verified=None, tags=None, tags_operator='OR', sort_by=None, **filters)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/experiment/ibm_experiment_service.py "view source code")
+`IBMExperimentService.analysis_results(limit=10, json_decoder=<class 'json.decoder.JSONDecoder'>, device_components=None, device_components_operator=None, experiment_id=None, result_type=None, result_type_operator=None, backend_name=None, quality=None, verified=None, tags=None, tags_operator='OR', sort_by=None, **filters)`
 
 Retrieve all analysis results, with optional filtering.
 
@@ -170,7 +170,7 @@ A list of analysis results. Each analysis result is a dictionary containing the 
 
 <span id="qiskit.providers.ibmq.experiment.IBMExperimentService.backends" />
 
-`IBMExperimentService.backends()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/experiment/ibm_experiment_service.py "view source code")
+`IBMExperimentService.backends()`
 
 Return a list of backends that can be used for experiments.
 
@@ -190,7 +190,7 @@ A list of backends.
 
 <span id="qiskit.providers.ibmq.experiment.IBMExperimentService.create_analysis_result" />
 
-`IBMExperimentService.create_analysis_result(experiment_id, result_data, result_type, device_components=None, tags=None, quality=ResultQuality.UNKNOWN, verified=False, result_id=None, chisq=None, json_encoder=<class 'json.encoder.JSONEncoder'>, **kwargs)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/experiment/ibm_experiment_service.py "view source code")
+`IBMExperimentService.create_analysis_result(experiment_id, result_data, result_type, device_components=None, tags=None, quality=ResultQuality.UNKNOWN, verified=False, result_id=None, chisq=None, json_encoder=<class 'json.encoder.JSONEncoder'>, **kwargs)`
 
 Create a new analysis result in the database.
 
@@ -229,7 +229,7 @@ Analysis result ID.
 
 <span id="qiskit.providers.ibmq.experiment.IBMExperimentService.create_experiment" />
 
-`IBMExperimentService.create_experiment(experiment_type, backend_name, metadata=None, experiment_id=None, parent_id=None, job_ids=None, tags=None, notes=None, share_level=None, start_datetime=None, json_encoder=<class 'json.encoder.JSONEncoder'>, **kwargs)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/experiment/ibm_experiment_service.py "view source code")
+`IBMExperimentService.create_experiment(experiment_type, backend_name, metadata=None, experiment_id=None, parent_id=None, job_ids=None, tags=None, notes=None, share_level=None, start_datetime=None, json_encoder=<class 'json.encoder.JSONEncoder'>, **kwargs)`
 
 Create a new experiment in the database.
 
@@ -288,7 +288,7 @@ Experiment ID.
 
 <span id="qiskit.providers.ibmq.experiment.IBMExperimentService.create_figure" />
 
-`IBMExperimentService.create_figure(experiment_id, figure, figure_name=None, sync_upload=True)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/experiment/ibm_experiment_service.py "view source code")
+`IBMExperimentService.create_figure(experiment_id, figure, figure_name=None, sync_upload=True)`
 
 Store a new figure in the database.
 
@@ -324,7 +324,7 @@ A tuple of the name and size of the saved figure.
 
 <span id="qiskit.providers.ibmq.experiment.IBMExperimentService.delete_analysis_result" />
 
-`IBMExperimentService.delete_analysis_result(result_id)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/experiment/ibm_experiment_service.py "view source code")
+`IBMExperimentService.delete_analysis_result(result_id)`
 
 Delete an analysis result.
 
@@ -352,7 +352,7 @@ Delete an analysis result.
 
 <span id="qiskit.providers.ibmq.experiment.IBMExperimentService.delete_experiment" />
 
-`IBMExperimentService.delete_experiment(experiment_id)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/experiment/ibm_experiment_service.py "view source code")
+`IBMExperimentService.delete_experiment(experiment_id)`
 
 Delete an experiment.
 
@@ -380,7 +380,7 @@ Delete an experiment.
 
 <span id="qiskit.providers.ibmq.experiment.IBMExperimentService.delete_figure" />
 
-`IBMExperimentService.delete_figure(experiment_id, figure_name)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/experiment/ibm_experiment_service.py "view source code")
+`IBMExperimentService.delete_figure(experiment_id, figure_name)`
 
 Delete an experiment plot.
 
@@ -409,7 +409,7 @@ Delete an experiment plot.
 
 <span id="qiskit.providers.ibmq.experiment.IBMExperimentService.device_components" />
 
-`IBMExperimentService.device_components(backend_name=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/experiment/ibm_experiment_service.py "view source code")
+`IBMExperimentService.device_components(backend_name=None)`
 
 Return the device components.
 
@@ -437,7 +437,7 @@ A list of device components if backend\_name is specified. Otherwise a dictionar
 
 <span id="qiskit.providers.ibmq.experiment.IBMExperimentService.experiment" />
 
-`IBMExperimentService.experiment(experiment_id, json_decoder=<class 'json.decoder.JSONDecoder'>)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/experiment/ibm_experiment_service.py "view source code")
+`IBMExperimentService.experiment(experiment_id, json_decoder=<class 'json.decoder.JSONDecoder'>)`
 
 Retrieve a previously stored experiment.
 
@@ -467,7 +467,7 @@ Retrieved experiment data.
 
 <span id="qiskit.providers.ibmq.experiment.IBMExperimentService.experiments" />
 
-`IBMExperimentService.experiments(limit=10, json_decoder=<class 'json.decoder.JSONDecoder'>, device_components=None, device_components_operator=None, experiment_type=None, experiment_type_operator=None, backend_name=None, tags=None, tags_operator='OR', start_datetime_after=None, start_datetime_before=None, hub=None, group=None, project=None, exclude_public=False, public_only=False, exclude_mine=False, mine_only=False, parent_id=None, sort_by=None, **filters)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/experiment/ibm_experiment_service.py "view source code")
+`IBMExperimentService.experiments(limit=10, json_decoder=<class 'json.decoder.JSONDecoder'>, device_components=None, device_components_operator=None, experiment_type=None, experiment_type_operator=None, backend_name=None, tags=None, tags_operator='OR', start_datetime_after=None, start_datetime_before=None, hub=None, group=None, project=None, exclude_public=False, public_only=False, exclude_mine=False, mine_only=False, parent_id=None, sort_by=None, **filters)`
 
 Retrieve all experiments, with optional filtering.
 
@@ -553,7 +553,7 @@ A list of experiments. Each experiment is a dictionary containing the retrieved 
 
 <span id="qiskit.providers.ibmq.experiment.IBMExperimentService.figure" />
 
-`IBMExperimentService.figure(experiment_id, figure_name, file_name=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/experiment/ibm_experiment_service.py "view source code")
+`IBMExperimentService.figure(experiment_id, figure_name, file_name=None)`
 
 Retrieve an existing figure.
 
@@ -584,7 +584,7 @@ The size of the figure if file\_name is specified. Otherwise the content of the 
 
 <span id="qiskit.providers.ibmq.experiment.IBMExperimentService.save_preferences" />
 
-`IBMExperimentService.save_preferences(auto_save=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/experiment/ibm_experiment_service.py "view source code")
+`IBMExperimentService.save_preferences(auto_save=None)`
 
 Stores experiment preferences on disk.
 
@@ -610,7 +610,7 @@ Stores experiment preferences on disk.
 
 <span id="qiskit.providers.ibmq.experiment.IBMExperimentService.update_analysis_result" />
 
-`IBMExperimentService.update_analysis_result(result_id, result_data=None, tags=None, quality=None, verified=None, chisq=None, json_encoder=<class 'json.encoder.JSONEncoder'>, **kwargs)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/experiment/ibm_experiment_service.py "view source code")
+`IBMExperimentService.update_analysis_result(result_id, result_data=None, tags=None, quality=None, verified=None, chisq=None, json_encoder=<class 'json.encoder.JSONEncoder'>, **kwargs)`
 
 Update an existing analysis result.
 
@@ -642,7 +642,7 @@ Update an existing analysis result.
 
 <span id="qiskit.providers.ibmq.experiment.IBMExperimentService.update_experiment" />
 
-`IBMExperimentService.update_experiment(experiment_id, metadata=None, job_ids=None, notes=None, tags=None, share_level=None, end_datetime=None, json_encoder=<class 'json.encoder.JSONEncoder'>, **kwargs)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/experiment/ibm_experiment_service.py "view source code")
+`IBMExperimentService.update_experiment(experiment_id, metadata=None, job_ids=None, notes=None, tags=None, share_level=None, end_datetime=None, json_encoder=<class 'json.encoder.JSONEncoder'>, **kwargs)`
 
 Update an existing experiment.
 
@@ -691,7 +691,7 @@ Update an existing experiment.
 
 <span id="qiskit.providers.ibmq.experiment.IBMExperimentService.update_figure" />
 
-`IBMExperimentService.update_figure(experiment_id, figure, figure_name, sync_upload=True)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/experiment/ibm_experiment_service.py "view source code")
+`IBMExperimentService.update_figure(experiment_id, figure, figure_name, sync_upload=True)`
 
 Update an existing figure.
 

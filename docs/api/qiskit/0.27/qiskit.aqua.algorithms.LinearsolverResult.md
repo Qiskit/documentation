@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.algorithms.LinearsolverResult
 
 <span id="qiskit.aqua.algorithms.LinearsolverResult" />
 
-`LinearsolverResult(a_dict=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/linear_solvers/linear_solver_result.py "view source code")
+`LinearsolverResult(a_dict=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/linear_solvers/linear_solver_result.py "view source code")
 
 Linear solver Result.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.LinearPauliRotations
 
 <span id="qiskit.circuit.library.LinearPauliRotations" />
 
-`LinearPauliRotations(num_state_qubits=None, slope=1, offset=0, basis='Y', name='LinRot')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/arithmetic/linear_pauli_rotations.py "view source code")
+`LinearPauliRotations(num_state_qubits=None, slope=1, offset=0, basis='Y', name='LinRot')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/arithmetic/linear_pauli_rotations.py "view source code")
 
 Linearly-controlled X, Y or Z rotation.
 

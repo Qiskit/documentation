@@ -10,7 +10,7 @@ python_api_name: qiskit.qobj.GateCalibration
 
 <span id="qiskit.qobj.GateCalibration" />
 
-`GateCalibration(name, qubits, params, instructions)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/qobj/qasm_qobj.py "view source code")
+`GateCalibration(name, qubits, params, instructions)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/qobj/qasm_qobj.py "view source code")
 
 Bases: `object`
 
@@ -31,7 +31,7 @@ Initialize a single gate calibration. Instructions may reference waveforms which
 
 <span id="qiskit.qobj.GateCalibration.from_dict" />
 
-`classmethod GateCalibration.from_dict(data)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/qobj/qasm_qobj.py "view source code")
+`classmethod GateCalibration.from_dict(data)`
 
 Create a new GateCalibration object from a dictionary.
 
@@ -51,7 +51,7 @@ The GateCalibration from the input dictionary.
 
 <span id="qiskit.qobj.GateCalibration.to_dict" />
 
-`GateCalibration.to_dict()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/qobj/qasm_qobj.py "view source code")
+`GateCalibration.to_dict()`
 
 Return a dictionary format representation of the Gate Calibration.
 

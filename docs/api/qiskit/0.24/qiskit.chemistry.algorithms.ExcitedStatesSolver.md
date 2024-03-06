@@ -12,7 +12,7 @@ python_api_name: qiskit.chemistry.algorithms.ExcitedStatesSolver
 
 <span id="qiskit.chemistry.algorithms.ExcitedStatesSolver" />
 
-`ExcitedStatesSolver`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/algorithms/excited_states_solvers/excited_states_solver.py "view source code")
+`ExcitedStatesSolver` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/algorithms/excited_states_solvers/excited_states_solver.py "view source code")
 
 The excited states calculation interface
 

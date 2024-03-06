@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.minimum_eigensolvers.AdaptVQE
 
 <span id="qiskit.algorithms.minimum_eigensolvers.AdaptVQE" />
 
-`AdaptVQE(solver, *, threshold=1e-05, max_iterations=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/minimum_eigensolvers/adapt_vqe.py "view source code")
+`AdaptVQE(solver, *, threshold=1e-05, max_iterations=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/minimum_eigensolvers/adapt_vqe.py "view source code")
 
 Bases: `qiskit.algorithms.variational_algorithm.VariationalAlgorithm`, [`qiskit.algorithms.minimum_eigensolvers.minimum_eigensolver.MinimumEigensolver`](qiskit.algorithms.minimum_eigensolvers.MinimumEigensolver "qiskit.algorithms.minimum_eigensolvers.minimum_eigensolver.MinimumEigensolver")
 
@@ -69,7 +69,7 @@ the maximum number of iterations for the adaptive loop. If `None`, the algorithm
 
 <span id="qiskit.algorithms.minimum_eigensolvers.AdaptVQE.compute_minimum_eigenvalue" />
 
-`AdaptVQE.compute_minimum_eigenvalue(operator, aux_operators=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/minimum_eigensolvers/adapt_vqe.py "view source code")
+`AdaptVQE.compute_minimum_eigenvalue(operator, aux_operators=None)`
 
 Computes the minimum eigenvalue.
 
@@ -95,7 +95,7 @@ An [`AdaptVQEResult`](qiskit.algorithms.minimum_eigensolvers.AdaptVQEResult "qis
 
 <span id="qiskit.algorithms.minimum_eigensolvers.AdaptVQE.supports_aux_operators" />
 
-`classmethod AdaptVQE.supports_aux_operators()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/minimum_eigensolvers/adapt_vqe.py "view source code")
+`classmethod AdaptVQE.supports_aux_operators()`
 
 Whether computing the expectation value of auxiliary operators is supported.
 

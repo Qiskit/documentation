@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.CountOps
 
 <span id="qiskit.transpiler.passes.CountOps" />
 
-`CountOps(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/transpiler/passes/analysis/count_ops.py "view source code")
+`CountOps(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/transpiler/passes/analysis/count_ops.py "view source code")
 
 Count the operations in a DAG circuit.
 

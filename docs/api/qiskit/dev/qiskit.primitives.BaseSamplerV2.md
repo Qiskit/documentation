@@ -10,17 +10,15 @@ python_api_name: qiskit.primitives.BaseSamplerV2
 
 <span id="qiskit.primitives.BaseSamplerV2" />
 
-`qiskit.primitives.BaseSamplerV2`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/primitives/base/base_sampler.py "view source code")
+`qiskit.primitives.BaseSamplerV2` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/primitives/base/base_sampler.py "view source code")
 
 Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 
-Sampler base class version 2.
+Sampler V2 base class.
 
 A Sampler returns samples of quantum circuit outputs.
 
-**All sampler implementations must implement default value for the `shots` in the**
-
-[`run()`](#qiskit.primitives.BaseSamplerV2.run "qiskit.primitives.BaseSamplerV2.run") method if `None` is given both as a `kwarg` and in all of the pubs.
+All sampler implementations must implement default value for the `shots` in the [`run()`](#qiskit.primitives.BaseSamplerV2.run "qiskit.primitives.BaseSamplerV2.run") method if `None` is given both as a `kwarg` and in all of the pubs.
 
 ## Methods
 
@@ -43,5 +41,5 @@ The job object of Sampler’s result.
 
 **Return type**
 
-BasePrimitiveJob\[[PrimitiveResult](qiskit.primitives.PrimitiveResult "qiskit.primitives.PrimitiveResult")\[[PubResult](qiskit.primitives.PubResult "qiskit.primitives.PubResult")]]
+[BasePrimitiveJob](qiskit.primitives.BasePrimitiveJob "qiskit.primitives.BasePrimitiveJob")\[[PrimitiveResult](qiskit.primitives.PrimitiveResult "qiskit.primitives.PrimitiveResult")\[[PubResult](qiskit.primitives.PubResult "qiskit.primitives.PubResult")]]
 

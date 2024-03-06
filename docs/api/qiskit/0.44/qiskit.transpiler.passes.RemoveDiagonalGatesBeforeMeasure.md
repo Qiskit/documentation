@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.RemoveDiagonalGatesBeforeMeasure
 
 <span id="qiskit.transpiler.passes.RemoveDiagonalGatesBeforeMeasure" />
 
-`qiskit.transpiler.passes.RemoveDiagonalGatesBeforeMeasure(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/optimization/remove_diagonal_gates_before_measure.py "view source code")
+`qiskit.transpiler.passes.RemoveDiagonalGatesBeforeMeasure(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/optimization/remove_diagonal_gates_before_measure.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.algorithms.QuantumAlgorithm
 
 <span id="qiskit.aqua.algorithms.QuantumAlgorithm" />
 
-`QuantumAlgorithm(quantum_instance)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/quantum_algorithm.py "view source code")
+`QuantumAlgorithm(quantum_instance)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/quantum_algorithm.py "view source code")
 
 Bases: `abc.ABC`
 
@@ -24,7 +24,7 @@ This method should initialize the module and use an exception if a component of 
 
 <span id="qiskit.aqua.algorithms.QuantumAlgorithm.run" />
 
-`QuantumAlgorithm.run(quantum_instance=None, **kwargs)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/quantum_algorithm.py "view source code")
+`QuantumAlgorithm.run(quantum_instance=None, **kwargs)`
 
 Execute the algorithm with selected backend.
 
@@ -49,7 +49,7 @@ dict
 
 <span id="qiskit.aqua.algorithms.QuantumAlgorithm.set_backend" />
 
-`QuantumAlgorithm.set_backend(backend, **kwargs)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/quantum_algorithm.py "view source code")
+`QuantumAlgorithm.set_backend(backend, **kwargs)`
 
 Sets backend with configuration.
 

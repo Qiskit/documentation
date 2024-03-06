@@ -1,16 +1,16 @@
 ---
 title: AQCSynthesisPlugin
-description: API reference for qiskit.transpiler.passes.AQCSynthesisPlugin
+description: API reference for qiskit.transpiler.passes.synthesis.aqc_plugin.AQCSynthesisPlugin
 in_page_toc_min_heading_level: 1
 python_api_type: class
-python_api_name: qiskit.transpiler.passes.AQCSynthesisPlugin
+python_api_name: qiskit.transpiler.passes.synthesis.aqc_plugin.AQCSynthesisPlugin
 ---
 
 # AQCSynthesisPlugin
 
-<span id="qiskit.transpiler.passes.AQCSynthesisPlugin" />
+<span id="qiskit.transpiler.passes.synthesis.aqc_plugin.AQCSynthesisPlugin" />
 
-`qiskit.transpiler.passes.AQCSynthesisPlugin`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/aqc_plugin.py "view source code")
+`qiskit.transpiler.passes.synthesis.aqc_plugin.AQCSynthesisPlugin` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/aqc_plugin.py "view source code")
 
 Bases: [`UnitarySynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin")
 
@@ -48,43 +48,43 @@ Initial values of angles/parameters to start the optimization process from.
 
 ## Attributes
 
-<span id="qiskit.transpiler.passes.AQCSynthesisPlugin.max_qubits" />
+<span id="qiskit.transpiler.passes.synthesis.aqc_plugin.AQCSynthesisPlugin.max_qubits" />
 
 ### max\_qubits
 
 Maximum number of supported qubits is `14`.
 
-<span id="qiskit.transpiler.passes.AQCSynthesisPlugin.min_qubits" />
+<span id="qiskit.transpiler.passes.synthesis.aqc_plugin.AQCSynthesisPlugin.min_qubits" />
 
 ### min\_qubits
 
 Minimum number of supported qubits is `3`.
 
-<span id="qiskit.transpiler.passes.AQCSynthesisPlugin.supported_bases" />
+<span id="qiskit.transpiler.passes.synthesis.aqc_plugin.AQCSynthesisPlugin.supported_bases" />
 
 ### supported\_bases
 
 The plugin does not support bases for synthesis.
 
-<span id="qiskit.transpiler.passes.AQCSynthesisPlugin.supports_basis_gates" />
+<span id="qiskit.transpiler.passes.synthesis.aqc_plugin.AQCSynthesisPlugin.supports_basis_gates" />
 
 ### supports\_basis\_gates
 
 The plugin does not support basis gates and by default it synthesizes a circuit using `["rx", "ry", "rz", "cx"]` gate basis.
 
-<span id="qiskit.transpiler.passes.AQCSynthesisPlugin.supports_coupling_map" />
+<span id="qiskit.transpiler.passes.synthesis.aqc_plugin.AQCSynthesisPlugin.supports_coupling_map" />
 
 ### supports\_coupling\_map
 
 The plugin does not support coupling maps.
 
-<span id="qiskit.transpiler.passes.AQCSynthesisPlugin.supports_gate_errors" />
+<span id="qiskit.transpiler.passes.synthesis.aqc_plugin.AQCSynthesisPlugin.supports_gate_errors" />
 
 ### supports\_gate\_errors
 
 The plugin does not support gate errors.
 
-<span id="qiskit.transpiler.passes.AQCSynthesisPlugin.supports_gate_errors_by_qubit" />
+<span id="qiskit.transpiler.passes.synthesis.aqc_plugin.AQCSynthesisPlugin.supports_gate_errors_by_qubit" />
 
 ### supports\_gate\_errors\_by\_qubit
 
@@ -105,13 +105,13 @@ Do note that this dictionary might not be complete or could be empty as it depen
 
 This defaults to False
 
-<span id="qiskit.transpiler.passes.AQCSynthesisPlugin.supports_gate_lengths" />
+<span id="qiskit.transpiler.passes.synthesis.aqc_plugin.AQCSynthesisPlugin.supports_gate_lengths" />
 
 ### supports\_gate\_lengths
 
 The plugin does not support gate lengths.
 
-<span id="qiskit.transpiler.passes.AQCSynthesisPlugin.supports_gate_lengths_by_qubit" />
+<span id="qiskit.transpiler.passes.synthesis.aqc_plugin.AQCSynthesisPlugin.supports_gate_lengths_by_qubit" />
 
 ### supports\_gate\_lengths\_by\_qubit
 
@@ -134,19 +134,19 @@ Do note that this dictionary might not be complete or could be empty as it depen
 
 This defaults to False
 
-<span id="qiskit.transpiler.passes.AQCSynthesisPlugin.supports_natural_direction" />
+<span id="qiskit.transpiler.passes.synthesis.aqc_plugin.AQCSynthesisPlugin.supports_natural_direction" />
 
 ### supports\_natural\_direction
 
 The plugin does not support natural direction, it assumes bidirectional two qubit gates.
 
-<span id="qiskit.transpiler.passes.AQCSynthesisPlugin.supports_pulse_optimize" />
+<span id="qiskit.transpiler.passes.synthesis.aqc_plugin.AQCSynthesisPlugin.supports_pulse_optimize" />
 
 ### supports\_pulse\_optimize
 
 The plugin does not support optimization of pulses.
 
-<span id="qiskit.transpiler.passes.AQCSynthesisPlugin.supports_target" />
+<span id="qiskit.transpiler.passes.synthesis.aqc_plugin.AQCSynthesisPlugin.supports_target" />
 
 ### supports\_target
 
@@ -160,7 +160,7 @@ By default this will be `False` since the plugin interface predates the [`Target
 
 ### run
 
-<span id="qiskit.transpiler.passes.AQCSynthesisPlugin.run" />
+<span id="qiskit.transpiler.passes.synthesis.aqc_plugin.AQCSynthesisPlugin.run" />
 
 `run(unitary, **options)`
 

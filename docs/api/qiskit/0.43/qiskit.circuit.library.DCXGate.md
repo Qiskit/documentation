@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.DCXGate
 
 <span id="qiskit.circuit.library.DCXGate" />
 
-`DCXGate`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/dcx.py "view source code")
+`DCXGate` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/dcx.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 

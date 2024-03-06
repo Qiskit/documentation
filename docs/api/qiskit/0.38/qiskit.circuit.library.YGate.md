@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.YGate
 
 <span id="qiskit.circuit.library.YGate" />
 
-`YGate(label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/standard_gates/y.py "view source code")
+`YGate(label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/standard_gates/y.py "view source code")
 
 Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -64,7 +64,7 @@ Create new Y gate.
 
 <span id="qiskit.circuit.library.YGate.control" />
 
-`YGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/standard_gates/y.py "view source code")
+`YGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
 Return a (multi-)controlled-Y gate.
 
@@ -88,7 +88,7 @@ controlled version of this gate.
 
 <span id="qiskit.circuit.library.YGate.inverse" />
 
-`YGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/standard_gates/y.py "view source code")
+`YGate.inverse()`
 
 Return inverted Y gate ($Y{\dagger} = Y$)
 

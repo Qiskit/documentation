@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.WhileLoopOp
 
 <span id="qiskit.circuit.WhileLoopOp" />
 
-`WhileLoopOp(condition, body, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/controlflow/while_loop.py "view source code")
+`WhileLoopOp(condition, body, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/controlflow/while_loop.py "view source code")
 
 Bases: `qiskit.circuit.controlflow.control_flow.ControlFlowOp`
 
@@ -97,7 +97,7 @@ Validation of the arguments.
 
 <span id="qiskit.circuit.WhileLoopOp.c_if" />
 
-`WhileLoopOp.c_if(classical, val)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/controlflow/while_loop.py "view source code")
+`WhileLoopOp.c_if(classical, val)`
 
 Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.SetFrequency
 
 <span id="qiskit.pulse.SetFrequency" />
 
-`SetFrequency(frequency, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/instructions/frequency.py "view source code")
+`SetFrequency(frequency, channel, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/instructions/frequency.py "view source code")
 
 Bases: `qiskit.pulse.instructions.instruction.Instruction`
 
@@ -192,7 +192,7 @@ A new schedule with `schedule` inserted with this instruction at t=0.
 
 <span id="qiskit.pulse.SetFrequency.is_parameterized" />
 
-`SetFrequency.is_parameterized()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/instructions/frequency.py "view source code")
+`SetFrequency.is_parameterized()`
 
 Return True iff the instruction is parameterized.
 

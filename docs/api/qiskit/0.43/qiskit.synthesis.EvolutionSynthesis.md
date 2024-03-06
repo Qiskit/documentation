@@ -10,7 +10,7 @@ python_api_name: qiskit.synthesis.EvolutionSynthesis
 
 <span id="qiskit.synthesis.EvolutionSynthesis" />
 
-`EvolutionSynthesis`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/synthesis/evolution/evolution_synthesis.py "view source code")
+`EvolutionSynthesis` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/synthesis/evolution/evolution_synthesis.py "view source code")
 
 Bases: `ABC`
 
@@ -24,7 +24,7 @@ Interface for evolution synthesis algorithms.
 
 <span id="qiskit.synthesis.EvolutionSynthesis.synthesize" />
 
-`abstract EvolutionSynthesis.synthesize(evolution)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/synthesis/evolution/evolution_synthesis.py "view source code")
+`abstract EvolutionSynthesis.synthesize(evolution)`
 
 Synthesize an `qiskit.circuit.library.PauliEvolutionGate`.
 

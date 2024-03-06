@@ -10,7 +10,7 @@ python_api_name: qiskit.qobj.PulseLibraryItem
 
 <span id="qiskit.qobj.PulseLibraryItem" />
 
-`PulseLibraryItem(name, samples)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/qobj/pulse_qobj.py "view source code")
+`PulseLibraryItem(name, samples)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/qobj/pulse_qobj.py "view source code")
 
 An item in a pulse library.
 
@@ -27,7 +27,7 @@ Instantiate a pulse library item.
 
 <span id="qiskit.qobj.PulseLibraryItem.from_dict" />
 
-`classmethod PulseLibraryItem.from_dict(data)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/qobj/pulse_qobj.py "view source code")
+`classmethod PulseLibraryItem.from_dict(data)`
 
 Create a new PulseLibraryItem object from a dictionary.
 
@@ -47,7 +47,7 @@ The object from the input dictionary.
 
 <span id="qiskit.qobj.PulseLibraryItem.to_dict" />
 
-`PulseLibraryItem.to_dict()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/qobj/pulse_qobj.py "view source code")
+`PulseLibraryItem.to_dict()`
 
 Return a dictionary format representation of the pulse library item.
 

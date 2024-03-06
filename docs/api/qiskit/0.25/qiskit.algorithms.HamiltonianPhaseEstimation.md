@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.HamiltonianPhaseEstimation
 
 <span id="qiskit.algorithms.HamiltonianPhaseEstimation" />
 
-`HamiltonianPhaseEstimation(num_evaluation_qubits, quantum_instance=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/phase_estimators/hamiltonian_phase_estimation.py "view source code")
+`HamiltonianPhaseEstimation(num_evaluation_qubits, quantum_instance=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/phase_estimators/hamiltonian_phase_estimation.py "view source code")
 
 Run the Quantum Phase Estimation algorithm to find the eigenvalues of a Hermitian operator.
 

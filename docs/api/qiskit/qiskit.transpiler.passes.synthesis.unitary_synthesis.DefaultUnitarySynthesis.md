@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.synthesis.unitary_synthesis.DefaultUni
 
 <span id="qiskit.transpiler.passes.synthesis.unitary_synthesis.DefaultUnitarySynthesis" />
 
-`qiskit.transpiler.passes.synthesis.unitary_synthesis.DefaultUnitarySynthesis`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/synthesis/unitary_synthesis.py "view source code")
+`qiskit.transpiler.passes.synthesis.unitary_synthesis.DefaultUnitarySynthesis` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/synthesis/unitary_synthesis.py "view source code")
 
 Bases: [`UnitarySynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin")
 

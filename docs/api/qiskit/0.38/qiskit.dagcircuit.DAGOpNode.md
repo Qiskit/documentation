@@ -10,7 +10,7 @@ python_api_name: qiskit.dagcircuit.DAGOpNode
 
 <span id="qiskit.dagcircuit.DAGOpNode" />
 
-`DAGOpNode(op, qargs=(), cargs=())`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/dagcircuit/dagnode.py "view source code")
+`DAGOpNode(op, qargs=(), cargs=())` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/dagcircuit/dagnode.py "view source code")
 
 Bases: [`qiskit.dagcircuit.dagnode.DAGNode`](qiskit.dagcircuit.DAGNode "qiskit.dagcircuit.dagnode.DAGNode")
 

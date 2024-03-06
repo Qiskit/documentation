@@ -10,7 +10,7 @@ python_api_name: qiskit.synthesis.QDrift
 
 <span id="qiskit.synthesis.QDrift" />
 
-`QDrift(reps=1, insert_barriers=False, cx_structure='chain', atomic_evolution=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/synthesis/evolution/qdrift.py "view source code")
+`QDrift(reps=1, insert_barriers=False, cx_structure='chain', atomic_evolution=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/synthesis/evolution/qdrift.py "view source code")
 
 Bases: [`qiskit.synthesis.evolution.product_formula.ProductFormula`](qiskit.synthesis.ProductFormula "qiskit.synthesis.evolution.product_formula.ProductFormula")
 
@@ -33,7 +33,7 @@ The QDrift Trotterization method, which selects each each term in the Trotteriza
 
 <span id="qiskit.synthesis.QDrift.synthesize" />
 
-`QDrift.synthesize(evolution)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/synthesis/evolution/qdrift.py "view source code")
+`QDrift.synthesize(evolution)`
 
 Synthesize an `qiskit.circuit.library.PauliEvolutionGate`.
 

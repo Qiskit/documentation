@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_provider.job.QueueInfo
 
 <span id="qiskit_ibm_provider.job.QueueInfo" />
 
-`QueueInfo(position_in_queue=None, status=None, estimated_start_time=None, estimated_completion_time=None, hub_priority=None, group_priority=None, project_priority=None, job_id=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/job/queueinfo.py "view source code")
+`QueueInfo(position_in_queue=None, status=None, estimated_start_time=None, estimated_completion_time=None, hub_priority=None, group_priority=None, project_priority=None, job_id=None, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/job/queueinfo.py#L25-L183 "view source code")
 
 Queue information for a job.
 
@@ -56,7 +56,7 @@ Return estimated start time in local time.
 
 <span id="qiskit_ibm_provider.job.QueueInfo.format" />
 
-`format()`
+`format()` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/job/queueinfo.py#L123-L159 "view source code")
 
 Build a user-friendly report for the job queue information.
 

@@ -1,7 +1,7 @@
 ---
 title: result
 description: API reference for qiskit.result
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.result
 ---
@@ -28,7 +28,7 @@ python_api_name: qiskit.result
 
 <span id="qiskit.result.marginal_counts" />
 
-`qiskit.result.marginal_counts(result, indices=None, inplace=False, format_marginal=False, marginalize_memory=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/result/utils.py "view source code")
+`qiskit.result.marginal_counts(result, indices=None, inplace=False, format_marginal=False, marginalize_memory=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/result/utils.py "view source code")
 
 Marginalize counts from an experiment over some indices of interest.
 
@@ -58,7 +58,7 @@ the observed counts, marginalized to only account for frequency of observations 
 
 <span id="qiskit.result.marginal_distribution" />
 
-`qiskit.result.marginal_distribution(counts, indices=None, format_marginal=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/result/utils.py "view source code")
+`qiskit.result.marginal_distribution(counts, indices=None, format_marginal=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/result/utils.py "view source code")
 
 Marginalize counts from an experiment over some indices of interest.
 
@@ -87,7 +87,7 @@ A marginalized dictionary
 
 <span id="qiskit.result.marginal_memory" />
 
-`qiskit.result.marginal_memory(memory, indices=None, int_return=False, hex_return=False, avg_data=False, parallel_threshold=1000)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/result/utils.py "view source code")
+`qiskit.result.marginal_memory(memory, indices=None, int_return=False, hex_return=False, avg_data=False, parallel_threshold=1000)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/result/utils.py "view source code")
 
 Marginalize shot memory
 
@@ -127,7 +127,7 @@ marginal\_memory
 
 <span id="qiskit.result.sampled_expectation_value" />
 
-`qiskit.result.sampled_expectation_value(dist, oper)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/result/sampled_expval.py "view source code")
+`qiskit.result.sampled_expectation_value(dist, oper)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/result/sampled_expval.py "view source code")
 
 Computes expectation value from a sampled distribution
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.algorithms.AmplitudeEstimation
 
 <span id="qiskit.aqua.algorithms.AmplitudeEstimation" />
 
-`AmplitudeEstimation(num_eval_qubits, a_factory=None, q_factory=None, i_objective=None, iqft=None, quantum_instance=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/amplitude_estimators/ae.py "view source code")
+`AmplitudeEstimation(num_eval_qubits, a_factory=None, q_factory=None, i_objective=None, iqft=None, quantum_instance=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/amplitude_estimators/ae.py "view source code")
 
 The Quantum Phase Estimation-based Amplitude Estimation algorithm.
 
@@ -117,7 +117,7 @@ Return a numpy random.
 
 <span id="qiskit.aqua.algorithms.AmplitudeEstimation.confidence_interval" />
 
-`AmplitudeEstimation.confidence_interval(alpha, kind='likelihood_ratio')`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/amplitude_estimators/ae.py "view source code")
+`AmplitudeEstimation.confidence_interval(alpha, kind='likelihood_ratio')`
 
 Compute the (1 - alpha) confidence interval.
 
@@ -143,7 +143,7 @@ The (1 - alpha) confidence interval of the specified kind.
 
 <span id="qiskit.aqua.algorithms.AmplitudeEstimation.construct_circuit" />
 
-`AmplitudeEstimation.construct_circuit(measurement=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/amplitude_estimators/ae.py "view source code")
+`AmplitudeEstimation.construct_circuit(measurement=False)`
 
 Construct the Amplitude Estimation quantum circuit.
 

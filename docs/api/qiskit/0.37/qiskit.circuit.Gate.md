@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.Gate
 
 <span id="qiskit.circuit.Gate" />
 
-`Gate(name, num_qubits, params, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/gate.py "view source code")
+`Gate(name, num_qubits, params, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/gate.py "view source code")
 
 Bases: [`qiskit.circuit.instruction.Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 
@@ -47,7 +47,7 @@ Assemble a QasmQobjInstruction
 
 <span id="qiskit.circuit.Gate.broadcast_arguments" />
 
-`Gate.broadcast_arguments(qargs, cargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/gate.py "view source code")
+`Gate.broadcast_arguments(qargs, cargs)`
 
 Validation and handling of the arguments and its relationship.
 
@@ -114,7 +114,7 @@ Set a classical equality condition on this instruction between the register or c
 
 <span id="qiskit.circuit.Gate.control" />
 
-`Gate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/gate.py "view source code")
+`Gate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
 Return controlled version of gate. See [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") for usage.
 
@@ -194,7 +194,7 @@ Return True .IFF. instruction is parameterized else False
 
 <span id="qiskit.circuit.Gate.power" />
 
-`Gate.power(exponent)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/gate.py "view source code")
+`Gate.power(exponent)`
 
 Creates a unitary gate as gate^exponent.
 
@@ -292,7 +292,7 @@ bool
 
 <span id="qiskit.circuit.Gate.to_matrix" />
 
-`Gate.to_matrix()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/gate.py "view source code")
+`Gate.to_matrix()`
 
 Return a Numpy.array for the gate unitary matrix.
 
@@ -312,7 +312,7 @@ np.ndarray
 
 <span id="qiskit.circuit.Gate.validate_parameter" />
 
-`Gate.validate_parameter(parameter)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/gate.py "view source code")
+`Gate.validate_parameter(parameter)`
 
 Gate parameters should be int, float, or ParameterExpression
 

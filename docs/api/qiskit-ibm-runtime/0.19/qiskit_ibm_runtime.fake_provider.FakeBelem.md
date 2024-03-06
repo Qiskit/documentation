@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeBelem
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeBelem" />
 
-`FakeBelem`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.19/qiskit_ibm_runtime/fake_provider/backends/belem/fake_belem.py "view source code")
+`FakeBelem` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.19/qiskit_ibm_runtime/fake_provider/backends/belem/fake_belem.py "view source code")
 
 A fake 5 qubit backend.
 

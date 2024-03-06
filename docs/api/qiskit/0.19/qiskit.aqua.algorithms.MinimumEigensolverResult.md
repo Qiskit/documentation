@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.algorithms.MinimumEigensolverResult
 
 <span id="qiskit.aqua.algorithms.MinimumEigensolverResult" />
 
-`MinimumEigensolverResult(a_dict=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/minimum_eigen_solvers/minimum_eigen_solver.py "view source code")
+`MinimumEigensolverResult(a_dict=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/minimum_eigen_solvers/minimum_eigen_solver.py "view source code")
 
 Minimum Eigensolver Result.
 
@@ -58,7 +58,7 @@ returns eigen value
 
 <span id="qiskit.aqua.algorithms.MinimumEigensolverResult.__getitem__" />
 
-`MinimumEigensolverResult.__getitem__(key)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/minimum_eigen_solvers/minimum_eigen_solver.py "view source code")
+`MinimumEigensolverResult.__getitem__(key)`
 
 **Return type**
 
@@ -106,7 +106,7 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 <span id="qiskit.aqua.algorithms.MinimumEigensolverResult.from_dict" />
 
-`static MinimumEigensolverResult.from_dict(a_dict)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/minimum_eigen_solvers/minimum_eigen_solver.py "view source code")
+`static MinimumEigensolverResult.from_dict(a_dict)`
 
 create new object from a dictionary
 

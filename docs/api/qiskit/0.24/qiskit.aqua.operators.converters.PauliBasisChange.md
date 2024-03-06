@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.operators.converters.PauliBasisChange
 
 <span id="qiskit.aqua.operators.converters.PauliBasisChange" />
 
-`PauliBasisChange(destination_basis=None, traverse=True, replacement_fn=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/converters/pauli_basis_change.py "view source code")
+`PauliBasisChange(destination_basis=None, traverse=True, replacement_fn=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/converters/pauli_basis_change.py "view source code")
 
 Converter for changing Paulis into other bases. By default, the diagonal basis composed only of Pauli \{Z, I}^n is used as the destination basis to which to convert. Meaning, if a Pauli containing X or Y terms is passed in, which cannot be sampled or evolved natively on some Quantum hardware, the Pauli can be replaced by a composition of a change of basis circuit and a Pauli composed of only Z and I terms (diagonal), which can be evolved or sampled natively on the Quantum hardware.
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.components.optimizers.CG
 
 <span id="qiskit.aqua.components.optimizers.CG" />
 
-`CG(maxiter=20, disp=False, gtol=1e-05, tol=None, eps=1.4901161193847656e-08)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/optimizers/cg.py "view source code")
+`CG(maxiter=20, disp=False, gtol=1e-05, tol=None, eps=1.4901161193847656e-08)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/optimizers/cg.py "view source code")
 
 Conjugate Gradient optimizer.
 

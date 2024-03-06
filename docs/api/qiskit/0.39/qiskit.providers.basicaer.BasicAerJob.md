@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.basicaer.BasicAerJob
 
 <span id="qiskit.providers.basicaer.BasicAerJob" />
 
-`BasicAerJob(backend, job_id, result)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/basicaer/basicaerjob.py "view source code")
+`BasicAerJob(backend, job_id, result)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/basicaer/basicaerjob.py "view source code")
 
 Bases: [`qiskit.providers.job.JobV1`](qiskit.providers.JobV1 "qiskit.providers.job.JobV1")
 
@@ -30,7 +30,7 @@ Initializes the asynchronous job.
 
 <span id="qiskit.providers.basicaer.BasicAerJob.backend" />
 
-`BasicAerJob.backend()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/basicaer/basicaerjob.py "view source code")
+`BasicAerJob.backend()`
 
 Return the instance of the backend used for this job.
 
@@ -94,7 +94,7 @@ Return a unique id identifying the job.
 
 <span id="qiskit.providers.basicaer.BasicAerJob.result" />
 
-`BasicAerJob.result(timeout=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/basicaer/basicaerjob.py "view source code")
+`BasicAerJob.result(timeout=None)`
 
 Get job result .
 
@@ -122,7 +122,7 @@ Return whether the job is actively running.
 
 <span id="qiskit.providers.basicaer.BasicAerJob.status" />
 
-`BasicAerJob.status()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/basicaer/basicaerjob.py "view source code")
+`BasicAerJob.status()`
 
 Gets the status of the job by querying the Python’s future
 
@@ -138,7 +138,7 @@ The current JobStatus
 
 <span id="qiskit.providers.basicaer.BasicAerJob.submit" />
 
-`BasicAerJob.submit()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/basicaer/basicaerjob.py "view source code")
+`BasicAerJob.submit()`
 
 Submit the job to the backend for execution.
 

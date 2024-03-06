@@ -12,7 +12,7 @@ python_api_name: qiskit.ignis.verification.rho_to_fidelity
 
 <span id="qiskit.ignis.verification.rho_to_fidelity" />
 
-`rho_to_fidelity(rho)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/entanglement/analysis.py "view source code")
+`rho_to_fidelity(rho)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/entanglement/analysis.py "view source code")
 
 Get fidelity given rho :type rho: `float` :param rho: The density matrix
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.PauliEvolutionGate
 
 <span id="qiskit.circuit.library.PauliEvolutionGate" />
 
-`PauliEvolutionGate(operator, time=1.0, label=None, synthesis=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/pauli_evolution.py "view source code")
+`PauliEvolutionGate(operator, time=1.0, label=None, synthesis=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/pauli_evolution.py "view source code")
 
 Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -74,7 +74,7 @@ q_1: ┤1                         ├
 
 <span id="qiskit.circuit.library.PauliEvolutionGate.validate_parameter" />
 
-`PauliEvolutionGate.validate_parameter(parameter)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/pauli_evolution.py "view source code")
+`PauliEvolutionGate.validate_parameter(parameter)`
 
 Gate parameters should be int, float, or ParameterExpression
 

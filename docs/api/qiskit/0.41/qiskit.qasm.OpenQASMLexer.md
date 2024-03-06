@@ -10,7 +10,7 @@ python_api_name: qiskit.qasm.OpenQASMLexer
 
 <span id="qiskit.qasm.OpenQASMLexer" />
 
-`OpenQASMLexer(*args, **kwds)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/qasm/pygments/lexer.py "view source code")
+`OpenQASMLexer(*args, **kwds)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/qasm/pygments/lexer.py "view source code")
 
 Bases: `pygments.lexer.RegexLexer`
 
@@ -122,9 +122,7 @@ Priority, should multiple lexers match and no content is provided
 
 <span id="qiskit.qasm.OpenQASMLexer.tokens" />
 
-### tokens = \{'gate'
-
-`= {'gate':`
+### tokens
 
 `= {'gate': [('[unitary\\d+]', Token.Keyword.Type, '#push'), ('p\\d+', Token.Text, '#push')], 'if_keywords': [('[a-zA-Z0-9_]*', Token.Literal.String, '#pop'), ('\\d+', Token.Literal.Number, '#push'), ('.*\\(', Token.Text, 'params')], 'index': [('\\d+', Token.Literal.Number, '#pop')], 'keywords': [('\\s*("([^"]|"")*")', Token.Literal.String, '#push'), ('\\d+', Token.Literal.Number, '#push'), ('.*\\(', Token.Text, 'params')], 'params': [('[a-zA-Z_][a-zA-Z0-9_]*', Token.Text, '#push'), ('\\d+', Token.Literal.Number, '#push'), ('(\\d+\\.\\d*|\\d*\\.\\d+)([eEf][+-]?[0-9]+)?', Token.Literal.Number, '#push'), ('\\)', Token.Text)], 'root': [('\\n', Token.Text), ('[^\\S\\n]+', Token.Text), ('//\\n', Token.Comment), ('//.*?$', Token.Comment.Single), ('(OPENQASM|include)\\b', Token.Keyword.Reserved, 'keywords'), ('(qreg|creg)\\b', Token.Keyword.Declaration), ('(if)\\b', Token.Keyword.Reserved, 'if_keywords'), ('(pi)\\b', Token.Name.Constant), ('(barrier|measure|reset)\\b', Token.Name.Builtin, 'params'), ('(id|cx|x|y|z|s|sdg|h|t|tdg|ccx|c3x|c4x|c3sqrtx|rx|ry|rz|cz|cy|ch|swap|cswap|crx|cry|crz|cu1|cu3|rxx|rzz|rccx|rc3x|u1|u2|u3)\\b', Token.Keyword.Type, 'params'), ('[unitary\\d+]', Token.Keyword.Type), ('(gate)\\b', Token.Name.Function, 'gate'), ('[a-zA-Z_][a-zA-Z0-9_]*', Token.Text, 'index')]}`
 

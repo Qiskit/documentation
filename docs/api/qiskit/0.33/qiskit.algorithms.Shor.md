@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.Shor
 
 <span id="qiskit.algorithms.Shor" />
 
-`Shor(quantum_instance=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/algorithms/factorizers/shor.py "view source code")
+`Shor(quantum_instance=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/algorithms/factorizers/shor.py "view source code")
 
 Bases: `object`
 
@@ -32,7 +32,7 @@ See also [https://arxiv.org/abs/quant-ph/0205095](https://arxiv.org/abs/quant-ph
 
 <span id="qiskit.algorithms.Shor.construct_circuit" />
 
-`Shor.construct_circuit(N, a=2, measurement=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/algorithms/factorizers/shor.py "view source code")
+`Shor.construct_circuit(N, a=2, measurement=False)`
 
 Construct quantum part of the algorithm.
 
@@ -54,7 +54,7 @@ Quantum circuit.
 
 <span id="qiskit.algorithms.Shor.factor" />
 
-`Shor.factor(N, a=2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/algorithms/factorizers/shor.py "view source code")
+`Shor.factor(N, a=2)`
 
 Execute the algorithm.
 
@@ -82,7 +82,7 @@ results of the algorithm.
 
 <span id="qiskit.algorithms.Shor.modinv" />
 
-`static Shor.modinv(a, m)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/algorithms/factorizers/shor.py "view source code")
+`static Shor.modinv(a, m)`
 
 Returns the modular multiplicative inverse of a with respect to the modulus m.
 

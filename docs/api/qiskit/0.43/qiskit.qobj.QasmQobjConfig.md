@@ -10,7 +10,7 @@ python_api_name: qiskit.qobj.QasmQobjConfig
 
 <span id="qiskit.qobj.QasmQobjConfig" />
 
-`QasmQobjConfig(shots=None, seed_simulator=None, memory=None, parameter_binds=None, meas_level=None, meas_return=None, memory_slots=None, n_qubits=None, pulse_library=None, calibrations=None, rep_delay=None, qubit_lo_freq=None, meas_lo_freq=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/qobj/qasm_qobj.py "view source code")
+`QasmQobjConfig(shots=None, seed_simulator=None, memory=None, parameter_binds=None, meas_level=None, meas_return=None, memory_slots=None, n_qubits=None, pulse_library=None, calibrations=None, rep_delay=None, qubit_lo_freq=None, meas_lo_freq=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/qobj/qasm_qobj.py "view source code")
 
 Bases: `SimpleNamespace`
 
@@ -43,7 +43,7 @@ Model for RunConfig.
 
 <span id="qiskit.qobj.QasmQobjConfig.from_dict" />
 
-`classmethod QasmQobjConfig.from_dict(data)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/qobj/qasm_qobj.py "view source code")
+`classmethod QasmQobjConfig.from_dict(data)`
 
 Create a new QasmQobjConfig object from a dictionary.
 
@@ -65,7 +65,7 @@ The object from the input dictionary.
 
 <span id="qiskit.qobj.QasmQobjConfig.to_dict" />
 
-`QasmQobjConfig.to_dict()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/qobj/qasm_qobj.py "view source code")
+`QasmQobjConfig.to_dict()`
 
 Return a dictionary format representation of the QASM Qobj config.
 

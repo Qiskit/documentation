@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeMelbourneV2
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeMelbourneV2" />
 
-`FakeMelbourneV2`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.18/qiskit_ibm_runtime/fake_provider/backends/melbourne/fake_melbourne.py "view source code")
+`FakeMelbourneV2` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.18/qiskit_ibm_runtime/fake_provider/backends/melbourne/fake_melbourne.py "view source code")
 
 A fake 14 qubit backend.
 

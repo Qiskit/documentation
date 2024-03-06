@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.initial_states.InitialState
 
 <span id="qiskit.aqua.components.initial_states.InitialState" />
 
-`InitialState`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/initial_states/initial_state.py "view source code")
+`InitialState` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/initial_states/initial_state.py "view source code")
 
 Base class for InitialState.
 
@@ -26,7 +26,7 @@ This method should initialize the module and use an exception if a component of 
 
 <span id="qiskit.aqua.components.initial_states.InitialState.construct_circuit" />
 
-`abstract InitialState.construct_circuit(mode='circuit', register=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/initial_states/initial_state.py "view source code")
+`abstract InitialState.construct_circuit(mode='circuit', register=None)`
 
 Construct the statevector of desired initial state.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.MCXGrayCode
 
 <span id="qiskit.circuit.library.MCXGrayCode" />
 
-`MCXGrayCode(num_ctrl_qubits=None, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/x.py "view source code")
+`MCXGrayCode(num_ctrl_qubits=None, label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 Bases: [`MCXGate`](qiskit.circuit.library.MCXGate "qiskit.circuit.library.standard_gates.x.MCXGate")
 
@@ -28,7 +28,7 @@ Create new MCX gate.
 
 <span id="qiskit.circuit.library.MCXGrayCode.inverse" />
 
-`MCXGrayCode.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/x.py "view source code")
+`MCXGrayCode.inverse()`
 
 Invert this gate. The MCX is its own inverse.
 

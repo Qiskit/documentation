@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.builder.snapshot
 
 <span id="qiskit.pulse.builder.snapshot" />
 
-`snapshot(label, snapshot_type='statevector')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/builder.py "view source code")
+`snapshot(label, snapshot_type='statevector')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/builder.py "view source code")
 
 Simulator snapshot.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.components.variational_forms.UCCSD
 
 <span id="qiskit.chemistry.components.variational_forms.UCCSD" />
 
-`UCCSD(num_orbitals, num_particles, reps=1, active_occupied=None, active_unoccupied=None, initial_state=None, qubit_mapping='parity', two_qubit_reduction=True, num_time_slices=1, shallow_circuit_concat=True, z2_symmetries=None, method_singles='both', method_doubles='ucc', excitation_type='sd', same_spin_doubles=True, skip_commute_test=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/components/variational_forms/uccsd.py "view source code")
+`UCCSD(num_orbitals, num_particles, reps=1, active_occupied=None, active_unoccupied=None, initial_state=None, qubit_mapping='parity', two_qubit_reduction=True, num_time_slices=1, shallow_circuit_concat=True, z2_symmetries=None, method_singles='both', method_doubles='ucc', excitation_type='sd', same_spin_doubles=True, skip_commute_test=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/components/variational_forms/uccsd.py "view source code")
 
 Bases: `qiskit.aqua.components.variational_forms.variational_form.VariationalForm`
 
@@ -66,7 +66,7 @@ Constructor.
 
 <span id="qiskit.chemistry.components.variational_forms.UCCSD.compute_excitation_lists" />
 
-`static UCCSD.compute_excitation_lists(num_particles, num_orbitals, active_occ_list=None, active_unocc_list=None, same_spin_doubles=True, method_singles='both', method_doubles='ucc', excitation_type='sd')`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/components/variational_forms/uccsd.py "view source code")
+`static UCCSD.compute_excitation_lists(num_particles, num_orbitals, active_occ_list=None, active_unocc_list=None, same_spin_doubles=True, method_singles='both', method_doubles='ucc', excitation_type='sd')`
 
 Computes single and double excitation lists.
 
@@ -98,7 +98,7 @@ list
 
 <span id="qiskit.chemistry.components.variational_forms.UCCSD.compute_excitation_lists_singlet" />
 
-`static UCCSD.compute_excitation_lists_singlet(double_exc, num_orbitals)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/components/variational_forms/uccsd.py "view source code")
+`static UCCSD.compute_excitation_lists_singlet(double_exc, num_orbitals)`
 
 Outputs the list of lists of grouped excitation. A single list inside is controlled by the same parameter theta.
 
@@ -119,7 +119,7 @@ list
 
 <span id="qiskit.chemistry.components.variational_forms.UCCSD.construct_circuit" />
 
-`UCCSD.construct_circuit(parameters, q=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/components/variational_forms/uccsd.py "view source code")
+`UCCSD.construct_circuit(parameters, q=None)`
 
 Construct the variational form, given its parameters.
 
@@ -152,7 +152,7 @@ returns entangler map
 
 <span id="qiskit.chemistry.components.variational_forms.UCCSD.group_excitations" />
 
-`static UCCSD.group_excitations(list_de, num_orbitals)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/components/variational_forms/uccsd.py "view source code")
+`static UCCSD.group_excitations(list_de, num_orbitals)`
 
 Groups the excitations and gives out the remaining ones in the list\_de\_temp list because those excitations are controlled by the same parameter in full singlet UCCSD unlike in usual UCCSD where every excitation has its own parameter.
 
@@ -173,7 +173,7 @@ tuple
 
 <span id="qiskit.chemistry.components.variational_forms.UCCSD.group_excitations_if_same_ao" />
 
-`static UCCSD.group_excitations_if_same_ao(list_de, num_orbitals)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/components/variational_forms/uccsd.py "view source code")
+`static UCCSD.group_excitations_if_same_ao(list_de, num_orbitals)`
 
 Define that, given list of double excitations list\_de and number of spin-orbitals num\_orbitals, which excitations involve the same spatial orbitals for full singlet UCCSD.
 
@@ -194,7 +194,7 @@ list
 
 <span id="qiskit.chemistry.components.variational_forms.UCCSD.manage_hopping_operators" />
 
-`UCCSD.manage_hopping_operators()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/components/variational_forms/uccsd.py "view source code")
+`UCCSD.manage_hopping_operators()`
 
 Triggers the adaptive behavior of this UCCSD instance. This function is used by the Adaptive VQE algorithm. It stores the full list of available hopping operators in a so called “excitation pool” and clears the previous list to be empty. Furthermore, the depth is asserted to be 1 which is required by the Adaptive VQE algorithm.
 
@@ -202,7 +202,7 @@ Triggers the adaptive behavior of this UCCSD instance. This function is used by 
 
 <span id="qiskit.chemistry.components.variational_forms.UCCSD.order_labels_for_hopping_ops" />
 
-`static UCCSD.order_labels_for_hopping_ops(double_exc, gde)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/components/variational_forms/uccsd.py "view source code")
+`static UCCSD.order_labels_for_hopping_ops(double_exc, gde)`
 
 Orders the hopping operators according to the grouped excitations for the full singlet UCCSD.
 
@@ -223,7 +223,7 @@ list
 
 <span id="qiskit.chemistry.components.variational_forms.UCCSD.pop_hopping_operator" />
 
-`UCCSD.pop_hopping_operator()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/components/variational_forms/uccsd.py "view source code")
+`UCCSD.pop_hopping_operator()`
 
 Pops the hopping operator that was added last.
 
@@ -231,7 +231,7 @@ Pops the hopping operator that was added last.
 
 <span id="qiskit.chemistry.components.variational_forms.UCCSD.push_hopping_operator" />
 
-`UCCSD.push_hopping_operator(excitation)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/components/variational_forms/uccsd.py "view source code")
+`UCCSD.push_hopping_operator(excitation)`
 
 Pushes a new hopping operator.
 
@@ -243,7 +243,7 @@ Pushes a new hopping operator.
 
 <span id="qiskit.chemistry.components.variational_forms.UCCSD.same_ao_double_excitation_block_spin" />
 
-`static UCCSD.same_ao_double_excitation_block_spin(de_1, de_2, num_orbitals)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/components/variational_forms/uccsd.py "view source code")
+`static UCCSD.same_ao_double_excitation_block_spin(de_1, de_2, num_orbitals)`
 
 Regroups the excitations that involve same spatial orbitals for example, with labeling.
 

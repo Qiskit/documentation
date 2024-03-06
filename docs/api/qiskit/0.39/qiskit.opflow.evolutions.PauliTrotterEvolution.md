@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.evolutions.PauliTrotterEvolution
 
 <span id="qiskit.opflow.evolutions.PauliTrotterEvolution" />
 
-`PauliTrotterEvolution(trotter_mode='trotter', reps=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/opflow/evolutions/pauli_trotter_evolution.py "view source code")
+`PauliTrotterEvolution(trotter_mode='trotter', reps=1)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/opflow/evolutions/pauli_trotter_evolution.py "view source code")
 
 Bases: [`qiskit.opflow.evolutions.evolution_base.EvolutionBase`](qiskit.opflow.evolutions.EvolutionBase "qiskit.opflow.evolutions.evolution_base.EvolutionBase")
 
@@ -34,7 +34,7 @@ More specifically, we compute basis change circuits for each Pauli into a single
 
 <span id="qiskit.opflow.evolutions.PauliTrotterEvolution.convert" />
 
-`PauliTrotterEvolution.convert(operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/opflow/evolutions/pauli_trotter_evolution.py "view source code")
+`PauliTrotterEvolution.convert(operator)`
 
 Traverse the operator, replacing `EvolvedOps` with `CircuitOps` containing Trotterized evolutions equalling the exponentiation of -i \* operator.
 
@@ -54,7 +54,7 @@ The converted operator.
 
 <span id="qiskit.opflow.evolutions.PauliTrotterEvolution.evolution_for_abelian_paulisum" />
 
-`PauliTrotterEvolution.evolution_for_abelian_paulisum(op_sum)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/opflow/evolutions/pauli_trotter_evolution.py "view source code")
+`PauliTrotterEvolution.evolution_for_abelian_paulisum(op_sum)`
 
 Evolution for abelian pauli sum
 
@@ -66,7 +66,7 @@ Evolution for abelian pauli sum
 
 <span id="qiskit.opflow.evolutions.PauliTrotterEvolution.evolution_for_pauli" />
 
-`PauliTrotterEvolution.evolution_for_pauli(pauli_op)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/opflow/evolutions/pauli_trotter_evolution.py "view source code")
+`PauliTrotterEvolution.evolution_for_pauli(pauli_op)`
 
 Compute evolution Operator for a single Pauli using a `PauliBasisChange`.
 

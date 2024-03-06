@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.HamiltonianPhaseEstimationResult
 
 <span id="qiskit.algorithms.HamiltonianPhaseEstimationResult" />
 
-`HamiltonianPhaseEstimationResult(phase_estimation_result, phase_estimation_scale, id_coefficient)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/phase_estimators/hamiltonian_phase_estimation_result.py "view source code")
+`HamiltonianPhaseEstimationResult(phase_estimation_result, phase_estimation_scale, id_coefficient)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/phase_estimators/hamiltonian_phase_estimation_result.py "view source code")
 
 Bases: `qiskit.algorithms.algorithm_result.AlgorithmResult`
 
@@ -48,7 +48,7 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 <span id="qiskit.algorithms.HamiltonianPhaseEstimationResult.filter_phases" />
 
-`HamiltonianPhaseEstimationResult.filter_phases(cutoff=0.0, scaled=True, as_float=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/phase_estimators/hamiltonian_phase_estimation_result.py "view source code")
+`HamiltonianPhaseEstimationResult.filter_phases(cutoff=0.0, scaled=True, as_float=True)`
 
 Filter phases as does PhaseEstimatorResult.filter\_phases, with the addition that phi is shifted and translated to return eigenvalues of the Hamiltonian.
 

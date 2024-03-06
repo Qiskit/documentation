@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.AmplificationProblem
 
 <span id="qiskit.algorithms.AmplificationProblem" />
 
-`qiskit.algorithms.AmplificationProblem(oracle, state_preparation=None, grover_operator=None, post_processing=None, objective_qubits=None, is_good_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/amplitude_amplifiers/amplification_problem.py "view source code")
+`qiskit.algorithms.AmplificationProblem(oracle, state_preparation=None, grover_operator=None, post_processing=None, objective_qubits=None, is_good_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/amplitude_amplifiers/amplification_problem.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 

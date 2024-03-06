@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDe
 
 <span id="qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDecoupling" />
 
-`PadDynamicalDecoupling(durations, dd_sequences, qubits=None, spacings=None, skip_reset_qubits=True, pulse_alignment=16, extra_slack_distribution='middle', sequence_min_length_ratios=None, insert_multiple_cycles=False, coupling_map=None, alt_spacings=None, schedule_idle_qubits=False)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/transpiler/passes/scheduling/dynamical_decoupling.py "view source code")
+`PadDynamicalDecoupling(durations, dd_sequences, qubits=None, spacings=None, skip_reset_qubits=True, pulse_alignment=16, extra_slack_distribution='middle', sequence_min_length_ratios=None, insert_multiple_cycles=False, coupling_map=None, alt_spacings=None, schedule_idle_qubits=False)` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/transpiler/passes/scheduling/dynamical_decoupling.py#L39-L583 "view source code")
 
 Dynamical decoupling insertion pass for IBM dynamic circuit backends.
 
@@ -251,7 +251,7 @@ Name of the pass.
 
 <span id="qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDecoupling.run" />
 
-`run(dag)`
+`run(dag)` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/transpiler/passes/scheduling/block_base_padder.py#L91-L117 "view source code")
 
 Run the padding pass on `dag`.
 

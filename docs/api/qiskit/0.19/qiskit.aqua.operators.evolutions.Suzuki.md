@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.operators.evolutions.Suzuki
 
 <span id="qiskit.aqua.operators.evolutions.Suzuki" />
 
-`Suzuki(reps=1, order=2)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/evolutions/trotterizations/suzuki.py "view source code")
+`Suzuki(reps=1, order=2)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/evolutions/trotterizations/suzuki.py "view source code")
 
 Suzuki Trotter expansion, composing the evolution circuits of each Operator in the sum together by a recursive “bookends” strategy, repeating the whole composed circuit `reps` times.
 
@@ -53,7 +53,7 @@ The number of repetitions to use in the Trotterization, improving the approximat
 
 <span id="qiskit.aqua.operators.evolutions.Suzuki.convert" />
 
-`Suzuki.convert(operator)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/evolutions/trotterizations/suzuki.py "view source code")
+`Suzuki.convert(operator)`
 
 Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`.
 

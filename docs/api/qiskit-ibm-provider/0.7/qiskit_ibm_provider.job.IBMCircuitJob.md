@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_provider.job.IBMCircuitJob
 
 <span id="qiskit_ibm_provider.job.IBMCircuitJob" />
 
-`IBMCircuitJob(backend, api_client, job_id, creation_date=None, status=None, runtime_client=None, kind=None, name=None, time_per_step=None, result=None, error=None, session_id=None, tags=None, run_mode=None, client_info=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/ibm_circuit_job.py "view source code")
+`IBMCircuitJob(backend, api_client, job_id, creation_date=None, status=None, runtime_client=None, kind=None, name=None, time_per_step=None, result=None, error=None, session_id=None, tags=None, run_mode=None, client_info=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/ibm_circuit_job.py "view source code")
 
 Representation of a job that executes on an IBM Quantum backend.
 
@@ -139,7 +139,7 @@ Return the backend where this job was executed.
 
 <span id="qiskit_ibm_provider.job.IBMCircuitJob.backend_options" />
 
-`IBMCircuitJob.backend_options()`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/ibm_circuit_job.py "view source code")
+`IBMCircuitJob.backend_options()`
 
 Return the backend configuration options used for this job.
 
@@ -159,7 +159,7 @@ Backend options used for this job. An empty dictionary is returned if the option
 
 <span id="qiskit_ibm_provider.job.IBMCircuitJob.cancel" />
 
-`IBMCircuitJob.cancel()`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/ibm_circuit_job.py "view source code")
+`IBMCircuitJob.cancel()`
 
 Attempt to cancel the job.
 
@@ -200,7 +200,7 @@ Return whether the job has been cancelled.
 
 <span id="qiskit_ibm_provider.job.IBMCircuitJob.circuits" />
 
-`IBMCircuitJob.circuits()`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/ibm_circuit_job.py "view source code")
+`IBMCircuitJob.circuits()`
 
 Return the circuits for this job.
 
@@ -218,7 +218,7 @@ The circuits or for this job. An empty list is returned if the circuits cannot b
 
 <span id="qiskit_ibm_provider.job.IBMCircuitJob.creation_date" />
 
-`IBMCircuitJob.creation_date()`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/ibm_circuit_job.py "view source code")
+`IBMCircuitJob.creation_date()`
 
 Return job creation date, in local time.
 
@@ -250,7 +250,7 @@ Return whether the job has successfully run.
 
 <span id="qiskit_ibm_provider.job.IBMCircuitJob.error_message" />
 
-`IBMCircuitJob.error_message()`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/ibm_circuit_job.py "view source code")
+`IBMCircuitJob.error_message()`
 
 Provide details about the reason of failure.
 
@@ -268,7 +268,7 @@ An error report if the job failed or `None` otherwise.
 
 <span id="qiskit_ibm_provider.job.IBMCircuitJob.header" />
 
-`IBMCircuitJob.header()`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/ibm_circuit_job.py "view source code")
+`IBMCircuitJob.header()`
 
 Return the user header specified for this job.
 
@@ -300,7 +300,7 @@ Return whether the job is in a final job state such as `DONE` or `ERROR`.
 
 <span id="qiskit_ibm_provider.job.IBMCircuitJob.job_id" />
 
-`IBMCircuitJob.job_id()`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/ibm_circuit_job.py "view source code")
+`IBMCircuitJob.job_id()`
 
 Return the job ID assigned by the server.
 
@@ -358,7 +358,7 @@ The backend properties used for this job, at the time the job was run, or `None`
 
 <span id="qiskit_ibm_provider.job.IBMCircuitJob.queue_info" />
 
-`IBMCircuitJob.queue_info()`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/ibm_circuit_job.py "view source code")
+`IBMCircuitJob.queue_info()`
 
 Return queue information for this job.
 
@@ -382,7 +382,7 @@ A [`QueueInfo`](qiskit_ibm_provider.job.QueueInfo "qiskit_ibm_provider.job.Queue
 
 <span id="qiskit_ibm_provider.job.IBMCircuitJob.queue_position" />
 
-`IBMCircuitJob.queue_position(refresh=False)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/ibm_circuit_job.py "view source code")
+`IBMCircuitJob.queue_position(refresh=False)`
 
 Return the position of the job in the server queue.
 
@@ -408,7 +408,7 @@ Position in the queue or `None` if position is unknown or not applicable.
 
 <span id="qiskit_ibm_provider.job.IBMCircuitJob.refresh" />
 
-`IBMCircuitJob.refresh()`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/ibm_circuit_job.py "view source code")
+`IBMCircuitJob.refresh()`
 
 Obtain the latest job information from the server.
 
@@ -428,7 +428,7 @@ This method may add additional attributes to this job instance, if new informati
 
 <span id="qiskit_ibm_provider.job.IBMCircuitJob.result" />
 
-`IBMCircuitJob.result(timeout=None, refresh=False)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/ibm_circuit_job.py "view source code")
+`IBMCircuitJob.result(timeout=None, refresh=False)`
 
 Return the result of the job.
 
@@ -510,7 +510,7 @@ The scheduling mode the job is in or `None` if the information is not available.
 
 <span id="qiskit_ibm_provider.job.IBMCircuitJob.status" />
 
-`IBMCircuitJob.status()`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/ibm_circuit_job.py "view source code")
+`IBMCircuitJob.status()`
 
 Query the server for the latest job status.
 
@@ -540,7 +540,7 @@ The status of the job.
 
 <span id="qiskit_ibm_provider.job.IBMCircuitJob.submit" />
 
-`IBMCircuitJob.submit()`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/ibm_circuit_job.py "view source code")
+`IBMCircuitJob.submit()`
 
 Unsupported method.
 
@@ -580,7 +580,7 @@ Tags assigned to this job.
 
 <span id="qiskit_ibm_provider.job.IBMCircuitJob.time_per_step" />
 
-`IBMCircuitJob.time_per_step()`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/ibm_circuit_job.py "view source code")
+`IBMCircuitJob.time_per_step()`
 
 Return the date and time information on each step of the job processing.
 
@@ -628,7 +628,7 @@ The new name associated with this job.
 
 <span id="qiskit_ibm_provider.job.IBMCircuitJob.update_tags" />
 
-`IBMCircuitJob.update_tags(new_tags)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/ibm_circuit_job.py "view source code")
+`IBMCircuitJob.update_tags(new_tags)`
 
 Update the tags associated with this job.
 
@@ -655,7 +655,7 @@ The new tags associated with this job.
 
 <span id="qiskit_ibm_provider.job.IBMCircuitJob.wait_for_final_state" />
 
-`IBMCircuitJob.wait_for_final_state(timeout=None, wait=3)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/ibm_circuit_job.py "view source code")
+`IBMCircuitJob.wait_for_final_state(timeout=None, wait=3)`
 
 #### Use the websocket server to wait for the final the state of a job. The server
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.result.Result
 
 <span id="qiskit.result.Result" />
 
-`Result(backend_name, backend_version, qobj_id, job_id, success, results, date=None, status=None, header=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/result/result.py "view source code")
+`Result(backend_name, backend_version, qobj_id, job_id, success, results, date=None, status=None, header=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/result/result.py "view source code")
 
 Bases: `object`
 
@@ -82,7 +82,7 @@ list\[ExperimentResult]
 
 <span id="qiskit.result.Result.data" />
 
-`Result.data(experiment=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/result/result.py "view source code")
+`Result.data(experiment=None)`
 
 Get the raw data for an experiment.
 
@@ -116,7 +116,7 @@ dict
 
 <span id="qiskit.result.Result.from_dict" />
 
-`classmethod Result.from_dict(data)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/result/result.py "view source code")
+`classmethod Result.from_dict(data)`
 
 Create a new ExperimentResultData object from a dictionary.
 
@@ -136,7 +136,7 @@ The `Result` object from the input dictionary.
 
 <span id="qiskit.result.Result.get_counts" />
 
-`Result.get_counts(experiment=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/result/result.py "view source code")
+`Result.get_counts(experiment=None)`
 
 Get the histogram data of an experiment.
 
@@ -160,7 +160,7 @@ dict\[str, int] or list\[dict\[str, int]]
 
 <span id="qiskit.result.Result.get_memory" />
 
-`Result.get_memory(experiment=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/result/result.py "view source code")
+`Result.get_memory(experiment=None)`
 
 Get the sequence of memory states (readouts) for each shot The data from the experiment is a list of format \[‘00000’, ‘01000’, ‘10100’, ‘10100’, ‘11101’, ‘11100’, ‘00101’, …, ‘01010’]
 
@@ -192,7 +192,7 @@ List\[str] or np.ndarray
 
 <span id="qiskit.result.Result.get_statevector" />
 
-`Result.get_statevector(experiment=None, decimals=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/result/result.py "view source code")
+`Result.get_statevector(experiment=None, decimals=None)`
 
 Get the final statevector of an experiment.
 
@@ -217,7 +217,7 @@ list\[complex]
 
 <span id="qiskit.result.Result.get_unitary" />
 
-`Result.get_unitary(experiment=None, decimals=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/result/result.py "view source code")
+`Result.get_unitary(experiment=None, decimals=None)`
 
 Get the final unitary of an experiment.
 
@@ -244,7 +244,7 @@ list\[list\[complex]]
 
 <span id="qiskit.result.Result.to_dict" />
 
-`Result.to_dict()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/result/result.py "view source code")
+`Result.to_dict()`
 
 Return a dictionary format representation of the Result
 

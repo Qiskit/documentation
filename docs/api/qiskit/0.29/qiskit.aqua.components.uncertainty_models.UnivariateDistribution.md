@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.uncertainty_models.UnivariateDistributio
 
 <span id="qiskit.aqua.components.uncertainty_models.UnivariateDistribution" />
 
-`UnivariateDistribution(num_target_qubits, probabilities=None, low=0, high=1)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_models/univariate_distribution.py "view source code")
+`UnivariateDistribution(num_target_qubits, probabilities=None, low=0, high=1)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_models/univariate_distribution.py "view source code")
 
 Bases: `qiskit.aqua.components.uncertainty_models.uncertainty_model.UncertaintyModel`, `abc.ABC`
 
@@ -33,7 +33,7 @@ This module contains the definition of a base class for univariate distributions
 
 <span id="qiskit.aqua.components.uncertainty_models.UnivariateDistribution.build" />
 
-`UnivariateDistribution.build(qc, q, q_ancillas=None, params=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_models/univariate_distribution.py "view source code")
+`UnivariateDistribution.build(qc, q, q_ancillas=None, params=None)`
 
 ### build\_controlled
 
@@ -133,7 +133,7 @@ returns number of qubits controlled
 
 <span id="qiskit.aqua.components.uncertainty_models.UnivariateDistribution.pdf_to_probabilities" />
 
-`static UnivariateDistribution.pdf_to_probabilities(pdf, low, high, num_values)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_models/univariate_distribution.py "view source code")
+`static UnivariateDistribution.pdf_to_probabilities(pdf, low, high, num_values)`
 
 Takes a probability density function (pdf), and returns a truncated and discretized array of probabilities corresponding to it
 

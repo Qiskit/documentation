@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.TNC
 
 <span id="qiskit.algorithms.optimizers.TNC" />
 
-`TNC(maxiter=100, disp=False, accuracy=0, ftol=- 1, xtol=- 1, gtol=- 1, tol=None, eps=1e-08, options=None, max_evals_grouped=1, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/tnc.py "view source code")
+`TNC(maxiter=100, disp=False, accuracy=0, ftol=- 1, xtol=- 1, gtol=- 1, tol=None, eps=1e-08, options=None, max_evals_grouped=1, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/tnc.py "view source code")
 
 Bases: `qiskit.algorithms.optimizers.scipy_optimizer.SciPyOptimizer`
 

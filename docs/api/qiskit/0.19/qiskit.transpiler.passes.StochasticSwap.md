@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.StochasticSwap
 
 <span id="qiskit.transpiler.passes.StochasticSwap" />
 
-`StochasticSwap(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/transpiler/passes/routing/stochastic_swap.py "view source code")
+`StochasticSwap(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/transpiler/passes/routing/stochastic_swap.py "view source code")
 
 Map a DAGCircuit onto a coupling\_map adding swap gates.
 
@@ -61,7 +61,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.StochasticSwap.run" />
 
-`StochasticSwap.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/transpiler/passes/routing/stochastic_swap.py "view source code")
+`StochasticSwap.run(dag)`
 
 Run the StochasticSwap pass on dag.
 

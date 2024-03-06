@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.SdgGate
 
 <span id="qiskit.circuit.library.SdgGate" />
 
-`SdgGate(label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/library/standard_gates/s.py "view source code")
+`SdgGate(label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/library/standard_gates/s.py "view source code")
 
 Bases: `qiskit.circuit.gate.Gate`
 
@@ -47,7 +47,7 @@ Create new Sdg gate.
 
 <span id="qiskit.circuit.library.SdgGate.inverse" />
 
-`SdgGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/library/standard_gates/s.py "view source code")
+`SdgGate.inverse()`
 
 Return inverse of Sdg (SGate).
 

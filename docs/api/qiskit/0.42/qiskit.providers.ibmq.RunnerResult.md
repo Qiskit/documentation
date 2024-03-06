@@ -14,7 +14,7 @@ python_api_name: qiskit.providers.ibmq.RunnerResult
 
 <span id="qiskit.providers.ibmq.RunnerResult" />
 
-`RunnerResult(backend_name, backend_version, qobj_id, job_id, success, results, date=None, status=None, header=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/runner_result.py "view source code")
+`RunnerResult(backend_name, backend_version, qobj_id, job_id, success, results, date=None, status=None, header=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/runner_result.py "view source code")
 
 Bases: [`qiskit.result.result.Result`](qiskit.result.Result "qiskit.result.result.Result"), [`qiskit.providers.ibmq.runtime.program.result_decoder.ResultDecoder`](qiskit.providers.ibmq.runtime.ResultDecoder "qiskit.providers.ibmq.runtime.program.result_decoder.ResultDecoder")
 
@@ -68,7 +68,7 @@ dict
 
 <span id="qiskit.providers.ibmq.RunnerResult.decode" />
 
-`classmethod RunnerResult.decode(data)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/runner_result.py "view source code")
+`classmethod RunnerResult.decode(data)`
 
 Decoding for results from Qiskit runtime jobs.
 
@@ -172,7 +172,7 @@ List\[str] or np.ndarray
 
 <span id="qiskit.providers.ibmq.RunnerResult.get_quasiprobabilities" />
 
-`RunnerResult.get_quasiprobabilities(experiment=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/runner_result.py "view source code")
+`RunnerResult.get_quasiprobabilities(experiment=None)`
 
 Get quasiprobabilites associated with one or more experiments.
 

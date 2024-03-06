@@ -10,7 +10,7 @@ python_api_name: qiskit.finance.data_providers.BaseDataProvider
 
 <span id="qiskit.finance.data_providers.BaseDataProvider" />
 
-`BaseDataProvider`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/finance/data_providers/_base_data_provider.py "view source code")
+`BaseDataProvider` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/finance/data_providers/_base_data_provider.py "view source code")
 
 The abstract base class for data\_provider modules within Qiskit’s finance module.
 
@@ -24,7 +24,7 @@ To use the subclasses, please see [https://github.com/Qiskit/qiskit-tutorials/qi
 
 <span id="qiskit.finance.data_providers.BaseDataProvider.get_coordinates" />
 
-`BaseDataProvider.get_coordinates()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/finance/data_providers/_base_data_provider.py "view source code")
+`BaseDataProvider.get_coordinates()`
 
 Returns random coordinates for visualisation purposes.
 
@@ -32,7 +32,7 @@ Returns random coordinates for visualisation purposes.
 
 <span id="qiskit.finance.data_providers.BaseDataProvider.get_covariance_matrix" />
 
-`BaseDataProvider.get_covariance_matrix()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/finance/data_providers/_base_data_provider.py "view source code")
+`BaseDataProvider.get_covariance_matrix()`
 
 Returns the covariance matrix.
 
@@ -52,7 +52,7 @@ numpy.ndarray
 
 <span id="qiskit.finance.data_providers.BaseDataProvider.get_mean_vector" />
 
-`BaseDataProvider.get_mean_vector()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/finance/data_providers/_base_data_provider.py "view source code")
+`BaseDataProvider.get_mean_vector()`
 
 Returns a vector containing the mean value of each asset.
 
@@ -72,7 +72,7 @@ numpy.ndarray
 
 <span id="qiskit.finance.data_providers.BaseDataProvider.get_period_return_covariance_matrix" />
 
-`BaseDataProvider.get_period_return_covariance_matrix()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/finance/data_providers/_base_data_provider.py "view source code")
+`BaseDataProvider.get_period_return_covariance_matrix()`
 
 Returns a vector containing the mean value of each asset.
 
@@ -92,7 +92,7 @@ numpy.ndarray
 
 <span id="qiskit.finance.data_providers.BaseDataProvider.get_period_return_mean_vector" />
 
-`BaseDataProvider.get_period_return_mean_vector()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/finance/data_providers/_base_data_provider.py "view source code")
+`BaseDataProvider.get_period_return_mean_vector()`
 
 Returns a vector containing the mean value of each asset.
 
@@ -112,7 +112,7 @@ numpy.ndarray
 
 <span id="qiskit.finance.data_providers.BaseDataProvider.get_similarity_matrix" />
 
-`BaseDataProvider.get_similarity_matrix()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/finance/data_providers/_base_data_provider.py "view source code")
+`BaseDataProvider.get_similarity_matrix()`
 
 Returns time-series similarity matrix computed using dynamic time warping.
 
@@ -132,7 +132,7 @@ numpy.ndarray
 
 <span id="qiskit.finance.data_providers.BaseDataProvider.run" />
 
-`abstract BaseDataProvider.run()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/finance/data_providers/_base_data_provider.py "view source code")
+`abstract BaseDataProvider.run()`
 
 Loads data.
 

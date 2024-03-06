@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.library.NLocal
 
 <span id="qiskit.circuit.library.NLocal" />
 
-`NLocal(num_qubits=None, rotation_blocks=None, entanglement_blocks=None, entanglement=None, reps=1, insert_barriers=False, parameter_prefix='θ', overwrite_block_parameters=True, skip_final_rotation_layer=False, skip_unentangled_qubits=False, initial_state=None, name='nlocal')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/n_local/n_local.py "view source code")
+`NLocal(num_qubits=None, rotation_blocks=None, entanglement_blocks=None, entanglement=None, reps=1, insert_barriers=False, parameter_prefix='θ', overwrite_block_parameters=True, skip_final_rotation_layer=False, skip_unentangled_qubits=False, initial_state=None, name='nlocal')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/n_local/n_local.py "view source code")
 
 The n-local circuit class.
 

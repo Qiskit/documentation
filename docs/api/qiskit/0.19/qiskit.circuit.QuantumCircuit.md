@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
 <span id="qiskit.circuit.QuantumCircuit" />
 
-`QuantumCircuit(*regs, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit(*regs, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
 
 Create a new circuit.
 
@@ -226,7 +226,7 @@ Build a collective disjunction (OR) circuit in place using mct.
 
 <span id="qiskit.circuit.QuantumCircuit.__getitem__" />
 
-`QuantumCircuit.__getitem__(item)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.__getitem__(item)`
 
 Return indexed operation.
 
@@ -234,7 +234,7 @@ Return indexed operation.
 
 <span id="qiskit.circuit.QuantumCircuit.__len__" />
 
-`QuantumCircuit.__len__()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.__len__()`
 
 Return number of operations in circuit.
 
@@ -242,7 +242,7 @@ Return number of operations in circuit.
 
 <span id="qiskit.circuit.QuantumCircuit.add_register" />
 
-`QuantumCircuit.add_register(*regs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.add_register(*regs)`
 
 Add registers.
 
@@ -250,7 +250,7 @@ Add registers.
 
 <span id="qiskit.circuit.QuantumCircuit.append" />
 
-`QuantumCircuit.append(instruction, qargs=None, cargs=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.append(instruction, qargs=None, cargs=None)`
 
 Append one or more instructions to the end of the circuit, modifying the circuit in place. Expands qargs and cargs.
 
@@ -272,7 +272,7 @@ a handle to the instruction that was just added
 
 <span id="qiskit.circuit.QuantumCircuit.assign_parameters" />
 
-`QuantumCircuit.assign_parameters(param_dict, inplace=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.assign_parameters(param_dict, inplace=False)`
 
 Assign parameters to new parameters or values.
 
@@ -335,7 +335,7 @@ set()
 
 <span id="qiskit.circuit.QuantumCircuit.barrier" />
 
-`QuantumCircuit.barrier(*qargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.barrier(*qargs)`
 
 Apply `Barrier`. If qargs is None, applies to all.
 
@@ -343,7 +343,7 @@ Apply `Barrier`. If qargs is None, applies to all.
 
 <span id="qiskit.circuit.QuantumCircuit.bind_parameters" />
 
-`QuantumCircuit.bind_parameters(value_dict)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.bind_parameters(value_dict)`
 
 Assign numeric parameters to values yielding a new circuit.
 
@@ -370,7 +370,7 @@ copy of self with assignment substitution.
 
 <span id="qiskit.circuit.QuantumCircuit.cast" />
 
-`static QuantumCircuit.cast(value, _type)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`static QuantumCircuit.cast(value, _type)`
 
 Best effort to cast value to type. Otherwise, returns the value.
 
@@ -378,7 +378,7 @@ Best effort to cast value to type. Otherwise, returns the value.
 
 <span id="qiskit.circuit.QuantumCircuit.cbit_argument_conversion" />
 
-`QuantumCircuit.cbit_argument_conversion(clbit_representation)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.cbit_argument_conversion(clbit_representation)`
 
 Converts several classical bit representations (such as indexes, range, etc.) into a list of classical bits.
 
@@ -398,7 +398,7 @@ List(tuple)
 
 <span id="qiskit.circuit.QuantumCircuit.ccx" />
 
-`QuantumCircuit.ccx(control_qubit1, control_qubit2, target_qubit, *, ctl1=None, ctl2=None, tgt=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.ccx(control_qubit1, control_qubit2, target_qubit, *, ctl1=None, ctl2=None, tgt=None)`
 
 Apply [`CCXGate`](qiskit.circuit.library.CCXGate "qiskit.circuit.library.CCXGate").
 
@@ -406,7 +406,7 @@ Apply [`CCXGate`](qiskit.circuit.library.CCXGate "qiskit.circuit.library.CCXGate
 
 <span id="qiskit.circuit.QuantumCircuit.ch" />
 
-`QuantumCircuit.ch(control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.ch(control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`
 
 Apply [`CHGate`](qiskit.circuit.library.CHGate "qiskit.circuit.library.CHGate").
 
@@ -414,7 +414,7 @@ Apply [`CHGate`](qiskit.circuit.library.CHGate "qiskit.circuit.library.CHGate").
 
 <span id="qiskit.circuit.QuantumCircuit.cls_instances" />
 
-`classmethod QuantumCircuit.cls_instances()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`classmethod QuantumCircuit.cls_instances()`
 
 Return the current number of instances of this class, useful for auto naming.
 
@@ -422,7 +422,7 @@ Return the current number of instances of this class, useful for auto naming.
 
 <span id="qiskit.circuit.QuantumCircuit.cls_prefix" />
 
-`classmethod QuantumCircuit.cls_prefix()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`classmethod QuantumCircuit.cls_prefix()`
 
 Return the prefix to use for auto naming.
 
@@ -430,7 +430,7 @@ Return the prefix to use for auto naming.
 
 <span id="qiskit.circuit.QuantumCircuit.cnot" />
 
-`QuantumCircuit.cnot(control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.cnot(control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`
 
 Apply [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate").
 
@@ -438,7 +438,7 @@ Apply [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate").
 
 <span id="qiskit.circuit.QuantumCircuit.combine" />
 
-`QuantumCircuit.combine(rhs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.combine(rhs)`
 
 Append rhs to self if self contains compatible registers.
 
@@ -466,7 +466,7 @@ Returns a new QuantumCircuit object
 
 <span id="qiskit.circuit.QuantumCircuit.compose" />
 
-`QuantumCircuit.compose(other, qubits=None, clbits=None, front=False, inplace=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.compose(other, qubits=None, clbits=None, front=False, inplace=False)`
 
 Compose circuit with `other` circuit or instruction, optionally permuting wires.
 
@@ -520,7 +520,7 @@ lcr_1: 0 ═══════════                           lcr_1: 0 �
 
 <span id="qiskit.circuit.QuantumCircuit.copy" />
 
-`QuantumCircuit.copy(name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.copy(name=None)`
 
 Copy the circuit.
 
@@ -540,7 +540,7 @@ a deepcopy of the current circuit, with the specified name
 
 <span id="qiskit.circuit.QuantumCircuit.count_ops" />
 
-`QuantumCircuit.count_ops()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.count_ops()`
 
 Count each operation kind in the circuit.
 
@@ -556,7 +556,7 @@ OrderedDict
 
 <span id="qiskit.circuit.QuantumCircuit.crx" />
 
-`QuantumCircuit.crx(theta, control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.crx(theta, control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`
 
 Apply [`CRXGate`](qiskit.circuit.library.CRXGate "qiskit.circuit.library.CRXGate").
 
@@ -564,7 +564,7 @@ Apply [`CRXGate`](qiskit.circuit.library.CRXGate "qiskit.circuit.library.CRXGate
 
 <span id="qiskit.circuit.QuantumCircuit.cry" />
 
-`QuantumCircuit.cry(theta, control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.cry(theta, control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`
 
 Apply [`CRYGate`](qiskit.circuit.library.CRYGate "qiskit.circuit.library.CRYGate").
 
@@ -572,7 +572,7 @@ Apply [`CRYGate`](qiskit.circuit.library.CRYGate "qiskit.circuit.library.CRYGate
 
 <span id="qiskit.circuit.QuantumCircuit.crz" />
 
-`QuantumCircuit.crz(theta, control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.crz(theta, control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`
 
 Apply [`CRZGate`](qiskit.circuit.library.CRZGate "qiskit.circuit.library.CRZGate").
 
@@ -580,7 +580,7 @@ Apply [`CRZGate`](qiskit.circuit.library.CRZGate "qiskit.circuit.library.CRZGate
 
 <span id="qiskit.circuit.QuantumCircuit.cswap" />
 
-`QuantumCircuit.cswap(control_qubit, target_qubit1, target_qubit2, *, label=None, ctrl_state=None, ctl=None, tgt1=None, tgt2=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.cswap(control_qubit, target_qubit1, target_qubit2, *, label=None, ctrl_state=None, ctl=None, tgt1=None, tgt2=None)`
 
 Apply [`CSwapGate`](qiskit.circuit.library.CSwapGate "qiskit.circuit.library.CSwapGate").
 
@@ -588,7 +588,7 @@ Apply [`CSwapGate`](qiskit.circuit.library.CSwapGate "qiskit.circuit.library.CSw
 
 <span id="qiskit.circuit.QuantumCircuit.cu1" />
 
-`QuantumCircuit.cu1(theta, control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.cu1(theta, control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`
 
 Apply [`CU1Gate`](qiskit.circuit.library.CU1Gate "qiskit.circuit.library.CU1Gate").
 
@@ -596,7 +596,7 @@ Apply [`CU1Gate`](qiskit.circuit.library.CU1Gate "qiskit.circuit.library.CU1Gate
 
 <span id="qiskit.circuit.QuantumCircuit.cu3" />
 
-`QuantumCircuit.cu3(theta, phi, lam, control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.cu3(theta, phi, lam, control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`
 
 Apply [`CU3Gate`](qiskit.circuit.library.CU3Gate "qiskit.circuit.library.CU3Gate").
 
@@ -604,7 +604,7 @@ Apply [`CU3Gate`](qiskit.circuit.library.CU3Gate "qiskit.circuit.library.CU3Gate
 
 <span id="qiskit.circuit.QuantumCircuit.cx" />
 
-`QuantumCircuit.cx(control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.cx(control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`
 
 Apply [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate").
 
@@ -612,7 +612,7 @@ Apply [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate").
 
 <span id="qiskit.circuit.QuantumCircuit.cy" />
 
-`QuantumCircuit.cy(control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.cy(control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`
 
 Apply [`CYGate`](qiskit.circuit.library.CYGate "qiskit.circuit.library.CYGate").
 
@@ -620,7 +620,7 @@ Apply [`CYGate`](qiskit.circuit.library.CYGate "qiskit.circuit.library.CYGate").
 
 <span id="qiskit.circuit.QuantumCircuit.cz" />
 
-`QuantumCircuit.cz(control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.cz(control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`
 
 Apply [`CZGate`](qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate").
 
@@ -628,7 +628,7 @@ Apply [`CZGate`](qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate").
 
 <span id="qiskit.circuit.QuantumCircuit.dcx" />
 
-`QuantumCircuit.dcx(qubit1, qubit2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.dcx(qubit1, qubit2)`
 
 Apply [`DCXGate`](qiskit.circuit.library.DCXGate "qiskit.circuit.library.DCXGate").
 
@@ -636,7 +636,7 @@ Apply [`DCXGate`](qiskit.circuit.library.DCXGate "qiskit.circuit.library.DCXGate
 
 <span id="qiskit.circuit.QuantumCircuit.decompose" />
 
-`QuantumCircuit.decompose()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.decompose()`
 
 Call a decomposition pass on this circuit, to decompose one level (shallow decompose).
 
@@ -652,7 +652,7 @@ a circuit one level decomposed
 
 <span id="qiskit.circuit.QuantumCircuit.depth" />
 
-`QuantumCircuit.depth()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.depth()`
 
 Return circuit depth (i.e., length of critical path). This does not include compiler or simulator directives such as ‘barrier’ or ‘snapshot’.
 
@@ -707,7 +707,7 @@ the diagonal gate which was attached to the circuit.
 
 <span id="qiskit.circuit.QuantumCircuit.draw" />
 
-`QuantumCircuit.draw(output=None, scale=0.7, filename=None, style=None, interactive=False, line_length=None, plot_barriers=True, reverse_bits=False, justify=None, vertical_compression='medium', idle_wires=True, with_layout=True, fold=None, ax=None, initial_state=False, cregbundle=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.draw(output=None, scale=0.7, filename=None, style=None, interactive=False, line_length=None, plot_barriers=True, reverse_bits=False, justify=None, vertical_compression='medium', idle_wires=True, with_layout=True, fold=None, ax=None, initial_state=False, cregbundle=False)`
 
 Draw the quantum circuit.
 
@@ -873,7 +873,7 @@ The style dict kwarg contains numerous options that define the style of the outp
 
 <span id="qiskit.circuit.QuantumCircuit.extend" />
 
-`QuantumCircuit.extend(rhs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.extend(rhs)`
 
 Append QuantumCircuit to the right hand side if it contains compatible registers.
 
@@ -901,7 +901,7 @@ Returns this QuantumCircuit object (which has been modified)
 
 <span id="qiskit.circuit.QuantumCircuit.fredkin" />
 
-`QuantumCircuit.fredkin(control_qubit, target_qubit1, target_qubit2, *, ctl=None, tgt1=None, tgt2=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.fredkin(control_qubit, target_qubit1, target_qubit2, *, ctl=None, tgt1=None, tgt2=None)`
 
 Apply [`CSwapGate`](qiskit.circuit.library.CSwapGate "qiskit.circuit.library.CSwapGate").
 
@@ -909,7 +909,7 @@ Apply [`CSwapGate`](qiskit.circuit.library.CSwapGate "qiskit.circuit.library.CSw
 
 <span id="qiskit.circuit.QuantumCircuit.from_qasm_file" />
 
-`static QuantumCircuit.from_qasm_file(path)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`static QuantumCircuit.from_qasm_file(path)`
 
 Take in a QASM file and generate a QuantumCircuit object.
 
@@ -929,7 +929,7 @@ The QuantumCircuit object for the input QASM
 
 <span id="qiskit.circuit.QuantumCircuit.from_qasm_str" />
 
-`static QuantumCircuit.from_qasm_str(qasm_str)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`static QuantumCircuit.from_qasm_str(qasm_str)`
 
 Take in a QASM string and generate a QuantumCircuit object.
 
@@ -949,7 +949,7 @@ The QuantumCircuit object for the input QASM
 
 <span id="qiskit.circuit.QuantumCircuit.h" />
 
-`QuantumCircuit.h(qubit, *, q=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.h(qubit, *, q=None)`
 
 Apply [`HGate`](qiskit.circuit.library.HGate "qiskit.circuit.library.HGate").
 
@@ -965,7 +965,7 @@ Apply hamiltonian evolution to to qubits.
 
 <span id="qiskit.circuit.QuantumCircuit.has_register" />
 
-`QuantumCircuit.has_register(register)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.has_register(register)`
 
 Test if this circuit has the register r.
 
@@ -985,7 +985,7 @@ bool
 
 <span id="qiskit.circuit.QuantumCircuit.i" />
 
-`QuantumCircuit.i(qubit, *, q=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.i(qubit, *, q=None)`
 
 Apply [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate").
 
@@ -993,7 +993,7 @@ Apply [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate").
 
 <span id="qiskit.circuit.QuantumCircuit.id" />
 
-`QuantumCircuit.id(qubit, *, q=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.id(qubit, *, q=None)`
 
 Apply [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate").
 
@@ -1001,7 +1001,7 @@ Apply [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate").
 
 <span id="qiskit.circuit.QuantumCircuit.iden" />
 
-`QuantumCircuit.iden(qubit, *, q=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.iden(qubit, *, q=None)`
 
 Deprecated identity gate.
 
@@ -1017,7 +1017,7 @@ Apply initialize to circuit.
 
 <span id="qiskit.circuit.QuantumCircuit.inverse" />
 
-`QuantumCircuit.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.inverse()`
 
 Invert this circuit.
 
@@ -1095,7 +1095,7 @@ the isometry is attached to the quantum circuit.
 
 <span id="qiskit.circuit.QuantumCircuit.iswap" />
 
-`QuantumCircuit.iswap(qubit1, qubit2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.iswap(qubit1, qubit2)`
 
 Apply [`iSwapGate`](qiskit.circuit.library.iSwapGate "qiskit.circuit.library.iSwapGate").
 
@@ -1175,7 +1175,7 @@ Apply Multiple-Controlled Z rotation gate
 
 <span id="qiskit.circuit.QuantumCircuit.mct" />
 
-`QuantumCircuit.mct(control_qubits, target_qubit, ancilla_qubits=None, mode='noancilla')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.mct(control_qubits, target_qubit, ancilla_qubits=None, mode='noancilla')`
 
 Apply `MCXGate`.
 
@@ -1183,7 +1183,7 @@ Apply `MCXGate`.
 
 <span id="qiskit.circuit.QuantumCircuit.mcu1" />
 
-`QuantumCircuit.mcu1(lam, control_qubits, target_qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.mcu1(lam, control_qubits, target_qubit)`
 
 Apply `MCU1Gate`.
 
@@ -1191,7 +1191,7 @@ Apply `MCU1Gate`.
 
 <span id="qiskit.circuit.QuantumCircuit.mcx" />
 
-`QuantumCircuit.mcx(control_qubits, target_qubit, ancilla_qubits=None, mode='noancilla')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.mcx(control_qubits, target_qubit, ancilla_qubits=None, mode='noancilla')`
 
 Apply `MCXGate`.
 
@@ -1226,7 +1226,7 @@ qiskit.Instruction
 
 <span id="qiskit.circuit.QuantumCircuit.measure_active" />
 
-`QuantumCircuit.measure_active(inplace=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.measure_active(inplace=True)`
 
 Adds measurement to all non-idle qubits. Creates a new ClassicalRegister with a size equal to the number of non-idle qubits being measured.
 
@@ -1248,7 +1248,7 @@ Returns circuit with measurements when inplace = False.
 
 <span id="qiskit.circuit.QuantumCircuit.measure_all" />
 
-`QuantumCircuit.measure_all(inplace=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.measure_all(inplace=True)`
 
 Adds measurement to all qubits. Creates a new ClassicalRegister with a size equal to the number of qubits being measured.
 
@@ -1270,7 +1270,7 @@ Returns circuit with measurements when inplace = False.
 
 <span id="qiskit.circuit.QuantumCircuit.mirror" />
 
-`QuantumCircuit.mirror()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.mirror()`
 
 Mirror the circuit by reversing the instructions.
 
@@ -1288,7 +1288,7 @@ the mirrored circuit
 
 <span id="qiskit.circuit.QuantumCircuit.ms" />
 
-`QuantumCircuit.ms(theta, qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.ms(theta, qubits)`
 
 Apply [`MSGate`](qiskit.circuit.library.MSGate "qiskit.circuit.library.MSGate").
 
@@ -1296,7 +1296,7 @@ Apply [`MSGate`](qiskit.circuit.library.MSGate "qiskit.circuit.library.MSGate").
 
 <span id="qiskit.circuit.QuantumCircuit.num_connected_components" />
 
-`QuantumCircuit.num_connected_components(unitary_only=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.num_connected_components(unitary_only=False)`
 
 How many non-entangled subcircuits can the circuit be factored to.
 
@@ -1316,7 +1316,7 @@ int
 
 <span id="qiskit.circuit.QuantumCircuit.num_nonlocal_gates" />
 
-`QuantumCircuit.num_nonlocal_gates()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.num_nonlocal_gates()`
 
 Return number of non-local gates (i.e. involving 2+ qubits).
 
@@ -1326,7 +1326,7 @@ Conditional nonlocal gates are also included.
 
 <span id="qiskit.circuit.QuantumCircuit.num_tensor_factors" />
 
-`QuantumCircuit.num_tensor_factors()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.num_tensor_factors()`
 
 Computes the number of tensor factors in the unitary (quantum) part of the circuit only.
 
@@ -1338,7 +1338,7 @@ This is here for backwards compatibility, and will be removed in a future releas
 
 <span id="qiskit.circuit.QuantumCircuit.num_unitary_factors" />
 
-`QuantumCircuit.num_unitary_factors()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.num_unitary_factors()`
 
 Computes the number of tensor factors in the unitary (quantum) part of the circuit only.
 
@@ -1346,7 +1346,7 @@ Computes the number of tensor factors in the unitary (quantum) part of the circu
 
 <span id="qiskit.circuit.QuantumCircuit.qasm" />
 
-`QuantumCircuit.qasm(formatted=False, filename=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.qasm(formatted=False, filename=None)`
 
 Return OpenQASM string.
 
@@ -1371,7 +1371,7 @@ str
 
 <span id="qiskit.circuit.QuantumCircuit.qbit_argument_conversion" />
 
-`QuantumCircuit.qbit_argument_conversion(qubit_representation)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.qbit_argument_conversion(qubit_representation)`
 
 Converts several qubit representations (such as indexes, range, etc.) into a list of qubits.
 
@@ -1391,7 +1391,7 @@ List(tuple)
 
 <span id="qiskit.circuit.QuantumCircuit.r" />
 
-`QuantumCircuit.r(theta, phi, qubit, *, q=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.r(theta, phi, qubit, *, q=None)`
 
 Apply `RGate`.
 
@@ -1399,7 +1399,7 @@ Apply `RGate`.
 
 <span id="qiskit.circuit.QuantumCircuit.rcccx" />
 
-`QuantumCircuit.rcccx(control_qubit1, control_qubit2, control_qubit3, target_qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.rcccx(control_qubit1, control_qubit2, control_qubit3, target_qubit)`
 
 Apply [`RC3XGate`](qiskit.circuit.library.RC3XGate "qiskit.circuit.library.RC3XGate").
 
@@ -1407,7 +1407,7 @@ Apply [`RC3XGate`](qiskit.circuit.library.RC3XGate "qiskit.circuit.library.RC3XG
 
 <span id="qiskit.circuit.QuantumCircuit.rccx" />
 
-`QuantumCircuit.rccx(control_qubit1, control_qubit2, target_qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.rccx(control_qubit1, control_qubit2, target_qubit)`
 
 Apply [`RCCXGate`](qiskit.circuit.library.RCCXGate "qiskit.circuit.library.RCCXGate").
 
@@ -1415,7 +1415,7 @@ Apply [`RCCXGate`](qiskit.circuit.library.RCCXGate "qiskit.circuit.library.RCCXG
 
 <span id="qiskit.circuit.QuantumCircuit.remove_final_measurements" />
 
-`QuantumCircuit.remove_final_measurements(inplace=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.remove_final_measurements(inplace=True)`
 
 Removes final measurement on all qubits if they are present. Deletes the ClassicalRegister that was used to store the values from these measurements if it is idle.
 
@@ -1445,7 +1445,7 @@ Reset q.
 
 <span id="qiskit.circuit.QuantumCircuit.rx" />
 
-`QuantumCircuit.rx(theta, qubit, *, label=None, q=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.rx(theta, qubit, *, label=None, q=None)`
 
 Apply [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate").
 
@@ -1453,7 +1453,7 @@ Apply [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate").
 
 <span id="qiskit.circuit.QuantumCircuit.rxx" />
 
-`QuantumCircuit.rxx(theta, qubit1, qubit2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.rxx(theta, qubit1, qubit2)`
 
 Apply [`RXXGate`](qiskit.circuit.library.RXXGate "qiskit.circuit.library.RXXGate").
 
@@ -1461,7 +1461,7 @@ Apply [`RXXGate`](qiskit.circuit.library.RXXGate "qiskit.circuit.library.RXXGate
 
 <span id="qiskit.circuit.QuantumCircuit.ry" />
 
-`QuantumCircuit.ry(theta, qubit, *, label=None, q=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.ry(theta, qubit, *, label=None, q=None)`
 
 Apply [`RYGate`](qiskit.circuit.library.RYGate "qiskit.circuit.library.RYGate").
 
@@ -1469,7 +1469,7 @@ Apply [`RYGate`](qiskit.circuit.library.RYGate "qiskit.circuit.library.RYGate").
 
 <span id="qiskit.circuit.QuantumCircuit.ryy" />
 
-`QuantumCircuit.ryy(theta, qubit1, qubit2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.ryy(theta, qubit1, qubit2)`
 
 Apply [`RYYGate`](qiskit.circuit.library.RYYGate "qiskit.circuit.library.RYYGate").
 
@@ -1477,7 +1477,7 @@ Apply [`RYYGate`](qiskit.circuit.library.RYYGate "qiskit.circuit.library.RYYGate
 
 <span id="qiskit.circuit.QuantumCircuit.rz" />
 
-`QuantumCircuit.rz(phi, qubit, *, q=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.rz(phi, qubit, *, q=None)`
 
 Apply [`RZGate`](qiskit.circuit.library.RZGate "qiskit.circuit.library.RZGate").
 
@@ -1485,7 +1485,7 @@ Apply [`RZGate`](qiskit.circuit.library.RZGate "qiskit.circuit.library.RZGate").
 
 <span id="qiskit.circuit.QuantumCircuit.rzx" />
 
-`QuantumCircuit.rzx(theta, qubit1, qubit2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.rzx(theta, qubit1, qubit2)`
 
 Apply [`RZXGate`](qiskit.circuit.library.RZXGate "qiskit.circuit.library.RZXGate").
 
@@ -1493,7 +1493,7 @@ Apply [`RZXGate`](qiskit.circuit.library.RZXGate "qiskit.circuit.library.RZXGate
 
 <span id="qiskit.circuit.QuantumCircuit.rzz" />
 
-`QuantumCircuit.rzz(theta, qubit1, qubit2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.rzz(theta, qubit1, qubit2)`
 
 Apply [`RZZGate`](qiskit.circuit.library.RZZGate "qiskit.circuit.library.RZZGate").
 
@@ -1501,7 +1501,7 @@ Apply [`RZZGate`](qiskit.circuit.library.RZZGate "qiskit.circuit.library.RZZGate
 
 <span id="qiskit.circuit.QuantumCircuit.s" />
 
-`QuantumCircuit.s(qubit, *, q=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.s(qubit, *, q=None)`
 
 Apply [`SGate`](qiskit.circuit.library.SGate "qiskit.circuit.library.SGate").
 
@@ -1509,7 +1509,7 @@ Apply [`SGate`](qiskit.circuit.library.SGate "qiskit.circuit.library.SGate").
 
 <span id="qiskit.circuit.QuantumCircuit.sdg" />
 
-`QuantumCircuit.sdg(qubit, *, q=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.sdg(qubit, *, q=None)`
 
 Apply [`SdgGate`](qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate").
 
@@ -1517,7 +1517,7 @@ Apply [`SdgGate`](qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate
 
 <span id="qiskit.circuit.QuantumCircuit.size" />
 
-`QuantumCircuit.size()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.size()`
 
 Returns total number of gate operations in circuit.
 
@@ -1718,7 +1718,7 @@ The single-qubit unitary instruction attached to the circuit.
 
 <span id="qiskit.circuit.QuantumCircuit.swap" />
 
-`QuantumCircuit.swap(qubit1, qubit2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.swap(qubit1, qubit2)`
 
 Apply [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate").
 
@@ -1726,7 +1726,7 @@ Apply [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapG
 
 <span id="qiskit.circuit.QuantumCircuit.t" />
 
-`QuantumCircuit.t(qubit, *, q=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.t(qubit, *, q=None)`
 
 Apply [`TGate`](qiskit.circuit.library.TGate "qiskit.circuit.library.TGate").
 
@@ -1734,7 +1734,7 @@ Apply [`TGate`](qiskit.circuit.library.TGate "qiskit.circuit.library.TGate").
 
 <span id="qiskit.circuit.QuantumCircuit.tdg" />
 
-`QuantumCircuit.tdg(qubit, *, q=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.tdg(qubit, *, q=None)`
 
 Apply [`TdgGate`](qiskit.circuit.library.TdgGate "qiskit.circuit.library.TdgGate").
 
@@ -1742,7 +1742,7 @@ Apply [`TdgGate`](qiskit.circuit.library.TdgGate "qiskit.circuit.library.TdgGate
 
 <span id="qiskit.circuit.QuantumCircuit.to_gate" />
 
-`QuantumCircuit.to_gate(parameter_map=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.to_gate(parameter_map=None)`
 
 Create a Gate out of this circuit.
 
@@ -1762,7 +1762,7 @@ a composite gate encapsulating this circuit (can be decomposed back)
 
 <span id="qiskit.circuit.QuantumCircuit.to_instruction" />
 
-`QuantumCircuit.to_instruction(parameter_map=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.to_instruction(parameter_map=None)`
 
 Create an Instruction out of this circuit.
 
@@ -1782,7 +1782,7 @@ a composite instruction encapsulating this circuit (can be decomposed back)
 
 <span id="qiskit.circuit.QuantumCircuit.toffoli" />
 
-`QuantumCircuit.toffoli(control_qubit1, control_qubit2, target_qubit, *, ctl1=None, ctl2=None, tgt=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.toffoli(control_qubit1, control_qubit2, target_qubit, *, ctl1=None, ctl2=None, tgt=None)`
 
 Apply [`CCXGate`](qiskit.circuit.library.CCXGate "qiskit.circuit.library.CCXGate").
 
@@ -1790,7 +1790,7 @@ Apply [`CCXGate`](qiskit.circuit.library.CCXGate "qiskit.circuit.library.CCXGate
 
 <span id="qiskit.circuit.QuantumCircuit.u1" />
 
-`QuantumCircuit.u1(theta, qubit, *, q=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.u1(theta, qubit, *, q=None)`
 
 Apply [`U1Gate`](qiskit.circuit.library.U1Gate "qiskit.circuit.library.U1Gate").
 
@@ -1798,7 +1798,7 @@ Apply [`U1Gate`](qiskit.circuit.library.U1Gate "qiskit.circuit.library.U1Gate").
 
 <span id="qiskit.circuit.QuantumCircuit.u2" />
 
-`QuantumCircuit.u2(phi, lam, qubit, *, q=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.u2(phi, lam, qubit, *, q=None)`
 
 Apply [`U2Gate`](qiskit.circuit.library.U2Gate "qiskit.circuit.library.U2Gate").
 
@@ -1806,7 +1806,7 @@ Apply [`U2Gate`](qiskit.circuit.library.U2Gate "qiskit.circuit.library.U2Gate").
 
 <span id="qiskit.circuit.QuantumCircuit.u3" />
 
-`QuantumCircuit.u3(theta, phi, lam, qubit, *, q=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.u3(theta, phi, lam, qubit, *, q=None)`
 
 Apply [`U3Gate`](qiskit.circuit.library.U3Gate "qiskit.circuit.library.U3Gate").
 
@@ -1967,7 +1967,7 @@ Apply unitary gate to q.
 
 <span id="qiskit.circuit.QuantumCircuit.width" />
 
-`QuantumCircuit.width()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.width()`
 
 Return number of qubits plus clbits in circuit.
 
@@ -1983,7 +1983,7 @@ int
 
 <span id="qiskit.circuit.QuantumCircuit.x" />
 
-`QuantumCircuit.x(qubit, *, label=None, ctrl_state=None, q=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.x(qubit, *, label=None, ctrl_state=None, q=None)`
 
 Apply [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.library.XGate").
 
@@ -1991,7 +1991,7 @@ Apply [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.library.XGate").
 
 <span id="qiskit.circuit.QuantumCircuit.y" />
 
-`QuantumCircuit.y(qubit, *, q=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.y(qubit, *, q=None)`
 
 Apply [`YGate`](qiskit.circuit.library.YGate "qiskit.circuit.library.YGate").
 
@@ -1999,7 +1999,7 @@ Apply [`YGate`](qiskit.circuit.library.YGate "qiskit.circuit.library.YGate").
 
 <span id="qiskit.circuit.QuantumCircuit.z" />
 
-`QuantumCircuit.z(qubit, *, q=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.z(qubit, *, q=None)`
 
 Apply [`ZGate`](qiskit.circuit.library.ZGate "qiskit.circuit.library.ZGate").
 

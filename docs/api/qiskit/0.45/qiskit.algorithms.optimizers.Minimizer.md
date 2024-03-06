@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.Minimizer
 
 <span id="qiskit.algorithms.optimizers.Minimizer" />
 
-`qiskit.algorithms.optimizers.Minimizer(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/optimizers/optimizer.py "view source code")
+`qiskit.algorithms.optimizers.Minimizer(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/optimizers/optimizer.py "view source code")
 
 Bases: [`Protocol`](https://docs.python.org/3/library/typing.html#typing.Protocol "(in Python v3.12)")
 

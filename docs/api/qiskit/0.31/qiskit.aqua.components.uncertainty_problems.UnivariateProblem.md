@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.uncertainty_problems.UnivariateProblem
 
 <span id="qiskit.aqua.components.uncertainty_problems.UnivariateProblem" />
 
-`UnivariateProblem(uncertainty_model, univariate_objective, i_state=None, i_objective=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_problems/univariate_problem.py "view source code")
+`UnivariateProblem(uncertainty_model, univariate_objective, i_state=None, i_objective=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_problems/univariate_problem.py "view source code")
 
 Bases: `qiskit.aqua.components.uncertainty_problems.uncertainty_problem.UncertaintyProblem`
 
@@ -31,7 +31,7 @@ Constructor.
 
 <span id="qiskit.aqua.components.uncertainty_problems.UnivariateProblem.build" />
 
-`UnivariateProblem.build(qc, q, q_ancillas=None, params=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_problems/univariate_problem.py "view source code")
+`UnivariateProblem.build(qc, q, q_ancillas=None, params=None)`
 
 Adds corresponding sub-circuit to given circuit
 
@@ -140,7 +140,7 @@ returns number of qubits controlled
 
 <span id="qiskit.aqua.components.uncertainty_problems.UnivariateProblem.required_ancillas" />
 
-`UnivariateProblem.required_ancillas()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_problems/univariate_problem.py "view source code")
+`UnivariateProblem.required_ancillas()`
 
 returns required ancillas
 
@@ -156,7 +156,7 @@ returns required ancillas controlled
 
 <span id="qiskit.aqua.components.uncertainty_problems.UnivariateProblem.value_to_estimation" />
 
-`UnivariateProblem.value_to_estimation(value)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_problems/univariate_problem.py "view source code")
+`UnivariateProblem.value_to_estimation(value)`
 
 value to estimate
 

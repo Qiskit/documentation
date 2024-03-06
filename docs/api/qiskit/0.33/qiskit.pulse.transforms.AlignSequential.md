@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.transforms.AlignSequential
 
 <span id="qiskit.pulse.transforms.AlignSequential" />
 
-`AlignSequential`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/pulse/transforms/alignments.py "view source code")
+`AlignSequential` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/pulse/transforms/alignments.py "view source code")
 
 Bases: `qiskit.pulse.transforms.alignments.AlignmentKind`
 
@@ -26,7 +26,7 @@ Create new context.
 
 <span id="qiskit.pulse.transforms.AlignSequential.align" />
 
-`AlignSequential.align(schedule)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/pulse/transforms/alignments.py "view source code")
+`AlignSequential.align(schedule)`
 
 Reallocate instructions according to the policy.
 

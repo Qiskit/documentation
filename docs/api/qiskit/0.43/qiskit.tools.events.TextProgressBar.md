@@ -10,7 +10,7 @@ python_api_name: qiskit.tools.events.TextProgressBar
 
 <span id="qiskit.tools.events.TextProgressBar" />
 
-`TextProgressBar(output_handler=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/tools/events/progressbar.py "view source code")
+`TextProgressBar(output_handler=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/tools/events/progressbar.py "view source code")
 
 Bases: `BaseProgressBar`
 
@@ -76,7 +76,7 @@ Run when progress bar has completed.
 
 <span id="qiskit.tools.events.TextProgressBar.start" />
 
-`TextProgressBar.start(iterations)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/tools/events/progressbar.py "view source code")
+`TextProgressBar.start(iterations)`
 
 Start the progress bar.
 
@@ -150,7 +150,7 @@ Unsubscribe a pair event-callback, so the callback will not be called anymore wh
 
 <span id="qiskit.tools.events.TextProgressBar.update" />
 
-`TextProgressBar.update(n)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/tools/events/progressbar.py "view source code")
+`TextProgressBar.update(n)`
 
 Update status of progress bar.
 

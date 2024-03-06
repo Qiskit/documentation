@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.synthesis.aqc.DefaultCNOTUnitObjective
 
 <span id="qiskit.transpiler.synthesis.aqc.DefaultCNOTUnitObjective" />
 
-`qiskit.transpiler.synthesis.aqc.DefaultCNOTUnitObjective(num_qubits, cnots)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/synthesis/aqc/cnot_unit_objective.py "view source code")
+`qiskit.transpiler.synthesis.aqc.DefaultCNOTUnitObjective(num_qubits, cnots)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/synthesis/aqc/cnot_unit_objective.py "view source code")
 
 Bases: [`CNOTUnitObjective`](qiskit.transpiler.synthesis.aqc.CNOTUnitObjective "qiskit.transpiler.synthesis.aqc.cnot_unit_objective.CNOTUnitObjective")
 

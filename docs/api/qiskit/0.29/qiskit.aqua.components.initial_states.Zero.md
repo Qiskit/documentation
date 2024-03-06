@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.initial_states.Zero
 
 <span id="qiskit.aqua.components.initial_states.Zero" />
 
-`Zero(num_qubits)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/initial_states/zero.py "view source code")
+`Zero(num_qubits)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/initial_states/zero.py "view source code")
 
 Bases: `qiskit.aqua.components.initial_states.initial_state.InitialState`
 
@@ -28,7 +28,7 @@ This is suitable for those situations in which the all-zeros state is the desire
 
 <span id="qiskit.aqua.components.initial_states.Zero.construct_circuit" />
 
-`Zero.construct_circuit(mode='circuit', register=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/initial_states/zero.py "view source code")
+`Zero.construct_circuit(mode='circuit', register=None)`
 
 Construct the statevector of desired initial state.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.extensions.HamiltonianGate
 
 <span id="qiskit.extensions.HamiltonianGate" />
 
-`HamiltonianGate(data, time, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/extensions/hamiltonian_gate.py "view source code")
+`HamiltonianGate(data, time, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/extensions/hamiltonian_gate.py "view source code")
 
 Bases: `qiskit.circuit.gate.Gate`
 
@@ -42,7 +42,7 @@ Add a decomposition of the instruction to the SessionEquivalenceLibrary.
 
 <span id="qiskit.extensions.HamiltonianGate.adjoint" />
 
-`HamiltonianGate.adjoint()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/extensions/hamiltonian_gate.py "view source code")
+`HamiltonianGate.adjoint()`
 
 Return the adjoint of the unitary.
 
@@ -125,7 +125,7 @@ Set a classical equality condition on this instruction between the register or c
 
 <span id="qiskit.extensions.HamiltonianGate.conjugate" />
 
-`HamiltonianGate.conjugate()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/extensions/hamiltonian_gate.py "view source code")
+`HamiltonianGate.conjugate()`
 
 Return the conjugate of the Hamiltonian.
 
@@ -181,7 +181,7 @@ updated if it was provided
 
 <span id="qiskit.extensions.HamiltonianGate.inverse" />
 
-`HamiltonianGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/extensions/hamiltonian_gate.py "view source code")
+`HamiltonianGate.inverse()`
 
 Return the adjoint of the unitary.
 
@@ -221,7 +221,7 @@ To which to\_matrix is self.to\_matrix^exponent.
 
 <span id="qiskit.extensions.HamiltonianGate.qasm" />
 
-`HamiltonianGate.qasm()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/extensions/hamiltonian_gate.py "view source code")
+`HamiltonianGate.qasm()`
 
 Raise an error, as QASM is not defined for the HamiltonianGate.
 
@@ -313,7 +313,7 @@ np.ndarray
 
 <span id="qiskit.extensions.HamiltonianGate.transpose" />
 
-`HamiltonianGate.transpose()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/extensions/hamiltonian_gate.py "view source code")
+`HamiltonianGate.transpose()`
 
 Return the transpose of the Hamiltonian.
 
@@ -321,7 +321,7 @@ Return the transpose of the Hamiltonian.
 
 <span id="qiskit.extensions.HamiltonianGate.validate_parameter" />
 
-`HamiltonianGate.validate_parameter(parameter)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/extensions/hamiltonian_gate.py "view source code")
+`HamiltonianGate.validate_parameter(parameter)`
 
 Hamiltonian parameter has to be an ndarray, operator or float.
 

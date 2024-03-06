@@ -1,7 +1,7 @@
 ---
 title: circuit
 description: API reference for qiskit.circuit
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.circuit
 ---
@@ -224,12 +224,13 @@ qc.depth()
 | [`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")(\*\[, resource\_requester])        | Instruction collection, and their contexts.                                                            |
 | [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation")()                                                 | Quantum Operation Interface Class.                                                                     |
 | [`EquivalenceLibrary`](qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary")(\*\[, base])           | A library providing a one-way mapping of Gates to their equivalent implementations as QuantumCircuits. |
+| [`Store`](qiskit.circuit.Store "qiskit.circuit.Store")(lvalue, rvalue)                                               | A manual storage of some classical value to a classical memory location.                               |
 
 ### Control Flow Operations
 
 |                                                                                                                       |                                                                                                                                                                                        |
 | --------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp")(name, num\_qubits, num\_clbits, ...)   | Abstract class to encapsulate all control flow operations.                                                                                                                             |
+| [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp")(\*args, \*\*kwargs)                    | Abstract class to encapsulate all control flow operations.                                                                                                                             |
 | [`IfElseOp`](qiskit.circuit.IfElseOp "qiskit.circuit.IfElseOp")(condition, true\_body\[, false\_body, ...])           | A circuit operation which executes a program (`true_body`) if a provided condition (`condition`) evaluates to true, and optionally evaluates another program (`false_body`) otherwise. |
 | [`WhileLoopOp`](qiskit.circuit.WhileLoopOp "qiskit.circuit.WhileLoopOp")(condition, body\[, label])                   | A circuit operation which repeatedly executes a subcircuit (`body`) until a condition (`condition`) evaluates as False.                                                                |
 | [`ForLoopOp`](qiskit.circuit.ForLoopOp "qiskit.circuit.ForLoopOp")(indexset, loop\_parameter, body\[, ...])           | A circuit operation which repeatedly executes a subcircuit (`body`) parameterized by a parameter `loop_parameter` through the set of integer values provided in `indexset`.            |
@@ -289,7 +290,7 @@ with qc.switch(cr) as case:
 
 <span id="qiskit.circuit.random.random_circuit" />
 
-`qiskit.circuit.random.random_circuit(num_qubits, depth, max_operands=4, measure=False, conditional=False, reset=False, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/random/utils.py "view source code")
+`qiskit.circuit.random.random_circuit(num_qubits, depth, max_operands=4, measure=False, conditional=False, reset=False, seed=None)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/random/utils.py "view source code")
 
 Generate random circuit of arbitrary size and form.
 
@@ -334,7 +335,7 @@ Almost all circuit functions and methods will raise a [`CircuitError`](#qiskit.c
 
 <span id="qiskit.circuit.CircuitError" />
 
-`qiskit.circuit.CircuitError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/exceptions.py "view source code")
+`qiskit.circuit.CircuitError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/exceptions.py "view source code")
 
 Base class for errors raised while processing a circuit.
 

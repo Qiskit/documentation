@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.options.SimulatorOptions
 
 <span id="qiskit_ibm_runtime.options.SimulatorOptions" />
 
-`SimulatorOptions(noise_model=None, seed_simulator=None, coupling_map=None, basis_gates=None)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/options/simulator_options.py "view source code")
+`SimulatorOptions(noise_model=None, seed_simulator=None, coupling_map=None, basis_gates=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/options/simulator_options.py#L35-L95 "view source code")
 
 Simulator options.
 
@@ -63,7 +63,7 @@ For best practice in simulating a backend make sure to pass the basis gates and 
 
 <span id="qiskit_ibm_runtime.options.SimulatorOptions.set_backend" />
 
-`set_backend(backend)`
+`set_backend(backend)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/options/simulator_options.py#L71-L95 "view source code")
 
 Set backend for simulation. This method changes noise\_model, coupling\_map, basis\_gates according to given backend.
 
@@ -83,7 +83,7 @@ Set backend for simulation. This method changes noise\_model, coupling\_map, bas
 
 <span id="qiskit_ibm_runtime.options.SimulatorOptions.validate_simulator_options" />
 
-`static validate_simulator_options(simulator_options)`
+`static validate_simulator_options(simulator_options)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/options/simulator_options.py#L61-L69 "view source code")
 
 Validate that simulator options are legal. :raises ValueError: if any simulator option is not supported
 

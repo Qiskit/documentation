@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.ControlFlowOp
 
 <span id="qiskit.circuit.ControlFlowOp" />
 
-`ControlFlowOp(name, num_qubits, num_clbits, params, duration=None, unit='dt', label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/controlflow/control_flow.py "view source code")
+`ControlFlowOp(name, num_qubits, num_clbits, params, duration=None, unit='dt', label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/controlflow/control_flow.py "view source code")
 
 Bases: `qiskit.circuit.instruction.Instruction`, `abc.ABC`
 

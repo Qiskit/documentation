@@ -10,7 +10,7 @@ python_api_name: qiskit.optimization.problems.QuadraticProgram
 
 <span id="qiskit.optimization.problems.QuadraticProgram" />
 
-`QuadraticProgram(name='')`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py "view source code")
+`QuadraticProgram(name='')` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py "view source code")
 
 Bases: `object`
 
@@ -28,7 +28,7 @@ This representation supports inequality and equality constraints, as well as con
 
 <span id="qiskit.optimization.problems.QuadraticProgram.binary_var" />
 
-`QuadraticProgram.binary_var(name=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py "view source code")
+`QuadraticProgram.binary_var(name=None)`
 
 Adds a binary variable to the quadratic program.
 
@@ -52,7 +52,7 @@ The added variable.
 
 <span id="qiskit.optimization.problems.QuadraticProgram.binary_var_dict" />
 
-`QuadraticProgram.binary_var_dict(keys, name=None, key_format='{}')`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py "view source code")
+`QuadraticProgram.binary_var_dict(keys, name=None, key_format='{}')`
 
 Uses ‘var\_dict’ to construct a dictionary of binary variables
 
@@ -80,7 +80,7 @@ A dictionary mapping the variable names to variable instances.
 
 <span id="qiskit.optimization.problems.QuadraticProgram.binary_var_list" />
 
-`QuadraticProgram.binary_var_list(keys, name=None, key_format='{}')`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py "view source code")
+`QuadraticProgram.binary_var_list(keys, name=None, key_format='{}')`
 
 Uses ‘var\_list’ to construct a list of binary variables
 
@@ -108,7 +108,7 @@ A list of variable instances.
 
 <span id="qiskit.optimization.problems.QuadraticProgram.clear" />
 
-`QuadraticProgram.clear()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py "view source code")
+`QuadraticProgram.clear()`
 
 Clears the quadratic program, i.e., deletes all variables, constraints, the objective function as well as the name.
 
@@ -120,7 +120,7 @@ Clears the quadratic program, i.e., deletes all variables, constraints, the obje
 
 <span id="qiskit.optimization.problems.QuadraticProgram.continuous_var" />
 
-`QuadraticProgram.continuous_var(lowerbound=0, upperbound=1e+20, name=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py "view source code")
+`QuadraticProgram.continuous_var(lowerbound=0, upperbound=1e+20, name=None)`
 
 Adds a continuous variable to the quadratic program.
 
@@ -146,7 +146,7 @@ The added variable.
 
 <span id="qiskit.optimization.problems.QuadraticProgram.continuous_var_dict" />
 
-`QuadraticProgram.continuous_var_dict(keys, lowerbound=0, upperbound=1e+20, name=None, key_format='{}')`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py "view source code")
+`QuadraticProgram.continuous_var_dict(keys, lowerbound=0, upperbound=1e+20, name=None, key_format='{}')`
 
 Uses ‘var\_dict’ to construct a dictionary of continuous variables
 
@@ -176,7 +176,7 @@ A dictionary mapping the variable names to variable instances.
 
 <span id="qiskit.optimization.problems.QuadraticProgram.continuous_var_list" />
 
-`QuadraticProgram.continuous_var_list(keys, lowerbound=0, upperbound=1e+20, name=None, key_format='{}')`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py "view source code")
+`QuadraticProgram.continuous_var_list(keys, lowerbound=0, upperbound=1e+20, name=None, key_format='{}')`
 
 Uses ‘var\_list’ to construct a list of continuous variables
 
@@ -206,7 +206,7 @@ A list of variable instances.
 
 <span id="qiskit.optimization.problems.QuadraticProgram.export_as_lp_string" />
 
-`QuadraticProgram.export_as_lp_string()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py "view source code")
+`QuadraticProgram.export_as_lp_string()`
 
 Returns the quadratic program as a string of LP format.
 
@@ -222,7 +222,7 @@ A string representing the quadratic program.
 
 <span id="qiskit.optimization.problems.QuadraticProgram.from_docplex" />
 
-`QuadraticProgram.from_docplex(model)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py "view source code")
+`QuadraticProgram.from_docplex(model)`
 
 Loads this quadratic program from a docplex model.
 
@@ -244,7 +244,7 @@ Note that this supports only basic functions of docplex as follows: - quadratic 
 
 <span id="qiskit.optimization.problems.QuadraticProgram.from_ising" />
 
-`QuadraticProgram.from_ising(qubit_op, offset=0.0, linear=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py "view source code")
+`QuadraticProgram.from_ising(qubit_op, offset=0.0, linear=False)`
 
 Create a quadratic program from a qubit operator and a shift value.
 
@@ -268,7 +268,7 @@ Create a quadratic program from a qubit operator and a shift value.
 
 <span id="qiskit.optimization.problems.QuadraticProgram.get_feasibility_info" />
 
-`QuadraticProgram.get_feasibility_info(x)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py "view source code")
+`QuadraticProgram.get_feasibility_info(x)`
 
 Returns whether a solution is feasible or not along with the violations. :type x: `Union`\[`List`\[`float`], `ndarray`] :param x: a solution value, such as returned in an optimizer result.
 
@@ -288,7 +288,7 @@ feasible
 
 <span id="qiskit.optimization.problems.QuadraticProgram.get_linear_constraint" />
 
-`QuadraticProgram.get_linear_constraint(i)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py "view source code")
+`QuadraticProgram.get_linear_constraint(i)`
 
 Returns a linear constraint for a given name or index.
 
@@ -313,7 +313,7 @@ The corresponding constraint.
 
 <span id="qiskit.optimization.problems.QuadraticProgram.get_num_binary_vars" />
 
-`QuadraticProgram.get_num_binary_vars()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py "view source code")
+`QuadraticProgram.get_num_binary_vars()`
 
 Returns the total number of binary variables.
 
@@ -329,7 +329,7 @@ The total number of binary variables.
 
 <span id="qiskit.optimization.problems.QuadraticProgram.get_num_continuous_vars" />
 
-`QuadraticProgram.get_num_continuous_vars()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py "view source code")
+`QuadraticProgram.get_num_continuous_vars()`
 
 Returns the total number of continuous variables.
 
@@ -345,7 +345,7 @@ The total number of continuous variables.
 
 <span id="qiskit.optimization.problems.QuadraticProgram.get_num_integer_vars" />
 
-`QuadraticProgram.get_num_integer_vars()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py "view source code")
+`QuadraticProgram.get_num_integer_vars()`
 
 Returns the total number of integer variables.
 
@@ -361,7 +361,7 @@ The total number of integer variables.
 
 <span id="qiskit.optimization.problems.QuadraticProgram.get_num_linear_constraints" />
 
-`QuadraticProgram.get_num_linear_constraints()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py "view source code")
+`QuadraticProgram.get_num_linear_constraints()`
 
 Returns the number of linear constraints.
 
@@ -377,7 +377,7 @@ The number of linear constraints.
 
 <span id="qiskit.optimization.problems.QuadraticProgram.get_num_quadratic_constraints" />
 
-`QuadraticProgram.get_num_quadratic_constraints()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py "view source code")
+`QuadraticProgram.get_num_quadratic_constraints()`
 
 Returns the number of quadratic constraints.
 
@@ -393,7 +393,7 @@ The number of quadratic constraints.
 
 <span id="qiskit.optimization.problems.QuadraticProgram.get_num_vars" />
 
-`QuadraticProgram.get_num_vars(vartype=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py "view source code")
+`QuadraticProgram.get_num_vars(vartype=None)`
 
 Returns the total number of variables or the number of variables of the specified type.
 
@@ -413,7 +413,7 @@ The total number of variables.
 
 <span id="qiskit.optimization.problems.QuadraticProgram.get_quadratic_constraint" />
 
-`QuadraticProgram.get_quadratic_constraint(i)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py "view source code")
+`QuadraticProgram.get_quadratic_constraint(i)`
 
 Returns a quadratic constraint for a given name or index.
 
@@ -438,7 +438,7 @@ The corresponding constraint.
 
 <span id="qiskit.optimization.problems.QuadraticProgram.get_variable" />
 
-`QuadraticProgram.get_variable(i)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py "view source code")
+`QuadraticProgram.get_variable(i)`
 
 Returns a variable for a given name or index.
 
@@ -458,7 +458,7 @@ The corresponding variable.
 
 <span id="qiskit.optimization.problems.QuadraticProgram.integer_var" />
 
-`QuadraticProgram.integer_var(lowerbound=0, upperbound=1e+20, name=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py "view source code")
+`QuadraticProgram.integer_var(lowerbound=0, upperbound=1e+20, name=None)`
 
 Adds an integer variable to the quadratic program.
 
@@ -484,7 +484,7 @@ The added variable.
 
 <span id="qiskit.optimization.problems.QuadraticProgram.integer_var_dict" />
 
-`QuadraticProgram.integer_var_dict(keys, lowerbound=0, upperbound=1e+20, name=None, key_format='{}')`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py "view source code")
+`QuadraticProgram.integer_var_dict(keys, lowerbound=0, upperbound=1e+20, name=None, key_format='{}')`
 
 Uses ‘var\_dict’ to construct a dictionary of integer variables
 
@@ -514,7 +514,7 @@ A dictionary mapping the variable names to variable instances.
 
 <span id="qiskit.optimization.problems.QuadraticProgram.integer_var_list" />
 
-`QuadraticProgram.integer_var_list(keys, lowerbound=0, upperbound=1e+20, name=None, key_format='{}')`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py "view source code")
+`QuadraticProgram.integer_var_list(keys, lowerbound=0, upperbound=1e+20, name=None, key_format='{}')`
 
 Uses ‘var\_list’ to construct a dictionary of integer variables
 
@@ -544,7 +544,7 @@ A list of variable instances.
 
 <span id="qiskit.optimization.problems.QuadraticProgram.is_feasible" />
 
-`QuadraticProgram.is_feasible(x)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py "view source code")
+`QuadraticProgram.is_feasible(x)`
 
 Returns whether a solution is feasible or not.
 
@@ -564,7 +564,7 @@ Returns whether a solution is feasible or not.
 
 <span id="qiskit.optimization.problems.QuadraticProgram.linear_constraint" />
 
-`QuadraticProgram.linear_constraint(linear=None, sense='<=', rhs=0.0, name=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py "view source code")
+`QuadraticProgram.linear_constraint(linear=None, sense='<=', rhs=0.0, name=None)`
 
 #### Adds a linear equality constraint to the quadratic program of the form:
 
@@ -593,7 +593,7 @@ The added constraint.
 
 <span id="qiskit.optimization.problems.QuadraticProgram.maximize" />
 
-`QuadraticProgram.maximize(constant=0.0, linear=None, quadratic=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py "view source code")
+`QuadraticProgram.maximize(constant=0.0, linear=None, quadratic=None)`
 
 Sets a quadratic objective to be maximized.
 
@@ -615,7 +615,7 @@ The created quadratic objective.
 
 <span id="qiskit.optimization.problems.QuadraticProgram.minimize" />
 
-`QuadraticProgram.minimize(constant=0.0, linear=None, quadratic=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py "view source code")
+`QuadraticProgram.minimize(constant=0.0, linear=None, quadratic=None)`
 
 Sets a quadratic objective to be minimized.
 
@@ -637,7 +637,7 @@ The created quadratic objective.
 
 <span id="qiskit.optimization.problems.QuadraticProgram.pprint_as_string" />
 
-`QuadraticProgram.pprint_as_string()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py "view source code")
+`QuadraticProgram.pprint_as_string()`
 
 DEPRECATED Returns the quadratic program as a string in Docplex’s pretty print format. :rtype: `str` :returns: A string representing the quadratic program.
 
@@ -645,7 +645,7 @@ DEPRECATED Returns the quadratic program as a string in Docplex’s pretty print
 
 <span id="qiskit.optimization.problems.QuadraticProgram.prettyprint" />
 
-`QuadraticProgram.prettyprint(out=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py "view source code")
+`QuadraticProgram.prettyprint(out=None)`
 
 DEPRECATED Pretty prints the quadratic program to a given output stream (None = default).
 
@@ -661,7 +661,7 @@ DEPRECATED Pretty prints the quadratic program to a given output stream (None = 
 
 <span id="qiskit.optimization.problems.QuadraticProgram.quadratic_constraint" />
 
-`QuadraticProgram.quadratic_constraint(linear=None, quadratic=None, sense='<=', rhs=0.0, name=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py "view source code")
+`QuadraticProgram.quadratic_constraint(linear=None, quadratic=None, sense='<=', rhs=0.0, name=None)`
 
 #### Adds a quadratic equality constraint to the quadratic program of the form:
 
@@ -691,7 +691,7 @@ The added constraint.
 
 <span id="qiskit.optimization.problems.QuadraticProgram.read_from_lp_file" />
 
-`QuadraticProgram.read_from_lp_file(filename)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py "view source code")
+`QuadraticProgram.read_from_lp_file(filename)`
 
 Loads the quadratic program from a LP file.
 
@@ -716,7 +716,7 @@ Loads the quadratic program from a LP file.
 
 <span id="qiskit.optimization.problems.QuadraticProgram.remove_linear_constraint" />
 
-`QuadraticProgram.remove_linear_constraint(i)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py "view source code")
+`QuadraticProgram.remove_linear_constraint(i)`
 
 Remove a linear constraint
 
@@ -737,7 +737,7 @@ Remove a linear constraint
 
 <span id="qiskit.optimization.problems.QuadraticProgram.remove_quadratic_constraint" />
 
-`QuadraticProgram.remove_quadratic_constraint(i)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py "view source code")
+`QuadraticProgram.remove_quadratic_constraint(i)`
 
 Remove a quadratic constraint
 
@@ -758,7 +758,7 @@ Remove a quadratic constraint
 
 <span id="qiskit.optimization.problems.QuadraticProgram.substitute_variables" />
 
-`QuadraticProgram.substitute_variables(constants=None, variables=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py "view source code")
+`QuadraticProgram.substitute_variables(constants=None, variables=None)`
 
 Substitutes variables with constants or other variables.
 
@@ -783,7 +783,7 @@ An optimization problem by substituting variables with constants or other variab
 
 <span id="qiskit.optimization.problems.QuadraticProgram.to_docplex" />
 
-`QuadraticProgram.to_docplex()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py "view source code")
+`QuadraticProgram.to_docplex()`
 
 Returns a docplex model corresponding to this quadratic program.
 
@@ -803,7 +803,7 @@ The docplex model corresponding to this quadratic program.
 
 <span id="qiskit.optimization.problems.QuadraticProgram.to_ising" />
 
-`QuadraticProgram.to_ising()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py "view source code")
+`QuadraticProgram.to_ising()`
 
 Return the Ising Hamiltonian of this problem.
 
@@ -824,7 +824,7 @@ qubit\_op
 
 <span id="qiskit.optimization.problems.QuadraticProgram.write_to_lp_file" />
 
-`QuadraticProgram.write_to_lp_file(filename)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py "view source code")
+`QuadraticProgram.write_to_lp_file(filename)`
 
 Writes the quadratic program to an LP file.
 

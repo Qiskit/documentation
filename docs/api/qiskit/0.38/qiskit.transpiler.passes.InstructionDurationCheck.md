@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.InstructionDurationCheck
 
 <span id="qiskit.transpiler.passes.InstructionDurationCheck" />
 
-`InstructionDurationCheck(acquire_alignment=1, pulse_alignment=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/scheduling/alignments/check_durations.py "view source code")
+`InstructionDurationCheck(acquire_alignment=1, pulse_alignment=1)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/scheduling/alignments/check_durations.py "view source code")
 
 Bases: [`qiskit.transpiler.basepasses.AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
@@ -43,7 +43,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.InstructionDurationCheck.run" />
 
-`InstructionDurationCheck.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/scheduling/alignments/check_durations.py "view source code")
+`InstructionDurationCheck.run(dag)`
 
 Run duration validation passes.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.optimization.algorithms.OptimizationAlgorithm
 
 <span id="qiskit.optimization.algorithms.OptimizationAlgorithm" />
 
-`OptimizationAlgorithm`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/algorithms/optimization_algorithm.py "view source code")
+`OptimizationAlgorithm` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/algorithms/optimization_algorithm.py "view source code")
 
 An abstract class for optimization algorithms in Qiskit’s optimization module.
 
@@ -20,7 +20,7 @@ An abstract class for optimization algorithms in Qiskit’s optimization module.
 
 <span id="qiskit.optimization.algorithms.OptimizationAlgorithm.get_compatibility_msg" />
 
-`abstract OptimizationAlgorithm.get_compatibility_msg(problem)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/algorithms/optimization_algorithm.py "view source code")
+`abstract OptimizationAlgorithm.get_compatibility_msg(problem)`
 
 Checks whether a given problem can be solved with the optimizer implementing this method.
 
@@ -40,7 +40,7 @@ Returns the incompatibility message. If the message is empty no issues were foun
 
 <span id="qiskit.optimization.algorithms.OptimizationAlgorithm.is_compatible" />
 
-`OptimizationAlgorithm.is_compatible(problem)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/algorithms/optimization_algorithm.py "view source code")
+`OptimizationAlgorithm.is_compatible(problem)`
 
 Checks whether a given problem can be solved with the optimizer implementing this method.
 
@@ -60,7 +60,7 @@ Returns True if the problem is compatible, False otherwise.
 
 <span id="qiskit.optimization.algorithms.OptimizationAlgorithm.solve" />
 
-`abstract OptimizationAlgorithm.solve(problem)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/algorithms/optimization_algorithm.py "view source code")
+`abstract OptimizationAlgorithm.solve(problem)`
 
 Tries to solves the given problem using the optimizer.
 

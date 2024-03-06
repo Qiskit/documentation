@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.IterativePhaseEstimation
 
 <span id="qiskit.algorithms.IterativePhaseEstimation" />
 
-`IterativePhaseEstimation(num_iterations, quantum_instance=None, sampler=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/phase_estimators/ipe.py "view source code")
+`IterativePhaseEstimation(num_iterations, quantum_instance=None, sampler=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/phase_estimators/ipe.py "view source code")
 
 Bases: `qiskit.algorithms.phase_estimators.phase_estimator.PhaseEstimator`
 
@@ -39,7 +39,7 @@ qubit benchmark, [arxiv/quant-ph/0610214](https://arxiv.org/abs/quant-ph/0610214
 
 <span id="qiskit.algorithms.IterativePhaseEstimation.construct_circuit" />
 
-`IterativePhaseEstimation.construct_circuit(unitary, state_preparation, k, omega=0.0, measurement=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/phase_estimators/ipe.py "view source code")
+`IterativePhaseEstimation.construct_circuit(unitary, state_preparation, k, omega=0.0, measurement=False)`
 
 Construct the kth iteration Quantum Phase Estimation circuit.
 
@@ -65,7 +65,7 @@ the quantum circuit per iteration
 
 <span id="qiskit.algorithms.IterativePhaseEstimation.estimate" />
 
-`IterativePhaseEstimation.estimate(unitary, state_preparation)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/phase_estimators/ipe.py "view source code")
+`IterativePhaseEstimation.estimate(unitary, state_preparation)`
 
 Estimate the eigenphase of the input unitary and initial-state pair.
 

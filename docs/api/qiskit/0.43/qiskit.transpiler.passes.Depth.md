@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.Depth
 
 <span id="qiskit.transpiler.passes.Depth" />
 
-`Depth(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/analysis/depth.py "view source code")
+`Depth(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/analysis/depth.py "view source code")
 
 Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
@@ -38,7 +38,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.Depth.run" />
 
-`Depth.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/analysis/depth.py "view source code")
+`Depth.run(dag)`
 
 Run the Depth pass on dag.
 

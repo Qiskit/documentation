@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.optimizers.DIRECT_L
 
 <span id="qiskit.aqua.components.optimizers.DIRECT_L" />
 
-`DIRECT_L(max_evals=1000)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/nlopts/direct_l.py "view source code")
+`DIRECT_L(max_evals=1000)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/nlopts/direct_l.py "view source code")
 
 DIviding RECTangles Locally-biased optimizer.
 
@@ -86,7 +86,7 @@ Return setting
 
 <span id="qiskit.aqua.components.optimizers.DIRECT_L.get_nlopt_optimizer" />
 
-`DIRECT_L.get_nlopt_optimizer()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/nlopts/direct_l.py "view source code")
+`DIRECT_L.get_nlopt_optimizer()`
 
 Return NLopt optimizer type
 

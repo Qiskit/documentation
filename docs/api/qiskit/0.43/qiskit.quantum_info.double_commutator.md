@@ -12,7 +12,7 @@ python_api_name: qiskit.quantum_info.double_commutator
 
 <span id="qiskit.quantum_info.double_commutator" />
 
-`double_commutator(a, b, c, *, commutator=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/operators/utils/double_commutator.py "view source code")
+`double_commutator(a, b, c, *, commutator=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/operators/utils/double_commutator.py "view source code")
 
 Compute symmetric double commutator of a, b and c.
 

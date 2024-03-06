@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.evolutions.EvolutionBase
 
 <span id="qiskit.opflow.evolutions.EvolutionBase" />
 
-`EvolutionBase`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/evolutions/evolution_base.py "view source code")
+`EvolutionBase` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/evolutions/evolution_base.py "view source code")
 
 Bases: `qiskit.opflow.converters.converter_base.ConverterBase`, `abc.ABC`
 
@@ -22,7 +22,7 @@ A base for Evolution converters. Evolutions are converters which traverse an Ope
 
 <span id="qiskit.opflow.evolutions.EvolutionBase.convert" />
 
-`abstract EvolutionBase.convert(operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/evolutions/evolution_base.py "view source code")
+`abstract EvolutionBase.convert(operator)`
 
 Traverse the operator, replacing any `EvolutionOps` with their equivalent evolution `CircuitOps`.
 

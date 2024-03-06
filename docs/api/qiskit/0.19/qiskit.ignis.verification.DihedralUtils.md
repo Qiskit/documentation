@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.verification.DihedralUtils
 
 <span id="qiskit.ignis.verification.DihedralUtils" />
 
-`DihedralUtils(num_qubits=2, group_tables=None, elmnt=None, gatelist=None, elmnt_key=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/dihedral_utils.py "view source code")
+`DihedralUtils(num_qubits=2, group_tables=None, elmnt=None, gatelist=None, elmnt_key=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/dihedral_utils.py "view source code")
 
 Class for util functions for the CNOT-dihedral group.
 
@@ -28,7 +28,7 @@ Class for util functions for the CNOT-dihedral group.
 
 <span id="qiskit.ignis.verification.DihedralUtils.cnot_dihedral_gates" />
 
-`DihedralUtils.cnot_dihedral_gates(idx, G_table, G_keys)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/dihedral_utils.py "view source code")
+`DihedralUtils.cnot_dihedral_gates(idx, G_table, G_keys)`
 
 Make a single CNOT-dihedral element on num\_qubits.
 
@@ -50,7 +50,7 @@ A single CNOT-dihedral element on num\_qubits.
 
 <span id="qiskit.ignis.verification.DihedralUtils.cnot_dihedral_tables" />
 
-`DihedralUtils.cnot_dihedral_tables(num_qubits)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/dihedral_utils.py "view source code")
+`DihedralUtils.cnot_dihedral_tables(num_qubits)`
 
 Generate a table of all CNOT-dihedral group elements on num\_qubits.
 
@@ -72,7 +72,7 @@ dict
 
 <span id="qiskit.ignis.verification.DihedralUtils.compose_gates" />
 
-`DihedralUtils.compose_gates(elem, next_elem)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/dihedral_utils.py "view source code")
+`DihedralUtils.compose_gates(elem, next_elem)`
 
 Compose two CNOTDihedral objects.
 
@@ -93,7 +93,7 @@ A CNOTDihedral object, that is a composition of the two CNOTDihedral objects.
 
 <span id="qiskit.ignis.verification.DihedralUtils.elem_to_gates" />
 
-`DihedralUtils.elem_to_gates(circ)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/dihedral_utils.py "view source code")
+`DihedralUtils.elem_to_gates(circ)`
 
 Convert a CNOT-dihedral list of gates for the QuantumCircuit.
 
@@ -117,7 +117,7 @@ list
 
 <span id="qiskit.ignis.verification.DihedralUtils.elmnt" />
 
-`DihedralUtils.elmnt()`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/dihedral_utils.py "view source code")
+`DihedralUtils.elmnt()`
 
 Return a CNOTDihedral object.
 
@@ -125,7 +125,7 @@ Return a CNOTDihedral object.
 
 <span id="qiskit.ignis.verification.DihedralUtils.elmnt_key" />
 
-`DihedralUtils.elmnt_key()`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/dihedral_utils.py "view source code")
+`DihedralUtils.elmnt_key()`
 
 Return a unique key of a CNOTDihedral object.
 
@@ -133,7 +133,7 @@ Return a unique key of a CNOTDihedral object.
 
 <span id="qiskit.ignis.verification.DihedralUtils.find_inverse_gates" />
 
-`DihedralUtils.find_inverse_gates(num_qubits, elem)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/dihedral_utils.py "view source code")
+`DihedralUtils.find_inverse_gates(num_qubits, elem)`
 
 Find the inverse of a CNOT-dihedral element.
 
@@ -158,7 +158,7 @@ list
 
 <span id="qiskit.ignis.verification.DihedralUtils.find_key" />
 
-`DihedralUtils.find_key(elem, num_qubits)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/dihedral_utils.py "view source code")
+`DihedralUtils.find_key(elem, num_qubits)`
 
 Find the key of a CNOTDihedral object in the group table.
 
@@ -179,7 +179,7 @@ str
 
 <span id="qiskit.ignis.verification.DihedralUtils.gatelist" />
 
-`DihedralUtils.gatelist()`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/dihedral_utils.py "view source code")
+`DihedralUtils.gatelist()`
 
 Return a list of gates corresponding to a CNOTDihedral object.
 
@@ -187,7 +187,7 @@ Return a list of gates corresponding to a CNOTDihedral object.
 
 <span id="qiskit.ignis.verification.DihedralUtils.group_tables" />
 
-`DihedralUtils.group_tables()`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/dihedral_utils.py "view source code")
+`DihedralUtils.group_tables()`
 
 Return the CNOT-dihedral group tables.
 
@@ -195,7 +195,7 @@ Return the CNOT-dihedral group tables.
 
 <span id="qiskit.ignis.verification.DihedralUtils.load_dihedral_table" />
 
-`DihedralUtils.load_dihedral_table(picklefile='cnot_dihedral_2.pickle')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/dihedral_utils.py "view source code")
+`DihedralUtils.load_dihedral_table(picklefile='cnot_dihedral_2.pickle')`
 
 Load pickled files of the CNOT-dihedral group tables.
 
@@ -215,7 +215,7 @@ dict
 
 <span id="qiskit.ignis.verification.DihedralUtils.load_tables" />
 
-`DihedralUtils.load_tables(num_qubits)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/dihedral_utils.py "view source code")
+`DihedralUtils.load_tables(num_qubits)`
 
 Return the CNOT dihedral group tables.
 
@@ -239,7 +239,7 @@ dict
 
 <span id="qiskit.ignis.verification.DihedralUtils.num_qubits" />
 
-`DihedralUtils.num_qubits()`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/dihedral_utils.py "view source code")
+`DihedralUtils.num_qubits()`
 
 Return the number of qubits of the CNOTDihedral object.
 
@@ -247,7 +247,7 @@ Return the number of qubits of the CNOTDihedral object.
 
 <span id="qiskit.ignis.verification.DihedralUtils.pickle_dihedral_table" />
 
-`DihedralUtils.pickle_dihedral_table(num_qubits=2)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/dihedral_utils.py "view source code")
+`DihedralUtils.pickle_dihedral_table(num_qubits=2)`
 
 Create pickled versions of the CNOT-dihedral group tables.
 
@@ -263,7 +263,7 @@ Create pickled versions of the CNOT-dihedral group tables.
 
 <span id="qiskit.ignis.verification.DihedralUtils.random_gates" />
 
-`DihedralUtils.random_gates(num_qubits)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/dihedral_utils.py "view source code")
+`DihedralUtils.random_gates(num_qubits)`
 
 Pick a random CNOT-dihedral element on num\_qubits.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.linear_solvers.NumPyMatrix
 
 <span id="qiskit.algorithms.linear_solvers.NumPyMatrix" />
 
-`NumPyMatrix(matrix, tolerance=0.01, evolution_time=1.0, name='np_matrix')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/linear_solvers/matrices/numpy_matrix.py "view source code")
+`NumPyMatrix(matrix, tolerance=0.01, evolution_time=1.0, name='np_matrix')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/linear_solvers/matrices/numpy_matrix.py "view source code")
 
 Bases: [`qiskit.algorithms.linear_solvers.matrices.linear_system_matrix.LinearSystemMatrix`](qiskit.algorithms.linear_solvers.LinearSystemMatrix "qiskit.algorithms.linear_solvers.matrices.linear_system_matrix.LinearSystemMatrix")
 
@@ -535,7 +535,7 @@ lcr_1: 0 ═══════════                           lcr_1: 0 �
 
 <span id="qiskit.algorithms.linear_solvers.NumPyMatrix.condition_bounds" />
 
-`NumPyMatrix.condition_bounds()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/linear_solvers/matrices/numpy_matrix.py "view source code")
+`NumPyMatrix.condition_bounds()`
 
 Return lower and upper bounds on the condition number of the matrix.
 
@@ -1190,7 +1190,7 @@ A handle to the instructions created.
 
 <span id="qiskit.algorithms.linear_solvers.NumPyMatrix.eigs_bounds" />
 
-`NumPyMatrix.eigs_bounds()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/linear_solvers/matrices/numpy_matrix.py "view source code")
+`NumPyMatrix.eigs_bounds()`
 
 Return lower and upper bounds on the eigenvalues of the matrix.
 
@@ -1727,7 +1727,7 @@ q_1: ┤1                                   ├
 
 <span id="qiskit.algorithms.linear_solvers.NumPyMatrix.inverse" />
 
-`NumPyMatrix.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/linear_solvers/matrices/numpy_matrix.py "view source code")
+`NumPyMatrix.inverse()`
 
 Invert (take adjoint of) this circuit.
 
@@ -2241,7 +2241,7 @@ A handle to the instructions created.
 
 <span id="qiskit.algorithms.linear_solvers.NumPyMatrix.power" />
 
-`NumPyMatrix.power(power, matrix_power=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/linear_solvers/matrices/numpy_matrix.py "view source code")
+`NumPyMatrix.power(power, matrix_power=False)`
 
 Build powers of the circuit.
 

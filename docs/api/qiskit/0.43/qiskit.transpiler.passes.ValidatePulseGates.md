@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.ValidatePulseGates
 
 <span id="qiskit.transpiler.passes.ValidatePulseGates" />
 
-`ValidatePulseGates(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/scheduling/alignments/pulse_gate_validation.py "view source code")
+`ValidatePulseGates(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/scheduling/alignments/pulse_gate_validation.py "view source code")
 
 Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
@@ -49,7 +49,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.ValidatePulseGates.run" />
 
-`ValidatePulseGates.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/scheduling/alignments/pulse_gate_validation.py "view source code")
+`ValidatePulseGates.run(dag)`
 
 Run the pulse gate validation attached to `dag`.
 

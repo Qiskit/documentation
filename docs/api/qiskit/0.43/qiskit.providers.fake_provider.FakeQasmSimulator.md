@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeQasmSimulator
 
 <span id="qiskit.providers.fake_provider.FakeQasmSimulator" />
 
-`FakeQasmSimulator`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/fake_qasm_simulator.py "view source code")
+`FakeQasmSimulator` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/fake_qasm_simulator.py "view source code")
 
 Bases: `FakeBackend`
 
@@ -67,7 +67,7 @@ str
 
 <span id="qiskit.providers.fake_provider.FakeQasmSimulator.properties" />
 
-`FakeQasmSimulator.properties()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/fake_qasm_simulator.py "view source code")
+`FakeQasmSimulator.properties()`
 
 Return backend properties
 

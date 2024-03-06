@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.options.Options
 
 <span id="qiskit_ibm_runtime.options.Options" />
 
-`Options(optimization_level=None, resilience_level=None, max_execution_time=None, transpilation=<factory>, resilience=<factory>, execution=<factory>, environment=<factory>, simulator=<factory>)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options/options.py "view source code")
+`Options(optimization_level=None, resilience_level=None, max_execution_time=None, transpilation=<factory>, resilience=<factory>, execution=<factory>, environment=<factory>, simulator=<factory>)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options/options.py#L32-L279 "view source code")
 
 Options for the primitives.
 

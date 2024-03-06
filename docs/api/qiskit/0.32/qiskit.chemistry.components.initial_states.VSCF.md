@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.components.initial_states.VSCF
 
 <span id="qiskit.chemistry.components.initial_states.VSCF" />
 
-`VSCF(basis)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/components/initial_states/vscf.py "view source code")
+`VSCF(basis)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/components/initial_states/vscf.py "view source code")
 
 Bases: `qiskit.aqua.components.initial_states.initial_state.InitialState`
 
@@ -28,7 +28,7 @@ Creates an occupation number vector as defined in Ollitrault Pauline J., Chemica
 
 <span id="qiskit.chemistry.components.initial_states.VSCF.construct_circuit" />
 
-`VSCF.construct_circuit(mode='circuit', register=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/components/initial_states/vscf.py "view source code")
+`VSCF.construct_circuit(mode='circuit', register=None)`
 
 Construct the statevector of desired initial state.
 

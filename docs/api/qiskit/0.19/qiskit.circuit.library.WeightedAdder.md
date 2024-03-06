@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.WeightedAdder
 
 <span id="qiskit.circuit.library.WeightedAdder" />
 
-`WeightedAdder(num_state_qubits=None, weights=None, name='adder')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/arithmetic/weighted_adder.py "view source code")
+`WeightedAdder(num_state_qubits=None, weights=None, name='adder')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/arithmetic/weighted_adder.py "view source code")
 
 A circuit to compute the weighted sum of qubit registers.
 

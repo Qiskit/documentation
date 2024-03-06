@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.InstructionSet
 
 <span id="qiskit.circuit.InstructionSet" />
 
-`qiskit.circuit.InstructionSet(*, resource_requester=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/instructionset.py "view source code")
+`qiskit.circuit.InstructionSet(*, resource_requester=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/instructionset.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.preset_passmanagers.level_0_pass_manager
 
 <span id="qiskit.transpiler.preset_passmanagers.level_0_pass_manager" />
 
-`level_0_pass_manager(pass_manager_config)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/transpiler/preset_passmanagers/level0.py "view source code")
+`level_0_pass_manager(pass_manager_config)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/transpiler/preset_passmanagers/level0.py "view source code")
 
 Level 0 pass manager: no explicit optimization other than mapping to backend.
 

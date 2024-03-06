@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.RCCXGate
 
 <span id="qiskit.circuit.library.RCCXGate" />
 
-`RCCXGate(label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/x.py "view source code")
+`RCCXGate(label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 The simplified Toffoli gate, also referred to as Margolus gate.
 
@@ -291,7 +291,7 @@ Containing the definition.
 
 <span id="qiskit.circuit.library.RCCXGate.to_matrix" />
 
-`RCCXGate.to_matrix()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/x.py "view source code")
+`RCCXGate.to_matrix()`
 
 Return a numpy.array for the simplified CCX gate.
 

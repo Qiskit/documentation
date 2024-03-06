@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.algorithms.IterativeAmplitudeEstimation
 
 <span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation" />
 
-`IterativeAmplitudeEstimation(epsilon, alpha, confint_method='beta', min_ratio=2, a_factory=None, q_factory=None, i_objective=None, quantum_instance=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/amplitude_estimators/iqae.py "view source code")
+`IterativeAmplitudeEstimation(epsilon, alpha, confint_method='beta', min_ratio=2, a_factory=None, q_factory=None, i_objective=None, quantum_instance=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/amplitude_estimators/iqae.py "view source code")
 
 The Iterative Amplitude Estimation algorithm.
 
@@ -139,7 +139,7 @@ Return a numpy random.
 
 <span id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.construct_circuit" />
 
-`IterativeAmplitudeEstimation.construct_circuit(k, measurement=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/amplitude_estimators/iqae.py "view source code")
+`IterativeAmplitudeEstimation.construct_circuit(k, measurement=False)`
 
 Construct the circuit Q^k A |0>.
 

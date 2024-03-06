@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.mitigation.TensoredMeasFitter
 
 <span id="qiskit.ignis.mitigation.TensoredMeasFitter" />
 
-`TensoredMeasFitter(results, mit_pattern, substate_labels_list=None, circlabel='')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/mitigation/measurement/fitters.py "view source code")
+`TensoredMeasFitter(results, mit_pattern, substate_labels_list=None, circlabel='')` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/mitigation/measurement/fitters.py "view source code")
 
 Measurement correction fitter for a tensored calibration.
 

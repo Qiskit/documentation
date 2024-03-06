@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.BosonicOperator
 
 <span id="qiskit.chemistry.BosonicOperator" />
 
-`BosonicOperator(h, basis)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/bosonic_operator.py "view source code")
+`BosonicOperator(h, basis)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/bosonic_operator.py "view source code")
 
 Bases: `object`
 
@@ -35,7 +35,7 @@ The Bosonic operator in this class is written in the n-mode second quantization 
 
 <span id="qiskit.chemistry.BosonicOperator.direct_mapping_filtering_criterion" />
 
-`BosonicOperator.direct_mapping_filtering_criterion(state, value, aux_values=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/bosonic_operator.py "view source code")
+`BosonicOperator.direct_mapping_filtering_criterion(state, value, aux_values=None)`
 
 Filters out the states of irrelevant symmetries
 
@@ -57,7 +57,7 @@ True if the state is has one and only one modal occupied per mode meaning that t
 
 <span id="qiskit.chemistry.BosonicOperator.mapping" />
 
-`BosonicOperator.mapping(qubit_mapping='direct', threshold=1e-08)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/bosonic_operator.py "view source code")
+`BosonicOperator.mapping(qubit_mapping='direct', threshold=1e-08)`
 
 Maps a bosonic operator into a qubit operator.
 
@@ -82,7 +82,7 @@ A qubit operator
 
 <span id="qiskit.chemistry.BosonicOperator.number_occupied_modals_per_mode" />
 
-`BosonicOperator.number_occupied_modals_per_mode(mode)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/bosonic_operator.py "view source code")
+`BosonicOperator.number_occupied_modals_per_mode(mode)`
 
 A bosonic operator which can be used to evaluate the number of occupied modals in a given mode
 

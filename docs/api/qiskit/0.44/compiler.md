@@ -1,7 +1,7 @@
 ---
 title: compiler
 description: API reference for qiskit.compiler
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.compiler
 ---
@@ -24,7 +24,7 @@ python_api_name: qiskit.compiler
 
 <span id="qiskit.compiler.assemble" />
 
-`qiskit.compiler.assemble(experiments, backend=None, qobj_id=None, qobj_header=None, shots=None, memory=False, seed_simulator=None, qubit_lo_freq=None, meas_lo_freq=None, qubit_lo_range=None, meas_lo_range=None, schedule_los=None, meas_level=MeasLevel.CLASSIFIED, meas_return=MeasReturnType.AVERAGE, meas_map=None, memory_slot_size=100, rep_time=None, rep_delay=None, parameter_binds=None, parametric_pulses=None, init_qubits=True, **run_config)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/compiler/assembler.py "view source code")
+`qiskit.compiler.assemble(experiments, backend=None, qobj_id=None, qobj_header=None, shots=None, memory=False, seed_simulator=None, qubit_lo_freq=None, meas_lo_freq=None, qubit_lo_range=None, meas_lo_range=None, schedule_los=None, meas_level=MeasLevel.CLASSIFIED, meas_return=MeasReturnType.AVERAGE, meas_map=None, memory_slot_size=100, rep_time=None, rep_delay=None, parameter_binds=None, parametric_pulses=None, init_qubits=True, **run_config)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/compiler/assembler.py "view source code")
 
 Assemble a list of circuits or pulse schedules into a `Qobj`.
 
@@ -107,7 +107,7 @@ A `Qobj` that can be run on a backend. Depending on the type of input, this will
 
 <span id="qiskit.compiler.schedule" />
 
-`qiskit.compiler.schedule(circuits, backend=None, inst_map=None, meas_map=None, dt=None, method=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/compiler/scheduler.py "view source code")
+`qiskit.compiler.schedule(circuits, backend=None, inst_map=None, meas_map=None, dt=None, method=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/compiler/scheduler.py "view source code")
 
 Schedule a circuit to a pulse `Schedule`, using the backend, according to any specified methods. Supported methods are documented in `qiskit.scheduler.schedule_circuit`.
 
@@ -136,7 +136,7 @@ A pulse `Schedule` that implements the input circuit
 
 <span id="qiskit.compiler.transpile" />
 
-`qiskit.compiler.transpile(circuits, backend=None, basis_gates=None, inst_map=None, coupling_map=None, backend_properties=None, initial_layout=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, instruction_durations=None, dt=None, approximation_degree=1.0, timing_constraints=None, seed_transpiler=None, optimization_level=None, callback=None, output_name=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None, target=None, hls_config=None, init_method=None, optimization_method=None, ignore_backend_supplied_default_methods=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/compiler/transpiler.py "view source code")
+`qiskit.compiler.transpile(circuits, backend=None, basis_gates=None, inst_map=None, coupling_map=None, backend_properties=None, initial_layout=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, instruction_durations=None, dt=None, approximation_degree=1.0, timing_constraints=None, seed_transpiler=None, optimization_level=None, callback=None, output_name=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None, target=None, hls_config=None, init_method=None, optimization_method=None, ignore_backend_supplied_default_methods=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/compiler/transpiler.py "view source code")
 
 Transpile one or more circuits, according to some desired transpilation targets.
 
@@ -284,7 +284,7 @@ The transpiled circuit(s).
 
 <span id="qiskit.compiler.sequence" />
 
-`qiskit.compiler.sequence(scheduled_circuits, backend=None, inst_map=None, meas_map=None, dt=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/compiler/sequencer.py "view source code")
+`qiskit.compiler.sequence(scheduled_circuits, backend=None, inst_map=None, meas_map=None, dt=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/compiler/sequencer.py "view source code")
 
 Schedule a scheduled circuit to a pulse `Schedule`, using the backend.
 

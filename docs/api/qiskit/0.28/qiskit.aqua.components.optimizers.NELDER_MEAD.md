@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.optimizers.NELDER_MEAD
 
 <span id="qiskit.aqua.components.optimizers.NELDER_MEAD" />
 
-`NELDER_MEAD(maxiter=None, maxfev=1000, disp=False, xatol=0.0001, tol=None, adaptive=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/optimizers/nelder_mead.py "view source code")
+`NELDER_MEAD(maxiter=None, maxfev=1000, disp=False, xatol=0.0001, tol=None, adaptive=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/optimizers/nelder_mead.py "view source code")
 
 Nelder-Mead optimizer.
 

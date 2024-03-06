@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.PhaseOracle
 
 <span id="qiskit.circuit.library.PhaseOracle" />
 
-`qiskit.circuit.library.PhaseOracle(expression, synthesizer=None, var_order=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/phase_oracle.py "view source code")
+`qiskit.circuit.library.PhaseOracle(expression, synthesizer=None, var_order=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/phase_oracle.py "view source code")
 
 Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 

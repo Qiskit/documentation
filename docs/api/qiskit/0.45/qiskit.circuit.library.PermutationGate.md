@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.PermutationGate
 
 <span id="qiskit.circuit.library.PermutationGate" />
 
-`qiskit.circuit.library.PermutationGate(pattern)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/generalized_gates/permutation.py "view source code")
+`qiskit.circuit.library.PermutationGate(pattern)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/generalized_gates/permutation.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 

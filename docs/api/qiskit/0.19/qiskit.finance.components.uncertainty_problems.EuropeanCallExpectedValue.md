@@ -10,7 +10,7 @@ python_api_name: qiskit.finance.components.uncertainty_problems.EuropeanCallExpe
 
 <span id="qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue" />
 
-`EuropeanCallExpectedValue(uncertainty_model, strike_price, c_approx, i_state=None, i_compare=None, i_objective=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/finance/components/uncertainty_problems/european_call_expected_value.py "view source code")
+`EuropeanCallExpectedValue(uncertainty_model, strike_price, c_approx, i_state=None, i_compare=None, i_objective=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/finance/components/uncertainty_problems/european_call_expected_value.py "view source code")
 
 The European Call Option Expected Value.
 
@@ -39,7 +39,7 @@ Returns the number of target qubits
 
 <span id="qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.build" />
 
-`EuropeanCallExpectedValue.build(qc, q, q_ancillas=None, params=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/finance/components/uncertainty_problems/european_call_expected_value.py "view source code")
+`EuropeanCallExpectedValue.build(qc, q, q_ancillas=None, params=None)`
 
 Adds corresponding sub-circuit to given circuit
 
@@ -148,7 +148,7 @@ returns number of qubits controlled
 
 <span id="qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.required_ancillas" />
 
-`EuropeanCallExpectedValue.required_ancillas()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/finance/components/uncertainty_problems/european_call_expected_value.py "view source code")
+`EuropeanCallExpectedValue.required_ancillas()`
 
 returns required ancillas
 
@@ -164,7 +164,7 @@ returns required ancillas controlled
 
 <span id="qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.value_to_estimation" />
 
-`EuropeanCallExpectedValue.value_to_estimation(value)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/finance/components/uncertainty_problems/european_call_expected_value.py "view source code")
+`EuropeanCallExpectedValue.value_to_estimation(value)`
 
 value to estimate
 

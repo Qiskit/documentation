@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.operators.converters.DictToCircuitSum
 
 <span id="qiskit.aqua.operators.converters.DictToCircuitSum" />
 
-`DictToCircuitSum(traverse=True, convert_dicts=True, convert_vectors=True)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/converters/dict_to_circuit_sum.py "view source code")
+`DictToCircuitSum(traverse=True, convert_dicts=True, convert_vectors=True)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/converters/dict_to_circuit_sum.py "view source code")
 
 Converts `DictStateFns` or `VectorStateFns` to equivalent `CircuitStateFns` or sums thereof. The behavior of this class can be mostly replicated by calling `to_circuit_op` on an Operator, but with the added control of choosing whether to convert only `DictStateFns` or `VectorStateFns`, rather than both.
 

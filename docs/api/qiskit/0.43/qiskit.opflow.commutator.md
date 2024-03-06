@@ -12,7 +12,7 @@ python_api_name: qiskit.opflow.commutator
 
 <span id="qiskit.opflow.commutator" />
 
-`commutator(op_a, op_b)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/utils.py "view source code")
+`commutator(op_a, op_b)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/utils.py "view source code")
 
 Deprecated: Compute commutator of op\_a and op\_b.
 

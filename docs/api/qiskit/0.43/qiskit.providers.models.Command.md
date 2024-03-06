@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.models.Command
 
 <span id="qiskit.providers.models.Command" />
 
-`Command(name, qubits=None, sequence=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/models/pulsedefaults.py "view source code")
+`Command(name, qubits=None, sequence=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/models/pulsedefaults.py "view source code")
 
 Bases: `object`
 
@@ -39,7 +39,7 @@ Initialize a Command object
 
 <span id="qiskit.providers.models.Command.from_dict" />
 
-`classmethod Command.from_dict(data)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/models/pulsedefaults.py "view source code")
+`classmethod Command.from_dict(data)`
 
 Create a new Command object from a dictionary.
 
@@ -63,7 +63,7 @@ qiskit.providers.model.Command
 
 <span id="qiskit.providers.models.Command.to_dict" />
 
-`Command.to_dict()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/models/pulsedefaults.py "view source code")
+`Command.to_dict()`
 
 Return a dictionary format representation of the Command.
 

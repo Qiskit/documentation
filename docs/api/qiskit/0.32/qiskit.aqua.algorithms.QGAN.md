@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.algorithms.QGAN
 
 <span id="qiskit.aqua.algorithms.QGAN" />
 
-`QGAN(data, bounds=None, num_qubits=None, batch_size=500, num_epochs=3000, seed=7, discriminator=None, generator=None, tol_rel_ent=None, snapshot_dir=None, quantum_instance=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/distribution_learners/qgan.py "view source code")
+`QGAN(data, bounds=None, num_qubits=None, batch_size=500, num_epochs=3000, seed=7, discriminator=None, generator=None, tol_rel_ent=None, snapshot_dir=None, quantum_instance=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/distribution_learners/qgan.py "view source code")
 
 Bases: `qiskit.aqua.algorithms.quantum_algorithm.QuantumAlgorithm`
 
@@ -52,7 +52,7 @@ These networks are trained in alternating optimization steps, where the discrimi
 
 <span id="qiskit.aqua.algorithms.QGAN.get_rel_entr" />
 
-`QGAN.get_rel_entr()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/distribution_learners/qgan.py "view source code")
+`QGAN.get_rel_entr()`
 
 Get relative entropy between target and trained distribution
 
@@ -101,7 +101,7 @@ Sets backend with configuration.
 
 <span id="qiskit.aqua.algorithms.QGAN.set_discriminator" />
 
-`QGAN.set_discriminator(discriminator=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/distribution_learners/qgan.py "view source code")
+`QGAN.set_discriminator(discriminator=None)`
 
 Initialize discriminator.
 
@@ -113,7 +113,7 @@ Initialize discriminator.
 
 <span id="qiskit.aqua.algorithms.QGAN.set_generator" />
 
-`QGAN.set_generator(generator_circuit=None, generator_init_params=None, generator_optimizer=None, generator_gradient=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/distribution_learners/qgan.py "view source code")
+`QGAN.set_generator(generator_circuit=None, generator_init_params=None, generator_optimizer=None, generator_gradient=None)`
 
 Initialize generator.
 
@@ -132,7 +132,7 @@ Initialize generator.
 
 <span id="qiskit.aqua.algorithms.QGAN.train" />
 
-`QGAN.train()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/distribution_learners/qgan.py "view source code")
+`QGAN.train()`
 
 Train the qGAN
 

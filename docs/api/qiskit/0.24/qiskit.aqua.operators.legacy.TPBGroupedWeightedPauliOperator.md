@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator
 
 <span id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator" />
 
-`TPBGroupedWeightedPauliOperator(paulis, basis, z2_symmetries=None, atol=1e-12, name=None, grouping_func=None, kwargs=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/legacy/tpb_grouped_weighted_pauli_operator.py "view source code")
+`TPBGroupedWeightedPauliOperator(paulis, basis, z2_symmetries=None, atol=1e-12, name=None, grouping_func=None, kwargs=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/legacy/tpb_grouped_weighted_pauli_operator.py "view source code")
 
 TPB Grouped Weighted Pauli Operator
 

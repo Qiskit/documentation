@@ -10,7 +10,7 @@ python_api_name: qiskit.tools.entropy
 
 <span id="qiskit.tools.entropy" />
 
-`entropy(state)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/tools/qi/qi.py "view source code")
+`entropy(state)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/tools/qi/qi.py "view source code")
 
 Compute the von-Neumann entropy of a quantum state.
 

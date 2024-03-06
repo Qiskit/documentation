@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.feature_maps.FeatureMap
 
 <span id="qiskit.aqua.components.feature_maps.FeatureMap" />
 
-`FeatureMap`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/feature_maps/feature_map.py "view source code")
+`FeatureMap` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/feature_maps/feature_map.py "view source code")
 
 Base class for FeatureMap.
 
@@ -36,7 +36,7 @@ returns whether or not the sub-class support parameterized circuit
 
 <span id="qiskit.aqua.components.feature_maps.FeatureMap.construct_circuit" />
 
-`abstract FeatureMap.construct_circuit(x, qr=None, inverse=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/feature_maps/feature_map.py "view source code")
+`abstract FeatureMap.construct_circuit(x, qr=None, inverse=False)`
 
 Construct the variational form, given its parameters.
 
@@ -58,7 +58,7 @@ a quantum circuit.
 
 <span id="qiskit.aqua.components.feature_maps.FeatureMap.get_entangler_map" />
 
-`static FeatureMap.get_entangler_map(map_type, num_qubits)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/feature_maps/feature_map.py "view source code")
+`static FeatureMap.get_entangler_map(map_type, num_qubits)`
 
 get entangle map
 
@@ -66,7 +66,7 @@ get entangle map
 
 <span id="qiskit.aqua.components.feature_maps.FeatureMap.validate_entangler_map" />
 
-`static FeatureMap.validate_entangler_map(entangler_map, num_qubits)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/feature_maps/feature_map.py "view source code")
+`static FeatureMap.validate_entangler_map(entangler_map, num_qubits)`
 
 validate entangler map
 

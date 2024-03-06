@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.SNOBFIT
 
 <span id="qiskit.algorithms.optimizers.SNOBFIT" />
 
-`SNOBFIT(maxiter=1000, maxfail=10, maxmp=None, verbose=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/optimizers/snobfit.py "view source code")
+`SNOBFIT(maxiter=1000, maxfail=10, maxmp=None, verbose=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/optimizers/snobfit.py "view source code")
 
 Bases: [`qiskit.algorithms.optimizers.optimizer.Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.optimizer.Optimizer")
 
@@ -38,7 +38,7 @@ Uses skquant.opt installed with pip install scikit-quant. For further detail, pl
 
 <span id="qiskit.algorithms.optimizers.SNOBFIT.get_support_level" />
 
-`SNOBFIT.get_support_level()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/optimizers/snobfit.py "view source code")
+`SNOBFIT.get_support_level()`
 
 Returns support level dictionary.
 
@@ -69,7 +69,7 @@ grad
 
 <span id="qiskit.algorithms.optimizers.SNOBFIT.minimize" />
 
-`SNOBFIT.minimize(fun, x0, jac=None, bounds=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/optimizers/snobfit.py "view source code")
+`SNOBFIT.minimize(fun, x0, jac=None, bounds=None)`
 
 Minimize the scalar function.
 

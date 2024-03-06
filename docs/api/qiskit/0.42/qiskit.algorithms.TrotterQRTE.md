@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.TrotterQRTE
 
 <span id="qiskit.algorithms.TrotterQRTE" />
 
-`TrotterQRTE(product_formula=None, expectation=None, quantum_instance=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/evolvers/trotterization/trotter_qrte.py "view source code")
+`TrotterQRTE(product_formula=None, expectation=None, quantum_instance=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/evolvers/trotterization/trotter_qrte.py "view source code")
 
 Bases: [`qiskit.algorithms.evolvers.real_evolver.RealEvolver`](qiskit.algorithms.RealEvolver "qiskit.algorithms.evolvers.real_evolver.RealEvolver")
 
@@ -51,7 +51,7 @@ evolved_state = trotter_qrte.evolve(evolution_problem).evolved_state
 
 <span id="qiskit.algorithms.TrotterQRTE.evolve" />
 
-`TrotterQRTE.evolve(evolution_problem)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/evolvers/trotterization/trotter_qrte.py "view source code")
+`TrotterQRTE.evolve(evolution_problem)`
 
 Evolves a quantum state for a given time using the Trotterization method based on a product formula provided. The result is provided in the form of a quantum circuit. If auxiliary operators are included in the `evolution_problem`, they are evaluated on an evolved state using a backend provided.
 
@@ -80,7 +80,7 @@ Evolution result that includes an evolved state as a quantum circuit and, option
 
 <span id="qiskit.algorithms.TrotterQRTE.supports_aux_operators" />
 
-`classmethod TrotterQRTE.supports_aux_operators()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/evolvers/trotterization/trotter_qrte.py "view source code")
+`classmethod TrotterQRTE.supports_aux_operators()`
 
 Whether computing the expectation value of auxiliary operators is supported.
 

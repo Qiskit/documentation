@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.C3XGate
 
 <span id="qiskit.circuit.library.C3XGate" />
 
-`C3XGate(label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/x.py "view source code")
+`C3XGate(label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 
@@ -28,7 +28,7 @@ Create a new 3-qubit controlled X gate.
 
 <span id="qiskit.circuit.library.C3XGate.control" />
 
-`C3XGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/x.py "view source code")
+`C3XGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
 Controlled version of this gate.
 
@@ -52,7 +52,7 @@ controlled version of this gate.
 
 <span id="qiskit.circuit.library.C3XGate.inverse" />
 
-`C3XGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/x.py "view source code")
+`C3XGate.inverse()`
 
 Invert this gate. The C4X is its own inverse.
 

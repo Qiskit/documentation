@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.list_ops.ComposedOp
 
 <span id="qiskit.opflow.list_ops.ComposedOp" />
 
-`ComposedOp(oplist, coeff=1.0, abelian=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/list_ops/composed_op.py "view source code")
+`ComposedOp(oplist, coeff=1.0, abelian=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/list_ops/composed_op.py "view source code")
 
 Bases: `qiskit.opflow.list_ops.list_op.ListOp`
 
@@ -28,7 +28,7 @@ A class for lazily representing compositions of Operators. Often Operators canno
 
 <span id="qiskit.opflow.list_ops.ComposedOp.adjoint" />
 
-`ComposedOp.adjoint()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/list_ops/composed_op.py "view source code")
+`ComposedOp.adjoint()`
 
 Return a new Operator equal to the Operator’s adjoint (conjugate transpose), overloaded by `~`. For StateFns, this also turns the StateFn into a measurement.
 
@@ -44,7 +44,7 @@ An `OperatorBase` equivalent to the adjoint of self.
 
 <span id="qiskit.opflow.list_ops.ComposedOp.compose" />
 
-`ComposedOp.compose(other, permutation=None, front=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/list_ops/composed_op.py "view source code")
+`ComposedOp.compose(other, permutation=None, front=False)`
 
 Return Operator Composition between self and other (linear algebra-style: A\@B(x) = A(B(x))), overloaded by `@`.
 
@@ -72,7 +72,7 @@ An `OperatorBase` equivalent to the function composition of self and other.
 
 <span id="qiskit.opflow.list_ops.ComposedOp.eval" />
 
-`ComposedOp.eval(front=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/list_ops/composed_op.py "view source code")
+`ComposedOp.eval(front=None)`
 
 Evaluate the Operator’s underlying function, either on a binary string or another Operator. A square binary Operator can be defined as a function taking a binary function to another binary function. This method returns the value of that function for a given StateFn or binary string. For example, `op.eval('0110').eval('1110')` can be seen as querying the Operator’s matrix representation by row 6 and column 14, and will return the complex value at those “indices.” Similarly for a StateFn, `op.eval('1011')` will return the complex value at row 11 of the vector representation of the StateFn, as all StateFns are defined to be evaluated from Zero implicitly (i.e. it is as if `.eval('0000')` is already called implicitly to always “indexing” from column 0).
 
@@ -100,7 +100,7 @@ The output of the `oplist` Operators’ evaluation function, combined with the `
 
 <span id="qiskit.opflow.list_ops.ComposedOp.non_distributive_reduce" />
 
-`ComposedOp.non_distributive_reduce()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/list_ops/composed_op.py "view source code")
+`ComposedOp.non_distributive_reduce()`
 
 Reduce without attempting to expand all distributive compositions.
 
@@ -116,7 +116,7 @@ The reduced Operator.
 
 <span id="qiskit.opflow.list_ops.ComposedOp.reduce" />
 
-`ComposedOp.reduce()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/list_ops/composed_op.py "view source code")
+`ComposedOp.reduce()`
 
 Try collapsing the Operator structure, usually after some type of conversion, e.g. trying to add Operators in a SummedOp or delete needless IGates in a CircuitOp. If no reduction is available, just returns self.
 
@@ -132,7 +132,7 @@ The reduced `OperatorBase`.
 
 <span id="qiskit.opflow.list_ops.ComposedOp.to_circuit" />
 
-`ComposedOp.to_circuit()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/list_ops/composed_op.py "view source code")
+`ComposedOp.to_circuit()`
 
 Returns the quantum circuit, representing the composed operator.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.algorithms.pes_samplers.PCAExtrapolator
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.PCAExtrapolator" />
 
-`PCAExtrapolator(extrapolator=None, kernel=None, window=2)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/extrapolator.py "view source code")
+`PCAExtrapolator(extrapolator=None, kernel=None, window=2)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/extrapolator.py "view source code")
 
 Bases: `qiskit.chemistry.algorithms.pes_samplers.extrapolator.Extrapolator`
 
@@ -34,7 +34,7 @@ Constructor.
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.PCAExtrapolator.extrapolate" />
 
-`PCAExtrapolator.extrapolate(points, param_dict)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/extrapolator.py "view source code")
+`PCAExtrapolator.extrapolate(points, param_dict)`
 
 Extrapolate at specified point of interest given a set of variational parameters. This method transforms the parameters in PCA space before performing the internal extrapolation. The parameters are transformed back to regular space after extrapolation.
 

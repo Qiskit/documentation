@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.HGate
 
 <span id="qiskit.circuit.library.HGate" />
 
-`HGate(label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/h.py "view source code")
+`HGate(label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/h.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -48,7 +48,7 @@ Create new H gate.
 
 <span id="qiskit.circuit.library.HGate.control" />
 
-`HGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/h.py "view source code")
+`HGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
 Return a (multi-)controlled-H gate.
 
@@ -74,7 +74,7 @@ controlled version of this gate.
 
 <span id="qiskit.circuit.library.HGate.inverse" />
 
-`HGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/h.py "view source code")
+`HGate.inverse()`
 
 Return inverted H gate (itself).
 

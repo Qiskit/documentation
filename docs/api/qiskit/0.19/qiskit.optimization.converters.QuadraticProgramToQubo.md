@@ -10,7 +10,7 @@ python_api_name: qiskit.optimization.converters.QuadraticProgramToQubo
 
 <span id="qiskit.optimization.converters.QuadraticProgramToQubo" />
 
-`QuadraticProgramToQubo(penalty=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/converters/quadratic_program_to_qubo.py "view source code")
+`QuadraticProgramToQubo(penalty=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/converters/quadratic_program_to_qubo.py "view source code")
 
 Convert a given optimization problem to a new problem that is a QUBO.
 
@@ -35,7 +35,7 @@ Convert a given optimization problem to a new problem that is a QUBO.
 
 <span id="qiskit.optimization.converters.QuadraticProgramToQubo.decode" />
 
-`QuadraticProgramToQubo.decode(result)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/converters/quadratic_program_to_qubo.py "view source code")
+`QuadraticProgramToQubo.decode(result)`
 
 Convert a result of a converted problem into that of the original problem.
 
@@ -55,7 +55,7 @@ The result of the original problem.
 
 <span id="qiskit.optimization.converters.QuadraticProgramToQubo.encode" />
 
-`QuadraticProgramToQubo.encode(problem)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/converters/quadratic_program_to_qubo.py "view source code")
+`QuadraticProgramToQubo.encode(problem)`
 
 Convert a problem with linear equality constraints into new one with a QUBO form.
 
@@ -79,7 +79,7 @@ The problem converted in QUBO format.
 
 <span id="qiskit.optimization.converters.QuadraticProgramToQubo.get_compatibility_msg" />
 
-`static QuadraticProgramToQubo.get_compatibility_msg(problem)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/converters/quadratic_program_to_qubo.py "view source code")
+`static QuadraticProgramToQubo.get_compatibility_msg(problem)`
 
 Checks whether a given problem can be solved with this optimizer.
 
@@ -101,7 +101,7 @@ A message describing the incompatibility.
 
 <span id="qiskit.optimization.converters.QuadraticProgramToQubo.is_compatible" />
 
-`QuadraticProgramToQubo.is_compatible(problem)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/converters/quadratic_program_to_qubo.py "view source code")
+`QuadraticProgramToQubo.is_compatible(problem)`
 
 Checks whether a given problem can be solved with the optimizer implementing this method.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.CG
 
 <span id="qiskit.algorithms.optimizers.CG" />
 
-`qiskit.algorithms.optimizers.CG(maxiter=20, disp=False, gtol=1e-05, tol=None, eps=1.4901161193847656e-08, options=None, max_evals_grouped=1, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/optimizers/cg.py "view source code")
+`qiskit.algorithms.optimizers.CG(maxiter=20, disp=False, gtol=1e-05, tol=None, eps=1.4901161193847656e-08, options=None, max_evals_grouped=1, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/optimizers/cg.py "view source code")
 
 Bases: [`SciPyOptimizer`](qiskit.algorithms.optimizers.SciPyOptimizer "qiskit.algorithms.optimizers.scipy_optimizer.SciPyOptimizer")
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.QasmSimulator
 
 <span id="qiskit.providers.aer.QasmSimulator" />
 
-`QasmSimulator(configuration=None, properties=None, provider=None, **backend_options)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/backends/qasm_simulator.py "view source code")
+`QasmSimulator(configuration=None, properties=None, provider=None, **backend_options)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/backends/qasm_simulator.py "view source code")
 
 Bases: `qiskit.providers.aer.backends.aerbackend.AerBackend`
 
@@ -147,7 +147,7 @@ Reset the simulator options to default values.
 
 <span id="qiskit.providers.aer.QasmSimulator.configuration" />
 
-`QasmSimulator.configuration()`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/backends/qasm_simulator.py "view source code")
+`QasmSimulator.configuration()`
 
 Return the simulator backend configuration.
 
@@ -181,7 +181,7 @@ backend does not support pulse.
 
 <span id="qiskit.providers.aer.QasmSimulator.from_backend" />
 
-`classmethod QasmSimulator.from_backend(backend, **options)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/backends/qasm_simulator.py "view source code")
+`classmethod QasmSimulator.from_backend(backend, **options)`
 
 Initialize simulator from backend.
 
@@ -286,7 +286,7 @@ This method should be extended by sub classes to update special option values.
 
 <span id="qiskit.providers.aer.QasmSimulator.set_options" />
 
-`QasmSimulator.set_options(**fields)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/backends/qasm_simulator.py "view source code")
+`QasmSimulator.set_options(**fields)`
 
 Set the options fields for the backend
 

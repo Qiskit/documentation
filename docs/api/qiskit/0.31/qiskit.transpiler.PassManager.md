@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.PassManager
 
 <span id="qiskit.transpiler.PassManager" />
 
-`PassManager(passes=None, max_iteration=1000)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passmanager.py "view source code")
+`PassManager(passes=None, max_iteration=1000)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passmanager.py "view source code")
 
 Bases: `object`
 
@@ -29,7 +29,7 @@ Initialize an empty PassManager object (with no passes scheduled).
 
 <span id="qiskit.transpiler.PassManager.append" />
 
-`PassManager.append(passes, max_iteration=None, **flow_controller_conditions)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passmanager.py "view source code")
+`PassManager.append(passes, max_iteration=None, **flow_controller_conditions)`
 
 Append a Pass Set to the schedule of passes.
 
@@ -55,7 +55,7 @@ Append a Pass Set to the schedule of passes.
 
 <span id="qiskit.transpiler.PassManager.draw" />
 
-`PassManager.draw(filename=None, style=None, raw=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passmanager.py "view source code")
+`PassManager.draw(filename=None, style=None, raw=False)`
 
 Draw the pass manager.
 
@@ -83,7 +83,7 @@ Optional\[[PassManager](qiskit.transpiler.PassManager "qiskit.transpiler.PassMan
 
 <span id="qiskit.transpiler.PassManager.passes" />
 
-`PassManager.passes()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passmanager.py "view source code")
+`PassManager.passes()`
 
 Return a list structure of the appended passes and its options.
 
@@ -99,7 +99,7 @@ A list of pass sets, as defined in `append()`.
 
 <span id="qiskit.transpiler.PassManager.remove" />
 
-`PassManager.remove(index)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passmanager.py "view source code")
+`PassManager.remove(index)`
 
 Removes a particular pass in the scheduler.
 
@@ -119,7 +119,7 @@ Removes a particular pass in the scheduler.
 
 <span id="qiskit.transpiler.PassManager.replace" />
 
-`PassManager.replace(index, passes, max_iteration=None, **flow_controller_conditions)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passmanager.py "view source code")
+`PassManager.replace(index, passes, max_iteration=None, **flow_controller_conditions)`
 
 Replace a particular pass in the scheduler.
 
@@ -146,7 +146,7 @@ Replace a particular pass in the scheduler.
 
 <span id="qiskit.transpiler.PassManager.run" />
 
-`PassManager.run(circuits, output_name=None, callback=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passmanager.py "view source code")
+`PassManager.run(circuits, output_name=None, callback=None)`
 
 Run all the passes on the specified `circuits`.
 

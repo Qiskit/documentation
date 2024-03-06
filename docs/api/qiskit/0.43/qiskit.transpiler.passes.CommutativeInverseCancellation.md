@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.CommutativeInverseCancellation
 
 <span id="qiskit.transpiler.passes.CommutativeInverseCancellation" />
 
-`CommutativeInverseCancellation(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/optimization/commutative_inverse_cancellation.py "view source code")
+`CommutativeInverseCancellation(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/optimization/commutative_inverse_cancellation.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -34,7 +34,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.CommutativeInverseCancellation.run" />
 
-`CommutativeInverseCancellation.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/optimization/commutative_inverse_cancellation.py "view source code")
+`CommutativeInverseCancellation.run(dag)`
 
 Run the CommutativeInverseCancellation pass on dag.
 

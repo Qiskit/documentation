@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.Estimator
 
 <span id="qiskit_ibm_runtime.Estimator" />
 
-`Estimator(backend=None, session=None, options=None)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/estimator.py "view source code")
+`Estimator(backend=None, session=None, options=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/estimator.py#L36-L219 "view source code")
 
 Class for interacting with Qiskit Runtime Estimator primitive service.
 
@@ -104,7 +104,7 @@ Session used by this primitive, or `None` if session is not used.
 
 <span id="qiskit_ibm_runtime.Estimator.run" />
 
-`run(circuits, observables, parameter_values=None, **kwargs)`
+`run(circuits, observables, parameter_values=None, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/estimator.py#L114-L148 "view source code")
 
 Submit a request to the estimator primitive.
 
@@ -131,7 +131,7 @@ Submitted job. The result of the job is an instance of `qiskit.primitives.Estima
 
 <span id="qiskit_ibm_runtime.Estimator.set_options" />
 
-`set_options(**fields)`
+`set_options(**fields)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/base_primitive.py#L216-L222 "view source code")
 
 Set options values for the sampler.
 

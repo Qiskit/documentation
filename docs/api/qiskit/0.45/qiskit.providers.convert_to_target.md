@@ -12,7 +12,7 @@ python_api_name: qiskit.providers.convert_to_target
 
 <span id="qiskit.providers.convert_to_target" />
 
-`qiskit.providers.convert_to_target(configuration, properties=None, defaults=None, custom_name_mapping=None, add_delay=False, filter_faulty=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/backend_compat.py "view source code")
+`qiskit.providers.convert_to_target(configuration, properties=None, defaults=None, custom_name_mapping=None, add_delay=False, filter_faulty=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/backend_compat.py "view source code")
 
 Uses configuration, properties and pulse defaults to construct and return Target class.
 

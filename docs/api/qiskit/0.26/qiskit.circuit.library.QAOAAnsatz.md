@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.QAOAAnsatz
 
 <span id="qiskit.circuit.library.QAOAAnsatz" />
 
-`QAOAAnsatz(cost_operator=None, reps=1, initial_state=None, mixer_operator=None, name='qaoa')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/library/n_local/qaoa_ansatz.py "view source code")
+`QAOAAnsatz(cost_operator=None, reps=1, initial_state=None, mixer_operator=None, name='qaoa')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/library/n_local/qaoa_ansatz.py "view source code")
 
 A generalized QAOA quantum circuit with a support of custom initial states and mixers.
 

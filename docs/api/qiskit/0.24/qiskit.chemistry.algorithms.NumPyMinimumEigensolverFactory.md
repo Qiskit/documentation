@@ -12,7 +12,7 @@ python_api_name: qiskit.chemistry.algorithms.NumPyMinimumEigensolverFactory
 
 <span id="qiskit.chemistry.algorithms.NumPyMinimumEigensolverFactory" />
 
-`NumPyMinimumEigensolverFactory(filter_criterion=None, use_default_filter_criterion=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/algorithms/ground_state_solvers/minimum_eigensolver_factories/numpy_minimum_eigensolver_factory.py "view source code")
+`NumPyMinimumEigensolverFactory(filter_criterion=None, use_default_filter_criterion=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/algorithms/ground_state_solvers/minimum_eigensolver_factories/numpy_minimum_eigensolver_factory.py "view source code")
 
 A factory to construct a NumPyMinimumEigensolver.
 

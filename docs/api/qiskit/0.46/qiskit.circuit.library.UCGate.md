@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.UCGate
 
 <span id="qiskit.circuit.library.UCGate" />
 
-`qiskit.circuit.library.UCGate(gate_list, up_to_diagonal=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/generalized_gates/uc.py "view source code")
+`qiskit.circuit.library.UCGate(gate_list, up_to_diagonal=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/generalized_gates/uc.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 

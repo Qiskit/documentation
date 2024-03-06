@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.initial_states.Custom
 
 <span id="qiskit.aqua.components.initial_states.Custom" />
 
-`Custom(num_qubits, state='zero', state_vector=None, circuit=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/initial_states/custom.py "view source code")
+`Custom(num_qubits, state='zero', state_vector=None, circuit=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/initial_states/custom.py "view source code")
 
 The custom initial state.
 

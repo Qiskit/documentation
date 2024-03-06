@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.operators.primitive_ops.PauliOp
 
 <span id="qiskit.aqua.operators.primitive_ops.PauliOp" />
 
-`PauliOp(primitive, coeff=1.0)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/primitive_ops/pauli_op.py "view source code")
+`PauliOp(primitive, coeff=1.0)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/primitive_ops/pauli_op.py "view source code")
 
 Class for Operators backed by Terra’s `Pauli` module.
 

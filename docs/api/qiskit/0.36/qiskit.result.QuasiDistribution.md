@@ -10,7 +10,7 @@ python_api_name: qiskit.result.QuasiDistribution
 
 <span id="qiskit.result.QuasiDistribution" />
 
-`QuasiDistribution(data, shots=None, stddev_upper_bound=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/result/distributions/quasi.py "view source code")
+`QuasiDistribution(data, shots=None, stddev_upper_bound=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/result/distributions/quasi.py "view source code")
 
 Bases: `dict`
 
@@ -43,7 +43,7 @@ Builds a quasiprobability distribution object.
 
 <span id="qiskit.result.QuasiDistribution.binary_probabilities" />
 
-`QuasiDistribution.binary_probabilities(num_bits=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/result/distributions/quasi.py "view source code")
+`QuasiDistribution.binary_probabilities(num_bits=None)`
 
 Build a quasi-probabilities dictionary with binary string keys
 
@@ -93,7 +93,7 @@ Return the value for key if key is in the dictionary, else default.
 
 <span id="qiskit.result.QuasiDistribution.hex_probabilities" />
 
-`QuasiDistribution.hex_probabilities()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/result/distributions/quasi.py "view source code")
+`QuasiDistribution.hex_probabilities()`
 
 Build a quasi-probabilities dictionary with hexadecimal string keys
 
@@ -123,7 +123,7 @@ dict
 
 <span id="qiskit.result.QuasiDistribution.nearest_probability_distribution" />
 
-`QuasiDistribution.nearest_probability_distribution(return_distance=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/result/distributions/quasi.py "view source code")
+`QuasiDistribution.nearest_probability_distribution(return_distance=False)`
 
 Takes a quasiprobability distribution and maps it to the closest probability distribution as defined by the L2-norm.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.EfficientSU2
 
 <span id="qiskit.circuit.library.EfficientSU2" />
 
-`qiskit.circuit.library.EfficientSU2(num_qubits=None, su2_gates=None, entanglement='reverse_linear', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='EfficientSU2', flatten=None)`[GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/n_local/efficient_su2.py "view source code")
+`qiskit.circuit.library.EfficientSU2(num_qubits=None, su2_gates=None, entanglement='reverse_linear', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='EfficientSU2', flatten=None)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/n_local/efficient_su2.py "view source code")
 
 Bases: [`TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.n_local.two_local.TwoLocal")
 
@@ -185,11 +185,35 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 
 Return the number of ancilla qubits.
 
+<span id="qiskit.circuit.library.EfficientSU2.num_captured_vars" />
+
+### num\_captured\_vars
+
+The number of runtime classical variables in the circuit marked as captured from an enclosing scope.
+
+This is the length of the `iter_captured_vars()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.EfficientSU2.num_input_vars "qiskit.circuit.library.EfficientSU2.num_input_vars") must be zero.
+
 <span id="qiskit.circuit.library.EfficientSU2.num_clbits" />
 
 ### num\_clbits
 
 Return number of classical bits.
+
+<span id="qiskit.circuit.library.EfficientSU2.num_declared_vars" />
+
+### num\_declared\_vars
+
+The number of runtime classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
+
+This is the length of the `iter_declared_vars()` iterable.
+
+<span id="qiskit.circuit.library.EfficientSU2.num_input_vars" />
+
+### num\_input\_vars
+
+The number of runtime classical variables in the circuit marked as circuit inputs.
+
+This is the length of the `iter_input_vars()` iterable. If this is non-zero, [`num_captured_vars`](#qiskit.circuit.library.EfficientSU2.num_captured_vars "qiskit.circuit.library.EfficientSU2.num_captured_vars") must be zero.
 
 <span id="qiskit.circuit.library.EfficientSU2.num_layers" />
 
@@ -230,6 +254,14 @@ Returns the number of qubits in this circuit.
 **Returns**
 
 The number of qubits.
+
+<span id="qiskit.circuit.library.EfficientSU2.num_vars" />
+
+### num\_vars
+
+The number of runtime classical variables in the circuit.
+
+This is the length of the `iter_vars()` iterable.
 
 <span id="qiskit.circuit.library.EfficientSU2.op_start_times" />
 

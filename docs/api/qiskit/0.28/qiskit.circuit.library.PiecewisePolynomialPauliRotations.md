@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.PiecewisePolynomialPauliRotations
 
 <span id="qiskit.circuit.library.PiecewisePolynomialPauliRotations" />
 
-`PiecewisePolynomialPauliRotations(num_state_qubits=None, breakpoints=None, coeffs=None, basis='Y', name='pw_poly')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/arithmetic/piecewise_polynomial_pauli_rotations.py "view source code")
+`PiecewisePolynomialPauliRotations(num_state_qubits=None, breakpoints=None, coeffs=None, basis='Y', name='pw_poly')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/arithmetic/piecewise_polynomial_pauli_rotations.py "view source code")
 
 Piecewise-polynomially-controlled Pauli rotations.
 

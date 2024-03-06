@@ -1,6 +1,6 @@
 ---
 title: Transpilation defaults and configuration options
-description: The default settings and configuration options for quantum circuit transpilation in Qiskit.
+description: The default settings and configuration options for quantum circuit transpilation in Qiskit SDK.
 
 ---
 # Transpilation default settings and configuration options
@@ -20,22 +20,22 @@ from qiskit import transpile
 from qiskit import QuantumCircuit
 from qiskit.circuit.library import GroverOperator, Diagonal
 from qiskit_ibm_runtime import QiskitRuntimeService
-from qiskit.providers.fake_provider import FakeSherbrooke
+from qiskit_ibm_runtime.fake_provider import FakeSherbrooke
 
 # Create circuit to test transpiler on
 oracle = Diagonal([1] * 7 + [-1])
 qc = QuantumCircuit(3)
 qc.h([0, 1, 2])
 qc = qc.compose(GroverOperator(oracle))
-
+ 
 # Add measurements to the circuit
 qc.measure_all()
-
+ 
 # View the circuit
-qc.draw(output='mpl', style="iqp")
+qc.draw(output='mpl')
 ```
 
-![Original circuit](/images/transpile/defaults-and-configuration-options/original-circuit.png "Original circuit")
+![Original circuit](/images/transpile/defaults-and-configuration-options/original-circuit-qiskit-1.0.png "Original circuit")
 
 Transpile the circuit and view the result:
 
@@ -47,10 +47,10 @@ backend = FakeSherbrooke()
 transpiled_circ = transpile(qc, backend)
 
 # View the transpiled circuit
-transpiled_circ.draw(output='mpl', style="iqp")
+transpiled_circ.draw(output='mpl', idle_wires=False)
 ```
 
-![Transpiled circuit](/images/transpile/defaults-and-configuration-options/transpiled-circuit.png "Transpiled circuit")
+![Transpiled circuit](/images/transpile/defaults-and-configuration-options/transpiled-circuit-qiskit-1.0.png "Transpiled circuit")
 
 ## All available parameters
 
@@ -208,7 +208,7 @@ qiskit.compiler.transpile(unitary_synthesis_method='default', translation_method
 <Admonition type="tip" title="Recommendations">
     - Learn how to [Set the optimization level](set-optimization).
     - Review more [Commonly used parameters](common-parameters).
-    - Learn how to [Set the optimization level when using Qiskit&reg; Runtime.](../run/advanced-runtime-options)
+    - Learn how to [Set the optimization level when using Qiskit Runtime.](../run/advanced-runtime-options)
     - Visit the [Transpile with pass managers](transpile-with-pass-managers) topic.
     - For examples, see [Representing quantum computers.](representing_quantum_computers)
     - Try the [Submit transpiled circuits](https://learning.quantum.ibm.com/tutorial/submit-transpiled-circuits) tutorial.

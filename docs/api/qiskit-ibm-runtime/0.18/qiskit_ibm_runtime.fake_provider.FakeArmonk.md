@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeArmonk
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeArmonk" />
 
-`FakeArmonk`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.18/qiskit_ibm_runtime/fake_provider/backends/armonk/fake_armonk.py "view source code")
+`FakeArmonk` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.18/qiskit_ibm_runtime/fake_provider/backends/armonk/fake_armonk.py "view source code")
 
 A fake 1 qubit backend.
 

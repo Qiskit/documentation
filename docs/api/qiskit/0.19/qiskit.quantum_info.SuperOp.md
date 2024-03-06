@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.SuperOp
 
 <span id="qiskit.quantum_info.SuperOp" />
 
-`SuperOp(data, input_dims=None, output_dims=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/channel/superop.py "view source code")
+`SuperOp(data, input_dims=None, output_dims=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/channel/superop.py "view source code")
 
 Superoperator representation of a quantum channel.
 
@@ -120,7 +120,7 @@ Return the adjoint of the operator.
 
 <span id="qiskit.quantum_info.SuperOp.compose" />
 
-`SuperOp.compose(other, qargs=None, front=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/channel/superop.py "view source code")
+`SuperOp.compose(other, qargs=None, front=False)`
 
 Return the composed quantum channel self @ other.
 
@@ -150,7 +150,7 @@ Composition (`@`) is defined as left matrix multiplication for [`SuperOp`](qiski
 
 <span id="qiskit.quantum_info.SuperOp.conjugate" />
 
-`SuperOp.conjugate()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/channel/superop.py "view source code")
+`SuperOp.conjugate()`
 
 Return the conjugate of the QuantumChannel.
 
@@ -191,7 +191,7 @@ BaseOperator
 
 <span id="qiskit.quantum_info.SuperOp.expand" />
 
-`SuperOp.expand(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/channel/superop.py "view source code")
+`SuperOp.expand(other)`
 
 Return the tensor product channel other ⊗ self.
 
@@ -289,7 +289,7 @@ Return tuple of output dimension for specified subsystems.
 
 <span id="qiskit.quantum_info.SuperOp.power" />
 
-`SuperOp.power(n)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/channel/superop.py "view source code")
+`SuperOp.power(n)`
 
 Return the compose of a QuantumChannel with itself n times.
 
@@ -381,7 +381,7 @@ BaseOperator
 
 <span id="qiskit.quantum_info.SuperOp.tensor" />
 
-`SuperOp.tensor(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/channel/superop.py "view source code")
+`SuperOp.tensor(other)`
 
 Return the tensor product channel self ⊗ other.
 
@@ -435,7 +435,7 @@ Try to convert channel to a unitary representation Operator.
 
 <span id="qiskit.quantum_info.SuperOp.transpose" />
 
-`SuperOp.transpose()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/channel/superop.py "view source code")
+`SuperOp.transpose()`
 
 Return the transpose of the QuantumChannel.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CRYGate
 
 <span id="qiskit.circuit.library.CRYGate" />
 
-`CRYGate(theta, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/library/standard_gates/ry.py "view source code")
+`CRYGate(theta, label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/library/standard_gates/ry.py "view source code")
 
 Controlled-RY gate.
 

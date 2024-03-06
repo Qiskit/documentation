@@ -12,7 +12,7 @@ python_api_name: qiskit.pulse.library.gaussian_square_echo
 
 <span id="qiskit.pulse.library.gaussian_square_echo" />
 
-`qiskit.pulse.library.gaussian_square_echo(duration, amp, sigma, width=None, angle=0.0, active_amp=0.0, active_angle=0.0, risefall_sigma_ratio=None, name=None, limit_amplitude=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/pulse/library/symbolic_pulses.py "view source code")
+`qiskit.pulse.library.gaussian_square_echo(duration, amp, sigma, width=None, angle=0.0, active_amp=0.0, active_angle=0.0, risefall_sigma_ratio=None, name=None, limit_amplitude=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/pulse/library/symbolic_pulses.py "view source code")
 
 An echoed Gaussian square pulse with an active tone overlaid on it.
 

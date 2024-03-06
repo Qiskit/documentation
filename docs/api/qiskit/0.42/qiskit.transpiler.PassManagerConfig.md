@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.PassManagerConfig
 
 <span id="qiskit.transpiler.PassManagerConfig" />
 
-`PassManagerConfig(initial_layout=None, basis_gates=None, inst_map=None, coupling_map=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, instruction_durations=None, backend_properties=None, approximation_degree=None, seed_transpiler=None, timing_constraints=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None, target=None, hls_config=None, init_method=None, optimization_method=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passmanager_config.py "view source code")
+`PassManagerConfig(initial_layout=None, basis_gates=None, inst_map=None, coupling_map=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, instruction_durations=None, backend_properties=None, approximation_degree=None, seed_transpiler=None, timing_constraints=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None, target=None, hls_config=None, init_method=None, optimization_method=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passmanager_config.py "view source code")
 
 Bases: `object`
 
@@ -45,7 +45,7 @@ Initialize a PassManagerConfig object
 
 <span id="qiskit.transpiler.PassManagerConfig.from_backend" />
 
-`classmethod PassManagerConfig.from_backend(backend, **pass_manager_options)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passmanager_config.py "view source code")
+`classmethod PassManagerConfig.from_backend(backend, **pass_manager_options)`
 
 Construct a configuration based on a backend and user input.
 

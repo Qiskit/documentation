@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCod
 
 <span id="qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode" />
 
-`ErrorCorrectingCode(code_size=4)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/multiclass_extensions/error_correcting_code.py "view source code")
+`ErrorCorrectingCode(code_size=4)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/multiclass_extensions/error_correcting_code.py "view source code")
 
 Bases: `qiskit.aqua.components.multiclass_extensions.multiclass_extension.MulticlassExtension`
 
@@ -38,7 +38,7 @@ The table above shows a 6-bit ECC for a 3-class problem. Each class is assigned 
 
 <span id="qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.predict" />
 
-`ErrorCorrectingCode.predict(x)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/multiclass_extensions/error_correcting_code.py "view source code")
+`ErrorCorrectingCode.predict(x)`
 
 Applying multiple estimators for prediction.
 
@@ -70,7 +70,7 @@ Called internally to set `Estimator` and parameters :type estimator\_cls: `Calla
 
 <span id="qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.test" />
 
-`ErrorCorrectingCode.test(x, y)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/multiclass_extensions/error_correcting_code.py "view source code")
+`ErrorCorrectingCode.test(x, y)`
 
 Testing multiple estimators each for distinguishing a pair of classes.
 
@@ -91,7 +91,7 @@ float
 
 <span id="qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.train" />
 
-`ErrorCorrectingCode.train(x, y)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/multiclass_extensions/error_correcting_code.py "view source code")
+`ErrorCorrectingCode.train(x, y)`
 
 Training multiple estimators each for distinguishing a pair of classes.
 

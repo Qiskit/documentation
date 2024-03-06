@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.OptimizerState
 
 <span id="qiskit.algorithms.optimizers.OptimizerState" />
 
-`qiskit.algorithms.optimizers.OptimizerState(x, fun, jac, nfev, njev, nit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/optimizers/steppable_optimizer.py "view source code")
+`qiskit.algorithms.optimizers.OptimizerState(x, fun, jac, nfev, njev, nit)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/optimizers/steppable_optimizer.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 

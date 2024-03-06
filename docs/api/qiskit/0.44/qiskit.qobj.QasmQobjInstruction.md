@@ -10,7 +10,7 @@ python_api_name: qiskit.qobj.QasmQobjInstruction
 
 <span id="qiskit.qobj.QasmQobjInstruction" />
 
-`qiskit.qobj.QasmQobjInstruction(name, params=None, qubits=None, register=None, memory=None, condition=None, conditional=None, label=None, mask=None, relation=None, val=None, snapshot_type=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/qobj/qasm_qobj.py "view source code")
+`qiskit.qobj.QasmQobjInstruction(name, params=None, qubits=None, register=None, memory=None, condition=None, conditional=None, label=None, mask=None, relation=None, val=None, snapshot_type=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/qobj/qasm_qobj.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 

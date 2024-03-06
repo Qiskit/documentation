@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.logging.IgnisLogReader
 
 <span id="qiskit.ignis.logging.IgnisLogReader" />
 
-`IgnisLogReader`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/logging/ignis_logging.py "view source code")
+`IgnisLogReader` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/logging/ignis_logging.py "view source code")
 
 Bases: `object`
 
@@ -24,7 +24,7 @@ Reads and constructs tabular representation of logged data based on date/time an
 
 <span id="qiskit.ignis.logging.IgnisLogReader.get_log_files" />
 
-`IgnisLogReader.get_log_files()`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/logging/ignis_logging.py "view source code")
+`IgnisLogReader.get_log_files()`
 
 Get Names of all log files (several may be present due to logging file rotation). File names are sorted by modification time.
 
@@ -40,7 +40,7 @@ list
 
 <span id="qiskit.ignis.logging.IgnisLogReader.read_values" />
 
-`IgnisLogReader.read_values(log_files=None, keys=None, from_datetime=None, from_datetime_format=None, to_datetime=None, to_datetime_format=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/logging/ignis_logging.py "view source code")
+`IgnisLogReader.read_values(log_files=None, keys=None, from_datetime=None, from_datetime_format=None, to_datetime=None, to_datetime_format=None)`
 
 Retrieve log lines using key and date/time filtering criteria
 

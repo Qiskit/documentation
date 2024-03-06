@@ -12,7 +12,7 @@ python_api_name: qiskit.transpiler.PassManagerConfig
 
 <span id="qiskit.transpiler.PassManagerConfig" />
 
-`PassManagerConfig(initial_layout=None, basis_gates=None, coupling_map=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, instruction_durations=None, backend_properties=None, seed_transpiler=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/transpiler/passmanager_config.py "view source code")
+`PassManagerConfig(initial_layout=None, basis_gates=None, coupling_map=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, instruction_durations=None, backend_properties=None, seed_transpiler=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/transpiler/passmanager_config.py "view source code")
 
 Pass Manager Configuration.
 

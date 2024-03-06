@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
 <span id="qiskit.pulse.ScheduleBlock" />
 
-`ScheduleBlock(name=None, metadata=None, alignment_context=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/schedule.py "view source code")
+`ScheduleBlock(name=None, metadata=None, alignment_context=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/schedule.py "view source code")
 
 Bases: `object`
 
@@ -63,7 +63,7 @@ Create an empty schedule block.
 
 <span id="qiskit.pulse.ScheduleBlock.append" />
 
-`ScheduleBlock.append(block, name=None, inplace=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/schedule.py "view source code")
+`ScheduleBlock.append(block, name=None, inplace=True)`
 
 Return a new schedule block with `block` appended to the context block. The execution time is automatically assigned when the block is converted into schedule.
 
@@ -89,7 +89,7 @@ Schedule block with appended schedule.
 
 <span id="qiskit.pulse.ScheduleBlock.assign_parameters" />
 
-`ScheduleBlock.assign_parameters(value_dict, inplace=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/schedule.py "view source code")
+`ScheduleBlock.assign_parameters(value_dict, inplace=True)`
 
 Assign the parameters in this schedule according to the input.
 
@@ -110,7 +110,7 @@ Schedule with updated parameters.
 
 <span id="qiskit.pulse.ScheduleBlock.ch_duration" />
 
-`ScheduleBlock.ch_duration(*channels)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/schedule.py "view source code")
+`ScheduleBlock.ch_duration(*channels)`
 
 Return the time of the end of the last instruction over the supplied channels.
 
@@ -126,7 +126,7 @@ Return the time of the end of the last instruction over the supplied channels.
 
 <span id="qiskit.pulse.ScheduleBlock.ch_start_time" />
 
-`ScheduleBlock.ch_start_time(*channels)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/schedule.py "view source code")
+`ScheduleBlock.ch_start_time(*channels)`
 
 Return the time of the start of the first instruction over the supplied channels.
 
@@ -142,7 +142,7 @@ Return the time of the start of the first instruction over the supplied channels
 
 <span id="qiskit.pulse.ScheduleBlock.ch_stop_time" />
 
-`ScheduleBlock.ch_stop_time(*channels)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/schedule.py "view source code")
+`ScheduleBlock.ch_stop_time(*channels)`
 
 Return maximum start time over supplied channels.
 
@@ -232,7 +232,7 @@ Visualization output data. The returned data type depends on the `plotter`. If m
 
 <span id="qiskit.pulse.ScheduleBlock.exclude" />
 
-`ScheduleBlock.exclude(*filter_funcs, channels=None, instruction_types=None, time_ranges=None, intervals=None, check_subroutine=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/schedule.py "view source code")
+`ScheduleBlock.exclude(*filter_funcs, channels=None, instruction_types=None, time_ranges=None, intervals=None, check_subroutine=True)`
 
 Return a `Schedule` with only the instructions from this Schedule *failing* at least one of the provided filters. This method is the complement of py:meth:\~self.filter, so that:
 
@@ -265,7 +265,7 @@ self.filter(args) | self.exclude(args) == self
 
 <span id="qiskit.pulse.ScheduleBlock.filter" />
 
-`ScheduleBlock.filter(*filter_funcs, channels=None, instruction_types=None, time_ranges=None, intervals=None, check_subroutine=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/schedule.py "view source code")
+`ScheduleBlock.filter(*filter_funcs, channels=None, instruction_types=None, time_ranges=None, intervals=None, check_subroutine=True)`
 
 Return a new `Schedule` with only the instructions from this `ScheduleBlock` which pass though the provided filters; i.e. an instruction will be retained iff every function in `filter_funcs` returns `True`, the instruction occurs on a channel type contained in `channels`, the instruction type is contained in `instruction_types`, and the period over which the instruction operates is *fully* contained in one specified in `time_ranges` or `intervals`.
 
@@ -296,7 +296,7 @@ If no arguments are provided, `self` is returned.
 
 <span id="qiskit.pulse.ScheduleBlock.get_parameters" />
 
-`ScheduleBlock.get_parameters(parameter_name)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/schedule.py "view source code")
+`ScheduleBlock.get_parameters(parameter_name)`
 
 Get parameter object bound to this schedule by string name.
 
@@ -318,7 +318,7 @@ Parameter objects that have corresponding name.
 
 <span id="qiskit.pulse.ScheduleBlock.initialize_from" />
 
-`classmethod ScheduleBlock.initialize_from(other_program, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/schedule.py "view source code")
+`classmethod ScheduleBlock.initialize_from(other_program, name=None)`
 
 Create new schedule object with metadata of another schedule object.
 
@@ -343,7 +343,7 @@ New block object with name and metadata.
 
 <span id="qiskit.pulse.ScheduleBlock.insert" />
 
-`ScheduleBlock.insert(start_time, block, name=None, inplace=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/schedule.py "view source code")
+`ScheduleBlock.insert(start_time, block, name=None, inplace=True)`
 
 This method will be removed. Temporarily added for backward compatibility.
 
@@ -366,7 +366,7 @@ This method will be removed. Temporarily added for backward compatibility.
 
 <span id="qiskit.pulse.ScheduleBlock.is_parameterized" />
 
-`ScheduleBlock.is_parameterized()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/schedule.py "view source code")
+`ScheduleBlock.is_parameterized()`
 
 Return True iff the instruction is parameterized.
 
@@ -378,7 +378,7 @@ Return True iff the instruction is parameterized.
 
 <span id="qiskit.pulse.ScheduleBlock.is_schedulable" />
 
-`ScheduleBlock.is_schedulable()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/schedule.py "view source code")
+`ScheduleBlock.is_schedulable()`
 
 Return `True` if all durations are assigned.
 
@@ -390,7 +390,7 @@ Return `True` if all durations are assigned.
 
 <span id="qiskit.pulse.ScheduleBlock.replace" />
 
-`ScheduleBlock.replace(old, new, inplace=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/schedule.py "view source code")
+`ScheduleBlock.replace(old, new, inplace=True)`
 
 Return a `ScheduleBlock` with the `old` component replaced with a `new` component.
 
@@ -412,7 +412,7 @@ The modified schedule block with `old` replaced by `new`.
 
 <span id="qiskit.pulse.ScheduleBlock.shift" />
 
-`ScheduleBlock.shift(time, name=None, inplace=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/schedule.py "view source code")
+`ScheduleBlock.shift(time, name=None, inplace=True)`
 
 This method will be removed. Temporarily added for backward compatibility.
 

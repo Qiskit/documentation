@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.AND
 
 <span id="qiskit.circuit.library.AND" />
 
-`AND(num_variable_qubits, flags=None, mcx_mode='noancilla')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/boolean_logic/quantum_and.py "view source code")
+`AND(num_variable_qubits, flags=None, mcx_mode='noancilla')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/boolean_logic/quantum_and.py "view source code")
 
 Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.Collect1qRuns
 
 <span id="qiskit.transpiler.passes.Collect1qRuns" />
 
-`Collect1qRuns(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/optimization/collect_1q_runs.py "view source code")
+`Collect1qRuns(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/optimization/collect_1q_runs.py "view source code")
 
 Bases: `qiskit.transpiler.basepasses.AnalysisPass`
 
@@ -30,7 +30,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.Collect1qRuns.run" />
 
-`Collect1qRuns.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/optimization/collect_1q_runs.py "view source code")
+`Collect1qRuns.run(dag)`
 
 Run the Collect1qBlocks pass on dag.
 

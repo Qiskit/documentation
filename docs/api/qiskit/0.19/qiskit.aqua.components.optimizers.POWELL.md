@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.optimizers.POWELL
 
 <span id="qiskit.aqua.components.optimizers.POWELL" />
 
-`POWELL(maxiter=None, maxfev=1000, disp=False, xtol=0.0001, tol=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/powell.py "view source code")
+`POWELL(maxiter=None, maxfev=1000, disp=False, xtol=0.0001, tol=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/powell.py "view source code")
 
 Powell optimizer.
 
@@ -86,7 +86,7 @@ Return setting
 
 <span id="qiskit.aqua.components.optimizers.POWELL.get_support_level" />
 
-`POWELL.get_support_level()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/powell.py "view source code")
+`POWELL.get_support_level()`
 
 Return support level dictionary
 
@@ -117,7 +117,7 @@ grad
 
 <span id="qiskit.aqua.components.optimizers.POWELL.optimize" />
 
-`POWELL.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/powell.py "view source code")
+`POWELL.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
 Perform optimization.
 

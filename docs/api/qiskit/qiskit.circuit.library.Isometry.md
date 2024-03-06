@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.Isometry
 
 <span id="qiskit.circuit.library.Isometry" />
 
-`qiskit.circuit.library.Isometry(isometry, num_ancillas_zero, num_ancillas_dirty, epsilon=1e-10)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/generalized_gates/isometry.py "view source code")
+`qiskit.circuit.library.Isometry(isometry, num_ancillas_zero, num_ancillas_dirty, epsilon=1e-10)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/generalized_gates/isometry.py "view source code")
 
 Bases: [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 

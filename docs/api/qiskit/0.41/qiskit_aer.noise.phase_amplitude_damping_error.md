@@ -10,7 +10,7 @@ python_api_name: qiskit_aer.noise.phase_amplitude_damping_error
 
 <span id="qiskit_aer.noise.phase_amplitude_damping_error" />
 
-`phase_amplitude_damping_error(param_amp, param_phase, excited_state_population=0, canonical_kraus=True)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/noise/errors/standard_errors.py "view source code")
+`phase_amplitude_damping_error(param_amp, param_phase, excited_state_population=0, canonical_kraus=True)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/noise/errors/standard_errors.py "view source code")
 
 Return a single-qubit combined phase and amplitude damping quantum error channel.
 
