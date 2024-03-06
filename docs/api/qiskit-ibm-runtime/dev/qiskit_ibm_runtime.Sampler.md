@@ -8,5 +8,5 @@ python_api_name: qiskit_ibm_runtime.Sampler
 
 # Sampler
 
-alias of `SamplerV1`
+alias of [`SamplerV1`](qiskit_ibm_runtime.SamplerV1 "qiskit_ibm_runtime.sampler.SamplerV1")
 

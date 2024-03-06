@@ -113,15 +113,19 @@ logging.getLogger('qiskit_ibm_runtime').setLevel(logging.WARNING)
 
 ## Classes
 
-|                                                                                                                                          |                                                           |
-| ---------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
-| [`QiskitRuntimeService`](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.QiskitRuntimeService")(\[channel, token, url, ...]) | Class for interacting with the Qiskit Runtime service.    |
-| [`Estimator`](qiskit_ibm_runtime.Estimator "qiskit_ibm_runtime.Estimator")                                                               | alias of `EstimatorV1`                                    |
-| [`Sampler`](qiskit_ibm_runtime.Sampler "qiskit_ibm_runtime.Sampler")                                                                     | alias of `SamplerV1`                                      |
-| [`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.Session")(\[service, backend, max\_time])                                     | Class for creating a Qiskit Runtime session.              |
-| [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.IBMBackend")(configuration, service, api\_client)                       | Backend class interfacing with an IBM Quantum backend.    |
-| [`RuntimeJob`](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.RuntimeJob")(backend, api\_client, ...\[, ...])                         | Representation of a runtime program execution.            |
-| [`RuntimeOptions`](qiskit_ibm_runtime.RuntimeOptions "qiskit_ibm_runtime.RuntimeOptions")(\[backend, image, log\_level, ...])            | Class for representing generic runtime execution options. |
-| [`RuntimeEncoder`](qiskit_ibm_runtime.RuntimeEncoder "qiskit_ibm_runtime.RuntimeEncoder")(\*\[, skipkeys, ensure\_ascii, ...])           | JSON Encoder used by runtime service.                     |
-| [`RuntimeDecoder`](qiskit_ibm_runtime.RuntimeDecoder "qiskit_ibm_runtime.RuntimeDecoder")(\*args, \*\*kwargs)                            | JSON Decoder used by runtime service.                     |
+|                                                                                                                                          |                                                                                                     |
+| ---------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| [`QiskitRuntimeService`](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.QiskitRuntimeService")(\[channel, token, url, ...]) | Class for interacting with the Qiskit Runtime service.                                              |
+| [`Estimator`](qiskit_ibm_runtime.Estimator "qiskit_ibm_runtime.Estimator")                                                               | alias of [`EstimatorV1`](qiskit_ibm_runtime.EstimatorV1 "qiskit_ibm_runtime.estimator.EstimatorV1") |
+| [`EstimatorV1`](qiskit_ibm_runtime.EstimatorV1 "qiskit_ibm_runtime.EstimatorV1")(\[backend, session, options])                           | Class for interacting with Qiskit Runtime Estimator primitive service.                              |
+| [`EstimatorV2`](qiskit_ibm_runtime.EstimatorV2 "qiskit_ibm_runtime.EstimatorV2")(\[backend, session, options])                           | Class for interacting with Qiskit Runtime Estimator primitive service.                              |
+| [`Sampler`](qiskit_ibm_runtime.Sampler "qiskit_ibm_runtime.Sampler")                                                                     | alias of [`SamplerV1`](qiskit_ibm_runtime.SamplerV1 "qiskit_ibm_runtime.sampler.SamplerV1")         |
+| [`SamplerV1`](qiskit_ibm_runtime.SamplerV1 "qiskit_ibm_runtime.SamplerV1")(\[backend, session, options])                                 | Class for interacting with Qiskit Runtime Sampler primitive service.                                |
+| [`SamplerV2`](qiskit_ibm_runtime.SamplerV2 "qiskit_ibm_runtime.SamplerV2")(\[backend, session, options])                                 | Class for interacting with Qiskit Runtime Sampler primitive service.                                |
+| [`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.Session")(\[service, backend, max\_time])                                     | Class for creating a Qiskit Runtime session.                                                        |
+| [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.IBMBackend")(configuration, service, api\_client)                       | Backend class interfacing with an IBM Quantum backend.                                              |
+| [`RuntimeJob`](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.RuntimeJob")(backend, api\_client, ...\[, ...])                         | Representation of a runtime program execution.                                                      |
+| [`RuntimeOptions`](qiskit_ibm_runtime.RuntimeOptions "qiskit_ibm_runtime.RuntimeOptions")(\[backend, image, log\_level, ...])            | Class for representing generic runtime execution options.                                           |
+| [`RuntimeEncoder`](qiskit_ibm_runtime.RuntimeEncoder "qiskit_ibm_runtime.RuntimeEncoder")(\*\[, skipkeys, ensure\_ascii, ...])           | JSON Encoder used by runtime service.                                                               |
+| [`RuntimeDecoder`](qiskit_ibm_runtime.RuntimeDecoder "qiskit_ibm_runtime.RuntimeDecoder")(\*args, \*\*kwargs)                            | JSON Decoder used by runtime service.                                                               |
 
