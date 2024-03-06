@@ -75,7 +75,7 @@ export class Pkg {
       const releaseNoteEntries = await findLegacyReleaseNotes(name);
       return new Pkg({
         ...args,
-        title: "Qiskit",
+        title: "Qiskit SDK",
         name: "qiskit",
         githubSlug: "qiskit/qiskit",
         hasSeparateReleaseNotes: true,
