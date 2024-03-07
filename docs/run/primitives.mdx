@@ -81,7 +81,7 @@ estimator.run([circuit1, circuit2, ...],[observable1, observable2, ...],[param_v
 #### Estimator V2
 
 * Takes one parameter: PUBs in the format (`<circuit>`, `<observables>`, `<parameter values>`, `<precision>`)
-* Numpy [broadcasting rules](https://numpy.org/doc/stable/user/basics.broadcasting.html) are used when combining observables and parameter values.
+* Combines elements from multiple arrays by following NumPy broadcasting rules as described below. 
 * Each input PUB has a corresponding PubResult that contains both data and metadata.
 
 Example: 
@@ -92,9 +92,39 @@ estimator.run([(circuit1, observable1, param_values1),(circuit2, observable2, pa
 
 ##### Broadcasting rules
 
-For Estimator V2, observable and parameter values are made up of *nd-arrays*.  An nd-array is an object whose elements are indexed by a tuple of integers, where each integer must be bounded by the dimension of that axis. The tuple of dimensions, one for each axis, is called the *shape* of the nd-array. For example, a **1D** list of 10 objects (typically numbers) is a vector and has shape (10,), a matrix with five rows and two columns is **2D** and has shape (5, 2), a single number is **0D** and has an empty shape tuple (), and an **nd**-array with shape (20, 10, 5) can be interpreted as a length-20 list of 10x5 matrices.
+Estimator V2 aggregates elements from multiple arrays (observables and parameter values) by following the same broadcasting rules as NumPy. This section summarizes those rules.  For a detailed explanation, see the [NumPy broadcasting rules documentation.](https://numpy.org/doc/stable/user/basics.broadcasting.html)
 
-The arrays of observables and parameter values that are input to Estimator must have shapes that are *broadcastable*. That is, the arrays must be able to be combined to create a valid result.  Note that a 0D array is compatible with any size of array, because the contents are duplicated as necessary. For example, a (6,) array and a (3,) array are not compatible because if you try to combine each element, three elements of the first array don't have corresponding elements in the second array.  Therefore, they are not a broadcastable set.  Similarly, a (4,3) array is not compatible with a (,4) array. However, a (4,3) array *is* compatible with a (,3) array. 
+Rules:
+
+* Input arrays do not need to have the same number of dimensions. 
+  * The resulting array will have the same number of dimensions as the input array with the largest dimension. 
+  * The size of each dimension is the largest size of the corresponding dimension.
+  * Missing dimensions are assumed to have size one.
+* Shape comparisons start with the rightmost dimension and continue to the left.
+* Two dimensions are compatible if their sizes are equal or if one of them is 1.
+
+Examples of array pairs that broadcast:
+
+```text
+A      (2d array):  3 x 5
+B      (1d array):      1
+Result (2d array):  3 x 5
+
+
+A      (3d array):  11 x 2 x 7
+B      (3d array):  11 x 1 x 7
+Result (3d array):  11 x 2 x 7
+```
+
+Examples of array pairs that do not broadcast:
+
+```text
+A      (1d array):  5
+B      (1d array):  3 
+
+A      (2d array):      2 x 1
+B      (3d array):  6 x 5 x 4 # This would work except for the middle dimensions (2 compared to 5).
+```
 
 `EstimatorV2` returns one expectation value estimate for each element of the broadcasted shape.  
 
@@ -104,31 +134,29 @@ Here are some examples of common patterns expressed in terms of array broadcasti
 # Broadcast single observable
 parameter_values = np.array(1.0)
 parameter_values.shape == ()
-observables = ObservablesArray(["III", "XXX", Pauli("YYY"), "ZZZ", Pauli("XYZ")])
+observables = observable = SparsePauliOp("Z" * 5)
+
 observables.shape == (5,)
 >> task_result.shape == (5,)
 
 # Zip
 parameter_values = BindingsArray(np.random.uniform(size=(5,)))
 parameter_values.shape == (5,)
-observables = ObservablesArray([Pauli("III"), Pauli("XXX"), Pauli("YYY"), Pauli("ZZZ"), Pauli("XYZ")])
+observables = SparsePauliOp("Z" * 5)
 observables.shape == (5,)
 >> task_result.shape == (5,)
 
 # Outer/Product
 parameter_values = BindingsArray(np.random.uniform(size=(1, 6)))
 parameter_values.shape == (1, 6)
-observables = ObservablesArray([[Pauli("III")], [Pauli("XXX")], [Pauli("YYY")], [Pauli("ZZZ")]])
+observables = SparsePauliOp("Z" * 4)
 observables.shape == (4, 1)
 >> task_result.shape == (4,6)
 
 # Standard nd generalization
 parameter_values = BindingsArray(np.random.uniform(size=(3, 6)))
 parameter_values.shape == (3, 6)
-observables = ObservablesArray([
-    [[Pauli(...)], [Pauli(...)], [Pauli(...)]]],
-    [[Pauli(...)], [Pauli(...)], [Pauli(...)]]],
-])
+observables = SparsePauliOp("Z" * 6)
 observables.shape == (2, 3, 1)
 >> task_result.shape == (3, 6, 2)
 ```
