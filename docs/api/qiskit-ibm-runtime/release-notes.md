@@ -6,7 +6,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes" />
 
-
+# Qiskit Runtime IBM Client 0.21 release notes
 
 <span id="release-notes-0-21-0" />
 
@@ -246,7 +246,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 ## 0.15.0
 
-<span id="hack-for-reno-issue-0-15-0-prelude" />
+<span id="release-notes-0-15-0-prelude" />
 
 <span id="id24" />
 
@@ -254,7 +254,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 Sessions are now thread-safe and allow for multiple concurrent interactive experiments.
 
-<span id="hack-for-reno-issue-0-15-0-new-features" />
+<span id="release-notes-0-15-0-new-features" />
 
 <span id="id25" />
 
