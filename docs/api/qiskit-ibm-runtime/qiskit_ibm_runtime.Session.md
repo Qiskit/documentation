@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.Session
 
 <span id="qiskit_ibm_runtime.Session" />
 
-`Session(service=None, backend=None, max_time=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/testing/qiskit_ibm_runtime/session.py#L41-L346 "view source code")
+`Session(service=None, backend=None, max_time=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/session.py#L41-L346 "view source code")
 
 Class for creating a Qiskit Runtime session.
 
@@ -95,7 +95,7 @@ Session ID. None if the backend is a simulator.
 
 <span id="qiskit_ibm_runtime.Session.backend" />
 
-`backend()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/testing/qiskit_ibm_runtime/session.py#L218-L224 "view source code")
+`backend()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/session.py#L218-L224 "view source code")
 
 Return backend for this session.
 
@@ -111,7 +111,7 @@ Backend for this session. None if unknown.
 
 <span id="qiskit_ibm_runtime.Session.cancel" />
 
-`cancel()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/testing/qiskit_ibm_runtime/session.py#L204-L208 "view source code")
+`cancel()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/session.py#L204-L208 "view source code")
 
 Cancel all pending jobs in a session.
 
@@ -123,7 +123,7 @@ Cancel all pending jobs in a session.
 
 <span id="qiskit_ibm_runtime.Session.close" />
 
-`close()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/testing/qiskit_ibm_runtime/session.py#L210-L216 "view source code")
+`close()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/session.py#L210-L216 "view source code")
 
 Close the session so new jobs will no longer be accepted, but existing queued or running jobs will run to completion. The session will be terminated once there are no more pending jobs.
 
@@ -135,7 +135,7 @@ Close the session so new jobs will no longer be accepted, but existing queued or
 
 <span id="qiskit_ibm_runtime.Session.details" />
 
-`details()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/testing/qiskit_ibm_runtime/session.py#L252-L288 "view source code")
+`details()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/session.py#L252-L288 "view source code")
 
 Return session details.
 
@@ -151,7 +151,7 @@ A dictionary with the sessions details, including
 
 <span id="qiskit_ibm_runtime.Session.from_id" />
 
-`classmethod from_id(session_id, service=None, backend=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/testing/qiskit_ibm_runtime/session.py#L308-L333 "view source code")
+`classmethod from_id(session_id, service=None, backend=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/session.py#L308-L333 "view source code")
 
 Construct a Session object with a given session\_id
 
@@ -173,7 +173,7 @@ A new Session with the given `session_id`
 
 <span id="qiskit_ibm_runtime.Session.run" />
 
-`run(program_id, inputs, options=None, callback=None, result_decoder=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/testing/qiskit_ibm_runtime/session.py#L159-L202 "view source code")
+`run(program_id, inputs, options=None, callback=None, result_decoder=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/session.py#L159-L202 "view source code")
 
 Run a program in the session.
 
@@ -186,7 +186,7 @@ Run a program in the session.
 
 **Return type**
 
-`Union`\[[`RuntimeJob`](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.runtime_job.RuntimeJob"), [`RuntimeJobV2`](qiskit_ibm_runtime.RuntimeJobV2 "qiskit_ibm_runtime.runtime_job_v2.RuntimeJobV2")]
+`Union`\[[`RuntimeJob`](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.runtime_job.RuntimeJob"), `RuntimeJobV2`]
 
 **Returns**
 
@@ -196,7 +196,7 @@ Submitted job.
 
 <span id="qiskit_ibm_runtime.Session.status" />
 
-`status()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/testing/qiskit_ibm_runtime/session.py#L226-L250 "view source code")
+`status()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/session.py#L226-L250 "view source code")
 
 Return current session status.
 
