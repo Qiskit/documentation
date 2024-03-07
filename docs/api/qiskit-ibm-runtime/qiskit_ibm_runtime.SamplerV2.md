@@ -89,7 +89,7 @@ Submit a request to the estimator primitive.
 
 **Return type**
 
-RuntimeJobV2
+[RuntimeJobV2](qiskit_ibm_runtime.RuntimeJobV2 "qiskit_ibm_runtime.RuntimeJobV2")
 
 **Returns**
 
