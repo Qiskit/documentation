@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.SamplerV2
 
 <span id="qiskit_ibm_runtime.SamplerV2" />
 
-`SamplerV2(backend=None, session=None, options=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/testing/qiskit_ibm_runtime/sampler.py#L46-L137 "view source code")
+`SamplerV2(backend=None, session=None, options=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/sampler.py#L46-L137 "view source code")
 
 Class for interacting with Qiskit Runtime Sampler primitive service.
 
@@ -78,7 +78,7 @@ Session used by this primitive, or `None` if session is not used.
 
 <span id="qiskit_ibm_runtime.SamplerV2.run" />
 
-`run(pubs, *, shots=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/testing/qiskit_ibm_runtime/sampler.py#L97-L124 "view source code")
+`run(pubs, *, shots=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/sampler.py#L97-L124 "view source code")
 
 Submit a request to the estimator primitive.
 
@@ -89,7 +89,7 @@ Submit a request to the estimator primitive.
 
 **Return type**
 
-[RuntimeJobV2](qiskit_ibm_runtime.RuntimeJobV2 "qiskit_ibm_runtime.RuntimeJobV2")
+RuntimeJobV2
 
 **Returns**
 

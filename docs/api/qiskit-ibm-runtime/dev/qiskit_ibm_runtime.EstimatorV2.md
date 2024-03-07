@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.EstimatorV2
 
 <span id="qiskit_ibm_runtime.EstimatorV2" />
 
-`EstimatorV2(backend=None, session=None, options=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/testing/qiskit_ibm_runtime/estimator.py#L48-L177 "view source code")
+`EstimatorV2(backend=None, session=None, options=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/estimator.py#L48-L177 "view source code")
 
 Class for interacting with Qiskit Runtime Estimator primitive service.
 
@@ -108,7 +108,7 @@ Session used by this primitive, or `None` if session is not used.
 
 <span id="qiskit_ibm_runtime.EstimatorV2.run" />
 
-`run(pubs, *, precision=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/testing/qiskit_ibm_runtime/estimator.py#L137-L154 "view source code")
+`run(pubs, *, precision=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/estimator.py#L137-L154 "view source code")
 
 Submit a request to the estimator primitive.
 
@@ -119,7 +119,7 @@ Submit a request to the estimator primitive.
 
 **Return type**
 
-[RuntimeJobV2](qiskit_ibm_runtime.RuntimeJobV2 "qiskit_ibm_runtime.RuntimeJobV2")
+RuntimeJobV2
 
 **Returns**
 

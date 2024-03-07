@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.options.DynamicalDecouplingOptions
 
 <span id="qiskit_ibm_runtime.options.DynamicalDecouplingOptions" />
 
-`DynamicalDecouplingOptions(*args, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/testing/qiskit_ibm_runtime/options/dynamical_decoupling_options.py#L20-L50 "view source code")
+`DynamicalDecouplingOptions(*args, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options/dynamical_decoupling_options.py#L20-L50 "view source code")
 
 Options for dynamical decoupling (DD).
 

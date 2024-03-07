@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.options.ExecutionOptions
 
 <span id="qiskit_ibm_runtime.options.ExecutionOptions" />
 
-`ExecutionOptions(*args, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/testing/qiskit_ibm_runtime/options/execution_options.py#L40-L52 "view source code")
+`ExecutionOptions(*args, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options/execution_options.py#L40-L52 "view source code")
 
 Execution options for V1 primitives.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.options.LayerNoiseLearningOptions
 
 <span id="qiskit_ibm_runtime.options.LayerNoiseLearningOptions" />
 
-`LayerNoiseLearningOptions(*args, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/testing/qiskit_ibm_runtime/options/layer_noise_learning_options.py#L28-L75 "view source code")
+`LayerNoiseLearningOptions(*args, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options/layer_noise_learning_options.py#L28-L75 "view source code")
 
 Options for learning layer noise.
 

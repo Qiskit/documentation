@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.options.PecOptions
 
 <span id="qiskit_ibm_runtime.options.PecOptions" />
 
-`PecOptions(*args, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/testing/qiskit_ibm_runtime/options/pec_options.py#L20-L41 "view source code")
+`PecOptions(*args, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options/pec_options.py#L20-L41 "view source code")
 
 Probabalistic error cancellation mitigation options.
 

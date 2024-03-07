@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.SamplerV1
 
 <span id="qiskit_ibm_runtime.SamplerV1" />
 
-`SamplerV1(backend=None, session=None, options=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/testing/qiskit_ibm_runtime/sampler.py#L140-L290 "view source code")
+`SamplerV1(backend=None, session=None, options=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/sampler.py#L140-L290 "view source code")
 
 Class for interacting with Qiskit Runtime Sampler primitive service.
 
@@ -94,7 +94,7 @@ Session used by this primitive, or `None` if session is not used.
 
 <span id="qiskit_ibm_runtime.SamplerV1.run" />
 
-`run(circuits, parameter_values=None, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/testing/qiskit_ibm_runtime/sampler.py#L210-L238 "view source code")
+`run(circuits, parameter_values=None, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/sampler.py#L210-L238 "view source code")
 
 Submit a request to the sampler primitive.
 
@@ -120,7 +120,7 @@ Submitted job. The result of the job is an instance of `qiskit.primitives.Sample
 
 <span id="qiskit_ibm_runtime.SamplerV1.set_options" />
 
-`set_options(**fields)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/testing/qiskit_ibm_runtime/base_primitive.py#L402-L410 "view source code")
+`set_options(**fields)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/base_primitive.py#L402-L410 "view source code")
 
 Set options values for the sampler.
 
