@@ -61,6 +61,8 @@ Version 2 (available with qiskit-ibm-runtime 0.21.0) is the first major interfac
 * Due to scaling issues, V2 Sampler does not support specifying a resilience level, and V2 Estimator supports only levels 0 - 2. 
 * To reduce the total execution time, v2 primitives only support ISA circuits. You can use the [Qiskit transpiler](advanced-runtime-options#runtime-compilation) (manually) or the [AI-driven transpilation service (premium users)](../transpile/qiskit-transpiler-service) to transform the circuits before making the queries to the primitives.
 
+See the [EstimatorV2 API reference](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.EstimatorV2) and [SamplerV2 API reference](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.SamplerV2) for full details.
+
 ### Interface changes
 
 The updated interface uses a *primitive unified bloc* (PUB) for input.  Each PUB is a tuple that contains a circuit and the data broadcasted to it. This greatly simplifies your ability to send complex data to a circuit.  Previously, you had to specify the same circuit multiple times to match the size of the data to be combined.  A summary of the changes to each primitive follows.  
