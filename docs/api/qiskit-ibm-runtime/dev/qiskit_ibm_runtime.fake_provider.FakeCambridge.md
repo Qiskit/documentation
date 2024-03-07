@@ -111,7 +111,7 @@ str
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeCambridge.properties" />
 
-`properties()`
+`properties()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_qasm_backend.py#L44-L48 "view source code")
 
 Returns a snapshot of device properties
 
