@@ -28,7 +28,7 @@ interface Arguments {
 const ALLOWED_ORPHAN_URLS = new Set([
   "/api/qiskit/qiskit.primitives.BaseEstimator",
   "/api/qiskit/qiskit.primitives.BaseSampler",
-  "/docs/run/circuit-execution.mdx",
+  "/run/circuit-execution",
 ]);
 
 const readArgs = (): Arguments => {
