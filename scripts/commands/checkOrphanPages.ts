@@ -16,6 +16,7 @@ import { globby } from "globby";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 import { flattenDeep } from "lodash";
+import path from "path";
 
 interface Arguments {
   [x: string]: unknown;
@@ -24,7 +25,7 @@ interface Arguments {
   historicalApis: boolean;
 }
 
-const ALLOWED_ORPHANS = new Set([
+const ALLOWED_ORPHAN_URLS = new Set([
   "/api/qiskit/qiskit.primitives.BaseEstimator",
   "/api/qiskit/qiskit.primitives.BaseSampler",
 ]);
@@ -60,20 +61,20 @@ async function main() {
   const orphanPages = [];
 
   for (tocFile of tocFiles) {
-    tocUrls = await getTocUrls(tocFile);
-    const dir = tocFile.replace("_toc.json", "");
-    const dirFiles = await collectDirFiles(dir);
-    for (file of dirFiles) {
-      if (!tocUrls.has(file) && !ALLOWED_ORPHANS.has(file)) {
-        allGood = false;
-        orphanPages.push(file);
-      }
-    }
+    console.log("Checking toc in:", tocFile);
+    const tocUrls = await getTocUrls(tocFile);
+    const dir = path.dirname(tocFile);
+    const existingUrls = await collectDirFiles(dir);
+    orphanPages.push(
+      ...existingUrls.filter(
+        (file) => !tocUrls.has(file) && !ALLOWED_ORPHAN_URLS.has(file),
+      ),
+    );
   }
-  if (!allGood) {
+  if (orphanPages.length > 0) {
     console.error(
-      "\n There's some orphaned pages!  These files need a home: \n",
-      orphanPages,
+      "\n There are some orphaned pages!  These files need a home: \n",
+      orphanPages.join("\n"),
     );
     process.exit(1);
   }
@@ -81,35 +82,27 @@ async function main() {
 }
 
 async function getTocUrls(filePath: string): Set<string> {
-  console.log("Checking toc in:", tocFile);
   const jsonFileContents = await fs.readFile(tocFile, "utf-8");
   const children = JSON.parse(jsonFileContents).children;
-  const files: [string] = [];
 
   const fileContents = await collectTocFileContents(children);
   const flatFileContents = flattenDeep(fileContents);
   const indexPageUrl = flatFileContents[0] + "/index";
-  flatFileContents.push(indexPageUrl);
-  const tocUrlSet = new Set(flatFileContents);
 
-  return tocUrlSet;
+  flatFileContents.push(`${flatFileContents[0]}/index`);
+
+  return new Set(flatFileContents);
 }
 
 async function collectDirFiles(directory: string): Promise<string[]> {
-  const fileGlob = [
-    directory + "/*.md",
-    directory + "/*.mdx",
-    directory + "/*.ipynb",
-  ];
-  const fileList = await globby(fileGlob);
-  const processedFileList = fileList.map((fileName) =>
+  const fileList = await globby([`${directory}/*.{md,mdx,ipynb}`]);
+  return fileList.map((fileName) =>
     fileName
       .replace("docs", "")
       .replace(".mdx", "")
       .replace(".ipynb", "")
       .replace(".md", ""),
   );
-  return processedFileList;
 }
 
 async function determineTocFiles(args: Arguments): Promise<string[]> {

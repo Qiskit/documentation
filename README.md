@@ -224,7 +224,6 @@ npm run check:orphan-pages -- --current-apis --dev-apis --historical-apis
 
 # Or, run all the checks.  However this will skip the API docs
 npm run check
-
 ```
 
 ## Check file metadata
