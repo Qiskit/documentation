@@ -209,6 +209,23 @@ npm run check:external-links -- docs/run/index.md docs/run/circuit-execution.mdx
 npm run check:external-links -- 'docs/run/*' '!docs/run/index.mdx'
 ```
 
+## Check for orphan pages
+
+Every file should have a home in one of the `_toc.json` files. If for some reason a page should _not_ have a home, add it to the `ALLOWED_ORPHANS` list in `scripts/checkOrphanPages.ts`.
+
+To check for orphaned pages, run:
+
+```bash
+# Only check non-API docs
+npm run check:orphan-pages
+
+# You can also add any of the below arguments to check API docs
+npm run check:orphan-pages -- --current-apis --dev-apis --historical-apis
+
+# Or, run all the checks.  However this will skip the API docs
+npm run check
+```
+
 ## Check file metadata
 
 Every file needs to have a `title` and `description`. The `lint` job in CI will fail with instructions for any bad file.
