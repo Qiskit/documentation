@@ -10,9 +10,9 @@ python_api_name: qiskit_ibm_runtime.options.Options
 
 <span id="qiskit_ibm_runtime.options.Options" />
 
-`Options(optimization_level=None, resilience_level=None, max_execution_time=None, transpilation=<factory>, resilience=<factory>, execution=<factory>, environment=<factory>, simulator=<factory>)` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options/options.py "view source code")
+`Options(optimization_level=None, resilience_level=None, max_execution_time=None, transpilation=<factory>, resilience=<factory>, execution=<factory>, environment=<factory>, simulator=<factory>)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options/options.py#L172-L404 "view source code")
 
-Options for the primitives.
+Options for the primitives, used by V1 primitives.
 
 **Parameters**
 
@@ -114,7 +114,7 @@ Options for the primitives.
 
 <span id="qiskit_ibm_runtime.options.Options.validate_options" />
 
-`static validate_options(options)`
+`static validate_options(options)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options/options.py#L306-L334 "view source code")
 
 Validate that program inputs (options) are valid :raises ValueError: if optimization\_level is outside the allowed range. :raises ValueError: if max\_execution\_time is outside the allowed range.
 

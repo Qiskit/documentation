@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeBoeblingen
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeBoeblingen" />
 
-`FakeBoeblingen` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/boeblingen/fake_boeblingen.py#L42-L60 "view source code")
+`FakeBoeblingen` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/fake_provider/backends/boeblingen/fake_boeblingen.py#L42-L60 "view source code")
 
 A fake Boeblingen backend.
 
@@ -99,7 +99,7 @@ BackendConfiguration
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeBoeblingen.defaults" />
 
-`defaults()`
+`defaults()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/fake_provider/fake_pulse_backend.py#L29-L33 "view source code")
 
 Returns a snapshot of device defaults
 
@@ -127,7 +127,7 @@ str
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeBoeblingen.properties" />
 
-`properties()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/fake_qasm_backend.py#L44-L48 "view source code")
+`properties()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/fake_provider/fake_qasm_backend.py#L44-L48 "view source code")
 
 Returns a snapshot of device properties
 
@@ -155,7 +155,7 @@ Provider
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeBoeblingen.run" />
 
-`run(run_input, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/fake_backend.py#L545-L574 "view source code")
+`run(run_input, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/fake_provider/fake_backend.py#L545-L574 "view source code")
 
 Main job in simulator
 

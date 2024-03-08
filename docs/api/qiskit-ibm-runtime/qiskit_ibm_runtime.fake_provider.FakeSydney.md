@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeSydney
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeSydney" />
 
-`FakeSydney` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/sydney/fake_sydney.py#L31-L38 "view source code")
+`FakeSydney` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/fake_provider/backends/sydney/fake_sydney.py#L31-L38 "view source code")
 
 A fake 27 qubit backend.
 
@@ -89,7 +89,7 @@ BackendConfiguration
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeSydney.defaults" />
 
-`defaults()`
+`defaults()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/fake_provider/fake_pulse_backend.py#L29-L33 "view source code")
 
 Returns a snapshot of device defaults
 
@@ -117,7 +117,7 @@ str
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeSydney.properties" />
 
-`properties()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/fake_qasm_backend.py#L44-L48 "view source code")
+`properties()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/fake_provider/fake_qasm_backend.py#L44-L48 "view source code")
 
 Returns a snapshot of device properties
 
@@ -145,7 +145,7 @@ Provider
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeSydney.run" />
 
-`run(run_input, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/fake_backend.py#L545-L574 "view source code")
+`run(run_input, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/fake_provider/fake_backend.py#L545-L574 "view source code")
 
 Main job in simulator
 

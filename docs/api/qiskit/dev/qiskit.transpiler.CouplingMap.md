@@ -184,7 +184,7 @@ The undirected distance
 
 Draws the coupling map.
 
-This function calls the [`graphviz_draw()`](https://www.rustworkx.org/apiref/rustworkx.visualization.graphviz_draw.html#rustworkx.visualization.graphviz_draw "(in rustworkx v0.14.0)") function from the `rustworkx` package to draw the [`CouplingMap`](#qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") object.
+This function calls the [`graphviz_draw()`](https://www.rustworkx.org/apiref/rustworkx.visualization.graphviz_draw.html#rustworkx.visualization.graphviz_draw "(in rustworkx v0.14)") function from the `rustworkx` package to draw the [`CouplingMap`](#qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") object.
 
 **Returns**
 

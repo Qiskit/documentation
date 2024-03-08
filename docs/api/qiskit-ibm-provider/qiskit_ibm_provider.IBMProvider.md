@@ -137,7 +137,7 @@ The backend service instance.
 
 <span id="qiskit_ibm_provider.IBMProvider.active_account" />
 
-`active_account()`
+`active_account()` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/ibm_provider.py#L426-L435 "view source code")
 
 Return the IBM Quantum account currently in use for the session.
 

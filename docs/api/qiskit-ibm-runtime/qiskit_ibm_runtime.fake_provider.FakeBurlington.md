@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeBurlington
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeBurlington" />
 
-`FakeBurlington` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/burlington/fake_burlington.py#L37-L50 "view source code")
+`FakeBurlington` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/fake_provider/backends/burlington/fake_burlington.py#L37-L50 "view source code")
 
 A fake 5 qubit backend.
 
@@ -105,7 +105,7 @@ str
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeBurlington.properties" />
 
-`properties()`
+`properties()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/fake_provider/fake_qasm_backend.py#L44-L48 "view source code")
 
 Returns a snapshot of device properties
 
@@ -133,7 +133,7 @@ Provider
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeBurlington.run" />
 
-`run(run_input, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/fake_backend.py#L545-L574 "view source code")
+`run(run_input, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/fake_provider/fake_backend.py#L545-L574 "view source code")
 
 Main job in simulator
 

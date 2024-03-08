@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeRochester
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeRochester" />
 
-`FakeRochester` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/backends/rochester/fake_rochester.py "view source code")
+`FakeRochester` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/backends/rochester/fake_rochester.py#L30-L36 "view source code")
 
 A fake Rochester backend.
 
@@ -99,7 +99,7 @@ str
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeRochester.properties" />
 
-`properties()`
+`properties()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_qasm_backend.py#L44-L48 "view source code")
 
 Returns a snapshot of device properties
 
@@ -127,7 +127,7 @@ Provider
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeRochester.run" />
 
-`run(run_input, **kwargs)`
+`run(run_input, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L545-L574 "view source code")
 
 Main job in simulator
 

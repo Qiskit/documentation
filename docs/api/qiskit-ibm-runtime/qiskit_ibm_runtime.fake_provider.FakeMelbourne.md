@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeMelbourne
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeMelbourne" />
 
-`FakeMelbourne` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/melbourne/fake_melbourne.py#L38-L95 "view source code")
+`FakeMelbourne` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/fake_provider/backends/melbourne/fake_melbourne.py#L38-L95 "view source code")
 
 A fake 14 qubit backend.
 
@@ -74,7 +74,7 @@ str
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeMelbourne.properties" />
 
-`properties()`
+`properties()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/fake_provider/backends/melbourne/fake_melbourne.py#L89-L95 "view source code")
 
 Returns a snapshot of device properties
 

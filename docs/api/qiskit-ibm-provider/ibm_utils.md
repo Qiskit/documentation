@@ -1,7 +1,7 @@
 ---
 title: utils
 description: API reference for qiskit_ibm_provider.utils
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit_ibm_provider.utils
 ---
@@ -58,7 +58,7 @@ Publisher().publish("event", args, ... )
 
 <span id="qiskit_ibm_provider.utils.pubsub.Publisher.publish" />
 
-`publish(event, *args, **kwargs)`
+`publish(event, *args, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/utils/pubsub.py#L152-L155 "view source code")
 
 Triggers an event, and associates some data to it, so if there are any subscribers, their callback will be called synchronously.
 
@@ -78,7 +78,7 @@ Every component (class) can become a [`Subscriber`](#qiskit_ibm_provider.utils.p
 
 <span id="qiskit_ibm_provider.utils.pubsub.Subscriber.clear" />
 
-`clear()`
+`clear()` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/utils/pubsub.py#L180-L182 "view source code")
 
 Unsubscribe everything
 

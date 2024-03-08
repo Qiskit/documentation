@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeCambridge
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeCambridge" />
 
-`FakeCambridge` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/cambridge/fake_cambridge.py#L43-L62 "view source code")
+`FakeCambridge` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/fake_provider/backends/cambridge/fake_cambridge.py#L43-L62 "view source code")
 
 A fake Cambridge backend.
 
@@ -111,7 +111,7 @@ str
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeCambridge.properties" />
 
-`properties()`
+`properties()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/fake_provider/fake_qasm_backend.py#L44-L48 "view source code")
 
 Returns a snapshot of device properties
 
@@ -139,7 +139,7 @@ Provider
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeCambridge.run" />
 
-`run(run_input, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/fake_backend.py#L545-L574 "view source code")
+`run(run_input, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/fake_provider/fake_backend.py#L545-L574 "view source code")
 
 Main job in simulator
 

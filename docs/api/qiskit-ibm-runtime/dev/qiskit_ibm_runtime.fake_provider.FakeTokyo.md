@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeTokyo
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeTokyo" />
 
-`FakeTokyo` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/backends/tokyo/fake_tokyo.py "view source code")
+`FakeTokyo` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/backends/tokyo/fake_tokyo.py#L28-L141 "view source code")
 
 A fake 20 qubit backend.
 
@@ -78,7 +78,7 @@ str
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeTokyo.properties" />
 
-`properties()`
+`properties()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/backends/tokyo/fake_tokyo.py#L135-L141 "view source code")
 
 Returns a snapshot of device properties as recorded on 8/30/19.
 

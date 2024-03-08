@@ -8,5 +8,5 @@ python_api_name: qiskit.primitives.BaseEstimator
 
 # BaseEstimator
 
-alias of `BaseEstimatorV1`
+alias of [`BaseEstimatorV1`](qiskit.primitives.BaseEstimatorV1 "qiskit.primitives.base.base_estimator.BaseEstimatorV1")
 

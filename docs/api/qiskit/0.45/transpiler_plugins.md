@@ -1,7 +1,7 @@
 ---
 title: plugin
 description: API reference for qiskit.transpiler.preset_passmanagers.plugin
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.transpiler.preset_passmanagers.plugin
 ---

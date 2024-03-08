@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.RuntimeOptions
 
 <span id="qiskit_ibm_runtime.RuntimeOptions" />
 
-`RuntimeOptions(backend=None, image=None, log_level=None, instance=None, job_tags=None, max_execution_time=None, session_time=None)` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_options.py "view source code")
+`RuntimeOptions(backend=None, image=None, log_level=None, instance=None, job_tags=None, max_execution_time=None, session_time=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_options.py#L24-L106 "view source code")
 
 Class for representing generic runtime execution options.
 
@@ -90,7 +90,7 @@ RuntimeOptions constructor.
 
 <span id="qiskit_ibm_runtime.RuntimeOptions.validate" />
 
-`validate(channel)`
+`validate(channel)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_options.py#L76-L106 "view source code")
 
 Validate options.
 

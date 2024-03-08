@@ -10,17 +10,17 @@ python_api_name: qiskit_ibm_runtime.options.TranspilationOptions
 
 <span id="qiskit_ibm_runtime.options.TranspilationOptions" />
 
-`TranspilationOptions(skip_transpilation=False, initial_layout=None, layout_method=None, routing_method=None, approximation_degree=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/options/transpilation_options.py#L41-L97 "view source code")
+`TranspilationOptions(*args, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/options/transpilation_options.py#L38-L75 "view source code")
 
 Transpilation options.
 
 **Parameters**
 
-*   **skip\_transpilation** (`bool`) – Whether to skip transpilation.
-*   **initial\_layout** (`Union`\[`dict`, `List`, `None`]) – Initial position of virtual qubits on physical qubits. See `qiskit.compiler.transpile` for more information.
-*   **layout\_method** (`Optional`\[`str`]) – Name of layout selection pass. One of ‘trivial’, ‘dense’, ‘noise\_adaptive’, ‘sabre’.
-*   **routing\_method** (`Optional`\[`str`]) – Name of routing pass. One of ‘basic’, ‘lookahead’, ‘stochastic’, ‘sabre’, ‘none’.
-*   **approximation\_degree** (`Optional`\[`float`]) – heuristic dial used for circuit approximation (1.0=no approximation, 0.0=maximal approximation)
+*   **skip\_transpilation** – Whether to skip transpilation. Default is False.
+*   **initial\_layout** – Initial position of virtual qubits on physical qubits. See `qiskit.compiler.transpile` for more information.
+*   **layout\_method** – Name of layout selection pass. One of ‘trivial’, ‘dense’, ‘noise\_adaptive’, ‘sabre’.
+*   **routing\_method** – Name of routing pass. One of ‘basic’, ‘lookahead’, ‘stochastic’, ‘sabre’, ‘none’.
+*   **approximation\_degree** – heuristic dial used for circuit approximation (1.0=no approximation, 0.0=maximal approximation)
 
 ## Attributes
 
@@ -28,33 +28,33 @@ Transpilation options.
 
 ### approximation\_degree
 
-`float | None`
+`UnsetType | float`
 
-`= None`
+`= Unset`
 
 <span id="qiskit_ibm_runtime.options.TranspilationOptions.initial_layout" />
 
 ### initial\_layout
 
-`dict | List | None`
+`UnsetType | dict | List`
 
-`= None`
+`= Unset`
 
 <span id="qiskit_ibm_runtime.options.TranspilationOptions.layout_method" />
 
 ### layout\_method
 
-`str | None`
+`UnsetType | Literal['trivial', 'dense', 'noise_adaptive', 'sabre']`
 
-`= None`
+`= Unset`
 
 <span id="qiskit_ibm_runtime.options.TranspilationOptions.routing_method" />
 
 ### routing\_method
 
-`str | None`
+`UnsetType | Literal['basic', 'lookahead', 'stochastic', 'sabre', 'none']`
 
-`= None`
+`= Unset`
 
 <span id="qiskit_ibm_runtime.options.TranspilationOptions.skip_transpilation" />
 
@@ -65,16 +65,4 @@ Transpilation options.
 `= False`
 
 ## Methods
-
-### validate\_transpilation\_options
-
-<span id="qiskit_ibm_runtime.options.TranspilationOptions.validate_transpilation_options" />
-
-`static validate_transpilation_options(transpilation_options)`
-
-Validate that transpilation options are legal. :raises ValueError: if any transpilation option is not supported :raises ValueError: if layout\_method is not in LayoutMethodType or None. :raises ValueError: if routing\_method is not in RoutingMethodType or None. :raises ValueError: if approximation\_degree in not None or in the range 0.0 to 1.0.
-
-**Return type**
-
-`None`
 

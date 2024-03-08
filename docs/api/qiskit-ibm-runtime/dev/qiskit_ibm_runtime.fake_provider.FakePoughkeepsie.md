@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakePoughkeepsie
 
 <span id="qiskit_ibm_runtime.fake_provider.FakePoughkeepsie" />
 
-`FakePoughkeepsie` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/backends/poughkeepsie/fake_poughkeepsie.py "view source code")
+`FakePoughkeepsie` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/backends/poughkeepsie/fake_poughkeepsie.py#L39-L128 "view source code")
 
 A fake Poughkeepsie backend.
 
@@ -78,7 +78,7 @@ str
 
 <span id="qiskit_ibm_runtime.fake_provider.FakePoughkeepsie.properties" />
 
-`properties()`
+`properties()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/backends/poughkeepsie/fake_poughkeepsie.py#L122-L128 "view source code")
 
 Returns a snapshot of device properties
 
