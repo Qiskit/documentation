@@ -84,7 +84,7 @@ The following synthesis passes are available from `qiskit_transpiler_service.ai.
 
 We expect to gradually increase the size of the supported blocks.
 
-All passes use a thread pool to send several requests in parallel. By default, the number for max threads is the number of cores plus four (default values for the `ThreadPoolExecutor` Python object). However, you can set your own value with the `max_threads` argument at pass instantation. For example, the following line instantiates the `AILinearFunctionSynthesis` pass, which allows it to use a maximum of 20 threads.
+All passes use a thread pool to send several requests in parallel. By default, the number for max threads is the number of cores plus four (default values for the `ThreadPoolExecutor` Python object). However, you can set your own value with the `max_threads` argument at pass instantiation. For example, the following line instantiates the `AILinearFunctionSynthesis` pass, which allows it to use a maximum of 20 threads.
 
 ```python
 AILinearFunctionSynthesis(backend_name="ibm_cairo", max_threads=20)  # Re-synthesize Linear Function blocks using 20 threads max
