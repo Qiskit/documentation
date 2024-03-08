@@ -11,12 +11,14 @@
 // that they have been altered from the originals.
 
 import fs from "fs/promises";
+import path from "path";
 
 import { globby } from "globby";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 import { flattenDeep } from "lodash";
-import path from "path";
+
+import { TocEntry } from "../lib/api/generateToc";
 
 interface Arguments {
   [x: string]: unknown;
@@ -61,7 +63,7 @@ async function main() {
   let allGood = true;
   const orphanPages = [];
 
-  for (tocFile of tocFiles) {
+  for (const tocFile of tocFiles) {
     console.log("Checking toc in:", tocFile);
     const tocUrls = await getTocUrls(tocFile);
     const dir = path.dirname(tocFile);
@@ -82,8 +84,8 @@ async function main() {
   console.log("\nNo orphan pages found ✅\n");
 }
 
-async function getTocUrls(filePath: string): Set<string> {
-  const jsonFileContents = await fs.readFile(tocFile, "utf-8");
+async function getTocUrls(filePath: string): Promise<Set<string>> {
+  const jsonFileContents = await fs.readFile(filePath, "utf-8");
   const children = JSON.parse(jsonFileContents).children;
 
   const fileContents = await collectTocFileContents(children);
@@ -123,14 +125,14 @@ async function determineTocFiles(args: Arguments): Promise<string[]> {
   return await globby(globs);
 }
 
-function collectTocFileContents(children: string[]): string[] {
+function collectTocFileContents(children: TocEntry[]): string[] {
   const urls = [];
 
   for (const child of children) {
     if ("children" in child) {
-      const childUrls = collectTocFileContents(child.children);
-      urls.push(childUrls);
-    } else {
+      const childUrls = collectTocFileContents(child.children || []);
+      urls.push(...childUrls);
+    } else if (child.url !== undefined) {
       urls.push(child.url);
     }
   }
