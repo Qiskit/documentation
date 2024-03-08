@@ -26,7 +26,7 @@ A helper module to get IBM backend information and submitted job status.
 
 `qiskit.tools.job_monitor(job, interval=None, quiet=False, output=<_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>, line_discipline='\r')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/tools/monitor/job_monitor.py "view source code")
 
-Monitor the status of a IBMQJob instance.
+Monitor the status of a [`Job`](qiskit.providers.Job "qiskit.providers.job.Job") instance.
 
 **Parameters**
 
@@ -34,7 +34,8 @@ Monitor the status of a IBMQJob instance.
 *   **interval** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Time interval between status queries.
 *   **quiet** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, do not print status messages.
 *   **output** (*file*) – The file like object to write status messages to.
-*   **sys.stdout.** (*By default this is*) –
+*   **default** (*By*) –
+*   **sys.stdout.** (*this is*) –
 *   **line\_discipline** (*string*) – character emitted at start of a line of job monitor output,
 *   **r.** (*This defaults to*) –
 
@@ -60,20 +61,20 @@ job_monitor(job_sim)
 
 `qiskit.tools.backend_monitor(backend)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/tools/monitor/overview.py "view source code")
 
-Monitor a single IBMQ backend.
+Monitor a single IBM Quantum backend.
 
 **Parameters**
 
-**backend** (*IBMQBackend*) – Backend to monitor.
+**backend** (*IBMBackend*) – Backend to monitor.
 
 **Raises**
 
-*   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – Input is not a IBMQ backend.
-*   [**MissingOptionalLibraryError**](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") – If qiskit-ibmq-provider is not installed
+*   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – Input is not a IBM Quantum backend.
+*   [**MissingOptionalLibraryError**](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") – If qiskit-ibm-provider is not installed
 
 Examples: .. code-block:: python
 
-> from qiskit.providers.ibmq import IBMQ from qiskit.tools.monitor import backend\_monitor provider = IBMQ.get\_provider(hub=’ibm-q’) backend\_monitor(provider.backends.ibmq\_lima)
+> from qiskit\_ibm\_provider import IBMProvider from qiskit.tools.monitor import backend\_monitor provider = IBMProvider() backend\_monitor(provider.get\_backend(‘ibm\_sherbrooke’))
 
 ### backend\_overview
 
@@ -81,14 +82,12 @@ Examples: .. code-block:: python
 
 `qiskit.tools.backend_overview()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/tools/monitor/overview.py "view source code")
 
-Gives overview information on all the IBMQ backends that are available.
+Gives overview information on all the IBM Quantum backends that are available.
 
 **Examples**
 
 ```python
-from qiskit.providers.ibmq import IBMQ
 from qiskit.tools.monitor import backend_overview
-provider = IBMQ.get_provider(hub='ibm-q')
 backend_overview()
 ```
 
