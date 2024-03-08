@@ -65,7 +65,7 @@ async function main() {
     console.log("Checking toc in:", tocFile);
     const tocUrls = await getTocUrls(tocFile);
     const dir = path.dirname(tocFile);
-    const existingUrls = await collectDirFiles(dir);
+    const existingUrls = await collectExistingUrls(dir);
     orphanPages.push(
       ...existingUrls.filter(
         (file) => !tocUrls.has(file) && !ALLOWED_ORPHAN_URLS.has(file),
@@ -88,14 +88,13 @@ async function getTocUrls(filePath: string): Set<string> {
 
   const fileContents = await collectTocFileContents(children);
   const flatFileContents = flattenDeep(fileContents);
-  const indexPageUrl = flatFileContents[0] + "/index";
 
   flatFileContents.push(`${flatFileContents[0]}/index`);
 
   return new Set(flatFileContents);
 }
 
-async function collectDirFiles(directory: string): Promise<string[]> {
+async function collectExistingUrls(directory: string): Promise<string[]> {
   const fileList = await globby([`${directory}/*.{md,mdx,ipynb}`]);
   return fileList.map((fileName) =>
     fileName
