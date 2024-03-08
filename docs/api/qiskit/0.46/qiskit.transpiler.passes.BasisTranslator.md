@@ -49,7 +49,7 @@ EquivalenceLibrary
 
 **param target\_basis**
 
-Target basis names to unroll to, e.g. \[‘u3’, ‘cx’].
+Target basis names to unroll to, e.g. `['u3', 'cx']`.
 
 **type target\_basis**
 

@@ -45,7 +45,7 @@ This function is used to quickly generate a preset pass manager. A preset pass m
     > *   2: heavy optimization
     > *   3: even heavier optimization
 
-*   **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.Backend")) – An optional backend object which can be used as the source of the default values for the `basis_gates`, `inst_map`, `couplig_map`, `backend_properties`, `instruction_durations`, `timing_constraints`, and `target`. If any of those other arguments are specified in addition to `backend` they will take precedence over the value contained in the backend.
+*   **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.Backend")) – An optional backend object which can be used as the source of the default values for the `basis_gates`, `inst_map`, `coupling_map`, `backend_properties`, `instruction_durations`, `timing_constraints`, and `target`. If any of those other arguments are specified in addition to `backend` they will take precedence over the value contained in the backend.
 
 *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") representing a backend compilation target. The following attributes will be inferred from this argument if they are not set: `coupling_map`, `basis_gates`, `instruction_durations`, `inst_map`, `timing_constraints` and `backend_properties`.
 
@@ -77,7 +77,7 @@ This function is used to quickly generate a preset pass manager. A preset pass m
 
 *   **unitary\_synthesis\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The name of the unitary synthesis method to use. By default `'default'` is used. You can see a list of installed plugins with [`unitary_synthesis_plugin_names()`](qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names "qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names").
 
-*   **unitary\_synthesis\_plugin\_config** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – An optional configuration dictionary that will be passed directly to the unitary synthesis plugin. By default this setting will have no effect as the default unitary synthesis method does not take custom configuration. This should only be necessary when a unitary synthesis plugin is specified with the `unitary_synthesis` argument. As this is custom for each unitary synthesis plugin refer to the plugin documentation for how to use this option.
+*   **unitary\_synthesis\_plugin\_config** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – An optional configuration dictionary that will be passed directly to the unitary synthesis plugin. By default this setting will have no effect as the default unitary synthesis method does not take custom configuration. This should only be necessary when a unitary synthesis plugin is specified with the `unitary_synthesis_method` argument. As this is custom for each unitary synthesis plugin refer to the plugin documentation for how to use this option.
 
 *   **hls\_config** (*HLSConfig*) – An optional configuration class `HLSConfig` that will be passed directly to [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis") transformation pass. This configuration class allows to specify for various high-level objects the lists of synthesis algorithms and their parameters.
 

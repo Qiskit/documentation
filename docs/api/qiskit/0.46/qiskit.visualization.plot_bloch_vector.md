@@ -22,7 +22,7 @@ Plot a Bloch sphere with the specified coordinates, that can be given in both ca
 
 *   **bloch** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[double]*) – array of three elements where \[\<x>, \<y>, \<z>] (Cartesian) or \[\<r>, \<theta>, \<phi>] (spherical in radians) \<theta> is inclination angle from +z direction \<phi> is azimuth from +x direction
 *   **title** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – a string that represents the plot title
-*   **ax** ([*matplotlib.axes.Axes*](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html#matplotlib.axes.Axes "(in Matplotlib v3.8.2)")) – An Axes to use for rendering the bloch sphere
+*   **ax** ([*matplotlib.axes.Axes*](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html#matplotlib.axes.Axes "(in Matplotlib v3.8.3)")) – An Axes to use for rendering the bloch sphere
 *   **figsize** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – Figure size in inches. Has no effect is passing `ax`.
 *   **coord\_type** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – a string that specifies coordinate type for bloch (Cartesian or spherical), default is Cartesian
 *   **font\_size** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Font size.
@@ -33,7 +33,7 @@ A matplotlib figure instance if `ax = None`.
 
 **Return type**
 
-[`matplotlib.figure.Figure`](https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure "(in Matplotlib v3.8.2)")
+[`matplotlib.figure.Figure`](https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure "(in Matplotlib v3.8.3)")
 
 **Raises**
 
