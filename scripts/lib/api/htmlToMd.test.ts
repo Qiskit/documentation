@@ -361,7 +361,7 @@ bits.</p>
   });
 
   // ------------------------------------------------------------------
-  // transform description HTML tags
+  // Transform description HTML tags
   // ------------------------------------------------------------------
 
   test("transform dl, dd, dt elements", async () => {
@@ -447,7 +447,7 @@ bits.</p>
   });
 
   // ------------------------------------------------------------------
-  // transform admonitions
+  // Transform admonitions
   // ------------------------------------------------------------------
 
   test("transform admonitions", async () => {
@@ -574,7 +574,7 @@ bits.</p>
   });
 
   // ------------------------------------------------------------------
-  // transform links
+  // Transform links
   // ------------------------------------------------------------------
 
   test("remove .html extension from relative links", async () => {
