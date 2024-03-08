@@ -1,6 +1,6 @@
 ---
 title: Introduction
-description: Overview of the Run section, where you'll find information on Qiskit Runtime primitives, execution modes, IBM Quantum systems, and executing jobs
+description: Overview of the Run section, where you'll find information on IBM Quantum systems and executing jobs on them
 
 ---
 
@@ -8,12 +8,15 @@ description: Overview of the Run section, where you'll find information on Qiski
 
 IBM Quantum&trade; maintains the world’s most advanced fleet of quantum systems, with seven [utility-scale](https://www.ibm.com/blog/announcement/new-ibm-quantum-systems-on-the-ibm-cloud/) quantum systems, and more on the way. These systems demonstrate unparalleled reliability, with >95% uptime across the fleet of quantum systems - and unmatched stability, with two-qubit gate error fluctuations no larger than 0.001 over timescales measured in months[^1].
 
-## Run on hardware
+## The run phase
 
-Step 3 in Qiskit Patterns, "Run on hardware," centers around the [Qiskit Runtime primitives](primitives) as the interface with IBM Quantum&trade; hardware, abstracting away error suppression and mitigation techniques so that you can focus more on the outcomes of your quantum computation.
+In the run phase, you send your quantum program to be executed on a quantum system. This section provides information about IBM Quantum hardware and how to connect to the instances that provide access to quantum systems. You can find details about estimating job run time and cost, running within a session, reserving time on a system, and more. 
 
-In addition to detailed information on primitives, you can read about the available execution modes in this section. While you can always submit a single job at a time, you can also use Runtime Primitives to run jobs in a [session](sessions) or in [batch mode](run-jobs-batch). These execution modes assist your utility-scale jobs to run efficiently. 
+The steps during the run phase are:
 
-This section also includes a page about our [processor types](processor-types), how to [monitor jobs](monitor-job) and [get information about our systems with the Qiskit SDK](get-backend-information), details about [Quantum Serverless](quantum-serverless), and more.
+1. Using your account credentials, authenticate to the channel of your choice ([IBM Quantum Platform](../start/setup-channel#ibm-quantum-platform) or [IBM Cloud&reg;](../start/setup-channel#ibm-cloud)).
+2. Choose a system or simulator.
+3. Send a job to a system or simulator.
+4. View job results.
 
 [^1]: Median 2Q gate errors measured over all accessible Eagle processors from July 20 to September 20, 2023.
