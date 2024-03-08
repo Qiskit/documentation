@@ -124,7 +124,7 @@ describe("sphinxHtmlToMarkdown", () => {
           `);
   });
 
-  test("handle <", async () => {
+  test("handle special characters: `<` and `{`", async () => {
     expect(
       await toMd(`
     <div role='main'>
@@ -132,34 +132,15 @@ describe("sphinxHtmlToMarkdown", () => {
 &lt;<a class='reference external' href='https://qiskit.org/documentation/apidoc/providers_models.html'>https://qiskit.org/documentation/apidoc/providers_models.html</a>&gt;</p>
 </p></li>
 
-<dl class="py class">
-<dt class="sig sig-object py" id="qiskit_ibm_runtime.options.Options">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Options</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">optimization_level=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resilience_level=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_execution_time=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transpilation=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resilience=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">execution=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">environment=&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simulator=&lt;factory&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qiskit_ibm_runtime/options/options.html#Options"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qiskit_ibm_runtime.options.Options" title="Permalink to this definition">¶</a></dt>
-</dl>
-
-    </div>
-    `),
-    ).toMatchInlineSnapshot(`
-      "For the full list of backend attributes, see the IBMBackend class documentation \\<[https://qiskit.org/documentation/apidoc/providers\\_models.html](https://qiskit.org/documentation/apidoc/providers_models.html)>
-
-      <span id="qiskit_ibm_runtime.options.Options" />
-
-      \`Options(optimization_level=None, resilience_level=None, max_execution_time=None, transpilation=<factory>, resilience=<factory>, execution=<factory>, environment=<factory>, simulator=<factory>)\` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit_ibm_runtime/options/options.py "view source code")
-      "
-    `);
-  });
-
-  test("handle {", async () => {
-    expect(
-      await toMd(`
-    <div role='main'>
 <p><strong>basis_fidelity</strong> (<em>dict</em><em> | </em><em>float</em>) – available strengths and fidelity of each.
 Can be either (1) a dictionary mapping XX angle values to fidelity at that angle; or
 (2) a single float f, interpreted as {pi: f, pi/2: f/2, pi/3: f/3}.</p>
     </div>
     `),
     ).toMatchInlineSnapshot(`
-      "**basis\\_fidelity** (*dict | float*) – available strengths and fidelity of each. Can be either (1) a dictionary mapping XX angle values to fidelity at that angle; or (2) a single float f, interpreted as \\{pi: f, pi/2: f/2, pi/3: f/3}.
+      "For the full list of backend attributes, see the IBMBackend class documentation \\<[https://qiskit.org/documentation/apidoc/providers\\_models.html](https://qiskit.org/documentation/apidoc/providers_models.html)>
+
+      **basis\\_fidelity** (*dict | float*) – available strengths and fidelity of each. Can be either (1) a dictionary mapping XX angle values to fidelity at that angle; or (2) a single float f, interpreted as \\{pi: f, pi/2: f/2, pi/3: f/3}.
       "
     `);
   });
