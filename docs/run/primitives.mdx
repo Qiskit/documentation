@@ -106,24 +106,24 @@ Rules:
 Examples of array pairs that broadcast:
 
 ```text
-A      (2d array):  3 x 5
-B      (1d array):      1
+A1     (1d array):      1
+A2     (2d array):  3 x 5
 Result (2d array):  3 x 5
 
 
-A      (3d array):  11 x 2 x 7
-B      (3d array):  11 x 1 x 7
+A1     (3d array):  11 x 2 x 7
+A2     (3d array):  11 x 1 x 7
 Result (3d array):  11 x 2 x 7
 ```
 
 Examples of array pairs that do not broadcast:
 
 ```text
-A      (1d array):  5
-B      (1d array):  3 
+A1     (1d array):  5
+A2     (1d array):  3 
 
-A      (2d array):      2 x 1
-B      (3d array):  6 x 5 x 4 # This would work except for the middle dimensions (2 compared to 5).
+A1     (2d array):      2 x 1
+A2     (3d array):  6 x 5 x 4 #This would work except for the middle dimensions (2 compared to 5).
 ```
 
 `EstimatorV2` returns one expectation value estimate for each element of the broadcasted shape.  
