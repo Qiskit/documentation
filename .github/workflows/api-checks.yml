@@ -42,3 +42,9 @@ jobs:
           --dev-apis
           --historical-apis
           --skip-broken-historical
+      - name: Check for orphan pages
+        run: >
+          npm run check:orphan-pages --
+          --current-apis
+          --dev-apis
+          --historical-apis

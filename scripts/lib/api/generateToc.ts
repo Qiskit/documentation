@@ -16,7 +16,7 @@ import { getLastPartFromFullIdentifier } from "../stringUtils";
 import { Metadata } from "./Metadata";
 import { Pkg } from "./Pkg";
 
-type TocEntry = {
+export type TocEntry = {
   title: string;
   url?: string;
   children?: TocEntry[];
