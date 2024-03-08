@@ -29,11 +29,9 @@ Hub administration user interface. This is used to assign shares to groups. The 
 
 The fair-share scheduler takes into consideration how these shares are distributed across groups and projects to determine job prioritization.
 
-The scheduling scheduler combines a group’s shares with the shares of its hub, to determine the total fraction of computational power allocated to that group. For example, assume you have set up the following allocations: 
+The scheduler combines a group’s shares with the shares of its hub, to determine the total fraction of computational power allocated to that group.
 
-![Two hubs are shown: A, and B.  Hub A has allocated 20% to Group A and 40% to group B.  Hub B has allocated 30% to group C and 10% to group D.](/images/migration/allocation.png "Allocation example")
-
-To compute the 60% for Hub-A, start with the 3 shares of Hub-A and divide between all the shares at the hub level (3 + 2 = 5 shares in total). This results in 3/5 = 0.6 = 60%. When computing the fraction per group, repeat the calculation inside each hub; the fractions for Group-A and Group-B would therefore be 33% and 67%, then apply these percentages to the Hub-A fraction, which results in 20% and 40%.
+For example, assume only two groups maintain jobs in one system queue. With all else being equal, a group with twice the number of shares will have twice the number jobs execute.
 
 ## How the fair-share scheduler works
 
