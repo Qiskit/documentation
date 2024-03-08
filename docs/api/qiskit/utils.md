@@ -18,6 +18,8 @@ python_api_name: qiskit.utils
 
 `qiskit.utils`
 
+## Deprecations
+
 ### add\_deprecation\_to\_docstring
 
 <span id="qiskit.utils.add_deprecation_to_docstring" />
@@ -137,31 +139,7 @@ The decorated, deprecated callable.
 
 Callable
 
-### local\_hardware\_info
-
-<span id="qiskit.utils.local_hardware_info" />
-
-`qiskit.utils.local_hardware_info()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/utils/multiprocessing.py "view source code")
-
-Basic hardware information about the local machine.
-
-Gives actual number of CPU’s in the machine, even when hyperthreading is turned on. CPU count defaults to 1 when true count can’t be determined.
-
-**Returns**
-
-The hardware information.
-
-**Return type**
-
-[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
-
-### is\_main\_process
-
-<span id="qiskit.utils.is_main_process" />
-
-`qiskit.utils.is_main_process()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/utils/multiprocessing.py "view source code")
-
-Checks whether the current process is the main one
+## SI unit conversion
 
 ### apply\_prefix
 
@@ -240,6 +218,8 @@ A tuple of scaled value and prefix.
 
 [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)"), [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")]
 
+## Class tools
+
 ### wrap\_method
 
 <span id="qiskit.utils.wrap_method" />
@@ -263,7 +243,33 @@ If either `before` or `after` are given, they should be callables with a compati
 
 [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – if the named method is not defined on the class or any parent class.
 
-## Parallel Routines
+## Multiprocessing
+
+### local\_hardware\_info
+
+<span id="qiskit.utils.local_hardware_info" />
+
+`qiskit.utils.local_hardware_info()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/utils/multiprocessing.py "view source code")
+
+Basic hardware information about the local machine.
+
+Gives actual number of CPU’s in the machine, even when hyperthreading is turned on. CPU count defaults to 1 when true count can’t be determined.
+
+**Returns**
+
+The hardware information.
+
+**Return type**
+
+[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
+
+### is\_main\_process
+
+<span id="qiskit.utils.is_main_process" />
+
+`qiskit.utils.is_main_process()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/utils/multiprocessing.py "view source code")
+
+Checks whether the current process is the main one
 
 A helper function for calling a custom function with python [`ProcessPoolExecutor`](https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ProcessPoolExecutor "(in Python v3.12)"). Tasks can be executed in parallel using this function.
 
@@ -318,15 +324,13 @@ parallel_map(func, list(range(10)));
 
 <span id="module-qiskit.utils.optionals" />
 
-<span id="optional-dependency-checkers-qiskit-utils-optionals" />
+## Optional Dependency Checkers
 
-### Optional Dependency Checkers ([`qiskit.utils.optionals`](#module-qiskit.utils.optionals "qiskit.utils.optionals"))
+Qiskit has several features that are enabled only if certain *optional* dependencies are satisfied. This module, [`qiskit.utils.optionals`](#module-qiskit.utils.optionals "qiskit.utils.optionals"), has a collection of objects that can be used to test if certain functionality is available, and optionally raise [`MissingOptionalLibraryError`](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") if the functionality is not available.
 
-Qiskit has several features that are enabled only if certain *optional* dependencies are satisfied. This module is a collection of objects that can be used to test if certain functionality is available, and optionally raise [`MissingOptionalLibraryError`](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") if the functionality is not available.
+### Available Testers
 
-#### Available Testers
-
-##### Qiskit Components
+#### Qiskit Components
 
 |                                       |                                                                                                                                                                                     |
 | ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -335,11 +339,11 @@ Qiskit has several features that are enabled only if certain *optional* dependen
 | **qiskit.utils.optionals.HAS\_IGNIS** | `Qiskit Ignis` provides tools for quantum hardware verification, noise characterization, and error correction.                                                                      |
 | **qiskit.utils.optionals.HAS\_TOQM**  | [Qiskit TOQM](https://github.com/qiskit-toqm/qiskit-toqm) provides transpiler passes for the [Time-optimal Qubit mapping algorithm](https://doi.org/10.1145/3445814.3446706).       |
 
-##### External Python Libraries
+#### External Python Libraries
 
 |                                               |                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **qiskit.utils.optionals.HAS\_CONSTRAINT**    | python-constraint \<[https://github.com/python-constraint/python-constraint>\_\_](https://github.com/python-constraint/python-constraint>__) is a constraint satisfaction problem solver, used in the :class:\`\~.CSPLayout transpiler pass.                                                                                                                                                                                                |
+| **qiskit.utils.optionals.HAS\_CONSTRAINT**    | [python-constraint](https://github.com/python-constraint/python-constraint) is a constraint satisfaction problem solver, used in the [`CSPLayout`](qiskit.transpiler.passes.CSPLayout "qiskit.transpiler.passes.CSPLayout") transpiler pass.                                                                                                                                                                                                |
 | **qiskit.utils.optionals.HAS\_CPLEX**         | The [IBM CPLEX Optimizer](https://www.ibm.com/analytics/cplex-optimizer) is a high-performance mathematical programming solver for linear, mixed-integer and quadratic programming. This is no longer by Qiskit, but it weas historically and the optional remains for backwards compatibility.                                                                                                                                             |
 | **qiskit.utils.optionals.HAS\_CVXPY**         | [CVXPY](https://www.cvxpy.org/) is a Python package for solving convex optimization problems. It is required for calculating diamond norms with [`quantum_info.diamond_norm()`](quantum_info#qiskit.quantum_info.diamond_norm "qiskit.quantum_info.diamond_norm").                                                                                                                                                                          |
 | **qiskit.utils.optionals.HAS\_DOCPLEX**       | [IBM Decision Optimization CPLEX Modelling](http://ibmdecisionoptimization.github.io/docplex-doc/) is a library for prescriptive analysis. Like CPLEX, this is no longer by Qiskit, but it weas historically and the optional remains for backwards compatibility.                                                                                                                                                                          |
@@ -365,7 +369,7 @@ Qiskit has several features that are enabled only if certain *optional* dependen
 | **qiskit.utils.optionals.HAS\_TWEEDLEDUM**    | [Tweedledum](https://github.com/boschmitt/tweedledum) is an extension library for synthesis and optimization of circuits that may involve classical oracles. Qiskit’s [`PhaseOracle`](qiskit.circuit.library.PhaseOracle "qiskit.circuit.library.PhaseOracle") uses this, which is used in turn by amplification algorithms via the `AmplificationProblem`.                                                                                 |
 | **qiskit.utils.optionals.HAS\_Z3**            | [Z3](https://github.com/Z3Prover/z3) is a theorem prover, used in the `CrosstalkAdaptiveSchedule` and [`HoareOptimizer`](qiskit.transpiler.passes.HoareOptimizer "qiskit.transpiler.passes.HoareOptimizer") transpiler passes.                                                                                                                                                                                                              |
 
-##### External Command-Line Tools
+#### External Command-Line Tools
 
 |                                            |                                                                                                                                                                                                                                              |
 | ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -373,7 +377,7 @@ Qiskit has several features that are enabled only if certain *optional* dependen
 | **qiskit.utils.optionals.HAS\_PDFLATEX**   | Visualisation tools that use LaTeX in their output, such as the circuit drawers, require `pdflatex` to be available. You will generally need to ensure that you have a working LaTeX installation available, and the `qcircuit.tex` package. |
 | **qiskit.utils.optionals.HAS\_PDFTOCAIRO** | Visualisation tools that convert LaTeX-generated files into rasterised images use the `pdftocairo` tool. This is part of the [Poppler suite of PDF tools](https://poppler.freedesktop.org/).                                                 |
 
-#### Lazy Checker Classes
+### Lazy Checker Classes
 
 Each of the lazy checkers is an instance of [`LazyDependencyManager`](#qiskit.utils.LazyDependencyManager "qiskit.utils.LazyDependencyManager") in one of its two subclasses: [`LazyImportTester`](#qiskit.utils.LazyImportTester "qiskit.utils.LazyImportTester") and [`LazySubprocessTester`](#qiskit.utils.LazySubprocessTester "qiskit.utils.LazySubprocessTester"). These should be imported from [`utils`](#module-qiskit.utils "qiskit.utils") directly if required, such as:
 

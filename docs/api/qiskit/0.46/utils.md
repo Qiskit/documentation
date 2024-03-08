@@ -469,10 +469,6 @@ result
 
 [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – If user interrupts via keyboard.
 
-**Events:**
-
-terra.parallel.start: The collection of parallel tasks are about to start. terra.parallel.update: One of the parallel task has finished. terra.parallel.finish: All the parallel tasks have finished.
-
 **Examples**
 
 ```python
