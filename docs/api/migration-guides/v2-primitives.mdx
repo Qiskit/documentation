@@ -903,13 +903,16 @@ n_qubits = 127
 mat = np.real(random_hermitian(n_qubits, seed=1234))
 circuit = IQP(mat)
 circuit.measure_all()
- 
+
 pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
-isa_circuit = pm.run(circuit)
+isa_circuits = pm.run(circuits)
  
-sampler = Sampler(backend)
-job = sampler.run([(isa_circuit,)])
-result = job.result()
+sampler = Sampler(backend) 
+job = sampler.run(isa_circuits)
+result = job.result() 
+
+for idx, pub_result in enumerate(result):
+    print(f" > Counts for pub {idx}: {pub_result.data.meas.get_counts()}")
 ```  
   </TabItem>
 
