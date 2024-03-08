@@ -92,7 +92,7 @@ plt.legend()
 
 ### default\_precision
 
-Return the default shots
+Return the default precision
 
 <span id="qiskit.primitives.StatevectorEstimator.seed" />
 

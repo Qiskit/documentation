@@ -1032,7 +1032,7 @@ Instructions in DAG representation.
 
 **Return type**
 
-[*PyDAG*](https://www.rustworkx.org/apiref/rustworkx.PyDAG.html#rustworkx.PyDAG "(in rustworkx v0.14.0)")
+[*PyDAG*](https://www.rustworkx.org/apiref/rustworkx.PyDAG.html#rustworkx.PyDAG "(in rustworkx v0.14)")
 
 <span id="pulse-transform-chain" />
 
