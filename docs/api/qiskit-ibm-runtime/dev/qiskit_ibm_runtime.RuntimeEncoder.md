@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.RuntimeEncoder
 
 <span id="qiskit_ibm_runtime.RuntimeEncoder" />
 
-`RuntimeEncoder(*, skipkeys=False, ensure_ascii=True, check_circular=True, allow_nan=True, sort_keys=False, indent=None, separators=None, default=None)` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/utils/json.py "view source code")
+`RuntimeEncoder(*, skipkeys=False, ensure_ascii=True, check_circular=True, allow_nan=True, sort_keys=False, indent=None, separators=None, default=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/utils/json.py#L207-L329 "view source code")
 
 JSON Encoder used by runtime service.
 
@@ -52,7 +52,7 @@ If specified, default is a function that gets called for objects that can’t ot
 
 <span id="qiskit_ibm_runtime.RuntimeEncoder.default" />
 
-`default(obj)`
+`default(obj)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/utils/json.py#L210-L329 "view source code")
 
 Implement this method in a subclass such that it returns a serializable object for `o`, or calls the base implementation (to raise a `TypeError`).
 

@@ -14,7 +14,7 @@ Higher optimization levels generate more optimized circuits at the expense of lo
 - `optimization_level=0`: Trivial optimization, which maps the circuit to the system with no explicit optimization.
 - `optimization_level=1-3`: Increasingly complex optimization, with heuristic algorithms that are used to find a layout and insert SWAP gates, with the goal of improving the overall performance of the circuit.  The number of iterations that these algorithms run increases with higher optimization levels. 
 
-Because finding the best layout is an NP-hard problem, it is the most time-consuming part of the transpilation process.  However, Qiskit uses stochastic algorithms that have been refactored into Rust, resulting in significant speedup.  Therefore, optimization levels 1-3 all use the same layout algorithms.  There are some slight differences in how the circuits are translated into basis gates, as described in the following table:
+Because finding the best layout is an NP-hard problem, it is the most time-consuming part of the transpilation process.  However, the Qiskit SDK uses stochastic algorithms that have been refactored into Rust, resulting in significant speedup.  Therefore, optimization levels 1-3 all use the same layout algorithms.  There are some slight differences in how the circuits are translated into basis gates, as described in the following table:
 
 
 <Table>

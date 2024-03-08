@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeArmonk
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeArmonk" />
 
-`FakeArmonk` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/backends/armonk/fake_armonk.py "view source code")
+`FakeArmonk` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/backends/armonk/fake_armonk.py#L36-L48 "view source code")
 
 A fake 1 qubit backend.
 
@@ -93,7 +93,7 @@ BackendConfiguration
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeArmonk.defaults" />
 
-`defaults()`
+`defaults()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_pulse_backend.py#L29-L33 "view source code")
 
 Returns a snapshot of device defaults
 
@@ -121,7 +121,7 @@ str
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeArmonk.properties" />
 
-`properties()`
+`properties()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_qasm_backend.py#L44-L48 "view source code")
 
 Returns a snapshot of device properties
 
@@ -149,7 +149,7 @@ Provider
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeArmonk.run" />
 
-`run(run_input, **kwargs)`
+`run(run_input, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L545-L574 "view source code")
 
 Main job in simulator
 

@@ -19,9 +19,36 @@ A class for decomposing 2-qubit unitaries into minimal number of uses of a 2-qub
 **Parameters**
 
 *   **gate** ([*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")) – Two-qubit gate to be used in the KAK decomposition.
-*   **basis\_fidelity** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Fidelity to be assumed for applications of KAK Gate. Default 1.0.
-*   **euler\_basis** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Basis string to be provided to OneQubitEulerDecomposer for 1Q synthesis. Valid options are \[‘ZYZ’, ‘ZXZ’, ‘XYX’, ‘U’, ‘U3’, ‘U1X’, ‘PSX’, ‘ZSX’, ‘RR’].
-*   **pulse\_optimize** (*None or* [*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, try to do decomposition which minimizes local unitaries in between entangling gates. This will raise an exception if an optimal decomposition is not implemented. Currently, only \[\{CX, SX, RZ}] is known. If False, don’t attempt optimization. If None, attempt optimization but don’t raise if unknown.
+*   **basis\_fidelity** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Fidelity to be assumed for applications of KAK Gate. Defaults to `1.0`.
+*   **euler\_basis** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Basis string to be provided to [`OneQubitEulerDecomposer`](qiskit.synthesis.OneQubitEulerDecomposer "qiskit.synthesis.OneQubitEulerDecomposer") for 1Q synthesis. Valid options are \[`'ZYZ'`, `'ZXZ'`, `'XYX'`, `'U'`, `'U3'`, `'U1X'`, `'PSX'`, `'ZSX'`, `'RR'`].
+*   **pulse\_optimize** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – If `True`, try to do decomposition which minimizes local unitaries in between entangling gates. This will raise an exception if an optimal decomposition is not implemented. Currently, only \[\{CX, SX, RZ}] is known. If `False`, don’t attempt optimization. If `None`, attempt optimization but don’t raise if unknown.
+
+### \_\_call\_\_
+
+<span id="qiskit.synthesis.TwoQubitBasisDecomposer.__call__" />
+
+`__call__(unitary, basis_fidelity=None, approximate=True, *, _num_basis_uses=None)`
+
+Decompose a two-qubit `unitary` over fixed basis and $SU(2)$ using the best approximation given that each basis application has a finite `basis_fidelity`.
+
+**Parameters**
+
+*   **unitary** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator") *or ndarray*) – $4 \times 4$ unitary to synthesize.
+*   **basis\_fidelity** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *or None*) – Fidelity to be assumed for applications of KAK Gate. If given, overrides `basis_fidelity` given at init.
+*   **approximate** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Approximates if basis fidelities are less than 1.0.
+*   **\_num\_basis\_uses** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – force a particular approximation by passing a number in \[0, 3].
+
+**Returns**
+
+Synthesized quantum circuit.
+
+**Return type**
+
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+
+**Raises**
+
+[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if `pulse_optimize` is True but we don’t know how to do it.
 
 ## Methods
 
@@ -31,10 +58,11 @@ A class for decomposing 2-qubit unitaries into minimal number of uses of a 2-qub
 
 `static decomp0(target)`
 
-Decompose target $~Ud(x, y, z)$ with 0 uses of the basis gate. Result $Ur$ has trace:
+Decompose target $\sim U_d(x, y, z)$ with $0$ uses of the basis gate. Result $U_r$ has trace:
 
 $$
-|Tr(Ur.U_{target}^{\dag})| = 4|(cos(x)cos(y)cos(z)+ j sin(x)sin(y)sin(z)|
+\Big\vert\text{Tr}(U_r\cdot U_\text{target}^{\dag})\Big\vert =
+4\Big\vert (\cos(x)\cos(y)\cos(z)+ j \sin(x)\sin(y)\sin(z)\Big\vert
 $$
 
 which is optimal for all targets and bases
@@ -45,13 +73,14 @@ which is optimal for all targets and bases
 
 `decomp1(target)`
 
-Decompose target $~Ud(x, y, z)$ with 1 uses of the basis gate $~Ud(a, b, c)$. Result $Ur$ has trace:
+Decompose target $\sim U_d(x, y, z)$ with $1$ use of the basis gate $\sim U_d(a, b, c)$. Result $U_r$ has trace:
 
 $$
-|Tr(Ur.U_{target}^{\dag})| = 4|cos(x-a)cos(y-b)cos(z-c) + j sin(x-a)sin(y-b)sin(z-c)|
+\Big\vert\text{Tr}(U_r \cdot U_\text{target}^{\dag})\Big\vert =
+4\Big\vert \cos(x-a)\cos(y-b)\cos(z-c) + j \sin(x-a)\sin(y-b)\sin(z-c)\Big\vert
 $$
 
-which is optimal for all targets and bases with z==0 or c==0
+which is optimal for all targets and bases with `z==0` or `c==0`.
 
 ### decomp2\_supercontrolled
 
@@ -59,15 +88,15 @@ which is optimal for all targets and bases with z==0 or c==0
 
 `decomp2_supercontrolled(target)`
 
-Decompose target $~Ud(x, y, z)$ with 2 uses of the basis gate.
+Decompose target $\sim U_d(x, y, z)$ with $2$ uses of the basis gate.
 
-For supercontrolled basis $~Ud(\pi/4, b, 0)$, all b, result $Ur$ has trace
+For supercontrolled basis $\sim U_d(\pi/4, b, 0)$, all b, result $U_r$ has trace
 
 $$
-|Tr(Ur.U_{target}^{\dag})| = 4cos(z)
+\Big\vert\text{Tr}(U_r \cdot U_\text{target}^\dag) \Big\vert = 4\cos(z)
 $$
 
-which is the optimal approximation for basis of CNOT-class $~Ud(\pi/4, 0, 0)$ or DCNOT-class $~Ud(\pi/4, \pi/4, 0)$ and any target. May be sub-optimal for b!=0 (e.g. there exists exact decomposition for any target using B $B \sim Ud(\pi/4, \pi/8, 0)$, but not this decomposition.) This is an exact decomposition for supercontrolled basis and target $~Ud(x, y, 0)$. No guarantees for non-supercontrolled basis.
+which is the optimal approximation for basis of CNOT-class $\sim U_d(\pi/4, 0, 0)$ or DCNOT-class $\sim U_d(\pi/4, \pi/4, 0)$ and any target. It may be sub-optimal for $b \neq 0$ (i.e. there exists an exact decomposition for any target using $B \sim U_d(\pi/4, \pi/8, 0)$, but it may not be this decomposition). This is an exact decomposition for supercontrolled basis and target $\sim U_d(x, y, 0)$. No guarantees for non-supercontrolled basis.
 
 ### decomp3\_supercontrolled
 
@@ -75,7 +104,7 @@ which is the optimal approximation for basis of CNOT-class $~Ud(\pi/4, 0, 0)$ or
 
 `decomp3_supercontrolled(target)`
 
-Decompose target with 3 uses of the basis. This is an exact decomposition for supercontrolled basis $~Ud(\pi/4, b, 0)$, all b, and any target. No guarantees for non-supercontrolled basis.
+Decompose target with $3$ uses of the basis. This is an exact decomposition for supercontrolled basis $\sim U_d(\pi/4, b, 0)$, all b, and any target. No guarantees for non-supercontrolled basis.
 
 ### num\_basis\_gates
 
@@ -91,5 +120,5 @@ Computes the number of basis gates needed in a decomposition of input unitary
 
 `traces(target)`
 
-Give the expected traces $|Tr(U \cdot U_{target}^{\dag})|$ for different number of basis gates.
+Give the expected traces $\Big\vert\text{Tr}(U \cdot U_\text{target}^{\dag})\Big\vert$ for a different number of basis gates.
 

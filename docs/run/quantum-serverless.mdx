@@ -42,7 +42,7 @@ Here is an example of computing the expectation value using the Qiskit Runtime E
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit.circuit.random import random_circuit
 from qiskit.quantum_info import SparsePauliOp
-from qiskit_ibm_runtime import QiskitRuntimeService, Estimator
+from qiskit_ibm_runtime import QiskitRuntimeService
 from quantum_serverless import save_result
 
 service = QiskitRuntimeService()
@@ -57,17 +57,30 @@ pm = generate_preset_pass_manager(optimization_level=3, backend=backend)
 target_circuit = pm.run(abstract_circuit)
 target_observable = observable.apply_layout(target_circuit.layout)
 
-# Step 3: Execute the target circuit
+# Step 3: Execute the target circuit on Estimator V1
+# from qiskit_ibm_runtime import Estimator
+# estimator = Estimator(backend)
+# job = estimator.run(target_circuit, target_observable)
+# result = job.result()
+
+# Step 3: Execute the target circuit on Estimator V2
+from qiskit_ibm_runtime import EstimatorV2 as Estimator
 estimator = Estimator(backend)
-job = estimator.run(target_circuit, target_observable)
+job = estimator.run([(target_circuit, target_observable)])
 result = job.result()
 
-# Step 4: Postprocess the results
-print(result)
 
+# Step 4: Postprocess the Estimator V1 results
+# print(result)
 # save results of program execution
 # note: saved items must be serializable
-save_result(result.values)
+# save_result(result.values)
+
+# Step 4: Postprocess the Estimator V2 results
+print(result)
+# save results of program execution
+# note: saved items must be serializable
+save_result(result[0].data.evs)
 ```
 
 Please refer to our guides on how to configure your pattern to [accept input arguments](https://qiskit-extensions.github.io/quantum-serverless/getting_started/basic/02_arguments_and_results.html) and [handle external python dependencies](https://qiskit-extensions.github.io/quantum-serverless/getting_started/basic/03_dependencies.html).
@@ -120,7 +133,53 @@ For each `IBMQPUSelector`, the context is set in the constructor. All `IBMQPUSel
 
 Then, in step 3 of the pattern, you execute the target circuit on the system chosen by the selector. Since you optimized your circuit for the system in step 2, you can skip transpilation in the primitives by setting `skip_transpilation=True`. 
 
-```python
+<Tabs>
+  <TabItem value="SamplerV2" label="V2 Sampler">
+    ```python
+# source_files/my_qiskit_pattern_resource_management.py
+
+from qiskit_ibm_runtime import QiskitRuntimeService, Session, Samplerv2 as Sampler
+from qiskit.circuit.random import random_circuit
+from quantum_serverless_tools.selectors import IBMLeastNoisyQPUSelector
+
+service = QiskitRuntimeService()
+
+# Step 1: Map quantum circuits and operators
+abstract_circuit = random_circuit(
+    num_qubits=5, depth=4, measure=True, seed=1234
+)
+
+# Step 2: Optimize the circuit for quantum execution with automatically selected system
+selector = IBMLeastNoisyQPUSelector(
+    service, circuit=abstract_circuit, transpile_options={"optimization_level": 3}
+)
+backend = selector.get_backend(min_num_qubits=127)
+target_circuit = selector.optimized_circuit
+
+## Alternatively, one can automatically select a system according to most available:
+# from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+# from quantum_serverless_tools.selectors import IBMLeastBusyQPUSelector
+#
+# backend = IBMLeastBusyQPUSelector(service).get_backend(min_num_qubits=127)
+# pm = generate_preset_pass_manager(optimization_level=3, backend=backend)
+# target_circuit = pm.run(abstract_circuit)
+
+# Step 3: Execute the target circuit
+sampler = Sampler(backend=backend, options={"default_shots": 1024})
+job = sampler.run([(target_circuit,)])
+result = job.result()
+    
+# Step 4: Postprocess the results
+print(f" > Counts: {result[0].data.meas.get_counts()}")
+
+# save results of program execution
+# note: saved items must be serializable
+save_result(result)
+```
+  </TabItem>
+
+  <TabItem value="SamplerV1" label="Sampler (V1)">
+    ```python
 # source_files/my_qiskit_pattern_resource_management.py
 
 from qiskit_ibm_runtime import QiskitRuntimeService, Session, Sampler, Options
@@ -165,5 +224,8 @@ print(result)
 # note: saved items must be serializable
 save_result(result)
 ```
+
+  </TabItem>
+</Tabs>
 
 After creating this pattern, you can deploy and run it remotely with Quantum Serverless as described above.

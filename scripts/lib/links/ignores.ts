@@ -64,7 +64,7 @@ type FilesToIgnores = { [id: string]: string[] };
 const _QPY_IGNORES = ["#f1", "#f2", "#f3", "#id2", "#id4", "#id6", "#id8"];
 
 const _RUNTIME_OBJECT_INV = Object.fromEntries(
-  ["", "dev/", "0.16/", "0.17/", "0.18/", "0.19/"].map((vers) => [
+  ["", "dev/", "0.16/", "0.17/", "0.18/", "0.19/", "0.20/"].map((vers) => [
     `public/api/qiskit-ibm-runtime/${vers}objects.inv`,
     [
       `/api/qiskit-ibm-runtime/${vers}qiskit_ibm_runtime.RuntimeEncoder#key_separator`,
@@ -83,6 +83,10 @@ const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {
   ],
   "docs/api/qiskit/qpy.md": _QPY_IGNORES,
   "docs/api/qiskit/dev/qpy.md": _QPY_IGNORES,
+  // Runtime
+  "docs/api/qiskit-ibm-runtime/release-notes.md": [
+    "qiskit_ibm_runtime.Sampler#run",
+  ],
   // objects.inv
   ..._RUNTIME_OBJECT_INV,
   "public/api/qiskit/objects.inv": [

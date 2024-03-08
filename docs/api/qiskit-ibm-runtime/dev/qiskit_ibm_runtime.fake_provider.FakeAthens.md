@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeAthens
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeAthens" />
 
-`FakeAthens` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/backends/athens/fake_athens.py "view source code")
+`FakeAthens` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/backends/athens/fake_athens.py#L31-L38 "view source code")
 
 A fake 5 qubit backend.
 
@@ -89,7 +89,7 @@ BackendConfiguration
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeAthens.defaults" />
 
-`defaults()`
+`defaults()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_pulse_backend.py#L29-L33 "view source code")
 
 Returns a snapshot of device defaults
 
@@ -117,7 +117,7 @@ str
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeAthens.properties" />
 
-`properties()`
+`properties()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_qasm_backend.py#L44-L48 "view source code")
 
 Returns a snapshot of device properties
 
@@ -145,7 +145,7 @@ Provider
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeAthens.run" />
 
-`run(run_input, **kwargs)`
+`run(run_input, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L545-L574 "view source code")
 
 Main job in simulator
 

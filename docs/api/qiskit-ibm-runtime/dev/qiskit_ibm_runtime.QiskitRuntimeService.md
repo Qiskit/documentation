@@ -10,58 +10,9 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
 <span id="qiskit_ibm_runtime.QiskitRuntimeService" />
 
-`QiskitRuntimeService(channel=None, token=None, url=None, filename=None, name=None, instance=None, proxies=None, verify=None, channel_strategy=None)` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py "view source code")
+`QiskitRuntimeService(channel=None, token=None, url=None, filename=None, name=None, instance=None, proxies=None, verify=None, channel_strategy=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L65-L1177 "view source code")
 
 Class for interacting with the Qiskit Runtime service.
-
-Qiskit Runtime is a new architecture offered by IBM Quantum that streamlines computations requiring many iterations. These experiments will execute significantly faster within its improved hybrid quantum/classical process.
-
-A sample workflow of using the runtime service:
-
-```python
-from qiskit_ibm_runtime import QiskitRuntimeService, Session, Sampler, Estimator, Options
-from qiskit.circuit.library import RealAmplitudes
-from qiskit.circuit import QuantumCircuit, QuantumRegister, ClassicalRegister
-from qiskit.quantum_info import SparsePauliOp
-
-# Initialize account.
-service = QiskitRuntimeService()
-
-# Set options, which can be overwritten at job level.
-options = Options(optimization_level=1)
-
-# Prepare inputs.
-psi = RealAmplitudes(num_qubits=2, reps=2)
-H1 = SparsePauliOp.from_list([("II", 1), ("IZ", 2), ("XI", 3)])
-theta = [0, 1, 1, 2, 3, 5]
-
-# Bell Circuit
-qr = QuantumRegister(2, name="qr")
-cr = ClassicalRegister(2, name="cr")
-qc = QuantumCircuit(qr, cr, name="bell")
-qc.h(qr[0])
-qc.cx(qr[0], qr[1])
-qc.measure(qr, cr)
-
-with Session(service=service, backend="ibmq_qasm_simulator") as session:
-    # Submit a request to the Sampler primitive within the session.
-    sampler = Sampler(session=session, options=options)
-    job = sampler.run(circuits=qc)
-    print(f"Sampler results: {job.result()}")
-
-    # Submit a request to the Estimator primitive within the session.
-    estimator = Estimator(session=session, options=options)
-    job = estimator.run(
-        circuits=[psi], observables=[H1], parameter_values=[theta]
-    )
-    print(f"Estimator results: {job.result()}")
-```
-
-The example above uses the dedicated [`Sampler`](qiskit_ibm_runtime.Sampler "qiskit_ibm_runtime.Sampler") and [`Estimator`](qiskit_ibm_runtime.Estimator "qiskit_ibm_runtime.Estimator") classes. You can also use the [`run()`](#qiskit_ibm_runtime.QiskitRuntimeService.run "qiskit_ibm_runtime.QiskitRuntimeService.run") method directly to invoke a Qiskit Runtime program.
-
-If the program has any interim results, you can use the `callback` parameter of the [`run()`](#qiskit_ibm_runtime.QiskitRuntimeService.run "qiskit_ibm_runtime.QiskitRuntimeService.run") method to stream the interim results. Alternatively, you can use the [`RuntimeJob.stream_results()`](qiskit_ibm_runtime.RuntimeJob#stream_results "qiskit_ibm_runtime.RuntimeJob.stream_results") method to stream the results at a later time, but before the job finishes.
-
-The [`run()`](#qiskit_ibm_runtime.QiskitRuntimeService.run "qiskit_ibm_runtime.QiskitRuntimeService.run") method returns a [`RuntimeJob`](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.RuntimeJob") object. You can use its methods to perform tasks like checking job status, getting job result, and canceling job.
 
 QiskitRuntimeService constructor
 
@@ -141,7 +92,7 @@ self
 
 <span id="qiskit_ibm_runtime.QiskitRuntimeService.active_account" />
 
-`active_account()`
+`active_account()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L649-L655 "view source code")
 
 Return the IBM Quantum account currently in use for the session.
 
@@ -157,7 +108,7 @@ A dictionary with information about the account currently in the session.
 
 <span id="qiskit_ibm_runtime.QiskitRuntimeService.backend" />
 
-`backend(name=None, instance=None)`
+`backend(name=None, instance=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L758-L788 "view source code")
 
 Return a single backend matching the specified filtering.
 
@@ -182,7 +133,7 @@ Backend
 
 <span id="qiskit_ibm_runtime.QiskitRuntimeService.backends" />
 
-`backends(name=None, min_num_qubits=None, instance=None, dynamic_circuits=None, filters=None, **kwargs)`
+`backends(name=None, min_num_qubits=None, instance=None, dynamic_circuits=None, filters=None, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L486-L593 "view source code")
 
 Return all backends accessible via this account, subject to optional filtering.
 
@@ -241,7 +192,7 @@ The list of available backends that match the filter.
 
 <span id="qiskit_ibm_runtime.QiskitRuntimeService.delete_account" />
 
-`static delete_account(filename=None, name=None, channel=None)`
+`static delete_account(filename=None, name=None, channel=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L657-L675 "view source code")
 
 Delete a saved account from disk.
 
@@ -263,7 +214,7 @@ True if the account was deleted. False if no account was found.
 
 <span id="qiskit_ibm_runtime.QiskitRuntimeService.delete_job" />
 
-`delete_job(job_id)`
+`delete_job(job_id)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L1035-L1052 "view source code")
 
 Delete a runtime job.
 
@@ -286,7 +237,7 @@ Note that this operation cannot be reversed.
 
 <span id="qiskit_ibm_runtime.QiskitRuntimeService.get_backend" />
 
-`get_backend(name=None, **kwargs)`
+`get_backend(name=None, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L790-L791 "view source code")
 
 Return a single backend matching the specified filtering.
 
@@ -311,7 +262,7 @@ Backend
 
 <span id="qiskit_ibm_runtime.QiskitRuntimeService.instances" />
 
-`instances()`
+`instances()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L1142-L1150 "view source code")
 
 Return the IBM Quantum instances list currently in use for the session.
 
@@ -327,7 +278,7 @@ A list with instances currently in the session.
 
 <span id="qiskit_ibm_runtime.QiskitRuntimeService.job" />
 
-`job(job_id)`
+`job(job_id)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L918-L937 "view source code")
 
 Retrieve a runtime job.
 
@@ -337,7 +288,7 @@ Retrieve a runtime job.
 
 **Return type**
 
-[`RuntimeJob`](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.runtime_job.RuntimeJob")
+`Union`\[[`RuntimeJob`](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.runtime_job.RuntimeJob"), `RuntimeJobV2`]
 
 **Returns**
 
@@ -352,7 +303,7 @@ Runtime job retrieved.
 
 <span id="qiskit_ibm_runtime.QiskitRuntimeService.jobs" />
 
-`jobs(limit=10, skip=0, backend_name=None, pending=None, program_id=None, instance=None, job_tags=None, session_id=None, created_after=None, created_before=None, descending=True)`
+`jobs(limit=10, skip=0, backend_name=None, pending=None, program_id=None, instance=None, job_tags=None, session_id=None, created_after=None, created_before=None, descending=True)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L939-L1033 "view source code")
 
 Retrieve all runtime jobs, subject to optional filtering.
 
@@ -372,7 +323,7 @@ Retrieve all runtime jobs, subject to optional filtering.
 
 **Return type**
 
-`List`\[[`RuntimeJob`](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.runtime_job.RuntimeJob")]
+`List`\[`Union`\[[`RuntimeJob`](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.runtime_job.RuntimeJob"), `RuntimeJobV2`]]
 
 **Returns**
 
@@ -386,7 +337,7 @@ A list of runtime jobs.
 
 <span id="qiskit_ibm_runtime.QiskitRuntimeService.least_busy" />
 
-`least_busy(min_num_qubits=None, instance=None, filters=None, **kwargs)`
+`least_busy(min_num_qubits=None, instance=None, filters=None, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L1105-L1140 "view source code")
 
 Return the least busy available backend.
 
@@ -420,7 +371,7 @@ The backend with the fewest number of pending jobs.
 
 <span id="qiskit_ibm_runtime.QiskitRuntimeService.run" />
 
-`run(program_id, inputs, options=None, callback=None, result_decoder=None, session_id=None, start_session=False)`
+`run(program_id, inputs, options=None, callback=None, result_decoder=None, session_id=None, start_session=False)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L793-L916 "view source code")
 
 Execute the runtime program.
 
@@ -447,7 +398,7 @@ Execute the runtime program.
 
 **Return type**
 
-[`RuntimeJob`](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.runtime_job.RuntimeJob")
+`Union`\[[`RuntimeJob`](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.runtime_job.RuntimeJob"), `RuntimeJobV2`]
 
 **Returns**
 
@@ -463,7 +414,7 @@ A `RuntimeJob` instance representing the execution.
 
 <span id="qiskit_ibm_runtime.QiskitRuntimeService.save_account" />
 
-`static save_account(token=None, url=None, instance=None, channel=None, filename=None, name=None, proxies=None, verify=None, overwrite=False, channel_strategy=None, set_as_default=None)`
+`static save_account(token=None, url=None, instance=None, channel=None, filename=None, name=None, proxies=None, verify=None, overwrite=False, channel_strategy=None, set_as_default=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L677-L726 "view source code")
 
 Save the account to disk for future use.
 
@@ -489,7 +440,7 @@ Save the account to disk for future use.
 
 <span id="qiskit_ibm_runtime.QiskitRuntimeService.saved_accounts" />
 
-`static saved_accounts(default=None, channel=None, filename=None, name=None)`
+`static saved_accounts(default=None, channel=None, filename=None, name=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L728-L756 "view source code")
 
 List the accounts saved on disk.
 

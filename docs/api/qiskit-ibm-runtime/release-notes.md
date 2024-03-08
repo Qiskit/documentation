@@ -6,11 +6,55 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes" />
 
-# Qiskit Runtime IBM Client 0.20 release notes
+# Qiskit Runtime IBM Client 0.21 release notes
 
-<span id="release-notes-0-20-0" />
+<span id="relnotes-0-21-1" />
 
 <span id="id1" />
+
+## 0.21.1
+
+<span id="relnotes-0-21-1-bug-fixes" />
+
+### Bug Fixes
+
+*   Fixed a bug where `SamplerV1` and `EstimatorV1` could not be imported because of an issue with how the aliases were defined.
+
+<span id="relnotes-0-21-0" />
+
+<span id="id2" />
+
+## 0.21.0
+
+<span id="relnotes-0-21-0-upgrade-notes" />
+
+### Upgrade Notes
+
+*   Circuits that do not match the target hardware definition are no longer supported by Qiskit Runtime primitives, unless `channel_strategy="q-ctrl"` is used. See the transpilation documentation ([transpile](/transpile)) for instructions to transform circuits and the primitive examples ([run/primitives-examples](/run/primitives-examples)) to see this coupled with operator transformations.
+
+<span id="relnotes-0-21-0-deprecation-notes" />
+
+### Deprecation Notes
+
+*   In a future release, `backend` will be a required parameter for `qiskit_ibm_runtime.Sampler`, and `qiskit_ibm_runtime.Estimator` if `session` is not specified, even when using the `ibm_cloud` channel.
+
+    It will also be a required parameter for `qiskit_ibm_runtime.Session` and `qiskit_ibm_runtime.Batch`.
+
+<span id="relnotes-0-21-0-bug-fixes" />
+
+<span id="id3" />
+
+### Bug Fixes
+
+*   Fixed an issue with the `IBMBackend.target` where it would incorrectly exclude supported control flow operations (`IfElseOp`, `WhileLoop`, etc.) if a given backend supported them.
+
+*   Fixed a bug where retrieving a fake backend through `FakeProviderForBackendV2.backend()` would result in a type error.
+
+*   Fixes the check for ISA circuits to allow pulse gates and circuits that don’t have layout.
+
+<span id="relnotes-0-20-0" />
+
+<span id="id4" />
 
 ## 0.20.0
 
@@ -1457,4 +1501,3 @@ qiskit-ibm-runtime is not included as part of Qiskit meta package and thereby yo
 ### Bug Fixes
 
 *   Fixed an issue with JSON encoding and decoding when using `ParameterExpression`s in conjunction with Qiskit Terra 0.19.1 and above. Previously, the `Parameter` instances reconstructed from the JSON output would have different unique identifiers, causing them to seem unequal to the input. They will now have the correct backing identities.
-

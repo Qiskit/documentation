@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
 <span id="qiskit_ibm_runtime.IBMBackend" />
 
-`IBMBackend(configuration, service, api_client, instance=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/ibm_backend.py#L75-L856 "view source code")
+`IBMBackend(configuration, service, api_client, instance=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/ibm_backend.py#L75-L856 "view source code")
 
 Backend class interfacing with an IBM Quantum backend.
 
@@ -352,7 +352,7 @@ Version of the backend being provided. This is not the same as `BackendV2.versio
 
 <span id="qiskit_ibm_runtime.IBMBackend.__call__" />
 
-`__call__()`
+`__call__()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/ibm_backend.py#L506-L508 "view source code")
 
 Call self as a function.
 
@@ -364,7 +364,7 @@ Call self as a function.
 
 <span id="qiskit_ibm_runtime.IBMBackend.acquire_channel" />
 
-`acquire_channel(qubit)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/ibm_backend.py#L480-L486 "view source code")
+`acquire_channel(qubit)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/ibm_backend.py#L480-L486 "view source code")
 
 Return the acquisition channel for the given qubit.
 
@@ -380,7 +380,7 @@ AcquireChannel
 
 <span id="qiskit_ibm_runtime.IBMBackend.cancel_session" />
 
-`cancel_session()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/ibm_backend.py#L839-L846 "view source code")
+`cancel_session()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/ibm_backend.py#L839-L846 "view source code")
 
 Cancel session. All pending jobs will be cancelled.
 
@@ -392,7 +392,7 @@ Cancel session. All pending jobs will be cancelled.
 
 <span id="qiskit_ibm_runtime.IBMBackend.check_faulty" />
 
-`check_faulty(circuit)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/ibm_backend.py#L530-L562 "view source code")
+`check_faulty(circuit)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/ibm_backend.py#L530-L562 "view source code")
 
 Check if the input circuit uses faulty qubits or edges.
 
@@ -412,7 +412,7 @@ Check if the input circuit uses faulty qubits or edges.
 
 <span id="qiskit_ibm_runtime.IBMBackend.close_session" />
 
-`close_session()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/ibm_backend.py#L848-L856 "view source code")
+`close_session()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/ibm_backend.py#L848-L856 "view source code")
 
 Close the session so new jobs will no longer be accepted, but existing queued or running jobs will run to completion. The session will be terminated once there are no more pending jobs.
 
@@ -424,7 +424,7 @@ Close the session so new jobs will no longer be accepted, but existing queued or
 
 <span id="qiskit_ibm_runtime.IBMBackend.configuration" />
 
-`configuration()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/ibm_backend.py#L447-L462 "view source code")
+`configuration()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/ibm_backend.py#L447-L462 "view source code")
 
 Return the backend configuration.
 
@@ -444,7 +444,7 @@ The configuration for the backend.
 
 <span id="qiskit_ibm_runtime.IBMBackend.control_channel" />
 
-`control_channel(qubits)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/ibm_backend.py#L488-L501 "view source code")
+`control_channel(qubits)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/ibm_backend.py#L488-L501 "view source code")
 
 Return the secondary drive channel for the given qubit
 
@@ -466,7 +466,7 @@ List\[ControlChannel]
 
 <span id="qiskit_ibm_runtime.IBMBackend.defaults" />
 
-`defaults(refresh=False)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/ibm_backend.py#L424-L445 "view source code")
+`defaults(refresh=False)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/ibm_backend.py#L424-L445 "view source code")
 
 Return the pulse defaults for the backend.
 
@@ -488,7 +488,7 @@ The backend pulse defaults or `None` if the backend does not support pulse.
 
 <span id="qiskit_ibm_runtime.IBMBackend.drive_channel" />
 
-`drive_channel(qubit)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/ibm_backend.py#L464-L470 "view source code")
+`drive_channel(qubit)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/ibm_backend.py#L464-L470 "view source code")
 
 Return the drive channel for the given qubit.
 
@@ -504,7 +504,7 @@ DriveChannel
 
 <span id="qiskit_ibm_runtime.IBMBackend.measure_channel" />
 
-`measure_channel(qubit)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/ibm_backend.py#L472-L478 "view source code")
+`measure_channel(qubit)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/ibm_backend.py#L472-L478 "view source code")
 
 Return the measure stimulus channel for the given qubit.
 
@@ -520,7 +520,7 @@ MeasureChannel
 
 <span id="qiskit_ibm_runtime.IBMBackend.open_session" />
 
-`open_session(max_time=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/ibm_backend.py#L823-L832 "view source code")
+`open_session(max_time=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/ibm_backend.py#L823-L832 "view source code")
 
 Open session
 
@@ -532,7 +532,7 @@ Open session
 
 <span id="qiskit_ibm_runtime.IBMBackend.properties" />
 
-`properties(refresh=False, datetime=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/ibm_backend.py#L348-L398 "view source code")
+`properties(refresh=False, datetime=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/ibm_backend.py#L348-L398 "view source code")
 
 Return the backend properties, subject to optional filtering.
 
@@ -588,7 +588,7 @@ The `QubitProperties` object for the specified qubit. If a list of qubits is pro
 
 <span id="qiskit_ibm_runtime.IBMBackend.run" />
 
-`run(circuits, dynamic=None, job_tags=None, init_circuit=None, init_num_resets=None, header=None, shots=None, memory=None, meas_level=None, meas_return=None, rep_delay=None, init_qubits=None, use_measure_esp=None, noise_model=None, seed_simulator=None, **run_config)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/ibm_backend.py#L582-L739 "view source code")
+`run(circuits, dynamic=None, job_tags=None, init_circuit=None, init_num_resets=None, header=None, shots=None, memory=None, meas_level=None, meas_return=None, rep_delay=None, init_qubits=None, use_measure_esp=None, noise_model=None, seed_simulator=None, **run_config)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/ibm_backend.py#L582-L739 "view source code")
 
 Run on the backend. If a keyword specified here is also present in the `options` attribute/object, the value specified here will be used for this run.
 
@@ -681,7 +681,7 @@ This method is used to update the options of a backend. If you need to change an
 
 <span id="qiskit_ibm_runtime.IBMBackend.status" />
 
-`status()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/ibm_backend.py#L400-L422 "view source code")
+`status()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/ibm_backend.py#L400-L422 "view source code")
 
 Return the backend status.
 
@@ -705,7 +705,7 @@ The status of the backend.
 
 <span id="qiskit_ibm_runtime.IBMBackend.target_history" />
 
-`target_history(datetime=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/ibm_backend.py#L338-L346 "view source code")
+`target_history(datetime=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/ibm_backend.py#L338-L346 "view source code")
 
 A `qiskit.transpiler.Target` object for the backend. :rtype: `Target` :returns: Target with properties found on datetime
 

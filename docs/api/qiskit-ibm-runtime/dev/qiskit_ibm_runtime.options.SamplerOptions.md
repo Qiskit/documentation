@@ -1,0 +1,95 @@
+---
+title: SamplerOptions
+description: API reference for qiskit_ibm_runtime.options.SamplerOptions
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_ibm_runtime.options.SamplerOptions
+---
+
+# SamplerOptions
+
+<span id="qiskit_ibm_runtime.options.SamplerOptions" />
+
+`SamplerOptions(*args, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options/sampler_options.py#L26-L48 "view source code")
+
+Options for V2 Sampler.
+
+**Parameters**
+
+*   **default\_shots** – The default number of shots to use if none are specified in the PUBs or in the run method. Default: 4096.
+*   **dynamical\_decoupling** – Suboptions for dynamical decoupling. See [`DynamicalDecouplingOptions`](qiskit_ibm_runtime.options.DynamicalDecouplingOptions "qiskit_ibm_runtime.options.DynamicalDecouplingOptions") for all available options.
+*   **execution** – Execution time options. See [`ExecutionOptionsV2`](qiskit_ibm_runtime.options.ExecutionOptionsV2 "qiskit_ibm_runtime.options.ExecutionOptionsV2") for all available options.
+*   **experimental** – Experimental options.
+
+## Attributes
+
+<span id="qiskit_ibm_runtime.options.SamplerOptions.default_shots" />
+
+### default\_shots
+
+`UnsetType | int`
+
+`= Unset`
+
+<span id="qiskit_ibm_runtime.options.SamplerOptions.dynamical_decoupling" />
+
+### dynamical\_decoupling
+
+`DynamicalDecouplingOptions | Dict`
+
+`= FieldInfo(annotation=Union[DynamicalDecouplingOptions, Dict], required=False, default_factory=DynamicalDecouplingOptions)`
+
+<span id="qiskit_ibm_runtime.options.SamplerOptions.environment" />
+
+### environment
+
+`EnvironmentOptions | Dict`
+
+`= FieldInfo(annotation=Union[EnvironmentOptions, Dict], required=False, default_factory=EnvironmentOptions)`
+
+<span id="qiskit_ibm_runtime.options.SamplerOptions.execution" />
+
+### execution
+
+`ExecutionOptionsV2 | Dict`
+
+`= FieldInfo(annotation=Union[ExecutionOptionsV2, Dict], required=False, default_factory=ExecutionOptionsV2)`
+
+<span id="qiskit_ibm_runtime.options.SamplerOptions.experimental" />
+
+### experimental
+
+`UnsetType | dict`
+
+`= Unset`
+
+<span id="qiskit_ibm_runtime.options.SamplerOptions.max_execution_time" />
+
+### max\_execution\_time
+
+`UnsetType | int`
+
+`= Unset`
+
+<span id="qiskit_ibm_runtime.options.SamplerOptions.simulator" />
+
+### simulator
+
+`SimulatorOptions | Dict`
+
+`= FieldInfo(annotation=Union[SimulatorOptions, Dict], required=False, default_factory=SimulatorOptions)`
+
+## Methods
+
+### update
+
+<span id="qiskit_ibm_runtime.options.SamplerOptions.update" />
+
+`update(**kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options/options.py#L106-L111 "view source code")
+
+Update the options.
+
+**Return type**
+
+`None`
+

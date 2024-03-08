@@ -1,7 +1,7 @@
 ---
 title: qiskit_ibm_runtime
 description: API reference for qiskit_ibm_runtime
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit_ibm_runtime
 ---
@@ -29,16 +29,16 @@ Qiskit Runtime also has the concept of a session. Jobs submitted within a sessio
 Below is an example of using primitives within a session:
 
 ```python
-from qiskit_ibm_runtime import QiskitRuntimeService, Session, Sampler, Estimator, Options
+from qiskit_ibm_runtime import QiskitRuntimeService, Session
+from qiskit_ibm_runtime import SamplerV2 as Sampler
+from qiskit_ibm_runtime import EstimatorV2 as Estimator
 from qiskit.circuit.library import RealAmplitudes
 from qiskit.circuit import QuantumCircuit, QuantumRegister, ClassicalRegister
 from qiskit.quantum_info import SparsePauliOp
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 
 # Initialize account.
 service = QiskitRuntimeService()
-
-# Set options, which can be overwritten at job level.
-options = Options(optimization_level=3)
 
 # Prepare inputs.
 psi = RealAmplitudes(num_qubits=2, reps=2)
@@ -46,24 +46,32 @@ H1 = SparsePauliOp.from_list([("II", 1), ("IZ", 2), ("XI", 3)])
 theta = [0, 1, 1, 2, 3, 5]
 # Bell Circuit
 qr = QuantumRegister(2, name="qr")
-cr = ClassicalRegister(2, name="qc")
+cr = ClassicalRegister(2, name="cr")
 qc = QuantumCircuit(qr, cr, name="bell")
 qc.h(qr[0])
 qc.cx(qr[0], qr[1])
 qc.measure(qr, cr)
 
-with Session(service=service, backend="ibmq_qasm_simulator") as session:
+backend = service.least_busy(operational=True, simulator=False)
+bell_isa_circuit = pm.run(qc)
+psi_isa_circuit = pm.run(psi)
+isa_observables = H1.apply_layout(psi_isa_circuit.layout)
+
+with Session(service=service, backend=backend) as session:
     # Submit a request to the Sampler primitive within the session.
-    sampler = Sampler(session=session, options=options)
-    job = sampler.run(circuits=qc)
-    print(f"Sampler results: {job.result()}")
+    sampler = Sampler(session=session)
+    job = sampler.run([bell_isa_circuit])
+    pub_result = job.result()[0]
+    print(f"Counts: {pub_result.data.cr.get_counts()}")
 
     # Submit a request to the Estimator primitive within the session.
-    estimator = Estimator(session=session, options=options)
+    estimator = Estimator(session=session)
+    estimator.options.resilience_level = 1  # Set options.
     job = estimator.run(
-        circuits=[psi], observables=[H1], parameter_values=[theta]
+        [(psi_isa_circuit, isa_observables, theta)]
     )
-    print(f"Estimator results: {job.result()}")
+    pub_result = job.result()[0]
+    print(f"Expectation values: {pub_result.data.evs}")
 ```
 
 ## Backend data
@@ -103,44 +111,21 @@ import logging
 logging.getLogger('qiskit_ibm_runtime').setLevel(logging.WARNING)
 ```
 
-### Interim and final results
-
-Some runtime primitives provide interim results that inform you about the progress of your job. You can choose to stream the interim results and final result when you run the program by passing in the `callback` parameter, or at a later time using the [`RuntimeJob.stream_results()`](qiskit_ibm_runtime.RuntimeJob#stream_results "qiskit_ibm_runtime.RuntimeJob.stream_results") method. For example:
-
-```python
-from qiskit_ibm_runtime import QiskitRuntimeService, Sampler
-from qiskit.circuit import QuantumCircuit, QuantumRegister, ClassicalRegister
-
-service = QiskitRuntimeService()
-backend = service.backend("ibmq_qasm_simulator")
-
-# Bell Circuit
-qr = QuantumRegister(2, name="qr")
-cr = ClassicalRegister(2, name="qc")
-qc = QuantumCircuit(qr, cr, name="bell")
-qc.h(qr[0])
-qc.cx(qr[0], qr[1])
-qc.measure(qr, cr)
-
-def result_callback(job_id, result):
-    print(result)
-
-# Stream results as soon as the job starts running.
-job = Sampler(backend).run(qc, callback=result_callback)
-print(job.result())
-```
-
 ## Classes
 
-|                                                                                                                                          |                                                                        |
-| ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| [`QiskitRuntimeService`](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.QiskitRuntimeService")(\[channel, token, url, ...]) | Class for interacting with the Qiskit Runtime service.                 |
-| [`Estimator`](qiskit_ibm_runtime.Estimator "qiskit_ibm_runtime.Estimator")(\[backend, session, options])                                 | Class for interacting with Qiskit Runtime Estimator primitive service. |
-| [`Sampler`](qiskit_ibm_runtime.Sampler "qiskit_ibm_runtime.Sampler")(\[backend, session, options])                                       | Class for interacting with Qiskit Runtime Sampler primitive service.   |
-| [`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.Session")(\[service, backend, max\_time])                                     | Class for creating a flexible Qiskit Runtime session.                  |
-| [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.IBMBackend")(configuration, service, api\_client)                       | Backend class interfacing with an IBM Quantum backend.                 |
-| [`RuntimeJob`](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.RuntimeJob")(backend, api\_client, ...\[, ...])                         | Representation of a runtime program execution.                         |
-| [`RuntimeOptions`](qiskit_ibm_runtime.RuntimeOptions "qiskit_ibm_runtime.RuntimeOptions")(\[backend, image, log\_level, ...])            | Class for representing generic runtime execution options.              |
-| [`RuntimeEncoder`](qiskit_ibm_runtime.RuntimeEncoder "qiskit_ibm_runtime.RuntimeEncoder")(\*\[, skipkeys, ensure\_ascii, ...])           | JSON Encoder used by runtime service.                                  |
-| [`RuntimeDecoder`](qiskit_ibm_runtime.RuntimeDecoder "qiskit_ibm_runtime.RuntimeDecoder")(\*args, \*\*kwargs)                            | JSON Decoder used by runtime service.                                  |
+|                                                                                                                                          |                                                                                                     |
+| ---------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| [`QiskitRuntimeService`](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.QiskitRuntimeService")(\[channel, token, url, ...]) | Class for interacting with the Qiskit Runtime service.                                              |
+| [`Estimator`](qiskit_ibm_runtime.Estimator "qiskit_ibm_runtime.Estimator")                                                               | alias of [`EstimatorV1`](qiskit_ibm_runtime.EstimatorV1 "qiskit_ibm_runtime.estimator.EstimatorV1") |
+| [`EstimatorV1`](qiskit_ibm_runtime.EstimatorV1 "qiskit_ibm_runtime.EstimatorV1")(\[backend, session, options])                           | Class for interacting with Qiskit Runtime Estimator primitive service.                              |
+| [`EstimatorV2`](qiskit_ibm_runtime.EstimatorV2 "qiskit_ibm_runtime.EstimatorV2")(\[backend, session, options])                           | Class for interacting with Qiskit Runtime Estimator primitive service.                              |
+| [`Sampler`](qiskit_ibm_runtime.Sampler "qiskit_ibm_runtime.Sampler")                                                                     | alias of [`SamplerV1`](qiskit_ibm_runtime.SamplerV1 "qiskit_ibm_runtime.sampler.SamplerV1")         |
+| [`SamplerV1`](qiskit_ibm_runtime.SamplerV1 "qiskit_ibm_runtime.SamplerV1")(\[backend, session, options])                                 | Class for interacting with Qiskit Runtime Sampler primitive service.                                |
+| [`SamplerV2`](qiskit_ibm_runtime.SamplerV2 "qiskit_ibm_runtime.SamplerV2")(\[backend, session, options])                                 | Class for interacting with Qiskit Runtime Sampler primitive service.                                |
+| [`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.Session")(\[service, backend, max\_time])                                     | Class for creating a Qiskit Runtime session.                                                        |
+| [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.IBMBackend")(configuration, service, api\_client)                       | Backend class interfacing with an IBM Quantum backend.                                              |
+| [`RuntimeJob`](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.RuntimeJob")(backend, api\_client, ...\[, ...])                         | Representation of a runtime program execution.                                                      |
+| [`RuntimeOptions`](qiskit_ibm_runtime.RuntimeOptions "qiskit_ibm_runtime.RuntimeOptions")(\[backend, image, log\_level, ...])            | Class for representing generic runtime execution options.                                           |
+| [`RuntimeEncoder`](qiskit_ibm_runtime.RuntimeEncoder "qiskit_ibm_runtime.RuntimeEncoder")(\*\[, skipkeys, ensure\_ascii, ...])           | JSON Encoder used by runtime service.                                                               |
+| [`RuntimeDecoder`](qiskit_ibm_runtime.RuntimeDecoder "qiskit_ibm_runtime.RuntimeDecoder")(\*args, \*\*kwargs)                            | JSON Decoder used by runtime service.                                                               |
 

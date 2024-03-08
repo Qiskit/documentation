@@ -100,8 +100,10 @@ async function main() {
 const PROVIDER_GLOBS_TO_LOAD = ["docs/api/qiskit/*.md"];
 const RUNTIME_GLOBS_TO_LOAD = [
   "docs/api/qiskit/providers_models.md",
+  "docs/api/qiskit-ibm-runtime/options.md",
   "docs/run/max-execution-time.mdx",
   "docs/run/configure-error-mitigation.mdx",
+  "docs/run/configure-runtime-compilation.mdx",
 ];
 const QISKIT_GLOBS_TO_LOAD = [
   "docs/build/circuit-construction.ipynb",

@@ -10,14 +10,14 @@ python_api_name: qiskit_ibm_runtime.options.ExecutionOptions
 
 <span id="qiskit_ibm_runtime.options.ExecutionOptions" />
 
-`ExecutionOptions(shots=4000, init_qubits=True)` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options/execution_options.py "view source code")
+`ExecutionOptions(*args, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options/execution_options.py#L40-L52 "view source code")
 
-Execution options.
+Execution options for V1 primitives.
 
 **Parameters**
 
-*   **shots** (`int`) – Number of repetitions of each circuit, for sampling. Default: 4000.
-*   **init\_qubits** (`bool`) – Whether to reset the qubits to the ground state for each shot. Default: `True`.
+*   **shots** – Number of repetitions of each circuit, for sampling. Default: 4000.
+*   **init\_qubits** – Whether to reset the qubits to the ground state for each shot. Default: `True`.
 
 ## Attributes
 
@@ -38,16 +38,4 @@ Execution options.
 `= 4000`
 
 ## Methods
-
-### validate\_execution\_options
-
-<span id="qiskit_ibm_runtime.options.ExecutionOptions.validate_execution_options" />
-
-`static validate_execution_options(execution_options)`
-
-Validate that execution options are legal. :raises ValueError: if any execution option is not supported
-
-**Return type**
-
-`None`
 

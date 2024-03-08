@@ -1,7 +1,7 @@
 ---
 title: graph_partition
 description: API reference for qiskit.optimization.applications.ising.graph_partition
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.optimization.applications.ising.graph_partition
 ---

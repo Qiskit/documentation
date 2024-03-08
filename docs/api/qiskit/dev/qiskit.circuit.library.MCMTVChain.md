@@ -116,7 +116,7 @@ Return the global phase of the current circuit scope in radians.
 
 ### instances
 
-`= 197`
+`= 193`
 
 <span id="qiskit.circuit.library.MCMTVChain.layout" />
 
@@ -148,11 +148,35 @@ Return the number of ancilla qubits required.
 
 Return the number of ancilla qubits.
 
+<span id="qiskit.circuit.library.MCMTVChain.num_captured_vars" />
+
+### num\_captured\_vars
+
+The number of runtime classical variables in the circuit marked as captured from an enclosing scope.
+
+This is the length of the `iter_captured_vars()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.MCMTVChain.num_input_vars "qiskit.circuit.library.MCMTVChain.num_input_vars") must be zero.
+
 <span id="qiskit.circuit.library.MCMTVChain.num_clbits" />
 
 ### num\_clbits
 
 Return number of classical bits.
+
+<span id="qiskit.circuit.library.MCMTVChain.num_declared_vars" />
+
+### num\_declared\_vars
+
+The number of runtime classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
+
+This is the length of the `iter_declared_vars()` iterable.
+
+<span id="qiskit.circuit.library.MCMTVChain.num_input_vars" />
+
+### num\_input\_vars
+
+The number of runtime classical variables in the circuit marked as circuit inputs.
+
+This is the length of the `iter_input_vars()` iterable. If this is non-zero, [`num_captured_vars`](#qiskit.circuit.library.MCMTVChain.num_captured_vars "qiskit.circuit.library.MCMTVChain.num_captured_vars") must be zero.
 
 <span id="qiskit.circuit.library.MCMTVChain.num_parameters" />
 
@@ -165,6 +189,14 @@ The number of parameter objects in the circuit.
 ### num\_qubits
 
 Return number of qubits.
+
+<span id="qiskit.circuit.library.MCMTVChain.num_vars" />
+
+### num\_vars
+
+The number of runtime classical variables in the circuit.
+
+This is the length of the `iter_vars()` iterable.
 
 <span id="qiskit.circuit.library.MCMTVChain.op_start_times" />
 
