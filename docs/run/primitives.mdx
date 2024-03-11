@@ -80,7 +80,7 @@ estimator.run([circuit1, circuit2, ...],[observable1, observable2, ...],[param_v
 
 #### Estimator V2
 
-* Takes one parameter: PUBs in the format (`<circuit>`, `<observables>`, `<parameter values>`, `<precision>`)
+* Takes one parameter: PUBs in the format (`<circuit>`, `<observables>`, `<parameter values>`, `<precision>`) (Note that there is only one circuit and optional `precision` value per PUB, but `parameter values` and `observables` can be lists or a single value.)
 * Combines elements from multiple arrays by following NumPy broadcasting rules as described below. 
 * Each input PUB has a corresponding PubResult that contains both data and metadata.
 
@@ -89,7 +89,7 @@ Example:
 ```python
 estimator.run([(circuit1, observable1, param_values1),(circuit2, observable2, param_values2) ])
 ```
-
+<span id="broadcast-rules"></span>
 ##### Broadcasting rules
 
 Estimator V2 aggregates elements from multiple arrays (observables and parameter values) by following the same broadcasting rules as NumPy. This section summarizes those rules.  For a detailed explanation, see the [NumPy broadcasting rules documentation.](https://numpy.org/doc/stable/user/basics.broadcasting.html)
@@ -174,8 +174,8 @@ sampler.run([circuit1, circuit2, ...],[observable1, observable2, ...],[param_val
 
 #### Sampler V2
 
-* Takes one parameter: PUBs in the format  (`<circuit>`, `<parameter values>`, `<shots>`)
-* Elements from each are aggregated.
+* Takes one parameter: PUBs in the format  (`<circuit>`, `<parameter values>`, `<shots>`) (Note that there is only one circuit per PUB and an optional value for `shots`, but `parameter values` can be a list or a single parameter)
+* Elements from each are aggregated. For example, each parameter value in the PUB is applied to the PUB's circuit.
 * Obeys program outputs. Typically this is a bit array but can also be an array of complex numbers (measurement level 1). 
 * Returns raw data type. Data from each shot is returned (analogous to `memory=True` in the `backend.run` interface), and post-processing is done by using convenience methods.
 * Output data is grouped by output registers.
