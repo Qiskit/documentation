@@ -139,4 +139,49 @@ describe("generateToc", () => {
       }
     `);
   });
+
+  test("generate a toc without modules", () => {
+    const toc = generateToc(Pkg.mock({}), [
+      {
+        meta: { apiType: "class", apiName: "Sampler" },
+        url: "/docs/qiskit_ibm_runtime.Sampler",
+      },
+      {
+        meta: { apiType: "method", apiName: "Sampler.run" },
+        url: "/docs/qiskit_ibm_runtime.Sampler.run",
+      },
+      {
+        meta: { apiType: "class", apiName: "Estimator" },
+        url: "/docs/qiskit_ibm_runtime.Estimator",
+      },
+      {
+        meta: { apiType: "class" },
+        url: "/docs/qiskit_ibm_runtime.NoName",
+      },
+      {
+        meta: { apiType: "class", apiName: "Options" },
+        url: "docs/qiskit_ibm_runtime.options.Options",
+      },
+      {
+        meta: {
+          apiType: "function",
+          apiName: "runSomething",
+        },
+        url: "docs/qiskit_ibm_runtime.runSomething",
+      },
+    ]);
+
+    expect(toc).toMatchInlineSnapshot(`
+      {
+        "children": [
+          {
+            "title": "Release notes",
+            "url": "/api/my-quantum-project/release-notes",
+          },
+        ],
+        "collapsed": true,
+        "title": "My Quantum Project",
+      }
+    `);
+  });
 });
