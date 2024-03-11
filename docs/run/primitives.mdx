@@ -158,19 +158,23 @@ observables = [
 ![Parameter value sets are represented by n x m arrays, and observable arrays are represented by one or more single-column arrays. For each example in the previous code, the parameter value sets are combined with their observable array to create the resulting EV estimates.  Example 1 (broadcast single observable) has a parameter value set that is a 5x1 array and a 1x1 observables array.  The one item in the observables array is combined with each item in the parameter value set to create a single 5x1 array where each item is a combination of the original item in the parameter value set with the item in the observables array.  Example 2 (zip) has a 5x1 parameter value set and a 5x1 observables array.  The output is a 5x1 array where each item is a combination of the nth item in the parameter value set with the nth item in the observables array.  Example 3 (outer/product) has a 1x6 parameter value set and a 4x1 observables array.  Their combination results in a 4x6 array that is created by combining each item in the parameter value set with *every* item in the observables array.  Thus, each parameter value becomes an entire column in the output.  Example 4 (Standard nd generalization) has a 3x6 parameter value set array and two 3x1 observables array.  They combine to create two 3x6 output arrays in a similar manner to the previous example.](/images/run/broadcasting.svg "Visual representation of broadcasting")
 
 <admonition type="note" title="SparsePauliOp">
-  Each `SparsePauliOp` counts as a single element in this context, regardless of the amount of Paulis contained in the `SparsePauliOp. So for the purpose of these broadcasting rules, all of the following elements have the same shape:
-   ```text
-  a = SparsePauliOp("Z") # shape ()
-  b = SparsePauliOp("IIIIZXYIZ") # shape ()
-  c = SparsePauliOp.from_list(["XX", "XY", "IZ"]) # shape ()
-  ```
-  The following lists of operators, while equivalent in terms of information contained, have different shapes:
-  ```text
-  list1 = SparsePauliOp.from_list(["XX", "XY", "IZ"]) # shape ()
-  list2 = [SparsePauliOp("XX"), SparsePauliOp("XY"), SparsePauliOp("IZ")] # shape (3, )
-  ```
+  Each `SparsePauliOp` counts as a single element in this context, regardless of the amount of Paulis contained in the `SparsePauliOp. 
 </admonition>
 
+Thus, for the purpose of these broadcasting rules, all of the following elements have the same shape:
+
+```text
+a = SparsePauliOp("Z") # shape ()
+b = SparsePauliOp("IIIIZXYIZ") # shape ()
+c = SparsePauliOp.from_list(["XX", "XY", "IZ"]) # shape ()
+```
+
+The following lists of operators, while equivalent in terms of information contained, have different shapes:
+
+```text
+list1 = SparsePauliOp.from_list(["XX", "XY", "IZ"]) # shape ()
+list2 = [SparsePauliOp("XX"), SparsePauliOp("XY"), SparsePauliOp("IZ")] # shape (3, )
+```
 
 #### Sampler V1
 
