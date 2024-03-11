@@ -11,7 +11,7 @@ The steps in this topic describes how to set up primitives, explore the options 
 <Admonition type="caution" title="Important">
 To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](../transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations; consequently, transpilation options referring to those tasks will no longer have any effect. Users can still request that the primitives do no optimization of input circuits by specifying `options.transpilation.skip_transpilation`.
 
-**Exception**: The Q-CTRL primitives continue to support abstract circuits, as in the following code: 
+*Exception*: When you initialize the Qiskit Runtime Service with the Q-CTRL channel strategy (example below), abstract circuits are still supported.
 
 ``` python
 service = QiskitRuntimeService(channel="ibm_cloud", channel_strategy="q-ctrl")
