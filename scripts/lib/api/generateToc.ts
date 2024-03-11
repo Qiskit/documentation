@@ -13,7 +13,7 @@
 import { Dictionary, isEmpty, keyBy, keys, orderBy } from "lodash";
 
 import { getLastPartFromFullIdentifier } from "../stringUtils";
-import { Metadata } from "./Metadata";
+import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
 import { Pkg } from "./Pkg";
 
 export type TocEntry = {
@@ -35,10 +35,7 @@ function nestModule(id: string): boolean {
   return id.split(".").length > 2;
 }
 
-export function generateToc(
-  pkg: Pkg,
-  results: Array<{ meta: Metadata; url: string }>,
-): Toc {
+export function generateToc(pkg: Pkg, results: HtmlToMdResultWithUrl[]): Toc {
   const [modules, items] = getModulesAndItems(results);
   const tocModules = generateTocModules(modules);
   const tocModulesByTitle = keyBy(tocModules, (toc) => toc.title);
@@ -60,11 +57,8 @@ export function generateToc(
 }
 
 function getModulesAndItems(
-  results: Array<{ meta: Metadata; url: string }>,
-): [
-  Array<{ meta: Metadata; url: string }>,
-  Array<{ meta: Metadata; url: string }>,
-] {
+  results: HtmlToMdResultWithUrl[],
+): [HtmlToMdResultWithUrl[], HtmlToMdResultWithUrl[]] {
   const resultsWithName = results.filter(
     (result) => !isEmpty(result.meta.apiName),
   );
@@ -82,9 +76,7 @@ function getModulesAndItems(
   return [modules, items];
 }
 
-function generateTocModules(
-  modules: Array<{ meta: Metadata; url: string }>,
-): TocEntry[] {
+function generateTocModules(modules: HtmlToMdResultWithUrl[]): TocEntry[] {
   return modules.map(
     (module): TocEntry => ({
       title: module.meta.apiName!,
@@ -95,7 +87,7 @@ function generateTocModules(
 }
 
 function addItemsToModules(
-  items: Array<{ meta: Metadata; url: string }>,
+  items: HtmlToMdResultWithUrl[],
   tocModulesByTitle: Dictionary<TocEntry>,
   tocModuleTitles: string[],
 ) {

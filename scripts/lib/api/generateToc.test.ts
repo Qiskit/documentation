@@ -15,6 +15,12 @@ import { describe, expect, test } from "@jest/globals";
 import { generateToc } from "./generateToc";
 import { Pkg } from "./Pkg";
 
+const DEFAULT_ARGS = {
+  markdown: "",
+  images: [],
+  isReleaseNotes: false,
+};
+
 describe("generateToc", () => {
   test("generate a toc", () => {
     const toc = generateToc(Pkg.mock({}), [
@@ -24,6 +30,7 @@ describe("generateToc", () => {
           apiName: "qiskit_ibm_runtime",
         },
         url: "/docs/runtime",
+        ...DEFAULT_ARGS,
       },
       {
         meta: {
@@ -31,26 +38,32 @@ describe("generateToc", () => {
           apiName: "qiskit_ibm_runtime.options",
         },
         url: "/docs/options",
+        ...DEFAULT_ARGS,
       },
       {
         meta: { apiType: "class", apiName: "Sampler" },
         url: "/docs/qiskit_ibm_runtime.Sampler",
+        ...DEFAULT_ARGS,
       },
       {
         meta: { apiType: "method", apiName: "Sampler.run" },
         url: "/docs/qiskit_ibm_runtime.Sampler.run",
+        ...DEFAULT_ARGS,
       },
       {
         meta: { apiType: "class", apiName: "Estimator" },
         url: "/docs/qiskit_ibm_runtime.Estimator",
+        ...DEFAULT_ARGS,
       },
       {
         meta: { apiType: "class" },
         url: "/docs/qiskit_ibm_runtime.NoName",
+        ...DEFAULT_ARGS,
       },
       {
         meta: { apiType: "class", apiName: "Options" },
         url: "docs/qiskit_ibm_runtime.options.Options",
+        ...DEFAULT_ARGS,
       },
       {
         meta: {
@@ -58,6 +71,7 @@ describe("generateToc", () => {
           apiName: "runSomething",
         },
         url: "docs/qiskit_ibm_runtime.runSomething",
+        ...DEFAULT_ARGS,
       },
       {
         meta: {
@@ -65,6 +79,7 @@ describe("generateToc", () => {
           apiName: "qiskit_ibm_runtime.single",
         },
         url: "/docs/single",
+        ...DEFAULT_ARGS,
       },
     ]);
 
@@ -104,11 +119,13 @@ describe("generateToc", () => {
       }),
       [
         {
+          ...DEFAULT_ARGS,
           meta: {
             apiType: "module",
             apiName: "qiskit_ibm_runtime",
           },
           url: "/docs/runtime/qiskit_ibm_runtime",
+          isReleaseNotes: true,
         },
       ],
     );
@@ -145,22 +162,27 @@ describe("generateToc", () => {
       {
         meta: { apiType: "class", apiName: "Sampler" },
         url: "/docs/qiskit_ibm_runtime.Sampler",
+        ...DEFAULT_ARGS,
       },
       {
         meta: { apiType: "method", apiName: "Sampler.run" },
         url: "/docs/qiskit_ibm_runtime.Sampler.run",
+        ...DEFAULT_ARGS,
       },
       {
         meta: { apiType: "class", apiName: "Estimator" },
         url: "/docs/qiskit_ibm_runtime.Estimator",
+        ...DEFAULT_ARGS,
       },
       {
         meta: { apiType: "class" },
         url: "/docs/qiskit_ibm_runtime.NoName",
+        ...DEFAULT_ARGS,
       },
       {
         meta: { apiType: "class", apiName: "Options" },
         url: "docs/qiskit_ibm_runtime.options.Options",
+        ...DEFAULT_ARGS,
       },
       {
         meta: {
@@ -168,6 +190,7 @@ describe("generateToc", () => {
           apiName: "runSomething",
         },
         url: "docs/qiskit_ibm_runtime.runSomething",
+        ...DEFAULT_ARGS,
       },
     ]);
 
