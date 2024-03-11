@@ -31,6 +31,10 @@ async function toMd(html: string, withMetadata: boolean = false) {
 }
 
 describe("sphinxHtmlToMarkdown", () => {
+  // ------------------------------------------------------------------
+  // Transform tabs
+  // ------------------------------------------------------------------
+
   test("handle tabs", async () => {
     expect(
       await toMd(`<div role='main'>
@@ -70,7 +74,150 @@ describe("sphinxHtmlToMarkdown", () => {
           `);
   });
 
-  test("handle tables", async () => {
+  // ------------------------------------------------------------------
+  // Transform special characters
+  // ------------------------------------------------------------------
+
+  test("handle special characters: `<` and `{`", async () => {
+    expect(
+      await toMd(`
+    <div role='main'>
+    <p>For the full list of backend attributes, see the <cite>IBMBackend</cite> class documentation
+&lt;<a class='reference external' href='https://qiskit.org/documentation/apidoc/providers_models.html'>https://qiskit.org/documentation/apidoc/providers_models.html</a>&gt;</p>
+</p></li>
+
+<p><strong>basis_fidelity</strong> (<em>dict</em><em> | </em><em>float</em>) – available strengths and fidelity of each.
+Can be either (1) a dictionary mapping XX angle values to fidelity at that angle; or
+(2) a single float f, interpreted as {pi: f, pi/2: f/2, pi/3: f/3}.</p>
+    </div>
+    `),
+    ).toMatchInlineSnapshot(`
+      "For the full list of backend attributes, see the IBMBackend class documentation \\<[https://qiskit.org/documentation/apidoc/providers\\_models.html](https://qiskit.org/documentation/apidoc/providers_models.html)>
+
+      **basis\\_fidelity** (*dict | float*) – available strengths and fidelity of each. Can be either (1) a dictionary mapping XX angle values to fidelity at that angle; or (2) a single float f, interpreted as \\{pi: f, pi/2: f/2, pi/3: f/3}.
+      "
+    `);
+  });
+
+  // ------------------------------------------------------------------
+  // Transform code blocks
+  // ------------------------------------------------------------------
+
+  test("translate codeblocks to code fences with lang python", async () => {
+    expect(
+      await toMd(`
+    <div role='main'>
+<pre><span></span><span class='n'>QiskitRuntimeService</span><span class='o'>.</span><span class='n'>backends</span><span class='p'>(</span>
+    <span class='n'>filters</span><span class='o'>=</span><span class='k'>lambda</span> <span class='n'>b</span><span class='p'>:</span> <span class='n'>b</span><span class='o'>.</span><span class='n'>max_shots</span> <span class='o'>&gt;</span> <span class='mi'>50000</span><span class='p'>)</span>
+<span class='n'>QiskitRuntimeService</span><span class='o'>.</span><span class='n'>backends</span><span class='p'>(</span>
+    <span class='n'>filters</span><span class='o'>=</span><span class='k'>lambda</span> <span class='n'>x</span><span class='p'>:</span> <span class='p'>(</span><span class='s2'>&quot;rz&quot;</span> <span class='ow'>in</span> <span class='n'>x</span><span class='o'>.</span><span class='n'>basis_gates</span> <span class='p'>)</span>
+</pre>
+    </div>
+    `),
+    ).toMatchInlineSnapshot(`
+              "\`\`\`python
+              QiskitRuntimeService.backends(
+                  filters=lambda b: b.max_shots > 50000)
+              QiskitRuntimeService.backends(
+                  filters=lambda x: ("rz" in x.basis_gates )
+              \`\`\`
+              "
+          `);
+  });
+
+  // ------------------------------------------------------------------
+  // Transform methods and attributes
+  // ------------------------------------------------------------------
+
+  test("handle inlined methods and attributes", async () => {
+    expect(
+      await toMd(`
+      <div role="main">
+
+<h1>DAGCircuit<a class="headerlink" href="#dagcircuit" title="Permalink to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="qiskit.dagcircuit.DAGCircuit">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qiskit.dagcircuit.</span></span><span class="sig-name descname"><span class="pre">DAGCircuit</span></span><a class="reference internal" href="../_modules/qiskit/dagcircuit/dagcircuit.html#DAGCircuit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qiskit.dagcircuit.DAGCircuit" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Quantum circuit as a directed acyclic graph.</p>
+<p class="rubric">Attributes</p>
+<dl class='py attribute'>
+<dt class='sig sig-object py' id='qiskit.circuit.QuantumCircuit.ancillas'>
+  <span class='sig-name descname'><span class='pre'>ancillas</span></span><a class='headerlink'
+                                                                             href='#qiskit.circuit.QuantumCircuit.ancillas'
+                                                                             title='Permalink to this definition'>¶</a>
+</dt>
+<dd><p>Returns a list of ancilla bits in the order that the registers were added.</p></dd>
+</dl>
+<p class="rubric">Methods</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="qiskit.dagcircuit.DAGCircuit.add_calibration">
+<span class="sig-name descname"><span class="pre">add_calibration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qubits</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">schedule</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qiskit/dagcircuit/dagcircuit.html#DAGCircuit.add_calibration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qiskit.dagcircuit.DAGCircuit.add_calibration" title="Permalink to this definition">#</a></dt>
+<dd><p>Register a low-level, custom pulse definition for the given gate.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gate</strong> (<em>Union</em><em>[</em><a class="reference internal" href="qiskit.circuit.Gate.html#qiskit.circuit.Gate" title="qiskit.circuit.Gate"><em>Gate</em></a><em>, </em><em>str</em><em>]</em>) – Gate information.</p></li>
+<li><p><strong>qubits</strong> (<em>Union</em><em>[</em><em>int</em><em>, </em><em>Tuple</em><em>[</em><em>int</em><em>]</em><em>]</em>) – List of qubits to be measured.</p></li>
+<li><p><strong>schedule</strong> (<a class="reference internal" href="qiskit.pulse.Schedule.html#qiskit.pulse.Schedule" title="qiskit.pulse.Schedule"><em>Schedule</em></a>) – Schedule information.</p></li>
+<li><p><strong>params</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>Union</em><em>[</em><em>float</em><em>, </em><a class="reference internal" href="qiskit.circuit.Parameter.html#qiskit.circuit.Parameter" title="qiskit.circuit.Parameter"><em>Parameter</em></a><em>]</em><em>]</em><em>]</em>) – A list of parameters.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>Exception</strong> – if the gate is of type string and params is None.</p>
+</dd>
+</dl>
+</dd></dl>
+ </div>
+      `),
+    ).toMatchInlineSnapshot(`
+      "# DAGCircuit
+
+      <span id="qiskit.dagcircuit.DAGCircuit" />
+
+      \`qiskit.dagcircuit.DAGCircuit\` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit/dagcircuit/dagcircuit.py "view source code")
+
+      Bases: \`object\`
+
+      Quantum circuit as a directed acyclic graph.
+
+      ## Attributes
+
+      <span id="qiskit.circuit.QuantumCircuit.ancillas" />
+
+      ### ancillas
+
+      Returns a list of ancilla bits in the order that the registers were added.
+
+      ## Methods
+
+      ### add\\_calibration
+
+      <span id="qiskit.dagcircuit.DAGCircuit.add_calibration" />
+
+      \`add_calibration(gate, qubits, schedule, params=None)\`
+
+      Register a low-level, custom pulse definition for the given gate.
+
+      **Parameters**
+
+      *   **gate** (*Union\\[*[*Gate*](qiskit.circuit.Gate#qiskit.circuit.Gate "qiskit.circuit.Gate")*, str]*) – Gate information.
+      *   **qubits** (*Union\\[int, Tuple\\[int]]*) – List of qubits to be measured.
+      *   **schedule** ([*Schedule*](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule")) – Schedule information.
+      *   **params** (*Optional\\[List\\[Union\\[float,* [*Parameter*](qiskit.circuit.Parameter#qiskit.circuit.Parameter "qiskit.circuit.Parameter")*]]]*) – A list of parameters.
+
+      **Raises**
+
+      **Exception** – if the gate is of type string and params is None.
+      "
+    `);
+  });
+
+  // ------------------------------------------------------------------
+  // Transform HTML tags
+  // ------------------------------------------------------------------
+
+  test("transform tables", async () => {
     expect(
       await toMd(`
       <div role='main'>
@@ -124,115 +271,30 @@ describe("sphinxHtmlToMarkdown", () => {
           `);
   });
 
-  test("handle special characters: `<` and `{`", async () => {
-    expect(
-      await toMd(`
-    <div role='main'>
-    <p>For the full list of backend attributes, see the <cite>IBMBackend</cite> class documentation
-&lt;<a class='reference external' href='https://qiskit.org/documentation/apidoc/providers_models.html'>https://qiskit.org/documentation/apidoc/providers_models.html</a>&gt;</p>
-</p></li>
-
-<p><strong>basis_fidelity</strong> (<em>dict</em><em> | </em><em>float</em>) – available strengths and fidelity of each.
-Can be either (1) a dictionary mapping XX angle values to fidelity at that angle; or
-(2) a single float f, interpreted as {pi: f, pi/2: f/2, pi/3: f/3}.</p>
-    </div>
-    `),
-    ).toMatchInlineSnapshot(`
-      "For the full list of backend attributes, see the IBMBackend class documentation \\<[https://qiskit.org/documentation/apidoc/providers\\_models.html](https://qiskit.org/documentation/apidoc/providers_models.html)>
-
-      **basis\\_fidelity** (*dict | float*) – available strengths and fidelity of each. Can be either (1) a dictionary mapping XX angle values to fidelity at that angle; or (2) a single float f, interpreted as \\{pi: f, pi/2: f/2, pi/3: f/3}.
-      "
-    `);
-  });
-
-  test("translate codeblocks to code fences with lang python", async () => {
-    expect(
-      await toMd(`
-    <div role='main'>
-<pre><span></span><span class='n'>QiskitRuntimeService</span><span class='o'>.</span><span class='n'>backends</span><span class='p'>(</span>
-    <span class='n'>filters</span><span class='o'>=</span><span class='k'>lambda</span> <span class='n'>b</span><span class='p'>:</span> <span class='n'>b</span><span class='o'>.</span><span class='n'>max_shots</span> <span class='o'>&gt;</span> <span class='mi'>50000</span><span class='p'>)</span>
-<span class='n'>QiskitRuntimeService</span><span class='o'>.</span><span class='n'>backends</span><span class='p'>(</span>
-    <span class='n'>filters</span><span class='o'>=</span><span class='k'>lambda</span> <span class='n'>x</span><span class='p'>:</span> <span class='p'>(</span><span class='s2'>&quot;rz&quot;</span> <span class='ow'>in</span> <span class='n'>x</span><span class='o'>.</span><span class='n'>basis_gates</span> <span class='p'>)</span>
-</pre>
-    </div>
-    `),
-    ).toMatchInlineSnapshot(`
-              "\`\`\`python
-              QiskitRuntimeService.backends(
-                  filters=lambda b: b.max_shots > 50000)
-              QiskitRuntimeService.backends(
-                  filters=lambda x: ("rz" in x.basis_gates )
-              \`\`\`
-              "
-          `);
-  });
-
-  test("remove () around module titles", async () => {
-    expect(
-      await toMd(`<div role='main'>
-  <span class="target" id="module-qiskit_ibm_runtime"></span><section id="qiskit-runtime-qiskit-ibm-runtime">
-<h1>Qiskit Runtime (<a class="reference internal" href="#module-qiskit_ibm_runtime" title="qiskit_ibm_runtime"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qiskit_ibm_runtime</span></code></a>)<a class="headerlink" href="#qiskit-runtime-qiskit-ibm-runtime" title="Permalink to this heading">¶</a></h1>
-<p>Modules related to Qiskit Runtime IBM Client.</p>
-</div>
-`),
-    ).toMatchInlineSnapshot(`
-      "<span id="module-qiskit_ibm_runtime" />
-
-      <span id="qiskit-runtime-qiskit-ibm-runtime" />
-
-      # Qiskit Runtime
-
-      <span id="module-qiskit_ibm_runtime" />
-
-      \`qiskit_ibm_runtime\`
-
-      Modules related to Qiskit Runtime IBM Client.
-      "
-    `);
-  });
-
-  test("preserve span with ids", async () => {
+  test("preserve <span> with ids", async () => {
     expect(
       await toMd(`
   <div role='main' class='main-content' itemscope='itemscope' itemtype='http://schema.org/Article'>
     <article itemprop='articleBody' id='pytorch-article' class='pytorch-article'>
-
-      <span class='target' id='module-qiskit.assembler'><span id='qiskit-assembler'></span></span>
+      <span id='qiskit-assembler'></span>
       <section id='circuit-and-schedule-assembler-qiskit-assembler'>
-        <h1>Circuit and Schedule Assembler (<a class='reference internal' href='#module-qiskit.assembler'
-                                               title='qiskit.assembler'><code
-          class='xref py py-mod docutils literal notranslate'><span class='pre'>qiskit.assembler</span></code></a>)<a
-          class='headerlink' href='#circuit-and-schedule-assembler-qiskit-assembler'
-          title='Permalink to this heading'>¶</a></h1>
-        <section id='circuit-assembler'>
-          <h2>Circuit Assembler<a class='headerlink' href='#circuit-assembler' title='Permalink to this heading'>¶</a>
-          </h2>
-        </section>
+          <h1>Circuit Assembler<a class='headerlink' href='#circuit-assembler' title='Permalink to this heading'>¶</a>
+          </h1>
       </section>
     </article>
   </div>
     `),
     ).toMatchInlineSnapshot(`
-      "<span id="module-qiskit.assembler" />
-
-      <span id="qiskit-assembler" />
+      "<span id="qiskit-assembler" />
 
       <span id="circuit-and-schedule-assembler-qiskit-assembler" />
 
-      # Circuit and Schedule Assembler
-
-      <span id="module-qiskit.assembler" />
-
-      \`qiskit.assembler\`
-
-      <span id="circuit-assembler" />
-
-      ## Circuit Assembler
+      # Circuit Assembler
       "
     `);
   });
 
-  test("merge contiguous emphasis removing spaces", async () => {
+  test("merge contiguous <em> removing spaces", async () => {
     expect(
       await toMd(`
       <div role="main">
@@ -264,107 +326,7 @@ for execution on present day noisy quantum systems.</p>
     `);
   });
 
-  // ------------------------------------------------------------------
-  // Transform methods and attributes
-  // ------------------------------------------------------------------
-
-  test("handle inlined methods and attributes", async () => {
-    expect(
-      await toMd(`
-      <div role="main">
-
-<h1>DAGCircuit<a class="headerlink" href="#dagcircuit" title="Permalink to this heading">#</a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="qiskit.dagcircuit.DAGCircuit">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qiskit.dagcircuit.</span></span><span class="sig-name descname"><span class="pre">DAGCircuit</span></span><a class="reference internal" href="../_modules/qiskit/dagcircuit/dagcircuit.html#DAGCircuit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qiskit.dagcircuit.DAGCircuit" title="Permalink to this definition">#</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Quantum circuit as a directed acyclic graph.</p>
-<p>There are 3 types of nodes in the graph: inputs, outputs, and operations.
-The nodes are connected by directed edges that correspond to qubits and
-bits.</p>
-<p>Create an empty circuit.</p>
-<p class="rubric">Attributes</p>
-<dl class='py attribute'>
-<dt class='sig sig-object py' id='qiskit.circuit.QuantumCircuit.ancillas'>
-  <span class='sig-name descname'><span class='pre'>ancillas</span></span><a class='headerlink'
-                                                                             href='#qiskit.circuit.QuantumCircuit.ancillas'
-                                                                             title='Permalink to this definition'>¶</a>
-</dt>
-<dd><p>Returns a list of ancilla bits in the order that the registers were added.</p></dd>
-</dl>
-<p class="rubric">Methods</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="qiskit.dagcircuit.DAGCircuit.add_calibration">
-<span class="sig-name descname"><span class="pre">add_calibration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qubits</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">schedule</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qiskit/dagcircuit/dagcircuit.html#DAGCircuit.add_calibration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qiskit.dagcircuit.DAGCircuit.add_calibration" title="Permalink to this definition">#</a></dt>
-<dd><p>Register a low-level, custom pulse definition for the given gate.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>gate</strong> (<em>Union</em><em>[</em><a class="reference internal" href="qiskit.circuit.Gate.html#qiskit.circuit.Gate" title="qiskit.circuit.Gate"><em>Gate</em></a><em>, </em><em>str</em><em>]</em>) – Gate information.</p></li>
-<li><p><strong>qubits</strong> (<em>Union</em><em>[</em><em>int</em><em>, </em><em>Tuple</em><em>[</em><em>int</em><em>]</em><em>]</em>) – List of qubits to be measured.</p></li>
-<li><p><strong>schedule</strong> (<a class="reference internal" href="qiskit.pulse.Schedule.html#qiskit.pulse.Schedule" title="qiskit.pulse.Schedule"><em>Schedule</em></a>) – Schedule information.</p></li>
-<li><p><strong>params</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>Union</em><em>[</em><em>float</em><em>, </em><a class="reference internal" href="qiskit.circuit.Parameter.html#qiskit.circuit.Parameter" title="qiskit.circuit.Parameter"><em>Parameter</em></a><em>]</em><em>]</em><em>]</em>) – A list of parameters.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>Exception</strong> – if the gate is of type string and params is None.</p>
-</dd>
-</dl>
-</dd></dl>
- </div>
-      `),
-    ).toMatchInlineSnapshot(`
-      "# DAGCircuit
-
-      <span id="qiskit.dagcircuit.DAGCircuit" />
-
-      \`qiskit.dagcircuit.DAGCircuit\` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit/dagcircuit/dagcircuit.py "view source code")
-
-      Bases: \`object\`
-
-      Quantum circuit as a directed acyclic graph.
-
-      There are 3 types of nodes in the graph: inputs, outputs, and operations. The nodes are connected by directed edges that correspond to qubits and bits.
-
-      Create an empty circuit.
-
-      ## Attributes
-
-      <span id="qiskit.circuit.QuantumCircuit.ancillas" />
-
-      ### ancillas
-
-      Returns a list of ancilla bits in the order that the registers were added.
-
-      ## Methods
-
-      ### add\\_calibration
-
-      <span id="qiskit.dagcircuit.DAGCircuit.add_calibration" />
-
-      \`add_calibration(gate, qubits, schedule, params=None)\`
-
-      Register a low-level, custom pulse definition for the given gate.
-
-      **Parameters**
-
-      *   **gate** (*Union\\[*[*Gate*](qiskit.circuit.Gate#qiskit.circuit.Gate "qiskit.circuit.Gate")*, str]*) – Gate information.
-      *   **qubits** (*Union\\[int, Tuple\\[int]]*) – List of qubits to be measured.
-      *   **schedule** ([*Schedule*](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule")) – Schedule information.
-      *   **params** (*Optional\\[List\\[Union\\[float,* [*Parameter*](qiskit.circuit.Parameter#qiskit.circuit.Parameter "qiskit.circuit.Parameter")*]]]*) – A list of parameters.
-
-      **Raises**
-
-      **Exception** – if the gate is of type string and params is None.
-      "
-    `);
-  });
-
-  // ------------------------------------------------------------------
-  // Transform description HTML tags
-  // ------------------------------------------------------------------
-
-  test("transform dl, dd, dt elements", async () => {
+  test("transform <dl>, <dd>, <dt> elements", async () => {
     expect(
       await toMd(`<div role='main'>
   <dl>
@@ -395,7 +357,7 @@ bits.</p>
   });
 
   // For more information: https://github.com/Qiskit/documentation/issues/485
-  test("dt sig-object tags without id", async () => {
+  test("transform <dt> sig-object tags without id", async () => {
     expect(
       await toMd(`
       <div role="main">
@@ -426,21 +388,21 @@ bits.</p>
   `),
     ).toMatchInlineSnapshot(`
     "In addition to the public abstract methods, subclasses should also implement the following private methods:
-    
+
     \`classmethod _default_options()\`
-    
+
     Return the default options
-    
+
     This method will return a [\`qiskit.providers.Options\`](qiskit.providers.Options#qiskit.providers.Options "qiskit.providers.Options") subclass object that will be used for the default options. These should be the default parameters to use for the options of the backend.
-    
+
     **Returns**
-    
+
     **A options object with**
-    
+
     default values set
-    
+
     **Return type**
-    
+
     [qiskit.providers.Options](qiskit.providers.Options#qiskit.providers.Options "qiskit.providers.Options")
     "
     `);
@@ -958,6 +920,41 @@ By default this is sys.stdout.</p></li>
   `);
   });
 
+  test("convert module headings removing () around the title", async () => {
+    expect(
+      await toMd(
+        `<div role='main'>
+  <span class="target" id="module-qiskit_ibm_runtime"></span><section id="qiskit-runtime-qiskit-ibm-runtime">
+<h1>Qiskit Runtime (<a class="reference internal" href="#module-qiskit_ibm_runtime" title="qiskit_ibm_runtime"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qiskit_ibm_runtime</span></code></a>)<a class="headerlink" href="#qiskit-runtime-qiskit-ibm-runtime" title="Permalink to this heading">¶</a></h1>
+<p>Modules related to Qiskit Runtime IBM Client.</p>
+</div>
+`,
+        true,
+      ),
+    ).toMatchInlineSnapshot(`
+    {
+      "images": [],
+      "isReleaseNotes": false,
+      "markdown": "<span id="module-qiskit_ibm_runtime" />
+
+    <span id="qiskit-runtime-qiskit-ibm-runtime" />
+
+    # Qiskit Runtime
+
+    <span id="module-qiskit_ibm_runtime" />
+
+    \`qiskit_ibm_runtime\`
+
+    Modules related to Qiskit Runtime IBM Client.
+    ",
+      "meta": {
+        "apiName": "qiskit_ibm_runtime",
+        "apiType": "module",
+      },
+    }
+    `);
+  });
+
   // ------------------------------------------------------------------
   // Release notes HTML to markdown
   // ------------------------------------------------------------------
@@ -974,7 +971,7 @@ By default this is sys.stdout.</p></li>
             <span id="release-notes-0-14-0-new-features"></span><h3>New Features<a class="headerlink" href="#new-features" title="Link to this heading">#</a></h3>
             <ul class="simple">
             <li><p>There is a new class, <code class="xref py py-class docutils literal notranslate"><span class="pre">qiskit_ibm_runtime.Batch</span></code> that currently works
-            the same way as <a class="reference internal" href="stubs/qiskit_ibm_runtime.Session.html#qiskit_ibm_runtime.Session" title="qiskit_ibm_runtime.Session"><code class="xref py py-class docutils literal notranslate"><span class="pre">qiskit_ibm_runtime.Session</span></code></a> but will later be updated 
+            the same way as <a class="reference internal" href="stubs/qiskit_ibm_runtime.Session.html#qiskit_ibm_runtime.Session" title="qiskit_ibm_runtime.Session"><code class="xref py py-class docutils literal notranslate"><span class="pre">qiskit_ibm_runtime.Session</span></code></a> but will later be updated
             to better support submitting multiple jobs at once.</p></li>
             </ul>
             `,
