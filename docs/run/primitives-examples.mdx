@@ -471,13 +471,14 @@ for circuit in circuits:
     circuit.measure_all()
 
 pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
-isa_circuits = pm.run(circuit)    
+isa_circuits = pm.run(circuits)
  
 sampler = Sampler(backend) 
-job = sampler.run([(isa_circuits)])
+job = sampler.run(isa_circuits)
 result = job.result() 
 
-print(f" > Counts: {result[0].data.meas.get_counts()}") 
+for idx, pub_result in enumerate(result):
+    print(f" > Counts for pub {idx}: {pub_result.data.meas.get_counts()}")
 ```
   </TabItem>
 
