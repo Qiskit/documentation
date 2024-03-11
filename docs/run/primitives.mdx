@@ -137,11 +137,9 @@ observables = SparsePauliOp("ZZZ")  # this has shape ()
 >> pub result has shape (5,)
 
 # Zip
-parameter_values = BindingsArray(np.random.uniform(size=(5,)))
-parameter_values.shape == (5,)
-observables = SparsePauliOp("Z" * 5)
-observables.shape == (5,)
->> task_result.shape == (5,)
+parameter_values = np.random.uniform(size=(5,))  # this has shape (5,)
+observables = [SparsePauliOp(pauli) for pauli in ["III", "XXX", "YYY", "ZZZ", "XYZ"]]  # this has shape (5,)
+>> pub result has shape (5,)
 
 # Outer/Product
 parameter_values = BindingsArray(np.random.uniform(size=(1, 6)))
