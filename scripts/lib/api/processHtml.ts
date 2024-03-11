@@ -281,12 +281,6 @@ export function processMembersAndSetMeta(
     const $dl = $(dl);
     const id = $dl.find("dt").attr("id") || "";
     const apiType = getApiType($dl);
-    const priorApiType = meta.apiType;
-
-    if (!priorApiType) {
-      meta.apiType = apiType;
-      meta.apiName = id;
-    }
 
     const replacement = $dl
       .children()
@@ -296,6 +290,13 @@ export function processMembersAndSetMeta(
         if (child.name !== "dt" || !apiType) {
           return `<div>${$child.html()}</div>`;
         }
+
+        const priorApiType = meta.apiType;
+        if (!priorApiType) {
+          meta.apiType = apiType;
+          meta.apiName = id;
+        }
+
         return processMember($, $main, $child, $dl, priorApiType, apiType, id);
       })
       .join("\n");
