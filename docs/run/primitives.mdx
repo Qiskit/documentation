@@ -142,11 +142,9 @@ observables = [SparsePauliOp(pauli) for pauli in ["III", "XXX", "YYY", "ZZZ", "X
 >> pub result has shape (5,)
 
 # Outer/Product
-parameter_values = BindingsArray(np.random.uniform(size=(1, 6)))
-parameter_values.shape == (1, 6)
-observables = SparsePauliOp("Z" * 4)
-observables.shape == (4, 1)
->> task_result.shape == (4,6)
+parameter_values = np.random.uniform(size=(1, 6))  # this has shape (1, 6)
+observables = [[SparsePauliOp(pauli)] for pauli in ["III", "XXX", "YYY", "ZZZ"]]  # this has shape (4, 1)
+>> pub result has shape (4, 6)
 
 # Standard nd generalization
 parameter_values = BindingsArray(np.random.uniform(size=(3, 6)))
