@@ -10,7 +10,7 @@ python_api_name: qiskit.visualization.pulse_drawer
 
 <span id="qiskit.visualization.pulse_drawer" />
 
-`pulse_drawer(data, dt=1, style=None, filename=None, interp_method=None, scale=None, channel_scales=None, channels_to_plot=None, plot_all=False, plot_range=None, interactive=False, table=True, label=False, framechange=True, channels=None, scaling=None, show_framechange_channels=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/visualization/pulse_visualization.py "view source code")
+`pulse_drawer(data, dt=1, style=None, filename=None, interp_method=None, scale=None, channel_scales=None, channels_to_plot=None, plot_all=False, plot_range=None, interactive=False, table=True, label=False, framechange=True, channels=None, scaling=None, show_framechange_channels=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/visualization/pulse_visualization.py "view source code")
 
 Plot the interpolated envelope of pulse and schedule.
 
@@ -18,12 +18,12 @@ Plot the interpolated envelope of pulse and schedule.
 
 *   **data** (`Union`\[[`SamplePulse`](qiskit.pulse.pulse_lib.SamplePulse "qiskit.pulse.pulse_lib.sample_pulse.SamplePulse"), `ScheduleComponent`]) – Pulse or schedule object to plot.
 *   **dt** (`int`) – Time interval of samples. Pulses are visualized in the unit of cycle time if not provided.
-*   **style** (`Union`\[[`PulseStyle`](qiskit.visualization.pulse.qcstyle#qiskit.visualization.pulse.qcstyle.PulseStyle "qiskit.visualization.pulse.qcstyle.PulseStyle"), [`SchedStyle`](qiskit.visualization.pulse.qcstyle#qiskit.visualization.pulse.qcstyle.SchedStyle "qiskit.visualization.pulse.qcstyle.SchedStyle"), `None`]) – A style sheet to configure plot appearance. See [`qcstyle`](qiskit.visualization.pulse.qcstyle#module-qiskit.visualization.pulse.qcstyle "qiskit.visualization.pulse.qcstyle") for more information.
+*   **style** (`Union`\[[`PulseStyle`](qiskit.visualization.pulse.qcstyle#pulsestyle "qiskit.visualization.pulse.qcstyle.PulseStyle"), [`SchedStyle`](qiskit.visualization.pulse.qcstyle#schedstyle "qiskit.visualization.pulse.qcstyle.SchedStyle"), `None`]) – A style sheet to configure plot appearance. See [`qcstyle`](qiskit.visualization.pulse.qcstyle#module-qiskit.visualization.pulse.qcstyle "qiskit.visualization.pulse.qcstyle") for more information.
 *   **filename** (`Optional`\[`str`]) – Name required to save pulse image. The drawer just returns matplot.Figure object if not provided.
 *   **interp\_method** (`Optional`\[`Callable`]) – Interpolation function. Interpolation is disabled in default. See [`interpolation`](qiskit.visualization.pulse.interpolation#module-qiskit.visualization.pulse.interpolation "qiskit.visualization.pulse.interpolation") for more information.
 *   **scale** (`Optional`\[`float`]) – Scaling of waveform amplitude. Pulses are automatically scaled channel by channel if not provided.
-*   **channel\_scales** (`Optional`\[`Dict`\[[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel"), `float`]]) – Dictionary of scale factor for specific channels. Scale of channels not specified here is overwritten by scale.
-*   **channels\_to\_plot** (`Optional`\[`List`\[[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]]) – Deprecated, see channels.
+*   **channel\_scales** (`Optional`\[`Dict`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel"), `float`]]) – Dictionary of scale factor for specific channels. Scale of channels not specified here is overwritten by scale.
+*   **channels\_to\_plot** (`Optional`\[`List`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")]]) – Deprecated, see channels.
 *   **plot\_all** (`bool`) – When set True plot empty channels.
 *   **plot\_range** (`Optional`\[`Tuple`\[`Union`\[`int`, `float`], `Union`\[`int`, `float`]]]) – A tuple of time range to plot.
 *   **interactive** (`bool`) – When set True show the circuit in a new window. This depends on the matplotlib backend being used supporting this.
@@ -31,7 +31,7 @@ Plot the interpolated envelope of pulse and schedule.
 *   **label** (`bool`) – When set True draw label for individual instructions.
 *   **framechange** (`bool`) – When set True draw framechange indicators.
 *   **scaling** (`Optional`\[`float`]) – Deprecated, see scale.
-*   **channels** (`Optional`\[`List`\[[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]]) – A list of channel names to plot. All non-empty channels are shown if not provided.
+*   **channels** (`Optional`\[`List`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")]]) – A list of channel names to plot. All non-empty channels are shown if not provided.
 *   **show\_framechange\_channels** (`bool`) – When set True plot channels with only framechange instructions.
 
 **Returns**

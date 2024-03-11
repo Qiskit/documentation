@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.algorithms.pes_samplers.VibronicStructureBase
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.VibronicStructureBase" />
 
-`VibronicStructureBase(molecule)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/potentials/potential_base.py "view source code")
+`VibronicStructureBase(molecule)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/potentials/potential_base.py "view source code")
 
 Class to hold a molecular vibronic structure providing access to vibrational modes and energy levels.
 

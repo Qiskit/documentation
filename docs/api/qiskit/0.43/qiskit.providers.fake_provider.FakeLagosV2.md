@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeLagosV2
 
 <span id="qiskit.providers.fake_provider.FakeLagosV2" />
 
-`FakeLagosV2`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/backends/lagos/fake_lagos.py "view source code")
+`FakeLagosV2` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/backends/lagos/fake_lagos.py "view source code")
 
 Bases: `FakeBackendV2`
 

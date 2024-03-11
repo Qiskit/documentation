@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.SuperOp
 
 <span id="qiskit.quantum_info.SuperOp" />
 
-`qiskit.quantum_info.SuperOp(data, input_dims=None, output_dims=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/quantum_info/operators/channel/superop.py "view source code")
+`qiskit.quantum_info.SuperOp(data, input_dims=None, output_dims=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/quantum_info/operators/channel/superop.py "view source code")
 
 Bases: `QuantumChannel`
 
@@ -19,10 +19,10 @@ Superoperator representation of a quantum channel.
 The Superoperator representation of a quantum channel $\mathcal{E}$ is a matrix $S$ such that the evolution of a [`DensityMatrix`](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") $\rho$ is given by
 
 $$
-\vert \mathcal{E}(\rho)\rangle\!\rangle = S \vert \rho\rangle\!\rangle
+|\mathcal{E}(\rho)\rangle\!\rangle = S |\rho\rangle\!\rangle
 $$
 
-where the double-ket notation $\vert A\rangle\!\rangle$ denotes a vector formed by stacking the columns of the matrix $A$ *(column-vectorization)*.
+where the double-ket notation $|A\rangle\!\rangle$ denotes a vector formed by stacking the columns of the matrix $A$ *(column-vectorization)*.
 
 See reference \[1] for further details.
 

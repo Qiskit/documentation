@@ -10,7 +10,7 @@ python_api_name: qiskit.finance.data_providers.DataType
 
 <span id="qiskit.finance.data_providers.DataType" />
 
-`DataType(value)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/finance/data_providers/_base_data_provider.py "view source code")
+`DataType(value)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/finance/data_providers/_base_data_provider.py "view source code")
 
 Data Type Enum
 

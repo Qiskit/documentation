@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.transforms.AlignSequential
 
 <span id="qiskit.pulse.transforms.AlignSequential" />
 
-`qiskit.pulse.transforms.AlignSequential`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/pulse/transforms/alignments.py "view source code")
+`qiskit.pulse.transforms.AlignSequential` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/pulse/transforms/alignments.py "view source code")
 
 Bases: [`AlignmentKind`](pulse#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.alignments.AlignmentKind")
 

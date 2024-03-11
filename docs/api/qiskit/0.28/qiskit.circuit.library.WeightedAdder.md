@@ -10,15 +10,15 @@ python_api_name: qiskit.circuit.library.WeightedAdder
 
 <span id="qiskit.circuit.library.WeightedAdder" />
 
-`WeightedAdder(num_state_qubits=None, weights=None, name='adder')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/arithmetic/weighted_adder.py "view source code")
+`WeightedAdder(num_state_qubits=None, weights=None, name='adder')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/arithmetic/weighted_adder.py "view source code")
 
 A circuit to compute the weighted sum of qubit registers.
 
 Given $n$ qubit basis states $q_0, \ldots, q_{n-1} \in \{0, 1\}$ and non-negative integer weights $\lambda_0, \ldots, \lambda_{n-1}$, this circuit performs the operation
 
 $$
-\vert q_0 \ldots q_{n-1}\rangle \vert 0\rangle_s
-\mapsto \vert q_0 \ldots q_{n-1}\rangle \vert \sum_{j=0}^{n-1} \lambda_j q_j\rangle_s
+|q_0 \ldots q_{n-1}\rangle |0\rangle_s
+\mapsto |q_0 \ldots q_{n-1}\rangle |\sum_{j=0}^{n-1} \lambda_j q_j\rangle_s
 $$
 
 where $s$ is the number of sum qubits required. This can be computed as
@@ -1152,7 +1152,7 @@ Apply [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate").
 
 Initialize qubits in a specific state.
 
-Qubit initialization is done by first resetting the qubits to $\vert 0\rangle$ followed by an state preparing unitary. Both these steps are included in the Initialize instruction.
+Qubit initialization is done by first resetting the qubits to $|0\rangle$ followed by an state preparing unitary. Both these steps are included in the Initialize instruction.
 
 **Parameters**
 
@@ -1183,7 +1183,7 @@ a handle to the instruction that was just initialized
 
 **Examples**
 
-Prepare a qubit in the state $(\vert 0\rangle - \vert 1\rangle) / \sqrt{2}$.
+Prepare a qubit in the state $(|0\rangle - |1\rangle) / \sqrt{2}$.
 
 ```python
 import numpy as np

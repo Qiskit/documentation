@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.AncillaQubit
 
 <span id="qiskit.circuit.AncillaQubit" />
 
-`qiskit.circuit.AncillaQubit(register=None, index=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/quantumregister.py "view source code")
+`qiskit.circuit.AncillaQubit(register=None, index=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/quantumregister.py "view source code")
 
 Bases: [`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")
 
@@ -26,30 +26,4 @@ Creates a qubit.
 **Raises**
 
 [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the provided register is not a valid [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")
-
-## Attributes
-
-<span id="qiskit.circuit.AncillaQubit.index" />
-
-### index
-
-Get the index of an old-style bit in the register that owns it.
-
-In modern Qiskit Terra (version 0.17+), bits are the fundamental object and registers are aliases to collections of bits. A bit can be in many registers depending on the circuit, so a single containing register is no longer a property of a bit. It is an error to access this attribute on bits that were not constructed as “owned” by a register.
-
-<Admonition title="Deprecated since version 0.17" type="danger">
-  The property `qiskit.circuit.bit.Bit.index` is deprecated as of qiskit-terra 0.17. It will be removed in the Qiskit 1.0 release. Instead, use `find_bit()` to find all the containing registers within a circuit and the index of the bit within the circuit.
-</Admonition>
-
-<span id="qiskit.circuit.AncillaQubit.register" />
-
-### register
-
-Get the register of an old-style bit.
-
-In modern Qiskit Terra (version 0.17+), bits are the fundamental object and registers are aliases to collections of bits. A bit can be in many registers depending on the circuit, so a single containing register is no longer a property of a bit. It is an error to access this attribute on bits that were not constructed as “owned” by a register.
-
-<Admonition title="Deprecated since version 0.17" type="danger">
-  The property `qiskit.circuit.bit.Bit.register` is deprecated as of qiskit-terra 0.17. It will be removed in the Qiskit 1.0 release. Instead, use `find_bit()` to find all the containing registers within a circuit and the index of the bit within the circuit.
-</Admonition>
 

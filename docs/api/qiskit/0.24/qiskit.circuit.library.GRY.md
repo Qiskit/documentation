@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.library.GRY
 
 <span id="qiskit.circuit.library.GRY" />
 
-`GRY(num_qubits, theta)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/generalized_gates/gr.py "view source code")
+`GRY(num_qubits, theta)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/generalized_gates/gr.py "view source code")
 
 Global RY gate.
 

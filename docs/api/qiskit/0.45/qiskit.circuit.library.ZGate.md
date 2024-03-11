@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.ZGate
 
 <span id="qiskit.circuit.library.ZGate" />
 
-`qiskit.circuit.library.ZGate(*args, _force_mutable=False, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/z.py "view source code")
+`qiskit.circuit.library.ZGate(*args, _force_mutable=False, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/z.py "view source code")
 
 Bases: [`SingletonGate`](circuit_singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate")
 
@@ -52,8 +52,8 @@ Equivalent to a $\pi$ radian rotation about the Z axis.
 The gate is equivalent to a phase flip.
 
 $$
-\vert 0\rangle \rightarrow \vert 0\rangle \\
-\vert 1\rangle \rightarrow -\vert 1\rangle
+|0\rangle \rightarrow |0\rangle \\
+|1\rangle \rightarrow -|1\rangle
 $$
 
 Create new Z gate.

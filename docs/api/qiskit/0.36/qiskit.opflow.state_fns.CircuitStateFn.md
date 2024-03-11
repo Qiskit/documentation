@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.state_fns.CircuitStateFn
 
 <span id="qiskit.opflow.state_fns.CircuitStateFn" />
 
-`CircuitStateFn(primitive=None, coeff=1.0, is_measurement=False, from_operator=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/state_fns/circuit_state_fn.py "view source code")
+`CircuitStateFn(primitive=None, coeff=1.0, is_measurement=False, from_operator=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/state_fns/circuit_state_fn.py "view source code")
 
 Bases: `qiskit.opflow.state_fns.state_fn.StateFn`
 
@@ -33,7 +33,7 @@ A class for state functions and measurements which are defined by the action of 
 
 <span id="qiskit.opflow.state_fns.CircuitStateFn.add" />
 
-`CircuitStateFn.add(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/state_fns/circuit_state_fn.py "view source code")
+`CircuitStateFn.add(other)`
 
 Return Operator addition of self and other, overloaded by `+`.
 
@@ -53,7 +53,7 @@ An `OperatorBase` equivalent to the sum of self and other.
 
 <span id="qiskit.opflow.state_fns.CircuitStateFn.adjoint" />
 
-`CircuitStateFn.adjoint()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/state_fns/circuit_state_fn.py "view source code")
+`CircuitStateFn.adjoint()`
 
 Return a new Operator equal to the Operator’s adjoint (conjugate transpose), overloaded by `~`. For StateFns, this also turns the StateFn into a measurement.
 
@@ -69,7 +69,7 @@ An `OperatorBase` equivalent to the adjoint of self.
 
 <span id="qiskit.opflow.state_fns.CircuitStateFn.assign_parameters" />
 
-`CircuitStateFn.assign_parameters(param_dict)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/state_fns/circuit_state_fn.py "view source code")
+`CircuitStateFn.assign_parameters(param_dict)`
 
 Binds scalar values to any Terra `Parameters` in the coefficients or primitives of the Operator, or substitutes one `Parameter` for another. This method differs from Terra’s `assign_parameters` in that it also supports lists of values to assign for a give `Parameter`, in which case self will be copied for each parameterization in the binding list(s), and all the copies will be returned in an `OpList`. If lists of parameterizations are used, every `Parameter` in the param\_dict must have the same length list of parameterizations.
 
@@ -89,7 +89,7 @@ The `OperatorBase` with the `Parameters` in self replaced by the values or `Para
 
 <span id="qiskit.opflow.state_fns.CircuitStateFn.compose" />
 
-`CircuitStateFn.compose(other, permutation=None, front=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/state_fns/circuit_state_fn.py "view source code")
+`CircuitStateFn.compose(other, permutation=None, front=False)`
 
 Composition (Linear algebra-style: A\@B(x) = A(B(x))) is not well defined for states in the binary function model, but is well defined for measurements.
 
@@ -115,7 +115,7 @@ An Operator equivalent to the function composition of self and other.
 
 <span id="qiskit.opflow.state_fns.CircuitStateFn.eval" />
 
-`CircuitStateFn.eval(front=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/state_fns/circuit_state_fn.py "view source code")
+`CircuitStateFn.eval(front=None)`
 
 Evaluate the Operator’s underlying function, either on a binary string or another Operator. A square binary Operator can be defined as a function taking a binary function to another binary function. This method returns the value of that function for a given StateFn or binary string. For example, `op.eval('0110').eval('1110')` can be seen as querying the Operator’s matrix representation by row 6 and column 14, and will return the complex value at those “indices.” Similarly for a StateFn, `op.eval('1011')` will return the complex value at row 11 of the vector representation of the StateFn, as all StateFns are defined to be evaluated from Zero implicitly (i.e. it is as if `.eval('0000')` is already called implicitly to always “indexing” from column 0).
 
@@ -137,7 +137,7 @@ The output of the Operator’s evaluation function. If self is a `StateFn`, the 
 
 <span id="qiskit.opflow.state_fns.CircuitStateFn.from_dict" />
 
-`static CircuitStateFn.from_dict(density_dict)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/state_fns/circuit_state_fn.py "view source code")
+`static CircuitStateFn.from_dict(density_dict)`
 
 Construct the CircuitStateFn from a dict mapping strings to probability densities.
 
@@ -157,7 +157,7 @@ The CircuitStateFn created from the dict.
 
 <span id="qiskit.opflow.state_fns.CircuitStateFn.from_vector" />
 
-`static CircuitStateFn.from_vector(statevector)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/state_fns/circuit_state_fn.py "view source code")
+`static CircuitStateFn.from_vector(statevector)`
 
 Construct the CircuitStateFn from a vector representing the statevector.
 
@@ -177,7 +177,7 @@ The CircuitStateFn created from the vector.
 
 <span id="qiskit.opflow.state_fns.CircuitStateFn.permute" />
 
-`CircuitStateFn.permute(permutation)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/state_fns/circuit_state_fn.py "view source code")
+`CircuitStateFn.permute(permutation)`
 
 Permute the qubits of the circuit.
 
@@ -197,7 +197,7 @@ A new CircuitStateFn containing the permuted circuit.
 
 <span id="qiskit.opflow.state_fns.CircuitStateFn.primitive_strings" />
 
-`CircuitStateFn.primitive_strings()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/state_fns/circuit_state_fn.py "view source code")
+`CircuitStateFn.primitive_strings()`
 
 Return a set of strings describing the primitives contained in the Operator. For example, `{'QuantumCircuit', 'Pauli'}`. For hierarchical Operators, such as `ListOps`, this can help illuminate the primitives represented in the various recursive levels, and therefore which conversions can be applied.
 
@@ -213,7 +213,7 @@ A set of strings describing the primitives contained within the Operator.
 
 <span id="qiskit.opflow.state_fns.CircuitStateFn.reduce" />
 
-`CircuitStateFn.reduce()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/state_fns/circuit_state_fn.py "view source code")
+`CircuitStateFn.reduce()`
 
 Try collapsing the Operator structure, usually after some type of conversion, e.g. trying to add Operators in a SummedOp or delete needless IGates in a CircuitOp. If no reduction is available, just returns self.
 
@@ -229,7 +229,7 @@ The reduced `OperatorBase`.
 
 <span id="qiskit.opflow.state_fns.CircuitStateFn.sample" />
 
-`CircuitStateFn.sample(shots=1024, massive=False, reverse_endianness=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/state_fns/circuit_state_fn.py "view source code")
+`CircuitStateFn.sample(shots=1024, massive=False, reverse_endianness=False)`
 
 Sample the state function as a normalized probability distribution. Returns dict of bitstrings in order of probability, with values being probability.
 
@@ -241,7 +241,7 @@ Sample the state function as a normalized probability distribution. Returns dict
 
 <span id="qiskit.opflow.state_fns.CircuitStateFn.tensor" />
 
-`CircuitStateFn.tensor(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/state_fns/circuit_state_fn.py "view source code")
+`CircuitStateFn.tensor(other)`
 
 Return tensor product between self and other, overloaded by `^`. Note: You must be conscious of Qiskit’s big-endian bit printing convention. Meaning, Plus.tensor(Zero) produces a |+⟩ on qubit 0 and a |0⟩ on qubit 1, or |+⟩⨂|0⟩, but would produce a QuantumCircuit like:
 
@@ -265,7 +265,7 @@ An `OperatorBase` equivalent to the tensor product of self and other.
 
 <span id="qiskit.opflow.state_fns.CircuitStateFn.to_circuit" />
 
-`CircuitStateFn.to_circuit(meas=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/state_fns/circuit_state_fn.py "view source code")
+`CircuitStateFn.to_circuit(meas=False)`
 
 Return QuantumCircuit representing StateFn
 
@@ -277,7 +277,7 @@ Return QuantumCircuit representing StateFn
 
 <span id="qiskit.opflow.state_fns.CircuitStateFn.to_circuit_op" />
 
-`CircuitStateFn.to_circuit_op()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/state_fns/circuit_state_fn.py "view source code")
+`CircuitStateFn.to_circuit_op()`
 
 Return `StateFnCircuit` corresponding to this StateFn.
 
@@ -289,7 +289,7 @@ Return `StateFnCircuit` corresponding to this StateFn.
 
 <span id="qiskit.opflow.state_fns.CircuitStateFn.to_density_matrix" />
 
-`CircuitStateFn.to_density_matrix(massive=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/state_fns/circuit_state_fn.py "view source code")
+`CircuitStateFn.to_density_matrix(massive=False)`
 
 Return numpy matrix of density operator, warn if more than 16 qubits to force the user to set massive=True if they want such a large matrix. Generally big methods like this should require the use of a converter, but in this case a convenience method for quick hacking and access to classical tools is appropriate.
 
@@ -301,7 +301,7 @@ Return numpy matrix of density operator, warn if more than 16 qubits to force th
 
 <span id="qiskit.opflow.state_fns.CircuitStateFn.to_instruction" />
 
-`CircuitStateFn.to_instruction()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/state_fns/circuit_state_fn.py "view source code")
+`CircuitStateFn.to_instruction()`
 
 Return Instruction corresponding to primitive.
 
@@ -309,7 +309,7 @@ Return Instruction corresponding to primitive.
 
 <span id="qiskit.opflow.state_fns.CircuitStateFn.to_matrix" />
 
-`CircuitStateFn.to_matrix(massive=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/state_fns/circuit_state_fn.py "view source code")
+`CircuitStateFn.to_matrix(massive=False)`
 
 Return NumPy representation of the Operator. Represents the evaluation of the Operator’s underlying function on every combination of basis binary strings. Warn if more than 16 qubits to force having to set `massive=True` if such a large vector is desired.
 

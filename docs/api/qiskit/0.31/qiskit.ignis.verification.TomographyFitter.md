@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.verification.TomographyFitter
 
 <span id="qiskit.ignis.verification.TomographyFitter" />
 
-`TomographyFitter(result, circuits, meas_basis='Pauli', prep_basis='Pauli')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/tomography/fitters/base_fitter.py "view source code")
+`TomographyFitter(result, circuits, meas_basis='Pauli', prep_basis='Pauli')` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/tomography/fitters/base_fitter.py "view source code")
 
 Bases: `object`
 
@@ -31,7 +31,7 @@ Initialize tomography fitter with experimental data.
 
 <span id="qiskit.ignis.verification.TomographyFitter.add_data" />
 
-`TomographyFitter.add_data(results, circuits)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/tomography/fitters/base_fitter.py "view source code")
+`TomographyFitter.add_data(results, circuits)`
 
 Add tomography data from a Qiskit Result object.
 
@@ -48,7 +48,7 @@ Add tomography data from a Qiskit Result object.
 
 <span id="qiskit.ignis.verification.TomographyFitter.fit" />
 
-`TomographyFitter.fit(method='auto', standard_weights=True, beta=0.5, psd=True, trace=None, trace_preserving=False, **kwargs)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/tomography/fitters/base_fitter.py "view source code")
+`TomographyFitter.fit(method='auto', standard_weights=True, beta=0.5, psd=True, trace=None, trace_preserving=False, **kwargs)`
 
 Reconstruct a quantum state using CVXPY convex optimization.
 
@@ -58,7 +58,7 @@ The `'cvx'` fitter method uses the CVXPY convex optimization package with a SDP 
 
 **Objective function**
 
-This fitter solves the constrained least-squares minimization: minimize: $\vert \vert a \cdot x - b \vert \vert _2$
+This fitter solves the constrained least-squares minimization: minimize: $||a \cdot x - b ||_2$
 
 subject to:
 
@@ -109,13 +109,13 @@ References:
 
 **Returns**
 
-The fitted matrix rho that minimizes $\vert \vert \text{basis_matrix} * \text{vec(rho)} - \text{data}\vert \vert _2$.
+The fitted matrix rho that minimizes $||\text{basis_matrix} * \text{vec(rho)} - \text{data}||_2$.
 
 ### set\_measure\_basis
 
 <span id="qiskit.ignis.verification.TomographyFitter.set_measure_basis" />
 
-`TomographyFitter.set_measure_basis(basis)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/tomography/fitters/base_fitter.py "view source code")
+`TomographyFitter.set_measure_basis(basis)`
 
 Set the measurement basis
 
@@ -131,7 +131,7 @@ Set the measurement basis
 
 <span id="qiskit.ignis.verification.TomographyFitter.set_preparation_basis" />
 
-`TomographyFitter.set_preparation_basis(basis)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/tomography/fitters/base_fitter.py "view source code")
+`TomographyFitter.set_preparation_basis(basis)`
 
 Set the preparation basis function
 

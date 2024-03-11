@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.builder.active_circuit_scheduler_settings
 
 <span id="qiskit.pulse.builder.active_circuit_scheduler_settings" />
 
-`active_circuit_scheduler_settings()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/builder.py "view source code")
+`active_circuit_scheduler_settings()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/builder.py "view source code")
 
 Return the current active builder context’s circuit scheduler settings.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.synthesis.MatrixExponential
 
 <span id="qiskit.synthesis.MatrixExponential" />
 
-`qiskit.synthesis.MatrixExponential`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/synthesis/evolution/matrix_synthesis.py "view source code")
+`qiskit.synthesis.MatrixExponential` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/synthesis/evolution/matrix_synthesis.py "view source code")
 
 Bases: [`EvolutionSynthesis`](qiskit.synthesis.EvolutionSynthesis "qiskit.synthesis.evolution.evolution_synthesis.EvolutionSynthesis")
 

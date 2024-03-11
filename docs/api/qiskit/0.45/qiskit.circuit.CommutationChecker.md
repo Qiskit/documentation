@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.CommutationChecker
 
 <span id="qiskit.circuit.CommutationChecker" />
 
-`qiskit.circuit.CommutationChecker`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/commutation_checker.py "view source code")
+`qiskit.circuit.CommutationChecker` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/commutation_checker.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 

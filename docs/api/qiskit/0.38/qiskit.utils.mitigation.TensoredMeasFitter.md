@@ -10,7 +10,7 @@ python_api_name: qiskit.utils.mitigation.TensoredMeasFitter
 
 <span id="qiskit.utils.mitigation.TensoredMeasFitter" />
 
-`TensoredMeasFitter(results, mit_pattern, substate_labels_list=None, circlabel='')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/utils/mitigation/fitters.py "view source code")
+`TensoredMeasFitter(results, mit_pattern, substate_labels_list=None, circlabel='')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/utils/mitigation/fitters.py "view source code")
 
 Bases: `object`
 
@@ -39,7 +39,7 @@ Initialize a measurement calibration matrix from the results of running the circ
 
 <span id="qiskit.utils.mitigation.TensoredMeasFitter.add_data" />
 
-`TensoredMeasFitter.add_data(new_results, rebuild_cal_matrix=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/utils/mitigation/fitters.py "view source code")
+`TensoredMeasFitter.add_data(new_results, rebuild_cal_matrix=True)`
 
 Add measurement calibration data
 
@@ -52,7 +52,7 @@ Add measurement calibration data
 
 <span id="qiskit.utils.mitigation.TensoredMeasFitter.readout_fidelity" />
 
-`TensoredMeasFitter.readout_fidelity(cal_index=0, label_list=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/utils/mitigation/fitters.py "view source code")
+`TensoredMeasFitter.readout_fidelity(cal_index=0, label_list=None)`
 
 Based on the results, output the readout fidelity, which is the average of the diagonal entries in the calibration matrices.
 

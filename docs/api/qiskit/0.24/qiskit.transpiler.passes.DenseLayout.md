@@ -12,7 +12,7 @@ python_api_name: qiskit.transpiler.passes.DenseLayout
 
 <span id="qiskit.transpiler.passes.DenseLayout" />
 
-`DenseLayout(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/transpiler/passes/layout/dense_layout.py "view source code")
+`DenseLayout(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/transpiler/passes/layout/dense_layout.py "view source code")
 
 Choose a Layout by finding the most connected subset of qubits.
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.components.neural_networks.GenerativeNetwork
 
 <span id="qiskit.aqua.components.neural_networks.GenerativeNetwork" />
 
-`GenerativeNetwork`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/neural_networks/generative_network.py "view source code")
+`GenerativeNetwork` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/neural_networks/generative_network.py "view source code")
 
 Base class for generative Quantum and Classical Neural Networks.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.result.Counts
 
 <span id="qiskit.result.Counts" />
 
-`qiskit.result.Counts(data, time_taken=None, creg_sizes=None, memory_slots=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/result/counts.py "view source code")
+`qiskit.result.Counts(data, time_taken=None, creg_sizes=None, memory_slots=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/result/counts.py "view source code")
 
 Bases: [`dict`](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.operators.evolutions.Trotter
 
 <span id="qiskit.aqua.operators.evolutions.Trotter" />
 
-`Trotter(reps=1)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/evolutions/trotterizations/trotter.py "view source code")
+`Trotter(reps=1)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/evolutions/trotterizations/trotter.py "view source code")
 
 Bases: `qiskit.aqua.operators.evolutions.trotterizations.suzuki.Suzuki`
 

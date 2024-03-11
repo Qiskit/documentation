@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.TranspileLayout
 
 <span id="qiskit.transpiler.TranspileLayout" />
 
-`qiskit.transpiler.TranspileLayout(initial_layout, input_qubit_mapping, final_layout=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/layout.py "view source code")
+`qiskit.transpiler.TranspileLayout(initial_layout, input_qubit_mapping, final_layout=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/layout.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.managed.IBMQManagedResultDataNotAvailable
 
 <span id="qiskit.providers.ibmq.managed.IBMQManagedResultDataNotAvailable" />
 
-`IBMQManagedResultDataNotAvailable(*message)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.16/qiskit/providers/ibmq/managed/exceptions.py "view source code")
+`IBMQManagedResultDataNotAvailable(*message)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.16/qiskit/providers/ibmq/managed/exceptions.py "view source code")
 
 Errors raised when result data is not available.
 

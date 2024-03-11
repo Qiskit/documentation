@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.PVQD
 
 <span id="qiskit.algorithms.PVQD" />
 
-`qiskit.algorithms.PVQD(fidelity, ansatz, initial_parameters, estimator=None, optimizer=None, num_timesteps=None, evolution=None, use_parameter_shift=True, initial_guess=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/time_evolvers/pvqd/pvqd.py "view source code")
+`qiskit.algorithms.PVQD(fidelity, ansatz, initial_parameters, estimator=None, optimizer=None, num_timesteps=None, evolution=None, use_parameter_shift=True, initial_guess=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/time_evolvers/pvqd/pvqd.py "view source code")
 
 Bases: [`RealTimeEvolver`](qiskit.algorithms.RealTimeEvolver "qiskit.algorithms.time_evolvers.real_time_evolver.RealTimeEvolver")
 
@@ -160,9 +160,9 @@ quantum algorithm for the time evolution of parameterized circuits, [Quantum 5, 
 
 `evolve(evolution_problem)`
 
-Perform real time evolution $\exp(-i t H)\vert \Psi\rangle$.
+Perform real time evolution $\exp(-i t H)|\Psi\rangle$.
 
-Evolves an initial state $\vert \Psi\rangle$ for a time $t$ under a Hamiltonian $H$, as provided in the `evolution_problem`.
+Evolves an initial state $|\Psi\rangle$ for a time $t$ under a Hamiltonian $H$, as provided in the `evolution_problem`.
 
 **Parameters**
 

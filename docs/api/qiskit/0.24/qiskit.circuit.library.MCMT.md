@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.library.MCMT
 
 <span id="qiskit.circuit.library.MCMT" />
 
-`MCMT(gate, num_ctrl_qubits, num_target_qubits, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/generalized_gates/mcmt.py "view source code")
+`MCMT(gate, num_ctrl_qubits, num_target_qubits, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/generalized_gates/mcmt.py "view source code")
 
 The multi-controlled multi-target gate, for an arbitrary singly controlled target gate.
 

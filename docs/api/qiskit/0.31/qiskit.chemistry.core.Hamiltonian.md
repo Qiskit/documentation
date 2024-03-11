@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.core.Hamiltonian
 
 <span id="qiskit.chemistry.core.Hamiltonian" />
 
-`Hamiltonian(transformation=<TransformationType.FULL: 'full'>, qubit_mapping=<QubitMappingType.PARITY: 'parity'>, two_qubit_reduction=True, freeze_core=False, orbital_reduction=None, z2symmetry_reduction=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/core/hamiltonian.py "view source code")
+`Hamiltonian(transformation=<TransformationType.FULL: 'full'>, qubit_mapping=<QubitMappingType.PARITY: 'parity'>, two_qubit_reduction=True, freeze_core=False, orbital_reduction=None, z2symmetry_reduction=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/core/hamiltonian.py "view source code")
 
 Bases: `qiskit.chemistry.core.chemistry_operator.ChemistryOperator`
 
@@ -55,7 +55,7 @@ Final chemistry result computed from the algorithm result
 
 <span id="qiskit.chemistry.core.Hamiltonian.run" />
 
-`Hamiltonian.run(qmolecule)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/core/hamiltonian.py "view source code")
+`Hamiltonian.run(qmolecule)`
 
 run method
 

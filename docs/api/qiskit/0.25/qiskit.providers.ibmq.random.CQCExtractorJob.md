@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.random.CQCExtractorJob
 
 <span id="qiskit.providers.ibmq.random.CQCExtractorJob" />
 
-`CQCExtractorJob(job_id, client, parameters=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.12/qiskit/providers/ibmq/random/cqcextractorjob.py "view source code")
+`CQCExtractorJob(job_id, client, parameters=None)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.12/qiskit/providers/ibmq/random/cqcextractorjob.py "view source code")
 
 Representation of an asynchronous call to the CQC extractor.
 

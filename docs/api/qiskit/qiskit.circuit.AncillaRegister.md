@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.AncillaRegister
 
 <span id="qiskit.circuit.AncillaRegister" />
 
-`qiskit.circuit.AncillaRegister(size=None, name=None, bits=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/quantumregister.py "view source code")
+`qiskit.circuit.AncillaRegister(size=None, name=None, bits=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/quantumregister.py "view source code")
 
 Bases: [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")
 
@@ -48,12 +48,6 @@ Either the `size` or the `bits` argument must be provided. If `size` is not None
 
 Get the register name.
 
-<span id="qiskit.circuit.AncillaRegister.name_format" />
-
-### name\_format
-
-`= re.compile('[a-z][a-zA-Z0-9_]*')`
-
 <span id="qiskit.circuit.AncillaRegister.prefix" />
 
 ### prefix
@@ -75,16 +69,4 @@ Get the register size.
 `index(bit)`
 
 Find the index of the provided bit within this register.
-
-### qasm
-
-<span id="qiskit.circuit.AncillaRegister.qasm" />
-
-`qasm()`
-
-Return OPENQASM string for this register.
-
-<Admonition title="Deprecated since version 0.23.0" type="danger">
-  The method `qiskit.circuit.quantumregister.QuantumRegister.qasm()` is deprecated as of qiskit-terra 0.23.0. It will be removed in the Qiskit 1.0 release. Correct exporting to OpenQASM 2 is the responsibility of a larger exporter; it cannot safely be done on an object-by-object basis without context. No replacement will be provided, because the premise is wrong.
-</Admonition>
 

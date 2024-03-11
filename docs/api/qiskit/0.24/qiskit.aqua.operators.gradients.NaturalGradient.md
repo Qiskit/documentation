@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.operators.gradients.NaturalGradient
 
 <span id="qiskit.aqua.operators.gradients.NaturalGradient" />
 
-`NaturalGradient(grad_method='lin_comb', qfi_method='lin_comb_full', regularization=None, **kwargs)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/gradients/natural_gradient.py "view source code")
+`NaturalGradient(grad_method='lin_comb', qfi_method='lin_comb_full', regularization=None, **kwargs)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/gradients/natural_gradient.py "view source code")
 
 Convert an operator expression to the first-order gradient.
 

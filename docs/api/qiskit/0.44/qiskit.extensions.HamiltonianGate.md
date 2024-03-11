@@ -10,7 +10,7 @@ python_api_name: qiskit.extensions.HamiltonianGate
 
 <span id="qiskit.extensions.HamiltonianGate" />
 
-`qiskit.extensions.HamiltonianGate(data, time, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/extensions/hamiltonian_gate.py "view source code")
+`qiskit.extensions.HamiltonianGate(data, time, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/extensions/hamiltonian_gate.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 

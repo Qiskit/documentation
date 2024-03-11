@@ -6,7 +6,7 @@ description: Learn about coupling maps, basis gates and system errors for transp
 
 # Represent quantum computers
 
-To construct an equivalent circuit that can run on a specific system, the transpiler needs certain details about the system.  Typically, this information is found in the `backend` or `target = backend.target` class, so you don't need to pass anything further to the transpiler. However, if more infomation is provided, the transpiler can use it to try to produce the best circuit to run on that hardware.  
+To construct an equivalent circuit that can run on a specific system, the transpiler needs certain details about the system.  Typically, this information is found in the `backend` or `target = backend.target` class, so you don't need to pass anything further to the transpiler. However, if more information is provided, the transpiler can use it to try to produce the best circuit to run on that hardware.  
 
 <Admonition type="note">
 Because many of the underlying transpilation algorithms are stochastic, there is no guarantee that a better circuit will be found. 
@@ -28,7 +28,7 @@ backend = FakeSherbrooke()
 target = backend.target
 ```
 
-The `EfficientSU2` circuit consists of layers of single qubit operations spanned by `SU(2)` and `CX` entanglements. This is a heuristic pattern that can be used to prepare trial wave functions for variational quantum algorithms or classification circuits for machine learning.
+The `EfficientSU2` circuit consists of layers of single-qubit operations spanned by `SU(2)` and `CX` entanglements. This is a heuristic pattern that can be used to prepare trial wave functions for variational quantum algorithms or classification circuits for machine learning.
 
 ```python
 qc = EfficientSU2(12, entanglement='circular', reps=1)
@@ -52,7 +52,7 @@ Providing the `backend` properties, including the gates' error rates, allows the
 
 ## Coupling map
 
-The coupling map is a graph that shows which qubits are connected and hence have 2-qubit gates between them. Sometimes this graph is directional, meaning that the 2-qubit gates can only go in one direction. However, the transpiler can always flip a gate's direction by adding additional 1-qubit gates. An abstract quantum circuit can always be represented on this graph, even if its connectivity is limited, by introducting SWAP gates to move the quantum information around. 
+The coupling map is a graph that shows which qubits are connected and hence have two-qubit gates between them. Sometimes this graph is directional, meaning that the two-qubit gates can only go in one direction. However, the transpiler can always flip a gate's direction by adding additional single-qubit gates. An abstract quantum circuit can always be represented on this graph, even if its connectivity is limited, by introducing SWAP gates to move the quantum information around. 
 
 The qubits from our abstract circuits are called _virtual qubits_ and those on the coupling map are _physical qubits_. The transpiler provides a mapping between virtual and physical qubits. One of the first steps in transpilation, the _routing_ stage, performs this mapping.
 
@@ -110,10 +110,10 @@ print(basis_gates)
 ['rz', 'sx', 'x', 'ecr', 'measure', 'delay']
 ```
 
-The default single-qubit gates on _ibm_sherbrooke_ are `rz`, `x`, and `sx`, and the default two-qubit gate is `ecr` which stands for echoed cross resonance. CX gates are constructed from `ecr` gates, so on some systems `ecr` is specified as the two-qubit basis gate while on others `cx` is default. The `ecr` gates is the _entangling_ part of the `cx` gate. If one desires to use a gate that is not in the basis gate set, instructions for custom gates can be provided using [pulse gates](https://docs.quantum.ibm.com/api/qiskit/qiskit.transpiler.passes.PulseGates#pulsegates). In addition to the control gates, there are also `delay` and `measurement` instructions.
+The default single-qubit gates on _ibm_sherbrooke_ are `rz`, `x`, and `sx`, and the default two-qubit gate is `ecr` (echoed cross-resonance). CX gates are constructed from `ecr` gates, so on some systems `ecr` is specified as the two-qubit basis gate, while on others `cx` is default. The `ecr` gate is the _entangling_ part of the `cx` gate. To use a gate that is not in the basis gate set, follow instructions in the Qiskit SDK API documentation for custom gates using [pulse gates](/api/qiskit/qiskit.transpiler.passes.PulseGates#pulsegates). In addition to the control gates, there are also `delay` and `measurement` instructions.
 
 <Admonition>
-    Systems have default basis gates, but you can choose whatever gates you want, as long as you provide the instruction or add pulse gates (See [Create transpiler passes.](custom-transpiler-pass)) The default basis gates are those that calibrations have been done for on the system, so no further instruction/pulse gate needs to be provided. For example, on some systems `cx` is the default two-qubit gates and `ecr` on others.
+    Systems have default basis gates, but you can choose whatever gates you want, as long as you provide the instruction or add pulse gates (see [Create transpiler passes.](custom-transpiler-pass)) The default basis gates are those that calibrations have been done for on the system, so no further instruction/pulse gate needs to be provided. For example, on some systems `cx` is the default two-qubit gate and `ecr` on others. See the [Native gates and operations](../run/native-gates) topic for more details.
 </Admonition>
 
 
@@ -129,7 +129,7 @@ Note that the `CXGate`s have been decomposed to `ecr` gates and single-qubit bas
 
 Constructing a `target` object lets you consider the qubits' error rates in addition to the `coupling_map` and `basis_gates`.  The `target` object contains everything needed to target a system, but here we build one that contains a limited amount of information.
 
-We retrieved the `target` from `backend.target` previously. This contains a lot of system information, including error rates. For example, the instruction properties of the echoed cross resonance gate between qubit 0 and 1 (not that `ecr` is directional) is retrieved by running the following command:
+We retrieved the `target` from `backend.target` previously. This contains a lot of system information, including error rates. For example, the instruction properties of the echoed cross-resonance gate between qubit 0 and 1 (note that `ecr` is directional) is retrieved by running the following command:
 
 ```python
 target['ecr'][(1, 0)]

@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho
 
 <span id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho" />
 
-`qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/calibration/rzx_builder.py "view source code")
+`qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/calibration/rzx_builder.py "view source code")
 
 Bases: [`RZXCalibrationBuilder`](qiskit.transpiler.passes.RZXCalibrationBuilder "qiskit.transpiler.passes.calibration.rzx_builder.RZXCalibrationBuilder")
 

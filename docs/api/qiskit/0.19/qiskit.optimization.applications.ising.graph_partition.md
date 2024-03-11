@@ -1,9 +1,9 @@
 ---
-title: get_graph_solution
-description: API reference for qiskit.optimization.applications.ising.graph_partition.get_graph_solution
-in_page_toc_min_heading_level: 1
-python_api_type: function
-python_api_name: qiskit.optimization.applications.ising.graph_partition.get_graph_solution
+title: graph_partition
+description: API reference for qiskit.optimization.applications.ising.graph_partition
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.optimization.applications.ising.graph_partition
 ---
 
 <span id="qiskit-optimization-applications-ising-graph-partition" />
@@ -24,7 +24,7 @@ Convert graph partitioning instances into Pauli list Deal with Gset format. See 
 
 <span id="qiskit.optimization.applications.ising.graph_partition.get_graph_solution" />
 
-`get_graph_solution(x)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/applications/ising/graph_partition.py "view source code")
+`get_graph_solution(x)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/applications/ising/graph_partition.py "view source code")
 
 Get graph solution from binary string.
 
@@ -44,17 +44,17 @@ numpy.ndarray
 
 <span id="qiskit.optimization.applications.ising.graph_partition.get_operator" />
 
-`get_operator(weight_matrix)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/applications/ising/graph_partition.py "view source code")
+`get_operator(weight_matrix)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/applications/ising/graph_partition.py "view source code")
 
 Generate Hamiltonian for the graph partitioning
 
 **Notes**
 
-## Goals:
+**Goals:**
 
 1 separate the vertices into two set of the same size 2 make sure the number of edges between the two set is minimized.
 
-## Hamiltonian:
+**Hamiltonian:**
 
 H = H\_A + H\_B H\_A = sum\_\{(i,j)in E}\{(1-ZiZj)/2} H\_B = (sum\_\{i}\{Zi})^2 = sum\_\{i}\{Zi^2}+sum\_\{i!=j}\{ZiZj} H\_A is for achieving goal 2 and H\_B is for achieving goal 1.
 
@@ -74,7 +74,7 @@ operator for the Hamiltonian float: a constant shift for the obj function.
 
 <span id="qiskit.optimization.applications.ising.graph_partition.objective_value" />
 
-`objective_value(x, w)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/applications/ising/graph_partition.py "view source code")
+`objective_value(x, w)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/applications/ising/graph_partition.py "view source code")
 
 Compute the value of a cut.
 

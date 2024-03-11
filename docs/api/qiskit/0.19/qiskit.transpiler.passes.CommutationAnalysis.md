@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.CommutationAnalysis
 
 <span id="qiskit.transpiler.passes.CommutationAnalysis" />
 
-`CommutationAnalysis(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/transpiler/passes/optimization/commutation_analysis.py "view source code")
+`CommutationAnalysis(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/transpiler/passes/optimization/commutation_analysis.py "view source code")
 
 Analysis pass to find commutation relations between DAG nodes.
 
@@ -46,7 +46,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.CommutationAnalysis.run" />
 
-`CommutationAnalysis.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/transpiler/passes/optimization/commutation_analysis.py "view source code")
+`CommutationAnalysis.run(dag)`
 
 Run the CommutationAnalysis pass on dag.
 

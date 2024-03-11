@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.ShorResult
 
 <span id="qiskit.algorithms.ShorResult" />
 
-`ShorResult`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/factorizers/shor.py "view source code")
+`ShorResult` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/factorizers/shor.py "view source code")
 
 Bases: `qiskit.algorithms.algorithm_result.AlgorithmResult`
 

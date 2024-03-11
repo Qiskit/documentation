@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.iqfts.Standard
 
 <span id="qiskit.aqua.components.iqfts.Standard" />
 
-`Standard(num_qubits)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/iqfts/standard.py "view source code")
+`Standard(num_qubits)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/iqfts/standard.py "view source code")
 
 The Standard IQFT.
 

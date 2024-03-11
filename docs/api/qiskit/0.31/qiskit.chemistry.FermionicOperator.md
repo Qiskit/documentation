@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.FermionicOperator
 
 <span id="qiskit.chemistry.FermionicOperator" />
 
-`FermionicOperator(h1, h2=None, ph_trans_shift=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/fermionic_operator.py "view source code")
+`FermionicOperator(h1, h2=None, ph_trans_shift=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/fermionic_operator.py "view source code")
 
 Bases: `object`
 
@@ -50,7 +50,7 @@ The [`QMolecule`](qiskit.chemistry.QMolecule "qiskit.chemistry.QMolecule") class
 
 <span id="qiskit.chemistry.FermionicOperator.fermion_mode_elimination" />
 
-`FermionicOperator.fermion_mode_elimination(fermion_mode_array)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/fermionic_operator.py "view source code")
+`FermionicOperator.fermion_mode_elimination(fermion_mode_array)`
 
 Eliminate modes.
 
@@ -72,7 +72,7 @@ Fermionic Hamiltonian
 
 <span id="qiskit.chemistry.FermionicOperator.fermion_mode_freezing" />
 
-`FermionicOperator.fermion_mode_freezing(fermion_mode_array)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/fermionic_operator.py "view source code")
+`FermionicOperator.fermion_mode_freezing(fermion_mode_array)`
 
 Freezing modes and extracting its energy.
 
@@ -94,7 +94,7 @@ tuple([FermionicOperator](qiskit.chemistry.FermionicOperator "qiskit.chemistry.F
 
 <span id="qiskit.chemistry.FermionicOperator.mapping" />
 
-`FermionicOperator.mapping(map_type, threshold=1e-08)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/fermionic_operator.py "view source code")
+`FermionicOperator.mapping(map_type, threshold=1e-08)`
 
 Map fermionic operator to qubit operator.
 
@@ -121,7 +121,7 @@ create an Operator object in Paulis form.
 
 <span id="qiskit.chemistry.FermionicOperator.particle_hole_transformation" />
 
-`FermionicOperator.particle_hole_transformation(num_particles)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/fermionic_operator.py "view source code")
+`FermionicOperator.particle_hole_transformation(num_particles)`
 
 The ‘standard’ second quantized Hamiltonian can be transformed in the particle-hole (p/h) picture, which makes the expansion of the trail wavefunction from the HF reference state more natural. In fact, for both trail wavefunctions implemented in q-lib (‘heuristic’ hardware efficient and UCCSD) the p/h Hamiltonian improves the speed of convergence of the VQE algorithm for the calculation of the electronic ground state properties. For more information on the p/h formalism see: P. Barkoutsos, arXiv:1805.04340([https://arxiv.org/abs/1805.04340](https://arxiv.org/abs/1805.04340)).
 
@@ -141,7 +141,7 @@ tuple
 
 <span id="qiskit.chemistry.FermionicOperator.total_angular_momentum" />
 
-`FermionicOperator.total_angular_momentum()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/fermionic_operator.py "view source code")
+`FermionicOperator.total_angular_momentum()`
 
 Total angular momentum.
 
@@ -159,7 +159,7 @@ Fermionic Hamiltonian
 
 <span id="qiskit.chemistry.FermionicOperator.total_magnetization" />
 
-`FermionicOperator.total_magnetization()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/fermionic_operator.py "view source code")
+`FermionicOperator.total_magnetization()`
 
 A data\_preprocess\_helper fermionic operator which can be used to evaluate the magnetization of the given eigenstate.
 
@@ -175,7 +175,7 @@ Fermionic Hamiltonian
 
 <span id="qiskit.chemistry.FermionicOperator.total_particle_number" />
 
-`FermionicOperator.total_particle_number()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/fermionic_operator.py "view source code")
+`FermionicOperator.total_particle_number()`
 
 A data\_preprocess\_helper fermionic operator which can be used to evaluate the number of particle of the given eigenstate.
 
@@ -191,7 +191,7 @@ Fermionic Hamiltonian
 
 <span id="qiskit.chemistry.FermionicOperator.transform" />
 
-`FermionicOperator.transform(unitary_matrix)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/fermionic_operator.py "view source code")
+`FermionicOperator.transform(unitary_matrix)`
 
 Transform the one and two body term based on unitary\_matrix.
 

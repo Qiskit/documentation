@@ -12,7 +12,7 @@ python_api_name: qiskit.chemistry.drivers.HFMethodType
 
 <span id="qiskit.chemistry.drivers.HFMethodType" />
 
-`HFMethodType(value)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/drivers/fermionic_driver.py "view source code")
+`HFMethodType(value)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/drivers/fermionic_driver.py "view source code")
 
 HFMethodType Enum
 

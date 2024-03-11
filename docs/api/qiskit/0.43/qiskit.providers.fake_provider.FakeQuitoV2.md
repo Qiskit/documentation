@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeQuitoV2
 
 <span id="qiskit.providers.fake_provider.FakeQuitoV2" />
 
-`FakeQuitoV2`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/backends/quito/fake_quito.py "view source code")
+`FakeQuitoV2` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/backends/quito/fake_quito.py "view source code")
 
 Bases: `FakeBackendV2`
 

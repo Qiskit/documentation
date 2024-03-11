@@ -12,7 +12,7 @@ python_api_name: qiskit.quantum_info.partial_trace
 
 <span id="qiskit.quantum_info.partial_trace" />
 
-`partial_trace(state, qargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/quantum_info/states/utils.py "view source code")
+`partial_trace(state, qargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/quantum_info/states/utils.py "view source code")
 
 Return reduced density matrix by tracing out part of quantum state.
 

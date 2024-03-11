@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.Decompose
 
 <span id="qiskit.transpiler.passes.Decompose" />
 
-`Decompose(gate=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/transpiler/passes/basis/decompose.py "view source code")
+`Decompose(gate=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/transpiler/passes/basis/decompose.py "view source code")
 
 Expand a gate in a circuit using its decomposition rules.
 

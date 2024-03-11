@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.average_gate_fidelity
 
 <span id="qiskit.quantum_info.average_gate_fidelity" />
 
-`average_gate_fidelity(channel, target=None, require_cp=True, require_tp=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/quantum_info/operators/measures.py "view source code")
+`average_gate_fidelity(channel, target=None, require_cp=True, require_tp=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/quantum_info/operators/measures.py "view source code")
 
 Return the average gate fidelity of a noisy quantum channel.
 
@@ -18,8 +18,8 @@ The average gate fidelity $F_{\text{ave}}$ is given by
 
 $$
 \begin{split}F_{\text{ave}}(\mathcal{E}, U)
-    &= \int d\psi \langle\psi\vert U^\dagger
-        \mathcal{E}(\vert \psi\rangle\!\langle\psi\vert )U\vert \psi\rangle \\
+    &= \int d\psi \langle\psi|U^\dagger
+        \mathcal{E}(|\psi\rangle\!\langle\psi|)U|\psi\rangle \\
     &= \frac{d F_{\text{pro}}(\mathcal{E}, U) + 1}{d + 1}\end{split}
 $$
 

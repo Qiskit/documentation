@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.hellinger_fidelity
 
 <span id="qiskit.quantum_info.hellinger_fidelity" />
 
-`hellinger_fidelity(dist_p, dist_q)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/quantum_info/analysis/distance.py "view source code")
+`hellinger_fidelity(dist_p, dist_q)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/quantum_info/analysis/distance.py "view source code")
 
 Computes the Hellinger fidelity between two counts distributions.
 

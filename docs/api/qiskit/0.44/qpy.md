@@ -1,7 +1,7 @@
 ---
 title: qpy
 description: API reference for qiskit.qpy
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.qpy
 ---
@@ -59,7 +59,7 @@ and then loading that file will return a list with all the circuits
 
 <span id="qiskit.qpy.load" />
 
-`qiskit.qpy.load(file_obj, metadata_deserializer=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/qpy/interface.py "view source code")
+`qiskit.qpy.load(file_obj, metadata_deserializer=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/qpy/interface.py "view source code")
 
 Load a QPY binary file
 
@@ -106,7 +106,7 @@ The list of Qiskit programs contained in the QPY data. A list is always returned
 
 <span id="qiskit.qpy.dump" />
 
-`qiskit.qpy.dump(programs, file_obj, metadata_serializer=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/qpy/interface.py "view source code")
+`qiskit.qpy.dump(programs, file_obj, metadata_serializer=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/qpy/interface.py "view source code")
 
 Write QPY binary data to a file
 
@@ -163,7 +163,7 @@ These functions will raise a custom subclass of [`QiskitError`](exceptions#qiski
 
 <span id="qiskit.qpy.QpyError" />
 
-`qiskit.qpy.QpyError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/qpy/exceptions.py "view source code")
+`qiskit.qpy.QpyError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/qpy/exceptions.py "view source code")
 
 Errors raised by the qpy module.
 

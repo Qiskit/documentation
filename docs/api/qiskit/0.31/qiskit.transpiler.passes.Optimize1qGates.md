@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.Optimize1qGates
 
 <span id="qiskit.transpiler.passes.Optimize1qGates" />
 
-`Optimize1qGates(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/optimization/optimize_1q_gates.py "view source code")
+`Optimize1qGates(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/optimization/optimize_1q_gates.py "view source code")
 
 Bases: `qiskit.transpiler.basepasses.TransformationPass`
 
@@ -29,7 +29,7 @@ Optimize1qGates initializer.
 
 <span id="qiskit.transpiler.passes.Optimize1qGates.compose_u3" />
 
-`static Optimize1qGates.compose_u3(theta1, phi1, lambda1, theta2, phi2, lambda2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/optimization/optimize_1q_gates.py "view source code")
+`static Optimize1qGates.compose_u3(theta1, phi1, lambda1, theta2, phi2, lambda2)`
 
 Return a triple theta, phi, lambda for the product.
 
@@ -51,7 +51,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.Optimize1qGates.run" />
 
-`Optimize1qGates.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/optimization/optimize_1q_gates.py "view source code")
+`Optimize1qGates.run(dag)`
 
 Run the Optimize1qGates pass on dag.
 
@@ -75,7 +75,7 @@ the optimized DAG.
 
 <span id="qiskit.transpiler.passes.Optimize1qGates.yzy_to_zyz" />
 
-`static Optimize1qGates.yzy_to_zyz(xi, theta1, theta2, eps=1e-09)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/optimization/optimize_1q_gates.py "view source code")
+`static Optimize1qGates.yzy_to_zyz(xi, theta1, theta2, eps=1e-09)`
 
 Express a Y.Z.Y single qubit gate as a Z.Y.Z gate.
 

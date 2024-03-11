@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.QNSPSA
 
 <span id="qiskit.algorithms.optimizers.QNSPSA" />
 
-`QNSPSA(fidelity, maxiter=100, blocking=True, allowed_increase=None, learning_rate=None, perturbation=None, last_avg=1, resamplings=1, perturbation_dims=None, regularization=None, hessian_delay=0, lse_solver=None, initial_hessian=None, callback=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/qnspsa.py "view source code")
+`QNSPSA(fidelity, maxiter=100, blocking=True, allowed_increase=None, learning_rate=None, perturbation=None, last_avg=1, resamplings=1, perturbation_dims=None, regularization=None, hessian_delay=0, lse_solver=None, initial_hessian=None, callback=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/qnspsa.py "view source code")
 
 Bases: `qiskit.algorithms.optimizers.spsa.SPSA`
 
@@ -123,14 +123,14 @@ Estimate the standard deviation of the loss function.
 
 <span id="qiskit.algorithms.optimizers.QNSPSA.get_fidelity" />
 
-`static QNSPSA.get_fidelity(circuit, backend=None, expectation=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/qnspsa.py "view source code")
+`static QNSPSA.get_fidelity(circuit, backend=None, expectation=None)`
 
 Get a function to compute the fidelity of `circuit` with itself.
 
 Let `circuit` be a parameterized quantum circuit performing the operation $U(\theta)$ given a set of parameters $\theta$. Then this method returns a function to evaluate
 
 $$
-F(\theta, \phi) = \big\vert \langle 0 \vert  U^\dagger(\theta) U(\phi) \vert 0\rangle  \big\vert ^2.
+F(\theta, \phi) = \big|\langle 0 | U^\dagger(\theta) U(\phi) |0\rangle  \big|^2.
 $$
 
 The output of this function can be used as input for the `fidelity` to the :class:\~\`qiskit.algorithms.optimizers.QNSPSA\` optimizer.

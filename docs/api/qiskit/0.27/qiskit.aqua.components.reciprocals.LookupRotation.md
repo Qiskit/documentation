@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.reciprocals.LookupRotation
 
 <span id="qiskit.aqua.components.reciprocals.LookupRotation" />
 
-`LookupRotation(pat_length=None, subpat_length=None, scale=0, negative_evals=False, evo_time=None, lambda_min=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/reciprocals/lookup_rotation.py "view source code")
+`LookupRotation(pat_length=None, subpat_length=None, scale=0, negative_evals=False, evo_time=None, lambda_min=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/reciprocals/lookup_rotation.py "view source code")
 
 The Lookup Rotation for Reciprocals.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit_aer.jobs.AerJob
 
 <span id="qiskit_aer.jobs.AerJob" />
 
-`AerJob(backend, job_id, fn, qobj, executor=None)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/jobs/aerjob.py "view source code")
+`AerJob(backend, job_id, fn, qobj, executor=None)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/jobs/aerjob.py "view source code")
 
 Bases: [`qiskit.providers.job.JobV1`](qiskit.providers.JobV1 "qiskit.providers.job.JobV1")
 
@@ -32,7 +32,7 @@ Initializes the asynchronous job.
 
 <span id="qiskit_aer.jobs.AerJob.backend" />
 
-`AerJob.backend()`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/jobs/aerjob.py "view source code")
+`AerJob.backend()`
 
 Return the instance of the backend used for this job.
 
@@ -40,7 +40,7 @@ Return the instance of the backend used for this job.
 
 <span id="qiskit_aer.jobs.AerJob.cancel" />
 
-`AerJob.cancel()`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/jobs/aerjob.py "view source code")
+`AerJob.cancel()`
 
 Attempt to cancel the job.
 
@@ -72,7 +72,7 @@ Return whether the job has successfully run.
 
 <span id="qiskit_aer.jobs.AerJob.executor" />
 
-`AerJob.executor()`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/jobs/aerjob.py "view source code")
+`AerJob.executor()`
 
 Return the executor for this job
 
@@ -104,7 +104,7 @@ Return a unique id identifying the job.
 
 <span id="qiskit_aer.jobs.AerJob.qobj" />
 
-`AerJob.qobj()`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/jobs/aerjob.py "view source code")
+`AerJob.qobj()`
 
 Return the Qobj submitted for this job.
 
@@ -120,7 +120,7 @@ the Qobj submitted for this job.
 
 <span id="qiskit_aer.jobs.AerJob.result" />
 
-`AerJob.result(timeout=None)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/jobs/aerjob.py "view source code")
+`AerJob.result(timeout=None)`
 
 Get job result. The behavior is the same as the underlying concurrent Future objects,
 
@@ -159,7 +159,7 @@ Return whether the job is actively running.
 
 <span id="qiskit_aer.jobs.AerJob.status" />
 
-`AerJob.status()`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/jobs/aerjob.py "view source code")
+`AerJob.status()`
 
 Gets the status of the job by querying the Python’s future
 
@@ -180,7 +180,7 @@ The current JobStatus
 
 <span id="qiskit_aer.jobs.AerJob.submit" />
 
-`AerJob.submit()`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/jobs/aerjob.py "view source code")
+`AerJob.submit()`
 
 Submit the job to the backend for execution.
 

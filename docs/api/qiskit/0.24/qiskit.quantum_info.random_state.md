@@ -12,7 +12,7 @@ python_api_name: qiskit.quantum_info.random_state
 
 <span id="qiskit.quantum_info.random_state" />
 
-`random_state(dim, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/quantum_info/states/random.py "view source code")
+`random_state(dim, seed=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/quantum_info/states/random.py "view source code")
 
 DEPRECATED Return a random quantum state.
 

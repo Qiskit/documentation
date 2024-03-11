@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.ContainsInstruction
 
 <span id="qiskit.transpiler.passes.ContainsInstruction" />
 
-`qiskit.transpiler.passes.ContainsInstruction(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/passes/utils/contains_instruction.py "view source code")
+`qiskit.transpiler.passes.ContainsInstruction(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/utils/contains_instruction.py "view source code")
 
 Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 

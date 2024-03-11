@@ -1,9 +1,9 @@
 ---
-title: PulseStyle
-description: API reference for qiskit.visualization.pulse.qcstyle.PulseStyle
-in_page_toc_min_heading_level: 1
-python_api_type: class
-python_api_name: qiskit.visualization.pulse.qcstyle.PulseStyle
+title: qcstyle
+description: API reference for qiskit.visualization.pulse.qcstyle
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.visualization.pulse.qcstyle
 ---
 
 # qcstyle
@@ -19,7 +19,7 @@ Style sheets for pulse visualization.
 
 <span id="qiskit.visualization.pulse.qcstyle.PulseStyle" />
 
-`PulseStyle(figsize=(7, 5), title_font_size=18, wave_color=None, bg_color=None, num_points=None, dpi=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/visualization/pulse/qcstyle.py "view source code")
+`PulseStyle(figsize=(7, 5), title_font_size=18, wave_color=None, bg_color=None, num_points=None, dpi=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/visualization/pulse/qcstyle.py "view source code")
 
 Style sheet for Qiskit-Pulse sample pulse drawer.
 
@@ -36,7 +36,7 @@ Create new style sheet.
 
 <span id="qiskit.visualization.pulse.qcstyle.SchedStyle" />
 
-`SchedStyle(figsize=(10, 12), fig_unit_h_table=0.4, use_table=True, table_columns=2, table_font_size=10, axis_font_size=18, label_font_size=10, icon_font_size=18, title_font_size=25, label_ch_linestyle='--', label_ch_color=None, label_ch_alpha=0.3, d_ch_color=None, u_ch_color=None, m_ch_color=None, s_ch_color=None, s_ch_linestyle='-', table_color=None, bg_color=None, num_points=1000, dpi=150, remove_spacing=True, max_table_ratio=0.5, vertical_span=0.2, axis_formatter=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/visualization/pulse/qcstyle.py "view source code")
+`SchedStyle(figsize=(10, 12), fig_unit_h_table=0.4, use_table=True, table_columns=2, table_font_size=10, axis_font_size=18, label_font_size=10, icon_font_size=18, title_font_size=25, label_ch_linestyle='--', label_ch_color=None, label_ch_alpha=0.3, d_ch_color=None, u_ch_color=None, m_ch_color=None, s_ch_color=None, s_ch_linestyle='-', table_color=None, bg_color=None, num_points=1000, dpi=150, remove_spacing=True, max_table_ratio=0.5, vertical_span=0.2, axis_formatter=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/visualization/pulse/qcstyle.py "view source code")
 
 Style sheet for Qiskit-Pulse schedule drawer.
 

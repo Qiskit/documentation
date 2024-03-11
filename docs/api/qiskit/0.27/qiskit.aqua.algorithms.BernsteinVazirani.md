@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.algorithms.BernsteinVazirani
 
 <span id="qiskit.aqua.algorithms.BernsteinVazirani" />
 
-`BernsteinVazirani(oracle, quantum_instance=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/education/bernstein_vazirani.py "view source code")
+`BernsteinVazirani(oracle, quantum_instance=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/education/bernstein_vazirani.py "view source code")
 
 The Bernstein-Vazirani algorithm.
 

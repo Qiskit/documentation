@@ -10,11 +10,11 @@ python_api_name: qiskit.ignis.mitigation.expectation_value
 
 <span id="qiskit.ignis.mitigation.expectation_value" />
 
-`expectation_value(counts, diagonal=None, qubits=None, clbits=None, meas_mitigator=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/mitigation/expval/utils.py "view source code")
+`expectation_value(counts, diagonal=None, qubits=None, clbits=None, meas_mitigator=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/mitigation/expval/utils.py "view source code")
 
 Compute the expectation value of a diagonal operator from counts.
 
-This computes the estimator of $\langle O \rangle = \mbox{Tr}[\rho. O]$, optionally with measurement error mitigation, of a diagonal observable $O = \sum_{x\in\{0, 1\}^n} O(x)\vert x\rangle\!\langle x\vert $.
+This computes the estimator of $\langle O \rangle = \mbox{Tr}[\rho. O]$, optionally with measurement error mitigation, of a diagonal observable $O = \sum_{x\in\{0, 1\}^n} O(x)|x\rangle\!\langle x|$.
 
 **Parameters**
 

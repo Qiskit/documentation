@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.C3SXGate
 
 <span id="qiskit.circuit.library.C3SXGate" />
 
-`qiskit.circuit.library.C3SXGate(*args, _force_mutable=False, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/standard_gates/x.py "view source code")
+`qiskit.circuit.library.C3SXGate(*args, _force_mutable=False, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 Bases: [`SingletonControlledGate`](circuit_singleton#qiskit.circuit.singleton.SingletonControlledGate "qiskit.circuit.singleton.SingletonControlledGate")
 
@@ -26,8 +26,8 @@ Create a new 3-qubit controlled sqrt-X gate.
 
 **Parameters**
 
-*   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *or None*) – An optional label for the gate \[Default: None]
-*   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *or*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
+*   **label** – An optional label for the gate \[Default: `None`]
+*   **ctrl\_state** – control state expressed as integer, string (e.g.\`\`’110’`), or ``None`. If `None`, use all 1s.
 
 ## Attributes
 
@@ -161,16 +161,4 @@ List of gate parameters.
 ### unit
 
 Get the time unit of duration.
-
-## Methods
-
-### qasm
-
-<span id="qiskit.circuit.library.C3SXGate.qasm" />
-
-`qasm()`
-
-<Admonition title="Deprecated since version 0.25.0" type="danger">
-  The method `qiskit.circuit.library.standard_gates.x.C3SXGate.qasm()` is deprecated as of qiskit-terra 0.25.0. It will be removed in the Qiskit 1.0 release.
-</Admonition>
 

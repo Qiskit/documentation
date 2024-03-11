@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.uncertainty_models.UnivariateVariational
 
 <span id="qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution" />
 
-`UnivariateVariationalDistribution(num_qubits, var_form, params, low=0, high=1)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_models/univariate_variational_distribution.py "view source code")
+`UnivariateVariationalDistribution(num_qubits, var_form, params, low=0, high=1)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_models/univariate_variational_distribution.py "view source code")
 
 The Univariate Variational Distribution.
 

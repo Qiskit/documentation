@@ -12,7 +12,7 @@ python_api_name: qiskit.pulse.Delay
 
 <span id="qiskit.pulse.Delay" />
 
-`Delay(duration, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/instructions/delay.py "view source code")
+`Delay(duration, channel, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/instructions/delay.py "view source code")
 
 A blocking instruction with no other effect. The delay is used for aligning and scheduling other instructions.
 

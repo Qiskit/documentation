@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.gradients.QFIBase
 
 <span id="qiskit.opflow.gradients.QFIBase" />
 
-`QFIBase(qfi_method='lin_comb_full')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/opflow/gradients/qfi_base.py "view source code")
+`QFIBase(qfi_method='lin_comb_full')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/opflow/gradients/qfi_base.py "view source code")
 
 Bases: [`qiskit.opflow.gradients.derivative_base.DerivativeBase`](qiskit.opflow.gradients.DerivativeBase "qiskit.opflow.gradients.derivative_base.DerivativeBase")
 

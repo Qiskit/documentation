@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.runtime.IBMRuntimeService
 
 <span id="qiskit.providers.ibmq.runtime.IBMRuntimeService" />
 
-`IBMRuntimeService(provider)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.17/qiskit/providers/ibmq/runtime/ibm_runtime_service.py "view source code")
+`IBMRuntimeService(provider)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.17/qiskit/providers/ibmq/runtime/ibm_runtime_service.py "view source code")
 
 Bases: `object`
 
@@ -71,7 +71,7 @@ IBMRuntimeService constructor.
 
 <span id="qiskit.providers.ibmq.runtime.IBMRuntimeService.delete_job" />
 
-`IBMRuntimeService.delete_job(job_id)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.17/qiskit/providers/ibmq/runtime/ibm_runtime_service.py "view source code")
+`IBMRuntimeService.delete_job(job_id)`
 
 Delete a runtime job.
 
@@ -94,7 +94,7 @@ Note that this operation cannot be reversed.
 
 <span id="qiskit.providers.ibmq.runtime.IBMRuntimeService.delete_program" />
 
-`IBMRuntimeService.delete_program(program_id)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.17/qiskit/providers/ibmq/runtime/ibm_runtime_service.py "view source code")
+`IBMRuntimeService.delete_program(program_id)`
 
 Delete a runtime program.
 
@@ -115,7 +115,7 @@ Delete a runtime program.
 
 <span id="qiskit.providers.ibmq.runtime.IBMRuntimeService.job" />
 
-`IBMRuntimeService.job(job_id)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.17/qiskit/providers/ibmq/runtime/ibm_runtime_service.py "view source code")
+`IBMRuntimeService.job(job_id)`
 
 Retrieve a runtime job.
 
@@ -140,7 +140,7 @@ Runtime job retrieved.
 
 <span id="qiskit.providers.ibmq.runtime.IBMRuntimeService.jobs" />
 
-`IBMRuntimeService.jobs(limit=10, skip=0, pending=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.17/qiskit/providers/ibmq/runtime/ibm_runtime_service.py "view source code")
+`IBMRuntimeService.jobs(limit=10, skip=0, pending=None)`
 
 Retrieve all runtime jobs, subject to optional filtering.
 
@@ -162,7 +162,7 @@ A list of runtime jobs.
 
 <span id="qiskit.providers.ibmq.runtime.IBMRuntimeService.logout" />
 
-`IBMRuntimeService.logout()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.17/qiskit/providers/ibmq/runtime/ibm_runtime_service.py "view source code")
+`IBMRuntimeService.logout()`
 
 Clears authorization cache on the server.
 
@@ -180,7 +180,7 @@ For better performance, the runtime server caches each user’s authorization in
 
 <span id="qiskit.providers.ibmq.runtime.IBMRuntimeService.pprint_programs" />
 
-`IBMRuntimeService.pprint_programs(refresh=False)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.17/qiskit/providers/ibmq/runtime/ibm_runtime_service.py "view source code")
+`IBMRuntimeService.pprint_programs(refresh=False)`
 
 Pretty print information about available runtime programs.
 
@@ -196,7 +196,7 @@ Pretty print information about available runtime programs.
 
 <span id="qiskit.providers.ibmq.runtime.IBMRuntimeService.program" />
 
-`IBMRuntimeService.program(program_id, refresh=False)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.17/qiskit/providers/ibmq/runtime/ibm_runtime_service.py "view source code")
+`IBMRuntimeService.program(program_id, refresh=False)`
 
 Retrieve a runtime program.
 
@@ -224,7 +224,7 @@ Runtime program.
 
 <span id="qiskit.providers.ibmq.runtime.IBMRuntimeService.programs" />
 
-`IBMRuntimeService.programs(refresh=False)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.17/qiskit/providers/ibmq/runtime/ibm_runtime_service.py "view source code")
+`IBMRuntimeService.programs(refresh=False)`
 
 Return available runtime programs.
 
@@ -246,7 +246,7 @@ A list of runtime programs.
 
 <span id="qiskit.providers.ibmq.runtime.IBMRuntimeService.run" />
 
-`IBMRuntimeService.run(program_id, options, inputs, callback=None, result_decoder=None, image='')`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.17/qiskit/providers/ibmq/runtime/ibm_runtime_service.py "view source code")
+`IBMRuntimeService.run(program_id, options, inputs, callback=None, result_decoder=None, image='')`
 
 Execute the runtime program.
 
@@ -285,7 +285,7 @@ A `RuntimeJob` instance representing the execution.
 
 <span id="qiskit.providers.ibmq.runtime.IBMRuntimeService.set_program_visibility" />
 
-`IBMRuntimeService.set_program_visibility(program_id, public)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.17/qiskit/providers/ibmq/runtime/ibm_runtime_service.py "view source code")
+`IBMRuntimeService.set_program_visibility(program_id, public)`
 
 Sets a program’s visibility.
 
@@ -307,7 +307,7 @@ Sets a program’s visibility.
 
 <span id="qiskit.providers.ibmq.runtime.IBMRuntimeService.upload_program" />
 
-`IBMRuntimeService.upload_program(data, metadata=None, name=None, is_public=False, max_execution_time=None, description=None, version=None, backend_requirements=None, parameters=None, return_values=None, interim_results=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.17/qiskit/providers/ibmq/runtime/ibm_runtime_service.py "view source code")
+`IBMRuntimeService.upload_program(data, metadata=None, name=None, is_public=False, max_execution_time=None, description=None, version=None, backend_requirements=None, parameters=None, return_values=None, interim_results=None)`
 
 Upload a runtime program.
 

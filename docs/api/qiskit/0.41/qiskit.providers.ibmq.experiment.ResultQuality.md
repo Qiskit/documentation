@@ -14,7 +14,7 @@ python_api_name: qiskit.providers.ibmq.experiment.ResultQuality
 
 <span id="qiskit.providers.ibmq.experiment.ResultQuality" />
 
-`ResultQuality(value)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/experiment/constants.py "view source code")
+`ResultQuality(value)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/experiment/constants.py "view source code")
 
 Bases: `enum.Enum`
 

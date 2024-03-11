@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.ALAPSchedule
 
 <span id="qiskit.transpiler.passes.ALAPSchedule" />
 
-`qiskit.transpiler.passes.ALAPSchedule(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/passes/scheduling/alap.py "view source code")
+`qiskit.transpiler.passes.ALAPSchedule(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/scheduling/alap.py "view source code")
 
 Bases: `BaseSchedulerTransform`
 

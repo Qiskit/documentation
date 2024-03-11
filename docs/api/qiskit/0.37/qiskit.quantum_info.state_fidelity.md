@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.state_fidelity
 
 <span id="qiskit.quantum_info.state_fidelity" />
 
-`state_fidelity(state1, state2, validate=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/quantum_info/states/measures.py "view source code")
+`state_fidelity(state1, state2, validate=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/quantum_info/states/measures.py "view source code")
 
 Return the state fidelity between two quantum states.
 
@@ -20,7 +20,7 @@ $$
 F(\rho_1, \rho_2) = Tr[\sqrt{\sqrt{\rho_1}\rho_2\sqrt{\rho_1}}]^2.
 $$
 
-If one of the states is a pure state this simplifies to $F(\rho_1, \rho_2) = \langle\psi_1\vert \rho_2\vert \psi_1\rangle$, where $\rho_1 = \vert \psi_1\rangle\!\langle\psi_1\vert $.
+If one of the states is a pure state this simplifies to $F(\rho_1, \rho_2) = \langle\psi_1|\rho_2|\psi_1\rangle$, where $\rho_1 = |\psi_1\rangle\!\langle\psi_1|$.
 
 **Parameters**
 

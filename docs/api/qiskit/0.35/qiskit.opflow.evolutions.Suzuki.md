@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.evolutions.Suzuki
 
 <span id="qiskit.opflow.evolutions.Suzuki" />
 
-`Suzuki(reps=1, order=2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/evolutions/trotterizations/suzuki.py "view source code")
+`Suzuki(reps=1, order=2)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/evolutions/trotterizations/suzuki.py "view source code")
 
 Bases: `qiskit.opflow.evolutions.trotterizations.trotterization_base.TrotterizationBase`
 
@@ -29,7 +29,7 @@ Detailed in [https://arxiv.org/pdf/quant-ph/0508139.pdf](https://arxiv.org/pdf/q
 
 <span id="qiskit.opflow.evolutions.Suzuki.convert" />
 
-`Suzuki.convert(operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/evolutions/trotterizations/suzuki.py "view source code")
+`Suzuki.convert(operator)`
 
 Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`.
 

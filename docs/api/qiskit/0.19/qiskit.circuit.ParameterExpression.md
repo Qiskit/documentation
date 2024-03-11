@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.ParameterExpression
 
 <span id="qiskit.circuit.ParameterExpression" />
 
-`ParameterExpression(symbol_map, expr)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/parameterexpression.py "view source code")
+`ParameterExpression(symbol_map, expr)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/parameterexpression.py "view source code")
 
 ParameterExpression class to enable creating expressions of Parameters.
 
@@ -35,13 +35,13 @@ Returns a set of the unbound Parameters in the expression.
 
 <span id="qiskit.circuit.ParameterExpression.__mul__" />
 
-`ParameterExpression.__mul__(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/parameterexpression.py "view source code")
+`ParameterExpression.__mul__(other)`
 
 ### bind
 
 <span id="qiskit.circuit.ParameterExpression.bind" />
 
-`ParameterExpression.bind(parameter_values)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/parameterexpression.py "view source code")
+`ParameterExpression.bind(parameter_values)`
 
 Binds the provided set of parameters to their corresponding values.
 
@@ -73,7 +73,7 @@ which were not bound by parameter\_values.
 
 <span id="qiskit.circuit.ParameterExpression.subs" />
 
-`ParameterExpression.subs(parameter_map)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/parameterexpression.py "view source code")
+`ParameterExpression.subs(parameter_map)`
 
 Returns a new Expression with replacement Parameters.
 

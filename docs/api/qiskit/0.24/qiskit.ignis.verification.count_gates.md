@@ -12,7 +12,7 @@ python_api_name: qiskit.ignis.verification.count_gates
 
 <span id="qiskit.ignis.verification.count_gates" />
 
-`count_gates(qobj, basis, qubits)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/randomized_benchmarking/rb_utils.py "view source code")
+`count_gates(qobj, basis, qubits)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/randomized_benchmarking/rb_utils.py "view source code")
 
 Take a compiled qobj and output the number of gates in each circuit.
 

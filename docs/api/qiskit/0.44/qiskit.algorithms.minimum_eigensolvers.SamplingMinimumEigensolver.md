@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolv
 
 <span id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolver" />
 
-`qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolver`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/minimum_eigensolvers/sampling_mes.py "view source code")
+`qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolver` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/minimum_eigensolvers/sampling_mes.py "view source code")
 
 Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 

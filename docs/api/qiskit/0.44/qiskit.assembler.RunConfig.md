@@ -10,7 +10,7 @@ python_api_name: qiskit.assembler.RunConfig
 
 <span id="qiskit.assembler.RunConfig" />
 
-`qiskit.assembler.RunConfig(shots=None, seed_simulator=None, memory=None, parameter_binds=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/assembler/run_config.py "view source code")
+`qiskit.assembler.RunConfig(shots=None, seed_simulator=None, memory=None, parameter_binds=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/assembler/run_config.py "view source code")
 
 Bases: [`SimpleNamespace`](https://docs.python.org/3/library/types.html#types.SimpleNamespace "(in Python v3.12)")
 

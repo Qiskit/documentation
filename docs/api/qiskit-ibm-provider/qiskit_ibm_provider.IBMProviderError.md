@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_provider.IBMProviderError
 
 <span id="qiskit_ibm_provider.IBMProviderError" />
 
-`IBMProviderError(*message)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/exceptions.py "view source code")
+`IBMProviderError(*message)` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/exceptions.py#L30-L33 "view source code")
 
 Base class for errors raise by IBMProvider.
 

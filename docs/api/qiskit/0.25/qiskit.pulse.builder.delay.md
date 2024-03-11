@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.builder.delay
 
 <span id="qiskit.pulse.builder.delay" />
 
-`delay(duration, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/builder.py "view source code")
+`delay(duration, channel, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/builder.py "view source code")
 
 Delay on a `channel` for a `duration`.
 
@@ -28,6 +28,6 @@ with pulse.build() as pulse_prog:
 **Parameters**
 
 *   **duration** (`int`) – Number of cycles to delay for on `channel`.
-*   **channel** ([`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")) – Channel to delay on.
+*   **channel** ([`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")) – Channel to delay on.
 *   **name** (`Optional`\[`str`]) – Name of the instruction.
 

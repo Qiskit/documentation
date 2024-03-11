@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.VQE
 
 <span id="qiskit.algorithms.VQE" />
 
-`qiskit.algorithms.VQE(ansatz=None, optimizer=None, initial_point=None, gradient=None, expectation=None, include_custom=False, max_evals_grouped=1, callback=None, quantum_instance=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/minimum_eigen_solvers/vqe.py "view source code")
+`qiskit.algorithms.VQE(ansatz=None, optimizer=None, initial_point=None, gradient=None, expectation=None, include_custom=False, max_evals_grouped=1, callback=None, quantum_instance=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/minimum_eigen_solvers/vqe.py "view source code")
 
 Bases: `VariationalAlgorithm`, [`MinimumEigensolver`](qiskit.algorithms.MinimumEigensolver "qiskit.algorithms.minimum_eigen_solvers.minimum_eigen_solver.MinimumEigensolver")
 

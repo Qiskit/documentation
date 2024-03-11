@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CYGate
 
 <span id="qiskit.circuit.library.CYGate" />
 
-`CYGate(label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/standard_gates/y.py "view source code")
+`CYGate(label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/standard_gates/y.py "view source code")
 
 Bases: [`qiskit.circuit.controlledgate.ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 
@@ -31,7 +31,7 @@ q_1: ┤ Y ├
 
 $$
 \begin{split}CY\ q_0, q_1 =
-I \otimes \vert 0 \rangle\langle 0\vert  + Y \otimes \vert 1 \rangle\langle 1\vert   =
+I \otimes |0 \rangle\langle 0| + Y \otimes |1 \rangle\langle 1|  =
     \begin{pmatrix}
         1 & 0 & 0 & 0 \\
         0 & 0 & 0 & -i \\
@@ -52,7 +52,7 @@ $$
 
   $$
   \begin{split}CY\ q_1, q_0 =
-      \vert 0 \rangle\langle 0\vert  \otimes I + \vert 1 \rangle\langle 1\vert  \otimes Y =
+      |0 \rangle\langle 0| \otimes I + |1 \rangle\langle 1| \otimes Y =
       \begin{pmatrix}
           1 & 0 & 0 & 0 \\
           0 & 1 & 0 & 0 \\
@@ -70,7 +70,7 @@ Create new CY gate.
 
 <span id="qiskit.circuit.library.CYGate.inverse" />
 
-`CYGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/standard_gates/y.py "view source code")
+`CYGate.inverse()`
 
 Return inverted CY gate (itself).
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.Qubit
 
 <span id="qiskit.circuit.Qubit" />
 
-`Qubit(register=None, index=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/quantumregister.py "view source code")
+`Qubit(register=None, index=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/quantumregister.py "view source code")
 
 Implement a quantum bit.
 

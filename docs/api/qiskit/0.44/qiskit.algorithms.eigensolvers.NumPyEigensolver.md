@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.eigensolvers.NumPyEigensolver
 
 <span id="qiskit.algorithms.eigensolvers.NumPyEigensolver" />
 
-`qiskit.algorithms.eigensolvers.NumPyEigensolver(k=1, filter_criterion=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/eigensolvers/numpy_eigensolver.py "view source code")
+`qiskit.algorithms.eigensolvers.NumPyEigensolver(k=1, filter_criterion=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/eigensolvers/numpy_eigensolver.py "view source code")
 
 Bases: [`Eigensolver`](qiskit.algorithms.eigensolvers.Eigensolver "qiskit.algorithms.eigensolvers.eigensolver.Eigensolver")
 

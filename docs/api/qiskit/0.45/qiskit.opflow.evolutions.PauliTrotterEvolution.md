@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.evolutions.PauliTrotterEvolution
 
 <span id="qiskit.opflow.evolutions.PauliTrotterEvolution" />
 
-`qiskit.opflow.evolutions.PauliTrotterEvolution(trotter_mode='trotter', reps=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/evolutions/pauli_trotter_evolution.py "view source code")
+`qiskit.opflow.evolutions.PauliTrotterEvolution(trotter_mode='trotter', reps=1)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/evolutions/pauli_trotter_evolution.py "view source code")
 
 Bases: [`EvolutionBase`](qiskit.opflow.evolutions.EvolutionBase "qiskit.opflow.evolutions.evolution_base.EvolutionBase")
 

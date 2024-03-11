@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.CNOTDihedral
 
 <span id="qiskit.quantum_info.CNOTDihedral" />
 
-`CNOTDihedral(data=None, num_qubits=None, validate=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/quantum_info/operators/dihedral/dihedral.py "view source code")
+`CNOTDihedral(data=None, num_qubits=None, validate=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/quantum_info/operators/dihedral/dihedral.py "view source code")
 
 An N-qubit operator from the CNOT-Dihedral group.
 

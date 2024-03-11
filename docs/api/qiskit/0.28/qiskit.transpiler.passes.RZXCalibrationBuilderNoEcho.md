@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho
 
 <span id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho" />
 
-`RZXCalibrationBuilderNoEcho(backend)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/scheduling/calibration_creators.py "view source code")
+`RZXCalibrationBuilderNoEcho(backend)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/scheduling/calibration_creators.py "view source code")
 
 Creates calibrations for RZXGate(theta) by stretching and compressing Gaussian square pulses in the CX gate.
 

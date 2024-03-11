@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.managed.ManagedJobSet
 
 <span id="qiskit.providers.ibmq.managed.ManagedJobSet" />
 
-`ManagedJobSet(name=None, short_id=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.13/qiskit/providers/ibmq/managed/managedjobset.py "view source code")
+`ManagedJobSet(name=None, short_id=None)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.13/qiskit/providers/ibmq/managed/managedjobset.py "view source code")
 
 A set of managed jobs.
 

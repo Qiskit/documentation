@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.optimizers.L_BFGS_B
 
 <span id="qiskit.aqua.components.optimizers.L_BFGS_B" />
 
-`L_BFGS_B(maxfun=1000, maxiter=15000, factr=10, iprint=- 1, epsilon=1e-08)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/optimizers/l_bfgs_b.py "view source code")
+`L_BFGS_B(maxfun=1000, maxiter=15000, factr=10, iprint=- 1, epsilon=1e-08)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/optimizers/l_bfgs_b.py "view source code")
 
 Limited-memory BFGS Bound optimizer.
 

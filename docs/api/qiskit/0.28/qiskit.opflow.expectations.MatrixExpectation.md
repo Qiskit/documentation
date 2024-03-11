@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.expectations.MatrixExpectation
 
 <span id="qiskit.opflow.expectations.MatrixExpectation" />
 
-`MatrixExpectation`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/expectations/matrix_expectation.py "view source code")
+`MatrixExpectation` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/expectations/matrix_expectation.py "view source code")
 
 An Expectation converter which converts Operator measurements to be matrix-based so they can be evaluated by matrix multiplication.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.JobV1
 
 <span id="qiskit.providers.JobV1" />
 
-`JobV1(backend, job_id, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/job.py "view source code")
+`JobV1(backend, job_id, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/job.py "view source code")
 
 Bases: [`qiskit.providers.job.Job`](qiskit.providers.Job "qiskit.providers.job.Job"), `abc.ABC`
 
@@ -32,7 +32,7 @@ Initializes the asynchronous job.
 
 <span id="qiskit.providers.JobV1.backend" />
 
-`JobV1.backend()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/job.py "view source code")
+`JobV1.backend()`
 
 Return the backend where this job was executed.
 
@@ -44,7 +44,7 @@ Return the backend where this job was executed.
 
 <span id="qiskit.providers.JobV1.cancel" />
 
-`JobV1.cancel()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/job.py "view source code")
+`JobV1.cancel()`
 
 Attempt to cancel the job.
 
@@ -52,7 +52,7 @@ Attempt to cancel the job.
 
 <span id="qiskit.providers.JobV1.cancelled" />
 
-`JobV1.cancelled()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/job.py "view source code")
+`JobV1.cancelled()`
 
 Return whether the job has been cancelled.
 
@@ -64,7 +64,7 @@ Return whether the job has been cancelled.
 
 <span id="qiskit.providers.JobV1.done" />
 
-`JobV1.done()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/job.py "view source code")
+`JobV1.done()`
 
 Return whether the job has successfully run.
 
@@ -76,7 +76,7 @@ Return whether the job has successfully run.
 
 <span id="qiskit.providers.JobV1.in_final_state" />
 
-`JobV1.in_final_state()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/job.py "view source code")
+`JobV1.in_final_state()`
 
 Return whether the job is in a final job state such as `DONE` or `ERROR`.
 
@@ -88,7 +88,7 @@ Return whether the job is in a final job state such as `DONE` or `ERROR`.
 
 <span id="qiskit.providers.JobV1.job_id" />
 
-`JobV1.job_id()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/job.py "view source code")
+`JobV1.job_id()`
 
 Return a unique id identifying the job.
 
@@ -100,7 +100,7 @@ Return a unique id identifying the job.
 
 <span id="qiskit.providers.JobV1.result" />
 
-`abstract JobV1.result()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/job.py "view source code")
+`abstract JobV1.result()`
 
 Return the results of the job.
 
@@ -108,7 +108,7 @@ Return the results of the job.
 
 <span id="qiskit.providers.JobV1.running" />
 
-`JobV1.running()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/job.py "view source code")
+`JobV1.running()`
 
 Return whether the job is actively running.
 
@@ -120,7 +120,7 @@ Return whether the job is actively running.
 
 <span id="qiskit.providers.JobV1.status" />
 
-`abstract JobV1.status()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/job.py "view source code")
+`abstract JobV1.status()`
 
 Return the status of the job, among the values of `JobStatus`.
 
@@ -128,7 +128,7 @@ Return the status of the job, among the values of `JobStatus`.
 
 <span id="qiskit.providers.JobV1.submit" />
 
-`abstract JobV1.submit()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/job.py "view source code")
+`abstract JobV1.submit()`
 
 Submit the job to the backend for execution.
 
@@ -136,7 +136,7 @@ Submit the job to the backend for execution.
 
 <span id="qiskit.providers.JobV1.wait_for_final_state" />
 
-`JobV1.wait_for_final_state(timeout=None, wait=5, callback=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/job.py "view source code")
+`JobV1.wait_for_final_state(timeout=None, wait=5, callback=None)`
 
 Poll the job status until it progresses to a final state such as `DONE` or `ERROR`.
 

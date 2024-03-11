@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.GroverOperator
 
 <span id="qiskit.circuit.library.GroverOperator" />
 
-`GroverOperator(oracle, state_preparation=None, zero_reflection=None, reflection_qubits=None, insert_barriers=False, mcx_mode='noancilla', name='Q')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/grover_operator.py "view source code")
+`GroverOperator(oracle, state_preparation=None, zero_reflection=None, reflection_qubits=None, insert_barriers=False, mcx_mode='noancilla', name='Q')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/grover_operator.py "view source code")
 
 The Grover operator.
 
@@ -34,7 +34,7 @@ This class allows setting a different state preparation, as in quantum amplitude
 The action of the phase oracle $\mathcal{S}_f$ is defined as
 
 $$
-\mathcal{S}_f: \vert x\rangle \mapsto (-1)^{f(x)}\vert x\rangle
+\mathcal{S}_f: |x\rangle \mapsto (-1)^{f(x)}|x\rangle
 $$
 
 where $f(x) = 1$ if $x$ is a good state and 0 otherwise. To highlight the fact that this oracle flips the phase of the good states and does not flip the state of a result qubit, we call $\mathcal{S}_f$ a phase oracle.
@@ -54,10 +54,10 @@ There is some flexibility in defining the oracle and $\mathcal{A}$ operator. Bef
 The zero reflection $\mathcal{S}_0$ is usually defined as
 
 $$
-\mathcal{S}_0 = 2 \vert 0\rangle^{\otimes n} \langle 0\vert ^{\otimes n} - \mathbb{I}_n
+\mathcal{S}_0 = 2 |0\rangle^{\otimes n} \langle 0|^{\otimes n} - \mathbb{I}_n
 $$
 
-where $\mathbb{I}_n$ is the identity on $n$ qubits. By default, this class implements the negative version $2 \vert 0\rangle^{\otimes n} \langle 0\vert ^{\otimes n} - \mathbb{I}_n$, since this can simply be implemented with a multi-controlled Z sandwiched by X gates on the target qubit and the introduced global phase does not matter for Grover’s algorithm.
+where $\mathbb{I}_n$ is the identity on $n$ qubits. By default, this class implements the negative version $2 |0\rangle^{\otimes n} \langle 0|^{\otimes n} - \mathbb{I}_n$, since this can simply be implemented with a multi-controlled Z sandwiched by X gates on the target qubit and the introduced global phase does not matter for Grover’s algorithm.
 
 **Examples**
 
@@ -1241,7 +1241,7 @@ Apply [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate").
 
 Initialize qubits in a specific state.
 
-Qubit initialization is done by first resetting the qubits to $\vert 0\rangle$ followed by an state preparing unitary. Both these steps are included in the Initialize instruction.
+Qubit initialization is done by first resetting the qubits to $|0\rangle$ followed by an state preparing unitary. Both these steps are included in the Initialize instruction.
 
 **Parameters**
 
@@ -1272,7 +1272,7 @@ a handle to the instruction that was just initialized
 
 **Examples**
 
-Prepare a qubit in the state $(\vert 0\rangle - \vert 1\rangle) / \sqrt{2}$.
+Prepare a qubit in the state $(|0\rangle - |1\rangle) / \sqrt{2}$.
 
 ```python
 import numpy as np

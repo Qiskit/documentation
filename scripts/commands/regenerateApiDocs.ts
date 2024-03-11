@@ -15,15 +15,16 @@ import { readFile, readdir } from "fs/promises";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 import { $ } from "zx";
-import fs from "fs";
 
 import { Pkg } from "../lib/api/Pkg";
 import { zxMain } from "../lib/zx";
+import { pathExists } from "../lib/fs";
 
 interface Arguments {
   [x: string]: unknown;
   package?: string;
   currentApisOnly: boolean;
+  skipDownload: boolean;
 }
 
 const readArgs = (): Arguments => {
@@ -41,6 +42,11 @@ const readArgs = (): Arguments => {
       default: false,
       description: "Regenerate only the current API docs?",
     })
+    .option("skip-download", {
+      type: "boolean",
+      default: false,
+      description: "Don't redownload docs from Box",
+    })
     .parseSync();
 };
 
@@ -54,14 +60,18 @@ zxMain(async () => {
       continue;
     }
 
-    const [historicalVersions, currentVersion] = await getPackageVersions(
+    const [historicalVersions, currentVersion] = await getReleasedVersions(
       pkgName,
       args.currentApisOnly,
     );
+    const maybeDevVersion = await getDevVersion(pkgName);
+
     const result = await processVersions(
       pkgName,
+      args.skipDownload,
       historicalVersions,
       currentVersion,
+      maybeDevVersion,
     );
     results.set(pkgName, result);
   }
@@ -80,30 +90,51 @@ git cherry-pick or git rebase -i so each PR only has the commits it wants to tar
 
 async function processVersions(
   pkgName: string,
+  skipDownload: boolean,
   historicalVersions: string[],
   currentVersion: string,
+  maybeDevVersion: string | undefined,
 ): Promise<string[]> {
   const results: string[] = [];
 
   for (const historicalVersion of historicalVersions) {
-    results.push(await regenerateVersion(pkgName, historicalVersion));
+    results.push(
+      await regenerateVersion(
+        pkgName,
+        historicalVersion,
+        skipDownload,
+        "historical",
+      ),
+    );
   }
-  results.push(await regenerateVersion(pkgName, currentVersion, false));
+
+  results.push(await regenerateVersion(pkgName, currentVersion, skipDownload));
+
+  if (maybeDevVersion) {
+    results.push(
+      await regenerateVersion(pkgName, maybeDevVersion, skipDownload, "dev"),
+    );
+  }
+
   return results;
 }
 
 async function regenerateVersion(
   pkgName: string,
   version: string,
-  historical: boolean = true,
+  skipDownload: boolean,
+  typeArgument?: "historical" | "dev",
 ): Promise<string> {
-  try {
-    if (historical) {
-      await $`npm run gen-api -- -p ${pkgName} -v ${version} --historical`;
-    } else {
-      await $`npm run gen-api -- -p ${pkgName} -v ${version}`;
-    }
+  const command = ["npm", "run", "gen-api", "--", "-p", pkgName, "-v", version];
+  if (typeArgument) {
+    command.push(`--${typeArgument}`);
+  }
+  if (skipDownload) {
+    command.push("--skip-download");
+  }
 
+  try {
+    await $`${command}`;
     if ((await gitStatus()) !== "") {
       await gitCommit(`Regenerate ${pkgName} ${version}`);
       return `✅ ${pkgName} ${version} regenerated correctly`;
@@ -116,7 +147,18 @@ async function regenerateVersion(
   }
 }
 
-async function getPackageVersions(
+async function getDevVersion(pkgName: string): Promise<string | undefined> {
+  const devPath = `docs/api/${pkgName}/dev`;
+
+  if (await pathExists(devPath)) {
+    return JSON.parse(await readFile(`${devPath}/_package.json`, "utf-8"))
+      .version;
+  }
+
+  return undefined;
+}
+
+async function getReleasedVersions(
   pkgName: string,
   currentApisOnly: boolean,
 ): Promise<[string[], string]> {

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.GMS
 
 <span id="qiskit.circuit.library.GMS" />
 
-`GMS(num_qubits, theta)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/generalized_gates/gms.py "view source code")
+`GMS(num_qubits, theta)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/generalized_gates/gms.py "view source code")
 
 Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 

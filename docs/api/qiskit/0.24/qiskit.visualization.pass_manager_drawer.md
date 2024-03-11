@@ -12,7 +12,7 @@ python_api_name: qiskit.visualization.pass_manager_drawer
 
 <span id="qiskit.visualization.pass_manager_drawer" />
 
-`pass_manager_drawer(pass_manager, filename=None, style=None, raw=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/visualization/pass_manager_visualization.py "view source code")
+`pass_manager_drawer(pass_manager, filename=None, style=None, raw=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/visualization/pass_manager_visualization.py "view source code")
 
 Draws the pass manager.
 

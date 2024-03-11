@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.initial_states.InitialState
 
 <span id="qiskit.aqua.components.initial_states.InitialState" />
 
-`InitialState`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/initial_states/initial_state.py "view source code")
+`InitialState` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/initial_states/initial_state.py "view source code")
 
 Base class for InitialState.
 

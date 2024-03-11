@@ -10,7 +10,7 @@ python_api_name: qiskit.scheduler.ScheduleConfig
 
 <span id="qiskit.scheduler.ScheduleConfig" />
 
-`ScheduleConfig(inst_map, meas_map, dt)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/scheduler/config.py "view source code")
+`ScheduleConfig(inst_map, meas_map, dt)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/scheduler/config.py "view source code")
 
 Bases: `object`
 

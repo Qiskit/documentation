@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.SwitchCaseOp
 
 <span id="qiskit.circuit.SwitchCaseOp" />
 
-`SwitchCaseOp(target, cases, *, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/controlflow/switch_case.py "view source code")
+`SwitchCaseOp(target, cases, *, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/controlflow/switch_case.py "view source code")
 
 Bases: [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.controlflow.control_flow.ControlFlowOp")
 
@@ -91,7 +91,7 @@ Validation of the arguments.
 
 <span id="qiskit.circuit.SwitchCaseOp.c_if" />
 
-`SwitchCaseOp.c_if(classical, val)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/controlflow/switch_case.py "view source code")
+`SwitchCaseOp.c_if(classical, val)`
 
 Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
 
@@ -105,7 +105,7 @@ Set a classical equality condition on this instruction between the register or c
 
 <span id="qiskit.circuit.SwitchCaseOp.cases" />
 
-`SwitchCaseOp.cases()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/controlflow/switch_case.py "view source code")
+`SwitchCaseOp.cases()`
 
 Return a lookup table from case labels to the circuit that would be executed in that case. This object is not generally suitable for creating a new [`SwitchCaseOp`](qiskit.circuit.SwitchCaseOp "qiskit.circuit.SwitchCaseOp") because any keys that point to the same object will not be grouped.
 
@@ -121,7 +121,7 @@ Return a lookup table from case labels to the circuit that would be executed in 
 
 <span id="qiskit.circuit.SwitchCaseOp.cases_specifier" />
 
-`SwitchCaseOp.cases_specifier()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/controlflow/switch_case.py "view source code")
+`SwitchCaseOp.cases_specifier()`
 
 Return an iterable where each element is a 2-tuple whose first element is a tuple of jump values, and whose second is the single circuit block that is associated with those values.
 
@@ -239,7 +239,7 @@ Containing the definition.
 
 <span id="qiskit.circuit.SwitchCaseOp.replace_blocks" />
 
-`SwitchCaseOp.replace_blocks(blocks)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/controlflow/switch_case.py "view source code")
+`SwitchCaseOp.replace_blocks(blocks)`
 
 Replace blocks and return new instruction. :param blocks: Tuple of QuantumCircuits to replace in instruction.
 

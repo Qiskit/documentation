@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.noise.pauli_error
 
 <span id="qiskit.providers.aer.noise.pauli_error" />
 
-`pauli_error(noise_ops, standard_gates=True)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/providers/aer/noise/errors/standard_errors.py "view source code")
+`pauli_error(noise_ops, standard_gates=True)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/providers/aer/noise/errors/standard_errors.py "view source code")
 
 Return a mixed Pauli quantum error channel.
 

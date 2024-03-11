@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.StabilizerState
 
 <span id="qiskit.quantum_info.StabilizerState" />
 
-`qiskit.quantum_info.StabilizerState(data, validate=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/quantum_info/states/stabilizerstate.py "view source code")
+`qiskit.quantum_info.StabilizerState(data, validate=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/quantum_info/states/stabilizerstate.py "view source code")
 
 Bases: `QuantumState`
 

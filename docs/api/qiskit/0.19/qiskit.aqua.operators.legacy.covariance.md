@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.operators.legacy.covariance
 
 <span id="qiskit.aqua.operators.legacy.covariance" />
 
-`covariance(data, pauli_1, pauli_2, avg_1, avg_2)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/legacy/common.py "view source code")
+`covariance(data, pauli_1, pauli_2, avg_1, avg_2)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/legacy/common.py "view source code")
 
 Compute the covariance matrix element between two Paulis, given the measurement outcome. Appropriate post-rotations on the state are assumed.
 

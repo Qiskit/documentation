@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.GraphState
 
 <span id="qiskit.circuit.library.GraphState" />
 
-`qiskit.circuit.library.GraphState(adjacency_matrix)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/graph_state.py "view source code")
+`qiskit.circuit.library.GraphState(adjacency_matrix)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/graph_state.py "view source code")
 
 Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
@@ -19,7 +19,7 @@ Circuit to prepare a graph state.
 Given a graph G = (V, E), with the set of vertices V and the set of edges E, the corresponding graph state is defined as
 
 $$
-\vert G\rangle = \prod_{(a,b) \in E} CZ_{(a,b)} {\vert +\rangle}^{\otimes V}
+|G\rangle = \prod_{(a,b) \in E} CZ_{(a,b)} {|+\rangle}^{\otimes V}
 $$
 
 Such a state can be prepared by first preparing all qubits in the $+$ state, then applying a $CZ$ gate for each corresponding graph edge.
@@ -88,29 +88,17 @@ a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitI
 
 QuantumCircuitData
 
-<span id="qiskit.circuit.library.GraphState.extension_lib" />
-
-### extension\_lib
-
-`= 'include "qelib1.inc";'`
-
 <span id="qiskit.circuit.library.GraphState.global_phase" />
 
 ### global\_phase
 
 Return the global phase of the current circuit scope in radians.
 
-<span id="qiskit.circuit.library.GraphState.header" />
-
-### header
-
-`= 'OPENQASM 2.0;'`
-
 <span id="qiskit.circuit.library.GraphState.instances" />
 
 ### instances
 
-`= 195`
+`= 172`
 
 <span id="qiskit.circuit.library.GraphState.layout" />
 
@@ -209,9 +197,6 @@ ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
 ```
 
 To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
-
-```python
-```
 
 ```python
 >>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector

@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.synthesis.aqc.AQCSynthesisPlugin
 
 <span id="qiskit.transpiler.synthesis.aqc.AQCSynthesisPlugin" />
 
-`qiskit.transpiler.synthesis.aqc.AQCSynthesisPlugin`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/synthesis/aqc/aqc_plugin.py "view source code")
+`qiskit.transpiler.synthesis.aqc.AQCSynthesisPlugin` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/synthesis/aqc/aqc_plugin.py "view source code")
 
 Bases: [`UnitarySynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin")
 

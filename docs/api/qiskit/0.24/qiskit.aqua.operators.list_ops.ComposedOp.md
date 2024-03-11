@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.operators.list_ops.ComposedOp
 
 <span id="qiskit.aqua.operators.list_ops.ComposedOp" />
 
-`ComposedOp(oplist, coeff=1.0, abelian=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/list_ops/composed_op.py "view source code")
+`ComposedOp(oplist, coeff=1.0, abelian=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/list_ops/composed_op.py "view source code")
 
 A class for lazily representing compositions of Operators. Often Operators cannot be efficiently composed with one another, but may be manipulated further so that they can be composed later. This class holds logic to indicate that the Operators in `oplist` are meant to be composed, and therefore if they reach a point in which they can be, such as after conversion to QuantumCircuits or matrices, they can be reduced by composition.
 

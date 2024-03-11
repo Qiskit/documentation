@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CRZGate
 
 <span id="qiskit.circuit.library.CRZGate" />
 
-`qiskit.circuit.library.CRZGate(theta, label=None, ctrl_state=None, *, duration=None, unit='dt', _base_label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/standard_gates/rz.py "view source code")
+`qiskit.circuit.library.CRZGate(theta, label=None, ctrl_state=None, *, duration=None, unit='dt', _base_label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/rz.py "view source code")
 
 Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 
@@ -33,7 +33,7 @@ q_1: ┤ Rz(λ) ├
 
 $$
 CRZ(\lambda)\ q_0, q_1 =
-    I \otimes \vert 0\rangle\langle 0\vert  + RZ(\lambda) \otimes \vert 1\rangle\langle 1\vert  =
+    I \otimes |0\rangle\langle 0| + RZ(\lambda) \otimes |1\rangle\langle 1| =
     \begin{pmatrix}
         1 & 0 & 0 & 0 \\
         0 & e^{-i\frac{\lambda}{2}} & 0 & 0 \\
@@ -54,7 +54,7 @@ $$
 
   $$
   CRZ(\lambda)\ q_1, q_0 =
-      \vert 0\rangle\langle 0\vert  \otimes I + \vert 1\rangle\langle 1\vert  \otimes RZ(\lambda) =
+      |0\rangle\langle 0| \otimes I + |1\rangle\langle 1| \otimes RZ(\lambda) =
       \begin{pmatrix}
           1 & 0 & 0 & 0 \\
           0 & 1 & 0 & 0 \\
@@ -209,7 +209,19 @@ Get the time unit of duration.
 
 <span id="qiskit.circuit.library.CRZGate.inverse" />
 
-`inverse()`
+`inverse(annotated=False)`
 
 Return inverse CRZ gate (i.e. with the negative rotation angle).
+
+**Parameters**
+
+**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) –
+
+**when set to `True`, this is typically used to return an**
+
+[`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always a [`CRZGate`](#qiskit.circuit.library.CRZGate "qiskit.circuit.library.CRZGate") with an inverted parameter value.
+
+**Returns:**
+
+CRZGate: inverse gate.
 

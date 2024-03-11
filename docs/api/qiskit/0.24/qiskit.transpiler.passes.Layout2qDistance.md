@@ -12,7 +12,7 @@ python_api_name: qiskit.transpiler.passes.Layout2qDistance
 
 <span id="qiskit.transpiler.passes.Layout2qDistance" />
 
-`Layout2qDistance(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/transpiler/passes/layout/layout_2q_distance.py "view source code")
+`Layout2qDistance(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/transpiler/passes/layout/layout_2q_distance.py "view source code")
 
 Evaluate how good the layout selection was.
 

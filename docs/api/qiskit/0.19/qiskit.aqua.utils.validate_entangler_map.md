@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.utils.validate_entangler_map
 
 <span id="qiskit.aqua.utils.validate_entangler_map" />
 
-`validate_entangler_map(entangler_map, num_qubits, allow_double_entanglement=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/utils/entangler_map.py "view source code")
+`validate_entangler_map(entangler_map, num_qubits, allow_double_entanglement=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/utils/entangler_map.py "view source code")
 
 Validate a user supplied entangler map and converts entries to ints.
 

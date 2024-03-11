@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.expectations.ExpectationFactory
 
 <span id="qiskit.opflow.expectations.ExpectationFactory" />
 
-`ExpectationFactory`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/expectations/expectation_factory.py "view source code")
+`ExpectationFactory` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/expectations/expectation_factory.py "view source code")
 
 A factory class for convenient automatic selection of an Expectation based on the Operator to be converted and backend used to sample the expectation value.
 

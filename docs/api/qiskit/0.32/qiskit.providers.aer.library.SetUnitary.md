@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.library.SetUnitary
 
 <span id="qiskit.providers.aer.library.SetUnitary" />
 
-`SetUnitary(state)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/providers/aer/library/set_instructions/set_unitary.py "view source code")
+`SetUnitary(state)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/providers/aer/library/set_instructions/set_unitary.py "view source code")
 
 Bases: `qiskit.circuit.instruction.Instruction`
 

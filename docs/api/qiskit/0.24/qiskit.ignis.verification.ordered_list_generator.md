@@ -12,7 +12,7 @@ python_api_name: qiskit.ignis.verification.ordered_list_generator
 
 <span id="qiskit.ignis.verification.ordered_list_generator" />
 
-`ordered_list_generator(counts_dictionary, qn)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/entanglement/analysis.py "view source code")
+`ordered_list_generator(counts_dictionary, qn)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/entanglement/analysis.py "view source code")
 
 For parity oscillations; just arranges dictionary of counts in bitwise binary order to compute dot products more easily
 

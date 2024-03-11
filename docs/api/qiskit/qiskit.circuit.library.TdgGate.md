@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.TdgGate
 
 <span id="qiskit.circuit.library.TdgGate" />
 
-`qiskit.circuit.library.TdgGate(*args, _force_mutable=False, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/standard_gates/t.py "view source code")
+`qiskit.circuit.library.TdgGate(*args, _force_mutable=False, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/t.py "view source code")
 
 Bases: [`SingletonGate`](circuit_singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate")
 
@@ -146,9 +146,21 @@ Get the time unit of duration.
 
 <span id="qiskit.circuit.library.TdgGate.inverse" />
 
-`inverse()`
+`inverse(annotated=False)`
 
 Return inverse Tdg gate (i.e. T).
+
+**Parameters**
+
+**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always a [`TGate`](qiskit.circuit.library.TGate "qiskit.circuit.library.TGate").
+
+**Returns**
+
+inverse of [`TdgGate`](#qiskit.circuit.library.TdgGate "qiskit.circuit.library.TdgGate")
+
+**Return type**
+
+[TGate](qiskit.circuit.library.TGate "qiskit.circuit.library.TGate")
 
 ### power
 

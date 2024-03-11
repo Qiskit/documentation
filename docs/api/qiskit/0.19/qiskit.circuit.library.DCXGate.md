@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.DCXGate
 
 <span id="qiskit.circuit.library.DCXGate" />
 
-`DCXGate`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/dcx.py "view source code")
+`DCXGate` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/dcx.py "view source code")
 
 Double-CNOT gate.
 
@@ -309,7 +309,7 @@ Containing the definition.
 
 <span id="qiskit.circuit.library.DCXGate.to_matrix" />
 
-`DCXGate.to_matrix()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/dcx.py "view source code")
+`DCXGate.to_matrix()`
 
 Return a numpy.array for the DCX gate.
 

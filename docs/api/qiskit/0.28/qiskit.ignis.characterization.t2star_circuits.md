@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.characterization.t2star_circuits
 
 <span id="qiskit.ignis.characterization.t2star_circuits" />
 
-`t2star_circuits(num_of_gates, gate_time, qubits, nosc=0)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/characterization/coherence/circuits.py "view source code")
+`t2star_circuits(num_of_gates, gate_time, qubits, nosc=0)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/characterization/coherence/circuits.py "view source code")
 
 Generate circuits for T2\* measurement.
 

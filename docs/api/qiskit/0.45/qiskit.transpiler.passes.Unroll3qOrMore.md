@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.Unroll3qOrMore
 
 <span id="qiskit.transpiler.passes.Unroll3qOrMore" />
 
-`qiskit.transpiler.passes.Unroll3qOrMore(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/basis/unroll_3q_or_more.py "view source code")
+`qiskit.transpiler.passes.Unroll3qOrMore(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/basis/unroll_3q_or_more.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 

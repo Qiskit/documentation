@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeRochesterV2
 
 <span id="qiskit.providers.fake_provider.FakeRochesterV2" />
 
-`FakeRochesterV2`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/backends/rochester/fake_rochester.py "view source code")
+`FakeRochesterV2` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/backends/rochester/fake_rochester.py "view source code")
 
 Bases: `FakeBackendV2`
 

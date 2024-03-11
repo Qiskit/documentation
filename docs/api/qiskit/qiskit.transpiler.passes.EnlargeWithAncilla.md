@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.EnlargeWithAncilla
 
 <span id="qiskit.transpiler.passes.EnlargeWithAncilla" />
 
-`qiskit.transpiler.passes.EnlargeWithAncilla(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/passes/layout/enlarge_with_ancilla.py "view source code")
+`qiskit.transpiler.passes.EnlargeWithAncilla(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/layout/enlarge_with_ancilla.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 

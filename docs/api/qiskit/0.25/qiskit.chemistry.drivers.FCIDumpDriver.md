@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.drivers.FCIDumpDriver
 
 <span id="qiskit.chemistry.drivers.FCIDumpDriver" />
 
-`FCIDumpDriver(fcidump_input, atoms=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/fcidumpd/fcidumpdriver.py "view source code")
+`FCIDumpDriver(fcidump_input, atoms=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/fcidumpd/fcidumpdriver.py "view source code")
 
 Qiskit chemistry driver reading an FCIDump file.
 

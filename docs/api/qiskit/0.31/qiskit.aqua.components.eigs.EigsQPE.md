@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.eigs.EigsQPE
 
 <span id="qiskit.aqua.components.eigs.EigsQPE" />
 
-`EigsQPE(operator, iqft, num_time_slices=1, num_ancillae=1, expansion_mode='trotter', expansion_order=1, evo_time=None, negative_evals=False, ne_qfts=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/eigs/eigs_qpe.py "view source code")
+`EigsQPE(operator, iqft, num_time_slices=1, num_ancillae=1, expansion_mode='trotter', expansion_order=1, evo_time=None, negative_evals=False, ne_qfts=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/eigs/eigs_qpe.py "view source code")
 
 Bases: `qiskit.aqua.components.eigs.eigs.Eigenvalues`
 
@@ -36,7 +36,7 @@ Specifically, this class is based on PhaseEstimationCircuit with no measurements
 
 <span id="qiskit.aqua.components.eigs.EigsQPE.construct_circuit" />
 
-`EigsQPE.construct_circuit(mode, register=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/eigs/eigs_qpe.py "view source code")
+`EigsQPE.construct_circuit(mode, register=None)`
 
 Construct the eigenvalues estimation using the PhaseEstimationCircuit
 
@@ -89,7 +89,7 @@ circuit.
 
 <span id="qiskit.aqua.components.eigs.EigsQPE.get_register_sizes" />
 
-`EigsQPE.get_register_sizes()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/eigs/eigs_qpe.py "view source code")
+`EigsQPE.get_register_sizes()`
 
 get register sizes
 
@@ -97,7 +97,7 @@ get register sizes
 
 <span id="qiskit.aqua.components.eigs.EigsQPE.get_scaling" />
 
-`EigsQPE.get_scaling()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/eigs/eigs_qpe.py "view source code")
+`EigsQPE.get_scaling()`
 
 get scaling
 

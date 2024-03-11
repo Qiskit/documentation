@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.FullAncillaAllocation
 
 <span id="qiskit.transpiler.passes.FullAncillaAllocation" />
 
-`qiskit.transpiler.passes.FullAncillaAllocation(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/layout/full_ancilla_allocation.py "view source code")
+`qiskit.transpiler.passes.FullAncillaAllocation(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/layout/full_ancilla_allocation.py "view source code")
 
 Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 

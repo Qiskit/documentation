@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.Bit
 
 <span id="qiskit.circuit.Bit" />
 
-`Bit(register=None, index=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/bit.py "view source code")
+`Bit(register=None, index=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/bit.py "view source code")
 
 Bases: `object`
 

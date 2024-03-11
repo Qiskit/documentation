@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.converters.TwoQubitReduction
 
 <span id="qiskit.opflow.converters.TwoQubitReduction" />
 
-`qiskit.opflow.converters.TwoQubitReduction(num_particles)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/converters/two_qubit_reduction.py "view source code")
+`qiskit.opflow.converters.TwoQubitReduction(num_particles)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/converters/two_qubit_reduction.py "view source code")
 
 Bases: [`ConverterBase`](qiskit.opflow.converters.ConverterBase "qiskit.opflow.converters.converter_base.ConverterBase")
 

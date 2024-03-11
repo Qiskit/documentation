@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.UnitaryGate
 
 <span id="qiskit.circuit.library.UnitaryGate" />
 
-`qiskit.circuit.library.UnitaryGate(data, label=None, check_input=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/generalized_gates/unitary.py "view source code")
+`qiskit.circuit.library.UnitaryGate(data, label=None, check_input=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/generalized_gates/unitary.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -39,7 +39,7 @@ Create a gate from a numeric unitary matrix.
 **Parameters**
 
 *   **data** ([*numpy.ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")  *|*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate") *| BaseOperator*) – Unitary operator.
-*   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Unitary name for backend \[Default: None].
+*   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Unitary name for backend \[Default: `None`].
 *   **check\_input** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If set to `False` this asserts the input is known to be unitary and the checking to validate this will be skipped. This should only ever be used if you know the input is unitary, setting this to `False` and passing in a non-unitary matrix will result unexpected behavior and errors.
 
 **Raises**
@@ -165,15 +165,16 @@ Return the conjugate of the unitary.
 
 <span id="qiskit.circuit.library.UnitaryGate.control" />
 
-`control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+`control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=False)`
 
 Return controlled version of gate.
 
 **Parameters**
 
 *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of controls to add to gate (default is 1).
-*   **label** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – Optional gate label.
+*   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Optional gate label.
 *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – The control state in decimal or as a bit string (e.g. `"1011"`). If `None`, use `2**num_ctrl_qubits - 1`.
+*   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – indicates whether the controlled gate can be implemented as an annotated gate.
 
 **Returns**
 
@@ -181,13 +182,13 @@ Controlled version of gate.
 
 **Return type**
 
-[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") | [AnnotatedOperation](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")
 
 ### inverse
 
 <span id="qiskit.circuit.library.UnitaryGate.inverse" />
 
-`inverse()`
+`inverse(annotated=False)`
 
 Return the adjoint of the unitary.
 

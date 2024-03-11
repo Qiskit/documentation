@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.library.ParametricPulse
 
 <span id="qiskit.pulse.library.ParametricPulse" />
 
-`ParametricPulse(duration, name=None, limit_amplitude=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/library/parametric_pulses.py "view source code")
+`ParametricPulse(duration, name=None, limit_amplitude=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/library/parametric_pulses.py "view source code")
 
 Bases: `Pulse`
 
@@ -80,7 +80,7 @@ Visualization output data. The returned data type depends on the `plotter`. If m
 
 <span id="qiskit.pulse.library.ParametricPulse.get_waveform" />
 
-`abstract ParametricPulse.get_waveform()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/library/parametric_pulses.py "view source code")
+`abstract ParametricPulse.get_waveform()`
 
 Return a Waveform with samples filled according to the formula that the pulse represents and the parameter values it contains.
 
@@ -94,7 +94,7 @@ Return a Waveform with samples filled according to the formula that the pulse re
 
 <span id="qiskit.pulse.library.ParametricPulse.is_parameterized" />
 
-`ParametricPulse.is_parameterized()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/library/parametric_pulses.py "view source code")
+`ParametricPulse.is_parameterized()`
 
 Return True iff the instruction is parameterized.
 
@@ -108,7 +108,7 @@ bool
 
 <span id="qiskit.pulse.library.ParametricPulse.validate_parameters" />
 
-`abstract ParametricPulse.validate_parameters()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/library/parametric_pulses.py "view source code")
+`abstract ParametricPulse.validate_parameters()`
 
 Validate parameters.
 

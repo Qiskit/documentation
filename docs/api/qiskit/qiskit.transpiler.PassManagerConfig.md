@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.PassManagerConfig
 
 <span id="qiskit.transpiler.PassManagerConfig" />
 
-`qiskit.transpiler.PassManagerConfig(initial_layout=None, basis_gates=None, inst_map=None, coupling_map=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, instruction_durations=None, backend_properties=None, approximation_degree=None, seed_transpiler=None, timing_constraints=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None, target=None, hls_config=None, init_method=None, optimization_method=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/passmanager_config.py "view source code")
+`qiskit.transpiler.PassManagerConfig(initial_layout=None, basis_gates=None, inst_map=None, coupling_map=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, instruction_durations=None, backend_properties=None, approximation_degree=None, seed_transpiler=None, timing_constraints=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None, target=None, hls_config=None, init_method=None, optimization_method=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passmanager_config.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
@@ -35,7 +35,7 @@ Initialize a PassManagerConfig object
 *   **timing\_constraints** (*TimingConstraints*) – Hardware time alignment restrictions.
 *   **unitary\_synthesis\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The string method to use for the [`UnitarySynthesis`](qiskit.transpiler.passes.UnitarySynthesis "qiskit.transpiler.passes.UnitarySynthesis") pass. Will search installed plugins for a valid method. You can see a list of installed plugins with [`unitary_synthesis_plugin_names()`](qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names "qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names").
 *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – The backend target
-*   **hls\_config** (*HLSConfig*) – An optional configuration class to use for [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis") pass. Specifies how to synthesize various high-level objects.
+*   **hls\_config** ([*HLSConfig*](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.HLSConfig")) – An optional configuration class to use for [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis") pass. Specifies how to synthesize various high-level objects.
 *   **init\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The plugin name for the init stage plugin to use
 *   **optimization\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The plugin name for the optimization stage plugin to use.
 

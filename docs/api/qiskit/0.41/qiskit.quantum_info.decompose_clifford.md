@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.decompose_clifford
 
 <span id="qiskit.quantum_info.decompose_clifford" />
 
-`decompose_clifford(clifford, method=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/synthesis/clifford_decompose.py "view source code")
+`decompose_clifford(clifford, method=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/synthesis/clifford_decompose.py "view source code")
 
 DEPRECATED: Decompose a Clifford operator into a QuantumCircuit.
 

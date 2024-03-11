@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.CouplingMap
 
 <span id="qiskit.transpiler.CouplingMap" />
 
-`qiskit.transpiler.CouplingMap(couplinglist=None, description=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/coupling.py "view source code")
+`qiskit.transpiler.CouplingMap(couplinglist=None, description=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/coupling.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
@@ -184,7 +184,7 @@ The undirected distance
 
 Draws the coupling map.
 
-This function calls the [`graphviz_draw()`](https://www.rustworkx.org/apiref/rustworkx.visualization.graphviz_draw.html#rustworkx.visualization.graphviz_draw "(in rustworkx v0.14.0)") function from the `rustworkx` package to draw the [`CouplingMap`](#qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") object.
+This function calls the [`graphviz_draw()`](https://www.rustworkx.org/apiref/rustworkx.visualization.graphviz_draw.html#rustworkx.visualization.graphviz_draw "(in rustworkx v0.14)") function from the `rustworkx` package to draw the [`CouplingMap`](#qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") object.
 
 **Returns**
 

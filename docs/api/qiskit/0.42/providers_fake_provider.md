@@ -1,7 +1,7 @@
 ---
 title: fake_provider
 description: API reference for qiskit.providers.fake_provider
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.providers.fake_provider
 ---
@@ -54,15 +54,9 @@ plot_histogram(counts)
 
 ![../\_images/providers\_fake\_provider-1\_00.png](/images/api/qiskit/0.42/providers_fake_provider-1_00.png)
 
-Fig. 18 ([`png`](_downloads/5828673743dbf0e9b00a26ba9ff29862/providers_fake_provider-1_00.png), [`hires.png`](_downloads/b01f53e25e80fefe83dbe23605de3444/providers_fake_provider-1_00.hires.png), [`pdf`](_downloads/60ce946926738a7dbf56b1528c0ffa57/providers_fake_provider-1_00.pdf))[¶](#id1 "Permalink to this image")
-
 ![../\_images/providers\_fake\_provider-1\_01.png](/images/api/qiskit/0.42/providers_fake_provider-1_01.png)
 
-Fig. 19 ([`png`](_downloads/ec61c4ad44da25f371f7ee7c3353b477/providers_fake_provider-1_01.png), [`hires.png`](_downloads/9c627f615e6df0d9741c9e90d440bfc0/providers_fake_provider-1_01.hires.png), [`pdf`](_downloads/9262dcc7cff2be4e2f3f8e6c26ba71a0/providers_fake_provider-1_01.pdf))[¶](#id2 "Permalink to this image")
-
 ![../\_images/providers\_fake\_provider-1\_02.png](/images/api/qiskit/0.42/providers_fake_provider-1_02.png)
-
-Fig. 20 ([`png`](_downloads/1f733fb2488ea6ca71c8e11c0445c973/providers_fake_provider-1_02.png), [`hires.png`](_downloads/b962b924b487aac96d4dcc21ff19f41a/providers_fake_provider-1_02.hires.png), [`pdf`](_downloads/230e3abfd7fc8c2b543c02d2f102fdc0/providers_fake_provider-1_02.pdf))[¶](#id3 "Permalink to this image")
 
 <Admonition title="Important" type="danger">
   Please note that the simulation is done using a noise model generated from system snapshots obtained in the past (sometimes a few years ago) and the results are not representative of the latest behaviours of the real quantum system which the fake backend is mimicking. If you want to run noisy simulations to compare with the real quantum system, please follow steps below to generate a simulator mimics a real quantum system with the latest calibration results.

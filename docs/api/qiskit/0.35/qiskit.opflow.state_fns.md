@@ -1,8 +1,20 @@
+---
+title: state_fns
+description: API reference for qiskit.opflow.state_fns
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.opflow.state_fns
+---
+
 <span id="qiskit-opflow-state-fns" />
 
 # qiskit.opflow\.state\_fns
 
-## State Functions ([`qiskit.opflow.state_fns`](#module-qiskit.opflow.state_fns "qiskit.opflow.state_fns"))
+## State Functions
+
+<span id="module-qiskit.opflow.state_fns" />
+
+`qiskit.opflow.state_fns`
 
 State functions are defined to be complex functions over a single binary string (as compared to an operator, which is defined as a function over two binary strings, or a function taking a binary function to another binary function). This function may be called by the eval() method.
 
@@ -27,3 +39,4 @@ Measurements are defined to be functionals over StateFns, taking them to real va
 | [`SparseVectorStateFn`](qiskit.opflow.state_fns.SparseVectorStateFn "qiskit.opflow.state_fns.SparseVectorStateFn")(primitive\[, coeff, …]) | A class for sparse state functions and measurements in vector representation.                                                                                         |
 | [`OperatorStateFn`](qiskit.opflow.state_fns.OperatorStateFn "qiskit.opflow.state_fns.OperatorStateFn")(primitive\[, coeff, …])             | A class for state functions and measurements which are defined by a density Operator, stored using an `OperatorBase`.                                                 |
 | [`CVaRMeasurement`](qiskit.opflow.state_fns.CVaRMeasurement "qiskit.opflow.state_fns.CVaRMeasurement")(\[primitive, alpha, coeff])         | A specialized measurement class to compute CVaR expectation values.                                                                                                   |
+

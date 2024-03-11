@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.drivers.GaussianLogResult
 
 <span id="qiskit.chemistry.drivers.GaussianLogResult" />
 
-`GaussianLogResult(log)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/gaussiand/gaussian_log_result.py "view source code")
+`GaussianLogResult(log)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/gaussiand/gaussian_log_result.py "view source code")
 
 Result for Gaussian™ 16 log driver.
 

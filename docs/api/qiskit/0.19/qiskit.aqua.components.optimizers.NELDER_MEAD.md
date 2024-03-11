@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.optimizers.NELDER_MEAD
 
 <span id="qiskit.aqua.components.optimizers.NELDER_MEAD" />
 
-`NELDER_MEAD(maxiter=None, maxfev=1000, disp=False, xatol=0.0001, tol=None, adaptive=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/nelder_mead.py "view source code")
+`NELDER_MEAD(maxiter=None, maxfev=1000, disp=False, xatol=0.0001, tol=None, adaptive=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/nelder_mead.py "view source code")
 
 Nelder-Mead optimizer.
 
@@ -89,7 +89,7 @@ Return setting
 
 <span id="qiskit.aqua.components.optimizers.NELDER_MEAD.get_support_level" />
 
-`NELDER_MEAD.get_support_level()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/nelder_mead.py "view source code")
+`NELDER_MEAD.get_support_level()`
 
 Return support level dictionary
 
@@ -120,7 +120,7 @@ grad
 
 <span id="qiskit.aqua.components.optimizers.NELDER_MEAD.optimize" />
 
-`NELDER_MEAD.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/nelder_mead.py "view source code")
+`NELDER_MEAD.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
 Perform optimization.
 

@@ -10,11 +10,11 @@ python_api_name: qiskit.circuit.library.RVGate
 
 <span id="qiskit.circuit.library.RVGate" />
 
-`qiskit.circuit.library.RVGate(v_x, v_y, v_z, basis='U')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/generalized_gates/rv.py "view source code")
+`qiskit.circuit.library.RVGate(v_x, v_y, v_z, basis='U')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/generalized_gates/rv.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
-Rotation around arbitrary rotation axis $v$ where $\vert v\vert $ is angle of rotation in radians.
+Rotation around arbitrary rotation axis $v$ where $|v|$ is angle of rotation in radians.
 
 Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`rv()`](qiskit.circuit.QuantumCircuit#rv "qiskit.circuit.QuantumCircuit.rv") method.
 
@@ -29,7 +29,7 @@ q_0: ┤ RV(v_x,v_y,v_z) ├
 **Matrix Representation:**
 
 $$
-\begin{split}\newcommand{\th}{\vert \vec{v}\vert }
+\begin{split}\newcommand{\th}{|\vec{v}|}
 \newcommand{\sinc}{\text{sinc}}
     R(\vec{v}) = e^{-i \vec{v}\cdot\vec{\sigma}} =
         \begin{pmatrix}

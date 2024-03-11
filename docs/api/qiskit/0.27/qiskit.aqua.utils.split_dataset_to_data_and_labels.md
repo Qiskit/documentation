@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.utils.split_dataset_to_data_and_labels
 
 <span id="qiskit.aqua.utils.split_dataset_to_data_and_labels" />
 
-`split_dataset_to_data_and_labels(dataset, class_names=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/utils/dataset_helper.py "view source code")
+`split_dataset_to_data_and_labels(dataset, class_names=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/utils/dataset_helper.py "view source code")
 
 Split dataset to data and labels numpy array
 

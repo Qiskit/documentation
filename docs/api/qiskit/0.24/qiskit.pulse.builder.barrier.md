@@ -12,7 +12,7 @@ python_api_name: qiskit.pulse.builder.barrier
 
 <span id="qiskit.pulse.builder.barrier" />
 
-`barrier(*channels_or_qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/builder.py "view source code")
+`barrier(*channels_or_qubits)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/builder.py "view source code")
 
 Barrier directive for a set of channels and qubits.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.HamiltonianPhaseEstimation
 
 <span id="qiskit.algorithms.HamiltonianPhaseEstimation" />
 
-`qiskit.algorithms.HamiltonianPhaseEstimation(num_evaluation_qubits, quantum_instance=None, sampler=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/phase_estimators/hamiltonian_phase_estimation.py "view source code")
+`qiskit.algorithms.HamiltonianPhaseEstimation(num_evaluation_qubits, quantum_instance=None, sampler=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/phase_estimators/hamiltonian_phase_estimation.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
@@ -19,18 +19,18 @@ Run the Quantum Phase Estimation algorithm to find the eigenvalues of a Hermitia
 This class is nearly the same as [`PhaseEstimation`](qiskit.algorithms.PhaseEstimation "qiskit.algorithms.PhaseEstimation"), differing only in that the input in that class is a unitary operator, whereas here the input is a Hermitian operator from which a unitary will be obtained by scaling and exponentiating. The scaling is performed in order to prevent the phases from wrapping around $2\pi$. The problem of estimating eigenvalues $\lambda_j$ of the Hermitian operator $H$ is solved by running a circuit representing
 
 $$
-\exp(i b H) \vert \psi\rangle = \sum_j \exp(i b \lambda_j) c_j \vert \lambda_j\rangle,
+\exp(i b H) |\psi\rangle = \sum_j \exp(i b \lambda_j) c_j |\lambda_j\rangle,
 $$
 
 where the input state is
 
 $$
-\vert \psi\rangle = \sum_j c_j \vert \lambda_j\rangle,
+|\psi\rangle = \sum_j c_j |\lambda_j\rangle,
 $$
 
 and $\lambda_j$ are the eigenvalues of $H$.
 
-Here, $b$ is a scaling factor sufficiently large to map positive $\lambda$ to $[0,\pi)$ and negative $\lambda$ to $[\pi,2\pi)$. Each time the circuit is run, one measures a phase corresponding to $lambda_j$ with probability $\vert c_j\vert ^2$.
+Here, $b$ is a scaling factor sufficiently large to map positive $\lambda$ to $[0,\pi)$ and negative $\lambda$ to $[\pi,2\pi)$. Each time the circuit is run, one measures a phase corresponding to $lambda_j$ with probability $|c_j|^2$.
 
 If $H$ is a Pauli sum, the bound $b$ is computed from the sum of the absolute values of the coefficients of the terms. There is no way to reliably recover eigenvalues from phases very near the endpoints of these intervals. Because of this you should be aware that for degenerate cases, such as $H=Z$, the eigenvalues $\pm 1$ will be mapped to the same phase, $\pi$, and so cannot be distinguished. In this case, you need to specify a larger bound as an argument to the method `estimate`.
 

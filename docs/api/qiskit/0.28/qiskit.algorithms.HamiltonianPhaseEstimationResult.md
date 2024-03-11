@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.HamiltonianPhaseEstimationResult
 
 <span id="qiskit.algorithms.HamiltonianPhaseEstimationResult" />
 
-`HamiltonianPhaseEstimationResult(phase_estimation_result, phase_estimation_scale, id_coefficient)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/phase_estimators/hamiltonian_phase_estimation_result.py "view source code")
+`HamiltonianPhaseEstimationResult(phase_estimation_result, phase_estimation_scale, id_coefficient)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/phase_estimators/hamiltonian_phase_estimation_result.py "view source code")
 
 Store and manipulate results from running HamiltonianPhaseEstimation.
 

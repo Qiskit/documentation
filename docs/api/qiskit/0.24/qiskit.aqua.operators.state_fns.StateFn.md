@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.operators.state_fns.StateFn
 
 <span id="qiskit.aqua.operators.state_fns.StateFn" />
 
-`StateFn(primitive=None, coeff=1.0, is_measurement=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/state_fns/state_fn.py "view source code")
+`StateFn(primitive=None, coeff=1.0, is_measurement=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/state_fns/state_fn.py "view source code")
 
 A class for representing state functions and measurements.
 

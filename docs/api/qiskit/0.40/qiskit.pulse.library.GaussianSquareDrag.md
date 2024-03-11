@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.library.GaussianSquareDrag
 
 <span id="qiskit.pulse.library.GaussianSquareDrag" />
 
-`GaussianSquareDrag(duration, amp, sigma, beta, width=None, angle=0.0, risefall_sigma_ratio=None, name=None, limit_amplitude=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/library/symbolic_pulses.py "view source code")
+`GaussianSquareDrag(duration, amp, sigma, beta, width=None, angle=0.0, risefall_sigma_ratio=None, name=None, limit_amplitude=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/library/symbolic_pulses.py "view source code")
 
 A square pulse with a Drag shaped rise and fall
 

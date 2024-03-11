@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.XGate
 
 <span id="qiskit.circuit.library.XGate" />
 
-`qiskit.circuit.library.XGate(label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/standard_gates/x.py "view source code")
+`qiskit.circuit.library.XGate(label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -52,8 +52,8 @@ Equivalent to a $\pi$ radian rotation about the X axis.
 The gate is equivalent to a classical bit flip.
 
 $$
-\begin{split}\vert 0\rangle \rightarrow \vert 1\rangle \\
-\vert 1\rangle \rightarrow \vert 0\rangle\end{split}
+\begin{split}|0\rangle \rightarrow |1\rangle \\
+|1\rangle \rightarrow |0\rangle\end{split}
 $$
 
 Create new X gate.

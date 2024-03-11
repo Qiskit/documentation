@@ -10,7 +10,7 @@ python_api_name: qiskit.compiler.assemble
 
 <span id="qiskit.compiler.assemble" />
 
-`assemble(experiments, backend=None, qobj_id=None, qobj_header=None, shots=None, memory=False, max_credits=None, seed_simulator=None, qubit_lo_freq=None, meas_lo_freq=None, qubit_lo_range=None, meas_lo_range=None, schedule_los=None, meas_level=<MeasLevel.CLASSIFIED: 2>, meas_return=<MeasReturnType.AVERAGE: 'avg'>, meas_map=None, memory_slot_size=100, rep_time=None, rep_delay=None, parameter_binds=None, parametric_pulses=None, init_qubits=True, **run_config)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/compiler/assembler.py "view source code")
+`assemble(experiments, backend=None, qobj_id=None, qobj_header=None, shots=None, memory=False, max_credits=None, seed_simulator=None, qubit_lo_freq=None, meas_lo_freq=None, qubit_lo_range=None, meas_lo_range=None, schedule_los=None, meas_level=<MeasLevel.CLASSIFIED: 2>, meas_return=<MeasReturnType.AVERAGE: 'avg'>, meas_map=None, memory_slot_size=100, rep_time=None, rep_delay=None, parameter_binds=None, parametric_pulses=None, init_qubits=True, **run_config)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/compiler/assembler.py "view source code")
 
 Assemble a list of circuits or pulse schedules into a `Qobj`.
 
@@ -42,7 +42,7 @@ This function serializes the payloads, which could be either circuits or schedul
 
 *   **meas\_lo\_range** (`Optional`\[`List`\[`int`]]) – List of measurement LO ranges each of form `[range_min, range_max]` in Hz. Used to validate the supplied qubit frequencies.
 
-*   **schedule\_los** (`Union`\[`List`\[`Union`\[`Dict`\[[`PulseChannel`](qiskit.pulse.channels#qiskit.pulse.channels.PulseChannel "qiskit.pulse.channels.PulseChannel"), `float`], `LoConfig`]], `Dict`\[[`PulseChannel`](qiskit.pulse.channels#qiskit.pulse.channels.PulseChannel "qiskit.pulse.channels.PulseChannel"), `float`], `LoConfig`, `None`]) – Experiment LO configurations, frequencies are given in Hz.
+*   **schedule\_los** (`Union`\[`List`\[`Union`\[`Dict`\[[`PulseChannel`](qiskit.pulse.channels#pulsechannel "qiskit.pulse.channels.PulseChannel"), `float`], `LoConfig`]], `Dict`\[[`PulseChannel`](qiskit.pulse.channels#pulsechannel "qiskit.pulse.channels.PulseChannel"), `float`], `LoConfig`, `None`]) – Experiment LO configurations, frequencies are given in Hz.
 
 *   **meas\_level** (`Union`\[`int`, `MeasLevel`]) – Set the appropriate level of the measurement output for pulse experiments.
 

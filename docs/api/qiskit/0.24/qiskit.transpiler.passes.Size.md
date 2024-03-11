@@ -12,7 +12,7 @@ python_api_name: qiskit.transpiler.passes.Size
 
 <span id="qiskit.transpiler.passes.Size" />
 
-`Size(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/transpiler/passes/analysis/size.py "view source code")
+`Size(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/transpiler/passes/analysis/size.py "view source code")
 
 Calculate the size of a DAG circuit.
 

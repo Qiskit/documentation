@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.AmplitudeEstimationResult
 
 <span id="qiskit.algorithms.AmplitudeEstimationResult" />
 
-`AmplitudeEstimationResult`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/amplitude_estimators/ae.py "view source code")
+`AmplitudeEstimationResult` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/amplitude_estimators/ae.py "view source code")
 
 The `AmplitudeEstimation` result object.
 

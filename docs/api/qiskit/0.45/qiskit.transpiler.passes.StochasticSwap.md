@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.StochasticSwap
 
 <span id="qiskit.transpiler.passes.StochasticSwap" />
 
-`qiskit.transpiler.passes.StochasticSwap(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/routing/stochastic_swap.py "view source code")
+`qiskit.transpiler.passes.StochasticSwap(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/routing/stochastic_swap.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 

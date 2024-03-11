@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.characterization.AmpCalFitter
 
 <span id="qiskit.ignis.characterization.AmpCalFitter" />
 
-`AmpCalFitter(backend_result, xdata, qubits, fit_p0, fit_bounds)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/characterization/gates/fitters.py "view source code")
+`AmpCalFitter(backend_result, xdata, qubits, fit_p0, fit_bounds)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/characterization/gates/fitters.py "view source code")
 
 Amplitude error fitter
 

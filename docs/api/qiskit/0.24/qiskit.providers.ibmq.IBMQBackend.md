@@ -12,7 +12,7 @@ python_api_name: qiskit.providers.ibmq.IBMQBackend
 
 <span id="qiskit.providers.ibmq.IBMQBackend" />
 
-`IBMQBackend(configuration, provider, credentials, api_client)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.12/qiskit/providers/ibmq/ibmqbackend.py "view source code")
+`IBMQBackend(configuration, provider, credentials, api_client)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.12/qiskit/providers/ibmq/ibmqbackend.py "view source code")
 
 Backend class interfacing with an IBM Quantum Experience device.
 

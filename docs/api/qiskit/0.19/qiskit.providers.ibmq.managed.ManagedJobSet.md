@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.managed.ManagedJobSet
 
 <span id="qiskit.providers.ibmq.managed.ManagedJobSet" />
 
-`ManagedJobSet(name=None, short_id=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.7/qiskit/providers/ibmq/managed/managedjobset.py "view source code")
+`ManagedJobSet(name=None, short_id=None)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.7/qiskit/providers/ibmq/managed/managedjobset.py "view source code")
 
 A set of managed jobs.
 
@@ -29,7 +29,7 @@ ManagedJobSet constructor.
 
 <span id="qiskit.providers.ibmq.managed.ManagedJobSet.cancel" />
 
-`ManagedJobSet.cancel()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.7/qiskit/providers/ibmq/managed/managedjobset.py "view source code")
+`ManagedJobSet.cancel()`
 
 Cancel all jobs in this job set.
 
@@ -41,7 +41,7 @@ Cancel all jobs in this job set.
 
 <span id="qiskit.providers.ibmq.managed.ManagedJobSet.error_messages" />
 
-`ManagedJobSet.error_messages()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.7/qiskit/providers/ibmq/managed/managedjobset.py "view source code")
+`ManagedJobSet.error_messages()`
 
 Provide details about job failures.
 
@@ -59,7 +59,7 @@ An error report if one or more jobs failed or `None` otherwise.
 
 <span id="qiskit.providers.ibmq.managed.ManagedJobSet.job" />
 
-`ManagedJobSet.job(experiment)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.7/qiskit/providers/ibmq/managed/managedjobset.py "view source code")
+`ManagedJobSet.job(experiment)`
 
 Retrieve the job used to submit the specified experiment and its index.
 
@@ -92,7 +92,7 @@ A tuple of the job used to submit the experiment, or `None` if the job submit fa
 
 <span id="qiskit.providers.ibmq.managed.ManagedJobSet.job_set_id" />
 
-`ManagedJobSet.job_set_id()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.7/qiskit/providers/ibmq/managed/managedjobset.py "view source code")
+`ManagedJobSet.job_set_id()`
 
 Return the ID of this job set.
 
@@ -108,7 +108,7 @@ ID of this job set.
 
 <span id="qiskit.providers.ibmq.managed.ManagedJobSet.jobs" />
 
-`ManagedJobSet.jobs()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.7/qiskit/providers/ibmq/managed/managedjobset.py "view source code")
+`ManagedJobSet.jobs()`
 
 Return jobs in this job set.
 
@@ -124,7 +124,7 @@ A list of [`IBMQJob`](qiskit.providers.ibmq.job.IBMQJob "qiskit.providers.ibmq.j
 
 <span id="qiskit.providers.ibmq.managed.ManagedJobSet.managed_jobs" />
 
-`ManagedJobSet.managed_jobs()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.7/qiskit/providers/ibmq/managed/managedjobset.py "view source code")
+`ManagedJobSet.managed_jobs()`
 
 Return the managed jobs in this set.
 
@@ -140,7 +140,7 @@ A list of managed jobs.
 
 <span id="qiskit.providers.ibmq.managed.ManagedJobSet.name" />
 
-`ManagedJobSet.name()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.7/qiskit/providers/ibmq/managed/managedjobset.py "view source code")
+`ManagedJobSet.name()`
 
 Return the name of this job set.
 
@@ -156,7 +156,7 @@ Name of this job set.
 
 <span id="qiskit.providers.ibmq.managed.ManagedJobSet.qobjs" />
 
-`ManagedJobSet.qobjs()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.7/qiskit/providers/ibmq/managed/managedjobset.py "view source code")
+`ManagedJobSet.qobjs()`
 
 Return the Qobjs for the jobs in this set.
 
@@ -172,7 +172,7 @@ A list of Qobjs for the jobs. An entry in the list is `None` if the Qobj could n
 
 <span id="qiskit.providers.ibmq.managed.ManagedJobSet.report" />
 
-`ManagedJobSet.report(detailed=True)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.7/qiskit/providers/ibmq/managed/managedjobset.py "view source code")
+`ManagedJobSet.report(detailed=True)`
 
 Return a report on current job statuses.
 
@@ -192,7 +192,7 @@ A report on job statuses.
 
 <span id="qiskit.providers.ibmq.managed.ManagedJobSet.results" />
 
-`ManagedJobSet.results(timeout=None, partial=False)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.7/qiskit/providers/ibmq/managed/managedjobset.py "view source code")
+`ManagedJobSet.results(timeout=None, partial=False)`
 
 Return the results of the jobs.
 
@@ -238,7 +238,7 @@ A [`ManagedResults`](qiskit.providers.ibmq.managed.ManagedResults "qiskit.provid
 
 <span id="qiskit.providers.ibmq.managed.ManagedJobSet.retrieve_jobs" />
 
-`ManagedJobSet.retrieve_jobs(provider, refresh=False)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.7/qiskit/providers/ibmq/managed/managedjobset.py "view source code")
+`ManagedJobSet.retrieve_jobs(provider, refresh=False)`
 
 Retrieve previously submitted jobs in this set.
 
@@ -260,7 +260,7 @@ Retrieve previously submitted jobs in this set.
 
 <span id="qiskit.providers.ibmq.managed.ManagedJobSet.run" />
 
-`ManagedJobSet.run(experiment_list, backend, executor, job_share_level, job_tags=None, **assemble_config)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.7/qiskit/providers/ibmq/managed/managedjobset.py "view source code")
+`ManagedJobSet.run(experiment_list, backend, executor, job_share_level, job_tags=None, **assemble_config)`
 
 Execute a list of circuits or pulse schedules on a backend.
 
@@ -285,7 +285,7 @@ Execute a list of circuits or pulse schedules on a backend.
 
 <span id="qiskit.providers.ibmq.managed.ManagedJobSet.statuses" />
 
-`ManagedJobSet.statuses()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.7/qiskit/providers/ibmq/managed/managedjobset.py "view source code")
+`ManagedJobSet.statuses()`
 
 Return the status of each job in this set.
 
@@ -301,7 +301,7 @@ A list of job statuses. An entry in the list is `None` if the job status could n
 
 <span id="qiskit.providers.ibmq.managed.ManagedJobSet.tags" />
 
-`ManagedJobSet.tags()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.7/qiskit/providers/ibmq/managed/managedjobset.py "view source code")
+`ManagedJobSet.tags()`
 
 Return the tags assigned to this job set.
 
@@ -317,7 +317,7 @@ Tags assigned to this job set.
 
 <span id="qiskit.providers.ibmq.managed.ManagedJobSet.update_name" />
 
-`ManagedJobSet.update_name(name)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.7/qiskit/providers/ibmq/managed/managedjobset.py "view source code")
+`ManagedJobSet.update_name(name)`
 
 Update the name of this job set.
 
@@ -337,7 +337,7 @@ The new name associated with this job set.
 
 <span id="qiskit.providers.ibmq.managed.ManagedJobSet.update_tags" />
 
-`ManagedJobSet.update_tags(replacement_tags=None, additional_tags=None, removal_tags=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.7/qiskit/providers/ibmq/managed/managedjobset.py "view source code")
+`ManagedJobSet.update_tags(replacement_tags=None, additional_tags=None, removal_tags=None)`
 
 Update the tags assigned to this job set.
 

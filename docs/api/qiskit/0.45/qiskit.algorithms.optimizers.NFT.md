@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.NFT
 
 <span id="qiskit.algorithms.optimizers.NFT" />
 
-`qiskit.algorithms.optimizers.NFT(maxiter=None, maxfev=1024, disp=False, reset_interval=32, options=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/optimizers/nft.py "view source code")
+`qiskit.algorithms.optimizers.NFT(maxiter=None, maxfev=1024, disp=False, reset_interval=32, options=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/optimizers/nft.py "view source code")
 
 Bases: [`SciPyOptimizer`](qiskit.algorithms.optimizers.SciPyOptimizer "qiskit.algorithms.optimizers.scipy_optimizer.SciPyOptimizer")
 

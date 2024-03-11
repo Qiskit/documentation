@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.EigensolverResult
 
 <span id="qiskit.algorithms.EigensolverResult" />
 
-`EigensolverResult`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/eigen_solvers/eigen_solver.py "view source code")
+`EigensolverResult` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/eigen_solvers/eigen_solver.py "view source code")
 
 Eigensolver Result.
 

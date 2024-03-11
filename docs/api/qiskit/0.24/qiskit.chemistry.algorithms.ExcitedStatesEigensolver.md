@@ -12,7 +12,7 @@ python_api_name: qiskit.chemistry.algorithms.ExcitedStatesEigensolver
 
 <span id="qiskit.chemistry.algorithms.ExcitedStatesEigensolver" />
 
-`ExcitedStatesEigensolver(transformation, solver)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/algorithms/excited_states_solvers/excited_states_eigensolver.py "view source code")
+`ExcitedStatesEigensolver(transformation, solver)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/algorithms/excited_states_solvers/excited_states_eigensolver.py "view source code")
 
 The calculation of excited states via an Eigensolver algorithm
 

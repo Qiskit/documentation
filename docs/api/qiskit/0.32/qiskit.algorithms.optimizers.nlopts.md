@@ -1,3 +1,11 @@
+---
+title: nlopts
+description: API reference for qiskit.algorithms.optimizers.nlopts
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.algorithms.optimizers.nlopts
+---
+
 <span id="qiskit-algorithms-optimizers-nlopts" />
 
 # qiskit.algorithms.optimizers.nlopts
@@ -26,3 +34,4 @@ export PYTHONPATH=/usr/local/lib/python3.6/site-packages:${PYTHONPATH}
 ```
 
 The two `export` commands above can be pasted into the `.bash_profile` file in the user’s home directory for automatic execution. Now you can run Qiskit and these optimizers should be available for you to use.
+

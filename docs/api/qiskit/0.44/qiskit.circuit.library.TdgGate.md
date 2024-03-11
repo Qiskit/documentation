@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.TdgGate
 
 <span id="qiskit.circuit.library.TdgGate" />
 
-`qiskit.circuit.library.TdgGate(label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/standard_gates/t.py "view source code")
+`qiskit.circuit.library.TdgGate(label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/standard_gates/t.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 

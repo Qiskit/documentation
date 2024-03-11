@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.basic_provider.BasicSimulator
 
 <span id="qiskit.providers.basic_provider.BasicSimulator" />
 
-`qiskit.providers.basic_provider.BasicSimulator(provider=None, target=None, **fields)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/providers/basic_provider/basic_simulator.py "view source code")
+`qiskit.providers.basic_provider.BasicSimulator(provider=None, target=None, **fields)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/providers/basic_provider/basic_simulator.py "view source code")
 
 Bases: [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.backend.BackendV2")
 

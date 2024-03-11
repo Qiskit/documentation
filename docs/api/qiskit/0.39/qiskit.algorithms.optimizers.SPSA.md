@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.SPSA
 
 <span id="qiskit.algorithms.optimizers.SPSA" />
 
-`SPSA(maxiter=100, blocking=False, allowed_increase=None, trust_region=False, learning_rate=None, perturbation=None, last_avg=1, resamplings=1, perturbation_dims=None, second_order=False, regularization=None, hessian_delay=0, lse_solver=None, initial_hessian=None, callback=None, termination_checker=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/optimizers/spsa.py "view source code")
+`SPSA(maxiter=100, blocking=False, allowed_increase=None, trust_region=False, learning_rate=None, perturbation=None, last_avg=1, resamplings=1, perturbation_dims=None, second_order=False, regularization=None, hessian_delay=0, lse_solver=None, initial_hessian=None, callback=None, termination_checker=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/optimizers/spsa.py "view source code")
 
 Bases: [`qiskit.algorithms.optimizers.optimizer.Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.optimizer.Optimizer")
 
@@ -134,7 +134,7 @@ print(f'SPSA completed after {niter} iterations')
 
 <span id="qiskit.algorithms.optimizers.SPSA.calibrate" />
 
-`static SPSA.calibrate(loss, initial_point, c=0.2, stability_constant=0, target_magnitude=None, alpha=0.602, gamma=0.101, modelspace=False, max_evals_grouped=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/optimizers/spsa.py "view source code")
+`static SPSA.calibrate(loss, initial_point, c=0.2, stability_constant=0, target_magnitude=None, alpha=0.602, gamma=0.101, modelspace=False, max_evals_grouped=1)`
 
 Calibrate SPSA parameters with a powerseries as learning rate and perturbation coeffs.
 
@@ -170,7 +170,7 @@ tuple(generator, generator)
 
 <span id="qiskit.algorithms.optimizers.SPSA.estimate_stddev" />
 
-`static SPSA.estimate_stddev(loss, initial_point, avg=25, max_evals_grouped=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/optimizers/spsa.py "view source code")
+`static SPSA.estimate_stddev(loss, initial_point, avg=25, max_evals_grouped=1)`
 
 Estimate the standard deviation of the loss function.
 
@@ -182,7 +182,7 @@ Estimate the standard deviation of the loss function.
 
 <span id="qiskit.algorithms.optimizers.SPSA.get_support_level" />
 
-`SPSA.get_support_level()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/optimizers/spsa.py "view source code")
+`SPSA.get_support_level()`
 
 Get the support level dictionary.
 
@@ -213,7 +213,7 @@ grad
 
 <span id="qiskit.algorithms.optimizers.SPSA.minimize" />
 
-`SPSA.minimize(fun, x0, jac=None, bounds=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/optimizers/spsa.py "view source code")
+`SPSA.minimize(fun, x0, jac=None, bounds=None)`
 
 Minimize the scalar function.
 
@@ -236,7 +236,7 @@ The result of the optimization, containing e.g. the result as attribute `x`.
 
 <span id="qiskit.algorithms.optimizers.SPSA.optimize" />
 
-`SPSA.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/optimizers/spsa.py "view source code")
+`SPSA.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
 Perform optimization.
 

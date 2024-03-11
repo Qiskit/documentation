@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_provider.IBMBackendApiError
 
 <span id="qiskit_ibm_provider.IBMBackendApiError" />
 
-`IBMBackendApiError(*message)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/exceptions.py "view source code")
+`IBMBackendApiError(*message)` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/exceptions.py#L78-L81 "view source code")
 
 Errors that occur unexpectedly when querying the server.
 

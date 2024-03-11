@@ -10,13 +10,13 @@ python_api_name: qiskit.algorithms.SciPyRealEvolver
 
 <span id="qiskit.algorithms.SciPyRealEvolver" />
 
-`qiskit.algorithms.SciPyRealEvolver(num_timesteps)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/time_evolvers/classical_methods/scipy_real_evolver.py "view source code")
+`qiskit.algorithms.SciPyRealEvolver(num_timesteps)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/time_evolvers/classical_methods/scipy_real_evolver.py "view source code")
 
 Bases: [`RealTimeEvolver`](qiskit.algorithms.RealTimeEvolver "qiskit.algorithms.time_evolvers.real_time_evolver.RealTimeEvolver")
 
 Classical Evolver for real time evolution.
 
-Evolves an initial state $\vert \Psi\rangle$ for a time $t$ under a Hamiltonian $H$, as provided in the `evolution_problem`. Note that the precision of the evolver does not depend on the number of timesteps taken.
+Evolves an initial state $|\Psi\rangle$ for a time $t$ under a Hamiltonian $H$, as provided in the `evolution_problem`. Note that the precision of the evolver does not depend on the number of timesteps taken.
 
 **Parameters**
 
@@ -34,9 +34,9 @@ Evolves an initial state $\vert \Psi\rangle$ for a time $t$ under a Hamiltonian 
 
 `evolve(evolution_problem)`
 
-Perform real time evolution $\exp(-i t H)\vert \Psi\rangle$.
+Perform real time evolution $\exp(-i t H)|\Psi\rangle$.
 
-Evolves an initial state $\vert \Psi\rangle$ for a time $t$ under a Hamiltonian $H$, as provided in the `evolution_problem`.
+Evolves an initial state $|\Psi\rangle$ for a time $t$ under a Hamiltonian $H$, as provided in the `evolution_problem`.
 
 **Parameters**
 

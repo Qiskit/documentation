@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.operators.evolutions.MatrixEvolution
 
 <span id="qiskit.aqua.operators.evolutions.MatrixEvolution" />
 
-`MatrixEvolution`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/evolutions/matrix_evolution.py "view source code")
+`MatrixEvolution` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/evolutions/matrix_evolution.py "view source code")
 
 Performs Evolution by classical matrix exponentiation, constructing a circuit with `UnitaryGates` or `HamiltonianGates` containing the exponentiation of the Operator.
 

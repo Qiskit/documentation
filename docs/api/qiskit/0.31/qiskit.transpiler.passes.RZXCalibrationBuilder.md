@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.RZXCalibrationBuilder
 
 <span id="qiskit.transpiler.passes.RZXCalibrationBuilder" />
 
-`RZXCalibrationBuilder(backend)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/scheduling/calibration_creators.py "view source code")
+`RZXCalibrationBuilder(backend)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/scheduling/calibration_creators.py "view source code")
 
 Bases: `qiskit.transpiler.passes.scheduling.calibration_creators.CalibrationCreator`
 
@@ -32,7 +32,7 @@ Initializes a RZXGate calibration builder.
 
 <span id="qiskit.transpiler.passes.RZXCalibrationBuilder.get_calibration" />
 
-`RZXCalibrationBuilder.get_calibration(params, qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/scheduling/calibration_creators.py "view source code")
+`RZXCalibrationBuilder.get_calibration(params, qubits)`
 
 **Parameters**
 
@@ -63,7 +63,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.RZXCalibrationBuilder.rescale_cr_inst" />
 
-`static RZXCalibrationBuilder.rescale_cr_inst(instruction, theta, sample_mult=16)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/scheduling/calibration_creators.py "view source code")
+`static RZXCalibrationBuilder.rescale_cr_inst(instruction, theta, sample_mult=16)`
 
 **Parameters**
 
@@ -109,7 +109,7 @@ A DAG with calibrations added to it.
 
 <span id="qiskit.transpiler.passes.RZXCalibrationBuilder.supported" />
 
-`RZXCalibrationBuilder.supported(node_op)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/scheduling/calibration_creators.py "view source code")
+`RZXCalibrationBuilder.supported(node_op)`
 
 **Parameters**
 

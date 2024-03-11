@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.TellData
 
 <span id="qiskit.algorithms.optimizers.TellData" />
 
-`TellData(eval_fun=None, eval_jac=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/optimizers/steppable_optimizer.py "view source code")
+`TellData(eval_fun=None, eval_jac=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/optimizers/steppable_optimizer.py "view source code")
 
 Bases: `abc.ABC`
 

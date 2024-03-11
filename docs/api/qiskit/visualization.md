@@ -1,7 +1,7 @@
 ---
 title: visualization
 description: API reference for qiskit.visualization
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.visualization
 ---
@@ -185,10 +185,9 @@ You can find code examples for each visualization functions on the individual fu
 
 ## Circuit Visualizations
 
-|                                                                                                                                 |                                    |
-| ------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
-| [`circuit_drawer`](qiskit.visualization.circuit_drawer "qiskit.visualization.circuit_drawer")(circuit\[, scale, filename, ...]) | Draw the quantum circuit.          |
-| [`DefaultStyle`](qiskit.visualization.circuit.qcstyle.DefaultStyle "qiskit.visualization.circuit.qcstyle.DefaultStyle")()       | Creates a Default Style dictionary |
+|                                                                                                                                 |                           |
+| ------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
+| [`circuit_drawer`](qiskit.visualization.circuit_drawer "qiskit.visualization.circuit_drawer")(circuit\[, scale, filename, ...]) | Draw the quantum circuit. |
 
 ## DAG Visualizations
 
@@ -201,15 +200,6 @@ You can find code examples for each visualization functions on the individual fu
 |                                                                                                                                     |                         |
 | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
 | [`pass_manager_drawer`](qiskit.visualization.pass_manager_drawer "qiskit.visualization.pass_manager_drawer")(pass\_manager\[, ...]) | Draws the pass manager. |
-
-## Pulse Visualizations
-
-|                                                                                                                          |                                                   |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------- |
-| [`pulse_drawer`](qiskit.visualization.pulse_drawer "qiskit.visualization.pulse_drawer")(program\[, style, backend, ...]) | Generate visualization data for pulse programs.   |
-| [`IQXStandard`](qiskit.visualization.pulse.IQXStandard "qiskit.visualization.pulse.IQXStandard")(\*\*kwargs)             | Standard pulse stylesheet.                        |
-| [`IQXSimple`](qiskit.visualization.pulse.IQXSimple "qiskit.visualization.pulse.IQXSimple")(\*\*kwargs)                   | Simple pulse stylesheet without channel notation. |
-| [`IQXDebugging`](qiskit.visualization.pulse.IQXDebugging "qiskit.visualization.pulse.IQXDebugging")(\*\*kwargs)          | Pulse stylesheet for pulse programmers.           |
 
 ## Timeline Visualizations
 
@@ -237,7 +227,7 @@ You can find code examples for each visualization functions on the individual fu
 
 <span id="qiskit.visualization.VisualizationError" />
 
-`qiskit.visualization.VisualizationError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/visualization/exceptions.py "view source code")
+`qiskit.visualization.VisualizationError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/visualization/exceptions.py "view source code")
 
 For visualization specific errors.
 

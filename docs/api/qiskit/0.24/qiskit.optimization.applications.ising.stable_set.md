@@ -1,7 +1,7 @@
 ---
 title: stable_set
 description: API reference for qiskit.optimization.applications.ising.stable_set
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.optimization.applications.ising.stable_set
 ---
@@ -26,7 +26,7 @@ Convert stable set instances into Pauli list. We read instances in the Gset form
 
 <span id="qiskit.optimization.applications.ising.stable_set.get_graph_solution" />
 
-`get_graph_solution(x)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/stable_set.py "view source code")
+`get_graph_solution(x)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/stable_set.py "view source code")
 
 Get graph solution from binary string.
 
@@ -46,7 +46,7 @@ numpy.ndarray
 
 <span id="qiskit.optimization.applications.ising.stable_set.get_operator" />
 
-`get_operator(w)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/stable_set.py "view source code")
+`get_operator(w)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/stable_set.py "view source code")
 
 Generate Hamiltonian for the maximum stable set in a graph.
 
@@ -66,7 +66,7 @@ tuple([WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator
 
 <span id="qiskit.optimization.applications.ising.stable_set.stable_set_value" />
 
-`stable_set_value(x, w)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/stable_set.py "view source code")
+`stable_set_value(x, w)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/stable_set.py "view source code")
 
 Compute the value of a stable set, and its feasibility.
 

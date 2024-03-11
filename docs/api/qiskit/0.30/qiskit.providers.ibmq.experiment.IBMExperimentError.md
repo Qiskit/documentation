@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.experiment.IBMExperimentError
 
 <span id="qiskit.providers.ibmq.experiment.IBMExperimentError" />
 
-`IBMExperimentError(*message)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.16/qiskit/providers/ibmq/experiment/exceptions.py "view source code")
+`IBMExperimentError(*message)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.16/qiskit/providers/ibmq/experiment/exceptions.py "view source code")
 
 Base class for errors raised by the experiment service modules.
 

@@ -1,7 +1,7 @@
 ---
 title: aqc
 description: API reference for qiskit.transpiler.synthesis.aqc
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.transpiler.synthesis.aqc
 ---
@@ -44,10 +44,10 @@ To properly define what we mean by best circuit representation, we define the me
 Let $n$ be the number of qubits and $d=2^n$. Given a CNOT structure $ct$ and a vector of rotation angles $\theta$, the parametric circuit forms a matrix $Vct(\theta)\in SU(d)$. If we are given a target circuit forming a matrix $U\in SU(d)$, then we would like to compute
 
 $$
-argmax_{\theta}\frac{1}{d}\vert \langle Vct(\theta),U\rangle\vert 
+argmax_{\theta}\frac{1}{d}|\langle Vct(\theta),U\rangle|
 $$
 
-where the inner product is the Frobenius inner product. Note that $\vert \langle V,U\rangle\vert \leq d$ for all unitaries $U$ and $V$, so the objective has range in $[0,1]$.
+where the inner product is the Frobenius inner product. Note that $|\langle V,U\rangle|\leq d$ for all unitaries $U$ and $V$, so the objective has range in $[0,1]$.
 
 Our strategy is to maximize
 
@@ -70,7 +70,7 @@ In the algorithm let $U'$ denote the un-normalized target matrix and $U$ the nor
 To add the global phase back in, we can form the control circuit as
 
 $$
-\frac{\langle Vct(\theta),U'\rangle}{\vert \langle Vct(\theta),U'\rangle\vert }Vct(\theta).
+\frac{\langle Vct(\theta),U'\rangle}{|\langle Vct(\theta),U'\rangle|}Vct(\theta).
 $$
 
 Note that while we optimized using Nesterov’s method in the paper, this was for its convergence guarantees, not its speed in practice. It is much faster to use L-BFGS which is used as a default optimizer in this implementation.
@@ -130,7 +130,7 @@ This uses a helper function, [`make_cnot_network`](#qiskit.transpiler.synthesis.
 
 <span id="qiskit.transpiler.synthesis.aqc.make_cnot_network" />
 
-`make_cnot_network(num_qubits, network_layout='spin', connectivity_type='full', depth=0)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/synthesis/aqc/cnot_structures.py "view source code")
+`make_cnot_network(num_qubits, network_layout='spin', connectivity_type='full', depth=0)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/synthesis/aqc/cnot_structures.py "view source code")
 
 Generates a network consisting of building blocks each containing a CNOT gate and possibly some single-qubit ones. This network models a quantum operator in question. Note, each building block has 2 input and outputs corresponding to a pair of qubits. What we actually return here is a chain of indices of qubit pairs shared by every building block in a row.
 

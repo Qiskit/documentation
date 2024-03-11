@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.templates.nct.template_nct_9c_7
 
 <span id="qiskit.circuit.library.templates.nct.template_nct_9c_7" />
 
-`template_nct_9c_7()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/library/templates/nct/template_nct_9c_7.py "view source code")
+`template_nct_9c_7()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/library/templates/nct/template_nct_9c_7.py "view source code")
 
 **Returns**
 

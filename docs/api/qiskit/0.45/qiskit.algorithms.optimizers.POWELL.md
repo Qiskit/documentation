@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.POWELL
 
 <span id="qiskit.algorithms.optimizers.POWELL" />
 
-`qiskit.algorithms.optimizers.POWELL(maxiter=None, maxfev=1000, disp=False, xtol=0.0001, tol=None, options=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/optimizers/powell.py "view source code")
+`qiskit.algorithms.optimizers.POWELL(maxiter=None, maxfev=1000, disp=False, xtol=0.0001, tol=None, options=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/optimizers/powell.py "view source code")
 
 Bases: [`SciPyOptimizer`](qiskit.algorithms.optimizers.SciPyOptimizer "qiskit.algorithms.optimizers.scipy_optimizer.SciPyOptimizer")
 

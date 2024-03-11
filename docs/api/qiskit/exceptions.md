@@ -1,7 +1,7 @@
 ---
 title: exceptions
 description: API reference for qiskit.exceptions
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.exceptions
 ---
@@ -18,13 +18,15 @@ python_api_name: qiskit.exceptions
 
 `qiskit.exceptions`
 
-All Qiskit-related errors raised by Qiskit are subclasses of the base:
+## Exceptions
+
+All Qiskit-related exceptions raised by Qiskit are subclasses of the base:
 
 ### QiskitError
 
 <span id="qiskit.exceptions.QiskitError" />
 
-`qiskit.exceptions.QiskitError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/exceptions.py "view source code")
+`qiskit.exceptions.QiskitError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/exceptions.py "view source code")
 
 Base class for errors raised by Qiskit.
 
@@ -42,7 +44,7 @@ Qiskit has several optional features that depend on other packages that are not 
 
 <span id="qiskit.exceptions.MissingOptionalLibraryError" />
 
-`qiskit.exceptions.MissingOptionalLibraryError(libname, name, pip_install=None, msg=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/exceptions.py "view source code")
+`qiskit.exceptions.MissingOptionalLibraryError(libname, name, pip_install=None, msg=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/exceptions.py "view source code")
 
 Raised when an optional library is missing.
 
@@ -54,7 +56,7 @@ Two more uncommon errors relate to failures in reading user-configuration files,
 
 <span id="qiskit.exceptions.QiskitUserConfigError" />
 
-`qiskit.exceptions.QiskitUserConfigError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/exceptions.py "view source code")
+`qiskit.exceptions.QiskitUserConfigError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/exceptions.py "view source code")
 
 Raised when an error is encountered reading a user config file.
 
@@ -64,9 +66,56 @@ Set the error message.
 
 <span id="qiskit.exceptions.InvalidFileError" />
 
-`qiskit.exceptions.InvalidFileError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/exceptions.py "view source code")
+`qiskit.exceptions.InvalidFileError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/exceptions.py "view source code")
 
 Raised when the file provided is not valid for the specific task.
 
 Set the error message.
+
+## Warnings
+
+Some particular features of Qiskit may raise custom warnings. In general, Qiskit will use built-in Python warnings (such as [`DeprecationWarning`](https://docs.python.org/3/library/exceptions.html#DeprecationWarning "(in Python v3.12)")) when appropriate, but warnings related to Qiskit-specific functionality will be subtypes of [`QiskitWarning`](#qiskit.exceptions.QiskitWarning "qiskit.exceptions.QiskitWarning").
+
+### QiskitWarning
+
+<span id="qiskit.exceptions.QiskitWarning" />
+
+`qiskit.exceptions.QiskitWarning` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/exceptions.py "view source code")
+
+Common subclass of warnings for Qiskit-specific warnings being raised.
+
+Related to [`MissingOptionalLibraryError`](#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError"), in some cases an optional dependency might be found, but fail to import for some other reason. In this case, Qiskit will continue as if the dependency is not present, but will raise [`OptionalDependencyImportWarning`](#qiskit.exceptions.OptionalDependencyImportWarning "qiskit.exceptions.OptionalDependencyImportWarning") to let you know about it.
+
+### OptionalDependencyImportWarning
+
+<span id="qiskit.exceptions.OptionalDependencyImportWarning" />
+
+`qiskit.exceptions.OptionalDependencyImportWarning` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/exceptions.py "view source code")
+
+Raised when an optional library raises errors during its import.
+
+When experimental features are being used, Qiskit will raise [`ExperimentalWarning`](#qiskit.exceptions.ExperimentalWarning "qiskit.exceptions.ExperimentalWarning").
+
+<Admonition title="Warning" type="caution">
+  Qiskit experimental features can break at any minor release and their API might change without previous notification. Their use is not recommended in production.
+</Admonition>
+
+### ExperimentalWarning
+
+<span id="qiskit.exceptions.ExperimentalWarning" />
+
+`qiskit.exceptions.ExperimentalWarning` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/exceptions.py "view source code")
+
+Raised when an experimental feature is being used.
+
+### Filtering warnings
+
+Python has built-in mechanisms to filter warnings, described in the documentation of the [`warnings`](https://docs.python.org/3/library/warnings.html#module-warnings "(in Python v3.12)") module. You can use these subclasses in your warning filters from within Python to silence warnings you are not interested in. For example, if you are knowingly using experimental features and are comfortable that they make break in later versions, you can silence [`ExperimentalWarning`](#qiskit.exceptions.ExperimentalWarning "qiskit.exceptions.ExperimentalWarning") like this:
+
+```python
+import warnings
+from qiskit.exceptions import ExperimentalWarning
+
+warnings.filterwarnings("ignore", category=ExperimentalWarning)
+```
 

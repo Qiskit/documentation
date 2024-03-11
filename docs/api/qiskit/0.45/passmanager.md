@@ -1,7 +1,7 @@
 ---
 title: passmanager
 description: API reference for qiskit.passmanager
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.passmanager
 ---
@@ -165,7 +165,7 @@ With the pass manager framework, a developer can flexibly customize the optimiza
 
 <span id="qiskit.passmanager.PassManagerError" />
 
-`qiskit.passmanager.PassManagerError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/passmanager/exceptions.py "view source code")
+`qiskit.passmanager.PassManagerError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/passmanager/exceptions.py "view source code")
 
 Pass manager error.
 

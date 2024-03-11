@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.optimizers.COBYLA
 
 <span id="qiskit.aqua.components.optimizers.COBYLA" />
 
-`COBYLA(maxiter=1000, disp=False, rhobeg=1.0, tol=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/cobyla.py "view source code")
+`COBYLA(maxiter=1000, disp=False, rhobeg=1.0, tol=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/cobyla.py "view source code")
 
 Constrained Optimization By Linear Approximation optimizer.
 
@@ -85,7 +85,7 @@ Return setting
 
 <span id="qiskit.aqua.components.optimizers.COBYLA.get_support_level" />
 
-`COBYLA.get_support_level()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/cobyla.py "view source code")
+`COBYLA.get_support_level()`
 
 Return support level dictionary
 
@@ -116,7 +116,7 @@ grad
 
 <span id="qiskit.aqua.components.optimizers.COBYLA.optimize" />
 
-`COBYLA.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/cobyla.py "view source code")
+`COBYLA.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
 Perform optimization.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.UnitaryOverlap
 
 <span id="qiskit.circuit.library.UnitaryOverlap" />
 
-`qiskit.circuit.library.UnitaryOverlap(unitary1, unitary2, prefix1='p1', prefix2='p2')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/overlap.py "view source code")
+`qiskit.circuit.library.UnitaryOverlap(unitary1, unitary2, prefix1='p1', prefix2='p2')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/overlap.py "view source code")
 
 Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
@@ -26,7 +26,7 @@ This circuit is usually employed in computing the fidelity:
     \left|\langle 0| U_2^{\dag} U_1|0\rangle\right|^{2}
 ```
 
-by computing the probability of being in the all-zeros bit-string, or equivalently, the expectation value of projector $\vert 0\rangle\langle 0\vert $.
+by computing the probability of being in the all-zeros bit-string, or equivalently, the expectation value of projector $|0\rangle\langle 0|$.
 
 Example:
 
@@ -99,29 +99,17 @@ a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitI
 
 QuantumCircuitData
 
-<span id="qiskit.circuit.library.UnitaryOverlap.extension_lib" />
-
-### extension\_lib
-
-`= 'include "qelib1.inc";'`
-
 <span id="qiskit.circuit.library.UnitaryOverlap.global_phase" />
 
 ### global\_phase
 
 Return the global phase of the current circuit scope in radians.
 
-<span id="qiskit.circuit.library.UnitaryOverlap.header" />
-
-### header
-
-`= 'OPENQASM 2.0;'`
-
 <span id="qiskit.circuit.library.UnitaryOverlap.instances" />
 
 ### instances
 
-`= 159`
+`= 158`
 
 <span id="qiskit.circuit.library.UnitaryOverlap.layout" />
 
@@ -220,9 +208,6 @@ ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
 ```
 
 To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
-
-```python
-```
 
 ```python
 >>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector

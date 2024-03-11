@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.components.optimizers.ADAM
 
 <span id="qiskit.aqua.components.optimizers.ADAM" />
 
-`ADAM(maxiter=10000, tol=1e-06, lr=0.001, beta_1=0.9, beta_2=0.99, noise_factor=1e-08, eps=1e-10, amsgrad=False, snapshot_dir=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/optimizers/adam_amsgrad.py "view source code")
+`ADAM(maxiter=10000, tol=1e-06, lr=0.001, beta_1=0.9, beta_2=0.99, noise_factor=1e-08, eps=1e-10, amsgrad=False, snapshot_dir=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/optimizers/adam_amsgrad.py "view source code")
 
 Adam and AMSGRAD optimizers.
 

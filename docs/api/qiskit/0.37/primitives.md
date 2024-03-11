@@ -1,7 +1,7 @@
 ---
 title: primitives
 description: API reference for qiskit.primitives
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.primitives
 ---
@@ -39,7 +39,7 @@ The estimator is called with the following inputs.
 The output is an [`EstimatorResult`](qiskit.primitives.EstimatorResult "qiskit.primitives.EstimatorResult") which contains a list of expectation values plus optional metadata like confidence intervals for the estimation.
 
 $$
-\langle\psi_i(\theta_k)\vert H_j\vert \psi_i(\theta_k)\rangle
+\langle\psi_i(\theta_k)|H_j|\psi_i(\theta_k)\rangle
 $$
 
 The estimator object is expected to be `close()` d after use or accessed inside “with” context and the objects are called with parameter values and run options (e.g., `shots` or number of shots).

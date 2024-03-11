@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.PTM
 
 <span id="qiskit.quantum_info.PTM" />
 
-`qiskit.quantum_info.PTM(data, input_dims=None, output_dims=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/quantum_info/operators/channel/ptm.py "view source code")
+`qiskit.quantum_info.PTM(data, input_dims=None, output_dims=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/quantum_info/operators/channel/ptm.py "view source code")
 
 Bases: `QuantumChannel`
 
@@ -27,10 +27,10 @@ where $[P_0, P_1, ..., P_{4^{n}-1}]$ is the $n$-qubit Pauli basis in lexicograph
 Evolution of a [`DensityMatrix`](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") $\rho$ with respect to the PTM is given by
 
 $$
-\vert \mathcal{E}(\rho)\rangle\!\rangle_P = S_P \vert \rho\rangle\!\rangle_P
+|\mathcal{E}(\rho)\rangle\!\rangle_P = S_P |\rho\rangle\!\rangle_P
 $$
 
-where $\vert A\rangle\!\rangle_P$ denotes vectorization in the Pauli basis $\langle i \vert  A\rangle\!\rangle_P = \sqrt{\frac{1}{2^n}} \mbox{Tr}[P_i A]$.
+where $|A\rangle\!\rangle_P$ denotes vectorization in the Pauli basis $\langle i | A\rangle\!\rangle_P = \sqrt{\frac{1}{2^n}} \mbox{Tr}[P_i A]$.
 
 See reference \[1] for further details.
 

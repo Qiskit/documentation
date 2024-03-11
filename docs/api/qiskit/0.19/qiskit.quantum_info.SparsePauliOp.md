@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.SparsePauliOp
 
 <span id="qiskit.quantum_info.SparsePauliOp" />
 
-`SparsePauliOp(data, coeffs=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py "view source code")
+`SparsePauliOp(data, coeffs=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py "view source code")
 
 Sparse N-qubit operator in a Pauli basis representation.
 
@@ -79,7 +79,7 @@ Return a clone with qargs set
 
 <span id="qiskit.quantum_info.SparsePauliOp.__getitem__" />
 
-`SparsePauliOp.__getitem__(key)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py "view source code")
+`SparsePauliOp.__getitem__(key)`
 
 Return a view of the SparsePauliOp.
 
@@ -87,7 +87,7 @@ Return a view of the SparsePauliOp.
 
 <span id="qiskit.quantum_info.SparsePauliOp.__len__" />
 
-`SparsePauliOp.__len__()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py "view source code")
+`SparsePauliOp.__len__()`
 
 Return the size.
 
@@ -123,7 +123,7 @@ BaseOperator
 
 <span id="qiskit.quantum_info.SparsePauliOp.adjoint" />
 
-`SparsePauliOp.adjoint()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py "view source code")
+`SparsePauliOp.adjoint()`
 
 Return the adjoint of the operator.
 
@@ -131,7 +131,7 @@ Return the adjoint of the operator.
 
 <span id="qiskit.quantum_info.SparsePauliOp.compose" />
 
-`SparsePauliOp.compose(other, qargs=None, front=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py "view source code")
+`SparsePauliOp.compose(other, qargs=None, front=False)`
 
 Return the composition channel self∘other.
 
@@ -158,7 +158,7 @@ The composed operator.
 
 <span id="qiskit.quantum_info.SparsePauliOp.conjugate" />
 
-`SparsePauliOp.conjugate()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py "view source code")
+`SparsePauliOp.conjugate()`
 
 Return the conjugate of the operator.
 
@@ -174,7 +174,7 @@ Make a deep copy of current operator.
 
 <span id="qiskit.quantum_info.SparsePauliOp.dot" />
 
-`SparsePauliOp.dot(other, qargs=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py "view source code")
+`SparsePauliOp.dot(other, qargs=None)`
 
 Return the composition channel self∘other.
 
@@ -200,7 +200,7 @@ The composed operator.
 
 <span id="qiskit.quantum_info.SparsePauliOp.expand" />
 
-`SparsePauliOp.expand(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py "view source code")
+`SparsePauliOp.expand(other)`
 
 Return the tensor product operator other ⊗ self.
 
@@ -224,7 +224,7 @@ the tensor product operator other ⊗ self.
 
 <span id="qiskit.quantum_info.SparsePauliOp.from_list" />
 
-`static SparsePauliOp.from_list(obj)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py "view source code")
+`static SparsePauliOp.from_list(obj)`
 
 Construct from a list \[(pauli\_str, coeffs)]
 
@@ -232,7 +232,7 @@ Construct from a list \[(pauli\_str, coeffs)]
 
 <span id="qiskit.quantum_info.SparsePauliOp.from_operator" />
 
-`static SparsePauliOp.from_operator(obj, atol=None, rtol=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py "view source code")
+`static SparsePauliOp.from_operator(obj, atol=None, rtol=None)`
 
 Construct from an Operator objector.
 
@@ -268,7 +268,7 @@ Return tuple of input dimension for specified subsystems.
 
 <span id="qiskit.quantum_info.SparsePauliOp.is_unitary" />
 
-`SparsePauliOp.is_unitary(atol=None, rtol=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py "view source code")
+`SparsePauliOp.is_unitary(atol=None, rtol=None)`
 
 Return True if operator is a unitary matrix.
 
@@ -289,7 +289,7 @@ bool
 
 <span id="qiskit.quantum_info.SparsePauliOp.label_iter" />
 
-`SparsePauliOp.label_iter()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py "view source code")
+`SparsePauliOp.label_iter()`
 
 Return a label representation iterator.
 
@@ -307,7 +307,7 @@ LabelIterator
 
 <span id="qiskit.quantum_info.SparsePauliOp.matrix_iter" />
 
-`SparsePauliOp.matrix_iter(sparse=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py "view source code")
+`SparsePauliOp.matrix_iter(sparse=False)`
 
 Return a matrix representation iterator.
 
@@ -433,7 +433,7 @@ Set the class default relative tolerance parameter for float comparisons.
 
 <span id="qiskit.quantum_info.SparsePauliOp.simplify" />
 
-`SparsePauliOp.simplify(atol=None, rtol=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py "view source code")
+`SparsePauliOp.simplify(atol=None, rtol=None)`
 
 Simplify PauliTable by combining duplicaties and removing zeros.
 
@@ -476,7 +476,7 @@ BaseOperator
 
 <span id="qiskit.quantum_info.SparsePauliOp.tensor" />
 
-`SparsePauliOp.tensor(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py "view source code")
+`SparsePauliOp.tensor(other)`
 
 Return the tensor product operator self ⊗ other.
 
@@ -500,7 +500,7 @@ the tensor product operator self ⊗ other.
 
 <span id="qiskit.quantum_info.SparsePauliOp.to_list" />
 
-`SparsePauliOp.to_list(array=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py "view source code")
+`SparsePauliOp.to_list(array=False)`
 
 Convert to a list Pauli string labels and coefficients.
 
@@ -522,7 +522,7 @@ list or array
 
 <span id="qiskit.quantum_info.SparsePauliOp.to_matrix" />
 
-`SparsePauliOp.to_matrix(sparse=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py "view source code")
+`SparsePauliOp.to_matrix(sparse=False)`
 
 Convert to a dense or sparse matrix.
 
@@ -542,7 +542,7 @@ array
 
 <span id="qiskit.quantum_info.SparsePauliOp.to_operator" />
 
-`SparsePauliOp.to_operator()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py "view source code")
+`SparsePauliOp.to_operator()`
 
 Convert to a matrix Operator object
 
@@ -550,7 +550,7 @@ Convert to a matrix Operator object
 
 <span id="qiskit.quantum_info.SparsePauliOp.transpose" />
 
-`SparsePauliOp.transpose()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py "view source code")
+`SparsePauliOp.transpose()`
 
 Return the transpose of the operator.
 

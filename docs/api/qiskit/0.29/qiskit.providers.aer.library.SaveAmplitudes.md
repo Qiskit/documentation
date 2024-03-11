@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.library.SaveAmplitudes
 
 <span id="qiskit.providers.aer.library.SaveAmplitudes" />
 
-`SaveAmplitudes(num_qubits, params, label='amplitudes', pershot=False, conditional=False)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/library/save_instructions/save_amplitudes.py "view source code")
+`SaveAmplitudes(num_qubits, params, label='amplitudes', pershot=False, conditional=False)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/library/save_instructions/save_amplitudes.py "view source code")
 
 Bases: `qiskit.providers.aer.library.save_instructions.save_data.SaveSingleData`
 

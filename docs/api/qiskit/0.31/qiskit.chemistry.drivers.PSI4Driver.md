@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.drivers.PSI4Driver
 
 <span id="qiskit.chemistry.drivers.PSI4Driver" />
 
-`PSI4Driver(config='molecule h2 {\\n 0 1\\n H 0.0 0.0 0.0\\n H 0.0 0.0 0.735\\n}\\n\\nset {\\n basis sto-3g\\n scf_type pk\\n reference rhf\\n', molecule=None, basis='sto-3g', hf_method=<HFMethodType.RHF: 'rhf'>)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/psi4d/psi4driver.py "view source code")
+`PSI4Driver(config='molecule h2 {\\n 0 1\\n H 0.0 0.0 0.0\\n H 0.0 0.0 0.735\\n}\\n\\nset {\\n basis sto-3g\\n scf_type pk\\n reference rhf\\n', molecule=None, basis='sto-3g', hf_method=<HFMethodType.RHF: 'rhf'>)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/psi4d/psi4driver.py "view source code")
 
 Bases: `qiskit.chemistry.drivers.fermionic_driver.FermionicDriver`
 
@@ -35,7 +35,7 @@ See [http://www.psicode.org/](http://www.psicode.org/)
 
 <span id="qiskit.chemistry.drivers.PSI4Driver.run" />
 
-`PSI4Driver.run()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/psi4d/psi4driver.py "view source code")
+`PSI4Driver.run()`
 
 Runs driver to produce a QMolecule output.
 

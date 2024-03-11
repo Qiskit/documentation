@@ -12,7 +12,7 @@ python_api_name: qiskit.visualization.plot_gate_map
 
 <span id="qiskit.visualization.plot_gate_map" />
 
-`qiskit.visualization.plot_gate_map(backend, figsize=None, plot_directed=False, label_qubits=True, qubit_size=None, line_width=4, font_size=None, qubit_color=None, qubit_labels=None, line_color=None, font_color='white', ax=None, filename=None, qubit_coordinates=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/visualization/gate_map.py "view source code")
+`qiskit.visualization.plot_gate_map(backend, figsize=None, plot_directed=False, label_qubits=True, qubit_size=None, line_width=4, font_size=None, qubit_color=None, qubit_labels=None, line_color=None, font_color='white', ax=None, filename=None, qubit_coordinates=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/visualization/gate_map.py "view source code")
 
 Plots the gate map of a device.
 
@@ -49,11 +49,10 @@ Figure
 **Example**
 
 ```python
-from qiskit import QuantumCircuit, execute
-from qiskit.providers.fake_provider import FakeVigoV2
+from qiskit.providers.fake_provider import GenericBackendV2
 from qiskit.visualization import plot_gate_map
 
-backend = FakeVigoV2()
+backend = GenericBackendV2(num_qubits=5)
 
 plot_gate_map(backend)
 ```

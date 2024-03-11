@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.evolutions.QDrift
 
 <span id="qiskit.opflow.evolutions.QDrift" />
 
-`qiskit.opflow.evolutions.QDrift(reps=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/opflow/evolutions/trotterizations/qdrift.py "view source code")
+`qiskit.opflow.evolutions.QDrift(reps=1)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/opflow/evolutions/trotterizations/qdrift.py "view source code")
 
 Bases: [`TrotterizationBase`](qiskit.opflow.evolutions.TrotterizationBase "qiskit.opflow.evolutions.trotterizations.trotterization_base.TrotterizationBase")
 

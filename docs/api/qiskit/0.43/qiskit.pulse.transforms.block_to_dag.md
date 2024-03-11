@@ -12,7 +12,7 @@ python_api_name: qiskit.pulse.transforms.block_to_dag
 
 <span id="qiskit.pulse.transforms.block_to_dag" />
 
-`block_to_dag(block)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/transforms/dag.py "view source code")
+`block_to_dag(block)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/transforms/dag.py "view source code")
 
 Convert schedule block instruction into DAG.
 

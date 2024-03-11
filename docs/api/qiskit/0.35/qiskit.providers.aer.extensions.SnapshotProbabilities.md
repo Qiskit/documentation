@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.extensions.SnapshotProbabilities
 
 <span id="qiskit.providers.aer.extensions.SnapshotProbabilities" />
 
-`SnapshotProbabilities(label, num_qubits, variance=False)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/extensions/snapshot_probabilities.py "view source code")
+`SnapshotProbabilities(label, num_qubits, variance=False)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/extensions/snapshot_probabilities.py "view source code")
 
 Bases: `qiskit.providers.aer.extensions.snapshot.Snapshot`
 

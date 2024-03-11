@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.builder.set_phase
 
 <span id="qiskit.pulse.builder.set_phase" />
 
-`set_phase(phase, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/builder.py "view source code")
+`set_phase(phase, channel, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/builder.py "view source code")
 
 Set the `phase` of a pulse `channel`.
 
@@ -30,6 +30,6 @@ with pulse.build() as pulse_prog:
 **Parameters**
 
 *   **phase** (`float`) – Phase in radians to set channel carrier signal to.
-*   **channel** ([`PulseChannel`](qiskit.pulse.channels#qiskit.pulse.channels.PulseChannel "qiskit.pulse.channels.PulseChannel")) – Channel to set phase of.
+*   **channel** ([`PulseChannel`](qiskit.pulse.channels#pulsechannel "qiskit.pulse.channels.PulseChannel")) – Channel to set phase of.
 *   **name** (`Optional`\[`str`]) – Name of the instruction.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.instructions.Play
 
 <span id="qiskit.pulse.instructions.Play" />
 
-`qiskit.pulse.instructions.Play(pulse, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/pulse/instructions/play.py "view source code")
+`qiskit.pulse.instructions.Play(pulse, channel, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/pulse/instructions/play.py "view source code")
 
 Bases: [`Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")
 

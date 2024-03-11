@@ -10,7 +10,7 @@ python_api_name: qiskit.converters.dagdependency_to_circuit
 
 <span id="qiskit.converters.dagdependency_to_circuit" />
 
-`dagdependency_to_circuit(dagdependency)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/converters/dagdependency_to_circuit.py "view source code")
+`dagdependency_to_circuit(dagdependency)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/converters/dagdependency_to_circuit.py "view source code")
 
 Build a `QuantumCircuit` object from a `DAGDependency`.
 

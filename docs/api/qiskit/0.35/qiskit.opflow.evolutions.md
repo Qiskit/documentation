@@ -1,8 +1,20 @@
+---
+title: evolutions
+description: API reference for qiskit.opflow.evolutions
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.opflow.evolutions
+---
+
 <span id="qiskit-opflow-evolutions" />
 
 # qiskit.opflow\.evolutions
 
-## Operator Evolutions ([`qiskit.opflow.evolutions`](#module-qiskit.opflow.evolutions "qiskit.opflow.evolutions"))
+## Operator Evolutions
+
+<span id="module-qiskit.opflow.evolutions" />
+
+`qiskit.opflow.evolutions`
 
 Evolutions are converters which traverse an Operator tree, replacing any [`EvolvedOp`](qiskit.opflow.evolutions.EvolvedOp "qiskit.opflow.evolutions.EvolvedOp") e with a Schrodinger equation-style evolution [`CircuitOp`](qiskit.opflow.primitive_ops.CircuitOp "qiskit.opflow.primitive_ops.CircuitOp") equalling or approximating the matrix exponential of -i \* the Operator contained inside (e.primitive). The Evolutions are essentially implementations of Hamiltonian Simulation algorithms, including various methods for Trotterization.
 
@@ -38,3 +50,4 @@ The EvolutionBase class gives an interface for algorithms to ask for Evolutions 
 | [`Trotter`](qiskit.opflow.evolutions.Trotter "qiskit.opflow.evolutions.Trotter")(\[reps])                                    | Simple Trotter expansion, composing the evolution circuits of each Operator in the sum together `reps` times and dividing the evolution time of each by `reps`.                        |
 | [`Suzuki`](qiskit.opflow.evolutions.Suzuki "qiskit.opflow.evolutions.Suzuki")(\[reps, order])                                | Suzuki Trotter expansion, composing the evolution circuits of each Operator in the sum together by a recursive “bookends” strategy, repeating the whole composed circuit `reps` times. |
 | [`QDrift`](qiskit.opflow.evolutions.QDrift "qiskit.opflow.evolutions.QDrift")(\[reps])                                       | The QDrift Trotterization method, which selects each each term in the Trotterization randomly, with a probability proportional to its weight.                                          |
+

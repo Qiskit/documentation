@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.ConsolidateBlocks
 
 <span id="qiskit.transpiler.passes.ConsolidateBlocks" />
 
-`ConsolidateBlocks(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/transpiler/passes/optimization/consolidate_blocks.py "view source code")
+`ConsolidateBlocks(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/transpiler/passes/optimization/consolidate_blocks.py "view source code")
 
 Replace each block of consecutive gates by a single Unitary node.
 
@@ -55,7 +55,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.ConsolidateBlocks.run" />
 
-`ConsolidateBlocks.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/transpiler/passes/optimization/consolidate_blocks.py "view source code")
+`ConsolidateBlocks.run(dag)`
 
 Run the ConsolidateBlocks pass on dag.
 

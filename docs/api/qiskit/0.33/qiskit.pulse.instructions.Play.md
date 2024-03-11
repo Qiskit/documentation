@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.instructions.Play
 
 <span id="qiskit.pulse.instructions.Play" />
 
-`Play(pulse, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/pulse/instructions/play.py "view source code")
+`Play(pulse, channel, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/pulse/instructions/play.py "view source code")
 
 Bases: `qiskit.pulse.instructions.instruction.Instruction`
 
@@ -158,7 +158,7 @@ A new schedule with `schedule` inserted with this instruction at t=0.
 
 <span id="qiskit.pulse.instructions.Play.is_parameterized" />
 
-`Play.is_parameterized()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/pulse/instructions/play.py "view source code")
+`Play.is_parameterized()`
 
 Return True iff the instruction is parameterized.
 

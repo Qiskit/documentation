@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.FunctionalPauliRotations
 
 <span id="qiskit.circuit.library.FunctionalPauliRotations" />
 
-`FunctionalPauliRotations(num_state_qubits=None, basis='Y', name='F')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/arithmetic/functional_pauli_rotations.py "view source code")
+`FunctionalPauliRotations(num_state_qubits=None, basis='Y', name='F')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/arithmetic/functional_pauli_rotations.py "view source code")
 
 Bases: `qiskit.circuit.library.blueprintcircuit.BlueprintCircuit`, `abc.ABC`
 
@@ -20,7 +20,7 @@ Create a new functional Pauli rotation circuit.
 
 **Parameters**
 
-*   **num\_state\_qubits** (`Optional`\[`int`]) – The number of qubits representing the state $\vert x\rangle$.
+*   **num\_state\_qubits** (`Optional`\[`int`]) – The number of qubits representing the state $|x\rangle$.
 *   **basis** (`str`) – The kind of Pauli rotation to use. Must be ‘X’, ‘Y’ or ‘Z’.
 *   **name** (`str`) – The name of the circuit object.
 
@@ -144,7 +144,7 @@ Return number of qubits.
 
 ### num\_state\_qubits
 
-The number of state qubits representing the state $\vert x\rangle$.
+The number of state qubits representing the state $|x\rangle$.
 
 **Return type**
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.verification.twoQ_clifford_error
 
 <span id="qiskit.ignis.verification.twoQ_clifford_error" />
 
-`twoQ_clifford_error(ngates, gate_qubit, gate_err)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/randomized_benchmarking/rb_utils.py "view source code")
+`twoQ_clifford_error(ngates, gate_qubit, gate_err)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/randomized_benchmarking/rb_utils.py "view source code")
 
 The two qubit Clifford gate error given measured errors in the primitive gates used to construct the Clifford (see arxiv:1712.06550). Assumes the error in the underlying gates is depolarizing.
 

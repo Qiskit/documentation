@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.TdgGate
 
 <span id="qiskit.circuit.library.TdgGate" />
 
-`TdgGate(label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/t.py "view source code")
+`TdgGate(label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/t.py "view source code")
 
 Single qubit T-adjoint gate (\~Z\*\*0.25).
 

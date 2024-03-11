@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.AskData
 
 <span id="qiskit.algorithms.optimizers.AskData" />
 
-`qiskit.algorithms.optimizers.AskData(x_fun=None, x_jac=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/optimizers/steppable_optimizer.py "view source code")
+`qiskit.algorithms.optimizers.AskData(x_fun=None, x_jac=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/optimizers/steppable_optimizer.py "view source code")
 
 Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 

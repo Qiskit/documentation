@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.IterativeAmplitudeEstimation
 
 <span id="qiskit.algorithms.IterativeAmplitudeEstimation" />
 
-`IterativeAmplitudeEstimation(epsilon_target, alpha, confint_method='beta', min_ratio=2, quantum_instance=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/amplitude_estimators/iae.py "view source code")
+`IterativeAmplitudeEstimation(epsilon_target, alpha, confint_method='beta', min_ratio=2, quantum_instance=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/amplitude_estimators/iae.py "view source code")
 
 Bases: [`qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimator`](qiskit.algorithms.AmplitudeEstimator "qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimator")
 
@@ -53,9 +53,9 @@ The output of the algorithm is an estimate for the amplitude a, that with at lea
 
 <span id="qiskit.algorithms.IterativeAmplitudeEstimation.construct_circuit" />
 
-`IterativeAmplitudeEstimation.construct_circuit(estimation_problem, k=0, measurement=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/amplitude_estimators/iae.py "view source code")
+`IterativeAmplitudeEstimation.construct_circuit(estimation_problem, k=0, measurement=False)`
 
-Construct the circuit $\mathcal{Q}^k \mathcal{A} \vert 0\rangle$.
+Construct the circuit $\mathcal{Q}^k \mathcal{A} |0\rangle$.
 
 The A operator is the unitary specifying the QAE problem and Q the associated Grover operator.
 
@@ -71,13 +71,13 @@ The A operator is the unitary specifying the QAE problem and Q the associated Gr
 
 **Returns**
 
-The circuit implementing $\mathcal{Q}^k \mathcal{A} \vert 0\rangle$.
+The circuit implementing $\mathcal{Q}^k \mathcal{A} |0\rangle$.
 
 ### estimate
 
 <span id="qiskit.algorithms.IterativeAmplitudeEstimation.estimate" />
 
-`IterativeAmplitudeEstimation.estimate(estimation_problem)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/amplitude_estimators/iae.py "view source code")
+`IterativeAmplitudeEstimation.estimate(estimation_problem)`
 
 Run the amplitude estimation algorithm.
 

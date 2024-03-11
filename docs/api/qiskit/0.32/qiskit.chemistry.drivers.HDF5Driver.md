@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.drivers.HDF5Driver
 
 <span id="qiskit.chemistry.drivers.HDF5Driver" />
 
-`HDF5Driver(hdf5_input='molecule.hdf5')`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/hdf5d/hdf5driver.py "view source code")
+`HDF5Driver(hdf5_input='molecule.hdf5')` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/hdf5d/hdf5driver.py "view source code")
 
 Bases: `qiskit.chemistry.drivers.fermionic_driver.FermionicDriver`
 
@@ -28,7 +28,7 @@ The HDF5 file is as saved from a [`QMolecule`](qiskit.chemistry.QMolecule "qiski
 
 <span id="qiskit.chemistry.drivers.HDF5Driver.run" />
 
-`HDF5Driver.run()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/hdf5d/hdf5driver.py "view source code")
+`HDF5Driver.run()`
 
 Runs driver to produce a QMolecule output.
 

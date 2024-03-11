@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.utils.approximate_quantum_error
 
 <span id="qiskit.providers.aer.utils.approximate_quantum_error" />
 
-`approximate_quantum_error(error, *, operator_string=None, operator_dict=None, operator_list=None)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/utils/noise_transformation.py "view source code")
+`approximate_quantum_error(error, *, operator_string=None, operator_dict=None, operator_list=None)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/utils/noise_transformation.py "view source code")
 
 Return an approximate QuantumError bases on the Hilbert-Schmidt metric.
 

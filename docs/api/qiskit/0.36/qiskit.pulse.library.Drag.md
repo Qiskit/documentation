@@ -10,13 +10,13 @@ python_api_name: qiskit.pulse.library.Drag
 
 <span id="qiskit.pulse.library.Drag" />
 
-`Drag(duration, amp, sigma, beta, name=None, limit_amplitude=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/library/parametric_pulses.py "view source code")
+`Drag(duration, amp, sigma, beta, name=None, limit_amplitude=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/library/parametric_pulses.py "view source code")
 
 Bases: `qiskit.pulse.library.parametric_pulses.ParametricPulse`
 
 The Derivative Removal by Adiabatic Gate (DRAG) pulse is a standard Gaussian pulse with an additional Gaussian derivative component and lifting applied.
 
-It is designed to reduce the frequency spectrum of a normal gaussian pulse near the $\vert 1\rangle\leftrightarrow\vert 2\rangle$ transition, reducing the chance of leakage to the $\vert 2\rangle$ state.
+It is designed to reduce the frequency spectrum of a normal gaussian pulse near the $|1\rangle\leftrightarrow|2\rangle$ transition, reducing the chance of leakage to the $|2\rangle$ state.
 
 $$
 \begin{split}g(x) &= \exp\Bigl(-\frac12 \frac{(x - \text{duration}/2)^2}{\text{sigma}^2}\Bigr)\\
@@ -90,7 +90,7 @@ Visualization output data. The returned data type depends on the `plotter`. If m
 
 <span id="qiskit.pulse.library.Drag.get_waveform" />
 
-`Drag.get_waveform()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/library/parametric_pulses.py "view source code")
+`Drag.get_waveform()`
 
 Return a Waveform with samples filled according to the formula that the pulse represents and the parameter values it contains.
 
@@ -114,7 +114,7 @@ Return True iff the instruction is parameterized.
 
 <span id="qiskit.pulse.library.Drag.validate_parameters" />
 
-`Drag.validate_parameters()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/library/parametric_pulses.py "view source code")
+`Drag.validate_parameters()`
 
 Validate parameters.
 

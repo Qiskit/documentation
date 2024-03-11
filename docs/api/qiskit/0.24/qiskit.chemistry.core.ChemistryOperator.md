@@ -12,7 +12,7 @@ python_api_name: qiskit.chemistry.core.ChemistryOperator
 
 <span id="qiskit.chemistry.core.ChemistryOperator" />
 
-`ChemistryOperator`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/core/chemistry_operator.py "view source code")
+`ChemistryOperator` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/core/chemistry_operator.py "view source code")
 
 Base class for ChemistryOperator.
 

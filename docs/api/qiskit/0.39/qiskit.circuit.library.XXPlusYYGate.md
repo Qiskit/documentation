@@ -10,13 +10,13 @@ python_api_name: qiskit.circuit.library.XXPlusYYGate
 
 <span id="qiskit.circuit.library.XXPlusYYGate" />
 
-`XXPlusYYGate(theta, beta=0, label='{XX+YY}')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/standard_gates/xx_plus_yy.py "view source code")
+`XXPlusYYGate(theta, beta=0, label='{XX+YY}')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/standard_gates/xx_plus_yy.py "view source code")
 
 Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
 XX+YY interaction gate.
 
-A 2-qubit parameterized XX+YY interaction, also known as an XY gate. Its action is to induce a coherent rotation by some angle between $\vert 01\rangle$ and $\vert 10\rangle$.
+A 2-qubit parameterized XX+YY interaction, also known as an XY gate. Its action is to induce a coherent rotation by some angle between $|01\rangle$ and $|10\rangle$.
 
 **Circuit Symbol:**
 
@@ -78,7 +78,7 @@ Create new XX+YY gate.
 
 <span id="qiskit.circuit.library.XXPlusYYGate.inverse" />
 
-`XXPlusYYGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/standard_gates/xx_plus_yy.py "view source code")
+`XXPlusYYGate.inverse()`
 
 Return inverse XX+YY gate (i.e. with the negative rotation angle and same phase angle).
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.RemoveFinalMeasurements
 
 <span id="qiskit.transpiler.passes.RemoveFinalMeasurements" />
 
-`RemoveFinalMeasurements(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/passes/utils/remove_final_measurements.py "view source code")
+`RemoveFinalMeasurements(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/passes/utils/remove_final_measurements.py "view source code")
 
 Bases: `qiskit.transpiler.basepasses.TransformationPass`
 
@@ -34,7 +34,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.RemoveFinalMeasurements.run" />
 
-`RemoveFinalMeasurements.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/passes/utils/remove_final_measurements.py "view source code")
+`RemoveFinalMeasurements.run(dag)`
 
 Run the RemoveFinalMeasurements pass on dag.
 

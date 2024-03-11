@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.RGQFTMultiplier
 
 <span id="qiskit.circuit.library.RGQFTMultiplier" />
 
-`RGQFTMultiplier(num_state_qubits, num_result_qubits=None, name='RGQFTMultiplier')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/arithmetic/multipliers/rg_qft_multiplier.py "view source code")
+`RGQFTMultiplier(num_state_qubits, num_result_qubits=None, name='RGQFTMultiplier')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/arithmetic/multipliers/rg_qft_multiplier.py "view source code")
 
 A QFT multiplication circuit to store product of two input registers out-of-place.
 
@@ -37,7 +37,7 @@ out_1: ┤1     ├─────────■──────────�
 
 **Parameters**
 
-*   **num\_state\_qubits** (`int`) – The number of qubits in either input register for state $\vert a\rangle$ or $\vert b\rangle$. The two input registers must have the same number of qubits.
+*   **num\_state\_qubits** (`int`) – The number of qubits in either input register for state $|a\rangle$ or $|b\rangle$. The two input registers must have the same number of qubits.
 *   **num\_result\_qubits** (`Optional`\[`int`]) – The number of result qubits to limit the output to. If number of result qubits is $n$, multiplication modulo $2^n$ is performed to limit the output to the specified number of qubits. Default value is `2 * num_state_qubits` to represent any possible result from the multiplication of the two inputs.
 *   **name** (`str`) – The name of the circuit object.
 
@@ -49,7 +49,7 @@ out_1: ┤1     ├─────────■──────────�
 
 **Parameters**
 
-*   **num\_state\_qubits** (`int`) – The number of qubits in either input register for state $\vert a\rangle$ or $\vert b\rangle$. The two input registers must have the same number of qubits.
+*   **num\_state\_qubits** (`int`) – The number of qubits in either input register for state $|a\rangle$ or $|b\rangle$. The two input registers must have the same number of qubits.
 *   **num\_result\_qubits** (`Optional`\[`int`]) – The number of result qubits to limit the output to. If number of result qubits is $n$, multiplication modulo $2^n$ is performed to limit the output to the specified number of qubits. Default value is `2 * num_state_qubits` to represent any possible result from the multiplication of the two inputs.
 *   **name** (`str`) – The name of the circuit object.
 
@@ -1123,7 +1123,7 @@ Apply [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate").
 
 Initialize qubits in a specific state.
 
-Qubit initialization is done by first resetting the qubits to $\vert 0\rangle$ followed by an state preparing unitary. Both these steps are included in the Initialize instruction.
+Qubit initialization is done by first resetting the qubits to $|0\rangle$ followed by an state preparing unitary. Both these steps are included in the Initialize instruction.
 
 **Parameters**
 
@@ -1154,7 +1154,7 @@ a handle to the instruction that was just initialized
 
 **Examples**
 
-Prepare a qubit in the state $(\vert 0\rangle - \vert 1\rangle) / \sqrt{2}$.
+Prepare a qubit in the state $(|0\rangle - |1\rangle) / \sqrt{2}$.
 
 ```python
 import numpy as np

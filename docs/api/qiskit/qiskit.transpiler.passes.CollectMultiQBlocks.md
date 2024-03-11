@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.CollectMultiQBlocks
 
 <span id="qiskit.transpiler.passes.CollectMultiQBlocks" />
 
-`qiskit.transpiler.passes.CollectMultiQBlocks(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/passes/optimization/collect_multiqubit_blocks.py "view source code")
+`qiskit.transpiler.passes.CollectMultiQBlocks(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/optimization/collect_multiqubit_blocks.py "view source code")
 
 Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 

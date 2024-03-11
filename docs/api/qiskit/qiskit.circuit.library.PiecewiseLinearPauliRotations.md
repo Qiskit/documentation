@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.PiecewiseLinearPauliRotations
 
 <span id="qiskit.circuit.library.PiecewiseLinearPauliRotations" />
 
-`qiskit.circuit.library.PiecewiseLinearPauliRotations(num_state_qubits=None, breakpoints=None, slopes=None, offsets=None, basis='Y', name='pw_lin')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/arithmetic/piecewise_linear_pauli_rotations.py "view source code")
+`qiskit.circuit.library.PiecewiseLinearPauliRotations(num_state_qubits=None, breakpoints=None, slopes=None, offsets=None, basis='Y', name='pw_lin')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/arithmetic/piecewise_linear_pauli_rotations.py "view source code")
 
 Bases: [`FunctionalPauliRotations`](qiskit.circuit.library.FunctionalPauliRotations "qiskit.circuit.library.arithmetic.functional_pauli_rotations.FunctionalPauliRotations")
 
@@ -94,29 +94,17 @@ True, if 0 is the first breakpoint, otherwise False.
 
 ### data
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.extension_lib" />
-
-### extension\_lib
-
-`= 'include "qelib1.inc";'`
-
 <span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.global_phase" />
 
 ### global\_phase
 
 Return the global phase of the current circuit scope in radians.
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.header" />
-
-### header
-
-`= 'OPENQASM 2.0;'`
-
 <span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.instances" />
 
 ### instances
 
-`= 310`
+`= 266`
 
 <span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.layout" />
 
@@ -192,7 +180,7 @@ Return number of qubits.
 
 ### num\_state\_qubits
 
-The number of state qubits representing the state $\vert x\rangle$.
+The number of state qubits representing the state $|x\rangle$.
 
 **Returns**
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeBoeblingen
 
 <span id="qiskit.providers.fake_provider.FakeBoeblingen" />
 
-`qiskit.providers.fake_provider.FakeBoeblingen`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/providers/fake_provider/backends/boeblingen/fake_boeblingen.py "view source code")
+`qiskit.providers.fake_provider.FakeBoeblingen` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/providers/fake_provider/backends/boeblingen/fake_boeblingen.py "view source code")
 
 Bases: `FakePulseBackend`
 

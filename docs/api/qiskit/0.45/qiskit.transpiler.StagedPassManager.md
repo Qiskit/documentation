@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.StagedPassManager
 
 <span id="qiskit.transpiler.StagedPassManager" />
 
-`qiskit.transpiler.StagedPassManager(stages=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passmanager.py "view source code")
+`qiskit.transpiler.StagedPassManager(stages=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passmanager.py "view source code")
 
 Bases: [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.passmanager.PassManager")
 
@@ -55,9 +55,7 @@ Expanded Pass manager stages including `pre_` and `post_` phases.
 
 <span id="qiskit.transpiler.StagedPassManager.invalid_stage_regex" />
 
-### invalid\_stage\_regex = re.compile('\\\s|\\\\+|\\\\-|\\\\\*|\\\\/|\\\\\\\\|\\\\%|\\\\\<|\\\\>|\\\\@|\\\\!|\\\\\~|\\\\^|\\\\&|\\\\
-
-`= re.compile('\\s|\\+|\\-|\\*|\\/|\\\\|\\%|\\<|\\>|\\@|\\!|\\~|\\^|\\&|\\:`
+### invalid\_stage\_regex
 
 `= re.compile('\\s|\\+|\\-|\\*|\\/|\\\\|\\%|\\<|\\>|\\@|\\!|\\~|\\^|\\&|\\:|\\[|\\]|\\{|\\}|\\(|\\)')`
 

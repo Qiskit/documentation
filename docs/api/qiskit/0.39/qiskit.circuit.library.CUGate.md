@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CUGate
 
 <span id="qiskit.circuit.library.CUGate" />
 
-`CUGate(theta, phi, lam, gamma, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/standard_gates/u.py "view source code")
+`CUGate(theta, phi, lam, gamma, label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/standard_gates/u.py "view source code")
 
 Bases: [`qiskit.circuit.controlledgate.ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 
@@ -33,8 +33,8 @@ q_1: ┤ U(ϴ,φ,λ,γ) ├
 
 $$
  \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}CU(\theta, \phi, \lambda, \gamma)\ q_0, q_1 =
-    I \otimes \vert 0\rangle\langle 0\vert  +
-    e^{i\gamma} U(\theta,\phi,\lambda) \otimes \vert 1\rangle\langle 1\vert  =
+    I \otimes |0\rangle\langle 0| +
+    e^{i\gamma} U(\theta,\phi,\lambda) \otimes |1\rangle\langle 1| =
     \begin{pmatrix}
         1 & 0                           & 0 & 0 \\
         0 & e^{i\gamma}\cos(\th)        & 0 & -e^{i(\gamma + \lambda)}\sin(\th) \\
@@ -55,8 +55,8 @@ $$
 
   $$
   \begin{split}CU(\theta, \phi, \lambda, \gamma)\ q_1, q_0 =
-      \vert 0\rangle\langle 0\vert  \otimes I +
-      e^{i\gamma}\vert 1\rangle\langle 1\vert  \otimes U(\theta,\phi,\lambda) =
+      |0\rangle\langle 0| \otimes I +
+      e^{i\gamma}|1\rangle\langle 1| \otimes U(\theta,\phi,\lambda) =
       \begin{pmatrix}
           1 & 0 & 0                             & 0 \\
           0 & 1 & 0                             & 0 \\
@@ -74,7 +74,7 @@ Create new CU gate.
 
 <span id="qiskit.circuit.library.CUGate.inverse" />
 
-`CUGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/standard_gates/u.py "view source code")
+`CUGate.inverse()`
 
 Return inverted CU gate.
 

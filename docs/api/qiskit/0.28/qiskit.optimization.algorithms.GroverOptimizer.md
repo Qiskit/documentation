@@ -10,7 +10,7 @@ python_api_name: qiskit.optimization.algorithms.GroverOptimizer
 
 <span id="qiskit.optimization.algorithms.GroverOptimizer" />
 
-`GroverOptimizer(num_value_qubits, num_iterations=3, quantum_instance=None, converters=None, penalty=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/grover_optimizer.py "view source code")
+`GroverOptimizer(num_value_qubits, num_iterations=3, quantum_instance=None, converters=None, penalty=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/grover_optimizer.py "view source code")
 
 Uses Grover Adaptive Search (GAS) to find the minimum of a QUBO function.
 

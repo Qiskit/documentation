@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeNairobi
 
 <span id="qiskit.providers.fake_provider.FakeNairobi" />
 
-`FakeNairobi`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/fake_provider/backends/nairobi/fake_nairobi.py "view source code")
+`FakeNairobi` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/fake_provider/backends/nairobi/fake_nairobi.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_pulse_backend.FakePulseBackend`
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.RGate
 
 <span id="qiskit.circuit.library.RGate" />
 
-`RGate(theta, phi, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/library/standard_gates/r.py "view source code")
+`RGate(theta, phi, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/library/standard_gates/r.py "view source code")
 
 Bases: `qiskit.circuit.gate.Gate`
 
@@ -42,7 +42,7 @@ Create new r single-qubit gate.
 
 <span id="qiskit.circuit.library.RGate.inverse" />
 
-`RGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/library/standard_gates/r.py "view source code")
+`RGate.inverse()`
 
 Invert this gate.
 

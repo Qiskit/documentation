@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.InstructionSet
 
 <span id="qiskit.circuit.InstructionSet" />
 
-`InstructionSet(circuit_cregs=None, *, resource_requester=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/instructionset.py "view source code")
+`InstructionSet(circuit_cregs=None, *, resource_requester=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/instructionset.py "view source code")
 
 Bases: `object`
 
@@ -48,7 +48,7 @@ The context (qargs and cargs that each instruction is attached to) is also store
 
 <span id="qiskit.circuit.InstructionSet.add" />
 
-`InstructionSet.add(instruction, qargs=None, cargs=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/instructionset.py "view source code")
+`InstructionSet.add(instruction, qargs=None, cargs=None)`
 
 Add an instruction and its context (where it is attached).
 
@@ -56,7 +56,7 @@ Add an instruction and its context (where it is attached).
 
 <span id="qiskit.circuit.InstructionSet.c_if" />
 
-`InstructionSet.c_if(classical, val)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/instructionset.py "view source code")
+`InstructionSet.c_if(classical, val)`
 
 Set a classical equality condition on all the instructions in this set between the [`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") or [`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.Clbit") `classical` and value `val`.
 
@@ -85,7 +85,7 @@ This same instance of [`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.c
 
 <span id="qiskit.circuit.InstructionSet.inverse" />
 
-`InstructionSet.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/instructionset.py "view source code")
+`InstructionSet.inverse()`
 
 Invert all instructions.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.utils.random_h1_body
 
 <span id="qiskit.aqua.utils.random_h1_body" />
 
-`random_h1_body(N)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/utils/random_matrix_generator.py "view source code")
+`random_h1_body(N)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/utils/random_matrix_generator.py "view source code")
 
 Generate a random one body integrals.
 

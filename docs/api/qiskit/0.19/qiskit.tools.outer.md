@@ -10,7 +10,7 @@ python_api_name: qiskit.tools.outer
 
 <span id="qiskit.tools.outer" />
 
-`outer(vector1, vector2=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/tools/qi/qi.py "view source code")
+`outer(vector1, vector2=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/tools/qi/qi.py "view source code")
 
 Construct the outer product of two vectors.
 
@@ -23,7 +23,7 @@ The second vector argument is optional, if absent the projector of the first vec
 
 **Returns**
 
-The matrix $\vert v1\rangle\langle{v2}\vert $.
+The matrix $|v1\rangle\langle{v2}|$.
 
 **Return type**
 

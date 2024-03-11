@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.Operation
 
 <span id="qiskit.circuit.Operation" />
 
-`qiskit.circuit.Operation`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/operation.py "view source code")
+`qiskit.circuit.Operation` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/operation.py "view source code")
 
 Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 

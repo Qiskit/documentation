@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.StatePreparation
 
 <span id="qiskit.circuit.library.StatePreparation" />
 
-`StatePreparation(params, num_qubits=None, inverse=False, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/data_preparation/state_preparation.py "view source code")
+`StatePreparation(params, num_qubits=None, inverse=False, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/data_preparation/state_preparation.py "view source code")
 
 Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -24,10 +24,10 @@ Class that implements the (complex amplitude) state preparation of some flexible
 
     *   Statevector: Statevector to initialize to.
     *   list: vector of complex amplitudes to initialize to.
-    *   string: labels of basis states of the Pauli eigenstates Z, X, Y. See [`Statevector.from_label()`](qiskit.quantum_info.Statevector#from_label "qiskit.quantum_info.Statevector.from_label"). Notice the order of the labels is reversed with respect to the qubit index to be applied to. Example label ‘01’ initializes the qubit zero to $\vert 1\rangle$ and the qubit one to $\vert 0\rangle$.
-    *   int: an integer that is used as a bitmap indicating which qubits to initialize to $\vert 1\rangle$. Example: setting params to 5 would initialize qubit 0 and qubit 2 to $\vert 1\rangle$ and qubit 1 to $\vert 0\rangle$.
+    *   string: labels of basis states of the Pauli eigenstates Z, X, Y. See [`Statevector.from_label()`](qiskit.quantum_info.Statevector#from_label "qiskit.quantum_info.Statevector.from_label"). Notice the order of the labels is reversed with respect to the qubit index to be applied to. Example label ‘01’ initializes the qubit zero to $|1\rangle$ and the qubit one to $|0\rangle$.
+    *   int: an integer that is used as a bitmap indicating which qubits to initialize to $|1\rangle$. Example: setting params to 5 would initialize qubit 0 and qubit 2 to $|1\rangle$ and qubit 1 to $|0\rangle$.
 
-*   **num\_qubits** (`Optional`\[`int`]) – This parameter is only used if params is an int. Indicates the total number of qubits in the initialize call. Example: initialize covers 5 qubits and params is 3. This allows qubits 0 and 1 to be initialized to $\vert 1\rangle$ and the remaining 3 qubits to be initialized to $\vert 0\rangle$.
+*   **num\_qubits** (`Optional`\[`int`]) – This parameter is only used if params is an int. Indicates the total number of qubits in the initialize call. Example: initialize covers 5 qubits and params is 3. This allows qubits 0 and 1 to be initialized to $|1\rangle$ and the remaining 3 qubits to be initialized to $|0\rangle$.
 
 *   **inverse** (`bool`) – if True, the inverse state is constructed.
 
@@ -47,7 +47,7 @@ When a Statevector argument is passed the state is prepared using a recursive in
 
 <span id="qiskit.circuit.library.StatePreparation.broadcast_arguments" />
 
-`StatePreparation.broadcast_arguments(qargs, cargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/data_preparation/state_preparation.py "view source code")
+`StatePreparation.broadcast_arguments(qargs, cargs)`
 
 Validation and handling of the arguments and its relationship.
 
@@ -98,7 +98,7 @@ A tuple with single arguments.
 
 <span id="qiskit.circuit.library.StatePreparation.inverse" />
 
-`StatePreparation.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/data_preparation/state_preparation.py "view source code")
+`StatePreparation.inverse()`
 
 Return inverted StatePreparation
 
@@ -106,7 +106,7 @@ Return inverted StatePreparation
 
 <span id="qiskit.circuit.library.StatePreparation.validate_parameter" />
 
-`StatePreparation.validate_parameter(parameter)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/data_preparation/state_preparation.py "view source code")
+`StatePreparation.validate_parameter(parameter)`
 
 StatePreparation instruction parameter can be str, int, float, and complex.
 

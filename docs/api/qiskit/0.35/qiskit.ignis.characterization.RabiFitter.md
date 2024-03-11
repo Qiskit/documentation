@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.characterization.RabiFitter
 
 <span id="qiskit.ignis.characterization.RabiFitter" />
 
-`RabiFitter(backend_result, xdata, qubits, fit_p0, fit_bounds=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/characterization/calibrations/fitters.py "view source code")
+`RabiFitter(backend_result, xdata, qubits, fit_p0, fit_bounds=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/characterization/calibrations/fitters.py "view source code")
 
 Bases: `qiskit.ignis.characterization.fitters.IQFitter`
 
@@ -57,7 +57,7 @@ Compute self.\_params and self.\_params\_err
 
 <span id="qiskit.ignis.characterization.RabiFitter.guess_params" />
 
-`RabiFitter.guess_params(qind=0)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/characterization/calibrations/fitters.py "view source code")
+`RabiFitter.guess_params(qind=0)`
 
 Guess fit parameters for rabi oscillation data
 
@@ -79,7 +79,7 @@ list
 
 <span id="qiskit.ignis.characterization.RabiFitter.pi2_amplitude" />
 
-`RabiFitter.pi2_amplitude(qind=- 1)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/characterization/calibrations/fitters.py "view source code")
+`RabiFitter.pi2_amplitude(qind=- 1)`
 
 Return the pi/2 amplitude from the fit
 
@@ -99,7 +99,7 @@ float
 
 <span id="qiskit.ignis.characterization.RabiFitter.pi_amplitude" />
 
-`RabiFitter.pi_amplitude(qind=- 1)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/characterization/calibrations/fitters.py "view source code")
+`RabiFitter.pi_amplitude(qind=- 1)`
 
 Return the pi amplitude from the fit
 
@@ -119,7 +119,7 @@ float
 
 <span id="qiskit.ignis.characterization.RabiFitter.plot" />
 
-`RabiFitter.plot(qind, series='0', ax=None, show_plot=False)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/characterization/calibrations/fitters.py "view source code")
+`RabiFitter.plot(qind, series='0', ax=None, show_plot=False)`
 
 Plot the data and fit
 

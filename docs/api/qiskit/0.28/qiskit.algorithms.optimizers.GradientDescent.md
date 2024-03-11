@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.GradientDescent
 
 <span id="qiskit.algorithms.optimizers.GradientDescent" />
 
-`GradientDescent(maxiter=100, learning_rate=0.01, tol=1e-07, callback=None, perturbation=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/gradient_descent.py "view source code")
+`GradientDescent(maxiter=100, learning_rate=0.01, tol=1e-07, callback=None, perturbation=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/gradient_descent.py "view source code")
 
 The gradient descent minimization routine.
 

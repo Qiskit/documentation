@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.AerSimulator
 
 <span id="qiskit.providers.aer.AerSimulator" />
 
-`AerSimulator(configuration=None, properties=None, provider=None, **backend_options)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/backends/aer_simulator.py "view source code")
+`AerSimulator(configuration=None, properties=None, provider=None, **backend_options)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/backends/aer_simulator.py "view source code")
 
 Noisy quantum circuit simulator backend.
 

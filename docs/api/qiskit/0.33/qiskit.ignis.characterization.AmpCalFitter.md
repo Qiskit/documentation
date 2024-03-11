@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.characterization.AmpCalFitter
 
 <span id="qiskit.ignis.characterization.AmpCalFitter" />
 
-`AmpCalFitter(backend_result, xdata, qubits, fit_p0, fit_bounds)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/characterization/gates/fitters.py "view source code")
+`AmpCalFitter(backend_result, xdata, qubits, fit_p0, fit_bounds)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/characterization/gates/fitters.py "view source code")
 
 Bases: `qiskit.ignis.characterization.fitters.BaseGateFitter`
 
@@ -38,7 +38,7 @@ Add new execution results to previous execution results
 
 <span id="qiskit.ignis.characterization.AmpCalFitter.angle_err" />
 
-`AmpCalFitter.angle_err(qind=- 1)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/characterization/gates/fitters.py "view source code")
+`AmpCalFitter.angle_err(qind=- 1)`
 
 Return the gate angle error
 
@@ -75,7 +75,7 @@ Compute self.\_params and self.\_params\_err
 
 <span id="qiskit.ignis.characterization.AmpCalFitter.guess_params" />
 
-`AmpCalFitter.guess_params(qind=0)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/characterization/gates/fitters.py "view source code")
+`AmpCalFitter.guess_params(qind=0)`
 
 Guess fit parameters for the amp cal
 
@@ -95,7 +95,7 @@ list
 
 <span id="qiskit.ignis.characterization.AmpCalFitter.plot" />
 
-`AmpCalFitter.plot(qind, series='0', ax=None, show_plot=False)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/characterization/gates/fitters.py "view source code")
+`AmpCalFitter.plot(qind, series='0', ax=None, show_plot=False)`
 
 Plot err data.
 

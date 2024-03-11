@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
 <span id="qiskit.pulse.ScheduleBlock" />
 
-`qiskit.pulse.ScheduleBlock(name=None, metadata=None, alignment_context=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/pulse/schedule.py "view source code")
+`qiskit.pulse.ScheduleBlock(name=None, metadata=None, alignment_context=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/pulse/schedule.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.operators.legacy.evolution_instruction
 
 <span id="qiskit.aqua.operators.legacy.evolution_instruction" />
 
-`evolution_instruction(pauli_list, evo_time, num_time_slices, controlled=False, power=1, use_basis_gates=True, shallow_slicing=False, barrier=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/legacy/common.py "view source code")
+`evolution_instruction(pauli_list, evo_time, num_time_slices, controlled=False, power=1, use_basis_gates=True, shallow_slicing=False, barrier=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/legacy/common.py "view source code")
 
 Construct the evolution circuit according to the supplied specification.
 

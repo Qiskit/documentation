@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.LinearFunctionsSynthesis
 
 <span id="qiskit.transpiler.passes.LinearFunctionsSynthesis" />
 
-`LinearFunctionsSynthesis(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/synthesis/linear_functions_synthesis.py "view source code")
+`LinearFunctionsSynthesis(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/synthesis/linear_functions_synthesis.py "view source code")
 
 Bases: [`qiskit.transpiler.passes.synthesis.high_level_synthesis.HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.synthesis.high_level_synthesis.HighLevelSynthesis")
 

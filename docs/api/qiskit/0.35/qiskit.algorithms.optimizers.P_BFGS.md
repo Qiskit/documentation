@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.P_BFGS
 
 <span id="qiskit.algorithms.optimizers.P_BFGS" />
 
-`P_BFGS(maxfun=1000, ftol=2.220446049250313e-15, factr=None, iprint=- 1, max_processes=None, options=None, max_evals_grouped=1, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/p_bfgs.py "view source code")
+`P_BFGS(maxfun=1000, ftol=2.220446049250313e-15, factr=None, iprint=- 1, max_processes=None, options=None, max_evals_grouped=1, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/p_bfgs.py "view source code")
 
 Bases: `qiskit.algorithms.optimizers.scipy_optimizer.SciPyOptimizer`
 
@@ -68,7 +68,7 @@ grad
 
 <span id="qiskit.algorithms.optimizers.P_BFGS.minimize" />
 
-`P_BFGS.minimize(fun, x0, jac=None, bounds=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/p_bfgs.py "view source code")
+`P_BFGS.minimize(fun, x0, jac=None, bounds=None)`
 
 Minimize the scalar function.
 
@@ -91,7 +91,7 @@ The result of the optimization, containing e.g. the result as attribute `x`.
 
 <span id="qiskit.algorithms.optimizers.P_BFGS.optimize" />
 
-`P_BFGS.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/p_bfgs.py "view source code")
+`P_BFGS.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
 Perform optimization.
 

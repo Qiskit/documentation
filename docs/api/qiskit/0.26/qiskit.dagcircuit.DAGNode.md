@@ -10,7 +10,7 @@ python_api_name: qiskit.dagcircuit.DAGNode
 
 <span id="qiskit.dagcircuit.DAGNode" />
 
-`DAGNode(type=None, op=None, name=None, qargs=None, cargs=None, wire=None, nid=- 1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/dagcircuit/dagnode.py "view source code")
+`DAGNode(type=None, op=None, name=None, qargs=None, cargs=None, wire=None, nid=- 1)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/dagcircuit/dagnode.py "view source code")
 
 Object to represent the information at a node in the DAGCircuit.
 

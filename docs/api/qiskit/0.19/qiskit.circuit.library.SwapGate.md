@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.SwapGate
 
 <span id="qiskit.circuit.library.SwapGate" />
 
-`SwapGate(label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/swap.py "view source code")
+`SwapGate(label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/swap.py "view source code")
 
 The SWAP gate.
 
@@ -39,7 +39,7 @@ $$
 The gate is equivalent to a state swap and is a classical logic gate.
 
 $$
-\vert a, b\rangle \rightarrow \vert b, a\rangle
+|a, b\rangle \rightarrow |b, a\rangle
 $$
 
 Create new SWAP gate.
@@ -159,7 +159,7 @@ Add classical condition on register classical and value val.
 
 <span id="qiskit.circuit.library.SwapGate.control" />
 
-`SwapGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/swap.py "view source code")
+`SwapGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
 Return a (multi-)controlled-SWAP gate.
 
@@ -205,7 +205,7 @@ updated if it was provided
 
 <span id="qiskit.circuit.library.SwapGate.inverse" />
 
-`SwapGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/swap.py "view source code")
+`SwapGate.inverse()`
 
 Return inverse Swap gate (itself).
 
@@ -297,7 +297,7 @@ Containing the definition.
 
 <span id="qiskit.circuit.library.SwapGate.to_matrix" />
 
-`SwapGate.to_matrix()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/swap.py "view source code")
+`SwapGate.to_matrix()`
 
 Return a numpy.array for the SWAP gate.
 

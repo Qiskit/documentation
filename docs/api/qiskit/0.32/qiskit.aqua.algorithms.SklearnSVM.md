@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.algorithms.SklearnSVM
 
 <span id="qiskit.aqua.algorithms.SklearnSVM" />
 
-`SklearnSVM(training_dataset, test_dataset=None, datapoints=None, gamma=None, multiclass_extension=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/classifiers/sklearn_svm/sklearn_svm.py "view source code")
+`SklearnSVM(training_dataset, test_dataset=None, datapoints=None, gamma=None, multiclass_extension=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/classifiers/sklearn_svm/sklearn_svm.py "view source code")
 
 Bases: `qiskit.aqua.algorithms.classical_algorithm.ClassicalAlgorithm`
 
@@ -38,7 +38,7 @@ Internally, this algorithm will run the binary classification or multiclass clas
 
 <span id="qiskit.aqua.algorithms.SklearnSVM.load_model" />
 
-`SklearnSVM.load_model(file_path)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/classifiers/sklearn_svm/sklearn_svm.py "view source code")
+`SklearnSVM.load_model(file_path)`
 
 Load a model from a file path.
 
@@ -50,7 +50,7 @@ Load a model from a file path.
 
 <span id="qiskit.aqua.algorithms.SklearnSVM.predict" />
 
-`SklearnSVM.predict(data)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/classifiers/sklearn_svm/sklearn_svm.py "view source code")
+`SklearnSVM.predict(data)`
 
 Predict using the SVM
 
@@ -86,7 +86,7 @@ dict
 
 <span id="qiskit.aqua.algorithms.SklearnSVM.save_model" />
 
-`SklearnSVM.save_model(file_path)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/classifiers/sklearn_svm/sklearn_svm.py "view source code")
+`SklearnSVM.save_model(file_path)`
 
 Save the model to a file path.
 
@@ -98,7 +98,7 @@ Save the model to a file path.
 
 <span id="qiskit.aqua.algorithms.SklearnSVM.test" />
 
-`SklearnSVM.test(data, labels)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/classifiers/sklearn_svm/sklearn_svm.py "view source code")
+`SklearnSVM.test(data, labels)`
 
 Test the SVM
 
@@ -119,7 +119,7 @@ float
 
 <span id="qiskit.aqua.algorithms.SklearnSVM.train" />
 
-`SklearnSVM.train(data, labels)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/classifiers/sklearn_svm/sklearn_svm.py "view source code")
+`SklearnSVM.train(data, labels)`
 
 Train the SVM
 

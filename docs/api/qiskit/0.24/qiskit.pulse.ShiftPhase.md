@@ -12,7 +12,7 @@ python_api_name: qiskit.pulse.ShiftPhase
 
 <span id="qiskit.pulse.ShiftPhase" />
 
-`ShiftPhase(phase, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/instructions/phase.py "view source code")
+`ShiftPhase(phase, channel, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/instructions/phase.py "view source code")
 
 The shift phase instruction updates the modulation phase of proceeding pulses played on the same [`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel"). It is a relative increase in phase determined by the `phase` operand.
 

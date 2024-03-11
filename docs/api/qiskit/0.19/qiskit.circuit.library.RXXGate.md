@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.RXXGate
 
 <span id="qiskit.circuit.library.RXXGate" />
 
-`RXXGate(theta)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/rxx.py "view source code")
+`RXXGate(theta)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/rxx.py "view source code")
 
 A parameteric 2-qubit $X \otimes X$ interaction (rotation about XX).
 
@@ -223,7 +223,7 @@ updated if it was provided
 
 <span id="qiskit.circuit.library.RXXGate.inverse" />
 
-`RXXGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/rxx.py "view source code")
+`RXXGate.inverse()`
 
 Return inverse RXX gate (i.e. with the negative rotation angle).
 

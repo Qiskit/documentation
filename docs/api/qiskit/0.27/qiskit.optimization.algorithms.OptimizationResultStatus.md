@@ -10,7 +10,7 @@ python_api_name: qiskit.optimization.algorithms.OptimizationResultStatus
 
 <span id="qiskit.optimization.algorithms.OptimizationResultStatus" />
 
-`OptimizationResultStatus(value)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/optimization_algorithm.py "view source code")
+`OptimizationResultStatus(value)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/optimization_algorithm.py "view source code")
 
 Termination status of an optimization algorithm.
 

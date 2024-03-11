@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.TemplateOptimization
 
 <span id="qiskit.transpiler.passes.TemplateOptimization" />
 
-`TemplateOptimization(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/optimization/template_optimization.py "view source code")
+`TemplateOptimization(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/optimization/template_optimization.py "view source code")
 
 Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -37,7 +37,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.TemplateOptimization.run" />
 
-`TemplateOptimization.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/optimization/template_optimization.py "view source code")
+`TemplateOptimization.run(dag)`
 
 **Parameters**
 

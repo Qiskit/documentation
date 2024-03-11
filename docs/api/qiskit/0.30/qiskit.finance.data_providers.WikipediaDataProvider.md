@@ -10,7 +10,7 @@ python_api_name: qiskit.finance.data_providers.WikipediaDataProvider
 
 <span id="qiskit.finance.data_providers.WikipediaDataProvider" />
 
-`WikipediaDataProvider(token=None, tickers=None, start=datetime.datetime(2016, 1, 1, 0, 0), end=datetime.datetime(2016, 1, 30, 0, 0))`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/finance/data_providers/wikipedia_data_provider.py "view source code")
+`WikipediaDataProvider(token=None, tickers=None, start=datetime.datetime(2016, 1, 1, 0, 0), end=datetime.datetime(2016, 1, 30, 0, 0))` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/finance/data_providers/wikipedia_data_provider.py "view source code")
 
 Bases: `qiskit.finance.data_providers._base_data_provider.BaseDataProvider`
 
@@ -142,7 +142,7 @@ an asset-to-asset similarity matrix.
 
 <span id="qiskit.finance.data_providers.WikipediaDataProvider.run" />
 
-`WikipediaDataProvider.run()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/finance/data_providers/wikipedia_data_provider.py "view source code")
+`WikipediaDataProvider.run()`
 
 Loads data, thus enabling get\_similarity\_matrix and get\_covariance\_matrix methods in the base class.
 

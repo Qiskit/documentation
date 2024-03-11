@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.verification.CNOTDihedralRBFitter
 
 <span id="qiskit.ignis.verification.CNOTDihedralRBFitter" />
 
-`CNOTDihedralRBFitter(cnotdihedral_Z_result, cnotdihedral_X_result, elmnts_lengths, rb_pattern=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/randomized_benchmarking/fitters.py "view source code")
+`CNOTDihedralRBFitter(cnotdihedral_Z_result, cnotdihedral_X_result, elmnts_lengths, rb_pattern=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/randomized_benchmarking/fitters.py "view source code")
 
 Class for fitters for non-Clifford CNOT-Dihedral RB.
 
@@ -19,7 +19,7 @@ Derived from RBFitterBase class. Contains two RBFitter objects.
 **Parameters**
 
 *   **cnotdihedral\_Z\_result** (*qiskit.Result*) – list of results of the RB sequence that measures the ground state.
-*   **cnotdihedral\_X\_result** (*qiskit.Result*) – list of results of the RB sequence that measures the $\vert +...+>$ state.
+*   **cnotdihedral\_X\_result** (*qiskit.Result*) – list of results of the RB sequence that measures the $|+...+>$ state.
 *   **elmnts\_lengths** (*list*) – the group elements lengths, 2D list i x j where i is the number of patterns, j is the number of elements lengths.
 *   **rb\_pattern** (*list*) – the pattern for the RB sequences.
 
@@ -32,7 +32,7 @@ Derived from RBFitterBase class. Contains two RBFitter objects.
 **Parameters**
 
 *   **cnotdihedral\_Z\_result** (*qiskit.Result*) – list of results of the RB sequence that measures the ground state.
-*   **cnotdihedral\_X\_result** (*qiskit.Result*) – list of results of the RB sequence that measures the $\vert +...+>$ state.
+*   **cnotdihedral\_X\_result** (*qiskit.Result*) – list of results of the RB sequence that measures the $|+...+>$ state.
 *   **elmnts\_lengths** (*list*) – the group elements lengths, 2D list i x j where i is the number of patterns, j is the number of elements lengths.
 *   **rb\_pattern** (*list*) – the pattern for the RB sequences.
 

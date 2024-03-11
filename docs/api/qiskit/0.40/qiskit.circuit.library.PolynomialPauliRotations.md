@@ -10,16 +10,16 @@ python_api_name: qiskit.circuit.library.PolynomialPauliRotations
 
 <span id="qiskit.circuit.library.PolynomialPauliRotations" />
 
-`PolynomialPauliRotations(num_state_qubits=None, coeffs=None, basis='Y', name='poly')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/arithmetic/polynomial_pauli_rotations.py "view source code")
+`PolynomialPauliRotations(num_state_qubits=None, coeffs=None, basis='Y', name='poly')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/arithmetic/polynomial_pauli_rotations.py "view source code")
 
 Bases: [`qiskit.circuit.library.arithmetic.functional_pauli_rotations.FunctionalPauliRotations`](qiskit.circuit.library.FunctionalPauliRotations "qiskit.circuit.library.arithmetic.functional_pauli_rotations.FunctionalPauliRotations")
 
 A circuit implementing polynomial Pauli rotations.
 
-For a polynomial :math\`p(x)\`, a basis state $\vert i\rangle$ and a target qubit $\vert 0\rangle$ this operator acts as:
+For a polynomial :math\`p(x)\`, a basis state $|i\rangle$ and a target qubit $|0\rangle$ this operator acts as:
 
 $$
-\vert i\rangle \vert 0\rangle \mapsto \cos(p(i)) \vert i\rangle \vert 0\rangle + \sin(p(i)) \vert i\rangle \vert 1\rangle
+|i\rangle |0\rangle \mapsto \cos(p(i)) |i\rangle |0\rangle + \sin(p(i)) |i\rangle |1\rangle
 $$
 
 Let n be the number of qubits representing the state, d the degree of p(x) and q\_i the qubits, where q\_0 is the least significant qubit. Then for
@@ -217,7 +217,7 @@ Return number of qubits.
 
 ### num\_state\_qubits
 
-The number of state qubits representing the state $\vert x\rangle$.
+The number of state qubits representing the state $|x\rangle$.
 
 **Return type**
 

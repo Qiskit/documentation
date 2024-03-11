@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.builder.x
 
 <span id="qiskit.pulse.builder.x" />
 
-`x(qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/builder.py "view source code")
+`x(qubit)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/builder.py "view source code")
 
 Call a `XGate` on the input physical qubit.
 

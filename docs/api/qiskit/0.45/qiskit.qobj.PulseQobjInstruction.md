@@ -10,7 +10,7 @@ python_api_name: qiskit.qobj.PulseQobjInstruction
 
 <span id="qiskit.qobj.PulseQobjInstruction" />
 
-`qiskit.qobj.PulseQobjInstruction(name, t0, ch=None, conditional=None, val=None, phase=None, duration=None, qubits=None, memory_slot=None, register_slot=None, kernels=None, discriminators=None, label=None, type=None, pulse_shape=None, parameters=None, frequency=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/qobj/pulse_qobj.py "view source code")
+`qiskit.qobj.PulseQobjInstruction(name, t0, ch=None, conditional=None, val=None, phase=None, duration=None, qubits=None, memory_slot=None, register_slot=None, kernels=None, discriminators=None, label=None, type=None, pulse_shape=None, parameters=None, frequency=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/qobj/pulse_qobj.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeMumbaiFractionalCX
 
 <span id="qiskit.providers.fake_provider.FakeMumbaiFractionalCX" />
 
-`FakeMumbaiFractionalCX`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/fake_provider/fake_mumbai_v2.py "view source code")
+`FakeMumbaiFractionalCX` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/fake_provider/fake_mumbai_v2.py "view source code")
 
 Bases: [`qiskit.providers.backend.BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.backend.BackendV2")
 
@@ -131,7 +131,7 @@ The Qubit measurement stimulus line
 
 <span id="qiskit.providers.fake_provider.FakeMumbaiFractionalCX.qubit_properties" />
 
-`FakeMumbaiFractionalCX.qubit_properties(qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/fake_provider/fake_mumbai_v2.py "view source code")
+`FakeMumbaiFractionalCX.qubit_properties(qubit)`
 
 Return QubitProperties for a given qubit.
 
@@ -157,7 +157,7 @@ qubit\_properties
 
 <span id="qiskit.providers.fake_provider.FakeMumbaiFractionalCX.run" />
 
-`FakeMumbaiFractionalCX.run(run_input, **options)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/fake_provider/fake_mumbai_v2.py "view source code")
+`FakeMumbaiFractionalCX.run(run_input, **options)`
 
 Run on the backend.
 

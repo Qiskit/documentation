@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.Delay
 
 <span id="qiskit.pulse.Delay" />
 
-`Delay(duration, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/instructions/delay.py "view source code")
+`Delay(duration, channel, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/instructions/delay.py "view source code")
 
 A blocking instruction with no other effect. The delay is used for aligning and scheduling other instructions.
 
@@ -33,7 +33,7 @@ No other instruction may be scheduled within a `Delay`.
 **Parameters**
 
 *   **duration** (`Union`\[`int`, `ParameterExpression`]) – Length of time of the delay in terms of dt.
-*   **channel** ([`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")) – The channel that will have the delay.
+*   **channel** ([`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")) – The channel that will have the delay.
 *   **name** (`Optional`\[`str`]) – Name of the delay for display purposes.
 
 ### \_\_init\_\_
@@ -49,7 +49,7 @@ No other instruction may be scheduled within a `Delay`.
 **Parameters**
 
 *   **duration** (`Union`\[`int`, `ParameterExpression`]) – Length of time of the delay in terms of dt.
-*   **channel** ([`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")) – The channel that will have the delay.
+*   **channel** ([`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")) – The channel that will have the delay.
 *   **name** (`Optional`\[`str`]) – Name of the delay for display purposes.
 
 ## Methods
@@ -70,18 +70,18 @@ No other instruction may be scheduled within a `Delay`.
 
 ## Attributes
 
-|                                                                                      |                                                                                                                                                    |
-| ------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`channel`](#qiskit.pulse.Delay.channel "qiskit.pulse.Delay.channel")                | Return the [`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel") that this instruction is scheduled on. |
-| [`channels`](#qiskit.pulse.Delay.channels "qiskit.pulse.Delay.channels")             | Returns the channels that this schedule uses.                                                                                                      |
-| [`duration`](#qiskit.pulse.Delay.duration "qiskit.pulse.Delay.duration")             | Duration of this instruction.                                                                                                                      |
-| [`id`](#qiskit.pulse.Delay.id "qiskit.pulse.Delay.id")                               | Unique identifier for this instruction.                                                                                                            |
-| [`instructions`](#qiskit.pulse.Delay.instructions "qiskit.pulse.Delay.instructions") | Iterable for getting instructions from Schedule tree.                                                                                              |
-| [`name`](#qiskit.pulse.Delay.name "qiskit.pulse.Delay.name")                         | Name of this instruction.                                                                                                                          |
-| [`operands`](#qiskit.pulse.Delay.operands "qiskit.pulse.Delay.operands")             | Return instruction operands.                                                                                                                       |
-| [`parameters`](#qiskit.pulse.Delay.parameters "qiskit.pulse.Delay.parameters")       | Parameters which determine the instruction behavior.                                                                                               |
-| [`start_time`](#qiskit.pulse.Delay.start_time "qiskit.pulse.Delay.start_time")       | Relative begin time of this instruction.                                                                                                           |
-| [`stop_time`](#qiskit.pulse.Delay.stop_time "qiskit.pulse.Delay.stop_time")          | Relative end time of this instruction.                                                                                                             |
+|                                                                                      |                                                                                                                              |
+| ------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------- |
+| [`channel`](#qiskit.pulse.Delay.channel "qiskit.pulse.Delay.channel")                | Return the [`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel") that this instruction is scheduled on. |
+| [`channels`](#qiskit.pulse.Delay.channels "qiskit.pulse.Delay.channels")             | Returns the channels that this schedule uses.                                                                                |
+| [`duration`](#qiskit.pulse.Delay.duration "qiskit.pulse.Delay.duration")             | Duration of this instruction.                                                                                                |
+| [`id`](#qiskit.pulse.Delay.id "qiskit.pulse.Delay.id")                               | Unique identifier for this instruction.                                                                                      |
+| [`instructions`](#qiskit.pulse.Delay.instructions "qiskit.pulse.Delay.instructions") | Iterable for getting instructions from Schedule tree.                                                                        |
+| [`name`](#qiskit.pulse.Delay.name "qiskit.pulse.Delay.name")                         | Name of this instruction.                                                                                                    |
+| [`operands`](#qiskit.pulse.Delay.operands "qiskit.pulse.Delay.operands")             | Return instruction operands.                                                                                                 |
+| [`parameters`](#qiskit.pulse.Delay.parameters "qiskit.pulse.Delay.parameters")       | Parameters which determine the instruction behavior.                                                                         |
+| [`start_time`](#qiskit.pulse.Delay.start_time "qiskit.pulse.Delay.start_time")       | Relative begin time of this instruction.                                                                                     |
+| [`stop_time`](#qiskit.pulse.Delay.stop_time "qiskit.pulse.Delay.stop_time")          | Relative end time of this instruction.                                                                                       |
 
 ### append
 
@@ -178,11 +178,11 @@ Return maximum start time for supplied channels.
 
 `property channel`
 
-Return the [`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel") that this instruction is scheduled on.
+Return the [`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel") that this instruction is scheduled on.
 
 **Return type**
 
-[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")
+[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")
 
 ### channels
 
@@ -194,7 +194,7 @@ Returns the channels that this schedule uses.
 
 **Return type**
 
-`Tuple`\[[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]
+`Tuple`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")]
 
 ### draw
 
@@ -217,7 +217,7 @@ Plot the instruction.
 *   **table** (`bool`) – Draw event table for supported instructions
 *   **label** (`bool`) – Label individual instructions
 *   **framechange** (`bool`) – Add framechange indicators
-*   **channels** (`Optional`\[`List`\[[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]]) – A list of channel names to plot
+*   **channels** (`Optional`\[`List`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")]]) – A list of channel names to plot
 
 **Returns**
 

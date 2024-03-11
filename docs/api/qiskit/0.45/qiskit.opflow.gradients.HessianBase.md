@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.gradients.HessianBase
 
 <span id="qiskit.opflow.gradients.HessianBase" />
 
-`qiskit.opflow.gradients.HessianBase(hess_method='param_shift', **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/gradients/hessian_base.py "view source code")
+`qiskit.opflow.gradients.HessianBase(hess_method='param_shift', **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/gradients/hessian_base.py "view source code")
 
 Bases: [`DerivativeBase`](qiskit.opflow.gradients.DerivativeBase "qiskit.opflow.gradients.derivative_base.DerivativeBase")
 

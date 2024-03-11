@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.PiecewiseChebyshev
 
 <span id="qiskit.circuit.library.PiecewiseChebyshev" />
 
-`qiskit.circuit.library.PiecewiseChebyshev(f_x, degree=None, breakpoints=None, num_state_qubits=None, name='pw_cheb')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/arithmetic/piecewise_chebyshev.py "view source code")
+`qiskit.circuit.library.PiecewiseChebyshev(f_x, degree=None, breakpoints=None, num_state_qubits=None, name='pw_cheb')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/arithmetic/piecewise_chebyshev.py "view source code")
 
 Bases: `BlueprintCircuit`
 
@@ -101,12 +101,6 @@ The degree of the polynomials.
 
 The degree of the polynomials.
 
-<span id="qiskit.circuit.library.PiecewiseChebyshev.extension_lib" />
-
-### extension\_lib
-
-`= 'include "qelib1.inc";'`
-
 <span id="qiskit.circuit.library.PiecewiseChebyshev.f_x" />
 
 ### f\_x
@@ -123,17 +117,11 @@ The function to be approximated.
 
 Return the global phase of the current circuit scope in radians.
 
-<span id="qiskit.circuit.library.PiecewiseChebyshev.header" />
-
-### header
-
-`= 'OPENQASM 2.0;'`
-
 <span id="qiskit.circuit.library.PiecewiseChebyshev.instances" />
 
 ### instances
 
-`= 250`
+`= 206`
 
 <span id="qiskit.circuit.library.PiecewiseChebyshev.layout" />
 
@@ -179,7 +167,7 @@ Return number of qubits.
 
 ### num\_state\_qubits
 
-The number of state qubits representing the state $\vert x\rangle$.
+The number of state qubits representing the state $|x\rangle$.
 
 **Returns**
 

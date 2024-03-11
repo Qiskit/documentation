@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.managed.ManagedResults
 
 <span id="qiskit.providers.ibmq.managed.ManagedResults" />
 
-`ManagedResults(job_set, backend_name, success)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.14/qiskit/providers/ibmq/managed/managedresults.py "view source code")
+`ManagedResults(job_set, backend_name, success)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.14/qiskit/providers/ibmq/managed/managedresults.py "view source code")
 
 Results managed by the Job Manager.
 

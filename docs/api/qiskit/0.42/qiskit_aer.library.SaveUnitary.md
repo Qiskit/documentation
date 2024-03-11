@@ -10,7 +10,7 @@ python_api_name: qiskit_aer.library.SaveUnitary
 
 <span id="qiskit_aer.library.SaveUnitary" />
 
-`SaveUnitary(num_qubits, label='unitary', pershot=False)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/library/save_instructions/save_unitary.py "view source code")
+`SaveUnitary(num_qubits, label='unitary', pershot=False)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/library/save_instructions/save_unitary.py "view source code")
 
 Bases: `qiskit_aer.library.save_instructions.save_data.SaveSingleData`
 

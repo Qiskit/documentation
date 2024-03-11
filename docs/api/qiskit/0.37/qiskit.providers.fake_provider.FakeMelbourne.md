@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeMelbourne
 
 <span id="qiskit.providers.fake_provider.FakeMelbourne" />
 
-`FakeMelbourne`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/fake_provider/backends/melbourne/fake_melbourne.py "view source code")
+`FakeMelbourne` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/fake_provider/backends/melbourne/fake_melbourne.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_backend.FakeBackend`
 
@@ -60,7 +60,7 @@ str
 
 <span id="qiskit.providers.fake_provider.FakeMelbourne.properties" />
 
-`FakeMelbourne.properties()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/fake_provider/backends/melbourne/fake_melbourne.py "view source code")
+`FakeMelbourne.properties()`
 
 Returns a snapshot of device properties
 

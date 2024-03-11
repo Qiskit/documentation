@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.list_ops.ListOp
 
 <span id="qiskit.opflow.list_ops.ListOp" />
 
-`qiskit.opflow.list_ops.ListOp(oplist, combo_fn=None, coeff=1.0, abelian=False, grad_combo_fn=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/opflow/list_ops/list_op.py "view source code")
+`qiskit.opflow.list_ops.ListOp(oplist, combo_fn=None, coeff=1.0, abelian=False, grad_combo_fn=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/opflow/list_ops/list_op.py "view source code")
 
 Bases: [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
 

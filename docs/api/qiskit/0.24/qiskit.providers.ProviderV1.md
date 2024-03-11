@@ -12,7 +12,7 @@ python_api_name: qiskit.providers.ProviderV1
 
 <span id="qiskit.providers.ProviderV1" />
 
-`ProviderV1`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/providers/provider.py "view source code")
+`ProviderV1` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/providers/provider.py "view source code")
 
 Base class for a Backend Provider.
 

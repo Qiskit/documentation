@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.PadDelay
 
 <span id="qiskit.transpiler.passes.PadDelay" />
 
-`qiskit.transpiler.passes.PadDelay(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/passes/scheduling/padding/pad_delay.py "view source code")
+`qiskit.transpiler.passes.PadDelay(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/scheduling/padding/pad_delay.py "view source code")
 
 Bases: `BasePadding`
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeSingaporeV2
 
 <span id="qiskit.providers.fake_provider.FakeSingaporeV2" />
 
-`FakeSingaporeV2`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/fake_provider/backends/singapore/fake_singapore.py "view source code")
+`FakeSingaporeV2` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/fake_provider/backends/singapore/fake_singapore.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_backend.FakeBackendV2`
 

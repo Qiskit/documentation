@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.mitigation.CompleteMeasFitter
 
 <span id="qiskit.ignis.mitigation.CompleteMeasFitter" />
 
-`CompleteMeasFitter(results, state_labels, qubit_list=None, circlabel='')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/mitigation/measurement/fitters.py "view source code")
+`CompleteMeasFitter(results, state_labels, qubit_list=None, circlabel='')` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/mitigation/measurement/fitters.py "view source code")
 
 Measurement correction fitter for a full calibration
 
@@ -49,7 +49,7 @@ Return state\_labels.
 
 <span id="qiskit.ignis.mitigation.CompleteMeasFitter.add_data" />
 
-`CompleteMeasFitter.add_data(new_results, rebuild_cal_matrix=True)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/mitigation/measurement/fitters.py "view source code")
+`CompleteMeasFitter.add_data(new_results, rebuild_cal_matrix=True)`
 
 Add measurement calibration data
 
@@ -62,7 +62,7 @@ Add measurement calibration data
 
 <span id="qiskit.ignis.mitigation.CompleteMeasFitter.plot_calibration" />
 
-`CompleteMeasFitter.plot_calibration(ax=None, show_plot=True)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/mitigation/measurement/fitters.py "view source code")
+`CompleteMeasFitter.plot_calibration(ax=None, show_plot=True)`
 
 Plot the calibration matrix (2D color grid plot)
 
@@ -75,7 +75,7 @@ Plot the calibration matrix (2D color grid plot)
 
 <span id="qiskit.ignis.mitigation.CompleteMeasFitter.readout_fidelity" />
 
-`CompleteMeasFitter.readout_fidelity(label_list=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/mitigation/measurement/fitters.py "view source code")
+`CompleteMeasFitter.readout_fidelity(label_list=None)`
 
 Based on the results, output the readout fidelity which is the normalized trace of the calibration matrix
 
@@ -99,7 +99,7 @@ The on-diagonal elements of the calibration matrix are the probabilities of meas
 
 <span id="qiskit.ignis.mitigation.CompleteMeasFitter.subset_fitter" />
 
-`CompleteMeasFitter.subset_fitter(qubit_sublist=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/mitigation/measurement/fitters.py "view source code")
+`CompleteMeasFitter.subset_fitter(qubit_sublist=None)`
 
 Return a fitter object that is a subset of the qubits in the original list.
 

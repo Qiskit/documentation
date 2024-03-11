@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.Optimizer
 
 <span id="qiskit.algorithms.optimizers.Optimizer" />
 
-`qiskit.algorithms.optimizers.Optimizer`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/optimizers/optimizer.py "view source code")
+`qiskit.algorithms.optimizers.Optimizer` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/optimizers/optimizer.py "view source code")
 
 Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 

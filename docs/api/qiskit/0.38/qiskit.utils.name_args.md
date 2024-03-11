@@ -10,7 +10,7 @@ python_api_name: qiskit.utils.name_args
 
 <span id="qiskit.utils.name_args" />
 
-`name_args(mapping, skip=0)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/utils/name_unnamed_args.py "view source code")
+`name_args(mapping, skip=0)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/utils/name_unnamed_args.py "view source code")
 
 Decorator to convert unnamed arguments to named ones.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.RYGate
 
 <span id="qiskit.circuit.library.RYGate" />
 
-`qiskit.circuit.library.RYGate(theta, label=None, *, duration=None, unit='dt')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/standard_gates/ry.py "view source code")
+`qiskit.circuit.library.RYGate(theta, label=None, *, duration=None, unit='dt')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/ry.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -143,15 +143,16 @@ Get the time unit of duration.
 
 <span id="qiskit.circuit.library.RYGate.control" />
 
-`control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+`control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=False)`
 
 Return a (multi-)controlled-RY gate.
 
 **Parameters**
 
 *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of control qubits.
-*   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *or None*) – An optional label for the gate \[Default: None]
-*   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *or*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
+*   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – An optional label for the gate \[Default: `None`]
+*   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – control state expressed as integer, string (e.g.\`\`’110’`), or ``None`. If `None`, use all 1s.
+*   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – indicates whether the controlled gate can be implemented as an annotated gate.
 
 **Returns**
 
@@ -165,11 +166,23 @@ controlled version of this gate.
 
 <span id="qiskit.circuit.library.RYGate.inverse" />
 
-`inverse()`
+`inverse(annotated=False)`
 
-Return inverted RY gate.
+Return inverse RY gate.
 
 $RY(\lambda)^{\dagger} = RY(-\lambda)$
+
+**Parameters**
+
+**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always a [`RYGate`](#qiskit.circuit.library.RYGate "qiskit.circuit.library.RYGate") with an inverted parameter value.
+
+**Returns**
+
+inverse gate.
+
+**Return type**
+
+[RYGate](#qiskit.circuit.library.RYGate "qiskit.circuit.library.RYGate")
 
 ### power
 

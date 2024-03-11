@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.operators.state_fns.OperatorStateFn
 
 <span id="qiskit.aqua.operators.state_fns.OperatorStateFn" />
 
-`OperatorStateFn(primitive=None, coeff=1.0, is_measurement=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/state_fns/operator_state_fn.py "view source code")
+`OperatorStateFn(primitive=None, coeff=1.0, is_measurement=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/state_fns/operator_state_fn.py "view source code")
 
 A class for state functions and measurements which are defined by a density Operator, stored using an `OperatorBase`.
 

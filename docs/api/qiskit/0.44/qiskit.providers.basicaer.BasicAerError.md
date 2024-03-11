@@ -12,7 +12,7 @@ python_api_name: qiskit.providers.basicaer.BasicAerError
 
 <span id="qiskit.providers.basicaer.BasicAerError" />
 
-`qiskit.providers.basicaer.BasicAerError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/providers/basicaer/exceptions.py "view source code")
+`qiskit.providers.basicaer.BasicAerError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/providers/basicaer/exceptions.py "view source code")
 
 Base class for errors raised by Basic Aer.
 

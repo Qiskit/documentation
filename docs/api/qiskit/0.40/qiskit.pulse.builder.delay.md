@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.builder.delay
 
 <span id="qiskit.pulse.builder.delay" />
 
-`delay(duration, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/builder.py "view source code")
+`delay(duration, channel, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/builder.py "view source code")
 
 Delay on a `channel` for a `duration`.
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.library.UGate
 
 <span id="qiskit.circuit.library.UGate" />
 
-`UGate(theta, phi, lam, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/standard_gates/u.py "view source code")
+`UGate(theta, phi, lam, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/standard_gates/u.py "view source code")
 
 Generic single-qubit rotation gate with 3 Euler angles.
 

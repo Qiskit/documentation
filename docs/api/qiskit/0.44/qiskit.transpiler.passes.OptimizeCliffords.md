@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.OptimizeCliffords
 
 <span id="qiskit.transpiler.passes.OptimizeCliffords" />
 
-`qiskit.transpiler.passes.OptimizeCliffords(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/optimization/optimize_cliffords.py "view source code")
+`qiskit.transpiler.passes.OptimizeCliffords(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/optimization/optimize_cliffords.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 

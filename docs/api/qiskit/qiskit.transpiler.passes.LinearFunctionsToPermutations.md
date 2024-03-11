@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.LinearFunctionsToPermutations
 
 <span id="qiskit.transpiler.passes.LinearFunctionsToPermutations" />
 
-`qiskit.transpiler.passes.LinearFunctionsToPermutations(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/passes/synthesis/linear_functions_synthesis.py "view source code")
+`qiskit.transpiler.passes.LinearFunctionsToPermutations(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/synthesis/linear_functions_synthesis.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 

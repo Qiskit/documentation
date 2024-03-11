@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.IBMQAccountCredentialsInvalidToken
 
 <span id="qiskit.providers.ibmq.IBMQAccountCredentialsInvalidToken" />
 
-`IBMQAccountCredentialsInvalidToken(*message)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.12/qiskit/providers/ibmq/exceptions.py "view source code")
+`IBMQAccountCredentialsInvalidToken(*message)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.12/qiskit/providers/ibmq/exceptions.py "view source code")
 
 Errors raised when an IBM Quantum Experience token is invalid.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.verification.RepetitionCode
 
 <span id="qiskit.ignis.verification.RepetitionCode" />
 
-`RepetitionCode(d, T=0)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/topological_codes/circuits.py "view source code")
+`RepetitionCode(d, T=0)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/topological_codes/circuits.py "view source code")
 
 Implementation of a distance d repetition code, implemented over T syndrome measurement rounds.
 

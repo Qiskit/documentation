@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.time_evolvers.variational.RealMcLachlanPrinci
 
 <span id="qiskit.algorithms.time_evolvers.variational.RealMcLachlanPrinciple" />
 
-`RealMcLachlanPrinciple(qgt=None, gradient=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/time_evolvers/variational/variational_principles/real_mc_lachlan_principle.py "view source code")
+`RealMcLachlanPrinciple(qgt=None, gradient=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/time_evolvers/variational/variational_principles/real_mc_lachlan_principle.py "view source code")
 
 Bases: [`qiskit.algorithms.time_evolvers.variational.variational_principles.real_variational_principle.RealVariationalPrinciple`](qiskit.algorithms.time_evolvers.variational.RealVariationalPrinciple "qiskit.algorithms.time_evolvers.variational.variational_principles.real_variational_principle.RealVariationalPrinciple")
 
@@ -31,7 +31,7 @@ Class for a Real McLachlan’s Variational Principle. It aims to minimize the di
 
 <span id="qiskit.algorithms.time_evolvers.variational.RealMcLachlanPrinciple.evolution_gradient" />
 
-`RealMcLachlanPrinciple.evolution_gradient(hamiltonian, ansatz, param_values, gradient_params=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/time_evolvers/variational/variational_principles/real_mc_lachlan_principle.py "view source code")
+`RealMcLachlanPrinciple.evolution_gradient(hamiltonian, ansatz, param_values, gradient_params=None)`
 
 Calculates an evolution gradient according to the rules of this variational principle.
 

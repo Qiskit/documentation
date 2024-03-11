@@ -10,7 +10,7 @@ python_api_name: qiskit.optimization.algorithms.MinimumEigenOptimizationResult
 
 <span id="qiskit.optimization.algorithms.MinimumEigenOptimizationResult" />
 
-`MinimumEigenOptimizationResult(x, fval, variables, status, samples=None, min_eigen_solver_result=None, raw_samples=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/minimum_eigen_optimizer.py "view source code")
+`MinimumEigenOptimizationResult(x, fval, variables, status, samples=None, min_eigen_solver_result=None, raw_samples=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/minimum_eigen_optimizer.py "view source code")
 
 Minimum Eigen Optimizer Result.
 

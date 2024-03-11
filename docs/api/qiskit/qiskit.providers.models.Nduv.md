@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.models.Nduv
 
 <span id="qiskit.providers.models.Nduv" />
 
-`qiskit.providers.models.Nduv(date, name, unit, value)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/providers/models/backendproperties.py "view source code")
+`qiskit.providers.models.Nduv(date, name, unit, value)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/providers/models/backendproperties.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 

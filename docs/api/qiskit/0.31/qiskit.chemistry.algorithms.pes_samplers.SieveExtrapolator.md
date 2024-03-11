@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.algorithms.pes_samplers.SieveExtrapolator
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.SieveExtrapolator" />
 
-`SieveExtrapolator(extrapolator=None, window=2, filter_before=True, filter_after=True)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/extrapolator.py "view source code")
+`SieveExtrapolator(extrapolator=None, window=2, filter_before=True, filter_after=True)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/extrapolator.py "view source code")
 
 Bases: `qiskit.chemistry.algorithms.pes_samplers.extrapolator.Extrapolator`
 
@@ -31,7 +31,7 @@ Constructor.
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.SieveExtrapolator.extrapolate" />
 
-`SieveExtrapolator.extrapolate(points, param_dict)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/extrapolator.py "view source code")
+`SieveExtrapolator.extrapolate(points, param_dict)`
 
 Extrapolate at specified point of interest given a set of variational parameters. Based on the specified window, a subset of the data points will be used for extrapolation. A default window of 2 points is used, while a value of zero indicates that all previous points will be used for extrapolation. This method finds a cutoff distance based on the maximum average distance or ‘gap’ between the average values of the variational parameters. This cutoff distance is used as a criteria to divide the parameters into two clusters by setting all parameters that are below the cutoff distance to zero.
 

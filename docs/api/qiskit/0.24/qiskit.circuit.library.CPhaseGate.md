@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.library.CPhaseGate
 
 <span id="qiskit.circuit.library.CPhaseGate" />
 
-`CPhaseGate(theta, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/standard_gates/p.py "view source code")
+`CPhaseGate(theta, label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/standard_gates/p.py "view source code")
 
 Controlled-Phase gate.
 
@@ -30,7 +30,7 @@ q_1: ─■──
 
 $$
 \begin{split}CPhase =
-    \vert 0\rangle\langle 0\vert  \otimes I + \vert 1\rangle\langle 1\vert  \otimes P =
+    |0\rangle\langle 0| \otimes I + |1\rangle\langle 1| \otimes P =
     \begin{pmatrix}
         1 & 0 & 0 & 0 \\
         0 & 1 & 0 & 0 \\

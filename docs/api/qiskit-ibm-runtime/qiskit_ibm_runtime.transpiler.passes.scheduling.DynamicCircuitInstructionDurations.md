@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.DynamicCircuitI
 
 <span id="qiskit_ibm_runtime.transpiler.passes.scheduling.DynamicCircuitInstructionDurations" />
 
-`DynamicCircuitInstructionDurations(instruction_durations=None, dt=None, enable_patching=True)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.18/qiskit_ibm_runtime/transpiler/passes/scheduling/utils.py "view source code")
+`DynamicCircuitInstructionDurations(instruction_durations=None, dt=None, enable_patching=True)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/transpiler/passes/scheduling/utils.py#L133-L323 "view source code")
 
 For dynamic circuits the IBM Qiskit backend currently reports instruction durations that differ compared with those required for the legacy Qobj-based path. For now we use this class to report updated InstructionDurations. TODO: This would be mitigated by a specialized Backend/Target for dynamic circuit backends.
 
@@ -36,13 +36,9 @@ Dynamic circuit instruction durations.
 
 <span id="qiskit_ibm_runtime.transpiler.passes.scheduling.DynamicCircuitInstructionDurations.from_backend" />
 
-`classmethod from_backend(backend)`
+`classmethod from_backend(backend)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/transpiler/passes/scheduling/utils.py#L155-L167 "view source code")
 
-Construct an `InstructionDurations` object from the backend.
-
-**Parameters**
-
-**backend** (`Backend`) – backend from which durations (gate lengths) and dt are extracted.
+Construct a `DynamicInstructionDurations` object from the backend. :type backend: `Backend` :param backend: backend from which durations (gate lengths) and dt are extracted.
 
 **Returns**
 
@@ -50,11 +46,23 @@ The InstructionDurations constructed from backend.
 
 **Return type**
 
-InstructionDurations
+DynamicInstructionDurations
 
-**Raises**
+### from\_target
 
-**TranspilerError** – If dt and dtm is different in the backend.
+<span id="qiskit_ibm_runtime.transpiler.passes.scheduling.DynamicCircuitInstructionDurations.from_target" />
+
+`classmethod from_target(target)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/transpiler/passes/scheduling/utils.py#L169-L186 "view source code")
+
+Construct a `DynamicInstructionDurations` object from the target. :type target: `Target` :param target: target from which durations (gate lengths) and dt are extracted.
+
+**Returns**
+
+The InstructionDurations constructed from backend.
+
+**Return type**
+
+DynamicInstructionDurations
 
 ### get
 
@@ -105,7 +113,7 @@ Set of units used in this instruction durations.
 
 <span id="qiskit_ibm_runtime.transpiler.passes.scheduling.DynamicCircuitInstructionDurations.update" />
 
-`update(inst_durations, dt=None)`
+`update(inst_durations, dt=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/transpiler/passes/scheduling/utils.py#L188-L234 "view source code")
 
 Update self with inst\_durations (inst\_durations overwrite self). Overrides the default durations for certain hardcoded instructions.
 

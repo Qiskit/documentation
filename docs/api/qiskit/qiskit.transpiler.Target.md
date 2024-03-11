@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.Target
 
 <span id="qiskit.transpiler.Target" />
 
-`qiskit.transpiler.Target(description=None, num_qubits=0, dt=None, granularity=1, min_length=1, pulse_alignment=1, acquire_alignment=1, qubit_properties=None, concurrent_measurements=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/target.py "view source code")
+`qiskit.transpiler.Target(description=None, num_qubits=0, dt=None, granularity=1, min_length=1, pulse_alignment=1, acquire_alignment=1, qubit_properties=None, concurrent_measurements=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/target.py "view source code")
 
 Bases: [`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping "(in Python v3.12)")
 
@@ -72,10 +72,6 @@ Then in the `target` object accessing by `rx_30` will get the fixed angle [`RXGa
 
 Create a new `Target` object
 
-<Admonition title="Deprecated since version 0.23.0" type="danger">
-  `qiskit.transpiler.target.Target.__init__()`’s argument `aquire_alignment` is deprecated as of qiskit-terra 0.23.0. It will be removed in the Qiskit 1.0 release. Instead, use the argument `acquire_alignment`, which behaves identically.
-</Admonition>
-
 **Parameters**
 
 *   **description** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – An optional string to describe the Target.
@@ -129,16 +125,6 @@ Create a new `Target` object
 <span id="qiskit.transpiler.Target.concurrent_measurements" />
 
 ### concurrent\_measurements
-
-<span id="qiskit.transpiler.Target.aquire_alignment" />
-
-### aquire\_alignment
-
-Alias of deprecated name. This will be removed.
-
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  The property `qiskit.transpiler.target.Target.aquire_alignment` is deprecated as of qiskit-terra 0.24.0. It will be removed in the Qiskit 1.0 release. Use the property `acquire_alignment` instead.
-</Admonition>
 
 <span id="qiskit.transpiler.Target.instructions" />
 
@@ -206,7 +192,7 @@ Will add a [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGa
 
 **Parameters**
 
-*   **instruction** ([*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")) – The operation object to add to the map. If it’s parameterized any value of the parameter can be set. Optionally for variable width instructions (such as control flow operations such as `ForLoop` or `MCXGate`) you can specify the class. If the class is specified than the `name` argument must be specified. When a class is used the gate is treated as global and not having any properties set.
+*   **instruction** (*Union\[*[*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")*,* [*Type*](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type")*\[*[*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")*]]*) – The operation object to add to the map. If it’s parameterized any value of the parameter can be set. Optionally for variable width instructions (such as control flow operations such as `ForLoop` or `MCXGate`) you can specify the class. If the class is specified than the `name` argument must be specified. When a class is used the gate is treated as global and not having any properties set.
 *   **properties** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – A dictionary of qarg entries to an [`InstructionProperties`](qiskit.transpiler.InstructionProperties "qiskit.transpiler.InstructionProperties") object for that instruction implementation on the backend. Properties are optional for any instruction implementation, if there are no [`InstructionProperties`](qiskit.transpiler.InstructionProperties "qiskit.transpiler.InstructionProperties") available for the backend the value can be None. If there are no constraints on the instruction (as in a noiseless/ideal simulation) this can be set to `{None, None}` which will indicate it runs on all qubits (or all available permutations of qubits for multi-qubit gates). The first `None` indicates it applies to all qubits and the second `None` indicates there are no [`InstructionProperties`](qiskit.transpiler.InstructionProperties "qiskit.transpiler.InstructionProperties") for the instruction. By default, if properties is not set it is equivalent to passing `{None: None}`.
 *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – An optional name to use for identifying the instruction. If not specified the [`name`](qiskit.circuit.Instruction#name "qiskit.circuit.Instruction.name") attribute of `gate` will be used. All gates in the `Target` need unique names. Backends can differentiate between different parameterization of a single gate by providing a unique name for each (e.g. “rx30”, “rx60”, \`”rx90”\`\` similar to the example in the documentation for the [`Target`](#qiskit.transpiler.Target "qiskit.transpiler.Target") class).
 

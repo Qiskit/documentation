@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.FunctionalPauliRotations
 
 <span id="qiskit.circuit.library.FunctionalPauliRotations" />
 
-`qiskit.circuit.library.FunctionalPauliRotations(num_state_qubits=None, basis='Y', name='F')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/arithmetic/functional_pauli_rotations.py "view source code")
+`qiskit.circuit.library.FunctionalPauliRotations(num_state_qubits=None, basis='Y', name='F')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/arithmetic/functional_pauli_rotations.py "view source code")
 
 Bases: `BlueprintCircuit`, [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 
@@ -20,7 +20,7 @@ Create a new functional Pauli rotation circuit.
 
 **Parameters**
 
-*   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The number of qubits representing the state $\vert x\rangle$.
+*   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The number of qubits representing the state $|x\rangle$.
 *   **basis** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The kind of Pauli rotation to use. Must be ‘X’, ‘Y’ or ‘Z’.
 *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The name of the circuit object.
 
@@ -62,29 +62,17 @@ Returns a list of classical bits in the order that the registers were added.
 
 ### data
 
-<span id="qiskit.circuit.library.FunctionalPauliRotations.extension_lib" />
-
-### extension\_lib
-
-`= 'include "qelib1.inc";'`
-
 <span id="qiskit.circuit.library.FunctionalPauliRotations.global_phase" />
 
 ### global\_phase
 
 Return the global phase of the current circuit scope in radians.
 
-<span id="qiskit.circuit.library.FunctionalPauliRotations.header" />
-
-### header
-
-`= 'OPENQASM 2.0;'`
-
 <span id="qiskit.circuit.library.FunctionalPauliRotations.instances" />
 
 ### instances
 
-`= 169`
+`= 176`
 
 <span id="qiskit.circuit.library.FunctionalPauliRotations.layout" />
 
@@ -140,7 +128,7 @@ Return number of qubits.
 
 ### num\_state\_qubits
 
-The number of state qubits representing the state $\vert x\rangle$.
+The number of state qubits representing the state $|x\rangle$.
 
 **Returns**
 

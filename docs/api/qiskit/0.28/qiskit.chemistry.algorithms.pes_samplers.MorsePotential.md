@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.algorithms.pes_samplers.MorsePotential
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.MorsePotential" />
 
-`MorsePotential(molecule)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/potentials/morse_potential.py "view source code")
+`MorsePotential(molecule)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/potentials/morse_potential.py "view source code")
 
 Implements a 1D Morse potential.
 

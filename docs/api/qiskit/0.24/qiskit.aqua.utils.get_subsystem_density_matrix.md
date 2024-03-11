@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.utils.get_subsystem_density_matrix
 
 <span id="qiskit.aqua.utils.get_subsystem_density_matrix" />
 
-`get_subsystem_density_matrix(statevector, trace_systems)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/utils/subsystem.py "view source code")
+`get_subsystem_density_matrix(statevector, trace_systems)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/utils/subsystem.py "view source code")
 
 Compute the reduced density matrix of a quantum subsystem.
 

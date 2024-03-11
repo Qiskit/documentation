@@ -10,7 +10,7 @@ python_api_name: qiskit.finance.data_providers.YahooDataProvider
 
 <span id="qiskit.finance.data_providers.YahooDataProvider" />
 
-`YahooDataProvider(tickers=None, start=datetime.datetime(2016, 1, 1, 0, 0), end=datetime.datetime(2016, 1, 30, 0, 0))`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/finance/data_providers/yahoo_data_provider.py "view source code")
+`YahooDataProvider(tickers=None, start=datetime.datetime(2016, 1, 1, 0, 0), end=datetime.datetime(2016, 1, 30, 0, 0))` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/finance/data_providers/yahoo_data_provider.py "view source code")
 
 Yahoo data provider.
 

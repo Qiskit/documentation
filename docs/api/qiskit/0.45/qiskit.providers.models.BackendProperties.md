@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.models.BackendProperties
 
 <span id="qiskit.providers.models.BackendProperties" />
 
-`qiskit.providers.models.BackendProperties(backend_name, backend_version, last_update_date, qubits, gates, general, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/models/backendproperties.py "view source code")
+`qiskit.providers.models.BackendProperties(backend_name, backend_version, last_update_date, qubits, gates, general, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/models/backendproperties.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 

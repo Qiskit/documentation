@@ -12,7 +12,7 @@ python_api_name: qiskit.extensions.Initialize
 
 <span id="qiskit.extensions.Initialize" />
 
-`Initialize(params)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/extensions/quantum_initializer/initializer.py "view source code")
+`Initialize(params)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/extensions/quantum_initializer/initializer.py "view source code")
 
 Complex amplitude initialization.
 
@@ -162,7 +162,7 @@ Call to create a circuit with gates that take the desired vector to zero.
 
 **Returns**
 
-circuit to take self.params vector to $\vert {00\ldots0}\rangle$
+circuit to take self.params vector to $|{00\ldots0}\rangle$
 
 **Return type**
 

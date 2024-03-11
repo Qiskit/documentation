@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.library.PauliFeatureMap
 
 <span id="qiskit.circuit.library.PauliFeatureMap" />
 
-`PauliFeatureMap(feature_dimension=None, reps=2, entanglement='full', paulis=None, data_map_func=None, parameter_prefix='x', insert_barriers=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/data_preparation/pauli_feature_map.py "view source code")
+`PauliFeatureMap(feature_dimension=None, reps=2, entanglement='full', paulis=None, data_map_func=None, parameter_prefix='x', insert_barriers=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/data_preparation/pauli_feature_map.py "view source code")
 
 The Pauli Expansion circuit.
 

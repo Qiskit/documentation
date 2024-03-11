@@ -12,7 +12,7 @@ python_api_name: qiskit.visualization.timeline.draw
 
 <span id="qiskit.visualization.timeline.draw" />
 
-`draw(program, style=None, time_range=None, disable_bits=None, show_clbits=None, show_idle=None, show_barriers=None, show_delays=None, show_labels=True, plotter='mpl', axis=None, filename=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/visualization/timeline/interface.py "view source code")
+`draw(program, style=None, time_range=None, disable_bits=None, show_clbits=None, show_idle=None, show_barriers=None, show_delays=None, show_labels=True, plotter='mpl', axis=None, filename=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/visualization/timeline/interface.py "view source code")
 
 Generate visualization data for scheduled circuit programs.
 

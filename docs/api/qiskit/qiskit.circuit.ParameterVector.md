@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.ParameterVector
 
 <span id="qiskit.circuit.ParameterVector" />
 
-`qiskit.circuit.ParameterVector(name, length=0)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/parametervector.py "view source code")
+`qiskit.circuit.ParameterVector(name, length=0)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/parametervector.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 

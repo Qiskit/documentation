@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.Delay
 
 <span id="qiskit.pulse.Delay" />
 
-`Delay(duration, channel=None, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/instructions/delay.py "view source code")
+`Delay(duration, channel=None, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/instructions/delay.py "view source code")
 
 A blocking instruction with no other effect. The delay is used for aligning and scheduling other instructions.
 
@@ -33,7 +33,7 @@ No other instruction may be scheduled within a `Delay`.
 **Parameters**
 
 *   **duration** (`int`) – Length of time of the delay in terms of dt.
-*   **channel** (`Optional`\[[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]) – The channel that will have the delay.
+*   **channel** (`Optional`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")]) – The channel that will have the delay.
 *   **name** (`Optional`\[`str`]) – Name of the delay for display purposes.
 
 ## Attributes
@@ -44,11 +44,11 @@ No other instruction may be scheduled within a `Delay`.
 
 `qiskit.pulse.channels.Channel`
 
-Return the [`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel") that this instruction is scheduled on.
+Return the [`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel") that this instruction is scheduled on.
 
 **Return type**
 
-[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")
+[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")
 
 ### channels
 
@@ -60,7 +60,7 @@ Returns channels that this schedule uses.
 
 **Return type**
 
-`Tuple`\[[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]
+`Tuple`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")]
 
 ### command
 
@@ -168,7 +168,7 @@ Occupied time slots by this instruction.
 
 **Return type**
 
-`Dict`\[[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel"), `List`\[`Tuple`\[`int`, `int`]]]
+`Dict`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel"), `List`\[`Tuple`\[`int`, `int`]]]
 
 ## Methods
 
@@ -176,13 +176,13 @@ Occupied time slots by this instruction.
 
 <span id="qiskit.pulse.Delay.__call__" />
 
-`Delay.__call__(channel)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/instructions/delay.py "view source code")
+`Delay.__call__(channel)`
 
 Return new `Delay` that is fully instantiated with both `duration` and a `channel`.
 
 **Parameters**
 
-**channel** ([`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")) – The channel that will have the delay.
+**channel** ([`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")) – The channel that will have the delay.
 
 **Return type**
 
@@ -272,11 +272,11 @@ Plot the instruction.
 **Parameters**
 
 *   **dt** (`float`) – Time interval of samples
-*   **style** (*Optional\[*[*SchedStyle*](qiskit.visualization.pulse.qcstyle#qiskit.visualization.pulse.qcstyle.SchedStyle "qiskit.visualization.pulse.qcstyle.SchedStyle")*]*) – A style sheet to configure plot appearance
+*   **style** (*Optional\[*[*SchedStyle*](qiskit.visualization.pulse.qcstyle#schedstyle "qiskit.visualization.pulse.qcstyle.SchedStyle")*]*) – A style sheet to configure plot appearance
 *   **filename** (`Optional`\[`str`]) – Name required to save pulse image
 *   **interp\_method** (`Optional`\[`Callable`]) – A function for interpolation
 *   **scale** (`float`) – Relative visual scaling of waveform amplitudes
-*   **channels\_to\_plot** (`Optional`\[`List`\[[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]]) – Deprecated, see channels
+*   **channels\_to\_plot** (`Optional`\[`List`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")]]) – Deprecated, see channels
 *   **plot\_all** (`bool`) – Plot empty channels
 *   **plot\_range** (`Optional`\[`Tuple`\[`float`]]) – A tuple of time range to plot
 *   **interactive** (`bool`) – When set true show the circuit in a new window (this depends on the matplotlib backend being used supporting this)
@@ -284,7 +284,7 @@ Plot the instruction.
 *   **label** (`bool`) – Label individual instructions
 *   **framechange** (`bool`) – Add framechange indicators
 *   **scaling** (`Optional`\[`float`]) – Deprecated, see scale
-*   **channels** (`Optional`\[`List`\[[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]]) – A list of channel names to plot
+*   **channels** (`Optional`\[`List`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")]]) – A list of channel names to plot
 
 **Returns**
 

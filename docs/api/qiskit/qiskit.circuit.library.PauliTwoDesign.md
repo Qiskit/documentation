@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.PauliTwoDesign
 
 <span id="qiskit.circuit.library.PauliTwoDesign" />
 
-`qiskit.circuit.library.PauliTwoDesign(num_qubits=None, reps=3, seed=None, insert_barriers=False, name='PauliTwoDesign')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/n_local/pauli_two_design.py "view source code")
+`qiskit.circuit.library.PauliTwoDesign(num_qubits=None, reps=3, seed=None, insert_barriers=False, name='PauliTwoDesign')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/n_local/pauli_two_design.py "view source code")
 
 Bases: [`TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.n_local.two_local.TwoLocal")
 
@@ -107,12 +107,6 @@ The blocks in the entanglement layers.
 
 The blocks in the entanglement layers.
 
-<span id="qiskit.circuit.library.PauliTwoDesign.extension_lib" />
-
-### extension\_lib
-
-`= 'include "qelib1.inc";'`
-
 <span id="qiskit.circuit.library.PauliTwoDesign.flatten" />
 
 ### flatten
@@ -124,12 +118,6 @@ Returns whether the circuit is wrapped in nested gates/instructions or flattened
 ### global\_phase
 
 Return the global phase of the current circuit scope in radians.
-
-<span id="qiskit.circuit.library.PauliTwoDesign.header" />
-
-### header
-
-`= 'OPENQASM 2.0;'`
 
 <span id="qiskit.circuit.library.PauliTwoDesign.initial_state" />
 
@@ -155,7 +143,7 @@ If barriers are inserted in between the layers or not.
 
 ### instances
 
-`= 174`
+`= 207`
 
 <span id="qiskit.circuit.library.PauliTwoDesign.layout" />
 

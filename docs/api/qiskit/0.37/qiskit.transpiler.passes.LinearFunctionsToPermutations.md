@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.LinearFunctionsToPermutations
 
 <span id="qiskit.transpiler.passes.LinearFunctionsToPermutations" />
 
-`LinearFunctionsToPermutations(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/synthesis/linear_functions_synthesis.py "view source code")
+`LinearFunctionsToPermutations(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/synthesis/linear_functions_synthesis.py "view source code")
 
 Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -30,7 +30,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.LinearFunctionsToPermutations.run" />
 
-`LinearFunctionsToPermutations.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/synthesis/linear_functions_synthesis.py "view source code")
+`LinearFunctionsToPermutations.run(dag)`
 
 Run the LinearFunctionsToPermutations pass on dag. :type dag: [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit") :param dag: input dag.
 

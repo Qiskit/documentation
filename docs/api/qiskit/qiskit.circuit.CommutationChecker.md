@@ -10,13 +10,44 @@ python_api_name: qiskit.circuit.CommutationChecker
 
 <span id="qiskit.circuit.CommutationChecker" />
 
-`qiskit.circuit.CommutationChecker`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/commutation_checker.py "view source code")
+`qiskit.circuit.CommutationChecker(standard_gate_commutations=None, cache_max_entries=1000000)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/commutation_checker.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
 This code is essentially copy-pasted from commutative\_analysis.py. This code cleverly hashes commutativity and non-commutativity results between DAG nodes and seems quite efficient for large Clifford circuits. They may be other possible efficiency improvements: using rule-based commutativity analysis, evicting from the cache less useful entries, etc.
 
 ## Methods
+
+### check\_commutation\_entries
+
+<span id="qiskit.circuit.CommutationChecker.check_commutation_entries" />
+
+`check_commutation_entries(first_op, first_qargs, second_op, second_qargs)`
+
+Returns stored commutation relation if any
+
+**Parameters**
+
+*   **first\_op** ([*Operation*](qiskit.circuit.Operation "qiskit.circuit.operation.Operation")) – first operation.
+*   **first\_qargs** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")) – first operation’s qubits.
+*   **second\_op** ([*Operation*](qiskit.circuit.Operation "qiskit.circuit.operation.Operation")) – second operation.
+*   **second\_qargs** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")) – second operation’s qubits.
+
+**Returns**
+
+True if the gates commute and false if it is not the case.
+
+**Return type**
+
+[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+
+### clear\_cached\_commutations
+
+<span id="qiskit.circuit.CommutationChecker.clear_cached_commutations" />
+
+`clear_cached_commutations()`
+
+Clears the dictionary holding cached commutations
 
 ### commute
 
@@ -43,4 +74,12 @@ whether two operations commute.
 **Return type**
 
 [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+
+### num\_cached\_entries
+
+<span id="qiskit.circuit.CommutationChecker.num_cached_entries" />
+
+`num_cached_entries()`
+
+Returns number of cached entries
 

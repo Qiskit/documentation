@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.ADAM
 
 <span id="qiskit.algorithms.optimizers.ADAM" />
 
-`ADAM(maxiter=10000, tol=1e-06, lr=0.001, beta_1=0.9, beta_2=0.99, noise_factor=1e-08, eps=1e-10, amsgrad=False, snapshot_dir=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/optimizers/adam_amsgrad.py "view source code")
+`ADAM(maxiter=10000, tol=1e-06, lr=0.001, beta_1=0.9, beta_2=0.99, noise_factor=1e-08, eps=1e-10, amsgrad=False, snapshot_dir=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/optimizers/adam_amsgrad.py "view source code")
 
 Bases: [`Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.optimizer.Optimizer")
 
@@ -54,7 +54,7 @@ On the Convergence of Adam and Beyond. [arXiv:1904.09237](https://arxiv.org/abs/
 
 <span id="qiskit.algorithms.optimizers.ADAM.get_support_level" />
 
-`ADAM.get_support_level()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/optimizers/adam_amsgrad.py "view source code")
+`ADAM.get_support_level()`
 
 Return support level dictionary
 
@@ -89,7 +89,7 @@ grad
 
 <span id="qiskit.algorithms.optimizers.ADAM.load_params" />
 
-`ADAM.load_params(load_dir)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/optimizers/adam_amsgrad.py "view source code")
+`ADAM.load_params(load_dir)`
 
 Load iteration parameters for a file called `adam_params.csv`.
 
@@ -103,7 +103,7 @@ Load iteration parameters for a file called `adam_params.csv`.
 
 <span id="qiskit.algorithms.optimizers.ADAM.minimize" />
 
-`ADAM.minimize(fun, x0, jac=None, bounds=None, objective_function=None, initial_point=None, gradient_function=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/optimizers/adam_amsgrad.py "view source code")
+`ADAM.minimize(fun, x0, jac=None, bounds=None, objective_function=None, initial_point=None, gradient_function=None)`
 
 Minimize the scalar function.
 
@@ -153,7 +153,7 @@ Print algorithm-specific options.
 
 <span id="qiskit.algorithms.optimizers.ADAM.save_params" />
 
-`ADAM.save_params(snapshot_dir)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/optimizers/adam_amsgrad.py "view source code")
+`ADAM.save_params(snapshot_dir)`
 
 Save the current iteration parameters to a file called `adam_params.csv`.
 

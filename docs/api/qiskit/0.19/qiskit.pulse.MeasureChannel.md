@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.MeasureChannel
 
 <span id="qiskit.pulse.MeasureChannel" />
 
-`MeasureChannel(index)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/channels.py "view source code")
+`MeasureChannel(index)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/channels.py "view source code")
 
 Measure channels transmit measurement stimulus pulses for readout.
 

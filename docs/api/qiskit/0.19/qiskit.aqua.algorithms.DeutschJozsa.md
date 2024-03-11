@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.algorithms.DeutschJozsa
 
 <span id="qiskit.aqua.algorithms.DeutschJozsa" />
 
-`DeutschJozsa(oracle, quantum_instance=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/education/deutsch_jozsa.py "view source code")
+`DeutschJozsa(oracle, quantum_instance=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/education/deutsch_jozsa.py "view source code")
 
 The Deutsch-Jozsa algorithm.
 
@@ -59,7 +59,7 @@ Return a numpy random.
 
 <span id="qiskit.aqua.algorithms.DeutschJozsa.construct_circuit" />
 
-`DeutschJozsa.construct_circuit(measurement=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/education/deutsch_jozsa.py "view source code")
+`DeutschJozsa.construct_circuit(measurement=False)`
 
 Construct the quantum circuit
 

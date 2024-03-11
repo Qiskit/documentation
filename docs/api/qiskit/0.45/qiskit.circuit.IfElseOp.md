@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.IfElseOp
 
 <span id="qiskit.circuit.IfElseOp" />
 
-`qiskit.circuit.IfElseOp(condition, true_body, false_body=None, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/controlflow/if_else.py "view source code")
+`qiskit.circuit.IfElseOp(condition, true_body, false_body=None, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/controlflow/if_else.py "view source code")
 
 Bases: [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.controlflow.control_flow.ControlFlowOp")
 

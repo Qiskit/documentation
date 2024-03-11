@@ -1,9 +1,9 @@
 ---
-title: get_operator
-description: API reference for qiskit.optimization.applications.ising.partition.get_operator
-in_page_toc_min_heading_level: 1
-python_api_type: function
-python_api_name: qiskit.optimization.applications.ising.partition.get_operator
+title: partition
+description: API reference for qiskit.optimization.applications.ising.partition
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.optimization.applications.ising.partition
 ---
 
 <span id="qiskit-optimization-applications-ising-partition" />
@@ -23,7 +23,7 @@ Generate Number Partitioning (Partition) instances, and convert them into a Hami
 
 <span id="qiskit.optimization.applications.ising.partition.get_operator" />
 
-`get_operator(values)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/partition.py "view source code")
+`get_operator(values)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/partition.py "view source code")
 
 Construct the Hamiltonian for a given Partition instance.
 
@@ -45,7 +45,7 @@ tuple([WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator
 
 <span id="qiskit.optimization.applications.ising.partition.partition_value" />
 
-`partition_value(x, number_list)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/partition.py "view source code")
+`partition_value(x, number_list)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/partition.py "view source code")
 
 Compute the value of a partition.
 

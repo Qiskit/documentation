@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.utils.tensorproduct
 
 <span id="qiskit.aqua.utils.tensorproduct" />
 
-`tensorproduct(*args)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/utils/tensor_product.py "view source code")
+`tensorproduct(*args)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/utils/tensor_product.py "view source code")
 
 Calculate tensor product.
 

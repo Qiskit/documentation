@@ -12,7 +12,7 @@ python_api_name: qiskit.ignis.characterization.T2Fitter
 
 <span id="qiskit.ignis.characterization.T2Fitter" />
 
-`T2Fitter(backend_result, xdata, qubits, fit_p0, fit_bounds, circbasename='t2', time_unit='micro-seconds')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/characterization/coherence/fitters.py "view source code")
+`T2Fitter(backend_result, xdata, qubits, fit_p0, fit_bounds, circbasename='t2', time_unit='micro-seconds')` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/characterization/coherence/fitters.py "view source code")
 
 Estimate T2, based on experiments outcomes.
 

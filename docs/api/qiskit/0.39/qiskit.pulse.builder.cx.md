@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.builder.cx
 
 <span id="qiskit.pulse.builder.cx" />
 
-`cx(control, target)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/pulse/builder.py "view source code")
+`cx(control, target)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/pulse/builder.py "view source code")
 
 Call a `CXGate` on the input physical qubits.
 

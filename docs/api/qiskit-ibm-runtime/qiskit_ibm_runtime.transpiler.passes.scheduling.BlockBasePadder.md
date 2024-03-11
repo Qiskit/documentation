@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder
 
 <span id="qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder" />
 
-`BlockBasePadder(schedule_idle_qubits=False)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.18/qiskit_ibm_runtime/transpiler/passes/scheduling/block_base_padder.py "view source code")
+`BlockBasePadder(schedule_idle_qubits=False)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/transpiler/passes/scheduling/block_base_padder.py#L38-L633 "view source code")
 
 The base class of padding pass.
 
@@ -104,7 +104,7 @@ Name of the pass.
 
 <span id="qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder.run" />
 
-`run(dag)`
+`run(dag)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/transpiler/passes/scheduling/block_base_padder.py#L91-L115 "view source code")
 
 Run the padding pass on `dag`.
 

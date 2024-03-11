@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.expectations.PauliExpectation
 
 <span id="qiskit.opflow.expectations.PauliExpectation" />
 
-`PauliExpectation(group_paulis=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/expectations/pauli_expectation.py "view source code")
+`PauliExpectation(group_paulis=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/expectations/pauli_expectation.py "view source code")
 
 An Expectation converter for Pauli-basis observables by changing Pauli measurements to a diagonal (\{Z, I}^n) basis and appending circuit post-rotations to the measured state function. Optionally groups the Paulis with the same post-rotations (those that commute with one another, or form Abelian groups) into single measurements to reduce circuit execution overhead.
 

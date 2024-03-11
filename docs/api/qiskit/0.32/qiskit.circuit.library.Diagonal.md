@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.Diagonal
 
 <span id="qiskit.circuit.library.Diagonal" />
 
-`Diagonal(diag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/generalized_gates/diagonal.py "view source code")
+`Diagonal(diag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/generalized_gates/diagonal.py "view source code")
 
 Bases: `qiskit.circuit.quantumcircuit.QuantumCircuit`
 

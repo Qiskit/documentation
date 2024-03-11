@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.algorithms.pes_samplers.PotentialBase
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.PotentialBase" />
 
-`PotentialBase(molecule)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/potentials/potential_base.py "view source code")
+`PotentialBase(molecule)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/potentials/potential_base.py "view source code")
 
 Bases: `qiskit.chemistry.algorithms.pes_samplers.potentials.potential_base.EnergySurfaceBase`, `qiskit.chemistry.algorithms.pes_samplers.potentials.potential_base.VibronicStructureBase`
 
@@ -22,7 +22,7 @@ Class to hold prescribed 1D potentials (e.g. Morse/Harmonic) over a degree of fr
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.PotentialBase.dissociation_energy" />
 
-`abstract PotentialBase.dissociation_energy(scaling=1.0)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/potentials/potential_base.py "view source code")
+`abstract PotentialBase.dissociation_energy(scaling=1.0)`
 
 Returns the dissociation energy (scaled by ‘scaling’)
 
@@ -137,7 +137,7 @@ minimum energy
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.PotentialBase.get_num_modes" />
 
-`PotentialBase.get_num_modes()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/potentials/potential_base.py "view source code")
+`PotentialBase.get_num_modes()`
 
 This (1D) potential represents a single vibrational mode
 
@@ -149,7 +149,7 @@ This (1D) potential represents a single vibrational mode
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.PotentialBase.get_trust_region" />
 
-`PotentialBase.get_trust_region()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/potentials/potential_base.py "view source code")
+`PotentialBase.get_trust_region()`
 
 The potential will usually be well-defined (even if not useful) for arbitrary x so we return a fairly large interval here. Redefine in derived classes if needed.
 

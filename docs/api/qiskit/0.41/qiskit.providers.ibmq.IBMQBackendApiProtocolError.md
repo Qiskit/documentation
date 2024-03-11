@@ -14,7 +14,7 @@ python_api_name: qiskit.providers.ibmq.IBMQBackendApiProtocolError
 
 <span id="qiskit.providers.ibmq.IBMQBackendApiProtocolError" />
 
-`IBMQBackendApiProtocolError(*message)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/exceptions.py "view source code")
+`IBMQBackendApiProtocolError(*message)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/exceptions.py "view source code")
 
 Errors raised when an unexpected value is received from the server.
 

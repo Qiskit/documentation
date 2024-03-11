@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.optimizers.AQGD
 
 <span id="qiskit.aqua.components.optimizers.AQGD" />
 
-`AQGD(maxiter=1000, eta=1.0, tol=1e-06, disp=False, momentum=0.25, param_tol=1e-06, averaging=10)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/optimizers/aqgd.py "view source code")
+`AQGD(maxiter=1000, eta=1.0, tol=1e-06, disp=False, momentum=0.25, param_tol=1e-06, averaging=10)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/optimizers/aqgd.py "view source code")
 
 Bases: `qiskit.aqua.components.optimizers.optimizer.Optimizer`
 
@@ -45,7 +45,7 @@ Performs Analytical Quantum Gradient Descent (AQGD) with Epochs.
 
 <span id="qiskit.aqua.components.optimizers.AQGD.get_support_level" />
 
-`AQGD.get_support_level()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/optimizers/aqgd.py "view source code")
+`AQGD.get_support_level()`
 
 Support level dictionary
 
@@ -86,7 +86,7 @@ grad
 
 <span id="qiskit.aqua.components.optimizers.AQGD.optimize" />
 
-`AQGD.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/optimizers/aqgd.py "view source code")
+`AQGD.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
 Perform optimization.
 

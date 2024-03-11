@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.gradients.SPSAEstimatorGradient
 
 <span id="qiskit.algorithms.gradients.SPSAEstimatorGradient" />
 
-`SPSAEstimatorGradient(estimator, epsilon, batch_size=1, seed=None, options=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/gradients/spsa_estimator_gradient.py "view source code")
+`SPSAEstimatorGradient(estimator, epsilon, batch_size=1, seed=None, options=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/gradients/spsa_estimator_gradient.py "view source code")
 
 Bases: [`qiskit.algorithms.gradients.base_estimator_gradient.BaseEstimatorGradient`](qiskit.algorithms.gradients.BaseEstimatorGradient "qiskit.algorithms.gradients.base_estimator_gradient.BaseEstimatorGradient")
 

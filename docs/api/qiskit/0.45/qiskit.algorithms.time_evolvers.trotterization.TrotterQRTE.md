@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.time_evolvers.trotterization.TrotterQRTE
 
 <span id="qiskit.algorithms.time_evolvers.trotterization.TrotterQRTE" />
 
-`qiskit.algorithms.time_evolvers.trotterization.TrotterQRTE(product_formula=None, estimator=None, num_timesteps=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/time_evolvers/trotterization/trotter_qrte.py "view source code")
+`qiskit.algorithms.time_evolvers.trotterization.TrotterQRTE(product_formula=None, estimator=None, num_timesteps=1)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/time_evolvers/trotterization/trotter_qrte.py "view source code")
 
 Bases: [`RealTimeEvolver`](qiskit.algorithms.RealTimeEvolver "qiskit.algorithms.time_evolvers.real_time_evolver.RealTimeEvolver")
 

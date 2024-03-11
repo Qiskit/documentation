@@ -10,7 +10,7 @@ python_api_name: qiskit.extensions.Initialize
 
 <span id="qiskit.extensions.Initialize" />
 
-`Initialize(params, num_qubits=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/extensions/quantum_initializer/initializer.py "view source code")
+`Initialize(params, num_qubits=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/extensions/quantum_initializer/initializer.py "view source code")
 
 Bases: `qiskit.circuit.instruction.Instruction`
 
@@ -26,10 +26,10 @@ Create new initialize composite.
 
     *   Statevector: Statevector to initialize to.
     *   list: vector of complex amplitudes to initialize to.
-    *   string: labels of basis states of the Pauli eigenstates Z, X, Y. See [`Statevector.from_label()`](qiskit.quantum_info.Statevector#from_label "qiskit.quantum_info.Statevector.from_label"). Notice the order of the labels is reversed with respect to the qubit index to be applied to. Example label ‘01’ initializes the qubit zero to $\vert 1\rangle$ and the qubit one to $\vert 0\rangle$.
-    *   int: an integer that is used as a bitmap indicating which qubits to initialize to $\vert 1\rangle$. Example: setting params to 5 would initialize qubit 0 and qubit 2 to $\vert 1\rangle$ and qubit 1 to $\vert 0\rangle$.
+    *   string: labels of basis states of the Pauli eigenstates Z, X, Y. See [`Statevector.from_label()`](qiskit.quantum_info.Statevector#from_label "qiskit.quantum_info.Statevector.from_label"). Notice the order of the labels is reversed with respect to the qubit index to be applied to. Example label ‘01’ initializes the qubit zero to $|1\rangle$ and the qubit one to $|0\rangle$.
+    *   int: an integer that is used as a bitmap indicating which qubits to initialize to $|1\rangle$. Example: setting params to 5 would initialize qubit 0 and qubit 2 to $|1\rangle$ and qubit 1 to $|0\rangle$.
 
-*   **num\_qubits** (*int*) – This parameter is only used if params is an int. Indicates the total number of qubits in the initialize call. Example: initialize covers 5 qubits and params is 3. This allows qubits 0 and 1 to be initialized to $\vert 1\rangle$ and the remaining 3 qubits to be initialized to $\vert 0\rangle$.
+*   **num\_qubits** (*int*) – This parameter is only used if params is an int. Indicates the total number of qubits in the initialize call. Example: initialize covers 5 qubits and params is 3. This allows qubits 0 and 1 to be initialized to $|1\rangle$ and the remaining 3 qubits to be initialized to $|0\rangle$.
 
 ## Methods
 
@@ -53,7 +53,7 @@ Assemble a QasmQobjInstruction
 
 <span id="qiskit.extensions.Initialize.broadcast_arguments" />
 
-`Initialize.broadcast_arguments(qargs, cargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/extensions/quantum_initializer/initializer.py "view source code")
+`Initialize.broadcast_arguments(qargs, cargs)`
 
 Validation of the arguments.
 
@@ -108,13 +108,13 @@ updated if it was provided
 
 <span id="qiskit.extensions.Initialize.gates_to_uncompute" />
 
-`Initialize.gates_to_uncompute()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/extensions/quantum_initializer/initializer.py "view source code")
+`Initialize.gates_to_uncompute()`
 
 Call to create a circuit with gates that take the desired vector to zero.
 
 **Returns**
 
-circuit to take self.params vector to $\vert {00\ldots0}\rangle$
+circuit to take self.params vector to $|{00\ldots0}\rangle$
 
 **Return type**
 

@@ -10,13 +10,13 @@ python_api_name: qiskit.circuit.library.ExcitationPreserving
 
 <span id="qiskit.circuit.library.ExcitationPreserving" />
 
-`qiskit.circuit.library.ExcitationPreserving(num_qubits=None, mode='iswap', entanglement='full', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='ExcitationPreserving', flatten=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/n_local/excitation_preserving.py "view source code")
+`qiskit.circuit.library.ExcitationPreserving(num_qubits=None, mode='iswap', entanglement='full', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='ExcitationPreserving', flatten=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/n_local/excitation_preserving.py "view source code")
 
 Bases: [`TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.n_local.two_local.TwoLocal")
 
 The heuristic excitation-preserving wave function ansatz.
 
-The `ExcitationPreserving` circuit preserves the ratio of $\vert 00\rangle$, $\vert 01\rangle + \vert 10\rangle$ and $\vert 11\rangle$ states. To this end, this circuit uses two-qubit interactions of the form
+The `ExcitationPreserving` circuit preserves the ratio of $|00\rangle$, $|01\rangle + |10\rangle$ and $|11\rangle$ states. To this end, this circuit uses two-qubit interactions of the form
 
 $$
 \newcommand{\rotationangle}{\theta/2}
@@ -142,12 +142,6 @@ The blocks in the entanglement layers.
 
 The blocks in the entanglement layers.
 
-<span id="qiskit.circuit.library.ExcitationPreserving.extension_lib" />
-
-### extension\_lib
-
-`= 'include "qelib1.inc";'`
-
 <span id="qiskit.circuit.library.ExcitationPreserving.flatten" />
 
 ### flatten
@@ -159,12 +153,6 @@ Returns whether the circuit is wrapped in nested gates/instructions or flattened
 ### global\_phase
 
 Return the global phase of the current circuit scope in radians.
-
-<span id="qiskit.circuit.library.ExcitationPreserving.header" />
-
-### header
-
-`= 'OPENQASM 2.0;'`
 
 <span id="qiskit.circuit.library.ExcitationPreserving.initial_state" />
 
@@ -190,7 +178,7 @@ If barriers are inserted in between the layers or not.
 
 ### instances
 
-`= 159`
+`= 166`
 
 <span id="qiskit.circuit.library.ExcitationPreserving.layout" />
 

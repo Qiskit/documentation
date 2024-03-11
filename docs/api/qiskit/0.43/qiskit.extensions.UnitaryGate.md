@@ -10,7 +10,7 @@ python_api_name: qiskit.extensions.UnitaryGate
 
 <span id="qiskit.extensions.UnitaryGate" />
 
-`UnitaryGate(data, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/extensions/unitary.py "view source code")
+`UnitaryGate(data, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/extensions/unitary.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -63,7 +63,7 @@ Add a decomposition of the instruction to the SessionEquivalenceLibrary.
 
 <span id="qiskit.extensions.UnitaryGate.adjoint" />
 
-`UnitaryGate.adjoint()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/extensions/unitary.py "view source code")
+`UnitaryGate.adjoint()`
 
 Return the adjoint of the unitary.
 
@@ -154,7 +154,7 @@ Set a classical equality condition on this instruction between the register or c
 
 <span id="qiskit.extensions.UnitaryGate.conjugate" />
 
-`UnitaryGate.conjugate()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/extensions/unitary.py "view source code")
+`UnitaryGate.conjugate()`
 
 Return the conjugate of the unitary.
 
@@ -164,7 +164,7 @@ Return the conjugate of the unitary.
 
 <span id="qiskit.extensions.UnitaryGate.control" />
 
-`UnitaryGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/extensions/unitary.py "view source code")
+`UnitaryGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
 Return controlled version of gate
 
@@ -215,7 +215,7 @@ a copy of the current instruction, with the name updated if it was provided
 
 <span id="qiskit.extensions.UnitaryGate.inverse" />
 
-`UnitaryGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/extensions/unitary.py "view source code")
+`UnitaryGate.inverse()`
 
 Return the adjoint of the unitary.
 
@@ -365,7 +365,7 @@ np.ndarray
 
 <span id="qiskit.extensions.UnitaryGate.transpose" />
 
-`UnitaryGate.transpose()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/extensions/unitary.py "view source code")
+`UnitaryGate.transpose()`
 
 Return the transpose of the unitary.
 
@@ -375,7 +375,7 @@ Return the transpose of the unitary.
 
 <span id="qiskit.extensions.UnitaryGate.validate_parameter" />
 
-`UnitaryGate.validate_parameter(parameter)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/extensions/unitary.py "view source code")
+`UnitaryGate.validate_parameter(parameter)`
 
 Unitary gate parameter has to be an ndarray.
 

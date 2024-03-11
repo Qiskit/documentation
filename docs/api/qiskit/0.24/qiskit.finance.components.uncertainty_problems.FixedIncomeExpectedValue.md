@@ -12,7 +12,7 @@ python_api_name: qiskit.finance.components.uncertainty_problems.FixedIncomeExpec
 
 <span id="qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue" />
 
-`FixedIncomeExpectedValue(uncertainty_model, A, b, cash_flow, c_approx, i_state=None, i_objective=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/finance/components/uncertainty_problems/fixed_income_expected_value.py "view source code")
+`FixedIncomeExpectedValue(uncertainty_model, A, b, cash_flow, c_approx, i_state=None, i_objective=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/finance/components/uncertainty_problems/fixed_income_expected_value.py "view source code")
 
 The Fixed Income Expected Value.
 

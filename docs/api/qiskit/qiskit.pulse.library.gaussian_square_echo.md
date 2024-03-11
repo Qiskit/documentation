@@ -12,7 +12,7 @@ python_api_name: qiskit.pulse.library.gaussian_square_echo
 
 <span id="qiskit.pulse.library.gaussian_square_echo" />
 
-`qiskit.pulse.library.gaussian_square_echo(duration, amp, sigma, width=None, angle=0.0, active_amp=0.0, active_angle=0.0, risefall_sigma_ratio=None, name=None, limit_amplitude=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/pulse/library/symbolic_pulses.py "view source code")
+`qiskit.pulse.library.gaussian_square_echo(duration, amp, sigma, width=None, angle=0.0, active_amp=0.0, active_angle=0.0, risefall_sigma_ratio=None, name=None, limit_amplitude=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/pulse/library/symbolic_pulses.py "view source code")
 
 An echoed Gaussian square pulse with an active tone overlaid on it.
 
@@ -52,14 +52,14 @@ $$
 
 **Parameters**
 
-*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – Pulse length in terms of the sampling period dt.
-*   **amp** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – The amplitude of the rise and fall and of the echoed pulse.
-*   **sigma** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – A measure of how wide or narrow the risefall is; see the class docstring for more details.
-*   **width** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – The duration of the embedded square pulse.
-*   **angle** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – The angle in radians of the complex phase factor uniformly scaling the echoed pulse. Default value 0.
-*   **active\_amp** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – The amplitude of the active pulse.
-*   **active\_angle** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – The angle in radian of the complex phase factor uniformly scaling the active pulse. Default value 0.
-*   **risefall\_sigma\_ratio** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – The ratio of each risefall duration to sigma.
+*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| ParameterValueType*) – Pulse length in terms of the sampling period dt.
+*   **amp** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – The amplitude of the rise and fall and of the echoed pulse.
+*   **sigma** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – A measure of how wide or narrow the risefall is; see the class docstring for more details.
+*   **width** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") *| None*) – The duration of the embedded square pulse.
+*   **angle** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") *| None*) – The angle in radians of the complex phase factor uniformly scaling the echoed pulse. Default value 0.
+*   **active\_amp** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") *| None*) – The amplitude of the active pulse.
+*   **active\_angle** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") *| None*) – The angle in radian of the complex phase factor uniformly scaling the active pulse. Default value 0.
+*   **risefall\_sigma\_ratio** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") *| None*) – The ratio of each risefall duration to sigma.
 *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Display name for this pulse envelope.
 *   **limit\_amplitude** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – If `True`, then limit the amplitude of the waveform to 1. The default is `True` and the amplitude is constrained to 1.
 
@@ -73,5 +73,5 @@ ScalableSymbolicPulse instance.
 
 **Return type**
 
-[*SymbolicPulse*](qiskit.pulse.library.SymbolicPulse "qiskit.pulse.library.symbolic_pulses.SymbolicPulse")
+[SymbolicPulse](qiskit.pulse.library.SymbolicPulse "qiskit.pulse.library.SymbolicPulse")
 

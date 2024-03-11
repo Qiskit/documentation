@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.PhaseEstimationResult
 
 <span id="qiskit.algorithms.PhaseEstimationResult" />
 
-`PhaseEstimationResult(num_evaluation_qubits, circuit_result, phases)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/phase_estimators/phase_estimation_result.py "view source code")
+`PhaseEstimationResult(num_evaluation_qubits, circuit_result, phases)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/phase_estimators/phase_estimation_result.py "view source code")
 
 Bases: `qiskit.algorithms.phase_estimators.phase_estimator.PhaseEstimatorResult`
 
@@ -48,7 +48,7 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 <span id="qiskit.algorithms.PhaseEstimationResult.filter_phases" />
 
-`PhaseEstimationResult.filter_phases(cutoff=0.0, as_float=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/phase_estimators/phase_estimation_result.py "view source code")
+`PhaseEstimationResult.filter_phases(cutoff=0.0, as_float=True)`
 
 Return a filtered dict of phases (keys) and frequencies (values).
 

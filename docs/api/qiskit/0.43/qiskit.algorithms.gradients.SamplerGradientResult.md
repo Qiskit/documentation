@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.gradients.SamplerGradientResult
 
 <span id="qiskit.algorithms.gradients.SamplerGradientResult" />
 
-`SamplerGradientResult(gradients, metadata, options)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/gradients/sampler_gradient_result.py "view source code")
+`SamplerGradientResult(gradients, metadata, options)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/gradients/sampler_gradient_result.py "view source code")
 
 Bases: `object`
 

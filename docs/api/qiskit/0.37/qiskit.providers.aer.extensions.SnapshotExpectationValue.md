@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.extensions.SnapshotExpectationValue
 
 <span id="qiskit.providers.aer.extensions.SnapshotExpectationValue" />
 
-`SnapshotExpectationValue(label, op, single_shot=False, variance=False)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/extensions/snapshot_expectation_value.py "view source code")
+`SnapshotExpectationValue(label, op, single_shot=False, variance=False)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/extensions/snapshot_expectation_value.py "view source code")
 
 Bases: [`qiskit.providers.aer.extensions.snapshot.Snapshot`](qiskit.providers.aer.extensions.Snapshot "qiskit.providers.aer.extensions.snapshot.Snapshot")
 
@@ -47,7 +47,7 @@ Add a decomposition of the instruction to the SessionEquivalenceLibrary.
 
 <span id="qiskit.providers.aer.extensions.SnapshotExpectationValue.assemble" />
 
-`SnapshotExpectationValue.assemble()`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/extensions/snapshot_expectation_value.py "view source code")
+`SnapshotExpectationValue.assemble()`
 
 Assemble a QasmQobjInstruction for snapshot\_expectation\_value.
 

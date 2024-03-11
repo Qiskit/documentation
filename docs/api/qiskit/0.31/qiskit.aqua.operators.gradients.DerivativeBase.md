@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.operators.gradients.DerivativeBase
 
 <span id="qiskit.aqua.operators.gradients.DerivativeBase" />
 
-`DerivativeBase`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/gradients/derivative_base.py "view source code")
+`DerivativeBase` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/gradients/derivative_base.py "view source code")
 
 Bases: `qiskit.aqua.operators.converters.converter_base.ConverterBase`
 
@@ -28,7 +28,7 @@ CircuitGradient - uses quantum techniques to get derivatives of circuits Derivat
 
 <span id="qiskit.aqua.operators.gradients.DerivativeBase.convert" />
 
-`abstract DerivativeBase.convert(operator, params=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/gradients/derivative_base.py "view source code")
+`abstract DerivativeBase.convert(operator, params=None)`
 
 **Parameters**
 
@@ -51,7 +51,7 @@ An operator whose evaluation yields the gradient, Hessian or QFI.
 
 <span id="qiskit.aqua.operators.gradients.DerivativeBase.gradient_wrapper" />
 
-`DerivativeBase.gradient_wrapper(operator, bind_params, grad_params=None, backend=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/gradients/derivative_base.py "view source code")
+`DerivativeBase.gradient_wrapper(operator, bind_params, grad_params=None, backend=None)`
 
 Get a callable function which provides the respective gradient, Hessian or QFI for given parameter values. This callable can be used as gradient function for optimizers.
 
@@ -74,7 +74,7 @@ callable(param\_values)
 
 <span id="qiskit.aqua.operators.gradients.DerivativeBase.parameter_expression_grad" />
 
-`static DerivativeBase.parameter_expression_grad(param_expr, param)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/gradients/derivative_base.py "view source code")
+`static DerivativeBase.parameter_expression_grad(param_expr, param)`
 
 Get the derivative of a parameter expression w\.r.t. the given parameter.
 

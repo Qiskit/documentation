@@ -12,7 +12,7 @@ python_api_name: qiskit.transpiler.preset_passmanagers.plugin.passmanager_stage_
 
 <span id="qiskit.transpiler.preset_passmanagers.plugin.passmanager_stage_plugins" />
 
-`passmanager_stage_plugins(stage)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/preset_passmanagers/plugin.py "view source code")
+`passmanager_stage_plugins(stage)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/preset_passmanagers/plugin.py "view source code")
 
 Return a dict with, for each stage name, the class type of the plugin.
 

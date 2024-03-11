@@ -1,3 +1,11 @@
+---
+title: graph_partition
+description: API reference for qiskit.optimization.applications.ising.graph_partition
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.optimization.applications.ising.graph_partition
+---
+
 <span id="qiskit-optimization-applications-ising-graph-partition" />
 
 # qiskit.optimization.applications.ising.graph\_partition
@@ -11,3 +19,4 @@ Convert graph partitioning instances into Pauli list Deal with Gset format. See 
 | `get_graph_solution`(x)        | Get graph solution from binary string.          |
 | `get_operator`(weight\_matrix) | Generate Hamiltonian for the graph partitioning |
 | `objective_value`(x, w)        | Compute the value of a cut.                     |
+

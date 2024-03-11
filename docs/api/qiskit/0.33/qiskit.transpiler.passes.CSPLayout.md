@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.CSPLayout
 
 <span id="qiskit.transpiler.passes.CSPLayout" />
 
-`CSPLayout(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/passes/layout/csp_layout.py "view source code")
+`CSPLayout(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/passes/layout/csp_layout.py "view source code")
 
 Bases: `qiskit.transpiler.basepasses.AnalysisPass`
 
@@ -47,7 +47,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.CSPLayout.run" />
 
-`CSPLayout.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/passes/layout/csp_layout.py "view source code")
+`CSPLayout.run(dag)`
 
 run the layout method
 

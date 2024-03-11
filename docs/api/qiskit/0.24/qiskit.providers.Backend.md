@@ -12,7 +12,7 @@ python_api_name: qiskit.providers.Backend
 
 <span id="qiskit.providers.Backend" />
 
-`Backend`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/providers/backend.py "view source code")
+`Backend` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/providers/backend.py "view source code")
 
 Base common type for all versioned Backend abstract classes.
 

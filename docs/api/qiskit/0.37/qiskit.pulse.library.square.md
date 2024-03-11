@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.library.square
 
 <span id="qiskit.pulse.library.square" />
 
-`square(duration, amp, freq=None, phase=0, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/pulse/library/discrete.py "view source code")
+`square(duration, amp, freq=None, phase=0, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/pulse/library/discrete.py "view source code")
 
 Generates square wave [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform").
 

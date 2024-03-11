@@ -1,3 +1,11 @@
+---
+title: docplex
+description: API reference for qiskit.optimization.applications.ising.docplex
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.optimization.applications.ising.docplex
+---
+
 <span id="qiskit-optimization-applications-ising-docplex" />
 
 # qiskit.optimization.applications.ising.docplex
@@ -49,3 +57,4 @@ print('tsp objective:', result['energy'] + offset)
 |                                          |                                                     |
 | ---------------------------------------- | --------------------------------------------------- |
 | `get_operator`(mdl\[, auto\_penalty, …]) | Generate Ising Hamiltonian from a model of DOcplex. |
+

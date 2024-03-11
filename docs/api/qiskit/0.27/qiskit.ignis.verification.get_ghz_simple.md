@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.verification.get_ghz_simple
 
 <span id="qiskit.ignis.verification.get_ghz_simple" />
 
-`get_ghz_simple(n, measure=True, full_measurement=True)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/entanglement/linear.py "view source code")
+`get_ghz_simple(n, measure=True, full_measurement=True)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/entanglement/linear.py "view source code")
 
 Creates a linear GHZ state with the option of measurement
 

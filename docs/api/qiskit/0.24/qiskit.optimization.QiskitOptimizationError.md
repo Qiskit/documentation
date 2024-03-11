@@ -12,7 +12,7 @@ python_api_name: qiskit.optimization.QiskitOptimizationError
 
 <span id="qiskit.optimization.QiskitOptimizationError" />
 
-`QiskitOptimizationError(*message)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/exceptions.py "view source code")
+`QiskitOptimizationError(*message)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/exceptions.py "view source code")
 
 Class for errors returned by Qiskit’s optimization module.
 

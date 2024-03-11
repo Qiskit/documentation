@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.list_ops.TensoredOp
 
 <span id="qiskit.opflow.list_ops.TensoredOp" />
 
-`TensoredOp(oplist, coeff=1.0, abelian=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/list_ops/tensored_op.py "view source code")
+`TensoredOp(oplist, coeff=1.0, abelian=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/list_ops/tensored_op.py "view source code")
 
 Bases: [`ListOp`](qiskit.opflow.list_ops.ListOp "qiskit.opflow.list_ops.list_op.ListOp")
 
@@ -34,7 +34,7 @@ Deprecated: A class for lazily representing tensor products of Operators. Often 
 
 <span id="qiskit.opflow.list_ops.TensoredOp.eval" />
 
-`TensoredOp.eval(front=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/list_ops/tensored_op.py "view source code")
+`TensoredOp.eval(front=None)`
 
 Evaluate the Operator’s underlying function, either on a binary string or another Operator. A square binary Operator can be defined as a function taking a binary function to another binary function. This method returns the value of that function for a given StateFn or binary string. For example, `op.eval('0110').eval('1110')` can be seen as querying the Operator’s matrix representation by row 6 and column 14, and will return the complex value at those “indices.” Similarly for a StateFn, `op.eval('1011')` will return the complex value at row 11 of the vector representation of the StateFn, as all StateFns are defined to be evaluated from Zero implicitly (i.e. it is as if `.eval('0000')` is already called implicitly to always “indexing” from column 0).
 
@@ -64,7 +64,7 @@ The output of the `oplist` Operators’ evaluation function, combined with the `
 
 <span id="qiskit.opflow.list_ops.TensoredOp.reduce" />
 
-`TensoredOp.reduce()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/list_ops/tensored_op.py "view source code")
+`TensoredOp.reduce()`
 
 Try collapsing the Operator structure, usually after some type of conversion, e.g. trying to add Operators in a SummedOp or delete needless IGates in a CircuitOp. If no reduction is available, just returns self.
 
@@ -82,7 +82,7 @@ The reduced `OperatorBase`.
 
 <span id="qiskit.opflow.list_ops.TensoredOp.tensor" />
 
-`TensoredOp.tensor(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/list_ops/tensored_op.py "view source code")
+`TensoredOp.tensor(other)`
 
 Return tensor product between self and other, overloaded by `^`. Note: You must be conscious of Qiskit’s big-endian bit printing convention. Meaning, X.tensor(Y) produces an X on qubit 0 and an Y on qubit 1, or X⨂Y, but would produce a QuantumCircuit which looks like
 
@@ -108,7 +108,7 @@ An `OperatorBase` equivalent to the tensor product of self and other.
 
 <span id="qiskit.opflow.list_ops.TensoredOp.to_circuit" />
 
-`TensoredOp.to_circuit()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/list_ops/tensored_op.py "view source code")
+`TensoredOp.to_circuit()`
 
 Returns the quantum circuit, representing the tensored operator.
 
@@ -130,7 +130,7 @@ The circuit representation of the tensored operator.
 
 <span id="qiskit.opflow.list_ops.TensoredOp.to_matrix" />
 
-`TensoredOp.to_matrix(massive=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/list_ops/tensored_op.py "view source code")
+`TensoredOp.to_matrix(massive=False)`
 
 Return NumPy representation of the Operator. Represents the evaluation of the Operator’s underlying function on every combination of basis binary strings. Warn if more than 16 qubits to force having to set `massive=True` if such a large vector is desired.
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.result.marginal_distribution
 
 <span id="qiskit.result.marginal_distribution" />
 
-`marginal_distribution(counts, indices=None, format_marginal=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/result/utils.py "view source code")
+`marginal_distribution(counts, indices=None, format_marginal=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/result/utils.py "view source code")
 
 Marginalize counts from an experiment over some indices of interest.
 

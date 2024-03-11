@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.library.GRZ
 
 <span id="qiskit.circuit.library.GRZ" />
 
-`GRZ(num_qubits, phi)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/generalized_gates/gr.py "view source code")
+`GRZ(num_qubits, phi)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/generalized_gates/gr.py "view source code")
 
 Global RZ gate.
 

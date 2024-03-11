@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter
 
 <span id="qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter" />
 
-`ExpvalMeasMitigatorFitter(result, metadata)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/mitigation/expval/fitter.py "view source code")
+`ExpvalMeasMitigatorFitter(result, metadata)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/mitigation/expval/fitter.py "view source code")
 
 Expectation value measurement error mitigator calibration fitter.
 

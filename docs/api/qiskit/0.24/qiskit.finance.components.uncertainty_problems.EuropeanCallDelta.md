@@ -12,7 +12,7 @@ python_api_name: qiskit.finance.components.uncertainty_problems.EuropeanCallDelt
 
 <span id="qiskit.finance.components.uncertainty_problems.EuropeanCallDelta" />
 
-`EuropeanCallDelta(uncertainty_model, strike_price, i_state=None, i_objective=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/finance/components/uncertainty_problems/european_call_delta.py "view source code")
+`EuropeanCallDelta(uncertainty_model, strike_price, i_state=None, i_objective=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/finance/components/uncertainty_problems/european_call_delta.py "view source code")
 
 The European Call Option Delta.
 

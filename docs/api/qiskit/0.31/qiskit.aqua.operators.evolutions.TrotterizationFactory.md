@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.operators.evolutions.TrotterizationFactory
 
 <span id="qiskit.aqua.operators.evolutions.TrotterizationFactory" />
 
-`TrotterizationFactory`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/evolutions/trotterizations/trotterization_factory.py "view source code")
+`TrotterizationFactory` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/evolutions/trotterizations/trotterization_factory.py "view source code")
 
 Bases: `object`
 
@@ -22,7 +22,7 @@ A factory for conveniently creating TrotterizationBase instances.
 
 <span id="qiskit.aqua.operators.evolutions.TrotterizationFactory.build" />
 
-`static TrotterizationFactory.build(mode='trotter', reps=1)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/evolutions/trotterizations/trotterization_factory.py "view source code")
+`static TrotterizationFactory.build(mode='trotter', reps=1)`
 
 A factory for conveniently creating TrotterizationBase instances.
 

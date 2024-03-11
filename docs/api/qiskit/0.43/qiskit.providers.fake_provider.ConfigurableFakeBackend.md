@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.ConfigurableFakeBackend
 
 <span id="qiskit.providers.fake_provider.ConfigurableFakeBackend" />
 
-`ConfigurableFakeBackend(name, n_qubits, version=None, coupling_map=None, basis_gates=None, qubit_t1=None, qubit_t2=None, qubit_frequency=None, qubit_readout_error=None, single_qubit_gates=None, dt=None, std=None, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/utils/configurable_backend.py "view source code")
+`ConfigurableFakeBackend(name, n_qubits, version=None, coupling_map=None, basis_gates=None, qubit_t1=None, qubit_t2=None, qubit_frequency=None, qubit_readout_error=None, single_qubit_gates=None, dt=None, std=None, seed=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/utils/configurable_backend.py "view source code")
 
 Bases: `FakeBackend`
 
@@ -60,7 +60,7 @@ the configuration for the backend.
 
 <span id="qiskit.providers.fake_provider.ConfigurableFakeBackend.defaults" />
 
-`ConfigurableFakeBackend.defaults()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/utils/configurable_backend.py "view source code")
+`ConfigurableFakeBackend.defaults()`
 
 Return backend defaults.
 
@@ -88,7 +88,7 @@ str
 
 <span id="qiskit.providers.fake_provider.ConfigurableFakeBackend.properties" />
 
-`ConfigurableFakeBackend.properties()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/utils/configurable_backend.py "view source code")
+`ConfigurableFakeBackend.properties()`
 
 Return backend properties
 

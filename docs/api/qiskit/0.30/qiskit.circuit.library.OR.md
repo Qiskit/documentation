@@ -10,13 +10,13 @@ python_api_name: qiskit.circuit.library.OR
 
 <span id="qiskit.circuit.library.OR" />
 
-`OR(num_variable_qubits, flags=None, mcx_mode='noancilla')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/boolean_logic/quantum_or.py "view source code")
+`OR(num_variable_qubits, flags=None, mcx_mode='noancilla')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/boolean_logic/quantum_or.py "view source code")
 
 Bases: `qiskit.circuit.quantumcircuit.QuantumCircuit`
 
 A circuit implementing the logical OR operation on a number of qubits.
 
-For the OR operation the state $\vert 1\rangle$ is interpreted as `True`. The result qubit is flipped, if the state of any variable qubit is `True`. The OR is implemented using a multi-open-controlled X gate (i.e. flips if the state is $\vert 0\rangle$) and applying an X gate on the result qubit. Using a list of flags, qubits can be skipped or negated.
+For the OR operation the state $|1\rangle$ is interpreted as `True`. The result qubit is flipped, if the state of any variable qubit is `True`. The OR is implemented using a multi-open-controlled X gate (i.e. flips if the state is $|0\rangle$) and applying an X gate on the result qubit. Using a list of flags, qubits can be skipped or negated.
 
 The OR gate without special flags:
 

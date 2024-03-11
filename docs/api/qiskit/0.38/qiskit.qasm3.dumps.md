@@ -10,7 +10,7 @@ python_api_name: qiskit.qasm3.dumps
 
 <span id="qiskit.qasm3.dumps" />
 
-`dumps(circuit, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/qasm3/__init__.py "view source code")
+`dumps(circuit, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/qasm3/__init__.py "view source code")
 
 Serialize a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object in an OpenQASM3 string.
 

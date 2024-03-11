@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.Size
 
 <span id="qiskit.transpiler.passes.Size" />
 
-`qiskit.transpiler.passes.Size(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/analysis/size.py "view source code")
+`qiskit.transpiler.passes.Size(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/analysis/size.py "view source code")
 
 Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 

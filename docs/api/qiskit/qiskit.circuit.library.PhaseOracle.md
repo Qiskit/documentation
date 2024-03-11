@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.PhaseOracle
 
 <span id="qiskit.circuit.library.PhaseOracle" />
 
-`qiskit.circuit.library.PhaseOracle(expression, synthesizer=None, var_order=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/phase_oracle.py "view source code")
+`qiskit.circuit.library.PhaseOracle(expression, synthesizer=None, var_order=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/phase_oracle.py "view source code")
 
 Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
@@ -66,29 +66,17 @@ a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitI
 
 QuantumCircuitData
 
-<span id="qiskit.circuit.library.PhaseOracle.extension_lib" />
-
-### extension\_lib
-
-`= 'include "qelib1.inc";'`
-
 <span id="qiskit.circuit.library.PhaseOracle.global_phase" />
 
 ### global\_phase
 
 Return the global phase of the current circuit scope in radians.
 
-<span id="qiskit.circuit.library.PhaseOracle.header" />
-
-### header
-
-`= 'OPENQASM 2.0;'`
-
 <span id="qiskit.circuit.library.PhaseOracle.instances" />
 
 ### instances
 
-`= 248`
+`= 204`
 
 <span id="qiskit.circuit.library.PhaseOracle.layout" />
 
@@ -187,9 +175,6 @@ ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
 ```
 
 To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
-
-```python
-```
 
 ```python
 >>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector

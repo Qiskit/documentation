@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.expectations.PauliExpectation
 
 <span id="qiskit.opflow.expectations.PauliExpectation" />
 
-`PauliExpectation(group_paulis=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/expectations/pauli_expectation.py "view source code")
+`PauliExpectation(group_paulis=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/expectations/pauli_expectation.py "view source code")
 
 Bases: [`qiskit.opflow.expectations.expectation_base.ExpectationBase`](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.expectation_base.ExpectationBase")
 
@@ -26,7 +26,7 @@ An Expectation converter for Pauli-basis observables by changing Pauli measureme
 
 <span id="qiskit.opflow.expectations.PauliExpectation.compute_variance" />
 
-`PauliExpectation.compute_variance(exp_op)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/expectations/pauli_expectation.py "view source code")
+`PauliExpectation.compute_variance(exp_op)`
 
 Compute the variance of the expectation estimator.
 
@@ -46,7 +46,7 @@ The variances or lists thereof (if exp\_op contains ListOps) of the expectation 
 
 <span id="qiskit.opflow.expectations.PauliExpectation.convert" />
 
-`PauliExpectation.convert(operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/expectations/pauli_expectation.py "view source code")
+`PauliExpectation.convert(operator)`
 
 Accepts an Operator and returns a new Operator with the Pauli measurements replaced by diagonal Pauli post-rotation based measurements so they can be evaluated by sampling and averaging.
 

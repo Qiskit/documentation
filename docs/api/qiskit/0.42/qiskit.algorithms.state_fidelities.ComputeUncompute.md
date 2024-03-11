@@ -10,14 +10,14 @@ python_api_name: qiskit.algorithms.state_fidelities.ComputeUncompute
 
 <span id="qiskit.algorithms.state_fidelities.ComputeUncompute" />
 
-`ComputeUncompute(sampler, options=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/state_fidelities/compute_uncompute.py "view source code")
+`ComputeUncompute(sampler, options=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/state_fidelities/compute_uncompute.py "view source code")
 
 Bases: [`qiskit.algorithms.state_fidelities.base_state_fidelity.BaseStateFidelity`](qiskit.algorithms.state_fidelities.BaseStateFidelity "qiskit.algorithms.state_fidelities.base_state_fidelity.BaseStateFidelity")
 
 This class leverages the sampler primitive to calculate the state fidelity of two quantum circuits following the compute-uncompute method (see \[1] for further reference). The fidelity can be defined as the state overlap.
 
 $$
-\vert \langle\psi(x)\vert \phi(y)\rangle\vert ^2
+|\langle\psi(x)|\phi(y)\rangle|^2
 $$
 
 where $x$ and $y$ are optional parametrizations of the states $\psi$ and $\phi$ prepared by the circuits `circuit_1` and `circuit_2`, respectively.
@@ -39,7 +39,7 @@ where $x$ and $y$ are optional parametrizations of the states $\psi$ and $\phi$ 
 
 <span id="qiskit.algorithms.state_fidelities.ComputeUncompute.create_fidelity_circuit" />
 
-`ComputeUncompute.create_fidelity_circuit(circuit_1, circuit_2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/state_fidelities/compute_uncompute.py "view source code")
+`ComputeUncompute.create_fidelity_circuit(circuit_1, circuit_2)`
 
 Combines `circuit_1` and `circuit_2` to create the fidelity circuit following the compute-uncompute method.
 
@@ -66,8 +66,8 @@ Runs asynchronously the state overlap (fidelity) calculation between two (parame
 
 **Parameters**
 
-*   **circuits\_1** – (Parametrized) quantum circuits preparing $\vert \psi\rangle$.
-*   **circuits\_2** – (Parametrized) quantum circuits preparing $\vert \phi\rangle$.
+*   **circuits\_1** – (Parametrized) quantum circuits preparing $|\psi\rangle$.
+*   **circuits\_2** – (Parametrized) quantum circuits preparing $|\phi\rangle$.
 *   **values\_1** – Numerical parameters to be bound to the first set of circuits.
 *   **values\_2** – Numerical parameters to be bound to the second set of circuits.
 *   **options** – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > fidelity’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting.
@@ -80,7 +80,7 @@ Primitive job for the fidelity calculation. The job’s result is an instance of
 
 <span id="qiskit.algorithms.state_fidelities.ComputeUncompute.update_default_options" />
 
-`ComputeUncompute.update_default_options(**options)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/state_fidelities/compute_uncompute.py "view source code")
+`ComputeUncompute.update_default_options(**options)`
 
 Update the fidelity’s default options setting.
 

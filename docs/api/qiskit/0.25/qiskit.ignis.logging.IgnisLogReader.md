@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.logging.IgnisLogReader
 
 <span id="qiskit.ignis.logging.IgnisLogReader" />
 
-`IgnisLogReader`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/logging/ignis_logging.py "view source code")
+`IgnisLogReader` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/logging/ignis_logging.py "view source code")
 
 Class to read from Ignis log files
 

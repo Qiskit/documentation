@@ -10,7 +10,7 @@ python_api_name: qiskit.primitives.SamplerResult
 
 <span id="qiskit.primitives.SamplerResult" />
 
-`qiskit.primitives.SamplerResult(quasi_dists, metadata)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/primitives/base/sampler_result.py "view source code")
+`qiskit.primitives.SamplerResult(quasi_dists, metadata)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/primitives/base/sampler_result.py "view source code")
 
 Bases: `BasePrimitiveResult`
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.utils.get_entangler_map
 
 <span id="qiskit.aqua.utils.get_entangler_map" />
 
-`get_entangler_map(map_type, num_qubits, offset=0)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/utils/entangler_map.py "view source code")
+`get_entangler_map(map_type, num_qubits, offset=0)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/utils/entangler_map.py "view source code")
 
 Utility method to get an entangler map among qubits.
 

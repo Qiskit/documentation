@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.NumTensorFactors
 
 <span id="qiskit.transpiler.passes.NumTensorFactors" />
 
-`NumTensorFactors(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/analysis/num_tensor_factors.py "view source code")
+`NumTensorFactors(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/analysis/num_tensor_factors.py "view source code")
 
 Bases: [`qiskit.transpiler.basepasses.AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
@@ -32,7 +32,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.NumTensorFactors.run" />
 
-`NumTensorFactors.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/analysis/num_tensor_factors.py "view source code")
+`NumTensorFactors.run(dag)`
 
 Run the NumTensorFactors pass on dag.
 

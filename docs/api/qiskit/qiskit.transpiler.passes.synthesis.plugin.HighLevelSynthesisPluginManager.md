@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlu
 
 <span id="qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPluginManager" />
 
-`qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPluginManager`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/passes/synthesis/plugin.py "view source code")
+`qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPluginManager` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/synthesis/plugin.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 

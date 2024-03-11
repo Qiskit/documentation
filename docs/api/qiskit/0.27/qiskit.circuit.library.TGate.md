@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.TGate
 
 <span id="qiskit.circuit.library.TGate" />
 
-`TGate(label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/library/standard_gates/t.py "view source code")
+`TGate(label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/library/standard_gates/t.py "view source code")
 
 Single qubit T gate (Z\*\*0.25).
 

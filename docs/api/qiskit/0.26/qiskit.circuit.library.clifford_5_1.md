@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.clifford_5_1
 
 <span id="qiskit.circuit.library.clifford_5_1" />
 
-`clifford_5_1()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/library/templates/clifford/clifford_5_1.py "view source code")
+`clifford_5_1()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/library/templates/clifford/clifford_5_1.py "view source code")
 
 **Returns**
 

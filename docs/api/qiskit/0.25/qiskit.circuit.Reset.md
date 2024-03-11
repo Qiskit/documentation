@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.Reset
 
 <span id="qiskit.circuit.Reset" />
 
-`Reset`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/reset.py "view source code")
+`Reset` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/reset.py "view source code")
 
 Qubit reset.
 

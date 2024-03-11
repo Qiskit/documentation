@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.variational_forms.VariationalForm
 
 <span id="qiskit.aqua.components.variational_forms.VariationalForm" />
 
-`VariationalForm`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/variational_forms/variational_form.py "view source code")
+`VariationalForm` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/variational_forms/variational_form.py "view source code")
 
 Base class for VariationalForms.
 

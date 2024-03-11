@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.DAGLongestPath
 
 <span id="qiskit.transpiler.passes.DAGLongestPath" />
 
-`qiskit.transpiler.passes.DAGLongestPath(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/analysis/dag_longest_path.py "view source code")
+`qiskit.transpiler.passes.DAGLongestPath(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/analysis/dag_longest_path.py "view source code")
 
 Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 

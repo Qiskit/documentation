@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.CountOps
 
 <span id="qiskit.transpiler.passes.CountOps" />
 
-`qiskit.transpiler.passes.CountOps(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/analysis/count_ops.py "view source code")
+`qiskit.transpiler.passes.CountOps(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/analysis/count_ops.py "view source code")
 
 Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.ConvertConditionsToIfOps
 
 <span id="qiskit.transpiler.passes.ConvertConditionsToIfOps" />
 
-`ConvertConditionsToIfOps(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/utils/convert_conditions_to_if_ops.py "view source code")
+`ConvertConditionsToIfOps(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/utils/convert_conditions_to_if_ops.py "view source code")
 
 Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -32,7 +32,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.ConvertConditionsToIfOps.run" />
 
-`ConvertConditionsToIfOps.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/utils/convert_conditions_to_if_ops.py "view source code")
+`ConvertConditionsToIfOps.run(dag)`
 
 Run a pass on the DAGCircuit. This is implemented by the pass developer.
 

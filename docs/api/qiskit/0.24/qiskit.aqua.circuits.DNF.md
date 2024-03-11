@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.circuits.DNF
 
 <span id="qiskit.aqua.circuits.DNF" />
 
-`DNF(ast, num_vars=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/circuits/boolean_logical_circuits.py "view source code")
+`DNF(ast, num_vars=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/circuits/boolean_logical_circuits.py "view source code")
 
 Class for constructing circuits for Disjunctive Normal Forms
 

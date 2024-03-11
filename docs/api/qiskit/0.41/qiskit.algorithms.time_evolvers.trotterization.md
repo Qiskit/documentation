@@ -1,3 +1,11 @@
+---
+title: trotterization
+description: API reference for qiskit.algorithms.time_evolvers.trotterization
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.algorithms.time_evolvers.trotterization
+---
+
 <span id="qiskit-algorithms-time-evolvers-trotterization" />
 
 # qiskit.algorithms.time\_evolvers.trotterization
@@ -9,3 +17,4 @@ This package contains Trotterization-based Quantum Real Time Evolution algorithm
 |                                                                                                                                          |                                                   |
 | ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
 | [`TrotterQRTE`](qiskit.algorithms.time_evolvers.trotterization.TrotterQRTE "qiskit.algorithms.time_evolvers.trotterization.TrotterQRTE") | Quantum Real Time Evolution using Trotterization. |
+

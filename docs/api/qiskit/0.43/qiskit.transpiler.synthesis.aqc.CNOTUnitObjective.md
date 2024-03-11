@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.synthesis.aqc.CNOTUnitObjective
 
 <span id="qiskit.transpiler.synthesis.aqc.CNOTUnitObjective" />
 
-`CNOTUnitObjective(num_qubits, cnots)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/synthesis/aqc/cnot_unit_objective.py "view source code")
+`CNOTUnitObjective(num_qubits, cnots)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/synthesis/aqc/cnot_unit_objective.py "view source code")
 
 Bases: [`ApproximatingObjective`](qiskit.transpiler.synthesis.aqc.ApproximatingObjective "qiskit.transpiler.synthesis.aqc.approximate.ApproximatingObjective"), `ABC`
 

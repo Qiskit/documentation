@@ -10,7 +10,7 @@ python_api_name: qiskit.optimization.algorithms.CobylaOptimizer
 
 <span id="qiskit.optimization.algorithms.CobylaOptimizer" />
 
-`CobylaOptimizer(rhobeg=1.0, rhoend=0.0001, maxfun=1000, disp=None, catol=0.0002, trials=1, clip=100.0)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/cobyla_optimizer.py "view source code")
+`CobylaOptimizer(rhobeg=1.0, rhoend=0.0001, maxfun=1000, disp=None, catol=0.0002, trials=1, clip=100.0)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/cobyla_optimizer.py "view source code")
 
 Bases: `qiskit.optimization.algorithms.multistart_optimizer.MultiStartOptimizer`
 
@@ -49,7 +49,7 @@ This initializer takes the algorithmic parameters of COBYLA and stores them for 
 
 <span id="qiskit.optimization.algorithms.CobylaOptimizer.get_compatibility_msg" />
 
-`CobylaOptimizer.get_compatibility_msg(problem)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/cobyla_optimizer.py "view source code")
+`CobylaOptimizer.get_compatibility_msg(problem)`
 
 Checks whether a given problem can be solved with this optimizer.
 
@@ -112,7 +112,7 @@ The result of the multi start algorithm applied to the problem.
 
 <span id="qiskit.optimization.algorithms.CobylaOptimizer.solve" />
 
-`CobylaOptimizer.solve(problem)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/cobyla_optimizer.py "view source code")
+`CobylaOptimizer.solve(problem)`
 
 Tries to solves the given problem using the optimizer.
 

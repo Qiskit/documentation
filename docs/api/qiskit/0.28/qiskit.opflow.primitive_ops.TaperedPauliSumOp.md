@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.primitive_ops.TaperedPauliSumOp
 
 <span id="qiskit.opflow.primitive_ops.TaperedPauliSumOp" />
 
-`TaperedPauliSumOp(primitive, z2_symmetries, coeff=1.0)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/primitive_ops/tapered_pauli_sum_op.py "view source code")
+`TaperedPauliSumOp(primitive, z2_symmetries, coeff=1.0)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/primitive_ops/tapered_pauli_sum_op.py "view source code")
 
 Class for PauliSumOp after tapering
 

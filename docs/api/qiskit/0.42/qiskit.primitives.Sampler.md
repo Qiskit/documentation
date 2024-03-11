@@ -10,7 +10,7 @@ python_api_name: qiskit.primitives.Sampler
 
 <span id="qiskit.primitives.Sampler" />
 
-`Sampler(circuits: Iterable[QuantumCircuit] | QuantumCircuit | None = None, parameters: Iterable[Iterable[Parameter]] | None = None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/primitives/sampler.py "view source code")
+`Sampler(circuits: Iterable[QuantumCircuit] | QuantumCircuit | None = None, parameters: Iterable[Iterable[Parameter]] | None = None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/primitives/sampler.py "view source code")
 
 Bases: [`qiskit.primitives.base.base_sampler.BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.base.base_sampler.BaseSampler")
 
@@ -39,7 +39,7 @@ Sampler class.
 
 <span id="qiskit.primitives.Sampler.close" />
 
-`Sampler.close()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/primitives/sampler.py "view source code")
+`Sampler.close()`
 
 Close the session and free resources
 

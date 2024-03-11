@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.core.TransformationType
 
 <span id="qiskit.chemistry.core.TransformationType" />
 
-`TransformationType(value)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/core/hamiltonian.py "view source code")
+`TransformationType(value)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/core/hamiltonian.py "view source code")
 
 Transformation Type enum
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeBurlington
 
 <span id="qiskit.providers.fake_provider.FakeBurlington" />
 
-`FakeBurlington`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/fake_provider/backends/burlington/fake_burlington.py "view source code")
+`FakeBurlington` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/fake_provider/backends/burlington/fake_burlington.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_qasm_backend.FakeQasmBackend`
 

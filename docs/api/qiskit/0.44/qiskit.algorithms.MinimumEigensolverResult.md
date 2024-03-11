@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.MinimumEigensolverResult
 
 <span id="qiskit.algorithms.MinimumEigensolverResult" />
 
-`qiskit.algorithms.MinimumEigensolverResult`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/minimum_eigen_solvers/minimum_eigen_solver.py "view source code")
+`qiskit.algorithms.MinimumEigensolverResult` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/minimum_eigen_solvers/minimum_eigen_solver.py "view source code")
 
 Bases: `AlgorithmResult`
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.library.GaussianSquare
 
 <span id="qiskit.pulse.library.GaussianSquare" />
 
-`GaussianSquare(duration, amp, sigma, width=None, risefall_sigma_ratio=None, name=None, limit_amplitude=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/library/parametric_pulses.py "view source code")
+`GaussianSquare(duration, amp, sigma, width=None, risefall_sigma_ratio=None, name=None, limit_amplitude=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/library/parametric_pulses.py "view source code")
 
 Bases: `qiskit.pulse.library.parametric_pulses.ParametricPulse`
 
@@ -100,7 +100,7 @@ Visualization output data. The returned data type depends on the `plotter`. If m
 
 <span id="qiskit.pulse.library.GaussianSquare.get_waveform" />
 
-`GaussianSquare.get_waveform()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/library/parametric_pulses.py "view source code")
+`GaussianSquare.get_waveform()`
 
 Return a Waveform with samples filled according to the formula that the pulse represents and the parameter values it contains.
 
@@ -124,7 +124,7 @@ Return True iff the instruction is parameterized.
 
 <span id="qiskit.pulse.library.GaussianSquare.validate_parameters" />
 
-`GaussianSquare.validate_parameters()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/library/parametric_pulses.py "view source code")
+`GaussianSquare.validate_parameters()`
 
 Validate parameters.
 

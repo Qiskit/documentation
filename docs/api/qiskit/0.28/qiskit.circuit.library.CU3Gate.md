@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CU3Gate
 
 <span id="qiskit.circuit.library.CU3Gate" />
 
-`CU3Gate(theta, phi, lam, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/u3.py "view source code")
+`CU3Gate(theta, phi, lam, label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/u3.py "view source code")
 
 Controlled-U3 gate (3-parameter two-qubit gate).
 
@@ -29,8 +29,8 @@ q_1: ┤ U3(ϴ,φ,λ) ├
 
 $$
  \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}CU3(\theta, \phi, \lambda)\ q_0, q_1 =
-    I \otimes \vert 0\rangle\langle 0\vert  +
-    U3(\theta,\phi,\lambda) \otimes \vert 1\rangle\langle 1\vert  =
+    I \otimes |0\rangle\langle 0| +
+    U3(\theta,\phi,\lambda) \otimes |1\rangle\langle 1| =
     \begin{pmatrix}
         1 & 0                   & 0 & 0 \\
         0 & \cos(\th)           & 0 & -e^{i\lambda}\sin(\th) \\
@@ -51,8 +51,8 @@ $$
 
   $$
   \begin{split}CU3(\theta, \phi, \lambda)\ q_1, q_0 =
-      \vert 0\rangle\langle 0\vert  \otimes I +
-      \vert 1\rangle\langle 1\vert  \otimes U3(\theta,\phi,\lambda) =
+      |0\rangle\langle 0| \otimes I +
+      |1\rangle\langle 1| \otimes U3(\theta,\phi,\lambda) =
       \begin{pmatrix}
           1 & 0   & 0                  & 0 \\
           0 & 1   & 0                  & 0 \\

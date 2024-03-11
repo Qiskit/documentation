@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.Layout
 
 <span id="qiskit.transpiler.Layout" />
 
-`qiskit.transpiler.Layout(input_dict=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/layout.py "view source code")
+`qiskit.transpiler.Layout(input_dict=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/layout.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 

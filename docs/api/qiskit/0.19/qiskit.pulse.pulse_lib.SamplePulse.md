@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.pulse_lib.SamplePulse
 
 <span id="qiskit.pulse.pulse_lib.SamplePulse" />
 
-`SamplePulse(samples, name=None, epsilon=1e-07)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/sample_pulse.py "view source code")
+`SamplePulse(samples, name=None, epsilon=1e-07)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/sample_pulse.py "view source code")
 
 A pulse specified completely by complex-valued samples; each sample is played for the duration of the backend cycle-time, dt.
 
@@ -54,7 +54,7 @@ Return sample values.
 
 <span id="qiskit.pulse.pulse_lib.SamplePulse.__call__" />
 
-`SamplePulse.__call__(channel)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/sample_pulse.py "view source code")
+`SamplePulse.__call__(channel)`
 
 Call self as a function.
 
@@ -62,14 +62,14 @@ Call self as a function.
 
 <span id="qiskit.pulse.pulse_lib.SamplePulse.draw" />
 
-`SamplePulse.draw(dt=1, style=None, filename=None, interp_method=None, scale=1, interactive=False, scaling=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/sample_pulse.py "view source code")
+`SamplePulse.draw(dt=1, style=None, filename=None, interp_method=None, scale=1, interactive=False, scaling=None)`
 
 Plot the interpolated envelope of pulse.
 
 **Parameters**
 
 *   **dt** (`float`) – Time interval of samples.
-*   **style** (*Optional\[*[*PulseStyle*](qiskit.visualization.pulse.qcstyle#qiskit.visualization.pulse.qcstyle.PulseStyle "qiskit.visualization.pulse.qcstyle.PulseStyle")*]*) – A style sheet to configure plot appearance.
+*   **style** (*Optional\[*[*PulseStyle*](qiskit.visualization.pulse.qcstyle#pulsestyle "qiskit.visualization.pulse.qcstyle.PulseStyle")*]*) – A style sheet to configure plot appearance.
 *   **filename** (`Optional`\[`str`]) – Name required to save pulse image.
 *   **interp\_method** (`Optional`\[`Callable`]) – A function for interpolation.
 *   **scale** (`float`) – Relative visual scaling of waveform amplitudes.

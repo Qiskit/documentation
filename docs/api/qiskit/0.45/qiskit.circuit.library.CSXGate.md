@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CSXGate
 
 <span id="qiskit.circuit.library.CSXGate" />
 
-`qiskit.circuit.library.CSXGate(*args, _force_mutable=False, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/sx.py "view source code")
+`qiskit.circuit.library.CSXGate(*args, _force_mutable=False, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/sx.py "view source code")
 
 Bases: [`SingletonControlledGate`](circuit_singleton#qiskit.circuit.singleton.SingletonControlledGate "qiskit.circuit.singleton.SingletonControlledGate")
 
@@ -31,7 +31,7 @@ q_1: ┤ √X ├
 
 $$
 C\sqrt{X} \ q_0, q_1 =
-I \otimes \vert 0 \rangle\langle 0\vert  + \sqrt{X} \otimes \vert 1 \rangle\langle 1\vert   =
+I \otimes |0 \rangle\langle 0| + \sqrt{X} \otimes |1 \rangle\langle 1|  =
     \begin{pmatrix}
         1 & 0 & 0 & 0 \\
         0 & (1 + i) / 2 & 0 & (1 - i) / 2 \\
@@ -52,7 +52,7 @@ $$
 
   $$
   C\sqrt{X}\ q_1, q_0 =
-      \vert 0 \rangle\langle 0\vert  \otimes I + \vert 1 \rangle\langle 1\vert  \otimes \sqrt{X} =
+      |0 \rangle\langle 0| \otimes I + |1 \rangle\langle 1| \otimes \sqrt{X} =
       \begin{pmatrix}
           1 & 0 & 0 & 0 \\
           0 & 1 & 0 & 0 \\

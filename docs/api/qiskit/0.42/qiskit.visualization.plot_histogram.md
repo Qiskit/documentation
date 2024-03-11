@@ -10,7 +10,7 @@ python_api_name: qiskit.visualization.plot_histogram
 
 <span id="qiskit.visualization.plot_histogram" />
 
-`plot_histogram(data, figsize=(7, 5), color=None, number_to_keep=None, sort='asc', target_string=None, legend=None, bar_labels=True, title=None, ax=None, filename=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/visualization/counts_visualization.py "view source code")
+`plot_histogram(data, figsize=(7, 5), color=None, number_to_keep=None, sort='asc', target_string=None, legend=None, bar_labels=True, title=None, ax=None, filename=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/visualization/counts_visualization.py "view source code")
 
 Plot a histogram of input counts data.
 
@@ -72,13 +72,7 @@ hist2 = plot_histogram(counts, sort='hamming', target_string='001')
 
 ![../\_images/qiskit-visualization-plot\_histogram-1\_00.png](/images/api/qiskit/0.42/qiskit-visualization-plot_histogram-1_00.png)
 
-Fig. 12 ([`png`](_downloads/26deaece4ea494ab9758079b25d5c5dd/qiskit-visualization-plot_histogram-1_00.png), [`hires.png`](_downloads/425c8d385f776bb4c88146d3d019248d/qiskit-visualization-plot_histogram-1_00.hires.png), [`pdf`](_downloads/542540a5fb79520758b101ba87d28589/qiskit-visualization-plot_histogram-1_00.pdf))[¶](#id1 "Permalink to this image")
-
 ![../\_images/qiskit-visualization-plot\_histogram-1\_01.png](/images/api/qiskit/0.42/qiskit-visualization-plot_histogram-1_01.png)
 
-Fig. 13 ([`png`](_downloads/55a3594a89845bca666aee0efef509f8/qiskit-visualization-plot_histogram-1_01.png), [`hires.png`](_downloads/cd3f838a3db20f6b8e2cc0cb6eaefd41/qiskit-visualization-plot_histogram-1_01.hires.png), [`pdf`](_downloads/da4018c246a66cbb9a548ad0b9a7235d/qiskit-visualization-plot_histogram-1_01.pdf))[¶](#id2 "Permalink to this image")
-
 ![../\_images/qiskit-visualization-plot\_histogram-1\_02.png](/images/api/qiskit/0.42/qiskit-visualization-plot_histogram-1_02.png)
-
-Fig. 14 ([`png`](_downloads/efd7c19999031113bdd0e123c41f8323/qiskit-visualization-plot_histogram-1_02.png), [`hires.png`](_downloads/6132c650b158b81004d174a8ab695230/qiskit-visualization-plot_histogram-1_02.hires.png), [`pdf`](_downloads/c7a1bf4fc99ee7b4a413eccb0421d3cf/qiskit-visualization-plot_histogram-1_02.pdf))[¶](#id3 "Permalink to this image")
 

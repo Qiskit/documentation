@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.runtime.ParameterNamespace
 
 <span id="qiskit.providers.ibmq.runtime.ParameterNamespace" />
 
-`ParameterNamespace(params)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.17/qiskit/providers/ibmq/runtime/runtime_program.py "view source code")
+`ParameterNamespace(params)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.17/qiskit/providers/ibmq/runtime/runtime_program.py "view source code")
 
 Bases: `types.SimpleNamespace`
 
@@ -30,7 +30,7 @@ ParameterNamespace constructor.
 
 <span id="qiskit.providers.ibmq.runtime.ParameterNamespace.validate" />
 
-`ParameterNamespace.validate()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.17/qiskit/providers/ibmq/runtime/runtime_program.py "view source code")
+`ParameterNamespace.validate()`
 
 Validate program input values.
 

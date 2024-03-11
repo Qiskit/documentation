@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.preset_passmanagers.common.generate_translati
 
 <span id="qiskit.transpiler.preset_passmanagers.common.generate_translation_passmanager" />
 
-`generate_translation_passmanager(target, basis_gates=None, method='translator', approximation_degree=None, coupling_map=None, backend_props=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None, hls_config=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/preset_passmanagers/common.py "view source code")
+`generate_translation_passmanager(target, basis_gates=None, method='translator', approximation_degree=None, coupling_map=None, backend_props=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None, hls_config=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/preset_passmanagers/common.py "view source code")
 
 Generate a basis translation [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")
 

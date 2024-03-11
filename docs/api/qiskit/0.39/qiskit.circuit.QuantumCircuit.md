@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
 <span id="qiskit.circuit.QuantumCircuit" />
 
-`QuantumCircuit(*regs, name=None, global_phase=0, metadata=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit(*regs, name=None, global_phase=0, metadata=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
 
 Bases: `object`
 
@@ -127,7 +127,7 @@ ancilla: ┤ X ├┤ H ├┤ X ├┤ X ├┤ X ├────────�
 
 <span id="qiskit.circuit.QuantumCircuit.add_bits" />
 
-`QuantumCircuit.add_bits(bits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.add_bits(bits)`
 
 Add Bits to the circuit.
 
@@ -139,7 +139,7 @@ Add Bits to the circuit.
 
 <span id="qiskit.circuit.QuantumCircuit.add_calibration" />
 
-`QuantumCircuit.add_calibration(gate, qubits, schedule, params=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.add_calibration(gate, qubits, schedule, params=None)`
 
 Register a low-level, custom pulse definition for the given gate.
 
@@ -162,7 +162,7 @@ Register a low-level, custom pulse definition for the given gate.
 
 <span id="qiskit.circuit.QuantumCircuit.add_register" />
 
-`QuantumCircuit.add_register(*regs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.add_register(*regs)`
 
 Add registers.
 
@@ -174,7 +174,7 @@ Add registers.
 
 <span id="qiskit.circuit.QuantumCircuit.append" />
 
-`QuantumCircuit.append(instruction, qargs=None, cargs=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.append(instruction, qargs=None, cargs=None)`
 
 Append one or more instructions to the end of the circuit, modifying the circuit in place.
 
@@ -204,7 +204,7 @@ a handle to the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit
 
 <span id="qiskit.circuit.QuantumCircuit.assign_parameters" />
 
-`QuantumCircuit.assign_parameters(parameters, inplace=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.assign_parameters(parameters, inplace=False)`
 
 Assign parameters to new parameters or values.
 
@@ -308,7 +308,7 @@ q_1: ────────────┤ Rx(P[1]) ├
 
 <span id="qiskit.circuit.QuantumCircuit.barrier" />
 
-`QuantumCircuit.barrier(*qargs, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.barrier(*qargs, label=None)`
 
 Apply `Barrier`. If qargs is empty, applies to all qubits in the circuit.
 
@@ -329,7 +329,7 @@ handle to the added instructions.
 
 <span id="qiskit.circuit.QuantumCircuit.bind_parameters" />
 
-`QuantumCircuit.bind_parameters(values)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.bind_parameters(values)`
 
 Assign numeric parameters to values yielding a new circuit.
 
@@ -358,7 +358,7 @@ Copy of self with assignment substitution.
 
 <span id="qiskit.circuit.QuantumCircuit.break_loop" />
 
-`QuantumCircuit.break_loop()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.break_loop()`
 
 Apply `BreakLoopOp`.
 
@@ -382,7 +382,7 @@ A handle to the instruction created.
 
 <span id="qiskit.circuit.QuantumCircuit.cast" />
 
-`static QuantumCircuit.cast(value, type_)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`static QuantumCircuit.cast(value, type_)`
 
 Best effort to cast value to type. Otherwise, returns the value.
 
@@ -394,7 +394,7 @@ Best effort to cast value to type. Otherwise, returns the value.
 
 <span id="qiskit.circuit.QuantumCircuit.cbit_argument_conversion" />
 
-`QuantumCircuit.cbit_argument_conversion(clbit_representation)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.cbit_argument_conversion(clbit_representation)`
 
 Converts several classical bit representations (such as indexes, range, etc.) into a list of classical bits.
 
@@ -414,7 +414,7 @@ List(tuple)
 
 <span id="qiskit.circuit.QuantumCircuit.ccx" />
 
-`QuantumCircuit.ccx(control_qubit1, control_qubit2, target_qubit, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.ccx(control_qubit1, control_qubit2, target_qubit, ctrl_state=None)`
 
 Apply [`CCXGate`](qiskit.circuit.library.CCXGate "qiskit.circuit.library.CCXGate").
 
@@ -439,7 +439,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.ccz" />
 
-`QuantumCircuit.ccz(control_qubit1, control_qubit2, target_qubit, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.ccz(control_qubit1, control_qubit2, target_qubit, label=None, ctrl_state=None)`
 
 Apply [`CCZGate`](qiskit.circuit.library.CCZGate "qiskit.circuit.library.CCZGate").
 
@@ -465,7 +465,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.ch" />
 
-`QuantumCircuit.ch(control_qubit, target_qubit, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.ch(control_qubit, target_qubit, label=None, ctrl_state=None)`
 
 Apply [`CHGate`](qiskit.circuit.library.CHGate "qiskit.circuit.library.CHGate").
 
@@ -490,7 +490,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.clear" />
 
-`QuantumCircuit.clear()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.clear()`
 
 Clear all instructions in self.
 
@@ -504,7 +504,7 @@ Clearing the circuits will keep the metadata and calibrations.
 
 <span id="qiskit.circuit.QuantumCircuit.cls_instances" />
 
-`classmethod QuantumCircuit.cls_instances()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`classmethod QuantumCircuit.cls_instances()`
 
 Return the current number of instances of this class, useful for auto naming.
 
@@ -516,7 +516,7 @@ Return the current number of instances of this class, useful for auto naming.
 
 <span id="qiskit.circuit.QuantumCircuit.cls_prefix" />
 
-`classmethod QuantumCircuit.cls_prefix()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`classmethod QuantumCircuit.cls_prefix()`
 
 Return the prefix to use for auto naming.
 
@@ -528,7 +528,7 @@ Return the prefix to use for auto naming.
 
 <span id="qiskit.circuit.QuantumCircuit.cnot" />
 
-`QuantumCircuit.cnot(control_qubit, target_qubit, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.cnot(control_qubit, target_qubit, label=None, ctrl_state=None)`
 
 Apply [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate").
 
@@ -557,7 +557,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.combine" />
 
-`QuantumCircuit.combine(rhs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.combine(rhs)`
 
 DEPRECATED - Returns rhs appended to self if self contains compatible registers.
 
@@ -585,7 +585,7 @@ Returns a new QuantumCircuit object
 
 <span id="qiskit.circuit.QuantumCircuit.compose" />
 
-`QuantumCircuit.compose(other, qubits=None, clbits=None, front=False, inplace=False, wrap=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.compose(other, qubits=None, clbits=None, front=False, inplace=False, wrap=False)`
 
 Compose circuit with `other` circuit or instruction, optionally permuting wires.
 
@@ -641,7 +641,7 @@ lcr_1: 0 ═══════════                           lcr_1: 0 �
 
 <span id="qiskit.circuit.QuantumCircuit.continue_loop" />
 
-`QuantumCircuit.continue_loop()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.continue_loop()`
 
 Apply `ContinueLoopOp`.
 
@@ -665,7 +665,7 @@ A handle to the instruction created.
 
 <span id="qiskit.circuit.QuantumCircuit.control" />
 
-`QuantumCircuit.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
 Control this circuit on `num_ctrl_qubits` qubits.
 
@@ -691,7 +691,7 @@ The controlled version of this circuit.
 
 <span id="qiskit.circuit.QuantumCircuit.copy" />
 
-`QuantumCircuit.copy(name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.copy(name=None)`
 
 Copy the circuit.
 
@@ -711,7 +711,7 @@ a deepcopy of the current circuit, with the specified name
 
 <span id="qiskit.circuit.QuantumCircuit.copy_empty_like" />
 
-`QuantumCircuit.copy_empty_like(name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.copy_empty_like(name=None)`
 
 Return a copy of self with the same structure but empty.
 
@@ -737,7 +737,7 @@ An empty copy of self.
 
 <span id="qiskit.circuit.QuantumCircuit.count_ops" />
 
-`QuantumCircuit.count_ops()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.count_ops()`
 
 Count each operation kind in the circuit.
 
@@ -753,7 +753,7 @@ OrderedDict
 
 <span id="qiskit.circuit.QuantumCircuit.cp" />
 
-`QuantumCircuit.cp(theta, control_qubit, target_qubit, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.cp(theta, control_qubit, target_qubit, label=None, ctrl_state=None)`
 
 Apply [`CPhaseGate`](qiskit.circuit.library.CPhaseGate "qiskit.circuit.library.CPhaseGate").
 
@@ -779,7 +779,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.crx" />
 
-`QuantumCircuit.crx(theta, control_qubit, target_qubit, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.crx(theta, control_qubit, target_qubit, label=None, ctrl_state=None)`
 
 Apply [`CRXGate`](qiskit.circuit.library.CRXGate "qiskit.circuit.library.CRXGate").
 
@@ -805,7 +805,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.cry" />
 
-`QuantumCircuit.cry(theta, control_qubit, target_qubit, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.cry(theta, control_qubit, target_qubit, label=None, ctrl_state=None)`
 
 Apply [`CRYGate`](qiskit.circuit.library.CRYGate "qiskit.circuit.library.CRYGate").
 
@@ -831,7 +831,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.crz" />
 
-`QuantumCircuit.crz(theta, control_qubit, target_qubit, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.crz(theta, control_qubit, target_qubit, label=None, ctrl_state=None)`
 
 Apply [`CRZGate`](qiskit.circuit.library.CRZGate "qiskit.circuit.library.CRZGate").
 
@@ -857,7 +857,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.cs" />
 
-`QuantumCircuit.cs(control_qubit, target_qubit, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.cs(control_qubit, target_qubit, label=None, ctrl_state=None)`
 
 Apply [`CSGate`](qiskit.circuit.library.CSGate "qiskit.circuit.library.CSGate").
 
@@ -882,7 +882,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.csdg" />
 
-`QuantumCircuit.csdg(control_qubit, target_qubit, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.csdg(control_qubit, target_qubit, label=None, ctrl_state=None)`
 
 Apply [`CSdgGate`](qiskit.circuit.library.CSdgGate "qiskit.circuit.library.CSdgGate").
 
@@ -907,7 +907,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.cswap" />
 
-`QuantumCircuit.cswap(control_qubit, target_qubit1, target_qubit2, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.cswap(control_qubit, target_qubit1, target_qubit2, label=None, ctrl_state=None)`
 
 Apply [`CSwapGate`](qiskit.circuit.library.CSwapGate "qiskit.circuit.library.CSwapGate").
 
@@ -933,7 +933,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.csx" />
 
-`QuantumCircuit.csx(control_qubit, target_qubit, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.csx(control_qubit, target_qubit, label=None, ctrl_state=None)`
 
 Apply [`CSXGate`](qiskit.circuit.library.CSXGate "qiskit.circuit.library.CSXGate").
 
@@ -958,7 +958,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.cu" />
 
-`QuantumCircuit.cu(theta, phi, lam, gamma, control_qubit, target_qubit, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.cu(theta, phi, lam, gamma, control_qubit, target_qubit, label=None, ctrl_state=None)`
 
 Apply [`CUGate`](qiskit.circuit.library.CUGate "qiskit.circuit.library.CUGate").
 
@@ -987,7 +987,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.cu1" />
 
-`QuantumCircuit.cu1(theta, control_qubit, target_qubit, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.cu1(theta, control_qubit, target_qubit, label=None, ctrl_state=None)`
 
 Apply [`CU1Gate`](qiskit.circuit.library.CU1Gate "qiskit.circuit.library.CU1Gate").
 
@@ -1013,7 +1013,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.cu3" />
 
-`QuantumCircuit.cu3(theta, phi, lam, control_qubit, target_qubit, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.cu3(theta, phi, lam, control_qubit, target_qubit, label=None, ctrl_state=None)`
 
 Apply [`CU3Gate`](qiskit.circuit.library.CU3Gate "qiskit.circuit.library.CU3Gate").
 
@@ -1041,7 +1041,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.cx" />
 
-`QuantumCircuit.cx(control_qubit, target_qubit, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.cx(control_qubit, target_qubit, label=None, ctrl_state=None)`
 
 Apply [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate").
 
@@ -1066,7 +1066,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.cy" />
 
-`QuantumCircuit.cy(control_qubit, target_qubit, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.cy(control_qubit, target_qubit, label=None, ctrl_state=None)`
 
 Apply [`CYGate`](qiskit.circuit.library.CYGate "qiskit.circuit.library.CYGate").
 
@@ -1091,7 +1091,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.cz" />
 
-`QuantumCircuit.cz(control_qubit, target_qubit, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.cz(control_qubit, target_qubit, label=None, ctrl_state=None)`
 
 Apply [`CZGate`](qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate").
 
@@ -1116,7 +1116,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.dcx" />
 
-`QuantumCircuit.dcx(qubit1, qubit2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.dcx(qubit1, qubit2)`
 
 Apply [`DCXGate`](qiskit.circuit.library.DCXGate "qiskit.circuit.library.DCXGate").
 
@@ -1139,7 +1139,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.decompose" />
 
-`QuantumCircuit.decompose(gates_to_decompose=None, reps=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.decompose(gates_to_decompose=None, reps=1)`
 
 Call a decomposition pass on this circuit, to decompose one level (shallow decompose).
 
@@ -1160,7 +1160,7 @@ a circuit one level decomposed
 
 <span id="qiskit.circuit.QuantumCircuit.delay" />
 
-`QuantumCircuit.delay(duration, qarg=None, unit='dt')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.delay(duration, qarg=None, unit='dt')`
 
 Apply [`Delay`](qiskit.circuit.Delay "qiskit.circuit.Delay"). If qarg is None, applies to all qubits. When applying to multiple qubits, delays with the same duration will be created.
 
@@ -1186,7 +1186,7 @@ handle to the added instructions.
 
 <span id="qiskit.circuit.QuantumCircuit.depth" />
 
-`QuantumCircuit.depth(filter_function=<function QuantumCircuit.<lambda>>)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.depth(filter_function=<function QuantumCircuit.<lambda>>)`
 
 Return circuit depth (i.e., length of critical path).
 
@@ -1237,7 +1237,7 @@ the diagonal gate which was attached to the circuit.
 
 <span id="qiskit.circuit.QuantumCircuit.draw" />
 
-`QuantumCircuit.draw(output=None, scale=None, filename=None, style=None, interactive=False, plot_barriers=True, reverse_bits=False, justify=None, vertical_compression='medium', idle_wires=True, with_layout=True, fold=None, ax=None, initial_state=False, cregbundle=None, wire_order=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.draw(output=None, scale=None, filename=None, style=None, interactive=False, plot_barriers=True, reverse_bits=False, justify=None, vertical_compression='medium', idle_wires=True, with_layout=True, fold=None, ax=None, initial_state=False, cregbundle=None, wire_order=None)`
 
 Draw the quantum circuit. Use the output parameter to choose the drawing format:
 
@@ -1312,7 +1312,7 @@ qc.draw(output='mpl', style={'backgroundcolor': '#EEEEEE'})
 
 <span id="qiskit.circuit.QuantumCircuit.ecr" />
 
-`QuantumCircuit.ecr(qubit1, qubit2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.ecr(qubit1, qubit2)`
 
 Apply [`ECRGate`](qiskit.circuit.library.ECRGate "qiskit.circuit.library.ECRGate").
 
@@ -1335,7 +1335,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.extend" />
 
-`QuantumCircuit.extend(rhs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.extend(rhs)`
 
 DEPRECATED - Append QuantumCircuit to the RHS if it contains compatible registers.
 
@@ -1363,7 +1363,7 @@ Returns this QuantumCircuit object (which has been modified)
 
 <span id="qiskit.circuit.QuantumCircuit.find_bit" />
 
-`QuantumCircuit.find_bit(bit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.find_bit(bit)`
 
 Find locations in the circuit which can be used to reference a given `Bit`.
 
@@ -1392,13 +1392,9 @@ The circuit index of an [`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.cir
 
 ### for\_loop
 
-##### for\_loop
-
 <span id="qiskit.circuit.QuantumCircuit.for_loop" />
 
-`QuantumCircuit.for_loop(indexset: Iterable[int], loop_parameter: Optional[qiskit.circuit.parameter.Parameter], body: None, qubits: None, clbits: None, *, label: Optional[str]) → qiskit.circuit.controlflow.for_loop.ForLoopContext`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
-
-<span id="qiskit.circuit.QuantumCircuit.for_loop" />
+`QuantumCircuit.for_loop(indexset: Iterable[int], loop_parameter: Optional[qiskit.circuit.parameter.Parameter], body: None, qubits: None, clbits: None, *, label: Optional[str]) → qiskit.circuit.controlflow.for_loop.ForLoopContext`
 
 `QuantumCircuit.for_loop(indexset: Iterable[int], loop_parameter: Optional[qiskit.circuit.parameter.Parameter], body: QuantumCircuit, qubits: Sequence[Union[qiskit.circuit.quantumregister.Qubit, qiskit.circuit.quantumregister.QuantumRegister, int, slice, Sequence[Union[qiskit.circuit.quantumregister.Qubit, int]]]], clbits: Sequence[Union[qiskit.circuit.classicalregister.Clbit, qiskit.circuit.classicalregister.ClassicalRegister, int, slice, Sequence[Union[qiskit.circuit.classicalregister.Clbit, int]]]], *, label: Optional[str]) → qiskit.circuit.instructionset.InstructionSet`
 
@@ -1453,7 +1449,7 @@ depending on the call signature, either a context manager for creating the for l
 
 <span id="qiskit.circuit.QuantumCircuit.fredkin" />
 
-`QuantumCircuit.fredkin(control_qubit, target_qubit1, target_qubit2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.fredkin(control_qubit, target_qubit1, target_qubit2)`
 
 Apply [`CSwapGate`](qiskit.circuit.library.CSwapGate "qiskit.circuit.library.CSwapGate").
 
@@ -1481,7 +1477,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.from_qasm_file" />
 
-`static QuantumCircuit.from_qasm_file(path)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`static QuantumCircuit.from_qasm_file(path)`
 
 Take in a QASM file and generate a QuantumCircuit object.
 
@@ -1501,7 +1497,7 @@ The QuantumCircuit object for the input QASM
 
 <span id="qiskit.circuit.QuantumCircuit.from_qasm_str" />
 
-`static QuantumCircuit.from_qasm_str(qasm_str)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`static QuantumCircuit.from_qasm_str(qasm_str)`
 
 Take in a QASM string and generate a QuantumCircuit object.
 
@@ -1521,7 +1517,7 @@ The QuantumCircuit object for the input QASM
 
 <span id="qiskit.circuit.QuantumCircuit.get_instructions" />
 
-`QuantumCircuit.get_instructions(name)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.get_instructions(name)`
 
 Get instructions matching name.
 
@@ -1541,7 +1537,7 @@ list(tuple)
 
 <span id="qiskit.circuit.QuantumCircuit.h" />
 
-`QuantumCircuit.h(qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.h(qubit)`
 
 Apply [`HGate`](qiskit.circuit.library.HGate "qiskit.circuit.library.HGate").
 
@@ -1571,7 +1567,7 @@ Apply hamiltonian evolution to qubits.
 
 <span id="qiskit.circuit.QuantumCircuit.has_calibration_for" />
 
-`QuantumCircuit.has_calibration_for(instr_context)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.has_calibration_for(instr_context)`
 
 Return True if the circuit has a calibration defined for the instruction context. In this case, the operation does not need to be translated to the device basis.
 
@@ -1579,7 +1575,7 @@ Return True if the circuit has a calibration defined for the instruction context
 
 <span id="qiskit.circuit.QuantumCircuit.has_register" />
 
-`QuantumCircuit.has_register(register)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.has_register(register)`
 
 Test if this circuit has the register r.
 
@@ -1599,7 +1595,7 @@ bool
 
 <span id="qiskit.circuit.QuantumCircuit.i" />
 
-`QuantumCircuit.i(qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.i(qubit)`
 
 Apply [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate").
 
@@ -1621,7 +1617,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.id" />
 
-`QuantumCircuit.id(qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.id(qubit)`
 
 Apply [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate").
 
@@ -1647,7 +1643,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.if_else" />
 
-`QuantumCircuit.if_else(condition, true_body, false_body, qubits, clbits, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.if_else(condition, true_body, false_body, qubits, clbits, label=None)`
 
 Apply `IfElseOp`.
 
@@ -1691,13 +1687,9 @@ A handle to the instruction created.
 
 ### if\_test
 
-##### if\_test
-
 <span id="qiskit.circuit.QuantumCircuit.if_test" />
 
-`QuantumCircuit.if_test(condition: Tuple[Union[qiskit.circuit.classicalregister.ClassicalRegister, qiskit.circuit.classicalregister.Clbit], int], true_body: None, qubits: None, clbits: None, *, label: Optional[str]) → qiskit.circuit.controlflow.if_else.IfContext`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
-
-<span id="qiskit.circuit.QuantumCircuit.if_test" />
+`QuantumCircuit.if_test(condition: Tuple[Union[qiskit.circuit.classicalregister.ClassicalRegister, qiskit.circuit.classicalregister.Clbit], int], true_body: None, qubits: None, clbits: None, *, label: Optional[str]) → qiskit.circuit.controlflow.if_else.IfContext`
 
 `QuantumCircuit.if_test(condition: Tuple[Union[qiskit.circuit.classicalregister.ClassicalRegister, qiskit.circuit.classicalregister.Clbit], int], true_body: QuantumCircuit, qubits: Sequence[Union[qiskit.circuit.quantumregister.Qubit, qiskit.circuit.quantumregister.QuantumRegister, int, slice, Sequence[Union[qiskit.circuit.quantumregister.Qubit, int]]]], clbits: Sequence[Union[qiskit.circuit.classicalregister.Clbit, qiskit.circuit.classicalregister.ClassicalRegister, int, slice, Sequence[Union[qiskit.circuit.classicalregister.Clbit, int]]]], *, label: Optional[str] = 'None') → qiskit.circuit.instructionset.InstructionSet`
 
@@ -1759,15 +1751,15 @@ A handle to the instruction created.
 
 Initialize qubits in a specific state.
 
-Qubit initialization is done by first resetting the qubits to $\vert 0\rangle$ followed by calling `qiskit.extensions.StatePreparation` class to prepare the qubits in a specified state. Both these steps are included in the [`qiskit.extensions.Initialize`](qiskit.extensions.Initialize "qiskit.extensions.Initialize") instruction.
+Qubit initialization is done by first resetting the qubits to $|0\rangle$ followed by calling `qiskit.extensions.StatePreparation` class to prepare the qubits in a specified state. Both these steps are included in the [`qiskit.extensions.Initialize`](qiskit.extensions.Initialize "qiskit.extensions.Initialize") instruction.
 
 **Parameters**
 
 *   **params** (*str or list or int*) –
 
-    *   str: labels of basis states of the Pauli eigenstates Z, X, Y. See [`Statevector.from_label()`](qiskit.quantum_info.Statevector#from_label "qiskit.quantum_info.Statevector.from_label"). Notice the order of the labels is reversed with respect to the qubit index to be applied to. Example label ‘01’ initializes the qubit zero to $\vert 1\rangle$ and the qubit one to $\vert 0\rangle$.
+    *   str: labels of basis states of the Pauli eigenstates Z, X, Y. See [`Statevector.from_label()`](qiskit.quantum_info.Statevector#from_label "qiskit.quantum_info.Statevector.from_label"). Notice the order of the labels is reversed with respect to the qubit index to be applied to. Example label ‘01’ initializes the qubit zero to $|1\rangle$ and the qubit one to $|0\rangle$.
     *   list: vector of complex amplitudes to initialize to.
-    *   int: an integer that is used as a bitmap indicating which qubits to initialize to $\vert 1\rangle$. Example: setting params to 5 would initialize qubit 0 and qubit 2 to $\vert 1\rangle$ and qubit 1 to $\vert 0\rangle$.
+    *   int: an integer that is used as a bitmap indicating which qubits to initialize to $|1\rangle$. Example: setting params to 5 would initialize qubit 0 and qubit 2 to $|1\rangle$ and qubit 1 to $|0\rangle$.
 
 *   **qubits** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")  *or*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit") *or int*) –
 
@@ -1786,7 +1778,7 @@ a handle to the instruction that was just initialized
 
 **Examples**
 
-Prepare a qubit in the state $(\vert 0\rangle - \vert 1\rangle) / \sqrt{2}$.
+Prepare a qubit in the state $(|0\rangle - |1\rangle) / \sqrt{2}$.
 
 ```python
 import numpy as np
@@ -1811,7 +1803,7 @@ q_0: ┤ Initialize(0.70711,-0.70711) ├
      └──────────────────────────────┘
 ```
 
-Initialize from a string two qubits in the state $\vert 10\rangle$. The order of the labels is reversed with respect to qubit index. More information about labels for basis states are in [`Statevector.from_label()`](qiskit.quantum_info.Statevector#from_label "qiskit.quantum_info.Statevector.from_label").
+Initialize from a string two qubits in the state $|10\rangle$. The order of the labels is reversed with respect to qubit index. More information about labels for basis states are in [`Statevector.from_label()`](qiskit.quantum_info.Statevector#from_label "qiskit.quantum_info.Statevector.from_label").
 
 ```python
 import numpy as np
@@ -1873,7 +1865,7 @@ q_1: ┤1                                   ├
 
 <span id="qiskit.circuit.QuantumCircuit.inverse" />
 
-`QuantumCircuit.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.inverse()`
 
 Invert (take adjoint of) this circuit.
 
@@ -1975,7 +1967,7 @@ the isometry is attached to the quantum circuit.
 
 <span id="qiskit.circuit.QuantumCircuit.iswap" />
 
-`QuantumCircuit.iswap(qubit1, qubit2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.iswap(qubit1, qubit2)`
 
 Apply [`iSwapGate`](qiskit.circuit.library.iSwapGate "qiskit.circuit.library.iSwapGate").
 
@@ -1998,7 +1990,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.mcp" />
 
-`QuantumCircuit.mcp(lam, control_qubits, target_qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.mcp(lam, control_qubits, target_qubit)`
 
 Apply [`MCPhaseGate`](qiskit.circuit.library.MCPhaseGate "qiskit.circuit.library.MCPhaseGate").
 
@@ -2084,7 +2076,7 @@ Apply Multiple-Controlled Z rotation gate
 
 <span id="qiskit.circuit.QuantumCircuit.mct" />
 
-`QuantumCircuit.mct(control_qubits, target_qubit, ancilla_qubits=None, mode='noancilla')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.mct(control_qubits, target_qubit, ancilla_qubits=None, mode='noancilla')`
 
 Apply [`MCXGate`](qiskit.circuit.library.MCXGate "qiskit.circuit.library.MCXGate").
 
@@ -2125,7 +2117,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.mcu1" />
 
-`QuantumCircuit.mcu1(lam, control_qubits, target_qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.mcu1(lam, control_qubits, target_qubit)`
 
 Apply `MCU1Gate`.
 
@@ -2149,7 +2141,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.mcx" />
 
-`QuantumCircuit.mcx(control_qubits, target_qubit, ancilla_qubits=None, mode='noancilla')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.mcx(control_qubits, target_qubit, ancilla_qubits=None, mode='noancilla')`
 
 Apply [`MCXGate`](qiskit.circuit.library.MCXGate "qiskit.circuit.library.MCXGate").
 
@@ -2186,7 +2178,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.measure" />
 
-`QuantumCircuit.measure(qubit, cbit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.measure(qubit, cbit)`
 
 Measure quantum bit into classical bit (tuples).
 
@@ -2211,7 +2203,7 @@ handle to the added instructions.
 
 <span id="qiskit.circuit.QuantumCircuit.measure_active" />
 
-`QuantumCircuit.measure_active(inplace=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.measure_active(inplace=True)`
 
 Adds measurement to all non-idle qubits. Creates a new ClassicalRegister with a size equal to the number of non-idle qubits being measured.
 
@@ -2233,7 +2225,7 @@ Returns circuit with measurements when inplace = False.
 
 <span id="qiskit.circuit.QuantumCircuit.measure_all" />
 
-`QuantumCircuit.measure_all(inplace=True, add_bits=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.measure_all(inplace=True, add_bits=True)`
 
 Adds measurement to all qubits.
 
@@ -2262,7 +2254,7 @@ Returns circuit with measurements when `inplace=False`.
 
 <span id="qiskit.circuit.QuantumCircuit.ms" />
 
-`QuantumCircuit.ms(theta, qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.ms(theta, qubits)`
 
 Apply [`MSGate`](qiskit.circuit.library.MSGate "qiskit.circuit.library.generalized_gates.gms.MSGate").
 
@@ -2285,7 +2277,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.num_connected_components" />
 
-`QuantumCircuit.num_connected_components(unitary_only=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.num_connected_components(unitary_only=False)`
 
 How many non-entangled subcircuits can the circuit be factored to.
 
@@ -2305,7 +2297,7 @@ int
 
 <span id="qiskit.circuit.QuantumCircuit.num_nonlocal_gates" />
 
-`QuantumCircuit.num_nonlocal_gates()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.num_nonlocal_gates()`
 
 Return number of non-local gates (i.e. involving 2+ qubits).
 
@@ -2319,7 +2311,7 @@ Conditional nonlocal gates are also included.
 
 <span id="qiskit.circuit.QuantumCircuit.num_tensor_factors" />
 
-`QuantumCircuit.num_tensor_factors()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.num_tensor_factors()`
 
 Computes the number of tensor factors in the unitary (quantum) part of the circuit only.
 
@@ -2335,7 +2327,7 @@ This is here for backwards compatibility, and will be removed in a future releas
 
 <span id="qiskit.circuit.QuantumCircuit.num_unitary_factors" />
 
-`QuantumCircuit.num_unitary_factors()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.num_unitary_factors()`
 
 Computes the number of tensor factors in the unitary (quantum) part of the circuit only.
 
@@ -2347,7 +2339,7 @@ Computes the number of tensor factors in the unitary (quantum) part of the circu
 
 <span id="qiskit.circuit.QuantumCircuit.p" />
 
-`QuantumCircuit.p(theta, qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.p(theta, qubit)`
 
 Apply [`PhaseGate`](qiskit.circuit.library.PhaseGate "qiskit.circuit.library.PhaseGate").
 
@@ -2370,7 +2362,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.pauli" />
 
-`QuantumCircuit.pauli(pauli_string, qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.pauli(pauli_string, qubits)`
 
 Apply [`PauliGate`](qiskit.circuit.library.PauliGate "qiskit.circuit.library.PauliGate").
 
@@ -2391,7 +2383,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.power" />
 
-`QuantumCircuit.power(power, matrix_power=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.power(power, matrix_power=False)`
 
 Raise this circuit to the power of `power`.
 
@@ -2429,9 +2421,9 @@ This class implements a state preparing unitary. Unlike [`qiskit.extensions.Init
 *   **state** (*str or list or int or* [*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")) –
 
     *   Statevector: Statevector to initialize to.
-    *   str: labels of basis states of the Pauli eigenstates Z, X, Y. See [`Statevector.from_label()`](qiskit.quantum_info.Statevector#from_label "qiskit.quantum_info.Statevector.from_label"). Notice the order of the labels is reversed with respect to the qubit index to be applied to. Example label ‘01’ initializes the qubit zero to $\vert 1\rangle$ and the qubit one to $\vert 0\rangle$.
+    *   str: labels of basis states of the Pauli eigenstates Z, X, Y. See [`Statevector.from_label()`](qiskit.quantum_info.Statevector#from_label "qiskit.quantum_info.Statevector.from_label"). Notice the order of the labels is reversed with respect to the qubit index to be applied to. Example label ‘01’ initializes the qubit zero to $|1\rangle$ and the qubit one to $|0\rangle$.
     *   list: vector of complex amplitudes to initialize to.
-    *   int: an integer that is used as a bitmap indicating which qubits to initialize to $\vert 1\rangle$. Example: setting params to 5 would initialize qubit 0 and qubit 2 to $\vert 1\rangle$ and qubit 1 to $\vert 0\rangle$.
+    *   int: an integer that is used as a bitmap indicating which qubits to initialize to $|1\rangle$. Example: setting params to 5 would initialize qubit 0 and qubit 2 to $|1\rangle$ and qubit 1 to $|0\rangle$.
 
 *   **qubits** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")  *or*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit") *or int*) –
 
@@ -2452,7 +2444,7 @@ a handle to the instruction that was just initialized
 
 **Examples**
 
-Prepare a qubit in the state $(\vert 0\rangle - \vert 1\rangle) / \sqrt{2}$.
+Prepare a qubit in the state $(|0\rangle - |1\rangle) / \sqrt{2}$.
 
 ```python
 import numpy as np
@@ -2477,7 +2469,7 @@ q_0: ┤ State Preparation(0.70711,-0.70711) ├
      └─────────────────────────────────────┘
 ```
 
-Prepare from a string two qubits in the state $\vert 10\rangle$. The order of the labels is reversed with respect to qubit index. More information about labels for basis states are in [`Statevector.from_label()`](qiskit.quantum_info.Statevector#from_label "qiskit.quantum_info.Statevector.from_label").
+Prepare from a string two qubits in the state $|10\rangle$. The order of the labels is reversed with respect to qubit index. More information about labels for basis states are in [`Statevector.from_label()`](qiskit.quantum_info.Statevector#from_label "qiskit.quantum_info.Statevector.from_label").
 
 ```python
 import numpy as np
@@ -2531,7 +2523,7 @@ q_1: ┤1                                          ├
 
 <span id="qiskit.circuit.QuantumCircuit.qasm" />
 
-`QuantumCircuit.qasm(formatted=False, filename=None, encoding=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.qasm(formatted=False, filename=None, encoding=None)`
 
 Return OpenQASM string.
 
@@ -2558,7 +2550,7 @@ str
 
 <span id="qiskit.circuit.QuantumCircuit.qbit_argument_conversion" />
 
-`QuantumCircuit.qbit_argument_conversion(qubit_representation)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.qbit_argument_conversion(qubit_representation)`
 
 Converts several qubit representations (such as indexes, range, etc.) into a list of qubits.
 
@@ -2578,7 +2570,7 @@ List([Qubit](qiskit.circuit.Qubit "qiskit.circuit.Qubit"))
 
 <span id="qiskit.circuit.QuantumCircuit.qubit_duration" />
 
-`QuantumCircuit.qubit_duration(*qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.qubit_duration(*qubits)`
 
 Return the duration between the start and stop time of the first and last instructions, excluding delays, over the supplied qubits. Its time unit is `self.unit`.
 
@@ -2598,7 +2590,7 @@ Return the duration between the first start and last stop time of non-delay inst
 
 <span id="qiskit.circuit.QuantumCircuit.qubit_start_time" />
 
-`QuantumCircuit.qubit_start_time(*qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.qubit_start_time(*qubits)`
 
 Return the start time of the first instruction, excluding delays, over the supplied qubits. Its time unit is `self.unit`.
 
@@ -2625,7 +2617,7 @@ Return the start time of the first instruction, excluding delays, over the qubit
 
 <span id="qiskit.circuit.QuantumCircuit.qubit_stop_time" />
 
-`QuantumCircuit.qubit_stop_time(*qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.qubit_stop_time(*qubits)`
 
 Return the stop time of the last instruction, excluding delays, over the supplied qubits. Its time unit is `self.unit`.
 
@@ -2652,7 +2644,7 @@ Return the stop time of the last instruction, excluding delays, over the qubits
 
 <span id="qiskit.circuit.QuantumCircuit.r" />
 
-`QuantumCircuit.r(theta, phi, qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.r(theta, phi, qubit)`
 
 Apply [`RGate`](qiskit.circuit.library.RGate "qiskit.circuit.library.RGate").
 
@@ -2676,7 +2668,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.rcccx" />
 
-`QuantumCircuit.rcccx(control_qubit1, control_qubit2, control_qubit3, target_qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.rcccx(control_qubit1, control_qubit2, control_qubit3, target_qubit)`
 
 Apply [`RC3XGate`](qiskit.circuit.library.RC3XGate "qiskit.circuit.library.RC3XGate").
 
@@ -2701,7 +2693,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.rccx" />
 
-`QuantumCircuit.rccx(control_qubit1, control_qubit2, target_qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.rccx(control_qubit1, control_qubit2, target_qubit)`
 
 Apply [`RCCXGate`](qiskit.circuit.library.RCCXGate "qiskit.circuit.library.RCCXGate").
 
@@ -2725,7 +2717,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.remove_final_measurements" />
 
-`QuantumCircuit.remove_final_measurements(inplace=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.remove_final_measurements(inplace=True)`
 
 Removes final measurements and barriers on all qubits if they are present. Deletes the classical registers that were used to store the values from these measurements that become idle as a result of this operation, and deletes classical bits that are referenced only by removed registers, or that aren’t referenced at all but have become idle as a result of this operation.
 
@@ -2747,7 +2739,7 @@ Returns the resulting circuit when `inplace=False`, else None.
 
 <span id="qiskit.circuit.QuantumCircuit.repeat" />
 
-`QuantumCircuit.repeat(reps)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.repeat(reps)`
 
 Repeat this circuit `reps` times.
 
@@ -2767,7 +2759,7 @@ A circuit containing `reps` repetitions of this circuit.
 
 <span id="qiskit.circuit.QuantumCircuit.reset" />
 
-`QuantumCircuit.reset(qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.reset(qubit)`
 
 Reset the quantum bit(s) to their default state.
 
@@ -2787,7 +2779,7 @@ handle to the added instruction.
 
 <span id="qiskit.circuit.QuantumCircuit.reverse_bits" />
 
-`QuantumCircuit.reverse_bits()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.reverse_bits()`
 
 Return a circuit with the opposite order of wires.
 
@@ -2841,7 +2833,7 @@ a_2: ┤ H ├──■─────────────────
 
 <span id="qiskit.circuit.QuantumCircuit.reverse_ops" />
 
-`QuantumCircuit.reverse_ops()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.reverse_ops()`
 
 Reverse the circuit by reversing the order of instructions.
 
@@ -2881,13 +2873,13 @@ q_1: ┤ RX(1.57) ├─────
 
 <span id="qiskit.circuit.QuantumCircuit.rv" />
 
-`QuantumCircuit.rv(vx, vy, vz, qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.rv(vx, vy, vz, qubit)`
 
 Apply [`RVGate`](qiskit.circuit.library.RVGate "qiskit.circuit.library.RVGate").
 
 For the full matrix form of this gate, see the underlying gate documentation.
 
-Rotation around an arbitrary rotation axis $v$, where $\vert v\vert $ is the angle of rotation in radians.
+Rotation around an arbitrary rotation axis $v$, where $|v|$ is the angle of rotation in radians.
 
 **Parameters**
 
@@ -2908,7 +2900,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.rx" />
 
-`QuantumCircuit.rx(theta, qubit, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.rx(theta, qubit, label=None)`
 
 Apply [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate").
 
@@ -2932,7 +2924,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.rxx" />
 
-`QuantumCircuit.rxx(theta, qubit1, qubit2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.rxx(theta, qubit1, qubit2)`
 
 Apply [`RXXGate`](qiskit.circuit.library.RXXGate "qiskit.circuit.library.RXXGate").
 
@@ -2956,7 +2948,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.ry" />
 
-`QuantumCircuit.ry(theta, qubit, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.ry(theta, qubit, label=None)`
 
 Apply [`RYGate`](qiskit.circuit.library.RYGate "qiskit.circuit.library.RYGate").
 
@@ -2980,7 +2972,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.ryy" />
 
-`QuantumCircuit.ryy(theta, qubit1, qubit2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.ryy(theta, qubit1, qubit2)`
 
 Apply [`RYYGate`](qiskit.circuit.library.RYYGate "qiskit.circuit.library.RYYGate").
 
@@ -3004,7 +2996,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.rz" />
 
-`QuantumCircuit.rz(phi, qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.rz(phi, qubit)`
 
 Apply [`RZGate`](qiskit.circuit.library.RZGate "qiskit.circuit.library.RZGate").
 
@@ -3027,7 +3019,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.rzx" />
 
-`QuantumCircuit.rzx(theta, qubit1, qubit2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.rzx(theta, qubit1, qubit2)`
 
 Apply [`RZXGate`](qiskit.circuit.library.RZXGate "qiskit.circuit.library.RZXGate").
 
@@ -3051,7 +3043,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.rzz" />
 
-`QuantumCircuit.rzz(theta, qubit1, qubit2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.rzz(theta, qubit1, qubit2)`
 
 Apply [`RZZGate`](qiskit.circuit.library.RZZGate "qiskit.circuit.library.RZZGate").
 
@@ -3075,7 +3067,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.s" />
 
-`QuantumCircuit.s(qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.s(qubit)`
 
 Apply [`SGate`](qiskit.circuit.library.SGate "qiskit.circuit.library.SGate").
 
@@ -3487,7 +3479,7 @@ with attached instruction.
 
 <span id="qiskit.circuit.QuantumCircuit.sdg" />
 
-`QuantumCircuit.sdg(qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.sdg(qubit)`
 
 Apply [`SdgGate`](qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate").
 
@@ -3655,7 +3647,7 @@ with attached instruction.
 
 <span id="qiskit.circuit.QuantumCircuit.size" />
 
-`QuantumCircuit.size(filter_function=<function QuantumCircuit.<lambda>>)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.size(filter_function=<function QuantumCircuit.<lambda>>)`
 
 Returns total number of instructions in circuit.
 
@@ -3733,7 +3725,7 @@ The single-qubit unitary instruction attached to the circuit.
 
 <span id="qiskit.circuit.QuantumCircuit.swap" />
 
-`QuantumCircuit.swap(qubit1, qubit2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.swap(qubit1, qubit2)`
 
 Apply [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate").
 
@@ -3756,7 +3748,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.sx" />
 
-`QuantumCircuit.sx(qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.sx(qubit)`
 
 Apply [`SXGate`](qiskit.circuit.library.SXGate "qiskit.circuit.library.SXGate").
 
@@ -3778,7 +3770,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.sxdg" />
 
-`QuantumCircuit.sxdg(qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.sxdg(qubit)`
 
 Apply [`SXdgGate`](qiskit.circuit.library.SXdgGate "qiskit.circuit.library.SXdgGate").
 
@@ -3800,7 +3792,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.t" />
 
-`QuantumCircuit.t(qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.t(qubit)`
 
 Apply [`TGate`](qiskit.circuit.library.TGate "qiskit.circuit.library.TGate").
 
@@ -3822,7 +3814,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.tdg" />
 
-`QuantumCircuit.tdg(qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.tdg(qubit)`
 
 Apply [`TdgGate`](qiskit.circuit.library.TdgGate "qiskit.circuit.library.TdgGate").
 
@@ -3844,7 +3836,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.tensor" />
 
-`QuantumCircuit.tensor(other, inplace=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.tensor(other, inplace=False)`
 
 Tensor `self` with `other`.
 
@@ -3897,7 +3889,7 @@ The tensored circuit (returns None if inplace==True).
 
 <span id="qiskit.circuit.QuantumCircuit.to_gate" />
 
-`QuantumCircuit.to_gate(parameter_map=None, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.to_gate(parameter_map=None, label=None)`
 
 Create a Gate out of this circuit.
 
@@ -3918,7 +3910,7 @@ a composite gate encapsulating this circuit (can be decomposed back)
 
 <span id="qiskit.circuit.QuantumCircuit.to_instruction" />
 
-`QuantumCircuit.to_instruction(parameter_map=None, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.to_instruction(parameter_map=None, label=None)`
 
 Create an Instruction out of this circuit.
 
@@ -3939,7 +3931,7 @@ a composite instruction encapsulating this circuit (can be decomposed back)
 
 <span id="qiskit.circuit.QuantumCircuit.toffoli" />
 
-`QuantumCircuit.toffoli(control_qubit1, control_qubit2, target_qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.toffoli(control_qubit1, control_qubit2, target_qubit)`
 
 Apply [`CCXGate`](qiskit.circuit.library.CCXGate "qiskit.circuit.library.CCXGate").
 
@@ -3967,7 +3959,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.u" />
 
-`QuantumCircuit.u(theta, phi, lam, qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.u(theta, phi, lam, qubit)`
 
 Apply [`UGate`](qiskit.circuit.library.UGate "qiskit.circuit.library.UGate").
 
@@ -3992,7 +3984,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.u1" />
 
-`QuantumCircuit.u1(theta, qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.u1(theta, qubit)`
 
 Apply [`U1Gate`](qiskit.circuit.library.U1Gate "qiskit.circuit.library.U1Gate").
 
@@ -4015,7 +4007,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.u2" />
 
-`QuantumCircuit.u2(phi, lam, qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.u2(phi, lam, qubit)`
 
 Apply [`U2Gate`](qiskit.circuit.library.U2Gate "qiskit.circuit.library.U2Gate").
 
@@ -4039,7 +4031,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.u3" />
 
-`QuantumCircuit.u3(theta, phi, lam, qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.u3(theta, phi, lam, qubit)`
 
 Apply [`U3Gate`](qiskit.circuit.library.U3Gate "qiskit.circuit.library.U3Gate").
 
@@ -4197,13 +4189,9 @@ circuit.unitary(matrix, [0, 1])
 
 ### while\_loop
 
-##### while\_loop
-
 <span id="qiskit.circuit.QuantumCircuit.while_loop" />
 
-`QuantumCircuit.while_loop(condition: Tuple[Union[qiskit.circuit.classicalregister.ClassicalRegister, qiskit.circuit.classicalregister.Clbit], int], body: None, qubits: None, clbits: None, *, label: Optional[str]) → qiskit.circuit.controlflow.while_loop.WhileLoopContext`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
-
-<span id="qiskit.circuit.QuantumCircuit.while_loop" />
+`QuantumCircuit.while_loop(condition: Tuple[Union[qiskit.circuit.classicalregister.ClassicalRegister, qiskit.circuit.classicalregister.Clbit], int], body: None, qubits: None, clbits: None, *, label: Optional[str]) → qiskit.circuit.controlflow.while_loop.WhileLoopContext`
 
 `QuantumCircuit.while_loop(condition: Tuple[Union[qiskit.circuit.classicalregister.ClassicalRegister, qiskit.circuit.classicalregister.Clbit], int], body: QuantumCircuit, qubits: Sequence[Union[qiskit.circuit.quantumregister.Qubit, qiskit.circuit.quantumregister.QuantumRegister, int, slice, Sequence[Union[qiskit.circuit.quantumregister.Qubit, int]]]], clbits: Sequence[Union[qiskit.circuit.classicalregister.Clbit, qiskit.circuit.classicalregister.ClassicalRegister, int, slice, Sequence[Union[qiskit.circuit.classicalregister.Clbit, int]]]], *, label: Optional[str]) → qiskit.circuit.instructionset.InstructionSet`
 
@@ -4248,7 +4236,7 @@ If used in context-manager mode, then this should be used as a `with` resource, 
 
 <span id="qiskit.circuit.QuantumCircuit.width" />
 
-`QuantumCircuit.width()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.width()`
 
 Return number of qubits plus clbits in circuit.
 
@@ -4264,7 +4252,7 @@ int
 
 <span id="qiskit.circuit.QuantumCircuit.x" />
 
-`QuantumCircuit.x(qubit, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.x(qubit, label=None)`
 
 Apply [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.library.XGate").
 
@@ -4287,7 +4275,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.y" />
 
-`QuantumCircuit.y(qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.y(qubit)`
 
 Apply [`YGate`](qiskit.circuit.library.YGate "qiskit.circuit.library.YGate").
 
@@ -4309,7 +4297,7 @@ A handle to the instructions created.
 
 <span id="qiskit.circuit.QuantumCircuit.z" />
 
-`QuantumCircuit.z(qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumcircuit.py "view source code")
+`QuantumCircuit.z(qubit)`
 
 Apply [`ZGate`](qiskit.circuit.library.ZGate "qiskit.circuit.library.ZGate").
 

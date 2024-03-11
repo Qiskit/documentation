@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.OptimizerSupportLevel
 
 <span id="qiskit.algorithms.optimizers.OptimizerSupportLevel" />
 
-`OptimizerSupportLevel(value)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/optimizers/optimizer.py "view source code")
+`OptimizerSupportLevel(value)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/optimizers/optimizer.py "view source code")
 
 Bases: `IntEnum`
 

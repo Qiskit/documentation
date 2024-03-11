@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.operators.expectations.PauliExpectation
 
 <span id="qiskit.aqua.operators.expectations.PauliExpectation" />
 
-`PauliExpectation(group_paulis=True)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/expectations/pauli_expectation.py "view source code")
+`PauliExpectation(group_paulis=True)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/expectations/pauli_expectation.py "view source code")
 
 An Expectation converter for Pauli-basis observables by changing Pauli measurements to a diagonal (\{Z, I}^n) basis and appending circuit post-rotations to the measured state function. Optionally groups the Paulis with the same post-rotations (those that commute with one another, or form Abelian groups) into single measurements to reduce circuit execution overhead.
 

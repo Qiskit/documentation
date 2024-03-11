@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.AncillaQubit
 
 <span id="qiskit.circuit.AncillaQubit" />
 
-`AncillaQubit(register=None, index=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/quantumregister.py "view source code")
+`AncillaQubit(register=None, index=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/quantumregister.py "view source code")
 
 Bases: [`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")
 

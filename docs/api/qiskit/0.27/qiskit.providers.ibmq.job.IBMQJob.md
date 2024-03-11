@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.job.IBMQJob
 
 <span id="qiskit.providers.ibmq.job.IBMQJob" />
 
-`IBMQJob(backend, api_client, job_id, creation_date, status, kind=None, name=None, time_per_step=None, result=None, qobj=None, error=None, tags=None, run_mode=None, share_level=None, client_info=None, experiment_id=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.14/qiskit/providers/ibmq/job/ibmqjob.py "view source code")
+`IBMQJob(backend, api_client, job_id, creation_date, status, kind=None, name=None, time_per_step=None, result=None, qobj=None, error=None, tags=None, run_mode=None, share_level=None, client_info=None, experiment_id=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.14/qiskit/providers/ibmq/job/ibmqjob.py "view source code")
 
 Representation of a job that executes on an IBM Quantum Experience backend.
 

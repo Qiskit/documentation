@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.CheckGateDirection
 
 <span id="qiskit.transpiler.passes.CheckGateDirection" />
 
-`qiskit.transpiler.passes.CheckGateDirection(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/passes/utils/check_gate_direction.py "view source code")
+`qiskit.transpiler.passes.CheckGateDirection(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/utils/check_gate_direction.py "view source code")
 
 Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 

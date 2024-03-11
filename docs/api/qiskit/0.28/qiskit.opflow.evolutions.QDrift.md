@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.evolutions.QDrift
 
 <span id="qiskit.opflow.evolutions.QDrift" />
 
-`QDrift(reps=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/evolutions/trotterizations/qdrift.py "view source code")
+`QDrift(reps=1)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/evolutions/trotterizations/qdrift.py "view source code")
 
 The QDrift Trotterization method, which selects each each term in the Trotterization randomly, with a probability proportional to its weight. Based on the work of Earl Campbell in [https://arxiv.org/abs/1811.08017](https://arxiv.org/abs/1811.08017).
 

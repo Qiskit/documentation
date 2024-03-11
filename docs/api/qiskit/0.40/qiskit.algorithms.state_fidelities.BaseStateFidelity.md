@@ -10,14 +10,14 @@ python_api_name: qiskit.algorithms.state_fidelities.BaseStateFidelity
 
 <span id="qiskit.algorithms.state_fidelities.BaseStateFidelity" />
 
-`BaseStateFidelity`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/state_fidelities/base_state_fidelity.py "view source code")
+`BaseStateFidelity` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/state_fidelities/base_state_fidelity.py "view source code")
 
 Bases: `abc.ABC`
 
 An interface to calculate state fidelities (state overlaps) for pairs of (parametrized) quantum circuits. The calculation depends on the particular fidelity method implementation, but can be always defined as the state overlap:
 
 $$
-\vert \langle\psi(x)\vert \phi(y)\rangle\vert ^2
+|\langle\psi(x)|\phi(y)\rangle|^2
 $$
 
 where $x$ and $y$ are optional parametrizations of the states $\psi$ and $\phi$ prepared by the circuits `circuit_1` and `circuit_2`, respectively.
@@ -28,7 +28,7 @@ where $x$ and $y$ are optional parametrizations of the states $\psi$ and $\phi$ 
 
 <span id="qiskit.algorithms.state_fidelities.BaseStateFidelity.create_fidelity_circuit" />
 
-`abstract BaseStateFidelity.create_fidelity_circuit(circuit_1, circuit_2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/state_fidelities/base_state_fidelity.py "view source code")
+`abstract BaseStateFidelity.create_fidelity_circuit(circuit_1, circuit_2)`
 
 Implementation-dependent method to create a fidelity circuit from 2 circuit inputs.
 
@@ -49,14 +49,14 @@ The fidelity quantum circuit corresponding to `circuit_1` and `circuit_2`.
 
 <span id="qiskit.algorithms.state_fidelities.BaseStateFidelity.run" />
 
-`BaseStateFidelity.run(circuits_1, circuits_2, values_1=None, values_2=None, **options)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/state_fidelities/base_state_fidelity.py "view source code")
+`BaseStateFidelity.run(circuits_1, circuits_2, values_1=None, values_2=None, **options)`
 
 Runs asynchronously the state overlap (fidelity) calculation between two (parametrized) circuits (first and second) for a specific set of parameter values (first and second). This calculation depends on the particular fidelity method implementation.
 
 **Parameters**
 
-*   **circuits\_1** – (Parametrized) quantum circuits preparing $\vert \psi\rangle$.
-*   **circuits\_2** – (Parametrized) quantum circuits preparing $\vert \phi\rangle$.
+*   **circuits\_1** – (Parametrized) quantum circuits preparing $|\psi\rangle$.
+*   **circuits\_2** – (Parametrized) quantum circuits preparing $|\phi\rangle$.
 *   **values\_1** – Numerical parameters to be bound to the first set of circuits.
 *   **values\_2** – Numerical parameters to be bound to the second set of circuits.
 *   **options** – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > fidelity’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting.

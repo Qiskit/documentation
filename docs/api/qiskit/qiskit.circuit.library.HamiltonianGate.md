@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.HamiltonianGate
 
 <span id="qiskit.circuit.library.HamiltonianGate" />
 
-`qiskit.circuit.library.HamiltonianGate(data, time, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/hamiltonian_gate.py "view source code")
+`qiskit.circuit.library.HamiltonianGate(data, time, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/hamiltonian_gate.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -22,7 +22,7 @@ This gate resolves to a [`UnitaryGate`](qiskit.circuit.library.UnitaryGate "qisk
 
 *   **data** (*np.ndarray |* [*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate") *| BaseOperator*) – A hermitian operator.
 *   **time** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – Time evolution parameter.
-*   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Unitary name for backend \[Default: None].
+*   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Unitary name for backend \[Default: `None`].
 
 **Raises**
 
@@ -147,21 +147,9 @@ Return the conjugate of the Hamiltonian.
 
 <span id="qiskit.circuit.library.HamiltonianGate.inverse" />
 
-`inverse()`
+`inverse(annotated=False)`
 
 Return the adjoint of the unitary.
-
-### qasm
-
-<span id="qiskit.circuit.library.HamiltonianGate.qasm" />
-
-`qasm()`
-
-Raise an error, as QASM is not defined for the HamiltonianGate.
-
-<Admonition title="Deprecated since version 0.25.0" type="danger">
-  The method `qiskit.circuit.library.hamiltonian_gate.HamiltonianGate.qasm()` is deprecated as of qiskit-terra 0.25.0. It will be removed in the Qiskit 1.0 release.
-</Admonition>
 
 ### transpose
 

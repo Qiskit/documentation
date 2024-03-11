@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.CouplingMap
 
 <span id="qiskit.transpiler.CouplingMap" />
 
-`CouplingMap(couplinglist=None, description=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/coupling.py "view source code")
+`CouplingMap(couplinglist=None, description=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/coupling.py "view source code")
 
 Directed graph specifying fixed coupling.
 

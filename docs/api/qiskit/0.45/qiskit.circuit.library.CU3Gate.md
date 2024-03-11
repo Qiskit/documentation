@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CU3Gate
 
 <span id="qiskit.circuit.library.CU3Gate" />
 
-`qiskit.circuit.library.CU3Gate(theta, phi, lam, label=None, ctrl_state=None, *, duration=None, unit='dt', _base_label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/u3.py "view source code")
+`qiskit.circuit.library.CU3Gate(theta, phi, lam, label=None, ctrl_state=None, *, duration=None, unit='dt', _base_label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/u3.py "view source code")
 
 Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 
@@ -33,8 +33,8 @@ $$
 \newcommand{\rotationangle}{\frac{\theta}{2}}
 
 CU3(\theta, \phi, \lambda)\ q_0, q_1 =
-    I \otimes \vert 0\rangle\langle 0\vert  +
-    U3(\theta,\phi,\lambda) \otimes \vert 1\rangle\langle 1\vert  =
+    I \otimes |0\rangle\langle 0| +
+    U3(\theta,\phi,\lambda) \otimes |1\rangle\langle 1| =
     \begin{pmatrix}
         1 & 0                   & 0 & 0 \\
         0 & \cos(\rotationangle)           & 0 & -e^{i\lambda}\sin(\rotationangle) \\
@@ -57,8 +57,8 @@ $$
   \newcommand{\rotationangle}{\frac{\theta}{2}}
 
   CU3(\theta, \phi, \lambda)\ q_1, q_0 =
-      \vert 0\rangle\langle 0\vert  \otimes I +
-      \vert 1\rangle\langle 1\vert  \otimes U3(\theta,\phi,\lambda) =
+      |0\rangle\langle 0| \otimes I +
+      |1\rangle\langle 1| \otimes U3(\theta,\phi,\lambda) =
       \begin{pmatrix}
           1 & 0   & 0                  & 0 \\
           0 & 1   & 0                  & 0 \\

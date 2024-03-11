@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.algorithms.pes_samplers.WindowExtrapolator
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.WindowExtrapolator" />
 
-`WindowExtrapolator(extrapolator=None, window=2)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/extrapolator.py "view source code")
+`WindowExtrapolator(extrapolator=None, window=2)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/extrapolator.py "view source code")
 
 Bases: `qiskit.chemistry.algorithms.pes_samplers.extrapolator.Extrapolator`
 
@@ -29,7 +29,7 @@ Constructor.
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.WindowExtrapolator.extrapolate" />
 
-`WindowExtrapolator.extrapolate(points, param_dict)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/extrapolator.py "view source code")
+`WindowExtrapolator.extrapolate(points, param_dict)`
 
 Extrapolate at specified point of interest given a set of variational parameters. Based on the specified window, a subset of the data points will be used for extrapolation. A default window of 2 points is used, while a value of zero indicates that all previous points will be used for extrapolation. This method defines the data window before performing the internal extrapolation.
 

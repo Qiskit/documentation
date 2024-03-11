@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.measurement.LinearIQDiscriminator
 
 <span id="qiskit.ignis.measurement.LinearIQDiscriminator" />
 
-`LinearIQDiscriminator(cal_results, qubit_mask, expected_states=None, standardize=False, schedules=None, discriminator_parameters=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/measurement/discriminator/iq_discriminators.py "view source code")
+`LinearIQDiscriminator(cal_results, qubit_mask, expected_states=None, standardize=False, schedules=None, discriminator_parameters=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/measurement/discriminator/iq_discriminators.py "view source code")
 
 Linear discriminant analysis discriminator for IQ data.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.IMFIL
 
 <span id="qiskit.algorithms.optimizers.IMFIL" />
 
-`IMFIL(maxiter=1000)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/imfil.py "view source code")
+`IMFIL(maxiter=1000)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/imfil.py "view source code")
 
 Bases: `qiskit.algorithms.optimizers.optimizer.Optimizer`
 
@@ -34,7 +34,7 @@ Uses skquant.opt installed with pip install scikit-quant. For further detail, pl
 
 <span id="qiskit.algorithms.optimizers.IMFIL.get_support_level" />
 
-`IMFIL.get_support_level()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/imfil.py "view source code")
+`IMFIL.get_support_level()`
 
 Returns support level dictionary.
 
@@ -65,7 +65,7 @@ grad
 
 <span id="qiskit.algorithms.optimizers.IMFIL.optimize" />
 
-`IMFIL.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/imfil.py "view source code")
+`IMFIL.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
 Runs the optimization.
 

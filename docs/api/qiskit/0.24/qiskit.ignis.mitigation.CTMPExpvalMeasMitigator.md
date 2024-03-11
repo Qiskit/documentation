@@ -12,7 +12,7 @@ python_api_name: qiskit.ignis.mitigation.CTMPExpvalMeasMitigator
 
 <span id="qiskit.ignis.mitigation.CTMPExpvalMeasMitigator" />
 
-`CTMPExpvalMeasMitigator(generators, rates, num_qubits=None, seed=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/mitigation/expval/ctmp_mitigator.py "view source code")
+`CTMPExpvalMeasMitigator(generators, rates, num_qubits=None, seed=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/mitigation/expval/ctmp_mitigator.py "view source code")
 
 N-qubit CTMP measurement error mitigator.
 
@@ -56,7 +56,7 @@ Initialize a TensorMeasurementMitigator
 
 Return the measurement assignment fidelity on the specified qubits.
 
-The assignment fidelity on N-qubits is defined as $\sum_{x\in\{0, 1\}^n} P(x\vert x) / 2^n$, where $P(x\vert x) = \rangle x\vert A\vert x\langle$, and $A$ is the [`assignment_matrix()`](#qiskit.ignis.mitigation.CTMPExpvalMeasMitigator.assignment_matrix "qiskit.ignis.mitigation.CTMPExpvalMeasMitigator.assignment_matrix").
+The assignment fidelity on N-qubits is defined as $\sum_{x\in\{0, 1\}^n} P(x|x) / 2^n$, where $P(x|x) = \rangle x|A|x\langle$, and $A$ is the [`assignment_matrix()`](#qiskit.ignis.mitigation.CTMPExpvalMeasMitigator.assignment_matrix "qiskit.ignis.mitigation.CTMPExpvalMeasMitigator.assignment_matrix").
 
 **Parameters**
 
@@ -78,7 +78,7 @@ float
 
 Return the measurement assignment matrix for specified qubits.
 
-The assignment matrix is the stochastic matrix $A$ which assigns a noisy measurement probability distribution to an ideal input measurement distribution: $P(i\vert j) = \langle i \vert  A \vert  j \rangle$.
+The assignment matrix is the stochastic matrix $A$ which assigns a noisy measurement probability distribution to an ideal input measurement distribution: $P(i|j) = \langle i | A | j \rangle$.
 
 **Parameters**
 
@@ -100,7 +100,7 @@ np.ndarray
 
 Compute the mitigated expectation value of a diagonal observable.
 
-This computes the mitigated estimator of $\langle O \rangle = \mbox{Tr}[\rho. O]$ of a diagonal observable $O = \sum_{x\in\{0, 1\}^n} O(x)\vert x\rangle\!\langle x\vert $.
+This computes the mitigated estimator of $\langle O \rangle = \mbox{Tr}[\rho. O]$ of a diagonal observable $O = \sum_{x\in\{0, 1\}^n} O(x)|x\rangle\!\langle x|$.
 
 **Parameters**
 
@@ -259,7 +259,7 @@ plt.axes
 
 Return the number of shots required for expectation value estimation.
 
-This is the number of shots required so that $\vert \langle O \rangle_{est} - \langle O \rangle_{true}\vert  < \delta$ with high probability (at least 2/3) and is given by $4\delta^2 \Gamma^2$ where $\Gamma^2$ is the [`mitigation_overhead()`](#qiskit.ignis.mitigation.CTMPExpvalMeasMitigator.mitigation_overhead "qiskit.ignis.mitigation.CTMPExpvalMeasMitigator.mitigation_overhead").
+This is the number of shots required so that $|\langle O \rangle_{est} - \langle O \rangle_{true}| < \delta$ with high probability (at least 2/3) and is given by $4\delta^2 \Gamma^2$ where $\Gamma^2$ is the [`mitigation_overhead()`](#qiskit.ignis.mitigation.CTMPExpvalMeasMitigator.mitigation_overhead "qiskit.ignis.mitigation.CTMPExpvalMeasMitigator.mitigation_overhead").
 
 **Parameters**
 

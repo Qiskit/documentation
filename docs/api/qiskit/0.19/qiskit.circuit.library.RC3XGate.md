@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.RC3XGate
 
 <span id="qiskit.circuit.library.RC3XGate" />
 
-`RC3XGate(label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/x.py "view source code")
+`RC3XGate(label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 The simplified 3-controlled Toffoli gate.
 
@@ -291,7 +291,7 @@ Containing the definition.
 
 <span id="qiskit.circuit.library.RC3XGate.to_matrix" />
 
-`RC3XGate.to_matrix()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/x.py "view source code")
+`RC3XGate.to_matrix()`
 
 Return a numpy.array for the RC3X gate.
 

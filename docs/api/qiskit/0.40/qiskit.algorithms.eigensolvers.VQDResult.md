@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.eigensolvers.VQDResult
 
 <span id="qiskit.algorithms.eigensolvers.VQDResult" />
 
-`VQDResult`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/eigensolvers/vqd.py "view source code")
+`VQDResult` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/eigensolvers/vqd.py "view source code")
 
 Bases: [`qiskit.algorithms.eigensolvers.eigensolver.EigensolverResult`](qiskit.algorithms.eigensolvers.EigensolverResult "qiskit.algorithms.eigensolvers.eigensolver.EigensolverResult")
 

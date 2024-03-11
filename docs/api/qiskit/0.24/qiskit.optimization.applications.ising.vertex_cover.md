@@ -1,7 +1,7 @@
 ---
 title: vertex_cover
 description: API reference for qiskit.optimization.applications.ising.vertex_cover
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.optimization.applications.ising.vertex_cover
 ---
@@ -26,7 +26,7 @@ Convert vertex cover instances into Pauli list Deal with Gset format. See [https
 
 <span id="qiskit.optimization.applications.ising.vertex_cover.check_full_edge_coverage" />
 
-`check_full_edge_coverage(x, w)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/vertex_cover.py "view source code")
+`check_full_edge_coverage(x, w)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/vertex_cover.py "view source code")
 
 **Parameters**
 
@@ -45,7 +45,7 @@ float
 
 <span id="qiskit.optimization.applications.ising.vertex_cover.get_graph_solution" />
 
-`get_graph_solution(x)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/vertex_cover.py "view source code")
+`get_graph_solution(x)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/vertex_cover.py "view source code")
 
 Get graph solution from binary string.
 
@@ -65,7 +65,7 @@ numpy.ndarray
 
 <span id="qiskit.optimization.applications.ising.vertex_cover.get_operator" />
 
-`get_operator(weight_matrix)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/vertex_cover.py "view source code")
+`get_operator(weight_matrix)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/vertex_cover.py "view source code")
 
 Generate Hamiltonian for the vertex cover :param weight\_matrix: adjacency matrix. :type weight\_matrix: numpy.ndarray
 

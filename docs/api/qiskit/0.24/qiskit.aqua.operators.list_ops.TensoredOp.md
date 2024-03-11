@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.operators.list_ops.TensoredOp
 
 <span id="qiskit.aqua.operators.list_ops.TensoredOp" />
 
-`TensoredOp(oplist, coeff=1.0, abelian=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/list_ops/tensored_op.py "view source code")
+`TensoredOp(oplist, coeff=1.0, abelian=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/list_ops/tensored_op.py "view source code")
 
 A class for lazily representing tensor products of Operators. Often Operators cannot be efficiently tensored to one another, but may be manipulated further so that they can be later. This class holds logic to indicate that the Operators in `oplist` are meant to be tensored together, and therefore if they reach a point in which they can be, such as after conversion to QuantumCircuits, they can be reduced by tensor product.
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.QuantumRegister
 
 <span id="qiskit.circuit.QuantumRegister" />
 
-`QuantumRegister(size, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/quantumregister.py "view source code")
+`QuantumRegister(size, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/quantumregister.py "view source code")
 
 Implement a quantum register.
 

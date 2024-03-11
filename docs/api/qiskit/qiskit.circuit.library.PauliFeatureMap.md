@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.PauliFeatureMap
 
 <span id="qiskit.circuit.library.PauliFeatureMap" />
 
-`qiskit.circuit.library.PauliFeatureMap(feature_dimension=None, reps=2, entanglement='full', alpha=2.0, paulis=None, data_map_func=None, parameter_prefix='x', insert_barriers=False, name='PauliFeatureMap')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/data_preparation/pauli_feature_map.py "view source code")
+`qiskit.circuit.library.PauliFeatureMap(feature_dimension=None, reps=2, entanglement='full', alpha=2.0, paulis=None, data_map_func=None, parameter_prefix='x', insert_barriers=False, name='PauliFeatureMap')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/data_preparation/pauli_feature_map.py "view source code")
 
 Bases: [`NLocal`](qiskit.circuit.library.NLocal "qiskit.circuit.library.n_local.n_local.NLocal")
 
@@ -28,7 +28,7 @@ Here, $S$ is a set of qubit indices that describes the connections in the featur
 $$
 \phi_S(\vec{x}) = \begin{cases}
     x_i \text{ if } S = \{i\} \\
-    \prod_{j \in S} (\pi - x_j) \text{ if } \vert S\vert  > 1
+    \prod_{j \in S} (\pi - x_j) \text{ if } |S| > 1
     \end{cases}.
 $$
 
@@ -162,12 +162,6 @@ The entanglement strategy, see `get_entangler_map()` for more detail on how the 
 
 ### entanglement\_blocks
 
-<span id="qiskit.circuit.library.PauliFeatureMap.extension_lib" />
-
-### extension\_lib
-
-`= 'include "qelib1.inc";'`
-
 <span id="qiskit.circuit.library.PauliFeatureMap.feature_dimension" />
 
 ### feature\_dimension
@@ -189,12 +183,6 @@ Returns whether the circuit is wrapped in nested gates/instructions or flattened
 ### global\_phase
 
 Return the global phase of the current circuit scope in radians.
-
-<span id="qiskit.circuit.library.PauliFeatureMap.header" />
-
-### header
-
-`= 'OPENQASM 2.0;'`
 
 <span id="qiskit.circuit.library.PauliFeatureMap.initial_state" />
 
@@ -220,7 +208,7 @@ If barriers are inserted in between the layers or not.
 
 ### instances
 
-`= 173`
+`= 206`
 
 <span id="qiskit.circuit.library.PauliFeatureMap.layout" />
 

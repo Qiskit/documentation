@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.EfficientSU2
 
 <span id="qiskit.circuit.library.EfficientSU2" />
 
-`EfficientSU2(num_qubits=None, su2_gates=None, entanglement='full', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/n_local/efficient_su2.py "view source code")
+`EfficientSU2(num_qubits=None, su2_gates=None, entanglement='full', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/n_local/efficient_su2.py "view source code")
 
 The hardware efficient SU(2) 2-local circuit.
 

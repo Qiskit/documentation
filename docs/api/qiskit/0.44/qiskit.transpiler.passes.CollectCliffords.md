@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.CollectCliffords
 
 <span id="qiskit.transpiler.passes.CollectCliffords" />
 
-`qiskit.transpiler.passes.CollectCliffords(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/optimization/collect_cliffords.py "view source code")
+`qiskit.transpiler.passes.CollectCliffords(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/optimization/collect_cliffords.py "view source code")
 
 Bases: `CollectAndCollapse`
 

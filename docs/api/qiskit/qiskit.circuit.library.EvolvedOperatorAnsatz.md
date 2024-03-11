@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.EvolvedOperatorAnsatz
 
 <span id="qiskit.circuit.library.EvolvedOperatorAnsatz" />
 
-`qiskit.circuit.library.EvolvedOperatorAnsatz(operators=None, reps=1, evolution=None, insert_barriers=False, name='EvolvedOps', parameter_prefix='t', initial_state=None, flatten=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/evolved_operator_ansatz.py "view source code")
+`qiskit.circuit.library.EvolvedOperatorAnsatz(operators=None, reps=1, evolution=None, insert_barriers=False, name='EvolvedOps', parameter_prefix='t', initial_state=None, flatten=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/n_local/evolved_operator_ansatz.py "view source code")
 
 Bases: [`NLocal`](qiskit.circuit.library.NLocal "qiskit.circuit.library.n_local.n_local.NLocal")
 
@@ -18,9 +18,9 @@ The evolved operator ansatz.
 
 **Parameters**
 
-*   **operators** (*BaseOperator |* [*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") *| None*) – The operators to evolve. If a circuit is passed, we assume it implements an already evolved operator and thus the circuit is not evolved again. Can be a single operator (circuit) or a list of operators (and circuits).
+*   **operators** (*BaseOperator |* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") *| None*) – The operators to evolve. If a circuit is passed, we assume it implements an already evolved operator and thus the circuit is not evolved again. Can be a single operator (circuit) or a list of operators (and circuits).
 *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of times to repeat the evolved operators.
-*   **evolution** ([*EvolutionBase*](qiskit.opflow.evolutions.EvolutionBase "qiskit.opflow.evolutions.EvolutionBase")  *|*[*EvolutionSynthesis*](qiskit.synthesis.EvolutionSynthesis "qiskit.synthesis.EvolutionSynthesis") *| None*) – A specification of which evolution synthesis to use for the [`PauliEvolutionGate`](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate"), if the operator is from [`qiskit.quantum_info`](quantum_info#module-qiskit.quantum_info "qiskit.quantum_info") or an opflow converter object if the operator is from [`qiskit.opflow`](opflow#module-qiskit.opflow "qiskit.opflow"). Defaults to first order Trotterization.
+*   **evolution** (*EvolutionBase |* [*EvolutionSynthesis*](qiskit.synthesis.EvolutionSynthesis "qiskit.synthesis.EvolutionSynthesis") *| None*) – A specification of which evolution synthesis to use for the [`PauliEvolutionGate`](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate"). Defaults to first order Trotterization.
 *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether to insert barriers in between each evolution.
 *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The name of the circuit.
 *   **parameter\_prefix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| Sequence\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – Set the names of the circuit parameters. If a string, the same prefix will be used for each parameters. Can also be a list to specify a prefix per operator.
@@ -85,13 +85,7 @@ The evolution converter used to compute the evolution.
 
 **Return type**
 
-[EvolutionBase](qiskit.opflow.evolutions.EvolutionBase "qiskit.opflow.evolutions.EvolutionBase") or [EvolutionSynthesis](qiskit.synthesis.EvolutionSynthesis "qiskit.synthesis.EvolutionSynthesis")
-
-<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.extension_lib" />
-
-### extension\_lib
-
-`= 'include "qelib1.inc";'`
+[EvolutionSynthesis](qiskit.synthesis.EvolutionSynthesis "qiskit.synthesis.EvolutionSynthesis")
 
 <span id="qiskit.circuit.library.EvolvedOperatorAnsatz.flatten" />
 
@@ -104,12 +98,6 @@ Returns whether the circuit is wrapped in nested gates/instructions or flattened
 ### global\_phase
 
 Return the global phase of the current circuit scope in radians.
-
-<span id="qiskit.circuit.library.EvolvedOperatorAnsatz.header" />
-
-### header
-
-`= 'OPENQASM 2.0;'`
 
 <span id="qiskit.circuit.library.EvolvedOperatorAnsatz.initial_state" />
 
@@ -135,7 +123,7 @@ If barriers are inserted in between the layers or not.
 
 ### instances
 
-`= 159`
+`= 166`
 
 <span id="qiskit.circuit.library.EvolvedOperatorAnsatz.layout" />
 
@@ -200,6 +188,12 @@ The number of parameters originally available in the circuit.
 <span id="qiskit.circuit.library.EvolvedOperatorAnsatz.num_qubits" />
 
 ### num\_qubits
+
+Returns the number of qubits in this circuit.
+
+**Returns**
+
+The number of qubits.
 
 <span id="qiskit.circuit.library.EvolvedOperatorAnsatz.op_start_times" />
 

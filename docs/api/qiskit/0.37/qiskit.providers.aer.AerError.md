@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.AerError
 
 <span id="qiskit.providers.aer.AerError" />
 
-`AerError(*message)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/aererror.py "view source code")
+`AerError(*message)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/aererror.py "view source code")
 
 Base class for errors raised by simulators.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeOpenPulse3Q
 
 <span id="qiskit.providers.fake_provider.FakeOpenPulse3Q" />
 
-`qiskit.providers.fake_provider.FakeOpenPulse3Q`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/providers/fake_provider/fake_openpulse_3q.py "view source code")
+`qiskit.providers.fake_provider.FakeOpenPulse3Q` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/providers/fake_provider/fake_openpulse_3q.py "view source code")
 
 Bases: [`FakeBackend`](providers_fake_provider#qiskit.providers.fake_provider.FakeBackend "qiskit.providers.fake_provider.fake_backend.FakeBackend")
 

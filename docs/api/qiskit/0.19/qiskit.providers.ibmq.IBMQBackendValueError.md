@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.IBMQBackendValueError
 
 <span id="qiskit.providers.ibmq.IBMQBackendValueError" />
 
-`IBMQBackendValueError(*message)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.7/qiskit/providers/ibmq/exceptions.py "view source code")
+`IBMQBackendValueError(*message)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.7/qiskit/providers/ibmq/exceptions.py "view source code")
 
 Value errors raised by the backend modules.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.Commuting2qGateRouter
 
 <span id="qiskit.transpiler.passes.Commuting2qGateRouter" />
 
-`qiskit.transpiler.passes.Commuting2qGateRouter(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/passes/routing/commuting_2q_gate_routing/commuting_2q_gate_router.py "view source code")
+`qiskit.transpiler.passes.Commuting2qGateRouter(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/routing/commuting_2q_gate_routing/commuting_2q_gate_router.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -30,8 +30,8 @@ To do this we use a line swap strategy for qubits 0, 1, 3, and 4 defined it in t
 
 ```python
 from qiskit import QuantumCircuit
-from qiskit.opflow import PauliSumOp
 from qiskit.circuit.library import PauliEvolutionGate
+from qiskit.quantum_info import SparsePauliOp
 from qiskit.transpiler import Layout, CouplingMap, PassManager
 from qiskit.transpiler.passes import FullAncillaAllocation
 from qiskit.transpiler.passes import EnlargeWithAncilla
@@ -45,7 +45,7 @@ from qiskit.transpiler.passes.routing.commuting_2q_gate_routing import (
 )
 
 # Define the circuit on virtual qubits
-op = PauliSumOp.from_list([("IZZI", 1), ("ZIIZ", 2), ("ZIZI", 3)])
+op = SparsePauliOp.from_list([("IZZI", 1), ("ZIIZ", 2), ("ZIZI", 3)])
 circ = QuantumCircuit(4)
 circ.append(PauliEvolutionGate(op, 1), range(4))
 

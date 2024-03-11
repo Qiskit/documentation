@@ -12,7 +12,7 @@ python_api_name: qiskit.chemistry.algorithms.pes_samplers.WindowExtrapolator
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.WindowExtrapolator" />
 
-`WindowExtrapolator(extrapolator=None, window=2)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/algorithms/pes_samplers/extrapolator.py "view source code")
+`WindowExtrapolator(extrapolator=None, window=2)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/algorithms/pes_samplers/extrapolator.py "view source code")
 
 An extrapolator which wraps another extrapolator, limiting the internal extrapolator’s ground truth parameter set to a fixed window size.
 

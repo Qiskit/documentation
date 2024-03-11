@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.feature_maps.FeatureMap
 
 <span id="qiskit.aqua.components.feature_maps.FeatureMap" />
 
-`FeatureMap`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/feature_maps/feature_map.py "view source code")
+`FeatureMap` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/feature_maps/feature_map.py "view source code")
 
 Base class for FeatureMap.
 

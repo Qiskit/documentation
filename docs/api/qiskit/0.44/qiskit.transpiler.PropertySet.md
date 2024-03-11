@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.PropertySet
 
 <span id="qiskit.transpiler.PropertySet" />
 
-`qiskit.transpiler.PropertySet`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/propertyset.py "view source code")
+`qiskit.transpiler.PropertySet` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/propertyset.py "view source code")
 
 Bases: [`dict`](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
 

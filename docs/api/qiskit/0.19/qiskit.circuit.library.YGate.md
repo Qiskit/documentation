@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.YGate
 
 <span id="qiskit.circuit.library.YGate" />
 
-`YGate(label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/y.py "view source code")
+`YGate(label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/y.py "view source code")
 
 The single-qubit Pauli-Y gate ($\sigma_y$).
 
@@ -48,8 +48,8 @@ Equivalent to a $\pi$ radian rotation about the Y axis.
 The gate is equivalent to a bit and phase flip.
 
 $$
-\begin{split}\vert 0\rangle \rightarrow i\vert 1\rangle \\
-\vert 1\rangle \rightarrow -i\vert 0\rangle\end{split}
+\begin{split}|0\rangle \rightarrow i|1\rangle \\
+|1\rangle \rightarrow -i|0\rangle\end{split}
 $$
 
 Create new Y gate.
@@ -169,7 +169,7 @@ Add classical condition on register classical and value val.
 
 <span id="qiskit.circuit.library.YGate.control" />
 
-`YGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/y.py "view source code")
+`YGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
 Return a (mutli-)controlled-Y gate.
 
@@ -215,7 +215,7 @@ updated if it was provided
 
 <span id="qiskit.circuit.library.YGate.inverse" />
 
-`YGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/y.py "view source code")
+`YGate.inverse()`
 
 Return inverted Y gate ($Y{\dagger} = Y$)
 
@@ -307,7 +307,7 @@ Containing the definition.
 
 <span id="qiskit.circuit.library.YGate.to_matrix" />
 
-`YGate.to_matrix()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/y.py "view source code")
+`YGate.to_matrix()`
 
 Return a numpy.array for the Y gate.
 

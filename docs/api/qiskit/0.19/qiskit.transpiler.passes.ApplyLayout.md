@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.ApplyLayout
 
 <span id="qiskit.transpiler.passes.ApplyLayout" />
 
-`ApplyLayout(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/transpiler/passes/layout/apply_layout.py "view source code")
+`ApplyLayout(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/transpiler/passes/layout/apply_layout.py "view source code")
 
 Transform a circuit with virtual qubits into a circuit with physical qubits.
 
@@ -44,7 +44,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.ApplyLayout.run" />
 
-`ApplyLayout.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/transpiler/passes/layout/apply_layout.py "view source code")
+`ApplyLayout.run(dag)`
 
 Run the ApplyLayout pass on dag.
 

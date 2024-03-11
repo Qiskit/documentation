@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.OneQubitEulerDecomposer
 
 <span id="qiskit.quantum_info.OneQubitEulerDecomposer" />
 
-`OneQubitEulerDecomposer(basis='U3', use_dag=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/synthesis/one_qubit_decompose.py "view source code")
+`OneQubitEulerDecomposer(basis='U3', use_dag=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/synthesis/one_qubit_decompose.py "view source code")
 
 Bases: `object`
 
@@ -54,7 +54,7 @@ Supported bases are: ‘U’, ‘PSX’, ‘ZSXX’, ‘ZSX’, ‘U321’, ‘U
 
 <span id="qiskit.quantum_info.OneQubitEulerDecomposer.angles" />
 
-`OneQubitEulerDecomposer.angles(unitary)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/synthesis/one_qubit_decompose.py "view source code")
+`OneQubitEulerDecomposer.angles(unitary)`
 
 Return the Euler angles for input array.
 
@@ -76,7 +76,7 @@ tuple
 
 <span id="qiskit.quantum_info.OneQubitEulerDecomposer.angles_and_phase" />
 
-`OneQubitEulerDecomposer.angles_and_phase(unitary)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/synthesis/one_qubit_decompose.py "view source code")
+`OneQubitEulerDecomposer.angles_and_phase(unitary)`
 
 Return the Euler angles and phase for input array.
 
@@ -98,7 +98,7 @@ tuple
 
 <span id="qiskit.quantum_info.OneQubitEulerDecomposer.build_circuit" />
 
-`OneQubitEulerDecomposer.build_circuit(gates, global_phase)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/synthesis/one_qubit_decompose.py "view source code")
+`OneQubitEulerDecomposer.build_circuit(gates, global_phase)`
 
 Return the circuit or dag object from a list of gates.
 

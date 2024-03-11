@@ -10,7 +10,7 @@ python_api_name: qiskit.result.Counts
 
 <span id="qiskit.result.Counts" />
 
-`Counts(data, time_taken=None, creg_sizes=None, memory_slots=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/result/counts.py "view source code")
+`Counts(data, time_taken=None, creg_sizes=None, memory_slots=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/result/counts.py "view source code")
 
 Bases: `dict`
 
@@ -74,7 +74,7 @@ Return the value for key if key is in the dictionary, else default.
 
 <span id="qiskit.result.Counts.hex_outcomes" />
 
-`Counts.hex_outcomes()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/result/counts.py "view source code")
+`Counts.hex_outcomes()`
 
 Return a counts dictionary with hexadecimal string keys
 
@@ -96,7 +96,7 @@ dict
 
 <span id="qiskit.result.Counts.int_outcomes" />
 
-`Counts.int_outcomes()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/result/counts.py "view source code")
+`Counts.int_outcomes()`
 
 Build a counts dictionary with integer keys instead of count strings
 
@@ -128,7 +128,7 @@ dict
 
 <span id="qiskit.result.Counts.most_frequent" />
 
-`Counts.most_frequent()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/result/counts.py "view source code")
+`Counts.most_frequent()`
 
 Return the most frequent count
 

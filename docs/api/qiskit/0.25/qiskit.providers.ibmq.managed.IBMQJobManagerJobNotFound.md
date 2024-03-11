@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.managed.IBMQJobManagerJobNotFound
 
 <span id="qiskit.providers.ibmq.managed.IBMQJobManagerJobNotFound" />
 
-`IBMQJobManagerJobNotFound(*message)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.12/qiskit/providers/ibmq/managed/exceptions.py "view source code")
+`IBMQJobManagerJobNotFound(*message)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.12/qiskit/providers/ibmq/managed/exceptions.py "view source code")
 
 Errors raised when a job cannot be found.
 

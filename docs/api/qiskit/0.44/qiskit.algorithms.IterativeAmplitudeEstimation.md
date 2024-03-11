@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.IterativeAmplitudeEstimation
 
 <span id="qiskit.algorithms.IterativeAmplitudeEstimation" />
 
-`qiskit.algorithms.IterativeAmplitudeEstimation(epsilon_target, alpha, confint_method='beta', min_ratio=2, quantum_instance=None, sampler=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/amplitude_estimators/iae.py "view source code")
+`qiskit.algorithms.IterativeAmplitudeEstimation(epsilon_target, alpha, confint_method='beta', min_ratio=2, quantum_instance=None, sampler=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/amplitude_estimators/iae.py "view source code")
 
 Bases: [`AmplitudeEstimator`](qiskit.algorithms.AmplitudeEstimator "qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimator")
 
@@ -96,7 +96,7 @@ The sampler primitive to evaluate the circuits.
 
 `construct_circuit(estimation_problem, k=0, measurement=False)`
 
-Construct the circuit $\mathcal{Q}^k \mathcal{A} \vert 0\rangle$.
+Construct the circuit $\mathcal{Q}^k \mathcal{A} |0\rangle$.
 
 The A operator is the unitary specifying the QAE problem and Q the associated Grover operator.
 
@@ -108,7 +108,7 @@ The A operator is the unitary specifying the QAE problem and Q the associated Gr
 
 **Returns**
 
-The circuit implementing $\mathcal{Q}^k \mathcal{A} \vert 0\rangle$.
+The circuit implementing $\mathcal{Q}^k \mathcal{A} |0\rangle$.
 
 **Return type**
 

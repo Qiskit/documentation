@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.EstimationProblem
 
 <span id="qiskit.algorithms.EstimationProblem" />
 
-`qiskit.algorithms.EstimationProblem(state_preparation, objective_qubits, grover_operator=None, post_processing=None, is_good_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/amplitude_estimators/estimation_problem.py "view source code")
+`qiskit.algorithms.EstimationProblem(state_preparation, objective_qubits, grover_operator=None, post_processing=None, is_good_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/amplitude_estimators/estimation_problem.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
@@ -24,7 +24,7 @@ This class contains all problem-specific information required to run an amplitud
 *   **objective\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – A single qubit index or a list of qubit indices to specify which qubits to measure. The `is_good_state` function is applied on the bitstring of these objective qubits.
 *   **grover\_operator** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| None*) – The Grover operator $\mathcal{Q}$ used as unitary in the phase estimation circuit.
 *   **post\_processing** (*Callable\[\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*],* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | None*) – A mapping applied to the result of the algorithm $0 \leq a \leq 1$, usually used to map the estimate to a target interval. Defaults to the identity.
-*   **is\_good\_state** (*Callable\[\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*],* [*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")*] | None*) – A function to check whether a string represents a good state. Defaults to all objective qubits being in state $\vert 1\rangle$.
+*   **is\_good\_state** (*Callable\[\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*],* [*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")*] | None*) – A function to check whether a string represents a good state. Defaults to all objective qubits being in state $|1\rangle$.
 
 ## Attributes
 

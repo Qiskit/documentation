@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.algorithms.HHLResult
 
 <span id="qiskit.aqua.algorithms.HHLResult" />
 
-`HHLResult(a_dict=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/linear_solvers/hhl.py "view source code")
+`HHLResult(a_dict=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/linear_solvers/hhl.py "view source code")
 
 Bases: `qiskit.aqua.algorithms.linear_solvers.linear_solver_result.LinearsolverResult`
 
@@ -54,7 +54,7 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 <span id="qiskit.aqua.algorithms.HHLResult.from_dict" />
 
-`static HHLResult.from_dict(a_dict)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/linear_solvers/hhl.py "view source code")
+`static HHLResult.from_dict(a_dict)`
 
 create new object from a dictionary
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.dagcircuit.DAGCircuitError
 
 <span id="qiskit.dagcircuit.DAGCircuitError" />
 
-`DAGCircuitError(*msg)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/dagcircuit/exceptions.py "view source code")
+`DAGCircuitError(*msg)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/dagcircuit/exceptions.py "view source code")
 
 Base class for errors raised by the DAGCircuit object.
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.components.feature_maps.RawFeatureVector
 
 <span id="qiskit.aqua.components.feature_maps.RawFeatureVector" />
 
-`RawFeatureVector(feature_dimension=2)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/feature_maps/raw_feature_vector.py "view source code")
+`RawFeatureVector(feature_dimension=2)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/feature_maps/raw_feature_vector.py "view source code")
 
 Raw Feature Vector feature map.
 

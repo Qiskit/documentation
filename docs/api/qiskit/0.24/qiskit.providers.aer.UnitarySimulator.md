@@ -12,7 +12,7 @@ python_api_name: qiskit.providers.aer.UnitarySimulator
 
 <span id="qiskit.providers.aer.UnitarySimulator" />
 
-`UnitarySimulator(configuration=None, properties=None, provider=None, **backend_options)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.7/qiskit/providers/aer/backends/unitary_simulator.py "view source code")
+`UnitarySimulator(configuration=None, properties=None, provider=None, **backend_options)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.7/qiskit/providers/aer/backends/unitary_simulator.py "view source code")
 
 Ideal quantum circuit unitary simulator.
 

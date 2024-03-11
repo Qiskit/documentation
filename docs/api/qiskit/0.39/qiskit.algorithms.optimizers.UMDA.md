@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.UMDA
 
 <span id="qiskit.algorithms.optimizers.UMDA" />
 
-`UMDA(maxiter=100, size_gen=20, alpha=0.5)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/optimizers/umda.py "view source code")
+`UMDA(maxiter=100, size_gen=20, alpha=0.5)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/optimizers/umda.py "view source code")
 
 Bases: [`qiskit.algorithms.optimizers.optimizer.Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.optimizer.Optimizer")
 
@@ -89,7 +89,7 @@ result = vqe.compute_minimum_eigenvalue(operator=qubit_op)
 
 <span id="qiskit.algorithms.optimizers.UMDA.get_support_level" />
 
-`UMDA.get_support_level()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/optimizers/umda.py "view source code")
+`UMDA.get_support_level()`
 
 Get the support level dictionary.
 
@@ -120,7 +120,7 @@ grad
 
 <span id="qiskit.algorithms.optimizers.UMDA.minimize" />
 
-`UMDA.minimize(fun, x0, jac=None, bounds=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/optimizers/umda.py "view source code")
+`UMDA.minimize(fun, x0, jac=None, bounds=None)`
 
 Minimize the scalar function.
 

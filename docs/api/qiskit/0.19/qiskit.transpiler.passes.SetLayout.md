@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.SetLayout
 
 <span id="qiskit.transpiler.passes.SetLayout" />
 
-`SetLayout(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/transpiler/passes/layout/set_layout.py "view source code")
+`SetLayout(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/transpiler/passes/layout/set_layout.py "view source code")
 
 Set the `layout` property to the given layout.
 
@@ -50,7 +50,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.SetLayout.run" />
 
-`SetLayout.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/transpiler/passes/layout/set_layout.py "view source code")
+`SetLayout.run(dag)`
 
 Run the SetLayout pass on dag.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.L_BFGS_B
 
 <span id="qiskit.algorithms.optimizers.L_BFGS_B" />
 
-`L_BFGS_B(maxfun=15000, maxiter=15000, ftol=2.220446049250313e-15, iprint=- 1, eps=1e-08, options=None, max_evals_grouped=1, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/optimizers/l_bfgs_b.py "view source code")
+`L_BFGS_B(maxfun=15000, maxiter=15000, ftol=2.220446049250313e-15, iprint=- 1, eps=1e-08, options=None, max_evals_grouped=1, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/optimizers/l_bfgs_b.py "view source code")
 
 Bases: [`qiskit.algorithms.optimizers.scipy_optimizer.SciPyOptimizer`](qiskit.algorithms.optimizers.SciPyOptimizer "qiskit.algorithms.optimizers.scipy_optimizer.SciPyOptimizer")
 
@@ -28,8 +28,8 @@ Uses `scipy.optimize.fmin_l_bfgs_b`. For further detail, please refer to [https:
 
 *   **maxfun** (`int`) – Maximum number of function evaluations.
 *   **maxiter** (`int`) – Maximum number of iterations.
-*   **ftol** (`float`) – The iteration stops when $(f^k - f^{k+1}) / \max\{\vert f^k\vert , \vert f^{k+1}\vert ,1\} \leq \text{ftol}$.
-*   **iprint** (`int`) – Controls the frequency of output. `iprint < 0` means no output; `iprint = 0` print only one line at the last iteration; `0 < iprint < 99` print also $f$ and $\vert \text{proj} g\vert $ every iprint iterations; `iprint = 99` print details of every iteration except n-vectors; `iprint = 100` print also the changes of active set and final $x$; `iprint > 100` print details of every iteration including $x$ and $g$.
+*   **ftol** (`float`) – The iteration stops when $(f^k - f^{k+1}) / \max\{|f^k|, |f^{k+1}|,1\} \leq \text{ftol}$.
+*   **iprint** (`int`) – Controls the frequency of output. `iprint < 0` means no output; `iprint = 0` print only one line at the last iteration; `0 < iprint < 99` print also $f$ and $|\text{proj} g|$ every iprint iterations; `iprint = 99` print details of every iteration except n-vectors; `iprint = 100` print also the changes of active set and final $x$; `iprint > 100` print details of every iteration including $x$ and $g$.
 *   **eps** (`float`) – If jac is approximated, use this value for the step size.
 *   **options** (`Optional`\[`dict`]) – A dictionary of solver options.
 *   **max\_evals\_grouped** (`int`) – Max number of default gradient evaluations performed simultaneously.

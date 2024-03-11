@@ -12,7 +12,7 @@ python_api_name: qiskit.pulse.library.Sech
 
 <span id="qiskit.pulse.library.Sech" />
 
-`qiskit.pulse.library.Sech(duration, amp, sigma, angle=0.0, name=None, zero_ends=True, limit_amplitude=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/pulse/library/symbolic_pulses.py "view source code")
+`qiskit.pulse.library.Sech(duration, amp, sigma, angle=0.0, name=None, zero_ends=True, limit_amplitude=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/pulse/library/symbolic_pulses.py "view source code")
 
 An unnormalized sech pulse.
 

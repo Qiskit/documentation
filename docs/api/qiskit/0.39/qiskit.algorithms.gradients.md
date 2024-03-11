@@ -1,8 +1,20 @@
+---
+title: gradients
+description: API reference for qiskit.algorithms.gradients
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.algorithms.gradients
+---
+
 <span id="qiskit-algorithms-gradients" />
 
 # qiskit.algorithms.gradients
 
-## Gradients ([`qiskit.algorithms.gradients`](#module-qiskit.algorithms.gradients "qiskit.algorithms.gradients"))
+## Gradients
+
+<span id="module-qiskit.algorithms.gradients" />
+
+`qiskit.algorithms.gradients`
 
 ### Base Classes
 
@@ -35,3 +47,4 @@
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- |
 | [`EstimatorGradientResult`](qiskit.algorithms.gradients.EstimatorGradientResult "qiskit.algorithms.gradients.EstimatorGradientResult")(gradients, metadata, ...) | Result of EstimatorGradient. |
 | [`SamplerGradientResult`](qiskit.algorithms.gradients.SamplerGradientResult "qiskit.algorithms.gradients.SamplerGradientResult")(gradients, metadata, ...)       | Result of SamplerGradient.   |
+

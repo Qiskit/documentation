@@ -10,7 +10,7 @@ python_api_name: qiskit.finance.data_providers.StockMarket
 
 <span id="qiskit.finance.data_providers.StockMarket" />
 
-`StockMarket(value)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/finance/data_providers/_base_data_provider.py "view source code")
+`StockMarket(value)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/finance/data_providers/_base_data_provider.py "view source code")
 
 Stock Market enum
 

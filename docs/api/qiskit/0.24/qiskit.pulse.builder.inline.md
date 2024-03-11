@@ -12,7 +12,7 @@ python_api_name: qiskit.pulse.builder.inline
 
 <span id="qiskit.pulse.builder.inline" />
 
-`inline()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/builder.py "view source code")
+`inline()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/builder.py "view source code")
 
 Inline all instructions within this context into the parent context, inheriting the scheduling policy of the parent context.
 

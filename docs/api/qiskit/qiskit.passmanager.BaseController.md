@@ -10,7 +10,7 @@ python_api_name: qiskit.passmanager.BaseController
 
 <span id="qiskit.passmanager.BaseController" />
 
-`qiskit.passmanager.BaseController(options=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/passmanager/base_tasks.py "view source code")
+`qiskit.passmanager.BaseController(options=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/passmanager/base_tasks.py "view source code")
 
 Bases: `Task`, [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 

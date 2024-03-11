@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.GraphState
 
 <span id="qiskit.circuit.library.GraphState" />
 
-`GraphState(adjacency_matrix)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/library/graph_state.py "view source code")
+`GraphState(adjacency_matrix)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/library/graph_state.py "view source code")
 
 Bases: `qiskit.circuit.quantumcircuit.QuantumCircuit`
 
@@ -19,7 +19,7 @@ Circuit to prepare a graph state.
 Given a graph G = (V, E), with the set of vertices V and the set of edges E, the corresponding graph state is defined as
 
 $$
-\vert G\rangle = \prod_{(a,b) \in E} CZ_{(a,b)} {\vert +\rangle}^{\otimes V}
+|G\rangle = \prod_{(a,b) \in E} CZ_{(a,b)} {|+\rangle}^{\otimes V}
 $$
 
 Such a state can be prepared by first preparing all qubits in the $+$ state, then applying a $CZ$ gate for each corresponding graph edge.

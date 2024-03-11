@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.minimum_eigensolvers.SamplingVQE
 
 <span id="qiskit.algorithms.minimum_eigensolvers.SamplingVQE" />
 
-`qiskit.algorithms.minimum_eigensolvers.SamplingVQE(sampler, ansatz, optimizer, *, initial_point=None, aggregation=None, callback=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/minimum_eigensolvers/sampling_vqe.py "view source code")
+`qiskit.algorithms.minimum_eigensolvers.SamplingVQE(sampler, ansatz, optimizer, *, initial_point=None, aggregation=None, callback=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/minimum_eigensolvers/sampling_vqe.py "view source code")
 
 Bases: `VariationalAlgorithm`, [`SamplingMinimumEigensolver`](qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolver "qiskit.algorithms.minimum_eigensolvers.sampling_mes.SamplingMinimumEigensolver")
 
@@ -20,7 +20,7 @@ VQE is a hybrid quantum-classical algorithm that uses a variational technique to
 
 In contrast to the [`VQE`](qiskit.algorithms.minimum_eigensolvers.VQE "qiskit.algorithms.minimum_eigensolvers.VQE") class, the `SamplingVQE` algorithm is executed using a [`sampler`](#qiskit.algorithms.minimum_eigensolvers.SamplingVQE.sampler "qiskit.algorithms.minimum_eigensolvers.SamplingVQE.sampler") primitive.
 
-An instance of `SamplingVQE` also requires an [`ansatz`](#qiskit.algorithms.minimum_eigensolvers.SamplingVQE.ansatz "qiskit.algorithms.minimum_eigensolvers.SamplingVQE.ansatz"), a parameterized [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), to prepare the trial state $\vert \psi(\vec\theta)\rangle$. It also needs a classical [`optimizer`](#qiskit.algorithms.minimum_eigensolvers.SamplingVQE.optimizer "qiskit.algorithms.minimum_eigensolvers.SamplingVQE.optimizer") which varies the circuit parameters $\vec\theta$ to minimize the objective function, which depends on the chosen [`aggregation`](#qiskit.algorithms.minimum_eigensolvers.SamplingVQE.aggregation "qiskit.algorithms.minimum_eigensolvers.SamplingVQE.aggregation").
+An instance of `SamplingVQE` also requires an [`ansatz`](#qiskit.algorithms.minimum_eigensolvers.SamplingVQE.ansatz "qiskit.algorithms.minimum_eigensolvers.SamplingVQE.ansatz"), a parameterized [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), to prepare the trial state $|\psi(\vec\theta)\rangle$. It also needs a classical [`optimizer`](#qiskit.algorithms.minimum_eigensolvers.SamplingVQE.optimizer "qiskit.algorithms.minimum_eigensolvers.SamplingVQE.optimizer") which varies the circuit parameters $\vec\theta$ to minimize the objective function, which depends on the chosen [`aggregation`](#qiskit.algorithms.minimum_eigensolvers.SamplingVQE.aggregation "qiskit.algorithms.minimum_eigensolvers.SamplingVQE.aggregation").
 
 The optimizer can either be one of Qiskit’s optimizers, such as [`SPSA`](qiskit.algorithms.optimizers.SPSA "qiskit.algorithms.optimizers.SPSA") or a callable with the following signature:
 

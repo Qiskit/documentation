@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.linear_solvers.LinearSystemObservable
 
 <span id="qiskit.algorithms.linear_solvers.LinearSystemObservable" />
 
-`LinearSystemObservable`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/linear_solvers/observables/linear_system_observable.py "view source code")
+`LinearSystemObservable` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/linear_solvers/observables/linear_system_observable.py "view source code")
 
 Bases: `abc.ABC`
 
@@ -22,7 +22,7 @@ An abstract class for linear system observables in Qiskit.
 
 <span id="qiskit.algorithms.linear_solvers.LinearSystemObservable.evaluate_classically" />
 
-`abstract LinearSystemObservable.evaluate_classically(solution)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/linear_solvers/observables/linear_system_observable.py "view source code")
+`abstract LinearSystemObservable.evaluate_classically(solution)`
 
 #### Calculates the analytical value of the given observable from the solution vector to the
 
@@ -44,7 +44,7 @@ The value of the observable.
 
 <span id="qiskit.algorithms.linear_solvers.LinearSystemObservable.observable" />
 
-`abstract LinearSystemObservable.observable(num_qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/linear_solvers/observables/linear_system_observable.py "view source code")
+`abstract LinearSystemObservable.observable(num_qubits)`
 
 The observable operator.
 
@@ -64,7 +64,7 @@ The observable as a sum of Pauli strings.
 
 <span id="qiskit.algorithms.linear_solvers.LinearSystemObservable.observable_circuit" />
 
-`abstract LinearSystemObservable.observable_circuit(num_qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/linear_solvers/observables/linear_system_observable.py "view source code")
+`abstract LinearSystemObservable.observable_circuit(num_qubits)`
 
 The circuit implementing the observable.
 
@@ -84,7 +84,7 @@ The observable as a QuantumCircuit.
 
 <span id="qiskit.algorithms.linear_solvers.LinearSystemObservable.post_processing" />
 
-`abstract LinearSystemObservable.post_processing(solution, num_qubits, scaling=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/linear_solvers/observables/linear_system_observable.py "view source code")
+`abstract LinearSystemObservable.post_processing(solution, num_qubits, scaling=1)`
 
 Evaluates the given observable on the solution to the linear system.
 

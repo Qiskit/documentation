@@ -10,7 +10,7 @@ python_api_name: qiskit.qobj.PulseQobjExperiment
 
 <span id="qiskit.qobj.PulseQobjExperiment" />
 
-`qiskit.qobj.PulseQobjExperiment(instructions, config=None, header=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/qobj/pulse_qobj.py "view source code")
+`qiskit.qobj.PulseQobjExperiment(instructions, config=None, header=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/qobj/pulse_qobj.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 

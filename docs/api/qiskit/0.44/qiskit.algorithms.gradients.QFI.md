@@ -10,15 +10,15 @@ python_api_name: qiskit.algorithms.gradients.QFI
 
 <span id="qiskit.algorithms.gradients.QFI" />
 
-`qiskit.algorithms.gradients.QFI(qgt, options=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/gradients/qfi.py "view source code")
+`qiskit.algorithms.gradients.QFI(qgt, options=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/gradients/qfi.py "view source code")
 
 Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 
 Computes the Quantum Fisher Information (QFI) given a pure, parameterized quantum state. QFI is defined as:
 
 $$
-\mathrm{QFI}_{ij}= 4 \mathrm{Re}[\langle \partial_i \psi \vert  \partial_j \psi \rangle
-- \langle\partial_i \psi \vert  \psi \rangle \langle\psi \vert  \partial_j \psi \rangle].
+\mathrm{QFI}_{ij}= 4 \mathrm{Re}[\langle \partial_i \psi | \partial_j \psi \rangle
+- \langle\partial_i \psi | \psi \rangle \langle\psi | \partial_j \psi \rangle].
 $$
 
 **Parameters**

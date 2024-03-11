@@ -1,6 +1,6 @@
 ---
 title: Exact simulation with Qiskit primitives
-description: Simulate with Qiskit reference primitives. How to compute an expectation value with the Estimator primitive, and how to compute circuit output probabilities with the Sampler primitive
+description: How to perform exact simulation of quantum circuits using primitives in Qiskit.
 ---
 
 # Exact simulation with Qiskit primitives
@@ -49,7 +49,7 @@ from qiskit import QuantumCircuit
 qc = QuantumCircuit(2)
 qc.h(0)
 qc.cx(0,1)
-qc.draw("mpl")
+qc.draw("mpl", style="iqp")
 ```
 
 ![Initial QuantumCircuit](/images/verify/simulate-with-qiskit-primitives/estimator-initialize.png "Initial QuantumCircuit")
@@ -114,7 +114,7 @@ theta = Parameter('θ')
 param_qc = QuantumCircuit(2)
 param_qc.ry(theta, 0)
 param_qc.cx(0,1)
-print(param_qc.draw())
+print(param_qc.draw(style="iqp"))
 ```
 
 ```
@@ -267,7 +267,7 @@ qc = QuantumCircuit(2)
 qc.h(0)
 qc.cx(0,1)
 qc.measure_all()
-qc.draw("mpl")
+qc.draw("mpl", style="iqp")
 ```
 
 ![Initial QuantumCircuit](/images/verify/simulate-with-qiskit-primitives/sampler-initialize.png "Initial QuantumCircuit")
@@ -349,7 +349,7 @@ param_qc = QuantumCircuit(2)
 param_qc.ry(theta, 0)
 param_qc.cx(0,1)
 param_qc.measure_all()
-print(param_qc.draw())
+print(param_qc.draw(style="iqp"))
 ```
 
 ```

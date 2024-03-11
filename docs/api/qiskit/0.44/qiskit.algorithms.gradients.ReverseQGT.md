@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.gradients.ReverseQGT
 
 <span id="qiskit.algorithms.gradients.ReverseQGT" />
 
-`qiskit.algorithms.gradients.ReverseQGT(phase_fix=True, derivative_type=DerivativeType.COMPLEX)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/gradients/reverse/reverse_qgt.py "view source code")
+`qiskit.algorithms.gradients.ReverseQGT(phase_fix=True, derivative_type=DerivativeType.COMPLEX)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/gradients/reverse/reverse_qgt.py "view source code")
 
 Bases: [`BaseQGT`](qiskit.algorithms.gradients.BaseQGT "qiskit.algorithms.gradients.base.base_qgt.BaseQGT")
 

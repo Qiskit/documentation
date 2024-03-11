@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.gradients.LinCombEstimatorGradient
 
 <span id="qiskit.algorithms.gradients.LinCombEstimatorGradient" />
 
-`qiskit.algorithms.gradients.LinCombEstimatorGradient(estimator, derivative_type=DerivativeType.REAL, options=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/gradients/lin_comb/lin_comb_estimator_gradient.py "view source code")
+`qiskit.algorithms.gradients.LinCombEstimatorGradient(estimator, derivative_type=DerivativeType.REAL, options=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/gradients/lin_comb/lin_comb_estimator_gradient.py "view source code")
 
 Bases: [`BaseEstimatorGradient`](qiskit.algorithms.gradients.BaseEstimatorGradient "qiskit.algorithms.gradients.base.base_estimator_gradient.BaseEstimatorGradient")
 
@@ -26,9 +26,9 @@ Compute the gradients of the expectation values. This method employs a linear co
 
     The type of derivative. Can be either `DerivativeType.REAL` `DerivativeType.IMAG`, or `DerivativeType.COMPLEX`. Defaults to `DerivativeType.REAL`.
 
-    > *   `DerivativeType.REAL` computes $2 \mathrm{Re}[⟨ψ(ω)\vert O(θ)\vert dω ψ(ω)〉]$.
-    > *   `DerivativeType.IMAG` computes $2 \mathrm{Im}[⟨ψ(ω)\vert O(θ)\vert dω ψ(ω)〉]$.
-    > *   `DerivativeType.COMPLEX` computes $2 ⟨ψ(ω)\vert O(θ)\vert dω ψ(ω)〉$.
+    > *   `DerivativeType.REAL` computes $2 \mathrm{Re}[⟨ψ(ω)|O(θ)|dω ψ(ω)〉]$.
+    > *   `DerivativeType.IMAG` computes $2 \mathrm{Im}[⟨ψ(ω)|O(θ)|dω ψ(ω)〉]$.
+    > *   `DerivativeType.COMPLEX` computes $2 ⟨ψ(ω)|O(θ)|dω ψ(ω)〉$.
 
 *   **options** ([*Options*](qiskit.providers.Options "qiskit.providers.Options") *| None*) – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > gradient’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting.
 

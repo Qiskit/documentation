@@ -12,7 +12,7 @@ python_api_name: qiskit.pulse.AcquireChannel
 
 <span id="qiskit.pulse.AcquireChannel" />
 
-`AcquireChannel(index)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/channels.py "view source code")
+`AcquireChannel(index)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/channels.py "view source code")
 
 Acquire channels are used to collect data.
 

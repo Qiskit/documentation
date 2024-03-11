@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.LinearFunction
 
 <span id="qiskit.circuit.library.LinearFunction" />
 
-`LinearFunction(linear, validate_input=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/generalized_gates/linear_function.py "view source code")
+`LinearFunction(linear, validate_input=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/generalized_gates/linear_function.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -65,7 +65,7 @@ Create a new linear function.
 
 <span id="qiskit.circuit.library.LinearFunction.is_permutation" />
 
-`LinearFunction.is_permutation()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/generalized_gates/linear_function.py "view source code")
+`LinearFunction.is_permutation()`
 
 Returns whether this linear function is a permutation, that is whether every row and every column of the n x n matrix has exactly one 1.
 
@@ -79,7 +79,7 @@ bool
 
 <span id="qiskit.circuit.library.LinearFunction.permutation_pattern" />
 
-`LinearFunction.permutation_pattern()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/generalized_gates/linear_function.py "view source code")
+`LinearFunction.permutation_pattern()`
 
 This method first checks if a linear function is a permutation and raises a qiskit.circuit.exceptions.CircuitError if not. In the case that this linear function is a permutation, returns the permutation pattern.
 
@@ -89,7 +89,7 @@ This method first checks if a linear function is a permutation and raises a qisk
 
 <span id="qiskit.circuit.library.LinearFunction.synthesize" />
 
-`LinearFunction.synthesize()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/generalized_gates/linear_function.py "view source code")
+`LinearFunction.synthesize()`
 
 Synthesizes the linear function into a quantum circuit.
 
@@ -107,7 +107,7 @@ A circuit implementing the evolution.
 
 <span id="qiskit.circuit.library.LinearFunction.validate_parameter" />
 
-`LinearFunction.validate_parameter(parameter)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/generalized_gates/linear_function.py "view source code")
+`LinearFunction.validate_parameter(parameter)`
 
 Parameter validation
 

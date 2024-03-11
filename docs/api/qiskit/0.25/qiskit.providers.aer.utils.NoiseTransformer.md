@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.utils.NoiseTransformer
 
 <span id="qiskit.providers.aer.utils.NoiseTransformer" />
 
-`NoiseTransformer`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/utils/noise_transformation.py "view source code")
+`NoiseTransformer` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/utils/noise_transformation.py "view source code")
 
 Transforms one quantum channel to another based on a specified criteria.
 
@@ -389,7 +389,7 @@ Transform input Kraus operators.
 
 Allows approximating a set of input Kraus operators as in terms of a different set of Kraus matrices.
 
-For example, setting $[X, Y, Z]$ allows approximating by a Pauli channel, and $[(\vert 0 \langle\rangle 0\vert , \vert 0\langle\rangle 1\vert ), \vert 1\langle\rangle 0\vert , \vert 1 \langle\rangle 1\vert )]$ represents the relaxation channel
+For example, setting $[X, Y, Z]$ allows approximating by a Pauli channel, and $[(|0 \langle\rangle 0|, |0\langle\rangle 1|), |1\langle\rangle 0|, |1 \langle\rangle 1|)]$ represents the relaxation channel
 
 In the case the input is a list $[A_1, A_2, ..., A_n]$ of transform matrices and $[E_0, E_1, ..., E_m]$ of noise Kraus operators, the output is a list $[p_1, p_2, ..., p_n]$ of probabilities such that:
 

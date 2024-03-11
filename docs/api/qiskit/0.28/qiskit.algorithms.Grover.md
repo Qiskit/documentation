@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.Grover
 
 <span id="qiskit.algorithms.Grover" />
 
-`Grover(iterations=None, growth_rate=None, sample_from_iterations=False, quantum_instance=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/amplitude_amplifiers/grover.py "view source code")
+`Grover(iterations=None, growth_rate=None, sample_from_iterations=False, quantum_instance=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/amplitude_amplifiers/grover.py "view source code")
 
 Grover’s Search algorithm.
 
@@ -23,10 +23,10 @@ The search is called *unstructured* because there are no guarantees as to how th
 To carry out this search a so-called oracle is required, that flags a good element/state. The action of the oracle $\mathcal{S}_f$ is
 
 $$
-\mathcal{S}_f \vert x\rangle = (-1)^{f(x)} \vert x\rangle,
+\mathcal{S}_f |x\rangle = (-1)^{f(x)} |x\rangle,
 $$
 
-i.e. it flips the phase of the state $\vert x\rangle$ if $x$ is a hit. The details of how $S_f$ works are unimportant to the algorithm; Grover’s search algorithm treats the oracle as a black box.
+i.e. it flips the phase of the state $|x\rangle$ if $x$ is a hit. The details of how $S_f$ works are unimportant to the algorithm; Grover’s search algorithm treats the oracle as a black box.
 
 This class supports oracles in form of `QuantumCircuit`
 

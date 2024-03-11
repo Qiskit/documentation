@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.initial_states.VarFormBased
 
 <span id="qiskit.aqua.components.initial_states.VarFormBased" />
 
-`VarFormBased(var_form, params)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/initial_states/var_form_based.py "view source code")
+`VarFormBased(var_form, params)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/initial_states/var_form_based.py "view source code")
 
 Bases: `object`
 
@@ -35,7 +35,7 @@ As an example this [notebook](https://github.com/Qiskit/qiskit-community-tutoria
 
 <span id="qiskit.aqua.components.initial_states.VarFormBased.construct_circuit" />
 
-`VarFormBased.construct_circuit(mode='circuit', register=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/initial_states/var_form_based.py "view source code")
+`VarFormBased.construct_circuit(mode='circuit', register=None)`
 
 Construct the statevector of desired initial state.
 

@@ -1,8 +1,20 @@
+---
+title: list_ops
+description: API reference for qiskit.opflow.list_ops
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.opflow.list_ops
+---
+
 <span id="qiskit-opflow-list-ops" />
 
 # qiskit.opflow\.list\_ops
 
-## List Operators ([`qiskit.opflow.list_ops`](#module-qiskit.opflow.list_ops "qiskit.opflow.list_ops"))
+## List Operators
+
+<span id="module-qiskit.opflow.list_ops" />
+
+`qiskit.opflow.list_ops`
 
 List Operators are classes for storing and manipulating lists of Operators, State functions, or Measurements, and include some rule or `combo_fn` defining how the Operator functions of the list constituents should be combined to form to cumulative Operator function of the [`ListOp`](qiskit.opflow.list_ops.ListOp "qiskit.opflow.list_ops.ListOp"). For example, a [`SummedOp`](qiskit.opflow.list_ops.SummedOp "qiskit.opflow.list_ops.SummedOp") has an addition-based `combo_fn`, so once the Operators in its list are evaluated against some bitstring to produce a list of results, we know to add up those results to produce the final result of the [`SummedOp`](qiskit.opflow.list_ops.SummedOp "qiskit.opflow.list_ops.SummedOp")’s evaluation. In theory, this `combo_fn` can be any function over classical complex values, but for convenience we’ve chosen for them to be defined over NumPy arrays and values. This way, large numbers of evaluations, such as after calling [`to_matrix()`](qiskit.opflow.list_ops.ListOp#to_matrix "qiskit.opflow.list_ops.ListOp.to_matrix") on the list constituents, can be efficiently combined. While the combination function is defined over classical values, it should be understood as the operation by which each Operators’ underlying function is combined to form the underlying Operator function of the [`ListOp`](qiskit.opflow.list_ops.ListOp "qiskit.opflow.list_ops.ListOp"). In this way, the [`list_ops`](#module-qiskit.opflow.list_ops "qiskit.opflow.list_ops") are the basis for constructing large and sophisticated Operators, State Functions, and Measurements.
 
@@ -31,3 +43,4 @@ You’ll encounter the [`ListOp`](qiskit.opflow.list_ops.ListOp "qiskit.opflow.l
 | [`ComposedOp`](qiskit.opflow.list_ops.ComposedOp "qiskit.opflow.list_ops.ComposedOp")(oplist\[, coeff, abelian])     | A class for lazily representing compositions of Operators.                                               |
 | [`SummedOp`](qiskit.opflow.list_ops.SummedOp "qiskit.opflow.list_ops.SummedOp")(oplist\[, coeff, abelian])           | A class for lazily representing sums of Operators.                                                       |
 | [`TensoredOp`](qiskit.opflow.list_ops.TensoredOp "qiskit.opflow.list_ops.TensoredOp")(oplist\[, coeff, abelian])     | A class for lazily representing tensor products of Operators.                                            |
+

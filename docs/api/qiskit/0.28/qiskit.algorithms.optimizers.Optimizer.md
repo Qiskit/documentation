@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.Optimizer
 
 <span id="qiskit.algorithms.optimizers.Optimizer" />
 
-`Optimizer`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/optimizer.py "view source code")
+`Optimizer` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/optimizer.py "view source code")
 
 Base class for optimization algorithm.
 

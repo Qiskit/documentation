@@ -10,7 +10,7 @@ python_api_name: qiskit.dagcircuit.DAGNode
 
 <span id="qiskit.dagcircuit.DAGNode" />
 
-`DAGNode(nid=- 1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/dagcircuit/dagnode.py "view source code")
+`DAGNode(nid=- 1)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/dagcircuit/dagnode.py "view source code")
 
 Bases: `object`
 
@@ -24,7 +24,7 @@ Create a node
 
 <span id="qiskit.dagcircuit.DAGNode.semantic_eq" />
 
-`static DAGNode.semantic_eq(node1, node2, bit_indices1=None, bit_indices2=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/dagcircuit/dagnode.py "view source code")
+`static DAGNode.semantic_eq(node1, node2, bit_indices1=None, bit_indices2=None)`
 
 Check if DAG nodes are considered equivalent, e.g., as a node\_match for nx.is\_isomorphic.
 

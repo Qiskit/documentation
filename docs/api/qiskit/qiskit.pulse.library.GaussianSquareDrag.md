@@ -12,7 +12,7 @@ python_api_name: qiskit.pulse.library.GaussianSquareDrag
 
 <span id="qiskit.pulse.library.GaussianSquareDrag" />
 
-`qiskit.pulse.library.GaussianSquareDrag(duration, amp, sigma, beta, width=None, angle=0.0, risefall_sigma_ratio=None, name=None, limit_amplitude=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/pulse/library/symbolic_pulses.py "view source code")
+`qiskit.pulse.library.GaussianSquareDrag(duration, amp, sigma, beta, width=None, angle=0.0, risefall_sigma_ratio=None, name=None, limit_amplitude=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/pulse/library/symbolic_pulses.py "view source code")
 
 A square pulse with a Drag shaped rise and fall
 
@@ -66,13 +66,13 @@ where $\text{A} = \text{amp} \times \exp\left(i\times\text{angle}\right)$.
 
 **Parameters**
 
-*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – Pulse length in terms of the sampling period dt.
-*   **amp** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – The amplitude of the DRAG rise and fall and of the square pulse.
-*   **sigma** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – A measure of how wide or narrow the DRAG risefall is; see the class docstring for more details.
-*   **beta** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – The DRAG correction amplitude.
-*   **width** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – The duration of the embedded square pulse.
-*   **angle** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – The angle in radians of the complex phase factor uniformly scaling the pulse. Default value 0.
-*   **risefall\_sigma\_ratio** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – The ratio of each risefall duration to sigma.
+*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – Pulse length in terms of the sampling period dt.
+*   **amp** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – The amplitude of the DRAG rise and fall and of the square pulse.
+*   **sigma** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – A measure of how wide or narrow the DRAG risefall is; see the class docstring for more details.
+*   **beta** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – The DRAG correction amplitude.
+*   **width** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") *| None*) – The duration of the embedded square pulse.
+*   **angle** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") *| None*) – The angle in radians of the complex phase factor uniformly scaling the pulse. Default value 0.
+*   **risefall\_sigma\_ratio** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") *| None*) – The ratio of each risefall duration to sigma.
 *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Display name for this pulse envelope.
 *   **limit\_amplitude** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – If `True`, then limit the amplitude of the waveform to 1. The default is `True` and the amplitude is constrained to 1.
 
@@ -86,5 +86,5 @@ ScalableSymbolicPulse instance.
 
 **Return type**
 
-*ScalableSymbolicPulse*
+ScalableSymbolicPulse
 

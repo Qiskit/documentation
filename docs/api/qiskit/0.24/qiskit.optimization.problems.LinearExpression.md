@@ -12,7 +12,7 @@ python_api_name: qiskit.optimization.problems.LinearExpression
 
 <span id="qiskit.optimization.problems.LinearExpression" />
 
-`LinearExpression(quadratic_program, coefficients)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/problems/linear_expression.py "view source code")
+`LinearExpression(quadratic_program, coefficients)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/problems/linear_expression.py "view source code")
 
 Representation of a linear expression by its coefficients.
 

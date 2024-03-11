@@ -10,7 +10,7 @@ python_api_name: qiskit_aer.utils.approximate_quantum_error
 
 <span id="qiskit_aer.utils.approximate_quantum_error" />
 
-`approximate_quantum_error(error, *, operator_string=None, operator_dict=None, operator_list=None)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/utils/noise_transformation.py "view source code")
+`approximate_quantum_error(error, *, operator_string=None, operator_dict=None, operator_list=None)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/utils/noise_transformation.py "view source code")
 
 Return a `QuantumError` object that approximates an error as a mixture of specified operators (channels).
 

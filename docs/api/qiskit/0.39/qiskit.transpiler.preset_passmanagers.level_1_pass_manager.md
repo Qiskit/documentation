@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.preset_passmanagers.level_1_pass_manager
 
 <span id="qiskit.transpiler.preset_passmanagers.level_1_pass_manager" />
 
-`level_1_pass_manager(pass_manager_config)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/transpiler/preset_passmanagers/level1.py "view source code")
+`level_1_pass_manager(pass_manager_config)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/transpiler/preset_passmanagers/level1.py "view source code")
 
 Level 1 pass manager: light optimization by simple adjacent gate collapsing.
 

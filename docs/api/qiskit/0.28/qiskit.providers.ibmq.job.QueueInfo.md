@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.job.QueueInfo
 
 <span id="qiskit.providers.ibmq.job.QueueInfo" />
 
-`QueueInfo(position=None, status=None, estimated_start_time=None, estimated_complete_time=None, hub_priority=None, group_priority=None, project_priority=None, job_id=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.15/qiskit/providers/ibmq/job/queueinfo.py "view source code")
+`QueueInfo(position=None, status=None, estimated_start_time=None, estimated_complete_time=None, hub_priority=None, group_priority=None, project_priority=None, job_id=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.15/qiskit/providers/ibmq/job/queueinfo.py "view source code")
 
 Queue information for a job.
 

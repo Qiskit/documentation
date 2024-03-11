@@ -12,7 +12,7 @@ python_api_name: qiskit.ml.datasets.ad_hoc_data
 
 <span id="qiskit.ml.datasets.ad_hoc_data" />
 
-`ad_hoc_data(training_size, test_size, n, gap, plot_data=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/ml/datasets/ad_hoc.py "view source code")
+`ad_hoc_data(training_size, test_size, n, gap, plot_data=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/ml/datasets/ad_hoc.py "view source code")
 
 returns ad hoc dataset
 

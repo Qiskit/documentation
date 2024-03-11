@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.utils.validate_job_tags
 
 <span id="qiskit.providers.ibmq.utils.validate_job_tags" />
 
-`validate_job_tags(job_tags, exception)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.12/qiskit/providers/ibmq/utils/utils.py "view source code")
+`validate_job_tags(job_tags, exception)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.12/qiskit/providers/ibmq/utils/utils.py "view source code")
 
 Validates input job tags.
 

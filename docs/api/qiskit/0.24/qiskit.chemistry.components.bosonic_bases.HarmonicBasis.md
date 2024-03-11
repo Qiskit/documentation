@@ -12,7 +12,7 @@ python_api_name: qiskit.chemistry.components.bosonic_bases.HarmonicBasis
 
 <span id="qiskit.chemistry.components.bosonic_bases.HarmonicBasis" />
 
-`HarmonicBasis(watson_hamiltonian, basis, truncation_order=3)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/components/bosonic_bases/harmonic_basis.py "view source code")
+`HarmonicBasis(watson_hamiltonian, basis, truncation_order=3)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/components/bosonic_bases/harmonic_basis.py "view source code")
 
 Basis in which the Watson Hamiltonian is expressed.
 

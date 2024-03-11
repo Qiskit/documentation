@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.UnitaryOverlap
 
 <span id="qiskit.circuit.library.UnitaryOverlap" />
 
-`qiskit.circuit.library.UnitaryOverlap(unitary1, unitary2, prefix1='p1', prefix2='p2')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/overlap.py "view source code")
+`qiskit.circuit.library.UnitaryOverlap(unitary1, unitary2, prefix1='p1', prefix2='p2')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/overlap.py "view source code")
 
 Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
@@ -26,7 +26,7 @@ This circuit is usually employed in computing the fidelity:
     \left|\langle 0| U_2^{\dag} U_1|0\rangle\right|^{2}
 ```
 
-by computing the probability of being in the all-zeros bit-string, or equivalently, the expectation value of projector $\vert 0\rangle\langle 0\vert $.
+by computing the probability of being in the all-zeros bit-string, or equivalently, the expectation value of projector $|0\rangle\langle 0|$.
 
 Example:
 

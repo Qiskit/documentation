@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.ALAPScheduleAnalysis
 
 <span id="qiskit.transpiler.passes.ALAPScheduleAnalysis" />
 
-`qiskit.transpiler.passes.ALAPScheduleAnalysis(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/passes/scheduling/scheduling/alap.py "view source code")
+`qiskit.transpiler.passes.ALAPScheduleAnalysis(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/scheduling/scheduling/alap.py "view source code")
 
 Bases: `BaseScheduler`
 

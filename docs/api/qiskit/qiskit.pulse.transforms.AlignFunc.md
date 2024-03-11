@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.transforms.AlignFunc
 
 <span id="qiskit.pulse.transforms.AlignFunc" />
 
-`qiskit.pulse.transforms.AlignFunc(duration, func)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/pulse/transforms/alignments.py "view source code")
+`qiskit.pulse.transforms.AlignFunc(duration, func)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/pulse/transforms/alignments.py "view source code")
 
 Bases: [`AlignmentKind`](pulse#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.alignments.AlignmentKind")
 
@@ -35,8 +35,8 @@ Create new equispaced context.
 
 **Parameters**
 
-*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – Duration of this context. This should be larger than the schedule duration. If the specified duration is shorter than the schedule duration, no alignment is performed and the input schedule is just returned. This duration can be parametrized.
-*   **func** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)")) – A function that takes an index of sub-schedule and returns the fractional coordinate of of that sub-schedule. The returned value should be defined within \[0, 1]. The pulse index starts from 1.
+*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – Duration of this context. This should be larger than the schedule duration. If the specified duration is shorter than the schedule duration, no alignment is performed and the input schedule is just returned. This duration can be parametrized.
+*   **func** (*Callable*) – A function that takes an index of sub-schedule and returns the fractional coordinate of of that sub-schedule. The returned value should be defined within \[0, 1]. The pulse index starts from 1.
 
 ## Attributes
 

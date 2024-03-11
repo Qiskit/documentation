@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.minimum_eigensolvers.QAOA
 
 <span id="qiskit.algorithms.minimum_eigensolvers.QAOA" />
 
-`QAOA(sampler, optimizer, *, reps=1, initial_state=None, mixer=None, initial_point=None, aggregation=None, callback=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/minimum_eigensolvers/qaoa.py "view source code")
+`QAOA(sampler, optimizer, *, reps=1, initial_state=None, mixer=None, initial_point=None, aggregation=None, callback=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/minimum_eigensolvers/qaoa.py "view source code")
 
 Bases: [`qiskit.algorithms.minimum_eigensolvers.sampling_vqe.SamplingVQE`](qiskit.algorithms.minimum_eigensolvers.SamplingVQE "qiskit.algorithms.minimum_eigensolvers.sampling_vqe.SamplingVQE")
 

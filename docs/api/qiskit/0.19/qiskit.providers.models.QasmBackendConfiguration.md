@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.models.QasmBackendConfiguration
 
 <span id="qiskit.providers.models.QasmBackendConfiguration" />
 
-`QasmBackendConfiguration(backend_name, backend_version, n_qubits, basis_gates, gates, local, simulator, conditional, open_pulse, memory, max_shots, coupling_map, max_experiments=None, sample_name=None, n_registers=None, register_map=None, configurable=None, credits_required=None, online_date=None, display_name=None, description=None, tags=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/models/backendconfiguration.py "view source code")
+`QasmBackendConfiguration(backend_name, backend_version, n_qubits, basis_gates, gates, local, simulator, conditional, open_pulse, memory, max_shots, coupling_map, max_experiments=None, sample_name=None, n_registers=None, register_map=None, configurable=None, credits_required=None, online_date=None, display_name=None, description=None, tags=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/models/backendconfiguration.py "view source code")
 
 Class representing a Qasm Backend Configuration.
 
@@ -122,7 +122,7 @@ In future, n\_qubits should be replaced in favor of num\_qubits for consistent u
 
 <span id="qiskit.providers.models.QasmBackendConfiguration.from_dict" />
 
-`classmethod QasmBackendConfiguration.from_dict(data)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/models/backendconfiguration.py "view source code")
+`classmethod QasmBackendConfiguration.from_dict(data)`
 
 Create a new GateConfig object from a dictionary.
 
@@ -142,7 +142,7 @@ The GateConfig from the input dictionary.
 
 <span id="qiskit.providers.models.QasmBackendConfiguration.to_dict" />
 
-`QasmBackendConfiguration.to_dict()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/models/backendconfiguration.py "view source code")
+`QasmBackendConfiguration.to_dict()`
 
 Return a dictionary format representation of the GateConfig.
 

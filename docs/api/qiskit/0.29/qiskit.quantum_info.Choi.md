@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.Choi
 
 <span id="qiskit.quantum_info.Choi" />
 
-`Choi(data, input_dims=None, output_dims=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/operators/channel/choi.py "view source code")
+`Choi(data, input_dims=None, output_dims=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/operators/channel/choi.py "view source code")
 
 Bases: `qiskit.quantum_info.operators.channel.quantum_channel.QuantumChannel`
 
@@ -19,8 +19,8 @@ Choi-matrix representation of a Quantum Channel.
 The Choi-matrix representation of a quantum channel $\mathcal{E}$ is a matrix
 
 $$
-\Lambda = \sum_{i,j} \vert i\rangle\!\langle j\vert \otimes
-            \mathcal{E}\left(\vert i\rangle\!\langle j\vert \right)
+\Lambda = \sum_{i,j} |i\rangle\!\langle j|\otimes
+            \mathcal{E}\left(|i\rangle\!\langle j|\right)
 $$
 
 Evolution of a [`DensityMatrix`](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") $\rho$ with respect to the Choi-matrix is given by
@@ -72,7 +72,7 @@ Return the adjoint quantum channel.
 
 <span id="qiskit.quantum_info.Choi.compose" />
 
-`Choi.compose(other, qargs=None, front=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/operators/channel/choi.py "view source code")
+`Choi.compose(other, qargs=None, front=False)`
 
 Return the operator composition with another Choi.
 
@@ -104,7 +104,7 @@ The composed Choi.
 
 <span id="qiskit.quantum_info.Choi.conjugate" />
 
-`Choi.conjugate()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/operators/channel/choi.py "view source code")
+`Choi.conjugate()`
 
 Return the conjugate quantum channel.
 
@@ -145,7 +145,7 @@ The right matrix multiplied Operator.
 
 <span id="qiskit.quantum_info.Choi.expand" />
 
-`Choi.expand(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/operators/channel/choi.py "view source code")
+`Choi.expand(other)`
 
 Return the reverse-order tensor product with another Choi.
 
@@ -269,7 +269,7 @@ BaseOperator
 
 <span id="qiskit.quantum_info.Choi.tensor" />
 
-`Choi.tensor(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/operators/channel/choi.py "view source code")
+`Choi.tensor(other)`
 
 Return the tensor product with another Choi.
 
@@ -325,7 +325,7 @@ Try to convert channel to a unitary representation Operator.
 
 <span id="qiskit.quantum_info.Choi.transpose" />
 
-`Choi.transpose()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/operators/channel/choi.py "view source code")
+`Choi.transpose()`
 
 Return the transpose quantum channel.
 

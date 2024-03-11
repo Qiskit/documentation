@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.algorithms.pes_samplers.PolynomialExtrapolator
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.PolynomialExtrapolator" />
 
-`PolynomialExtrapolator(degree=1)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/extrapolator.py "view source code")
+`PolynomialExtrapolator(degree=1)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/extrapolator.py "view source code")
 
 Bases: `qiskit.chemistry.algorithms.pes_samplers.extrapolator.Extrapolator`
 
@@ -30,7 +30,7 @@ Constructor.
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.PolynomialExtrapolator.extrapolate" />
 
-`PolynomialExtrapolator.extrapolate(points, param_dict)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/extrapolator.py "view source code")
+`PolynomialExtrapolator.extrapolate(points, param_dict)`
 
 Extrapolate at specified point of interest given a set of variational parameters. Extrapolation is based on a polynomial function/spline fitting with a user-specified degree.
 

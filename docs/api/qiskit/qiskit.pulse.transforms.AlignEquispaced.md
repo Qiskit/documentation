@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.transforms.AlignEquispaced
 
 <span id="qiskit.pulse.transforms.AlignEquispaced" />
 
-`qiskit.pulse.transforms.AlignEquispaced(duration)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/pulse/transforms/alignments.py "view source code")
+`qiskit.pulse.transforms.AlignEquispaced(duration)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/pulse/transforms/alignments.py "view source code")
 
 Bases: [`AlignmentKind`](pulse#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.alignments.AlignmentKind")
 
@@ -22,7 +22,7 @@ Create new equispaced context.
 
 **Parameters**
 
-**duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – Duration of this context. This should be larger than the schedule duration. If the specified duration is shorter than the schedule duration, no alignment is performed and the input schedule is just returned. This duration can be parametrized.
+**duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – Duration of this context. This should be larger than the schedule duration. If the specified duration is shorter than the schedule duration, no alignment is performed and the input schedule is just returned. This duration can be parametrized.
 
 ## Attributes
 

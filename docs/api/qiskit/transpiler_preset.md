@@ -1,7 +1,7 @@
 ---
 title: preset_passmanagers
 description: API reference for qiskit.transpiler.preset_passmanagers
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.transpiler.preset_passmanagers
 ---
@@ -28,7 +28,7 @@ This module contains functions for generating the preset pass managers for the t
 
 <span id="qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager" />
 
-`qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager(optimization_level, backend=None, target=None, basis_gates=None, inst_map=None, coupling_map=None, instruction_durations=None, backend_properties=None, timing_constraints=None, initial_layout=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, approximation_degree=None, seed_transpiler=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None, hls_config=None, init_method=None, optimization_method=None, *, _skip_target=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/preset_passmanagers/__init__.py "view source code")
+`qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager(optimization_level, backend=None, target=None, basis_gates=None, inst_map=None, coupling_map=None, instruction_durations=None, backend_properties=None, timing_constraints=None, initial_layout=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, approximation_degree=1.0, seed_transpiler=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None, hls_config=None, init_method=None, optimization_method=None, *, _skip_target=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/preset_passmanagers/__init__.py "view source code")
 
 Generate a preset [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")
 
@@ -53,7 +53,7 @@ This function is used to quickly generate a preset pass manager. A preset pass m
 
 *   **inst\_map** ([*InstructionScheduleMap*](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap")) – Mapping object that maps gate to schedules. If any user defined calibration is found in the map and this is used in a circuit, transpiler attaches the custom gate definition to the circuit. This enables one to flexibly override the low-level instruction implementation.
 
-*   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – Directed graph represented a coupling map.
+*   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – Directed graph represented a coupling map.
 
 *   **instruction\_durations** ([*InstructionDurations*](qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations")) – Dictionary of duration (in dt) for each instruction.
 
@@ -61,11 +61,11 @@ This function is used to quickly generate a preset pass manager. A preset pass m
 
 *   **initial\_layout** ([*Layout*](qiskit.transpiler.Layout "qiskit.transpiler.Layout")) – Initial position of virtual qubits on physical qubits.
 
-*   **layout\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The `Pass` to use for choosing initial qubit placement. Valid choices are `'trivial'`, `'dense'`, `'noise_adaptive'`, and, `'sabre'` representing [`TrivialLayout`](qiskit.transpiler.passes.TrivialLayout "qiskit.transpiler.passes.TrivialLayout"), `DenseLayout`, [`NoiseAdaptiveLayout`](qiskit.transpiler.passes.NoiseAdaptiveLayout "qiskit.transpiler.passes.NoiseAdaptiveLayout"), [`SabreLayout`](qiskit.transpiler.passes.SabreLayout "qiskit.transpiler.passes.SabreLayout") respectively. This can also be the external plugin name to use for the `layout` stage of the output [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager"). You can see a list of installed plugins by using [`list_stage_plugins()`](transpiler_plugins#qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins "qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins") with `"layout"` for the `stage_name` argument.
+*   **layout\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The `Pass` to use for choosing initial qubit placement. Valid choices are `'trivial'`, `'dense'`, and `'sabre'`, representing [`TrivialLayout`](qiskit.transpiler.passes.TrivialLayout "qiskit.transpiler.passes.TrivialLayout"), `DenseLayout` and [`SabreLayout`](qiskit.transpiler.passes.SabreLayout "qiskit.transpiler.passes.SabreLayout") respectively. This can also be the external plugin name to use for the `layout` stage of the output [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager"). You can see a list of installed plugins by using [`list_stage_plugins()`](transpiler_plugins#qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins "qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins") with `"layout"` for the `stage_name` argument.
 
 *   **routing\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The pass to use for routing qubits on the architecture. Valid choices are `'basic'`, `'lookahead'`, `'stochastic'`, `'sabre'`, and `'none'` representing [`BasicSwap`](qiskit.transpiler.passes.BasicSwap "qiskit.transpiler.passes.BasicSwap"), [`LookaheadSwap`](qiskit.transpiler.passes.LookaheadSwap "qiskit.transpiler.passes.LookaheadSwap"), [`StochasticSwap`](qiskit.transpiler.passes.StochasticSwap "qiskit.transpiler.passes.StochasticSwap"), [`SabreSwap`](qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap"), and erroring if routing is required respectively. This can also be the external plugin name to use for the `routing` stage of the output [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager"). You can see a list of installed plugins by using [`list_stage_plugins()`](transpiler_plugins#qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins "qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins") with `"routing"` for the `stage_name` argument.
 
-*   **translation\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The method to use for translating gates to basis gates. Valid choices `'unroller'`, `'translator'`, `'synthesis'` representing [`Unroller`](qiskit.transpiler.passes.Unroller "qiskit.transpiler.passes.Unroller"), [`BasisTranslator`](qiskit.transpiler.passes.BasisTranslator "qiskit.transpiler.passes.BasisTranslator"), and [`UnitarySynthesis`](qiskit.transpiler.passes.UnitarySynthesis "qiskit.transpiler.passes.UnitarySynthesis") respectively. This can also be the external plugin name to use for the `translation` stage of the output [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager"). You can see a list of installed plugins by using [`list_stage_plugins()`](transpiler_plugins#qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins "qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins") with `"translation"` for the `stage_name` argument.
+*   **translation\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The method to use for translating gates to basis gates. Valid choices `'translator'`, `'synthesis'` representing [`BasisTranslator`](qiskit.transpiler.passes.BasisTranslator "qiskit.transpiler.passes.BasisTranslator"), and [`UnitarySynthesis`](qiskit.transpiler.passes.UnitarySynthesis "qiskit.transpiler.passes.UnitarySynthesis") respectively. This can also be the external plugin name to use for the `translation` stage of the output [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager"). You can see a list of installed plugins by using [`list_stage_plugins()`](transpiler_plugins#qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins "qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins") with `"translation"` for the `stage_name` argument.
 
 *   **scheduling\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The pass to use for scheduling instructions. Valid choices are `'alap'` and `'asap'`. This can also be the external plugin name to use for the `scheduling` stage of the output [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager"). You can see a list of installed plugins by using [`list_stage_plugins()`](transpiler_plugins#qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins "qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins") with `"scheduling"` for the `stage_name` argument.
 
@@ -77,9 +77,9 @@ This function is used to quickly generate a preset pass manager. A preset pass m
 
 *   **unitary\_synthesis\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The name of the unitary synthesis method to use. By default `'default'` is used. You can see a list of installed plugins with [`unitary_synthesis_plugin_names()`](qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names "qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names").
 
-*   **unitary\_synthesis\_plugin\_config** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – An optional configuration dictionary that will be passed directly to the unitary synthesis plugin. By default this setting will have no effect as the default unitary synthesis method does not take custom configuration. This should only be necessary when a unitary synthesis plugin is specified with the `unitary_synthesis` argument. As this is custom for each unitary synthesis plugin refer to the plugin documentation for how to use this option.
+*   **unitary\_synthesis\_plugin\_config** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – An optional configuration dictionary that will be passed directly to the unitary synthesis plugin. By default this setting will have no effect as the default unitary synthesis method does not take custom configuration. This should only be necessary when a unitary synthesis plugin is specified with the `unitary_synthesis_method` argument. As this is custom for each unitary synthesis plugin refer to the plugin documentation for how to use this option.
 
-*   **hls\_config** (*HLSConfig*) – An optional configuration class `HLSConfig` that will be passed directly to [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis") transformation pass. This configuration class allows to specify for various high-level objects the lists of synthesis algorithms and their parameters.
+*   **hls\_config** ([*HLSConfig*](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.HLSConfig")) – An optional configuration class [`HLSConfig`](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.HLSConfig") that will be passed directly to [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis") transformation pass. This configuration class allows to specify for various high-level objects the lists of synthesis algorithms and their parameters.
 
 *   **init\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The plugin name to use for the `init` stage of the output [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager"). By default an external plugin is not used. You can see a list of installed plugins by using [`list_stage_plugins()`](transpiler_plugins#qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins "qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins") with `"init"` for the stage name argument.
 
@@ -101,7 +101,7 @@ The preset pass manager for the given options
 
 <span id="qiskit.transpiler.preset_passmanagers.level_0_pass_manager" />
 
-`qiskit.transpiler.preset_passmanagers.level_0_pass_manager(pass_manager_config)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/preset_passmanagers/level0.py "view source code")
+`qiskit.transpiler.preset_passmanagers.level_0_pass_manager(pass_manager_config)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/preset_passmanagers/level0.py "view source code")
 
 Level 0 pass manager: no explicit optimization other than mapping to backend.
 
@@ -129,7 +129,7 @@ a level 0 pass manager.
 
 <span id="qiskit.transpiler.preset_passmanagers.level_1_pass_manager" />
 
-`qiskit.transpiler.preset_passmanagers.level_1_pass_manager(pass_manager_config)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/preset_passmanagers/level1.py "view source code")
+`qiskit.transpiler.preset_passmanagers.level_1_pass_manager(pass_manager_config)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/preset_passmanagers/level1.py "view source code")
 
 Level 1 pass manager: light optimization by simple adjacent gate collapsing.
 
@@ -155,7 +155,7 @@ a level 1 pass manager.
 
 <span id="qiskit.transpiler.preset_passmanagers.level_2_pass_manager" />
 
-`qiskit.transpiler.preset_passmanagers.level_2_pass_manager(pass_manager_config)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/preset_passmanagers/level2.py "view source code")
+`qiskit.transpiler.preset_passmanagers.level_2_pass_manager(pass_manager_config)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/preset_passmanagers/level2.py "view source code")
 
 Level 2 pass manager: medium optimization by initial layout selection and gate cancellation using commutativity rules.
 
@@ -183,7 +183,7 @@ a level 2 pass manager.
 
 <span id="qiskit.transpiler.preset_passmanagers.level_3_pass_manager" />
 
-`qiskit.transpiler.preset_passmanagers.level_3_pass_manager(pass_manager_config)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/preset_passmanagers/level3.py "view source code")
+`qiskit.transpiler.preset_passmanagers.level_3_pass_manager(pass_manager_config)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/preset_passmanagers/level3.py "view source code")
 
 Level 3 pass manager: heavy optimization by noise adaptive qubit mapping and gate cancellation using commutativity rules and unitary synthesis.
 
@@ -215,7 +215,7 @@ a level 3 pass manager.
 
 <span id="qiskit.transpiler.preset_passmanagers.common.generate_control_flow_options_check" />
 
-`qiskit.transpiler.preset_passmanagers.common.generate_control_flow_options_check(layout_method=None, routing_method=None, translation_method=None, optimization_method=None, scheduling_method=None, basis_gates=(), target=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/preset_passmanagers/common.py "view source code")
+`qiskit.transpiler.preset_passmanagers.common.generate_control_flow_options_check(layout_method=None, routing_method=None, translation_method=None, optimization_method=None, scheduling_method=None, basis_gates=(), target=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/preset_passmanagers/common.py "view source code")
 
 Generate a pass manager that, when run on a DAG that contains control flow, fails with an error message explaining the invalid options, and what could be used instead.
 
@@ -231,7 +231,7 @@ a pass manager that populates the `contains_x` properties for each of the contro
 
 <span id="qiskit.transpiler.preset_passmanagers.common.generate_error_on_control_flow" />
 
-`qiskit.transpiler.preset_passmanagers.common.generate_error_on_control_flow(message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/preset_passmanagers/common.py "view source code")
+`qiskit.transpiler.preset_passmanagers.common.generate_error_on_control_flow(message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/preset_passmanagers/common.py "view source code")
 
 Get a pass manager that always raises an error if control flow is present in a given circuit.
 
@@ -239,7 +239,7 @@ Get a pass manager that always raises an error if control flow is present in a g
 
 <span id="qiskit.transpiler.preset_passmanagers.common.generate_unroll_3q" />
 
-`qiskit.transpiler.preset_passmanagers.common.generate_unroll_3q(target, basis_gates=None, approximation_degree=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None, hls_config=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/preset_passmanagers/common.py "view source code")
+`qiskit.transpiler.preset_passmanagers.common.generate_unroll_3q(target, basis_gates=None, approximation_degree=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None, hls_config=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/preset_passmanagers/common.py "view source code")
 
 Generate an unroll >3q [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")
 
@@ -250,7 +250,7 @@ Generate an unroll >3q [`PassManager`](qiskit.transpiler.PassManager "qiskit.tra
 *   **approximation\_degree** (*Optional\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – The heuristic approximation degree to use. Can be between 0 and 1.
 *   **unitary\_synthesis\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The unitary synthesis method to use. You can see a list of installed plugins with [`unitary_synthesis_plugin_names()`](qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names "qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names").
 *   **unitary\_synthesis\_plugin\_config** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – The optional dictionary plugin configuration, this is plugin specific refer to the specified plugin’s documentation for how to use.
-*   **hls\_config** (*HLSConfig*) – An optional configuration class to use for [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis") pass. Specifies how to synthesize various high-level objects.
+*   **hls\_config** ([*HLSConfig*](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.HLSConfig")) – An optional configuration class to use for [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis") pass. Specifies how to synthesize various high-level objects.
 
 **Returns**
 
@@ -264,7 +264,7 @@ The unroll 3q or more pass manager
 
 <span id="qiskit.transpiler.preset_passmanagers.common.generate_embed_passmanager" />
 
-`qiskit.transpiler.preset_passmanagers.common.generate_embed_passmanager(coupling_map)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/preset_passmanagers/common.py "view source code")
+`qiskit.transpiler.preset_passmanagers.common.generate_embed_passmanager(coupling_map)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/preset_passmanagers/common.py "view source code")
 
 Generate a layout embedding [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")
 
@@ -288,7 +288,7 @@ set has been set in earlier stages
 
 <span id="qiskit.transpiler.preset_passmanagers.common.generate_routing_passmanager" />
 
-`qiskit.transpiler.preset_passmanagers.common.generate_routing_passmanager(routing_pass, target, coupling_map=None, vf2_call_limit=None, backend_properties=None, seed_transpiler=None, check_trivial=False, use_barrier_before_measurement=True, vf2_max_trials=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/preset_passmanagers/common.py "view source code")
+`qiskit.transpiler.preset_passmanagers.common.generate_routing_passmanager(routing_pass, target, coupling_map=None, vf2_call_limit=None, backend_properties=None, seed_transpiler=None, check_trivial=False, use_barrier_before_measurement=True, vf2_max_trials=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/preset_passmanagers/common.py "view source code")
 
 Generate a routing [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")
 
@@ -316,7 +316,7 @@ The routing pass manager
 
 <span id="qiskit.transpiler.preset_passmanagers.common.generate_pre_op_passmanager" />
 
-`qiskit.transpiler.preset_passmanagers.common.generate_pre_op_passmanager(target=None, coupling_map=None, remove_reset_in_zero=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/preset_passmanagers/common.py "view source code")
+`qiskit.transpiler.preset_passmanagers.common.generate_pre_op_passmanager(target=None, coupling_map=None, remove_reset_in_zero=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/preset_passmanagers/common.py "view source code")
 
 Generate a pre-optimization loop [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")
 
@@ -340,7 +340,7 @@ The pass manager
 
 <span id="qiskit.transpiler.preset_passmanagers.common.generate_translation_passmanager" />
 
-`qiskit.transpiler.preset_passmanagers.common.generate_translation_passmanager(target, basis_gates=None, method='translator', approximation_degree=None, coupling_map=None, backend_props=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None, hls_config=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/preset_passmanagers/common.py "view source code")
+`qiskit.transpiler.preset_passmanagers.common.generate_translation_passmanager(target, basis_gates=None, method='translator', approximation_degree=None, coupling_map=None, backend_props=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None, hls_config=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/preset_passmanagers/common.py "view source code")
 
 Generate a basis translation [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")
 
@@ -354,7 +354,7 @@ Generate a basis translation [`PassManager`](qiskit.transpiler.PassManager "qisk
 *   **unitary\_synthesis\_plugin\_config** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – The optional dictionary plugin configuration, this is plugin specific refer to the specified plugin’s documentation for how to use.
 *   **backend\_props** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – Properties of a backend to synthesize for (e.g. gate fidelities).
 *   **unitary\_synthesis\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The unitary synthesis method to use. You can see a list of installed plugins with [`unitary_synthesis_plugin_names()`](qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names "qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names").
-*   **hls\_config** (*HLSConfig*) – An optional configuration class to use for [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis") pass. Specifies how to synthesize various high-level objects.
+*   **hls\_config** ([*HLSConfig*](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.HLSConfig")) – An optional configuration class to use for [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis") pass. Specifies how to synthesize various high-level objects.
 
 **Returns**
 
@@ -372,7 +372,7 @@ The basis translation pass manager
 
 <span id="qiskit.transpiler.preset_passmanagers.common.generate_scheduling" />
 
-`qiskit.transpiler.preset_passmanagers.common.generate_scheduling(instruction_durations, scheduling_method, timing_constraints, inst_map, target=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/preset_passmanagers/common.py "view source code")
+`qiskit.transpiler.preset_passmanagers.common.generate_scheduling(instruction_durations, scheduling_method, timing_constraints, inst_map, target=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/preset_passmanagers/common.py "view source code")
 
 Generate a post optimization scheduling [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")
 

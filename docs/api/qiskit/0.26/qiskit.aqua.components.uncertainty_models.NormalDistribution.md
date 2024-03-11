@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.uncertainty_models.NormalDistribution
 
 <span id="qiskit.aqua.components.uncertainty_models.NormalDistribution" />
 
-`NormalDistribution(num_target_qubits, mu=0, sigma=1, low=- 1, high=1)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_models/normal_distribution.py "view source code")
+`NormalDistribution(num_target_qubits, mu=0, sigma=1, low=- 1, high=1)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_models/normal_distribution.py "view source code")
 
 The Univariate Normal Distribution.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.Collect2qBlocks
 
 <span id="qiskit.transpiler.passes.Collect2qBlocks" />
 
-`Collect2qBlocks(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/optimization/collect_2q_blocks.py "view source code")
+`Collect2qBlocks(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/optimization/collect_2q_blocks.py "view source code")
 
 Bases: `qiskit.transpiler.basepasses.AnalysisPass`
 
@@ -42,7 +42,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.Collect2qBlocks.run" />
 
-`Collect2qBlocks.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/optimization/collect_2q_blocks.py "view source code")
+`Collect2qBlocks.run(dag)`
 
 Run the Collect2qBlocks pass on dag.
 

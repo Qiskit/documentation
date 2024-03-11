@@ -12,7 +12,7 @@ python_api_name: qiskit.ignis.measurement.QuadraticIQDiscriminator
 
 <span id="qiskit.ignis.measurement.QuadraticIQDiscriminator" />
 
-`QuadraticIQDiscriminator(cal_results, qubit_mask, expected_states=None, standardize=False, schedules=None, discriminator_parameters=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/measurement/discriminator/iq_discriminators.py "view source code")
+`QuadraticIQDiscriminator(cal_results, qubit_mask, expected_states=None, standardize=False, schedules=None, discriminator_parameters=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/measurement/discriminator/iq_discriminators.py "view source code")
 
 Quadratic discriminant analysis discriminator for IQ data.
 

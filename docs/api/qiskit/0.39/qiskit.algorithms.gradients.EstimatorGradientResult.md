@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.gradients.EstimatorGradientResult
 
 <span id="qiskit.algorithms.gradients.EstimatorGradientResult" />
 
-`EstimatorGradientResult(gradients, metadata, options)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/gradients/estimator_gradient_result.py "view source code")
+`EstimatorGradientResult(gradients, metadata, options)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/gradients/estimator_gradient_result.py "view source code")
 
 Bases: `object`
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.classicalfunction.ClassicalFunction
 
 <span id="qiskit.circuit.classicalfunction.ClassicalFunction" />
 
-`ClassicalFunction(source, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/classicalfunction/classicalfunction.py "view source code")
+`ClassicalFunction(source, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/classicalfunction/classicalfunction.py "view source code")
 
 Bases: `qiskit.circuit.classicalfunction.classical_element.ClassicalElement`
 
@@ -114,7 +114,7 @@ Add classical condition on register or cbit classical and value val.
 
 <span id="qiskit.circuit.classicalfunction.ClassicalFunction.compile" />
 
-`ClassicalFunction.compile()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/classicalfunction/classicalfunction.py "view source code")
+`ClassicalFunction.compile()`
 
 Parses and creates the logical circuit
 
@@ -298,7 +298,7 @@ sub-instructions reversed.
 
 <span id="qiskit.circuit.classicalfunction.ClassicalFunction.simulate" />
 
-`ClassicalFunction.simulate(bitstring)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/classicalfunction/classicalfunction.py "view source code")
+`ClassicalFunction.simulate(bitstring)`
 
 Evaluate the expression on a bitstring.
 
@@ -320,7 +320,7 @@ bool
 
 <span id="qiskit.circuit.classicalfunction.ClassicalFunction.simulate_all" />
 
-`ClassicalFunction.simulate_all()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/classicalfunction/classicalfunction.py "view source code")
+`ClassicalFunction.simulate_all()`
 
 Returns a truth table.
 
@@ -356,7 +356,7 @@ bool
 
 <span id="qiskit.circuit.classicalfunction.ClassicalFunction.synth" />
 
-`ClassicalFunction.synth(registerless=True, synthesizer=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/classicalfunction/classicalfunction.py "view source code")
+`ClassicalFunction.synth(registerless=True, synthesizer=None)`
 
 Synthesis the logic network into a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeBelemV2
 
 <span id="qiskit.providers.fake_provider.FakeBelemV2" />
 
-`FakeBelemV2`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/fake_provider/backends/belem/fake_belem.py "view source code")
+`FakeBelemV2` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/fake_provider/backends/belem/fake_belem.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_backend.FakeBackendV2`
 

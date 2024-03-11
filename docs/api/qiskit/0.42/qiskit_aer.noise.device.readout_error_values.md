@@ -10,7 +10,7 @@ python_api_name: qiskit_aer.noise.device.readout_error_values
 
 <span id="qiskit_aer.noise.device.readout_error_values" />
 
-`readout_error_values(properties)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/noise/device/parameters.py "view source code")
+`readout_error_values(properties)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/noise/device/parameters.py "view source code")
 
 Return readout error values from a devices BackendProperties.
 

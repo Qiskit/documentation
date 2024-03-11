@@ -10,7 +10,7 @@ python_api_name: qiskit.qobj.QasmQobjExperimentConfig
 
 <span id="qiskit.qobj.QasmQobjExperimentConfig" />
 
-`QasmQobjExperimentConfig(calibrations=None, qubit_lo_freq=None, meas_lo_freq=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/qobj/qasm_qobj.py "view source code")
+`QasmQobjExperimentConfig(calibrations=None, qubit_lo_freq=None, meas_lo_freq=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/qobj/qasm_qobj.py "view source code")
 
 Bases: `qiskit.qobj.common.QobjDictField`
 
@@ -29,7 +29,7 @@ Configuration for a single QASM experiment in the qobj.
 
 <span id="qiskit.qobj.QasmQobjExperimentConfig.from_dict" />
 
-`classmethod QasmQobjExperimentConfig.from_dict(data)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/qobj/qasm_qobj.py "view source code")
+`classmethod QasmQobjExperimentConfig.from_dict(data)`
 
 Create a new QobjHeader object from a dictionary.
 
@@ -49,7 +49,7 @@ QobjDictFieldr
 
 <span id="qiskit.qobj.QasmQobjExperimentConfig.to_dict" />
 
-`QasmQobjExperimentConfig.to_dict()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/qobj/qasm_qobj.py "view source code")
+`QasmQobjExperimentConfig.to_dict()`
 
 Return a dictionary format representation of the QASM Qobj.
 

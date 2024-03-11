@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.ControlFlowOp
 
 <span id="qiskit.circuit.ControlFlowOp" />
 
-`ControlFlowOp(name, num_qubits, num_clbits, params, duration=None, unit='dt', label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/controlflow/control_flow.py "view source code")
+`ControlFlowOp(name, num_qubits, num_clbits, params, duration=None, unit='dt', label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/controlflow/control_flow.py "view source code")
 
 Bases: [`qiskit.circuit.instruction.Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction"), `abc.ABC`
 
@@ -176,7 +176,7 @@ Containing the definition.
 
 <span id="qiskit.circuit.ControlFlowOp.replace_blocks" />
 
-`abstract ControlFlowOp.replace_blocks(blocks)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/controlflow/control_flow.py "view source code")
+`abstract ControlFlowOp.replace_blocks(blocks)`
 
 Replace blocks and return new instruction. :type blocks: `Iterable`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")] :param blocks: Tuple of QuantumCircuits to replace in instruction.
 

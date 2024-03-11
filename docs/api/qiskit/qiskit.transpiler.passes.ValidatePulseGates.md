@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.ValidatePulseGates
 
 <span id="qiskit.transpiler.passes.ValidatePulseGates" />
 
-`qiskit.transpiler.passes.ValidatePulseGates(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/passes/scheduling/alignments/pulse_gate_validation.py "view source code")
+`qiskit.transpiler.passes.ValidatePulseGates(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/scheduling/alignments/pulse_gate_validation.py "view source code")
 
 Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
@@ -20,7 +20,7 @@ This is a control electronics aware analysis pass.
 
 Quantum gates (instructions) are often implemented with shaped analog stimulus signals. These signals may be digitally stored in the waveform memory of the control electronics and converted into analog voltage signals by electronic components known as digital to analog converters (DAC).
 
-In Qiskit SDK, we can define the pulse-level implementation of custom quantum gate instructions, as a [pulse gate](https://docs.quantum-computing.ibm.com/build/pulse), thus user gates should satisfy all waveform memory constraints imposed by the backend.
+In Qiskit SDK, we can define the pulse-level implementation of custom quantum gate instructions, as a [pulse gate](/build/pulse), thus user gates should satisfy all waveform memory constraints imposed by the backend.
 
 This pass validates all attached calibration entries and raises `TranspilerError` to kill the transpilation process if any invalid calibration entry is found. This pass saves users from waiting until job execution time to get an invalid pulse error from the backend control electronics.
 

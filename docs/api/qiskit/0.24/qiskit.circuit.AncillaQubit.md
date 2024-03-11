@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.AncillaQubit
 
 <span id="qiskit.circuit.AncillaQubit" />
 
-`AncillaQubit(register, index)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/quantumregister.py "view source code")
+`AncillaQubit(register, index)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/quantumregister.py "view source code")
 
 A qubit used as ancillary qubit.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.RZXCalibrationBuilder
 
 <span id="qiskit.transpiler.passes.RZXCalibrationBuilder" />
 
-`RZXCalibrationBuilder(instruction_schedule_map=None, qubit_channel_mapping=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/calibration/builders.py "view source code")
+`RZXCalibrationBuilder(instruction_schedule_map=None, qubit_channel_mapping=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/calibration/builders.py "view source code")
 
 Bases: `qiskit.transpiler.passes.calibration.builders.CalibrationBuilder`
 
@@ -33,7 +33,7 @@ Initializes a RZXGate calibration builder.
 
 <span id="qiskit.transpiler.passes.RZXCalibrationBuilder.get_calibration" />
 
-`RZXCalibrationBuilder.get_calibration(node_op, qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/calibration/builders.py "view source code")
+`RZXCalibrationBuilder.get_calibration(node_op, qubits)`
 
 Builds the calibration schedule for the RZXGate(theta) with echos.
 
@@ -66,7 +66,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.RZXCalibrationBuilder.rescale_cr_inst" />
 
-`static RZXCalibrationBuilder.rescale_cr_inst(instruction, theta, sample_mult=16)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/calibration/builders.py "view source code")
+`static RZXCalibrationBuilder.rescale_cr_inst(instruction, theta, sample_mult=16)`
 
 **Parameters**
 
@@ -113,7 +113,7 @@ A DAG with calibrations added to it.
 
 <span id="qiskit.transpiler.passes.RZXCalibrationBuilder.supported" />
 
-`RZXCalibrationBuilder.supported(node_op, qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/calibration/builders.py "view source code")
+`RZXCalibrationBuilder.supported(node_op, qubits)`
 
 Determine if a given node supports the calibration.
 

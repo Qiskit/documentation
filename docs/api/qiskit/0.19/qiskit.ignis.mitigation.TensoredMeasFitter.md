@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.mitigation.TensoredMeasFitter
 
 <span id="qiskit.ignis.mitigation.TensoredMeasFitter" />
 
-`TensoredMeasFitter(results, mit_pattern, substate_labels_list=None, circlabel='')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/mitigation/measurement/fitters.py "view source code")
+`TensoredMeasFitter(results, mit_pattern, substate_labels_list=None, circlabel='')` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/mitigation/measurement/fitters.py "view source code")
 
 Measurement correction fitter for a tensored calibration.
 
@@ -51,7 +51,7 @@ Return \_substate\_labels\_list.
 
 <span id="qiskit.ignis.mitigation.TensoredMeasFitter.add_data" />
 
-`TensoredMeasFitter.add_data(new_results, rebuild_cal_matrix=True)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/mitigation/measurement/fitters.py "view source code")
+`TensoredMeasFitter.add_data(new_results, rebuild_cal_matrix=True)`
 
 Add measurement calibration data
 
@@ -64,7 +64,7 @@ Add measurement calibration data
 
 <span id="qiskit.ignis.mitigation.TensoredMeasFitter.plot_calibration" />
 
-`TensoredMeasFitter.plot_calibration(cal_index=0, ax=None, show_plot=True)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/mitigation/measurement/fitters.py "view source code")
+`TensoredMeasFitter.plot_calibration(cal_index=0, ax=None, show_plot=True)`
 
 Plot one of the calibration matrices (2D color grid plot).
 
@@ -83,7 +83,7 @@ Plot one of the calibration matrices (2D color grid plot).
 
 <span id="qiskit.ignis.mitigation.TensoredMeasFitter.readout_fidelity" />
 
-`TensoredMeasFitter.readout_fidelity(cal_index=0, label_list=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/mitigation/measurement/fitters.py "view source code")
+`TensoredMeasFitter.readout_fidelity(cal_index=0, label_list=None)`
 
 Based on the results, output the readout fidelity, which is the average of the diagonal entries in the calibration matrices.
 

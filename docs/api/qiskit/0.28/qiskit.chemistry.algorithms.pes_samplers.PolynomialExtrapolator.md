@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.algorithms.pes_samplers.PolynomialExtrapolator
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.PolynomialExtrapolator" />
 
-`PolynomialExtrapolator(degree=1)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/extrapolator.py "view source code")
+`PolynomialExtrapolator(degree=1)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/extrapolator.py "view source code")
 
 An extrapolator based on fitting each parameter to a polynomial function of a user-specified degree.
 

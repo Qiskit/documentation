@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.PassManager
 
 <span id="qiskit.transpiler.PassManager" />
 
-`qiskit.transpiler.PassManager(passes=(), max_iteration=1000)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/passmanager.py "view source code")
+`qiskit.transpiler.PassManager(passes=(), max_iteration=1000)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passmanager.py "view source code")
 
 Bases: [`BasePassManager`](qiskit.passmanager.BasePassManager "qiskit.passmanager.passmanager.BasePassManager")
 
@@ -29,32 +29,13 @@ Initialize an empty pass manager object.
 
 <span id="qiskit.transpiler.PassManager.append" />
 
-`append(passes, max_iteration=None, **flow_controller_conditions)`
+`append(passes)`
 
 Append a Pass Set to the schedule of passes.
 
-<Admonition title="Deprecated since version 0.45" type="danger">
-  Creating flow controllers with `flow_controller_conditions` keyword arguments was deprecated. Instead, you must explicitly instantiate a controller and set the controller to `passes` argument.
-</Admonition>
-
-<Admonition title="Deprecated since version 0.46" type="danger">
-  `qiskit.transpiler.passmanager.PassManager.append()`’s argument `max_iteration` is deprecated as of qiskit 0.46. It will be removed in the 1.0 release. ‘max\_iteration’ can be set in the constructor.
-</Admonition>
-
 **Parameters**
 
-*   **passes** (*Task |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[Task]*) – A set of passes (a pass set) to be added to schedule. A pass set is a list of passes that are controlled by the same flow controller. If a single pass is provided, the pass set will only have that pass a single element. It is also possible to append a `BaseFlowController` instance and the rest of the parameter will be ignored.
-
-*   **max\_iteration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – max number of iterations of passes.
-
-*   **flow\_controller\_conditions** (*Any*) –
-
-    Dictionary of control flow plugins. Following built-in controllers are available by default:
-
-    *   do\_while: The passes repeat until the callable returns False. Corresponds to [`DoWhileController`](qiskit.passmanager.DoWhileController "qiskit.passmanager.DoWhileController").
-    *   condition: The passes run only if the callable returns True. Corresponds to [`ConditionalController`](qiskit.passmanager.ConditionalController "qiskit.passmanager.ConditionalController").
-
-    In general, you have more control simply by creating the controller you want and passing it to [`append()`](#qiskit.transpiler.PassManager.append "qiskit.transpiler.PassManager.append").
+**passes** (*Task |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[Task]*) – A set of transpiler passes to be added to schedule.
 
 **Raises**
 
@@ -88,26 +69,6 @@ Optional\[[PassManager](#qiskit.transpiler.PassManager "qiskit.transpiler.PassMa
 
 [**ImportError**](https://docs.python.org/3/library/exceptions.html#ImportError "(in Python v3.12)") – when nxpd or pydot not installed.
 
-### passes
-
-<span id="qiskit.transpiler.PassManager.passes" />
-
-`passes()`
-
-Return a list structure of the appended passes and its options.
-
-<Admonition title="Deprecated since version 0.46" type="danger">
-  The method `qiskit.transpiler.passmanager.PassManager.passes()` is deprecated as of qiskit 0.46. It will be removed in the 1.0 release. Use .to\_flow\_controller().tasks instead. This returns a sequence of linearized base task instances in tuple format.
-</Admonition>
-
-**Returns**
-
-A list of pass sets, as defined in `append()`.
-
-**Return type**
-
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)"), qiskit.transpiler.basepasses.BasePass]]
-
 ### remove
 
 <span id="qiskit.transpiler.PassManager.remove" />
@@ -128,30 +89,20 @@ Removes a particular pass in the scheduler.
 
 <span id="qiskit.transpiler.PassManager.replace" />
 
-`replace(index, passes, max_iteration=None, **flow_controller_conditions)`
+`replace(index, passes)`
 
 Replace a particular pass in the scheduler.
-
-<Admonition title="Deprecated since version 0.45" type="danger">
-  Creating flow controllers with `flow_controller_conditions` keyword arguments was deprecated. Instead, you must explicitly instantiate a controller and set the controller to `passes` argument.
-</Admonition>
-
-<Admonition title="Deprecated since version 0.46" type="danger">
-  `qiskit.transpiler.passmanager.PassManager.replace()`’s argument `max_iteration` is deprecated as of qiskit 0.46. It will be removed in the 1.0 release. ‘max\_iteration’ can be set in the constructor.
-</Admonition>
 
 **Parameters**
 
 *   **index** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Pass index to replace, based on the position in passes().
 *   **passes** (*Task |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[Task]*) – A pass set to be added to the pass manager schedule.
-*   **max\_iteration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – max number of iterations of passes.
-*   **flow\_controller\_conditions** (*Any*) – Dictionary of control flow plugins. See [`qiskit.transpiler.PassManager.append()`](#qiskit.transpiler.PassManager.append "qiskit.transpiler.PassManager.append") for details.
 
 ### run
 
 <span id="qiskit.transpiler.PassManager.run" />
 
-`run(circuits, output_name=None, callback=None)`
+`run(circuits, output_name=None, callback=None, num_processes=None)`
 
 Run all the passes on the specified `circuits`.
 
@@ -191,6 +142,8 @@ Run all the passes on the specified `circuits`.
         ...
     ```
 
+*   **num\_processes** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The maximum number of parallel processes to launch if parallel execution is enabled. This argument overrides `num_processes` in the user configuration file, and the `QISKIT_NUM_PROCS` environment variable. If set to `None` the system default or local user configuration will be used.
+
 **Returns**
 
 The transformed circuit(s).
@@ -213,5 +166,5 @@ A linearized pass manager.
 
 **Return type**
 
-*RunningPassManager*
+[*FlowControllerLinear*](qiskit.passmanager.FlowControllerLinear "qiskit.passmanager.flow_controllers.FlowControllerLinear")
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.uncertainty_models.MultivariateLogNormal
 
 <span id="qiskit.aqua.components.uncertainty_models.MultivariateLogNormalDistribution" />
 
-`MultivariateLogNormalDistribution(num_qubits, low=None, high=None, mu=None, cov=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_models/multivariate_log_normal_distribution.py "view source code")
+`MultivariateLogNormalDistribution(num_qubits, low=None, high=None, mu=None, cov=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_models/multivariate_log_normal_distribution.py "view source code")
 
 The Multivariate Log-Normal Distribution.
 

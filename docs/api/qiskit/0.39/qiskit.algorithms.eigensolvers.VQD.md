@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.eigensolvers.VQD
 
 <span id="qiskit.algorithms.eigensolvers.VQD" />
 
-`VQD(estimator, fidelity, ansatz, optimizer, *, k=2, betas=None, initial_point=None, callback=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/eigensolvers/vqd.py "view source code")
+`VQD(estimator, fidelity, ansatz, optimizer, *, k=2, betas=None, initial_point=None, callback=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/eigensolvers/vqd.py "view source code")
 
 Bases: `qiskit.algorithms.variational_algorithm.VariationalAlgorithm`, [`qiskit.algorithms.eigensolvers.eigensolver.Eigensolver`](qiskit.algorithms.eigensolvers.Eigensolver "qiskit.algorithms.eigensolvers.eigensolver.Eigensolver")
 
@@ -20,7 +20,7 @@ The Variational Quantum Deflation algorithm. Implementation using primitives.
 
 The algorithm computes excited state energies of generalised hamiltonians by optimising over a modified cost function where each succesive eigenvalue is calculated iteratively by introducing an overlap term with all the previously computed eigenstates that must be minimised, thus ensuring higher energy eigenstates are found.
 
-An instance of VQD requires defining three algorithmic sub-components: an integer k denoting the number of eigenstates to calculate, a trial state (a.k.a. ansatz) which is a `QuantumCircuit`, and one of the classical [`optimizers`](qiskit.algorithms.optimizers#module-qiskit.algorithms.optimizers "qiskit.algorithms.optimizers"). The optimizer varies the circuit parameters The trial state $\vert \psi(\vec\theta)\rangle$ is varied by the optimizer, which modifies the set of ansatz parameters $\vec\theta$ such that the expectation value of the operator on the corresponding state approaches a minimum. The algorithm does this by iteratively refining each excited state to be orthogonal to all the previous excited states.
+An instance of VQD requires defining three algorithmic sub-components: an integer k denoting the number of eigenstates to calculate, a trial state (a.k.a. ansatz) which is a `QuantumCircuit`, and one of the classical [`optimizers`](qiskit.algorithms.optimizers#module-qiskit.algorithms.optimizers "qiskit.algorithms.optimizers"). The optimizer varies the circuit parameters The trial state $|\psi(\vec\theta)\rangle$ is varied by the optimizer, which modifies the set of ansatz parameters $\vec\theta$ such that the expectation value of the operator on the corresponding state approaches a minimum. The algorithm does this by iteratively refining each excited state to be orthogonal to all the previous excited states.
 
 An optional array of parameter values, via the *initial\_point*, may be provided as the starting point for the search of the minimum eigenvalue. This feature is particularly useful when there are reasons to believe that the solution point is close to a particular point.
 
@@ -123,7 +123,7 @@ Callable\[\[int, np.ndarray, float, dict\[str, Any]], None] | None
 
 <span id="qiskit.algorithms.eigensolvers.VQD.compute_eigenvalues" />
 
-`VQD.compute_eigenvalues(operator, aux_operators=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/eigensolvers/vqd.py "view source code")
+`VQD.compute_eigenvalues(operator, aux_operators=None)`
 
 Computes the minimum eigenvalue. The `operator` and `aux_operators` are supplied here. While an `operator` is required by algorithms, `aux_operators` are optional.
 
@@ -144,7 +144,7 @@ An eigensolver result.
 
 <span id="qiskit.algorithms.eigensolvers.VQD.supports_aux_operators" />
 
-`classmethod VQD.supports_aux_operators()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/eigensolvers/vqd.py "view source code")
+`classmethod VQD.supports_aux_operators()`
 
 Whether computing the expectation value of auxiliary operators is supported.
 

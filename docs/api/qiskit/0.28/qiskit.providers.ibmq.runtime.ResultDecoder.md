@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.runtime.ResultDecoder
 
 <span id="qiskit.providers.ibmq.runtime.ResultDecoder" />
 
-`ResultDecoder`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.15/qiskit/providers/ibmq/runtime/program/result_decoder.py "view source code")
+`ResultDecoder` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.15/qiskit/providers/ibmq/runtime/program/result_decoder.py "view source code")
 
 Runtime job result decoder.
 

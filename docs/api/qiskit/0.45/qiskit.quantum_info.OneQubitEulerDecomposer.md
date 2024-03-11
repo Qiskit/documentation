@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.OneQubitEulerDecomposer
 
 <span id="qiskit.quantum_info.OneQubitEulerDecomposer" />
 
-`qiskit.quantum_info.OneQubitEulerDecomposer(basis='U3', use_dag=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/quantum_info/synthesis/one_qubit_decompose.py "view source code")
+`qiskit.quantum_info.OneQubitEulerDecomposer(basis='U3', use_dag=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/quantum_info/synthesis/one_qubit_decompose.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 

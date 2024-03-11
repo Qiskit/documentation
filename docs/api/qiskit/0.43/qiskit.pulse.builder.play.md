@@ -12,7 +12,7 @@ python_api_name: qiskit.pulse.builder.play
 
 <span id="qiskit.pulse.builder.play" />
 
-`play(pulse, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/builder.py "view source code")
+`play(pulse, channel, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/builder.py "view source code")
 
 Play a `pulse` on a `channel`.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.IBMQBackendError
 
 <span id="qiskit.providers.ibmq.IBMQBackendError" />
 
-`IBMQBackendError(*message)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.18/qiskit/providers/ibmq/exceptions.py "view source code")
+`IBMQBackendError(*message)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.18/qiskit/providers/ibmq/exceptions.py "view source code")
 
 Base class for errors raised by the backend modules.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.passmanager.BasePassManager
 
 <span id="qiskit.passmanager.BasePassManager" />
 
-`qiskit.passmanager.BasePassManager(tasks=(), max_iteration=1000)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/passmanager/passmanager.py "view source code")
+`qiskit.passmanager.BasePassManager(tasks=(), max_iteration=1000)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/passmanager/passmanager.py "view source code")
 
 Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 

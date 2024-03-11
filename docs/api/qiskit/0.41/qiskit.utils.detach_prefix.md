@@ -10,7 +10,7 @@ python_api_name: qiskit.utils.detach_prefix
 
 <span id="qiskit.utils.detach_prefix" />
 
-`detach_prefix(value, decimal=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/utils/units.py "view source code")
+`detach_prefix(value, decimal=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/utils/units.py "view source code")
 
 Given a SI unit value, find the most suitable prefix to scale the value.
 

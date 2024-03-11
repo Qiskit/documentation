@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.U3Gate
 
 <span id="qiskit.circuit.library.U3Gate" />
 
-`qiskit.circuit.library.U3Gate(theta, phi, lam, label=None, *, duration=None, unit='dt')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/u3.py "view source code")
+`qiskit.circuit.library.U3Gate(theta, phi, lam, label=None, *, duration=None, unit='dt')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/u3.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 

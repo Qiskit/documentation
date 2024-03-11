@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.synthesis.aqc.AQCSynthesisPlugin
 
 <span id="qiskit.transpiler.synthesis.aqc.AQCSynthesisPlugin" />
 
-`AQCSynthesisPlugin`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/synthesis/aqc/aqc_plugin.py "view source code")
+`AQCSynthesisPlugin` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/synthesis/aqc/aqc_plugin.py "view source code")
 
 Bases: [`UnitarySynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin")
 
@@ -54,7 +54,7 @@ Initial values of angles/parameters to start the optimization process from.
 
 <span id="qiskit.transpiler.synthesis.aqc.AQCSynthesisPlugin.run" />
 
-`AQCSynthesisPlugin.run(unitary, **options)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/synthesis/aqc/aqc_plugin.py "view source code")
+`AQCSynthesisPlugin.run(unitary, **options)`
 
 Run synthesis for the given unitary matrix
 

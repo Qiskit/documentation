@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.CheckGateDirection
 
 <span id="qiskit.transpiler.passes.CheckGateDirection" />
 
-`CheckGateDirection(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/utils/check_gate_direction.py "view source code")
+`CheckGateDirection(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/utils/check_gate_direction.py "view source code")
 
 Bases: [`qiskit.transpiler.basepasses.AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
@@ -37,7 +37,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.CheckGateDirection.run" />
 
-`CheckGateDirection.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/utils/check_gate_direction.py "view source code")
+`CheckGateDirection.run(dag)`
 
 Run the CheckGateDirection pass on dag.
 

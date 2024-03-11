@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.utils.map_label_to_class_name
 
 <span id="qiskit.aqua.utils.map_label_to_class_name" />
 
-`map_label_to_class_name(predicted_labels, label_to_class)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/utils/dataset_helper.py "view source code")
+`map_label_to_class_name(predicted_labels, label_to_class)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/utils/dataset_helper.py "view source code")
 
 Helper converts labels (numeric) to class name (string)
 

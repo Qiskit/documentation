@@ -10,7 +10,7 @@ python_api_name: qiskit.optimization.algorithms.ADMMState
 
 <span id="qiskit.optimization.algorithms.ADMMState" />
 
-`ADMMState(op, rho_initial)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/admm_optimizer.py "view source code")
+`ADMMState(op, rho_initial)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/admm_optimizer.py "view source code")
 
 Bases: `object`
 

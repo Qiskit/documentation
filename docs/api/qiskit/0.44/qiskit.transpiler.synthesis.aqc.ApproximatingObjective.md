@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.synthesis.aqc.ApproximatingObjective
 
 <span id="qiskit.transpiler.synthesis.aqc.ApproximatingObjective" />
 
-`qiskit.transpiler.synthesis.aqc.ApproximatingObjective`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/synthesis/aqc/approximate.py "view source code")
+`qiskit.transpiler.synthesis.aqc.ApproximatingObjective` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/synthesis/aqc/approximate.py "view source code")
 
 Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 

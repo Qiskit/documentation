@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.uncertainty_models.MultivariateVariation
 
 <span id="qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution" />
 
-`MultivariateVariationalDistribution(num_qubits, var_form, params, low=None, high=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_models/multivariate_variational_distribution.py "view source code")
+`MultivariateVariationalDistribution(num_qubits, var_form, params, low=None, high=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_models/multivariate_variational_distribution.py "view source code")
 
 The Multivariate Variational Distribution.
 

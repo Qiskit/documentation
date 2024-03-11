@@ -1,12 +1,22 @@
 ---
-title: Install and set up
-description: Install and set up Qiskit and Qiskit Runtime on various operating systems
+title: Install and set up the Qiskit SDK
+description: Install and set up the Qiskit SDK and Qiskit Runtime on various operating systems
 
 ---
 <span id="qiskit-install"></span>
-# Install and set up Qiskit
+# Install and set up the Qiskit SDK
 
-Whether you will work locally or in a cloud environment, the first step for all users is to install Qiskit. For those wanting to run on a real system, your next step is to choose one of two channels in order to access IBM Quantum systems: IBM Quantum Platform or IBM Cloud.
+Whether you will work locally or in a cloud environment, the first step for all users is to install the Qiskit SDK. For those wanting to run on a real system, your next step is to choose one of two channels in order to access IBM Quantum&trade; systems: IBM Quantum Platform or IBM Cloud&reg;.
+
+<Admonition type="caution" title="Upgrade from Qiskit 0.x to Qiskit 1.0 and beyond">
+  (If you are installing Qiskit for the first time, skip ahead to the [Install and set up](#local) section. This notice is relevant only to users who have installed Qiskit previously.)
+
+  **For those upgrading from version 0.x to 1.0 or later**: note that because Qiskit 1.0 uses a new packaging structure, you **cannot** use `pip install -U qiskit` to upgrade from any Qiskit 0.x version to 1.0. 
+  
+  See the [Qiskit 1.0 migration guide](/api/migration-guides/qiskit-1.0) for details and instructions. 
+  
+  Future updates starting with Qiskit 1.0 will allow for in-place upgrades.  
+</Admonition>
 
 <span id="local"></span>
 ## Install and set up Qiskit with the Qiskit Runtime client
@@ -143,9 +153,9 @@ If you are planning to work locally and use simulators built into Qiskit, then y
 <span id="os-support"></span>
 ## Operating system support
 
-Qiskit strives to support as many operating systems as possible, but due to limitations in available testing resources and operating system availability, not all operating systems can be supported. Operating system support for Qiskit is broken into three tiers with different levels of support for each tier. For operating systems outside these, Qiskit is probably still installable, but it is not tested and you will have to build Qiskit (and likely Qiskit’s dependencies) from source.
+Qiskit strives to support as many operating systems as possible, but due to limitations in available testing resources and operating system availability, not all operating systems can be supported. Operating system support for Qiskit is broken into three tiers with different levels of support for each tier. For platforms outside these, such as FreeBSD or WebAssembly (WASI), Qiskit may still be installable, but it is not tested and you will have to build Qiskit (and likely Qiskit’s dependencies) from source.
 
-Additionally, Qiskit only supports CPython. Running with other Python interpreters is not supported.
+Additionally, Qiskit only supports the CPython implementation of the Python language. Running with other Python interpreters such as PyPy is not supported.
 
 <details>
   <summary>

@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.library.SXGate
 
 <span id="qiskit.circuit.library.SXGate" />
 
-`SXGate(label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/standard_gates/sx.py "view source code")
+`SXGate(label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/standard_gates/sx.py "view source code")
 
 The single-qubit Sqrt(X) gate ($\sqrt{X}$).
 

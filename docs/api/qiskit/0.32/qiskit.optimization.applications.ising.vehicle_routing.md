@@ -1,3 +1,11 @@
+---
+title: vehicle_routing
+description: API reference for qiskit.optimization.applications.ising.vehicle_routing
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.optimization.applications.ising.vehicle_routing
+---
+
 <span id="qiskit-optimization-applications-ising-vehicle-routing" />
 
 # qiskit.optimization.applications.ising.vehicle\_routing
@@ -12,3 +20,4 @@ Converts vehicle routing instances into a list of Paulis, and provides some rela
 | `get_vehiclerouting_cost`(instance, n, K, x\_sol) | Computes the cost of a solution to an instance of a vehicle routing problem. |
 | `get_vehiclerouting_matrices`(instance, n, K)     | Constructs auxiliary matrices from a vehicle routing instance,               |
 | `get_vehiclerouting_solution`(instance, n, K, …)  | Tries to obtain a feasible solution (in vector form) of an instance          |
+

@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.library.YGate
 
 <span id="qiskit.circuit.library.YGate" />
 
-`YGate(label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/standard_gates/y.py "view source code")
+`YGate(label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/standard_gates/y.py "view source code")
 
 The single-qubit Pauli-Y gate ($\sigma_y$).
 
@@ -50,8 +50,8 @@ Equivalent to a $\pi$ radian rotation about the Y axis.
 The gate is equivalent to a bit and phase flip.
 
 $$
-\begin{split}\vert 0\rangle \rightarrow i\vert 1\rangle \\
-\vert 1\rangle \rightarrow -i\vert 0\rangle\end{split}
+\begin{split}|0\rangle \rightarrow i|1\rangle \\
+|1\rangle \rightarrow -i|0\rangle\end{split}
 $$
 
 Create new Y gate.

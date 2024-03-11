@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.verification.GraphDecoder
 
 <span id="qiskit.ignis.verification.GraphDecoder" />
 
-`GraphDecoder(code, S=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/topological_codes/fitters.py "view source code")
+`GraphDecoder(code, S=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/topological_codes/fitters.py "view source code")
 
 Bases: `object`
 
@@ -31,7 +31,7 @@ The decoder for the supplied `code` is initialized by running `_make_syndrome_gr
 
 <span id="qiskit.ignis.verification.GraphDecoder.get_error_probs" />
 
-`GraphDecoder.get_error_probs(results)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/topological_codes/fitters.py "view source code")
+`GraphDecoder.get_error_probs(results)`
 
 Generate probabilities of single error events from result counts.
 
@@ -56,7 +56,7 @@ Uses results to estimate the probability of the errors that create the pairs of 
 
 <span id="qiskit.ignis.verification.GraphDecoder.get_logical_prob" />
 
-`GraphDecoder.get_logical_prob(results, algorithm='matching')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/topological_codes/fitters.py "view source code")
+`GraphDecoder.get_logical_prob(results, algorithm='matching')`
 
 **Parameters**
 
@@ -76,7 +76,7 @@ dict
 
 <span id="qiskit.ignis.verification.GraphDecoder.make_error_graph" />
 
-`GraphDecoder.make_error_graph(string, subgraphs=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/topological_codes/fitters.py "view source code")
+`GraphDecoder.make_error_graph(string, subgraphs=None)`
 
 **Parameters**
 
@@ -96,7 +96,7 @@ E
 
 <span id="qiskit.ignis.verification.GraphDecoder.matching" />
 
-`GraphDecoder.matching(string)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/topological_codes/fitters.py "view source code")
+`GraphDecoder.matching(string)`
 
 **Parameters**
 
@@ -120,7 +120,7 @@ This function can be run directly, or used indirectly to calculate a logical err
 
 <span id="qiskit.ignis.verification.GraphDecoder.weight_syndrome_graph" />
 
-`GraphDecoder.weight_syndrome_graph(results)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/topological_codes/fitters.py "view source code")
+`GraphDecoder.weight_syndrome_graph(results)`
 
 Generate weighted syndrome graph from result counts.
 

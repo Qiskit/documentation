@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.DAGFixedPoint
 
 <span id="qiskit.transpiler.passes.DAGFixedPoint" />
 
-`DAGFixedPoint(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/utils/dag_fixed_point.py "view source code")
+`DAGFixedPoint(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/utils/dag_fixed_point.py "view source code")
 
 Check if the DAG has reached a fixed point.
 

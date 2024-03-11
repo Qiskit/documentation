@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.MCMT
 
 <span id="qiskit.circuit.library.MCMT" />
 
-`qiskit.circuit.library.MCMT(gate, num_ctrl_qubits, num_target_qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/generalized_gates/mcmt.py "view source code")
+`qiskit.circuit.library.MCMT(gate, num_ctrl_qubits, num_target_qubits)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/generalized_gates/mcmt.py "view source code")
 
 Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
@@ -37,7 +37,7 @@ Create a new multi-control multi-target gate.
 
 **Parameters**
 
-*   **gate** ([*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate") *| Callable\[\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*,* [*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*,* [*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*],* [*circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")*]*) – The gate to be applied controlled on the control qubits and applied to the target qubits. Can be either a Gate or a circuit method. If it is a callable, it will be casted to a Gate.
+*   **gate** ([*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate") *| Callable\[\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*,* [*circuit.Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*,* [*circuit.Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*],* [*circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")*]*) – The gate to be applied controlled on the control qubits and applied to the target qubits. Can be either a Gate or a circuit method. If it is a callable, it will be casted to a Gate.
 *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of control qubits.
 *   **num\_target\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of target qubits.
 
@@ -82,29 +82,17 @@ a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitI
 
 QuantumCircuitData
 
-<span id="qiskit.circuit.library.MCMT.extension_lib" />
-
-### extension\_lib
-
-`= 'include "qelib1.inc";'`
-
 <span id="qiskit.circuit.library.MCMT.global_phase" />
 
 ### global\_phase
 
 Return the global phase of the current circuit scope in radians.
 
-<span id="qiskit.circuit.library.MCMT.header" />
-
-### header
-
-`= 'OPENQASM 2.0;'`
-
 <span id="qiskit.circuit.library.MCMT.instances" />
 
 ### instances
 
-`= 163`
+`= 196`
 
 <span id="qiskit.circuit.library.MCMT.layout" />
 
@@ -211,9 +199,6 @@ ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
 To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
 
 ```python
-```
-
-```python
 >>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector
 >>> x = ParameterVector("x", 12)
 >>> circuit = QuantumCircuit(1)
@@ -249,7 +234,7 @@ Returns a list of quantum bits in the order that the registers were added.
 
 <span id="qiskit.circuit.library.MCMT.control" />
 
-`control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+`control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=False)`
 
 Return the controlled version of the MCMT circuit.
 
@@ -257,7 +242,7 @@ Return the controlled version of the MCMT circuit.
 
 <span id="qiskit.circuit.library.MCMT.inverse" />
 
-`inverse()`
+`inverse(annotated=False)`
 
 Return the inverse MCMT circuit, which is itself.
 

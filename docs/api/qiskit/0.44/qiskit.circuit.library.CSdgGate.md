@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CSdgGate
 
 <span id="qiskit.circuit.library.CSdgGate" />
 
-`qiskit.circuit.library.CSdgGate(label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/standard_gates/s.py "view source code")
+`qiskit.circuit.library.CSdgGate(label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/standard_gates/s.py "view source code")
 
 Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 
@@ -31,7 +31,7 @@ q_1: ┤ Sdg ├
 
 $$
 \begin{split}CS^\dagger \ q_0, q_1 =
-I \otimes \vert 0 \rangle\langle 0\vert  + S^\dagger \otimes \vert 1 \rangle\langle 1\vert   =
+I \otimes |0 \rangle\langle 0| + S^\dagger \otimes |1 \rangle\langle 1|  =
     \begin{pmatrix}
         1 & 0 & 0 & 0 \\
         0 & 1 & 0 & 0 \\

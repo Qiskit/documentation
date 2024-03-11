@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
 <span id="qiskit.quantum_info.DensityMatrix" />
 
-`DensityMatrix(data, dims=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/states/densitymatrix.py "view source code")
+`DensityMatrix(data, dims=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/states/densitymatrix.py "view source code")
 
 Bases: `qiskit.quantum_info.states.quantum_state.QuantumState`, `qiskit.quantum_info.operators.mixins.tolerances.TolerancesMixin`
 
@@ -40,7 +40,7 @@ The `dims` kwarg can be None, an integer, or an iterable of integers.
 
 <span id="qiskit.quantum_info.DensityMatrix.conjugate" />
 
-`DensityMatrix.conjugate()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/states/densitymatrix.py "view source code")
+`DensityMatrix.conjugate()`
 
 Return the conjugate of the density matrix.
 
@@ -64,7 +64,7 @@ Return tuple of input dimension for specified subsystems.
 
 <span id="qiskit.quantum_info.DensityMatrix.draw" />
 
-`DensityMatrix.draw(output=None, **drawer_args)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/states/densitymatrix.py "view source code")
+`DensityMatrix.draw(output=None, **drawer_args)`
 
 Return a visualization of the Statevector.
 
@@ -99,7 +99,7 @@ Return a visualization of the Statevector.
 
 <span id="qiskit.quantum_info.DensityMatrix.evolve" />
 
-`DensityMatrix.evolve(other, qargs=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/states/densitymatrix.py "view source code")
+`DensityMatrix.evolve(other, qargs=None)`
 
 Evolve a quantum state by an operator.
 
@@ -124,7 +124,7 @@ QuantumState
 
 <span id="qiskit.quantum_info.DensityMatrix.expand" />
 
-`DensityMatrix.expand(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/states/densitymatrix.py "view source code")
+`DensityMatrix.expand(other)`
 
 Return the tensor product state other ⊗ self.
 
@@ -148,7 +148,7 @@ the tensor product state other ⊗ self.
 
 <span id="qiskit.quantum_info.DensityMatrix.expectation_value" />
 
-`DensityMatrix.expectation_value(oper, qargs=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/states/densitymatrix.py "view source code")
+`DensityMatrix.expectation_value(oper, qargs=None)`
 
 Compute the expectation value of an operator.
 
@@ -169,11 +169,11 @@ complex
 
 <span id="qiskit.quantum_info.DensityMatrix.from_instruction" />
 
-`classmethod DensityMatrix.from_instruction(instruction)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/states/densitymatrix.py "view source code")
+`classmethod DensityMatrix.from_instruction(instruction)`
 
 Return the output density matrix of an instruction.
 
-The statevector is initialized in the state $\vert {0,\ldots,0}\rangle$ of the same number of qubits as the input instruction or circuit, evolved by the input instruction, and the output statevector returned.
+The statevector is initialized in the state $|{0,\ldots,0}\rangle$ of the same number of qubits as the input instruction or circuit, evolved by the input instruction, and the output statevector returned.
 
 **Parameters**
 
@@ -195,7 +195,7 @@ the final density matrix.
 
 <span id="qiskit.quantum_info.DensityMatrix.from_int" />
 
-`static DensityMatrix.from_int(i, dims)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/states/densitymatrix.py "view source code")
+`static DensityMatrix.from_int(i, dims)`
 
 Return a computational basis state density matrix.
 
@@ -206,7 +206,7 @@ Return a computational basis state density matrix.
 
 **Returns**
 
-The computational basis state $\vert i\rangle\!\langle i\vert $.
+The computational basis state $|i\rangle\!\langle i|$.
 
 **Return type**
 
@@ -223,7 +223,7 @@ The `dims` kwarg can be an integer or an iterable of integers.
 
 <span id="qiskit.quantum_info.DensityMatrix.from_label" />
 
-`classmethod DensityMatrix.from_label(label)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/states/densitymatrix.py "view source code")
+`classmethod DensityMatrix.from_label(label)`
 
 Return a tensor product of Pauli X,Y,Z eigenstates.
 
@@ -256,7 +256,7 @@ The N-qubit basis state density matrix.
 
 <span id="qiskit.quantum_info.DensityMatrix.is_valid" />
 
-`DensityMatrix.is_valid(atol=None, rtol=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/states/densitymatrix.py "view source code")
+`DensityMatrix.is_valid(atol=None, rtol=None)`
 
 Return True if trace 1 and positive semidefinite.
 
@@ -288,7 +288,7 @@ tuple
 
 <span id="qiskit.quantum_info.DensityMatrix.probabilities" />
 
-`DensityMatrix.probabilities(qargs=None, decimals=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/states/densitymatrix.py "view source code")
+`DensityMatrix.probabilities(qargs=None, decimals=None)`
 
 Return the subsystem measurement probability vector.
 
@@ -309,7 +309,7 @@ np.array
 
 **Examples**
 
-Consider a 2-qubit product state $\rho=\rho_1\otimes\rho_0$ with $\rho_1=\vert +\rangle\!\langle+\vert $, $\rho_0=\vert 0\rangle\!\langle0\vert $.
+Consider a 2-qubit product state $\rho=\rho_1\otimes\rho_0$ with $\rho_1=|+\rangle\!\langle+|$, $\rho_0=|0\rangle\!\langle0|$.
 
 ```python
 from qiskit.quantum_info import DensityMatrix
@@ -386,7 +386,7 @@ dict
 
 <span id="qiskit.quantum_info.DensityMatrix.purity" />
 
-`DensityMatrix.purity()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/states/densitymatrix.py "view source code")
+`DensityMatrix.purity()`
 
 Return the purity of the quantum state.
 
@@ -394,7 +394,7 @@ Return the purity of the quantum state.
 
 <span id="qiskit.quantum_info.DensityMatrix.reset" />
 
-`DensityMatrix.reset(qargs=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/states/densitymatrix.py "view source code")
+`DensityMatrix.reset(qargs=None)`
 
 Reset state or subsystems to the 0-state.
 
@@ -418,7 +418,7 @@ If all subsystems are reset this will return the ground state on all subsystems.
 
 <span id="qiskit.quantum_info.DensityMatrix.reverse_qargs" />
 
-`DensityMatrix.reverse_qargs()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/states/densitymatrix.py "view source code")
+`DensityMatrix.reverse_qargs()`
 
 Return a DensityMatrix with reversed subsystem ordering.
 
@@ -498,7 +498,7 @@ Set the seed for the quantum state RNG.
 
 <span id="qiskit.quantum_info.DensityMatrix.tensor" />
 
-`DensityMatrix.tensor(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/states/densitymatrix.py "view source code")
+`DensityMatrix.tensor(other)`
 
 Return the tensor product state self ⊗ other.
 
@@ -522,7 +522,7 @@ the tensor product operator self ⊗ other.
 
 <span id="qiskit.quantum_info.DensityMatrix.to_dict" />
 
-`DensityMatrix.to_dict(decimals=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/states/densitymatrix.py "view source code")
+`DensityMatrix.to_dict(decimals=None)`
 
 Convert the density matrix to dictionary form.
 
@@ -542,7 +542,7 @@ dict
 
 **Examples**
 
-The ket-form of a 2-qubit density matrix $rho = \vert -\rangle\!\langle -\vert \otimes \vert 0\rangle\!\langle 0\vert $
+The ket-form of a 2-qubit density matrix $rho = |-\rangle\!\langle -|\otimes |0\rangle\!\langle 0|$
 
 ```python
 from qiskit.quantum_info import DensityMatrix
@@ -595,7 +595,7 @@ print(rho.to_dict())
 
 <span id="qiskit.quantum_info.DensityMatrix.to_operator" />
 
-`DensityMatrix.to_operator()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/states/densitymatrix.py "view source code")
+`DensityMatrix.to_operator()`
 
 Convert to Operator
 
@@ -603,7 +603,7 @@ Convert to Operator
 
 <span id="qiskit.quantum_info.DensityMatrix.to_statevector" />
 
-`DensityMatrix.to_statevector(atol=None, rtol=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/states/densitymatrix.py "view source code")
+`DensityMatrix.to_statevector(atol=None, rtol=None)`
 
 Return a statevector from a pure density matrix.
 
@@ -630,7 +630,7 @@ Corresponds to the eigenvector of the only non-zero eigenvalue.
 
 <span id="qiskit.quantum_info.DensityMatrix.trace" />
 
-`DensityMatrix.trace()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/states/densitymatrix.py "view source code")
+`DensityMatrix.trace()`
 
 Return the trace of the density matrix.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.Parameter
 
 <span id="qiskit.circuit.Parameter" />
 
-`Parameter(_, uuid=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/parameter.py "view source code")
+`Parameter(_, uuid=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/parameter.py "view source code")
 
 Parameter Class for variable parameters.
 
@@ -77,7 +77,7 @@ which were not bound by parameter\_values.
 
 <span id="qiskit.circuit.Parameter.subs" />
 
-`Parameter.subs(parameter_map)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/parameter.py "view source code")
+`Parameter.subs(parameter_map)`
 
 Substitute self with the corresponding parameter in parameter\_map.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.UCRZGate
 
 <span id="qiskit.circuit.library.UCRZGate" />
 
-`qiskit.circuit.library.UCRZGate(angle_list)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/generalized_gates/ucrz.py "view source code")
+`qiskit.circuit.library.UCRZGate(angle_list)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/generalized_gates/ucrz.py "view source code")
 
 Bases: [`UCPauliRotGate`](qiskit.circuit.library.UCPauliRotGate "qiskit.circuit.library.generalized_gates.uc_pauli_rot.UCPauliRotGate")
 

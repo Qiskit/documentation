@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.XOR
 
 <span id="qiskit.circuit.library.XOR" />
 
-`qiskit.circuit.library.XOR(num_qubits, amount=None, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/boolean_logic/quantum_xor.py "view source code")
+`qiskit.circuit.library.XOR(num_qubits, amount=None, seed=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/boolean_logic/quantum_xor.py "view source code")
 
 Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 

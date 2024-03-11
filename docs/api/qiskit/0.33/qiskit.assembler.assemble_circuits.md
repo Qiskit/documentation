@@ -10,7 +10,7 @@ python_api_name: qiskit.assembler.assemble_circuits
 
 <span id="qiskit.assembler.assemble_circuits" />
 
-`assemble_circuits(circuits, run_config, qobj_id, qobj_header)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/assembler/assemble_circuits.py "view source code")
+`assemble_circuits(circuits, run_config, qobj_id, qobj_header)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/assembler/assemble_circuits.py "view source code")
 
 Assembles a list of circuits into a qobj that can be run on the backend.
 

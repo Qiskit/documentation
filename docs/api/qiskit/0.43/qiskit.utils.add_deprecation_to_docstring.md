@@ -12,7 +12,7 @@ python_api_name: qiskit.utils.add_deprecation_to_docstring
 
 <span id="qiskit.utils.add_deprecation_to_docstring" />
 
-`add_deprecation_to_docstring(func, msg, *, since, pending)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/utils/deprecation.py "view source code")
+`add_deprecation_to_docstring(func, msg, *, since, pending)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/utils/deprecation.py "view source code")
 
 Dynamically insert the deprecation message into `func`’s docstring.
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.pulse.transforms.pad
 
 <span id="qiskit.pulse.transforms.pad" />
 
-`pad(schedule, channels=None, until=None, inplace=False, pad_with=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/transforms/canonicalization.py "view source code")
+`pad(schedule, channels=None, until=None, inplace=False, pad_with=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/transforms/canonicalization.py "view source code")
 
 Pad the input Schedule with `Delay``s on all unoccupied timeslots until ``schedule.duration` or `until` if not `None`.
 

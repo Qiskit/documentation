@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.QFT
 
 <span id="qiskit.circuit.library.QFT" />
 
-`QFT(num_qubits=None, approximation_degree=0, do_swaps=True, inverse=False, insert_barriers=False, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/basis_change/qft.py "view source code")
+`QFT(num_qubits=None, approximation_degree=0, do_swaps=True, inverse=False, insert_barriers=False, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/basis_change/qft.py "view source code")
 
 Bases: `qiskit.circuit.library.blueprintcircuit.BlueprintCircuit`
 
@@ -19,7 +19,7 @@ Quantum Fourier Transform Circuit.
 The Quantum Fourier Transform (QFT) on $n$ qubits is the operation
 
 $$
-\vert j\rangle \mapsto \frac{1}{2^{n/2}} \sum_{k=0}^{2^n - 1} e^{2\pi ijk / 2^n} \vert k\rangle
+|j\rangle \mapsto \frac{1}{2^{n/2}} \sum_{k=0}^{2^n - 1} e^{2\pi ijk / 2^n} |k\rangle
 $$
 
 The circuit that implements this transformation can be implemented using Hadamard gates on each qubit, a series of controlled-U1 (or Z, depending on the phase) gates and a layer of Swap gates. The layer of Swap gates can in principle be dropped if the QFT appears at the end of the circuit, since then the re-ordering can be done classically. They can be turned off using the `do_swaps` attribute.
@@ -55,7 +55,7 @@ Construct a new QFT circuit.
 
 <span id="qiskit.circuit.library.QFT.inverse" />
 
-`QFT.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/basis_change/qft.py "view source code")
+`QFT.inverse()`
 
 Invert this circuit.
 
@@ -71,7 +71,7 @@ The inverted circuit.
 
 <span id="qiskit.circuit.library.QFT.is_inverse" />
 
-`QFT.is_inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/basis_change/qft.py "view source code")
+`QFT.is_inverse()`
 
 Whether the inverse Fourier transform is implemented.
 

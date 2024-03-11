@@ -12,7 +12,7 @@ python_api_name: qiskit.chemistry.algorithms.AdaptVQE
 
 <span id="qiskit.chemistry.algorithms.AdaptVQE" />
 
-`AdaptVQE(transformation, solver, threshold=1e-05, delta=1, max_iterations=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/algorithms/ground_state_solvers/adapt_vqe.py "view source code")
+`AdaptVQE(transformation, solver, threshold=1e-05, delta=1, max_iterations=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/algorithms/ground_state_solvers/adapt_vqe.py "view source code")
 
 A ground state calculation employing the AdaptVQE algorithm.
 

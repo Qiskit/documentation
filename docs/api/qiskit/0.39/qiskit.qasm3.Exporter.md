@@ -10,7 +10,7 @@ python_api_name: qiskit.qasm3.Exporter
 
 <span id="qiskit.qasm3.Exporter" />
 
-`Exporter(includes=('stdgates.inc',), basis_gates=('U',), disable_constants=False, alias_classical_registers=False, indent='  ')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/qasm3/exporter.py "view source code")
+`Exporter(includes=('stdgates.inc',), basis_gates=('U',), disable_constants=False, alias_classical_registers=False, indent='  ')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/qasm3/exporter.py "view source code")
 
 Bases: `object`
 
@@ -30,7 +30,7 @@ QASM3 exporter main class.
 
 <span id="qiskit.qasm3.Exporter.dump" />
 
-`Exporter.dump(circuit, stream)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/qasm3/exporter.py "view source code")
+`Exporter.dump(circuit, stream)`
 
 Convert the circuit to QASM 3, dumping the result to a file or text stream.
 
@@ -38,7 +38,7 @@ Convert the circuit to QASM 3, dumping the result to a file or text stream.
 
 <span id="qiskit.qasm3.Exporter.dumps" />
 
-`Exporter.dumps(circuit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/qasm3/exporter.py "view source code")
+`Exporter.dumps(circuit)`
 
 Convert the circuit to QASM 3, returning the result as a string.
 

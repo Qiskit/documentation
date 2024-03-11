@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.verification.get_ghz_mqc_para
 
 <span id="qiskit.ignis.verification.get_ghz_mqc_para" />
 
-`get_ghz_mqc_para(n, full_measurement=True)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/entanglement/linear.py "view source code")
+`get_ghz_mqc_para(n, full_measurement=True)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/entanglement/linear.py "view source code")
 
 This function creates an MQC circuit with n qubits, where the middle phase rotation around the z axis is parameterized
 

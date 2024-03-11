@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.channels.DriveChannel
 
 <span id="qiskit.pulse.channels.DriveChannel" />
 
-`DriveChannel(index)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/channels.py "view source code")
+`DriveChannel(index)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/channels.py "view source code")
 
 Bases: `qiskit.pulse.channels.PulseChannel`
 

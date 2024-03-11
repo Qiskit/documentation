@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.SwapGate
 
 <span id="qiskit.circuit.library.SwapGate" />
 
-`qiskit.circuit.library.SwapGate(*args, _force_mutable=False, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/swap.py "view source code")
+`qiskit.circuit.library.SwapGate(*args, _force_mutable=False, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/swap.py "view source code")
 
 Bases: [`SingletonGate`](circuit_singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate")
 
@@ -43,7 +43,7 @@ $$
 The gate is equivalent to a state swap and is a classical logic gate.
 
 $$
-\vert a, b\rangle \rightarrow \vert b, a\rangle
+|a, b\rangle \rightarrow |b, a\rangle
 $$
 
 Create new SWAP gate.

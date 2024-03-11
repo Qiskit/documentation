@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.gradients.Gradient
 
 <span id="qiskit.opflow.gradients.Gradient" />
 
-`Gradient(grad_method='param_shift', **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/gradients/gradient.py "view source code")
+`Gradient(grad_method='param_shift', **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/gradients/gradient.py "view source code")
 
 Convert an operator expression to the first-order gradient.
 

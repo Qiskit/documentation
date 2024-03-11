@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.ScalarOp
 
 <span id="qiskit.quantum_info.ScalarOp" />
 
-`qiskit.quantum_info.ScalarOp(dims=None, coeff=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/quantum_info/operators/scalar_op.py "view source code")
+`qiskit.quantum_info.ScalarOp(dims=None, coeff=1)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/quantum_info/operators/scalar_op.py "view source code")
 
 Bases: `LinearOp`
 

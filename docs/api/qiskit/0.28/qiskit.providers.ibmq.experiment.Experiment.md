@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.experiment.Experiment
 
 <span id="qiskit.providers.ibmq.experiment.Experiment" />
 
-`Experiment(provider, backend_name, experiment_type, extra=None, tags=None, start_datetime=None, end_datetime=None, experiment_uuid=None, plot_names=None, analysis_results=None, hub=None, group=None, project=None, share_level=None, owner=None, notes=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.15/qiskit/providers/ibmq/experiment/experiment.py "view source code")
+`Experiment(provider, backend_name, experiment_type, extra=None, tags=None, start_datetime=None, end_datetime=None, experiment_uuid=None, plot_names=None, analysis_results=None, hub=None, group=None, project=None, share_level=None, owner=None, notes=None)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.15/qiskit/providers/ibmq/experiment/experiment.py "view source code")
 
 Class representing an experiment.
 

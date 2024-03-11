@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.preset_passmanagers.plugin.PassManagerStagePl
 
 <span id="qiskit.transpiler.preset_passmanagers.plugin.PassManagerStagePlugin" />
 
-`qiskit.transpiler.preset_passmanagers.plugin.PassManagerStagePlugin`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/preset_passmanagers/plugin.py "view source code")
+`qiskit.transpiler.preset_passmanagers.plugin.PassManagerStagePlugin` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/preset_passmanagers/plugin.py "view source code")
 
 Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 

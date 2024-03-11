@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.builder.build
 
 <span id="qiskit.pulse.builder.build" />
 
-`build(backend=None, schedule=None, name=None, default_alignment='left', default_transpiler_settings=None, default_circuit_scheduler_settings=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/pulse/builder.py "view source code")
+`build(backend=None, schedule=None, name=None, default_alignment='left', default_transpiler_settings=None, default_circuit_scheduler_settings=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/pulse/builder.py "view source code")
 
 Create a context manager for launching the imperative pulse builder DSL.
 

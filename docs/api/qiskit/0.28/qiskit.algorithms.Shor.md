@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.Shor
 
 <span id="qiskit.algorithms.Shor" />
 
-`Shor(quantum_instance=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/factorizers/shor.py "view source code")
+`Shor(quantum_instance=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/factorizers/shor.py "view source code")
 
 Shor’s factoring algorithm.
 

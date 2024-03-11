@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.operators.expectations.CVaRExpectation
 
 <span id="qiskit.aqua.operators.expectations.CVaRExpectation" />
 
-`CVaRExpectation(alpha, expectation=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/expectations/cvar_expectation.py "view source code")
+`CVaRExpectation(alpha, expectation=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/expectations/cvar_expectation.py "view source code")
 
 Compute the Conditional Value at Risk (CVaR) expectation value.
 

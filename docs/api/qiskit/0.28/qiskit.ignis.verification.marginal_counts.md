@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.verification.marginal_counts
 
 <span id="qiskit.ignis.verification.marginal_counts" />
 
-`marginal_counts(counts, meas_qubits=True, pad_zeros=False)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/tomography/data.py "view source code")
+`marginal_counts(counts, meas_qubits=True, pad_zeros=False)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/tomography/data.py "view source code")
 
 Compute marginal counts from a counts dictionary.
 

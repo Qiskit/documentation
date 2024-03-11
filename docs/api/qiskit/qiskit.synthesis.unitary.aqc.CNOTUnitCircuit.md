@@ -10,7 +10,7 @@ python_api_name: qiskit.synthesis.unitary.aqc.CNOTUnitCircuit
 
 <span id="qiskit.synthesis.unitary.aqc.CNOTUnitCircuit" />
 
-`qiskit.synthesis.unitary.aqc.CNOTUnitCircuit(num_qubits, cnots, tol=0.0, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/synthesis/unitary/aqc/cnot_unit_circuit.py "view source code")
+`qiskit.synthesis.unitary.aqc.CNOTUnitCircuit(num_qubits, cnots, tol=0.0, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/synthesis/unitary/aqc/cnot_unit_circuit.py "view source code")
 
 Bases: [`ApproximateCircuit`](qiskit.synthesis.unitary.aqc.ApproximateCircuit "qiskit.synthesis.unitary.aqc.approximate.ApproximateCircuit")
 
@@ -63,29 +63,17 @@ a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitI
 
 QuantumCircuitData
 
-<span id="qiskit.synthesis.unitary.aqc.CNOTUnitCircuit.extension_lib" />
-
-### extension\_lib
-
-`= 'include "qelib1.inc";'`
-
 <span id="qiskit.synthesis.unitary.aqc.CNOTUnitCircuit.global_phase" />
 
 ### global\_phase
 
 Return the global phase of the current circuit scope in radians.
 
-<span id="qiskit.synthesis.unitary.aqc.CNOTUnitCircuit.header" />
-
-### header
-
-`= 'OPENQASM 2.0;'`
-
 <span id="qiskit.synthesis.unitary.aqc.CNOTUnitCircuit.instances" />
 
 ### instances
 
-`= 159`
+`= 158`
 
 <span id="qiskit.synthesis.unitary.aqc.CNOTUnitCircuit.layout" />
 
@@ -184,9 +172,6 @@ ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
 ```
 
 To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
-
-```python
-```
 
 ```python
 >>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector

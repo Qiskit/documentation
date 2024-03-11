@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.gradients.FiniteDiffEstimatorGradient
 
 <span id="qiskit.algorithms.gradients.FiniteDiffEstimatorGradient" />
 
-`FiniteDiffEstimatorGradient(estimator, epsilon, options=None, *, method='central')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/gradients/finite_diff_estimator_gradient.py "view source code")
+`FiniteDiffEstimatorGradient(estimator, epsilon, options=None, *, method='central')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/gradients/finite_diff_estimator_gradient.py "view source code")
 
 Bases: [`BaseEstimatorGradient`](qiskit.algorithms.gradients.BaseEstimatorGradient "qiskit.algorithms.gradients.base_estimator_gradient.BaseEstimatorGradient")
 

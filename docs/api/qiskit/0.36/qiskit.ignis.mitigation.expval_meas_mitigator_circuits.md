@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.mitigation.expval_meas_mitigator_circuits
 
 <span id="qiskit.ignis.mitigation.expval_meas_mitigator_circuits" />
 
-`expval_meas_mitigator_circuits(num_qubits, method='CTMP', labels=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/mitigation/expval/circuits.py "view source code")
+`expval_meas_mitigator_circuits(num_qubits, method='CTMP', labels=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/mitigation/expval/circuits.py "view source code")
 
 Generate measurement error mitigator circuits and metadata.
 

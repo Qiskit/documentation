@@ -10,7 +10,7 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
 <span id="qiskit.dagcircuit.DAGCircuit" />
 
-`qiskit.dagcircuit.DAGCircuit`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/dagcircuit/dagcircuit.py "view source code")
+`qiskit.dagcircuit.DAGCircuit` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/dagcircuit/dagcircuit.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
@@ -657,7 +657,7 @@ The set of qubits whose interactions affect `qubit`.
 
 **Return type**
 
-Set\[[Qubit](qiskit.circuit.Qubit "qiskit.circuit.Qubit")]
+Set\[[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")]
 
 ### quantum\_predecessors
 
@@ -927,7 +927,7 @@ Replace one node with dag.
 *   **node** ([*DAGOpNode*](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")) – node to substitute
 *   **input\_dag** ([*DAGCircuit*](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – circuit that will substitute the node
 *   **wires** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Bit*](qiskit.circuit.Bit "qiskit.circuit.Bit")*] | Dict\[*[*Bit*](qiskit.circuit.Bit "qiskit.circuit.Bit")*,* [*Bit*](qiskit.circuit.Bit "qiskit.circuit.Bit")*]*) – gives an order for (qu)bits in the input circuit. If a list, then the bits refer to those in the `input_dag`, and the order gets matched to the node wires by qargs first, then cargs, then conditions. If a dictionary, then a mapping of bits in the `input_dag` to those that the `node` acts on.
-*   **propagate\_condition** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True` (default), then any `condition` attribute on the operation within `node` is propagated to each node in the `input_dag`. If `False`, then the `input_dag` is assumed to faithfully implement suitable conditional logic already. This is ignored for [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp")s (i.e. treated as if it is `False`); replacements of those must already fulfil the same conditional logic or this function would be close to useless for them.
+*   **propagate\_condition** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True` (default), then any `condition` attribute on the operation within `node` is propagated to each node in the `input_dag`. If `False`, then the `input_dag` is assumed to faithfully implement suitable conditional logic already. This is ignored for [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp")s (i.e. treated as if it is `False`); replacements of those must already fulfill the same conditional logic or this function would be close to useless for them.
 
 **Returns**
 

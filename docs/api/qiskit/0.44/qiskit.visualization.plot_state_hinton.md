@@ -12,7 +12,7 @@ python_api_name: qiskit.visualization.plot_state_hinton
 
 <span id="qiskit.visualization.plot_state_hinton" />
 
-`qiskit.visualization.plot_state_hinton(state, title='', figsize=None, ax_real=None, ax_imag=None, *, rho=None, filename=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/visualization/state_visualization.py "view source code")
+`qiskit.visualization.plot_state_hinton(state, title='', figsize=None, ax_real=None, ax_imag=None, *, rho=None, filename=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/visualization/state_visualization.py "view source code")
 
 Plot a hinton diagram for the density matrix of a quantum state.
 

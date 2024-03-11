@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.FullAncillaAllocation
 
 <span id="qiskit.transpiler.passes.FullAncillaAllocation" />
 
-`FullAncillaAllocation(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/transpiler/passes/layout/full_ancilla_allocation.py "view source code")
+`FullAncillaAllocation(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/transpiler/passes/layout/full_ancilla_allocation.py "view source code")
 
 Allocate all idle nodes from the coupling map as ancilla on the layout.
 
@@ -54,7 +54,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.FullAncillaAllocation.run" />
 
-`FullAncillaAllocation.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/transpiler/passes/layout/full_ancilla_allocation.py "view source code")
+`FullAncillaAllocation.run(dag)`
 
 Run the FullAncillaAllocation pass on dag.
 

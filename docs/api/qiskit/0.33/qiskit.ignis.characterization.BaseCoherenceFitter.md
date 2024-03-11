@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.characterization.BaseCoherenceFitter
 
 <span id="qiskit.ignis.characterization.BaseCoherenceFitter" />
 
-`BaseCoherenceFitter(description, backend_result, xdata, qubits, fit_fun, fit_p0, fit_bounds, circuit_names, series=None, expected_state='0', time_index=0, time_unit='micro-seconds')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/characterization/fitters.py "view source code")
+`BaseCoherenceFitter(description, backend_result, xdata, qubits, fit_fun, fit_p0, fit_bounds, circuit_names, series=None, expected_state='0', time_index=0, time_unit='micro-seconds')` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/characterization/fitters.py "view source code")
 
 Bases: `qiskit.ignis.characterization.fitters.BaseFitter`
 
@@ -68,7 +68,7 @@ Compute self.\_params and self.\_params\_err
 
 <span id="qiskit.ignis.characterization.BaseCoherenceFitter.plot" />
 
-`BaseCoherenceFitter.plot(qind, series, ax=None, show_plot=True)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/characterization/fitters.py "view source code")
+`BaseCoherenceFitter.plot(qind, series, ax=None, show_plot=True)`
 
 Plot coherence data.
 
@@ -95,7 +95,7 @@ Axes
 
 <span id="qiskit.ignis.characterization.BaseCoherenceFitter.time" />
 
-`BaseCoherenceFitter.time(qid=- 1, series='0')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/characterization/fitters.py "view source code")
+`BaseCoherenceFitter.time(qid=- 1, series='0')`
 
 Return the characteristic time for the given qubit and series
 
@@ -116,7 +116,7 @@ The characteristic time of the qubit, or all qubits
 
 <span id="qiskit.ignis.characterization.BaseCoherenceFitter.time_err" />
 
-`BaseCoherenceFitter.time_err(qid=- 1, series='0')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/characterization/fitters.py "view source code")
+`BaseCoherenceFitter.time_err(qid=- 1, series='0')`
 
 Return the error of characteristic time for the given qubit and series
 

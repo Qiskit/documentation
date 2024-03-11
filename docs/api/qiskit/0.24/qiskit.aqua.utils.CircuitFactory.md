@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.utils.CircuitFactory
 
 <span id="qiskit.aqua.utils.CircuitFactory" />
 
-`CircuitFactory(num_target_qubits)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/utils/circuit_factory.py "view source code")
+`CircuitFactory(num_target_qubits)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/utils/circuit_factory.py "view source code")
 
 Base class for CircuitFactories
 

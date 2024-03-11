@@ -50,6 +50,7 @@ export function processHtml(options: {
   removeHtmlExtensionsInRelativeLinks($, $main);
   removePermalinks($main);
   removeDownloadSourceCode($main);
+  removeMatplotlibFigCaptions($main);
   handleSphinxDesignCards($, $main);
   addLanguageClassToCodeBlocks($, $main);
   replaceViewcodeLinksWithGitHub($, $main, determineGithubUrl);
@@ -126,6 +127,13 @@ export function removeDownloadSourceCode($main: Cheerio<any>): void {
   $main.find("p > a.reference.download.internal").closest("p").remove();
 }
 
+export function removeMatplotlibFigCaptions($main: Cheerio<any>): void {
+  $main
+    .find("figcaption, div.figure p.caption")
+    .has("span.caption-text a.download.internal.reference")
+    .remove();
+}
+
 /**
  * Flattens out sphinx-design cards, which are collapsible normally.
  *
@@ -162,12 +170,14 @@ export function addLanguageClassToCodeBlocks(
 }
 
 /**
- * Redirect URLS from sphinx.ext.viewcode to instead go to GitHub.
+ * Redirect URLS from `sphinx.ext.viewcode` to instead go to GitHub.
  *
  * These URLs will only go to the overall source code file, not the specific lines
  * of code. This function only changes the URLs; the DOM still needs to be modified
  * to remove the original `[source]` anchor element from Sphinx with our own `GitHub`
  * anchor element in the correct location.
+ *
+ * This does not impact links from `sphinx.ext.linkcode`.
  */
 export function replaceViewcodeLinksWithGitHub(
   $: CheerioAPI,
@@ -269,16 +279,14 @@ export function processMembersAndSetMeta(
     }
 
     const $dl = $(dl);
+    const id = $dl.find("dt").attr("id") || "";
+    const apiType = getApiType($dl);
+
     const replacement = $dl
       .children()
       .toArray()
       .map((child) => {
         const $child = $(child);
-        const id = $dl.find("dt").attr("id") || "";
-        const github = prepareGitHubLink($, $child);
-
-        const apiType = getApiType($dl);
-
         if (child.name !== "dt" || !apiType) {
           return `<div>${$child.html()}</div>`;
         }
@@ -289,93 +297,7 @@ export function processMembersAndSetMeta(
           meta.apiName = id;
         }
 
-        if (apiType == "class") {
-          findByText($, $main, "em.property", "class").remove();
-          return `<span class="target" id="${id}"/><p><code>${$child.html()}</code>${github}</p>`;
-        }
-
-        if (apiType == "property") {
-          if (!priorApiType && id) {
-            $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
-          }
-
-          findByText($, $main, "em.property", "property").remove();
-          const signature = $child.find("em").text()?.replace(/^:\s+/, "");
-          if (signature.trim().length === 0) return;
-          return `<span class="target" id='${id}'/><p><code>${signature}</code>${github}</p>`;
-        }
-
-        if (apiType == "method") {
-          if (id) {
-            if (!priorApiType) {
-              $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
-            } else {
-              // Inline methods
-              $(`<h3>${getLastPartFromFullIdentifier(id)}</h3>`).insertBefore(
-                $dl,
-              );
-            }
-          }
-
-          findByText($, $main, "em.property", "method").remove();
-          return `<span class="target" id='${id}'/><p><code>${$child.html()}</code>${github}</p>`;
-        }
-
-        if (apiType == "attribute") {
-          if (!priorApiType) {
-            if (id) {
-              $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
-            }
-
-            findByText($, $main, "em.property", "attribute").remove();
-            const signature = $child.find("em").text()?.replace(/^:\s+/, "");
-            if (signature.trim().length === 0) return;
-            return `<span class="target" id='${id}'/><p><code>${signature}</code>${github}</p>`;
-          }
-
-          // Else, the attribute is embedded on the class
-          const text = $child.text();
-          const equalIndex = text.indexOf("=");
-          const colonIndex = text.indexOf(":");
-          let name = text;
-          let type: string | undefined;
-          let value: string | undefined;
-          if (colonIndex > 0 && equalIndex > 0) {
-            name = text.substring(0, colonIndex);
-            type = text.substring(colonIndex + 1, equalIndex);
-            value = text.substring(equalIndex);
-          } else if (colonIndex > 0) {
-            name = text.substring(0, colonIndex);
-            type = text.substring(colonIndex + 1);
-          } else if (equalIndex > 0) {
-            name = text.substring(0, equalIndex);
-            value = text.substring(equalIndex);
-          }
-          const output = [`<span class="target" id='${id}'/><h3>${name}</h3>`];
-          if (type) {
-            output.push(`<p><code>${type}</code></p>`);
-          }
-          if (value) {
-            output.push(`<p><code>${value}</code></p>`);
-          }
-          return output.join("\n");
-        }
-
-        if (apiType === "function" || apiType === "exception") {
-          findByText($, $main, "em.property", apiType).remove();
-          const descriptionHtml = `<span class="target" id="${id}"/><p><code>${$child.html()}</code>${github}</p>`;
-
-          const pageHeading = $dl.siblings("h1").text();
-          if (id.endsWith(pageHeading) && pageHeading != "") {
-            // Page is already dedicated to apiType; no heading needed
-            return descriptionHtml;
-          }
-
-          const apiName = id.split(".").slice(-1)[0];
-          return `<h3>${apiName}</h3>${descriptionHtml}`;
-        }
-
-        throw new Error(`Unhandled Python type: ${apiType}`);
+        return processMember($, $main, $child, $dl, priorApiType, apiType, id);
       })
       .join("\n");
 
@@ -383,20 +305,176 @@ export function processMembersAndSetMeta(
   }
 }
 
+function processMember(
+  $: CheerioAPI,
+  $main: Cheerio<any>,
+  $child: Cheerio<any>,
+  $dl: Cheerio<any>,
+  priorApiType: string | undefined,
+  apiType: string,
+  id: string,
+) {
+  const githubSourceLink = prepareGitHubLink($child, apiType === "method");
+
+  findByText($, $main, "em.property", apiType).remove();
+
+  if (apiType == "class") {
+    return `<span class="target" id="${id}"/><p><code>${$child.html()}</code>${githubSourceLink}</p>`;
+  }
+
+  if (apiType == "property") {
+    return processProperty($child, $dl, priorApiType, id, githubSourceLink);
+  }
+
+  if (apiType == "method") {
+    return processMethod($, $child, $dl, priorApiType, id, githubSourceLink);
+  }
+
+  if (apiType == "attribute") {
+    return processAttribute($child, $dl, priorApiType, id, githubSourceLink);
+  }
+
+  if (apiType === "function" || apiType === "exception") {
+    return processFunctionOrException($child, $dl, id, githubSourceLink);
+  }
+
+  throw new Error(`Unhandled Python type: ${apiType}`);
+}
+
+function processProperty(
+  $child: Cheerio<any>,
+  $dl: Cheerio<any>,
+  priorApiType: string | undefined,
+  id: string,
+  githubSourceLink: string,
+) {
+  if (!priorApiType && id) {
+    $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
+  }
+
+  const signature = $child.find("em").text()?.replace(/^:\s+/, "");
+  if (signature.trim().length === 0) return;
+  return `<span class="target" id='${id}'/><p><code>${signature}</code>${githubSourceLink}</p>`;
+}
+
+function processMethod(
+  $: CheerioAPI,
+  $child: Cheerio<any>,
+  $dl: Cheerio<any>,
+  priorApiType: string | undefined,
+  id: string,
+  githubSourceLink: string,
+) {
+  if (id) {
+    if (!priorApiType) {
+      $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
+    } else if (!$child.attr("id")) {
+      // Overload methods have more than one <dt> tag, but only the first one
+      // contains an id.
+      return `<p><code>${$child.html()}</code>${githubSourceLink}</p>`;
+    } else {
+      // Inline methods
+      $(`<h3>${getLastPartFromFullIdentifier(id)}</h3>`).insertBefore($dl);
+    }
+  }
+
+  return `<span class="target" id='${id}'/><p><code>${$child.html()}</code>${githubSourceLink}</p>`;
+}
+
+function processAttribute(
+  $child: Cheerio<any>,
+  $dl: Cheerio<any>,
+  priorApiType: string | undefined,
+  id: string,
+  githubSourceLink: string,
+) {
+  if (!priorApiType) {
+    if (id) {
+      $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
+    }
+
+    const signature = $child.find("em").text()?.replace(/^:\s+/, "");
+    if (signature.trim().length === 0) return;
+    return `<span class="target" id='${id}'/><p><code>${signature}</code>${githubSourceLink}</p>`;
+  }
+
+  // Else, the attribute is embedded on the class
+  const text = $child.text();
+
+  // Index of the default value of the attribute
+  let equalIndex = text.indexOf("=");
+  if (equalIndex == -1) {
+    equalIndex = text.length;
+  }
+  // Index of the attribute's type. The type should be
+  // found before the default value
+  let colonIndex = text.slice(0, equalIndex).indexOf(":");
+  if (colonIndex == -1) {
+    colonIndex = text.length;
+  }
+
+  // The attributes have the following shape: name [: type] [= value]
+  const name = text.slice(0, Math.min(colonIndex, equalIndex)).trim();
+  const type = text
+    .slice(Math.min(colonIndex + 1, equalIndex), equalIndex)
+    .trim();
+  const value = text.slice(equalIndex, text.length).trim();
+
+  const output = [`<span class="target" id='${id}'/><h3>${name}</h3>`];
+  if (type) {
+    output.push(`<p><code>${type}</code></p>`);
+  }
+  if (value) {
+    output.push(`<p><code>${value}</code></p>`);
+  }
+  return output.join("\n");
+}
+
+function processFunctionOrException(
+  $child: Cheerio<any>,
+  $dl: Cheerio<any>,
+  id: string,
+  githubSourceLink: string,
+) {
+  const descriptionHtml = `<span class="target" id="${id}"/><p><code>${$child.html()}</code>${githubSourceLink}</p>`;
+
+  const pageHeading = $dl.siblings("h1").text();
+  if (id.endsWith(pageHeading) && pageHeading != "") {
+    // Page is already dedicated to apiType; no heading needed
+    return descriptionHtml;
+  }
+
+  const apiName = id.split(".").slice(-1)[0];
+  return `<h3>${apiName}</h3>${descriptionHtml}`;
+}
+
 /**
  * Removes the original link from sphinx.ext.viewcode and returns the HTML string for our own link.
  *
  * This returns the HTML string, rather than directly inserting into the HTML, because the insertion
  * logic is most easily handled by the calling code.
+ *
+ * This function works the same regardless of whether the Sphinx build used `sphinx.ext.viewcode`
+ * or `sphinx.ext.linkcode` because they have the same HTML structure.
+ *
+ * If the link corresponds to a method, we only return a link if it has line numbers included,
+ * which implies that the link came from `sphinx.ext.linkcode` rather than `sphinx.ext.viewcode`.
+ * That's because the owning class will already have a link to the relevant file; it's
+ * noisy and not helpful to repeat the same link without line numbers for the individual methods.
  */
-export function prepareGitHubLink($: CheerioAPI, $child: Cheerio<any>): string {
+export function prepareGitHubLink(
+  $child: Cheerio<any>,
+  isMethod: boolean,
+): string {
   const originalLink = $child.find(".viewcode-link").closest("a");
   if (originalLink.length === 0) {
     return "";
   }
   const href = originalLink.attr("href")!;
-  originalLink.remove();
-  return `<a href="${href}" title="view source code">GitHub</a>`;
+  originalLink.first().remove();
+  return !isMethod || href.includes(".py#")
+    ? ` <a href="${href}" title="view source code">GitHub</a>`
+    : "";
 }
 
 export function maybeSetModuleMetadata(
@@ -406,7 +484,7 @@ export function maybeSetModuleMetadata(
 ): void {
   const modulePrefix = "module-";
   const moduleIdWithPrefix = $main
-    .find("span, section")
+    .find("span, section, div.section")
     .toArray()
     .map((el) => $(el).attr("id"))
     .find((id) => id?.startsWith(modulePrefix));

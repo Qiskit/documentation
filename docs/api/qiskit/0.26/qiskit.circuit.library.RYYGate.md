@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.RYYGate
 
 <span id="qiskit.circuit.library.RYYGate" />
 
-`RYYGate(theta)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/library/standard_gates/ryy.py "view source code")
+`RYYGate(theta)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/library/standard_gates/ryy.py "view source code")
 
 A parametric 2-qubit $Y \otimes Y$ interaction (rotation about YY).
 

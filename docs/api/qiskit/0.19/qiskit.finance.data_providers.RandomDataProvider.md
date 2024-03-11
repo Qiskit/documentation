@@ -10,7 +10,7 @@ python_api_name: qiskit.finance.data_providers.RandomDataProvider
 
 <span id="qiskit.finance.data_providers.RandomDataProvider" />
 
-`RandomDataProvider(tickers=None, stockmarket=StockMarket.RANDOM, start=datetime.datetime(2016, 1, 1, 0, 0), end=datetime.datetime(2016, 1, 30, 0, 0), seed=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/finance/data_providers/random_data_provider.py "view source code")
+`RandomDataProvider(tickers=None, stockmarket=StockMarket.RANDOM, start=datetime.datetime(2016, 1, 1, 0, 0), end=datetime.datetime(2016, 1, 30, 0, 0), seed=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/finance/data_providers/random_data_provider.py "view source code")
 
 Pseudo-randomly generated mock stock-market data provider.
 
@@ -134,7 +134,7 @@ numpy.ndarray
 
 <span id="qiskit.finance.data_providers.RandomDataProvider.run" />
 
-`RandomDataProvider.run()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/finance/data_providers/random_data_provider.py "view source code")
+`RandomDataProvider.run()`
 
 Generates data pseudo-randomly, thus enabling get\_similarity\_matrix and get\_covariance\_matrix methods in the base class.
 

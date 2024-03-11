@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.NumPyLinearSolver
 
 <span id="qiskit.algorithms.NumPyLinearSolver" />
 
-`NumPyLinearSolver`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/linear_solvers/numpy_linear_solver.py "view source code")
+`NumPyLinearSolver` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/linear_solvers/numpy_linear_solver.py "view source code")
 
 The Numpy Linear Solver algorithm (classical).
 

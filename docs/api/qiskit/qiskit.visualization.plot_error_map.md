@@ -12,7 +12,7 @@ python_api_name: qiskit.visualization.plot_error_map
 
 <span id="qiskit.visualization.plot_error_map" />
 
-`qiskit.visualization.plot_error_map(backend, figsize=(15, 12), show_title=True, qubit_coordinates=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/visualization/gate_map.py "view source code")
+`qiskit.visualization.plot_error_map(backend, figsize=(15, 12), show_title=True, qubit_coordinates=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/visualization/gate_map.py "view source code")
 
 Plots the error map of a given backend.
 
@@ -39,11 +39,10 @@ Figure
 **Example**
 
 ```python
-from qiskit import QuantumCircuit, execute
 from qiskit.visualization import plot_error_map
-from qiskit.providers.fake_provider import FakeVigoV2
+from qiskit.providers.fake_provider import GenericBackendV2
 
-backend = FakeVigoV2()
+backend = GenericBackendV2(num_qubits=5)
 plot_error_map(backend)
 ```
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.optimization.algorithms.OptimizationAlgorithm
 
 <span id="qiskit.optimization.algorithms.OptimizationAlgorithm" />
 
-`OptimizationAlgorithm`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/optimization_algorithm.py "view source code")
+`OptimizationAlgorithm` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/optimization_algorithm.py "view source code")
 
 An abstract class for optimization algorithms in Qiskit’s optimization module.
 

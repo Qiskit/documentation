@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.library.set_statevector
 
 <span id="qiskit.providers.aer.library.set_statevector" />
 
-`set_statevector(self, state)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/providers/aer/library/set_instructions/set_statevector.py "view source code")
+`set_statevector(self, state)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/providers/aer/library/set_instructions/set_statevector.py "view source code")
 
 Set the statevector state of the simulator.
 

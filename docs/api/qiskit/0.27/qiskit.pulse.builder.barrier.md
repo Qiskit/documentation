@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.builder.barrier
 
 <span id="qiskit.pulse.builder.barrier" />
 
-`barrier(*channels_or_qubits, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/builder.py "view source code")
+`barrier(*channels_or_qubits, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/builder.py "view source code")
 
 Barrier directive for a set of channels and qubits.
 
@@ -70,6 +70,6 @@ with pulse.build(backend) as pulse_prog:
 
 **Parameters**
 
-*   **channels\_or\_qubits** (`Union`\[[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel"), `int`]) – Channels or qubits to barrier.
+*   **channels\_or\_qubits** (`Union`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel"), `int`]) – Channels or qubits to barrier.
 *   **name** (`Optional`\[`str`]) – Name for the barrier
 

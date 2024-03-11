@@ -12,7 +12,7 @@ python_api_name: qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase" />
 
-`EnergySurfaceBase`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/algorithms/pes_samplers/potentials/potential_base.py "view source code")
+`EnergySurfaceBase` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/algorithms/pes_samplers/potentials/potential_base.py "view source code")
 
 Class to hold a potential energy surface
 

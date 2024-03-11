@@ -1,9 +1,9 @@
 ---
-title: check_disjoint
-description: API reference for qiskit.optimization.applications.ising.set_packing.check_disjoint
-in_page_toc_min_heading_level: 1
-python_api_type: function
-python_api_name: qiskit.optimization.applications.ising.set_packing.check_disjoint
+title: set_packing
+description: API reference for qiskit.optimization.applications.ising.set_packing
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.optimization.applications.ising.set_packing
 ---
 
 <span id="qiskit-optimization-applications-ising-set-packing" />
@@ -24,7 +24,7 @@ set packing module
 
 <span id="qiskit.optimization.applications.ising.set_packing.check_disjoint" />
 
-`check_disjoint(sol, list_of_subsets)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/set_packing.py "view source code")
+`check_disjoint(sol, list_of_subsets)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/set_packing.py "view source code")
 
 check disjoint
 
@@ -32,7 +32,7 @@ check disjoint
 
 <span id="qiskit.optimization.applications.ising.set_packing.get_operator" />
 
-`get_operator(list_of_subsets)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/set_packing.py "view source code")
+`get_operator(list_of_subsets)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/set_packing.py "view source code")
 
 Construct the Hamiltonian for the set packing.
 
@@ -64,7 +64,7 @@ tuple([WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator
 
 <span id="qiskit.optimization.applications.ising.set_packing.get_solution" />
 
-`get_solution(x)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/set_packing.py "view source code")
+`get_solution(x)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/set_packing.py "view source code")
 
 **Parameters**
 

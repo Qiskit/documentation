@@ -1,7 +1,7 @@
 ---
 title: transpiler
 description: API reference for qiskit.transpiler
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.transpiler
 ---
@@ -47,13 +47,13 @@ If you’d like to work directly with a preset pass manager you can use the [`ge
 
 ```python
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
-from qiskit.providers.fake_provider import FakeLagosV2
+from qiskit.providers.fake_provider import GenericBackendV2
 
-backend = FakeLagosV2()
+backend = GenericBackendV2(num_qubits=5)
 pass_manager = generate_preset_pass_manager(3, backend)
 ```
 
-which will generate a [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager") object for optimization level 3 targeting the [`FakeLagosV2`](qiskit.providers.fake_provider.FakeLagosV2 "qiskit.providers.fake_provider.FakeLagosV2") backend (equivalent to what is used internally by [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") with `backend=FakeLagosV2()` and `optimization_level=3`). You can use this just like you would any other [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager"). However, because it is a [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager") it also makes it easy to compose and/or replace stages of the pipeline. For example, if you wanted to run a custom scheduling stage using dynamical decoupling (via the [`PadDynamicalDecoupling`](qiskit.transpiler.passes.PadDynamicalDecoupling "qiskit.transpiler.passes.PadDynamicalDecoupling") pass) and also add initial logical optimization prior to routing, you would do something like (building off the previous example):
+which will generate a [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager") object for optimization level 3 targeting the [`GenericBackendV2`](qiskit.providers.fake_provider.GenericBackendV2 "qiskit.providers.fake_provider.GenericBackendV2") backend (equivalent to what is used internally by [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") with `backend=GenericBackendV2(5)` and `optimization_level=3`). You can use this just like you would any other [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager"). However, because it is a [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager") it also makes it easy to compose and/or replace stages of the pipeline. For example, if you wanted to run a custom scheduling stage using dynamical decoupling (via the [`PadDynamicalDecoupling`](qiskit.transpiler.passes.PadDynamicalDecoupling "qiskit.transpiler.passes.PadDynamicalDecoupling") pass) and also add initial logical optimization prior to routing, you would do something like (building off the previous example):
 
 ```python
 import numpy as np
@@ -425,8 +425,8 @@ Below are a description of the default transpiler stages and the problems they s
 When writing a quantum circuit you are free to use any quantum gate (unitary operator) that you like, along with a collection of non-gate operations such as qubit measurements and reset operations. However, most quantum devices only natively support a handful of quantum gates and non-gate operations. The allowed instructions for a given backend can be found by querying the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") for the devices:
 
 ```python
-from qiskit.providers.fake_provider import FakeVigoV2
-backend = FakeVigoV2()
+from qiskit.providers.fake_provider import GenericBackendV2
+backend = GenericBackendV2(5)
 
 print(backend.target)
 ```
@@ -436,9 +436,9 @@ Every quantum circuit run on the target device must be expressed using only thes
 ```python
 import numpy as np
 from qiskit import QuantumCircuit
-from qiskit.providers.fake_provider import FakeVigoV2
+from qiskit.providers.fake_provider import GenericBackendV2
 
-backend = FakeVigoV2()
+backend = GenericBackendV2(5)
 
 qc = QuantumCircuit(2, 1)
 
@@ -452,14 +452,14 @@ qc.draw(output='mpl')
 
 ![../\_images/transpiler-4.png](/images/api/qiskit/transpiler-4.png)
 
-We have $H$, $X$, and controlled-$P$ gates, none of which are in our device’s basis gate set, and thus must be translated. This translation is taken care of for us in the `qiskit.execute()` function. However, we can transpile the circuit to show what it will look like in the native gate set of the target IBM Quantum device (the [`FakeVigoV2`](qiskit.providers.fake_provider.FakeVigoV2 "qiskit.providers.fake_provider.FakeVigoV2") backend is a fake backend that models the historical IBM Vigo 5 qubit device for test purposes):
+We have $H$, $X$, and controlled-$P$ gates, none of which are in our device’s basis gate set, and thus must be translated. We can transpile the circuit to show what it will look like in the native gate set of the target IBM Quantum device (the [`GenericBackendV2`](qiskit.providers.fake_provider.GenericBackendV2 "qiskit.providers.fake_provider.GenericBackendV2") class generates a fake backend with a specified number of qubits for test purposes):
 
 ```python
 from qiskit import transpile
 from qiskit import QuantumCircuit
-from qiskit.providers.fake_provider import FakeVigoV2
+from qiskit.providers.fake_provider import GenericBackendV2
 
-backend = FakeVigoV2()
+backend = GenericBackendV2(5)
 
 qc = QuantumCircuit(2, 1)
 
@@ -492,8 +492,8 @@ It is important to highlight two special cases:
 1.  If A swap gate is not a native gate and must be decomposed this requires three CNOT gates:
 
     ```python
-    from qiskit.providers.fake_provider import FakeVigoV2
-    backend = FakeVigoV2()
+    from qiskit.providers.fake_provider import GenericBackendV2
+    backend = GenericBackendV2(5)
 
     print(backend.operation_names)
     ```
@@ -542,8 +542,8 @@ Let’s see what layouts are automatically picked at various optimization levels
 ```python
 from qiskit import QuantumCircuit, transpile
 from qiskit.visualization import plot_circuit_layout
-from qiskit.providers.fake_provider import FakeVigo
-backend = FakeVigo()
+from qiskit.providers.fake_provider import Fake5QV1
+backend = Fake5QV1()
 
 ghz = QuantumCircuit(3, 3)
 ghz.h(0)
@@ -560,8 +560,8 @@ ghz.draw(output='mpl')
     > ```python
     > from qiskit import QuantumCircuit, transpile
     > from qiskit.visualization import plot_circuit_layout
-    > from qiskit.providers.fake_provider import FakeVigo
-    > backend = FakeVigo()
+    > from qiskit.providers.fake_provider import Fake5QV1
+    > backend = Fake5QV1()
     >
     > ghz = QuantumCircuit(3, 3)
     > ghz.h(0)
@@ -580,8 +580,8 @@ ghz.draw(output='mpl')
     > ```python
     > from qiskit import QuantumCircuit, transpile
     > from qiskit.visualization import plot_circuit_layout
-    > from qiskit.providers.fake_provider import FakeVigo
-    > backend = FakeVigo()
+    > from qiskit.providers.fake_provider import Fake5QV1
+    > backend = Fake5QV1()
     >
     > ghz = QuantumCircuit(3, 3)
     > ghz.h(0)
@@ -600,8 +600,8 @@ It is possible to override automatic layout selection by specifying an initial l
 ```python
 from qiskit import QuantumCircuit, transpile
 from qiskit.visualization import plot_circuit_layout
-from qiskit.providers.fake_provider import FakeVigo
-backend = FakeVigo()
+from qiskit.providers.fake_provider import Fake5QV1
+backend = Fake5QV1()
 
 ghz = QuantumCircuit(3, 3)
 ghz.h(0)
@@ -626,7 +626,7 @@ plot_circuit_layout(my_ghz, backend)
 
 In order to implement a 2-qubit gate between qubits in a quantum circuit that are not directly connected on a quantum device, one or more swap gates must be inserted into the circuit to move the qubit states around until they are adjacent on the device gate map. Each swap gate typically represents an expensive and noisy operation to perform. Thus, finding the minimum number of swap gates needed to map a circuit onto a given device, is an important step (if not the most important) in the whole execution process.
 
-However, as with many important things in life, finding the optimal swap mapping is hard. In fact it is in a class of problems called NP-hard, and is thus prohibitively expensive to compute for all but the smallest quantum devices and input circuits. To get around this, by default Qiskit uses a stochastic heuristic algorithm called [`SabreSwap`](qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap") to compute a good, but not necessarily optimal swap mapping. The use of a stochastic method means the circuits generated by [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") (or [`execute()`](execute#qiskit.execute_function.execute "qiskit.execute_function.execute") that calls [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") internally) are not guaranteed to be the same over repeated runs. Indeed, running the same circuit repeatedly will in general result in a distribution of circuit depths and gate counts at the output.
+However, as with many important things in life, finding the optimal swap mapping is hard. In fact it is in a class of problems called NP-hard, and is thus prohibitively expensive to compute for all but the smallest quantum devices and input circuits. To get around this, by default Qiskit uses a stochastic heuristic algorithm called [`SabreSwap`](qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap") to compute a good, but not necessarily optimal swap mapping. The use of a stochastic method means the circuits generated by [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") are not guaranteed to be the same over repeated runs. Indeed, running the same circuit repeatedly will in general result in a distribution of circuit depths and gate counts at the output.
 
 In order to highlight this, we run a GHZ circuit 100 times, using a “bad” (disconnected) initial\_layout:
 
@@ -635,8 +635,8 @@ In order to highlight this, we run a GHZ circuit 100 times, using a “bad” (d
 ```python
 import matplotlib.pyplot as plt
 from qiskit import QuantumCircuit, transpile
-from qiskit.providers.fake_provider import FakeAuckland
-backend = FakeAuckland()
+from qiskit.providers.fake_provider import GenericBackendV2
+backend = GenericBackendV2(16)
 
 ghz = QuantumCircuit(15)
 ghz.h(0)
@@ -679,8 +679,8 @@ Decomposing quantum circuits into the basis gate set of the target device, and t
 ```python
 import matplotlib.pyplot as plt
 from qiskit import QuantumCircuit, transpile
-from qiskit.providers.fake_provider import FakeAuckland
-backend = FakeAuckland()
+from qiskit.providers.fake_provider import GenericBackendV2
+backend = GenericBackendV2(16)
 
 ghz = QuantumCircuit(15)
 ghz.h(0)
@@ -724,9 +724,9 @@ we can then call [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.comp
 
 ```python
 from qiskit import QuantumCircuit, transpile
-from qiskit.providers.fake_provider import FakeBoeblingen
+from qiskit.providers.fake_provider import GenericBackendV2
 
-backend = FakeBoeblingen()
+backend = GenericBackendV2(5)
 
 ghz = QuantumCircuit(5)
 ghz.h(0)
@@ -785,7 +785,7 @@ D ░░░░░░░░░░▒▒▒▒▒▒░░░
 C ░░░░░░░░░░░░░░░░▒▒░
 ```
 
-However, the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") representation is not accurate enough to represent this model. In the circuit representation, the corresponding [`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.Qubit") is occupied by the stimulus microwave signal during the first half of the interval, and the [`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.Clbit") is only occupied at the very end of the interval.
+However, the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") representation is not accurate enough to represent this model. In the circuit representation, the corresponding [`circuit.Qubit`](qiskit.circuit.Qubit "qiskit.circuit.Qubit") is occupied by the stimulus microwave signal during the first half of the interval, and the [`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.Clbit") is only occupied at the very end of the interval.
 
 The lack of precision representing the physical model may induce edge cases in the scheduling:
 
@@ -922,13 +922,6 @@ See [https://arxiv.org/abs/2102.01682](https://arxiv.org/abs/2102.01682) for mor
 | ---------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
 | [`InstructionDurations`](qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations")(\[instruction\_durations, dt]) | Helper class to provide durations of instructions for scheduling. |
 
-### Fenced Objects
-
-|                                                                                                                           |                                                              |
-| ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| [`FencedPropertySet`](qiskit.transpiler.FencedPropertySet "qiskit.transpiler.FencedPropertySet")(property\_set\_instance) | A property set that cannot be written (via \_\_setitem\_\_)  |
-| [`FencedDAGCircuit`](qiskit.transpiler.FencedDAGCircuit "qiskit.transpiler.FencedDAGCircuit")(dag\_circuit\_instance)     | A dag circuit that cannot be modified (via remove\_op\_node) |
-
 ### Abstract Passes
 
 |                                                                                                                         |                                                      |
@@ -942,7 +935,7 @@ See [https://arxiv.org/abs/2102.01682](https://arxiv.org/abs/2102.01682) for mor
 
 <span id="qiskit.transpiler.TranspilerError" />
 
-`qiskit.transpiler.TranspilerError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/exceptions.py "view source code")
+`qiskit.transpiler.TranspilerError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/exceptions.py "view source code")
 
 Exceptions raised during transpilation.
 
@@ -952,7 +945,7 @@ Set the error message.
 
 <span id="qiskit.transpiler.TranspilerAccessError" />
 
-`qiskit.transpiler.TranspilerAccessError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/exceptions.py "view source code")
+`qiskit.transpiler.TranspilerAccessError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/exceptions.py "view source code")
 
 DEPRECATED: Exception of access error in the transpiler passes.
 
@@ -962,7 +955,7 @@ Set the error message.
 
 <span id="qiskit.transpiler.CouplingError" />
 
-`qiskit.transpiler.CouplingError(*msg)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/exceptions.py "view source code")
+`qiskit.transpiler.CouplingError(*msg)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/exceptions.py "view source code")
 
 Base class for errors raised by the coupling graph object.
 
@@ -972,9 +965,29 @@ Set the error message.
 
 <span id="qiskit.transpiler.LayoutError" />
 
-`qiskit.transpiler.LayoutError(*msg)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/exceptions.py "view source code")
+`qiskit.transpiler.LayoutError(*msg)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/exceptions.py "view source code")
 
 Errors raised by the layout object.
+
+Set the error message.
+
+### CircuitTooWideForTarget
+
+<span id="qiskit.transpiler.CircuitTooWideForTarget" />
+
+`qiskit.transpiler.CircuitTooWideForTarget(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/exceptions.py "view source code")
+
+Error raised if the circuit is too wide for the target.
+
+Set the error message.
+
+### InvalidLayoutError
+
+<span id="qiskit.transpiler.InvalidLayoutError" />
+
+`qiskit.transpiler.InvalidLayoutError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/exceptions.py "view source code")
+
+Error raised when a user provided layout is invalid.
 
 Set the error message.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.characterization.T2StarFitter
 
 <span id="qiskit.ignis.characterization.T2StarFitter" />
 
-`T2StarFitter(backend_result, xdata, qubits, fit_p0, fit_bounds, time_unit='micro-seconds')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/characterization/coherence/fitters.py "view source code")
+`T2StarFitter(backend_result, xdata, qubits, fit_p0, fit_bounds, time_unit='micro-seconds')` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/characterization/coherence/fitters.py "view source code")
 
 Estimate T2\*, based on experiments outcomes.
 
@@ -190,7 +190,7 @@ Compute self.\_params and self.\_params\_err
 
 <span id="qiskit.ignis.characterization.T2StarFitter.guess_params" />
 
-`T2StarFitter.guess_params(qind=0)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/characterization/coherence/fitters.py "view source code")
+`T2StarFitter.guess_params(qind=0)`
 
 Guess fit parameters for oscillation data
 
@@ -210,7 +210,7 @@ Fit guessed parameters
 
 <span id="qiskit.ignis.characterization.T2StarFitter.plot" />
 
-`T2StarFitter.plot(qind, series='0', ax=None, show_plot=False)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/characterization/coherence/fitters.py "view source code")
+`T2StarFitter.plot(qind, series='0', ax=None, show_plot=False)`
 
 Plot coherence data.
 

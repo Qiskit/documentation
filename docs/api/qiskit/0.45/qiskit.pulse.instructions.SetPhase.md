@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.instructions.SetPhase
 
 <span id="qiskit.pulse.instructions.SetPhase" />
 
-`qiskit.pulse.instructions.SetPhase(phase, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/pulse/instructions/phase.py "view source code")
+`qiskit.pulse.instructions.SetPhase(phase, channel, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/pulse/instructions/phase.py "view source code")
 
 Bases: [`Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")
 

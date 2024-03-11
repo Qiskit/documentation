@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.OneQubitEulerDecomposer
 
 <span id="qiskit.quantum_info.OneQubitEulerDecomposer" />
 
-`OneQubitEulerDecomposer(basis='U3')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/synthesis/one_qubit_decompose.py "view source code")
+`OneQubitEulerDecomposer(basis='U3')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/synthesis/one_qubit_decompose.py "view source code")
 
 A class for decomposing 1-qubit unitaries into Euler angle rotations.
 
@@ -21,7 +21,7 @@ The resulting decomposition is parameterized by 3 Euler rotation angle parameter
 | ‘ZYZ’ | $Z(\phi) Y(\theta) Z(\lambda)$ | $e^{i\gamma} R_Z(\phi).R_Y(\theta).R_Z(\lambda)$                                                                         |
 | ‘ZXZ’ | $Z(\phi) X(\theta) Z(\lambda)$ | $e^{i\gamma} R_Z(\phi).R_X(\theta).R_Z(\lambda)$                                                                         |
 | ‘XYX’ | $X(\phi) Y(\theta) X(\lambda)$ | $e^{i\gamma} R_X(\phi).R_Y(\theta).R_X(\lambda)$                                                                         |
-| ‘U3’  | $Z(\phi) Y(\theta) Z(\lambda)$ | $e^{i\gamma}{2}\right)\right)} U_3(\theta,\phi,\lambda)$                                                                 |
+| ‘U3’  | $Z(\phi) Y(\theta) Z(\lambda)$ | $e^{i\gamma} U_3(\theta,\phi,\lambda)$                                                                                   |
 | ‘U1X’ | $Z(\phi) Y(\theta) Z(\lambda)$ | $e^{i \gamma} U_1(\phi+\pi).R_X\left(\frac{\pi}{2}\right).$ $U_1(\theta+\pi).R_X\left(\frac{\pi}{2}\right).U_1(\lambda)$ |
 | ‘RR’  | $Z(\phi) Y(\theta) Z(\lambda)$ | $e^{i\gamma} R\left(-\pi,\frac{\phi-\lambda+\pi}{2}\right).$ $R\left(\theta+\pi,\frac{\pi}{2}-\lambda\right)$            |
 
@@ -49,7 +49,7 @@ The decomposition basis.
 
 <span id="qiskit.quantum_info.OneQubitEulerDecomposer.__call__" />
 
-`OneQubitEulerDecomposer.__call__(unitary, simplify=True, atol=1e-12)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/synthesis/one_qubit_decompose.py "view source code")
+`OneQubitEulerDecomposer.__call__(unitary, simplify=True, atol=1e-12)`
 
 Decompose single qubit gate into a circuit.
 
@@ -75,7 +75,7 @@ the decomposed single-qubit gate circuit
 
 <span id="qiskit.quantum_info.OneQubitEulerDecomposer.angles" />
 
-`OneQubitEulerDecomposer.angles(unitary)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/synthesis/one_qubit_decompose.py "view source code")
+`OneQubitEulerDecomposer.angles(unitary)`
 
 Return the Euler angles for input array.
 
@@ -95,7 +95,7 @@ tuple
 
 <span id="qiskit.quantum_info.OneQubitEulerDecomposer.angles_and_phase" />
 
-`OneQubitEulerDecomposer.angles_and_phase(unitary)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/synthesis/one_qubit_decompose.py "view source code")
+`OneQubitEulerDecomposer.angles_and_phase(unitary)`
 
 Return the Euler angles and phase for input array.
 

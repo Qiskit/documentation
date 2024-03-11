@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.GatesInBasis
 
 <span id="qiskit.transpiler.passes.GatesInBasis" />
 
-`qiskit.transpiler.passes.GatesInBasis(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/utils/gates_basis.py "view source code")
+`qiskit.transpiler.passes.GatesInBasis(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/utils/gates_basis.py "view source code")
 
 Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 

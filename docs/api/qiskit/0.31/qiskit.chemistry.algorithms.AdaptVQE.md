@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.algorithms.AdaptVQE
 
 <span id="qiskit.chemistry.algorithms.AdaptVQE" />
 
-`AdaptVQE(transformation, solver, threshold=1e-05, delta=1, max_iterations=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/ground_state_solvers/adapt_vqe.py "view source code")
+`AdaptVQE(transformation, solver, threshold=1e-05, delta=1, max_iterations=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/ground_state_solvers/adapt_vqe.py "view source code")
 
 Bases: `qiskit.chemistry.algorithms.ground_state_solvers.ground_state_eigensolver.GroundStateEigensolver`
 
@@ -51,7 +51,7 @@ The expectation value of the given operator(s). The return type will be identica
 
 <span id="qiskit.chemistry.algorithms.AdaptVQE.returns_groundstate" />
 
-`AdaptVQE.returns_groundstate()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/ground_state_solvers/adapt_vqe.py "view source code")
+`AdaptVQE.returns_groundstate()`
 
 Whether the eigensolver returns the ground state or only ground state energy.
 
@@ -63,7 +63,7 @@ Whether the eigensolver returns the ground state or only ground state energy.
 
 <span id="qiskit.chemistry.algorithms.AdaptVQE.solve" />
 
-`AdaptVQE.solve(driver, aux_operators=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/ground_state_solvers/adapt_vqe.py "view source code")
+`AdaptVQE.solve(driver, aux_operators=None)`
 
 Computes the ground state.
 

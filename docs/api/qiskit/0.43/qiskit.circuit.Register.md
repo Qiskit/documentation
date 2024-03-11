@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.Register
 
 <span id="qiskit.circuit.Register" />
 
-`Register(size=None, name=None, bits=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/register.py "view source code")
+`Register(size=None, name=None, bits=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/register.py "view source code")
 
 Bases: `object`
 
@@ -46,7 +46,7 @@ Either the `size` or the `bits` argument must be provided. If `size` is not None
 
 <span id="qiskit.circuit.Register.index" />
 
-`Register.index(bit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/register.py "view source code")
+`Register.index(bit)`
 
 Find the index of the provided bit within this register.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.channels.RegisterSlot
 
 <span id="qiskit.pulse.channels.RegisterSlot" />
 
-`RegisterSlot(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/channels.py "view source code")
+`RegisterSlot(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/channels.py "view source code")
 
 Bases: `ClassicalIOChannel`
 

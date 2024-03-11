@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.verification.composite_pauli_z_expvalue
 
 <span id="qiskit.ignis.verification.composite_pauli_z_expvalue" />
 
-`composite_pauli_z_expvalue(counts_dictionary, qn)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/entanglement/analysis.py "view source code")
+`composite_pauli_z_expvalue(counts_dictionary, qn)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/entanglement/analysis.py "view source code")
 
 Generates expectation value of n tensored pauli matrix upon input of qubit number and composite pauli matrix
 

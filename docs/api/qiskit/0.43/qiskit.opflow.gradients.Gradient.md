@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.gradients.Gradient
 
 <span id="qiskit.opflow.gradients.Gradient" />
 
-`Gradient(grad_method='param_shift', **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/gradients/gradient.py "view source code")
+`Gradient(grad_method='param_shift', **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/gradients/gradient.py "view source code")
 
 Bases: [`GradientBase`](qiskit.opflow.gradients.GradientBase "qiskit.opflow.gradients.gradient_base.GradientBase")
 
@@ -28,7 +28,7 @@ Deprecated: Convert an operator expression to the first-order gradient.
 
 <span id="qiskit.opflow.gradients.Gradient.convert" />
 
-`Gradient.convert(operator, params=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/gradients/gradient.py "view source code")
+`Gradient.convert(operator, params=None)`
 
 **Parameters**
 
@@ -54,7 +54,7 @@ An operator whose evaluation yields the Gradient.
 
 <span id="qiskit.opflow.gradients.Gradient.get_gradient" />
 
-`Gradient.get_gradient(operator, params)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/gradients/gradient.py "view source code")
+`Gradient.get_gradient(operator, params)`
 
 Get the gradient for the given operator w\.r.t. the given parameters
 

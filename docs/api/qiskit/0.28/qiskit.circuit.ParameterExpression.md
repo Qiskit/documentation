@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.ParameterExpression
 
 <span id="qiskit.circuit.ParameterExpression" />
 
-`ParameterExpression(symbol_map, expr)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/parameterexpression.py "view source code")
+`ParameterExpression(symbol_map, expr)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/parameterexpression.py "view source code")
 
 ParameterExpression class to enable creating expressions of Parameters.
 

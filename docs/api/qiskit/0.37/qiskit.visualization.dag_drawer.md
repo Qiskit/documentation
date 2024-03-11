@@ -10,7 +10,7 @@ python_api_name: qiskit.visualization.dag_drawer
 
 <span id="qiskit.visualization.dag_drawer" />
 
-`dag_drawer(dag, scale=0.7, filename=None, style='color')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/visualization/dag_visualization.py "view source code")
+`dag_drawer(dag, scale=0.7, filename=None, style='color')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/visualization/dag_visualization.py "view source code")
 
 Plot the directed acyclic graph (dag) to represent operation dependencies in a quantum circuit.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeJohannesburg
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeJohannesburg" />
 
-`FakeJohannesburg`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.18/qiskit_ibm_runtime/fake_provider/backends/johannesburg/fake_johannesburg.py "view source code")
+`FakeJohannesburg` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/fake_provider/backends/johannesburg/fake_johannesburg.py#L41-L58 "view source code")
 
 A fake Johannesburg backend.
 
@@ -109,7 +109,7 @@ str
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeJohannesburg.properties" />
 
-`properties()`
+`properties()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/fake_provider/fake_qasm_backend.py#L44-L48 "view source code")
 
 Returns a snapshot of device properties
 
@@ -137,7 +137,7 @@ Provider
 
 <span id="qiskit_ibm_runtime.fake_provider.FakeJohannesburg.run" />
 
-`run(run_input, **kwargs)`
+`run(run_input, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/fake_provider/fake_backend.py#L545-L574 "view source code")
 
 Main job in simulator
 

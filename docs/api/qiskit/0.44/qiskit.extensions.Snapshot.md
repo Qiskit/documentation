@@ -10,7 +10,7 @@ python_api_name: qiskit.extensions.Snapshot
 
 <span id="qiskit.extensions.Snapshot" />
 
-`qiskit.extensions.Snapshot(label, snapshot_type='statevector', num_qubits=0, num_clbits=0, params=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/extensions/simulator/snapshot.py "view source code")
+`qiskit.extensions.Snapshot(label, snapshot_type='statevector', num_qubits=0, num_clbits=0, params=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/extensions/simulator/snapshot.py "view source code")
 
 Bases: [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 

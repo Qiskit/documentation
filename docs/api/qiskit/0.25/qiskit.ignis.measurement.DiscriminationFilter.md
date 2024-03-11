@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.measurement.DiscriminationFilter
 
 <span id="qiskit.ignis.measurement.DiscriminationFilter" />
 
-`DiscriminationFilter(discriminator, base=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/measurement/discriminator/filters.py "view source code")
+`DiscriminationFilter(discriminator, base=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/measurement/discriminator/filters.py "view source code")
 
 Implements a filter based on a discriminator that takes level 1 data to level 2 data.
 

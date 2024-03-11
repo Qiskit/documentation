@@ -1,14 +1,15 @@
 ---
-title: Qiskit release notes
-description: New features, bug fixes, and other changes in previous versions of Qiskit.
+title: Qiskit SDK release notes
+description: New features, bug fixes, and other changes in previous versions of Qiskit SDK.
 ---
 
-# Qiskit release notes
+# Qiskit SDK release notes
 
-New features, bug fixes, and other changes in previous versions of Qiskit.
+New features, bug fixes, and other changes in previous versions of Qiskit SDK.
 
 ## Release notes by version
 
+* [1.0](/api/qiskit/release-notes/1.0)
 * [0.46](/api/qiskit/release-notes/0.46)
 * [0.45](/api/qiskit/release-notes/0.45)
 * [0.44](/api/qiskit/release-notes/0.44)

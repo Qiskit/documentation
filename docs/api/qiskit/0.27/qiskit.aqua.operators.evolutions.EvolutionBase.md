@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.operators.evolutions.EvolutionBase
 
 <span id="qiskit.aqua.operators.evolutions.EvolutionBase" />
 
-`EvolutionBase`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/evolutions/evolution_base.py "view source code")
+`EvolutionBase` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/evolutions/evolution_base.py "view source code")
 
 A base for Evolution converters. Evolutions are converters which traverse an Operator tree, replacing any `EvolvedOp` e with a Schrodinger equation-style evolution `CircuitOp` equalling or approximating the matrix exponential of -i \* the Operator contained inside (e.primitive). The Evolutions are essentially implementations of Hamiltonian Simulation algorithms, including various methods for Trotterization.
 

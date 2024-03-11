@@ -10,7 +10,7 @@ python_api_name: qiskit.result.marginal_counts
 
 <span id="qiskit.result.marginal_counts" />
 
-`marginal_counts(result, indices=None, inplace=False, format_marginal=False, marginalize_memory=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/result/utils.py "view source code")
+`marginal_counts(result, indices=None, inplace=False, format_marginal=False, marginalize_memory=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/result/utils.py "view source code")
 
 Marginalize counts from an experiment over some indices of interest.
 

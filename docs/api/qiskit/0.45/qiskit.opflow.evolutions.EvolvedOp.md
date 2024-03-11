@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.evolutions.EvolvedOp
 
 <span id="qiskit.opflow.evolutions.EvolvedOp" />
 
-`qiskit.opflow.evolutions.EvolvedOp(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/evolutions/evolved_op.py "view source code")
+`qiskit.opflow.evolutions.EvolvedOp(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/evolutions/evolved_op.py "view source code")
 
 Bases: [`PrimitiveOp`](qiskit.opflow.primitive_ops.PrimitiveOp "qiskit.opflow.primitive_ops.primitive_op.PrimitiveOp")
 

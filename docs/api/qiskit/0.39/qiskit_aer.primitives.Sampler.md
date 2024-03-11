@@ -10,7 +10,7 @@ python_api_name: qiskit_aer.primitives.Sampler
 
 <span id="qiskit_aer.primitives.Sampler" />
 
-`Sampler(circuits: Iterable[QuantumCircuit] | QuantumCircuit | None = None, parameters: Iterable[Iterable[Parameter]] | None = None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/primitives/sampler.py "view source code")
+`Sampler(circuits: Iterable[QuantumCircuit] | QuantumCircuit | None = None, parameters: Iterable[Iterable[Parameter]] | None = None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/primitives/sampler.py "view source code")
 
 Bases: [`qiskit.primitives.base.base_sampler.BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.base.base_sampler.BaseSampler")
 
@@ -45,7 +45,7 @@ Aer implementation of Sampler class.
 
 <span id="qiskit_aer.primitives.Sampler.close" />
 
-`Sampler.close()`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/primitives/sampler.py "view source code")
+`Sampler.close()`
 
 Close the session and free resources
 

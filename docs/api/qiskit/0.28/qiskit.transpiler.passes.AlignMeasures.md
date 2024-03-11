@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.AlignMeasures
 
 <span id="qiskit.transpiler.passes.AlignMeasures" />
 
-`AlignMeasures(alignment=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/scheduling/instruction_alignment.py "view source code")
+`AlignMeasures(alignment=1)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/scheduling/instruction_alignment.py "view source code")
 
 Measurement alignment.
 

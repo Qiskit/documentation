@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.qfts.Approximate
 
 <span id="qiskit.aqua.components.qfts.Approximate" />
 
-`Approximate(num_qubits, degree=0)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/qfts/approximate.py "view source code")
+`Approximate(num_qubits, degree=0)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/qfts/approximate.py "view source code")
 
 The Approximate QFT.
 

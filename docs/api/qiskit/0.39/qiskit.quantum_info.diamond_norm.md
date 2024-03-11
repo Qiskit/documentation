@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.diamond_norm
 
 <span id="qiskit.quantum_info.diamond_norm" />
 
-`diamond_norm(choi, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/quantum_info/operators/measures.py "view source code")
+`diamond_norm(choi, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/quantum_info/operators/measures.py "view source code")
 
 Return the diamond norm of the input quantum channel object.
 

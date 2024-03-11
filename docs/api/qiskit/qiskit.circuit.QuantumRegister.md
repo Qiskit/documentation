@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.QuantumRegister
 
 <span id="qiskit.circuit.QuantumRegister" />
 
-`qiskit.circuit.QuantumRegister(size=None, name=None, bits=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/quantumregister.py "view source code")
+`qiskit.circuit.QuantumRegister(size=None, name=None, bits=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/quantumregister.py "view source code")
 
 Bases: [`Register`](qiskit.circuit.Register "qiskit.circuit.register.Register")
 
@@ -40,19 +40,13 @@ Either the `size` or the `bits` argument must be provided. If `size` is not None
 
 ### instances\_counter
 
-`= count(6)`
+`= count(5)`
 
 <span id="qiskit.circuit.QuantumRegister.name" />
 
 ### name
 
 Get the register name.
-
-<span id="qiskit.circuit.QuantumRegister.name_format" />
-
-### name\_format
-
-`= re.compile('[a-z][a-zA-Z0-9_]*')`
 
 <span id="qiskit.circuit.QuantumRegister.prefix" />
 
@@ -75,16 +69,4 @@ Get the register size.
 `index(bit)`
 
 Find the index of the provided bit within this register.
-
-### qasm
-
-<span id="qiskit.circuit.QuantumRegister.qasm" />
-
-`qasm()`
-
-Return OPENQASM string for this register.
-
-<Admonition title="Deprecated since version 0.23.0" type="danger">
-  The method `qiskit.circuit.quantumregister.QuantumRegister.qasm()` is deprecated as of qiskit-terra 0.23.0. It will be removed in the Qiskit 1.0 release. Correct exporting to OpenQASM 2 is the responsibility of a larger exporter; it cannot safely be done on an object-by-object basis without context. No replacement will be provided, because the premise is wrong.
-</Admonition>
 

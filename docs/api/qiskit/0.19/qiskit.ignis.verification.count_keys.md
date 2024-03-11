@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.verification.count_keys
 
 <span id="qiskit.ignis.verification.count_keys" />
 
-`count_keys(num_qubits)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/tomography/data.py "view source code")
+`count_keys(num_qubits)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/tomography/data.py "view source code")
 
 Return ordered count keys.
 

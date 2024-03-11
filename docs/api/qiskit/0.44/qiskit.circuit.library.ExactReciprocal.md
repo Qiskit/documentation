@@ -10,21 +10,21 @@ python_api_name: qiskit.circuit.library.ExactReciprocal
 
 <span id="qiskit.circuit.library.ExactReciprocal" />
 
-`qiskit.circuit.library.ExactReciprocal(num_state_qubits, scaling, neg_vals=False, name='1/x')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/arithmetic/exact_reciprocal.py "view source code")
+`qiskit.circuit.library.ExactReciprocal(num_state_qubits, scaling, neg_vals=False, name='1/x')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/arithmetic/exact_reciprocal.py "view source code")
 
 Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
 Exact reciprocal
 
 $$
-\vert x\rangle \vert 0\rangle \mapsto \cos(1/x)\vert x\rangle\vert 0\rangle + \sin(1/x)\vert x\rangle \vert 1\rangle
+|x\rangle |0\rangle \mapsto \cos(1/x)|x\rangle|0\rangle + \sin(1/x)|x\rangle |1\rangle
 $$
 
 **Parameters**
 
 *   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of qubits representing the value to invert.
 *   **scaling** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Scaling factor $s$ of the reciprocal function, i.e. to compute $s / x$.
-*   **neg\_vals** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether $x$ might represent negative values. In this case the first qubit is the sign, with $\vert 1\rangle$ for negative and $\vert 0\rangle$ for positive. For the negative case it is assumed that the remaining string represents $1 - x$. This is because $e^{-2 \pi i x} = e^{2 \pi i (1 - x)}$ for $x \in [0,1)$.
+*   **neg\_vals** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether $x$ might represent negative values. In this case the first qubit is the sign, with $|1\rangle$ for negative and $|0\rangle$ for positive. For the negative case it is assumed that the remaining string represents $1 - x$. This is because $e^{-2 \pi i x} = e^{2 \pi i (1 - x)}$ for $x \in [0,1)$.
 *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The name of the object.
 
 <Admonition title="Note" type="note">

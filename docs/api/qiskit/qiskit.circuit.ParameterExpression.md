@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.ParameterExpression
 
 <span id="qiskit.circuit.ParameterExpression" />
 
-`qiskit.circuit.ParameterExpression(symbol_map, expr)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/parameterexpression.py "view source code")
+`qiskit.circuit.ParameterExpression(symbol_map, expr)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/parameterexpression.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
@@ -182,6 +182,30 @@ Return whether the expression is real
 `log()`
 
 Logarithm of a ParameterExpression
+
+### numeric
+
+<span id="qiskit.circuit.ParameterExpression.numeric" />
+
+`numeric()`
+
+Return a Python number representing this object, using the most restrictive of [`int`](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)"), [`float`](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") and [`complex`](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)") that is valid for this object.
+
+In general, an [`int`](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") is only returned if the expression only involved symbolic integers. If floating-point values were used during the evaluation, the return value will be a [`float`](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") regardless of whether the represented value is an integer. This is because floating-point values “infect” symbolic computations by their inexact nature, and symbolic libraries will use inexact floating-point semantics not exact real-number semantics when they are involved. If you want to assert that all floating-point calculations *were* carried out at infinite precision (i.e. [`float`](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") could represent every intermediate value exactly), you can use [`float.is_integer()`](https://docs.python.org/3/library/stdtypes.html#float.is_integer "(in Python v3.12)") to check if the return float represents an integer and cast it using [`int`](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") if so. This would be an unusual pattern; typically one requires this by only ever using explicitly [`Rational`](https://docs.python.org/3/library/numbers.html#numbers.Rational "(in Python v3.12)") objects while working with symbolic expressions.
+
+This is more reliable and performant than using [`is_real()`](#qiskit.circuit.ParameterExpression.is_real "qiskit.circuit.ParameterExpression.is_real") followed by calling [`float`](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") or [`complex`](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)"), as in some cases [`is_real()`](#qiskit.circuit.ParameterExpression.is_real "qiskit.circuit.ParameterExpression.is_real") needs to force a floating-point evaluation to determine an accurate result to work around bugs in the upstream symbolic libraries.
+
+**Returns**
+
+A Python number representing the object.
+
+**Raises**
+
+[**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – if there are unbound parameters.
+
+**Return type**
+
+[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") | [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") | [complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")
 
 ### sign
 

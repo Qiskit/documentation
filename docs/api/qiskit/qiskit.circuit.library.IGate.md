@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.IGate
 
 <span id="qiskit.circuit.library.IGate" />
 
-`qiskit.circuit.library.IGate(*args, _force_mutable=False, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/standard_gates/i.py "view source code")
+`qiskit.circuit.library.IGate(*args, _force_mutable=False, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/i.py "view source code")
 
 Bases: [`SingletonGate`](circuit_singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate")
 
@@ -18,7 +18,7 @@ Identity gate.
 
 Identity gate corresponds to a single-qubit gate wait cycle, and should not be optimized or unrolled (it is an opaque gate).
 
-Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`i()`](qiskit.circuit.QuantumCircuit#i "qiskit.circuit.QuantumCircuit.i") and [`id()`](qiskit.circuit.QuantumCircuit#id "qiskit.circuit.QuantumCircuit.id") methods.
+Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the `i()` and [`id()`](qiskit.circuit.QuantumCircuit#id "qiskit.circuit.QuantumCircuit.id") methods.
 
 **Matrix Representation:**
 
@@ -142,9 +142,23 @@ Get the time unit of duration.
 
 <span id="qiskit.circuit.library.IGate.inverse" />
 
-`inverse()`
+`inverse(annotated=False)`
 
-Invert this gate.
+Returne the inverse gate (itself).
+
+**Parameters**
+
+**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as this gate is self-inverse.
+
+**Returns**
+
+inverse gate (self-inverse).
+
+**Return type**
+
+[IGate](#qiskit.circuit.library.IGate "qiskit.circuit.library.IGate")
+
+.
 
 ### power
 

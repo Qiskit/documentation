@@ -12,7 +12,7 @@ python_api_name: qiskit.pulse.library.gaussian_square
 
 <span id="qiskit.pulse.library.gaussian_square" />
 
-`gaussian_square(duration, amp, sigma, risefall=None, width=None, name=None, zero_ends=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/library/discrete.py "view source code")
+`gaussian_square(duration, amp, sigma, risefall=None, width=None, name=None, zero_ends=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/library/discrete.py "view source code")
 
 Generates gaussian square [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform").
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.Kraus
 
 <span id="qiskit.quantum_info.Kraus" />
 
-`Kraus(data, input_dims=None, output_dims=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/channel/kraus.py "view source code")
+`Kraus(data, input_dims=None, output_dims=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/channel/kraus.py "view source code")
 
 Kraus representation of a quantum channel.
 
@@ -126,7 +126,7 @@ Return the adjoint of the operator.
 
 <span id="qiskit.quantum_info.Kraus.compose" />
 
-`Kraus.compose(other, qargs=None, front=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/channel/kraus.py "view source code")
+`Kraus.compose(other, qargs=None, front=False)`
 
 Return the composed quantum channel self @ other.
 
@@ -156,7 +156,7 @@ Composition (`@`) is defined as left matrix multiplication for [`SuperOp`](qiski
 
 <span id="qiskit.quantum_info.Kraus.conjugate" />
 
-`Kraus.conjugate()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/channel/kraus.py "view source code")
+`Kraus.conjugate()`
 
 Return the conjugate of the QuantumChannel.
 
@@ -172,7 +172,7 @@ Make a deep copy of current operator.
 
 <span id="qiskit.quantum_info.Kraus.dot" />
 
-`Kraus.dot(other, qargs=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/channel/kraus.py "view source code")
+`Kraus.dot(other, qargs=None)`
 
 Return the right multiplied quantum channel self \* other.
 
@@ -197,7 +197,7 @@ The quantum channel self \* other.
 
 <span id="qiskit.quantum_info.Kraus.expand" />
 
-`Kraus.expand(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/channel/kraus.py "view source code")
+`Kraus.expand(other)`
 
 Return the tensor product channel other ⊗ self.
 
@@ -237,7 +237,7 @@ Test if Choi-matrix is completely-positive (CP)
 
 <span id="qiskit.quantum_info.Kraus.is_cptp" />
 
-`Kraus.is_cptp(atol=None, rtol=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/channel/kraus.py "view source code")
+`Kraus.is_cptp(atol=None, rtol=None)`
 
 Return True if completely-positive trace-preserving.
 
@@ -295,7 +295,7 @@ Return tuple of output dimension for specified subsystems.
 
 <span id="qiskit.quantum_info.Kraus.power" />
 
-`Kraus.power(n)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/channel/kraus.py "view source code")
+`Kraus.power(n)`
 
 The matrix power of the channel.
 
@@ -387,7 +387,7 @@ BaseOperator
 
 <span id="qiskit.quantum_info.Kraus.tensor" />
 
-`Kraus.tensor(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/channel/kraus.py "view source code")
+`Kraus.tensor(other)`
 
 Return the tensor product channel self ⊗ other.
 
@@ -441,7 +441,7 @@ Try to convert channel to a unitary representation Operator.
 
 <span id="qiskit.quantum_info.Kraus.transpose" />
 
-`Kraus.transpose()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/channel/kraus.py "view source code")
+`Kraus.transpose()`
 
 Return the transpose of the QuantumChannel.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.verification.get_ghz_po
 
 <span id="qiskit.ignis.verification.get_ghz_po" />
 
-`get_ghz_po(n, delta)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/entanglement/linear.py "view source code")
+`get_ghz_po(n, delta)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/entanglement/linear.py "view source code")
 
 This function creates an Parity Oscillation circuit with n qubits, where the middle superposition rotation around the x and y axes is by delta
 

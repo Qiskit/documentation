@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CRYGate
 
 <span id="qiskit.circuit.library.CRYGate" />
 
-`qiskit.circuit.library.CRYGate(theta, label=None, ctrl_state=None, *, duration=None, unit='dt', _base_label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/standard_gates/ry.py "view source code")
+`qiskit.circuit.library.CRYGate(theta, label=None, ctrl_state=None, *, duration=None, unit='dt', _base_label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/ry.py "view source code")
 
 Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 
@@ -33,7 +33,7 @@ $$
 \newcommand{\rotationangle}{\frac{\theta}{2}}
 
 CRY(\theta)\ q_0, q_1 =
-    I \otimes \vert 0\rangle\langle 0\vert  + RY(\theta) \otimes \vert 1\rangle\langle 1\vert  =
+    I \otimes |0\rangle\langle 0| + RY(\theta) \otimes |1\rangle\langle 1| =
     \begin{pmatrix}
         1 & 0         & 0 & 0 \\
         0 & \cos\left(\rotationangle\right) & 0 & -\sin\left(\rotationangle\right) \\
@@ -56,7 +56,7 @@ $$
   \newcommand{\rotationangle}{\frac{\theta}{2}}
 
   CRY(\theta)\ q_1, q_0 =
-  \vert 0\rangle\langle 0\vert  \otimes I + \vert 1\rangle\langle 1\vert  \otimes RY(\theta) =
+  |0\rangle\langle 0| \otimes I + |1\rangle\langle 1| \otimes RY(\theta) =
       \begin{pmatrix}
           1 & 0 & 0 & 0 \\
           0 & 1 & 0 & 0 \\
@@ -207,7 +207,21 @@ Get the time unit of duration.
 
 <span id="qiskit.circuit.library.CRYGate.inverse" />
 
-`inverse()`
+`inverse(annotated=False)`
 
-Return inverse CRY gate (i.e. with the negative rotation angle).
+Return inverse CRY gate (i.e. with the negative rotation angle)
+
+**Parameters**
+
+**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always a [`CRYGate`](#qiskit.circuit.library.CRYGate "qiskit.circuit.library.CRYGate") with an inverted parameter value.
+
+**Returns**
+
+inverse gate.
+
+**Return type**
+
+[CRYGate](#qiskit.circuit.library.CRYGate "qiskit.circuit.library.CRYGate")
+
+.
 

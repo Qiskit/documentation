@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.algorithms.QuantumAlgorithm
 
 <span id="qiskit.aqua.algorithms.QuantumAlgorithm" />
 
-`QuantumAlgorithm(quantum_instance)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/quantum_algorithm.py "view source code")
+`QuantumAlgorithm(quantum_instance)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/quantum_algorithm.py "view source code")
 
 Base class for Quantum Algorithms.
 

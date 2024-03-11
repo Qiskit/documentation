@@ -1,3 +1,11 @@
+---
+title: pulse_lib
+description: API reference for qiskit.pulse.pulse_lib
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.pulse.pulse_lib
+---
+
 <span id="pulse-lib" />
 
 # pulse\_lib
@@ -18,3 +26,4 @@ The parametric pulses, [`Gaussian`](qiskit.pulse.pulse_lib.Gaussian "qiskit.puls
 | [`Drag`](qiskit.pulse.pulse_lib.Drag "qiskit.pulse.pulse_lib.Drag")(duration, amp, sigma, beta\[, name])                       | The Derivative Removal by Adiabatic Gate (DRAG) pulse is a standard Gaussian pulse with an additional Gaussian derivative component.   |
 | [`Gaussian`](qiskit.pulse.pulse_lib.Gaussian "qiskit.pulse.pulse_lib.Gaussian")(duration, amp, sigma\[, name])                 | A truncated pulse envelope shaped according to the Gaussian function whose mean is centered at the center of the pulse (duration / 2): |
 | [`GaussianSquare`](qiskit.pulse.pulse_lib.GaussianSquare "qiskit.pulse.pulse_lib.GaussianSquare")(duration, amp, sigma, width) | A square pulse with a Gaussian shaped risefall on either side:                                                                         |
+

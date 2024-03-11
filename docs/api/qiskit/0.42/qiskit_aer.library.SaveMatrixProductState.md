@@ -10,7 +10,7 @@ python_api_name: qiskit_aer.library.SaveMatrixProductState
 
 <span id="qiskit_aer.library.SaveMatrixProductState" />
 
-`SaveMatrixProductState(num_qubits, label='matrix_product_state', pershot=False, conditional=False)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/library/save_instructions/save_matrix_product_state.py "view source code")
+`SaveMatrixProductState(num_qubits, label='matrix_product_state', pershot=False, conditional=False)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/library/save_instructions/save_matrix_product_state.py "view source code")
 
 Bases: `qiskit_aer.library.save_instructions.save_data.SaveSingleData`
 

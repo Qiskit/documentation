@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.TranspileLayout
 
 <span id="qiskit.transpiler.TranspileLayout" />
 
-`qiskit.transpiler.TranspileLayout(initial_layout, input_qubit_mapping, final_layout=None, _input_qubit_count=None, _output_qubit_list=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/layout.py "view source code")
+`qiskit.transpiler.TranspileLayout(initial_layout, input_qubit_mapping, final_layout=None, _input_qubit_count=None, _output_qubit_list=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/layout.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
@@ -70,7 +70,7 @@ There are three public attributes associated with the class, however these are m
 
 ### input\_qubit\_mapping
 
-`dict[Qubit, int]`
+`dict[circuit.Qubit, int]`
 
 ## Methods
 

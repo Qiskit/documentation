@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.expectations.CVaRExpectation
 
 <span id="qiskit.opflow.expectations.CVaRExpectation" />
 
-`CVaRExpectation(alpha, expectation=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/expectations/cvar_expectation.py "view source code")
+`CVaRExpectation(alpha, expectation=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/expectations/cvar_expectation.py "view source code")
 
 Compute the Conditional Value at Risk (CVaR) expectation value.
 

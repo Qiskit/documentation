@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.pulse_lib.GaussianSquare
 
 <span id="qiskit.pulse.pulse_lib.GaussianSquare" />
 
-`GaussianSquare(duration, amp, sigma, width, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/parametric_pulses.py "view source code")
+`GaussianSquare(duration, amp, sigma, width, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/parametric_pulses.py "view source code")
 
 A square pulse with a Gaussian shaped risefall on either side:
 
@@ -111,7 +111,7 @@ Plot the pulse.
 **Parameters**
 
 *   **dt** (`float`) – Time interval of samples.
-*   **style** (*Optional\[*[*PulseStyle*](qiskit.visualization.pulse.qcstyle#qiskit.visualization.pulse.qcstyle.PulseStyle "qiskit.visualization.pulse.qcstyle.PulseStyle")*]*) – A style sheet to configure plot appearance
+*   **style** (*Optional\[*[*PulseStyle*](qiskit.visualization.pulse.qcstyle#pulsestyle "qiskit.visualization.pulse.qcstyle.PulseStyle")*]*) – A style sheet to configure plot appearance
 *   **filename** (`Optional`\[`str`]) – Name required to save pulse image
 *   **interp\_method** (`Optional`\[`Callable`]) – A function for interpolation
 *   **scale** (`float`) – Relative visual scaling of waveform amplitudes
@@ -130,7 +130,7 @@ matplotlib.figure
 
 <span id="qiskit.pulse.pulse_lib.GaussianSquare.get_sample_pulse" />
 
-`GaussianSquare.get_sample_pulse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/parametric_pulses.py "view source code")
+`GaussianSquare.get_sample_pulse()`
 
 Return a SamplePulse with samples filled according to the formula that the pulse represents and the parameter values it contains.
 
@@ -142,7 +142,7 @@ Return a SamplePulse with samples filled according to the formula that the pulse
 
 <span id="qiskit.pulse.pulse_lib.GaussianSquare.validate_parameters" />
 
-`GaussianSquare.validate_parameters()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/parametric_pulses.py "view source code")
+`GaussianSquare.validate_parameters()`
 
 Validate parameters.
 

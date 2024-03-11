@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.linear_solvers.MatrixFunctional
 
 <span id="qiskit.algorithms.linear_solvers.MatrixFunctional" />
 
-`MatrixFunctional(main_diag, off_diag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/linear_solvers/observables/matrix_functional.py "view source code")
+`MatrixFunctional(main_diag, off_diag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/linear_solvers/observables/matrix_functional.py "view source code")
 
 Bases: `qiskit.algorithms.linear_solvers.observables.linear_system_observable.LinearSystemObservable`
 
@@ -69,7 +69,7 @@ exact = observable.evaluate_classically(init_state)
 
 <span id="qiskit.algorithms.linear_solvers.MatrixFunctional.evaluate_classically" />
 
-`MatrixFunctional.evaluate_classically(solution)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/linear_solvers/observables/matrix_functional.py "view source code")
+`MatrixFunctional.evaluate_classically(solution)`
 
 Evaluates the given observable on the solution to the linear system.
 
@@ -89,7 +89,7 @@ The value of the observable.
 
 <span id="qiskit.algorithms.linear_solvers.MatrixFunctional.observable" />
 
-`MatrixFunctional.observable(num_qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/linear_solvers/observables/matrix_functional.py "view source code")
+`MatrixFunctional.observable(num_qubits)`
 
 The observable operators.
 
@@ -109,7 +109,7 @@ The observable as a list of sums of Pauli strings.
 
 <span id="qiskit.algorithms.linear_solvers.MatrixFunctional.observable_circuit" />
 
-`MatrixFunctional.observable_circuit(num_qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/linear_solvers/observables/matrix_functional.py "view source code")
+`MatrixFunctional.observable_circuit(num_qubits)`
 
 The circuits to implement the matrix functional observable.
 
@@ -129,7 +129,7 @@ The observable as a list of QuantumCircuits.
 
 <span id="qiskit.algorithms.linear_solvers.MatrixFunctional.post_processing" />
 
-`MatrixFunctional.post_processing(solution, num_qubits, scaling=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/linear_solvers/observables/matrix_functional.py "view source code")
+`MatrixFunctional.post_processing(solution, num_qubits, scaling=1)`
 
 Evaluates the matrix functional on the solution to the linear system.
 

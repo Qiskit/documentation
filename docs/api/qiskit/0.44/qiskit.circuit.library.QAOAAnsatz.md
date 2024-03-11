@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.QAOAAnsatz
 
 <span id="qiskit.circuit.library.QAOAAnsatz" />
 
-`qiskit.circuit.library.QAOAAnsatz(cost_operator=None, reps=1, initial_state=None, mixer_operator=None, name='QAOA', flatten=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/n_local/qaoa_ansatz.py "view source code")
+`qiskit.circuit.library.QAOAAnsatz(cost_operator=None, reps=1, initial_state=None, mixer_operator=None, name='QAOA', flatten=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/n_local/qaoa_ansatz.py "view source code")
 
 Bases: [`EvolvedOperatorAnsatz`](qiskit.circuit.library.EvolvedOperatorAnsatz "qiskit.circuit.library.evolved_operator_ansatz.EvolvedOperatorAnsatz")
 

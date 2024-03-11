@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.FixedPoint
 
 <span id="qiskit.transpiler.passes.FixedPoint" />
 
-`qiskit.transpiler.passes.FixedPoint(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/utils/fixed_point.py "view source code")
+`qiskit.transpiler.passes.FixedPoint(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/utils/fixed_point.py "view source code")
 
 Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 

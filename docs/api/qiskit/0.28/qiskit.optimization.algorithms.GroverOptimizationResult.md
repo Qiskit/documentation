@@ -10,7 +10,7 @@ python_api_name: qiskit.optimization.algorithms.GroverOptimizationResult
 
 <span id="qiskit.optimization.algorithms.GroverOptimizationResult" />
 
-`GroverOptimizationResult(x, fval, variables, operation_counts, n_input_qubits, n_output_qubits, intermediate_fval, threshold, status)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/grover_optimizer.py "view source code")
+`GroverOptimizationResult(x, fval, variables, operation_counts, n_input_qubits, n_output_qubits, intermediate_fval, threshold, status)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/grover_optimizer.py "view source code")
 
 A result object for Grover Optimization methods.
 

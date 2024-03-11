@@ -12,7 +12,7 @@ python_api_name: qiskit.utils.local_hardware_info
 
 <span id="qiskit.utils.local_hardware_info" />
 
-`local_hardware_info()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/utils/multiprocessing.py "view source code")
+`local_hardware_info()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/utils/multiprocessing.py "view source code")
 
 Basic hardware information about the local machine.
 

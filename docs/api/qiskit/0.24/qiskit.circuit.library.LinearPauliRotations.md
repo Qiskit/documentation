@@ -12,11 +12,11 @@ python_api_name: qiskit.circuit.library.LinearPauliRotations
 
 <span id="qiskit.circuit.library.LinearPauliRotations" />
 
-`LinearPauliRotations(num_state_qubits=None, slope=1, offset=0, basis='Y', name='LinRot')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/arithmetic/linear_pauli_rotations.py "view source code")
+`LinearPauliRotations(num_state_qubits=None, slope=1, offset=0, basis='Y', name='LinRot')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/arithmetic/linear_pauli_rotations.py "view source code")
 
 Linearly-controlled X, Y or Z rotation.
 
-For a register of state qubits $\vert x\rangle$, a target qubit $\vert 0\rangle$ and the basis `'Y'` this circuit acts as:
+For a register of state qubits $|x\rangle$, a target qubit $|0\rangle$ and the basis `'Y'` this circuit acts as:
 
 ```python
     q_0: ─────────────────────────■───────── ... ──────────────────────
@@ -32,7 +32,7 @@ q_(n-1): ───────────────────────�
 This can for example be used to approximate linear functions, with $a/2 =$ `slope` and $b/2 =$ `offset` and the basis `'Y'`:
 
 $$
-\vert x\rangle \vert 0\rangle \mapsto \cos(ax + b)\vert x\rangle\vert 0\rangle + \sin(ax + b)\vert x\rangle \vert 1\rangle
+|x\rangle |0\rangle \mapsto \cos(ax + b)|x\rangle|0\rangle + \sin(ax + b)|x\rangle |1\rangle
 $$
 
 Since for small arguments $\sin(x) \approx x$ this operator can be used to approximate linear functions.
@@ -41,7 +41,7 @@ Create a new linear rotation circuit.
 
 **Parameters**
 
-*   **num\_state\_qubits** (`Optional`\[`int`]) – The number of qubits representing the state $\vert x\rangle$.
+*   **num\_state\_qubits** (`Optional`\[`int`]) – The number of qubits representing the state $|x\rangle$.
 *   **slope** (`float`) – The slope of the controlled rotation.
 *   **offset** (`float`) – The offset of the controlled rotation.
 *   **basis** (`str`) – The type of Pauli rotation (‘X’, ‘Y’, ‘Z’).
@@ -57,7 +57,7 @@ Create a new linear rotation circuit.
 
 **Parameters**
 
-*   **num\_state\_qubits** (`Optional`\[`int`]) – The number of qubits representing the state $\vert x\rangle$.
+*   **num\_state\_qubits** (`Optional`\[`int`]) – The number of qubits representing the state $|x\rangle$.
 *   **slope** (`float`) – The slope of the controlled rotation.
 *   **offset** (`float`) – The offset of the controlled rotation.
 *   **basis** (`str`) – The type of Pauli rotation (‘X’, ‘Y’, ‘Z’).
@@ -192,29 +192,29 @@ Create a new linear rotation circuit.
 
 ## Attributes
 
-|                                                                                                                                                          |                                                                              |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| [`ancillas`](#qiskit.circuit.library.LinearPauliRotations.ancillas "qiskit.circuit.library.LinearPauliRotations.ancillas")                               | Returns a list of ancilla bits in the order that the registers were added.   |
-| [`basis`](#qiskit.circuit.library.LinearPauliRotations.basis "qiskit.circuit.library.LinearPauliRotations.basis")                                        | The kind of Pauli rotation to be used.                                       |
-| [`calibrations`](#qiskit.circuit.library.LinearPauliRotations.calibrations "qiskit.circuit.library.LinearPauliRotations.calibrations")                   | Return calibration dictionary.                                               |
-| [`clbits`](#qiskit.circuit.library.LinearPauliRotations.clbits "qiskit.circuit.library.LinearPauliRotations.clbits")                                     | Returns a list of classical bits in the order that the registers were added. |
-| [`data`](#qiskit.circuit.library.LinearPauliRotations.data "qiskit.circuit.library.LinearPauliRotations.data")                                           | Return the circuit data (instructions and context).                          |
-| `extension_lib`                                                                                                                                          |                                                                              |
-| [`global_phase`](#qiskit.circuit.library.LinearPauliRotations.global_phase "qiskit.circuit.library.LinearPauliRotations.global_phase")                   | Return the global phase of the circuit in radians.                           |
-| `header`                                                                                                                                                 |                                                                              |
-| `instances`                                                                                                                                              |                                                                              |
-| [`num_ancilla_qubits`](#qiskit.circuit.library.LinearPauliRotations.num_ancilla_qubits "qiskit.circuit.library.LinearPauliRotations.num_ancilla_qubits") | The minimum number of ancilla qubits in the circuit.                         |
-| [`num_ancillas`](#qiskit.circuit.library.LinearPauliRotations.num_ancillas "qiskit.circuit.library.LinearPauliRotations.num_ancillas")                   | Return the number of ancilla qubits.                                         |
-| [`num_clbits`](#qiskit.circuit.library.LinearPauliRotations.num_clbits "qiskit.circuit.library.LinearPauliRotations.num_clbits")                         | Return number of classical bits.                                             |
-| [`num_parameters`](#qiskit.circuit.library.LinearPauliRotations.num_parameters "qiskit.circuit.library.LinearPauliRotations.num_parameters")             | Convenience function to get the number of parameter objects in the circuit.  |
-| [`num_qubits`](#qiskit.circuit.library.LinearPauliRotations.num_qubits "qiskit.circuit.library.LinearPauliRotations.num_qubits")                         | Return number of qubits.                                                     |
-| [`num_state_qubits`](#qiskit.circuit.library.LinearPauliRotations.num_state_qubits "qiskit.circuit.library.LinearPauliRotations.num_state_qubits")       | The number of state qubits representing the state $\vert x\rangle$.          |
-| [`offset`](#qiskit.circuit.library.LinearPauliRotations.offset "qiskit.circuit.library.LinearPauliRotations.offset")                                     | The angle of the single qubit offset rotation on the target qubit.           |
-| [`parameters`](#qiskit.circuit.library.LinearPauliRotations.parameters "qiskit.circuit.library.LinearPauliRotations.parameters")                         | Convenience function to get the parameters defined in the parameter table.   |
-| `prefix`                                                                                                                                                 |                                                                              |
-| [`qregs`](#qiskit.circuit.library.LinearPauliRotations.qregs "qiskit.circuit.library.LinearPauliRotations.qregs")                                        | A list of the quantum registers associated with the circuit.                 |
-| [`qubits`](#qiskit.circuit.library.LinearPauliRotations.qubits "qiskit.circuit.library.LinearPauliRotations.qubits")                                     | Returns a list of quantum bits in the order that the registers were added.   |
-| [`slope`](#qiskit.circuit.library.LinearPauliRotations.slope "qiskit.circuit.library.LinearPauliRotations.slope")                                        | The multiplicative factor in the rotation angle of the controlled rotations. |
+|                                                                                                                                                          |                                                                              |             |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ----------- |
+| [`ancillas`](#qiskit.circuit.library.LinearPauliRotations.ancillas "qiskit.circuit.library.LinearPauliRotations.ancillas")                               | Returns a list of ancilla bits in the order that the registers were added.   |             |
+| [`basis`](#qiskit.circuit.library.LinearPauliRotations.basis "qiskit.circuit.library.LinearPauliRotations.basis")                                        | The kind of Pauli rotation to be used.                                       |             |
+| [`calibrations`](#qiskit.circuit.library.LinearPauliRotations.calibrations "qiskit.circuit.library.LinearPauliRotations.calibrations")                   | Return calibration dictionary.                                               |             |
+| [`clbits`](#qiskit.circuit.library.LinearPauliRotations.clbits "qiskit.circuit.library.LinearPauliRotations.clbits")                                     | Returns a list of classical bits in the order that the registers were added. |             |
+| [`data`](#qiskit.circuit.library.LinearPauliRotations.data "qiskit.circuit.library.LinearPauliRotations.data")                                           | Return the circuit data (instructions and context).                          |             |
+| `extension_lib`                                                                                                                                          |                                                                              |             |
+| [`global_phase`](#qiskit.circuit.library.LinearPauliRotations.global_phase "qiskit.circuit.library.LinearPauliRotations.global_phase")                   | Return the global phase of the circuit in radians.                           |             |
+| `header`                                                                                                                                                 |                                                                              |             |
+| `instances`                                                                                                                                              |                                                                              |             |
+| [`num_ancilla_qubits`](#qiskit.circuit.library.LinearPauliRotations.num_ancilla_qubits "qiskit.circuit.library.LinearPauliRotations.num_ancilla_qubits") | The minimum number of ancilla qubits in the circuit.                         |             |
+| [`num_ancillas`](#qiskit.circuit.library.LinearPauliRotations.num_ancillas "qiskit.circuit.library.LinearPauliRotations.num_ancillas")                   | Return the number of ancilla qubits.                                         |             |
+| [`num_clbits`](#qiskit.circuit.library.LinearPauliRotations.num_clbits "qiskit.circuit.library.LinearPauliRotations.num_clbits")                         | Return number of classical bits.                                             |             |
+| [`num_parameters`](#qiskit.circuit.library.LinearPauliRotations.num_parameters "qiskit.circuit.library.LinearPauliRotations.num_parameters")             | Convenience function to get the number of parameter objects in the circuit.  |             |
+| [`num_qubits`](#qiskit.circuit.library.LinearPauliRotations.num_qubits "qiskit.circuit.library.LinearPauliRotations.num_qubits")                         | Return number of qubits.                                                     |             |
+| [`num_state_qubits`](#qiskit.circuit.library.LinearPauliRotations.num_state_qubits "qiskit.circuit.library.LinearPauliRotations.num_state_qubits")       | The number of state qubits representing the state \$                         | x\rangle\$. |
+| [`offset`](#qiskit.circuit.library.LinearPauliRotations.offset "qiskit.circuit.library.LinearPauliRotations.offset")                                     | The angle of the single qubit offset rotation on the target qubit.           |             |
+| [`parameters`](#qiskit.circuit.library.LinearPauliRotations.parameters "qiskit.circuit.library.LinearPauliRotations.parameters")                         | Convenience function to get the parameters defined in the parameter table.   |             |
+| `prefix`                                                                                                                                                 |                                                                              |             |
+| [`qregs`](#qiskit.circuit.library.LinearPauliRotations.qregs "qiskit.circuit.library.LinearPauliRotations.qregs")                                        | A list of the quantum registers associated with the circuit.                 |             |
+| [`qubits`](#qiskit.circuit.library.LinearPauliRotations.qubits "qiskit.circuit.library.LinearPauliRotations.qubits")                                     | Returns a list of quantum bits in the order that the registers were added.   |             |
+| [`slope`](#qiskit.circuit.library.LinearPauliRotations.slope "qiskit.circuit.library.LinearPauliRotations.slope")                                        | The multiplicative factor in the rotation angle of the controlled rotations. |             |
 
 ### add\_calibration
 
@@ -1567,7 +1567,7 @@ Return number of qubits.
 
 `property num_state_qubits`
 
-The number of state qubits representing the state $\vert x\rangle$.
+The number of state qubits representing the state $|x\rangle$.
 
 **Return type**
 

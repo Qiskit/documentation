@@ -12,7 +12,7 @@ python_api_name: qiskit.pulse.library.SechDeriv
 
 <span id="qiskit.pulse.library.SechDeriv" />
 
-`qiskit.pulse.library.SechDeriv(duration, amp, sigma, angle=0.0, name=None, limit_amplitude=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/pulse/library/symbolic_pulses.py "view source code")
+`qiskit.pulse.library.SechDeriv(duration, amp, sigma, angle=0.0, name=None, limit_amplitude=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/pulse/library/symbolic_pulses.py "view source code")
 
 An unnormalized sech derivative pulse.
 

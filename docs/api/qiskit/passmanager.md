@@ -1,7 +1,7 @@
 ---
 title: passmanager
 description: API reference for qiskit.passmanager
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.passmanager
 ---
@@ -42,7 +42,7 @@ A pass manager is a wrapper of the flow controller, with responsibilities of
 
 This indicates that the flow controller itself is type-agnostic, and a developer must implement a subclass of the [`BasePassManager`](qiskit.passmanager.BasePassManager "qiskit.passmanager.BasePassManager") to manage the data conversion steps. This *veil of ignorance* allows us to choose the most efficient data representation for a particular pass manager task, while we can reuse the flow control machinery for different input and output types.
 
-A single flow controller always takes a single IR object, and returns a single IR object. Parallelism for multiple input objects is supported by the [`BasePassManager`](qiskit.passmanager.BasePassManager "qiskit.passmanager.BasePassManager") by broadcasting the flow controller via the `qiskit.tools.parallel_map()` function.
+A single flow controller always takes a single IR object, and returns a single IR object. Parallelism for multiple input objects is supported by the [`BasePassManager`](qiskit.passmanager.BasePassManager "qiskit.passmanager.BasePassManager") by broadcasting the flow controller via the [`parallel_map()`](utils#qiskit.utils.parallel_map "qiskit.utils.parallel_map") function.
 
 ## Examples
 
@@ -146,7 +146,6 @@ With the pass manager framework, a developer can flexibly customize the optimiza
 
 |                                                                                                                                          |                                                                                                               |
 | ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| [`FlowController`](qiskit.passmanager.FlowController "qiskit.passmanager.FlowController")(\[options])                                    | A legacy factory for other flow controllers.                                                                  |
 | [`FlowControllerLinear`](qiskit.passmanager.FlowControllerLinear "qiskit.passmanager.FlowControllerLinear")(\[tasks, options])           | A standard flow controller that runs tasks one after the other.                                               |
 | [`ConditionalController`](qiskit.passmanager.ConditionalController "qiskit.passmanager.ConditionalController")(\[tasks, condition, ...]) | A flow controller runs the pipeline once if the condition is true, or does nothing if the condition is false. |
 | [`DoWhileController`](qiskit.passmanager.DoWhileController "qiskit.passmanager.DoWhileController")(\[tasks, do\_while, options])         | Run the given tasks in a loop until the `do_while` condition on the property set becomes `False`.             |
@@ -165,7 +164,7 @@ With the pass manager framework, a developer can flexibly customize the optimiza
 
 <span id="qiskit.passmanager.PassManagerError" />
 
-`qiskit.passmanager.PassManagerError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/passmanager/exceptions.py "view source code")
+`qiskit.passmanager.PassManagerError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/passmanager/exceptions.py "view source code")
 
 Pass manager error.
 

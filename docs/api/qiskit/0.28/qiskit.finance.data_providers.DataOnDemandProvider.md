@@ -10,7 +10,7 @@ python_api_name: qiskit.finance.data_providers.DataOnDemandProvider
 
 <span id="qiskit.finance.data_providers.DataOnDemandProvider" />
 
-`DataOnDemandProvider(token, tickers, start=datetime.datetime(2016, 1, 1, 0, 0), end=datetime.datetime(2016, 1, 30, 0, 0), verify=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/finance/data_providers/data_on_demand_provider.py "view source code")
+`DataOnDemandProvider(token, tickers, start=datetime.datetime(2016, 1, 1, 0, 0), end=datetime.datetime(2016, 1, 30, 0, 0), verify=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/finance/data_providers/data_on_demand_provider.py "view source code")
 
 NASDAQ Data on Demand data provider.
 

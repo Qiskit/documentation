@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.noise.QuantumError
 
 <span id="qiskit.providers.aer.noise.QuantumError" />
 
-`QuantumError(noise_ops, number_of_qubits=None, standard_gates=True, atol=1e-08)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/noise/errors/quantum_error.py "view source code")
+`QuantumError(noise_ops, number_of_qubits=None, standard_gates=True, atol=1e-08)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/noise/errors/quantum_error.py "view source code")
 
 Quantum error class for Qiskit Aer noise model
 

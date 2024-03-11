@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.Backend
 
 <span id="qiskit.providers.Backend" />
 
-`qiskit.providers.Backend`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/providers/backend.py "view source code")
+`qiskit.providers.Backend` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/providers/backend.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 

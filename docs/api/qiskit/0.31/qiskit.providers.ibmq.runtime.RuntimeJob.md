@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.runtime.RuntimeJob
 
 <span id="qiskit.providers.ibmq.runtime.RuntimeJob" />
 
-`RuntimeJob(backend, api_client, credentials, job_id, program_id, params=None, creation_date=None, user_callback=None, result_decoder=<class 'qiskit.providers.ibmq.runtime.program.result_decoder.ResultDecoder'>, image='')`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.17/qiskit/providers/ibmq/runtime/runtime_job.py "view source code")
+`RuntimeJob(backend, api_client, credentials, job_id, program_id, params=None, creation_date=None, user_callback=None, result_decoder=<class 'qiskit.providers.ibmq.runtime.program.result_decoder.ResultDecoder'>, image='')` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.17/qiskit/providers/ibmq/runtime/runtime_job.py "view source code")
 
 Bases: `object`
 
@@ -55,7 +55,7 @@ RuntimeJob constructor.
 
 <span id="qiskit.providers.ibmq.runtime.RuntimeJob.backend" />
 
-`RuntimeJob.backend()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.17/qiskit/providers/ibmq/runtime/runtime_job.py "view source code")
+`RuntimeJob.backend()`
 
 Return the backend where this job was executed.
 
@@ -71,7 +71,7 @@ Backend used for the job.
 
 <span id="qiskit.providers.ibmq.runtime.RuntimeJob.cancel" />
 
-`RuntimeJob.cancel()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.17/qiskit/providers/ibmq/runtime/runtime_job.py "view source code")
+`RuntimeJob.cancel()`
 
 Cancel the job.
 
@@ -88,7 +88,7 @@ Cancel the job.
 
 <span id="qiskit.providers.ibmq.runtime.RuntimeJob.cancel_result_streaming" />
 
-`RuntimeJob.cancel_result_streaming()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.17/qiskit/providers/ibmq/runtime/runtime_job.py "view source code")
+`RuntimeJob.cancel_result_streaming()`
 
 Cancel result streaming.
 
@@ -100,7 +100,7 @@ Cancel result streaming.
 
 <span id="qiskit.providers.ibmq.runtime.RuntimeJob.error_message" />
 
-`RuntimeJob.error_message()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.17/qiskit/providers/ibmq/runtime/runtime_job.py "view source code")
+`RuntimeJob.error_message()`
 
 Returns the reason if the job failed.
 
@@ -116,7 +116,7 @@ Error message string or `None`.
 
 <span id="qiskit.providers.ibmq.runtime.RuntimeJob.job_id" />
 
-`RuntimeJob.job_id()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.17/qiskit/providers/ibmq/runtime/runtime_job.py "view source code")
+`RuntimeJob.job_id()`
 
 Return a unique ID identifying the job.
 
@@ -132,7 +132,7 @@ Job ID.
 
 <span id="qiskit.providers.ibmq.runtime.RuntimeJob.logs" />
 
-`RuntimeJob.logs()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.17/qiskit/providers/ibmq/runtime/runtime_job.py "view source code")
+`RuntimeJob.logs()`
 
 Return job logs.
 
@@ -156,7 +156,7 @@ Job logs, including standard output and error.
 
 <span id="qiskit.providers.ibmq.runtime.RuntimeJob.result" />
 
-`RuntimeJob.result(timeout=None, wait=5, decoder=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.17/qiskit/providers/ibmq/runtime/runtime_job.py "view source code")
+`RuntimeJob.result(timeout=None, wait=5, decoder=None)`
 
 Return the results of the job.
 
@@ -182,7 +182,7 @@ Runtime job result.
 
 <span id="qiskit.providers.ibmq.runtime.RuntimeJob.status" />
 
-`RuntimeJob.status()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.17/qiskit/providers/ibmq/runtime/runtime_job.py "view source code")
+`RuntimeJob.status()`
 
 Return the status of the job.
 
@@ -198,7 +198,7 @@ Status of this job.
 
 <span id="qiskit.providers.ibmq.runtime.RuntimeJob.stream_results" />
 
-`RuntimeJob.stream_results(callback, decoder=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.17/qiskit/providers/ibmq/runtime/runtime_job.py "view source code")
+`RuntimeJob.stream_results(callback, decoder=None)`
 
 Start streaming job results.
 
@@ -225,7 +225,7 @@ Start streaming job results.
 
 <span id="qiskit.providers.ibmq.runtime.RuntimeJob.wait_for_final_state" />
 
-`RuntimeJob.wait_for_final_state(timeout=None, wait=5)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.17/qiskit/providers/ibmq/runtime/runtime_job.py "view source code")
+`RuntimeJob.wait_for_final_state(timeout=None, wait=5)`
 
 Poll the job status until it progresses to a final state such as `DONE` or `ERROR`.
 

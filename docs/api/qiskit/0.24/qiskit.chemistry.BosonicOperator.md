@@ -12,7 +12,7 @@ python_api_name: qiskit.chemistry.BosonicOperator
 
 <span id="qiskit.chemistry.BosonicOperator" />
 
-`BosonicOperator(h, basis)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/bosonic_operator.py "view source code")
+`BosonicOperator(h, basis)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/bosonic_operator.py "view source code")
 
 A set of functions to map bosonic Hamiltonians to qubit Hamiltonians.
 

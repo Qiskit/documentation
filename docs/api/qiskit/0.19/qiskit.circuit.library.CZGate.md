@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CZGate
 
 <span id="qiskit.circuit.library.CZGate" />
 
-`CZGate(label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/z.py "view source code")
+`CZGate(label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/z.py "view source code")
 
 Controlled-Z gate.
 
@@ -28,7 +28,7 @@ q_1: ─■─
 
 $$
 \begin{split}CZ\ q_1, q_0 =
-    \vert 0\rangle\langle 0\vert  \otimes I + \vert 1\rangle\langle 1\vert  \otimes Z =
+    |0\rangle\langle 0| \otimes I + |1\rangle\langle 1| \otimes Z =
     \begin{pmatrix}
         1 & 0 & 0 & 0 \\
         0 & 1 & 0 & 0 \\
@@ -37,7 +37,7 @@ $$
     \end{pmatrix}\end{split}
 $$
 
-In the computational basis, this gate flips the phase of the target qubit if the control qubit is in the $\vert 1\rangle$ state.
+In the computational basis, this gate flips the phase of the target qubit if the control qubit is in the $|1\rangle$ state.
 
 Create new CZ gate.
 
@@ -224,7 +224,7 @@ updated if it was provided
 
 <span id="qiskit.circuit.library.CZGate.inverse" />
 
-`CZGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/z.py "view source code")
+`CZGate.inverse()`
 
 Return inverted CZ gate (itself).
 

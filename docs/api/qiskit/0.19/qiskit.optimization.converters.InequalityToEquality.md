@@ -10,7 +10,7 @@ python_api_name: qiskit.optimization.converters.InequalityToEquality
 
 <span id="qiskit.optimization.converters.InequalityToEquality" />
 
-`InequalityToEquality`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/converters/inequality_to_equality.py "view source code")
+`InequalityToEquality` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/converters/inequality_to_equality.py "view source code")
 
 Convert inequality constraints into equality constraints by introducing slack variables.
 
@@ -31,7 +31,7 @@ Convert inequality constraints into equality constraints by introducing slack va
 
 <span id="qiskit.optimization.converters.InequalityToEquality.decode" />
 
-`InequalityToEquality.decode(result)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/converters/inequality_to_equality.py "view source code")
+`InequalityToEquality.decode(result)`
 
 Convert a result of a converted problem into that of the original problem.
 
@@ -51,7 +51,7 @@ The result of the original problem.
 
 <span id="qiskit.optimization.converters.InequalityToEquality.encode" />
 
-`InequalityToEquality.encode(op, name=None, mode='auto')`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/converters/inequality_to_equality.py "view source code")
+`InequalityToEquality.encode(op, name=None, mode='auto')`
 
 Convert a problem with inequality constraints into one with only equality constraints.
 

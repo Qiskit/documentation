@@ -12,7 +12,7 @@ python_api_name: qiskit.chemistry.MP2Info
 
 <span id="qiskit.chemistry.MP2Info" />
 
-`MP2Info(qmolecule, threshold=1e-12)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/mp2info.py "view source code")
+`MP2Info(qmolecule, threshold=1e-12)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/mp2info.py "view source code")
 
 A utility class for Moller-Plesset 2nd order (MP2) information
 

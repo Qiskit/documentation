@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.algorithms.ClassicalAlgorithm
 
 <span id="qiskit.aqua.algorithms.ClassicalAlgorithm" />
 
-`ClassicalAlgorithm`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/classical_algorithm.py "view source code")
+`ClassicalAlgorithm` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/classical_algorithm.py "view source code")
 
 Base class for Classical Algorithms.
 

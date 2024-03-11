@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.verification.StateTomographyFitter
 
 <span id="qiskit.ignis.verification.StateTomographyFitter" />
 
-`StateTomographyFitter(result, circuits, meas_basis='Pauli')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/tomography/fitters/state_fitter.py "view source code")
+`StateTomographyFitter(result, circuits, meas_basis='Pauli')` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/tomography/fitters/state_fitter.py "view source code")
 
 Maximum-Likelihood estimation state tomography fitter.
 
@@ -93,7 +93,7 @@ The `cvx` fitter method used CVXPY convex optimization package. The `lstsq` meth
 
 **Objective function**
 
-This fitter solves the constrained least-squares minimization: $minimize: \vert \vert a \cdot x - b \vert \vert _2$
+This fitter solves the constrained least-squares minimization: $minimize: ||a \cdot x - b ||_2$
 
 subject to:
 
@@ -141,7 +141,7 @@ References:
 
 **Returns**
 
-The fitted matrix rho that minimizes $\vert \vert \text{basis_matrix} \cdot \text{vec}(\text{rho}) - \text{data}\vert \vert _2$.
+The fitted matrix rho that minimizes $||\text{basis_matrix} \cdot \text{vec}(\text{rho}) - \text{data}||_2$.
 
 ### measure\_basis
 

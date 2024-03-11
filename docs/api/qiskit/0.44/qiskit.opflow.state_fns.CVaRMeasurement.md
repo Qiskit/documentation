@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.state_fns.CVaRMeasurement
 
 <span id="qiskit.opflow.state_fns.CVaRMeasurement" />
 
-`qiskit.opflow.state_fns.CVaRMeasurement(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/opflow/state_fns/cvar_measurement.py "view source code")
+`qiskit.opflow.state_fns.CVaRMeasurement(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/opflow/state_fns/cvar_measurement.py "view source code")
 
 Bases: [`OperatorStateFn`](qiskit.opflow.state_fns.OperatorStateFn "qiskit.opflow.state_fns.operator_state_fn.OperatorStateFn")
 

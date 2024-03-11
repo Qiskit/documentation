@@ -10,7 +10,7 @@ python_api_name: qiskit.qasm.Qasm
 
 <span id="qiskit.qasm.Qasm" />
 
-`Qasm(filename=None, data=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/qasm/qasm.py "view source code")
+`Qasm(filename=None, data=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/qasm/qasm.py "view source code")
 
 OPENQASM circuit object.
 

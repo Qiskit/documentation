@@ -10,17 +10,17 @@ python_api_name: qiskit.quantum_info.concurrence
 
 <span id="qiskit.quantum_info.concurrence" />
 
-`concurrence(state)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/states/measures.py "view source code")
+`concurrence(state)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/states/measures.py "view source code")
 
 Calculate the concurrence of a quantum state.
 
-The concurrence of a bipartite [`Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector") $\vert \psi\rangle$ is given by
+The concurrence of a bipartite [`Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector") $|\psi\rangle$ is given by
 
 $$
-C(\vert \psi\rangle) = \sqrt{2(1 - Tr[\rho_0^2])}
+C(|\psi\rangle) = \sqrt{2(1 - Tr[\rho_0^2])}
 $$
 
-where $\rho_0 = Tr_1[\vert \psi\rangle\!\langle\psi\vert ]$ is the reduced state from by taking the [`partial_trace()`](qiskit.quantum_info.partial_trace "qiskit.quantum_info.partial_trace") of the input state.
+where $\rho_0 = Tr_1[|\psi\rangle\!\langle\psi|]$ is the reduced state from by taking the [`partial_trace()`](qiskit.quantum_info.partial_trace "qiskit.quantum_info.partial_trace") of the input state.
 
 For density matrices the concurrence is only defined for 2-qubit states, it is given by:
 

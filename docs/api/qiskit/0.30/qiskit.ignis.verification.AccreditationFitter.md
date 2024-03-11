@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.verification.AccreditationFitter
 
 <span id="qiskit.ignis.verification.AccreditationFitter" />
 
-`AccreditationFitter`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/accreditation/fitters.py "view source code")
+`AccreditationFitter` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/accreditation/fitters.py "view source code")
 
 Bases: `object`
 
@@ -24,7 +24,7 @@ Implementation follows the methods from Samuele Ferracin, Theodoros Kapourniotis
 
 <span id="qiskit.ignis.verification.AccreditationFitter.bound_variation_distance" />
 
-`AccreditationFitter.bound_variation_distance(theta)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/accreditation/fitters.py "view source code")
+`AccreditationFitter.bound_variation_distance(theta)`
 
 This function computes the bound on variation distance based and the confidence
 
@@ -36,7 +36,7 @@ This function computes the bound on variation distance based and the confidence
 
 <span id="qiskit.ignis.verification.AccreditationFitter.single_protocol_run" />
 
-`AccreditationFitter.single_protocol_run(results, postp_list, v_zero)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/accreditation/fitters.py "view source code")
+`AccreditationFitter.single_protocol_run(results, postp_list, v_zero)`
 
 Single protocol run of accreditation protocol on simul backend
 

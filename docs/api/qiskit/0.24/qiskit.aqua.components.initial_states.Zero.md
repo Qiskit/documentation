@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.components.initial_states.Zero
 
 <span id="qiskit.aqua.components.initial_states.Zero" />
 
-`Zero(num_qubits)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/initial_states/zero.py "view source code")
+`Zero(num_qubits)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/initial_states/zero.py "view source code")
 
 The zero (null/vacuum) state.
 

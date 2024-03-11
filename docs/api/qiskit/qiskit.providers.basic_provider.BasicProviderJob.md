@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.basic_provider.BasicProviderJob
 
 <span id="qiskit.providers.basic_provider.BasicProviderJob" />
 
-`qiskit.providers.basic_provider.BasicProviderJob(backend, job_id, result)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/providers/basic_provider/basic_provider_job.py "view source code")
+`qiskit.providers.basic_provider.BasicProviderJob(backend, job_id, result)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/providers/basic_provider/basic_provider_job.py "view source code")
 
 Bases: [`JobV1`](qiskit.providers.JobV1 "qiskit.providers.job.JobV1")
 

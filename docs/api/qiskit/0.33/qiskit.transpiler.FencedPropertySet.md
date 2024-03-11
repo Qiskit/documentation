@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.FencedPropertySet
 
 <span id="qiskit.transpiler.FencedPropertySet" />
 
-`FencedPropertySet(property_set_instance)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/fencedobjs.py "view source code")
+`FencedPropertySet(property_set_instance)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/fencedobjs.py "view source code")
 
 Bases: `qiskit.transpiler.fencedobjs.FencedObject`
 

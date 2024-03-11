@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_provider.IBMProvider
 
 <span id="qiskit_ibm_provider.IBMProvider" />
 
-`IBMProvider(token=None, url=None, name=None, instance=None, proxies=None, verify=None)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_provider.py "view source code")
+`IBMProvider(token=None, url=None, name=None, instance=None, proxies=None, verify=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/ibm_provider.py#L46-L671 "view source code")
 
 Provides access to the IBM Quantum services available to an account.
 
@@ -66,19 +66,19 @@ backend_service = provider.backend
 
 Since [`IBMBackendService`](qiskit_ibm_provider.IBMBackendService "qiskit_ibm_provider.ibm_backend_service.IBMBackendService") is the main service, some of the backend-related methods are available through this class for convenience.
 
-The [`backends()`](qiskit_ibm_provider.IBMProvider#backends "qiskit_ibm_provider.IBMProvider.backends") method returns all the backends available to this account:
+The [`backends()`](#qiskit_ibm_provider.IBMProvider.backends "qiskit_ibm_provider.IBMProvider.backends") method returns all the backends available to this account:
 
 ```python
 backends = provider.backends()
 ```
 
-The [`get_backend()`](qiskit_ibm_provider.IBMProvider#get_backend "qiskit_ibm_provider.IBMProvider.get_backend") method returns a backend that matches the filters passed as argument. An example of retrieving a backend that matches a specified name:
+The [`get_backend()`](#qiskit_ibm_provider.IBMProvider.get_backend "qiskit_ibm_provider.IBMProvider.get_backend") method returns a backend that matches the filters passed as argument. An example of retrieving a backend that matches a specified name:
 
 ```python
 simulator_backend = provider.get_backend('ibmq_qasm_simulator')
 ```
 
-IBMBackend’s are uniquely identified by their name. If you invoke [`get_backend()`](qiskit_ibm_provider.IBMProvider#get_backend "qiskit_ibm_provider.IBMProvider.get_backend") twice, you will get the same IBMBackend instance, and any previously updated options will be reset to the default values.
+IBMBackend’s are uniquely identified by their name. If you invoke [`get_backend()`](#qiskit_ibm_provider.IBMProvider.get_backend "qiskit_ibm_provider.IBMProvider.get_backend") twice, you will get the same IBMBackend instance, and any previously updated options will be reset to the default values.
 
 It is also possible to use the `backend` attribute to reference a backend. As an example, to retrieve the same backend from the example above:
 
@@ -111,13 +111,9 @@ An instance of IBMProvider
 
 ## Attributes
 
-<span id="ibmprovider-backend" />
-
-### backend
-
 <span id="qiskit_ibm_provider.IBMProvider.backend" />
 
-`IBMBackendService`
+### backend
 
 Return the backend service.
 
@@ -129,23 +125,19 @@ Return the backend service.
 
 The backend service instance.
 
-<span id="ibmprovider-version" />
+<span id="qiskit_ibm_provider.IBMProvider.version" />
 
 ### version
-
-<span id="qiskit_ibm_provider.IBMProvider.version" />
 
 `= 1`
 
 ## Methods
 
-<span id="ibmprovider-active-account" />
-
 ### active\_account
 
 <span id="qiskit_ibm_provider.IBMProvider.active_account" />
 
-`IBMProvider.active_account()`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_provider.py "view source code")
+`active_account()` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/ibm_provider.py#L426-L435 "view source code")
 
 Return the IBM Quantum account currently in use for the session.
 
@@ -157,13 +149,11 @@ Return the IBM Quantum account currently in use for the session.
 
 A dictionary with information about the account currently in the session.
 
-<span id="ibmprovider-backends" />
-
 ### backends
 
 <span id="qiskit_ibm_provider.IBMProvider.backends" />
 
-`IBMProvider.backends(name=None, filters=None, min_num_qubits=None, instance=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_provider.py "view source code")
+`backends(name=None, filters=None, min_num_qubits=None, instance=None, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/ibm_provider.py#L523-L567 "view source code")
 
 Return all backends accessible via this account, subject to optional filtering.
 
@@ -197,7 +187,7 @@ Return all backends accessible via this account, subject to optional filtering.
     IBMProvider.backends(open_pulse=True)
     ```
 
-    For the full list of backend attributes, see the IBMBackend class documentation \<[providers\_models](/api/qiskit/providers_models)>
+    For the full list of backend attributes, see the IBMBackend class documentation \<[api/qiskit/providers\_models](/api/qiskit/providers_models)>
 
 **Return type**
 
@@ -207,13 +197,11 @@ Return all backends accessible via this account, subject to optional filtering.
 
 The list of available backends that match the filter.
 
-<span id="ibmprovider-delete-account" />
-
 ### delete\_account
 
 <span id="qiskit_ibm_provider.IBMProvider.delete_account" />
 
-`static IBMProvider.delete_account(name=None)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_provider.py "view source code")
+`static delete_account(name=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/ibm_provider.py#L445-L456 "view source code")
 
 Delete a saved account from disk.
 
@@ -229,13 +217,11 @@ Delete a saved account from disk.
 
 True if the account was deleted. False if no account was found.
 
-<span id="ibmprovider-get-backend" />
-
 ### get\_backend
 
 <span id="qiskit_ibm_provider.IBMProvider.get_backend" />
 
-`IBMProvider.get_backend(name=None, instance=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_provider.py "view source code")
+`get_backend(name=None, instance=None, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/ibm_provider.py#L637-L668 "view source code")
 
 Return a single backend matching the specified filtering.
 
@@ -258,13 +244,11 @@ Backend
 *   **QiskitBackendNotFoundError** – if no backend could be found or more than one backend matches the filtering criteria.
 *   [**IBMProviderValueError**](qiskit_ibm_provider.IBMProviderValueError "qiskit_ibm_provider.IBMProviderValueError") – If only one or two parameters from hub, group, project are specified.
 
-<span id="ibmprovider-instances" />
-
 ### instances
 
 <span id="qiskit_ibm_provider.IBMProvider.instances" />
 
-`IBMProvider.instances()`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_provider.py "view source code")
+`instances()` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/ibm_provider.py#L437-L443 "view source code")
 
 Return the IBM Quantum instances list currently in use for the session.
 
@@ -276,13 +260,11 @@ Return the IBM Quantum instances list currently in use for the session.
 
 A list with instances currently in the session.
 
-<span id="ibmprovider-jobs" />
-
 ### jobs
 
 <span id="qiskit_ibm_provider.IBMProvider.jobs" />
 
-`IBMProvider.jobs(limit=10, skip=0, backend_name=None, status=None, start_datetime=None, end_datetime=None, job_tags=None, descending=True, instance=None, legacy=False)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_provider.py "view source code")
+`jobs(limit=10, skip=0, backend_name=None, status=None, start_datetime=None, end_datetime=None, job_tags=None, descending=True, instance=None, legacy=False)` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/ibm_provider.py#L569-L624 "view source code")
 
 Return a list of jobs, subject to optional filtering.
 
@@ -311,13 +293,11 @@ Retrieve jobs that match the given filters and paginate the results if desired. 
 
 A list of `IBMJob` instances.
 
-<span id="ibmprovider-retrieve-job" />
-
 ### retrieve\_job
 
 <span id="qiskit_ibm_provider.IBMProvider.retrieve_job" />
 
-`IBMProvider.retrieve_job(job_id)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_provider.py "view source code")
+`retrieve_job(job_id)` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/ibm_provider.py#L626-L635 "view source code")
 
 Return a single job.
 
@@ -333,13 +313,11 @@ Return a single job.
 
 The job with the given id.
 
-<span id="ibmprovider-save-account" />
-
 ### save\_account
 
 <span id="qiskit_ibm_provider.IBMProvider.save_account" />
 
-`static IBMProvider.save_account(token=None, url=None, instance=None, name=None, proxies=None, verify=None, overwrite=False)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_provider.py "view source code")
+`static save_account(token=None, url=None, instance=None, name=None, proxies=None, verify=None, overwrite=False)` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/ibm_provider.py#L458-L494 "view source code")
 
 Save the account to disk for future use.
 
@@ -357,13 +335,11 @@ Save the account to disk for future use.
 
 `None`
 
-<span id="ibmprovider-saved-accounts" />
-
 ### saved\_accounts
 
 <span id="qiskit_ibm_provider.IBMProvider.saved_accounts" />
 
-`static IBMProvider.saved_accounts(default=None, name=None)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/ibm_provider.py "view source code")
+`static saved_accounts(default=None, name=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/ibm_provider.py#L496-L521 "view source code")
 
 List the accounts saved on disk.
 

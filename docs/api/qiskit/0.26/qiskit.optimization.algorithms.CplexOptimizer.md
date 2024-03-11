@@ -10,7 +10,7 @@ python_api_name: qiskit.optimization.algorithms.CplexOptimizer
 
 <span id="qiskit.optimization.algorithms.CplexOptimizer" />
 
-`CplexOptimizer(disp=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/cplex_optimizer.py "view source code")
+`CplexOptimizer(disp=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/cplex_optimizer.py "view source code")
 
 The CPLEX optimizer wrapped as an Qiskit [`OptimizationAlgorithm`](qiskit.optimization.algorithms.OptimizationAlgorithm "qiskit.optimization.algorithms.OptimizationAlgorithm").
 

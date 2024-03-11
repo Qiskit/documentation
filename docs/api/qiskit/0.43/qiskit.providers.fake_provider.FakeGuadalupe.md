@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeGuadalupe
 
 <span id="qiskit.providers.fake_provider.FakeGuadalupe" />
 
-`FakeGuadalupe`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/backends/guadalupe/fake_guadalupe.py "view source code")
+`FakeGuadalupe` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/backends/guadalupe/fake_guadalupe.py "view source code")
 
 Bases: `FakePulseBackend`
 

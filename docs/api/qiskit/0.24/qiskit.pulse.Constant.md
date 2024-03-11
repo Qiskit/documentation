@@ -12,7 +12,7 @@ python_api_name: qiskit.pulse.Constant
 
 <span id="qiskit.pulse.Constant" />
 
-`Constant(duration, amp, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/library/parametric_pulses.py "view source code")
+`Constant(duration, amp, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/library/parametric_pulses.py "view source code")
 
 A simple constant pulse, with an amplitude value and a duration:
 

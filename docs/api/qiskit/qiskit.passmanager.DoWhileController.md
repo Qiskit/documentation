@@ -10,7 +10,7 @@ python_api_name: qiskit.passmanager.DoWhileController
 
 <span id="qiskit.passmanager.DoWhileController" />
 
-`qiskit.passmanager.DoWhileController(tasks=(), do_while=None, *, options=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/passmanager/flow_controllers.py "view source code")
+`qiskit.passmanager.DoWhileController(tasks=(), do_while=None, *, options=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/passmanager/flow_controllers.py "view source code")
 
 Bases: [`BaseController`](qiskit.passmanager.BaseController "qiskit.passmanager.base_tasks.BaseController")
 
@@ -33,22 +33,6 @@ Create new flow controller.
 Alias of tasks for backward compatibility.
 
 ## Methods
-
-### append
-
-<span id="qiskit.passmanager.DoWhileController.append" />
-
-`append(passes)`
-
-Add new task to pipeline.
-
-<Admonition title="Deprecated since version 0.45.0" type="danger">
-  The method `qiskit.passmanager.flow_controllers.DoWhileController.append()` is deprecated as of qiskit 0.45.0. It will be removed in the Qiskit 1.0 release. All tasks must be provided at construction time of the controller object.
-</Admonition>
-
-**Parameters**
-
-**passes** (*Task |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[Task]*) – A new task or list of tasks to add.
 
 ### execute
 

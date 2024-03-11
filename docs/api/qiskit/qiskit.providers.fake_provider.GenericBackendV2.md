@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.GenericBackendV2
 
 <span id="qiskit.providers.fake_provider.GenericBackendV2" />
 
-`qiskit.providers.fake_provider.GenericBackendV2(num_qubits, basis_gates=None, *, coupling_map=None, control_flow=False, calibrate_instructions=None, dtm=None, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/providers/fake_provider/generic_backend_v2.py "view source code")
+`qiskit.providers.fake_provider.GenericBackendV2(num_qubits, basis_gates=None, *, coupling_map=None, control_flow=False, calibrate_instructions=None, dtm=None, seed=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/providers/fake_provider/generic_backend_v2.py "view source code")
 
 Bases: [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.backend.BackendV2")
 

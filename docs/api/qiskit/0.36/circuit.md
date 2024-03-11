@@ -1,7 +1,7 @@
 ---
 title: circuit
 description: API reference for qiskit.circuit
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.circuit
 ---
@@ -23,7 +23,7 @@ The fundamental element of quantum computing is the **quantum circuit**. A quant
 In Qiskit, this core element is represented by the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") class. Below is an example of a quantum circuit that makes a three-qubit GHZ state defined as:
 
 $$
-\vert \psi\rangle = \left(\vert 000\rangle+\vert 111\rangle\right)/\sqrt{2}
+|\psi\rangle = \left(|000\rangle+|111\rangle\right)/\sqrt{2}
 $$
 
 ```python

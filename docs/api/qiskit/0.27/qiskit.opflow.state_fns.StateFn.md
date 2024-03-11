@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.state_fns.StateFn
 
 <span id="qiskit.opflow.state_fns.StateFn" />
 
-`StateFn(primitive=None, coeff=1.0, is_measurement=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/state_fns/state_fn.py "view source code")
+`StateFn(primitive=None, coeff=1.0, is_measurement=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/state_fns/state_fn.py "view source code")
 
 A class for representing state functions and measurements.
 

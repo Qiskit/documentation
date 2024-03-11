@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.QMolecule
 
 <span id="qiskit.chemistry.QMolecule" />
 
-`QMolecule(filename=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/qmolecule.py "view source code")
+`QMolecule(filename=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/qmolecule.py "view source code")
 
 Molecule data class containing driver result.
 

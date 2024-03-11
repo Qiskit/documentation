@@ -10,7 +10,7 @@ python_api_name: qiskit.tools.devectorize
 
 <span id="qiskit.tools.devectorize" />
 
-`devectorize(vectorized_mat, method='col')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/tools/qi/qi.py "view source code")
+`devectorize(vectorized_mat, method='col')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/tools/qi/qi.py "view source code")
 
 Devectorize a vectorized square matrix.
 

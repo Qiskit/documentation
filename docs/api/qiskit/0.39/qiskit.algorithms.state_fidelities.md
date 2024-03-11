@@ -1,8 +1,20 @@
+---
+title: state_fidelities
+description: API reference for qiskit.algorithms.state_fidelities
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.algorithms.state_fidelities
+---
+
 <span id="qiskit-algorithms-state-fidelities" />
 
 # qiskit.algorithms.state\_fidelities
 
-## State Fidelity Interfaces ([`qiskit.algorithms.state_fidelities`](#module-qiskit.algorithms.state_fidelities "qiskit.algorithms.state_fidelities"))
+## State Fidelity Interfaces
+
+<span id="module-qiskit.algorithms.state_fidelities" />
+
+`qiskit.algorithms.state_fidelities`
 
 ### State Fidelities
 
@@ -16,3 +28,4 @@
 > |                                                                                                                                                           |                                                             |
 > | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
 > | [`StateFidelityResult`](qiskit.algorithms.state_fidelities.StateFidelityResult "qiskit.algorithms.state_fidelities.StateFidelityResult")(fidelities, ...) | This class stores the result of StateFidelity computations. |
+

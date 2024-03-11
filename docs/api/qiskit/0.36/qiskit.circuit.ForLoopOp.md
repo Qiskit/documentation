@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.ForLoopOp
 
 <span id="qiskit.circuit.ForLoopOp" />
 
-`ForLoopOp(indexset, loop_parameter, body, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/controlflow/for_loop.py "view source code")
+`ForLoopOp(indexset, loop_parameter, body, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/controlflow/for_loop.py "view source code")
 
 Bases: `qiskit.circuit.controlflow.control_flow.ControlFlowOp`
 

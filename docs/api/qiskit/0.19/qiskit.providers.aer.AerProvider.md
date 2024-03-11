@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.AerProvider
 
 <span id="qiskit.providers.aer.AerProvider" />
 
-`AerProvider(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.5/qiskit/providers/aer/aerprovider.py "view source code")
+`AerProvider(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.5/qiskit/providers/aer/aerprovider.py "view source code")
 
 Provider for Qiskit Aer backends.
 
@@ -20,7 +20,7 @@ Provider for Qiskit Aer backends.
 
 <span id="qiskit.providers.aer.AerProvider.backends" />
 
-`AerProvider.backends(name=None, filters=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.5/qiskit/providers/aer/aerprovider.py "view source code")
+`AerProvider.backends(name=None, filters=None, **kwargs)`
 
 Return a list of backends matching the specified filtering.
 
@@ -43,7 +43,7 @@ list\[[BaseBackend](qiskit.providers.BaseBackend "qiskit.providers.BaseBackend")
 
 <span id="qiskit.providers.aer.AerProvider.get_backend" />
 
-`AerProvider.get_backend(name=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.5/qiskit/providers/aer/aerprovider.py "view source code")
+`AerProvider.get_backend(name=None, **kwargs)`
 
 Return a single backend matching the specified filtering.
 

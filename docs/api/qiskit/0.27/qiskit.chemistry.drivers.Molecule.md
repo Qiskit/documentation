@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.drivers.Molecule
 
 <span id="qiskit.chemistry.drivers.Molecule" />
 
-`Molecule(geometry, multiplicity=1, charge=0, degrees_of_freedom=None, masses=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/molecule.py "view source code")
+`Molecule(geometry, multiplicity=1, charge=0, degrees_of_freedom=None, masses=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/molecule.py "view source code")
 
 Driver-independent Molecule definition.
 

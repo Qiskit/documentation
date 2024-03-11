@@ -12,7 +12,7 @@ python_api_name: qiskit.chemistry.FermionicOperator
 
 <span id="qiskit.chemistry.FermionicOperator" />
 
-`FermionicOperator(h1, h2=None, ph_trans_shift=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/fermionic_operator.py "view source code")
+`FermionicOperator(h1, h2=None, ph_trans_shift=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/fermionic_operator.py "view source code")
 
 A set of functions to map fermionic Hamiltonians to qubit Hamiltonians.
 

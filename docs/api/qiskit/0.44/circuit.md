@@ -1,7 +1,7 @@
 ---
 title: circuit
 description: API reference for qiskit.circuit
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.circuit
 ---
@@ -25,7 +25,7 @@ The fundamental element of quantum computing is the **quantum circuit**. A quant
 In Qiskit, this core element is represented by the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") class. Below is an example of a quantum circuit that makes a three-qubit GHZ state defined as:
 
 $$
-\vert \psi\rangle = \left(\vert 000\rangle+\vert 111\rangle\right)/\sqrt{2}
+|\psi\rangle = \left(|000\rangle+|111\rangle\right)/\sqrt{2}
 $$
 
 ```python
@@ -50,7 +50,7 @@ circ.draw('mpl')
 
 When building a quantum circuit, there can be interest in applying a certain gate only if a classical register has a specific value. This can be done with the [`InstructionSet.c_if()`](qiskit.circuit.InstructionSet#c_if "qiskit.circuit.InstructionSet.c_if") method.
 
-In the following example, we start with a single-qubit circuit formed by only a Hadamard gate ([`HGate`](qiskit.circuit.library.HGate "qiskit.circuit.library.HGate")), in which we expect to get $\vert 0\rangle$ and $\vert 1\rangle$ with equal probability.
+In the following example, we start with a single-qubit circuit formed by only a Hadamard gate ([`HGate`](qiskit.circuit.library.HGate "qiskit.circuit.library.HGate")), in which we expect to get $|0\rangle$ and $|1\rangle$ with equal probability.
 
 ```python
 from qiskit import BasicAer, transpile, QuantumRegister, ClassicalRegister, QuantumCircuit
@@ -77,7 +77,7 @@ print(counts)
 {'0': 524, '1': 500}
 ```
 
-Now, we add an [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.library.XGate") only if the value of the [`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") is 0. That way, if the state is $\vert 0\rangle$, it will be changed to $\vert 1\rangle$ and if the state is $\vert 1\rangle$, it will not be changed at all, so the final state will always be $\vert 1\rangle$.
+Now, we add an [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.library.XGate") only if the value of the [`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") is 0. That way, if the state is $|0\rangle$, it will be changed to $|1\rangle$ and if the state is $|1\rangle$, it will not be changed at all, so the final state will always be $|1\rangle$.
 
 ```python
 from qiskit import BasicAer, transpile, QuantumRegister, ClassicalRegister, QuantumCircuit
@@ -288,7 +288,7 @@ with qc.switch(cr) as case:
 
 <span id="qiskit.circuit.random.random_circuit" />
 
-`qiskit.circuit.random.random_circuit(num_qubits, depth, max_operands=4, measure=False, conditional=False, reset=False, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/random/utils.py "view source code")
+`qiskit.circuit.random.random_circuit(num_qubits, depth, max_operands=4, measure=False, conditional=False, reset=False, seed=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/random/utils.py "view source code")
 
 Generate random circuit of arbitrary size and form.
 
@@ -333,7 +333,7 @@ Almost all circuit functions and methods will raise a [`CircuitError`](#qiskit.c
 
 <span id="qiskit.circuit.CircuitError" />
 
-`qiskit.circuit.CircuitError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/exceptions.py "view source code")
+`qiskit.circuit.CircuitError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/exceptions.py "view source code")
 
 Base class for errors raised while processing a circuit.
 

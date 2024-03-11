@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.evolutions.EvolutionBase
 
 <span id="qiskit.opflow.evolutions.EvolutionBase" />
 
-`EvolutionBase`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/evolutions/evolution_base.py "view source code")
+`EvolutionBase` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/evolutions/evolution_base.py "view source code")
 
 A base for Evolution converters. Evolutions are converters which traverse an Operator tree, replacing any `EvolvedOp` e with a Schrodinger equation-style evolution `CircuitOp` equalling or approximating the matrix exponential of -i \* the Operator contained inside (e.primitive). The Evolutions are essentially implementations of Hamiltonian Simulation algorithms, including various methods for Trotterization.
 

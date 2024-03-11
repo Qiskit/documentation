@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.linear_solvers.LinearSystemMatrix
 
 <span id="qiskit.algorithms.linear_solvers.LinearSystemMatrix" />
 
-`LinearSystemMatrix(num_state_qubits, tolerance, evolution_time, name='ls_matrix')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/linear_solvers/matrices/linear_system_matrix.py "view source code")
+`LinearSystemMatrix(num_state_qubits, tolerance, evolution_time, name='ls_matrix')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/linear_solvers/matrices/linear_system_matrix.py "view source code")
 
 Bases: `qiskit.circuit.library.blueprintcircuit.BlueprintCircuit`, `abc.ABC`
 
@@ -152,11 +152,7 @@ circuit.draw('mpl')
 
 ![../\_images/qiskit-algorithms-linear\_solvers-LinearSystemMatrix-assign\_parameters-1\_00.png](/images/api/qiskit/0.41/qiskit-algorithms-linear_solvers-LinearSystemMatrix-assign_parameters-1_00.png)
 
-Fig. 25 ([`png`](_downloads/cd550726533aad6278ef4e40ce940e1c/qiskit-algorithms-linear_solvers-LinearSystemMatrix-assign_parameters-1_00.png), [`hires.png`](_downloads/39b69d087a394429049b9a9d69990951/qiskit-algorithms-linear_solvers-LinearSystemMatrix-assign_parameters-1_00.hires.png), [`pdf`](_downloads/258369a9f161fbcfa34e6213fdfdd896/qiskit-algorithms-linear_solvers-LinearSystemMatrix-assign_parameters-1_00.pdf))[¶](#id1 "Permalink to this image")
-
 ![../\_images/qiskit-algorithms-linear\_solvers-LinearSystemMatrix-assign\_parameters-1\_01.png](/images/api/qiskit/0.41/qiskit-algorithms-linear_solvers-LinearSystemMatrix-assign_parameters-1_01.png)
-
-Fig. 26 ([`png`](_downloads/4a30002841eb93a693be5938bfb0b0e5/qiskit-algorithms-linear_solvers-LinearSystemMatrix-assign_parameters-1_01.png), [`hires.png`](_downloads/f923a52dee57aba3d011bdc5c2f3c9e7/qiskit-algorithms-linear_solvers-LinearSystemMatrix-assign_parameters-1_01.hires.png), [`pdf`](_downloads/5167b8d610c71df8ab38092760ef7967/qiskit-algorithms-linear_solvers-LinearSystemMatrix-assign_parameters-1_01.pdf))[¶](#id2 "Permalink to this image")
 
 Bind the values out-of-place by list and get a copy of the original circuit.
 
@@ -176,11 +172,7 @@ circuit.draw('mpl')
 
 ![../\_images/qiskit-algorithms-linear\_solvers-LinearSystemMatrix-assign\_parameters-2\_00.png](/images/api/qiskit/0.41/qiskit-algorithms-linear_solvers-LinearSystemMatrix-assign_parameters-2_00.png)
 
-Fig. 27 ([`png`](_downloads/d82ebfbd464692524a3cec301e3448a0/qiskit-algorithms-linear_solvers-LinearSystemMatrix-assign_parameters-2_00.png), [`hires.png`](_downloads/84426e962194124c31fad6d986767537/qiskit-algorithms-linear_solvers-LinearSystemMatrix-assign_parameters-2_00.hires.png), [`pdf`](_downloads/d63d9bf3a1ada6cdd5606b3263cb0c70/qiskit-algorithms-linear_solvers-LinearSystemMatrix-assign_parameters-2_00.pdf))[¶](#id3 "Permalink to this image")
-
 ![../\_images/qiskit-algorithms-linear\_solvers-LinearSystemMatrix-assign\_parameters-2\_01.png](/images/api/qiskit/0.41/qiskit-algorithms-linear_solvers-LinearSystemMatrix-assign_parameters-2_01.png)
-
-Fig. 28 ([`png`](_downloads/1ab0454b7612a39b23db77ed3f413aba/qiskit-algorithms-linear_solvers-LinearSystemMatrix-assign_parameters-2_01.png), [`hires.png`](_downloads/535f1b74876e49d677d52429ea77cdd5/qiskit-algorithms-linear_solvers-LinearSystemMatrix-assign_parameters-2_01.hires.png), [`pdf`](_downloads/dcf041f48c758b3f5cad8855392316ef/qiskit-algorithms-linear_solvers-LinearSystemMatrix-assign_parameters-2_01.pdf))[¶](#id4 "Permalink to this image")
 
 ### barrier
 
@@ -491,7 +483,7 @@ lcr_1: 0 ═══════════                           lcr_1: 0 �
 
 <span id="qiskit.algorithms.linear_solvers.LinearSystemMatrix.condition_bounds" />
 
-`abstract LinearSystemMatrix.condition_bounds()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/linear_solvers/matrices/linear_system_matrix.py "view source code")
+`abstract LinearSystemMatrix.condition_bounds()`
 
 Return lower and upper bounds on the condition number of the matrix.
 
@@ -1142,7 +1134,7 @@ A handle to the instructions created.
 
 <span id="qiskit.algorithms.linear_solvers.LinearSystemMatrix.eigs_bounds" />
 
-`abstract LinearSystemMatrix.eigs_bounds()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/linear_solvers/matrices/linear_system_matrix.py "view source code")
+`abstract LinearSystemMatrix.eigs_bounds()`
 
 Return lower and upper bounds on the eigenvalues of the matrix.
 
@@ -1559,15 +1551,15 @@ A handle to the instruction created.
 
 Initialize qubits in a specific state.
 
-Qubit initialization is done by first resetting the qubits to $\vert 0\rangle$ followed by calling `qiskit.extensions.StatePreparation` class to prepare the qubits in a specified state. Both these steps are included in the [`qiskit.extensions.Initialize`](qiskit.extensions.Initialize "qiskit.extensions.Initialize") instruction.
+Qubit initialization is done by first resetting the qubits to $|0\rangle$ followed by calling `qiskit.extensions.StatePreparation` class to prepare the qubits in a specified state. Both these steps are included in the [`qiskit.extensions.Initialize`](qiskit.extensions.Initialize "qiskit.extensions.Initialize") instruction.
 
 **Parameters**
 
 *   **params** (*str or list or int*) –
 
-    *   str: labels of basis states of the Pauli eigenstates Z, X, Y. See [`Statevector.from_label()`](qiskit.quantum_info.Statevector#from_label "qiskit.quantum_info.Statevector.from_label"). Notice the order of the labels is reversed with respect to the qubit index to be applied to. Example label ‘01’ initializes the qubit zero to $\vert 1\rangle$ and the qubit one to $\vert 0\rangle$.
+    *   str: labels of basis states of the Pauli eigenstates Z, X, Y. See [`Statevector.from_label()`](qiskit.quantum_info.Statevector#from_label "qiskit.quantum_info.Statevector.from_label"). Notice the order of the labels is reversed with respect to the qubit index to be applied to. Example label ‘01’ initializes the qubit zero to $|1\rangle$ and the qubit one to $|0\rangle$.
     *   list: vector of complex amplitudes to initialize to.
-    *   int: an integer that is used as a bitmap indicating which qubits to initialize to $\vert 1\rangle$. Example: setting params to 5 would initialize qubit 0 and qubit 2 to $\vert 1\rangle$ and qubit 1 to $\vert 0\rangle$.
+    *   int: an integer that is used as a bitmap indicating which qubits to initialize to $|1\rangle$. Example: setting params to 5 would initialize qubit 0 and qubit 2 to $|1\rangle$ and qubit 1 to $|0\rangle$.
 
 *   **qubits** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")  *or*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit") *or int*) –
 
@@ -1586,7 +1578,7 @@ a handle to the instruction that was just initialized
 
 **Examples**
 
-Prepare a qubit in the state $(\vert 0\rangle - \vert 1\rangle) / \sqrt{2}$.
+Prepare a qubit in the state $(|0\rangle - |1\rangle) / \sqrt{2}$.
 
 ```python
 import numpy as np
@@ -1605,7 +1597,7 @@ q_0: ┤ Initialize(0.70711,-0.70711) ├
      └──────────────────────────────┘
 ```
 
-Initialize from a string two qubits in the state $\vert 10\rangle$. The order of the labels is reversed with respect to qubit index. More information about labels for basis states are in [`Statevector.from_label()`](qiskit.quantum_info.Statevector#from_label "qiskit.quantum_info.Statevector.from_label").
+Initialize from a string two qubits in the state $|10\rangle$. The order of the labels is reversed with respect to qubit index. More information about labels for basis states are in [`Statevector.from_label()`](qiskit.quantum_info.Statevector#from_label "qiskit.quantum_info.Statevector.from_label").
 
 ```python
 import numpy as np
@@ -2141,7 +2133,7 @@ A handle to the instructions created.
 
 <span id="qiskit.algorithms.linear_solvers.LinearSystemMatrix.power" />
 
-`abstract LinearSystemMatrix.power(power, matrix_power=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/linear_solvers/matrices/linear_system_matrix.py "view source code")
+`abstract LinearSystemMatrix.power(power, matrix_power=False)`
 
 Build powers of the circuit.
 
@@ -2173,9 +2165,9 @@ This class implements a state preparing unitary. Unlike [`qiskit.extensions.Init
 *   **state** (*str or list or int or* [*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")) –
 
     *   Statevector: Statevector to initialize to.
-    *   str: labels of basis states of the Pauli eigenstates Z, X, Y. See [`Statevector.from_label()`](qiskit.quantum_info.Statevector#from_label "qiskit.quantum_info.Statevector.from_label"). Notice the order of the labels is reversed with respect to the qubit index to be applied to. Example label ‘01’ initializes the qubit zero to $\vert 1\rangle$ and the qubit one to $\vert 0\rangle$.
+    *   str: labels of basis states of the Pauli eigenstates Z, X, Y. See [`Statevector.from_label()`](qiskit.quantum_info.Statevector#from_label "qiskit.quantum_info.Statevector.from_label"). Notice the order of the labels is reversed with respect to the qubit index to be applied to. Example label ‘01’ initializes the qubit zero to $|1\rangle$ and the qubit one to $|0\rangle$.
     *   list: vector of complex amplitudes to initialize to.
-    *   int: an integer that is used as a bitmap indicating which qubits to initialize to $\vert 1\rangle$. Example: setting params to 5 would initialize qubit 0 and qubit 2 to $\vert 1\rangle$ and qubit 1 to $\vert 0\rangle$.
+    *   int: an integer that is used as a bitmap indicating which qubits to initialize to $|1\rangle$. Example: setting params to 5 would initialize qubit 0 and qubit 2 to $|1\rangle$ and qubit 1 to $|0\rangle$.
 
 *   **qubits** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")  *or*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit") *or int*) –
 
@@ -2196,7 +2188,7 @@ a handle to the instruction that was just initialized
 
 **Examples**
 
-Prepare a qubit in the state $(\vert 0\rangle - \vert 1\rangle) / \sqrt{2}$.
+Prepare a qubit in the state $(|0\rangle - |1\rangle) / \sqrt{2}$.
 
 ```python
 import numpy as np
@@ -2215,7 +2207,7 @@ q_0: ┤ State Preparation(0.70711,-0.70711) ├
      └─────────────────────────────────────┘
 ```
 
-Prepare from a string two qubits in the state $\vert 10\rangle$. The order of the labels is reversed with respect to qubit index. More information about labels for basis states are in [`Statevector.from_label()`](qiskit.quantum_info.Statevector#from_label "qiskit.quantum_info.Statevector.from_label").
+Prepare from a string two qubits in the state $|10\rangle$. The order of the labels is reversed with respect to qubit index. More information about labels for basis states are in [`Statevector.from_label()`](qiskit.quantum_info.Statevector#from_label "qiskit.quantum_info.Statevector.from_label").
 
 ```python
 import numpy as np
@@ -2617,7 +2609,7 @@ Apply [`RVGate`](qiskit.circuit.library.RVGate "qiskit.circuit.library.RVGate").
 
 For the full matrix form of this gate, see the underlying gate documentation.
 
-Rotation around an arbitrary rotation axis $v$, where $\vert v\vert $ is the angle of rotation in radians.
+Rotation around an arbitrary rotation axis $v$, where $|v|$ is the angle of rotation in radians.
 
 **Parameters**
 
@@ -4101,7 +4093,7 @@ Return number of qubits.
 
 ### num\_state\_qubits
 
-The number of state qubits representing the state $\vert x\rangle$.
+The number of state qubits representing the state $|x\rangle$.
 
 **Return type**
 

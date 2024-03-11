@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.algorithms.pes_samplers.PotentialBase
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.PotentialBase" />
 
-`PotentialBase(molecule)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/potentials/potential_base.py "view source code")
+`PotentialBase(molecule)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/potentials/potential_base.py "view source code")
 
 Class to hold prescribed 1D potentials (e.g. Morse/Harmonic) over a degree of freedom.
 

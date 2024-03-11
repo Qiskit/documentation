@@ -1,7 +1,7 @@
 ---
 title: logging
 description: API reference for qiskit.ignis.logging
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.ignis.logging
 ---
@@ -22,7 +22,7 @@ python_api_name: qiskit.ignis.logging
 | [`IgnisLogging`](qiskit.ignis.logging.IgnisLogging "qiskit.ignis.logging.IgnisLogging")(\[log\_config\_path]) | Singleton class to configure file logging via IgnisLogger |
 | [`IgnisLogReader`](qiskit.ignis.logging.IgnisLogReader "qiskit.ignis.logging.IgnisLogReader")()               | Class to read from Ignis log files                        |
 
-`IgnisLogger(name, level=0)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/logging/ignis_logging.py "view source code")
+`IgnisLogger(name, level=0)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/logging/ignis_logging.py "view source code")
 
 A logger class for Ignis
 

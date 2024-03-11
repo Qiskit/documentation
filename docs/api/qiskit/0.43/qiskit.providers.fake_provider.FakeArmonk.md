@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeArmonk
 
 <span id="qiskit.providers.fake_provider.FakeArmonk" />
 
-`FakeArmonk`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/backends/armonk/fake_armonk.py "view source code")
+`FakeArmonk` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/backends/armonk/fake_armonk.py "view source code")
 
 Bases: `FakePulseBackend`
 

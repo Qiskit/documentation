@@ -10,7 +10,7 @@ python_api_name: qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizatio
 
 <span id="qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizationResult" />
 
-`RecursiveMinimumEigenOptimizationResult(x, fval, variables, status, replacements, history)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/recursive_minimum_eigen_optimizer.py "view source code")
+`RecursiveMinimumEigenOptimizationResult(x, fval, variables, status, replacements, history)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/recursive_minimum_eigen_optimizer.py "view source code")
 
 Bases: `qiskit.optimization.algorithms.optimization_algorithm.OptimizationResult`
 

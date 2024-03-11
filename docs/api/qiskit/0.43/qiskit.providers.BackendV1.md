@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.BackendV1
 
 <span id="qiskit.providers.BackendV1" />
 
-`BackendV1(configuration, provider=None, **fields)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/backend.py "view source code")
+`BackendV1(configuration, provider=None, **fields)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/backend.py "view source code")
 
 Bases: [`Backend`](qiskit.providers.Backend "qiskit.providers.backend.Backend"), `ABC`
 
@@ -62,7 +62,7 @@ default values set
 
 <span id="qiskit.providers.BackendV1.configuration" />
 
-`BackendV1.configuration()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/backend.py "view source code")
+`BackendV1.configuration()`
 
 Return the backend configuration.
 
@@ -80,7 +80,7 @@ the configuration for the backend.
 
 <span id="qiskit.providers.BackendV1.name" />
 
-`BackendV1.name()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/backend.py "view source code")
+`BackendV1.name()`
 
 Return the backend name.
 
@@ -98,7 +98,7 @@ str
 
 <span id="qiskit.providers.BackendV1.properties" />
 
-`BackendV1.properties()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/backend.py "view source code")
+`BackendV1.properties()`
 
 Return the backend properties.
 
@@ -116,7 +116,7 @@ the configuration for the backend. If the backend does not support properties, i
 
 <span id="qiskit.providers.BackendV1.provider" />
 
-`BackendV1.provider()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/backend.py "view source code")
+`BackendV1.provider()`
 
 Return the backend Provider.
 
@@ -134,7 +134,7 @@ the Provider responsible for the backend.
 
 <span id="qiskit.providers.BackendV1.run" />
 
-`abstract BackendV1.run(run_input, **options)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/backend.py "view source code")
+`abstract BackendV1.run(run_input, **options)`
 
 Run on the backend.
 
@@ -159,7 +159,7 @@ The job object for the run
 
 <span id="qiskit.providers.BackendV1.set_options" />
 
-`BackendV1.set_options(**fields)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/backend.py "view source code")
+`BackendV1.set_options(**fields)`
 
 Set the options fields for the backend
 
@@ -179,7 +179,7 @@ This method is used to update the options of a backend. If you need to change an
 
 <span id="qiskit.providers.BackendV1.status" />
 
-`BackendV1.status()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/backend.py "view source code")
+`BackendV1.status()`
 
 Return the backend status.
 

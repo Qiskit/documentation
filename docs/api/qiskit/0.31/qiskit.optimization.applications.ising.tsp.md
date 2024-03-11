@@ -1,3 +1,11 @@
+---
+title: tsp
+description: API reference for qiskit.optimization.applications.ising.tsp
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.optimization.applications.ising.tsp
+---
+
 <span id="qiskit-optimization-applications-ising-tsp" />
 
 # qiskit.optimization.applications.ising.tsp
@@ -21,3 +29,4 @@ Convert symmetric TSP instances into Pauli list Deal with TSPLIB format. It supp
 |                                |                                                     |
 | ------------------------------ | --------------------------------------------------- |
 | `TspData`(name, dim, coord, w) | Create new instance of TspData(name, dim, coord, w) |
+

@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.library.QAOAAnsatz
 
 <span id="qiskit.circuit.library.QAOAAnsatz" />
 
-`qiskit.circuit.library.QAOAAnsatz(cost_operator=None, reps=1, initial_state=None, mixer_operator=None, name='QAOA', flatten=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/n_local/qaoa_ansatz.py "view source code")
+`qiskit.circuit.library.QAOAAnsatz(cost_operator=None, reps=1, initial_state=None, mixer_operator=None, name='QAOA', flatten=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/n_local/qaoa_ansatz.py "view source code")
 
-Bases: [`EvolvedOperatorAnsatz`](qiskit.circuit.library.EvolvedOperatorAnsatz "qiskit.circuit.library.evolved_operator_ansatz.EvolvedOperatorAnsatz")
+Bases: [`EvolvedOperatorAnsatz`](qiskit.circuit.library.EvolvedOperatorAnsatz "qiskit.circuit.library.n_local.evolved_operator_ansatz.EvolvedOperatorAnsatz")
 
 A generalized QAOA quantum circuit with a support of custom initial states and mixers.
 
@@ -24,10 +24,10 @@ A generalized QAOA quantum circuit with a support of custom initial states and m
 
 **Parameters**
 
-*   **cost\_operator** (*BaseOperator or* [*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")*, optional*) – The operator representing the cost of the optimization problem, denoted as $U(C, \gamma)$ in the original paper. Must be set either in the constructor or via property setter.
+*   **cost\_operator** (*BaseOperator or OperatorBase, optional*) – The operator representing the cost of the optimization problem, denoted as $U(C, \gamma)$ in the original paper. Must be set either in the constructor or via property setter.
 *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The integer parameter p, which determines the depth of the circuit, as specified in the original paper, default is 1.
 *   **initial\_state** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*, optional*) – An optional initial state to use. If None is passed then a set of Hadamard gates is applied as an initial state to all qubits.
-*   **mixer\_operator** (*BaseOperator or* [*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*, optional*) – An optional custom mixer to use instead of the global X-rotations, denoted as $U(B, \beta)$ in the original paper. Can be an operator or an optionally parameterized quantum circuit.
+*   **mixer\_operator** (*BaseOperator or OperatorBase or* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*, optional*) – An optional custom mixer to use instead of the global X-rotations, denoted as $U(B, \beta)$ in the original paper. Can be an operator or an optionally parameterized quantum circuit.
 *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – A name of the circuit, default ‘qaoa’
 *   **flatten** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – Set this to `True` to output a flat circuit instead of nesting it inside multiple layers of gate objects. By default currently the contents of the output circuit will be wrapped in nested objects for cleaner visualization. However, if you’re using this circuit for anything besides visualization its **strongly** recommended to set this flag to `True` to avoid a large performance overhead for parameter binding.
 
@@ -65,7 +65,7 @@ cost operator.
 
 **Return type**
 
-BaseOperator or [OperatorBase](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")
+BaseOperator or OperatorBase
 
 <span id="qiskit.circuit.library.QAOAAnsatz.data" />
 
@@ -103,13 +103,7 @@ The evolution converter used to compute the evolution.
 
 **Return type**
 
-[EvolutionBase](qiskit.opflow.evolutions.EvolutionBase "qiskit.opflow.evolutions.EvolutionBase") or [EvolutionSynthesis](qiskit.synthesis.EvolutionSynthesis "qiskit.synthesis.EvolutionSynthesis")
-
-<span id="qiskit.circuit.library.QAOAAnsatz.extension_lib" />
-
-### extension\_lib
-
-`= 'include "qelib1.inc";'`
+[EvolutionSynthesis](qiskit.synthesis.EvolutionSynthesis "qiskit.synthesis.EvolutionSynthesis")
 
 <span id="qiskit.circuit.library.QAOAAnsatz.flatten" />
 
@@ -122,12 +116,6 @@ Returns whether the circuit is wrapped in nested gates/instructions or flattened
 ### global\_phase
 
 Return the global phase of the current circuit scope in radians.
-
-<span id="qiskit.circuit.library.QAOAAnsatz.header" />
-
-### header
-
-`= 'OPENQASM 2.0;'`
 
 <span id="qiskit.circuit.library.QAOAAnsatz.initial_state" />
 
@@ -149,7 +137,7 @@ If barriers are inserted in between the layers or not.
 
 ### instances
 
-`= 310`
+`= 266`
 
 <span id="qiskit.circuit.library.QAOAAnsatz.layout" />
 
@@ -181,7 +169,7 @@ mixer operator or circuit.
 
 **Return type**
 
-BaseOperator or [OperatorBase](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase") or [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), optional
+BaseOperator or OperatorBase or [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), optional
 
 <span id="qiskit.circuit.library.QAOAAnsatz.num_ancillas" />
 
@@ -259,7 +247,7 @@ The operators that are evolved in this circuit.
 
 **Return type**
 
-List\[Union\[BaseOperator, [OperatorBase](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase"), [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")]]
+List\[Union\[BaseOperator, OperatorBase, [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")]]
 
 <span id="qiskit.circuit.library.QAOAAnsatz.ordered_parameters" />
 

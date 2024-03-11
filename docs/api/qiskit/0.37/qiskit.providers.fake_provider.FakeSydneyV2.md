@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeSydneyV2
 
 <span id="qiskit.providers.fake_provider.FakeSydneyV2" />
 
-`FakeSydneyV2`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/fake_provider/backends/sydney/fake_sydney.py "view source code")
+`FakeSydneyV2` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/fake_provider/backends/sydney/fake_sydney.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_backend.FakeBackendV2`
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.DriveChannel
 
 <span id="qiskit.pulse.DriveChannel" />
 
-`DriveChannel(index)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/channels.py "view source code")
+`DriveChannel(index)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/channels.py "view source code")
 
 Drive channels transmit signals to qubits which enact gate operations.
 

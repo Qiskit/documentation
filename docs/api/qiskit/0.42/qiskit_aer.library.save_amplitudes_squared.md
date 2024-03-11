@@ -10,7 +10,7 @@ python_api_name: qiskit_aer.library.save_amplitudes_squared
 
 <span id="qiskit_aer.library.save_amplitudes_squared" />
 
-`save_amplitudes_squared(self, params, label='amplitudes_squared', unnormalized=False, pershot=False, conditional=False)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/library/save_instructions/save_amplitudes.py "view source code")
+`save_amplitudes_squared(self, params, label='amplitudes_squared', unnormalized=False, pershot=False, conditional=False)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/library/save_instructions/save_amplitudes.py "view source code")
 
 Save squared statevector amplitudes (probabilities).
 

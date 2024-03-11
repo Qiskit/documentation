@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.P_BFGS
 
 <span id="qiskit.algorithms.optimizers.P_BFGS" />
 
-`P_BFGS(maxfun=1000, factr=10, iprint=- 1, max_processes=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/optimizers/p_bfgs.py "view source code")
+`P_BFGS(maxfun=1000, factr=10, iprint=- 1, max_processes=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/optimizers/p_bfgs.py "view source code")
 
 Parallelized Limited-memory BFGS optimizer.
 

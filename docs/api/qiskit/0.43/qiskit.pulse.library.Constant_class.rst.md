@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.library.Constant
 
 <span id="qiskit.pulse.library.Constant" />
 
-`Constant(duration, amp, angle=None, name=None, limit_amplitude=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/library/symbolic_pulses.py "view source code")
+`Constant(duration, amp, angle=None, name=None, limit_amplitude=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/library/symbolic_pulses.py "view source code")
 
 Bases: `object`
 

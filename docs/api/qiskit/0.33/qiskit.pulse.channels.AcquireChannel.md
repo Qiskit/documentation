@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.channels.AcquireChannel
 
 <span id="qiskit.pulse.channels.AcquireChannel" />
 
-`AcquireChannel(index)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/pulse/channels.py "view source code")
+`AcquireChannel(index)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/pulse/channels.py "view source code")
 
 Bases: [`qiskit.pulse.channels.Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.RemoveBarriers
 
 <span id="qiskit.transpiler.passes.RemoveBarriers" />
 
-`qiskit.transpiler.passes.RemoveBarriers(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/passes/utils/remove_barriers.py "view source code")
+`qiskit.transpiler.passes.RemoveBarriers(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/utils/remove_barriers.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 

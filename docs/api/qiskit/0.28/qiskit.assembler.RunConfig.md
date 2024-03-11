@@ -10,7 +10,7 @@ python_api_name: qiskit.assembler.RunConfig
 
 <span id="qiskit.assembler.RunConfig" />
 
-`RunConfig(shots=None, max_credits=None, seed_simulator=None, memory=None, parameter_binds=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/assembler/run_config.py "view source code")
+`RunConfig(shots=None, max_credits=None, seed_simulator=None, memory=None, parameter_binds=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/assembler/run_config.py "view source code")
 
 Class for Run Configuration.
 

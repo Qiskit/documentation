@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.AncillaRegister
 
 <span id="qiskit.circuit.AncillaRegister" />
 
-`AncillaRegister(size, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/quantumregister.py "view source code")
+`AncillaRegister(size, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/quantumregister.py "view source code")
 
 Implement an ancilla register.
 

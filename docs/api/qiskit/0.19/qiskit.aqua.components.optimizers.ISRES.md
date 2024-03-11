@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.optimizers.ISRES
 
 <span id="qiskit.aqua.components.optimizers.ISRES" />
 
-`ISRES(max_evals=1000)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/nlopts/isres.py "view source code")
+`ISRES(max_evals=1000)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/nlopts/isres.py "view source code")
 
 Improved Stochastic Ranking Evolution Strategy optimizer.
 
@@ -86,7 +86,7 @@ Return setting
 
 <span id="qiskit.aqua.components.optimizers.ISRES.get_nlopt_optimizer" />
 
-`ISRES.get_nlopt_optimizer()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/nlopts/isres.py "view source code")
+`ISRES.get_nlopt_optimizer()`
 
 Return NLopt optimizer type
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.builder.set_frequency
 
 <span id="qiskit.pulse.builder.set_frequency" />
 
-`set_frequency(frequency, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/builder.py "view source code")
+`set_frequency(frequency, channel, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/builder.py "view source code")
 
 Set the `frequency` of a pulse `channel`.
 
@@ -28,6 +28,6 @@ with pulse.build() as pulse_prog:
 **Parameters**
 
 *   **frequency** (`float`) – Frequency in Hz to set channel to.
-*   **channel** ([`PulseChannel`](qiskit.pulse.channels#qiskit.pulse.channels.PulseChannel "qiskit.pulse.channels.PulseChannel")) – Channel to set frequency of.
+*   **channel** ([`PulseChannel`](qiskit.pulse.channels#pulsechannel "qiskit.pulse.channels.PulseChannel")) – Channel to set frequency of.
 *   **name** (`Optional`\[`str`]) – Name of the instruction.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.GRZ
 
 <span id="qiskit.circuit.library.GRZ" />
 
-`qiskit.circuit.library.GRZ(num_qubits, phi)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/generalized_gates/gr.py "view source code")
+`qiskit.circuit.library.GRZ(num_qubits, phi)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/generalized_gates/gr.py "view source code")
 
 Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.SabreLayout
 
 <span id="qiskit.transpiler.passes.SabreLayout" />
 
-`SabreLayout(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/layout/sabre_layout.py "view source code")
+`SabreLayout(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/layout/sabre_layout.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -63,7 +63,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.SabreLayout.run" />
 
-`SabreLayout.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/layout/sabre_layout.py "view source code")
+`SabreLayout.run(dag)`
 
 Run the SabreLayout pass on dag.
 

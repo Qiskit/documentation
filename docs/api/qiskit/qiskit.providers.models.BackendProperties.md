@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.models.BackendProperties
 
 <span id="qiskit.providers.models.BackendProperties" />
 
-`qiskit.providers.models.BackendProperties(backend_name, backend_version, last_update_date, qubits, gates, general, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/providers/models/backendproperties.py "view source code")
+`qiskit.providers.models.BackendProperties(backend_name, backend_version, last_update_date, qubits, gates, general, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/providers/models/backendproperties.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
@@ -154,7 +154,7 @@ Gate property as a tuple of the value and the time it was measured.
 
 **Return type**
 
-[*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [*datetime*](https://docs.python.org/3/library/datetime.html#datetime.datetime "(in Python v3.12)")]
+[*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.12)")\[[*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.12)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)"), …], [*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.12)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)"), [*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [*datetime*](https://docs.python.org/3/library/datetime.html#datetime.datetime "(in Python v3.12)")]]] | [*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.12)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)"), [*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [*datetime*](https://docs.python.org/3/library/datetime.html#datetime.datetime "(in Python v3.12)")]] | [*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [*datetime*](https://docs.python.org/3/library/datetime.html#datetime.datetime "(in Python v3.12)")]
 
 ### is\_gate\_operational
 
@@ -220,7 +220,7 @@ Qubit property as a tuple of the value and the time it was measured.
 
 **Return type**
 
-[*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [*datetime*](https://docs.python.org/3/library/datetime.html#datetime.datetime "(in Python v3.12)")]
+[*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.12)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)"), [*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [*datetime*](https://docs.python.org/3/library/datetime.html#datetime.datetime "(in Python v3.12)")]] | [*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [*datetime*](https://docs.python.org/3/library/datetime.html#datetime.datetime "(in Python v3.12)")]
 
 ### readout\_error
 

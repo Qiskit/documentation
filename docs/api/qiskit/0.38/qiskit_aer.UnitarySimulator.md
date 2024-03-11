@@ -10,7 +10,7 @@ python_api_name: qiskit_aer.UnitarySimulator
 
 <span id="qiskit_aer.UnitarySimulator" />
 
-`UnitarySimulator(configuration=None, properties=None, provider=None, **backend_options)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/backends/unitary_simulator.py "view source code")
+`UnitarySimulator(configuration=None, properties=None, provider=None, **backend_options)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/backends/unitary_simulator.py "view source code")
 
 Bases: `qiskit_aer.backends.aerbackend.AerBackend`
 
@@ -75,7 +75,7 @@ This method should initialize the module and its configuration, and raise an exc
 
 <span id="qiskit_aer.UnitarySimulator.available_devices" />
 
-`UnitarySimulator.available_devices()`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/backends/unitary_simulator.py "view source code")
+`UnitarySimulator.available_devices()`
 
 Return the available simulation methods.
 
@@ -83,7 +83,7 @@ Return the available simulation methods.
 
 <span id="qiskit_aer.UnitarySimulator.available_methods" />
 
-`UnitarySimulator.available_methods()`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/backends/unitary_simulator.py "view source code")
+`UnitarySimulator.available_methods()`
 
 Return the available simulation methods.
 
@@ -229,7 +229,7 @@ The simulation job.
 
 <span id="qiskit_aer.UnitarySimulator.set_option" />
 
-`UnitarySimulator.set_option(key, value)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/backends/unitary_simulator.py "view source code")
+`UnitarySimulator.set_option(key, value)`
 
 Special handling for setting backend options.
 

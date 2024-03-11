@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase" />
 
-`EnergySurfaceBase`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/potentials/potential_base.py "view source code")
+`EnergySurfaceBase` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/potentials/potential_base.py "view source code")
 
 Bases: `abc.ABC`
 
@@ -22,7 +22,7 @@ Class to hold a potential energy surface
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.eval" />
 
-`abstract EnergySurfaceBase.eval(x)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/potentials/potential_base.py "view source code")
+`abstract EnergySurfaceBase.eval(x)`
 
 After fitting the data to the fit function, predict the energy at a point x.
 
@@ -42,7 +42,7 @@ value of surface in point x
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.fit" />
 
-`abstract EnergySurfaceBase.fit(xdata, ydata, initial_vals=None, bounds_list=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/potentials/potential_base.py "view source code")
+`abstract EnergySurfaceBase.fit(xdata, ydata, initial_vals=None, bounds_list=None)`
 
 Fits surface to data
 
@@ -61,7 +61,7 @@ Fits surface to data
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.get_equilibrium_geometry" />
 
-`abstract EnergySurfaceBase.get_equilibrium_geometry(scaling=1.0)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/potentials/potential_base.py "view source code")
+`abstract EnergySurfaceBase.get_equilibrium_geometry(scaling=1.0)`
 
 Get the equilibrium energy.
 
@@ -83,7 +83,7 @@ equilibrium geometry
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.get_minimal_energy" />
 
-`abstract EnergySurfaceBase.get_minimal_energy(scaling=1.0)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/potentials/potential_base.py "view source code")
+`abstract EnergySurfaceBase.get_minimal_energy(scaling=1.0)`
 
 Get the minimal energy.
 
@@ -105,7 +105,7 @@ minimum energy
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.get_trust_region" />
 
-`abstract EnergySurfaceBase.get_trust_region()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/potentials/potential_base.py "view source code")
+`abstract EnergySurfaceBase.get_trust_region()`
 
 Get the trust region.
 

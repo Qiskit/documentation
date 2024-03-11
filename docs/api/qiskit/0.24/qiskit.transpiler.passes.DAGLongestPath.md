@@ -12,7 +12,7 @@ python_api_name: qiskit.transpiler.passes.DAGLongestPath
 
 <span id="qiskit.transpiler.passes.DAGLongestPath" />
 
-`DAGLongestPath(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/transpiler/passes/analysis/dag_longest_path.py "view source code")
+`DAGLongestPath(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/transpiler/passes/analysis/dag_longest_path.py "view source code")
 
 Return the longest path in a DAGcircuit as a list of DAGNodes.
 

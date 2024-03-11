@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.PadDynamicalDecoupling
 
 <span id="qiskit.transpiler.passes.PadDynamicalDecoupling" />
 
-`qiskit.transpiler.passes.PadDynamicalDecoupling(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/passes/scheduling/padding/dynamical_decoupling.py "view source code")
+`qiskit.transpiler.passes.PadDynamicalDecoupling(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/scheduling/padding/dynamical_decoupling.py "view source code")
 
 Bases: `BasePadding`
 
@@ -98,7 +98,7 @@ Dynamical decoupling initializer.
     > *   ”middle”: Put the extra slack to the interval at the middle of the sequence.
     > *   ”edges”: Divide the extra slack as evenly as possible into intervals at beginning and end of the sequence.
 
-*   **target** – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") representing the target backend, if both `durations` and this are specified then this argument will take precedence and `durations` will be ignored.
+*   **target** – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") representing the target backend. Target takes precedence over other arguments when they can be inferred from target. Therefore specifying target as well as other arguments like `durations` or `pulse_alignment` will cause those other arguments to be ignored.
 
 **Raises**
 

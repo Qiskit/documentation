@@ -10,7 +10,7 @@ python_api_name: qiskit.qobj.QobjHeader
 
 <span id="qiskit.qobj.QobjHeader" />
 
-`qiskit.qobj.QobjHeader(**kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/qobj/common.py "view source code")
+`qiskit.qobj.QobjHeader(**kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/qobj/common.py "view source code")
 
 Bases: `QobjDictField`
 

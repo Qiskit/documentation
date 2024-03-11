@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.verification.RBFitter
 
 <span id="qiskit.ignis.verification.RBFitter" />
 
-`RBFitter(backend_result, cliff_lengths, rb_pattern=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/randomized_benchmarking/fitters.py "view source code")
+`RBFitter(backend_result, cliff_lengths, rb_pattern=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/randomized_benchmarking/fitters.py "view source code")
 
 Class for fitters for randomized benchmarking.
 

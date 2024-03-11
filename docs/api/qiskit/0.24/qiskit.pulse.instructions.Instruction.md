@@ -12,7 +12,7 @@ python_api_name: qiskit.pulse.instructions.Instruction
 
 <span id="qiskit.pulse.instructions.Instruction" />
 
-`Instruction(operands, duration, channels, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/instructions/instruction.py "view source code")
+`Instruction(operands, duration, channels, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/instructions/instruction.py "view source code")
 
 The smallest schedulable unit: a single instruction. It has a fixed duration and specified channels.
 

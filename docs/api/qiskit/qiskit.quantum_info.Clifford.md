@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.Clifford
 
 <span id="qiskit.quantum_info.Clifford" />
 
-`qiskit.quantum_info.Clifford(data, validate=True, copy=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/quantum_info/operators/symplectic/clifford.py "view source code")
+`qiskit.quantum_info.Clifford(data, validate=True, copy=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/quantum_info/operators/symplectic/clifford.py "view source code")
 
 Bases: `BaseOperator`, `AdjointMixin`, [`Operation`](qiskit.circuit.Operation "qiskit.circuit.operation.Operation")
 

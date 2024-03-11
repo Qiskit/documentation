@@ -10,15 +10,15 @@ python_api_name: qiskit.algorithms.gradients.QFI
 
 <span id="qiskit.algorithms.gradients.QFI" />
 
-`QFI(qgt, options=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/gradients/qfi.py "view source code")
+`QFI(qgt, options=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/gradients/qfi.py "view source code")
 
 Bases: `ABC`
 
 Computes the Quantum Fisher Information (QFI) given a pure, parameterized quantum state. QFI is defined as:
 
 $$
-\mathrm{QFI}_{ij}= 4 \mathrm{Re}[\langle \partial_i \psi \vert  \partial_j \psi \rangle
-- \langle\partial_i \psi \vert  \psi \rangle \langle\psi \vert  \partial_j \psi \rangle].
+\mathrm{QFI}_{ij}= 4 \mathrm{Re}[\langle \partial_i \psi | \partial_j \psi \rangle
+- \langle\partial_i \psi | \psi \rangle \langle\psi | \partial_j \psi \rangle].
 $$
 
 **Parameters**
@@ -34,7 +34,7 @@ $$
 
 <span id="qiskit.algorithms.gradients.QFI.run" />
 
-`QFI.run(circuits, parameter_values, parameters=None, **options)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/gradients/qfi.py "view source code")
+`QFI.run(circuits, parameter_values, parameters=None, **options)`
 
 Run the job of the QFIs on the given circuits.
 
@@ -59,7 +59,7 @@ The job object of the QFIs of the expectation values. The i-th result correspond
 
 <span id="qiskit.algorithms.gradients.QFI.update_default_options" />
 
-`QFI.update_default_options(**options)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/gradients/qfi.py "view source code")
+`QFI.update_default_options(**options)`
 
 Update the gradient’s default options setting.
 

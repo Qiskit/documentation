@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.DynamicalDecoupling
 
 <span id="qiskit.transpiler.passes.DynamicalDecoupling" />
 
-`DynamicalDecoupling(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/scheduling/dynamical_decoupling.py "view source code")
+`DynamicalDecoupling(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/scheduling/dynamical_decoupling.py "view source code")
 
 Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -68,11 +68,7 @@ timeline_drawer(circ_dd)
 
 ![../\_images/qiskit-transpiler-passes-DynamicalDecoupling-1\_00.png](/images/api/qiskit/0.42/qiskit-transpiler-passes-DynamicalDecoupling-1_00.png)
 
-Fig. 23 ([`png`](_downloads/dc45751fb822be8815f217a267bae356/qiskit-transpiler-passes-DynamicalDecoupling-1_00.png), [`hires.png`](_downloads/16422e7545ee14003706693459de64e2/qiskit-transpiler-passes-DynamicalDecoupling-1_00.hires.png), [`pdf`](_downloads/e872644fa4d73ec0d7933d354c8b5059/qiskit-transpiler-passes-DynamicalDecoupling-1_00.pdf))[¶](#id1 "Permalink to this image")
-
 ![../\_images/qiskit-transpiler-passes-DynamicalDecoupling-1\_01.png](/images/api/qiskit/0.42/qiskit-transpiler-passes-DynamicalDecoupling-1_01.png)
-
-Fig. 24 ([`png`](_downloads/53fd5fc6bb784c9ab811978842d9b3d1/qiskit-transpiler-passes-DynamicalDecoupling-1_01.png), [`hires.png`](_downloads/26516316e2c0c58fddd6ab262df0a289/qiskit-transpiler-passes-DynamicalDecoupling-1_01.hires.png), [`pdf`](_downloads/de66a83309cd3c854ee1dc534a5d465d/qiskit-transpiler-passes-DynamicalDecoupling-1_01.pdf))[¶](#id2 "Permalink to this image")
 
 Dynamical decoupling initializer.
 
@@ -98,7 +94,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.DynamicalDecoupling.run" />
 
-`DynamicalDecoupling.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/scheduling/dynamical_decoupling.py "view source code")
+`DynamicalDecoupling.run(dag)`
 
 Run the DynamicalDecoupling pass on dag.
 

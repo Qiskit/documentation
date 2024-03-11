@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.InstructionProperties
 
 <span id="qiskit.transpiler.InstructionProperties" />
 
-`InstructionProperties(duration=None, error=None, calibration=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/target.py "view source code")
+`InstructionProperties(duration=None, error=None, calibration=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/target.py "view source code")
 
 Bases: `object`
 

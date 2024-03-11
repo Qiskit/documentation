@@ -1,7 +1,7 @@
 ---
 title: primitives
 description: API reference for qiskit.primitives
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.primitives
 ---
@@ -33,7 +33,7 @@ An estimator is initialized with an empty parameter set. The estimator is used t
 The method returns a [`JobV1`](qiskit.providers.JobV1 "qiskit.providers.JobV1") object, calling [`qiskit.providers.JobV1.result()`](qiskit.providers.JobV1#result "qiskit.providers.JobV1.result") yields the a list of expectation values plus optional metadata like confidence intervals for the estimation.
 
 $$
-\langle\psi_i(\theta_k)\vert H_j\vert \psi_i(\theta_k)\rangle
+\langle\psi_i(\theta_k)|H_j|\psi_i(\theta_k)\rangle
 $$
 
 Here is an example of how the estimator is used.

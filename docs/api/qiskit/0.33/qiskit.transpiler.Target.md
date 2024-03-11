@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.Target
 
 <span id="qiskit.transpiler.Target" />
 
-`Target(description=None, num_qubits=0, dt=None, granularity=1, min_length=1, pulse_alignment=1, aquire_alignment=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/target.py "view source code")
+`Target(description=None, num_qubits=0, dt=None, granularity=1, min_length=1, pulse_alignment=1, aquire_alignment=1)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/target.py "view source code")
 
 Bases: `collections.abc.Mapping`
 
@@ -88,7 +88,7 @@ Create a new Target object
 
 <span id="qiskit.transpiler.Target.add_instruction" />
 
-`Target.add_instruction(instruction, properties=None, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/target.py "view source code")
+`Target.add_instruction(instruction, properties=None, name=None)`
 
 Add a new instruction to the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target")
 
@@ -128,7 +128,7 @@ Will add a [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGa
 
 <span id="qiskit.transpiler.Target.build_coupling_map" />
 
-`Target.build_coupling_map(two_q_gate=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/target.py "view source code")
+`Target.build_coupling_map(two_q_gate=None)`
 
 Get a [`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") from this target.
 
@@ -155,7 +155,7 @@ for this target.
 
 <span id="qiskit.transpiler.Target.durations" />
 
-`Target.durations()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/target.py "view source code")
+`Target.durations()`
 
 Get an InstructionDurations object from the target
 
@@ -179,7 +179,7 @@ target
 
 <span id="qiskit.transpiler.Target.get_non_global_operation_names" />
 
-`Target.get_non_global_operation_names(strict_direction=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/target.py "view source code")
+`Target.get_non_global_operation_names(strict_direction=False)`
 
 Return the non-global operation names for the target
 
@@ -201,7 +201,7 @@ List\[str]
 
 <span id="qiskit.transpiler.Target.instruction_properties" />
 
-`Target.instruction_properties(index)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/target.py "view source code")
+`Target.instruction_properties(index)`
 
 Get the instruction properties for a specific instruction tuple
 
@@ -241,7 +241,7 @@ The instruction properties for the specified instruction tuple
 
 <span id="qiskit.transpiler.Target.instruction_schedule_map" />
 
-`Target.instruction_schedule_map()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/target.py "view source code")
+`Target.instruction_schedule_map()`
 
 Return an [`InstructionScheduleMap`](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap") for the instructions in the target with a pulse schedule defined.
 
@@ -257,19 +257,19 @@ The instruction schedule map for the instructions in this target with a pulse sc
 
 <span id="qiskit.transpiler.Target.items" />
 
-`Target.items() → a set-like object providing a view on D’s items`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/target.py "view source code")
+`Target.items() → a set-like object providing a view on D’s items`
 
 ### keys
 
 <span id="qiskit.transpiler.Target.keys" />
 
-`Target.keys() → a set-like object providing a view on D’s keys`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/target.py "view source code")
+`Target.keys() → a set-like object providing a view on D’s keys`
 
 ### operation\_from\_name
 
 <span id="qiskit.transpiler.Target.operation_from_name" />
 
-`Target.operation_from_name(instruction)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/target.py "view source code")
+`Target.operation_from_name(instruction)`
 
 Get the operation class object for a given name
 
@@ -289,7 +289,7 @@ The Instruction instance corresponding to the name
 
 <span id="qiskit.transpiler.Target.operations_for_qargs" />
 
-`Target.operations_for_qargs(qargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/target.py "view source code")
+`Target.operations_for_qargs(qargs)`
 
 Get the operation class object for a specified qarg
 
@@ -313,7 +313,7 @@ list
 
 <span id="qiskit.transpiler.Target.qargs_for_operation_name" />
 
-`Target.qargs_for_operation_name(operation)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/target.py "view source code")
+`Target.qargs_for_operation_name(operation)`
 
 Get the qargs for a given operation name
 
@@ -333,7 +333,7 @@ set
 
 <span id="qiskit.transpiler.Target.timing_constraints" />
 
-`Target.timing_constraints()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/target.py "view source code")
+`Target.timing_constraints()`
 
 Get an `TimingConstraints` object from the target
 
@@ -349,7 +349,7 @@ TimingConstraints
 
 <span id="qiskit.transpiler.Target.update_from_instruction_schedule_map" />
 
-`Target.update_from_instruction_schedule_map(inst_map, inst_name_map=None, error_dict=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/target.py "view source code")
+`Target.update_from_instruction_schedule_map(inst_map, inst_name_map=None, error_dict=None)`
 
 Update the target from an instruction schedule map.
 
@@ -388,7 +388,7 @@ If the input instruction schedule map contains new instructions not in the targe
 
 <span id="qiskit.transpiler.Target.update_instruction_properties" />
 
-`Target.update_instruction_properties(instruction, qargs, properties)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/target.py "view source code")
+`Target.update_instruction_properties(instruction, qargs, properties)`
 
 Update the property object for an instruction qarg pair already in the Target
 
@@ -406,7 +406,7 @@ Update the property object for an instruction qarg pair already in the Target
 
 <span id="qiskit.transpiler.Target.values" />
 
-`Target.values() → an object providing a view on D’s values`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/target.py "view source code")
+`Target.values() → an object providing a view on D’s values`
 
 ## Attributes
 

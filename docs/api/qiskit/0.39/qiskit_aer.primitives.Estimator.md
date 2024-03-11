@@ -10,7 +10,7 @@ python_api_name: qiskit_aer.primitives.Estimator
 
 <span id="qiskit_aer.primitives.Estimator" />
 
-`Estimator(circuits: Iterable[QuantumCircuit] | QuantumCircuit | None = None, observables: Iterable[SparsePauliOp] | SparsePauliOp | None = None, parameters: Iterable[Iterable[Parameter]] | None = None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/primitives/estimator.py "view source code")
+`Estimator(circuits: Iterable[QuantumCircuit] | QuantumCircuit | None = None, observables: Iterable[SparsePauliOp] | SparsePauliOp | None = None, parameters: Iterable[Iterable[Parameter]] | None = None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/primitives/estimator.py "view source code")
 
 Bases: [`qiskit.primitives.base.base_estimator.BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.base.base_estimator.BaseEstimator")
 
@@ -49,7 +49,7 @@ Aer implmentation of Estimator.
 
 <span id="qiskit_aer.primitives.Estimator.close" />
 
-`Estimator.close()`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/primitives/estimator.py "view source code")
+`Estimator.close()`
 
 Close the session and free resources
 

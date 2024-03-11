@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.preset_passmanagers.common.generate_embed_pas
 
 <span id="qiskit.transpiler.preset_passmanagers.common.generate_embed_passmanager" />
 
-`generate_embed_passmanager(coupling_map)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/preset_passmanagers/common.py "view source code")
+`generate_embed_passmanager(coupling_map)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/preset_passmanagers/common.py "view source code")
 
 Generate a layout embedding [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")
 

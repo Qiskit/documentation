@@ -12,7 +12,7 @@ python_api_name: qiskit.synthesis.synth_cz_depth_line_mr
 
 <span id="qiskit.synthesis.synth_cz_depth_line_mr" />
 
-`synth_cz_depth_line_mr(mat)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/synthesis/linear_phase/cz_depth_lnn.py "view source code")
+`synth_cz_depth_line_mr(mat)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/synthesis/linear_phase/cz_depth_lnn.py "view source code")
 
 Synthesis of a CZ circuit for linear nearest neighbour (LNN) connectivity, based on Maslov and Roetteler.
 

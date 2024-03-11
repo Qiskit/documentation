@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.circuits.LinearRotation
 
 <span id="qiskit.aqua.circuits.LinearRotation" />
 
-`LinearRotation(slope, offset, num_state_qubits, basis='Y', i_state=None, i_target=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/circuits/linear_rotation.py "view source code")
+`LinearRotation(slope, offset, num_state_qubits, basis='Y', i_state=None, i_target=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/circuits/linear_rotation.py "view source code")
 
 *DEPRECATED.* Linearly-controlled X, Y or Z rotation.
 
@@ -47,7 +47,7 @@ Returns the number of target qubits
 
 <span id="qiskit.aqua.circuits.LinearRotation.build" />
 
-`LinearRotation.build(qc, q, q_ancillas=None, params=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/circuits/linear_rotation.py "view source code")
+`LinearRotation.build(qc, q, q_ancillas=None, params=None)`
 
 Adds corresponding sub-circuit to given circuit
 

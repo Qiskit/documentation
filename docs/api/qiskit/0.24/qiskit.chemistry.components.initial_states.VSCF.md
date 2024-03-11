@@ -12,7 +12,7 @@ python_api_name: qiskit.chemistry.components.initial_states.VSCF
 
 <span id="qiskit.chemistry.components.initial_states.VSCF" />
 
-`VSCF(basis)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/components/initial_states/vscf.py "view source code")
+`VSCF(basis)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/components/initial_states/vscf.py "view source code")
 
 Initial state for vibrational modes.
 

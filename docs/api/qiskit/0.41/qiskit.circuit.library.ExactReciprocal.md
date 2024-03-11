@@ -10,21 +10,21 @@ python_api_name: qiskit.circuit.library.ExactReciprocal
 
 <span id="qiskit.circuit.library.ExactReciprocal" />
 
-`ExactReciprocal(num_state_qubits, scaling, neg_vals=False, name='1/x')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/arithmetic/exact_reciprocal.py "view source code")
+`ExactReciprocal(num_state_qubits, scaling, neg_vals=False, name='1/x')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/arithmetic/exact_reciprocal.py "view source code")
 
 Bases: [`qiskit.circuit.quantumcircuit.QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
 Exact reciprocal
 
 $$
-\vert x\rangle \vert 0\rangle \mapsto \cos(1/x)\vert x\rangle\vert 0\rangle + \sin(1/x)\vert x\rangle \vert 1\rangle
+|x\rangle |0\rangle \mapsto \cos(1/x)|x\rangle|0\rangle + \sin(1/x)|x\rangle |1\rangle
 $$
 
 **Parameters**
 
 *   **num\_state\_qubits** (`int`) – The number of qubits representing the value to invert.
 *   **scaling** (`float`) – Scaling factor $s$ of the reciprocal function, i.e. to compute $s / x$.
-*   **neg\_vals** (`bool`) – Whether $x$ might represent negative values. In this case the first qubit is the sign, with $\vert 1\rangle$ for negative and $\vert 0\rangle$ for positive. For the negative case it is assumed that the remaining string represents $1 - x$. This is because $e^{-2 \pi i x} = e^{2 \pi i (1 - x)}$ for $x \in [0,1)$.
+*   **neg\_vals** (`bool`) – Whether $x$ might represent negative values. In this case the first qubit is the sign, with $|1\rangle$ for negative and $|0\rangle$ for positive. For the negative case it is assumed that the remaining string represents $1 - x$. This is because $e^{-2 \pi i x} = e^{2 \pi i (1 - x)}$ for $x \in [0,1)$.
 *   **name** (`str`) – The name of the object.
 
 <Admonition title="Note" type="note">

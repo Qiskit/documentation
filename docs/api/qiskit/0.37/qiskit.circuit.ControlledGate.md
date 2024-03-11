@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.ControlledGate
 
 <span id="qiskit.circuit.ControlledGate" />
 
-`ControlledGate(name, num_qubits, params, label=None, num_ctrl_qubits=1, definition=None, ctrl_state=None, base_gate=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/controlledgate.py "view source code")
+`ControlledGate(name, num_qubits, params, label=None, num_ctrl_qubits=1, definition=None, ctrl_state=None, base_gate=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/controlledgate.py "view source code")
 
 Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -224,7 +224,7 @@ updated if it was provided
 
 <span id="qiskit.circuit.ControlledGate.inverse" />
 
-`ControlledGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/controlledgate.py "view source code")
+`ControlledGate.inverse()`
 
 Invert this gate by calling inverse on the base gate.
 

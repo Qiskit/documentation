@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_provider.transpiler.passes.scheduling.BlockBasePadde
 
 <span id="qiskit_ibm_provider.transpiler.passes.scheduling.BlockBasePadder" />
 
-`BlockBasePadder(schedule_idle_qubits=False)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/transpiler/passes/scheduling/block_base_padder.py "view source code")
+`BlockBasePadder(schedule_idle_qubits=False)` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/transpiler/passes/scheduling/block_base_padder.py#L38-L641 "view source code")
 
 The base class of padding pass.
 
@@ -27,7 +27,7 @@ Any manipulation violating these constraints may prevent this base pass from cor
 
 ## Attributes
 
-<span id="blockbasepadder-is-analysis-pass" />
+<span id="qiskit_ibm_provider.transpiler.passes.scheduling.BlockBasePadder.is_analysis_pass" />
 
 ### is\_analysis\_pass
 
@@ -35,7 +35,7 @@ Check if the pass is an analysis pass.
 
 If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
 
-<span id="blockbasepadder-is-transformation-pass" />
+<span id="qiskit_ibm_provider.transpiler.passes.scheduling.BlockBasePadder.is_transformation_pass" />
 
 ### is\_transformation\_pass
 
@@ -45,13 +45,11 @@ If the pass is a TransformationPass, that means that the pass can manipulate the
 
 ## Methods
 
-<span id="blockbasepadder-call" />
-
 ### \_\_call\_\_
 
 <span id="qiskit_ibm_provider.transpiler.passes.scheduling.BlockBasePadder.__call__" />
 
-`BlockBasePadder.__call__(circuit, property_set=None)`
+`__call__(circuit, property_set=None)`
 
 Runs the pass on circuit.
 
@@ -68,37 +66,33 @@ QuantumCircuit
 
 If on transformation pass, the resulting QuantumCircuit. If analysis pass, the input circuit.
 
-<span id="blockbasepadder-execute" />
-
 ### execute
 
 <span id="qiskit_ibm_provider.transpiler.passes.scheduling.BlockBasePadder.execute" />
 
-`BlockBasePadder.execute(passmanager_ir, state, callback=None)`
+`execute(passmanager_ir, state, callback=None)`
 
 Execute optimization task for input Qiskit IR.
 
 **Parameters**
 
 *   **passmanager\_ir** (`Any`) – Qiskit IR to optimize.
-*   **state** ([`PassManagerState`](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v0.45)")) – State associated with workflow execution by the pass manager itself.
+*   **state** ([`PassManagerState`](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.0)")) – State associated with workflow execution by the pass manager itself.
 *   **callback** (`Optional`\[`Callable`]) – A callback function which is caller per execution of optimization task.
 
 **Return type**
 
-`tuple`\[`Any`, [`PassManagerState`](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v0.45)")]
+`tuple`\[`Any`, [`PassManagerState`](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.0)")]
 
 **Returns**
 
 Optimized Qiskit IR and state of the workflow.
 
-<span id="blockbasepadder-name" />
-
 ### name
 
 <span id="qiskit_ibm_provider.transpiler.passes.scheduling.BlockBasePadder.name" />
 
-`BlockBasePadder.name()`
+`name()`
 
 Name of the pass.
 
@@ -106,19 +100,17 @@ Name of the pass.
 
 `str`
 
-<span id="blockbasepadder-run" />
-
 ### run
 
 <span id="qiskit_ibm_provider.transpiler.passes.scheduling.BlockBasePadder.run" />
 
-`BlockBasePadder.run(dag)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/transpiler/passes/scheduling/block_base_padder.py "view source code")
+`run(dag)` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/transpiler/passes/scheduling/block_base_padder.py#L91-L117 "view source code")
 
 Run the padding pass on `dag`.
 
 **Parameters**
 
-**dag** ([`DAGCircuit`](/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v0.45)")) – DAG to be checked.
+**dag** ([`DAGCircuit`](/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v1.0)")) – DAG to be checked.
 
 **Returns**
 
@@ -132,24 +124,22 @@ DAGCircuit
 
 **TranspilerError** – When a particular node is not scheduled, likely some transform pass is inserted before this node is called.
 
-<span id="blockbasepadder-update-status" />
-
 ### update\_status
 
 <span id="qiskit_ibm_provider.transpiler.passes.scheduling.BlockBasePadder.update_status" />
 
-`BlockBasePadder.update_status(state, run_state)`
+`update_status(state, run_state)`
 
 Update workflow status.
 
 **Parameters**
 
-*   **state** ([`PassManagerState`](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v0.45)")) – Pass manager state to update.
+*   **state** ([`PassManagerState`](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.0)")) – Pass manager state to update.
 *   **run\_state** (`RunState`) – Completion status of current task.
 
 **Return type**
 
-[`PassManagerState`](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v0.45)")
+[`PassManagerState`](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.0)")
 
 **Returns**
 

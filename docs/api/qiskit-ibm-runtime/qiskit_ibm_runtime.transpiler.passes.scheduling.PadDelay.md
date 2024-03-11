@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay
 
 <span id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay" />
 
-`PadDelay(fill_very_end=True, schedule_idle_qubits=False)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.18/qiskit_ibm_runtime/transpiler/passes/scheduling/pad_delay.py "view source code")
+`PadDelay(durations, fill_very_end=True, schedule_idle_qubits=False)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/transpiler/passes/scheduling/pad_delay.py#L23-L87 "view source code")
 
 Padding idle time with Delay instructions.
 
@@ -34,6 +34,7 @@ Create new padding delay pass.
 
 **Parameters**
 
+*   **durations** (`InstructionDurations`) – Durations of instructions to be used in scheduling.
 *   **fill\_very\_end** (`bool`) – Set `True` to fill the end of circuit with delay.
 *   **schedule\_idle\_qubits** (`bool`) – Set to true if you’d like a delay inserted on idle qubits. This is useful for timeline visualizations, but may cause issues for execution on large backends.
 
@@ -116,7 +117,7 @@ Name of the pass.
 
 <span id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay.run" />
 
-`run(dag)`
+`run(dag)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/transpiler/passes/scheduling/block_base_padder.py#L91-L115 "view source code")
 
 Run the padding pass on `dag`.
 

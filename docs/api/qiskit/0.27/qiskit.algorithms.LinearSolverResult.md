@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.LinearSolverResult
 
 <span id="qiskit.algorithms.LinearSolverResult" />
 
-`LinearSolverResult`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/linear_solvers/linear_solver.py "view source code")
+`LinearSolverResult` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/linear_solvers/linear_solver.py "view source code")
 
 A base class for linear systems results.
 

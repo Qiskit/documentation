@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator
 
 <span id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator" />
 
-`TPBGroupedWeightedPauliOperator(paulis, basis, z2_symmetries=None, atol=1e-12, name=None, grouping_func=None, kwargs=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/legacy/tpb_grouped_weighted_pauli_operator.py "view source code")
+`TPBGroupedWeightedPauliOperator(paulis, basis, z2_symmetries=None, atol=1e-12, name=None, grouping_func=None, kwargs=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/legacy/tpb_grouped_weighted_pauli_operator.py "view source code")
 
 Bases: `qiskit.aqua.operators.legacy.weighted_pauli_operator.WeightedPauliOperator`
 
@@ -373,7 +373,7 @@ bool
 
 <span id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.multiply" />
 
-`TPBGroupedWeightedPauliOperator.multiply(other)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/legacy/tpb_grouped_weighted_pauli_operator.py "view source code")
+`TPBGroupedWeightedPauliOperator.multiply(other)`
 
 Perform self \* other.
 
@@ -395,7 +395,7 @@ the multiplied operator
 
 <span id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.print_details" />
 
-`TPBGroupedWeightedPauliOperator.print_details()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/legacy/tpb_grouped_weighted_pauli_operator.py "view source code")
+`TPBGroupedWeightedPauliOperator.print_details()`
 
 Print out the operator in details.
 
@@ -472,7 +472,7 @@ the simplified operator
 
 <span id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.sorted_grouping" />
 
-`classmethod TPBGroupedWeightedPauliOperator.sorted_grouping(weighted_pauli_operator, method='largest-degree')`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/legacy/tpb_grouped_weighted_pauli_operator.py "view source code")
+`classmethod TPBGroupedWeightedPauliOperator.sorted_grouping(weighted_pauli_operator, method='largest-degree')`
 
 Largest-Degree First Coloring for grouping paulis.
 
@@ -550,7 +550,7 @@ to op flow
 
 <span id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.unsorted_grouping" />
 
-`classmethod TPBGroupedWeightedPauliOperator.unsorted_grouping(weighted_pauli_operator)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/legacy/tpb_grouped_weighted_pauli_operator.py "view source code")
+`classmethod TPBGroupedWeightedPauliOperator.unsorted_grouping(weighted_pauli_operator)`
 
 Greedy and unsorted grouping paulis.
 

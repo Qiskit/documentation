@@ -12,7 +12,7 @@ python_api_name: qiskit.pulse.Play
 
 <span id="qiskit.pulse.Play" />
 
-`Play(pulse, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/instructions/play.py "view source code")
+`Play(pulse, channel, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/instructions/play.py "view source code")
 
 This instruction is responsible for applying a pulse on a channel.
 

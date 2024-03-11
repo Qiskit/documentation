@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.FourierChecking
 
 <span id="qiskit.circuit.library.FourierChecking" />
 
-`qiskit.circuit.library.FourierChecking(f, g)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/fourier_checking.py "view source code")
+`qiskit.circuit.library.FourierChecking(f, g)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/library/fourier_checking.py "view source code")
 
 Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 

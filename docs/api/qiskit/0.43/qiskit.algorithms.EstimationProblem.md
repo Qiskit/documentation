@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.EstimationProblem
 
 <span id="qiskit.algorithms.EstimationProblem" />
 
-`EstimationProblem(state_preparation, objective_qubits, grover_operator=None, post_processing=None, is_good_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/amplitude_estimators/estimation_problem.py "view source code")
+`EstimationProblem(state_preparation, objective_qubits, grover_operator=None, post_processing=None, is_good_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/amplitude_estimators/estimation_problem.py "view source code")
 
 Bases: `object`
 
@@ -24,7 +24,7 @@ This class contains all problem-specific information required to run an amplitud
 *   **objective\_qubits** (*int | list\[int]*) – A single qubit index or a list of qubit indices to specify which qubits to measure. The `is_good_state` function is applied on the bitstring of these objective qubits.
 *   **grover\_operator** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| None*) – The Grover operator $\mathcal{Q}$ used as unitary in the phase estimation circuit.
 *   **post\_processing** (*Callable\[\[float], float] | None*) – A mapping applied to the result of the algorithm $0 \leq a \leq 1$, usually used to map the estimate to a target interval. Defaults to the identity.
-*   **is\_good\_state** (*Callable\[\[str], bool] | None*) – A function to check whether a string represents a good state. Defaults to all objective qubits being in state $\vert 1\rangle$.
+*   **is\_good\_state** (*Callable\[\[str], bool] | None*) – A function to check whether a string represents a good state. Defaults to all objective qubits being in state $|1\rangle$.
 
 ## Methods
 
@@ -34,7 +34,7 @@ This class contains all problem-specific information required to run an amplitud
 
 <span id="qiskit.algorithms.EstimationProblem.rescale" />
 
-`EstimationProblem.rescale(scaling_factor)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/amplitude_estimators/estimation_problem.py "view source code")
+`EstimationProblem.rescale(scaling_factor)`
 
 Rescale the good state amplitude in the estimation problem.
 

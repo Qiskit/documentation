@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.basicaer.QasmSimulatorPy
 
 <span id="qiskit.providers.basicaer.QasmSimulatorPy" />
 
-`QasmSimulatorPy(configuration=None, provider=None, **fields)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/basicaer/qasm_simulator.py "view source code")
+`QasmSimulatorPy(configuration=None, provider=None, **fields)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/basicaer/qasm_simulator.py "view source code")
 
 Bases: `qiskit.providers.backend.BackendV1`
 
@@ -120,7 +120,7 @@ the Provider responsible for the backend.
 
 <span id="qiskit.providers.basicaer.QasmSimulatorPy.run" />
 
-`QasmSimulatorPy.run(qobj, **backend_options)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/basicaer/qasm_simulator.py "view source code")
+`QasmSimulatorPy.run(qobj, **backend_options)`
 
 Run qobj asynchronously.
 
@@ -157,7 +157,7 @@ backend_options = {
 
 <span id="qiskit.providers.basicaer.QasmSimulatorPy.run_experiment" />
 
-`QasmSimulatorPy.run_experiment(experiment)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/basicaer/qasm_simulator.py "view source code")
+`QasmSimulatorPy.run_experiment(experiment)`
 
 Run an experiment (circuit) and return a single experiment result.
 
@@ -231,17 +231,13 @@ the status of the backend.
 
 <span id="qiskit.providers.basicaer.QasmSimulatorPy.DEFAULT_CONFIGURATION" />
 
-### DEFAULT\_CONFIGURATION = \{'backend\_name'
-
-`= {'backend_name':`
+### DEFAULT\_CONFIGURATION
 
 `= {'backend_name': 'qasm_simulator', 'backend_version': '2.1.0', 'basis_gates': ['u1', 'u2', 'u3', 'rz', 'sx', 'x', 'cx', 'id', 'unitary'], 'conditional': True, 'coupling_map': None, 'description': 'A python simulator for qasm experiments', 'gates': [{'name': 'u1', 'parameters': ['lambda'], 'qasm_def': 'gate u1(lambda) q { U(0,0,lambda) q; }'}, {'name': 'u2', 'parameters': ['phi', 'lambda'], 'qasm_def': 'gate u2(phi,lambda) q { U(pi/2,phi,lambda) q; }'}, {'name': 'u3', 'parameters': ['theta', 'phi', 'lambda'], 'qasm_def': 'gate u3(theta,phi,lambda) q { U(theta,phi,lambda) q; }'}, {'name': 'rz', 'parameters': ['phi'], 'qasm_def': 'gate rz(phi) q { U(0,0,phi) q; }'}, {'name': 'sx', 'parameters': [], 'qasm_def': 'gate sx(phi) q { U(pi/2,7*pi/2,pi/2) q; }'}, {'name': 'x', 'parameters': [], 'qasm_def': 'gate x q { U(pi,7*pi/2,pi/2) q; }'}, {'name': 'cx', 'parameters': [], 'qasm_def': 'gate cx c,t { CX c,t; }'}, {'name': 'id', 'parameters': [], 'qasm_def': 'gate id a { U(0,0,0) a; }'}, {'name': 'unitary', 'parameters': ['matrix'], 'qasm_def': 'unitary(matrix) q1, q2,...'}], 'local': True, 'max_shots': 65536, 'memory': True, 'n_qubits': 24, 'open_pulse': False, 'simulator': True, 'url': 'https://github.com/Qiskit/qiskit-terra'}`
 
 <span id="qiskit.providers.basicaer.QasmSimulatorPy.DEFAULT_OPTIONS" />
 
-### DEFAULT\_OPTIONS = \{'chop\_threshold'
-
-`= {'chop_threshold':`
+### DEFAULT\_OPTIONS
 
 `= {'chop_threshold': 1e-15, 'initial_statevector': None}`
 

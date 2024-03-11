@@ -10,7 +10,7 @@ python_api_name: qiskit.qobj.PulseQobjConfig
 
 <span id="qiskit.qobj.PulseQobjConfig" />
 
-`qiskit.qobj.PulseQobjConfig(meas_level, meas_return, pulse_library, qubit_lo_freq, meas_lo_freq, memory_slot_size=None, rep_time=None, rep_delay=None, shots=None, seed_simulator=None, memory_slots=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/qobj/pulse_qobj.py "view source code")
+`qiskit.qobj.PulseQobjConfig(meas_level, meas_return, pulse_library, qubit_lo_freq, meas_lo_freq, memory_slot_size=None, rep_time=None, rep_delay=None, shots=None, seed_simulator=None, memory_slots=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/qobj/pulse_qobj.py "view source code")
 
 Bases: `QobjDictField`
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.visualization.plot_state_city
 
 <span id="qiskit.visualization.plot_state_city" />
 
-`qiskit.visualization.plot_state_city(state, title='', figsize=None, color=None, alpha=1, ax_real=None, ax_imag=None, *, filename=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/visualization/state_visualization.py "view source code")
+`qiskit.visualization.plot_state_city(state, title='', figsize=None, color=None, alpha=1, ax_real=None, ax_imag=None, *, filename=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/visualization/state_visualization.py "view source code")
 
 Plot the cityscape of quantum state.
 

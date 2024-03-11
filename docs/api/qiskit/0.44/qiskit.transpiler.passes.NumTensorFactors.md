@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.NumTensorFactors
 
 <span id="qiskit.transpiler.passes.NumTensorFactors" />
 
-`qiskit.transpiler.passes.NumTensorFactors(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/analysis/num_tensor_factors.py "view source code")
+`qiskit.transpiler.passes.NumTensorFactors(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/analysis/num_tensor_factors.py "view source code")
 
 Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 

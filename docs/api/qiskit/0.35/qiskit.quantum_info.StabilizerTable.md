@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.StabilizerTable
 
 <span id="qiskit.quantum_info.StabilizerTable" />
 
-`StabilizerTable(data, phase=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/symplectic/stabilizer_table.py "view source code")
+`StabilizerTable(data, phase=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/symplectic/stabilizer_table.py "view source code")
 
 Bases: `qiskit.quantum_info.operators.symplectic.pauli_table.PauliTable`, `qiskit.quantum_info.operators.mixins.adjoint.AdjointMixin`
 
@@ -34,7 +34,7 @@ The symplectic representation of a single-qubit Stabilizer matrix is a pair of b
 Internally this is stored as a length N boolean phase vector $[p_{N-1}, ..., p_{0}]$ and a [`PauliTable`](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable") $M \times 2N$ boolean matrix:
 
 $$
-\begin{split}\left(\begin{array}{ccc\vert ccc}
+\begin{split}\left(\begin{array}{ccc|ccc}
     x_{0,0} & ... & x_{0,N-1} & z_{0,0} & ... & z_{0,N-1}  \\
     x_{1,0} & ... & x_{1,N-1} & z_{1,0} & ... & z_{1,N-1}  \\
     \vdots & \ddots & \vdots & \vdots & \ddots & \vdots  \\
@@ -130,7 +130,7 @@ array
 
 <span id="qiskit.quantum_info.StabilizerTable.argsort" />
 
-`StabilizerTable.argsort(weight=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/symplectic/stabilizer_table.py "view source code")
+`StabilizerTable.argsort(weight=False)`
 
 Return indices for sorting the rows of the PauliTable.
 
@@ -202,7 +202,7 @@ array
 
 <span id="qiskit.quantum_info.StabilizerTable.compose" />
 
-`StabilizerTable.compose(other, qargs=None, front=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/symplectic/stabilizer_table.py "view source code")
+`StabilizerTable.compose(other, qargs=None, front=False)`
 
 Return the compose output product of two tables.
 
@@ -263,7 +263,7 @@ Not implemented.
 
 <span id="qiskit.quantum_info.StabilizerTable.copy" />
 
-`StabilizerTable.copy()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/symplectic/stabilizer_table.py "view source code")
+`StabilizerTable.copy()`
 
 Return a copy of the StabilizerTable.
 
@@ -271,7 +271,7 @@ Return a copy of the StabilizerTable.
 
 <span id="qiskit.quantum_info.StabilizerTable.delete" />
 
-`StabilizerTable.delete(ind, qubit=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/symplectic/stabilizer_table.py "view source code")
+`StabilizerTable.delete(ind, qubit=False)`
 
 Return a copy with Stabilizer rows deleted from table.
 
@@ -298,7 +298,7 @@ the resulting table with the entries removed.
 
 <span id="qiskit.quantum_info.StabilizerTable.dot" />
 
-`StabilizerTable.dot(other, qargs=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/symplectic/stabilizer_table.py "view source code")
+`StabilizerTable.dot(other, qargs=None)`
 
 Return the dot output product of two tables.
 
@@ -348,7 +348,7 @@ the dot outer product table.
 
 <span id="qiskit.quantum_info.StabilizerTable.expand" />
 
-`StabilizerTable.expand(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/symplectic/stabilizer_table.py "view source code")
+`StabilizerTable.expand(other)`
 
 Return the expand output product of two tables.
 
@@ -388,7 +388,7 @@ the expand outer product table.
 
 <span id="qiskit.quantum_info.StabilizerTable.from_labels" />
 
-`classmethod StabilizerTable.from_labels(labels)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/symplectic/stabilizer_table.py "view source code")
+`classmethod StabilizerTable.from_labels(labels)`
 
 Construct a StabilizerTable from a list of Pauli stabilizer strings.
 
@@ -433,7 +433,7 @@ Return tuple of input dimension for specified subsystems.
 
 <span id="qiskit.quantum_info.StabilizerTable.insert" />
 
-`StabilizerTable.insert(ind, value, qubit=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/symplectic/stabilizer_table.py "view source code")
+`StabilizerTable.insert(ind, value, qubit=False)`
 
 Insert stabilizers’s into the table.
 
@@ -461,7 +461,7 @@ the resulting table with the entries inserted.
 
 <span id="qiskit.quantum_info.StabilizerTable.label_iter" />
 
-`StabilizerTable.label_iter()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/symplectic/stabilizer_table.py "view source code")
+`StabilizerTable.label_iter()`
 
 Return a label representation iterator.
 
@@ -479,7 +479,7 @@ LabelIterator
 
 <span id="qiskit.quantum_info.StabilizerTable.matrix_iter" />
 
-`StabilizerTable.matrix_iter(sparse=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/symplectic/stabilizer_table.py "view source code")
+`StabilizerTable.matrix_iter(sparse=False)`
 
 Return a matrix representation iterator.
 
@@ -559,7 +559,7 @@ BaseOperator
 
 <span id="qiskit.quantum_info.StabilizerTable.sort" />
 
-`StabilizerTable.sort(weight=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/symplectic/stabilizer_table.py "view source code")
+`StabilizerTable.sort(weight=False)`
 
 Sort the rows of the table.
 
@@ -620,7 +620,7 @@ a sorted copy of the original table.
 
 <span id="qiskit.quantum_info.StabilizerTable.tensor" />
 
-`StabilizerTable.tensor(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/symplectic/stabilizer_table.py "view source code")
+`StabilizerTable.tensor(other)`
 
 Return the tensor output product of two tables.
 
@@ -660,7 +660,7 @@ the tensor outer product table.
 
 <span id="qiskit.quantum_info.StabilizerTable.to_labels" />
 
-`StabilizerTable.to_labels(array=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/symplectic/stabilizer_table.py "view source code")
+`StabilizerTable.to_labels(array=False)`
 
 Convert a StabilizerTable to a list Pauli stabilizer string labels.
 
@@ -693,7 +693,7 @@ list or array
 
 <span id="qiskit.quantum_info.StabilizerTable.to_matrix" />
 
-`StabilizerTable.to_matrix(sparse=False, array=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/symplectic/stabilizer_table.py "view source code")
+`StabilizerTable.to_matrix(sparse=False, array=False)`
 
 Convert to a list or array of Stabilizer matrices.
 
@@ -735,7 +735,7 @@ Not implemented.
 
 <span id="qiskit.quantum_info.StabilizerTable.unique" />
 
-`StabilizerTable.unique(return_index=False, return_counts=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/symplectic/stabilizer_table.py "view source code")
+`StabilizerTable.unique(return_index=False, return_counts=False)`
 
 Return unique stabilizers from the table.
 

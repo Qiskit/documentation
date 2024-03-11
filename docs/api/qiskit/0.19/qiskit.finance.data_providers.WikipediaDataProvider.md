@@ -10,7 +10,7 @@ python_api_name: qiskit.finance.data_providers.WikipediaDataProvider
 
 <span id="qiskit.finance.data_providers.WikipediaDataProvider" />
 
-`WikipediaDataProvider(token=None, tickers=None, stockmarket=StockMarket.NASDAQ, start=datetime.datetime(2016, 1, 1, 0, 0), end=datetime.datetime(2016, 1, 30, 0, 0))`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/finance/data_providers/wikipedia_data_provider.py "view source code")
+`WikipediaDataProvider(token=None, tickers=None, stockmarket=StockMarket.NASDAQ, start=datetime.datetime(2016, 1, 1, 0, 0), end=datetime.datetime(2016, 1, 30, 0, 0))` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/finance/data_providers/wikipedia_data_provider.py "view source code")
 
 Wikipedia data provider.
 
@@ -136,7 +136,7 @@ numpy.ndarray
 
 <span id="qiskit.finance.data_providers.WikipediaDataProvider.run" />
 
-`WikipediaDataProvider.run()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/finance/data_providers/wikipedia_data_provider.py "view source code")
+`WikipediaDataProvider.run()`
 
 Loads data, thus enabling get\_similarity\_matrix and get\_covariance\_matrix methods in the base class.
 

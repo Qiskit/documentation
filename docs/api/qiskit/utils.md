@@ -1,7 +1,7 @@
 ---
 title: utils
 description: API reference for qiskit.utils
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.utils
 ---
@@ -18,11 +18,13 @@ python_api_name: qiskit.utils
 
 `qiskit.utils`
 
+## Deprecations
+
 ### add\_deprecation\_to\_docstring
 
 <span id="qiskit.utils.add_deprecation_to_docstring" />
 
-`qiskit.utils.add_deprecation_to_docstring(func, msg, *, since, pending)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/utils/deprecation.py "view source code")
+`qiskit.utils.add_deprecation_to_docstring(func, msg, *, since, pending)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/utils/deprecation.py "view source code")
 
 Dynamically insert the deprecation message into `func`’s docstring.
 
@@ -37,7 +39,7 @@ Dynamically insert the deprecation message into `func`’s docstring.
 
 <span id="qiskit.utils.deprecate_arg" />
 
-`qiskit.utils.deprecate_arg(name, *, since, additional_msg=None, deprecation_description=None, pending=False, package_name='qiskit', new_alias=None, predicate=None, removal_timeline='no earlier than 3 months after the release date')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/utils/deprecation.py "view source code")
+`qiskit.utils.deprecate_arg(name, *, since, additional_msg=None, deprecation_description=None, pending=False, package_name='qiskit', new_alias=None, predicate=None, removal_timeline='no earlier than 3 months after the release date')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/utils/deprecation.py "view source code")
 
 Decorator to indicate an argument has been deprecated in some way.
 
@@ -67,7 +69,7 @@ Callable
 
 <span id="qiskit.utils.deprecate_arguments" />
 
-`qiskit.utils.deprecate_arguments(kwarg_map, category=<class 'DeprecationWarning'>, *, since=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/utils/deprecation.py "view source code")
+`qiskit.utils.deprecate_arguments(kwarg_map, category=<class 'DeprecationWarning'>, *, since=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/utils/deprecation.py "view source code")
 
 Deprecated. Instead, use @deprecate\_arg.
 
@@ -89,7 +91,7 @@ Callable
 
 <span id="qiskit.utils.deprecate_func" />
 
-`qiskit.utils.deprecate_func(*, since, additional_msg=None, pending=False, package_name='qiskit', removal_timeline='no earlier than 3 months after the release date', is_property=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/utils/deprecation.py "view source code")
+`qiskit.utils.deprecate_func(*, since, additional_msg=None, pending=False, package_name='qiskit', removal_timeline='no earlier than 3 months after the release date', is_property=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/utils/deprecation.py "view source code")
 
 Decorator to indicate a function has been deprecated.
 
@@ -118,7 +120,7 @@ Callable
 
 <span id="qiskit.utils.deprecate_function" />
 
-`qiskit.utils.deprecate_function(msg, stacklevel=2, category=<class 'DeprecationWarning'>, *, since=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/utils/deprecation.py "view source code")
+`qiskit.utils.deprecate_function(msg, stacklevel=2, category=<class 'DeprecationWarning'>, *, since=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/utils/deprecation.py "view source code")
 
 Deprecated. Instead, use @deprecate\_func.
 
@@ -137,37 +139,13 @@ The decorated, deprecated callable.
 
 Callable
 
-### local\_hardware\_info
-
-<span id="qiskit.utils.local_hardware_info" />
-
-`qiskit.utils.local_hardware_info()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/utils/multiprocessing.py "view source code")
-
-Basic hardware information about the local machine.
-
-Gives actual number of CPU’s in the machine, even when hyperthreading is turned on. CPU count defaults to 1 when true count can’t be determined.
-
-**Returns**
-
-The hardware information.
-
-**Return type**
-
-[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
-
-### is\_main\_process
-
-<span id="qiskit.utils.is_main_process" />
-
-`qiskit.utils.is_main_process()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/utils/multiprocessing.py "view source code")
-
-Checks whether the current process is the main one
+## SI unit conversion
 
 ### apply\_prefix
 
 <span id="qiskit.utils.apply_prefix" />
 
-`qiskit.utils.apply_prefix(value, unit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/utils/units.py "view source code")
+`qiskit.utils.apply_prefix(value, unit)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/utils/units.py "view source code")
 
 Given a SI unit prefix and value, apply the prefix to convert to standard SI unit.
 
@@ -200,7 +178,7 @@ Converted value.
 
 <span id="qiskit.utils.detach_prefix" />
 
-`qiskit.utils.detach_prefix(value, decimal=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/utils/units.py "view source code")
+`qiskit.utils.detach_prefix(value, decimal=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/utils/units.py "view source code")
 
 Given a SI unit value, find the most suitable prefix to scale the value.
 
@@ -240,11 +218,13 @@ A tuple of scaled value and prefix.
 
 [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)"), [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")]
 
+## Class tools
+
 ### wrap\_method
 
 <span id="qiskit.utils.wrap_method" />
 
-`qiskit.utils.wrap_method(cls, name, *, before=None, after=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/utils/classtools.py "view source code")
+`qiskit.utils.wrap_method(cls, name, *, before=None, after=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/utils/classtools.py "view source code")
 
 Wrap the functionality the instance- or class method `cls.name` with additional behaviour `before` and `after`.
 
@@ -263,179 +243,41 @@ If either `before` or `after` are given, they should be callables with a compati
 
 [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – if the named method is not defined on the class or any parent class.
 
-## Algorithm Utilities
+## Multiprocessing
 
-### summarize\_circuits
+### local\_hardware\_info
 
-<span id="qiskit.utils.summarize_circuits" />
+<span id="qiskit.utils.local_hardware_info" />
 
-`qiskit.utils.summarize_circuits(circuits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/utils/circuit_utils.py "view source code")
+`qiskit.utils.local_hardware_info()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/utils/multiprocessing.py "view source code")
 
-**Summarize circuits based on QuantumCircuit, and five metrics are summarized.**
+Basic hardware information about the local machine.
 
-*   Number of qubits
-*   Number of classical bits
-*   Number of operations
-*   Depth of circuits
-*   Counts of different gate operations
-
-The average statistic of the first four is provided if multiple circuits are provided.
-
-> <Admonition title="Deprecated since version 0.46.0" type="danger">
->   The function `qiskit.utils.circuit_utils.summarize_circuits()` is deprecated as of qiskit 0.46.0. It will be removed in the Qiskit 1.0 release. This function was only used in the context of qiskit.opflow/qiskit.algorithms, two modules deprecated and planned to be removed in Qiskit 1.0.
-> </Admonition>
-
-**Parameters**
-
-**circuits** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *or \[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – the to-be-summarized circuits
+Gives actual number of CPU’s in the machine, even when hyperthreading is turned on. CPU count defaults to 1 when true count can’t be determined.
 
 **Returns**
 
-a formatted string records the summary
+The hardware information.
 
 **Return type**
 
-[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
 
-### get\_entangler\_map
+### is\_main\_process
 
-<span id="qiskit.utils.get_entangler_map" />
+<span id="qiskit.utils.is_main_process" />
 
-`qiskit.utils.get_entangler_map(map_type, num_qubits, offset=0)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/utils/entangler_map.py "view source code")
+`qiskit.utils.is_main_process()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/utils/multiprocessing.py "view source code")
 
-Utility method to get an entangler map among qubits.
+Checks whether the current process is the main one
 
-<Admonition title="Deprecated since version 0.46.0" type="danger">
-  The function `qiskit.utils.entangler_map.get_entangler_map()` is deprecated as of qiskit 0.46.0. It will be removed in the Qiskit 1.0 release. This function was only used in the context of qiskit.opflow/qiskit.algorithms, two modules deprecated and planned to be removed in Qiskit 1.0.
-</Admonition>
-
-**Parameters**
-
-*   **map\_type** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – ‘full’ entangles each qubit with all the subsequent ones ‘linear’ entangles each qubit with the next ‘sca’ (shifted circular alternating entanglement) is a circular entanglement where the ‘long’ entanglement is shifted by one position every block and every block the role or control/target qubits alternate
-*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of qubits for which the map is needed
-*   **offset** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Some map\_types (e.g. ‘sca’) can shift the gates in the entangler map by the specified integer offset.
-
-**Returns**
-
-A map of qubit index to an array of indexes to which this should be entangled
-
-**Return type**
-
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")
-
-**Raises**
-
-[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – if map\_type is not valid.
-
-### validate\_entangler\_map
-
-<span id="qiskit.utils.validate_entangler_map" />
-
-`qiskit.utils.validate_entangler_map(entangler_map, num_qubits, allow_double_entanglement=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/utils/entangler_map.py "view source code")
-
-Validate a user supplied entangler map and converts entries to ints.
-
-<Admonition title="Deprecated since version 0.46.0" type="danger">
-  The function `qiskit.utils.entangler_map.validate_entangler_map()` is deprecated as of qiskit 0.46.0. It will be removed in the Qiskit 1.0 release. This function was only used in the context of qiskit.opflow/qiskit.algorithms, two modules deprecated and planned to be removed in Qiskit 1.0.
-</Admonition>
-
-**Parameters**
-
-*   **entangler\_map** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*]*) – An entangler map, keys are source qubit index (int), value is array of target qubit index(es) (int)
-*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of qubits
-*   **allow\_double\_entanglement** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If we allow in two qubits can be entangled each other
-
-**Returns**
-
-Validated/converted map
-
-**Return type**
-
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")
-
-**Raises**
-
-*   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – entangler map is not list type or list of list
-*   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – the index of entangler map is out of range
-*   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – the qubits are cross-entangled.
-
-### has\_ibmq
-
-<span id="qiskit.utils.has_ibmq" />
-
-`qiskit.utils.has_ibmq()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/utils/backend_utils.py "view source code")
-
-Check if IBMQ is installed.
-
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  The function `qiskit.utils.backend_utils.has_ibmq()` is deprecated as of qiskit-terra 0.24.0. It will be removed in the Qiskit 1.0 release. For code migration guidelines, visit [https://qisk.it/qi\_migration](https://qisk.it/qi_migration).
-</Admonition>
-
-### has\_aer
-
-<span id="qiskit.utils.has_aer" />
-
-`qiskit.utils.has_aer()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/utils/backend_utils.py "view source code")
-
-Check if Aer is installed.
-
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  The function `qiskit.utils.backend_utils.has_aer()` is deprecated as of qiskit-terra 0.24.0. It will be removed in the Qiskit 1.0 release. For code migration guidelines, visit [https://qisk.it/qi\_migration](https://qisk.it/qi_migration).
-</Admonition>
-
-### name\_args
-
-<span id="qiskit.utils.name_args" />
-
-`qiskit.utils.name_args(mapping, skip=0)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/utils/name_unnamed_args.py "view source code")
-
-Decorator to convert unnamed arguments to named ones.
-
-Can be used to deprecate old signatures of a function, e.g.
-
-```python
-old_f(a: TypeA, b: TypeB, c: TypeC)
-new_f(a: TypeA, d: TypeD, b: TypeB=None, c: TypeC=None)
-```
-
-Then, to support the old signature this decorator can be used as
-
-```python
-@name_args([
-    ('a'),  # stays the same
-    ('d', {TypeB: 'b'}),  # if arg is of type TypeB, call if 'b' else 'd'
-    ('b', {TypeC: 'c'})
-])
-def new_f(a: TypeA, d: TypeD, b: TypeB=None, c: TypeC=None):
-    if b is not None:
-        # raise warning, this is deprecated!
-    if c is not None:
-        # raise warning, this is deprecated!
-```
-
-<Admonition title="Deprecated since version 0.46.0" type="danger">
-  The function `qiskit.utils.name_unnamed_args.name_args()` is deprecated as of qiskit 0.46.0. It will be removed in the Qiskit 1.0 release. This function was only used in the context of qiskit.opflow/qiskit.algorithms, two modules deprecated and planned to be removed in Qiskit 1.0.
-</Admonition>
-
-**qiskit.utils.algorithm\_globals *= \<qiskit.utils.algorithm\_globals.QiskitAlgorithmGlobals object>***
-
-Class for global properties.
-
-|                                                                                  |                                                          |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------- |
-| [`QuantumInstance`](qiskit.utils.QuantumInstance "qiskit.utils.QuantumInstance") | Deprecated: Quantum Backend including execution setting. |
-
-A QuantumInstance holds the Qiskit backend as well as a number of compile and runtime parameters controlling circuit compilation and execution. Quantum [`algorithms`](algorithms#module-qiskit.algorithms "qiskit.algorithms") are run on a device or simulator by passing a QuantumInstance setup with the desired backend etc.
-
-### Parallel Routines
-
-A helper function for calling a custom function with python `ProcessPoolExecutor`. Tasks can be executed in parallel using this function. It has a built-in event publisher to show the progress of the parallel tasks.
+A helper function for calling a custom function with python [`ProcessPoolExecutor`](https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ProcessPoolExecutor "(in Python v3.12)"). Tasks can be executed in parallel using this function.
 
 ### parallel\_map
 
 <span id="qiskit.utils.parallel_map" />
 
-`qiskit.utils.parallel_map(task, values, task_args=(), task_kwargs={}, num_processes=2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/utils/parallel.py "view source code")
+`qiskit.utils.parallel_map(task, values, task_args=(), task_kwargs={}, num_processes=2)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/utils/parallel.py "view source code")
 
 Parallel execution of a mapping of values to the function task. This is functionally equivalent to:
 
@@ -469,15 +311,11 @@ result
 
 [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – If user interrupts via keyboard.
 
-**Events:**
-
-terra.parallel.start: The collection of parallel tasks are about to start. terra.parallel.update: One of the parallel task has finished. terra.parallel.finish: All the parallel tasks have finished.
-
 **Examples**
 
 ```python
 import time
-from qiskit.tools.parallel import parallel_map
+from qiskit.utils import parallel_map
 def func(_):
         time.sleep(0.1)
         return 0
@@ -486,56 +324,50 @@ parallel_map(func, list(range(10)));
 
 <span id="module-qiskit.utils.optionals" />
 
-<span id="optional-dependency-checkers-qiskit-utils-optionals" />
-
 ## Optional Dependency Checkers
 
-<span id="module-qiskit.utils" />
-
-`qiskit.utils.optionals`
-
-Qiskit has several features that are enabled only if certain *optional* dependencies are satisfied. This module is a collection of objects that can be used to test if certain functionality is available, and optionally raise [`MissingOptionalLibraryError`](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") if the functionality is not available.
+Qiskit has several features that are enabled only if certain *optional* dependencies are satisfied. This module, [`qiskit.utils.optionals`](#module-qiskit.utils.optionals "qiskit.utils.optionals"), has a collection of objects that can be used to test if certain functionality is available, and optionally raise [`MissingOptionalLibraryError`](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") if the functionality is not available.
 
 ### Available Testers
 
 #### Qiskit Components
 
-|                                       |                                                                                                                                                                               |
-| ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **qiskit.utils.optionals.HAS\_AER**   | [Qiskit Aer](https://qiskit.org/ecosystem/aer/) provides high-performance simulators for the quantum circuits constructed within Qiskit.                                      |
-| **qiskit.utils.optionals.HAS\_IBMQ**  | The Qiskit IBMQ Provider was historically used for accessing IBM Quantum hardware in the IBM cloud, but is now deprecated.                                                    |
-| **qiskit.utils.optionals.HAS\_IGNIS** | Qiskit Ignis provided tools for quantum hardware verification, noise characterization, and error correction, but is now deprecated.                                           |
-| **qiskit.utils.optionals.HAS\_TOQM**  | [Qiskit TOQM](https://github.com/qiskit-toqm/qiskit-toqm) provides transpiler passes for the [Time-optimal Qubit mapping algorithm](https://doi.org/10.1145/3445814.3446706). |
+|                                       |                                                                                                                                                                                     |
+| ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **qiskit.utils.optionals.HAS\_AER**   | Qiskit Aer \<[https://qiskit.github.io/qiskit-aer/](https://qiskit.github.io/qiskit-aer/)> provides high-performance simulators for the quantum circuits constructed within Qiskit. |
+| **qiskit.utils.optionals.HAS\_IBMQ**  | The `Qiskit IBMQ Provider` is used for accessing IBM Quantum hardware in the IBM cloud.                                                                                             |
+| **qiskit.utils.optionals.HAS\_IGNIS** | `Qiskit Ignis` provides tools for quantum hardware verification, noise characterization, and error correction.                                                                      |
+| **qiskit.utils.optionals.HAS\_TOQM**  | [Qiskit TOQM](https://github.com/qiskit-toqm/qiskit-toqm) provides transpiler passes for the [Time-optimal Qubit mapping algorithm](https://doi.org/10.1145/3445814.3446706).       |
 
 #### External Python Libraries
 
-|                                               |                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| --------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **qiskit.utils.optionals.HAS\_CONSTRAINT**    | python-constraint \<[https://github.com/python-constraint/python-constraint>\_\_](https://github.com/python-constraint/python-constraint>__) is a constraint satisfaction problem solver, used in the :class:\`\~.CSPLayout transpiler pass.                                                                                                                                                                                                   |
-| **qiskit.utils.optionals.HAS\_CPLEX**         | The [IBM CPLEX Optimizer](https://www.ibm.com/analytics/cplex-optimizer) is a high-performance mathematical programming solver for linear, mixed-integer and quadratic programming. This is no longer by Qiskit, but it weas historically and the optional remains for backwards compatibility.                                                                                                                                                |
-| **qiskit.utils.optionals.HAS\_CVXPY**         | [CVXPY](https://www.cvxpy.org/) is a Python package for solving convex optimization problems. It is required for calculating diamond norms with [`quantum_info.diamond_norm()`](quantum_info#qiskit.quantum_info.diamond_norm "qiskit.quantum_info.diamond_norm").                                                                                                                                                                             |
-| **qiskit.utils.optionals.HAS\_DOCPLEX**       | [IBM Decision Optimization CPLEX Modelling](http://ibmdecisionoptimization.github.io/docplex-doc/) is a library for prescriptive analysis. Like CPLEX, this is no longer by Qiskit, but it weas historically and the optional remains for backwards compatibility.                                                                                                                                                                             |
-| **qiskit.utils.optionals.HAS\_FIXTURES**      | The test suite has additional features that are available if the optional [fixtures](https://launchpad.net/python-fixtures) module is installed. This generally also needs [`HAS_TESTTOOLS`](#qiskit.utils.optionals.HAS_TESTTOOLS "qiskit.utils.optionals.HAS_TESTTOOLS") as well. This is generally only needed for Qiskit developers.                                                                                                       |
-| **qiskit.utils.optionals.HAS\_IPYTHON**       | If [the IPython kernel](https://ipython.org/) is available, certain additional visualisations and line magics are made available.                                                                                                                                                                                                                                                                                                              |
-| **qiskit.utils.optionals.HAS\_IPYWIDGETS**    | Monitoring widgets for jobs running on external backends can be provided if [ipywidgets](https://ipywidgets.readthedocs.io/en/latest/) is available.                                                                                                                                                                                                                                                                                           |
-| **qiskit.utils.optionals.HAS\_JAX**           | Some methods of gradient calculation within [`opflow.gradients`](qiskit.opflow.gradients#module-qiskit.opflow.gradients "qiskit.opflow.gradients") require [JAX](https://github.com/google/jax) for autodifferentiation.                                                                                                                                                                                                                       |
-| **qiskit.utils.optionals.HAS\_JUPYTER**       | Some of the tests require a complete [Jupyter](https://jupyter.org/) installation to test interactivity features.                                                                                                                                                                                                                                                                                                                              |
-| **qiskit.utils.optionals.HAS\_MATPLOTLIB**    | Qiskit provides several visualisation tools in the [`visualization`](visualization#module-qiskit.visualization "qiskit.visualization") module. Almost all of these are built using [Matplotlib](https://matplotlib.org/), which must be installed in order to use them.                                                                                                                                                                        |
-| **qiskit.utils.optionals.HAS\_NETWORKX**      | No longer used by Qiskit. Internally, Qiskit now uses the high-performance [rustworkx](https://github.com/Qiskit/rustworkx) library as a core dependency, and during the change-over period, it was sometimes convenient to convert things into the Python-only [NetworkX](https://networkx.org/) format. Some tests of application modules, such as [Qiskit Nature](https://qiskit.org/ecosystem/nature/) still use NetworkX.                 |
-| **qiskit.utils.optionals.HAS\_NLOPT**         | [NLopt](https://nlopt.readthedocs.io/en/latest/) is a nonlinear optimization library, used by the global optimizers in the [`algorithms.optimizers`](qiskit.algorithms.optimizers#module-qiskit.algorithms.optimizers "qiskit.algorithms.optimizers") module.                                                                                                                                                                                  |
-| **qiskit.utils.optionals.HAS\_PIL**           | PIL is a Python image-manipulation library. Qiskit actually uses the [pillow](https://pillow.readthedocs.io/en/stable/) fork of PIL if it is available when generating certain visualizations, for example of both [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") and [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") in certain modes.                                         |
-| **qiskit.utils.optionals.HAS\_PYDOT**         | For some graph visualisations, Qiskit uses [pydot](https://github.com/pydot/pydot) as an interface to GraphViz (see [`HAS_GRAPHVIZ`](#qiskit.utils.optionals.HAS_GRAPHVIZ "qiskit.utils.optionals.HAS_GRAPHVIZ")).                                                                                                                                                                                                                             |
-| **qiskit.utils.optionals.HAS\_PYGMENTS**      | Pygments is a code highlighter and formatter used by many environments that involve rich display of code blocks, including Sphinx and Jupyter. Qiskit uses this when producing rich output for these environments.                                                                                                                                                                                                                             |
-| **qiskit.utils.optionals.HAS\_PYLATEX**       | Various LaTeX-based visualizations, especially the circuit drawers, need access to the [pylatexenc](https://github.com/phfaist/pylatexenc) project to work correctly.                                                                                                                                                                                                                                                                          |
-| **qiskit.utils.optionals.HAS\_QASM3\_IMPORT** | The functions [`qasm3.load()`](qasm3#qiskit.qasm3.load "qiskit.qasm3.load") and [`qasm3.loads()`](qasm3#qiskit.qasm3.loads "qiskit.qasm3.loads") for importing OpenQASM 3 programs into [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") instances use [an external importer package](https://qiskit.github.io/qiskit-qasm3-import).                                                                          |
-| **qiskit.utils.optionals.HAS\_SEABORN**       | Qiskit provides several visualisation tools in the [`visualization`](visualization#module-qiskit.visualization "qiskit.visualization") module. Some of these are built using [Seaborn](https://seaborn.pydata.org/), which must be installed in order to use them.                                                                                                                                                                             |
-| **qiskit.utils.optionals.HAS\_SKLEARN**       | Some of the gradient functions in [`opflow.gradients`](qiskit.opflow.gradients#module-qiskit.opflow.gradients "qiskit.opflow.gradients") use regularisation methods from [Scikit Learn](https://scikit-learn.org/stable/).                                                                                                                                                                                                                     |
-| **qiskit.utils.optionals.HAS\_SKQUANT**       | Some of the optimisers in [`algorithms.optimizers`](qiskit.algorithms.optimizers#module-qiskit.algorithms.optimizers "qiskit.algorithms.optimizers") are based on those found in [Scikit Quant](https://github.com/scikit-quant/scikit-quant), which must be installed to use them.                                                                                                                                                            |
-| **qiskit.utils.optionals.HAS\_SQSNOBFIT**     | [SQSnobFit](https://pypi.org/project/SQSnobFit/) is a library for the “stable noisy optimization by branch and fit” algorithm. It is used by the [`SNOBFIT`](qiskit.algorithms.optimizers.SNOBFIT "qiskit.algorithms.optimizers.SNOBFIT") optimizer.                                                                                                                                                                                           |
-| **qiskit.utils.optionals.HAS\_SYMENGINE**     | [Symengine](https://github.com/symengine/symengine) is a fast C++ backend for the symbolic-manipulation library [Sympy](https://www.sympy.org/en/index.html). Qiskit uses special methods from Symengine to accelerate its handling of [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter")s if available.                                                                                                                       |
-| **qiskit.utils.optionals.HAS\_TESTTOOLS**     | Qiskit’s test suite has more advanced functionality available if the optional [testtools](https://pypi.org/project/testtools/) library is installed. This is generally only needed for Qiskit developers.                                                                                                                                                                                                                                      |
-| **qiskit.utils.optionals.HAS\_TWEEDLEDUM**    | [Tweedledum](https://github.com/boschmitt/tweedledum) is an extension library for synthesis and optimization of circuits that may involve classical oracles. Qiskit’s [`PhaseOracle`](qiskit.circuit.library.PhaseOracle "qiskit.circuit.library.PhaseOracle") uses this, which is used in turn by amplification algorithms via the [`AmplificationProblem`](qiskit.algorithms.AmplificationProblem "qiskit.algorithms.AmplificationProblem"). |
-| **qiskit.utils.optionals.HAS\_Z3**            | [Z3](https://github.com/Z3Prover/z3) is a theorem prover, used in the [`CrosstalkAdaptiveSchedule`](qiskit.transpiler.passes.CrosstalkAdaptiveSchedule "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule") and [`HoareOptimizer`](qiskit.transpiler.passes.HoareOptimizer "qiskit.transpiler.passes.HoareOptimizer") transpiler passes.                                                                                                      |
+|                                               |                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **qiskit.utils.optionals.HAS\_CONSTRAINT**    | [python-constraint](https://github.com/python-constraint/python-constraint) is a constraint satisfaction problem solver, used in the [`CSPLayout`](qiskit.transpiler.passes.CSPLayout "qiskit.transpiler.passes.CSPLayout") transpiler pass.                                                                                                                                                                                                |
+| **qiskit.utils.optionals.HAS\_CPLEX**         | The [IBM CPLEX Optimizer](https://www.ibm.com/analytics/cplex-optimizer) is a high-performance mathematical programming solver for linear, mixed-integer and quadratic programming. This is no longer by Qiskit, but it weas historically and the optional remains for backwards compatibility.                                                                                                                                             |
+| **qiskit.utils.optionals.HAS\_CVXPY**         | [CVXPY](https://www.cvxpy.org/) is a Python package for solving convex optimization problems. It is required for calculating diamond norms with [`quantum_info.diamond_norm()`](quantum_info#qiskit.quantum_info.diamond_norm "qiskit.quantum_info.diamond_norm").                                                                                                                                                                          |
+| **qiskit.utils.optionals.HAS\_DOCPLEX**       | [IBM Decision Optimization CPLEX Modelling](http://ibmdecisionoptimization.github.io/docplex-doc/) is a library for prescriptive analysis. Like CPLEX, this is no longer by Qiskit, but it weas historically and the optional remains for backwards compatibility.                                                                                                                                                                          |
+| **qiskit.utils.optionals.HAS\_FIXTURES**      | The test suite has additional features that are available if the optional [fixtures](https://launchpad.net/python-fixtures) module is installed. This generally also needs [`HAS_TESTTOOLS`](#qiskit.utils.optionals.HAS_TESTTOOLS "qiskit.utils.optionals.HAS_TESTTOOLS") as well. This is generally only needed for Qiskit developers.                                                                                                    |
+| **qiskit.utils.optionals.HAS\_IPYTHON**       | If [the IPython kernel](https://ipython.org/) is available, certain additional visualisations and line magics are made available.                                                                                                                                                                                                                                                                                                           |
+| **qiskit.utils.optionals.HAS\_IPYWIDGETS**    | Monitoring widgets for jobs running on external backends can be provided if [ipywidgets](https://ipywidgets.readthedocs.io/en/latest/) is available.                                                                                                                                                                                                                                                                                        |
+| **qiskit.utils.optionals.HAS\_JAX**           | Some methods of gradient calculation within `opflow.gradients` require [JAX](https://github.com/google/jax) for autodifferentiation.                                                                                                                                                                                                                                                                                                        |
+| **qiskit.utils.optionals.HAS\_JUPYTER**       | Some of the tests require a complete [Jupyter](https://jupyter.org/) installation to test interactivity features.                                                                                                                                                                                                                                                                                                                           |
+| **qiskit.utils.optionals.HAS\_MATPLOTLIB**    | Qiskit provides several visualisation tools in the [`visualization`](visualization#module-qiskit.visualization "qiskit.visualization") module. Almost all of these are built using [Matplotlib](https://matplotlib.org/), which must be installed in order to use them.                                                                                                                                                                     |
+| **qiskit.utils.optionals.HAS\_NETWORKX**      | No longer used by Qiskit. Internally, Qiskit now uses the high-performance [rustworkx](https://github.com/Qiskit/rustworkx) library as a core dependency, and during the change-over period, it was sometimes convenient to convert things into the Python-only [NetworkX](https://networkx.org/) format. Some tests of application modules, such as [Qiskit Nature](https://qiskit-community.github.io/qiskit-nature/) still use NetworkX. |
+| **qiskit.utils.optionals.HAS\_NLOPT**         | [NLopt](https://nlopt.readthedocs.io/en/latest/) is a nonlinear optimization library, used by the global optimizers in the `algorithms.optimizers` module.                                                                                                                                                                                                                                                                                  |
+| **qiskit.utils.optionals.HAS\_PIL**           | PIL is a Python image-manipulation library. Qiskit actually uses the [pillow](https://pillow.readthedocs.io/en/stable/) fork of PIL if it is available when generating certain visualizations, for example of both [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") and [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") in certain modes.                                      |
+| **qiskit.utils.optionals.HAS\_PYDOT**         | For some graph visualisations, Qiskit uses [pydot](https://github.com/pydot/pydot) as an interface to GraphViz (see [`HAS_GRAPHVIZ`](#qiskit.utils.optionals.HAS_GRAPHVIZ "qiskit.utils.optionals.HAS_GRAPHVIZ")).                                                                                                                                                                                                                          |
+| **qiskit.utils.optionals.HAS\_PYGMENTS**      | Pygments is a code highlighter and formatter used by many environments that involve rich display of code blocks, including Sphinx and Jupyter. Qiskit uses this when producing rich output for these environments.                                                                                                                                                                                                                          |
+| **qiskit.utils.optionals.HAS\_PYLATEX**       | Various LaTeX-based visualizations, especially the circuit drawers, need access to the [pylatexenc](https://github.com/phfaist/pylatexenc) project to work correctly.                                                                                                                                                                                                                                                                       |
+| **qiskit.utils.optionals.HAS\_QASM3\_IMPORT** | The functions [`qasm3.load()`](qasm3#qiskit.qasm3.load "qiskit.qasm3.load") and [`qasm3.loads()`](qasm3#qiskit.qasm3.loads "qiskit.qasm3.loads") for importing OpenQASM 3 programs into [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") instances use [an external importer package](https://qiskit.github.io/qiskit-qasm3-import).                                                                       |
+| **qiskit.utils.optionals.HAS\_SEABORN**       | Qiskit provides several visualisation tools in the [`visualization`](visualization#module-qiskit.visualization "qiskit.visualization") module. Some of these are built using [Seaborn](https://seaborn.pydata.org/), which must be installed in order to use them.                                                                                                                                                                          |
+| **qiskit.utils.optionals.HAS\_SKLEARN**       | Some of the gradient functions in `opflow.gradients` use regularisation methods from [Scikit Learn](https://scikit-learn.org/stable/).                                                                                                                                                                                                                                                                                                      |
+| **qiskit.utils.optionals.HAS\_SKQUANT**       | Some of the optimisers in `algorithms.optimizers` are based on those found in [Scikit Quant](https://github.com/scikit-quant/scikit-quant), which must be installed to use them.                                                                                                                                                                                                                                                            |
+| **qiskit.utils.optionals.HAS\_SQSNOBFIT**     | [SQSnobFit](https://pypi.org/project/SQSnobFit/) is a library for the “stable noisy optimization by branch and fit” algorithm. It is used by the `SNOBFIT` optimizer.                                                                                                                                                                                                                                                                       |
+| **qiskit.utils.optionals.HAS\_SYMENGINE**     | [Symengine](https://github.com/symengine/symengine) is a fast C++ backend for the symbolic-manipulation library [Sympy](https://www.sympy.org/en/index.html). Qiskit uses special methods from Symengine to accelerate its handling of [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter")s if available.                                                                                                                    |
+| **qiskit.utils.optionals.HAS\_TESTTOOLS**     | Qiskit’s test suite has more advanced functionality available if the optional [testtools](https://pypi.org/project/testtools/) library is installed. This is generally only needed for Qiskit developers.                                                                                                                                                                                                                                   |
+| **qiskit.utils.optionals.HAS\_TWEEDLEDUM**    | [Tweedledum](https://github.com/boschmitt/tweedledum) is an extension library for synthesis and optimization of circuits that may involve classical oracles. Qiskit’s [`PhaseOracle`](qiskit.circuit.library.PhaseOracle "qiskit.circuit.library.PhaseOracle") uses this, which is used in turn by amplification algorithms via the `AmplificationProblem`.                                                                                 |
+| **qiskit.utils.optionals.HAS\_Z3**            | [Z3](https://github.com/Z3Prover/z3) is a theorem prover, used in the `CrosstalkAdaptiveSchedule` and [`HoareOptimizer`](qiskit.transpiler.passes.HoareOptimizer "qiskit.transpiler.passes.HoareOptimizer") transpiler passes.                                                                                                                                                                                                              |
 
 #### External Command-Line Tools
 
@@ -555,7 +387,7 @@ from qiskit.utils import LazyImportTester
 
 <span id="qiskit.utils.LazyDependencyManager" />
 
-`qiskit.utils.LazyDependencyManager(*, name=None, callback=None, install=None, msg=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/utils/lazy_tester.py "view source code")
+`qiskit.utils.LazyDependencyManager(*, name=None, callback=None, install=None, msg=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/utils/lazy_tester.py "view source code")
 
 A mananger for some optional features that are expensive to import, or to verify the existence of.
 
@@ -616,13 +448,9 @@ Create a context, during which the value of the dependency manager will be `Fals
 
 ### require\_in\_call
 
-### require\_in\_call
-
 <span id="qiskit.utils.LazyDependencyManager.require_in_call" />
 
 `require_in_call(feature_or_callable: Callable) → Callable`
-
-<span id="qiskit.utils.LazyDependencyManager.require_in_call" />
 
 `require_in_call(feature_or_callable: str) → Callable[[Callable], Callable]`
 
@@ -642,13 +470,9 @@ Callable
 
 ### require\_in\_instance
 
-### require\_in\_instance
-
 <span id="qiskit.utils.LazyDependencyManager.require_in_instance" />
 
 `require_in_instance(feature_or_class: Type) → Type`
-
-<span id="qiskit.utils.LazyDependencyManager.require_in_instance" />
 
 `require_in_instance(feature_or_class: str) → Callable[[Type], Type]`
 
@@ -684,7 +508,7 @@ Eagerly attempt to import the dependencies in this object, and raise an exceptio
 
 <span id="qiskit.utils.LazyImportTester" />
 
-`qiskit.utils.LazyImportTester(name_map_or_modules, *, name=None, callback=None, install=None, msg=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/utils/lazy_tester.py "view source code")
+`qiskit.utils.LazyImportTester(name_map_or_modules, *, name=None, callback=None, install=None, msg=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/utils/lazy_tester.py "view source code")
 
 A lazy dependency tester for importable Python modules. Any required objects will only be imported at the point that this object is tested for its Boolean value.
 
@@ -698,7 +522,7 @@ A lazy dependency tester for importable Python modules. Any required objects wil
 
 <span id="qiskit.utils.LazySubprocessTester" />
 
-`qiskit.utils.LazySubprocessTester(command, *, name=None, callback=None, install=None, msg=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/utils/lazy_tester.py "view source code")
+`qiskit.utils.LazySubprocessTester(command, *, name=None, callback=None, install=None, msg=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/utils/lazy_tester.py "view source code")
 
 A lazy checker that a command-line tool is available. The command will only be run once, at the point that this object is checked for its Boolean value.
 

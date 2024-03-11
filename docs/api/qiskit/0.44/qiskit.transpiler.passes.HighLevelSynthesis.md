@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.HighLevelSynthesis
 
 <span id="qiskit.transpiler.passes.HighLevelSynthesis" />
 
-`qiskit.transpiler.passes.HighLevelSynthesis(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/synthesis/high_level_synthesis.py "view source code")
+`qiskit.transpiler.passes.HighLevelSynthesis(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/synthesis/high_level_synthesis.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 

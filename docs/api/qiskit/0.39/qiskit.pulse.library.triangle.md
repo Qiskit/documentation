@@ -10,14 +10,14 @@ python_api_name: qiskit.pulse.library.triangle
 
 <span id="qiskit.pulse.library.triangle" />
 
-`triangle(duration, amp, freq=None, phase=0, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/pulse/library/discrete.py "view source code")
+`triangle(duration, amp, freq=None, phase=0, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/pulse/library/discrete.py "view source code")
 
 Generates triangle wave [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform").
 
 For $A=$ `amp`, $T=$ `period`, and $\phi=$ `phase`, applies the midpoint sampling strategy to generate a discrete pulse sampled from the continuous function:
 
 $$
-f(x) = A \left(-2\left\vert \text{sawtooth}(x, A, T, \phi)\right\vert  + 1\right)
+f(x) = A \left(-2\left|\text{sawtooth}(x, A, T, \phi)\right| + 1\right)
 $$
 
 This a non-sinusoidal wave with linear ramping.

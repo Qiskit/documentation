@@ -10,23 +10,23 @@ python_api_name: qiskit.quantum_info.Pauli
 
 <span id="qiskit.quantum_info.Pauli" />
 
-`Pauli(data=None, x=None, *, z=None, label=None) `[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/operators/symplectic/pauli.py "view source code")
+`Pauli(data=None, x=None, *, z=None, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/quantum_info/operators/symplectic/pauli.py "view source code")
 
 N-qubit Pauli operator.
 
 This class represents an operator $P$ from the full $n$-qubit *Pauli* group
 
 $$
-                      \[P = (-i)^{q} P_{n-1} \otimes ... \otimes P_{0}\]
+P = (-i)^{q} P_{n-1} \otimes ... \otimes P_{0}
 $$
 
 where $q\in \mathbb{Z}_4$ and $P_i \in \{I, X, Y, Z\}$ are single-qubit Pauli matrices:
 
 $$
-                      \[\begin{split}I = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix},
-                      X = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix},
-                      Y = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix},
-                      Z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}.\end{split}\]
+\begin{split}I = \begin{pmatrix} 1 & 0  \\ 0 & 1  \end{pmatrix},
+X = \begin{pmatrix} 0 & 1  \\ 1 & 0  \end{pmatrix},
+Y = \begin{pmatrix} 0 & -i \\ i & 0  \end{pmatrix},
+Z = \begin{pmatrix} 1 & 0  \\ 0 & -1 \end{pmatrix}.\end{split}
 $$
 
 **Initialization**
@@ -62,14 +62,14 @@ The string representation can be converted to a `Pauli` using the class initiali
 The internal data structure of an $n$-qubit Pauli is two length-$n$ boolean vectors $z \in \mathbb{Z}_2^N$, $x \in \mathbb{Z}_2^N$, and an integer $q \in \mathbb{Z}_4$ defining the Pauli operator
 
 $$
-                      \[P = (-i)^{q + z\cdot x} Z^z \cdot X^x.\]
+P = (-i)^{q + z\cdot x} Z^z \cdot X^x.
 $$
 
 The $k$ and $x$ arrays
 
 $$
-                      \[\begin{split}P &= P_{n-1} \otimes ... \otimes P_{0} \\
-                      P_k &= (-i)^{z[k] * x[k]} Z^{z[k]}\cdot X^{x[k]}\end{split}\]
+\begin{split}P &= P_{n-1} \otimes ... \otimes P_{0} \\
+P_k &= (-i)^{z[k] * x[k]} Z^{z[k]}\cdot X^{x[k]}\end{split}
 $$
 
 where `z[k] = P.z[k]`, `x[k] = P.x[k]` respectively.

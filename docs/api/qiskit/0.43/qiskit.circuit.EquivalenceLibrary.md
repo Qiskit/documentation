@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.EquivalenceLibrary
 
 <span id="qiskit.circuit.EquivalenceLibrary" />
 
-`EquivalenceLibrary(*, base=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/equivalence.py "view source code")
+`EquivalenceLibrary(*, base=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/equivalence.py "view source code")
 
 Bases: `object`
 
@@ -30,7 +30,7 @@ Create a new equivalence library.
 
 <span id="qiskit.circuit.EquivalenceLibrary.add_equivalence" />
 
-`EquivalenceLibrary.add_equivalence(gate, equivalent_circuit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/equivalence.py "view source code")
+`EquivalenceLibrary.add_equivalence(gate, equivalent_circuit)`
 
 Add a new equivalence to the library. Future queries for the Gate will include the given circuit, in addition to all existing equivalences (including those from base).
 
@@ -47,7 +47,7 @@ Parameterized Gates (those including qiskit.circuit.Parameters in their Gate.par
 
 <span id="qiskit.circuit.EquivalenceLibrary.draw" />
 
-`EquivalenceLibrary.draw(filename=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/equivalence.py "view source code")
+`EquivalenceLibrary.draw(filename=None)`
 
 Draws the equivalence relations available in the library.
 
@@ -75,7 +75,7 @@ PIL.Image or IPython.display.SVG
 
 <span id="qiskit.circuit.EquivalenceLibrary.get_entry" />
 
-`EquivalenceLibrary.get_entry(gate)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/equivalence.py "view source code")
+`EquivalenceLibrary.get_entry(gate)`
 
 Gets the set of QuantumCircuits circuits from the library which equivalently implement the given Gate.
 
@@ -103,7 +103,7 @@ List\[[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCirc
 
 <span id="qiskit.circuit.EquivalenceLibrary.has_entry" />
 
-`EquivalenceLibrary.has_entry(gate)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/equivalence.py "view source code")
+`EquivalenceLibrary.has_entry(gate)`
 
 Check if a library contains any decompositions for gate.
 
@@ -127,7 +127,7 @@ Bool
 
 <span id="qiskit.circuit.EquivalenceLibrary.keys" />
 
-`EquivalenceLibrary.keys()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/equivalence.py "view source code")
+`EquivalenceLibrary.keys()`
 
 Return list of keys to key to node index map.
 
@@ -145,7 +145,7 @@ List
 
 <span id="qiskit.circuit.EquivalenceLibrary.node_index" />
 
-`EquivalenceLibrary.node_index(key)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/equivalence.py "view source code")
+`EquivalenceLibrary.node_index(key)`
 
 Return node index for a given key.
 
@@ -167,7 +167,7 @@ Int
 
 <span id="qiskit.circuit.EquivalenceLibrary.set_entry" />
 
-`EquivalenceLibrary.set_entry(gate, entry)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/equivalence.py "view source code")
+`EquivalenceLibrary.set_entry(gate, entry)`
 
 Set the equivalence record for a Gate. Future queries for the Gate will return only the circuits provided.
 

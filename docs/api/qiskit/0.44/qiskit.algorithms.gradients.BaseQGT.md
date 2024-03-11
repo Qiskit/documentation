@@ -10,22 +10,22 @@ python_api_name: qiskit.algorithms.gradients.BaseQGT
 
 <span id="qiskit.algorithms.gradients.BaseQGT" />
 
-`qiskit.algorithms.gradients.BaseQGT(estimator, phase_fix=True, derivative_type=DerivativeType.COMPLEX, options=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/gradients/base/base_qgt.py "view source code")
+`qiskit.algorithms.gradients.BaseQGT(estimator, phase_fix=True, derivative_type=DerivativeType.COMPLEX, options=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/gradients/base/base_qgt.py "view source code")
 
 Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 
 Base class to computes the Quantum Geometric Tensor (QGT) given a pure, parameterized quantum state. QGT is defined as:
 
 $$
-\mathrm{QGT}_{ij}= \langle \partial_i \psi \vert  \partial_j \psi \rangle
-    - \langle\partial_i \psi \vert  \psi \rangle \langle\psi \vert  \partial_j \psi \rangle.
+\mathrm{QGT}_{ij}= \langle \partial_i \psi | \partial_j \psi \rangle
+    - \langle\partial_i \psi | \psi \rangle \langle\psi | \partial_j \psi \rangle.
 $$
 
 **Parameters**
 
 *   **estimator** ([*BaseEstimator*](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator")) – The estimator used to compute the QGT.
 
-*   **phase\_fix** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether to calculate the second term (phase fix) of the QGT, which is $\langle\partial_i \psi \vert  \psi \rangle \langle\psi \vert  \partial_j \psi \rangle$. Defaults to `True`.
+*   **phase\_fix** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether to calculate the second term (phase fix) of the QGT, which is $\langle\partial_i \psi | \psi \rangle \langle\psi | \partial_j \psi \rangle$. Defaults to `True`.
 
 *   **derivative\_type** (*DerivativeType*) –
 
@@ -34,22 +34,22 @@ $$
     *   `DerivativeType.REAL` computes
 
     $$
-    \mathrm{Re(QGT)}_{ij}= \mathrm{Re}[\langle \partial_i \psi \vert  \partial_j \psi \rangle
-        - \langle\partial_i \psi \vert  \psi \rangle \langle\psi \vert  \partial_j \psi \rangle].
+    \mathrm{Re(QGT)}_{ij}= \mathrm{Re}[\langle \partial_i \psi | \partial_j \psi \rangle
+        - \langle\partial_i \psi | \psi \rangle \langle\psi | \partial_j \psi \rangle].
     $$
 
     *   `DerivativeType.IMAG` computes
 
     $$
-    \mathrm{Im(QGT)}_{ij}= \mathrm{Im}[\langle \partial_i \psi \vert  \partial_j \psi \rangle
-        - \langle\partial_i \psi \vert  \psi \rangle \langle\psi \vert  \partial_j \psi \rangle].
+    \mathrm{Im(QGT)}_{ij}= \mathrm{Im}[\langle \partial_i \psi | \partial_j \psi \rangle
+        - \langle\partial_i \psi | \psi \rangle \langle\psi | \partial_j \psi \rangle].
     $$
 
     *   `DerivativeType.COMPLEX` computes
 
     $$
-    \mathrm{QGT}_{ij}= [\langle \partial_i \psi \vert  \partial_j \psi \rangle
-        - \langle\partial_i \psi \vert  \psi \rangle \langle\psi \vert  \partial_j \psi \rangle].
+    \mathrm{QGT}_{ij}= [\langle \partial_i \psi | \partial_j \psi \rangle
+        - \langle\partial_i \psi | \psi \rangle \langle\psi | \partial_j \psi \rangle].
     $$
 
 *   **options** ([*Options*](qiskit.providers.Options "qiskit.providers.Options") *| None*) – Backend runtime options used for circuit execution. The order of priority is: options in `run` method > QGT’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting.

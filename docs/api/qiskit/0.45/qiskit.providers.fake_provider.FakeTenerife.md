@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeTenerife
 
 <span id="qiskit.providers.fake_provider.FakeTenerife" />
 
-`qiskit.providers.fake_provider.FakeTenerife`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/fake_provider/backends/tenerife/fake_tenerife.py "view source code")
+`qiskit.providers.fake_provider.FakeTenerife` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/fake_provider/backends/tenerife/fake_tenerife.py "view source code")
 
 Bases: [`FakeBackend`](providers_fake_provider#qiskit.providers.fake_provider.FakeBackend "qiskit.providers.fake_provider.fake_backend.FakeBackend")
 

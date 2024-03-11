@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.estimate_observables
 
 <span id="qiskit.algorithms.estimate_observables" />
 
-`estimate_observables(estimator, quantum_state, observables, parameter_values=None, threshold=1e-12)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/observables_evaluator.py "view source code")
+`estimate_observables(estimator, quantum_state, observables, parameter_values=None, threshold=1e-12)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/observables_evaluator.py "view source code")
 
 Accepts a sequence of operators and calculates their expectation values - means and metadata. They are calculated with respect to a quantum state provided. A user can optionally provide a threshold value which filters mean values falling below the threshold.
 

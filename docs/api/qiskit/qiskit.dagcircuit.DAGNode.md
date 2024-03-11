@@ -10,7 +10,7 @@ python_api_name: qiskit.dagcircuit.DAGNode
 
 <span id="qiskit.dagcircuit.DAGNode" />
 
-`qiskit.dagcircuit.DAGNode(nid=-1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/dagcircuit/dagnode.py "view source code")
+`qiskit.dagcircuit.DAGNode(nid=-1)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/dagcircuit/dagnode.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
@@ -26,7 +26,7 @@ Create a node
 
 `static semantic_eq(node1, node2, bit_indices1, bit_indices2)`
 
-Check if DAG nodes are considered equivalent, e.g., as a node\_match for [`rustworkx.is_isomorphic_node_match()`](https://www.rustworkx.org/apiref/rustworkx.is_isomorphic_node_match.html#rustworkx.is_isomorphic_node_match "(in rustworkx v0.14.0)").
+Check if DAG nodes are considered equivalent, e.g., as a node\_match for [`rustworkx.is_isomorphic_node_match()`](https://www.rustworkx.org/apiref/rustworkx.is_isomorphic_node_match.html#rustworkx.is_isomorphic_node_match "(in rustworkx v0.14)").
 
 **Parameters**
 

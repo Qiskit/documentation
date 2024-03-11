@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CDKMRippleCarryAdder
 
 <span id="qiskit.circuit.library.CDKMRippleCarryAdder" />
 
-`qiskit.circuit.library.CDKMRippleCarryAdder(num_state_qubits, kind='full', name='CDKMRippleCarryAdder')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/arithmetic/adders/cdkm_ripple_carry_adder.py "view source code")
+`qiskit.circuit.library.CDKMRippleCarryAdder(num_state_qubits, kind='full', name='CDKMRippleCarryAdder')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/arithmetic/adders/cdkm_ripple_carry_adder.py "view source code")
 
 Bases: `Adder`
 
@@ -72,7 +72,7 @@ It has one less qubit than the full-adder since it doesn’t have the carry-out,
 
 **Parameters**
 
-*   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of qubits in either input register for state $\vert a\rangle$ or $\vert b\rangle$. The two input registers must have the same number of qubits.
+*   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of qubits in either input register for state $|a\rangle$ or $|b\rangle$. The two input registers must have the same number of qubits.
 *   **kind** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The kind of adder, can be `'full'` for a full adder, `'half'` for a half adder, or `'fixed'` for a fixed-sized adder. A full adder includes both carry-in and carry-out, a half only carry-out, and a fixed-sized adder neither carry-in nor carry-out.
 *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The name of the circuit object.
 
@@ -116,29 +116,17 @@ a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitI
 
 QuantumCircuitData
 
-<span id="qiskit.circuit.library.CDKMRippleCarryAdder.extension_lib" />
-
-### extension\_lib
-
-`= 'include "qelib1.inc";'`
-
 <span id="qiskit.circuit.library.CDKMRippleCarryAdder.global_phase" />
 
 ### global\_phase
 
 Return the global phase of the current circuit scope in radians.
 
-<span id="qiskit.circuit.library.CDKMRippleCarryAdder.header" />
-
-### header
-
-`= 'OPENQASM 2.0;'`
-
 <span id="qiskit.circuit.library.CDKMRippleCarryAdder.instances" />
 
 ### instances
 
-`= 159`
+`= 166`
 
 <span id="qiskit.circuit.library.CDKMRippleCarryAdder.layout" />
 
@@ -247,9 +235,6 @@ ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
 ```
 
 To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
-
-```python
-```
 
 ```python
 >>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector

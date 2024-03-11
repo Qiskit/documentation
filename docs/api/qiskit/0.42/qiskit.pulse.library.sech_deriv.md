@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.library.sech_deriv
 
 <span id="qiskit.pulse.library.sech_deriv" />
 
-`sech_deriv(duration, amp, sigma, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/library/discrete.py "view source code")
+`sech_deriv(duration, amp, sigma, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/library/discrete.py "view source code")
 
 Generates unnormalized sech derivative [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform").
 

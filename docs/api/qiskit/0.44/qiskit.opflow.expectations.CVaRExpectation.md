@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.expectations.CVaRExpectation
 
 <span id="qiskit.opflow.expectations.CVaRExpectation" />
 
-`qiskit.opflow.expectations.CVaRExpectation(alpha, expectation=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/opflow/expectations/cvar_expectation.py "view source code")
+`qiskit.opflow.expectations.CVaRExpectation(alpha, expectation=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/opflow/expectations/cvar_expectation.py "view source code")
 
 Bases: [`ExpectationBase`](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.expectation_base.ExpectationBase")
 

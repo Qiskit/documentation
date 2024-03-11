@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.algorithms.VQEAdapt
 
 <span id="qiskit.chemistry.algorithms.VQEAdapt" />
 
-`VQEAdapt(operator, var_form_base, optimizer, initial_point=None, excitation_pool=None, threshold=1e-05, delta=1, max_evals_grouped=1, aux_operators=None, quantum_instance=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/chemistry/algorithms/minimum_eigen_solvers/vqe_adapt.py "view source code")
+`VQEAdapt(operator, var_form_base, optimizer, initial_point=None, excitation_pool=None, threshold=1e-05, delta=1, max_evals_grouped=1, aux_operators=None, quantum_instance=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/chemistry/algorithms/minimum_eigen_solvers/vqe_adapt.py "view source code")
 
 The Adaptive VQE algorithm.
 
@@ -146,7 +146,7 @@ dict
 
 <span id="qiskit.chemistry.algorithms.VQEAdapt.get_optimal_circuit" />
 
-`VQEAdapt.get_optimal_circuit()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/chemistry/algorithms/minimum_eigen_solvers/vqe_adapt.py "view source code")
+`VQEAdapt.get_optimal_circuit()`
 
 get optimal circuit
 
@@ -154,7 +154,7 @@ get optimal circuit
 
 <span id="qiskit.chemistry.algorithms.VQEAdapt.get_optimal_cost" />
 
-`VQEAdapt.get_optimal_cost()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/chemistry/algorithms/minimum_eigen_solvers/vqe_adapt.py "view source code")
+`VQEAdapt.get_optimal_cost()`
 
 get optimal cost
 
@@ -162,7 +162,7 @@ get optimal cost
 
 <span id="qiskit.chemistry.algorithms.VQEAdapt.get_optimal_vector" />
 
-`VQEAdapt.get_optimal_vector()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/chemistry/algorithms/minimum_eigen_solvers/vqe_adapt.py "view source code")
+`VQEAdapt.get_optimal_vector()`
 
 get optimal vector
 

@@ -10,15 +10,15 @@ python_api_name: qiskit.aqua.operators.gradients.QFI
 
 <span id="qiskit.aqua.operators.gradients.QFI" />
 
-`QFI(qfi_method='lin_comb_full')`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/gradients/qfi.py "view source code")
+`QFI(qfi_method='lin_comb_full')` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/gradients/qfi.py "view source code")
 
 Compute the Quantum Fisher Information (QFI).
 
 Computes the QFI given a pure, parametrized quantum state, where QFI is:
 
 $$
-\mathrm{QFI}_{kl}= 4 \mathrm{Re}[\langle \partial_k \psi \vert  \partial_l \psi \rangle
-    − \langle\partial_k \psi \vert  \psi \rangle \langle\psi \vert  \partial_l \psi \rangle].
+\mathrm{QFI}_{kl}= 4 \mathrm{Re}[\langle \partial_k \psi | \partial_l \psi \rangle
+    − \langle\partial_k \psi | \psi \rangle \langle\psi | \partial_l \psi \rangle].
 $$
 
 **Parameters**

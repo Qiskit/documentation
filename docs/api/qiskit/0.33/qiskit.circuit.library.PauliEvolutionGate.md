@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.PauliEvolutionGate
 
 <span id="qiskit.circuit.library.PauliEvolutionGate" />
 
-`PauliEvolutionGate(operator, time=1.0, label=None, synthesis=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/library/pauli_evolution.py "view source code")
+`PauliEvolutionGate(operator, time=1.0, label=None, synthesis=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/library/pauli_evolution.py "view source code")
 
 Bases: `qiskit.circuit.gate.Gate`
 
@@ -47,7 +47,7 @@ $$
 
 <span id="qiskit.circuit.library.PauliEvolutionGate.inverse" />
 
-`PauliEvolutionGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/library/pauli_evolution.py "view source code")
+`PauliEvolutionGate.inverse()`
 
 Invert this instruction.
 
@@ -71,7 +71,7 @@ a fresh instruction for the inverse
 
 <span id="qiskit.circuit.library.PauliEvolutionGate.validate_parameter" />
 
-`PauliEvolutionGate.validate_parameter(parameter)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/library/pauli_evolution.py "view source code")
+`PauliEvolutionGate.validate_parameter(parameter)`
 
 Gate parameters should be int, float, or ParameterExpression
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.qobj.GateCalibration
 
 <span id="qiskit.qobj.GateCalibration" />
 
-`qiskit.qobj.GateCalibration(name, qubits, params, instructions)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/qobj/qasm_qobj.py "view source code")
+`qiskit.qobj.GateCalibration(name, qubits, params, instructions)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/qobj/qasm_qobj.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 

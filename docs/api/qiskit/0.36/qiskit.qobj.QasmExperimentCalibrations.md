@@ -10,7 +10,7 @@ python_api_name: qiskit.qobj.QasmExperimentCalibrations
 
 <span id="qiskit.qobj.QasmExperimentCalibrations" />
 
-`QasmExperimentCalibrations(gates)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/qobj/qasm_qobj.py "view source code")
+`QasmExperimentCalibrations(gates)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/qobj/qasm_qobj.py "view source code")
 
 Bases: `object`
 
@@ -28,7 +28,7 @@ Initialize a container for calibrations.
 
 <span id="qiskit.qobj.QasmExperimentCalibrations.from_dict" />
 
-`classmethod QasmExperimentCalibrations.from_dict(data)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/qobj/qasm_qobj.py "view source code")
+`classmethod QasmExperimentCalibrations.from_dict(data)`
 
 Create a new GateCalibration object from a dictionary.
 
@@ -48,7 +48,7 @@ The QasmExperimentCalibrations from the input dictionary.
 
 <span id="qiskit.qobj.QasmExperimentCalibrations.to_dict" />
 
-`QasmExperimentCalibrations.to_dict()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/qobj/qasm_qobj.py "view source code")
+`QasmExperimentCalibrations.to_dict()`
 
 Return a dictionary format representation of the calibrations.
 

@@ -1,16 +1,28 @@
+---
+title: linear_solvers
+description: API reference for qiskit.algorithms.linear_solvers
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.algorithms.linear_solvers
+---
+
 <span id="qiskit-algorithms-linear-solvers" />
 
 # qiskit.algorithms.linear\_solvers
 
-## Linear solvers ([`qiskit.algorithms.linear_solvers`](#module-qiskit.algorithms.linear_solvers "qiskit.algorithms.linear_solvers"))
+## Linear solvers
+
+<span id="module-qiskit.algorithms.linear_solvers" />
+
+`qiskit.algorithms.linear_solvers`
 
 It contains classical and quantum algorithms to solve systems of linear equations such as `HHL`. Although the quantum algorithm accepts a general Hermitian matrix as input, Qiskit’s default Hamiltonian evolution is exponential in such cases and therefore the quantum linear solver will not achieve an exponential speedup. Furthermore, the quantum algorithm can find a solution exponentially faster in the size of the system than their classical counterparts (i.e. logarithmic complexity instead of polynomial), meaning that reading the full solution vector would kill such speedup (since this would take linear time in the size of the system). Therefore, to achieve an exponential speedup we can only compute functions from the solution vector (the so called observables) to learn information about the solution. Known efficient implementations of Hamiltonian evolutions or observables are contained in the following subfolders:
 
-## [Matrices](#matrices)
+**[Matrices](#matrices)**
 
 A placeholder for efficient implementations of the Hamiltonian evolution of particular types of matrices.
 
-## [Observables](#observables)
+**[Observables](#observables)**
 
 A placeholder for efficient implementations of functions that can be computed from the solution vector to a system of linear equations.
 
@@ -38,3 +50,4 @@ A placeholder for efficient implementations of functions that can be computed fr
 | [`LinearSystemObservable`](qiskit.algorithms.linear_solvers.LinearSystemObservable "qiskit.algorithms.linear_solvers.LinearSystemObservable")()    | An abstract class for linear system observables in Qiskit.                       |
 | [`AbsoluteAverage`](qiskit.algorithms.linear_solvers.AbsoluteAverage "qiskit.algorithms.linear_solvers.AbsoluteAverage")()                         | An observable for the absolute average of a linear system of equations solution. |
 | [`MatrixFunctional`](qiskit.algorithms.linear_solvers.MatrixFunctional "qiskit.algorithms.linear_solvers.MatrixFunctional")(main\_diag, off\_diag) | A class for the matrix functional of the vector solution to the linear systems.  |
+

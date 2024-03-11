@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.primitive_ops.PauliOp
 
 <span id="qiskit.opflow.primitive_ops.PauliOp" />
 
-`PauliOp(primitive, coeff=1.0)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/primitive_ops/pauli_op.py "view source code")
+`PauliOp(primitive, coeff=1.0)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/primitive_ops/pauli_op.py "view source code")
 
 Bases: [`qiskit.opflow.primitive_ops.primitive_op.PrimitiveOp`](qiskit.opflow.primitive_ops.PrimitiveOp "qiskit.opflow.primitive_ops.primitive_op.PrimitiveOp")
 
@@ -31,7 +31,7 @@ Class for Operators backed by Terra’s `Pauli` module.
 
 <span id="qiskit.opflow.primitive_ops.PauliOp.add" />
 
-`PauliOp.add(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/primitive_ops/pauli_op.py "view source code")
+`PauliOp.add(other)`
 
 Return Operator addition of self and other, overloaded by `+`.
 
@@ -51,7 +51,7 @@ An `OperatorBase` equivalent to the sum of self and other.
 
 <span id="qiskit.opflow.primitive_ops.PauliOp.adjoint" />
 
-`PauliOp.adjoint()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/primitive_ops/pauli_op.py "view source code")
+`PauliOp.adjoint()`
 
 Return a new Operator equal to the Operator’s adjoint (conjugate transpose), overloaded by `~`. For StateFns, this also turns the StateFn into a measurement.
 
@@ -67,7 +67,7 @@ An `OperatorBase` equivalent to the adjoint of self.
 
 <span id="qiskit.opflow.primitive_ops.PauliOp.compose" />
 
-`PauliOp.compose(other, permutation=None, front=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/primitive_ops/pauli_op.py "view source code")
+`PauliOp.compose(other, permutation=None, front=False)`
 
 Return Operator Composition between self and other (linear algebra-style: A\@B(x) = A(B(x))), overloaded by `@`.
 
@@ -95,7 +95,7 @@ An `OperatorBase` equivalent to the function composition of self and other.
 
 <span id="qiskit.opflow.primitive_ops.PauliOp.equals" />
 
-`PauliOp.equals(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/primitive_ops/pauli_op.py "view source code")
+`PauliOp.equals(other)`
 
 Evaluate Equality between Operators, overloaded by `==`. Only returns True if self and other are of the same representation (e.g. a DictStateFn and CircuitStateFn will never be equal, even if their vector representations are equal), their underlying primitives are equal (this means for ListOps, OperatorStateFns, or EvolvedOps the equality is evaluated recursively downwards), and their coefficients are equal.
 
@@ -115,7 +115,7 @@ A bool equal to the equality of self and other.
 
 <span id="qiskit.opflow.primitive_ops.PauliOp.eval" />
 
-`PauliOp.eval(front=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/primitive_ops/pauli_op.py "view source code")
+`PauliOp.eval(front=None)`
 
 Evaluate the Operator’s underlying function, either on a binary string or another Operator. A square binary Operator can be defined as a function taking a binary function to another binary function. This method returns the value of that function for a given StateFn or binary string. For example, `op.eval('0110').eval('1110')` can be seen as querying the Operator’s matrix representation by row 6 and column 14, and will return the complex value at those “indices.” Similarly for a StateFn, `op.eval('1011')` will return the complex value at row 11 of the vector representation of the StateFn, as all StateFns are defined to be evaluated from Zero implicitly (i.e. it is as if `.eval('0000')` is already called implicitly to always “indexing” from column 0).
 
@@ -137,7 +137,7 @@ The output of the Operator’s evaluation function. If self is a `StateFn`, the 
 
 <span id="qiskit.opflow.primitive_ops.PauliOp.exp_i" />
 
-`PauliOp.exp_i()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/primitive_ops/pauli_op.py "view source code")
+`PauliOp.exp_i()`
 
 Return a `CircuitOp` equivalent to e^-iH for this operator H.
 
@@ -149,7 +149,7 @@ Return a `CircuitOp` equivalent to e^-iH for this operator H.
 
 <span id="qiskit.opflow.primitive_ops.PauliOp.permute" />
 
-`PauliOp.permute(permutation)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/primitive_ops/pauli_op.py "view source code")
+`PauliOp.permute(permutation)`
 
 Permutes the sequence of Pauli matrices.
 
@@ -173,7 +173,7 @@ A new PauliOp representing the permuted operator. For operator (X ^ Y ^ Z) and i
 
 <span id="qiskit.opflow.primitive_ops.PauliOp.primitive_strings" />
 
-`PauliOp.primitive_strings()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/primitive_ops/pauli_op.py "view source code")
+`PauliOp.primitive_strings()`
 
 Return a set of strings describing the primitives contained in the Operator. For example, `{'QuantumCircuit', 'Pauli'}`. For hierarchical Operators, such as `ListOps`, this can help illuminate the primitives represented in the various recursive levels, and therefore which conversions can be applied.
 
@@ -189,7 +189,7 @@ A set of strings describing the primitives contained within the Operator.
 
 <span id="qiskit.opflow.primitive_ops.PauliOp.tensor" />
 
-`PauliOp.tensor(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/primitive_ops/pauli_op.py "view source code")
+`PauliOp.tensor(other)`
 
 Return tensor product between self and other, overloaded by `^`. Note: You must be conscious of Qiskit’s big-endian bit printing convention. Meaning, X.tensor(Y) produces an X on qubit 0 and an Y on qubit 1, or X⨂Y, but would produce a QuantumCircuit which looks like
 
@@ -213,7 +213,7 @@ An `OperatorBase` equivalent to the tensor product of self and other.
 
 <span id="qiskit.opflow.primitive_ops.PauliOp.to_circuit" />
 
-`PauliOp.to_circuit()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/primitive_ops/pauli_op.py "view source code")
+`PauliOp.to_circuit()`
 
 Returns a `QuantumCircuit` equivalent to this Operator.
 
@@ -225,7 +225,7 @@ Returns a `QuantumCircuit` equivalent to this Operator.
 
 <span id="qiskit.opflow.primitive_ops.PauliOp.to_instruction" />
 
-`PauliOp.to_instruction()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/primitive_ops/pauli_op.py "view source code")
+`PauliOp.to_instruction()`
 
 Returns an `Instruction` equivalent to this Operator.
 
@@ -237,7 +237,7 @@ Returns an `Instruction` equivalent to this Operator.
 
 <span id="qiskit.opflow.primitive_ops.PauliOp.to_matrix" />
 
-`PauliOp.to_matrix(massive=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/primitive_ops/pauli_op.py "view source code")
+`PauliOp.to_matrix(massive=False)`
 
 Return NumPy representation of the Operator. Represents the evaluation of the Operator’s underlying function on every combination of basis binary strings. Warn if more than 16 qubits to force having to set `massive=True` if such a large vector is desired.
 
@@ -253,7 +253,7 @@ The NumPy `ndarray` equivalent to this Operator.
 
 <span id="qiskit.opflow.primitive_ops.PauliOp.to_pauli_op" />
 
-`PauliOp.to_pauli_op(massive=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/primitive_ops/pauli_op.py "view source code")
+`PauliOp.to_pauli_op(massive=False)`
 
 Returns a sum of `PauliOp` s equivalent to this Operator.
 
@@ -265,7 +265,7 @@ Returns a sum of `PauliOp` s equivalent to this Operator.
 
 <span id="qiskit.opflow.primitive_ops.PauliOp.to_spmatrix" />
 
-`PauliOp.to_spmatrix()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/primitive_ops/pauli_op.py "view source code")
+`PauliOp.to_spmatrix()`
 
 Returns SciPy sparse matrix representation of the Operator.
 

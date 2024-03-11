@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.Gate
 
 <span id="qiskit.circuit.Gate" />
 
-`Gate(name, num_qubits, params, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/gate.py "view source code")
+`Gate(name, num_qubits, params, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/gate.py "view source code")
 
 Unitary gate.
 

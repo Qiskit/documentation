@@ -1,8 +1,20 @@
+---
+title: variational
+description: API reference for qiskit.algorithms.time_evolvers.variational
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.algorithms.time_evolvers.variational
+---
+
 <span id="qiskit-algorithms-time-evolvers-variational" />
 
 # qiskit.algorithms.time\_evolvers.variational
 
-## Variational Quantum Time Evolutions ([`qiskit.algorithms.time_evolvers.variational`](#module-qiskit.algorithms.time_evolvers.variational "qiskit.algorithms.time_evolvers.variational"))
+## Variational Quantum Time Evolutions
+
+<span id="module-qiskit.algorithms.time_evolvers.variational" />
+
+`qiskit.algorithms.time_evolvers.variational`
 
 Algorithms for performing Variational Quantum Time Evolution of quantum states, which can be tailored to near-term devices. `VarQTE` base class exposes an interface, compliant with the Quantum Time Evolution Framework in Qiskit Terra, that is implemented by [`VarQRTE`](qiskit.algorithms.VarQRTE "qiskit.algorithms.VarQRTE") and [`VarQITE`](qiskit.algorithms.VarQITE "qiskit.algorithms.VarQITE") classes for real and imaginary time evolution respectively. The variational approach is taken according to a variational principle chosen by a user.
 
@@ -59,3 +71,4 @@ ODE solvers that implement the SciPy ODE Solver interface. The Forward Euler Sol
 |                                                                                                                                                                                     |                           |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
 | [`ForwardEulerSolver`](qiskit.algorithms.time_evolvers.variational.ForwardEulerSolver "qiskit.algorithms.time_evolvers.variational.ForwardEulerSolver")(function, t0, y0, t\_bound) | Forward Euler ODE solver. |
+

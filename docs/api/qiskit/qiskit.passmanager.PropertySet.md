@@ -10,7 +10,7 @@ python_api_name: qiskit.passmanager.PropertySet
 
 <span id="qiskit.passmanager.PropertySet" />
 
-`qiskit.passmanager.PropertySet`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/passmanager/compilation_status.py "view source code")
+`qiskit.passmanager.PropertySet` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/passmanager/compilation_status.py "view source code")
 
 Bases: [`dict`](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.FourierChecking
 
 <span id="qiskit.circuit.library.FourierChecking" />
 
-`FourierChecking(f, g)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/fourier_checking.py "view source code")
+`FourierChecking(f, g)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/fourier_checking.py "view source code")
 
 Fourier checking circuit.
 

@@ -1,3 +1,11 @@
+---
+title: channels
+description: API reference for qiskit.pulse.channels
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.pulse.channels
+---
+
 <span id="qiskit-pulse-channels" />
 
 # qiskit.pulse.channels
@@ -23,3 +31,4 @@ Novel channel types can often utilize the `ControlChannel`, but if this is not s
 | `PulseChannel`(index)                 | Base class of transmit Channels.                                                               |
 | `RegisterSlot`(index)                 | Classical resister slot channels represent classical registers (low-latency classical memory). |
 | `SnapshotChannel`(\*args, \*\*kwargs) | Snapshot channels are used to specify instructions for simulators.                             |
+

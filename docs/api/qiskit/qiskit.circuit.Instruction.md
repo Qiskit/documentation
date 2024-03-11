@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.Instruction
 
 <span id="qiskit.circuit.Instruction" />
 
-`qiskit.circuit.Instruction(name, num_qubits, num_clbits, params, duration=None, unit='dt', label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/instruction.py "view source code")
+`qiskit.circuit.Instruction(name, num_qubits, num_clbits, params, duration=None, unit='dt', label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/instruction.py "view source code")
 
 Bases: [`Operation`](qiskit.circuit.Operation "qiskit.circuit.operation.Operation")
 
@@ -205,21 +205,23 @@ a copy of the current instruction, with the name updated if it was provided
 
 <span id="qiskit.circuit.Instruction.inverse" />
 
-`inverse()`
+`inverse(annotated=False)`
 
 Invert this instruction.
 
-If the instruction is composite (i.e. has a definition), then its definition will be recursively inverted.
+If annotated is False, the inverse instruction is implemented as a fresh instruction with the recursively inverted definition.
 
-Special instructions inheriting from Instruction can implement their own inverse (e.g. T and Tdg, Barrier, etc.)
+If annotated is True, the inverse instruction is implemented as [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation"), and corresponds to the given instruction annotated with the “inverse modifier”.
+
+Special instructions inheriting from Instruction can implement their own inverse (e.g. T and Tdg, Barrier, etc.) In particular, they can choose how to handle the argument `annotated` which may include ignoring it and always returning a concrete gate class if the inverse is defined as a standard gate.
+
+**Parameters**
+
+**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if set to True the output inverse gate will be returned as [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation").
 
 **Returns**
 
-a fresh instruction for the inverse
-
-**Return type**
-
-[qiskit.circuit.Instruction](#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+The inverse operation.
 
 **Raises**
 
@@ -232,20 +234,6 @@ a fresh instruction for the inverse
 `is_parameterized()`
 
 Return True .IFF. instruction is parameterized else False
-
-### qasm
-
-<span id="qiskit.circuit.Instruction.qasm" />
-
-`qasm()`
-
-Return a default OpenQASM string for the instruction.
-
-Derived instructions may override this to print in a different format (e.g. `measure q[0] -> c[0];`).
-
-<Admonition title="Deprecated since version 0.25.0" type="danger">
-  The method `qiskit.circuit.instruction.Instruction.qasm()` is deprecated as of qiskit-terra 0.25.0. It will be removed in the Qiskit 1.0 release. Correct exporting to OpenQASM 2 is the responsibility of a larger exporter; it cannot safely be done on an object-by-object basis without context. No replacement will be provided, because the premise is wrong.
-</Admonition>
 
 ### repeat
 

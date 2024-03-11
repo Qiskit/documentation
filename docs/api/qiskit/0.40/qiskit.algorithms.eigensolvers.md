@@ -1,8 +1,20 @@
+---
+title: eigensolvers
+description: API reference for qiskit.algorithms.eigensolvers
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.algorithms.eigensolvers
+---
+
 <span id="qiskit-algorithms-eigensolvers" />
 
 # qiskit.algorithms.eigensolvers
 
-## Eigensolvers Package ([`qiskit.algorithms.eigensolvers`](#module-qiskit.algorithms.eigensolvers "qiskit.algorithms.eigensolvers"))
+## Eigensolvers Package
+
+<span id="module-qiskit.algorithms.eigensolvers" />
+
+`qiskit.algorithms.eigensolvers`
 
 ### Eigensolvers
 
@@ -19,3 +31,4 @@
 > | [`EigensolverResult`](qiskit.algorithms.eigensolvers.EigensolverResult "qiskit.algorithms.eigensolvers.EigensolverResult")()                | Eigensolver result.       |
 > | [`NumPyEigensolverResult`](qiskit.algorithms.eigensolvers.NumPyEigensolverResult "qiskit.algorithms.eigensolvers.NumPyEigensolverResult")() | NumPy eigensolver result. |
 > | [`VQDResult`](qiskit.algorithms.eigensolvers.VQDResult "qiskit.algorithms.eigensolvers.VQDResult")()                                        | VQD Result.               |
+

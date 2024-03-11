@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.StatevectorSimulator
 
 <span id="qiskit.providers.aer.StatevectorSimulator" />
 
-`StatevectorSimulator(configuration=None, properties=None, provider=None, **backend_options)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/backends/statevector_simulator.py "view source code")
+`StatevectorSimulator(configuration=None, properties=None, provider=None, **backend_options)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/backends/statevector_simulator.py "view source code")
 
 Bases: `qiskit.providers.aer.backends.aerbackend.AerBackend`
 

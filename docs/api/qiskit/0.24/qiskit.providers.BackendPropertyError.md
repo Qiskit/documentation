@@ -12,7 +12,7 @@ python_api_name: qiskit.providers.BackendPropertyError
 
 <span id="qiskit.providers.BackendPropertyError" />
 
-`BackendPropertyError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/providers/exceptions.py "view source code")
+`BackendPropertyError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/providers/exceptions.py "view source code")
 
 Base class for errors raised while looking for a backend property.
 

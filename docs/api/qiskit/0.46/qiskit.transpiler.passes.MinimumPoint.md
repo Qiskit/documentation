@@ -1,0 +1,121 @@
+---
+title: MinimumPoint
+description: API reference for qiskit.transpiler.passes.MinimumPoint
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.MinimumPoint
+---
+
+# MinimumPoint
+
+<span id="qiskit.transpiler.passes.MinimumPoint" />
+
+`qiskit.transpiler.passes.MinimumPoint(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/passes/utils/minimum_point.py "view source code")
+
+Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
+
+Check if the DAG has reached a relative semi-stable point over previous runs
+
+This pass is similar to the [`FixedPoint`](qiskit.transpiler.passes.FixedPoint "qiskit.transpiler.passes.FixedPoint") transpiler pass and is intended primarily to be used to set a loop break condition in the property set. However, unlike the [`FixedPoint`](qiskit.transpiler.passes.FixedPoint "qiskit.transpiler.passes.FixedPoint") class which only sets the condition if 2 consecutive runs have the same value property set value this pass is designed to find a local minimum and use that instead. This pass is designed for an optimization loop where a fixed point may never get reached (for example if synthesis is used and there are multiple equivalent outputs for some cases).
+
+This pass will track the state of fields in the property set over its past executions and set a boolean field when either a fixed point is reached over the backtracking depth or selecting the minimum value found if the backtracking depth is reached. To do this it stores a deep copy of the current minimum DAG in the property set and when `backtrack_depth` number of executions is reached since the last minimum the output dag is set to that copy of the earlier minimum.
+
+Fields used by this pass in the property set are (all relative to the `prefix` argument):
+
+*   `{prefix}_minimum_point_state` - Used to track the state of the minimum point search
+
+*   **`{prefix}_minimum_point` - This value gets set to `True` when either a fixed point**
+
+    is reached over the `backtrack_depth` executions, or `backtrack_depth` was exceeded and an earlier minimum is restored.
+
+Initialize an instance of this pass
+
+**Parameters**
+
+*   **property\_set\_list** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – A list of property set keys that will be used to evaluate the local minimum. The values of these property set keys will be used as a tuple for comparison
+*   **prefix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The prefix to use for the property set key that is used for tracking previous evaluations
+*   **backtrack\_depth** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The maximum number of entries to store. If this number is reached and the next iteration doesn’t have a decrease in the number of values the minimum of the previous n will be set as the output dag and `minimum_point` will be set to `True` in the property set
+
+## Attributes
+
+<span id="qiskit.transpiler.passes.MinimumPoint.is_analysis_pass" />
+
+### is\_analysis\_pass
+
+Check if the pass is an analysis pass.
+
+If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+
+<span id="qiskit.transpiler.passes.MinimumPoint.is_transformation_pass" />
+
+### is\_transformation\_pass
+
+Check if the pass is a transformation pass.
+
+If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+
+## Methods
+
+### execute
+
+<span id="qiskit.transpiler.passes.MinimumPoint.execute" />
+
+`execute(passmanager_ir, state, callback=None)`
+
+Execute optimization task for input Qiskit IR.
+
+**Parameters**
+
+*   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+*   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+
+**Returns**
+
+Optimized Qiskit IR and state of the workflow.
+
+**Return type**
+
+[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+
+### name
+
+<span id="qiskit.transpiler.passes.MinimumPoint.name" />
+
+`name()`
+
+Name of the pass.
+
+**Return type**
+
+[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+
+### run
+
+<span id="qiskit.transpiler.passes.MinimumPoint.run" />
+
+`run(dag)`
+
+Run the MinimumPoint pass on dag.
+
+### update\_status
+
+<span id="qiskit.transpiler.passes.MinimumPoint.update_status" />
+
+`update_status(state, run_state)`
+
+Update workflow status.
+
+**Parameters**
+
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – Pass manager state to update.
+*   **run\_state** (*RunState*) – Completion status of current task.
+
+**Returns**
+
+Updated pass manager state.
+
+**Return type**
+
+[*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")
+

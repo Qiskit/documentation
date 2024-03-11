@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeLondonV2
 
 <span id="qiskit.providers.fake_provider.FakeLondonV2" />
 
-`FakeLondonV2`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/fake_provider/backends/london/fake_london.py "view source code")
+`FakeLondonV2` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/fake_provider/backends/london/fake_london.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_backend.FakeBackendV2`
 

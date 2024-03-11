@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.drivers.FermionicDriver
 
 <span id="qiskit.chemistry.drivers.FermionicDriver" />
 
-`FermionicDriver(molecule=None, basis='sto3g', hf_method='rhf', supports_molecule=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/fermionic_driver.py "view source code")
+`FermionicDriver(molecule=None, basis='sto3g', hf_method='rhf', supports_molecule=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/fermionic_driver.py "view source code")
 
 Bases: `qiskit.chemistry.drivers.base_driver.BaseDriver`
 
@@ -33,7 +33,7 @@ Base class for Qiskit’s chemistry fermionic drivers.
 
 <span id="qiskit.chemistry.drivers.FermionicDriver.run" />
 
-`abstract FermionicDriver.run()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/fermionic_driver.py "view source code")
+`abstract FermionicDriver.run()`
 
 Runs driver to produce a QMolecule output.
 

@@ -1,7 +1,7 @@
 ---
 title: vehicle_routing
 description: API reference for qiskit.optimization.applications.ising.vehicle_routing
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.optimization.applications.ising.vehicle_routing
 ---
@@ -27,7 +27,7 @@ Converts vehicle routing instances into a list of Paulis, and provides some rela
 
 <span id="qiskit.optimization.applications.ising.vehicle_routing.get_operator" />
 
-`get_operator(instance, n, K)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/vehicle_routing.py "view source code")
+`get_operator(instance, n, K)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/vehicle_routing.py "view source code")
 
 Converts an instance of a vehicle routing problem into a list of Paulis.
 
@@ -49,7 +49,7 @@ operator for the Hamiltonian.
 
 <span id="qiskit.optimization.applications.ising.vehicle_routing.get_vehiclerouting_cost" />
 
-`get_vehiclerouting_cost(instance, n, K, x_sol)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/vehicle_routing.py "view source code")
+`get_vehiclerouting_cost(instance, n, K, x_sol)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/vehicle_routing.py "view source code")
 
 Computes the cost of a solution to an instance of a vehicle routing problem.
 
@@ -72,7 +72,7 @@ objective function value.
 
 <span id="qiskit.optimization.applications.ising.vehicle_routing.get_vehiclerouting_matrices" />
 
-`get_vehiclerouting_matrices(instance, n, K)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/vehicle_routing.py "view source code")
+`get_vehiclerouting_matrices(instance, n, K)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/vehicle_routing.py "view source code")
 
 **Constructs auxiliary matrices from a vehicle routing instance,**
 
@@ -96,7 +96,7 @@ a matrix defining the interactions between variables. a matrix defining the cont
 
 <span id="qiskit.optimization.applications.ising.vehicle_routing.get_vehiclerouting_solution" />
 
-`get_vehiclerouting_solution(instance, n, K, result)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/vehicle_routing.py "view source code")
+`get_vehiclerouting_solution(instance, n, K, result)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/vehicle_routing.py "view source code")
 
 **Tries to obtain a feasible solution (in vector form) of an instance**
 

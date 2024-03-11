@@ -12,13 +12,9 @@ python_api_name: qiskit.visualization.plot_histogram
 
 <span id="qiskit.visualization.plot_histogram" />
 
-`qiskit.visualization.plot_histogram(data, figsize=(7, 5), color=None, number_to_keep=None, sort='asc', target_string=None, legend=None, bar_labels=True, title=None, ax=None, filename=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/visualization/counts_visualization.py "view source code")
+`qiskit.visualization.plot_histogram(data, figsize=(7, 5), color=None, number_to_keep=None, sort='asc', target_string=None, legend=None, bar_labels=True, title=None, ax=None, filename=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/visualization/counts_visualization.py "view source code")
 
 Plot a histogram of input counts data.
-
-<Admonition title="Deprecated since version 0.22.0" type="danger">
-  Using plot\_histogram() `data` argument with QuasiDistribution, ProbDistribution, or a distribution dictionary is deprecated as of qiskit-terra 0.22.0. It will be removed no earlier than 3 months after the release date. Instead, use `plot_distribution()`.
-</Admonition>
 
 **Parameters**
 
@@ -31,7 +27,7 @@ Plot a histogram of input counts data.
 *   **legend** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – A list of strings to use for labels of the data. The number of entries must match the length of data (if data is a list or 1 if it’s a dict)
 *   **bar\_labels** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Label each bar in histogram with counts value.
 *   **title** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – A string to use for the plot title
-*   **ax** ([*matplotlib.axes.Axes*](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html#matplotlib.axes.Axes "(in Matplotlib v3.8.2)")) – An optional Axes object to be used for the visualization output. If none is specified a new matplotlib Figure will be created and used. Additionally, if specified there will be no returned Figure since it is redundant.
+*   **ax** ([*matplotlib.axes.Axes*](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html#matplotlib.axes.Axes "(in Matplotlib v3.8.3)")) – An optional Axes object to be used for the visualization output. If none is specified a new matplotlib Figure will be created and used. Additionally, if specified there will be no returned Figure since it is redundant.
 *   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – file path to save image to.
 
 **Returns**

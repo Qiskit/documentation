@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.builder.transpiler_settings
 
 <span id="qiskit.pulse.builder.transpiler_settings" />
 
-`transpiler_settings(**settings)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/pulse/builder.py "view source code")
+`transpiler_settings(**settings)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/pulse/builder.py "view source code")
 
 Set the currently active transpiler settings for this context.
 

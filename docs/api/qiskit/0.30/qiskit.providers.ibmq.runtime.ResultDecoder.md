@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.runtime.ResultDecoder
 
 <span id="qiskit.providers.ibmq.runtime.ResultDecoder" />
 
-`ResultDecoder`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.16/qiskit/providers/ibmq/runtime/program/result_decoder.py "view source code")
+`ResultDecoder` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.16/qiskit/providers/ibmq/runtime/program/result_decoder.py "view source code")
 
 Bases: `object`
 
@@ -35,7 +35,7 @@ Users of your program will need to pass in the subclass when invoking [`qiskit.p
 
 <span id="qiskit.providers.ibmq.runtime.ResultDecoder.decode" />
 
-`classmethod ResultDecoder.decode(data)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.16/qiskit/providers/ibmq/runtime/program/result_decoder.py "view source code")
+`classmethod ResultDecoder.decode(data)`
 
 Decode the result data.
 

@@ -1,9 +1,9 @@
 ---
-title: AcquireChannel
-description: API reference for qiskit.pulse.channels.AcquireChannel
-in_page_toc_min_heading_level: 1
-python_api_type: class
-python_api_name: qiskit.pulse.channels.AcquireChannel
+title: channels
+description: API reference for qiskit.pulse.channels
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.pulse.channels
 ---
 
 <span id="qiskit-pulse-channels" />
@@ -34,7 +34,7 @@ Novel channel types can often utilize the `ControlChannel`, but if this is not s
 
 <span id="qiskit.pulse.channels.AcquireChannel" />
 
-`AcquireChannel(index)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/channels.py "view source code")
+`AcquireChannel(index)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/channels.py "view source code")
 
 Acquire channels are used to collect data.
 
@@ -119,7 +119,7 @@ Parameters which determine the channel index.
 
 <span id="qiskit.pulse.channels.Channel" />
 
-`Channel(index)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/channels.py "view source code")
+`Channel(index)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/channels.py "view source code")
 
 Base class of channels. Channels provide a Qiskit-side label for typical quantum control hardware signal channels. The final label -> physical channel mapping is the responsibility of the hardware backend. For instance, `DriveChannel(0)` holds instructions which the backend should map to the signal line driving gate operations on the qubit labeled (indexed) 0.
 
@@ -216,7 +216,7 @@ A shorthand string prefix for characterizing the channel type.
 
 <span id="qiskit.pulse.channels.ControlChannel" />
 
-`ControlChannel(index)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/channels.py "view source code")
+`ControlChannel(index)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/channels.py "view source code")
 
 Control channels provide supplementary control over the qubit to the drive channel. These are often associated with multi-qubit gate operations. They may not map trivially to a particular qubit index.
 
@@ -301,7 +301,7 @@ Parameters which determine the channel index.
 
 <span id="qiskit.pulse.channels.DriveChannel" />
 
-`DriveChannel(index)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/channels.py "view source code")
+`DriveChannel(index)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/channels.py "view source code")
 
 Drive channels transmit signals to qubits which enact gate operations.
 
@@ -386,7 +386,7 @@ Parameters which determine the channel index.
 
 <span id="qiskit.pulse.channels.MeasureChannel" />
 
-`MeasureChannel(index)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/channels.py "view source code")
+`MeasureChannel(index)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/channels.py "view source code")
 
 Measure channels transmit measurement stimulus pulses for readout.
 
@@ -471,7 +471,7 @@ Parameters which determine the channel index.
 
 <span id="qiskit.pulse.channels.MemorySlot" />
 
-`MemorySlot(index)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/channels.py "view source code")
+`MemorySlot(index)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/channels.py "view source code")
 
 Memory slot channels represent classical memory storage.
 
@@ -556,7 +556,7 @@ Parameters which determine the channel index.
 
 <span id="qiskit.pulse.channels.PulseChannel" />
 
-`PulseChannel(index)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/channels.py "view source code")
+`PulseChannel(index)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/channels.py "view source code")
 
 Base class of transmit Channels. Pulses can be played on these channels.
 
@@ -641,7 +641,7 @@ Parameters which determine the channel index.
 
 <span id="qiskit.pulse.channels.RegisterSlot" />
 
-`RegisterSlot(index)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/channels.py "view source code")
+`RegisterSlot(index)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/channels.py "view source code")
 
 Classical resister slot channels represent classical registers (low-latency classical memory).
 
@@ -726,7 +726,7 @@ Parameters which determine the channel index.
 
 <span id="qiskit.pulse.channels.SnapshotChannel" />
 
-`SnapshotChannel(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/channels.py "view source code")
+`SnapshotChannel(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/channels.py "view source code")
 
 Snapshot channels are used to specify instructions for simulators.
 

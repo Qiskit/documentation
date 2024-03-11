@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.JobStatus
 
 <span id="qiskit.providers.JobStatus" />
 
-`qiskit.providers.JobStatus(value)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/providers/jobstatus.py "view source code")
+`qiskit.providers.JobStatus(value)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/providers/jobstatus.py "view source code")
 
 Bases: [`Enum`](https://docs.python.org/3/library/enum.html#enum.Enum "(in Python v3.12)")
 

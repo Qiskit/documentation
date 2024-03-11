@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.core.QubitMappingType
 
 <span id="qiskit.chemistry.core.QubitMappingType" />
 
-`QubitMappingType(value)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/core/hamiltonian.py "view source code")
+`QubitMappingType(value)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/core/hamiltonian.py "view source code")
 
 QubitMappingType enum
 

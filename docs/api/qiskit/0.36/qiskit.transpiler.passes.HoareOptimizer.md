@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.HoareOptimizer
 
 <span id="qiskit.transpiler.passes.HoareOptimizer" />
 
-`HoareOptimizer(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/optimization/hoare_opt.py "view source code")
+`HoareOptimizer(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/optimization/hoare_opt.py "view source code")
 
 Bases: `qiskit.transpiler.basepasses.TransformationPass`
 
@@ -38,7 +38,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.HoareOptimizer.run" />
 
-`HoareOptimizer.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/optimization/hoare_opt.py "view source code")
+`HoareOptimizer.run(dag)`
 
 **Parameters**
 

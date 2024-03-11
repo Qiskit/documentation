@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.runtime.IBMRuntimeService
 
 <span id="qiskit.providers.ibmq.runtime.IBMRuntimeService" />
 
-`IBMRuntimeService(provider)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.13/qiskit/providers/ibmq/runtime/ibm_runtime_service.py "view source code")
+`IBMRuntimeService(provider)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.13/qiskit/providers/ibmq/runtime/ibm_runtime_service.py "view source code")
 
 Class for interacting with the Qiskit Runtime service.
 

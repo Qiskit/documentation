@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CRYGate
 
 <span id="qiskit.circuit.library.CRYGate" />
 
-`CRYGate(theta, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/ry.py "view source code")
+`CRYGate(theta, label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/ry.py "view source code")
 
 Controlled-RY gate.
 
@@ -27,7 +27,7 @@ q_1: ┤ Ry(ϴ) ├
 
 $$
  \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}CRY(\theta)\ q_0, q_1 =
-    I \otimes \vert 0\rangle\langle 0\vert  + RY(\theta) \otimes \vert 1\rangle\langle 1\vert  =
+    I \otimes |0\rangle\langle 0| + RY(\theta) \otimes |1\rangle\langle 1| =
     \begin{pmatrix}
         1 & 0         & 0 & 0 \\
         0 & \cos{\th} & 0 & -\sin{\th} \\
@@ -48,7 +48,7 @@ $$
 
   $$
    \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}CRY(\theta)\ q_1, q_0 =
-  \vert 0\rangle\langle 0\vert  \otimes I + \vert 1\rangle\langle 1\vert  \otimes RY(\theta) =
+  |0\rangle\langle 0| \otimes I + |1\rangle\langle 1| \otimes RY(\theta) =
       \begin{pmatrix}
           1 & 0 & 0 & 0 \\
           0 & 1 & 0 & 0 \\

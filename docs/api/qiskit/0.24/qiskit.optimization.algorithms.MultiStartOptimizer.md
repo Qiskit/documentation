@@ -12,7 +12,7 @@ python_api_name: qiskit.optimization.algorithms.MultiStartOptimizer
 
 <span id="qiskit.optimization.algorithms.MultiStartOptimizer" />
 
-`MultiStartOptimizer(trials=1, clip=100.0)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/algorithms/multistart_optimizer.py "view source code")
+`MultiStartOptimizer(trials=1, clip=100.0)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/algorithms/multistart_optimizer.py "view source code")
 
 An abstract class that implements multi start optimization and should be sub-classed by other optimizers.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.results.VibronicStructureResult
 
 <span id="qiskit.chemistry.results.VibronicStructureResult" />
 
-`VibronicStructureResult(a_dict=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/results/vibronic_structure_result.py "view source code")
+`VibronicStructureResult(a_dict=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/results/vibronic_structure_result.py "view source code")
 
 The vibronic structure result.
 

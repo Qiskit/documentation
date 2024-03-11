@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.gradients.CircuitQFI
 
 <span id="qiskit.opflow.gradients.CircuitQFI" />
 
-`CircuitQFI`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/gradients/circuit_qfis/circuit_qfi.py "view source code")
+`CircuitQFI` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/gradients/circuit_qfis/circuit_qfi.py "view source code")
 
 Circuit to Quantum Fisher Information operator converter.
 
@@ -43,7 +43,7 @@ Initialize self. See help(type(self)) for accurate signature.
 
 **Parameters**
 
-*   **operator** (`OperatorBase`) – The operator corresponding to the quantum state $\vert \psi(\omega)\rangle$ for which we compute the QFI.
+*   **operator** (`OperatorBase`) – The operator corresponding to the quantum state $|\psi(\omega)\rangle$ for which we compute the QFI.
 *   **params** (`Union`\[`ParameterExpression`, `ParameterVector`, `List`\[`ParameterExpression`]]) – The parameters $\omega$ with respect to which we are computing the QFI.
 
 **Return type**

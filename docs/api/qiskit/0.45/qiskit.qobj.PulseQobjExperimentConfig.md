@@ -10,7 +10,7 @@ python_api_name: qiskit.qobj.PulseQobjExperimentConfig
 
 <span id="qiskit.qobj.PulseQobjExperimentConfig" />
 
-`qiskit.qobj.PulseQobjExperimentConfig(qubit_lo_freq=None, meas_lo_freq=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/qobj/pulse_qobj.py "view source code")
+`qiskit.qobj.PulseQobjExperimentConfig(qubit_lo_freq=None, meas_lo_freq=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/qobj/pulse_qobj.py "view source code")
 
 Bases: `QobjDictField`
 

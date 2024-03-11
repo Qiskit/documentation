@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.operators.gradients.GradientBase
 
 <span id="qiskit.aqua.operators.gradients.GradientBase" />
 
-`GradientBase(grad_method='param_shift', **kwargs)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/gradients/gradient_base.py "view source code")
+`GradientBase(grad_method='param_shift', **kwargs)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/gradients/gradient_base.py "view source code")
 
 Bases: `qiskit.aqua.operators.gradients.derivative_base.DerivativeBase`
 

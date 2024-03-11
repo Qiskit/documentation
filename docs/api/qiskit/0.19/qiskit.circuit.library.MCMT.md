@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.MCMT
 
 <span id="qiskit.circuit.library.MCMT" />
 
-`MCMT(gate, num_ctrl_qubits, num_target_qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/generalized_gates/mcmt.py "view source code")
+`MCMT(gate, num_ctrl_qubits, num_target_qubits)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/generalized_gates/mcmt.py "view source code")
 
 The multi-controlled multi-target gate, for an arbitrary singly controlled target gate.
 
@@ -435,7 +435,7 @@ lcr_1: 0 ═══════════                           lcr_1: 0 �
 
 <span id="qiskit.circuit.library.MCMT.control" />
 
-`MCMT.control(num_ctrl_qubits=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/generalized_gates/mcmt.py "view source code")
+`MCMT.control(num_ctrl_qubits=1)`
 
 Return the controlled version of the MCMT circuit.
 
@@ -940,7 +940,7 @@ Apply initialize to circuit.
 
 <span id="qiskit.circuit.library.MCMT.inverse" />
 
-`MCMT.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/generalized_gates/mcmt.py "view source code")
+`MCMT.inverse()`
 
 Return the inverse MCMT circuit, which is itself.
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.quantum_info.Statevector
 
 <span id="qiskit.quantum_info.Statevector" />
 
-`Statevector(data, dims=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/quantum_info/states/statevector.py "view source code")
+`Statevector(data, dims=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/quantum_info/states/statevector.py "view source code")
 
 Statevector class
 
@@ -277,7 +277,7 @@ complex
 
 Return the output statevector of an instruction.
 
-The statevector is initialized in the state $\vert {0,\ldots,0}\rangle$ of the same number of qubits as the input instruction or circuit, evolved by the input instruction, and the output statevector returned.
+The statevector is initialized in the state $|{0,\ldots,0}\rangle$ of the same number of qubits as the input instruction or circuit, evolved by the input instruction, and the output statevector returned.
 
 **Parameters**
 
@@ -310,7 +310,7 @@ Return a computational basis statevector.
 
 **Returns**
 
-The computational basis state $\vert i\rangle$.
+The computational basis state $|i\rangle$.
 
 **Return type**
 
@@ -445,7 +445,7 @@ np.array
 
 **Examples**
 
-Consider a 2-qubit product state $\vert \psi\rangle=\vert +\rangle\otimes\vert 0\rangle$.
+Consider a 2-qubit product state $|\psi\rangle=|+\rangle\otimes|0\rangle$.
 
 ```python
 from qiskit.quantum_info import Statevector
@@ -732,7 +732,7 @@ dict
 
 **Example**
 
-The ket-form of a 2-qubit statevector $\vert \psi\rangle = \vert -\rangle\otimes \vert 0\rangle$
+The ket-form of a 2-qubit statevector $|\psi\rangle = |-\rangle\otimes |0\rangle$
 
 ```python
 from qiskit.quantum_info import Statevector

@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.BackendV1
 
 <span id="qiskit.providers.BackendV1" />
 
-`BackendV1(configuration, provider=None, **fields)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/providers/backend.py "view source code")
+`BackendV1(configuration, provider=None, **fields)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/providers/backend.py "view source code")
 
 Abstract class for Backends
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.process_fidelity
 
 <span id="qiskit.quantum_info.process_fidelity" />
 
-`process_fidelity(channel, target=None, require_cp=True, require_tp=True) `[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/quantum_info/operators/measures.py "view source code")
+`process_fidelity(channel, target=None, require_cp=True, require_tp=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/quantum_info/operators/measures.py "view source code")
 
 Return the process fidelity of a noisy quantum channel.
 
@@ -21,8 +21,8 @@ where $F$ is the [`state_fidelity()`](qiskit.quantum_info.state_fidelity "qiskit
 When the target channel is unitary this is equivalent to
 
 $$
-                      \[F_{\text{pro}}(\mathcal{E}, U)
-                      = \frac{Tr[S_U^\dagger S_{\mathcal{E}}]}{d^2}\]
+F_{\text{pro}}(\mathcal{E}, U)
+    = \frac{Tr[S_U^\dagger S_{\mathcal{E}}]}{d^2}
 $$
 
 where $S_{\mathcal{E}}, S_{U}$ are the [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") matrices for the *input* quantum channel $\mathcal{E}$ and *target* unitary $U$ respectively, and $d$ is the input dimension of the channel.

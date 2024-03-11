@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.LookaheadSwap
 
 <span id="qiskit.transpiler.passes.LookaheadSwap" />
 
-`LookaheadSwap(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/routing/lookahead_swap.py "view source code")
+`LookaheadSwap(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/routing/lookahead_swap.py "view source code")
 
 Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -55,7 +55,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.LookaheadSwap.run" />
 
-`LookaheadSwap.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/routing/lookahead_swap.py "view source code")
+`LookaheadSwap.run(dag)`
 
 Run the LookaheadSwap pass on dag.
 

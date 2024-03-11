@@ -10,7 +10,7 @@ python_api_name: qiskit.primitives.BaseEstimator
 
 <span id="qiskit.primitives.BaseEstimator" />
 
-`BaseEstimator(*, options=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/primitives/base/base_estimator.py "view source code")
+`BaseEstimator(*, options=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/primitives/base/base_estimator.py "view source code")
 
 Bases: `BasePrimitive`, `Generic`\[`T`]
 
@@ -32,7 +32,7 @@ Creating an instance of an Estimator, or using one in a `with` context opens a s
 
 <span id="qiskit.primitives.BaseEstimator.run" />
 
-`BaseEstimator.run(circuits, observables, parameter_values=None, **run_options)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/primitives/base/base_estimator.py "view source code")
+`BaseEstimator.run(circuits, observables, parameter_values=None, **run_options)`
 
 Run the job of the estimation of expectation value(s).
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.IfElseOp
 
 <span id="qiskit.circuit.IfElseOp" />
 
-`IfElseOp(condition, true_body, false_body=None, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/controlflow/if_else.py "view source code")
+`IfElseOp(condition, true_body, false_body=None, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/controlflow/if_else.py "view source code")
 
 Bases: `qiskit.circuit.controlflow.control_flow.ControlFlowOp`
 
@@ -100,7 +100,7 @@ Validation of the arguments.
 
 <span id="qiskit.circuit.IfElseOp.c_if" />
 
-`IfElseOp.c_if(classical, val)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/controlflow/if_else.py "view source code")
+`IfElseOp.c_if(classical, val)`
 
 Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
 

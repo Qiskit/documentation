@@ -1,7 +1,7 @@
 ---
 title: dagcircuit
 description: API reference for qiskit.dagcircuit
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.dagcircuit
 ---
@@ -36,7 +36,7 @@ python_api_name: qiskit.dagcircuit
 
 <span id="qiskit.dagcircuit.DAGCircuitError" />
 
-`qiskit.dagcircuit.DAGCircuitError(*msg)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/dagcircuit/exceptions.py "view source code")
+`qiskit.dagcircuit.DAGCircuitError(*msg)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/dagcircuit/exceptions.py "view source code")
 
 Base class for errors raised by the DAGCircuit object.
 
@@ -46,7 +46,7 @@ Set the error message.
 
 <span id="qiskit.dagcircuit.DAGDependencyError" />
 
-`qiskit.dagcircuit.DAGDependencyError(*msg)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/dagcircuit/exceptions.py "view source code")
+`qiskit.dagcircuit.DAGDependencyError(*msg)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/dagcircuit/exceptions.py "view source code")
 
 Base class for errors raised by the DAGDependency object.
 

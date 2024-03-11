@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.algorithms.pes_samplers.BOPESSampler
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.BOPESSampler" />
 
-`BOPESSampler(gss, tolerance=0.001, bootstrap=True, num_bootstrap=None, extrapolator=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/bopes_sampler.py "view source code")
+`BOPESSampler(gss, tolerance=0.001, bootstrap=True, num_bootstrap=None, extrapolator=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/bopes_sampler.py "view source code")
 
 Bases: `object`
 
@@ -34,7 +34,7 @@ Class to evaluate the Born-Oppenheimer Potential Energy Surface (BOPES).
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.BOPESSampler.sample" />
 
-`BOPESSampler.sample(driver, points)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/bopes_sampler.py "view source code")
+`BOPESSampler.sample(driver, points)`
 
 Run the sampler at the given points, potentially with repetitions.
 

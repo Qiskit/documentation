@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.algorithms.VQC
 
 <span id="qiskit.aqua.algorithms.VQC" />
 
-`VQC(optimizer, feature_map, var_form, training_dataset, test_dataset=None, datapoints=None, max_evals_grouped=1, minibatch_size=- 1, callback=None, quantum_instance=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/classifiers/vqc.py "view source code")
+`VQC(optimizer, feature_map, var_form, training_dataset, test_dataset=None, datapoints=None, max_evals_grouped=1, minibatch_size=- 1, callback=None, quantum_instance=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/classifiers/vqc.py "view source code")
 
 The Variational Quantum Classifier algorithm.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CPhaseGate
 
 <span id="qiskit.circuit.library.CPhaseGate" />
 
-`CPhaseGate(theta, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/standard_gates/p.py "view source code")
+`CPhaseGate(theta, label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/standard_gates/p.py "view source code")
 
 Bases: [`qiskit.circuit.controlledgate.ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 
@@ -32,7 +32,7 @@ q_1: ─■──
 
 $$
 \begin{split}CPhase =
-    I \otimes \vert 0\rangle\langle 0\vert  + P \otimes \vert 1\rangle\langle 1\vert  =
+    I \otimes |0\rangle\langle 0| + P \otimes |1\rangle\langle 1| =
     \begin{pmatrix}
         1 & 0 & 0 & 0 \\
         0 & 1 & 0 & 0 \\
@@ -53,7 +53,7 @@ Create new CPhase gate.
 
 <span id="qiskit.circuit.library.CPhaseGate.control" />
 
-`CPhaseGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/standard_gates/p.py "view source code")
+`CPhaseGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
 Controlled version of this gate.
 
@@ -75,7 +75,7 @@ controlled version of this gate.
 
 <span id="qiskit.circuit.library.CPhaseGate.inverse" />
 
-`CPhaseGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/standard_gates/p.py "view source code")
+`CPhaseGate.inverse()`
 
 Return inverted CPhase gate ($CPhase(\lambda){\dagger} = CPhase(-\lambda)$)
 

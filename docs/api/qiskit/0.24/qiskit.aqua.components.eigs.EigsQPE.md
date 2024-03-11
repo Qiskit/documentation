@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.components.eigs.EigsQPE
 
 <span id="qiskit.aqua.components.eigs.EigsQPE" />
 
-`EigsQPE(operator, iqft, num_time_slices=1, num_ancillae=1, expansion_mode='trotter', expansion_order=1, evo_time=None, negative_evals=False, ne_qfts=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/eigs/eigs_qpe.py "view source code")
+`EigsQPE(operator, iqft, num_time_slices=1, num_ancillae=1, expansion_mode='trotter', expansion_order=1, evo_time=None, negative_evals=False, ne_qfts=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/eigs/eigs_qpe.py "view source code")
 
 Eigenvalues using Quantum Phase Estimation.
 

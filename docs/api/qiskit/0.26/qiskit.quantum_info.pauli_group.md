@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.pauli_group
 
 <span id="qiskit.quantum_info.pauli_group" />
 
-`pauli_group(number_of_qubits, case='weight')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/quantum_info/operators/pauli.py "view source code")
+`pauli_group(number_of_qubits, case='weight')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/quantum_info/operators/pauli.py "view source code")
 
 DEPRECATED: Return the Pauli group with 4^n elements.
 

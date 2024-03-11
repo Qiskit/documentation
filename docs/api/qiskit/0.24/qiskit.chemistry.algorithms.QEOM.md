@@ -12,7 +12,7 @@ python_api_name: qiskit.chemistry.algorithms.QEOM
 
 <span id="qiskit.chemistry.algorithms.QEOM" />
 
-`QEOM(ground_state_solver, excitations='sd')`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/algorithms/excited_states_solvers/qeom.py "view source code")
+`QEOM(ground_state_solver, excitations='sd')` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/algorithms/excited_states_solvers/qeom.py "view source code")
 
 The calculation of excited states via the qEOM algorithm
 

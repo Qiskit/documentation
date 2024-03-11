@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.optimizer_utils.LearningRate
 
 <span id="qiskit.algorithms.optimizers.optimizer_utils.LearningRate" />
 
-`qiskit.algorithms.optimizers.optimizer_utils.LearningRate(learning_rate)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/optimizers/optimizer_utils/learning_rate.py "view source code")
+`qiskit.algorithms.optimizers.optimizer_utils.LearningRate(learning_rate)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/optimizers/optimizer_utils/learning_rate.py "view source code")
 
 Bases: [`Generator`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Generator "(in Python v3.12)")
 

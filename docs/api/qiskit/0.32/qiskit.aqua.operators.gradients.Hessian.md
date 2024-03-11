@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.operators.gradients.Hessian
 
 <span id="qiskit.aqua.operators.gradients.Hessian" />
 
-`Hessian(hess_method='param_shift', **kwargs)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/gradients/hessian.py "view source code")
+`Hessian(hess_method='param_shift', **kwargs)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/gradients/hessian.py "view source code")
 
 Bases: `qiskit.aqua.operators.gradients.hessian_base.HessianBase`
 
@@ -31,7 +31,7 @@ Compute the Hessian of an expected value.
 
 <span id="qiskit.aqua.operators.gradients.Hessian.convert" />
 
-`Hessian.convert(operator, params=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/gradients/hessian.py "view source code")
+`Hessian.convert(operator, params=None)`
 
 **Parameters**
 
@@ -54,7 +54,7 @@ An operator whose evaluation yields the Hessian
 
 <span id="qiskit.aqua.operators.gradients.Hessian.get_hessian" />
 
-`Hessian.get_hessian(operator, params=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/gradients/hessian.py "view source code")
+`Hessian.get_hessian(operator, params=None)`
 
 Get the Hessian for the given operator w\.r.t. the given parameters
 

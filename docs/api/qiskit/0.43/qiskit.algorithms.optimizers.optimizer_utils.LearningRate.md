@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.optimizer_utils.LearningRate
 
 <span id="qiskit.algorithms.optimizers.optimizer_utils.LearningRate" />
 
-`LearningRate(learning_rate)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/optimizers/optimizer_utils/learning_rate.py "view source code")
+`LearningRate(learning_rate)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/optimizers/optimizer_utils/learning_rate.py "view source code")
 
 Bases: `Generator`
 
@@ -38,7 +38,7 @@ Raise GeneratorExit inside generator.
 
 <span id="qiskit.algorithms.optimizers.optimizer_utils.LearningRate.send" />
 
-`LearningRate.send(value)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/optimizers/optimizer_utils/learning_rate.py "view source code")
+`LearningRate.send(value)`
 
 Send a value into the generator. Return next yielded value or raise StopIteration.
 
@@ -48,7 +48,7 @@ Send a value into the generator. Return next yielded value or raise StopIteratio
 
 <span id="qiskit.algorithms.optimizers.optimizer_utils.LearningRate.throw" />
 
-`LearningRate.throw(typ, val=None, tb=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/optimizers/optimizer_utils/learning_rate.py "view source code")
+`LearningRate.throw(typ, val=None, tb=None)`
 
 Raise an exception in the generator. Return next yielded value or raise StopIteration.
 

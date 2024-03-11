@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.algorithms.pes_samplers.Extrapolator
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.Extrapolator" />
 
-`Extrapolator`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/extrapolator.py "view source code")
+`Extrapolator` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/extrapolator.py "view source code")
 
 Bases: `abc.ABC`
 
@@ -26,7 +26,7 @@ There are two types of Extrapolators: external/wrapper and internal. The externa
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.Extrapolator.extrapolate" />
 
-`abstract Extrapolator.extrapolate(points, param_dict)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/extrapolator.py "view source code")
+`abstract Extrapolator.extrapolate(points, param_dict)`
 
 Abstract method to extrapolate point(s) of interest.
 
@@ -47,7 +47,7 @@ Dictionary of variational parameters for extrapolated point(s).
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.Extrapolator.factory" />
 
-`static Extrapolator.factory(mode, **kwargs)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/extrapolator.py "view source code")
+`static Extrapolator.factory(mode, **kwargs)`
 
 Factory method for constructing extrapolators.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_provider.transpiler.passes.scheduling.ALAPScheduleAn
 
 <span id="qiskit_ibm_provider.transpiler.passes.scheduling.ALAPScheduleAnalysis" />
 
-`ALAPScheduleAnalysis(durations)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/transpiler/passes/scheduling/scheduler.py "view source code")
+`ALAPScheduleAnalysis(durations)` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/transpiler/passes/scheduling/scheduler.py#L437-L665 "view source code")
 
 Dynamic circuits as-late-as-possible (ALAP) scheduling analysis pass.
 
@@ -32,11 +32,11 @@ Scheduler for dynamic circuit backends.
 
 **Parameters**
 
-**durations** ([`InstructionDurations`](/api/qiskit/qiskit.transpiler.InstructionDurations "(in Qiskit v0.45)")) – Durations of instructions to be used in scheduling.
+**durations** ([`InstructionDurations`](/api/qiskit/qiskit.transpiler.InstructionDurations "(in Qiskit v1.0)")) – Durations of instructions to be used in scheduling.
 
 ## Attributes
 
-<span id="alapscheduleanalysis-is-analysis-pass" />
+<span id="qiskit_ibm_provider.transpiler.passes.scheduling.ALAPScheduleAnalysis.is_analysis_pass" />
 
 ### is\_analysis\_pass
 
@@ -44,7 +44,7 @@ Check if the pass is an analysis pass.
 
 If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
 
-<span id="alapscheduleanalysis-is-transformation-pass" />
+<span id="qiskit_ibm_provider.transpiler.passes.scheduling.ALAPScheduleAnalysis.is_transformation_pass" />
 
 ### is\_transformation\_pass
 
@@ -54,13 +54,11 @@ If the pass is a TransformationPass, that means that the pass can manipulate the
 
 ## Methods
 
-<span id="alapscheduleanalysis-call" />
-
 ### \_\_call\_\_
 
 <span id="qiskit_ibm_provider.transpiler.passes.scheduling.ALAPScheduleAnalysis.__call__" />
 
-`ALAPScheduleAnalysis.__call__(circuit, property_set=None)`
+`__call__(circuit, property_set=None)`
 
 Runs the pass on circuit.
 
@@ -77,37 +75,33 @@ QuantumCircuit
 
 If on transformation pass, the resulting QuantumCircuit. If analysis pass, the input circuit.
 
-<span id="alapscheduleanalysis-execute" />
-
 ### execute
 
 <span id="qiskit_ibm_provider.transpiler.passes.scheduling.ALAPScheduleAnalysis.execute" />
 
-`ALAPScheduleAnalysis.execute(passmanager_ir, state, callback=None)`
+`execute(passmanager_ir, state, callback=None)`
 
 Execute optimization task for input Qiskit IR.
 
 **Parameters**
 
 *   **passmanager\_ir** (`Any`) – Qiskit IR to optimize.
-*   **state** ([`PassManagerState`](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v0.45)")) – State associated with workflow execution by the pass manager itself.
+*   **state** ([`PassManagerState`](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.0)")) – State associated with workflow execution by the pass manager itself.
 *   **callback** (`Optional`\[`Callable`]) – A callback function which is caller per execution of optimization task.
 
 **Return type**
 
-`tuple`\[`Any`, [`PassManagerState`](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v0.45)")]
+`tuple`\[`Any`, [`PassManagerState`](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.0)")]
 
 **Returns**
 
 Optimized Qiskit IR and state of the workflow.
 
-<span id="alapscheduleanalysis-name" />
-
 ### name
 
 <span id="qiskit_ibm_provider.transpiler.passes.scheduling.ALAPScheduleAnalysis.name" />
 
-`ALAPScheduleAnalysis.name()`
+`name()`
 
 Name of the pass.
 
@@ -115,15 +109,13 @@ Name of the pass.
 
 `str`
 
-<span id="alapscheduleanalysis-run" />
-
 ### run
 
 <span id="qiskit_ibm_provider.transpiler.passes.scheduling.ALAPScheduleAnalysis.run" />
 
-`ALAPScheduleAnalysis.run(dag)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/transpiler/passes/scheduling/scheduler.py "view source code")
+`run(dag)` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/transpiler/passes/scheduling/scheduler.py#L458-L477 "view source code")
 
-Run the ASAPSchedule pass on dag. :type dag: [`DAGCircuit`](/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v0.45)") :param dag: DAG to schedule. :type dag: DAGCircuit
+Run the ASAPSchedule pass on dag. :type dag: [`DAGCircuit`](/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v1.0)") :param dag: DAG to schedule. :type dag: DAGCircuit
 
 **Raises**
 
@@ -138,24 +130,22 @@ Run the ASAPSchedule pass on dag. :type dag: [`DAGCircuit`](/api/qiskit/qiskit.d
 
 The scheduled DAGCircuit.
 
-<span id="alapscheduleanalysis-update-status" />
-
 ### update\_status
 
 <span id="qiskit_ibm_provider.transpiler.passes.scheduling.ALAPScheduleAnalysis.update_status" />
 
-`ALAPScheduleAnalysis.update_status(state, run_state)`
+`update_status(state, run_state)`
 
 Update workflow status.
 
 **Parameters**
 
-*   **state** ([`PassManagerState`](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v0.45)")) – Pass manager state to update.
+*   **state** ([`PassManagerState`](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.0)")) – Pass manager state to update.
 *   **run\_state** (`RunState`) – Completion status of current task.
 
 **Return type**
 
-[`PassManagerState`](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v0.45)")
+[`PassManagerState`](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.0)")
 
 **Returns**
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.time_evolvers.variational.ForwardEulerSolver
 
 <span id="qiskit.algorithms.time_evolvers.variational.ForwardEulerSolver" />
 
-`qiskit.algorithms.time_evolvers.variational.ForwardEulerSolver(function, t0, y0, t_bound, vectorized=False, support_complex=False, num_t_steps=15)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/time_evolvers/variational/solvers/ode/forward_euler_solver.py "view source code")
+`qiskit.algorithms.time_evolvers.variational.ForwardEulerSolver(function, t0, y0, t_bound, vectorized=False, support_complex=False, num_t_steps=15)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/time_evolvers/variational/solvers/ode/forward_euler_solver.py "view source code")
 
 Bases: `OdeSolver`
 

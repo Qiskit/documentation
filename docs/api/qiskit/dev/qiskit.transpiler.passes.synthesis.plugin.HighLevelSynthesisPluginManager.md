@@ -1,0 +1,36 @@
+---
+title: HighLevelSynthesisPluginManager
+description: API reference for qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPluginManager
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPluginManager
+---
+
+# HighLevelSynthesisPluginManager
+
+<span id="qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPluginManager" />
+
+`qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPluginManager` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/plugin.py "view source code")
+
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
+
+Class tracking the installed high-level-synthesis plugins.
+
+## Methods
+
+### method
+
+<span id="qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPluginManager.method" />
+
+`method(op_name, method_name)`
+
+Returns the plugin for `op_name` and `method_name`.
+
+### method\_names
+
+<span id="qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPluginManager.method_names" />
+
+`method_names(op_name)`
+
+Returns plugin methods for op\_name.
+

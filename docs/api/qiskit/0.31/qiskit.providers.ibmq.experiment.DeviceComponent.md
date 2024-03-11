@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.experiment.DeviceComponent
 
 <span id="qiskit.providers.ibmq.experiment.DeviceComponent" />
 
-`DeviceComponent`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.17/qiskit/providers/ibmq/experiment/device_component.py "view source code")
+`DeviceComponent` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.17/qiskit/providers/ibmq/experiment/device_component.py "view source code")
 
 Bases: `abc.ABC`
 

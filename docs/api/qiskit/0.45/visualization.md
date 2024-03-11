@@ -1,7 +1,7 @@
 ---
 title: visualization
 description: API reference for qiskit.visualization
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.visualization
 ---
@@ -237,7 +237,7 @@ You can find code examples for each visualization functions on the individual fu
 
 <span id="qiskit.visualization.VisualizationError" />
 
-`qiskit.visualization.VisualizationError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/visualization/exceptions.py "view source code")
+`qiskit.visualization.VisualizationError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/visualization/exceptions.py "view source code")
 
 For visualization specific errors.
 

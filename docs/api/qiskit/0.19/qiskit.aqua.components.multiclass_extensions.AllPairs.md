@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.multiclass_extensions.AllPairs
 
 <span id="qiskit.aqua.components.multiclass_extensions.AllPairs" />
 
-`AllPairs`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/multiclass_extensions/all_pairs.py "view source code")
+`AllPairs` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/multiclass_extensions/all_pairs.py "view source code")
 
 The All-Pairs multiclass extension.
 
@@ -22,7 +22,7 @@ In the **all-pairs** reduction, one trains $k(k−1)/2$ binary classifiers for a
 
 <span id="qiskit.aqua.components.multiclass_extensions.AllPairs.predict" />
 
-`AllPairs.predict(x)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/multiclass_extensions/all_pairs.py "view source code")
+`AllPairs.predict(x)`
 
 Applying multiple estimators for prediction.
 
@@ -54,7 +54,7 @@ Called internally to set `Estimator` and parameters :type estimator\_cls: `Calla
 
 <span id="qiskit.aqua.components.multiclass_extensions.AllPairs.test" />
 
-`AllPairs.test(x, y)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/multiclass_extensions/all_pairs.py "view source code")
+`AllPairs.test(x, y)`
 
 Testing multiple estimators each for distinguishing a pair of classes.
 
@@ -75,7 +75,7 @@ float
 
 <span id="qiskit.aqua.components.multiclass_extensions.AllPairs.train" />
 
-`AllPairs.train(x, y)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/multiclass_extensions/all_pairs.py "view source code")
+`AllPairs.train(x, y)`
 
 Training multiple estimators each for distinguishing a pair of classes.
 

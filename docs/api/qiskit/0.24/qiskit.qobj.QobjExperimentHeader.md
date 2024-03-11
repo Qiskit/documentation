@@ -12,7 +12,7 @@ python_api_name: qiskit.qobj.QobjExperimentHeader
 
 <span id="qiskit.qobj.QobjExperimentHeader" />
 
-`QobjExperimentHeader(**kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/qobj/common.py "view source code")
+`QobjExperimentHeader(**kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/qobj/common.py "view source code")
 
 A class representing a header dictionary for a Qobj Experiment.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.EquivalenceLibrary
 
 <span id="qiskit.circuit.EquivalenceLibrary" />
 
-`EquivalenceLibrary(*, base=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/equivalence.py "view source code")
+`EquivalenceLibrary(*, base=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/equivalence.py "view source code")
 
 A library providing a one-way mapping of Gates to their equivalent implementations as QuantumCircuits.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.Schedule
 
 <span id="qiskit.pulse.Schedule" />
 
-`Schedule(*schedules, name=None, metadata=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/schedule.py "view source code")
+`Schedule(*schedules, name=None, metadata=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/schedule.py "view source code")
 
 Bases: `object`
 
@@ -73,12 +73,12 @@ Create an empty schedule.
 
 <span id="qiskit.pulse.Schedule.append" />
 
-`Schedule.append(schedule, name=None, inplace=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/schedule.py "view source code")
+`Schedule.append(schedule, name=None, inplace=False)`
 
 Return a new schedule with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`.
 
 $$
-t = \textrm{max}(\texttt{x.stop_time} \vert \texttt{x} \in
+t = \textrm{max}(\texttt{x.stop_time} |\texttt{x} \in
     \texttt{self.channels} \cap \texttt{schedule.channels})
 $$
 
@@ -96,7 +96,7 @@ $$
 
 <span id="qiskit.pulse.Schedule.assign_parameters" />
 
-`Schedule.assign_parameters(value_dict, inplace=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/schedule.py "view source code")
+`Schedule.assign_parameters(value_dict, inplace=True)`
 
 Assign the parameters in this schedule according to the input.
 
@@ -117,7 +117,7 @@ Schedule with updated parameters.
 
 <span id="qiskit.pulse.Schedule.ch_duration" />
 
-`Schedule.ch_duration(*channels)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/schedule.py "view source code")
+`Schedule.ch_duration(*channels)`
 
 Return the time of the end of the last instruction over the supplied channels.
 
@@ -133,7 +133,7 @@ Return the time of the end of the last instruction over the supplied channels.
 
 <span id="qiskit.pulse.Schedule.ch_start_time" />
 
-`Schedule.ch_start_time(*channels)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/schedule.py "view source code")
+`Schedule.ch_start_time(*channels)`
 
 Return the time of the start of the first instruction over the supplied channels.
 
@@ -149,7 +149,7 @@ Return the time of the start of the first instruction over the supplied channels
 
 <span id="qiskit.pulse.Schedule.ch_stop_time" />
 
-`Schedule.ch_stop_time(*channels)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/schedule.py "view source code")
+`Schedule.ch_stop_time(*channels)`
 
 Return maximum start time over supplied channels.
 
@@ -211,7 +211,7 @@ Visualization output data. The returned data type depends on the `plotter`. If m
 
 <span id="qiskit.pulse.Schedule.exclude" />
 
-`Schedule.exclude(*filter_funcs, channels=None, instruction_types=None, time_ranges=None, intervals=None, check_subroutine=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/schedule.py "view source code")
+`Schedule.exclude(*filter_funcs, channels=None, instruction_types=None, time_ranges=None, intervals=None, check_subroutine=True)`
 
 Return a `Schedule` with only the instructions from this Schedule *failing* at least one of the provided filters. This method is the complement of py:meth:\~self.filter, so that:
 
@@ -236,7 +236,7 @@ self.filter(args) | self.exclude(args) == self
 
 <span id="qiskit.pulse.Schedule.filter" />
 
-`Schedule.filter(*filter_funcs, channels=None, instruction_types=None, time_ranges=None, intervals=None, check_subroutine=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/schedule.py "view source code")
+`Schedule.filter(*filter_funcs, channels=None, instruction_types=None, time_ranges=None, intervals=None, check_subroutine=True)`
 
 Return a new `Schedule` with only the instructions from this `Schedule` which pass though the provided filters; i.e. an instruction will be retained iff every function in `filter_funcs` returns `True`, the instruction occurs on a channel type contained in `channels`, the instruction type is contained in `instruction_types`, and the period over which the instruction operates is *fully* contained in one specified in `time_ranges` or `intervals`.
 
@@ -259,7 +259,7 @@ If no arguments are provided, `self` is returned.
 
 <span id="qiskit.pulse.Schedule.get_parameters" />
 
-`Schedule.get_parameters(parameter_name)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/schedule.py "view source code")
+`Schedule.get_parameters(parameter_name)`
 
 Get parameter object bound to this schedule by string name.
 
@@ -281,7 +281,7 @@ Parameter objects that have corresponding name.
 
 <span id="qiskit.pulse.Schedule.initialize_from" />
 
-`classmethod Schedule.initialize_from(other_program, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/schedule.py "view source code")
+`classmethod Schedule.initialize_from(other_program, name=None)`
 
 Create new schedule object with metadata of another schedule object.
 
@@ -306,7 +306,7 @@ New schedule object with name and metadata.
 
 <span id="qiskit.pulse.Schedule.insert" />
 
-`Schedule.insert(start_time, schedule, name=None, inplace=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/schedule.py "view source code")
+`Schedule.insert(start_time, schedule, name=None, inplace=False)`
 
 Return a new schedule with `schedule` inserted into `self` at `start_time`.
 
@@ -325,7 +325,7 @@ Return a new schedule with `schedule` inserted into `self` at `start_time`.
 
 <span id="qiskit.pulse.Schedule.is_parameterized" />
 
-`Schedule.is_parameterized()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/schedule.py "view source code")
+`Schedule.is_parameterized()`
 
 Return True iff the instruction is parameterized.
 
@@ -337,7 +337,7 @@ Return True iff the instruction is parameterized.
 
 <span id="qiskit.pulse.Schedule.replace" />
 
-`Schedule.replace(old, new, inplace=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/schedule.py "view source code")
+`Schedule.replace(old, new, inplace=False)`
 
 Return a `Schedule` with the `old` instruction replaced with a `new` instruction.
 
@@ -398,7 +398,7 @@ The modified schedule with `old` replaced by `new`.
 
 <span id="qiskit.pulse.Schedule.shift" />
 
-`Schedule.shift(time, name=None, inplace=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/schedule.py "view source code")
+`Schedule.shift(time, name=None, inplace=False)`
 
 Return a schedule shifted forward by `time`.
 

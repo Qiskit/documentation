@@ -12,11 +12,11 @@ python_api_name: qiskit.visualization.dag_drawer
 
 <span id="qiskit.visualization.dag_drawer" />
 
-`qiskit.visualization.dag_drawer(dag, scale=0.7, filename=None, style='color')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/visualization/dag_visualization.py "view source code")
+`qiskit.visualization.dag_drawer(dag, scale=0.7, filename=None, style='color')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/visualization/dag_visualization.py "view source code")
 
 Plot the directed acyclic graph (dag) to represent operation dependencies in a quantum circuit.
 
-This function calls the [`graphviz_draw()`](https://www.rustworkx.org/apiref/rustworkx.visualization.graphviz_draw.html#rustworkx.visualization.graphviz_draw "(in rustworkx v0.14.0)") function from the `rustworkx` package to draw the DAG.
+This function calls the [`graphviz_draw()`](https://www.rustworkx.org/apiref/rustworkx.visualization.graphviz_draw.html#rustworkx.visualization.graphviz_draw "(in rustworkx v0.14)") function from the `rustworkx` package to draw the DAG.
 
 **Parameters**
 

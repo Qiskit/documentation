@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.ECRGate
 
 <span id="qiskit.circuit.library.ECRGate" />
 
-`ECRGate`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/ecr.py "view source code")
+`ECRGate` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/ecr.py "view source code")
 
 An echoed RZX(pi/2) gate implemented using RZX(pi/4) and RZX(-pi/4).
 

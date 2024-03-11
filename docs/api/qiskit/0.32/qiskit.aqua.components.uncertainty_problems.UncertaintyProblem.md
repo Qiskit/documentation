@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.uncertainty_problems.UncertaintyProblem
 
 <span id="qiskit.aqua.components.uncertainty_problems.UncertaintyProblem" />
 
-`UncertaintyProblem(num_qubits)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_problems/uncertainty_problem.py "view source code")
+`UncertaintyProblem(num_qubits)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_problems/uncertainty_problem.py "view source code")
 
 Bases: `qiskit.aqua.utils.circuit_factory.CircuitFactory`, `abc.ABC`
 
@@ -147,7 +147,7 @@ returns required ancillas controlled
 
 <span id="qiskit.aqua.components.uncertainty_problems.UncertaintyProblem.value_to_estimation" />
 
-`UncertaintyProblem.value_to_estimation(value)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_problems/uncertainty_problem.py "view source code")
+`UncertaintyProblem.value_to_estimation(value)`
 
 value to estimate
 

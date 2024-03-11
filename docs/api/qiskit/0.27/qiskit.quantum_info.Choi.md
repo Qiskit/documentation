@@ -10,15 +10,15 @@ python_api_name: qiskit.quantum_info.Choi
 
 <span id="qiskit.quantum_info.Choi" />
 
-`Choi(data, input_dims=None, output_dims=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/quantum_info/operators/channel/choi.py "view source code")
+`Choi(data, input_dims=None, output_dims=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/quantum_info/operators/channel/choi.py "view source code")
 
 Choi-matrix representation of a Quantum Channel.
 
 The Choi-matrix representation of a quantum channel $\mathcal{E}$ is a matrix
 
 $$
-\Lambda = \sum_{i,j} \vert i\rangle\!\langle j\vert \otimes
-            \mathcal{E}\left(\vert i\rangle\!\langle j\vert \right)
+\Lambda = \sum_{i,j} |i\rangle\!\langle j|\otimes
+            \mathcal{E}\left(|i\rangle\!\langle j|\right)
 $$
 
 Evolution of a [`DensityMatrix`](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") $\rho$ with respect to the Choi-matrix is given by

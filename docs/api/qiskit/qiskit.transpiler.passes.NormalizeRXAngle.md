@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.NormalizeRXAngle
 
 <span id="qiskit.transpiler.passes.NormalizeRXAngle" />
 
-`qiskit.transpiler.passes.NormalizeRXAngle(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/passes/optimization/normalize_rx_angle.py "view source code")
+`qiskit.transpiler.passes.NormalizeRXAngle(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/optimization/normalize_rx_angle.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -102,7 +102,7 @@ Quantize the RX rotation angles by assigning the same value for the angles that 
 
 **Parameters**
 
-*   **qubit** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – This will be the dict key to access the list of quantized rotation angles.
+*   **qubit** ([*qiskit.circuit.Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – This will be the dict key to access the list of quantized rotation angles.
 *   **original\_angle** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Original rotation angle, before quantization.
 
 **Returns**

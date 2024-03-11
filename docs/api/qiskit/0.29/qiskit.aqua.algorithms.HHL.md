@@ -10,13 +10,13 @@ python_api_name: qiskit.aqua.algorithms.HHL
 
 <span id="qiskit.aqua.algorithms.HHL" />
 
-`HHL(matrix, vector, truncate_powerdim=False, truncate_hermitian=False, eigs=None, init_state=None, reciprocal=None, num_q=0, num_a=0, orig_size=None, quantum_instance=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/linear_solvers/hhl.py "view source code")
+`HHL(matrix, vector, truncate_powerdim=False, truncate_hermitian=False, eigs=None, init_state=None, reciprocal=None, num_q=0, num_a=0, orig_size=None, quantum_instance=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/linear_solvers/hhl.py "view source code")
 
 Bases: `qiskit.aqua.algorithms.quantum_algorithm.QuantumAlgorithm`
 
 The HHL algorithm.
 
-The HHL algorithm (after the author’s surnames Harrow-Hassidim-Lloyd) is a quantum algorithm to solve systems of linear equations $A\overrightarrow{x}=\overrightarrow{b}$. Using Quantum Phase Estimation, the linear system is transformed into diagonal form in which the matrix $A$ is easily invertible. The inversion is achieved by rotating an ancillary qubit by an angle $\arcsin{ \frac{C}{\lambda_\mathrm{i}}}$ around the y-axis where $\lambda_\mathrm{i}$ are the eigenvalues of $A$. After uncomputing the register storing the eigenvalues using the inverse QPE, one measures the ancillary qubit. A measurement of 1 indicates that the matrix inversion succeeded. This leaves the system in a state proportional to the solution vector $\vert x\rangle$. In many cases one is not interested in the single vector elements of $\vert x\rangle$ but only on certain properties. These are accessible by using problem-specific operators. Another use-case is the implementation in a larger quantum program.
+The HHL algorithm (after the author’s surnames Harrow-Hassidim-Lloyd) is a quantum algorithm to solve systems of linear equations $A\overrightarrow{x}=\overrightarrow{b}$. Using Quantum Phase Estimation, the linear system is transformed into diagonal form in which the matrix $A$ is easily invertible. The inversion is achieved by rotating an ancillary qubit by an angle $\arcsin{ \frac{C}{\lambda_\mathrm{i}}}$ around the y-axis where $\lambda_\mathrm{i}$ are the eigenvalues of $A$. After uncomputing the register storing the eigenvalues using the inverse QPE, one measures the ancillary qubit. A measurement of 1 indicates that the matrix inversion succeeded. This leaves the system in a state proportional to the solution vector $|x\rangle$. In many cases one is not interested in the single vector elements of $|x\rangle$ but only on certain properties. These are accessible by using problem-specific operators. Another use-case is the implementation in a larger quantum program.
 
 When using non-hermitian matrices and matrices with dimensions other than $2^{n}$ the must be converted to an hermitian matrix and next higher dimension $2^{n}$, respectively. The *truncate\_hermitian*, *truncate\_powerdim* flags and *orig\_size* are used to indicate conversion and the returned result of the HHL algorithm for expanded matrices will be truncated. The [`matrix_resize()`](qiskit.aqua.algorithms.HHL#matrix_resize "qiskit.aqua.algorithms.HHL.matrix_resize") method is provided for convenience to do this but any method of your choice can be used.
 
@@ -61,7 +61,7 @@ See also [https://arxiv.org/abs/0811.3171](https://arxiv.org/abs/0811.3171)
 
 <span id="qiskit.aqua.algorithms.HHL.construct_circuit" />
 
-`HHL.construct_circuit(measurement=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/linear_solvers/hhl.py "view source code")
+`HHL.construct_circuit(measurement=False)`
 
 Construct the HHL circuit.
 
@@ -81,7 +81,7 @@ the QuantumCircuit object for the constructed circuit
 
 <span id="qiskit.aqua.algorithms.HHL.expand_to_hermitian" />
 
-`static HHL.expand_to_hermitian(matrix, vector)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/linear_solvers/hhl.py "view source code")
+`static HHL.expand_to_hermitian(matrix, vector)`
 
 Expand a non-hermitian matrix A to a hermitian matrix by \[\[0, A.H], \[A, 0]] and expand vector b to \[b.conj, b].
 
@@ -102,7 +102,7 @@ the expanded matrix, the expanded vector
 
 <span id="qiskit.aqua.algorithms.HHL.expand_to_powerdim" />
 
-`static HHL.expand_to_powerdim(matrix, vector)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/linear_solvers/hhl.py "view source code")
+`static HHL.expand_to_powerdim(matrix, vector)`
 
 Expand a matrix to the next-larger 2\*\*n dimensional matrix with ones on the diagonal and zeros on the off-diagonal and expand the vector with zeros accordingly.
 
@@ -123,7 +123,7 @@ the expanded matrix, the expanded vector
 
 <span id="qiskit.aqua.algorithms.HHL.matrix_resize" />
 
-`static HHL.matrix_resize(matrix, vector)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/linear_solvers/hhl.py "view source code")
+`static HHL.matrix_resize(matrix, vector)`
 
 Resizes matrix if necessary
 

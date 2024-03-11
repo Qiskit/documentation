@@ -12,13 +12,13 @@ python_api_name: qiskit.visualization.circuit_drawer
 
 <span id="qiskit.visualization.circuit_drawer" />
 
-`qiskit.visualization.circuit_drawer(circuit, scale=None, filename=None, style=None, output=None, interactive=False, plot_barriers=True, reverse_bits=None, justify=None, vertical_compression='medium', idle_wires=True, with_layout=True, fold=None, ax=None, initial_state=False, cregbundle=None, wire_order=None, expr_len=30)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/visualization/circuit/circuit_visualization.py "view source code")
+`qiskit.visualization.circuit_drawer(circuit, scale=None, filename=None, style=None, output=None, interactive=False, plot_barriers=True, reverse_bits=None, justify=None, vertical_compression='medium', idle_wires=True, with_layout=True, fold=None, ax=None, initial_state=False, cregbundle=None, wire_order=None, expr_len=30)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/visualization/circuit/circuit_visualization.py "view source code")
 
 Draw the quantum circuit. Use the output parameter to choose the drawing format:
 
 **text**: ASCII art TextDrawing that can be printed in the console.
 
-**matplotlib**: images with color rendered purely in Python.
+**mpl**: images with color rendered purely in Python using matplotlib.
 
 **latex**: high-quality images compiled via latex.
 
@@ -30,61 +30,93 @@ Draw the quantum circuit. Use the output parameter to choose the drawing format:
 
 **Parameters**
 
-*   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – the quantum circuit to draw
-*   **scale** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – scale of image to draw (shrink if \< 1.0). Only used by the mpl, latex and latex\_source outputs. Defaults to 1.0.
-*   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – file path to save image to. Defaults to None.
-*   **style** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")  *or*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – dictionary of style or file name of style json file. This option is only used by the mpl or latex output type. If style is a str, it is used as the path to a json file which contains a style dict. The file will be opened, parsed, and then any style elements in the dict will replace the default values in the input dict. A file to be loaded must end in `.json`, but the name entered here can omit `.json`. For example, `style='iqp.json'` or `style='iqp'`. If style is a dict and the `'name'` key is set, that name will be used to load a json file, followed by loading the other items in the style dict. For example, `style={'name': 'iqp'}`. If style is not a str and name is not a key in the style dict, then the default value from the user config file (usually `~/.qiskit/settings.conf`) will be used, for example, `circuit_mpl_style = iqp`. If none of these are set, the clifford style will be used. The search path for style json files can be specified in the user config, for example, `circuit_mpl_style_path = /home/user/styles:/home/user`. See: [`DefaultStyle`](qiskit.visualization.circuit.qcstyle.DefaultStyle "qiskit.visualization.circuit.qcstyle.DefaultStyle") for more information on the contents.
-*   **output** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – select the output method to use for drawing the circuit. Valid choices are `text`, `mpl`, `latex`, `latex_source`. By default, the text drawer is used unless the user config file (usually `~/.qiskit/settings.conf`) has an alternative backend set as the default. For example, `circuit_drawer = latex`. If the output kwarg is set, that backend will always be used over the default in the user config file.
-*   **interactive** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to true, show the circuit in a new window (for mpl this depends on the matplotlib backend being used supporting this). Note when used with either the text or the latex\_source output type this has no effect and will be silently ignored. Defaults to False.
-*   **reverse\_bits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to True, reverse the bit order inside registers for the output visualization. Defaults to False unless the user config file (usually `~/.qiskit/settings.conf`) has an alternative value set. For example, `circuit_reverse_bits = True`.
-*   **plot\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – enable/disable drawing barriers in the output circuit. Defaults to True.
-*   **justify** (*string*) – options are `left`, `right` or `none`. If anything else is supplied, it defaults to left justified. It refers to where gates should be placed in the output circuit if there is an option. `none` results in each gate being placed in its own column.
-*   **vertical\_compression** (*string*) – `high`, `medium` or `low`. It merges the lines generated by the text output so the drawing will take less vertical room. Default is `medium`. Only used by the text output, will be silently ignored otherwise.
-*   **idle\_wires** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – include idle wires (wires with no circuit elements) in output visualization. Default is True.
-*   **with\_layout** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – include layout information, with labels on the physical layout. Default is True.
-*   **fold** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – sets pagination. It can be disabled using -1. In text, sets the length of the lines. This is useful when the drawing does not fit in the console. If None (default), it will try to guess the console width using `shutil.get_terminal_size()`. However, if running in jupyter, the default line length is set to 80 characters. In mpl, it is the number of (visual) layers before folding. Default is 25.
-*   **ax** ([*matplotlib.axes.Axes*](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html#matplotlib.axes.Axes "(in Matplotlib v3.8.2)")) – Only used by the mpl backend. An optional Axes object to be used for the visualization output. If none is specified, a new matplotlib Figure will be created and used. Additionally, if specified there will be no returned Figure since it is redundant.
-*   **initial\_state** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Optional. Adds `|0>` in the beginning of the wire. Default is False.
-*   **cregbundle** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Optional. If set True, bundle classical registers into a single wire. Default is true if possible, and false if a block instruction needs to access an individual bit from a register.
-*   **wire\_order** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – Optional. A list of integers used to reorder the display of the bits. The list must have an entry for every bit with the bits in the range 0 to (num\_qubits + num\_clbits).
-*   **expr\_len** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Optional. The number of characters to display if an [`Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") is used for the condition in a [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp"). If this number is exceeded, the string will be truncated at that number and ‘…’ added to the end.
+*   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The circuit to visualize.
+
+*   **scale** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – Scale of image to draw (shrink if `< 1.0`). Only used by the `mpl`, `latex` and `latex_source` outputs. Defaults to `1.0`.
+
+*   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – File path to save image to. Defaults to `None` (result not saved in a file).
+
+*   **style** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) –
+
+    Style name, file name of style JSON file, or a dictionary specifying the style.
+
+    *   **The supported style names are `"iqp"` (default), `"iqp-dark"`, `"clifford"`,**
+
+        `"textbook"` and `"bw"`.
+
+    *   **If given a JSON file, e.g. `my_style.json` or `my_style` (the `.json`**
+
+        extension may be omitted), this function attempts to load the style dictionary from that location. Note, that the JSON file must completely specify the visualization specifications. The file is searched for in `qiskit/visualization/circuit/styles`, the current working directory, and the location specified in `~/.qiskit/settings.conf`.
+
+    *   **If a dictionary, every entry overrides the default configuration. If the**
+
+        `"name"` key is given, the default configuration is given by that style. For example, `{"name": "textbook", "subfontsize": 5}` loads the `"texbook"` style and sets the subfontsize (e.g. the gate angles) to `5`.
+
+    *   **If `None` the default style `"iqp"` is used or, if given, the default style**
+
+        specified in `~/.qiskit/settings.conf`.
+
+*   **output** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Select the output method to use for drawing the circuit. Valid choices are `text`, `mpl`, `latex`, `latex_source`. By default the text drawer is used unless the user config file (usually `~/.qiskit/settings.conf`) has an alternative backend set as the default. For example, `circuit_drawer = latex`. If the output kwarg is set, that backend will always be used over the default in the user config file.
+
+*   **interactive** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – When set to `True`, show the circuit in a new window (for `mpl` this depends on the matplotlib backend being used supporting this). Note when used with either the text or the `latex_source` output type this has no effect and will be silently ignored. Defaults to `False`.
+
+*   **reverse\_bits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – When set to `True`, reverse the bit order inside registers for the output visualization. Defaults to `False` unless the user config file (usually `~/.qiskit/settings.conf`) has an alternative value set. For example, `circuit_reverse_bits = True`.
+
+*   **plot\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Enable/disable drawing barriers in the output circuit. Defaults to `True`.
+
+*   **justify** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Options are `left`, `right` or `none`. If anything else is supplied, it defaults to left justified. It refers to where gates should be placed in the output circuit if there is an option. `none` results in each gate being placed in its own column.
+
+*   **vertical\_compression** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – `high`, `medium` or `low`. It merges the lines generated by the text output so the drawing will take less vertical room. Default is `medium`. Only used by the `text` output, will be silently ignored otherwise.
+
+*   **idle\_wires** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Include idle wires (wires with no circuit elements) in output visualization. Default is `True`.
+
+*   **with\_layout** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Include layout information, with labels on the physical layout. Default is `True`.
+
+*   **fold** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – Sets pagination. It can be disabled using -1. In `text`, sets the length of the lines. This is useful when the drawing does not fit in the console. If None (default), it will try to guess the console width using `shutil.get_terminal_size()`. However, if running in jupyter, the default line length is set to 80 characters. In `mpl`, it is the number of (visual) layers before folding. Default is 25.
+
+*   **ax** (*Any | None*) – Only used by the mpl backend. An optional `matplotlib.axes.Axes` object to be used for the visualization output. If none is specified, a new matplotlib Figure will be created and used. Additionally, if specified there will be no returned Figure since it is redundant.
+
+*   **initial\_state** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Adds $|0\rangle$ in the beginning of the qubit wires and $0$ to classical wires. Default is `False`.
+
+*   **cregbundle** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – If set to `True`, bundle classical registers. Default is `True`, except for when `output` is set to `"text"`.
+
+*   **wire\_order** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – A list of integers used to reorder the display of the bits. The list must have an entry for every bit with the bits in the range 0 to (`num_qubits` + `num_clbits`).
+
+*   **expr\_len** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of characters to display if an [`Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") is used for the condition in a [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp"). If this number is exceeded, the string will be truncated at that number and ‘…’ added to the end.
 
 **Returns**
 
 `TextDrawing` or `matplotlib.figure` or `PIL.Image` or [`str`](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)"):
 
-*   **TextDrawing (output=’text’)**
+*   **`TextDrawing` (if `output='text'`)**
 
     A drawing that can be printed as ascii art.
 
-*   **matplotlib.figure.Figure (output=’mpl’)**
+*   **`matplotlib.figure.Figure` (if `output='mpl'`)**
 
     A matplotlib figure object for the circuit diagram.
 
-*   **PIL.Image (output=’latex’)**
+*   **`PIL.Image` (if `output='latex`’)**
 
     An in-memory representation of the image of the circuit diagram.
 
-*   **str (output=’latex\_source’)**
+*   **`str` (if `output='latex_source'`)**
 
     The LaTeX source code for visualizing the circuit diagram.
 
 **Raises**
 
 *   [**VisualizationError**](visualization#qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – when an invalid output method is selected
-*   [**MissingOptionalLibraryError**](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") – when the output methods requires non-installed libraries.
+*   [**ImportError**](https://docs.python.org/3/library/exceptions.html#ImportError "(in Python v3.12)") – when the output methods requires non-installed libraries.
 
 **Example**
 
 ```python
 from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
-from qiskit.tools.visualization import circuit_drawer
-q = QuantumRegister(1)
-c = ClassicalRegister(1)
-qc = QuantumCircuit(q, c)
-qc.h(q)
-qc.measure(q, c)
-circuit_drawer(qc, output='mpl', style={'backgroundcolor': '#EEEEEE'})
+qc = QuantumCircuit(1, 1)
+qc.h(0)
+qc.measure(0, 0)
+qc.draw(output='mpl', style={'backgroundcolor': '#EEEEEE'})
 ```
 
 ![../\_images/qiskit-visualization-circuit\_drawer-1.png](/images/api/qiskit/qiskit-visualization-circuit_drawer-1.png)

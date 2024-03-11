@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CSwapGate
 
 <span id="qiskit.circuit.library.CSwapGate" />
 
-`CSwapGate(label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/swap.py "view source code")
+`CSwapGate(label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/swap.py "view source code")
 
 Controlled-SWAP gate, also known as the Fredkin gate.
 
@@ -28,8 +28,8 @@ q_2: ─■─
 
 $$
 \begin{split}CSWAP\ q_0, q_1, q_2 =
-    \vert 0 \rangle \langle 0\vert  \otimes I \otimes I +
-    \vert 1 \rangle \langle 1\vert  \otimes SWAP =
+    |0 \rangle \langle 0| \otimes I \otimes I +
+    |1 \rangle \langle 1| \otimes SWAP =
     \begin{pmatrix}
         1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
         0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
@@ -55,8 +55,8 @@ $$
 
   $$
   \begin{split}CSWAP\ q_2, q_1, q_0 =
-      \vert 0 \rangle \langle 0\vert  \otimes I \otimes I +
-      \vert 1 \rangle \langle 1\vert  \otimes SWAP =
+      |0 \rangle \langle 0| \otimes I \otimes I +
+      |1 \rangle \langle 1| \otimes SWAP =
       \begin{pmatrix}
           1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
           0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
@@ -70,11 +70,11 @@ $$
   $$
 </Admonition>
 
-In the computational basis, this gate swaps the states of the two target qubits if the control qubit is in the $\vert 1\rangle$ state.
+In the computational basis, this gate swaps the states of the two target qubits if the control qubit is in the $|1\rangle$ state.
 
 $$
-\vert 0, b, c\rangle \rightarrow \vert 0, b, c\rangle
-\vert 1, b, c\rangle \rightarrow \vert 1, c, b\rangle
+|0, b, c\rangle \rightarrow |0, b, c\rangle
+|1, b, c\rangle \rightarrow |1, c, b\rangle
 $$
 
 Create new CSWAP gate.

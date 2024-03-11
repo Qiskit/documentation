@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.extensions.SnapshotDensityMatrix
 
 <span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix" />
 
-`SnapshotDensityMatrix(label, num_qubits)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/extensions/snapshot_density_matrix.py "view source code")
+`SnapshotDensityMatrix(label, num_qubits)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/extensions/snapshot_density_matrix.py "view source code")
 
 Bases: `qiskit.providers.aer.extensions.snapshot.Snapshot`
 

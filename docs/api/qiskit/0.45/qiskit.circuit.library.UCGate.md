@@ -10,13 +10,13 @@ python_api_name: qiskit.circuit.library.UCGate
 
 <span id="qiskit.circuit.library.UCGate" />
 
-`qiskit.circuit.library.UCGate(gate_list, up_to_diagonal=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/generalized_gates/uc.py "view source code")
+`qiskit.circuit.library.UCGate(gate_list, up_to_diagonal=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/generalized_gates/uc.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
 Uniformly controlled gate (also called multiplexed gate).
 
-These gates can have several control qubits and a single target qubit. If the k control qubits are in the state $\vert i\rangle$ (in the computational basis), a single-qubit unitary $U_i$ is applied to the target qubit.
+These gates can have several control qubits and a single target qubit. If the k control qubits are in the state $|i\rangle$ (in the computational basis), a single-qubit unitary $U_i$ is applied to the target qubit.
 
 This gate is represented by a block-diagonal matrix, where each block is a $2\times 2$ unitary, that is
 

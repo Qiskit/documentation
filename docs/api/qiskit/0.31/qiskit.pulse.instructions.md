@@ -1,3 +1,11 @@
+---
+title: instructions
+description: API reference for qiskit.pulse.instructions
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.pulse.instructions
+---
+
 <span id="qiskit-pulse-instructions" />
 
 # qiskit.pulse.instructions
@@ -35,3 +43,4 @@ An instruction can be added to a [`Schedule`](qiskit.pulse.Schedule "qiskit.puls
 |                                                                                                                                       |                                                      |
 | ------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
 | [`Instruction`](qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.Instruction")(operands\[, duration, channels, name]) | The smallest schedulable unit: a single instruction. |
+

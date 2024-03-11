@@ -10,7 +10,7 @@ python_api_name: qiskit.optimization.problems.QuadraticObjective
 
 <span id="qiskit.optimization.problems.QuadraticObjective" />
 
-`QuadraticObjective(quadratic_program, constant=0.0, linear=None, quadratic=None, sense=ObjSense.MINIMIZE)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/problems/quadratic_objective.py "view source code")
+`QuadraticObjective(quadratic_program, constant=0.0, linear=None, quadratic=None, sense=ObjSense.MINIMIZE)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/problems/quadratic_objective.py "view source code")
 
 Representation of quadratic objective function of the form: constant + linear \* x + x \* quadratic \* x.
 
@@ -112,7 +112,7 @@ The sense of the objective function.
 
 <span id="qiskit.optimization.problems.QuadraticObjective.evaluate" />
 
-`QuadraticObjective.evaluate(x)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/problems/quadratic_objective.py "view source code")
+`QuadraticObjective.evaluate(x)`
 
 Evaluate the quadratic objective for given variable values.
 

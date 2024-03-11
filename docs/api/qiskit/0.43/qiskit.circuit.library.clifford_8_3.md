@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.library.clifford_8_3
 
 <span id="qiskit.circuit.library.clifford_8_3" />
 
-`clifford_8_3()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/templates/clifford/clifford_8_3.py "view source code")
+`clifford_8_3()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/templates/clifford/clifford_8_3.py "view source code")
 
 **Returns**
 

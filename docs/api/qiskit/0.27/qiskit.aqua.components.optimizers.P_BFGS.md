@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.optimizers.P_BFGS
 
 <span id="qiskit.aqua.components.optimizers.P_BFGS" />
 
-`P_BFGS(maxfun=1000, factr=10, iprint=- 1, max_processes=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/optimizers/p_bfgs.py "view source code")
+`P_BFGS(maxfun=1000, factr=10, iprint=- 1, max_processes=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/optimizers/p_bfgs.py "view source code")
 
 Parallelized Limited-memory BFGS optimizer.
 

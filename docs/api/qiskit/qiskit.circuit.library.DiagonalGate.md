@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.DiagonalGate
 
 <span id="qiskit.circuit.library.DiagonalGate" />
 
-`qiskit.circuit.library.DiagonalGate(diag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/generalized_gates/diagonal.py "view source code")
+`qiskit.circuit.library.DiagonalGate(diag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/generalized_gates/diagonal.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -123,7 +123,7 @@ Get the time unit of duration.
 
 <span id="qiskit.circuit.library.DiagonalGate.inverse" />
 
-`inverse()`
+`inverse(annotated=False)`
 
 Return the inverse of the diagonal gate.
 

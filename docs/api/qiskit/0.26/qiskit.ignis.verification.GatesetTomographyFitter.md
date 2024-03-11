@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.verification.GatesetTomographyFitter
 
 <span id="qiskit.ignis.verification.GatesetTomographyFitter" />
 
-`GatesetTomographyFitter(result, circuits, gateset_basis='default')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/tomography/fitters/gateset_fitter.py "view source code")
+`GatesetTomographyFitter(result, circuits, gateset_basis='default')` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/tomography/fitters/gateset_fitter.py "view source code")
 
 Initialize gateset tomography fitter with experimental data.
 

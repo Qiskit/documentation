@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.LinearFunction
 
 <span id="qiskit.circuit.library.LinearFunction" />
 
-`qiskit.circuit.library.LinearFunction(linear, validate_input=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/generalized_gates/linear_function.py "view source code")
+`qiskit.circuit.library.LinearFunction(linear, validate_input=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/generalized_gates/linear_function.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 

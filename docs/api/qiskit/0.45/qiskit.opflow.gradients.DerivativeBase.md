@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.gradients.DerivativeBase
 
 <span id="qiskit.opflow.gradients.DerivativeBase" />
 
-`qiskit.opflow.gradients.DerivativeBase`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/gradients/derivative_base.py "view source code")
+`qiskit.opflow.gradients.DerivativeBase` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/gradients/derivative_base.py "view source code")
 
 Bases: [`ConverterBase`](qiskit.opflow.converters.ConverterBase "qiskit.opflow.converters.converter_base.ConverterBase")
 

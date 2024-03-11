@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.random.CQCExtractor
 
 <span id="qiskit.providers.ibmq.random.CQCExtractor" />
 
-`CQCExtractor(name, provider, client, methods)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.17/qiskit/providers/ibmq/random/cqcextractor.py "view source code")
+`CQCExtractor(name, provider, client, methods)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.17/qiskit/providers/ibmq/random/cqcextractor.py "view source code")
 
 Bases: `qiskit.providers.ibmq.random.baserandomservice.BaseRandomService`
 
@@ -49,7 +49,7 @@ BaseRandomService constructor.
 
 <span id="qiskit.providers.ibmq.random.CQCExtractor.retrieve_job" />
 
-`CQCExtractor.retrieve_job(job_id)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.17/qiskit/providers/ibmq/random/cqcextractor.py "view source code")
+`CQCExtractor.retrieve_job(job_id)`
 
 Retrieve a previously submitted job.
 
@@ -69,7 +69,7 @@ A `CQCExtractorJob` instance.
 
 <span id="qiskit.providers.ibmq.random.CQCExtractor.run" />
 
-`CQCExtractor.run(ext1_input_num_bits, ext1_output_num_bits, ext1_raw_bytes, ext1_wsr_bytes, ext2_seed_num_bits, ext2_wsr_multiplier, ext2_wsr_generator=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.17/qiskit/providers/ibmq/random/cqcextractor.py "view source code")
+`CQCExtractor.run(ext1_input_num_bits, ext1_output_num_bits, ext1_raw_bytes, ext1_wsr_bytes, ext2_seed_num_bits, ext2_wsr_multiplier, ext2_wsr_generator=None)`
 
 Process input data synchronously.
 
@@ -95,7 +95,7 @@ An instance of `CQCExtractorJob` which can be used to retrieve the results later
 
 <span id="qiskit.providers.ibmq.random.CQCExtractor.run_async_ext1" />
 
-`CQCExtractor.run_async_ext1(ext1_input_num_bits, ext1_output_num_bits, ext1_raw_bytes, ext1_wsr_bytes)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.17/qiskit/providers/ibmq/random/cqcextractor.py "view source code")
+`CQCExtractor.run_async_ext1(ext1_input_num_bits, ext1_output_num_bits, ext1_raw_bytes, ext1_wsr_bytes)`
 
 Run the first extractor asynchronously.
 
@@ -122,7 +122,7 @@ An instance of `CQCExtractorJob` which can be used to retrieve the results later
 
 <span id="qiskit.providers.ibmq.random.CQCExtractor.run_async_ext2" />
 
-`CQCExtractor.run_async_ext2(ext2_seed, ext2_seed_num_bits, ext2_wsr_multiplier, ext2_wsr_generator=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.17/qiskit/providers/ibmq/random/cqcextractor.py "view source code")
+`CQCExtractor.run_async_ext2(ext2_seed, ext2_seed_num_bits, ext2_wsr_multiplier, ext2_wsr_generator=None)`
 
 Run the second extractor asynchronously.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.Options
 
 <span id="qiskit.providers.Options" />
 
-`qiskit.providers.Options(**kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/providers/options.py "view source code")
+`qiskit.providers.Options(**kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/providers/options.py "view source code")
 
 Bases: [`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping "(in Python v3.12)")
 

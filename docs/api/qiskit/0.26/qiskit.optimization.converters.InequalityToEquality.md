@@ -10,7 +10,7 @@ python_api_name: qiskit.optimization.converters.InequalityToEquality
 
 <span id="qiskit.optimization.converters.InequalityToEquality" />
 
-`InequalityToEquality(mode='auto')`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/converters/inequality_to_equality.py "view source code")
+`InequalityToEquality(mode='auto')` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/converters/inequality_to_equality.py "view source code")
 
 Convert inequality constraints into equality constraints by introducing slack variables.
 

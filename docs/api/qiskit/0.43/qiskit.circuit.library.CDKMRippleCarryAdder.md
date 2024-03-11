@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CDKMRippleCarryAdder
 
 <span id="qiskit.circuit.library.CDKMRippleCarryAdder" />
 
-`CDKMRippleCarryAdder(num_state_qubits, kind='full', name='CDKMRippleCarryAdder')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/arithmetic/adders/cdkm_ripple_carry_adder.py "view source code")
+`CDKMRippleCarryAdder(num_state_qubits, kind='full', name='CDKMRippleCarryAdder')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/arithmetic/adders/cdkm_ripple_carry_adder.py "view source code")
 
 Bases: `Adder`
 
@@ -72,7 +72,7 @@ It has one less qubit than the full-adder since it doesn’t have the carry-out,
 
 **Parameters**
 
-*   **num\_state\_qubits** (*int*) – The number of qubits in either input register for state $\vert a\rangle$ or $\vert b\rangle$. The two input registers must have the same number of qubits.
+*   **num\_state\_qubits** (*int*) – The number of qubits in either input register for state $|a\rangle$ or $|b\rangle$. The two input registers must have the same number of qubits.
 *   **kind** (*str*) – The kind of adder, can be `'full'` for a full adder, `'half'` for a half adder, or `'fixed'` for a fixed-sized adder. A full adder includes both carry-in and carry-out, a half only carry-out, and a fixed-sized adder neither carry-in nor carry-out.
 *   **name** (*str*) – The name of the circuit object.
 

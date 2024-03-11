@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.RYYGate
 
 <span id="qiskit.circuit.library.RYYGate" />
 
-`RYYGate(theta)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/ryy.py "view source code")
+`RYYGate(theta)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/ryy.py "view source code")
 
 A parameteric 2-qubit $Y \otimes Y$ interaction (rotation about YY).
 
@@ -223,7 +223,7 @@ updated if it was provided
 
 <span id="qiskit.circuit.library.RYYGate.inverse" />
 
-`RYYGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/ryy.py "view source code")
+`RYYGate.inverse()`
 
 Return inverse RYY gate (i.e. with the negative rotation angle).
 

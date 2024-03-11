@@ -10,7 +10,7 @@ python_api_name: qiskit.utils.wrap_method
 
 <span id="qiskit.utils.wrap_method" />
 
-`wrap_method(cls, name, *, before=None, after=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/utils/classtools.py "view source code")
+`wrap_method(cls, name, *, before=None, after=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/utils/classtools.py "view source code")
 
 Wrap the functionality the instance- or class method `cls.name` with additional behaviour `before` and `after`.
 

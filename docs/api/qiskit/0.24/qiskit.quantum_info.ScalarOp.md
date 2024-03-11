@@ -12,7 +12,7 @@ python_api_name: qiskit.quantum_info.ScalarOp
 
 <span id="qiskit.quantum_info.ScalarOp" />
 
-`ScalarOp(dims, coeff=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/quantum_info/operators/scalar_op.py "view source code")
+`ScalarOp(dims, coeff=1)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/quantum_info/operators/scalar_op.py "view source code")
 
 Scalar identity operator class.
 

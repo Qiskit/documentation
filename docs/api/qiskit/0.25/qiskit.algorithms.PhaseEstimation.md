@@ -10,25 +10,25 @@ python_api_name: qiskit.algorithms.PhaseEstimation
 
 <span id="qiskit.algorithms.PhaseEstimation" />
 
-`PhaseEstimation(num_evaluation_qubits, quantum_instance=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/phase_estimators/phase_estimation.py "view source code")
+`PhaseEstimation(num_evaluation_qubits, quantum_instance=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/phase_estimators/phase_estimation.py "view source code")
 
 Run the Quantum Phase Estimation (QPE) algorithm.
 
 This runs QPE with a multi-qubit register for reading the phases \[1] of input states.
 
-The algorithm takes as input a unitary $U$ and a state $\vert \psi\rangle$, which may be written
+The algorithm takes as input a unitary $U$ and a state $|\psi\rangle$, which may be written
 
 $$
-\vert \psi\rangle = \sum_j c_j \vert \phi_j\rangle,
+|\psi\rangle = \sum_j c_j |\phi_j\rangle,
 $$
 
-where $\vert \phi_j\rangle$ are eigenstates of $U$. We prepare the quantum register in the state $\vert \psi\rangle$ then apply $U$ leaving the register in the state
+where $|\phi_j\rangle$ are eigenstates of $U$. We prepare the quantum register in the state $|\psi\rangle$ then apply $U$ leaving the register in the state
 
 $$
-U\vert \psi\rangle = \sum_j \exp(i \phi_j) c_j \vert \phi_j\rangle.
+U|\psi\rangle = \sum_j \exp(i \phi_j) c_j |\phi_j\rangle.
 $$
 
-In the ideal case, one then measures the phase $\phi_j$ with probability $\vert c_j\vert ^2$. In practice, many (or all) of the bit strings may be measured due to noise and the possibility that $\phi_j$ may not be representable exactly by the output register. In the latter case the probability for each eigenphase will be spread across bitstrings, with amplitudes that decrease with distance from the bitstring most closely approximating the eigenphase.
+In the ideal case, one then measures the phase $\phi_j$ with probability $|c_j|^2$. In practice, many (or all) of the bit strings may be measured due to noise and the possibility that $\phi_j$ may not be representable exactly by the output register. In the latter case the probability for each eigenphase will be spread across bitstrings, with amplitudes that decrease with distance from the bitstring most closely approximating the eigenphase.
 
 The main inputs are the number of qubits in the phase-reading register, a state preparation circuit to prepare an input state, and either
 

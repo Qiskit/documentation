@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.state_fidelities.StateFidelityResult
 
 <span id="qiskit.algorithms.state_fidelities.StateFidelityResult" />
 
-`qiskit.algorithms.state_fidelities.StateFidelityResult(fidelities, raw_fidelities, metadata, options)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/state_fidelities/state_fidelity_result.py "view source code")
+`qiskit.algorithms.state_fidelities.StateFidelityResult(fidelities, raw_fidelities, metadata, options)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/state_fidelities/state_fidelity_result.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.ignis.verification.GraphDecoder
 
 <span id="qiskit.ignis.verification.GraphDecoder" />
 
-`GraphDecoder(code, S=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/topological_codes/fitters.py "view source code")
+`GraphDecoder(code, S=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/topological_codes/fitters.py "view source code")
 
 Class to construct the graph corresponding to the possible syndromes of a quantum error correction code, and then run suitable decoders.
 

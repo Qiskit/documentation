@@ -12,7 +12,7 @@ python_api_name: qiskit.chemistry.algorithms.pes_samplers.Extrapolator
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.Extrapolator" />
 
-`Extrapolator`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/algorithms/pes_samplers/extrapolator.py "view source code")
+`Extrapolator` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/algorithms/pes_samplers/extrapolator.py "view source code")
 
 This class is based on performing extrapolation of parameters of a wavefunction for a variational algorithm defined in the variational forms as part of the Qiskit Aqua module. This concept is based on fitting a set of (point,parameter) data to some specified function and predicting the optimal variational parameters for the next point. This technique is aimed towards providing a better starting point for the variational algorithm, in addition to bootstrapping techniques, ultimately reducing the total number of function evaluations.
 

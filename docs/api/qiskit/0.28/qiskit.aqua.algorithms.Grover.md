@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.algorithms.Grover
 
 <span id="qiskit.aqua.algorithms.Grover" />
 
-`Grover(oracle, good_state=None, state_preparation=None, iterations=1, sample_from_iterations=False, post_processing=None, grover_operator=None, quantum_instance=None, init_state=None, incremental=False, num_iterations=None, lam=None, rotation_counts=None, mct_mode=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_amplifiers/grover.py "view source code")
+`Grover(oracle, good_state=None, state_preparation=None, iterations=1, sample_from_iterations=False, post_processing=None, grover_operator=None, quantum_instance=None, init_state=None, incremental=False, num_iterations=None, lam=None, rotation_counts=None, mct_mode=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_amplifiers/grover.py "view source code")
 
 Grover’s Search algorithm.
 
@@ -23,10 +23,10 @@ The search is called *unstructured* because there are no guarantees as to how th
 To carry out this search a so-called oracle is required, that flags a good element/state. The action of the oracle $\mathcal{S}_f$ is
 
 $$
-\mathcal{S}_f \vert x\rangle = (-1)^{f(x)} \vert x\rangle,
+\mathcal{S}_f |x\rangle = (-1)^{f(x)} |x\rangle,
 $$
 
-i.e. it flips the phase of the state $\vert x\rangle$ if $x$ is a hit. The details of how $S_f$ works are unimportant to the algorithm; Grover’s search algorithm treats the oracle as a black box.
+i.e. it flips the phase of the state $|x\rangle$ if $x$ is a hit. The details of how $S_f$ works are unimportant to the algorithm; Grover’s search algorithm treats the oracle as a black box.
 
 This class supports oracles in form of `QuantumCircuit` or [`Oracle`](qiskit.aqua.components.oracles.Oracle "qiskit.aqua.components.oracles.Oracle"). For example the [`LogicalExpressionOracle`](qiskit.aqua.components.oracles.LogicalExpressionOracle "qiskit.aqua.components.oracles.LogicalExpressionOracle") can take as input a SAT problem in [DIMACS CNF format](http://www.satcompetition.org/2009/format-benchmarks2009.html) and be used with Grover algorithm to find a satisfiable assignment.
 
@@ -66,7 +66,7 @@ Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://
 **Parameters**
 
 *   **oracle** (`Union`\[`Oracle`, `QuantumCircuit`, `Statevector`]) – The oracle to flip the phase of good states, $\mathcal{S}_f$.
-*   **good\_state** (`Union`\[`Callable`\[\[`str`], `bool`], `List`\[`int`], `List`\[`str`], `Statevector`, `None`]) – A callable to check if a given measurement corresponds to a good state. For convenience, a list of bitstrings, a list of integer or statevector can be passed instead of a function. If the input is a list of bitstrings, each bitstrings in the list represents a good state. If the input is a list of integer, each integer represent the index of the good state to be $\vert 1\rangle$. If it is a [`Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector"), it represents a superposition of all good states.
+*   **good\_state** (`Union`\[`Callable`\[\[`str`], `bool`], `List`\[`int`], `List`\[`str`], `Statevector`, `None`]) – A callable to check if a given measurement corresponds to a good state. For convenience, a list of bitstrings, a list of integer or statevector can be passed instead of a function. If the input is a list of bitstrings, each bitstrings in the list represents a good state. If the input is a list of integer, each integer represent the index of the good state to be $|1\rangle$. If it is a [`Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector"), it represents a superposition of all good states.
 *   **state\_preparation** (`Optional`\[`QuantumCircuit`]) – The state preparation $\mathcal{A}$. If None then Grover’s Search by default uses uniform superposition.
 *   **iterations** (`Union`\[`int`, `List`\[`int`]]) – Specify the number of iterations/power of Grover’s operator to be checked. It the number of solutions is known, this should be an integer specifying the optimal number of iterations (see `optimal_num_iterations`). Alternatively, this can be a list of powers to check.
 *   **sample\_from\_iterations** (`bool`) – If True, instead of taking the values in `iterations` as powers of the Grover operator, a random integer sample between 0 and smaller value than the iteration is used as a power, see \[1], Section 4.
@@ -101,7 +101,7 @@ Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://
 **Parameters**
 
 *   **oracle** (`Union`\[`Oracle`, `QuantumCircuit`, `Statevector`]) – The oracle to flip the phase of good states, $\mathcal{S}_f$.
-*   **good\_state** (`Union`\[`Callable`\[\[`str`], `bool`], `List`\[`int`], `List`\[`str`], `Statevector`, `None`]) – A callable to check if a given measurement corresponds to a good state. For convenience, a list of bitstrings, a list of integer or statevector can be passed instead of a function. If the input is a list of bitstrings, each bitstrings in the list represents a good state. If the input is a list of integer, each integer represent the index of the good state to be $\vert 1\rangle$. If it is a [`Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector"), it represents a superposition of all good states.
+*   **good\_state** (`Union`\[`Callable`\[\[`str`], `bool`], `List`\[`int`], `List`\[`str`], `Statevector`, `None`]) – A callable to check if a given measurement corresponds to a good state. For convenience, a list of bitstrings, a list of integer or statevector can be passed instead of a function. If the input is a list of bitstrings, each bitstrings in the list represents a good state. If the input is a list of integer, each integer represent the index of the good state to be $|1\rangle$. If it is a [`Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector"), it represents a superposition of all good states.
 *   **state\_preparation** (`Optional`\[`QuantumCircuit`]) – The state preparation $\mathcal{A}$. If None then Grover’s Search by default uses uniform superposition.
 *   **iterations** (`Union`\[`int`, `List`\[`int`]]) – Specify the number of iterations/power of Grover’s operator to be checked. It the number of solutions is known, this should be an integer specifying the optimal number of iterations (see `optimal_num_iterations`). Alternatively, this can be a list of powers to check.
 *   **sample\_from\_iterations** (`bool`) – If True, instead of taking the values in `iterations` as powers of the Grover operator, a random integer sample between 0 and smaller value than the iteration is used as a power, see \[1], Section 4.

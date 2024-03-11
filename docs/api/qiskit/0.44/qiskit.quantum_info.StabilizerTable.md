@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.StabilizerTable
 
 <span id="qiskit.quantum_info.StabilizerTable" />
 
-`qiskit.quantum_info.StabilizerTable(data, phase=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/operators/symplectic/stabilizer_table.py "view source code")
+`qiskit.quantum_info.StabilizerTable(data, phase=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/operators/symplectic/stabilizer_table.py "view source code")
 
 Bases: [`PauliTable`](qiskit.quantum_info.PauliTable "qiskit.quantum_info.operators.symplectic.pauli_table.PauliTable"), `AdjointMixin`
 
@@ -34,7 +34,7 @@ The symplectic representation of a single-qubit Stabilizer matrix is a pair of b
 Internally this is stored as a length N boolean phase vector $[p_{N-1}, ..., p_{0}]$ and a [`PauliTable`](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable") $M \times 2N$ boolean matrix:
 
 $$
-\begin{split}\left(\begin{array}{ccc\vert ccc}
+\begin{split}\left(\begin{array}{ccc|ccc}
     x_{0,0} & ... & x_{0,N-1} & z_{0,0} & ... & z_{0,N-1}  \\
     x_{1,0} & ... & x_{1,N-1} & z_{1,0} & ... & z_{1,N-1}  \\
     \vdots & \ddots & \vdots & \vdots & \ddots & \vdots  \\

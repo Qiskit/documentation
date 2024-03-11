@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.library.GaussianSquare
 
 <span id="qiskit.pulse.library.GaussianSquare" />
 
-`qiskit.pulse.library.GaussianSquare(duration, amp, sigma, width=None, angle=None, risefall_sigma_ratio=None, name=None, limit_amplitude=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/pulse/library/symbolic_pulses.py "view source code")
+`qiskit.pulse.library.GaussianSquare(duration, amp, sigma, width=None, angle=0.0, risefall_sigma_ratio=None, name=None, limit_amplitude=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/pulse/library/symbolic_pulses.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
@@ -53,7 +53,7 @@ Create new pulse instance.
 **Parameters**
 
 *   **duration** – Pulse length in terms of the sampling period dt.
-*   **amp** – The magnitude of the amplitude of the Gaussian and square pulse. Complex amp support is deprecated.
+*   **amp** – The magnitude of the amplitude of the Gaussian and square pulse.
 *   **sigma** – A measure of how wide or narrow the Gaussian risefall is; see the class docstring for more details.
 *   **width** – The duration of the embedded square pulse.
 *   **angle** – The angle of the complex amplitude of the pulse. Default value 0.

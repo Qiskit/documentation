@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.BOBYQA
 
 <span id="qiskit.algorithms.optimizers.BOBYQA" />
 
-`BOBYQA(maxiter=1000)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/bobyqa.py "view source code")
+`BOBYQA(maxiter=1000)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/bobyqa.py "view source code")
 
 Bases: `qiskit.algorithms.optimizers.optimizer.Optimizer`
 
@@ -34,7 +34,7 @@ Uses skquant.opt installed with pip install scikit-quant. For further detail, pl
 
 <span id="qiskit.algorithms.optimizers.BOBYQA.get_support_level" />
 
-`BOBYQA.get_support_level()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/bobyqa.py "view source code")
+`BOBYQA.get_support_level()`
 
 Returns support level dictionary.
 
@@ -65,7 +65,7 @@ grad
 
 <span id="qiskit.algorithms.optimizers.BOBYQA.minimize" />
 
-`BOBYQA.minimize(fun, x0, jac=None, bounds=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/bobyqa.py "view source code")
+`BOBYQA.minimize(fun, x0, jac=None, bounds=None)`
 
 Minimize the scalar function.
 
@@ -88,7 +88,7 @@ The result of the optimization, containing e.g. the result as attribute `x`.
 
 <span id="qiskit.algorithms.optimizers.BOBYQA.optimize" />
 
-`BOBYQA.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/bobyqa.py "view source code")
+`BOBYQA.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
 Runs the optimization.
 

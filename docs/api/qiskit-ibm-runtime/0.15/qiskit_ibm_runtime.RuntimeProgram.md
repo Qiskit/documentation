@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.RuntimeProgram
 
 <span id="qiskit_ibm_runtime.RuntimeProgram" />
 
-`RuntimeProgram(program_name, program_id, description, parameters=None, return_values=None, interim_results=None, max_execution_time=0, backend_requirements=None, creation_date='', update_date='', is_public=False, data='', api_client=None)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.15/qiskit_ibm_runtime/runtime_program.py "view source code")
+`RuntimeProgram(program_name, program_id, description, parameters=None, return_values=None, interim_results=None, max_execution_time=0, backend_requirements=None, creation_date='', update_date='', is_public=False, data='', api_client=None)` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.15/qiskit_ibm_runtime/runtime_program.py "view source code")
 
 Class representing program metadata.
 

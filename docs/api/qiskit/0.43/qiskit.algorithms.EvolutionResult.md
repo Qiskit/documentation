@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.EvolutionResult
 
 <span id="qiskit.algorithms.EvolutionResult" />
 
-`EvolutionResult(evolved_state, aux_ops_evaluated=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/evolvers/evolution_result.py "view source code")
+`EvolutionResult(evolved_state, aux_ops_evaluated=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/evolvers/evolution_result.py "view source code")
 
 Bases: `AlgorithmResult`
 

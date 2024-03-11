@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.Layout
 
 <span id="qiskit.transpiler.Layout" />
 
-`Layout(input_dict=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/layout.py "view source code")
+`Layout(input_dict=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/layout.py "view source code")
 
 Bases: `object`
 
@@ -24,7 +24,7 @@ construct a Layout from a bijective dictionary, mapping virtual qubits to physic
 
 <span id="qiskit.transpiler.Layout.add" />
 
-`Layout.add(virtual_bit, physical_bit=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/layout.py "view source code")
+`Layout.add(virtual_bit, physical_bit=None)`
 
 Adds a map element between bit and physical\_bit. If physical\_bit is not defined, bit will be mapped to a new physical bit (extending the length of the layout by one.)
 
@@ -37,7 +37,7 @@ Adds a map element between bit and physical\_bit. If physical\_bit is not define
 
 <span id="qiskit.transpiler.Layout.add_register" />
 
-`Layout.add_register(reg)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/layout.py "view source code")
+`Layout.add_register(reg)`
 
 Adds at the end physical\_qubits that map each bit in reg.
 
@@ -49,7 +49,7 @@ Adds at the end physical\_qubits that map each bit in reg.
 
 <span id="qiskit.transpiler.Layout.combine_into_edge_map" />
 
-`Layout.combine_into_edge_map(another_layout)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/layout.py "view source code")
+`Layout.combine_into_edge_map(another_layout)`
 
 Combines self and another\_layout into an “edge map”.
 
@@ -84,7 +84,7 @@ dict
 
 <span id="qiskit.transpiler.Layout.copy" />
 
-`Layout.copy()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/layout.py "view source code")
+`Layout.copy()`
 
 Returns a copy of a Layout instance.
 
@@ -92,7 +92,7 @@ Returns a copy of a Layout instance.
 
 <span id="qiskit.transpiler.Layout.from_dict" />
 
-`Layout.from_dict(input_dict)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/layout.py "view source code")
+`Layout.from_dict(input_dict)`
 
 Populates a Layout from a dictionary.
 
@@ -128,7 +128,7 @@ Can be written more concisely as follows:
 
 <span id="qiskit.transpiler.Layout.from_intlist" />
 
-`static Layout.from_intlist(int_list, *qregs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/layout.py "view source code")
+`static Layout.from_intlist(int_list, *qregs)`
 
 Converts a list of integers to a Layout mapping virtual qubits (index of the list) to physical qubits (the list values).
 
@@ -153,7 +153,7 @@ The corresponding Layout object.
 
 <span id="qiskit.transpiler.Layout.from_qubit_list" />
 
-`static Layout.from_qubit_list(qubit_list, *qregs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/layout.py "view source code")
+`static Layout.from_qubit_list(qubit_list, *qregs)`
 
 Populates a Layout from a list containing virtual qubits, Qubit or None.
 
@@ -178,7 +178,7 @@ the corresponding Layout object
 
 <span id="qiskit.transpiler.Layout.generate_trivial_layout" />
 
-`static Layout.generate_trivial_layout(*regs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/layout.py "view source code")
+`static Layout.generate_trivial_layout(*regs)`
 
 Creates a trivial (“one-to-one”) Layout with the registers and qubits in regs.
 
@@ -198,7 +198,7 @@ A layout with all the regs in the given order.
 
 <span id="qiskit.transpiler.Layout.get_physical_bits" />
 
-`Layout.get_physical_bits()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/layout.py "view source code")
+`Layout.get_physical_bits()`
 
 Returns the dictionary where the keys are physical (qu)bits and the values are virtual (qu)bits.
 
@@ -206,7 +206,7 @@ Returns the dictionary where the keys are physical (qu)bits and the values are v
 
 <span id="qiskit.transpiler.Layout.get_registers" />
 
-`Layout.get_registers()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/layout.py "view source code")
+`Layout.get_registers()`
 
 Returns the registers in the layout \[QuantumRegister(2, ‘qr0’), QuantumRegister(3, ‘qr1’)] :returns: A set of Registers in the layout :rtype: Set
 
@@ -214,7 +214,7 @@ Returns the registers in the layout \[QuantumRegister(2, ‘qr0’), QuantumRegi
 
 <span id="qiskit.transpiler.Layout.get_virtual_bits" />
 
-`Layout.get_virtual_bits()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/layout.py "view source code")
+`Layout.get_virtual_bits()`
 
 Returns the dictionary where the keys are virtual (qu)bits and the values are physical (qu)bits.
 
@@ -222,7 +222,7 @@ Returns the dictionary where the keys are virtual (qu)bits and the values are ph
 
 <span id="qiskit.transpiler.Layout.order_based_on_type" />
 
-`static Layout.order_based_on_type(value1, value2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/layout.py "view source code")
+`static Layout.order_based_on_type(value1, value2)`
 
 decides which one is physical/virtual based on the type. Returns (virtual, physical)
 
@@ -230,7 +230,7 @@ decides which one is physical/virtual based on the type. Returns (virtual, physi
 
 <span id="qiskit.transpiler.Layout.reorder_bits" />
 
-`Layout.reorder_bits(bits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/layout.py "view source code")
+`Layout.reorder_bits(bits)`
 
 Given an ordered list of bits, reorder them according to this layout.
 
@@ -252,7 +252,7 @@ List
 
 <span id="qiskit.transpiler.Layout.swap" />
 
-`Layout.swap(left, right)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/layout.py "view source code")
+`Layout.swap(left, right)`
 
 Swaps the map between left and right.
 

@@ -10,13 +10,13 @@ python_api_name: qiskit.synthesis.OneQubitEulerDecomposer
 
 <span id="qiskit.synthesis.OneQubitEulerDecomposer" />
 
-`qiskit.synthesis.OneQubitEulerDecomposer(basis='U3', use_dag=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/synthesis/one_qubit/one_qubit_decompose.py "view source code")
+`qiskit.synthesis.OneQubitEulerDecomposer(basis='U3', use_dag=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/synthesis/one_qubit/one_qubit_decompose.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
 A class for decomposing 1-qubit unitaries into Euler angle rotations.
 
-The resulting decomposition is parameterized by 3 Euler rotation angle parameters $(\theta, \phi, \lambda)$, and a phase parameter $\gamma$. The value of the parameters for an input unitary depends on the decomposition basis. Allowed bases and the resulting circuits are shown in the following table. Note that for the non-Euler bases (U3, U1X, RR), the ZYZ Euler parameters are used.
+The resulting decomposition is parameterized by 3 Euler rotation angle parameters $(\theta, \phi, \lambda)$, and a phase parameter $\gamma$. The value of the parameters for an input unitary depends on the decomposition basis. Allowed bases and the resulting circuits are shown in the following table. Note that for the non-Euler bases ($U3$, $U1X$, $RR$), the $ZYZ$ Euler parameters are used.
 
 | Basis  | Euler Angle Basis              | Decomposition Circuit                                                                                                    |
 | ------ | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
@@ -33,13 +33,39 @@ The resulting decomposition is parameterized by 3 Euler rotation angle parameter
 | ‘U1X’  | $Z(\phi) Y(\theta) Z(\lambda)$ | $e^{i\gamma} U_1(\phi+\pi).R_X\left(\frac{\pi}{2}\right).$ $U_1(\theta+\pi).R_X\left(\frac{\pi}{2}\right).U_1(\lambda)$  |
 | ‘RR’   | $Z(\phi) Y(\theta) Z(\lambda)$ | $e^{i\gamma} R\left(-\pi,\frac{\phi-\lambda+\pi}{2}\right).$ $R\left(\theta+\pi,\frac{\pi}{2}-\lambda\right)$            |
 
-Initialize decomposer
+### \_\_call\_\_
 
-Supported bases are: ‘U’, ‘PSX’, ‘ZSXX’, ‘ZSX’, ‘U321’, ‘U3’, ‘U1X’, ‘RR’, ‘ZYZ’, ‘ZXZ’, ‘XYX’, ‘XZX’.
+<span id="qiskit.synthesis.OneQubitEulerDecomposer.__call__" />
+
+`__call__(unitary, simplify=True, atol=1e-12)`
+
+Decompose single qubit gate into a circuit.
 
 **Parameters**
 
-*   **basis** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – the decomposition basis \[Default: ‘U3’]
+*   **unitary** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")  *|*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate") *| np.ndarray*) – 1-qubit unitary matrix
+*   **simplify** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – reduce gate count in decomposition \[Default: True].
+*   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – absolute tolerance for checking angles when simplifying returned circuit \[Default: 1e-12].
+
+**Returns**
+
+the decomposed single-qubit gate circuit
+
+**Return type**
+
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+
+**Raises**
+
+[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if input is invalid or synthesis fails.
+
+Initialize decomposer
+
+Supported bases are: `'U'`, `'PSX'`, `'ZSXX'`, `'ZSX'`, `'U321'`, `'U3'`, `'U1X'`, `'RR'`, `'ZYZ'`, `'ZXZ'`, `'XYX'`, `'XZX'`.
+
+**Parameters**
+
+*   **basis** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – the decomposition basis \[Default: `'U3'`]
 *   **use\_dag** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If true the output from calls to the decomposer will be a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") object instead of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
 
 **Raises**
@@ -66,11 +92,11 @@ Return the Euler angles for input array.
 
 **Parameters**
 
-**unitary** (*np.ndarray*) – 2x2 unitary matrix.
+**unitary** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – $2\times2$ unitary matrix.
 
 **Returns**
 
-(theta, phi, lambda).
+`(theta, phi, lambda)`.
 
 **Return type**
 
@@ -86,11 +112,11 @@ Return the Euler angles and phase for input array.
 
 **Parameters**
 
-**unitary** (*np.ndarray*) – 2x2 unitary matrix.
+**unitary** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – $2\times2$
 
 **Returns**
 
-(theta, phi, lambda, phase).
+`(theta, phi, lambda, phase)`.
 
 **Return type**
 

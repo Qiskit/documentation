@@ -10,7 +10,7 @@ python_api_name: qiskit.utils.QuantumInstance
 
 <span id="qiskit.utils.QuantumInstance" />
 
-`qiskit.utils.QuantumInstance(backend, shots=None, seed_simulator=None, basis_gates=None, coupling_map=None, initial_layout=None, pass_manager=None, bound_pass_manager=None, seed_transpiler=None, optimization_level=None, backend_options=None, noise_model=None, timeout=None, wait=5.0, skip_qobj_validation=True, measurement_error_mitigation_cls=None, cals_matrix_refresh_period=30, measurement_error_mitigation_shots=None, job_callback=None, mit_pattern=None, max_job_retries=50)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/utils/quantum_instance.py "view source code")
+`qiskit.utils.QuantumInstance(backend, shots=None, seed_simulator=None, basis_gates=None, coupling_map=None, initial_layout=None, pass_manager=None, bound_pass_manager=None, seed_transpiler=None, optimization_level=None, backend_options=None, noise_model=None, timeout=None, wait=5.0, skip_qobj_validation=True, measurement_error_mitigation_cls=None, cals_matrix_refresh_period=30, measurement_error_mitigation_shots=None, job_callback=None, mit_pattern=None, max_job_retries=50)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/utils/quantum_instance.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 

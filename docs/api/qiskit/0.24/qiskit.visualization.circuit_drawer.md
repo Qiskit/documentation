@@ -12,7 +12,7 @@ python_api_name: qiskit.visualization.circuit_drawer
 
 <span id="qiskit.visualization.circuit_drawer" />
 
-`circuit_drawer(circuit, scale=None, filename=None, style=None, output=None, interactive=False, plot_barriers=True, reverse_bits=False, justify=None, vertical_compression='medium', idle_wires=True, with_layout=True, fold=None, ax=None, initial_state=False, cregbundle=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/visualization/circuit_visualization.py "view source code")
+`circuit_drawer(circuit, scale=None, filename=None, style=None, output=None, interactive=False, plot_barriers=True, reverse_bits=False, justify=None, vertical_compression='medium', idle_wires=True, with_layout=True, fold=None, ax=None, initial_state=False, cregbundle=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/visualization/circuit_visualization.py "view source code")
 
 Draw a quantum circuit to different formats (set by output parameter):
 

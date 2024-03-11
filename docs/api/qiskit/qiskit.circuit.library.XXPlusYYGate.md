@@ -10,13 +10,13 @@ python_api_name: qiskit.circuit.library.XXPlusYYGate
 
 <span id="qiskit.circuit.library.XXPlusYYGate" />
 
-`qiskit.circuit.library.XXPlusYYGate(theta, beta=0, label='(XX+YY)', *, duration=None, unit='dt')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/standard_gates/xx_plus_yy.py "view source code")
+`qiskit.circuit.library.XXPlusYYGate(theta, beta=0, label='(XX+YY)', *, duration=None, unit='dt')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/xx_plus_yy.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
 XX+YY interaction gate.
 
-A 2-qubit parameterized XX+YY interaction, also known as an XY gate. Its action is to induce a coherent rotation by some angle between $\vert 01\rangle$ and $\vert 10\rangle$.
+A 2-qubit parameterized XX+YY interaction, also known as an XY gate. Its action is to induce a coherent rotation by some angle between $|01\rangle$ and $|10\rangle$.
 
 **Circuit Symbol:**
 
@@ -179,9 +179,21 @@ Get the time unit of duration.
 
 <span id="qiskit.circuit.library.XXPlusYYGate.inverse" />
 
-`inverse()`
+`inverse(annotated=False)`
 
 Return inverse XX+YY gate (i.e. with the negative rotation angle and same phase angle).
+
+**Parameters**
+
+**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always a [`XXPlusYYGate`](#qiskit.circuit.library.XXPlusYYGate "qiskit.circuit.library.XXPlusYYGate") with inverse parameter values.
+
+**Returns**
+
+inverse gate.
+
+**Return type**
+
+[XXPlusYYGate](#qiskit.circuit.library.XXPlusYYGate "qiskit.circuit.library.XXPlusYYGate")
 
 ### power
 

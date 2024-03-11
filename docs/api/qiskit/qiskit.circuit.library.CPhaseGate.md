@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CPhaseGate
 
 <span id="qiskit.circuit.library.CPhaseGate" />
 
-`qiskit.circuit.library.CPhaseGate(theta, label=None, ctrl_state=None, *, duration=None, unit='dt', _base_label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/standard_gates/p.py "view source code")
+`qiskit.circuit.library.CPhaseGate(theta, label=None, ctrl_state=None, *, duration=None, unit='dt', _base_label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/p.py "view source code")
 
 Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 
@@ -32,7 +32,7 @@ q_1: ─■──
 
 $$
 CPhase =
-    I \otimes \vert 0\rangle\langle 0\vert  + P \otimes \vert 1\rangle\langle 1\vert  =
+    I \otimes |0\rangle\langle 0| + P \otimes |1\rangle\langle 1| =
     \begin{pmatrix}
         1 & 0 & 0 & 0 \\
         0 & 1 & 0 & 0 \\
@@ -186,15 +186,16 @@ Get the time unit of duration.
 
 <span id="qiskit.circuit.library.CPhaseGate.control" />
 
-`control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+`control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=False)`
 
 Controlled version of this gate.
 
 **Parameters**
 
 *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of control qubits.
-*   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *or None*) – An optional label for the gate \[Default: None]
-*   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *or*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
+*   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – An optional label for the gate \[Default: `None`]
+*   **ctrl\_state** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – control state expressed as integer, string (e.g.\`\`’110’`), or ``None`. If `None`, use all 1s.
+*   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – indicates whether the controlled gate can be implemented as an annotated gate.
 
 **Returns**
 
@@ -208,7 +209,7 @@ controlled version of this gate.
 
 <span id="qiskit.circuit.library.CPhaseGate.inverse" />
 
-`inverse()`
+`inverse(annotated=False)`
 
 Return inverted CPhase gate ($CPhase(\lambda)^{\dagger} = CPhase(-\lambda)$)
 

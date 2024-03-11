@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeAlmaden
 
 <span id="qiskit.providers.fake_provider.FakeAlmaden" />
 
-`FakeAlmaden`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/fake_provider/backends/almaden/fake_almaden.py "view source code")
+`FakeAlmaden` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/fake_provider/backends/almaden/fake_almaden.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_qasm_backend.FakeQasmBackend`
 

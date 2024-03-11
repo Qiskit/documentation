@@ -10,7 +10,7 @@ python_api_name: qiskit.visualization.iplot_state_hinton
 
 <span id="qiskit.visualization.iplot_state_hinton" />
 
-`iplot_state_hinton(rho, figsize=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/visualization/interactive/iplot_hinton.py "view source code")
+`iplot_state_hinton(rho, figsize=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/visualization/interactive/iplot_hinton.py "view source code")
 
 Create a hinton representation.
 

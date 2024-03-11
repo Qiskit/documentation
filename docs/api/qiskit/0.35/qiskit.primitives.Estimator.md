@@ -10,7 +10,7 @@ python_api_name: qiskit.primitives.Estimator
 
 <span id="qiskit.primitives.Estimator" />
 
-`Estimator(circuits, observables, parameters=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/primitives/estimator.py "view source code")
+`Estimator(circuits, observables, parameters=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/primitives/estimator.py "view source code")
 
 Bases: `qiskit.primitives.base_estimator.BaseEstimator`
 
@@ -35,7 +35,7 @@ Creating an instance of an Estimator, or using one in a `with` context opens a s
 
 <span id="qiskit.primitives.Estimator.close" />
 
-`Estimator.close()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/primitives/estimator.py "view source code")
+`Estimator.close()`
 
 Close the session and free resources
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.gradients.QGTResult
 
 <span id="qiskit.algorithms.gradients.QGTResult" />
 
-`qiskit.algorithms.gradients.QGTResult(qgts, derivative_type, metadata, options)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/gradients/base/qgt_result.py "view source code")
+`qiskit.algorithms.gradients.QGTResult(qgts, derivative_type, metadata, options)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/gradients/base/qgt_result.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 

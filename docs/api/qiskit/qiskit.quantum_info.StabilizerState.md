@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.StabilizerState
 
 <span id="qiskit.quantum_info.StabilizerState" />
 
-`qiskit.quantum_info.StabilizerState(data, validate=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/quantum_info/states/stabilizerstate.py "view source code")
+`qiskit.quantum_info.StabilizerState(data, validate=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/quantum_info/states/stabilizerstate.py "view source code")
 
 Bases: `QuantumState`
 
@@ -40,6 +40,15 @@ print (stab.expectation_value(Pauli('ZZ')))
 StabilizerState(StabilizerTable: ['+XX', '+ZZ'])
 {'00': 0.5, '11': 0.5}
 1
+```
+
+Given a list of stabilizers, [`qiskit.quantum_info.StabilizerState.from_stabilizer_list()`](#qiskit.quantum_info.StabilizerState.from_stabilizer_list "qiskit.quantum_info.StabilizerState.from_stabilizer_list") returns a state stabilized by the list
+
+```python
+from qiskit.quantum_info import StabilizerState
+
+stabilizer_list = ["ZXX", "-XYX", "+ZYY"]
+stab = StabilizerState.from_stabilizer_list(stabilizer_list)
 ```
 
 **References**
@@ -193,6 +202,28 @@ the expectation value (only 0 or 1 or -1 or i or -i).
 **Raises**
 
 [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if oper is not a Pauli operator.
+
+### from\_stabilizer\_list
+
+<span id="qiskit.quantum_info.StabilizerState.from_stabilizer_list" />
+
+`classmethod from_stabilizer_list(stabilizers, allow_redundant=False, allow_underconstrained=False)`
+
+Create a stabilizer state from the collection of stabilizers.
+
+**Parameters**
+
+*   **stabilizers** (*Collection\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – list of stabilizer strings
+*   **allow\_redundant** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – allow redundant stabilizers (i.e., some stabilizers can be products of the others)
+*   **allow\_underconstrained** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – allow underconstrained set of stabilizers (i.e., the stabilizers do not specify a unique state)
+
+**Returns**
+
+a state stabilized by stabilizers.
+
+**Return type**
+
+[StabilizerState](#qiskit.quantum_info.StabilizerState "qiskit.quantum_info.StabilizerState")
 
 ### is\_valid
 

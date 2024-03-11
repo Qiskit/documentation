@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.Isometry
 
 <span id="qiskit.circuit.library.Isometry" />
 
-`qiskit.circuit.library.Isometry(isometry, num_ancillas_zero, num_ancillas_dirty, epsilon=1e-10)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/generalized_gates/isometry.py "view source code")
+`qiskit.circuit.library.Isometry(isometry, num_ancillas_zero, num_ancillas_dirty, epsilon=1e-10)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/generalized_gates/isometry.py "view source code")
 
 Bases: [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 
@@ -29,7 +29,7 @@ The decomposition is based on \[1].
 **Parameters**
 
 *   **isometry** (*np.ndarray*) – An isometry from $m$ to :math\`n\` qubits, i.e., a complex `np.ndarray` of dimension $2^n \times 2^m$ with orthonormal columns (given in the computational basis specified by the order of the ancillas and the input qubits, where the ancillas are considered to be more significant than the input qubits).
-*   **num\_ancillas\_zero** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of additional ancillas that start in the state $\vert 0\rangle$ (the $n-m$ ancillas required for providing the output of the isometry are not accounted for here).
+*   **num\_ancillas\_zero** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of additional ancillas that start in the state $|0\rangle$ (the $n-m$ ancillas required for providing the output of the isometry are not accounted for here).
 *   **num\_ancillas\_dirty** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of additional ancillas that start in an arbitrary state.
 *   **epsilon** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Error tolerance of calculations.
 
@@ -144,21 +144,23 @@ Return the adjoint of the unitary.
 
 <span id="qiskit.circuit.library.Isometry.inverse" />
 
-`inverse()`
+`inverse(annotated=False)`
 
 Invert this instruction.
 
-If the instruction is composite (i.e. has a definition), then its definition will be recursively inverted.
+If annotated is False, the inverse instruction is implemented as a fresh instruction with the recursively inverted definition.
 
-Special instructions inheriting from Instruction can implement their own inverse (e.g. T and Tdg, Barrier, etc.)
+If annotated is True, the inverse instruction is implemented as [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation"), and corresponds to the given instruction annotated with the “inverse modifier”.
+
+Special instructions inheriting from Instruction can implement their own inverse (e.g. T and Tdg, Barrier, etc.) In particular, they can choose how to handle the argument `annotated` which may include ignoring it and always returning a concrete gate class if the inverse is defined as a standard gate.
+
+**Parameters**
+
+**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if set to True the output inverse gate will be returned as [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation").
 
 **Returns**
 
-a fresh instruction for the inverse
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+The inverse operation.
 
 **Raises**
 

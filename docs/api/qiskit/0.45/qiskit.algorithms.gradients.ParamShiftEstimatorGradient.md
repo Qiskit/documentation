@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.gradients.ParamShiftEstimatorGradient
 
 <span id="qiskit.algorithms.gradients.ParamShiftEstimatorGradient" />
 
-`qiskit.algorithms.gradients.ParamShiftEstimatorGradient(estimator, options=None, derivative_type=DerivativeType.REAL)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/gradients/param_shift/param_shift_estimator_gradient.py "view source code")
+`qiskit.algorithms.gradients.ParamShiftEstimatorGradient(estimator, options=None, derivative_type=DerivativeType.REAL)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/gradients/param_shift/param_shift_estimator_gradient.py "view source code")
 
 Bases: [`BaseEstimatorGradient`](qiskit.algorithms.gradients.BaseEstimatorGradient "qiskit.algorithms.gradients.base.base_estimator_gradient.BaseEstimatorGradient")
 
@@ -28,9 +28,9 @@ Compute the gradients of the expectation values by the parameter shift rule \[1]
 
     The type of derivative. Can be either `DerivativeType.REAL` `DerivativeType.IMAG`, or `DerivativeType.COMPLEX`.
 
-    > *   `DerivativeType.REAL` computes $2 \mathrm{Re}[⟨ψ(ω)\vert O(θ)\vert dω ψ(ω)〉]$.
-    > *   `DerivativeType.IMAG` computes $2 \mathrm{Im}[⟨ψ(ω)\vert O(θ)\vert dω ψ(ω)〉]$.
-    > *   `DerivativeType.COMPLEX` computes $2 ⟨ψ(ω)\vert O(θ)\vert dω ψ(ω)〉$.
+    > *   `DerivativeType.REAL` computes $2 \mathrm{Re}[⟨ψ(ω)|O(θ)|dω ψ(ω)〉]$.
+    > *   `DerivativeType.IMAG` computes $2 \mathrm{Im}[⟨ψ(ω)|O(θ)|dω ψ(ω)〉]$.
+    > *   `DerivativeType.COMPLEX` computes $2 ⟨ψ(ω)|O(θ)|dω ψ(ω)〉$.
 
     Defaults to `DerivativeType.REAL`, as this yields e.g. the commonly-used energy gradient and this type is the only supported type for function-level schemes like finite difference.
 

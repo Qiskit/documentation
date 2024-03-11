@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.oracles.CustomCircuitOracle
 
 <span id="qiskit.aqua.components.oracles.CustomCircuitOracle" />
 
-`CustomCircuitOracle(variable_register, output_register, circuit, ancillary_register=None, evaluate_classically_callback=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/oracles/custom_circuit_oracle.py "view source code")
+`CustomCircuitOracle(variable_register, output_register, circuit, ancillary_register=None, evaluate_classically_callback=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/oracles/custom_circuit_oracle.py "view source code")
 
 Bases: `qiskit.aqua.components.oracles.oracle.Oracle`
 
@@ -46,7 +46,7 @@ This class is provided for easy creation of oracles using custom circuits. It is
 
 <span id="qiskit.aqua.components.oracles.CustomCircuitOracle.construct_circuit" />
 
-`CustomCircuitOracle.construct_circuit()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/oracles/custom_circuit_oracle.py "view source code")
+`CustomCircuitOracle.construct_circuit()`
 
 Construct the oracle circuit.
 

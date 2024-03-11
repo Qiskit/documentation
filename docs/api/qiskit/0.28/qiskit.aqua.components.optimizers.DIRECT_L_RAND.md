@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.optimizers.DIRECT_L_RAND
 
 <span id="qiskit.aqua.components.optimizers.DIRECT_L_RAND" />
 
-`DIRECT_L_RAND(max_evals=1000)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/optimizers/nlopts/direct_l_rand.py "view source code")
+`DIRECT_L_RAND(max_evals=1000)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/optimizers/nlopts/direct_l_rand.py "view source code")
 
 DIviding RECTangles Locally-biased Randomized optimizer.
 

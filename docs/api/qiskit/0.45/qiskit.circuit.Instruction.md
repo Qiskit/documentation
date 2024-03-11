@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.Instruction
 
 <span id="qiskit.circuit.Instruction" />
 
-`qiskit.circuit.Instruction(name, num_qubits, num_clbits, params, duration=None, unit='dt', label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/instruction.py "view source code")
+`qiskit.circuit.Instruction(name, num_qubits, num_clbits, params, duration=None, unit='dt', label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/instruction.py "view source code")
 
 Bases: [`Operation`](qiskit.circuit.Operation "qiskit.circuit.operation.Operation")
 

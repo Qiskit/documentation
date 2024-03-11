@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.U2Gate
 
 <span id="qiskit.circuit.library.U2Gate" />
 
-`U2Gate(phi, lam, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/u2.py "view source code")
+`U2Gate(phi, lam, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/u2.py "view source code")
 
 Single-qubit rotation about the X+Z axis.
 
@@ -213,7 +213,7 @@ updated if it was provided
 
 <span id="qiskit.circuit.library.U2Gate.inverse" />
 
-`U2Gate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/u2.py "view source code")
+`U2Gate.inverse()`
 
 Return inverted U2 gate.
 
@@ -307,7 +307,7 @@ Containing the definition.
 
 <span id="qiskit.circuit.library.U2Gate.to_matrix" />
 
-`U2Gate.to_matrix()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/u2.py "view source code")
+`U2Gate.to_matrix()`
 
 Return a Numpy.array for the U2 gate.
 

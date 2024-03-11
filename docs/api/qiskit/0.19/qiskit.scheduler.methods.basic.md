@@ -1,9 +1,9 @@
 ---
-title: CircuitPulseDef
-description: API reference for qiskit.scheduler.methods.basic.CircuitPulseDef
-in_page_toc_min_heading_level: 1
-python_api_type: class
-python_api_name: qiskit.scheduler.methods.basic.CircuitPulseDef
+title: basic
+description: API reference for qiskit.scheduler.methods.basic
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.scheduler.methods.basic
 ---
 
 # basic
@@ -56,7 +56,7 @@ Alias for field number 0
 
 <span id="qiskit.scheduler.methods.basic.as_late_as_possible" />
 
-`as_late_as_possible(circuit, schedule_config)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/scheduler/methods/basic.py "view source code")
+`as_late_as_possible(circuit, schedule_config)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/scheduler/methods/basic.py "view source code")
 
 Return the pulse Schedule which implements the input circuit using an “as late as possible” (alap) scheduling policy.
 
@@ -81,7 +81,7 @@ A schedule corresponding to the input `circuit` with pulses occurring as late as
 
 <span id="qiskit.scheduler.methods.basic.as_soon_as_possible" />
 
-`as_soon_as_possible(circuit, schedule_config)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/scheduler/methods/basic.py "view source code")
+`as_soon_as_possible(circuit, schedule_config)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/scheduler/methods/basic.py "view source code")
 
 Return the pulse Schedule which implements the input circuit using an “as soon as possible” (asap) scheduling policy.
 
@@ -104,7 +104,7 @@ A schedule corresponding to the input `circuit` with pulses occurring as early a
 
 <span id="qiskit.scheduler.methods.basic.translate_gates_to_pulse_defs" />
 
-`translate_gates_to_pulse_defs(circuit, schedule_config)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/scheduler/methods/basic.py "view source code")
+`translate_gates_to_pulse_defs(circuit, schedule_config)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/scheduler/methods/basic.py "view source code")
 
 Return a list of Schedules and the qubits they operate on, for each element encountered in th input circuit.
 

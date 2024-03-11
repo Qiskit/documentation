@@ -1,7 +1,7 @@
 ---
 title: qiskit_ibm_provider
 description: API reference for qiskit_ibm_provider
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit_ibm_provider
 ---
@@ -49,7 +49,7 @@ logging.getLogger('qiskit_ibm_provider').setLevel(logging.WARNING)
 | [`IBMProvider`](qiskit_ibm_provider.IBMProvider "qiskit_ibm_provider.IBMProvider")(\[token, url, name, instance, ...]) | Provides access to the IBM Quantum services available to an account. |
 | [`IBMBackend`](qiskit_ibm_provider.IBMBackend "qiskit_ibm_provider.IBMBackend")(configuration, provider, api\_client)  | Backend class interfacing with an IBM Quantum device.                |
 | [`IBMBackendService`](qiskit_ibm_provider.IBMBackendService "qiskit_ibm_provider.IBMBackendService")(provider, hgp)    | Backend namespace for an IBM Quantum account.                        |
-| [`Session`](qiskit_ibm_provider.Session "qiskit_ibm_provider.Session")(\[max\_time])                                   | Class for creating a flexible Qiskit Runtime session.                |
+| [`Session`](qiskit_ibm_provider.Session "qiskit_ibm_provider.Session")(\[max\_time, session\_id])                      | Class for creating a flexible Qiskit Runtime session.                |
 
 ## Exceptions
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.PauliFeatureMap
 
 <span id="qiskit.circuit.library.PauliFeatureMap" />
 
-`PauliFeatureMap(feature_dimension=None, reps=2, entanglement='full', paulis=None, data_map_func=None, parameter_prefix='x', insert_barriers=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/data_preparation/pauli_feature_map.py "view source code")
+`PauliFeatureMap(feature_dimension=None, reps=2, entanglement='full', paulis=None, data_map_func=None, parameter_prefix='x', insert_barriers=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/data_preparation/pauli_feature_map.py "view source code")
 
 The Pauli Expansion circuit.
 
@@ -26,7 +26,8 @@ The circuit contains `reps` repetitions of this transformation. The variable $P_
 $$
 \begin{split}\phi_S(\vec{x}) = \begin{cases}
     x_0 \text{ if } k = 1 \\
-    \prod_{j \in S} (\pi - x_j)\end{split}
+    \prod_{j \in S} (\pi - x_j) \text{ otherwise }
+    \end{cases}\end{split}
 $$
 
 For example, if the Pauli strings are chosen to be $P_0 = Z$ and $P_{0,1} = YY$ on 2 qubits and with 1 repetition using the default data-mapping, the Pauli evolution feature map is represented by:
@@ -1595,7 +1596,7 @@ Computes the number of tensor factors in the unitary (quantum) part of the circu
 
 <span id="qiskit.circuit.library.PauliFeatureMap.pauli_block" />
 
-`PauliFeatureMap.pauli_block(pauli_string)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/data_preparation/pauli_feature_map.py "view source code")
+`PauliFeatureMap.pauli_block(pauli_string)`
 
 Get the Pauli block for the feature map circuit.
 
@@ -1603,7 +1604,7 @@ Get the Pauli block for the feature map circuit.
 
 <span id="qiskit.circuit.library.PauliFeatureMap.pauli_evolution" />
 
-`PauliFeatureMap.pauli_evolution(pauli_string, time)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/data_preparation/pauli_feature_map.py "view source code")
+`PauliFeatureMap.pauli_evolution(pauli_string, time)`
 
 Get the evolution block for the given pauli string.
 

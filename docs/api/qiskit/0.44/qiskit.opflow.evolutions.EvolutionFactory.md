@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.evolutions.EvolutionFactory
 
 <span id="qiskit.opflow.evolutions.EvolutionFactory" />
 
-`qiskit.opflow.evolutions.EvolutionFactory`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/opflow/evolutions/evolution_factory.py "view source code")
+`qiskit.opflow.evolutions.EvolutionFactory` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/opflow/evolutions/evolution_factory.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 

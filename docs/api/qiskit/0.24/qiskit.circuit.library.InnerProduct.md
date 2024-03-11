@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.library.InnerProduct
 
 <span id="qiskit.circuit.library.InnerProduct" />
 
-`InnerProduct(num_qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/boolean_logic/inner_product.py "view source code")
+`InnerProduct(num_qubits)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/boolean_logic/inner_product.py "view source code")
 
 An n\_qubit circuit that computes the inner product of two registers.
 

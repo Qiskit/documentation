@@ -12,7 +12,7 @@ python_api_name: qiskit.quantum_info.OneQubitEulerDecomposer
 
 <span id="qiskit.quantum_info.OneQubitEulerDecomposer" />
 
-`OneQubitEulerDecomposer(basis='U3')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/quantum_info/synthesis/one_qubit_decompose.py "view source code")
+`OneQubitEulerDecomposer(basis='U3')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/quantum_info/synthesis/one_qubit_decompose.py "view source code")
 
 A class for decomposing 1-qubit unitaries into Euler angle rotations.
 

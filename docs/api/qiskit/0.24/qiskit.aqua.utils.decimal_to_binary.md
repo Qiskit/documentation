@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.utils.decimal_to_binary
 
 <span id="qiskit.aqua.utils.decimal_to_binary" />
 
-`decimal_to_binary(decimal_val, max_num_digits=20, fractional_part_only=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/utils/decimal_to_binary.py "view source code")
+`decimal_to_binary(decimal_val, max_num_digits=20, fractional_part_only=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/utils/decimal_to_binary.py "view source code")
 
 decimal to binary
 

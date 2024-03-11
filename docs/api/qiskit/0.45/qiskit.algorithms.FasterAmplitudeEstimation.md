@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.FasterAmplitudeEstimation
 
 <span id="qiskit.algorithms.FasterAmplitudeEstimation" />
 
-`qiskit.algorithms.FasterAmplitudeEstimation(delta, maxiter, rescale=True, quantum_instance=None, sampler=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/amplitude_estimators/fae.py "view source code")
+`qiskit.algorithms.FasterAmplitudeEstimation(delta, maxiter, rescale=True, quantum_instance=None, sampler=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/amplitude_estimators/fae.py "view source code")
 
 Bases: [`AmplitudeEstimator`](qiskit.algorithms.AmplitudeEstimator "qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimator")
 
@@ -84,7 +84,7 @@ The sampler primitive to evaluate the circuits.
 
 `construct_circuit(estimation_problem, k, measurement=False)`
 
-Construct the circuit $Q^k X \vert 0\rangle>$.
+Construct the circuit $Q^k X |0\rangle>$.
 
 The A operator is the unitary specifying the QAE problem and Q the associated Grover operator.
 
@@ -96,7 +96,7 @@ The A operator is the unitary specifying the QAE problem and Q the associated Gr
 
 **Returns**
 
-The circuit $Q^k X \vert 0\rangle$.
+The circuit $Q^k X |0\rangle$.
 
 **Return type**
 

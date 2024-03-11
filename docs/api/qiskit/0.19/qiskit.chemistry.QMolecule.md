@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.QMolecule
 
 <span id="qiskit.chemistry.QMolecule" />
 
-`QMolecule(filename=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/chemistry/qmolecule.py "view source code")
+`QMolecule(filename=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/chemistry/qmolecule.py "view source code")
 
 Molecule data class containing driver result.
 
@@ -88,13 +88,13 @@ returns z\_dipole\_integrals
 
 <span id="qiskit.chemistry.QMolecule.Z" />
 
-`QMolecule.Z(natom)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/chemistry/qmolecule.py "view source code")
+`QMolecule.Z(natom)`
 
 ### has\_dipole\_integrals
 
 <span id="qiskit.chemistry.QMolecule.has_dipole_integrals" />
 
-`QMolecule.has_dipole_integrals()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/chemistry/qmolecule.py "view source code")
+`QMolecule.has_dipole_integrals()`
 
 Check if dipole integrals are present.
 
@@ -102,7 +102,7 @@ Check if dipole integrals are present.
 
 <span id="qiskit.chemistry.QMolecule.load" />
 
-`QMolecule.load()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/chemistry/qmolecule.py "view source code")
+`QMolecule.load()`
 
 loads info saved.
 
@@ -110,7 +110,7 @@ loads info saved.
 
 <span id="qiskit.chemistry.QMolecule.log" />
 
-`QMolecule.log()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/chemistry/qmolecule.py "view source code")
+`QMolecule.log()`
 
 log properties
 
@@ -118,7 +118,7 @@ log properties
 
 <span id="qiskit.chemistry.QMolecule.onee_to_spin" />
 
-`static QMolecule.onee_to_spin(mohij, mohij_b=None, threshold=1e-12)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/chemistry/qmolecule.py "view source code")
+`static QMolecule.onee_to_spin(mohij, mohij_b=None, threshold=1e-12)`
 
 Convert one-body MO integrals to spin orbital basis
 
@@ -142,7 +142,7 @@ numpy.ndarray
 
 <span id="qiskit.chemistry.QMolecule.oneeints2mo" />
 
-`static QMolecule.oneeints2mo(ints, moc)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/chemistry/qmolecule.py "view source code")
+`static QMolecule.oneeints2mo(ints, moc)`
 
 Converts one-body integrals from AO to MO basis
 
@@ -165,7 +165,7 @@ numpy.ndarray
 
 <span id="qiskit.chemistry.QMolecule.remove_file" />
 
-`QMolecule.remove_file(file_name=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/chemistry/qmolecule.py "view source code")
+`QMolecule.remove_file(file_name=None)`
 
 remove file
 
@@ -173,7 +173,7 @@ remove file
 
 <span id="qiskit.chemistry.QMolecule.save" />
 
-`QMolecule.save(file_name=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/chemistry/qmolecule.py "view source code")
+`QMolecule.save(file_name=None)`
 
 Saves the info from the driver.
 
@@ -181,7 +181,7 @@ Saves the info from the driver.
 
 <span id="qiskit.chemistry.QMolecule.twoe_to_spin" />
 
-`static QMolecule.twoe_to_spin(mohijkl, mohijkl_bb=None, mohijkl_ba=None, threshold=1e-12)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/chemistry/qmolecule.py "view source code")
+`static QMolecule.twoe_to_spin(mohijkl, mohijkl_bb=None, mohijkl_ba=None, threshold=1e-12)`
 
 Convert two-body MO integrals to spin orbital basis
 
@@ -206,7 +206,7 @@ numpy.ndarray
 
 <span id="qiskit.chemistry.QMolecule.twoeints2mo" />
 
-`static QMolecule.twoeints2mo(ints, moc)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/chemistry/qmolecule.py "view source code")
+`static QMolecule.twoeints2mo(ints, moc)`
 
 Converts two-body integrals from AO to MO basis
 
@@ -229,5 +229,5 @@ numpy.ndarray
 
 <span id="qiskit.chemistry.QMolecule.twoeints2mo_general" />
 
-`static QMolecule.twoeints2mo_general(ints, moc1, moc2, moc3, moc4)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/chemistry/qmolecule.py "view source code")
+`static QMolecule.twoeints2mo_general(ints, moc1, moc2, moc3, moc4)`
 

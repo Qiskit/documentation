@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.TranslateParameterizedGates
 
 <span id="qiskit.transpiler.passes.TranslateParameterizedGates" />
 
-`qiskit.transpiler.passes.TranslateParameterizedGates(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/passes/basis/translate_parameterized.py "view source code")
+`qiskit.transpiler.passes.TranslateParameterizedGates(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/basis/translate_parameterized.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 

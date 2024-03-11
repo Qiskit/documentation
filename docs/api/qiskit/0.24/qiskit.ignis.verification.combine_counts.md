@@ -12,7 +12,7 @@ python_api_name: qiskit.ignis.verification.combine_counts
 
 <span id="qiskit.ignis.verification.combine_counts" />
 
-`combine_counts(counts1, counts2)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/tomography/data.py "view source code")
+`combine_counts(counts1, counts2)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/tomography/data.py "view source code")
 
 Combine two counts dictionaries. :type counts1: `Dict`\[`str`, `int`] :param counts1: One of the count dictionaries to combine. :type counts2: `Dict`\[`str`, `int`] :param counts2: One of the count dictionaries to combine.
 

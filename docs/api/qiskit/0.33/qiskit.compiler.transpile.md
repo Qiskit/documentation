@@ -10,7 +10,7 @@ python_api_name: qiskit.compiler.transpile
 
 <span id="qiskit.compiler.transpile" />
 
-`transpile(circuits, backend=None, basis_gates=None, inst_map=None, coupling_map=None, backend_properties=None, initial_layout=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, instruction_durations=None, dt=None, approximation_degree=None, timing_constraints=None, seed_transpiler=None, optimization_level=None, pass_manager=None, callback=None, output_name=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None, target=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/compiler/transpiler.py "view source code")
+`transpile(circuits, backend=None, basis_gates=None, inst_map=None, coupling_map=None, backend_properties=None, initial_layout=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, instruction_durations=None, dt=None, approximation_degree=None, timing_constraints=None, seed_transpiler=None, optimization_level=None, pass_manager=None, callback=None, output_name=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None, target=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/compiler/transpiler.py "view source code")
 
 Transpile one or more circuits, according to some desired transpilation targets.
 

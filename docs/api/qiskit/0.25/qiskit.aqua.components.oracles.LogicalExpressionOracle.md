@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.oracles.LogicalExpressionOracle
 
 <span id="qiskit.aqua.components.oracles.LogicalExpressionOracle" />
 
-`LogicalExpressionOracle(expression, optimization=False, mct_mode='basic')`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/oracles/logical_expression_oracle.py "view source code")
+`LogicalExpressionOracle(expression, optimization=False, mct_mode='basic')` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/oracles/logical_expression_oracle.py "view source code")
 
 The Logical Expression Quantum Oracle.
 

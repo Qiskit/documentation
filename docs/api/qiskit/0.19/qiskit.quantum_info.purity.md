@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.purity
 
 <span id="qiskit.quantum_info.purity" />
 
-`purity(state, validate=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/states/measures.py "view source code")
+`purity(state, validate=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/states/measures.py "view source code")
 
 Calculate the purity of a quantum state.
 
@@ -27,7 +27,7 @@ The purity of a density matrix $\rho$ is
 
 **Returns**
 
-the purity $\Tr[\rho^2]$.
+the purity $Tr[\rho^2]$.
 
 **Return type**
 

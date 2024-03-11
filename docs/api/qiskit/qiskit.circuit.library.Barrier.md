@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.Barrier
 
 <span id="qiskit.circuit.library.Barrier" />
 
-`qiskit.circuit.library.Barrier(num_qubits, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/barrier.py "view source code")
+`qiskit.circuit.library.Barrier(num_qubits, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/barrier.py "view source code")
 
 Bases: [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 
@@ -201,7 +201,7 @@ a copy of the current instruction, with the name updated if it was provided
 
 <span id="qiskit.circuit.library.Barrier.inverse" />
 
-`inverse()`
+`inverse(annotated=False)`
 
 Special case. Return self.
 
@@ -212,20 +212,6 @@ Special case. Return self.
 `is_parameterized()`
 
 Return True .IFF. instruction is parameterized else False
-
-### qasm
-
-<span id="qiskit.circuit.library.Barrier.qasm" />
-
-`qasm()`
-
-Return a default OpenQASM string for the instruction.
-
-Derived instructions may override this to print in a different format (e.g. `measure q[0] -> c[0];`).
-
-<Admonition title="Deprecated since version 0.25.0" type="danger">
-  The method `qiskit.circuit.instruction.Instruction.qasm()` is deprecated as of qiskit-terra 0.25.0. It will be removed in the Qiskit 1.0 release. Correct exporting to OpenQASM 2 is the responsibility of a larger exporter; it cannot safely be done on an object-by-object basis without context. No replacement will be provided, because the premise is wrong.
-</Admonition>
 
 ### repeat
 

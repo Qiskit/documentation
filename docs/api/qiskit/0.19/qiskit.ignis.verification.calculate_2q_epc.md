@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.verification.calculate_2q_epc
 
 <span id="qiskit.ignis.verification.calculate_2q_epc" />
 
-`calculate_2q_epc(gate_per_cliff, epg_2q, qubit_pair, list_epgs_1q, two_qubit_name='cx')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/rb_utils.py "view source code")
+`calculate_2q_epc(gate_per_cliff, epg_2q, qubit_pair, list_epgs_1q, two_qubit_name='cx')` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/rb_utils.py "view source code")
 
 Convert error per gate (EPG) into error per Clifford (EPC) of two qubit `cx` gates.
 

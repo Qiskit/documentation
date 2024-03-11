@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.PhaseEstimationResult
 
 <span id="qiskit.algorithms.PhaseEstimationResult" />
 
-`qiskit.algorithms.PhaseEstimationResult(num_evaluation_qubits, circuit_result, phases)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/phase_estimators/phase_estimation_result.py "view source code")
+`qiskit.algorithms.PhaseEstimationResult(num_evaluation_qubits, circuit_result, phases)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/phase_estimators/phase_estimation_result.py "view source code")
 
 Bases: `PhaseEstimatorResult`
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.DriveChannel
 
 <span id="qiskit.pulse.DriveChannel" />
 
-`DriveChannel(index)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/channels.py "view source code")
+`DriveChannel(index)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/channels.py "view source code")
 
 Drive channels transmit signals to qubits which enact gate operations.
 
@@ -64,7 +64,7 @@ Return a new channel with the input Parameter assigned to value.
 
 **Return type**
 
-[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")
+[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")
 
 **Returns**
 

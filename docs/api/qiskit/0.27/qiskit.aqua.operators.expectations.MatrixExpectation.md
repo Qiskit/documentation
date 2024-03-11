@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.operators.expectations.MatrixExpectation
 
 <span id="qiskit.aqua.operators.expectations.MatrixExpectation" />
 
-`MatrixExpectation`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/expectations/matrix_expectation.py "view source code")
+`MatrixExpectation` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/expectations/matrix_expectation.py "view source code")
 
 An Expectation converter which converts Operator measurements to be matrix-based so they can be evaluated by matrix multiplication.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.builder.measure_channel
 
 <span id="qiskit.pulse.builder.measure_channel" />
 
-`measure_channel(qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/builder.py "view source code")
+`measure_channel(qubit)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/builder.py "view source code")
 
 Return `MeasureChannel` for `qubit` on the active builder backend.
 
@@ -32,5 +32,5 @@ with pulse.build(backend):
 
 **Return type**
 
-[`MeasureChannel`](qiskit.pulse.channels#qiskit.pulse.channels.MeasureChannel "qiskit.pulse.channels.MeasureChannel")
+[`MeasureChannel`](qiskit.pulse.channels#measurechannel "qiskit.pulse.channels.MeasureChannel")
 

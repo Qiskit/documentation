@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.Instruction
 
 <span id="qiskit.pulse.Instruction" />
 
-`Instruction(operands, duration=None, channels=None, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/instructions/instruction.py "view source code")
+`Instruction(operands, duration=None, channels=None, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/instructions/instruction.py "view source code")
 
 The smallest schedulable unit: a single instruction. It has a fixed duration and specified channels.
 
@@ -20,7 +20,7 @@ Instruction initializer.
 
 *   **operands** (`Tuple`) – The argument list.
 *   **duration** (`Optional`\[`int`]) – Deprecated.
-*   **channels** (`Optional`\[`Tuple`\[[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]]) – Deprecated.
+*   **channels** (`Optional`\[`Tuple`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")]]) – Deprecated.
 *   **name** (`Optional`\[`str`]) – Optional display name for this instruction.
 
 **Raises**
@@ -40,7 +40,7 @@ Instruction initializer.
 
 *   **operands** (`Tuple`) – The argument list.
 *   **duration** (`Optional`\[`int`]) – Deprecated.
-*   **channels** (`Optional`\[`Tuple`\[[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]]) – Deprecated.
+*   **channels** (`Optional`\[`Tuple`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")]]) – Deprecated.
 *   **name** (`Optional`\[`str`]) – Optional display name for this instruction.
 
 **Raises**
@@ -177,7 +177,7 @@ Returns the channels that this schedule uses.
 
 **Return type**
 
-`Tuple`\[[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]
+`Tuple`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")]
 
 ### draw
 
@@ -200,7 +200,7 @@ Plot the instruction.
 *   **table** (`bool`) – Draw event table for supported instructions
 *   **label** (`bool`) – Label individual instructions
 *   **framechange** (`bool`) – Add framechange indicators
-*   **channels** (`Optional`\[`List`\[[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]]) – A list of channel names to plot
+*   **channels** (`Optional`\[`List`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")]]) – A list of channel names to plot
 
 **Returns**
 

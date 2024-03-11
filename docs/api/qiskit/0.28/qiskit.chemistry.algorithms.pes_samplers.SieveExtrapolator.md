@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.algorithms.pes_samplers.SieveExtrapolator
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.SieveExtrapolator" />
 
-`SieveExtrapolator(extrapolator=None, window=2, filter_before=True, filter_after=True)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/extrapolator.py "view source code")
+`SieveExtrapolator(extrapolator=None, window=2, filter_before=True, filter_after=True)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/extrapolator.py "view source code")
 
 A wrapper extrapolator which clusters the parameter values - either before extrapolation, after, or both - into two large and small clusters, and sets the small clusters’ parameters to zero.
 

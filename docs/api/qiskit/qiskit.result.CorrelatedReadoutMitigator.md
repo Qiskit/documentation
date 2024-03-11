@@ -10,7 +10,7 @@ python_api_name: qiskit.result.CorrelatedReadoutMitigator
 
 <span id="qiskit.result.CorrelatedReadoutMitigator" />
 
-`qiskit.result.CorrelatedReadoutMitigator(assignment_matrix, qubits=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/result/mitigation/correlated_readout_mitigator.py "view source code")
+`qiskit.result.CorrelatedReadoutMitigator(assignment_matrix, qubits=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/result/mitigation/correlated_readout_mitigator.py "view source code")
 
 Bases: [`BaseReadoutMitigator`](qiskit.result.BaseReadoutMitigator "qiskit.result.mitigation.base_readout_mitigator.BaseReadoutMitigator")
 
@@ -53,7 +53,7 @@ Return settings.
 
 Return the readout assignment matrix for specified qubits.
 
-The assignment matrix is the stochastic matrix $A$ which assigns a noisy readout probability distribution to an ideal input readout distribution: $P(i\vert j) = \langle i \vert  A \vert  j \rangle$.
+The assignment matrix is the stochastic matrix $A$ which assigns a noisy readout probability distribution to an ideal input readout distribution: $P(i|j) = \langle i | A | j \rangle$.
 
 **Parameters**
 
@@ -75,7 +75,7 @@ np.ndarray
 
 Compute the mitigated expectation value of a diagonal observable.
 
-This computes the mitigated estimator of $\langle O \rangle = \mbox{Tr}[\rho. O]$ of a diagonal observable $O = \sum_{x\in\{0, 1\}^n} O(x)\vert x\rangle\!\langle x\vert $.
+This computes the mitigated estimator of $\langle O \rangle = \mbox{Tr}[\rho. O]$ of a diagonal observable $O = \sum_{x\in\{0, 1\}^n} O(x)|x\rangle\!\langle x|$.
 
 **Parameters**
 

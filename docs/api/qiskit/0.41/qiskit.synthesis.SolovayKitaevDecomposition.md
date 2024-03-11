@@ -10,7 +10,7 @@ python_api_name: qiskit.synthesis.SolovayKitaevDecomposition
 
 <span id="qiskit.synthesis.SolovayKitaevDecomposition" />
 
-`SolovayKitaevDecomposition(basic_approximations=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/synthesis/discrete_basis/solovay_kitaev.py "view source code")
+`SolovayKitaevDecomposition(basic_approximations=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/synthesis/discrete_basis/solovay_kitaev.py "view source code")
 
 Bases: `object`
 
@@ -28,7 +28,7 @@ This class is called recursively by the transpiler pass, which is why it is sepa
 
 <span id="qiskit.synthesis.SolovayKitaevDecomposition.find_basic_approximation" />
 
-`SolovayKitaevDecomposition.find_basic_approximation(sequence)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/synthesis/discrete_basis/solovay_kitaev.py "view source code")
+`SolovayKitaevDecomposition.find_basic_approximation(sequence)`
 
 Finds gate in `self._basic_approximations` that best represents `sequence`.
 
@@ -48,7 +48,7 @@ Gate in basic approximations that is closest to `sequence`.
 
 <span id="qiskit.synthesis.SolovayKitaevDecomposition.load_basic_approximations" />
 
-`SolovayKitaevDecomposition.load_basic_approximations(data)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/synthesis/discrete_basis/solovay_kitaev.py "view source code")
+`SolovayKitaevDecomposition.load_basic_approximations(data)`
 
 Load basic approximations.
 
@@ -72,7 +72,7 @@ A list of basic approximations as type `GateSequence`.
 
 <span id="qiskit.synthesis.SolovayKitaevDecomposition.run" />
 
-`SolovayKitaevDecomposition.run(gate_matrix, recursion_degree, return_dag=False, check_input=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/synthesis/discrete_basis/solovay_kitaev.py "view source code")
+`SolovayKitaevDecomposition.run(gate_matrix, recursion_degree, return_dag=False, check_input=True)`
 
 Run the algorithm.
 

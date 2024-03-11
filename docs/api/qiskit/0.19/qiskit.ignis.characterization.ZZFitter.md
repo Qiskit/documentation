@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.characterization.ZZFitter
 
 <span id="qiskit.ignis.characterization.ZZFitter" />
 
-`ZZFitter(backend_result, xdata, qubits, spectators, fit_p0, fit_bounds, time_unit='micro-seconds')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/characterization/hamiltonian/fitters.py "view source code")
+`ZZFitter(backend_result, xdata, qubits, spectators, fit_p0, fit_bounds, time_unit='micro-seconds')` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/characterization/hamiltonian/fitters.py "view source code")
 
 ZZ fitter
 
@@ -140,7 +140,7 @@ The data points are returning in the form of a list of dictionaries:
 
 <span id="qiskit.ignis.characterization.ZZFitter.ZZ_rate" />
 
-`ZZFitter.ZZ_rate(qind=- 1)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/characterization/hamiltonian/fitters.py "view source code")
+`ZZFitter.ZZ_rate(qind=- 1)`
 
 Return the ZZ rate from the fit of the two curves
 
@@ -218,7 +218,7 @@ Axes
 
 <span id="qiskit.ignis.characterization.ZZFitter.plot_ZZ" />
 
-`ZZFitter.plot_ZZ(qind, ax=None, show_plot=False)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/characterization/hamiltonian/fitters.py "view source code")
+`ZZFitter.plot_ZZ(qind, ax=None, show_plot=False)`
 
 Plot ZZ data. Will plot both traces on the plot.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.RealAmplitudes
 
 <span id="qiskit.circuit.library.RealAmplitudes" />
 
-`qiskit.circuit.library.RealAmplitudes(num_qubits=None, entanglement='reverse_linear', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='RealAmplitudes', flatten=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/n_local/real_amplitudes.py "view source code")
+`qiskit.circuit.library.RealAmplitudes(num_qubits=None, entanglement='reverse_linear', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='RealAmplitudes', flatten=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/n_local/real_amplitudes.py "view source code")
 
 Bases: [`TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.n_local.two_local.TwoLocal")
 
@@ -161,12 +161,6 @@ The blocks in the entanglement layers.
 
 The blocks in the entanglement layers.
 
-<span id="qiskit.circuit.library.RealAmplitudes.extension_lib" />
-
-### extension\_lib
-
-`= 'include "qelib1.inc";'`
-
 <span id="qiskit.circuit.library.RealAmplitudes.flatten" />
 
 ### flatten
@@ -178,12 +172,6 @@ Returns whether the circuit is wrapped in nested gates/instructions or flattened
 ### global\_phase
 
 Return the global phase of the current circuit scope in radians.
-
-<span id="qiskit.circuit.library.RealAmplitudes.header" />
-
-### header
-
-`= 'OPENQASM 2.0;'`
 
 <span id="qiskit.circuit.library.RealAmplitudes.initial_state" />
 
@@ -209,7 +197,7 @@ If barriers are inserted in between the layers or not.
 
 ### instances
 
-`= 159`
+`= 412`
 
 <span id="qiskit.circuit.library.RealAmplitudes.layout" />
 

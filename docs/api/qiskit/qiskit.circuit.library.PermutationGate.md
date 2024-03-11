@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.PermutationGate
 
 <span id="qiskit.circuit.library.PermutationGate" />
 
-`qiskit.circuit.library.PermutationGate(pattern)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/generalized_gates/permutation.py "view source code")
+`qiskit.circuit.library.PermutationGate(pattern)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/generalized_gates/permutation.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -143,7 +143,7 @@ Get the time unit of duration.
 
 <span id="qiskit.circuit.library.PermutationGate.inverse" />
 
-`inverse()`
+`inverse(annotated=False)`
 
 Returns the inverse of the permutation.
 

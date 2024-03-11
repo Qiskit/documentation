@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.preset_passmanagers.plugin.PassManagerStagePl
 
 <span id="qiskit.transpiler.preset_passmanagers.plugin.PassManagerStagePluginManager" />
 
-`PassManagerStagePluginManager`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/preset_passmanagers/plugin.py "view source code")
+`PassManagerStagePluginManager` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/preset_passmanagers/plugin.py "view source code")
 
 Bases: `object`
 
@@ -24,7 +24,7 @@ Manager class for preset pass manager stage plugins.
 
 <span id="qiskit.transpiler.preset_passmanagers.plugin.PassManagerStagePluginManager.get_passmanager_stage" />
 
-`PassManagerStagePluginManager.get_passmanager_stage(stage_name, plugin_name, pm_config, optimization_level=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/preset_passmanagers/plugin.py "view source code")
+`PassManagerStagePluginManager.get_passmanager_stage(stage_name, plugin_name, pm_config, optimization_level=None)`
 
 Get a stage
 

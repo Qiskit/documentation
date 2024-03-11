@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.drivers.PyQuanteDriver
 
 <span id="qiskit.chemistry.drivers.PyQuanteDriver" />
 
-`PyQuanteDriver(atoms='H 0.0 0.0 0.0; H 0.0 0.0 0.735', units=<UnitsType.ANGSTROM: 'Angstrom'>, charge=0, multiplicity=1, basis=<BasisType.BSTO3G: 'sto3g'>, hf_method=<HFMethodType.RHF: 'rhf'>, tol=1e-08, maxiters=100, molecule=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/pyquanted/pyquantedriver.py "view source code")
+`PyQuanteDriver(atoms='H 0.0 0.0 0.0; H 0.0 0.0 0.735', units=<UnitsType.ANGSTROM: 'Angstrom'>, charge=0, multiplicity=1, basis=<BasisType.BSTO3G: 'sto3g'>, hf_method=<HFMethodType.RHF: 'rhf'>, tol=1e-08, maxiters=100, molecule=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/pyquanted/pyquantedriver.py "view source code")
 
 Bases: `qiskit.chemistry.drivers.fermionic_driver.FermionicDriver`
 
@@ -40,7 +40,7 @@ See [https://github.com/rpmuller/pyquante2](https://github.com/rpmuller/pyquante
 
 <span id="qiskit.chemistry.drivers.PyQuanteDriver.run" />
 
-`PyQuanteDriver.run()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/pyquanted/pyquantedriver.py "view source code")
+`PyQuanteDriver.run()`
 
 Runs driver to produce a QMolecule output.
 

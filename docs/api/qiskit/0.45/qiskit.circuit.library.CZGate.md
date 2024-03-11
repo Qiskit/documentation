@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CZGate
 
 <span id="qiskit.circuit.library.CZGate" />
 
-`qiskit.circuit.library.CZGate(*args, _force_mutable=False, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/z.py "view source code")
+`qiskit.circuit.library.CZGate(*args, _force_mutable=False, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/z.py "view source code")
 
 Bases: [`SingletonControlledGate`](circuit_singleton#qiskit.circuit.singleton.SingletonControlledGate "qiskit.circuit.singleton.SingletonControlledGate")
 
@@ -32,7 +32,7 @@ q_1: ─■─
 
 $$
 CZ\ q_0, q_1 =
-    I \otimes \vert 0\rangle\langle 0\vert  + Z \otimes \vert 1\rangle\langle 1\vert  =
+    I \otimes |0\rangle\langle 0| + Z \otimes |1\rangle\langle 1| =
     \begin{pmatrix}
         1 & 0 & 0 & 0 \\
         0 & 1 & 0 & 0 \\
@@ -41,7 +41,7 @@ CZ\ q_0, q_1 =
     \end{pmatrix}
 $$
 
-In the computational basis, this gate flips the phase of the target qubit if the control qubit is in the $\vert 1\rangle$ state.
+In the computational basis, this gate flips the phase of the target qubit if the control qubit is in the $|1\rangle$ state.
 
 Create new CZ gate.
 

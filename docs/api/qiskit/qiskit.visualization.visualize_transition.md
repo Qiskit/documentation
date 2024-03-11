@@ -12,7 +12,7 @@ python_api_name: qiskit.visualization.visualize_transition
 
 <span id="qiskit.visualization.visualize_transition" />
 
-`qiskit.visualization.visualize_transition(circuit, trace=False, saveas=None, fpg=100, spg=2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/visualization/transition_visualization.py "view source code")
+`qiskit.visualization.visualize_transition(circuit, trace=False, saveas=None, fpg=100, spg=2)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/visualization/transition_visualization.py "view source code")
 
 Creates animation showing transitions between states of a single qubit by applying quantum gates.
 

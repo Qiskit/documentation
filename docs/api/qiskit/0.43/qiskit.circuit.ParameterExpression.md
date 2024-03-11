@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.ParameterExpression
 
 <span id="qiskit.circuit.ParameterExpression" />
 
-`ParameterExpression(symbol_map, expr)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/parameterexpression.py "view source code")
+`ParameterExpression(symbol_map, expr)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/parameterexpression.py "view source code")
 
 Bases: `object`
 
@@ -33,7 +33,7 @@ Not intended to be called directly, but to be instantiated via operations on oth
 
 <span id="qiskit.circuit.ParameterExpression.arccos" />
 
-`ParameterExpression.arccos()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/parameterexpression.py "view source code")
+`ParameterExpression.arccos()`
 
 Arccos of a ParameterExpression
 
@@ -43,7 +43,7 @@ Arccos of a ParameterExpression
 
 <span id="qiskit.circuit.ParameterExpression.arcsin" />
 
-`ParameterExpression.arcsin()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/parameterexpression.py "view source code")
+`ParameterExpression.arcsin()`
 
 Arcsin of a ParameterExpression
 
@@ -53,7 +53,7 @@ Arcsin of a ParameterExpression
 
 <span id="qiskit.circuit.ParameterExpression.arctan" />
 
-`ParameterExpression.arctan()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/parameterexpression.py "view source code")
+`ParameterExpression.arctan()`
 
 Arctan of a ParameterExpression
 
@@ -63,7 +63,7 @@ Arctan of a ParameterExpression
 
 <span id="qiskit.circuit.ParameterExpression.assign" />
 
-`ParameterExpression.assign(parameter, value)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/parameterexpression.py "view source code")
+`ParameterExpression.assign(parameter, value)`
 
 Assign one parameter to a value, which can either be numeric or another parameter expression.
 
@@ -86,7 +86,7 @@ A new expression parameterized by any parameters which were not bound by assignm
 
 <span id="qiskit.circuit.ParameterExpression.bind" />
 
-`ParameterExpression.bind(parameter_values, allow_unknown_parameters=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/parameterexpression.py "view source code")
+`ParameterExpression.bind(parameter_values, allow_unknown_parameters=False)`
 
 Binds the provided set of parameters to their corresponding values.
 
@@ -119,7 +119,7 @@ A new expression parameterized by any parameters which were not bound by paramet
 
 <span id="qiskit.circuit.ParameterExpression.conjugate" />
 
-`ParameterExpression.conjugate()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/parameterexpression.py "view source code")
+`ParameterExpression.conjugate()`
 
 Return the conjugate.
 
@@ -133,7 +133,7 @@ Return the conjugate.
 
 <span id="qiskit.circuit.ParameterExpression.cos" />
 
-`ParameterExpression.cos()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/parameterexpression.py "view source code")
+`ParameterExpression.cos()`
 
 Cosine of a ParameterExpression
 
@@ -143,7 +143,7 @@ Cosine of a ParameterExpression
 
 <span id="qiskit.circuit.ParameterExpression.exp" />
 
-`ParameterExpression.exp()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/parameterexpression.py "view source code")
+`ParameterExpression.exp()`
 
 Exponential of a ParameterExpression
 
@@ -153,7 +153,7 @@ Exponential of a ParameterExpression
 
 <span id="qiskit.circuit.ParameterExpression.gradient" />
 
-`ParameterExpression.gradient(param)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/parameterexpression.py "view source code")
+`ParameterExpression.gradient(param)`
 
 Get the derivative of a parameter expression w\.r.t. a specified parameter expression.
 
@@ -175,7 +175,7 @@ ParameterExpression representing the gradient of param\_expr w\.r.t. param or co
 
 <span id="qiskit.circuit.ParameterExpression.is_real" />
 
-`ParameterExpression.is_real()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/parameterexpression.py "view source code")
+`ParameterExpression.is_real()`
 
 Return whether the expression is real
 
@@ -185,7 +185,7 @@ Return whether the expression is real
 
 <span id="qiskit.circuit.ParameterExpression.log" />
 
-`ParameterExpression.log()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/parameterexpression.py "view source code")
+`ParameterExpression.log()`
 
 Logarithm of a ParameterExpression
 
@@ -195,7 +195,7 @@ Logarithm of a ParameterExpression
 
 <span id="qiskit.circuit.ParameterExpression.sin" />
 
-`ParameterExpression.sin()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/parameterexpression.py "view source code")
+`ParameterExpression.sin()`
 
 Sine of a ParameterExpression
 
@@ -205,7 +205,7 @@ Sine of a ParameterExpression
 
 <span id="qiskit.circuit.ParameterExpression.subs" />
 
-`ParameterExpression.subs(parameter_map, allow_unknown_parameters=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/parameterexpression.py "view source code")
+`ParameterExpression.subs(parameter_map, allow_unknown_parameters=False)`
 
 Returns a new Expression with replacement Parameters.
 
@@ -234,7 +234,7 @@ A new expression with the specified parameters replaced.
 
 <span id="qiskit.circuit.ParameterExpression.sympify" />
 
-`ParameterExpression.sympify()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/parameterexpression.py "view source code")
+`ParameterExpression.sympify()`
 
 Return symbolic expression as a raw Sympy or Symengine object.
 
@@ -250,7 +250,7 @@ Symengine is used preferentially; if both are available, the result will always 
 
 <span id="qiskit.circuit.ParameterExpression.tan" />
 
-`ParameterExpression.tan()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/parameterexpression.py "view source code")
+`ParameterExpression.tan()`
 
 Tangent of a ParameterExpression
 

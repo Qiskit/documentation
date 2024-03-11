@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.Pauli
 
 <span id="qiskit.quantum_info.Pauli" />
 
-`Pauli(z=None, x=None, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/pauli.py "view source code")
+`Pauli(z=None, x=None, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/pauli.py "view source code")
 
 A simple class representing Pauli Operators.
 
@@ -66,7 +66,7 @@ Getter of z.
 
 <span id="qiskit.quantum_info.Pauli.__len__" />
 
-`Pauli.__len__()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/pauli.py "view source code")
+`Pauli.__len__()`
 
 Return number of qubits.
 
@@ -74,7 +74,7 @@ Return number of qubits.
 
 <span id="qiskit.quantum_info.Pauli.__mul__" />
 
-`Pauli.__mul__(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/pauli.py "view source code")
+`Pauli.__mul__(other)`
 
 Multiply two Paulis.
 
@@ -94,7 +94,7 @@ the multiplied pauli.
 
 <span id="qiskit.quantum_info.Pauli.append_paulis" />
 
-`Pauli.append_paulis(paulis=None, pauli_labels=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/pauli.py "view source code")
+`Pauli.append_paulis(paulis=None, pauli_labels=None)`
 
 Append pauli at the end.
 
@@ -115,7 +115,7 @@ self
 
 <span id="qiskit.quantum_info.Pauli.delete_qubits" />
 
-`Pauli.delete_qubits(indices)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/pauli.py "view source code")
+`Pauli.delete_qubits(indices)`
 
 Delete pauli at the indices.
 
@@ -135,7 +135,7 @@ self
 
 <span id="qiskit.quantum_info.Pauli.from_label" />
 
-`classmethod Pauli.from_label(label)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/pauli.py "view source code")
+`classmethod Pauli.from_label(label)`
 
 Take pauli string to construct pauli.
 
@@ -161,7 +161,7 @@ the constructed pauli
 
 <span id="qiskit.quantum_info.Pauli.insert_paulis" />
 
-`Pauli.insert_paulis(indices=None, paulis=None, pauli_labels=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/pauli.py "view source code")
+`Pauli.insert_paulis(indices=None, paulis=None, pauli_labels=None)`
 
 Insert or append pauli to the targeted indices.
 
@@ -193,7 +193,7 @@ self
 
 <span id="qiskit.quantum_info.Pauli.kron" />
 
-`Pauli.kron(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/pauli.py "view source code")
+`Pauli.kron(other)`
 
 Kronecker product of two paulis.
 
@@ -215,7 +215,7 @@ self
 
 <span id="qiskit.quantum_info.Pauli.pauli_single" />
 
-`classmethod Pauli.pauli_single(num_qubits, index, pauli_label)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/pauli.py "view source code")
+`classmethod Pauli.pauli_single(num_qubits, index, pauli_label)`
 
 Generate single qubit pauli at index with pauli\_label with length num\_qubits.
 
@@ -237,7 +237,7 @@ single qubit pauli
 
 <span id="qiskit.quantum_info.Pauli.random" />
 
-`classmethod Pauli.random(num_qubits, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/pauli.py "view source code")
+`classmethod Pauli.random(num_qubits, seed=None)`
 
 Return a random Pauli on number of qubits.
 
@@ -258,7 +258,7 @@ the random pauli
 
 <span id="qiskit.quantum_info.Pauli.sgn_prod" />
 
-`static Pauli.sgn_prod(p1, p2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/pauli.py "view source code")
+`static Pauli.sgn_prod(p1, p2)`
 
 Multiply two Paulis and track the phase.
 
@@ -281,7 +281,7 @@ the multiplied pauli complex: the sign of the multiplication, 1, -1, 1j or -1j
 
 <span id="qiskit.quantum_info.Pauli.to_instruction" />
 
-`Pauli.to_instruction()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/pauli.py "view source code")
+`Pauli.to_instruction()`
 
 Convert to Pauli circuit instruction.
 
@@ -289,7 +289,7 @@ Convert to Pauli circuit instruction.
 
 <span id="qiskit.quantum_info.Pauli.to_label" />
 
-`Pauli.to_label()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/pauli.py "view source code")
+`Pauli.to_label()`
 
 Present the pauli labels in I, X, Y, Z format.
 
@@ -307,7 +307,7 @@ str
 
 <span id="qiskit.quantum_info.Pauli.to_matrix" />
 
-`Pauli.to_matrix()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/pauli.py "view source code")
+`Pauli.to_matrix()`
 
 Convert Pauli to a matrix representation.
 
@@ -325,7 +325,7 @@ numpy.array
 
 <span id="qiskit.quantum_info.Pauli.to_operator" />
 
-`Pauli.to_operator()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/pauli.py "view source code")
+`Pauli.to_operator()`
 
 Convert to Operator object.
 
@@ -333,7 +333,7 @@ Convert to Operator object.
 
 <span id="qiskit.quantum_info.Pauli.to_spmatrix" />
 
-`Pauli.to_spmatrix()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/pauli.py "view source code")
+`Pauli.to_spmatrix()`
 
 Convert Pauli to a sparse matrix representation (CSR format).
 
@@ -351,7 +351,7 @@ scipy.sparse.csr\_matrix
 
 <span id="qiskit.quantum_info.Pauli.update_x" />
 
-`Pauli.update_x(x, indices=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/pauli.py "view source code")
+`Pauli.update_x(x, indices=None)`
 
 Update partial or entire x.
 
@@ -376,7 +376,7 @@ self
 
 <span id="qiskit.quantum_info.Pauli.update_z" />
 
-`Pauli.update_z(z, indices=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/pauli.py "view source code")
+`Pauli.update_z(z, indices=None)`
 
 Update partial or entire z.
 

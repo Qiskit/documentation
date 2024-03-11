@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeCambridge
 
 <span id="qiskit.providers.fake_provider.FakeCambridge" />
 
-`FakeCambridge`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/fake_provider/backends/cambridge/fake_cambridge.py "view source code")
+`FakeCambridge` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/fake_provider/backends/cambridge/fake_cambridge.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_qasm_backend.FakeQasmBackend`
 

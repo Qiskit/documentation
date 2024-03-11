@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.IterativePhaseEstimation
 
 <span id="qiskit.algorithms.IterativePhaseEstimation" />
 
-`IterativePhaseEstimation(num_iterations, quantum_instance=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/phase_estimators/ipe.py "view source code")
+`IterativePhaseEstimation(num_iterations, quantum_instance=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/phase_estimators/ipe.py "view source code")
 
 Run the Iterative quantum phase estimation (QPE) algorithm.
 

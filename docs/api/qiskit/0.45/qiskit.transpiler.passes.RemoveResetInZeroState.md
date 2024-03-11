@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.RemoveResetInZeroState
 
 <span id="qiskit.transpiler.passes.RemoveResetInZeroState" />
 
-`qiskit.transpiler.passes.RemoveResetInZeroState(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/optimization/remove_reset_in_zero_state.py "view source code")
+`qiskit.transpiler.passes.RemoveResetInZeroState(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/optimization/remove_reset_in_zero_state.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 

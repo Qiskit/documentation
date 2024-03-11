@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.algorithms.QAOA
 
 <span id="qiskit.aqua.algorithms.QAOA" />
 
-`QAOA(operator=None, optimizer=None, p=1, initial_state=None, mixer=None, initial_point=None, expectation=None, include_custom=False, max_evals_grouped=1, aux_operators=None, callback=None, quantum_instance=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/minimum_eigen_solvers/qaoa/qaoa.py "view source code")
+`QAOA(operator=None, optimizer=None, p=1, initial_state=None, mixer=None, initial_point=None, expectation=None, include_custom=False, max_evals_grouped=1, aux_operators=None, callback=None, quantum_instance=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/minimum_eigen_solvers/qaoa/qaoa.py "view source code")
 
 The Quantum Approximate Optimization Algorithm.
 

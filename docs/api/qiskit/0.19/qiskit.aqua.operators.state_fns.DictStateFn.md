@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.operators.state_fns.DictStateFn
 
 <span id="qiskit.aqua.operators.state_fns.DictStateFn" />
 
-`DictStateFn(primitive=None, coeff=1.0, is_measurement=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/state_fns/dict_state_fn.py "view source code")
+`DictStateFn(primitive=None, coeff=1.0, is_measurement=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/state_fns/dict_state_fn.py "view source code")
 
 A class for state functions and measurements which are defined by a lookup table, stored in a dict.
 
@@ -96,7 +96,7 @@ An `OperatorBase` equivalent to product of self and scalar.
 
 <span id="qiskit.aqua.operators.state_fns.DictStateFn.add" />
 
-`DictStateFn.add(other)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/state_fns/dict_state_fn.py "view source code")
+`DictStateFn.add(other)`
 
 Return Operator addition of self and other, overloaded by `+`.
 
@@ -116,7 +116,7 @@ An `OperatorBase` equivalent to the sum of self and other.
 
 <span id="qiskit.aqua.operators.state_fns.DictStateFn.adjoint" />
 
-`DictStateFn.adjoint()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/state_fns/dict_state_fn.py "view source code")
+`DictStateFn.adjoint()`
 
 Return a new Operator equal to the Operator’s adjoint (conjugate transpose), overloaded by `~`. For StateFns, this also turns the StateFn into a measurement.
 
@@ -208,7 +208,7 @@ A bool equal to the equality of self and other.
 
 <span id="qiskit.aqua.operators.state_fns.DictStateFn.eval" />
 
-`DictStateFn.eval(front=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/state_fns/dict_state_fn.py "view source code")
+`DictStateFn.eval(front=None)`
 
 Evaluate the Operator’s underlying function, either on a binary string or another Operator. A square binary Operator can be defined as a function taking a binary function to another binary function. This method returns the value of that function for a given StateFn or binary string. For example, `op.eval('0110').eval('1110')` can be seen as querying the Operator’s matrix representation by row 6 and column 14, and will return the complex value at those “indices.” Similarly for a StateFn, `op.eval('1011')` will return the complex value at row 11 of the vector representation of the StateFn, as all StateFns are defined to be evaluated from Zero implicitly (i.e. it is as if `.eval('0000')` is already called implicitly to always “indexing” from column 0).
 
@@ -284,7 +284,7 @@ Compose with Self Multiple Times, undefined for StateFns.
 
 <span id="qiskit.aqua.operators.state_fns.DictStateFn.primitive_strings" />
 
-`DictStateFn.primitive_strings()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/state_fns/dict_state_fn.py "view source code")
+`DictStateFn.primitive_strings()`
 
 Return a set of strings describing the primitives contained in the Operator. For example, `{'QuantumCircuit', 'Pauli'}`. For hierarchical Operators, such as `ListOps`, this can help illuminate the primitives represented in the various recursive levels, and therefore which conversions can be applied.
 
@@ -316,7 +316,7 @@ The reduced `OperatorBase`.
 
 <span id="qiskit.aqua.operators.state_fns.DictStateFn.sample" />
 
-`DictStateFn.sample(shots=1024, massive=False, reverse_endianness=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/state_fns/dict_state_fn.py "view source code")
+`DictStateFn.sample(shots=1024, massive=False, reverse_endianness=False)`
 
 Sample the state function as a normalized probability distribution. Returns dict of bitstrings in order of probability, with values being probability.
 
@@ -338,7 +338,7 @@ A dict containing pairs sampled strings from the State function and sampling fre
 
 <span id="qiskit.aqua.operators.state_fns.DictStateFn.tensor" />
 
-`DictStateFn.tensor(other)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/state_fns/dict_state_fn.py "view source code")
+`DictStateFn.tensor(other)`
 
 Return tensor product between self and other, overloaded by `^`. Note: You must be conscious of Qiskit’s big-endian bit printing convention. Meaning, Plus.tensor(Zero) produces a |+⟩ on qubit 0 and a |0⟩ on qubit 1, or |+⟩⨂|0⟩, but would produce a QuantumCircuit like
 
@@ -382,7 +382,7 @@ An `OperatorBase` equivalent to the tensorpower of self by other.
 
 <span id="qiskit.aqua.operators.state_fns.DictStateFn.to_circuit_op" />
 
-`DictStateFn.to_circuit_op()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/state_fns/dict_state_fn.py "view source code")
+`DictStateFn.to_circuit_op()`
 
 Return `StateFnCircuit` corresponding to this StateFn.
 
@@ -394,7 +394,7 @@ Return `StateFnCircuit` corresponding to this StateFn.
 
 <span id="qiskit.aqua.operators.state_fns.DictStateFn.to_density_matrix" />
 
-`DictStateFn.to_density_matrix(massive=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/state_fns/dict_state_fn.py "view source code")
+`DictStateFn.to_density_matrix(massive=False)`
 
 Return matrix representing product of StateFn evaluated on pairs of basis states. Overridden by child classes.
 
@@ -440,7 +440,7 @@ The `LegacyBaseOperator` representing this Operator.
 
 <span id="qiskit.aqua.operators.state_fns.DictStateFn.to_matrix" />
 
-`DictStateFn.to_matrix(massive=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/state_fns/dict_state_fn.py "view source code")
+`DictStateFn.to_matrix(massive=False)`
 
 Return NumPy representation of the Operator. Represents the evaluation of the Operator’s underlying function on every combination of basis binary strings. Warn if more than 16 qubits to force having to set `massive=True` if such a large vector is desired.
 
@@ -476,7 +476,7 @@ A VectorStateFn equivalent to self.
 
 <span id="qiskit.aqua.operators.state_fns.DictStateFn.to_spmatrix" />
 
-`DictStateFn.to_spmatrix()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/state_fns/dict_state_fn.py "view source code")
+`DictStateFn.to_spmatrix()`
 
 Same as to\_matrix, but returns csr sparse matrix.
 

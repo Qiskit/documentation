@@ -12,7 +12,7 @@ python_api_name: qiskit_ibm_provider.visualization.iplot_gate_map
 
 <span id="qiskit_ibm_provider.visualization.iplot_gate_map" />
 
-`iplot_gate_map(backend, figsize=(None, None), label_qubits=True, qubit_size=None, line_width=None, font_size=None, qubit_color='#2f4b7c', qubit_labels=None, line_color='#2f4b7c', font_color='white', background_color='white', as_widget=False)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/visualization/interactive/gate_map.py "view source code")
+`iplot_gate_map(backend, figsize=(None, None), label_qubits=True, qubit_size=None, line_width=None, font_size=None, qubit_color='#2f4b7c', qubit_labels=None, line_color='#2f4b7c', font_color='white', background_color='white', as_widget=False)` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/visualization/interactive/gate_map.py#L24-L244 "view source code")
 
 Plots an interactive gate map of a device.
 
@@ -42,12 +42,14 @@ The gate map figure.
 **Example**
 
 ```python
-from qiskit_ibm_provider import IBMProvider
-from qiskit_ibm_provider.visualization import iplot_gate_map
+ from qiskit_ibm_provider import IBMProvider
+ from qiskit_ibm_provider.visualization import iplot_gate_map
 
 provider = IBMProvider(group='open', project='main')
-backend = provider.get_backend('ibmq_vigo')
+# Note that this is a mock provider, replace ``FakeOpenPulse2Q``
+# with any of the currently available IBM devices.
+backend = provider.get_backend('FakeOpenPulse2Q')
 
-iplot_gate_map(backend, as_widget=True)
+ iplot_gate_map(backend, as_widget=True)
 ```
 

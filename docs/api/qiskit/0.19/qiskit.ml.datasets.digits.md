@@ -10,7 +10,7 @@ python_api_name: qiskit.ml.datasets.digits
 
 <span id="qiskit.ml.datasets.digits" />
 
-`digits(training_size, test_size, n, plot_data=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/ml/datasets/digits.py "view source code")
+`digits(training_size, test_size, n, plot_data=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/ml/datasets/digits.py "view source code")
 
 returns digits dataset
 

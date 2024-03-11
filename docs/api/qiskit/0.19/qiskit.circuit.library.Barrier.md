@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.Barrier
 
 <span id="qiskit.circuit.library.Barrier" />
 
-`Barrier(num_qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/barrier.py "view source code")
+`Barrier(num_qubits)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/barrier.py "view source code")
 
 Barrier instruction.
 
@@ -52,7 +52,7 @@ Assemble a QasmQobjInstruction
 
 <span id="qiskit.circuit.library.Barrier.broadcast_arguments" />
 
-`Barrier.broadcast_arguments(qargs, cargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/barrier.py "view source code")
+`Barrier.broadcast_arguments(qargs, cargs)`
 
 Validation of the arguments.
 
@@ -73,7 +73,7 @@ Validation of the arguments.
 
 <span id="qiskit.circuit.library.Barrier.c_if" />
 
-`Barrier.c_if(classical, val)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/barrier.py "view source code")
+`Barrier.c_if(classical, val)`
 
 Add classical condition on register classical and value val.
 
@@ -103,7 +103,7 @@ updated if it was provided
 
 <span id="qiskit.circuit.library.Barrier.inverse" />
 
-`Barrier.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/barrier.py "view source code")
+`Barrier.inverse()`
 
 Special case. Return self.
 

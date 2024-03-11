@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.QuantumRegister
 
 <span id="qiskit.circuit.QuantumRegister" />
 
-`QuantumRegister(size=None, name=None, bits=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumregister.py "view source code")
+`QuantumRegister(size=None, name=None, bits=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumregister.py "view source code")
 
 Bases: `qiskit.circuit.register.Register`
 
@@ -48,7 +48,7 @@ Find the index of the provided bit within this register.
 
 <span id="qiskit.circuit.QuantumRegister.qasm" />
 
-`QuantumRegister.qasm()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/quantumregister.py "view source code")
+`QuantumRegister.qasm()`
 
 Return OPENQASM string for this register.
 

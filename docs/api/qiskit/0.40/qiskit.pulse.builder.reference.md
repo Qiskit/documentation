@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.builder.reference
 
 <span id="qiskit.pulse.builder.reference" />
 
-`reference(name, *extra_keys)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/builder.py "view source code")
+`reference(name, *extra_keys)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/builder.py "view source code")
 
 Refer to undefined subroutine by string keys.
 

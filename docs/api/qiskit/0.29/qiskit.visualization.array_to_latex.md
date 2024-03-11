@@ -10,7 +10,7 @@ python_api_name: qiskit.visualization.array_to_latex
 
 <span id="qiskit.visualization.array_to_latex" />
 
-`array_to_latex(array, precision=5, prefix='', source=False, max_size=8)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/visualization/array.py "view source code")
+`array_to_latex(array, precision=5, prefix='', source=False, max_size=8)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/visualization/array.py "view source code")
 
 Latex representation of a complex numpy array (with dimension 1 or 2)
 

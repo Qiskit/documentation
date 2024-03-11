@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.operators.converters.AbelianGrouper
 
 <span id="qiskit.aqua.operators.converters.AbelianGrouper" />
 
-`AbelianGrouper(traverse=True)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/converters/abelian_grouper.py "view source code")
+`AbelianGrouper(traverse=True)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/converters/abelian_grouper.py "view source code")
 
 The AbelianGrouper converts SummedOps into a sum of Abelian sums.
 

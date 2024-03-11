@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.BIPMapping
 
 <span id="qiskit.transpiler.passes.BIPMapping" />
 
-`BIPMapping(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/routing/bip_mapping.py "view source code")
+`BIPMapping(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/routing/bip_mapping.py "view source code")
 
 Map a DAGCircuit onto a given `coupling_map`, allocating qubits and adding swap gates.
 

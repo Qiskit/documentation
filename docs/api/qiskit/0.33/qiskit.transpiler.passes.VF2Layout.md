@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.VF2Layout
 
 <span id="qiskit.transpiler.passes.VF2Layout" />
 
-`VF2Layout(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/passes/layout/vf2_layout.py "view source code")
+`VF2Layout(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/passes/layout/vf2_layout.py "view source code")
 
 Bases: `qiskit.transpiler.basepasses.AnalysisPass`
 
@@ -48,7 +48,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.VF2Layout.run" />
 
-`VF2Layout.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/passes/layout/vf2_layout.py "view source code")
+`VF2Layout.run(dag)`
 
 run the layout method
 

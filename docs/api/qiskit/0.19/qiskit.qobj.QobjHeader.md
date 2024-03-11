@@ -10,7 +10,7 @@ python_api_name: qiskit.qobj.QobjHeader
 
 <span id="qiskit.qobj.QobjHeader" />
 
-`QobjHeader(**kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/qobj/qasm_qobj.py "view source code")
+`QobjHeader(**kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/qobj/qasm_qobj.py "view source code")
 
 A class used to represent a dictionary header in Qobj objects.
 

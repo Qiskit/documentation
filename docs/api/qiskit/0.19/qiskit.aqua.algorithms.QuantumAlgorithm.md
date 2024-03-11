@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.algorithms.QuantumAlgorithm
 
 <span id="qiskit.aqua.algorithms.QuantumAlgorithm" />
 
-`QuantumAlgorithm(quantum_instance)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/quantum_algorithm.py "view source code")
+`QuantumAlgorithm(quantum_instance)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/quantum_algorithm.py "view source code")
 
 Base class for Quantum Algorithms.
 
@@ -52,7 +52,7 @@ Return a numpy random.
 
 <span id="qiskit.aqua.algorithms.QuantumAlgorithm.run" />
 
-`QuantumAlgorithm.run(quantum_instance=None, **kwargs)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/quantum_algorithm.py "view source code")
+`QuantumAlgorithm.run(quantum_instance=None, **kwargs)`
 
 Execute the algorithm with selected backend.
 
@@ -77,7 +77,7 @@ dict
 
 <span id="qiskit.aqua.algorithms.QuantumAlgorithm.set_backend" />
 
-`QuantumAlgorithm.set_backend(backend, **kwargs)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/quantum_algorithm.py "view source code")
+`QuantumAlgorithm.set_backend(backend, **kwargs)`
 
 Sets backend with configuration.
 

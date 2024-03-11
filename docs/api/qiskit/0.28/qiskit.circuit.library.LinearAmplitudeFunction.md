@@ -10,18 +10,18 @@ python_api_name: qiskit.circuit.library.LinearAmplitudeFunction
 
 <span id="qiskit.circuit.library.LinearAmplitudeFunction" />
 
-`LinearAmplitudeFunction(num_state_qubits, slope, offset, domain, image, rescaling_factor=1, breakpoints=None, name='F')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/arithmetic/linear_amplitude_function.py "view source code")
+`LinearAmplitudeFunction(num_state_qubits, slope, offset, domain, image, rescaling_factor=1, breakpoints=None, name='F')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/arithmetic/linear_amplitude_function.py "view source code")
 
 A circuit implementing a (piecewise) linear function on qubit amplitudes.
 
 An amplitude function $F$ of a function $f$ is a mapping
 
 $$
-F\vert x\rangle\vert 0\rangle = \sqrt{1 - \hat{f}(x)} \vert x\rangle\vert 0\rangle + \sqrt{\hat{f}(x)}
-    \vert x\rangle\vert 1\rangle.
+F|x\rangle|0\rangle = \sqrt{1 - \hat{f}(x)} |x\rangle|0\rangle + \sqrt{\hat{f}(x)}
+    |x\rangle|1\rangle.
 $$
 
-for a function $\hat{f}: \{ 0, ..., 2^n - 1 \} \rightarrow [0, 1]$, where $\vert x\rangle$ is a $n$ qubit state.
+for a function $\hat{f}: \{ 0, ..., 2^n - 1 \} \rightarrow [0, 1]$, where $|x\rangle$ is a $n$ qubit state.
 
 This circuit implements $F$ for piecewise linear functions $\hat{f}$. In this case, the mapping $F$ can be approximately implemented using a Taylor expansion and linearly controlled Pauli-Y rotations, see \[1, 2] for more detail. This approximation uses a `rescaling_factor` to determine the accuracy of the Taylor expansion.
 
@@ -1152,7 +1152,7 @@ Apply [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate").
 
 Initialize qubits in a specific state.
 
-Qubit initialization is done by first resetting the qubits to $\vert 0\rangle$ followed by an state preparing unitary. Both these steps are included in the Initialize instruction.
+Qubit initialization is done by first resetting the qubits to $|0\rangle$ followed by an state preparing unitary. Both these steps are included in the Initialize instruction.
 
 **Parameters**
 
@@ -1183,7 +1183,7 @@ a handle to the instruction that was just initialized
 
 **Examples**
 
-Prepare a qubit in the state $(\vert 0\rangle - \vert 1\rangle) / \sqrt{2}$.
+Prepare a qubit in the state $(|0\rangle - |1\rangle) / \sqrt{2}$.
 
 ```python
 import numpy as np

@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.Instruction
 
 <span id="qiskit.circuit.Instruction" />
 
-`Instruction(name, num_qubits, num_clbits, params, duration=None, unit='dt')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/instruction.py "view source code")
+`Instruction(name, num_qubits, num_clbits, params, duration=None, unit='dt')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/instruction.py "view source code")
 
 Generic quantum instruction.
 

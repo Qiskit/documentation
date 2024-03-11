@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.SetIOLatency
 
 <span id="qiskit.transpiler.passes.SetIOLatency" />
 
-`qiskit.transpiler.passes.SetIOLatency(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/scheduling/scheduling/set_io_latency.py "view source code")
+`qiskit.transpiler.passes.SetIOLatency(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/scheduling/scheduling/set_io_latency.py "view source code")
 
 Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 

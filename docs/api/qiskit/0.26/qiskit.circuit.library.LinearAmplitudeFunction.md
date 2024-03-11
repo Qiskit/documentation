@@ -10,37 +10,37 @@ python_api_name: qiskit.circuit.library.LinearAmplitudeFunction
 
 <span id="qiskit.circuit.library.LinearAmplitudeFunction" />
 
-`LinearAmplitudeFunction(num_state_qubits, slope, offset, domain, image, rescaling_factor=1, breakpoints=None, name='F') `[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/library/arithmetic/linear_amplitude_function.py "view source code")
+`LinearAmplitudeFunction(num_state_qubits, slope, offset, domain, image, rescaling_factor=1, breakpoints=None, name='F')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/library/arithmetic/linear_amplitude_function.py "view source code")
 
 A circuit implementing a (piecewise) linear function on qubit amplitudes.
 
 An amplitude function $F$ of a function $f$ is a mapping
 
 $$
-                      \[F|x\rangle|0\rangle = \sqrt{1 - \hat{f}(x)} |x\rangle|0\rangle + \sqrt{\hat{f}(x)}
-                      |x\rangle|1\rangle.\]
+F|x\rangle|0\rangle = \sqrt{1 - \hat{f}(x)} |x\rangle|0\rangle + \sqrt{\hat{f}(x)}
+    |x\rangle|1\rangle.
 $$
 
-for a function $\hat{f}: \{0, ..., 2^n - 1\} \rightarrow [0, 1]$, where $\vert x\rangle$ is a $n$ qubit state.
+for a function $\hat{f}: \{0, ..., 2^n - 1\} \rightarrow [0, 1]$, where $|x\rangle$ is a $n$ qubit state.
 
 This circuit implements $F$ for piecewise linear functions $\hat{f}$. In this case, the mapping $F$ can be approximately implemented using a Taylor expansion and linearly controlled Pauli-Y rotations, see \[1, 2] for more detail. This approximation uses a `rescaling_factor` to determine the accuracy of the Taylor expansion.
 
 In general, the function of interest $f$ is defined from some interval $[a,b]$, the `domain` to $[c,d]$, the `image`, instead of :math\`\{1, …, N}\` to $[0, 1]$. Using an affine transformation we can rescale $f$ to $\hat{f}$:
 
 $$
-                      \[\hat{f(x)} = \frac{f(\phi(x)) - c}{d - c}\]
+\hat{f(x)} = \frac{f(\phi(x)) - c}{d - c}
 $$
 
 with
 
 $$
-                      \[\phi(x) = a + \frac{b - a}{2^n - 1} x.\]
+\phi(x) = a + \frac{b - a}{2^n - 1} x.
 $$
 
 If $f$ is a piecewise linear function on $m$ intervals $[p_{i-1}, p_i], i \in \{1, ..., m\}$ with slopes $\alpha_i$ and offsets beta\_i it can be written as
 
 $$
-                      \[f(x) = \sum_{i=1}^m 1_{[p_{i-1}, p_i}(x) (\alpha_i x + \beta_i)\]
+f(x) = \sum_{i=1}^m 1_{[p_{i-1}, p_i}(x) (\alpha_i x + \beta_i)
 $$
 
 where $1_[a, b]$ is an indication function that is 1 if the argument is in the interval $[a, b]$ and otherwise 0. The breakpoints $p_i$ can be specified by the `breakpoints` argument.
@@ -1129,7 +1129,7 @@ Apply [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate").
 
 Initialize qubits in a specific state.
 
-Qubit initialization is done by first resetting the qubits to $\vert 0\rangle$ followed by an state preparing unitary. Both these steps are included in the Initialize instruction.
+Qubit initialization is done by first resetting the qubits to $|0\rangle$ followed by an state preparing unitary. Both these steps are included in the Initialize instruction.
 
 **Parameters**
 
@@ -1160,7 +1160,7 @@ a handle to the instruction that was just initialized
 
 **Examples**
 
-Prepare a qubit in the state $(\vert 0\rangle - \vert 1\rangle) / \sqrt{2}$.
+Prepare a qubit in the state $(|0\rangle - |1\rangle) / \sqrt{2}$.
 
 ```python
 import numpy as np

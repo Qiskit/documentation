@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.RZXGate
 
 <span id="qiskit.circuit.library.RZXGate" />
 
-`RZXGate(theta)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/rzx.py "view source code")
+`RZXGate(theta)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/rzx.py "view source code")
 
 A parameteric 2-qubit $Z \otimes X$ interaction (rotation about ZX).
 
@@ -261,7 +261,7 @@ updated if it was provided
 
 <span id="qiskit.circuit.library.RZXGate.inverse" />
 
-`RZXGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/rzx.py "view source code")
+`RZXGate.inverse()`
 
 Return inverse RZX gate (i.e. with the negative rotation angle).
 

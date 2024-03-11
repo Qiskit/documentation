@@ -1,7 +1,7 @@
 ---
 title: scheduler
 description: API reference for qiskit.scheduler
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.scheduler
 ---
@@ -22,7 +22,7 @@ A circuit scheduler compiles a circuit program to a pulse program.
 
 <span id="qiskit.scheduler.ScheduleConfig" />
 
-`qiskit.scheduler.ScheduleConfig(inst_map, meas_map, dt)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/scheduler/config.py "view source code")
+`qiskit.scheduler.ScheduleConfig(inst_map, meas_map, dt)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/scheduler/config.py "view source code")
 
 Configuration for pulse scheduling.
 
@@ -38,7 +38,7 @@ Container for information needed to schedule a QuantumCircuit into a pulse Sched
 
 <span id="qiskit.scheduler.schedule_circuit.schedule_circuit" />
 
-`qiskit.scheduler.schedule_circuit.schedule_circuit(circuit, schedule_config, method=None, backend=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/scheduler/schedule_circuit.py "view source code")
+`qiskit.scheduler.schedule_circuit.schedule_circuit(circuit, schedule_config, method=None, backend=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/scheduler/schedule_circuit.py "view source code")
 
 Basic scheduling pass from a circuit to a pulse Schedule, using the backend. If no method is specified, then a basic, as late as possible scheduling pass is performed, i.e. pulses are scheduled to occur as late as possible.
 
@@ -74,7 +74,7 @@ Pulse scheduling methods.
 
 <span id="qiskit.scheduler.methods.as_soon_as_possible" />
 
-`qiskit.scheduler.methods.as_soon_as_possible(circuit, schedule_config, backend=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/scheduler/methods/basic.py "view source code")
+`qiskit.scheduler.methods.as_soon_as_possible(circuit, schedule_config, backend=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/scheduler/methods/basic.py "view source code")
 
 Return the pulse Schedule which implements the input circuit using an “as soon as possible” (asap) scheduling policy.
 
@@ -98,7 +98,7 @@ A schedule corresponding to the input `circuit` with pulses occurring as early a
 
 <span id="qiskit.scheduler.methods.as_late_as_possible" />
 
-`qiskit.scheduler.methods.as_late_as_possible(circuit, schedule_config, backend=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/scheduler/methods/basic.py "view source code")
+`qiskit.scheduler.methods.as_late_as_possible(circuit, schedule_config, backend=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/scheduler/methods/basic.py "view source code")
 
 Return the pulse Schedule which implements the input circuit using an “as late as possible” (alap) scheduling policy.
 

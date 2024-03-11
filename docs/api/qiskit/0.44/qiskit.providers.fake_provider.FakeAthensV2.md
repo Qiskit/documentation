@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeAthensV2
 
 <span id="qiskit.providers.fake_provider.FakeAthensV2" />
 
-`qiskit.providers.fake_provider.FakeAthensV2`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/providers/fake_provider/backends/athens/fake_athens.py "view source code")
+`qiskit.providers.fake_provider.FakeAthensV2` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/providers/fake_provider/backends/athens/fake_athens.py "view source code")
 
 Bases: `FakeBackendV2`
 

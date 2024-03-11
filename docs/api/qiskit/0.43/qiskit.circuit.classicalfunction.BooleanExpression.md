@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.classicalfunction.BooleanExpression
 
 <span id="qiskit.circuit.classicalfunction.BooleanExpression" />
 
-`BooleanExpression(expression, name=None, var_order=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/classicalfunction/boolean_expression.py "view source code")
+`BooleanExpression(expression, name=None, var_order=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/classicalfunction/boolean_expression.py "view source code")
 
 Bases: `ClassicalElement`
 
@@ -171,7 +171,7 @@ a copy of the current instruction, with the name updated if it was provided
 
 <span id="qiskit.circuit.classicalfunction.BooleanExpression.from_dimacs_file" />
 
-`classmethod BooleanExpression.from_dimacs_file(filename)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/classicalfunction/boolean_expression.py "view source code")
+`classmethod BooleanExpression.from_dimacs_file(filename)`
 
 Create a BooleanExpression from the string in the DIMACS format. :param filename: A file in DIMACS format.
 
@@ -315,7 +315,7 @@ sub-instructions reversed.
 
 <span id="qiskit.circuit.classicalfunction.BooleanExpression.simulate" />
 
-`BooleanExpression.simulate(bitstring)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/classicalfunction/boolean_expression.py "view source code")
+`BooleanExpression.simulate(bitstring)`
 
 Evaluate the expression on a bitstring.
 
@@ -361,7 +361,7 @@ bool
 
 <span id="qiskit.circuit.classicalfunction.BooleanExpression.synth" />
 
-`BooleanExpression.synth(registerless=True, synthesizer=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/classicalfunction/boolean_expression.py "view source code")
+`BooleanExpression.synth(registerless=True, synthesizer=None)`
 
 Synthesis the logic network into a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
 

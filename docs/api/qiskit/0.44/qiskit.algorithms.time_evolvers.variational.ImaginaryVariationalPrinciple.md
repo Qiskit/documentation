@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.time_evolvers.variational.ImaginaryVariationa
 
 <span id="qiskit.algorithms.time_evolvers.variational.ImaginaryVariationalPrinciple" />
 
-`qiskit.algorithms.time_evolvers.variational.ImaginaryVariationalPrinciple(qgt, gradient)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/time_evolvers/variational/variational_principles/imaginary_variational_principle.py "view source code")
+`qiskit.algorithms.time_evolvers.variational.ImaginaryVariationalPrinciple(qgt, gradient)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/time_evolvers/variational/variational_principles/imaginary_variational_principle.py "view source code")
 
 Bases: [`VariationalPrinciple`](qiskit.algorithms.time_evolvers.variational.VariationalPrinciple "qiskit.algorithms.time_evolvers.variational.variational_principles.variational_principle.VariationalPrinciple"), [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 

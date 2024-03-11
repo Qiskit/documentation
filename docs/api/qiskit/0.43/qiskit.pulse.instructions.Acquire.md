@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.instructions.Acquire
 
 <span id="qiskit.pulse.instructions.Acquire" />
 
-`Acquire(duration, channel, mem_slot=None, reg_slot=None, kernel=None, discriminator=None, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/instructions/acquire.py "view source code")
+`Acquire(duration, channel, mem_slot=None, reg_slot=None, kernel=None, discriminator=None, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/instructions/acquire.py "view source code")
 
 Bases: [`Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")
 
@@ -180,7 +180,7 @@ A new schedule with `schedule` inserted with this instruction at t=0.
 
 <span id="qiskit.pulse.instructions.Acquire.is_parameterized" />
 
-`Acquire.is_parameterized()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/instructions/acquire.py "view source code")
+`Acquire.is_parameterized()`
 
 Return True iff the instruction is parameterized.
 

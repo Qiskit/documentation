@@ -1,9 +1,9 @@
 ---
-title: TspData
-description: API reference for qiskit.optimization.applications.ising.tsp.TspData
-in_page_toc_min_heading_level: 1
-python_api_type: class
-python_api_name: qiskit.optimization.applications.ising.tsp.TspData
+title: tsp
+description: API reference for qiskit.optimization.applications.ising.tsp
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.optimization.applications.ising.tsp
 ---
 
 <span id="qiskit-optimization-applications-ising-tsp" />
@@ -90,7 +90,7 @@ Alias for field number 3
 
 <span id="qiskit.optimization.applications.ising.tsp.calc_distance" />
 
-`calc_distance(coord, name='tmp')`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/tsp.py "view source code")
+`calc_distance(coord, name='tmp')` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/tsp.py "view source code")
 
 calculate distance
 
@@ -98,7 +98,7 @@ calculate distance
 
 <span id="qiskit.optimization.applications.ising.tsp.get_operator" />
 
-`get_operator(ins, penalty=100000.0)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/tsp.py "view source code")
+`get_operator(ins, penalty=100000.0)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/tsp.py "view source code")
 
 Generate Hamiltonian for TSP of a graph.
 
@@ -119,7 +119,7 @@ tuple([WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator
 
 <span id="qiskit.optimization.applications.ising.tsp.get_tsp_solution" />
 
-`get_tsp_solution(x)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/tsp.py "view source code")
+`get_tsp_solution(x)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/tsp.py "view source code")
 
 Get graph solution from binary string.
 
@@ -145,7 +145,7 @@ Instance data of TSP
 
 <span id="qiskit.optimization.applications.ising.tsp.parse_tsplib_format" />
 
-`parse_tsplib_format(filename)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/tsp.py "view source code")
+`parse_tsplib_format(filename)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/tsp.py "view source code")
 
 Read graph in TSPLIB format from file.
 
@@ -165,7 +165,7 @@ instance data.
 
 <span id="qiskit.optimization.applications.ising.tsp.random_tsp" />
 
-`random_tsp(n, low=0, high=100, savefile=None, seed=None, name='tmp')`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/tsp.py "view source code")
+`random_tsp(n, low=0, high=100, savefile=None, seed=None, name='tmp')` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/tsp.py "view source code")
 
 Generate a random instance for TSP.
 
@@ -190,7 +190,7 @@ instance data.
 
 <span id="qiskit.optimization.applications.ising.tsp.tsp_feasible" />
 
-`tsp_feasible(x)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/tsp.py "view source code")
+`tsp_feasible(x)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/tsp.py "view source code")
 
 Check whether a solution is feasible or not.
 
@@ -210,7 +210,7 @@ bool
 
 <span id="qiskit.optimization.applications.ising.tsp.tsp_value" />
 
-`tsp_value(z, w)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/tsp.py "view source code")
+`tsp_value(z, w)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/tsp.py "view source code")
 
 Compute the TSP value of a solution.
 

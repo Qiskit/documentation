@@ -1,7 +1,7 @@
 ---
 title: pulse
 description: API reference for qiskit.pulse
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.pulse
 ---
@@ -32,15 +32,15 @@ This is sufficient to allow the quantum physicist to explore and correct for noi
 
 `instructions`
 
-|                                                                                                          |                                                                                                                                                                                                    |
-| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`instructions`](qiskit.pulse.instructions#module-qiskit.pulse.instructions "qiskit.pulse.instructions") | The `instruction` module holds the various `Instruction` s which are supported by Qiskit Pulse.                                                                                                    |
-| [`Acquire`](qiskit.pulse.Acquire "qiskit.pulse.Acquire")(duration\[, channel, mem\_slot, …])             | The Acquire instruction is used to trigger the ADC associated with a particular qubit; e.g.                                                                                                        |
-| [`Delay`](qiskit.pulse.Delay "qiskit.pulse.Delay")(duration\[, channel, name])                           | A blocking instruction with no other effect.                                                                                                                                                       |
-| [`Play`](qiskit.pulse.Play "qiskit.pulse.Play")(pulse, channel\[, name])                                 | This instruction is responsible for applying a pulse on a channel.                                                                                                                                 |
-| [`SetFrequency`](qiskit.pulse.SetFrequency "qiskit.pulse.SetFrequency")(frequency, channel\[, name])     | Set the channel frequency.                                                                                                                                                                         |
-| [`ShiftPhase`](qiskit.pulse.ShiftPhase "qiskit.pulse.ShiftPhase")(phase\[, channel, name])               | The shift phase instruction updates the modulation phase of proceeding pulses played on the same [`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel"). |
-| [`Snapshot`](qiskit.pulse.Snapshot "qiskit.pulse.Snapshot")(label\[, snapshot\_type, name])              | An instruction targeted for simulators, to capture a moment in the simulation.                                                                                                                     |
+|                                                                                                          |                                                                                                                                                                              |
+| -------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`instructions`](qiskit.pulse.instructions#module-qiskit.pulse.instructions "qiskit.pulse.instructions") | The `instruction` module holds the various `Instruction` s which are supported by Qiskit Pulse.                                                                              |
+| [`Acquire`](qiskit.pulse.Acquire "qiskit.pulse.Acquire")(duration\[, channel, mem\_slot, …])             | The Acquire instruction is used to trigger the ADC associated with a particular qubit; e.g.                                                                                  |
+| [`Delay`](qiskit.pulse.Delay "qiskit.pulse.Delay")(duration\[, channel, name])                           | A blocking instruction with no other effect.                                                                                                                                 |
+| [`Play`](qiskit.pulse.Play "qiskit.pulse.Play")(pulse, channel\[, name])                                 | This instruction is responsible for applying a pulse on a channel.                                                                                                           |
+| [`SetFrequency`](qiskit.pulse.SetFrequency "qiskit.pulse.SetFrequency")(frequency, channel\[, name])     | Set the channel frequency.                                                                                                                                                   |
+| [`ShiftPhase`](qiskit.pulse.ShiftPhase "qiskit.pulse.ShiftPhase")(phase\[, channel, name])               | The shift phase instruction updates the modulation phase of proceeding pulses played on the same [`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel"). |
+| [`Snapshot`](qiskit.pulse.Snapshot "qiskit.pulse.Snapshot")(label\[, snapshot\_type, name])              | An instruction targeted for simulators, to capture a moment in the simulation.                                                                                               |
 
 ## Pulse Library (waveforms )
 

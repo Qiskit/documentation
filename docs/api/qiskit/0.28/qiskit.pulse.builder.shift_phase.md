@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.builder.shift_phase
 
 <span id="qiskit.pulse.builder.shift_phase" />
 
-`shift_phase(phase, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/builder.py "view source code")
+`shift_phase(phase, channel, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/builder.py "view source code")
 
 Shift the `phase` of a pulse `channel`.
 
@@ -30,6 +30,6 @@ with pulse.build() as pulse_prog:
 **Parameters**
 
 *   **phase** (`float`) – Phase in radians to shift channel carrier signal by.
-*   **channel** ([`PulseChannel`](qiskit.pulse.channels#qiskit.pulse.channels.PulseChannel "qiskit.pulse.channels.PulseChannel")) – Channel to shift phase of.
+*   **channel** ([`PulseChannel`](qiskit.pulse.channels#pulsechannel "qiskit.pulse.channels.PulseChannel")) – Channel to shift phase of.
 *   **name** (`Optional`\[`str`]) – Name of the instruction.
 

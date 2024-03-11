@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeYorktown
 
 <span id="qiskit.providers.fake_provider.FakeYorktown" />
 
-`FakeYorktown`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/fake_provider/backends/yorktown/fake_yorktown.py "view source code")
+`FakeYorktown` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/fake_provider/backends/yorktown/fake_yorktown.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_qasm_backend.FakeQasmBackend`
 

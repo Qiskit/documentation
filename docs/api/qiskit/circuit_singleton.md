@@ -1,7 +1,7 @@
 ---
 title: singleton
 description: API reference for qiskit.circuit.singleton
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.circuit.singleton
 ---
@@ -46,7 +46,7 @@ The public classes correspond to the standard classes [`Instruction`](qiskit.cir
 
 <span id="qiskit.circuit.singleton.SingletonInstruction" />
 
-`qiskit.circuit.singleton.SingletonInstruction(*args, _force_mutable=False, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/singleton.py "view source code")
+`qiskit.circuit.singleton.SingletonInstruction(*args, _force_mutable=False, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/singleton.py "view source code")
 
 A base class to use for [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") objects that by default are singleton instances.
 
@@ -56,7 +56,7 @@ The exception to be aware of with this class though are the [`Instruction`](qisk
 
 <span id="qiskit.circuit.singleton.SingletonGate" />
 
-`qiskit.circuit.singleton.SingletonGate(*args, _force_mutable=False, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/singleton.py "view source code")
+`qiskit.circuit.singleton.SingletonGate(*args, _force_mutable=False, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/singleton.py "view source code")
 
 A base class to use for [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") objects that by default are singleton instances.
 
@@ -64,7 +64,7 @@ This class is very similar to [`SingletonInstruction`](#qiskit.circuit.singleton
 
 <span id="qiskit.circuit.singleton.SingletonControlledGate" />
 
-`qiskit.circuit.singleton.SingletonControlledGate(*args, _force_mutable=False, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/singleton.py "view source code")
+`qiskit.circuit.singleton.SingletonControlledGate(*args, _force_mutable=False, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/singleton.py "view source code")
 
 A base class to use for [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") objects that by default are singleton instances
 

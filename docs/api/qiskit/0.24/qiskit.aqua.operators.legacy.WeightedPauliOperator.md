@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.operators.legacy.WeightedPauliOperator
 
 <span id="qiskit.aqua.operators.legacy.WeightedPauliOperator" />
 
-`WeightedPauliOperator(paulis, basis=None, z2_symmetries=None, atol=1e-12, name=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/legacy/weighted_pauli_operator.py "view source code")
+`WeightedPauliOperator(paulis, basis=None, z2_symmetries=None, atol=1e-12, name=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/legacy/weighted_pauli_operator.py "view source code")
 
 Weighted Pauli Operator
 

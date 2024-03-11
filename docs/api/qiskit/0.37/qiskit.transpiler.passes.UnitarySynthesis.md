@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.UnitarySynthesis
 
 <span id="qiskit.transpiler.passes.UnitarySynthesis" />
 
-`UnitarySynthesis(basis_gates=None, approximation_degree=1, coupling_map=None, backend_props=None, pulse_optimize=None, natural_direction=None, synth_gates=None, method='default', min_qubits=None, plugin_config=None, target=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/synthesis/unitary_synthesis.py "view source code")
+`UnitarySynthesis(basis_gates=None, approximation_degree=1, coupling_map=None, backend_props=None, pulse_optimize=None, natural_direction=None, synth_gates=None, method='default', min_qubits=None, plugin_config=None, target=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/synthesis/unitary_synthesis.py "view source code")
 
 Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -48,7 +48,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.UnitarySynthesis.run" />
 
-`UnitarySynthesis.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/synthesis/unitary_synthesis.py "view source code")
+`UnitarySynthesis.run(dag)`
 
 Run the UnitarySynthesis pass on dag.
 

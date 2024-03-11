@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CU1Gate
 
 <span id="qiskit.circuit.library.CU1Gate" />
 
-`CU1Gate(theta, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/u1.py "view source code")
+`CU1Gate(theta, label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/u1.py "view source code")
 
 Controlled-U1 gate.
 
@@ -28,7 +28,7 @@ q_1: ─■──
 
 $$
 \begin{split}CU1 =
-    \vert 0\rangle\langle 0\vert  \otimes I + \vert 1\rangle\langle 1\vert  \otimes U1 =
+    |0\rangle\langle 0| \otimes I + |1\rangle\langle 1| \otimes U1 =
     \begin{pmatrix}
         1 & 0 & 0 & 0 \\
         0 & 1 & 0 & 0 \\
@@ -178,7 +178,7 @@ Add classical condition on register classical and value val.
 
 <span id="qiskit.circuit.library.CU1Gate.control" />
 
-`CU1Gate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/u1.py "view source code")
+`CU1Gate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
 Controlled version of this gate.
 
@@ -222,7 +222,7 @@ updated if it was provided
 
 <span id="qiskit.circuit.library.CU1Gate.inverse" />
 
-`CU1Gate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/u1.py "view source code")
+`CU1Gate.inverse()`
 
 Return inverted CU1 gate ($CU1(\lambda){\dagger} = CU1(-\lambda)$)
 

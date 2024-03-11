@@ -10,7 +10,7 @@ python_api_name: qiskit_aer.noise.phase_damping_error
 
 <span id="qiskit_aer.noise.phase_damping_error" />
 
-`phase_damping_error(param_phase, canonical_kraus=True)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/noise/errors/standard_errors.py "view source code")
+`phase_damping_error(param_phase, canonical_kraus=True)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/noise/errors/standard_errors.py "view source code")
 
 Return a single-qubit generalized phase damping quantum error channel.
 

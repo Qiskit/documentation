@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.SabreSwap
 
 <span id="qiskit.transpiler.passes.SabreSwap" />
 
-`SabreSwap(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/routing/sabre_swap.py "view source code")
+`SabreSwap(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/routing/sabre_swap.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -58,11 +58,11 @@ Additional Information:
 >
 > *   ‘lookahead’:
 >
-> This is the sum of two costs: first is the same as the basic cost. Second is the basic cost but now evaluated for the extended set as well (i.e. $\vert E\vert $ number of upcoming successors to gates in front\_layer F). This is weighted by some amount EXTENDED\_SET\_WEIGHT (W) to signify that upcoming gates are less important that the front\_layer.
+> This is the sum of two costs: first is the same as the basic cost. Second is the basic cost but now evaluated for the extended set as well (i.e. $|E|$ number of upcoming successors to gates in front\_layer F). This is weighted by some amount EXTENDED\_SET\_WEIGHT (W) to signify that upcoming gates are less important that the front\_layer.
 >
 > $$
-> H_{decay}=\frac{1}{\left\vert {F}\right\vert }\sum_{gate \in F} D[\pi(gate.q_1)][\pi(gate.q2)]
->     + W*\frac{1}{\left\vert {E}\right\vert } \sum_{gate \in E} D[\pi(gate.q_1)][\pi(gate.q2)]
+> H_{decay}=\frac{1}{\left|{F}\right|}\sum_{gate \in F} D[\pi(gate.q_1)][\pi(gate.q2)]
+>     + W*\frac{1}{\left|{E}\right|} \sum_{gate \in E} D[\pi(gate.q_1)][\pi(gate.q2)]
 > $$
 >
 > *   ‘decay’:
@@ -71,8 +71,8 @@ Additional Information:
 >
 > $$
 > \begin{split}H_{decay} = max(decay(SWAP.q_1), decay(SWAP.q_2)) {
->     \frac{1}{\left\vert {F}\right\vert } \sum_{gate \in F} D[\pi(gate.q_1)][\pi(gate.q2)]\\
->     + W *\frac{1}{\left\vert {E}\right\vert } \sum_{gate \in E} D[\pi(gate.q_1)][\pi(gate.q2)]
+>     \frac{1}{\left|{F}\right|} \sum_{gate \in F} D[\pi(gate.q_1)][\pi(gate.q2)]\\
+>     + W *\frac{1}{\left|{E}\right|} \sum_{gate \in E} D[\pi(gate.q_1)][\pi(gate.q2)]
 >     }\end{split}
 > $$
 
@@ -94,7 +94,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.SabreSwap.run" />
 
-`SabreSwap.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/routing/sabre_swap.py "view source code")
+`SabreSwap.run(dag)`
 
 Run the SabreSwap pass on dag.
 

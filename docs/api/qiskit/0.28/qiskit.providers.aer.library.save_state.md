@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.library.save_state
 
 <span id="qiskit.providers.aer.library.save_state" />
 
-`save_state(self, label=None, pershot=False, conditional=False)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/library/save_instructions/save_state.py "view source code")
+`save_state(self, label=None, pershot=False, conditional=False)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/library/save_instructions/save_state.py "view source code")
 
 Save the current simulator quantum state.
 

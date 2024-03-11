@@ -10,7 +10,7 @@ python_api_name: qiskit.synthesis.SuzukiTrotter
 
 <span id="qiskit.synthesis.SuzukiTrotter" />
 
-`SuzukiTrotter(order=2, reps=1, insert_barriers=False, cx_structure='chain', atomic_evolution=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/synthesis/evolution/suzuki_trotter.py "view source code")
+`SuzukiTrotter(order=2, reps=1, insert_barriers=False, cx_structure='chain', atomic_evolution=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/synthesis/evolution/suzuki_trotter.py "view source code")
 
 Bases: [`ProductFormula`](qiskit.synthesis.ProductFormula "qiskit.synthesis.evolution.product_formula.ProductFormula")
 
@@ -54,7 +54,7 @@ $$
 
 <span id="qiskit.synthesis.SuzukiTrotter.synthesize" />
 
-`SuzukiTrotter.synthesize(evolution)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/synthesis/evolution/suzuki_trotter.py "view source code")
+`SuzukiTrotter.synthesize(evolution)`
 
 Synthesize an `qiskit.circuit.library.PauliEvolutionGate`.
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.providers.BaseJob
 
 <span id="qiskit.providers.BaseJob" />
 
-`BaseJob(backend, job_id)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/providers/basejob.py "view source code")
+`BaseJob(backend, job_id)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/providers/basejob.py "view source code")
 
 Legacy Class to handle asynchronous jobs
 

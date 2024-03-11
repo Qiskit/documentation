@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.Grover
 
 <span id="qiskit.algorithms.Grover" />
 
-`Grover(iterations=None, growth_rate=None, sample_from_iterations=False, quantum_instance=None, sampler=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/amplitude_amplifiers/grover.py "view source code")
+`Grover(iterations=None, growth_rate=None, sample_from_iterations=False, quantum_instance=None, sampler=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/amplitude_amplifiers/grover.py "view source code")
 
 Bases: [`qiskit.algorithms.amplitude_amplifiers.amplitude_amplifier.AmplitudeAmplifier`](qiskit.algorithms.AmplitudeAmplifier "qiskit.algorithms.amplitude_amplifiers.amplitude_amplifier.AmplitudeAmplifier")
 
@@ -29,10 +29,10 @@ The search is called *unstructured* because there are no guarantees as to how th
 To carry out this search a so-called oracle is required, that flags a good element/state. The action of the oracle $\mathcal{S}_f$ is
 
 $$
-\mathcal{S}_f \vert x\rangle = (-1)^{f(x)} \vert x\rangle,
+\mathcal{S}_f |x\rangle = (-1)^{f(x)} |x\rangle,
 $$
 
-i.e. it flips the phase of the state $\vert x\rangle$ if $x$ is a hit. The details of how $S_f$ works are unimportant to the algorithm; Grover’s search algorithm treats the oracle as a black box.
+i.e. it flips the phase of the state $|x\rangle$ if $x$ is a hit. The details of how $S_f$ works are unimportant to the algorithm; Grover’s search algorithm treats the oracle as a black box.
 
 This class supports oracles in form of a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
 
@@ -94,7 +94,7 @@ Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://
 
 <span id="qiskit.algorithms.Grover.amplify" />
 
-`Grover.amplify(amplification_problem)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/amplitude_amplifiers/grover.py "view source code")
+`Grover.amplify(amplification_problem)`
 
 Run the Grover algorithm.
 
@@ -121,7 +121,7 @@ The result as a `GroverResult`, where e.g. the most likely state can be queried 
 
 <span id="qiskit.algorithms.Grover.construct_circuit" />
 
-`Grover.construct_circuit(problem, power=None, measurement=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/amplitude_amplifiers/grover.py "view source code")
+`Grover.construct_circuit(problem, power=None, measurement=False)`
 
 Construct the circuit for Grover’s algorithm with `power` Grover operators.
 
@@ -147,7 +147,7 @@ the QuantumCircuit object for the constructed circuit
 
 <span id="qiskit.algorithms.Grover.optimal_num_iterations" />
 
-`static Grover.optimal_num_iterations(num_solutions, num_qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/amplitude_amplifiers/grover.py "view source code")
+`static Grover.optimal_num_iterations(num_solutions, num_qubits)`
 
 Return the optimal number of iterations, if the number of solutions is known.
 

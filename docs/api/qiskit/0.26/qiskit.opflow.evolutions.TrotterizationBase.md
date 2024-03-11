@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.evolutions.TrotterizationBase
 
 <span id="qiskit.opflow.evolutions.TrotterizationBase" />
 
-`TrotterizationBase(reps=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/evolutions/trotterizations/trotterization_base.py "view source code")
+`TrotterizationBase(reps=1)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/evolutions/trotterizations/trotterization_base.py "view source code")
 
 A base for Trotterization methods, algorithms for approximating exponentiations of operator sums by compositions of exponentiations.
 

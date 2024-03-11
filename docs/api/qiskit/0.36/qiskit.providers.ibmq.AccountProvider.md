@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.AccountProvider
 
 <span id="qiskit.providers.ibmq.AccountProvider" />
 
-`AccountProvider(credentials, factory)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/accountprovider.py "view source code")
+`AccountProvider(credentials, factory)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/accountprovider.py "view source code")
 
 Bases: `qiskit.providers.provider.ProviderV1`
 
@@ -73,7 +73,7 @@ AccountProvider constructor.
 
 <span id="qiskit.providers.ibmq.AccountProvider.backends" />
 
-`AccountProvider.backends(name=None, filters=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/accountprovider.py "view source code")
+`AccountProvider.backends(name=None, filters=None, **kwargs)`
 
 Return all backends accessible via this provider, subject to optional filtering.
 
@@ -134,7 +134,7 @@ a backend matching the filtering.
 
 <span id="qiskit.providers.ibmq.AccountProvider.has_service" />
 
-`AccountProvider.has_service(name)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/accountprovider.py "view source code")
+`AccountProvider.has_service(name)`
 
 Check if this provider has access to the service.
 
@@ -158,7 +158,7 @@ Whether the provider has access to the service.
 
 <span id="qiskit.providers.ibmq.AccountProvider.run_circuits" />
 
-`AccountProvider.run_circuits(circuits, backend_name, shots=None, initial_layout=None, layout_method=None, routing_method=None, translation_method=None, seed_transpiler=None, optimization_level=1, init_qubits=True, rep_delay=None, transpiler_options=None, measurement_error_mitigation=False, use_measure_esp=None, **run_config)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/accountprovider.py "view source code")
+`AccountProvider.run_circuits(circuits, backend_name, shots=None, initial_layout=None, layout_method=None, routing_method=None, translation_method=None, seed_transpiler=None, optimization_level=1, init_qubits=True, rep_delay=None, transpiler_options=None, measurement_error_mitigation=False, use_measure_esp=None, **run_config)`
 
 Execute the input circuit(s) on a backend using the runtime service.
 
@@ -196,7 +196,7 @@ Runtime job.
 
 <span id="qiskit.providers.ibmq.AccountProvider.service" />
 
-`AccountProvider.service(name)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/accountprovider.py "view source code")
+`AccountProvider.service(name)`
 
 Return the specified service.
 
@@ -221,7 +221,7 @@ The specified service.
 
 <span id="qiskit.providers.ibmq.AccountProvider.services" />
 
-`AccountProvider.services()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/accountprovider.py "view source code")
+`AccountProvider.services()`
 
 Return all available services.
 

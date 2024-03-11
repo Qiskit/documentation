@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.characterization.T1Fitter
 
 <span id="qiskit.ignis.characterization.T1Fitter" />
 
-`T1Fitter(backend_result, xdata, qubits, fit_p0, fit_bounds, time_unit='micro-seconds')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/characterization/coherence/fitters.py "view source code")
+`T1Fitter(backend_result, xdata, qubits, fit_p0, fit_bounds, time_unit='micro-seconds')` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/characterization/coherence/fitters.py "view source code")
 
 Bases: `qiskit.ignis.characterization.fitters.BaseCoherenceFitter`
 
@@ -72,7 +72,7 @@ Compute self.\_params and self.\_params\_err
 
 <span id="qiskit.ignis.characterization.T1Fitter.plot" />
 
-`T1Fitter.plot(qind, series='0', ax=None, show_plot=False)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/characterization/coherence/fitters.py "view source code")
+`T1Fitter.plot(qind, series='0', ax=None, show_plot=False)`
 
 Plot coherence data.
 

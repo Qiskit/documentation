@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.BIPMapping
 
 <span id="qiskit.transpiler.passes.BIPMapping" />
 
-`qiskit.transpiler.passes.BIPMapping(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/routing/bip_mapping.py "view source code")
+`qiskit.transpiler.passes.BIPMapping(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/routing/bip_mapping.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 

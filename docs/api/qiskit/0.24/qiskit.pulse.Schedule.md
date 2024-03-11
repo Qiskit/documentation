@@ -12,7 +12,7 @@ python_api_name: qiskit.pulse.Schedule
 
 <span id="qiskit.pulse.Schedule" />
 
-`Schedule(*schedules, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/schedule.py "view source code")
+`Schedule(*schedules, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/schedule.py "view source code")
 
 A quantum program *schedule* with exact time constraints for its instructions, operating over all input signal *channels* and supporting special syntaxes for building.
 
@@ -77,7 +77,7 @@ Create an empty schedule.
 Return a new schedule with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`.
 
 $$
-t = \textrm{max}(\texttt{x.stop_time} \vert \texttt{x} \in
+t = \textrm{max}(\texttt{x.stop_time} |\texttt{x} \in
     \texttt{self.channels} \cap \texttt{schedule.channels})
 $$
 

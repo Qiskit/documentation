@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.QuantumVolume
 
 <span id="qiskit.circuit.library.QuantumVolume" />
 
-`qiskit.circuit.library.QuantumVolume(num_qubits, depth=None, seed=None, classical_permutation=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/quantum_volume.py "view source code")
+`qiskit.circuit.library.QuantumVolume(num_qubits, depth=None, seed=None, classical_permutation=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/quantum_volume.py "view source code")
 
 Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
@@ -38,7 +38,7 @@ Create quantum volume model circuit of size num\_qubits x depth.
 
 *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of active qubits in model circuit.
 *   **depth** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – layers of SU(4) operations in model circuit.
-*   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*Generator*](https://numpy.org/doc/stable/reference/random/generator.html#numpy.random.Generator "(in NumPy v1.26)") *| None*) – Random number generator or generator seed.
+*   **seed** ([*Generator*](https://numpy.org/doc/stable/reference/random/generator.html#numpy.random.Generator "(in NumPy v1.26)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – Random number generator or generator seed.
 *   **classical\_permutation** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – use classical permutations at every layer, rather than quantum.
 
 ## Attributes
@@ -77,29 +77,17 @@ a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitI
 
 QuantumCircuitData
 
-<span id="qiskit.circuit.library.QuantumVolume.extension_lib" />
-
-### extension\_lib
-
-`= 'include "qelib1.inc";'`
-
 <span id="qiskit.circuit.library.QuantumVolume.global_phase" />
 
 ### global\_phase
 
 Return the global phase of the current circuit scope in radians.
 
-<span id="qiskit.circuit.library.QuantumVolume.header" />
-
-### header
-
-`= 'OPENQASM 2.0;'`
-
 <span id="qiskit.circuit.library.QuantumVolume.instances" />
 
 ### instances
 
-`= 325`
+`= 281`
 
 <span id="qiskit.circuit.library.QuantumVolume.layout" />
 
@@ -198,9 +186,6 @@ ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
 ```
 
 To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
-
-```python
-```
 
 ```python
 >>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector

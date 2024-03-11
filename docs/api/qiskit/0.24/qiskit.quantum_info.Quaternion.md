@@ -12,7 +12,7 @@ python_api_name: qiskit.quantum_info.Quaternion
 
 <span id="qiskit.quantum_info.Quaternion" />
 
-`Quaternion(data)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/quantum_info/operators/quaternion.py "view source code")
+`Quaternion(data)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/quantum_info/operators/quaternion.py "view source code")
 
 A class representing a Quaternion.
 

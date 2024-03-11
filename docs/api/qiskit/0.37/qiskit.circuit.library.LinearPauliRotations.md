@@ -10,13 +10,13 @@ python_api_name: qiskit.circuit.library.LinearPauliRotations
 
 <span id="qiskit.circuit.library.LinearPauliRotations" />
 
-`LinearPauliRotations(num_state_qubits=None, slope=1, offset=0, basis='Y', name='LinRot')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/arithmetic/linear_pauli_rotations.py "view source code")
+`LinearPauliRotations(num_state_qubits=None, slope=1, offset=0, basis='Y', name='LinRot')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/arithmetic/linear_pauli_rotations.py "view source code")
 
 Bases: [`qiskit.circuit.library.arithmetic.functional_pauli_rotations.FunctionalPauliRotations`](qiskit.circuit.library.FunctionalPauliRotations "qiskit.circuit.library.arithmetic.functional_pauli_rotations.FunctionalPauliRotations")
 
 Linearly-controlled X, Y or Z rotation.
 
-For a register of state qubits $\vert x\rangle$, a target qubit $\vert 0\rangle$ and the basis `'Y'` this circuit acts as:
+For a register of state qubits $|x\rangle$, a target qubit $|0\rangle$ and the basis `'Y'` this circuit acts as:
 
 ```python
     q_0: ─────────────────────────■───────── ... ──────────────────────
@@ -32,7 +32,7 @@ q_(n-1): ───────────────────────�
 This can for example be used to approximate linear functions, with $a/2 =$ `slope` and $b/2 =$ `offset` and the basis `'Y'`:
 
 $$
-\vert x\rangle \vert 0\rangle \mapsto \cos(ax + b)\vert x\rangle\vert 0\rangle + \sin(ax + b)\vert x\rangle \vert 1\rangle
+|x\rangle |0\rangle \mapsto \cos(ax + b)|x\rangle|0\rangle + \sin(ax + b)|x\rangle |1\rangle
 $$
 
 Since for small arguments $\sin(x) \approx x$ this operator can be used to approximate linear functions.
@@ -41,7 +41,7 @@ Create a new linear rotation circuit.
 
 **Parameters**
 
-*   **num\_state\_qubits** (`Optional`\[`int`]) – The number of qubits representing the state $\vert x\rangle$.
+*   **num\_state\_qubits** (`Optional`\[`int`]) – The number of qubits representing the state $|x\rangle$.
 *   **slope** (`float`) – The slope of the controlled rotation.
 *   **offset** (`float`) – The offset of the controlled rotation.
 *   **basis** (`str`) – The type of Pauli rotation (‘X’, ‘Y’, ‘Z’).
@@ -199,7 +199,7 @@ Return number of qubits.
 
 ### num\_state\_qubits
 
-The number of state qubits representing the state $\vert x\rangle$.
+The number of state qubits representing the state $|x\rangle$.
 
 **Return type**
 

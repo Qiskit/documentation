@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugi
 
 <span id="qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPluginManager" />
 
-`UnitarySynthesisPluginManager`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/transpiler/passes/synthesis/plugin.py "view source code")
+`UnitarySynthesisPluginManager` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/transpiler/passes/synthesis/plugin.py "view source code")
 
 Bases: `object`
 

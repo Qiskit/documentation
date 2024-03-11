@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.utils.get_num_classes
 
 <span id="qiskit.aqua.utils.get_num_classes" />
 
-`get_num_classes(dataset)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/utils/dataset_helper.py "view source code")
+`get_num_classes(dataset)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/utils/dataset_helper.py "view source code")
 
 Check number of classes in a given dataset
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.uncertainty_models.MultivariateDistribut
 
 <span id="qiskit.aqua.components.uncertainty_models.MultivariateDistribution" />
 
-`MultivariateDistribution(num_qubits, probabilities=None, low=None, high=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/uncertainty_models/multivariate_distribution.py "view source code")
+`MultivariateDistribution(num_qubits, probabilities=None, low=None, high=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/uncertainty_models/multivariate_distribution.py "view source code")
 
 This module contains the definition of a base class for multivariate distributions. (Interface for discrete bounded uncertainty models assuming an equidistant grid)
 
@@ -65,7 +65,7 @@ returns values
 
 <span id="qiskit.aqua.components.uncertainty_models.MultivariateDistribution.build" />
 
-`MultivariateDistribution.build(qc, q, q_ancillas=None, params=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/uncertainty_models/multivariate_distribution.py "view source code")
+`MultivariateDistribution.build(qc, q, q_ancillas=None, params=None)`
 
 ### build\_controlled
 
@@ -165,7 +165,7 @@ returns number of qubits controlled
 
 <span id="qiskit.aqua.components.uncertainty_models.MultivariateDistribution.pdf_to_probabilities" />
 
-`static MultivariateDistribution.pdf_to_probabilities(pdf, low, high, num_values)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/uncertainty_models/multivariate_distribution.py "view source code")
+`static MultivariateDistribution.pdf_to_probabilities(pdf, low, high, num_values)`
 
 pdf to probabilities
 

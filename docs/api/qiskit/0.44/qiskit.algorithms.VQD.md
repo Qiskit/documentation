@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.VQD
 
 <span id="qiskit.algorithms.VQD" />
 
-`qiskit.algorithms.VQD(ansatz=None, k=2, betas=None, optimizer=None, initial_point=None, gradient=None, expectation=None, include_custom=False, max_evals_grouped=1, callback=None, quantum_instance=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/eigen_solvers/vqd.py "view source code")
+`qiskit.algorithms.VQD(ansatz=None, k=2, betas=None, optimizer=None, initial_point=None, gradient=None, expectation=None, include_custom=False, max_evals_grouped=1, callback=None, quantum_instance=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/eigen_solvers/vqd.py "view source code")
 
 Bases: `VariationalAlgorithm`, [`Eigensolver`](qiskit.algorithms.Eigensolver "qiskit.algorithms.eigen_solvers.eigen_solver.Eigensolver")
 

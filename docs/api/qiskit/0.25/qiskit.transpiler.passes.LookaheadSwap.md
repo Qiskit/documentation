@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.LookaheadSwap
 
 <span id="qiskit.transpiler.passes.LookaheadSwap" />
 
-`LookaheadSwap(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/transpiler/passes/routing/lookahead_swap.py "view source code")
+`LookaheadSwap(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/transpiler/passes/routing/lookahead_swap.py "view source code")
 
 Map input circuit onto a backend topology via insertion of SWAPs.
 

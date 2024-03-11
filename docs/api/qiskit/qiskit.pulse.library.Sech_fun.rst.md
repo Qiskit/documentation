@@ -12,7 +12,7 @@ python_api_name: qiskit.pulse.library.Sech
 
 <span id="qiskit.pulse.library.Sech" />
 
-`qiskit.pulse.library.Sech(duration, amp, sigma, angle=0.0, name=None, zero_ends=True, limit_amplitude=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/pulse/library/symbolic_pulses.py "view source code")
+`qiskit.pulse.library.Sech(duration, amp, sigma, angle=0.0, name=None, zero_ends=True, limit_amplitude=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/pulse/library/symbolic_pulses.py "view source code")
 
 An unnormalized sech pulse.
 
@@ -35,10 +35,10 @@ where $y^{*}$ is the value of $y$ at the endpoints (at $x=-1 and :math:`x=\text{
 
 **Parameters**
 
-*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – Pulse length in terms of the sampling period dt.
-*   **amp** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – The magnitude of the amplitude of the pulse (the value at the midpoint duration/2).
-*   **sigma** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – A measure of how wide or narrow the sech peak is in terms of dt; described mathematically in the class docstring.
-*   **angle** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – The angle in radians of the complex phase factor uniformly scaling the pulse. Default value 0.
+*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| ParameterValueType*) – Pulse length in terms of the sampling period dt.
+*   **amp** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – The magnitude of the amplitude of the pulse (the value at the midpoint duration/2).
+*   **sigma** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – A measure of how wide or narrow the sech peak is in terms of dt; described mathematically in the class docstring.
+*   **angle** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") *| None*) – The angle in radians of the complex phase factor uniformly scaling the pulse. Default value 0.
 *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Display name for this pulse envelope.
 *   **zero\_ends** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – If True, zeros the ends at x = -1, x = duration + 1, but rescales to preserve amp. Default value True.
 *   **limit\_amplitude** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – If `True`, then limit the amplitude of the waveform to 1. The default is `True` and the amplitude is constrained to 1.
@@ -49,5 +49,5 @@ ScalableSymbolicPulse instance.
 
 **Return type**
 
-*ScalableSymbolicPulse*
+ScalableSymbolicPulse
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.neural_networks.DiscriminativeNetwork
 
 <span id="qiskit.aqua.components.neural_networks.DiscriminativeNetwork" />
 
-`DiscriminativeNetwork`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/neural_networks/discriminative_network.py "view source code")
+`DiscriminativeNetwork` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/neural_networks/discriminative_network.py "view source code")
 
 Base class for discriminative Quantum or Classical Neural Networks.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.optimization.algorithms.CplexOptimizer
 
 <span id="qiskit.optimization.algorithms.CplexOptimizer" />
 
-`CplexOptimizer(disp=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/cplex_optimizer.py "view source code")
+`CplexOptimizer(disp=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/cplex_optimizer.py "view source code")
 
 Bases: `qiskit.optimization.algorithms.optimization_algorithm.OptimizationAlgorithm`
 
@@ -45,7 +45,7 @@ Initializes the CplexOptimizer.
 
 <span id="qiskit.optimization.algorithms.CplexOptimizer.get_compatibility_msg" />
 
-`CplexOptimizer.get_compatibility_msg(problem)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/cplex_optimizer.py "view source code")
+`CplexOptimizer.get_compatibility_msg(problem)`
 
 Checks whether a given problem can be solved with this optimizer.
 
@@ -87,7 +87,7 @@ Returns True if the problem is compatible, False otherwise.
 
 <span id="qiskit.optimization.algorithms.CplexOptimizer.is_cplex_installed" />
 
-`static CplexOptimizer.is_cplex_installed()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/cplex_optimizer.py "view source code")
+`static CplexOptimizer.is_cplex_installed()`
 
 Returns True if cplex is installed
 
@@ -95,7 +95,7 @@ Returns True if cplex is installed
 
 <span id="qiskit.optimization.algorithms.CplexOptimizer.solve" />
 
-`CplexOptimizer.solve(problem)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/cplex_optimizer.py "view source code")
+`CplexOptimizer.solve(problem)`
 
 Tries to solves the given problem using the optimizer.
 

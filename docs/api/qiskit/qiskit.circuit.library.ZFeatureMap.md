@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.ZFeatureMap
 
 <span id="qiskit.circuit.library.ZFeatureMap" />
 
-`qiskit.circuit.library.ZFeatureMap(feature_dimension, reps=2, data_map_func=None, parameter_prefix='x', insert_barriers=False, name='ZFeatureMap')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/data_preparation/z_feature_map.py "view source code")
+`qiskit.circuit.library.ZFeatureMap(feature_dimension, reps=2, data_map_func=None, parameter_prefix='x', insert_barriers=False, name='ZFeatureMap')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/data_preparation/z_feature_map.py "view source code")
 
 Bases: [`PauliFeatureMap`](qiskit.circuit.library.PauliFeatureMap "qiskit.circuit.library.data_preparation.pauli_feature_map.PauliFeatureMap")
 
@@ -129,12 +129,6 @@ The entanglement strategy, see `get_entangler_map()` for more detail on how the 
 
 ### entanglement\_blocks
 
-<span id="qiskit.circuit.library.ZFeatureMap.extension_lib" />
-
-### extension\_lib
-
-`= 'include "qelib1.inc";'`
-
 <span id="qiskit.circuit.library.ZFeatureMap.feature_dimension" />
 
 ### feature\_dimension
@@ -156,12 +150,6 @@ Returns whether the circuit is wrapped in nested gates/instructions or flattened
 ### global\_phase
 
 Return the global phase of the current circuit scope in radians.
-
-<span id="qiskit.circuit.library.ZFeatureMap.header" />
-
-### header
-
-`= 'OPENQASM 2.0;'`
 
 <span id="qiskit.circuit.library.ZFeatureMap.initial_state" />
 
@@ -187,7 +175,7 @@ If barriers are inserted in between the layers or not.
 
 ### instances
 
-`= 163`
+`= 162`
 
 <span id="qiskit.circuit.library.ZFeatureMap.layout" />
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.uncertainty_models.MultivariateUniformDi
 
 <span id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution" />
 
-`MultivariateUniformDistribution(num_qubits, low=None, high=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_models/multivariate_uniform_distribution.py "view source code")
+`MultivariateUniformDistribution(num_qubits, low=None, high=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_models/multivariate_uniform_distribution.py "view source code")
 
 Bases: `qiskit.aqua.components.uncertainty_models.multivariate_distribution.MultivariateDistribution`
 
@@ -30,7 +30,7 @@ Although this just results in a Hadamard gate on all involved qubits, the lower 
 
 <span id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution.build" />
 
-`MultivariateUniformDistribution.build(qc, q, q_ancillas=None, params=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_models/multivariate_uniform_distribution.py "view source code")
+`MultivariateUniformDistribution.build(qc, q, q_ancillas=None, params=None)`
 
 ### build\_controlled
 

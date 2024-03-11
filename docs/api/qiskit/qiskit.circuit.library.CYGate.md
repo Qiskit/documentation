@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CYGate
 
 <span id="qiskit.circuit.library.CYGate" />
 
-`qiskit.circuit.library.CYGate(*args, _force_mutable=False, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/standard_gates/y.py "view source code")
+`qiskit.circuit.library.CYGate(*args, _force_mutable=False, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/y.py "view source code")
 
 Bases: [`SingletonControlledGate`](circuit_singleton#qiskit.circuit.singleton.SingletonControlledGate "qiskit.circuit.singleton.SingletonControlledGate")
 
@@ -31,7 +31,7 @@ q_1: ┤ Y ├
 
 $$
 CY\ q_0, q_1 =
-I \otimes \vert 0 \rangle\langle 0\vert  + Y \otimes \vert 1 \rangle\langle 1\vert   =
+I \otimes |0 \rangle\langle 0| + Y \otimes |1 \rangle\langle 1|  =
     \begin{pmatrix}
         1 & 0 & 0 & 0 \\
         0 & 0 & 0 & -i \\
@@ -52,7 +52,7 @@ $$
 
   $$
   CY\ q_1, q_0 =
-      \vert 0 \rangle\langle 0\vert  \otimes I + \vert 1 \rangle\langle 1\vert  \otimes Y =
+      |0 \rangle\langle 0| \otimes I + |1 \rangle\langle 1| \otimes Y =
       \begin{pmatrix}
           1 & 0 & 0 & 0 \\
           0 & 1 & 0 & 0 \\
@@ -203,7 +203,19 @@ Get the time unit of duration.
 
 <span id="qiskit.circuit.library.CYGate.inverse" />
 
-`inverse()`
+`inverse(annotated=False)`
 
 Return inverted CY gate (itself).
+
+**Parameters**
+
+**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as this gate is self-inverse.
+
+**Returns**
+
+inverse gate (self-inverse).
+
+**Return type**
+
+[CYGate](#qiskit.circuit.library.CYGate "qiskit.circuit.library.CYGate")
 

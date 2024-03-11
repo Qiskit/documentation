@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeKolkata
 
 <span id="qiskit.providers.fake_provider.FakeKolkata" />
 
-`FakeKolkata`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/backends/kolkata/fake_kolkata.py "view source code")
+`FakeKolkata` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/backends/kolkata/fake_kolkata.py "view source code")
 
 Bases: `FakePulseBackend`
 

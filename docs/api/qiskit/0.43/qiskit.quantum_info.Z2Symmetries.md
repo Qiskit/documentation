@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.Z2Symmetries
 
 <span id="qiskit.quantum_info.Z2Symmetries" />
 
-`Z2Symmetries(symmetries, sq_paulis, sq_list, tapering_values=None, *, tol=1e-14)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/analysis/z2_symmetries.py "view source code")
+`Z2Symmetries(symmetries, sq_paulis, sq_list, tapering_values=None, *, tol=1e-14)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/analysis/z2_symmetries.py "view source code")
 
 Bases: `object`
 
@@ -64,7 +64,7 @@ float
 
 <span id="qiskit.quantum_info.Z2Symmetries.convert_clifford" />
 
-`Z2Symmetries.convert_clifford(operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/analysis/z2_symmetries.py "view source code")
+`Z2Symmetries.convert_clifford(operator)`
 
 This method operates the first part of the tapering. It converts the operator by composing it with the clifford unitaries defined in the current symmetry.
 
@@ -86,7 +86,7 @@ This method operates the first part of the tapering. It converts the operator by
 
 <span id="qiskit.quantum_info.Z2Symmetries.find_z2_symmetries" />
 
-`classmethod Z2Symmetries.find_z2_symmetries(operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/analysis/z2_symmetries.py "view source code")
+`classmethod Z2Symmetries.find_z2_symmetries(operator)`
 
 Finds Z2 Pauli-type symmetries of a [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp").
 
@@ -104,7 +104,7 @@ A `Z2Symmetries` instance.
 
 <span id="qiskit.quantum_info.Z2Symmetries.is_empty" />
 
-`Z2Symmetries.is_empty()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/analysis/z2_symmetries.py "view source code")
+`Z2Symmetries.is_empty()`
 
 Check the z2\_symmetries is empty or not.
 
@@ -122,7 +122,7 @@ bool
 
 <span id="qiskit.quantum_info.Z2Symmetries.taper" />
 
-`Z2Symmetries.taper(operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/analysis/z2_symmetries.py "view source code")
+`Z2Symmetries.taper(operator)`
 
 Taper an operator based on the z2\_symmetries info and sector defined by tapering\_values. Returns operator if the symmetry object is empty.
 
@@ -148,7 +148,7 @@ If tapering\_values is None
 
 <span id="qiskit.quantum_info.Z2Symmetries.taper_clifford" />
 
-`Z2Symmetries.taper_clifford(operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/quantum_info/analysis/z2_symmetries.py "view source code")
+`Z2Symmetries.taper_clifford(operator)`
 
 Operate the second part of the tapering. This function assumes that the input operators have already been transformed using [`convert_clifford()`](qiskit.quantum_info.Z2Symmetries#convert_clifford "qiskit.quantum_info.Z2Symmetries.convert_clifford"). The redundant qubits due to the symmetries are dropped and replaced by their two possible eigenvalues.
 

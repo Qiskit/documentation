@@ -10,7 +10,7 @@ python_api_name: qiskit.extensions.UCPauliRotGate
 
 <span id="qiskit.extensions.UCPauliRotGate" />
 
-`UCPauliRotGate(angle_list, rot_axis)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/extensions/quantum_initializer/uc_pauli_rot.py "view source code")
+`UCPauliRotGate(angle_list, rot_axis)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/extensions/quantum_initializer/uc_pauli_rot.py "view source code")
 
 Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 

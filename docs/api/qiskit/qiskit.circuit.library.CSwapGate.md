@@ -10,13 +10,13 @@ python_api_name: qiskit.circuit.library.CSwapGate
 
 <span id="qiskit.circuit.library.CSwapGate" />
 
-`qiskit.circuit.library.CSwapGate(*args, _force_mutable=False, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/standard_gates/swap.py "view source code")
+`qiskit.circuit.library.CSwapGate(*args, _force_mutable=False, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/swap.py "view source code")
 
 Bases: [`SingletonControlledGate`](circuit_singleton#qiskit.circuit.singleton.SingletonControlledGate "qiskit.circuit.singleton.SingletonControlledGate")
 
 Controlled-SWAP gate, also known as the Fredkin gate.
 
-Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`cswap()`](qiskit.circuit.QuantumCircuit#cswap "qiskit.circuit.QuantumCircuit.cswap") and [`fredkin()`](qiskit.circuit.QuantumCircuit#fredkin "qiskit.circuit.QuantumCircuit.fredkin") methods.
+Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`cswap()`](qiskit.circuit.QuantumCircuit#cswap "qiskit.circuit.QuantumCircuit.cswap") and `fredkin()` methods.
 
 **Circuit symbol:**
 
@@ -32,8 +32,8 @@ q_2: ─X─
 
 $$
 CSWAP\ q_0, q_1, q_2 =
-    I \otimes I \otimes \vert 0 \rangle \langle 0\vert  +
-    SWAP \otimes \vert 1 \rangle \langle 1\vert  =
+    I \otimes I \otimes |0 \rangle \langle 0| +
+    SWAP \otimes |1 \rangle \langle 1| =
     \begin{pmatrix}
         1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
         0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
@@ -59,8 +59,8 @@ $$
 
   $$
   CSWAP\ q_2, q_1, q_0 =
-      \vert 0 \rangle \langle 0\vert  \otimes I \otimes I +
-      \vert 1 \rangle \langle 1\vert  \otimes SWAP =
+      |0 \rangle \langle 0| \otimes I \otimes I +
+      |1 \rangle \langle 1| \otimes SWAP =
       \begin{pmatrix}
           1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
           0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
@@ -74,11 +74,11 @@ $$
   $$
 </Admonition>
 
-In the computational basis, this gate swaps the states of the two target qubits if the control qubit is in the $\vert 1\rangle$ state.
+In the computational basis, this gate swaps the states of the two target qubits if the control qubit is in the $|1\rangle$ state.
 
 $$
-\vert 0, b, c\rangle \rightarrow \vert 0, b, c\rangle
-\vert 1, b, c\rangle \rightarrow \vert 1, c, b\rangle
+|0, b, c\rangle \rightarrow |0, b, c\rangle
+|1, b, c\rangle \rightarrow |1, c, b\rangle
 
 
 $$
@@ -224,7 +224,19 @@ Get the time unit of duration.
 
 <span id="qiskit.circuit.library.CSwapGate.inverse" />
 
-`inverse()`
+`inverse(annotated=False)`
 
 Return inverse CSwap gate (itself).
+
+**Parameters**
+
+**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as this gate is self-inverse.
+
+**Returns**
+
+inverse gate (self-inverse).
+
+**Return type**
+
+[CSwapGate](#qiskit.circuit.library.CSwapGate "qiskit.circuit.library.CSwapGate")
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.algorithms.pes_samplers.VibronicStructureBase
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.VibronicStructureBase" />
 
-`VibronicStructureBase(molecule)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/potentials/potential_base.py "view source code")
+`VibronicStructureBase(molecule)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/potentials/potential_base.py "view source code")
 
 Bases: `abc.ABC`
 
@@ -22,7 +22,7 @@ Class to hold a molecular vibronic structure providing access to vibrational mod
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.VibronicStructureBase.get_maximum_trusted_level" />
 
-`VibronicStructureBase.get_maximum_trusted_level(n=0)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/potentials/potential_base.py "view source code")
+`VibronicStructureBase.get_maximum_trusted_level(n=0)`
 
 Returns the maximum energy level for which the particular implementation still provides a good approximation of reality. Default value of 100. Redefined where needed (see e.g. Morse).
 
@@ -42,7 +42,7 @@ maximum\_trusted\_level setted
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.VibronicStructureBase.get_num_modes" />
 
-`abstract VibronicStructureBase.get_num_modes()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/potentials/potential_base.py "view source code")
+`abstract VibronicStructureBase.get_num_modes()`
 
 Returns the number of vibrational modes for the molecule.
 
@@ -58,7 +58,7 @@ the number of vibrational modes
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.VibronicStructureBase.update_molecule" />
 
-`VibronicStructureBase.update_molecule(molecule)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/potentials/potential_base.py "view source code")
+`VibronicStructureBase.update_molecule(molecule)`
 
 Wipe state if molecule changes, and check validity of molecule for potential.
 
@@ -78,7 +78,7 @@ molecule used
 
 <span id="qiskit.chemistry.algorithms.pes_samplers.VibronicStructureBase.vibrational_energy_level" />
 
-`abstract VibronicStructureBase.vibrational_energy_level(n)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/potentials/potential_base.py "view source code")
+`abstract VibronicStructureBase.vibrational_energy_level(n)`
 
 Returns the n-th vibrational energy level for a given mode.
 

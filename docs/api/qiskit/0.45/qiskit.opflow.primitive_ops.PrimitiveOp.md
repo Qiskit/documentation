@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.primitive_ops.PrimitiveOp
 
 <span id="qiskit.opflow.primitive_ops.PrimitiveOp" />
 
-`qiskit.opflow.primitive_ops.PrimitiveOp(primitive, coeff=1.0)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/primitive_ops/primitive_op.py "view source code")
+`qiskit.opflow.primitive_ops.PrimitiveOp(primitive, coeff=1.0)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/primitive_ops/primitive_op.py "view source code")
 
 Bases: [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
 

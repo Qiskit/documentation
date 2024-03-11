@@ -6,15 +6,121 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes" />
 
-# Qiskit IBM Provider 0.7 release notes
+# Qiskit IBM Provider 0.10 release notes
+
+<span id="release-notes-0-10-0" />
+
+<span id="id1" />
+
+## 0.10.0
+
+<span id="release-notes-0-10-0-new-features" />
+
+### New Features
+
+*   Sessions started with [`open_session()`](qiskit_ibm_provider.IBMBackend#open_session "qiskit_ibm_provider.IBMBackend.open_session") will use the new `/sessions` endpoint.
+
+    The sessions functionality will not change but note that `backend.run()` sessions prior to this release will no longer be supported after March 31, 2024. Please update your `qiskit-ibm-provider` version as soon as possible before this date.
+
+<span id="release-notes-0-9-0" />
+
+<span id="id2" />
+
+## 0.9.0
+
+<span id="release-notes-0-9-0-upgrade-notes" />
+
+### Upgrade Notes
+
+*   Extend `DynamicCircuitInstructions.from_backend()` to extract and patch durations from both `BackendV1` and `BackendV2` objects. Also add `DynamicCircuitInstructions.from_target()` to use a `Target` object instead.
+
+*   The IBM Provider is now the central broker for IBM-related publisher/subscriber events emitted during job submission. If you manage a component that subscribes to events from the IBM Provider, you should use [`Subscriber`](ibm_utils#qiskit_ibm_provider.utils.pubsub.Subscriber "qiskit_ibm_provider.utils.pubsub.Subscriber") from this respository.
+
+*   qiskit-ibm-provider is now compatible with Qiskit versions >= 0.45, including 1.0.0.
+
+<span id="release-notes-0-9-0-bug-fixes" />
+
+### Bug Fixes
+
+*   Fix the patching of `DynamicCircuitInstructions` for instructions with durations that are not in units of `dt`.
+
+<span id="release-notes-0-8-0" />
+
+<span id="id3" />
+
+## 0.8.0
+
+<span id="release-notes-0-8-0-new-features" />
+
+<span id="id4" />
+
+### New Features
+
+*   `qiskit_ibm_provider.utils.RuntimeEncoder` and `qiskit_ibm_provider.utils.RuntimeDecoder` now support `qiskit_aer.noise.NoiseModel`.
+
+<span id="release-notes-0-8-0-upgrade-notes" />
+
+<span id="id5" />
+
+### Upgrade Notes
+
+*   The provider now requires [Qiskit 0.45.0](/api/qiskit/release-notes/0.45) and supports new features from this version of Qiskit.
+
+<span id="release-notes-0-8-0-bug-fixes" />
+
+<span id="id6" />
+
+### Bug Fixes
+
+*   Fixed an issue where canceled and failed jobs would return an invalid result that resulted in a type error, preventing the actual error from being returned to the user.
+
+<span id="release-notes-0-7-1" />
+
+<span id="id7" />
+
+## 0.7.1
+
+<span id="release-notes-0-7-1-new-features" />
+
+<span id="id8" />
+
+### New Features
+
+*   Added a new flag, `schedule_idle_qubits` to the constructor for the [`PadDelay`](qiskit_ibm_provider.transpiler.passes.scheduling.PadDelay "qiskit_ibm_provider.transpiler.passes.scheduling.PadDelay") and [`PadDynamicalDecoupling`](qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDecoupling "qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDecoupling") passes. This flag when set to `True` will have the scheduling passes insert a full circuit duration delay on any idle qubits in the circuit.
+
+<span id="release-notes-0-7-1-upgrade-notes" />
+
+<span id="id9" />
+
+### Upgrade Notes
+
+*   The default behavior of the [`PadDelay`](qiskit_ibm_provider.transpiler.passes.scheduling.PadDelay "qiskit_ibm_provider.transpiler.passes.scheduling.PadDelay") and [`PadDynamicalDecoupling`](qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDecoupling "qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDecoupling") passes for idle qubits in the circuit have changed. Previously, by default the passes would schedule any idle qubits in the circuit by inserting a delay equal to the full circuit duration. This has been changed so by default only active qubits are scheduled. This change was made because the extra delays were additional overhead in the job payload that were effectively a no-op so they added extra overhead to job submission for no gain. If you need to restore the previous behavior you can instantiate [`PadDelay`](qiskit_ibm_provider.transpiler.passes.scheduling.PadDelay "qiskit_ibm_provider.transpiler.passes.scheduling.PadDelay") or [`PadDynamicalDecoupling`](qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDecoupling "qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDecoupling") with the keyword argument `schedule_idle_qubits=True` which will restore the previous behavior.
+
+<span id="release-notes-0-7-1-bug-fixes" />
+
+<span id="id10" />
+
+### Bug Fixes
+
+*   Fixed an issue where circuit metadata was not being serialized correctly for numpy numbers. In addition, added RuntimeDecoder as metadata deserializer.
+
+*   The utility function `hms_to_seconds` now handles values greater than one day. This means that passing in values greater than one day for the `max_time` parameter in `Sessions` is possible.
+
+*   When retrieving the backend properties of a job with `properties()`, the job creation date is now used to get the specific backend properties used when the job was run.
+
+*   The method `job.properties()` previously did nothing. Now it returns the backend properties for this job.
+
+*   Fixed a bug where `shots` passed in as a numpy type were not being serialized correctly.
 
 <span id="release-notes-0-7-0" />
 
-<span id="id1" />
+<span id="id11" />
 
 ## 0.7.0
 
 <span id="release-notes-0-7-0-new-features" />
+
+<span id="id12" />
 
 ### New Features
 
@@ -36,6 +142,8 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-7-0-bug-fixes" />
 
+<span id="id13" />
+
 ### Bug Fixes
 
 *   Replace `coupling_map.reduce(nodes)` with `coupling_map.graph.subgraph(nodes)` to apply DD on a disjoint coupling map. See discussion in [https://github.com/Qiskit/qiskit-terra/pull/9710](https://github.com/Qiskit/qiskit-terra/pull/9710)
@@ -52,19 +160,21 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-6-3" />
 
-<span id="id2" />
+<span id="id14" />
 
 ## 0.6.3
 
 <span id="release-notes-0-6-3-new-features" />
 
-<span id="id3" />
+<span id="id15" />
 
 ### New Features
 
 *   Added a new property, [`usage_estimation()`](qiskit_ibm_provider.job.IBMCircuitJob#usage_estimation "qiskit_ibm_provider.job.IBMCircuitJob.usage_estimation") that returns the estimated running time, `quantum_seconds`. Quantum time represents the time that the QPU complex is occupied exclusively by the job.
 
 <span id="release-notes-0-6-3-upgrade-notes" />
+
+<span id="id16" />
 
 ### Upgrade Notes
 
@@ -74,13 +184,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-6-3-bug-fixes" />
 
-<span id="id4" />
+<span id="id17" />
 
 ### Bug Fixes
 
 *   Fixes a bug in the function `jobs()`. Refer to [#586](https://github.com/Qiskit/qiskit-ibm-provider/issues/586) for more details.
 
-*   A transpilation error will no longer occur when attempting to transpile a circuit containing a conditional [`IGate`](/api/qiskit/qiskit.circuit.library.IGate "(in Qiskit v0.45)") with Qiskit 0.44.
+*   A transpilation error will no longer occur when attempting to transpile a circuit containing a conditional [`IGate`](/api/qiskit/qiskit.circuit.library.IGate "(in Qiskit v1.0)") with Qiskit 0.44.
 
 *   2pi wrapping cannot be applied on a parameterized global phase. Use the DAGCircuit `global_phase` setter to wrap the phase for floats only.
 
@@ -88,13 +198,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-6-2" />
 
-<span id="id6" />
+<span id="id19" />
 
 ## 0.6.2
 
 <span id="release-notes-0-6-2-new-features" />
 
-<span id="id7" />
+<span id="id20" />
 
 ### New Features
 
@@ -104,7 +214,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-6-2-bug-fixes" />
 
-<span id="id8" />
+<span id="id21" />
 
 ### Bug Fixes
 
@@ -112,13 +222,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-6-1" />
 
-<span id="id9" />
+<span id="id22" />
 
 ## 0.6.1
 
 <span id="release-notes-0-6-1-new-features" />
 
-<span id="id10" />
+<span id="id23" />
 
 ### New Features
 
@@ -128,7 +238,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-6-1-upgrade-notes" />
 
-<span id="id11" />
+<span id="id24" />
 
 ### Upgrade Notes
 
@@ -136,7 +246,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-6-1-bug-fixes" />
 
-<span id="id12" />
+<span id="id25" />
 
 ### Bug Fixes
 
@@ -148,13 +258,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-6-0" />
 
-<span id="id13" />
+<span id="id26" />
 
 ## 0.6.0
 
 <span id="release-notes-0-6-0-new-features" />
 
-<span id="id14" />
+<span id="id27" />
 
 ### New Features
 
@@ -166,11 +276,11 @@ in_page_toc_max_heading_level: 2
 
 ### Deprecation Notes
 
-*   Removed support for input circuit as Schedule to IBMBackend.run(). Use `pulse gates` instead. See [tutorial](https://qiskit.org/documentation/tutorials/circuits_advanced/05_pulse_gates.html) on how to use pulse gates.
+*   Removed support for input circuit as Schedule to IBMBackend.run(). Use `pulse gates` instead. See [here](/build/pulse) for how to use pulse gates.
 
 <span id="release-notes-0-6-0-bug-fixes" />
 
-<span id="id15" />
+<span id="id28" />
 
 ### Bug Fixes
 
@@ -182,23 +292,23 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-5-3" />
 
-<span id="id16" />
+<span id="id29" />
 
 ## 0.5.3
 
 <span id="release-notes-0-5-3-upgrade-notes" />
 
-<span id="id17" />
+<span id="id30" />
 
 ### Upgrade Notes
 
 *   If the `dynamic` parameter is set to `True` in [`run()`](qiskit_ibm_provider.IBMBackend#run "qiskit_ibm_provider.IBMBackend.run") and the backend being used does not support dymamic circuits, a warning will be raised.
 
-*   When constructing a backend [`qiskit.transpiler.Target`](/api/qiskit/qiskit.transpiler.Target "(in Qiskit v0.45)"), faulty qubits and gates from the backend configuration will be filtered out.
+*   When constructing a backend [`qiskit.transpiler.Target`](/api/qiskit/qiskit.transpiler.Target "(in Qiskit v1.0)"), faulty qubits and gates from the backend configuration will be filtered out.
 
 <span id="release-notes-0-5-3-bug-fixes" />
 
-<span id="id18" />
+<span id="id31" />
 
 ### Bug Fixes
 
@@ -212,13 +322,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-5-2" />
 
-<span id="id19" />
+<span id="id32" />
 
 ## 0.5.2
 
 <span id="release-notes-0-5-2-new-features" />
 
-<span id="id20" />
+<span id="id33" />
 
 ### New Features
 
@@ -226,7 +336,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-5-2-bug-fixes" />
 
-<span id="id21" />
+<span id="id34" />
 
 ### Bug Fixes
 
@@ -234,13 +344,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-5-1" />
 
-<span id="id22" />
+<span id="id35" />
 
 ## 0.5.1
 
 <span id="release-notes-0-5-1-upgrade-notes" />
 
-<span id="id23" />
+<span id="id36" />
 
 ### Upgrade Notes
 
@@ -248,13 +358,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-5-0" />
 
-<span id="id24" />
+<span id="id37" />
 
 ## 0.5.0
 
 <span id="release-notes-0-5-0-new-features" />
 
-<span id="id25" />
+<span id="id38" />
 
 ### New Features
 
@@ -262,7 +372,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-5-0-upgrade-notes" />
 
-<span id="id26" />
+<span id="id39" />
 
 ### Upgrade Notes
 
@@ -270,7 +380,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-5-0-bug-fixes" />
 
-<span id="id27" />
+<span id="id40" />
 
 ### Bug Fixes
 
@@ -278,13 +388,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-4-0" />
 
-<span id="id28" />
+<span id="id41" />
 
 ## 0.4.0
 
 <span id="release-notes-0-4-0-bug-fixes" />
 
-<span id="id29" />
+<span id="id42" />
 
 ### Bug Fixes
 
@@ -292,13 +402,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-3-0" />
 
-<span id="id30" />
+<span id="id43" />
 
 ## 0.3.0
 
 <span id="release-notes-0-3-0-new-features" />
 
-<span id="id31" />
+<span id="id44" />
 
 ### New Features
 
@@ -339,11 +449,11 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-3-0-upgrade-notes" />
 
-<span id="id32" />
+<span id="id45" />
 
 ### Upgrade Notes
 
-*   Scheduling support for `c_if` has been removed. Please run the pass [`qiskit.transpiler.passes.ConvertConditionsToIfOps`](/api/qiskit/qiskit.transpiler.passes.ConvertConditionsToIfOps "(in Qiskit v0.45)") on your circuit before scheduling to convert all old format `c_if` statements to new format `if_test` control-flow that may be scheduled.
+*   Scheduling support for `c_if` has been removed. Please run the pass [`qiskit.transpiler.passes.ConvertConditionsToIfOps`](/api/qiskit/qiskit.transpiler.passes.ConvertConditionsToIfOps "(in Qiskit v1.0)") on your circuit before scheduling to convert all old format `c_if` statements to new format `if_test` control-flow that may be scheduled.
 
     ```python
     from qiskit.circuit import ClassicalRegister, QuantumCircuit, QuantumRegister
@@ -381,7 +491,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-3-0-bug-fixes" />
 
-<span id="id33" />
+<span id="id46" />
 
 ### Bug Fixes
 
@@ -389,13 +499,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-2-1" />
 
-<span id="id34" />
+<span id="id47" />
 
 ## 0.2.1
 
 <span id="release-notes-0-2-1-bug-fixes" />
 
-<span id="id35" />
+<span id="id48" />
 
 ### Bug Fixes
 
@@ -403,23 +513,23 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-2-0" />
 
-<span id="id36" />
+<span id="id49" />
 
 ## 0.2.0
 
 <span id="release-notes-0-2-0-new-features" />
 
-<span id="id37" />
+<span id="id50" />
 
 ### New Features
 
 *   The meth:\~qiskit\_ibm\_provider.IBMProvider.instances was added to list all the available instances in a provider instance.
 
-*   A new transpiler pass ``qiskit_ibm_provider.transpiler.passes.basis.ConvertIdToDelay was added which converts an :class:`qiskit.circuit.library.IGate`` to [`qiskit.circuit.Delay`](/api/qiskit/qiskit.circuit.Delay "(in Qiskit v0.45)"). This was added to the default transpiler plugin `qiskit_ibm_provider.transpiler.plugin.IBMTranslationPlugin`.
+*   A new transpiler pass ``qiskit_ibm_provider.transpiler.passes.basis.ConvertIdToDelay was added which converts an :class:`qiskit.circuit.library.IGate`` to [`qiskit.circuit.Delay`](/api/qiskit/qiskit.circuit.Delay "(in Qiskit v1.0)"). This was added to the default transpiler plugin `qiskit_ibm_provider.transpiler.plugin.IBMTranslationPlugin`.
 
 <span id="release-notes-0-2-0-upgrade-notes" />
 
-<span id="id38" />
+<span id="id51" />
 
 ### Upgrade Notes
 
@@ -427,13 +537,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-2-0-bug-fixes" />
 
-<span id="id39" />
+<span id="id52" />
 
 ### Bug Fixes
 
 *   A bug was fixed in `qiskit.transpiler.passes.scheduling.LAPScheduleAnalysis` which was caused by an bad interaction between duration-less gates such as `rz` and `barrier`.
 
-*   A bug was fixed where conditional [`qiskit.circuit.library.IGate`](/api/qiskit/qiskit.circuit.library.IGate "(in Qiskit v0.45)") were being converted to unconditional [`qiskit.circuit.Delay`](/api/qiskit/qiskit.circuit.Delay "(in Qiskit v0.45)") operations rather than conditional operations.
+*   A bug was fixed where conditional [`qiskit.circuit.library.IGate`](/api/qiskit/qiskit.circuit.library.IGate "(in Qiskit v1.0)") were being converted to unconditional [`qiskit.circuit.Delay`](/api/qiskit/qiskit.circuit.Delay "(in Qiskit v1.0)") operations rather than conditional operations.
 
 *   Fixed an issue where filtering by instance with [`jobs()`](qiskit_ibm_provider.IBMBackendService#jobs "qiskit_ibm_provider.IBMBackendService.jobs") was not working correctly.
 
@@ -441,7 +551,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-1-0" />
 
-<span id="id40" />
+<span id="id53" />
 
 ## 0.1.0
 
@@ -451,11 +561,11 @@ in_page_toc_max_heading_level: 2
 
 A [`transpiler`](ibm_transpiler#module-qiskit_ibm_provider.transpiler "qiskit_ibm_provider.transpiler") module has been added. It will contain routines that are specific to IBM hardware backends and which consequently can not be placed directly within Qiskit Terra.
 
-qiskit-ibm-provider is a new Python API client for accessing the quantum systems and simulators at IBM Quantum. This new package is built upon the work already done in qiskit.providers.ibmq.backend module in the qiskit-ibmq-provider package and replaces it going forward. The backend module in qiskit-ibmq-provider package is now deprecated. Please take a look at the mirgraion guide [here](https://github.com/Qiskit/qiskit-ibm-provider/blob/main/docs/tutorials/Migration_Guide_from_qiskit-ibmq-provider.ipynb). qiskit-ibm-provider is not included as part of Qiskit meta package and thereby you have to install it separately using `pip install qiskit-ibm-provider`.
+qiskit-ibm-provider is a new Python API client for accessing the quantum systems and simulators at IBM Quantum. This new package is built upon the work already done in qiskit.providers.ibmq.backend module in the qiskit-ibmq-provider package and replaces it going forward. The backend module in qiskit-ibmq-provider package is now deprecated. Please take a look at the migration guide [here](https://github.com/Qiskit/qiskit-ibm-provider/blob/stable/0.6/docs/tutorials/Migration_Guide_from_qiskit-ibmq-provider.ipynb). qiskit-ibm-provider is not included as part of Qiskit meta package and thereby you have to install it separately using `pip install qiskit-ibm-provider`.
 
 <span id="release-notes-0-1-0-new-features" />
 
-<span id="id41" />
+<span id="id54" />
 
 ### New Features
 
@@ -483,7 +593,7 @@ qiskit-ibm-provider is a new Python API client for accessing the quantum systems
 
 <span id="release-notes-0-1-0-upgrade-notes" />
 
-<span id="id42" />
+<span id="id55" />
 
 ### Upgrade Notes
 
@@ -607,7 +717,7 @@ qiskit-ibm-provider is a new Python API client for accessing the quantum systems
         provider.active_account() # check active account
         ```
 
-*   [`IBMBackend`](qiskit_ibm_provider.IBMBackend "qiskit_ibm_provider.IBMBackend") class now implements the [`qiskit.providers.BackendV2`](/api/qiskit/qiskit.providers.BackendV2 "(in Qiskit v0.45)") interface and provides flatter access to the configuration of a backend, for example:
+*   [`IBMBackend`](qiskit_ibm_provider.IBMBackend "qiskit_ibm_provider.IBMBackend") class now implements the [`qiskit.providers.BackendV2`](/api/qiskit/qiskit.providers.BackendV2 "(in Qiskit v1.0)") interface and provides flatter access to the configuration of a backend, for example:
 
     ```python
     # BackendV1:
@@ -672,7 +782,7 @@ qiskit-ibm-provider is a new Python API client for accessing the quantum systems
 
 *   qiskit.providers.ibmq.IBMQBackend.retrieve\_job() and qiskit.providers.ibmq.IBMQBackend.jobs() have been removed. The IBMBackendService methods `job()` and [`jobs()`](qiskit_ibm_provider.IBMBackendService#jobs "qiskit_ibm_provider.IBMBackendService.jobs") can be used instead.
 
-*   Passing a [`QasmQobj`](/api/qiskit/qiskit.qobj.QasmQobj "(in Qiskit v0.45)") and [`PulseQobj`](/api/qiskit/qiskit.qobj.PulseQobj "(in Qiskit v0.45)") in the [`run()`](qiskit_ibm_provider.IBMBackend#run "qiskit_ibm_provider.IBMBackend.run") method has been removed. [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v0.45)") and [`Schedule`](/api/qiskit/qiskit.pulse.Schedule "(in Qiskit v0.45)") should now be used instead.
+*   Passing a [`QasmQobj`](/api/qiskit/qiskit.qobj.QasmQobj "(in Qiskit v1.0)") and [`PulseQobj`](/api/qiskit/qiskit.qobj.PulseQobj "(in Qiskit v1.0)") in the [`run()`](qiskit_ibm_provider.IBMBackend#run "qiskit_ibm_provider.IBMBackend.run") method has been removed. [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.0)") and [`Schedule`](/api/qiskit/qiskit.pulse.Schedule "(in Qiskit v1.0)") should now be used instead.
 
 *   The db\_filter parameter has been removed from [`jobs()`](qiskit_ibm_provider.IBMBackendService#jobs "qiskit_ibm_provider.IBMBackendService.jobs") due to low adoption.
 
@@ -688,7 +798,7 @@ qiskit-ibm-provider is a new Python API client for accessing the quantum systems
 
 <span id="release-notes-0-1-0-deprecation-notes" />
 
-<span id="id43" />
+<span id="id56" />
 
 ### Deprecation Notes
 
@@ -696,7 +806,7 @@ qiskit-ibm-provider is a new Python API client for accessing the quantum systems
 
 <span id="release-notes-0-1-0-bug-fixes" />
 
-<span id="id44" />
+<span id="id57" />
 
 ### Bug Fixes
 

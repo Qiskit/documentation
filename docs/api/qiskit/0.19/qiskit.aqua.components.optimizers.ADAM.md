@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.optimizers.ADAM
 
 <span id="qiskit.aqua.components.optimizers.ADAM" />
 
-`ADAM(maxiter=10000, tol=1e-06, lr=0.001, beta_1=0.9, beta_2=0.99, noise_factor=1e-08, eps=1e-10, amsgrad=False, snapshot_dir=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/adam_amsgrad.py "view source code")
+`ADAM(maxiter=10000, tol=1e-06, lr=0.001, beta_1=0.9, beta_2=0.99, noise_factor=1e-08, eps=1e-10, amsgrad=False, snapshot_dir=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/adam_amsgrad.py "view source code")
 
 Adam and AMSGRAD optimizer.
 
@@ -102,7 +102,7 @@ Return setting
 
 <span id="qiskit.aqua.components.optimizers.ADAM.get_support_level" />
 
-`ADAM.get_support_level()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/adam_amsgrad.py "view source code")
+`ADAM.get_support_level()`
 
 Return support level dictionary
 
@@ -133,7 +133,7 @@ grad
 
 <span id="qiskit.aqua.components.optimizers.ADAM.load_params" />
 
-`ADAM.load_params(load_dir)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/adam_amsgrad.py "view source code")
+`ADAM.load_params(load_dir)`
 
 load params
 
@@ -141,13 +141,13 @@ load params
 
 <span id="qiskit.aqua.components.optimizers.ADAM.minimize" />
 
-`ADAM.minimize(objective_function, initial_point, gradient_function)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/adam_amsgrad.py "view source code")
+`ADAM.minimize(objective_function, initial_point, gradient_function)`
 
 ### optimize
 
 <span id="qiskit.aqua.components.optimizers.ADAM.optimize" />
 
-`ADAM.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/adam_amsgrad.py "view source code")
+`ADAM.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
 Perform optimization.
 
@@ -185,7 +185,7 @@ Print algorithm-specific options.
 
 <span id="qiskit.aqua.components.optimizers.ADAM.save_params" />
 
-`ADAM.save_params(snapshot_dir)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/adam_amsgrad.py "view source code")
+`ADAM.save_params(snapshot_dir)`
 
 save params
 

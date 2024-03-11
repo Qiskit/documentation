@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.PulseError
 
 <span id="qiskit.pulse.PulseError" />
 
-`PulseError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/exceptions.py "view source code")
+`PulseError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/exceptions.py "view source code")
 
 Errors raised by the pulse module.
 

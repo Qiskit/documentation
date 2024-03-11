@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.algorithms.GroundStateSolver
 
 <span id="qiskit.chemistry.algorithms.GroundStateSolver" />
 
-`GroundStateSolver(transformation)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/ground_state_solvers/ground_state_solver.py "view source code")
+`GroundStateSolver(transformation)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/ground_state_solvers/ground_state_solver.py "view source code")
 
 The ground state calculation interface
 

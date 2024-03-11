@@ -12,7 +12,7 @@ python_api_name: qiskit.optimization.algorithms.ADMMState
 
 <span id="qiskit.optimization.algorithms.ADMMState" />
 
-`ADMMState(op, rho_initial)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/algorithms/admm_optimizer.py "view source code")
+`ADMMState(op, rho_initial)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/algorithms/admm_optimizer.py "view source code")
 
 Internal computation state of the ADMM implementation.
 

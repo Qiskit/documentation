@@ -10,7 +10,7 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
 <span id="qiskit.dagcircuit.DAGCircuit" />
 
-`DAGCircuit`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/dagcircuit/dagcircuit.py "view source code")
+`DAGCircuit` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/dagcircuit/dagcircuit.py "view source code")
 
 Quantum circuit as a directed acyclic graph.
 

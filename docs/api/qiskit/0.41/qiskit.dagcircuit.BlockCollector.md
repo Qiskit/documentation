@@ -10,7 +10,7 @@ python_api_name: qiskit.dagcircuit.BlockCollector
 
 <span id="qiskit.dagcircuit.BlockCollector" />
 
-`BlockCollector(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/dagcircuit/collect_blocks.py "view source code")
+`BlockCollector(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/dagcircuit/collect_blocks.py "view source code")
 
 Bases: `object`
 
@@ -36,7 +36,7 @@ In general, there are multiple ways to collect maximal blocks. The approaches us
 
 <span id="qiskit.dagcircuit.BlockCollector.collect_all_matching_blocks" />
 
-`BlockCollector.collect_all_matching_blocks(filter_fn, split_blocks=True, min_block_size=2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/dagcircuit/collect_blocks.py "view source code")
+`BlockCollector.collect_all_matching_blocks(filter_fn, split_blocks=True, min_block_size=2)`
 
 Collects all blocks that match a given filtering function filter\_fn.
 
@@ -50,7 +50,7 @@ Returns the list of matching blocks only.
 
 <span id="qiskit.dagcircuit.BlockCollector.collect_matching_block" />
 
-`BlockCollector.collect_matching_block(filter_fn)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/dagcircuit/collect_blocks.py "view source code")
+`BlockCollector.collect_matching_block(filter_fn)`
 
 Iteratively collects the largest block of input nodes
 

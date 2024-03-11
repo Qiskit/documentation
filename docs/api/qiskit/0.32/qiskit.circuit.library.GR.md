@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.GR
 
 <span id="qiskit.circuit.library.GR" />
 
-`GR(num_qubits, theta, phi)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/generalized_gates/gr.py "view source code")
+`GR(num_qubits, theta, phi)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/generalized_gates/gr.py "view source code")
 
 Bases: `qiskit.circuit.quantumcircuit.QuantumCircuit`
 

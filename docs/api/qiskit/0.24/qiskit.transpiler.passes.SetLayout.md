@@ -12,7 +12,7 @@ python_api_name: qiskit.transpiler.passes.SetLayout
 
 <span id="qiskit.transpiler.passes.SetLayout" />
 
-`SetLayout(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/transpiler/passes/layout/set_layout.py "view source code")
+`SetLayout(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/transpiler/passes/layout/set_layout.py "view source code")
 
 Set the `layout` property to the given layout.
 

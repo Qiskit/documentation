@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.IBMQFactory
 
 <span id="qiskit.providers.ibmq.IBMQFactory" />
 
-`IBMQFactory`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.16/qiskit/providers/ibmq/ibmqfactory.py "view source code")
+`IBMQFactory` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.16/qiskit/providers/ibmq/ibmqfactory.py "view source code")
 
 Bases: `object`
 
@@ -24,7 +24,7 @@ IBMQFactory constructor.
 
 <span id="qiskit.providers.ibmq.IBMQFactory.active_account" />
 
-`IBMQFactory.active_account()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.16/qiskit/providers/ibmq/ibmqfactory.py "view source code")
+`IBMQFactory.active_account()`
 
 Return the IBM Quantum Experience account currently in use for the session.
 
@@ -40,7 +40,7 @@ Information about the account currently in the session.
 
 <span id="qiskit.providers.ibmq.IBMQFactory.delete_account" />
 
-`static IBMQFactory.delete_account()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.16/qiskit/providers/ibmq/ibmqfactory.py "view source code")
+`static IBMQFactory.delete_account()`
 
 Delete the saved account from disk.
 
@@ -58,7 +58,7 @@ Delete the saved account from disk.
 
 <span id="qiskit.providers.ibmq.IBMQFactory.disable_account" />
 
-`IBMQFactory.disable_account()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.16/qiskit/providers/ibmq/ibmqfactory.py "view source code")
+`IBMQFactory.disable_account()`
 
 Disable the account currently in use for the session.
 
@@ -74,7 +74,7 @@ Disable the account currently in use for the session.
 
 <span id="qiskit.providers.ibmq.IBMQFactory.enable_account" />
 
-`IBMQFactory.enable_account(token, url='https://auth.quantum-computing.ibm.com/api', hub=None, group=None, project=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.16/qiskit/providers/ibmq/ibmqfactory.py "view source code")
+`IBMQFactory.enable_account(token, url='https://auth.quantum-computing.ibm.com/api', hub=None, group=None, project=None, **kwargs)`
 
 Authenticate against IBM Quantum Experience for use during the session.
 
@@ -119,7 +119,7 @@ If hub, group, and project are specified, the corresponding provider is returned
 
 <span id="qiskit.providers.ibmq.IBMQFactory.get_provider" />
 
-`IBMQFactory.get_provider(hub=None, group=None, project=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.16/qiskit/providers/ibmq/ibmqfactory.py "view source code")
+`IBMQFactory.get_provider(hub=None, group=None, project=None)`
 
 Return a provider for a single hub/group/project combination.
 
@@ -145,7 +145,7 @@ A provider that matches the specified criteria.
 
 <span id="qiskit.providers.ibmq.IBMQFactory.load_account" />
 
-`IBMQFactory.load_account()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.16/qiskit/providers/ibmq/ibmqfactory.py "view source code")
+`IBMQFactory.load_account()`
 
 Authenticate against IBM Quantum Experience from stored credentials.
 
@@ -169,7 +169,7 @@ If the configuration file specifies a default provider, it is returned. Otherwis
 
 <span id="qiskit.providers.ibmq.IBMQFactory.providers" />
 
-`IBMQFactory.providers(hub=None, group=None, project=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.16/qiskit/providers/ibmq/ibmqfactory.py "view source code")
+`IBMQFactory.providers(hub=None, group=None, project=None)`
 
 Return a list of providers, subject to optional filtering.
 
@@ -191,7 +191,7 @@ A list of providers that match the specified criteria.
 
 <span id="qiskit.providers.ibmq.IBMQFactory.save_account" />
 
-`static IBMQFactory.save_account(token, url='https://auth.quantum-computing.ibm.com/api', hub=None, group=None, project=None, overwrite=False, **kwargs)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.16/qiskit/providers/ibmq/ibmqfactory.py "view source code")
+`static IBMQFactory.save_account(token, url='https://auth.quantum-computing.ibm.com/api', hub=None, group=None, project=None, overwrite=False, **kwargs)`
 
 Save the account to disk for future use.
 
@@ -232,7 +232,7 @@ Save the account to disk for future use.
 
 <span id="qiskit.providers.ibmq.IBMQFactory.stored_account" />
 
-`static IBMQFactory.stored_account()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.16/qiskit/providers/ibmq/ibmqfactory.py "view source code")
+`static IBMQFactory.stored_account()`
 
 List the account stored on disk.
 
@@ -253,7 +253,7 @@ A dictionary with information about the account stored on disk.
 
 <span id="qiskit.providers.ibmq.IBMQFactory.update_account" />
 
-`static IBMQFactory.update_account(force=False)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.16/qiskit/providers/ibmq/ibmqfactory.py "view source code")
+`static IBMQFactory.update_account(force=False)`
 
 Interactive helper for migrating stored credentials to IBM Quantum Experience v2.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeTokyo
 
 <span id="qiskit.providers.fake_provider.FakeTokyo" />
 
-`qiskit.providers.fake_provider.FakeTokyo`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/providers/fake_provider/backends/tokyo/fake_tokyo.py "view source code")
+`qiskit.providers.fake_provider.FakeTokyo` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/providers/fake_provider/backends/tokyo/fake_tokyo.py "view source code")
 
 Bases: `FakeBackend`
 

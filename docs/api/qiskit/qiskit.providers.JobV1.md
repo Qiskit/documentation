@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.JobV1
 
 <span id="qiskit.providers.JobV1" />
 
-`qiskit.providers.JobV1(backend, job_id, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/providers/job.py "view source code")
+`qiskit.providers.JobV1(backend, job_id, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/providers/job.py "view source code")
 
 Bases: [`Job`](qiskit.providers.Job "qiskit.providers.job.Job"), [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 
@@ -22,7 +22,7 @@ Initializes the asynchronous job.
 
 **Parameters**
 
-*   **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.backend.Backend") *| None*) – the backend used to run the job.
+*   **backend** (*Optional\[*[*Backend*](qiskit.providers.Backend "qiskit.providers.Backend")*]*) – the backend used to run the job.
 *   **job\_id** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – a unique id in the context of the backend used to run the job.
 *   **kwargs** – Any key value metadata to associate with this job.
 
@@ -112,6 +112,10 @@ Return a unique id identifying the job.
 
 Return the results of the job.
 
+**Return type**
+
+[Result](qiskit.result.Result "qiskit.result.Result")
+
 ### running
 
 <span id="qiskit.providers.JobV1.running" />
@@ -131,6 +135,10 @@ Return whether the job is actively running.
 `abstract status()`
 
 Return the status of the job, among the values of `JobStatus`.
+
+**Return type**
+
+[*JobStatus*](qiskit.providers.JobStatus "qiskit.providers.jobstatus.JobStatus")
 
 ### submit
 

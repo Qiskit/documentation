@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.library.ZGate
 
 <span id="qiskit.circuit.library.ZGate" />
 
-`ZGate(label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/standard_gates/z.py "view source code")
+`ZGate(label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/standard_gates/z.py "view source code")
 
 The single-qubit Pauli-Z gate ($\sigma_z$).
 
@@ -50,8 +50,8 @@ Equivalent to a $\pi$ radian rotation about the Z axis.
 The gate is equivalent to a phase flip.
 
 $$
-\begin{split}\vert 0\rangle \rightarrow \vert 0\rangle \\
-\vert 1\rangle \rightarrow -\vert 1\rangle\end{split}
+\begin{split}|0\rangle \rightarrow |0\rangle \\
+|1\rangle \rightarrow -|1\rangle\end{split}
 $$
 
 Create new Z gate.

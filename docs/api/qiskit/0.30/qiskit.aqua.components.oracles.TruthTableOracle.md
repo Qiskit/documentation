@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.oracles.TruthTableOracle
 
 <span id="qiskit.aqua.components.oracles.TruthTableOracle" />
 
-`TruthTableOracle(bitmaps, optimization=False, mct_mode='basic')`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/oracles/truth_table_oracle.py "view source code")
+`TruthTableOracle(bitmaps, optimization=False, mct_mode='basic')` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/oracles/truth_table_oracle.py "view source code")
 
 Bases: `qiskit.aqua.components.oracles.oracle.Oracle`
 
@@ -46,7 +46,7 @@ Regarding circuit optimization and mct usages, the truth table oracle is similar
 
 <span id="qiskit.aqua.components.oracles.TruthTableOracle.construct_circuit" />
 
-`TruthTableOracle.construct_circuit()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/oracles/truth_table_oracle.py "view source code")
+`TruthTableOracle.construct_circuit()`
 
 construct circuit
 
@@ -54,7 +54,7 @@ construct circuit
 
 <span id="qiskit.aqua.components.oracles.TruthTableOracle.evaluate_classically" />
 
-`TruthTableOracle.evaluate_classically(measurement)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/oracles/truth_table_oracle.py "view source code")
+`TruthTableOracle.evaluate_classically(measurement)`
 
 evaluate classical
 

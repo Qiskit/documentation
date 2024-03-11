@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.feature_maps.self_product
 
 <span id="qiskit.aqua.components.feature_maps.self_product" />
 
-`self_product(x)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/feature_maps/data_mapping.py "view source code")
+`self_product(x)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/feature_maps/data_mapping.py "view source code")
 
 Define a function map from R^n to R.
 

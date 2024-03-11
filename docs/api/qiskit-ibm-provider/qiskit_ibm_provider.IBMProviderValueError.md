@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_provider.IBMProviderValueError
 
 <span id="qiskit_ibm_provider.IBMProviderValueError" />
 
-`IBMProviderValueError(*message)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/exceptions.py "view source code")
+`IBMProviderValueError(*message)` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/exceptions.py#L36-L39 "view source code")
 
 Value errors raised by IBMProvider.
 

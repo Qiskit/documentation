@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.expectations.ExpectationBase
 
 <span id="qiskit.opflow.expectations.ExpectationBase" />
 
-`ExpectationBase`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/expectations/expectation_base.py "view source code")
+`ExpectationBase` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/expectations/expectation_base.py "view source code")
 
 Bases: [`ConverterBase`](qiskit.opflow.converters.ConverterBase "qiskit.opflow.converters.converter_base.ConverterBase")
 
@@ -28,7 +28,7 @@ Deprecated: A base for Expectation value converters. Expectations are converters
 
 <span id="qiskit.opflow.expectations.ExpectationBase.compute_variance" />
 
-`abstract ExpectationBase.compute_variance(exp_op)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/expectations/expectation_base.py "view source code")
+`abstract ExpectationBase.compute_variance(exp_op)`
 
 Compute the variance of the expectation estimator.
 
@@ -50,7 +50,7 @@ list | complex | [*ndarray*](https://numpy.org/doc/stable/reference/generated/nu
 
 <span id="qiskit.opflow.expectations.ExpectationBase.convert" />
 
-`abstract ExpectationBase.convert(operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/expectations/expectation_base.py "view source code")
+`abstract ExpectationBase.convert(operator)`
 
 Accept an Operator and return a new Operator with the measurements replaced by alternate methods to compute the expectation value.
 

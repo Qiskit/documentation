@@ -10,7 +10,7 @@ python_api_name: qiskit.qobj.QobjMeasurementOption
 
 <span id="qiskit.qobj.QobjMeasurementOption" />
 
-`QobjMeasurementOption(name, params=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/qobj/pulse_qobj.py "view source code")
+`QobjMeasurementOption(name, params=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/qobj/pulse_qobj.py "view source code")
 
 An individual measurement option.
 

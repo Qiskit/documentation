@@ -10,7 +10,7 @@ python_api_name: qiskit_aer.primitives.Estimator
 
 <span id="qiskit_aer.primitives.Estimator" />
 
-`Estimator(*, backend_options=None, transpile_options=None, run_options=None, approximation=False, skip_transpilation=False, abelian_grouping=True)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/primitives/estimator.py "view source code")
+`Estimator(*, backend_options=None, transpile_options=None, run_options=None, approximation=False, skip_transpilation=False, abelian_grouping=True)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/primitives/estimator.py "view source code")
 
 Bases: [`qiskit.primitives.base.base_estimator.BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.base.base_estimator.BaseEstimator")
 

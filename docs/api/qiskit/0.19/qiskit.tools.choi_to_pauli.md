@@ -10,7 +10,7 @@ python_api_name: qiskit.tools.choi_to_pauli
 
 <span id="qiskit.tools.choi_to_pauli" />
 
-`choi_to_pauli(choi, order=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/tools/qi/qi.py "view source code")
+`choi_to_pauli(choi, order=1)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/tools/qi/qi.py "view source code")
 
 Convert a Choi-matrix to a Pauli-basis superoperator.
 
@@ -19,10 +19,10 @@ Note that this function assumes that the Choi-matrix is defined in the standard 
 The resulting ‘rauli’ R acts on input states as
 
 $$
-\vert {\rho_{out}}_p\rangle = R \cdot \vert {\rho_{in}}_p\rangle.
+|{\rho_{out}}_p\rangle = R \cdot |{\rho_{in}}_p\rangle.
 $$
 
-where $\vert {\rho}\rangle =$ `vectorize(rho, method='pauli')` for order=1 and $\vert {\rho}\rangle =$ `vectorize(rho, method='pauli_weights')` for order=0.
+where $|{\rho}\rangle =$ `vectorize(rho, method='pauli')` for order=1 and $|{\rho}\rangle =$ `vectorize(rho, method='pauli_weights')` for order=0.
 
 **Parameters**
 

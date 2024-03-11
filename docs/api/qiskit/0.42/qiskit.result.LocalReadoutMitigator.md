@@ -10,7 +10,7 @@ python_api_name: qiskit.result.LocalReadoutMitigator
 
 <span id="qiskit.result.LocalReadoutMitigator" />
 
-`LocalReadoutMitigator(assignment_matrices=None, qubits=None, backend=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/result/mitigation/local_readout_mitigator.py "view source code")
+`LocalReadoutMitigator(assignment_matrices=None, qubits=None, backend=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/result/mitigation/local_readout_mitigator.py "view source code")
 
 Bases: [`qiskit.result.mitigation.base_readout_mitigator.BaseReadoutMitigator`](qiskit.result.BaseReadoutMitigator "qiskit.result.mitigation.base_readout_mitigator.BaseReadoutMitigator")
 
@@ -36,11 +36,11 @@ Initialize a LocalReadoutMitigator
 
 <span id="qiskit.result.LocalReadoutMitigator.assignment_matrix" />
 
-`LocalReadoutMitigator.assignment_matrix(qubits=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/result/mitigation/local_readout_mitigator.py "view source code")
+`LocalReadoutMitigator.assignment_matrix(qubits=None)`
 
 Return the measurement assignment matrix for specified qubits.
 
-The assignment matrix is the stochastic matrix $A$ which assigns a noisy measurement probability distribution to an ideal input measurement distribution: $P(i\vert j) = \langle i \vert  A \vert  j \rangle$.
+The assignment matrix is the stochastic matrix $A$ which assigns a noisy measurement probability distribution to an ideal input measurement distribution: $P(i|j) = \langle i | A | j \rangle$.
 
 **Parameters**
 
@@ -58,11 +58,11 @@ np.ndarray
 
 <span id="qiskit.result.LocalReadoutMitigator.expectation_value" />
 
-`LocalReadoutMitigator.expectation_value(data, diagonal=None, qubits=None, clbits=None, shots=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/result/mitigation/local_readout_mitigator.py "view source code")
+`LocalReadoutMitigator.expectation_value(data, diagonal=None, qubits=None, clbits=None, shots=None)`
 
 Compute the mitigated expectation value of a diagonal observable.
 
-This computes the mitigated estimator of $\langle O \rangle = \mbox{Tr}[\rho. O]$ of a diagonal observable $O = \sum_{x\in\{0, 1\}^n} O(x)\vert x\rangle\!\langle x\vert $.
+This computes the mitigated estimator of $\langle O \rangle = \mbox{Tr}[\rho. O]$ of a diagonal observable $O = \sum_{x\in\{0, 1\}^n} O(x)|x\rangle\!\langle x|$.
 
 **Parameters**
 
@@ -88,7 +88,7 @@ The diagonal observable $O$ is input using the `diagonal` kwarg as a list or Num
 
 <span id="qiskit.result.LocalReadoutMitigator.mitigation_matrix" />
 
-`LocalReadoutMitigator.mitigation_matrix(qubits=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/result/mitigation/local_readout_mitigator.py "view source code")
+`LocalReadoutMitigator.mitigation_matrix(qubits=None)`
 
 Return the measurement mitigation matrix for the specified qubits.
 
@@ -110,7 +110,7 @@ np.ndarray
 
 <span id="qiskit.result.LocalReadoutMitigator.quasi_probabilities" />
 
-`LocalReadoutMitigator.quasi_probabilities(data, qubits=None, clbits=None, shots=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/result/mitigation/local_readout_mitigator.py "view source code")
+`LocalReadoutMitigator.quasi_probabilities(data, qubits=None, clbits=None, shots=None)`
 
 Compute mitigated quasi probabilities value.
 
@@ -139,7 +139,7 @@ QuasiDistibution
 
 <span id="qiskit.result.LocalReadoutMitigator.stddev_upper_bound" />
 
-`LocalReadoutMitigator.stddev_upper_bound(shots, qubits=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/result/mitigation/local_readout_mitigator.py "view source code")
+`LocalReadoutMitigator.stddev_upper_bound(shots, qubits=None)`
 
 Return an upper bound on standard deviation of expval estimator.
 

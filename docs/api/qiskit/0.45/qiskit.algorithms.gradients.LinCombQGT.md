@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.gradients.LinCombQGT
 
 <span id="qiskit.algorithms.gradients.LinCombQGT" />
 
-`qiskit.algorithms.gradients.LinCombQGT(estimator, phase_fix=True, derivative_type=DerivativeType.COMPLEX, options=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/gradients/lin_comb/lin_comb_qgt.py "view source code")
+`qiskit.algorithms.gradients.LinCombQGT(estimator, phase_fix=True, derivative_type=DerivativeType.COMPLEX, options=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/gradients/lin_comb/lin_comb_qgt.py "view source code")
 
 Bases: [`BaseQGT`](qiskit.algorithms.gradients.BaseQGT "qiskit.algorithms.gradients.base.base_qgt.BaseQGT")
 
@@ -28,7 +28,7 @@ This method employs a linear combination of unitaries \[1].
 
 *   **estimator** ([*BaseEstimator*](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator")) – The estimator used to compute the QGT.
 
-*   **phase\_fix** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether to calculate the second term (phase fix) of the QGT, which is $\langle\partial_i \psi \vert  \psi \rangle \langle\psi \vert  \partial_j \psi \rangle$. Default to `True`.
+*   **phase\_fix** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether to calculate the second term (phase fix) of the QGT, which is $\langle\partial_i \psi | \psi \rangle \langle\psi | \partial_j \psi \rangle$. Default to `True`.
 
 *   **derivative\_type** (*DerivativeType*) –
 
@@ -37,22 +37,22 @@ This method employs a linear combination of unitaries \[1].
     *   `DerivativeType.REAL` computes
 
     $$
-    \mathrm{Re(QGT)}_{ij}= \mathrm{Re}[\langle \partial_i \psi \vert  \partial_j \psi \rangle
-        - \langle\partial_i \psi \vert  \psi \rangle \langle\psi \vert  \partial_j \psi \rangle].
+    \mathrm{Re(QGT)}_{ij}= \mathrm{Re}[\langle \partial_i \psi | \partial_j \psi \rangle
+        - \langle\partial_i \psi | \psi \rangle \langle\psi | \partial_j \psi \rangle].
     $$
 
     *   `DerivativeType.IMAG` computes
 
     $$
-    \mathrm{Re(QGT)}_{ij}= \mathrm{Im}[\langle \partial_i \psi \vert  \partial_j \psi \rangle
-        - \langle\partial_i \psi \vert  \psi \rangle \langle\psi \vert  \partial_j \psi \rangle].
+    \mathrm{Re(QGT)}_{ij}= \mathrm{Im}[\langle \partial_i \psi | \partial_j \psi \rangle
+        - \langle\partial_i \psi | \psi \rangle \langle\psi | \partial_j \psi \rangle].
     $$
 
     *   `DerivativeType.COMPLEX` computes
 
     $$
-    \mathrm{QGT}_{ij}= [\langle \partial_i \psi \vert  \partial_j \psi \rangle
-        - \langle\partial_i \psi \vert  \psi \rangle \langle\psi \vert  \partial_j \psi \rangle].
+    \mathrm{QGT}_{ij}= [\langle \partial_i \psi | \partial_j \psi \rangle
+        - \langle\partial_i \psi | \psi \rangle \langle\psi | \partial_j \psi \rangle].
     $$
 
 *   **options** ([*Options*](qiskit.providers.Options "qiskit.providers.Options") *| None*) – Backend runtime options used for circuit execution. The order of priority is: options in `run` method > QGT’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting.

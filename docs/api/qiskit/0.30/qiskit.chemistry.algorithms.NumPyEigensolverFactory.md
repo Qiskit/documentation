@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.algorithms.NumPyEigensolverFactory
 
 <span id="qiskit.chemistry.algorithms.NumPyEigensolverFactory" />
 
-`NumPyEigensolverFactory(filter_criterion=None, k=100, use_default_filter_criterion=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/excited_states_solvers/eigensolver_factories/numpy_eigensolver_factory.py "view source code")
+`NumPyEigensolverFactory(filter_criterion=None, k=100, use_default_filter_criterion=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/excited_states_solvers/eigensolver_factories/numpy_eigensolver_factory.py "view source code")
 
 Bases: `qiskit.chemistry.algorithms.excited_states_solvers.eigensolver_factories.eigensolver_factory.EigensolverFactory`
 
@@ -29,7 +29,7 @@ A factory to construct a NumPyEigensolver.
 
 <span id="qiskit.chemistry.algorithms.NumPyEigensolverFactory.get_solver" />
 
-`NumPyEigensolverFactory.get_solver(transformation)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/excited_states_solvers/eigensolver_factories/numpy_eigensolver_factory.py "view source code")
+`NumPyEigensolverFactory.get_solver(transformation)`
 
 Returns a NumPyEigensolver with the desired filter
 

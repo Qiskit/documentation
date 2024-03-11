@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.characterization.ZZFitter
 
 <span id="qiskit.ignis.characterization.ZZFitter" />
 
-`ZZFitter(backend_result, xdata, qubits, spectators, fit_p0, fit_bounds, time_unit='micro-seconds')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/characterization/hamiltonian/fitters.py "view source code")
+`ZZFitter(backend_result, xdata, qubits, spectators, fit_p0, fit_bounds, time_unit='micro-seconds')` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/characterization/hamiltonian/fitters.py "view source code")
 
 ZZ fitter
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.operators.legacy.Z2Symmetries
 
 <span id="qiskit.aqua.operators.legacy.Z2Symmetries" />
 
-`Z2Symmetries(symmetries, sq_paulis, sq_list, tapering_values=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/legacy/weighted_pauli_operator.py "view source code")
+`Z2Symmetries(symmetries, sq_paulis, sq_list, tapering_values=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/legacy/weighted_pauli_operator.py "view source code")
 
 Z2 Symmetries
 

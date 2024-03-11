@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.Isometry
 
 <span id="qiskit.circuit.library.Isometry" />
 
-`qiskit.circuit.library.Isometry(isometry, num_ancillas_zero, num_ancillas_dirty, epsilon=1e-10)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/generalized_gates/isometry.py "view source code")
+`qiskit.circuit.library.Isometry(isometry, num_ancillas_zero, num_ancillas_dirty, epsilon=1e-10)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/generalized_gates/isometry.py "view source code")
 
 Bases: [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 
@@ -29,7 +29,7 @@ The decomposition is based on \[1].
 **Parameters**
 
 *   **isometry** (*np.ndarray*) – An isometry from $m$ to :math\`n\` qubits, i.e., a complex `np.ndarray` of dimension $2^n \times 2^m$ with orthonormal columns (given in the computational basis specified by the order of the ancillas and the input qubits, where the ancillas are considered to be more significant than the input qubits).
-*   **num\_ancillas\_zero** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of additional ancillas that start in the state $\vert 0\rangle$ (the $n-m$ ancillas required for providing the output of the isometry are not accounted for here).
+*   **num\_ancillas\_zero** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of additional ancillas that start in the state $|0\rangle$ (the $n-m$ ancillas required for providing the output of the isometry are not accounted for here).
 *   **num\_ancillas\_dirty** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of additional ancillas that start in an arbitrary state.
 *   **epsilon** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Error tolerance of calculations.
 

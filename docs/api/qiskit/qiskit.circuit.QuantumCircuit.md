@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
 <span id="qiskit.circuit.QuantumCircuit" />
 
-`qiskit.circuit.QuantumCircuit(*regs, name=None, global_phase=0, metadata=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/quantumcircuit.py "view source code")
+`qiskit.circuit.QuantumCircuit(*regs, name=None, global_phase=0, metadata=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/quantumcircuit.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
@@ -137,29 +137,17 @@ a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitI
 
 QuantumCircuitData
 
-<span id="qiskit.circuit.QuantumCircuit.extension_lib" />
-
-### extension\_lib
-
-`= 'include "qelib1.inc";'`
-
 <span id="qiskit.circuit.QuantumCircuit.global_phase" />
 
 ### global\_phase
 
 Return the global phase of the current circuit scope in radians.
 
-<span id="qiskit.circuit.QuantumCircuit.header" />
-
-### header
-
-`= 'OPENQASM 2.0;'`
-
 <span id="qiskit.circuit.QuantumCircuit.instances" />
 
 ### instances
 
-`= 183`
+`= 182`
 
 <span id="qiskit.circuit.QuantumCircuit.layout" />
 
@@ -260,9 +248,6 @@ ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
 To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
 
 ```python
-```
-
-```python
 >>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector
 >>> x = ParameterVector("x", 12)
 >>> circuit = QuantumCircuit(1)
@@ -361,29 +346,31 @@ a handle to the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit
 
 ### assign\_parameters
 
-### assign\_parameters
-
 <span id="qiskit.circuit.QuantumCircuit.assign_parameters" />
 
 `assign_parameters(parameters: Mapping[Parameter, ParameterExpression | float] | Sequence[ParameterExpression | float], inplace: Literal[False] = False, *, flat_input: bool = False, strict: bool = True) → QuantumCircuit`
-
-<span id="qiskit.circuit.QuantumCircuit.assign_parameters" />
 
 `assign_parameters(parameters: Mapping[Parameter, ParameterExpression | float] | Sequence[ParameterExpression | float], inplace: Literal[True] = False, *, flat_input: bool = False, strict: bool = True) → None`
 
 Assign parameters to new parameters or values.
 
-If `parameters` is passed as a dictionary, the keys must be [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") instances in the current circuit. The values of the dictionary can either be numeric values or new parameter objects.
+If `parameters` is passed as a dictionary, the keys should be [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") instances in the current circuit. The values of the dictionary can either be numeric values or new parameter objects.
 
 If `parameters` is passed as a list or array, the elements are assigned to the current parameters in the order of [`parameters`](#qiskit.circuit.QuantumCircuit.parameters "qiskit.circuit.QuantumCircuit.parameters") which is sorted alphabetically (while respecting the ordering in [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") objects).
 
 The values can be assigned to the current circuit object or to a copy of it.
 
+<Admonition title="Note" type="note">
+  When `parameters` is given as a mapping, it is permissible to have keys that are strings of the parameter names; these will be looked up using [`get_parameter()`](#qiskit.circuit.QuantumCircuit.get_parameter "qiskit.circuit.QuantumCircuit.get_parameter"). You can also have keys that are [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") instances, and in this case, the dictionary value should be a sequence of values of the same length as the vector.
+
+  If you use either of these cases, you must leave the setting `flat_input=False`; changing this to `True` enables the fast path, where all keys must be [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") instances.
+</Admonition>
+
 **Parameters**
 
 *   **parameters** – Either a dictionary or iterable specifying the new parameter values.
 *   **inplace** – If False, a copy of the circuit with the bound parameters is returned. If True the circuit instance itself is modified.
-*   **flat\_input** – If `True` and `parameters` is a mapping type, it is assumed to be exactly a mapping of `{parameter: value}`. By default (`False`), the mapping may also contain [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") keys that point to a corresponding sequence of values, and these will be unrolled during the mapping.
+*   **flat\_input** – If `True` and `parameters` is a mapping type, it is assumed to be exactly a mapping of `{parameter: value}`. By default (`False`), the mapping may also contain [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") keys that point to a corresponding sequence of values, and these will be unrolled during the mapping, or string keys, which will be converted to [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") instances using [`get_parameter()`](#qiskit.circuit.QuantumCircuit.get_parameter "qiskit.circuit.QuantumCircuit.get_parameter").
 *   **strict** – If `False`, any parameters given in the mapping that are not used in the circuit will be ignored. If `True` (the default), an error will be raised indicating a logic error.
 
 **Raises**
@@ -455,39 +442,6 @@ handle to the added instructions.
 **Return type**
 
 [qiskit.circuit.InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
-
-### bind\_parameters
-
-<span id="qiskit.circuit.QuantumCircuit.bind_parameters" />
-
-`bind_parameters(values)`
-
-Assign numeric parameters to values yielding a new circuit.
-
-If the values are given as list or array they are bound to the circuit in the order of [`parameters`](#qiskit.circuit.QuantumCircuit.parameters "qiskit.circuit.QuantumCircuit.parameters") (see the docstring for more details).
-
-To assign new Parameter objects or bind the values in-place, without yielding a new circuit, use the [`assign_parameters()`](#qiskit.circuit.QuantumCircuit.assign_parameters "qiskit.circuit.QuantumCircuit.assign_parameters") method.
-
-<Admonition title="Deprecated since version 0.45.0" type="danger">
-  The method `qiskit.circuit.quantumcircuit.QuantumCircuit.bind_parameters()` is deprecated as of qiskit 0.45.0. It will be removed in the Qiskit 1.0.0 release. Use assign\_parameters() instead
-</Admonition>
-
-**Parameters**
-
-**values** ([*Mapping*](https://docs.python.org/3/library/typing.html#typing.Mapping "(in Python v3.12)")*\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.parameter.Parameter")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] |* [*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – `{parameter: value, ...}` or `[value1, value2, ...]`
-
-**Raises**
-
-*   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If values is a dict and contains parameters not present in the circuit.
-*   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – If values contains a ParameterExpression.
-
-**Returns**
-
-Copy of self with assignment substitution.
-
-**Return type**
-
-[*QuantumCircuit*](#qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
 ### break\_loop
 
@@ -655,39 +609,6 @@ Return the prefix to use for auto naming.
 
 [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
 
-### cnot
-
-<span id="qiskit.circuit.QuantumCircuit.cnot" />
-
-`cnot(control_qubit, target_qubit, label=None, ctrl_state=None)`
-
-Apply [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate").
-
-For the full matrix form of this gate, see the underlying gate documentation.
-
-<Admonition title="Deprecated since version 0.45.0" type="danger">
-  The method `qiskit.circuit.quantumcircuit.QuantumCircuit.cnot()` is deprecated as of qiskit 0.45.0. It will be removed in the Qiskit 1.0.0 release. Use QuantumCircuit.cx as direct replacement.
-</Admonition>
-
-**Parameters**
-
-*   **control\_qubit** (*QubitSpecifier*) – The qubit(s) used as the control.
-*   **target\_qubit** (*QubitSpecifier*) – The qubit(s) targeted by the gate.
-*   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – The string label of the gate in the circuit.
-*   **ctrl\_state** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The control state in decimal, or as a bitstring (e.g. ‘1’). Defaults to controlling on the ‘1’ state.
-
-**Returns**
-
-A handle to the instructions created.
-
-**Return type**
-
-[InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
-
-<Admonition title="See also" type="note">
-  QuantumCircuit.cx: the same function with a different name.
-</Admonition>
-
 ### compose
 
 <span id="qiskit.circuit.QuantumCircuit.compose" />
@@ -772,7 +693,7 @@ A handle to the instruction created.
 
 <span id="qiskit.circuit.QuantumCircuit.control" />
 
-`control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+`control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=False)`
 
 Control this circuit on `num_ctrl_qubits` qubits.
 
@@ -781,6 +702,7 @@ Control this circuit on `num_ctrl_qubits` qubits.
 *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of control qubits.
 *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – An optional label to give the controlled operation for visualization.
 *   **ctrl\_state** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *or*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The control state in decimal or as a bitstring (e.g. ‘111’). If None, use `2**num_ctrl_qubits - 1`.
+*   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – indicates whether the controlled gate can be implemented as an annotated gate.
 
 **Returns**
 
@@ -1259,37 +1181,6 @@ Depth of circuit.
 
 The circuit depth and the DAG depth need not be the same.
 
-### diagonal
-
-<span id="qiskit.circuit.QuantumCircuit.diagonal" />
-
-`diagonal(diag, qubit)`
-
-Attach a diagonal gate to a circuit.
-
-The decomposition is based on Theorem 7 given in “Synthesis of Quantum Logic Circuits” by Shende et al. ([https://arxiv.org/pdf/quant-ph/0406176.pdf](https://arxiv.org/pdf/quant-ph/0406176.pdf)).
-
-<Admonition title="Deprecated since version 0.46.0" type="danger">
-  The method `qiskit.circuit.quantumcircuit.QuantumCircuit.diagonal()` is deprecated as of qiskit 0.46.0. It will be removed in the 1.0.0 release. Instead, compose the circuit with a qiskit.circuit.library.Diagonal circuit.
-</Admonition>
-
-**Parameters**
-
-*   **diag** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – list of the 2^k diagonal entries (for a diagonal gate on k qubits). Must contain at least two entries
-*   **qubit** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – list of k qubits the diagonal is acting on (the order of the qubits specifies the computational basis in which the diagonal gate is provided: the first element in diag acts on the state where all the qubits in q are in the state 0, the second entry acts on the state where all the qubits q\[1],…,q\[k-1] are in the state zero and q\[0] is in the state 1, and so on)
-
-**Returns**
-
-the diagonal gate which was attached to the circuit.
-
-**Return type**
-
-[QuantumCircuit](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**Raises**
-
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the list of the diagonal entries or the qubit list is in bad format; if the number of diagonal entries is not 2^k, where k denotes the number of qubits
-
 ### draw
 
 <span id="qiskit.circuit.QuantumCircuit.draw" />
@@ -1312,41 +1203,64 @@ Draw the quantum circuit. Use the output parameter to choose the drawing format:
 
 **Parameters**
 
-*   **output** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – select the output method to use for drawing the circuit. Valid choices are `text`, `mpl`, `latex`, `latex_source`. By default the text drawer is used unless the user config file (usually `~/.qiskit/settings.conf`) has an alternative backend set as the default. For example, `circuit_drawer = latex`. If the output kwarg is set, that backend will always be used over the default in the user config file.
-*   **scale** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – scale of image to draw (shrink if \< 1.0). Only used by the mpl, latex and latex\_source outputs. Defaults to 1.0.
-*   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – file path to save image to. Defaults to None.
-*   **style** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")  *or*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – dictionary of style or file name of style json file. This option is only used by the mpl or latex output type. If style is a str, it is used as the path to a json file which contains a style dict. The file will be opened, parsed, and then any style elements in the dict will replace the default values in the input dict. A file to be loaded must end in `.json`, but the name entered here can omit `.json`. For example, `style='iqp.json'` or `style='iqp'`. If style is a dict and the `'name'` key is set, that name will be used to load a json file, followed by loading the other items in the style dict. For example, `style={'name': 'iqp'}`. If style is not a str and name is not a key in the style dict, then the default value from the user config file (usually `~/.qiskit/settings.conf`) will be used, for example, `circuit_mpl_style = iqp`. If none of these are set, the clifford style will be used. The search path for style json files can be specified in the user config, for example, `circuit_mpl_style_path = /home/user/styles:/home/user`. See: [`DefaultStyle`](qiskit.visualization.circuit.qcstyle.DefaultStyle "qiskit.visualization.circuit.qcstyle.DefaultStyle") for more information on the contents.
-*   **interactive** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to true, show the circuit in a new window (for mpl this depends on the matplotlib backend being used supporting this). Note when used with either the text or the latex\_source output type this has no effect and will be silently ignored. Defaults to False.
-*   **reverse\_bits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to True, reverse the bit order inside registers for the output visualization. Defaults to False unless the user config file (usually `~/.qiskit/settings.conf`) has an alternative value set. For example, `circuit_reverse_bits = True`.
-*   **plot\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – enable/disable drawing barriers in the output circuit. Defaults to True.
-*   **justify** (*string*) – options are `left`, `right` or `none`. If anything else is supplied, it defaults to left justified. It refers to where gates should be placed in the output circuit if there is an option. `none` results in each gate being placed in its own column.
-*   **vertical\_compression** (*string*) – `high`, `medium` or `low`. It merges the lines generated by the text output so the drawing will take less vertical room. Default is `medium`. Only used by the text output, will be silently ignored otherwise.
-*   **idle\_wires** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – include idle wires (wires with no circuit elements) in output visualization. Default is True.
-*   **with\_layout** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – include layout information, with labels on the physical layout. Default is True.
-*   **fold** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – sets pagination. It can be disabled using -1. In text, sets the length of the lines. This is useful when the drawing does not fit in the console. If None (default), it will try to guess the console width using `shutil.get_terminal_size()`. However, if running in jupyter, the default line length is set to 80 characters. In mpl, it is the number of (visual) layers before folding. Default is 25.
-*   **ax** ([*matplotlib.axes.Axes*](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html#matplotlib.axes.Axes "(in Matplotlib v3.8.2)")) – Only used by the mpl backend. An optional Axes object to be used for the visualization output. If none is specified, a new matplotlib Figure will be created and used. Additionally, if specified there will be no returned Figure since it is redundant.
-*   **initial\_state** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Optional. Adds `|0>` in the beginning of the wire. Default is False.
-*   **cregbundle** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Optional. If set True, bundle classical registers. Default is True, except for when `output` is set to `"text"`.
-*   **wire\_order** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – Optional. A list of integers used to reorder the display of the bits. The list must have an entry for every bit with the bits in the range 0 to (`num_qubits` + `num_clbits`).
-*   **expr\_len** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Optional. The number of characters to display if an [`Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") is used for the condition in a [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp"). If this number is exceeded, the string will be truncated at that number and ‘…’ added to the end.
+*   **output** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Select the output method to use for drawing the circuit. Valid choices are `text`, `mpl`, `latex`, `latex_source`. By default the text drawer is used unless the user config file (usually `~/.qiskit/settings.conf`) has an alternative backend set as the default. For example, `circuit_drawer = latex`. If the output kwarg is set, that backend will always be used over the default in the user config file.
+
+*   **scale** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – Scale of image to draw (shrink if `< 1.0`). Only used by the `mpl`, `latex` and `latex_source` outputs. Defaults to `1.0`.
+
+*   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – File path to save image to. Defaults to `None` (result not saved in a file).
+
+*   **style** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) –
+
+    Style name, file name of style JSON file, or a dictionary specifying the style.
+
+    *   The supported style names are `"iqp"` (default), `"iqp-dark"`, `"clifford"`, `"textbook"` and `"bw"`.
+    *   If given a JSON file, e.g. `my_style.json` or `my_style` (the `.json` extension may be omitted), this function attempts to load the style dictionary from that location. Note, that the JSON file must completely specify the visualization specifications. The file is searched for in `qiskit/visualization/circuit/styles`, the current working directory, and the location specified in `~/.qiskit/settings.conf`.
+    *   If a dictionary, every entry overrides the default configuration. If the `"name"` key is given, the default configuration is given by that style. For example, `{"name": "textbook", "subfontsize": 5}` loads the `"texbook"` style and sets the subfontsize (e.g. the gate angles) to `5`.
+    *   If `None` the default style `"iqp"` is used or, if given, the default style specified in `~/.qiskit/settings.conf`.
+
+*   **interactive** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – When set to `True`, show the circuit in a new window (for `mpl` this depends on the matplotlib backend being used supporting this). Note when used with either the text or the `latex_source` output type this has no effect and will be silently ignored. Defaults to `False`.
+
+*   **reverse\_bits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – When set to `True`, reverse the bit order inside registers for the output visualization. Defaults to `False` unless the user config file (usually `~/.qiskit/settings.conf`) has an alternative value set. For example, `circuit_reverse_bits = True`.
+
+*   **plot\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Enable/disable drawing barriers in the output circuit. Defaults to `True`.
+
+*   **justify** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Options are `left`, `right` or `none`. If anything else is supplied, it defaults to left justified. It refers to where gates should be placed in the output circuit if there is an option. `none` results in each gate being placed in its own column.
+
+*   **vertical\_compression** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – `high`, `medium` or `low`. It merges the lines generated by the text output so the drawing will take less vertical room. Default is `medium`. Only used by the `text` output, will be silently ignored otherwise.
+
+*   **idle\_wires** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Include idle wires (wires with no circuit elements) in output visualization. Default is `True`.
+
+*   **with\_layout** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Include layout information, with labels on the physical layout. Default is `True`.
+
+*   **fold** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – Sets pagination. It can be disabled using -1. In `text`, sets the length of the lines. This is useful when the drawing does not fit in the console. If None (default), it will try to guess the console width using `shutil.get_terminal_size()`. However, if running in jupyter, the default line length is set to 80 characters. In `mpl`, it is the number of (visual) layers before folding. Default is 25.
+
+*   **ax** (*Any | None*) – Only used by the mpl backend. An optional `matplotlib.axes.Axes` object to be used for the visualization output. If none is specified, a new matplotlib Figure will be created and used. Additionally, if specified there will be no returned Figure since it is redundant.
+
+*   **initial\_state** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Adds $|0\rangle$ in the beginning of the qubit wires and $0$ to classical wires. Default is `False`.
+
+*   **cregbundle** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – If set to `True`, bundle classical registers. Default is `True`, except for when `output` is set to `"text"`.
+
+*   **wire\_order** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – A list of integers used to reorder the display of the bits. The list must have an entry for every bit with the bits in the range 0 to (`num_qubits` + `num_clbits`).
+
+*   **expr\_len** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of characters to display if an [`Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") is used for the condition in a [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp"). If this number is exceeded, the string will be truncated at that number and ‘…’ added to the end.
 
 **Returns**
 
 `TextDrawing` or `matplotlib.figure` or `PIL.Image` or [`str`](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)"):
 
-*   **TextDrawing (output=’text’)**
+*   **`TextDrawing` (if `output='text'`)**
 
     A drawing that can be printed as ascii art.
 
-*   **matplotlib.figure.Figure (output=’mpl’)**
+*   **`matplotlib.figure.Figure` (if `output='mpl'`)**
 
     A matplotlib figure object for the circuit diagram.
 
-*   **PIL.Image (output=’latex’)**
+*   **`PIL.Image` (if `output='latex`’)**
 
     An in-memory representation of the image of the circuit diagram.
 
-*   **str (output=’latex\_source’)**
+*   **`str` (if `output='latex_source'`)**
 
     The LaTeX source code for visualizing the circuit diagram.
 
@@ -1359,11 +1273,9 @@ Draw the quantum circuit. Use the output parameter to choose the drawing format:
 
 ```python
 from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
-q = QuantumRegister(1)
-c = ClassicalRegister(1)
-qc = QuantumCircuit(q, c)
-qc.h(q)
-qc.measure(q, c)
+qc = QuantumCircuit(1, 1)
+qc.h(0)
+qc.measure(0, 0)
 qc.draw(output='mpl', style={'backgroundcolor': '#EEEEEE'})
 ```
 
@@ -1429,13 +1341,9 @@ The circuit index of an [`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.cir
 
 ### for\_loop
 
-### for\_loop
-
 <span id="qiskit.circuit.QuantumCircuit.for_loop" />
 
-`for_loop(indexset: Iterable[int], loop_parameter: Parameter | None, body: None, qubits: None, clbits: None, *, label: str | None) → qiskit.circuit.controlflow.for_loop.ForLoopContext`
-
-<span id="qiskit.circuit.QuantumCircuit.for_loop" />
+`for_loop(indexset: Iterable[int], loop_parameter: Parameter | None, body: None, qubits: None, clbits: None, *, label: str | None) → ForLoopContext`
 
 `for_loop(indexset: Iterable[int], loop_parameter: Parameter | None, body: QuantumCircuit, qubits: Sequence[Qubit | QuantumRegister | int | slice | Sequence[Qubit | int]], clbits: Sequence[Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int]], *, label: str | None) → InstructionSet`
 
@@ -1485,38 +1393,6 @@ depending on the call signature, either a context manager for creating the for l
 **Raises**
 
 [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if an incorrect calling convention is used.
-
-### fredkin
-
-<span id="qiskit.circuit.QuantumCircuit.fredkin" />
-
-`fredkin(control_qubit, target_qubit1, target_qubit2)`
-
-Apply [`CSwapGate`](qiskit.circuit.library.CSwapGate "qiskit.circuit.library.CSwapGate").
-
-For the full matrix form of this gate, see the underlying gate documentation.
-
-<Admonition title="Deprecated since version 0.45.0" type="danger">
-  The method `qiskit.circuit.quantumcircuit.QuantumCircuit.fredkin()` is deprecated as of qiskit 0.45.0. It will be removed in the Qiskit 1.0.0 release. Use QuantumCircuit.cswap as direct replacement.
-</Admonition>
-
-**Parameters**
-
-*   **control\_qubit** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) used as the control.
-*   **target\_qubit1** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) targeted by the gate.
-*   **target\_qubit2** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) targeted by the gate.
-
-**Returns**
-
-A handle to the instructions created.
-
-**Return type**
-
-[*InstructionSet*](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
-
-<Admonition title="See also" type="note">
-  QuantumCircuit.cswap: the same function with a different name.
-</Admonition>
 
 ### from\_instructions
 
@@ -1611,6 +1487,56 @@ list of (instruction, qargs, cargs).
 
 [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")([tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)"))
 
+### get\_parameter
+
+<span id="qiskit.circuit.QuantumCircuit.get_parameter" />
+
+`get_parameter(name: str, default: T) → Parameter | T`
+
+`get_parameter(name: str, default: ellipsis = Ellipsis) → Parameter`
+
+Retrieve a compile-time parameter that is accessible in this circuit scope by name.
+
+**Parameters**
+
+*   **name** – the name of the parameter to retrieve.
+*   **default** – if given, this value will be returned if the parameter is not present. If it is not given, a [`KeyError`](https://docs.python.org/3/library/exceptions.html#KeyError "(in Python v3.12)") is raised instead.
+
+**Returns**
+
+The corresponding parameter.
+
+**Raises**
+
+[**KeyError**](https://docs.python.org/3/library/exceptions.html#KeyError "(in Python v3.12)") – if no default is given, but the parameter does not exist in the circuit.
+
+**Examples**
+
+Retrieve a parameter by name from a circuit:
+
+```python
+from qiskit.circuit import QuantumCircuit, Parameter
+
+my_param = Parameter("my_param")
+
+# Create a parametrised circuit.
+qc = QuantumCircuit(1)
+qc.rx(my_param, 0)
+
+# We can use 'my_param' as a parameter, but let's say we've lost the Python object
+# and need to retrieve it.
+my_param_again = qc.get_parameter("my_param")
+
+assert my_param is my_param_again
+```
+
+Get a variable from a circuit by name, returning some default if it is not present:
+
+```python
+assert qc.get_parameter("my_param", None) is my_param
+assert qc.get_parameter("unknown_param", None) is None
+```
+
 ### h
 
 <span id="qiskit.circuit.QuantumCircuit.h" />
@@ -1633,35 +1559,6 @@ A handle to the instructions created.
 
 [*InstructionSet*](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
 
-### hamiltonian
-
-<span id="qiskit.circuit.QuantumCircuit.hamiltonian" />
-
-`hamiltonian(operator, time, qubits, label=None)`
-
-Apply hamiltonian evolution to qubits.
-
-This gate resolves to a [`UnitaryGate`](qiskit.circuit.library.UnitaryGate "qiskit.circuit.library.UnitaryGate") as $U(t) = exp(-i t H)$, which can be decomposed into basis gates if it is 2 qubits or less, or simulated directly in Aer for more qubits.
-
-<Admonition title="Deprecated since version 0.46.0" type="danger">
-  The method `qiskit.circuit.quantumcircuit.QuantumCircuit.hamiltonian()` is deprecated as of qiskit 0.46.0. It will be removed in the 1.0.0 release. Instead, append a qiskit.circuit.library.HamiltonianGate to the circuit.
-</Admonition>
-
-**Parameters**
-
-*   **operator** (*matrix or* [*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – a hermitian operator.
-*   **time** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *or*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – time evolution parameter.
-*   **qubits** (*Union\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*, Tuple\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]]*) – The circuit qubits to apply the transformation to.
-*   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – unitary name for backend \[Default: None].
-
-**Returns**
-
-The quantum circuit.
-
-**Return type**
-
-[QuantumCircuit](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
 ### has\_calibration\_for
 
 <span id="qiskit.circuit.QuantumCircuit.has_calibration_for" />
@@ -1669,6 +1566,32 @@ The quantum circuit.
 `has_calibration_for(instruction)`
 
 Return True if the circuit has a calibration defined for the instruction context. In this case, the operation does not need to be translated to the device basis.
+
+### has\_parameter
+
+<span id="qiskit.circuit.QuantumCircuit.has_parameter" />
+
+`has_parameter(name_or_param, /)`
+
+Check whether a parameter object exists in this circuit.
+
+**Parameters**
+
+**name\_or\_param** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")) – the parameter, or name of a parameter to check. If this is a [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") node, the parameter must be exactly the given one for this function to return `True`.
+
+**Returns**
+
+whether a matching parameter is assignable in this circuit.
+
+**Return type**
+
+[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+
+<Admonition title="See also" type="note">
+  **[`QuantumCircuit.get_parameter()`](#qiskit.circuit.QuantumCircuit.get_parameter "qiskit.circuit.QuantumCircuit.get_parameter")**
+
+  Retrieve the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") instance from this circuit by name.
+</Admonition>
 
 ### has\_register
 
@@ -1689,32 +1612,6 @@ True if the register is contained in this circuit.
 **Return type**
 
 [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
-
-### i
-
-<span id="qiskit.circuit.QuantumCircuit.i" />
-
-`i(qubit)`
-
-Apply [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate").
-
-For the full matrix form of this gate, see the underlying gate documentation.
-
-<Admonition title="Deprecated since version 0.45.0" type="danger">
-  The method `qiskit.circuit.quantumcircuit.QuantumCircuit.i()` is deprecated as of qiskit 0.45.0. It will be removed in the Qiskit 1.0.0 release. Use QuantumCircuit.id as direct replacement.
-</Admonition>
-
-**Parameters**
-
-**qubit** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) to apply the gate to.
-
-**Returns**
-
-A handle to the instructions created.
-
-**Return type**
-
-[*InstructionSet*](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
 
 ### id
 
@@ -1786,13 +1683,9 @@ A handle to the instruction created.
 
 ### if\_test
 
-### if\_test
-
 <span id="qiskit.circuit.QuantumCircuit.if_test" />
 
-`if_test(condition: tuple[ClassicalRegister | Clbit, int], true_body: None, qubits: None, clbits: None, *, label: str | None) → qiskit.circuit.controlflow.if_else.IfContext`
-
-<span id="qiskit.circuit.QuantumCircuit.if_test" />
+`if_test(condition: tuple[ClassicalRegister | Clbit, int], true_body: None, qubits: None, clbits: None, *, label: str | None) → IfContext`
 
 `if_test(condition: tuple[ClassicalRegister | Clbit, int], true_body: QuantumCircuit, qubits: Sequence[Qubit | QuantumRegister | int | slice | Sequence[Qubit | int]], clbits: Sequence[Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int]], *, label: str | None = None) → InstructionSet`
 
@@ -1854,17 +1747,17 @@ A handle to the instruction created.
 
 Initialize qubits in a specific state.
 
-Qubit initialization is done by first resetting the qubits to $\vert 0\rangle$ followed by calling [`StatePreparation`](qiskit.circuit.library.StatePreparation "qiskit.circuit.library.StatePreparation") class to prepare the qubits in a specified state. Both these steps are included in the [`Initialize`](qiskit.circuit.library.Initialize "qiskit.circuit.library.Initialize") instruction.
+Qubit initialization is done by first resetting the qubits to $|0\rangle$ followed by calling [`StatePreparation`](qiskit.circuit.library.StatePreparation "qiskit.circuit.library.StatePreparation") class to prepare the qubits in a specified state. Both these steps are included in the [`Initialize`](qiskit.circuit.library.Initialize "qiskit.circuit.library.Initialize") instruction.
 
 **Parameters**
 
-*   **params** (*Sequence\[*[*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")*] |* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) –
+*   **params** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector") *| Sequence\[*[*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")*] |* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) –
 
     The state to initialize to, can be either of the following.
 
     *   Statevector or vector of complex amplitudes to initialize to.
-    *   Labels of basis states of the Pauli eigenstates Z, X, Y. See [`Statevector.from_label()`](qiskit.quantum_info.Statevector#from_label "qiskit.quantum_info.Statevector.from_label"). Notice the order of the labels is reversed with respect to the qubit index to be applied to. Example label ‘01’ initializes the qubit zero to $\vert 1\rangle$ and the qubit one to $\vert 0\rangle$.
-    *   An integer that is used as a bitmap indicating which qubits to initialize to $\vert 1\rangle$. Example: setting params to 5 would initialize qubit 0 and qubit 2 to $\vert 1\rangle$ and qubit 1 to $\vert 0\rangle$.
+    *   Labels of basis states of the Pauli eigenstates Z, X, Y. See [`Statevector.from_label()`](qiskit.quantum_info.Statevector#from_label "qiskit.quantum_info.Statevector.from_label"). Notice the order of the labels is reversed with respect to the qubit index to be applied to. Example label ‘01’ initializes the qubit zero to $|1\rangle$ and the qubit one to $|0\rangle$.
+    *   An integer that is used as a bitmap indicating which qubits to initialize to $|1\rangle$. Example: setting params to 5 would initialize qubit 0 and qubit 2 to $|1\rangle$ and qubit 1 to $|0\rangle$.
 
 *   **qubits** (*Sequence\[QubitSpecifier] | None*) – Qubits to initialize. If `None` the initialization is applied to all qubits in the circuit.
 
@@ -1876,7 +1769,7 @@ A handle to the instructions created.
 
 **Examples**
 
-Prepare a qubit in the state $(\vert 0\rangle - \vert 1\rangle) / \sqrt{2}$.
+Prepare a qubit in the state $(|0\rangle - |1\rangle) / \sqrt{2}$.
 
 ```python
 import numpy as np
@@ -1895,7 +1788,7 @@ q_0: ┤ Initialize(0.70711,-0.70711) ├
      └──────────────────────────────┘
 ```
 
-Initialize from a string two qubits in the state $\vert 10\rangle$. The order of the labels is reversed with respect to qubit index. More information about labels for basis states are in [`Statevector.from_label()`](qiskit.quantum_info.Statevector#from_label "qiskit.quantum_info.Statevector.from_label").
+Initialize from a string two qubits in the state $|10\rangle$. The order of the labels is reversed with respect to qubit index. More information about labels for basis states are in [`Statevector.from_label()`](qiskit.quantum_info.Statevector#from_label "qiskit.quantum_info.Statevector.from_label").
 
 ```python
 import numpy as np
@@ -1941,11 +1834,15 @@ q_1: ┤1                                   ├
 
 <span id="qiskit.circuit.QuantumCircuit.inverse" />
 
-`inverse()`
+`inverse(annotated=False)`
 
 Invert (take adjoint of) this circuit.
 
 This is done by recursively inverting all gates.
+
+**Parameters**
+
+**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – indicates whether the inverse gate can be implemented as an annotated gate.
 
 **Returns**
 
@@ -1980,72 +1877,6 @@ q_0: ──────■──────┤ H ├
 q_1: ┤ RX(-1.57) ├─────
      └───────────┘
 ```
-
-### iso
-
-<span id="qiskit.circuit.QuantumCircuit.iso" />
-
-`iso(isometry, q_input, q_ancillas_for_output, q_ancillas_zero=None, q_ancillas_dirty=None, epsilon=1e-10)`
-
-Attach an arbitrary isometry from m to n qubits to a circuit. In particular, this allows to attach arbitrary unitaries on n qubits (m=n) or to prepare any state on n qubits (m=0). The decomposition used here was introduced by Iten et al. in [https://arxiv.org/abs/1501.06911](https://arxiv.org/abs/1501.06911).
-
-<Admonition title="Deprecated since version 0.46.0" type="danger">
-  The method `qiskit.circuit.quantumcircuit.QuantumCircuit.iso()` is deprecated as of qiskit 0.46.0. It will be removed in the 1.0.0 release. Instead, append a qiskit.circuit.library.Isometry to the circuit.
-</Admonition>
-
-**Parameters**
-
-*   **isometry** (*ndarray*) – an isometry from m to n qubits, i.e., a (complex) ndarray of dimension 2^n×2^m with orthonormal columns (given in the computational basis specified by the order of the ancillas and the input qubits, where the ancillas are considered to be more significant than the input qubits.).
-*   **q\_input** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of m qubits where the input to the isometry is fed in (empty list for state preparation).
-*   **q\_ancillas\_for\_output** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of n-m ancilla qubits that are used for the output of the isometry and which are assumed to start in the zero state. The qubits are listed with increasing significance.
-*   **q\_ancillas\_zero** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which are assumed to start in the zero state. Default is q\_ancillas\_zero = None.
-*   **q\_ancillas\_dirty** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which can start in an arbitrary state. Default is q\_ancillas\_dirty = None.
-*   **epsilon** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – error tolerance of calculations. Default is epsilon = \_EPS.
-
-**Returns**
-
-the isometry is attached to the quantum circuit.
-
-**Return type**
-
-[QuantumCircuit](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**Raises**
-
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the array is not an isometry of the correct size corresponding to the provided number of qubits.
-
-### isometry
-
-<span id="qiskit.circuit.QuantumCircuit.isometry" />
-
-`isometry(isometry, q_input, q_ancillas_for_output, q_ancillas_zero=None, q_ancillas_dirty=None, epsilon=1e-10)`
-
-Attach an arbitrary isometry from m to n qubits to a circuit. In particular, this allows to attach arbitrary unitaries on n qubits (m=n) or to prepare any state on n qubits (m=0). The decomposition used here was introduced by Iten et al. in [https://arxiv.org/abs/1501.06911](https://arxiv.org/abs/1501.06911).
-
-<Admonition title="Deprecated since version 0.46.0" type="danger">
-  The method `qiskit.circuit.quantumcircuit.QuantumCircuit.iso()` is deprecated as of qiskit 0.46.0. It will be removed in the 1.0.0 release. Instead, append a qiskit.circuit.library.Isometry to the circuit.
-</Admonition>
-
-**Parameters**
-
-*   **isometry** (*ndarray*) – an isometry from m to n qubits, i.e., a (complex) ndarray of dimension 2^n×2^m with orthonormal columns (given in the computational basis specified by the order of the ancillas and the input qubits, where the ancillas are considered to be more significant than the input qubits.).
-*   **q\_input** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of m qubits where the input to the isometry is fed in (empty list for state preparation).
-*   **q\_ancillas\_for\_output** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of n-m ancilla qubits that are used for the output of the isometry and which are assumed to start in the zero state. The qubits are listed with increasing significance.
-*   **q\_ancillas\_zero** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which are assumed to start in the zero state. Default is q\_ancillas\_zero = None.
-*   **q\_ancillas\_dirty** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which can start in an arbitrary state. Default is q\_ancillas\_dirty = None.
-*   **epsilon** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – error tolerance of calculations. Default is epsilon = \_EPS.
-
-**Returns**
-
-the isometry is attached to the quantum circuit.
-
-**Return type**
-
-[QuantumCircuit](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**Raises**
-
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the array is not an isometry of the correct size corresponding to the provided number of qubits.
 
 ### iswap
 
@@ -2155,51 +1986,6 @@ Apply Multiple-Controlled Z rotation gate
 **Raises**
 
 [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – parameter errors
-
-### mct
-
-<span id="qiskit.circuit.QuantumCircuit.mct" />
-
-`mct(control_qubits, target_qubit, ancilla_qubits=None, mode='noancilla')`
-
-Apply [`MCXGate`](qiskit.circuit.library.MCXGate "qiskit.circuit.library.MCXGate").
-
-The multi-cX gate can be implemented using different techniques, which use different numbers of ancilla qubits and have varying circuit depth. These modes are:
-
-*   `'noancilla'`: Requires 0 ancilla qubits.
-*   `'recursion'`: Requires 1 ancilla qubit if more than 4 controls are used, otherwise 0.
-*   `'v-chain'`: Requires 2 less ancillas than the number of control qubits.
-*   `'v-chain-dirty'`: Same as for the clean ancillas (but the circuit will be longer).
-
-For the full matrix form of this gate, see the underlying gate documentation.
-
-<Admonition title="Deprecated since version 0.45.0" type="danger">
-  The method `qiskit.circuit.quantumcircuit.QuantumCircuit.mct()` is deprecated as of qiskit 0.45.0. It will be removed in the Qiskit 1.0.0 release. Use QuantumCircuit.mcx as direct replacement.
-</Admonition>
-
-**Parameters**
-
-*   **control\_qubits** (*Sequence\[QubitSpecifier]*) – The qubits used as the controls.
-*   **target\_qubit** (*QubitSpecifier*) – The qubit(s) targeted by the gate.
-*   **ancilla\_qubits** (*QubitSpecifier | Sequence\[QubitSpecifier] | None*) – The qubits used as the ancillae, if the mode requires them.
-*   **mode** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The choice of mode, explained further above.
-
-**Returns**
-
-A handle to the instructions created.
-
-**Raises**
-
-*   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – if the given mode is not known, or if too few ancilla qubits are passed.
-*   [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – if no ancilla qubits are passed, but some are needed.
-
-**Return type**
-
-[InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
-
-<Admonition title="See also" type="note">
-  QuantumCircuit.mcx: the same gate with a different name.
-</Admonition>
 
 ### mcx
 
@@ -2531,39 +2317,35 @@ A circuit implementing this circuit raised to the power of `power`.
 
 Prepare qubits in a specific state.
 
-This class implements a state preparing unitary. Unlike [`Initialize`](qiskit.circuit.library.Initialize "qiskit.circuit.library.Initialize") it does not reset the qubits first.
+This class implements a state preparing unitary. Unlike [`initialize()`](#qiskit.circuit.QuantumCircuit.initialize "qiskit.circuit.QuantumCircuit.initialize") it does not reset the qubits first.
 
 **Parameters**
 
-*   **state** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")  *or*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *or*[*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")) –
+*   **state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector") *| Sequence\[*[*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")*] |* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) –
 
-    *   Statevector: Statevector to initialize to.
-    *   str: labels of basis states of the Pauli eigenstates Z, X, Y. See [`Statevector.from_label()`](qiskit.quantum_info.Statevector#from_label "qiskit.quantum_info.Statevector.from_label"). Notice the order of the labels is reversed with respect to the qubit index to be applied to. Example label ‘01’ initializes the qubit zero to $\vert 1\rangle$ and the qubit one to $\vert 0\rangle$.
-    *   list: vector of complex amplitudes to initialize to.
-    *   int: an integer that is used as a bitmap indicating which qubits to initialize to $\vert 1\rangle$. Example: setting params to 5 would initialize qubit 0 and qubit 2 to $\vert 1\rangle$ and qubit 1 to $\vert 0\rangle$.
+    The state to initialize to, can be either of the following.
 
-*   **qubits** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")  *or*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")  *or*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) –
+    *   Statevector or vector of complex amplitudes to initialize to.
+    *   Labels of basis states of the Pauli eigenstates Z, X, Y. See [`Statevector.from_label()`](qiskit.quantum_info.Statevector#from_label "qiskit.quantum_info.Statevector.from_label"). Notice the order of the labels is reversed with respect to the qubit index to be applied to. Example label ‘01’ initializes the qubit zero to $|1\rangle$ and the qubit one to $|0\rangle$.
+    *   An integer that is used as a bitmap indicating which qubits to initialize to $|1\rangle$. Example: setting params to 5 would initialize qubit 0 and qubit 2 to $|1\rangle$ and qubit 1 to $|0\rangle$.
 
-    *   QuantumRegister: A list of qubits to be initialized \[Default: None].
-    *   Qubit: Single qubit to be initialized \[Default: None].
-    *   int: Index of qubit to be initialized \[Default: None].
-    *   list: Indexes of qubits to be initialized \[Default: None].
+*   **qubits** (*Sequence\[QubitSpecifier] | None*) – Qubits to initialize. If `None` the initialization is applied to all qubits in the circuit.
 
-*   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – An optional label for the gate
+*   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – An optional label for the gate
 
 *   **normalize** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether to normalize an input array to a unit vector.
 
 **Returns**
 
-a handle to the instruction that was just initialized
+A handle to the instruction that was just initialized
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
 
 **Examples**
 
-Prepare a qubit in the state $(\vert 0\rangle - \vert 1\rangle) / \sqrt{2}$.
+Prepare a qubit in the state $(|0\rangle - |1\rangle) / \sqrt{2}$.
 
 ```python
 import numpy as np
@@ -2582,7 +2364,7 @@ q_0: ┤ State Preparation(0.70711,-0.70711) ├
      └─────────────────────────────────────┘
 ```
 
-Prepare from a string two qubits in the state $\vert 10\rangle$. The order of the labels is reversed with respect to qubit index. More information about labels for basis states are in [`Statevector.from_label()`](qiskit.quantum_info.Statevector#from_label "qiskit.quantum_info.Statevector.from_label").
+Prepare from a string two qubits in the state $|10\rangle$. The order of the labels is reversed with respect to qubit index. More information about labels for basis states are in [`Statevector.from_label()`](qiskit.quantum_info.Statevector#from_label "qiskit.quantum_info.Statevector.from_label").
 
 ```python
 import numpy as np
@@ -2623,44 +2405,6 @@ q_0: ┤0                                          ├
 q_1: ┤1                                          ├
      └───────────────────────────────────────────┘
 ```
-
-### qasm
-
-<span id="qiskit.circuit.QuantumCircuit.qasm" />
-
-`qasm(formatted=False, filename=None, encoding=None)`
-
-Return OpenQASM 2.0 string.
-
-<Admonition title="See also" type="note">
-  **[`qasm2.dump()`](qasm2#qiskit.qasm2.dump "qiskit.qasm2.dump") and [`qasm2.dumps()`](qasm2#qiskit.qasm2.dumps "qiskit.qasm2.dumps")**
-
-  The preferred entry points to the OpenQASM 2 export capabilities. These match the interface for other serialisers in Qiskit.
-</Admonition>
-
-<Admonition title="Deprecated since version 0.46" type="danger">
-  The method `qiskit.circuit.quantumcircuit.QuantumCircuit.qasm()` is deprecated as of qiskit 0.46. It will be removed in the 1.0.0 release. Instead use the qiskit.qasm2.dump() or qiskit.qasm2.dumps() function
-</Admonition>
-
-**Parameters**
-
-*   **formatted** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Return formatted OpenQASM 2.0 string.
-*   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Save OpenQASM 2.0 to file with name ‘filename’.
-*   **encoding** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Optionally specify the encoding to use for the output file if `filename` is specified. By default this is set to the system’s default encoding (ie whatever `locale.getpreferredencoding()` returns) and can be set to any valid codec or alias from stdlib’s [codec module](https://docs.python.org/3/library/codecs.html#standard-encodings)
-
-**Returns**
-
-If formatted=False.
-
-**Return type**
-
-[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
-
-**Raises**
-
-*   [**MissingOptionalLibraryError**](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") – If pygments is not installed and `formatted` is `True`.
-*   [**QASM2ExportError**](qasm2#qiskit.qasm2.QASM2ExportError "qiskit.qasm2.QASM2ExportError") – If circuit has free parameters.
-*   [**QASM2ExportError**](qasm2#qiskit.qasm2.QASM2ExportError "qiskit.qasm2.QASM2ExportError") – If an operation that has no OpenQASM 2 representation is encountered.
 
 ### qbit\_argument\_conversion
 
@@ -2995,7 +2739,7 @@ Apply [`RVGate`](qiskit.circuit.library.RVGate "qiskit.circuit.library.RVGate").
 
 For the full matrix form of this gate, see the underlying gate documentation.
 
-Rotation around an arbitrary rotation axis $v$, where $\vert v\vert $ is the angle of rotation in radians.
+Rotation around an arbitrary rotation axis $v$, where $|v|$ is the angle of rotation in radians.
 
 **Parameters**
 
@@ -3243,72 +2987,6 @@ Total number of gate operations.
 
 [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
 
-### snapshot
-
-<span id="qiskit.circuit.QuantumCircuit.snapshot" />
-
-`snapshot(label, snapshot_type='statevector', qubits=None, params=None)`
-
-Take a statevector snapshot of the internal simulator representation. Works on all qubits, and prevents reordering (like barrier).
-
-For other types of snapshots use the Snapshot extension directly.
-
-<Admonition title="Deprecated since version 0.45.0" type="danger">
-  The method `qiskit.circuit.quantumcircuit.QuantumCircuit.snapshot()` is deprecated as of qiskit 0.45.0. It will be removed in the Qiskit 1.0.0 release. The Snapshot instruction has been superseded by Qiskit Aer’s save instructions, see [https://qiskit.org/ecosystem/aer/apidocs/aer\_library.html#saving-simulator-data](https://qiskit.org/ecosystem/aer/apidocs/aer_library.html#saving-simulator-data).
-</Admonition>
-
-**Parameters**
-
-*   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – a snapshot label to report the result.
-*   **snapshot\_type** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – the type of the snapshot.
-*   **qubits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") *or None*) – the qubits to apply snapshot to \[Default: None].
-*   **params** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") *or None*) – the parameters for snapshot\_type \[Default: None].
-
-**Returns**
-
-with attached command
-
-**Return type**
-
-[QuantumCircuit](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**Raises**
-
-[**ExtensionError**](extensions#qiskit.extensions.ExtensionError "qiskit.extensions.ExtensionError") – malformed command
-
-### squ
-
-<span id="qiskit.circuit.QuantumCircuit.squ" />
-
-`squ(unitary_matrix, qubit, mode='ZYZ', up_to_diagonal=False)`
-
-Decompose an arbitrary 2\*2 unitary into three rotation gates.
-
-Note that the decomposition is up to a global phase shift. (This is a well known decomposition which can be found for example in Nielsen and Chuang’s book “Quantum computation and quantum information”.)
-
-<Admonition title="Deprecated since version 0.45.0" type="danger">
-  The method `qiskit.circuit.quantumcircuit.QuantumCircuit.squ()` is deprecated as of qiskit 0.45.0. It will be removed in the Qiskit 1.0.0 release. Instead, use the QuantumCircuit.unitary method.
-</Admonition>
-
-**Parameters**
-
-*   **unitary\_matrix** (*ndarray*) – 2\*2 unitary (given as a (complex) ndarray).
-*   **qubit** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")  *or*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The qubit which the gate is acting on.
-*   **mode** (*string*) – determines the used decomposition by providing the rotation axes. The allowed modes are: “ZYZ” (default)
-*   **up\_to\_diagonal** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if set to True, the single-qubit unitary is decomposed up to a diagonal matrix, i.e. a unitary u’ is implemented such that there exists a 2\*2 diagonal gate d with u = d.dot(u’)
-
-**Returns**
-
-The single-qubit unitary instruction attached to the circuit.
-
-**Return type**
-
-[InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
-
-**Raises**
-
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the format is wrong; if the array u is not unitary
-
 ### swap
 
 <span id="qiskit.circuit.QuantumCircuit.swap" />
@@ -3334,13 +3012,9 @@ A handle to the instructions created.
 
 ### switch
 
-### switch
-
 <span id="qiskit.circuit.QuantumCircuit.switch" />
 
-`switch(target: Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int], cases: None, qubits: None, clbits: None, *, label: str | None) → qiskit.circuit.controlflow.switch_case.SwitchContext`
-
-<span id="qiskit.circuit.QuantumCircuit.switch" />
+`switch(target: Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int], cases: None, qubits: None, clbits: None, *, label: str | None) → SwitchContext`
 
 `switch(target: Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int], cases: Iterable[Tuple[Any, QuantumCircuit]], qubits: Sequence[Qubit | QuantumRegister | int | slice | Sequence[Qubit | int]], clbits: Sequence[Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int]], *, label: str | None) → InstructionSet`
 
@@ -3483,7 +3157,7 @@ A handle to the instructions created.
 
 Tensor `self` with `other`.
 
-Remember that in the little-endian convention the leftmost operation will be at the bottom of the circuit. See also [the docs](https://docs.quantum-computing.ibm.com/build/circuit-construction) for more information.
+Remember that in the little-endian convention the leftmost operation will be at the bottom of the circuit. See also [the docs](/build/circuit-construction) for more information.
 
 ```python
      ┌────────┐        ┌─────┐          ┌─────┐
@@ -3566,38 +3240,6 @@ a composite instruction encapsulating this circuit (can be decomposed back)
 
 [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-### toffoli
-
-<span id="qiskit.circuit.QuantumCircuit.toffoli" />
-
-`toffoli(control_qubit1, control_qubit2, target_qubit)`
-
-Apply [`CCXGate`](qiskit.circuit.library.CCXGate "qiskit.circuit.library.CCXGate").
-
-For the full matrix form of this gate, see the underlying gate documentation.
-
-<Admonition title="Deprecated since version 0.45.0" type="danger">
-  The method `qiskit.circuit.quantumcircuit.QuantumCircuit.toffoli()` is deprecated as of qiskit 0.45.0. It will be removed in the Qiskit 1.0.0 release. Use QuantumCircuit.ccx as direct replacement.
-</Admonition>
-
-**Parameters**
-
-*   **control\_qubit1** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) used as the first control.
-*   **control\_qubit2** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) used as the second control.
-*   **target\_qubit** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice "(in Python v3.12)")  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit(s) targeted by the gate.
-
-**Returns**
-
-A handle to the instructions created.
-
-**Return type**
-
-[*InstructionSet*](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
-
-<Admonition title="See also" type="note">
-  QuantumCircuit.ccx: the same gate with a different name.
-</Admonition>
-
 ### u
 
 <span id="qiskit.circuit.QuantumCircuit.u" />
@@ -3622,135 +3264,6 @@ A handle to the instructions created.
 **Return type**
 
 [*InstructionSet*](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
-
-### uc
-
-<span id="qiskit.circuit.QuantumCircuit.uc" />
-
-`uc(gate_list, q_controls, q_target, up_to_diagonal=False)`
-
-Attach a uniformly controlled gates (also called multiplexed gates) to a circuit.
-
-The decomposition was introduced by Bergholm et al. in [https://arxiv.org/pdf/quant-ph/0410066.pdf](https://arxiv.org/pdf/quant-ph/0410066.pdf).
-
-<Admonition title="Deprecated since version 0.46.0" type="danger">
-  The method `qiskit.circuit.quantumcircuit.QuantumCircuit.uc()` is deprecated as of qiskit 0.46.0. It will be removed in the 1.0.0 release. Instead, append a qiskit.circuit.library.UCGate to the circuit.
-</Admonition>
-
-**Parameters**
-
-*   **gate\_list** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[ndarray]*) – list of two qubit unitaries \[U\_0,…,U\_\{2^k-1}], where each single-qubit unitary U\_i is a given as a 2\*2 array
-*   **q\_controls** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[(*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*,*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*)]*) – list of k control qubits. The qubits are ordered according to their significance in the computational basis. For example if q\_controls=\[q\[1],q\[2]] (with q = QuantumRegister(2)), the unitary U\_0 is performed if q\[1] and q\[2] are in the state zero, U\_1 is performed if q\[2] is in the state zero and q\[1] is in the state one, and so on
-*   **q\_target** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*(*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*)*) – target qubit, where we act on with the single-qubit gates.
-*   **up\_to\_diagonal** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If set to True, the uniformly controlled gate is decomposed up to a diagonal gate, i.e. a unitary u’ is implemented such that there exists a diagonal gate d with u = d.dot(u’), where the unitary u describes the uniformly controlled gate
-
-**Returns**
-
-the uniformly controlled gate is attached to the circuit.
-
-**Return type**
-
-[QuantumCircuit](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**Raises**
-
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the list number of control qubits does not correspond to the provided number of single-qubit unitaries; if an input is of the wrong type
-
-### ucrx
-
-<span id="qiskit.circuit.QuantumCircuit.ucrx" />
-
-`ucrx(angle_list, q_controls, q_target)`
-
-Attach a uniformly controlled (also called multiplexed) Rx rotation gate to a circuit.
-
-The decomposition is base on [https://arxiv.org/pdf/quant-ph/0406176.pdf](https://arxiv.org/pdf/quant-ph/0406176.pdf) by Shende et al.
-
-<Admonition title="Deprecated since version 0.46.0" type="danger">
-  The method `qiskit.circuit.quantumcircuit.QuantumCircuit.ucrx()` is deprecated as of qiskit 0.46.0. It will be removed in the 1.0.0 release. Instead, append a qiskit.circuit.library.UCRXGate to the circuit.
-</Admonition>
-
-**Parameters**
-
-*   **angle\_list** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – list of (real) rotation angles $[a_0,...,a_{2^k-1}]$
-*   **q\_controls** (*Sequence\[QubitSpecifier]*) – list of k control qubits (or empty list if no controls). The control qubits are ordered according to their significance in increasing order: For example if `q_controls=[q[0],q[1]]` (with `q = QuantumRegister(2)`), the rotation `Rx(a_0)` is performed if `q[0]` and `q[1]` are in the state zero, the rotation `Rx(a_1)` is performed if `q[0]` is in the state one and `q[1]` is in the state zero, and so on
-*   **q\_target** (*QubitSpecifier*) – target qubit, where we act on with the single-qubit rotation gates
-
-**Returns**
-
-the uniformly controlled rotation gate is attached to the circuit.
-
-**Return type**
-
-[QuantumCircuit](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**Raises**
-
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the list number of control qubits does not correspond to the provided number of single-qubit unitaries; if an input is of the wrong type
-
-### ucry
-
-<span id="qiskit.circuit.QuantumCircuit.ucry" />
-
-`ucry(angle_list, q_controls, q_target)`
-
-Attach a uniformly controlled (also called multiplexed) Ry rotation gate to a circuit.
-
-The decomposition is base on [https://arxiv.org/pdf/quant-ph/0406176.pdf](https://arxiv.org/pdf/quant-ph/0406176.pdf) by Shende et al.
-
-<Admonition title="Deprecated since version 0.46.0" type="danger">
-  The method `qiskit.circuit.quantumcircuit.QuantumCircuit.ucry()` is deprecated as of qiskit 0.46.0. It will be removed in the 1.0.0 release. Instead, append a qiskit.circuit.library.UCRYGate to the circuit.
-</Admonition>
-
-**Parameters**
-
-*   **angle\_list** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – list of (real) rotation angles $[a_0,...,a_{2^k-1}]$
-*   **q\_controls** (*Sequence\[QubitSpecifier]*) – list of k control qubits (or empty list if no controls). The control qubits are ordered according to their significance in increasing order: For example if `q_controls=[q[0],q[1]]` (with `q = QuantumRegister(2)`), the rotation `Ry(a_0)` is performed if `q[0]` and `q[1]` are in the state zero, the rotation `Ry(a_1)` is performed if `q[0]` is in the state one and `q[1]` is in the state zero, and so on
-*   **q\_target** (*QubitSpecifier*) – target qubit, where we act on with the single-qubit rotation gates
-
-**Returns**
-
-the uniformly controlled rotation gate is attached to the circuit.
-
-**Return type**
-
-[QuantumCircuit](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**Raises**
-
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the list number of control qubits does not correspond to the provided number of single-qubit unitaries; if an input is of the wrong type
-
-### ucrz
-
-<span id="qiskit.circuit.QuantumCircuit.ucrz" />
-
-`ucrz(angle_list, q_controls, q_target)`
-
-Attach a uniformly controlled (also called multiplexed) Rz rotation gate to a circuit.
-
-The decomposition is base on [https://arxiv.org/pdf/quant-ph/0406176.pdf](https://arxiv.org/pdf/quant-ph/0406176.pdf) by Shende et al.
-
-<Admonition title="Deprecated since version 0.46.0" type="danger">
-  The method `qiskit.circuit.quantumcircuit.QuantumCircuit.ucrz()` is deprecated as of qiskit 0.46.0. It will be removed in the 1.0.0 release. Instead, append a qiskit.circuit.library.UCRZGate to the circuit.
-</Admonition>
-
-**Parameters**
-
-*   **angle\_list** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – list of (real) rotation angles $[a_0,...,a_{2^k-1}]$
-*   **q\_controls** (*Sequence\[QubitSpecifier]*) – list of k control qubits (or empty list if no controls). The control qubits are ordered according to their significance in increasing order: For example if `q_controls=[q[0],q[1]]` (with `q = QuantumRegister(2)`), the rotation `Rz(a_0)` is performed if `q[0]` and `q[1]` are in the state zero, the rotation `Rz(a_1)` is performed if `q[0]` is in the state one and `q[1]` is in the state zero, and so on
-*   **q\_target** (*QubitSpecifier*) – target qubit, where we act on with the single-qubit rotation gates
-
-**Returns**
-
-the uniformly controlled rotation gate is attached to the circuit.
-
-**Return type**
-
-[QuantumCircuit](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**Raises**
-
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the list number of control qubits does not correspond to the provided number of single-qubit unitaries; if an input is of the wrong type
 
 ### unitary
 
@@ -3790,13 +3303,9 @@ circuit.unitary(matrix, [0, 1])
 
 ### while\_loop
 
-### while\_loop
-
 <span id="qiskit.circuit.QuantumCircuit.while_loop" />
 
-`while_loop(condition: tuple[ClassicalRegister | Clbit, int] | expr.Expr, body: None, qubits: None, clbits: None, *, label: str | None) → qiskit.circuit.controlflow.while_loop.WhileLoopContext`
-
-<span id="qiskit.circuit.QuantumCircuit.while_loop" />
+`while_loop(condition: tuple[ClassicalRegister | Clbit, int] | expr.Expr, body: None, qubits: None, clbits: None, *, label: str | None) → WhileLoopContext`
 
 `while_loop(condition: tuple[ClassicalRegister | Clbit, int] | expr.Expr, body: QuantumCircuit, qubits: Sequence[Qubit | QuantumRegister | int | slice | Sequence[Qubit | int]], clbits: Sequence[Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int]], *, label: str | None) → InstructionSet`
 

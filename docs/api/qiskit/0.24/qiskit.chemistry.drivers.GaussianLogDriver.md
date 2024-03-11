@@ -12,7 +12,7 @@ python_api_name: qiskit.chemistry.drivers.GaussianLogDriver
 
 <span id="qiskit.chemistry.drivers.GaussianLogDriver" />
 
-`GaussianLogDriver(jcf)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/drivers/gaussiand/gaussian_log_driver.py "view source code")
+`GaussianLogDriver(jcf)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/drivers/gaussiand/gaussian_log_driver.py "view source code")
 
 Gaussian™ 16 log driver.
 

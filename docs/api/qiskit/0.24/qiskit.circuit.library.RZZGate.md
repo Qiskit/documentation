@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.library.RZZGate
 
 <span id="qiskit.circuit.library.RZZGate" />
 
-`RZZGate(theta)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/standard_gates/rzz.py "view source code")
+`RZZGate(theta)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/standard_gates/rzz.py "view source code")
 
 A parameteric 2-qubit $Z \otimes Z$ interaction (rotation about ZZ).
 

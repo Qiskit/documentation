@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.transforms.AlignFunc
 
 <span id="qiskit.pulse.transforms.AlignFunc" />
 
-`qiskit.pulse.transforms.AlignFunc(duration, func)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/pulse/transforms/alignments.py "view source code")
+`qiskit.pulse.transforms.AlignFunc(duration, func)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/pulse/transforms/alignments.py "view source code")
 
 Bases: [`AlignmentKind`](pulse#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.alignments.AlignmentKind")
 

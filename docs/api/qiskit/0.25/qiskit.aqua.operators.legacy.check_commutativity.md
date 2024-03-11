@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.operators.legacy.check_commutativity
 
 <span id="qiskit.aqua.operators.legacy.check_commutativity" />
 
-`check_commutativity(op_1, op_2, anti=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/legacy/common.py "view source code")
+`check_commutativity(op_1, op_2, anti=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/legacy/common.py "view source code")
 
 Check the (anti-)commutativity between two operators.
 

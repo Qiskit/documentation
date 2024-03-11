@@ -10,7 +10,7 @@ python_api_name: qiskit.result.BaseReadoutMitigator
 
 <span id="qiskit.result.BaseReadoutMitigator" />
 
-`qiskit.result.BaseReadoutMitigator`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/result/mitigation/base_readout_mitigator.py "view source code")
+`qiskit.result.BaseReadoutMitigator` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/result/mitigation/base_readout_mitigator.py "view source code")
 
 Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 

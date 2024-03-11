@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.gradients.BaseSamplerGradient
 
 <span id="qiskit.algorithms.gradients.BaseSamplerGradient" />
 
-`qiskit.algorithms.gradients.BaseSamplerGradient(sampler, options=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/gradients/base/base_sampler_gradient.py "view source code")
+`qiskit.algorithms.gradients.BaseSamplerGradient(sampler, options=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/gradients/base/base_sampler_gradient.py "view source code")
 
 Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 

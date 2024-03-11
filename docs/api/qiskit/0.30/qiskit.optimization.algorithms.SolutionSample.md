@@ -10,7 +10,7 @@ python_api_name: qiskit.optimization.algorithms.SolutionSample
 
 <span id="qiskit.optimization.algorithms.SolutionSample" />
 
-`SolutionSample(x, fval, probability, status)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/optimization_algorithm.py "view source code")
+`SolutionSample(x, fval, probability, status)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/optimization_algorithm.py "view source code")
 
 Bases: `object`
 

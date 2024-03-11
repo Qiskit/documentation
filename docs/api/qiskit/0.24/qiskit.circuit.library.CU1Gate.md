@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.library.CU1Gate
 
 <span id="qiskit.circuit.library.CU1Gate" />
 
-`CU1Gate(theta, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/standard_gates/u1.py "view source code")
+`CU1Gate(theta, label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/standard_gates/u1.py "view source code")
 
 Controlled-U1 gate.
 
@@ -30,7 +30,7 @@ q_1: ─■──
 
 $$
 \begin{split}CU1 =
-    \vert 0\rangle\langle 0\vert  \otimes I + \vert 1\rangle\langle 1\vert  \otimes U1 =
+    |0\rangle\langle 0| \otimes I + |1\rangle\langle 1| \otimes U1 =
     \begin{pmatrix}
         1 & 0 & 0 & 0 \\
         0 & 1 & 0 & 0 \\

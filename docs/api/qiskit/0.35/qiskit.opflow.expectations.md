@@ -1,8 +1,20 @@
+---
+title: expectations
+description: API reference for qiskit.opflow.expectations
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.opflow.expectations
+---
+
 <span id="qiskit-opflow-expectations" />
 
 # qiskit.opflow\.expectations
 
-## Expectations ([`qiskit.opflow.expectations`](#module-qiskit.opflow.expectations "qiskit.opflow.expectations"))
+## Expectations
+
+<span id="module-qiskit.opflow.expectations" />
+
+`qiskit.opflow.expectations`
 
 Expectations are converters which enable the computation of the expectation value of an Observable with respect to some state function. They traverse an Operator tree, replacing [`OperatorStateFn`](qiskit.opflow.state_fns.OperatorStateFn "qiskit.opflow.state_fns.OperatorStateFn") measurements with equivalent measurements which are more amenable to computation on quantum or classical hardware. For example, if one would like to measure the expectation value of an Operator `o` expressed as a sum of Paulis with respect to some state function, but only has access to diagonal measurements on Quantum hardware, we can create a measurement \~StateFn(o), use a [`PauliExpectation`](qiskit.opflow.expectations.PauliExpectation "qiskit.opflow.expectations.PauliExpectation") to convert it to a diagonal measurement and circuit pre-rotations to append to the state, and sample this circuit on Quantum hardware with a [`CircuitSampler`](qiskit.opflow.converters.CircuitSampler "qiskit.opflow.converters.CircuitSampler"). All in all, this would be: `my_sampler.convert(my_expect.convert(~StateFn(o)) @ my_state).eval()`.
 
@@ -23,3 +35,4 @@ The ExpectationBase class gives an interface for algorithms to ask for Expectati
 | [`MatrixExpectation`](qiskit.opflow.expectations.MatrixExpectation "qiskit.opflow.expectations.MatrixExpectation")()                | An Expectation converter which converts Operator measurements to be matrix-based so they can be evaluated by matrix multiplication.                                                      |
 | [`PauliExpectation`](qiskit.opflow.expectations.PauliExpectation "qiskit.opflow.expectations.PauliExpectation")(\[group\_paulis])   | An Expectation converter for Pauli-basis observables by changing Pauli measurements to a diagonal (\{Z, I}^n) basis and appending circuit post-rotations to the measured state function. |
 | [`CVaRExpectation`](qiskit.opflow.expectations.CVaRExpectation "qiskit.opflow.expectations.CVaRExpectation")(alpha\[, expectation]) | Compute the Conditional Value at Risk (CVaR) expectation value.                                                                                                                          |
+

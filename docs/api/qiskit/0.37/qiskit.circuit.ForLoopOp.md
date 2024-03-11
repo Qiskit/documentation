@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.ForLoopOp
 
 <span id="qiskit.circuit.ForLoopOp" />
 
-`ForLoopOp(indexset, loop_parameter, body, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/controlflow/for_loop.py "view source code")
+`ForLoopOp(indexset, loop_parameter, body, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/controlflow/for_loop.py "view source code")
 
 Bases: [`qiskit.circuit.controlflow.control_flow.ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.controlflow.control_flow.ControlFlowOp")
 
@@ -197,7 +197,7 @@ Containing the definition.
 
 <span id="qiskit.circuit.ForLoopOp.replace_blocks" />
 
-`ForLoopOp.replace_blocks(blocks)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/controlflow/for_loop.py "view source code")
+`ForLoopOp.replace_blocks(blocks)`
 
 Replace blocks and return new instruction. :param blocks: Tuple of QuantumCircuits to replace in instruction.
 

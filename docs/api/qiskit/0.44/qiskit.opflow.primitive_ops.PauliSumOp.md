@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.primitive_ops.PauliSumOp
 
 <span id="qiskit.opflow.primitive_ops.PauliSumOp" />
 
-`qiskit.opflow.primitive_ops.PauliSumOp(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/opflow/primitive_ops/pauli_sum_op.py "view source code")
+`qiskit.opflow.primitive_ops.PauliSumOp(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/opflow/primitive_ops/pauli_sum_op.py "view source code")
 
 Bases: [`PrimitiveOp`](qiskit.opflow.primitive_ops.PrimitiveOp "qiskit.opflow.primitive_ops.primitive_op.PrimitiveOp")
 

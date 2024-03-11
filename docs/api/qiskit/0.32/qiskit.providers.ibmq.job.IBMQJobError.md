@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.job.IBMQJobError
 
 <span id="qiskit.providers.ibmq.job.IBMQJobError" />
 
-`IBMQJobError(*message)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.18/qiskit/providers/ibmq/job/exceptions.py "view source code")
+`IBMQJobError(*message)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.18/qiskit/providers/ibmq/job/exceptions.py "view source code")
 
 Base class for errors raised by the job modules.
 

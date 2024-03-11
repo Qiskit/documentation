@@ -10,7 +10,7 @@ python_api_name: qiskit.optimization.converters.LinearEqualityToPenalty
 
 <span id="qiskit.optimization.converters.LinearEqualityToPenalty" />
 
-`LinearEqualityToPenalty(penalty=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/converters/linear_equality_to_penalty.py "view source code")
+`LinearEqualityToPenalty(penalty=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/converters/linear_equality_to_penalty.py "view source code")
 
 Bases: `qiskit.optimization.converters.quadratic_program_converter.QuadraticProgramConverter`
 
@@ -26,7 +26,7 @@ Convert a problem with only equality constraints to unconstrained with penalty t
 
 <span id="qiskit.optimization.converters.LinearEqualityToPenalty.convert" />
 
-`LinearEqualityToPenalty.convert(problem)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/converters/linear_equality_to_penalty.py "view source code")
+`LinearEqualityToPenalty.convert(problem)`
 
 Convert a problem with equality constraints into an unconstrained problem.
 
@@ -50,7 +50,7 @@ The converted problem, that is an unconstrained problem.
 
 <span id="qiskit.optimization.converters.LinearEqualityToPenalty.interpret" />
 
-`LinearEqualityToPenalty.interpret(x)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/converters/linear_equality_to_penalty.py "view source code")
+`LinearEqualityToPenalty.interpret(x)`
 
 Convert the result of the converted problem back to that of the original problem
 

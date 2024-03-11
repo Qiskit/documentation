@@ -1,9 +1,9 @@
 ---
-title: Bit-ordering in Qiskit
-description: Learn about Qiskit's ordering conventions and why we chose them
+title: Bit-ordering in the Qiskit SDK
+description: Learn about Qiskit SDK's ordering conventions and why we chose them
 ---
 
-# Bit-ordering in Qiskit
+# Bit-ordering in the Qiskit SDK
 
 If you have a set of $n$ bits (or qubits), you'll usually label each bit $0
 \rightarrow n-1$. Different softwares and resources must choose how they order
@@ -11,7 +11,7 @@ these bits both in computer memory and when displayed on-screen.
 
 ## Qiskit conventions
 
-Here's how Qiskit orders bits in different scenarios.
+Here's how the Qiskit SDK orders bits in different scenarios.
 
 ### Quantum circuits
 
@@ -57,11 +57,27 @@ the value $2^\text{label}$ (label being the qubit's index in
 with bit $0$ being `0`, and bit $1$ being `1`. This is interpreted as the
 decimal integer `2` (measured with probability `1.0`).
 
-```python
+<Tabs>
+  <TabItem value="SamplerV2" label="V2 Sampler">
+    ```python
+from qiskit.primitives import Samplerv2 as Sampler
+qc.measure_all()
+
+job = sampler.run([(qc)])
+result = job.result()
+print(f" > Counts: {result[0].data.meas.get_counts()}")
+```
+  </TabItem>
+
+  <TabItem value="SamplerV1" label="Sampler (V1)">
+    ```python
 from qiskit.primitives import Sampler
 qc.measure_all()
+
 Sampler().run(qc).result().quasi_dists[0]
 ```
+  </TabItem>
+</Tabs>
 
 ```
 {2: 1.0}
@@ -75,7 +91,7 @@ usually write numbers with the most significant digit on the left, and in
 Qiskit, bit $n$ is interpreted as the most significant bit.
 
 For example, the following cell defines a `Statevector` from a string of
-single-qubit states. In this case, qubit $0$ is in state $|{+}\rangle$, and
+single-qubit states. In this case, qubit $0$ is in state $|+\rangle$, and
 qubit $1$ in state $|0\rangle$.
 
 ```python

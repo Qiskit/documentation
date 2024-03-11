@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.CollectLinearFunctions
 
 <span id="qiskit.transpiler.passes.CollectLinearFunctions" />
 
-`qiskit.transpiler.passes.CollectLinearFunctions(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/optimization/collect_linear_functions.py "view source code")
+`qiskit.transpiler.passes.CollectLinearFunctions(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/optimization/collect_linear_functions.py "view source code")
 
 Bases: `CollectAndCollapse`
 

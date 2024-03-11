@@ -10,7 +10,7 @@ python_api_name: qiskit.synthesis.synth_cnot_depth_line_kms
 
 <span id="qiskit.synthesis.synth_cnot_depth_line_kms" />
 
-`synth_cnot_depth_line_kms(mat)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/synthesis/linear/linear_depth_lnn.py "view source code")
+`synth_cnot_depth_line_kms(mat)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/synthesis/linear/linear_depth_lnn.py "view source code")
 
 Synthesize linear reversible circuit for linear nearest-neighbor architectures using Kutin, Moulton, Smithline method.
 

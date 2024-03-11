@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.classicalfunction.ClassicalFunctionParseError
 
 <span id="qiskit.circuit.classicalfunction.ClassicalFunctionParseError" />
 
-`ClassicalFunctionParseError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/classicalfunction/exceptions.py "view source code")
+`ClassicalFunctionParseError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/classicalfunction/exceptions.py "view source code")
 
 ClassicalFunction compiler parse error. The classicalfunction function fails at parsing time.
 

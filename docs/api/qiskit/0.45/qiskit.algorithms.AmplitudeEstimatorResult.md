@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.AmplitudeEstimatorResult
 
 <span id="qiskit.algorithms.AmplitudeEstimatorResult" />
 
-`qiskit.algorithms.AmplitudeEstimatorResult`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/amplitude_estimators/amplitude_estimator.py "view source code")
+`qiskit.algorithms.AmplitudeEstimatorResult` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/amplitude_estimators/amplitude_estimator.py "view source code")
 
 Bases: `AlgorithmResult`
 

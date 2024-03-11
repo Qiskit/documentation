@@ -10,11 +10,11 @@ python_api_name: qiskit.circuit.library.CHGate
 
 <span id="qiskit.circuit.library.CHGate" />
 
-`CHGate(label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/h.py "view source code")
+`CHGate(label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/h.py "view source code")
 
 Controlled-Hadamard gate.
 
-Applies a Hadamard on the target qubit if the control is in the $\vert 1\rangle$ state.
+Applies a Hadamard on the target qubit if the control is in the $|1\rangle$ state.
 
 **Circuit symbol:**
 
@@ -30,7 +30,7 @@ Applies a Hadamard on the target qubit if the control is in the $\vert 1\rangle$
 
 $$
 \begin{split}CH\ q_0, q_1 =
-    I \otimes \vert 0\rangle\langle 0\vert  + H \otimes \vert 1\rangle\langle 1\vert  =
+    I \otimes |0\rangle\langle 0| + H \otimes |1\rangle\langle 1| =
     \frac{1}{\sqrt{2}}
     \begin{pmatrix}
         1 & 0 & 0 & 0 \\
@@ -52,7 +52,7 @@ $$
 
   $$
   \begin{split}CH\ q_1, q_0 =
-      \vert 0\rangle\langle 0\vert  \otimes I + \vert 1\rangle\langle 1\vert  \otimes H =
+      |0\rangle\langle 0| \otimes I + |1\rangle\langle 1| \otimes H =
       \frac{1}{\sqrt{2}}
       \begin{pmatrix}
           1 & 0 & 0 & 0 \\
@@ -248,7 +248,7 @@ updated if it was provided
 
 <span id="qiskit.circuit.library.CHGate.inverse" />
 
-`CHGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/h.py "view source code")
+`CHGate.inverse()`
 
 Return inverted CH gate (itself).
 
@@ -340,7 +340,7 @@ Containing the definition.
 
 <span id="qiskit.circuit.library.CHGate.to_matrix" />
 
-`CHGate.to_matrix()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/h.py "view source code")
+`CHGate.to_matrix()`
 
 Return a numpy.array for the CH gate.
 

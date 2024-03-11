@@ -12,7 +12,7 @@ python_api_name: qiskit.visualization.plot_bloch_multivector
 
 <span id="qiskit.visualization.plot_bloch_multivector" />
 
-`qiskit.visualization.plot_bloch_multivector(state, title='', figsize=None, *, reverse_bits=False, filename=None, font_size=None, title_font_size=None, title_pad=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/visualization/state_visualization.py "view source code")
+`qiskit.visualization.plot_bloch_multivector(state, title='', figsize=None, *, reverse_bits=False, filename=None, font_size=None, title_font_size=None, title_pad=1)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/visualization/state_visualization.py "view source code")
 
 Plot a Bloch sphere for each qubit.
 
@@ -34,7 +34,7 @@ A matplotlib figure instance.
 
 **Return type**
 
-[`matplotlib.figure.Figure`](https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure "(in Matplotlib v3.8.2)")
+[`matplotlib.figure.Figure`](https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure "(in Matplotlib v3.8.3)")
 
 **Raises**
 

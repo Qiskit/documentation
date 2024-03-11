@@ -12,7 +12,7 @@ python_api_name: qiskit.providers.basicaer.StatevectorSimulatorPy
 
 <span id="qiskit.providers.basicaer.StatevectorSimulatorPy" />
 
-`StatevectorSimulatorPy(configuration=None, provider=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/providers/basicaer/statevector_simulator.py "view source code")
+`StatevectorSimulatorPy(configuration=None, provider=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/providers/basicaer/statevector_simulator.py "view source code")
 
 Python statevector simulator.
 

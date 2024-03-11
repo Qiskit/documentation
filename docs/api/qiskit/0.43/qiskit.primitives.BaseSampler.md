@@ -10,7 +10,7 @@ python_api_name: qiskit.primitives.BaseSampler
 
 <span id="qiskit.primitives.BaseSampler" />
 
-`BaseSampler(*, options=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/primitives/base/base_sampler.py "view source code")
+`BaseSampler(*, options=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/primitives/base/base_sampler.py "view source code")
 
 Bases: `BasePrimitive`, `Generic`\[`T`]
 
@@ -30,7 +30,7 @@ Base class of Sampler that calculates quasi-probabilities of bitstrings from qua
 
 <span id="qiskit.primitives.BaseSampler.run" />
 
-`BaseSampler.run(circuits, parameter_values=None, **run_options)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/primitives/base/base_sampler.py "view source code")
+`BaseSampler.run(circuits, parameter_values=None, **run_options)`
 
 Run the job of the sampling of bitstrings.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.IBMQFactory
 
 <span id="qiskit.providers.ibmq.IBMQFactory" />
 
-`IBMQFactory`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.15/qiskit/providers/ibmq/ibmqfactory.py "view source code")
+`IBMQFactory` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.15/qiskit/providers/ibmq/ibmqfactory.py "view source code")
 
 Factory and account manager for IBM Quantum Experience.
 

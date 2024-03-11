@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.library.SymbolicPulse
 
 <span id="qiskit.pulse.library.SymbolicPulse" />
 
-`qiskit.pulse.library.SymbolicPulse(pulse_type, duration, parameters=None, name=None, limit_amplitude=None, envelope=None, constraints=None, valid_amp_conditions=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/pulse/library/symbolic_pulses.py "view source code")
+`qiskit.pulse.library.SymbolicPulse(pulse_type, duration, parameters=None, name=None, limit_amplitude=None, envelope=None, constraints=None, valid_amp_conditions=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/pulse/library/symbolic_pulses.py "view source code")
 
 Bases: `Pulse`
 
@@ -36,7 +36,7 @@ Constraints on the parameters are defined with an instance attribute [`SymbolicP
 
 **Maximum amplitude validation**
 
-When you play a pulse in a quantum backend, you might face the restriction on the power that your waveform generator can handle. Usually, the pulse amplitude is normalized by this maximum power, namely $\max \vert F\vert  \leq 1$. This condition is evaluated along with above constraints when you set `limit_amplitude = True` in the constructor. To evaluate maximum amplitude of the waveform, we need to call [`get_waveform()`](#qiskit.pulse.library.SymbolicPulse.get_waveform "qiskit.pulse.library.SymbolicPulse.get_waveform"). However, this introduces a significant overhead in the validation, and this cannot be ignored when you repeatedly instantiate symbolic pulse instances. [`SymbolicPulse.valid_amp_conditions`](#qiskit.pulse.library.SymbolicPulse.valid_amp_conditions "qiskit.pulse.library.SymbolicPulse.valid_amp_conditions") provides a condition to skip this waveform validation, and the waveform is not generated as long as this condition returns `True`, so that healthy symbolic pulses are created very quick. For example, for a simple pulse shape like `amp * cos(f * t)`, we know that pulse amplitude is valid as long as `amp` remains less than magnitude 1.0. So `abs(amp) <= 1` could be passed as [`SymbolicPulse.valid_amp_conditions`](#qiskit.pulse.library.SymbolicPulse.valid_amp_conditions "qiskit.pulse.library.SymbolicPulse.valid_amp_conditions") to skip doing a full waveform evaluation for amplitude validation. This expression is provided through the constructor. If this is not provided, the waveform is generated everytime when [`validate_parameters()`](#qiskit.pulse.library.SymbolicPulse.validate_parameters "qiskit.pulse.library.SymbolicPulse.validate_parameters") is called.
+When you play a pulse in a quantum backend, you might face the restriction on the power that your waveform generator can handle. Usually, the pulse amplitude is normalized by this maximum power, namely $\max |F| \leq 1$. This condition is evaluated along with above constraints when you set `limit_amplitude = True` in the constructor. To evaluate maximum amplitude of the waveform, we need to call [`get_waveform()`](#qiskit.pulse.library.SymbolicPulse.get_waveform "qiskit.pulse.library.SymbolicPulse.get_waveform"). However, this introduces a significant overhead in the validation, and this cannot be ignored when you repeatedly instantiate symbolic pulse instances. [`SymbolicPulse.valid_amp_conditions`](#qiskit.pulse.library.SymbolicPulse.valid_amp_conditions "qiskit.pulse.library.SymbolicPulse.valid_amp_conditions") provides a condition to skip this waveform validation, and the waveform is not generated as long as this condition returns `True`, so that healthy symbolic pulses are created very quick. For example, for a simple pulse shape like `amp * cos(f * t)`, we know that pulse amplitude is valid as long as `amp` remains less than magnitude 1.0. So `abs(amp) <= 1` could be passed as [`SymbolicPulse.valid_amp_conditions`](#qiskit.pulse.library.SymbolicPulse.valid_amp_conditions "qiskit.pulse.library.SymbolicPulse.valid_amp_conditions") to skip doing a full waveform evaluation for amplitude validation. This expression is provided through the constructor. If this is not provided, the waveform is generated everytime when [`validate_parameters()`](#qiskit.pulse.library.SymbolicPulse.validate_parameters "qiskit.pulse.library.SymbolicPulse.validate_parameters") is called.
 
 **Examples**
 
@@ -216,7 +216,7 @@ Return a Waveform with samples filled according to the formula that the pulse re
 Since the returned array is a discretized time series of the continuous function, this method uses a midpoint sampler. For `duration`, return:
 
 $$
-\{f(t+0.5) \in \mathbb{C} \vert  t \in \mathbb{Z} \wedge  0<=t<\texttt{duration}\}
+\{f(t+0.5) \in \mathbb{C} | t \in \mathbb{Z} \wedge  0<=t<\texttt{duration}\}
 $$
 
 **Returns**

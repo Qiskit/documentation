@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.CRS
 
 <span id="qiskit.algorithms.optimizers.CRS" />
 
-`CRS(max_evals=1000)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/nlopts/crs.py "view source code")
+`CRS(max_evals=1000)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/nlopts/crs.py "view source code")
 
 Controlled Random Search (CRS) with local mutation optimizer.
 

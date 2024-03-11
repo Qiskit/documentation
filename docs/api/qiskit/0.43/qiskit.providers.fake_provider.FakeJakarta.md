@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeJakarta
 
 <span id="qiskit.providers.fake_provider.FakeJakarta" />
 
-`FakeJakarta`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/backends/jakarta/fake_jakarta.py "view source code")
+`FakeJakarta` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/backends/jakarta/fake_jakarta.py "view source code")
 
 Bases: `FakePulseBackend`
 

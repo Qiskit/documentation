@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeLima
 
 <span id="qiskit.providers.fake_provider.FakeLima" />
 
-`FakeLima`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/backends/lima/fake_lima.py "view source code")
+`FakeLima` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/backends/lima/fake_lima.py "view source code")
 
 Bases: `FakePulseBackend`
 

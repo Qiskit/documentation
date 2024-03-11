@@ -10,7 +10,7 @@ python_api_name: qiskit.synthesis.EvolutionSynthesis
 
 <span id="qiskit.synthesis.EvolutionSynthesis" />
 
-`qiskit.synthesis.EvolutionSynthesis`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/synthesis/evolution/evolution_synthesis.py "view source code")
+`qiskit.synthesis.EvolutionSynthesis` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/synthesis/evolution/evolution_synthesis.py "view source code")
 
 Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 

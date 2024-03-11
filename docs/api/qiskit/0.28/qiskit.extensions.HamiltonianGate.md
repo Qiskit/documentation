@@ -10,7 +10,7 @@ python_api_name: qiskit.extensions.HamiltonianGate
 
 <span id="qiskit.extensions.HamiltonianGate" />
 
-`HamiltonianGate(data, time, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/extensions/hamiltonian_gate.py "view source code")
+`HamiltonianGate(data, time, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/extensions/hamiltonian_gate.py "view source code")
 
 Class for representing evolution by a Hermitian Hamiltonian operator as a gate. This gate resolves to a UnitaryGate U(t) = exp(-1j \* t \* H), which can be decomposed into basis gates if it is 2 qubits or less, or simulated directly in Aer for more qubits.
 

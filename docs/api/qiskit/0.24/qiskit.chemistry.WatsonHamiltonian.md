@@ -12,7 +12,7 @@ python_api_name: qiskit.chemistry.WatsonHamiltonian
 
 <span id="qiskit.chemistry.WatsonHamiltonian" />
 
-`WatsonHamiltonian(data, num_modes)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/watson_hamiltonian.py "view source code")
+`WatsonHamiltonian(data, num_modes)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/watson_hamiltonian.py "view source code")
 
 Watson Hamiltonian class containing the results of a driver’s anharmonic calculation
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.optimizers.NFT
 
 <span id="qiskit.aqua.components.optimizers.NFT" />
 
-`NFT(maxiter=None, maxfev=1024, disp=False, reset_interval=32)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/optimizers/nft.py "view source code")
+`NFT(maxiter=None, maxfev=1024, disp=False, reset_interval=32)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/optimizers/nft.py "view source code")
 
 Bases: `qiskit.aqua.components.optimizers.optimizer.Optimizer`
 
@@ -43,7 +43,7 @@ K. M. Nakanishi, K. Fujii, and S. Todo. 2019. Sequential minimal optimization fo
 
 <span id="qiskit.aqua.components.optimizers.NFT.get_support_level" />
 
-`NFT.get_support_level()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/optimizers/nft.py "view source code")
+`NFT.get_support_level()`
 
 return support level dictionary
 
@@ -74,7 +74,7 @@ grad
 
 <span id="qiskit.aqua.components.optimizers.NFT.optimize" />
 
-`NFT.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/optimizers/nft.py "view source code")
+`NFT.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
 Perform optimization.
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.tools.backend_monitor
 
 <span id="qiskit.tools.backend_monitor" />
 
-`backend_monitor(backend)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/tools/monitor/overview.py "view source code")
+`backend_monitor(backend)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/tools/monitor/overview.py "view source code")
 
 Monitor a single IBMQ backend.
 

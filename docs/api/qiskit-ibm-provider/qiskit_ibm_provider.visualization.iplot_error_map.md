@@ -12,7 +12,7 @@ python_api_name: qiskit_ibm_provider.visualization.iplot_error_map
 
 <span id="qiskit_ibm_provider.visualization.iplot_error_map" />
 
-`iplot_error_map(backend, figsize=(800, 500), show_title=True, remove_badcal_edges=True, background_color='white', as_widget=False)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/visualization/interactive/error_map.py "view source code")
+`iplot_error_map(backend, figsize=(800, 500), show_title=True, remove_badcal_edges=True, background_color='white', as_widget=False)` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/visualization/interactive/error_map.py#L31-L556 "view source code")
 
 Plot the error map of a device.
 
@@ -45,7 +45,9 @@ from qiskit_ibm_provider import IBMProvider
 from qiskit_ibm_provider.visualization import iplot_error_map
 
 provider = IBMProvider(group='open', project='main')
-backend = provider.get_backend('ibmq_vigo')
+# Note that this is a mock provider, replace ``FakeOpenPulse2Q``
+# with any of the currently available IBM devices.
+backend = provider.get_backend('FakeOpenPulse2Q')
 
 iplot_error_map(backend, as_widget=True)
 ```

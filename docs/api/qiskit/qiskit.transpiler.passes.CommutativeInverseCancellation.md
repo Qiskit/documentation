@@ -10,11 +10,16 @@ python_api_name: qiskit.transpiler.passes.CommutativeInverseCancellation
 
 <span id="qiskit.transpiler.passes.CommutativeInverseCancellation" />
 
-`qiskit.transpiler.passes.CommutativeInverseCancellation(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/passes/optimization/commutative_inverse_cancellation.py "view source code")
+`qiskit.transpiler.passes.CommutativeInverseCancellation(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/optimization/commutative_inverse_cancellation.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
 Cancel pairs of inverse gates exploiting commutation relations.
+
+**Parameters**
+
+*   **matrix\_based** – If `True`, uses matrix representations to check whether two operations are inverse of each other. This makes the checks more powerful, and, in addition, allows canceling pairs of operations that are inverse up to a phase, while updating the global phase of the circuit accordingly. Generally this leads to more reductions at the expense of increased runtime.
+*   **max\_qubits** – Limits the number of qubits in matrix-based commutativity and inverse checks.
 
 ## Attributes
 

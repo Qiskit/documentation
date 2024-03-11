@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.uncertainty_models.MultivariateVariation
 
 <span id="qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution" />
 
-`MultivariateVariationalDistribution(num_qubits, var_form, params, low=None, high=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_models/multivariate_variational_distribution.py "view source code")
+`MultivariateVariationalDistribution(num_qubits, var_form, params, low=None, high=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_models/multivariate_variational_distribution.py "view source code")
 
 Bases: `qiskit.aqua.components.uncertainty_models.multivariate_distribution.MultivariateDistribution`
 
@@ -30,7 +30,7 @@ The Multivariate Variational Distribution.
 
 <span id="qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution.build" />
 
-`MultivariateVariationalDistribution.build(qc, q, q_ancillas=None, params=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_models/multivariate_variational_distribution.py "view source code")
+`MultivariateVariationalDistribution.build(qc, q, q_ancillas=None, params=None)`
 
 ### build\_controlled
 
@@ -154,7 +154,7 @@ returns required ancillas controlled
 
 <span id="qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution.set_probabilities" />
 
-`MultivariateVariationalDistribution.set_probabilities(quantum_instance)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_models/multivariate_variational_distribution.py "view source code")
+`MultivariateVariationalDistribution.set_probabilities(quantum_instance)`
 
 Set Probabilities
 

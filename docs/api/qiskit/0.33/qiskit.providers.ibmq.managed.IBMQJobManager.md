@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.managed.IBMQJobManager
 
 <span id="qiskit.providers.ibmq.managed.IBMQJobManager" />
 
-`IBMQJobManager`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.18/qiskit/providers/ibmq/managed/ibmqjobmanager.py "view source code")
+`IBMQJobManager` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.18/qiskit/providers/ibmq/managed/ibmqjobmanager.py "view source code")
 
 Bases: `object`
 
@@ -63,7 +63,7 @@ IBMQJobManager constructor.
 
 <span id="qiskit.providers.ibmq.managed.IBMQJobManager.job_sets" />
 
-`IBMQJobManager.job_sets(name=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.18/qiskit/providers/ibmq/managed/ibmqjobmanager.py "view source code")
+`IBMQJobManager.job_sets(name=None)`
 
 Return job sets being managed in this session, subject to optional filtering.
 
@@ -83,7 +83,7 @@ A list of managed job sets that match the filter.
 
 <span id="qiskit.providers.ibmq.managed.IBMQJobManager.report" />
 
-`IBMQJobManager.report(detailed=True)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.18/qiskit/providers/ibmq/managed/ibmqjobmanager.py "view source code")
+`IBMQJobManager.report(detailed=True)`
 
 Return a report on the statuses of all jobs managed by this Job Manager.
 
@@ -103,7 +103,7 @@ A report on job statuses.
 
 <span id="qiskit.providers.ibmq.managed.IBMQJobManager.retrieve_job_set" />
 
-`IBMQJobManager.retrieve_job_set(job_set_id, provider, refresh=False)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.18/qiskit/providers/ibmq/managed/ibmqjobmanager.py "view source code")
+`IBMQJobManager.retrieve_job_set(job_set_id, provider, refresh=False)`
 
 Retrieve a previously submitted job set.
 
@@ -130,7 +130,7 @@ Retrieved job set.
 
 <span id="qiskit.providers.ibmq.managed.IBMQJobManager.run" />
 
-`IBMQJobManager.run(experiments, backend, name=None, max_experiments_per_job=None, job_share_level=None, job_tags=None, **run_config)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.18/qiskit/providers/ibmq/managed/ibmqjobmanager.py "view source code")
+`IBMQJobManager.run(experiments, backend, name=None, max_experiments_per_job=None, job_share_level=None, job_tags=None, **run_config)`
 
 Execute a set of circuits or pulse schedules on a backend.
 

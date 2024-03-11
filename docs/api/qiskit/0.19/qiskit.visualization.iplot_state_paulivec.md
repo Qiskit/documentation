@@ -10,7 +10,7 @@ python_api_name: qiskit.visualization.iplot_state_paulivec
 
 <span id="qiskit.visualization.iplot_state_paulivec" />
 
-`iplot_state_paulivec(rho, figsize=None, slider=False, show_legend=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/visualization/interactive/iplot_paulivec.py "view source code")
+`iplot_state_paulivec(rho, figsize=None, slider=False, show_legend=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/visualization/interactive/iplot_paulivec.py "view source code")
 
 Create a paulivec representation.
 

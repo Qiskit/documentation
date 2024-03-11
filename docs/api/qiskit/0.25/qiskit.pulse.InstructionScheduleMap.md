@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.InstructionScheduleMap
 
 <span id="qiskit.pulse.InstructionScheduleMap" />
 
-`InstructionScheduleMap`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/instruction_schedule_map.py "view source code")
+`InstructionScheduleMap` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/instruction_schedule_map.py "view source code")
 
 Mapping from [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") [`qiskit.circuit.Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") names and qubits to [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") s. In particular, the mapping is formatted as type:
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.verification.qv_circuits
 
 <span id="qiskit.ignis.verification.qv_circuits" />
 
-`qv_circuits(qubit_lists, ntrials=1, qr=None, cr=None, seed=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/quantum_volume/circuits.py "view source code")
+`qv_circuits(qubit_lists, ntrials=1, qr=None, cr=None, seed=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/quantum_volume/circuits.py "view source code")
 
 Return a list of square quantum volume circuits (depth=width)
 

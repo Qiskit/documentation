@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.InstructionDurations
 
 <span id="qiskit.transpiler.InstructionDurations" />
 
-`InstructionDurations(instruction_durations=None, dt=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/instruction_durations.py "view source code")
+`InstructionDurations(instruction_durations=None, dt=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/instruction_durations.py "view source code")
 
 Bases: `object`
 
@@ -24,7 +24,7 @@ It stores durations (gate lengths) and dt to be used at the scheduling stage of 
 
 <span id="qiskit.transpiler.InstructionDurations.from_backend" />
 
-`classmethod InstructionDurations.from_backend(backend)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/instruction_durations.py "view source code")
+`classmethod InstructionDurations.from_backend(backend)`
 
 Construct an [`InstructionDurations`](qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations") object from the backend.
 
@@ -48,7 +48,7 @@ The InstructionDurations constructed from backend.
 
 <span id="qiskit.transpiler.InstructionDurations.get" />
 
-`InstructionDurations.get(inst, qubits, unit='dt', parameters=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/instruction_durations.py "view source code")
+`InstructionDurations.get(inst, qubits, unit='dt', parameters=None)`
 
 Get the duration of the instruction with the name, qubits, and parameters.
 
@@ -77,7 +77,7 @@ float|int
 
 <span id="qiskit.transpiler.InstructionDurations.units_used" />
 
-`InstructionDurations.units_used()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/instruction_durations.py "view source code")
+`InstructionDurations.units_used()`
 
 Get the set of all units used in this instruction durations.
 
@@ -93,7 +93,7 @@ Set of units used in this instruction durations.
 
 <span id="qiskit.transpiler.InstructionDurations.update" />
 
-`InstructionDurations.update(inst_durations, dt=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/instruction_durations.py "view source code")
+`InstructionDurations.update(inst_durations, dt=None)`
 
 Update self with inst\_durations (inst\_durations overwrite self).
 

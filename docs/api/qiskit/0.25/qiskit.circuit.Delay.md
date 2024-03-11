@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.Delay
 
 <span id="qiskit.circuit.Delay" />
 
-`Delay(duration, unit='dt')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/delay.py "view source code")
+`Delay(duration, unit='dt')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/delay.py "view source code")
 
 Do nothing and just delay/wait/idle for a specified duration.
 

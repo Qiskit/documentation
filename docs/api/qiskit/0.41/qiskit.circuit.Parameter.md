@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.Parameter
 
 <span id="qiskit.circuit.Parameter" />
 
-`Parameter(name)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/parameter.py "view source code")
+`Parameter(name)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/parameter.py "view source code")
 
 Bases: [`qiskit.circuit.parameterexpression.ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")
 
@@ -41,11 +41,7 @@ bc.draw('mpl')
 
 ![../\_images/qiskit-circuit-Parameter-1\_00.png](/images/api/qiskit/0.41/qiskit-circuit-Parameter-1_00.png)
 
-Fig. 10 ([`png`](_downloads/ab99ec3b79e96f461e690ca262f73570/qiskit-circuit-Parameter-1_00.png), [`hires.png`](_downloads/8f162098942691a551ddc54febd00942/qiskit-circuit-Parameter-1_00.hires.png), [`pdf`](_downloads/4ffb4a85e35d9e6dc73418baf585eca1/qiskit-circuit-Parameter-1_00.pdf))[¶](#id1 "Permalink to this image")
-
 ![../\_images/qiskit-circuit-Parameter-1\_01.png](/images/api/qiskit/0.41/qiskit-circuit-Parameter-1_01.png)
-
-Fig. 11 ([`png`](_downloads/1c26b648060e2d78752c9beb0472d916/qiskit-circuit-Parameter-1_01.png), [`hires.png`](_downloads/c8063434b010c2d84a30da468d91c5f8/qiskit-circuit-Parameter-1_01.hires.png), [`pdf`](_downloads/28d6024cb9854bb4f04f88a6c6777726/qiskit-circuit-Parameter-1_01.pdf))[¶](#id2 "Permalink to this image")
 
 Create a new named [`Parameter`](#qiskit.circuit.Parameter "qiskit.circuit.Parameter").
 
@@ -207,7 +203,7 @@ Sine of a ParameterExpression
 
 <span id="qiskit.circuit.Parameter.subs" />
 
-`Parameter.subs(parameter_map, allow_unknown_parameters=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/parameter.py "view source code")
+`Parameter.subs(parameter_map, allow_unknown_parameters=False)`
 
 Substitute self with the corresponding parameter in `parameter_map`.
 

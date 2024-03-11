@@ -12,7 +12,7 @@ python_api_name: qiskit.pulse.Snapshot
 
 <span id="qiskit.pulse.Snapshot" />
 
-`Snapshot(label, snapshot_type='statevector', name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/instructions/snapshot.py "view source code")
+`Snapshot(label, snapshot_type='statevector', name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/instructions/snapshot.py "view source code")
 
 An instruction targeted for simulators, to capture a moment in the simulation.
 

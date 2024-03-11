@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.builder.phase_offset
 
 <span id="qiskit.pulse.builder.phase_offset" />
 
-`phase_offset(phase, *channels)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/builder.py "view source code")
+`phase_offset(phase, *channels)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/builder.py "view source code")
 
 Shift the phase of input channels on entry into context and undo on exit.
 
@@ -33,7 +33,7 @@ assert len(pulse_prog.instructions) == 3
 **Parameters**
 
 *   **phase** (`float`) – Amount of phase offset in radians.
-*   **channels** ([`PulseChannel`](qiskit.pulse.channels#qiskit.pulse.channels.PulseChannel "qiskit.pulse.channels.PulseChannel")) – Channels to offset phase of.
+*   **channels** ([`PulseChannel`](qiskit.pulse.channels#pulsechannel "qiskit.pulse.channels.PulseChannel")) – Channels to offset phase of.
 
 **Yields**
 

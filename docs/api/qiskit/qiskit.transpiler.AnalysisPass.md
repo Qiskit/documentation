@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.AnalysisPass
 
 <span id="qiskit.transpiler.AnalysisPass" />
 
-`qiskit.transpiler.AnalysisPass(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/basepasses.py "view source code")
+`qiskit.transpiler.AnalysisPass(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/basepasses.py "view source code")
 
 Bases: `BasePass`
 

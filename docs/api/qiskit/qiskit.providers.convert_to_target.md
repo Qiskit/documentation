@@ -12,15 +12,22 @@ python_api_name: qiskit.providers.convert_to_target
 
 <span id="qiskit.providers.convert_to_target" />
 
-`qiskit.providers.convert_to_target(configuration, properties=None, defaults=None, custom_name_mapping=None, add_delay=False, filter_faulty=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/providers/backend_compat.py "view source code")
+`qiskit.providers.convert_to_target(configuration, properties=None, defaults=None, custom_name_mapping=None, add_delay=True, filter_faulty=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/providers/backend_compat.py "view source code")
 
-Uses configuration, properties and pulse defaults to construct and return Target class.
+Decode transpiler target from backend data set.
 
-In order to convert with a `defaults.instruction_schedule_map`, which has a custom calibration for an operation, the operation name must be in `configuration.basis_gates` and `custom_name_mapping` must be supplied for the operation. Otherwise, the operation will be dropped in the resulting `Target` object.
+This function generates `` Target` `` instance from intermediate legacy objects such as [`BackendProperties`](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") and [`PulseDefaults`](qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults"). These objects are usually components of the legacy [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1") model.
 
-That suggests it is recommended to add custom calibrations **after** creating a target with this function instead of adding them to `defaults` in advance. For example:
+**Parameters**
 
-```python
-target.add_instruction(custom_gate, {(0, 1): InstructionProperties(calibration=custom_sched)})
-```
+*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.backendconfiguration.BackendConfiguration")) – Backend configuration as `BackendConfiguration`
+*   **properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.backendproperties.BackendProperties") *| None*) – Backend property dictionary or `BackendProperties`
+*   **defaults** ([*PulseDefaults*](qiskit.providers.models.PulseDefaults "qiskit.providers.models.pulsedefaults.PulseDefaults") *| None*) – Backend pulse defaults dictionary or `PulseDefaults`
+*   **custom\_name\_mapping** ([*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")*] | None*) – A name mapping must be supplied for the operation not included in Qiskit Standard Gate name mapping, otherwise the operation will be dropped in the resulting `Target` object.
+*   **add\_delay** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, adds delay to the instruction set.
+*   **filter\_faulty** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, this filters the non-operational qubits.
+
+**Returns**
+
+A `Target` instance.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.channels.ControlChannel
 
 <span id="qiskit.pulse.channels.ControlChannel" />
 
-`ControlChannel(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/channels.py "view source code")
+`ControlChannel(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/channels.py "view source code")
 
 Bases: `PulseChannel`
 

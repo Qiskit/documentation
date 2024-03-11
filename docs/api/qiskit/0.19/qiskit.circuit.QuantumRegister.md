@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.QuantumRegister
 
 <span id="qiskit.circuit.QuantumRegister" />
 
-`QuantumRegister(size, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumregister.py "view source code")
+`QuantumRegister(size, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumregister.py "view source code")
 
 Implement a quantum register.
 
@@ -75,7 +75,7 @@ Return register size.
 
 <span id="qiskit.circuit.QuantumRegister.qasm" />
 
-`QuantumRegister.qasm()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/quantumregister.py "view source code")
+`QuantumRegister.qasm()`
 
 Return OPENQASM string for this register.
 

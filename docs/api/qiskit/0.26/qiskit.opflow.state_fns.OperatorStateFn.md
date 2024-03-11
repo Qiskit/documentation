@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.state_fns.OperatorStateFn
 
 <span id="qiskit.opflow.state_fns.OperatorStateFn" />
 
-`OperatorStateFn(primitive, coeff=1.0, is_measurement=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/state_fns/operator_state_fn.py "view source code")
+`OperatorStateFn(primitive, coeff=1.0, is_measurement=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/state_fns/operator_state_fn.py "view source code")
 
 A class for state functions and measurements which are defined by a density Operator, stored using an `OperatorBase`.
 

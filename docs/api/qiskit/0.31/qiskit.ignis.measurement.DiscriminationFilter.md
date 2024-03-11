@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.measurement.DiscriminationFilter
 
 <span id="qiskit.ignis.measurement.DiscriminationFilter" />
 
-`DiscriminationFilter(discriminator, base=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/measurement/discriminator/filters.py "view source code")
+`DiscriminationFilter(discriminator, base=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/measurement/discriminator/filters.py "view source code")
 
 Bases: `object`
 
@@ -31,7 +31,7 @@ my\_filter = DiscriminationFilter(my\_discriminator) new\_result = filter.apply(
 
 <span id="qiskit.ignis.measurement.DiscriminationFilter.apply" />
 
-`DiscriminationFilter.apply(raw_data)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/measurement/discriminator/filters.py "view source code")
+`DiscriminationFilter.apply(raw_data)`
 
 Create a new result from the raw\_data by converting level 1 data to level 2 data.
 
@@ -51,7 +51,7 @@ A list of qiskit.Result or qiskit.Result.
 
 <span id="qiskit.ignis.measurement.DiscriminationFilter.count" />
 
-`DiscriminationFilter.count(y_data)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/measurement/discriminator/filters.py "view source code")
+`DiscriminationFilter.count(y_data)`
 
 Converts discriminated results into raw counts.
 
@@ -71,7 +71,7 @@ A dict of raw counts.
 
 <span id="qiskit.ignis.measurement.DiscriminationFilter.get_base" />
 
-`static DiscriminationFilter.get_base(expected_states)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/measurement/discriminator/filters.py "view source code")
+`static DiscriminationFilter.get_base(expected_states)`
 
 Returns the base inferred from expected\_states.
 

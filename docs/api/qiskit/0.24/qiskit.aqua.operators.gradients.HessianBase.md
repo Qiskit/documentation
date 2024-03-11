@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.operators.gradients.HessianBase
 
 <span id="qiskit.aqua.operators.gradients.HessianBase" />
 
-`HessianBase(hess_method='param_shift', **kwargs)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/gradients/hessian_base.py "view source code")
+`HessianBase(hess_method='param_shift', **kwargs)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/gradients/hessian_base.py "view source code")
 
 Base class for the Hessian of an expected value.
 

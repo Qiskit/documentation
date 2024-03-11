@@ -10,7 +10,7 @@ python_api_name: qiskit.utils.has_ibmq
 
 <span id="qiskit.utils.has_ibmq" />
 
-`has_ibmq()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/utils/backend_utils.py "view source code")
+`has_ibmq()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/utils/backend_utils.py "view source code")
 
 Check if IBMQ is installed
 

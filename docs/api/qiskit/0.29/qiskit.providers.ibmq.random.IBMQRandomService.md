@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.random.IBMQRandomService
 
 <span id="qiskit.providers.ibmq.random.IBMQRandomService" />
 
-`IBMQRandomService(provider)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.16/qiskit/providers/ibmq/random/ibmqrandomservice.py "view source code")
+`IBMQRandomService(provider)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.16/qiskit/providers/ibmq/random/ibmqrandomservice.py "view source code")
 
 Bases: `object`
 
@@ -36,7 +36,7 @@ IBMQRandomService constructor.
 
 <span id="qiskit.providers.ibmq.random.IBMQRandomService.get_service" />
 
-`IBMQRandomService.get_service(name)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.16/qiskit/providers/ibmq/random/ibmqrandomservice.py "view source code")
+`IBMQRandomService.get_service(name)`
 
 Return the random number service with the given name.
 
@@ -60,7 +60,7 @@ Service with the given name.
 
 <span id="qiskit.providers.ibmq.random.IBMQRandomService.services" />
 
-`IBMQRandomService.services()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.16/qiskit/providers/ibmq/random/ibmqrandomservice.py "view source code")
+`IBMQRandomService.services()`
 
 Return all random number services available to this account.
 

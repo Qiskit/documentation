@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.random.IBMQRandomService
 
 <span id="qiskit.providers.ibmq.random.IBMQRandomService" />
 
-`IBMQRandomService(provider)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.13/qiskit/providers/ibmq/random/ibmqrandomservice.py "view source code")
+`IBMQRandomService(provider)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.13/qiskit/providers/ibmq/random/ibmqrandomservice.py "view source code")
 
 Random number services for an IBM Quantum Experience account provider.
 

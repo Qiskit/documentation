@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.variational_forms.SwapRZ
 
 <span id="qiskit.aqua.components.variational_forms.SwapRZ" />
 
-`SwapRZ(num_qubits, depth=3, entangler_map=None, entanglement='full', initial_state=None, skip_unentangled_qubits=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/variational_forms/swaprz.py "view source code")
+`SwapRZ(num_qubits, depth=3, entangler_map=None, entanglement='full', initial_state=None, skip_unentangled_qubits=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/variational_forms/swaprz.py "view source code")
 
 DEPRECATED. The SwapRZ Variational Form.
 
@@ -20,7 +20,7 @@ This trial wave function is layers of swap plus $z$ rotations with entanglements
   In chemistry, to define the particles for SwapRZ, use a [`HartreeFock`](qiskit.chemistry.components.initial_states.HartreeFock "qiskit.chemistry.components.initial_states.HartreeFock") initial state with the Jordan-Wigner qubit mapping
 </Admonition>
 
-For the case of none of qubits are unentangled to other qubits, the number of optimizer parameters SwapRz creates and uses is given by $q + d \times \left(q + \sum_{k=0}^{q-1}\vert D(k)\vert \right)$, where $\vert D(k)\vert $ denotes the *cardinality* of $D(k)$ or, more precisely, the *length* of $D(k)$ (since $D(k)$ is not just a set, but a list). Nonetheless, in some cases, if an entangler\_map does not include all qubits, that is, some qubits are not entangled by other qubits. The number of parameters is reduced by $d \times q'$, where $q'$ is the number of unentangled qubits. This is because adding more Rz gates to the unentangled qubits only introduce overhead without bringing any benefit; furthermore, theoretically, applying multiple Rz gates in a row can be reduced to a single Rz gate with the summed rotation angles.
+For the case of none of qubits are unentangled to other qubits, the number of optimizer parameters SwapRz creates and uses is given by $q + d \times \left(q + \sum_{k=0}^{q-1}|D(k)|\right)$, where $|D(k)|$ denotes the *cardinality* of $D(k)$ or, more precisely, the *length* of $D(k)$ (since $D(k)$ is not just a set, but a list). Nonetheless, in some cases, if an entangler\_map does not include all qubits, that is, some qubits are not entangled by other qubits. The number of parameters is reduced by $d \times q'$, where $q'$ is the number of unentangled qubits. This is because adding more Rz gates to the unentangled qubits only introduce overhead without bringing any benefit; furthermore, theoretically, applying multiple Rz gates in a row can be reduced to a single Rz gate with the summed rotation angles.
 
 See [`RY`](qiskit.aqua.components.variational_forms.RY "qiskit.aqua.components.variational_forms.RY") for more detail on entangler\_map and entanglement which apply here too but note SwapRZ only supports ‘full’ and ‘linear’ values.
 
@@ -97,7 +97,7 @@ boolean
 
 <span id="qiskit.aqua.components.variational_forms.SwapRZ.construct_circuit" />
 
-`SwapRZ.construct_circuit(parameters, q=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/variational_forms/swaprz.py "view source code")
+`SwapRZ.construct_circuit(parameters, q=None)`
 
 Construct the variational form, given its parameters.
 

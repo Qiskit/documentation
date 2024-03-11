@@ -10,11 +10,11 @@ python_api_name: qiskit.circuit.library.iSwapGate
 
 <span id="qiskit.circuit.library.iSwapGate" />
 
-`iSwapGate`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/iswap.py "view source code")
+`iSwapGate` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/iswap.py "view source code")
 
 iSWAP gate.
 
-A 2-qubit XX+YY interaction. This is a Clifford and symmetric gate. Its action is to swap two qubit states and phase the $\vert 01\rangle$ and $\vert 10\rangle$ amplitudes by i.
+A 2-qubit XX+YY interaction. This is a Clifford and symmetric gate. Its action is to swap two qubit states and phase the $|01\rangle$ and $|10\rangle$ amplitudes by i.
 
 **Circuit Symbol:**
 
@@ -338,7 +338,7 @@ Containing the definition.
 
 <span id="qiskit.circuit.library.iSwapGate.to_matrix" />
 
-`iSwapGate.to_matrix()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/iswap.py "view source code")
+`iSwapGate.to_matrix()`
 
 Return a numpy.array for the iSWAP gate.
 

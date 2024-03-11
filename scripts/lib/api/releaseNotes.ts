@@ -145,83 +145,10 @@ function addNewReleaseNoteToc(releaseNotesNode: any, newVersion: string) {
 }
 
 /**
- * Sorts the release notes dictionary by the patch version
- * in descending order, e.g. 0.25.2 then 0.25.1.
- *
- * Returns a dictionary with the corresponding markdown for
- * each patch with the entries sorted by release.
+ * Creates the release note file for the minor version found in `pkg`.If the file
+ * already exists, it will keep the initial header and overwrite the rest of the content.
  */
-export function sortReleaseNotesVersions(markdownByPatchVersion: {
-  [id: string]: string;
-}): { [id: string]: string } {
-  // Sorts the entries of markdownByPathVersion by patch in descending order,
-  // returning an array with elements corresponding to the dictionary entries
-  // as arrays of two elements (key and value).
-  // e.g.
-  // makrdownByPathVersion = {"0.45.0": "test 1", "0.46.0": "test 2"}
-  // =>
-  // markdownByPatchSorted = [["0.46.0", "test 2"],["0.45.0", "test 1"]]
-  const markdownByPatchSorted = Object.entries(markdownByPatchVersion).sort(
-    ([version1], [version2]) => {
-      const versionPatch1 = version1.split("rc").slice(0, 1)[0];
-      const versionPatch2 = version2.split("rc").slice(0, 1)[0];
-
-      if (versionPatch1 == versionPatch2) {
-        // The release candidates within the same patch should appear last.
-        // e.g. version 0.45.1rc1 should appear after version 0.45.1.
-        if (version1.length < version2.length) {
-          return -1;
-        } else if (version1.length > version2.length) {
-          return 1;
-        }
-      }
-
-      return version2.localeCompare(version1);
-    },
-  );
-
-  return Object.fromEntries(markdownByPatchSorted);
-}
-
-/**
- * Process the markdown dividing it into small sections for each patch version
- *
- * Returns a tuple:
- *   1. A Set of strings representing all the minor versions we found in the
- *      markdown.
- *   2. A dictionary with the corresponding markdown for each patch version
- *      found.
- */
-export function extractMarkdownReleaseNotesPatches(
-  markdown: string,
-): [Set<string>, { [id: string]: string }] {
-  const sectionsSplit = markdown.split(/\n## (?=[0-9])/);
-  const sections: string[] = sectionsSplit.slice(1, sectionsSplit.length);
-
-  const minorVersionsFound = new Set<string>();
-  const markdownByPatchVersion: { [id: string]: string } = {};
-
-  for (let section of sections) {
-    const versionPatch = section.split("\n").slice(0, 1)[0];
-    const versionMinor = versionPatch.split(".").slice(0, 2).join(".");
-
-    minorVersionsFound.add(versionMinor);
-
-    const content = section.split("\n");
-    content.shift();
-    markdownByPatchVersion[versionPatch] = `## ${versionPatch}\n${content.join(
-      "\n",
-    )}`;
-  }
-
-  return [minorVersionsFound, markdownByPatchVersion];
-}
-
-/**
- * Updates the release notes folder by adding the notes to their corresponding version
- * file.
- */
-export async function writeSeparateReleaseNotes(
+export async function writeReleaseNoteForVersion(
   pkg: Pkg,
   releaseNoteMarkdown: string,
 ): Promise<void> {
@@ -231,62 +158,26 @@ export async function writeSeparateReleaseNotes(
     );
   }
 
-  // Dictionary to store the file header in case we need to reconstruct a file from a
-  // previous version
-  const filesToInitialHeaders: { [id: string]: string } = {};
   const basePath = `${getRoot()}/docs/api/${pkg.name}/release-notes`;
+  const versionPath = `${basePath}/${pkg.versionWithoutPatch}.md`;
 
-  const [minorVersionsFound, markdownByPatchVersion] =
-    extractMarkdownReleaseNotesPatches(releaseNoteMarkdown);
+  const versionsMarkdown = releaseNoteMarkdown
+    .split(/\n## (?=[0-9])/)
+    .slice(1)
+    .join("\n## ");
 
-  // Read the current release notes for each version found
-  for (let version of minorVersionsFound) {
-    const versionPath = `${basePath}/${version}.md`;
-
-    // When we're adding a new version, its release note file will not yet exist, so we
-    // cannot read it here to determine the prior contents. Instead, skip the release
-    // note since we are going to add it at the end of this function.
-    if (!(await pathExists(versionPath))) {
-      continue;
-    }
-
+  if (!(await pathExists(versionPath))) {
+    await writeFile(versionPath, releaseNoteMarkdown);
+  } else if (versionsMarkdown) {
+    // The if statement prevents us from modifying versions of Qiskit < 0.45.
+    // Those versions have a different structure, such as a different section
+    // title (`## Qiskit 0.44.0` instead of `## 0.44.0`), and they contain
+    // more than one version in the same file.
     const currentMarkdown = await readFile(versionPath, "utf-8");
-    filesToInitialHeaders[version] = currentMarkdown
+    const initialHeader = currentMarkdown
       .split(/\n## (?=[0-9])/)
       .slice(0, 1)[0];
-  }
 
-  const markdownByPatchVersionSorted = sortReleaseNotesVersions(
-    markdownByPatchVersion,
-  );
-
-  // Generate the modified release notes files
-  const markdownByMinorVersion: { [id: string]: string } = {};
-  Object.entries(markdownByPatchVersionSorted).forEach(
-    ([versionPatch, markdown]) => {
-      const versionMinor = versionPatch.split(".").slice(0, 2).join(".");
-
-      if (!markdownByMinorVersion.hasOwnProperty(versionMinor)) {
-        markdownByMinorVersion[versionMinor] = markdown;
-      } else {
-        markdownByMinorVersion[versionMinor] += `\n${markdown}`;
-      }
-    },
-  );
-
-  // Write all the modified files
-  for (let [versionMinor, markdown] of Object.entries(markdownByMinorVersion)) {
-    let fileInitialHeader = filesToInitialHeaders[versionMinor];
-    if (fileInitialHeader == undefined) {
-      fileInitialHeader = `---
-title: Qiskit ${versionMinor} release notes
-description: New features and bug fixes
----
-# Qiskit ${versionMinor} release notes
-  `;
-    }
-
-    const versionPath = `${basePath}/${versionMinor}.md`;
-    await writeFile(versionPath, `${fileInitialHeader}\n${markdown}`);
+    await writeFile(versionPath, `${initialHeader}\n## ${versionsMarkdown}`);
   }
 }

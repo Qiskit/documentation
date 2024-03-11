@@ -12,7 +12,7 @@ python_api_name: qiskit.providers.Options
 
 <span id="qiskit.providers.Options" />
 
-`Options`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/providers/options.py "view source code")
+`Options` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/providers/options.py "view source code")
 
 Base options object
 

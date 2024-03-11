@@ -1,8 +1,20 @@
+---
+title: library
+description: API reference for qiskit.circuit.library
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.circuit.library
+---
+
 <span id="qiskit-circuit-library" />
 
 # Circuit Library
 
-## Circuit Library ([`qiskit.circuit.library`](#module-qiskit.circuit.library "qiskit.circuit.library"))
+## Circuit Library
+
+<span id="module-qiskit.circuit.library" />
+
+`qiskit.circuit.library`
 
 ### Standard Gates
 
@@ -125,3 +137,4 @@
 | [`PauliFeatureMap`](qiskit.circuit.library.PauliFeatureMap "qiskit.circuit.library.PauliFeatureMap")(\[feature\_dimension, reps, …]) | The Pauli Expansion circuit.               |
 | [`ZFeatureMap`](qiskit.circuit.library.ZFeatureMap "qiskit.circuit.library.ZFeatureMap")(feature\_dimension\[, reps, …])             | The first order Pauli Z-evolution circuit. |
 | [`ZZFeatureMap`](qiskit.circuit.library.ZZFeatureMap "qiskit.circuit.library.ZZFeatureMap")(feature\_dimension\[, reps, …])          | Second-order Pauli-Z evolution circuit.    |
+

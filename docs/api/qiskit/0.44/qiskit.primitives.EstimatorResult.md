@@ -10,7 +10,7 @@ python_api_name: qiskit.primitives.EstimatorResult
 
 <span id="qiskit.primitives.EstimatorResult" />
 
-`qiskit.primitives.EstimatorResult(values, metadata)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/primitives/base/estimator_result.py "view source code")
+`qiskit.primitives.EstimatorResult(values, metadata)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/primitives/base/estimator_result.py "view source code")
 
 Bases: `BasePrimitiveResult`
 

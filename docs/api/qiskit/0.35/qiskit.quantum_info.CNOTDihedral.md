@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.CNOTDihedral
 
 <span id="qiskit.quantum_info.CNOTDihedral" />
 
-`CNOTDihedral(data=None, num_qubits=None, validate=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/dihedral/dihedral.py "view source code")
+`CNOTDihedral(data=None, num_qubits=None, validate=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/dihedral/dihedral.py "view source code")
 
 Bases: `qiskit.quantum_info.operators.base_operator.BaseOperator`, `qiskit.quantum_info.operators.mixins.adjoint.AdjointMixin`
 
@@ -79,7 +79,7 @@ Initialize a CNOTDihedral operator object.
 
 <span id="qiskit.quantum_info.CNOTDihedral.adjoint" />
 
-`CNOTDihedral.adjoint()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/dihedral/dihedral.py "view source code")
+`CNOTDihedral.adjoint()`
 
 Return the adjoint of the Operator.
 
@@ -87,7 +87,7 @@ Return the adjoint of the Operator.
 
 <span id="qiskit.quantum_info.CNOTDihedral.compose" />
 
-`CNOTDihedral.compose(other, qargs=None, front=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/dihedral/dihedral.py "view source code")
+`CNOTDihedral.compose(other, qargs=None, front=False)`
 
 Return the operator composition with another CNOTDihedral.
 
@@ -119,7 +119,7 @@ The composed CNOTDihedral.
 
 <span id="qiskit.quantum_info.CNOTDihedral.conjugate" />
 
-`CNOTDihedral.conjugate()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/dihedral/dihedral.py "view source code")
+`CNOTDihedral.conjugate()`
 
 Return the conjugate of the CNOTDihedral.
 
@@ -156,7 +156,7 @@ The right matrix multiplied Operator.
 
 <span id="qiskit.quantum_info.CNOTDihedral.expand" />
 
-`CNOTDihedral.expand(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/dihedral/dihedral.py "view source code")
+`CNOTDihedral.expand(other)`
 
 Return the reverse-order tensor product with another CNOTDihedral.
 
@@ -244,7 +244,7 @@ BaseOperator
 
 <span id="qiskit.quantum_info.CNOTDihedral.tensor" />
 
-`CNOTDihedral.tensor(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/dihedral/dihedral.py "view source code")
+`CNOTDihedral.tensor(other)`
 
 Return the tensor product with another CNOTDihedral.
 
@@ -270,7 +270,7 @@ is the current CNOTDihedral, and $b$ is the other CNOTDihedral.
 
 <span id="qiskit.quantum_info.CNOTDihedral.to_circuit" />
 
-`CNOTDihedral.to_circuit()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/dihedral/dihedral.py "view source code")
+`CNOTDihedral.to_circuit()`
 
 Return a QuantumCircuit implementing the CNOT-Dihedral element.
 
@@ -291,7 +291,7 @@ a circuit implementation of the CNOTDihedral object.
 
 <span id="qiskit.quantum_info.CNOTDihedral.to_instruction" />
 
-`CNOTDihedral.to_instruction()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/dihedral/dihedral.py "view source code")
+`CNOTDihedral.to_instruction()`
 
 Return a Gate instruction implementing the CNOTDihedral object.
 
@@ -299,7 +299,7 @@ Return a Gate instruction implementing the CNOTDihedral object.
 
 <span id="qiskit.quantum_info.CNOTDihedral.to_matrix" />
 
-`CNOTDihedral.to_matrix()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/dihedral/dihedral.py "view source code")
+`CNOTDihedral.to_matrix()`
 
 Convert operator to Numpy matrix.
 
@@ -307,7 +307,7 @@ Convert operator to Numpy matrix.
 
 <span id="qiskit.quantum_info.CNOTDihedral.to_operator" />
 
-`CNOTDihedral.to_operator()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/dihedral/dihedral.py "view source code")
+`CNOTDihedral.to_operator()`
 
 Convert to an Operator object.
 
@@ -315,7 +315,7 @@ Convert to an Operator object.
 
 <span id="qiskit.quantum_info.CNOTDihedral.transpose" />
 
-`CNOTDihedral.transpose()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/dihedral/dihedral.py "view source code")
+`CNOTDihedral.transpose()`
 
 Return the transpose of the CNOTDihedral.
 

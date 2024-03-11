@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.optimizers.TNC
 
 <span id="qiskit.aqua.components.optimizers.TNC" />
 
-`TNC(maxiter=100, disp=False, accuracy=0, ftol=- 1, xtol=- 1, gtol=- 1, tol=None, eps=1e-08)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/optimizers/tnc.py "view source code")
+`TNC(maxiter=100, disp=False, accuracy=0, ftol=- 1, xtol=- 1, gtol=- 1, tol=None, eps=1e-08)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/optimizers/tnc.py "view source code")
 
 Bases: `qiskit.aqua.components.optimizers.optimizer.Optimizer`
 
@@ -37,7 +37,7 @@ Uses scipy.optimize.minimize TNC For further detail, please refer to See [https:
 
 <span id="qiskit.aqua.components.optimizers.TNC.get_support_level" />
 
-`TNC.get_support_level()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/optimizers/tnc.py "view source code")
+`TNC.get_support_level()`
 
 return support level dictionary
 
@@ -68,7 +68,7 @@ grad
 
 <span id="qiskit.aqua.components.optimizers.TNC.optimize" />
 
-`TNC.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/optimizers/tnc.py "view source code")
+`TNC.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
 Perform optimization.
 

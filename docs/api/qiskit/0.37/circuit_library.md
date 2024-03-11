@@ -1,8 +1,20 @@
+---
+title: library
+description: API reference for qiskit.circuit.library
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.circuit.library
+---
+
 <span id="qiskit-circuit-library" />
 
 # Circuit Library
 
-## Circuit Library ([`qiskit.circuit.library`](#module-qiskit.circuit.library "qiskit.circuit.library"))
+## Circuit Library
+
+<span id="module-qiskit.circuit.library" />
+
+`qiskit.circuit.library`
 
 The circuit library is a collection of well-studied and valuable circuits, directives, and gates. We call them valuable for different reasons, for instance they can serve as building blocks for algorithms or they are circuits that we think are hard to simulate classically.
 
@@ -136,25 +148,25 @@ print(diagonal.num_qubits)
 2
 ```
 
-|                                                                                                                                    |                                                                                                    |
-| ---------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| [`Diagonal`](qiskit.circuit.library.Diagonal "qiskit.circuit.library.Diagonal")(diag)                                              | Diagonal circuit.                                                                                  |
-| [`MCMT`](qiskit.circuit.library.MCMT "qiskit.circuit.library.MCMT")(gate, num\_ctrl\_qubits, num\_target\_qubits)                  | The multi-controlled multi-target gate, for an arbitrary singly controlled target gate.            |
-| [`MCMTVChain`](qiskit.circuit.library.MCMTVChain "qiskit.circuit.library.MCMTVChain")(gate, num\_ctrl\_qubits, ...\[, label])      | The MCMT implementation using the CCX V-chain.                                                     |
-| [`Permutation`](qiskit.circuit.library.Permutation "qiskit.circuit.library.Permutation")(num\_qubits\[, pattern, seed])            | An n\_qubit circuit that permutes qubits.                                                          |
-| [`GMS`](qiskit.circuit.library.GMS "qiskit.circuit.library.GMS")(num\_qubits, theta)                                               | Global Mølmer–Sørensen gate.                                                                       |
-| [`GR`](qiskit.circuit.library.GR "qiskit.circuit.library.GR")(num\_qubits, theta, phi)                                             | Global R gate.                                                                                     |
-| [`GRX`](qiskit.circuit.library.GRX "qiskit.circuit.library.GRX")(num\_qubits, theta)                                               | Global RX gate.                                                                                    |
-| [`GRY`](qiskit.circuit.library.GRY "qiskit.circuit.library.GRY")(num\_qubits, theta)                                               | Global RY gate.                                                                                    |
-| [`GRZ`](qiskit.circuit.library.GRZ "qiskit.circuit.library.GRZ")(num\_qubits, phi)                                                 | Global RZ gate.                                                                                    |
-| [`MCPhaseGate`](qiskit.circuit.library.MCPhaseGate "qiskit.circuit.library.MCPhaseGate")(lam, num\_ctrl\_qubits\[, label])         | Multi-controlled-Phase gate.                                                                       |
-| [`MCXGate`](qiskit.circuit.library.MCXGate "qiskit.circuit.library.MCXGate")(num\_ctrl\_qubits\[, label, ...])                     | The general, multi-controlled X gate.                                                              |
-| [`MCXGrayCode`](qiskit.circuit.library.MCXGrayCode "qiskit.circuit.library.MCXGrayCode")(num\_ctrl\_qubits\[, label, ctrl\_state]) | Implement the multi-controlled X gate using the Gray code.                                         |
-| [`MCXRecursive`](qiskit.circuit.library.MCXRecursive "qiskit.circuit.library.MCXRecursive")(num\_ctrl\_qubits\[, label, ...])      | Implement the multi-controlled X gate using recursion.                                             |
-| [`MCXVChain`](qiskit.circuit.library.MCXVChain "qiskit.circuit.library.MCXVChain")(num\_ctrl\_qubits\[, dirty\_ancillas, ...])     | Implement the multi-controlled X gate using a V-chain of CX gates.                                 |
-| [`RVGate`](qiskit.circuit.library.RVGate "qiskit.circuit.library.RVGate")(v\_x, v\_y, v\_z\[, basis])                              | Rotation around arbitrary rotation axis $v$ where $\vert v\vert $ is angle of rotation in radians. |
-| [`PauliGate`](qiskit.circuit.library.PauliGate "qiskit.circuit.library.PauliGate")(label)                                          | A multi-qubit Pauli gate.                                                                          |
-| [`LinearFunction`](qiskit.circuit.library.LinearFunction "qiskit.circuit.library.LinearFunction")(linear\[, validate\_input])      | A linear reversible circuit on n qubits.                                                           |
+|                                                                                                                                    |                                                                                         |   |                                     |
+| ---------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | - | ----------------------------------- |
+| [`Diagonal`](qiskit.circuit.library.Diagonal "qiskit.circuit.library.Diagonal")(diag)                                              | Diagonal circuit.                                                                       |   |                                     |
+| [`MCMT`](qiskit.circuit.library.MCMT "qiskit.circuit.library.MCMT")(gate, num\_ctrl\_qubits, num\_target\_qubits)                  | The multi-controlled multi-target gate, for an arbitrary singly controlled target gate. |   |                                     |
+| [`MCMTVChain`](qiskit.circuit.library.MCMTVChain "qiskit.circuit.library.MCMTVChain")(gate, num\_ctrl\_qubits, ...\[, label])      | The MCMT implementation using the CCX V-chain.                                          |   |                                     |
+| [`Permutation`](qiskit.circuit.library.Permutation "qiskit.circuit.library.Permutation")(num\_qubits\[, pattern, seed])            | An n\_qubit circuit that permutes qubits.                                               |   |                                     |
+| [`GMS`](qiskit.circuit.library.GMS "qiskit.circuit.library.GMS")(num\_qubits, theta)                                               | Global Mølmer–Sørensen gate.                                                            |   |                                     |
+| [`GR`](qiskit.circuit.library.GR "qiskit.circuit.library.GR")(num\_qubits, theta, phi)                                             | Global R gate.                                                                          |   |                                     |
+| [`GRX`](qiskit.circuit.library.GRX "qiskit.circuit.library.GRX")(num\_qubits, theta)                                               | Global RX gate.                                                                         |   |                                     |
+| [`GRY`](qiskit.circuit.library.GRY "qiskit.circuit.library.GRY")(num\_qubits, theta)                                               | Global RY gate.                                                                         |   |                                     |
+| [`GRZ`](qiskit.circuit.library.GRZ "qiskit.circuit.library.GRZ")(num\_qubits, phi)                                                 | Global RZ gate.                                                                         |   |                                     |
+| [`MCPhaseGate`](qiskit.circuit.library.MCPhaseGate "qiskit.circuit.library.MCPhaseGate")(lam, num\_ctrl\_qubits\[, label])         | Multi-controlled-Phase gate.                                                            |   |                                     |
+| [`MCXGate`](qiskit.circuit.library.MCXGate "qiskit.circuit.library.MCXGate")(num\_ctrl\_qubits\[, label, ...])                     | The general, multi-controlled X gate.                                                   |   |                                     |
+| [`MCXGrayCode`](qiskit.circuit.library.MCXGrayCode "qiskit.circuit.library.MCXGrayCode")(num\_ctrl\_qubits\[, label, ctrl\_state]) | Implement the multi-controlled X gate using the Gray code.                              |   |                                     |
+| [`MCXRecursive`](qiskit.circuit.library.MCXRecursive "qiskit.circuit.library.MCXRecursive")(num\_ctrl\_qubits\[, label, ...])      | Implement the multi-controlled X gate using recursion.                                  |   |                                     |
+| [`MCXVChain`](qiskit.circuit.library.MCXVChain "qiskit.circuit.library.MCXVChain")(num\_ctrl\_qubits\[, dirty\_ancillas, ...])     | Implement the multi-controlled X gate using a V-chain of CX gates.                      |   |                                     |
+| [`RVGate`](qiskit.circuit.library.RVGate "qiskit.circuit.library.RVGate")(v\_x, v\_y, v\_z\[, basis])                              | Rotation around arbitrary rotation axis $v$ where \$                                    | v | \$ is angle of rotation in radians. |
+| [`PauliGate`](qiskit.circuit.library.PauliGate "qiskit.circuit.library.PauliGate")(label)                                          | A multi-qubit Pauli gate.                                                               |   |                                     |
+| [`LinearFunction`](qiskit.circuit.library.LinearFunction "qiskit.circuit.library.LinearFunction")(linear\[, validate\_input])      | A linear reversible circuit on n qubits.                                                |   |                                     |
 
 ### Boolean Logic Circuits
 
@@ -385,3 +397,4 @@ Template circuits with [`RZXGate`](qiskit.circuit.library.RZXGate "qiskit.circui
 | [`rzx_zz1`](qiskit.circuit.library.rzx_zz1 "qiskit.circuit.library.rzx_zz1")(\[theta]) | Template for CX - RZGate - CX. |
 | [`rzx_zz2`](qiskit.circuit.library.rzx_zz2 "qiskit.circuit.library.rzx_zz2")(\[theta]) | Template for CX - RZGate - CX. |
 | [`rzx_zz3`](qiskit.circuit.library.rzx_zz3 "qiskit.circuit.library.rzx_zz3")(\[theta]) | Template for CX - RZGate - CX. |
+

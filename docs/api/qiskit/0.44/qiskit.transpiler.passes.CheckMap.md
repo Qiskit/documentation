@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.CheckMap
 
 <span id="qiskit.transpiler.passes.CheckMap" />
 
-`qiskit.transpiler.passes.CheckMap(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/utils/check_map.py "view source code")
+`qiskit.transpiler.passes.CheckMap(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/utils/check_map.py "view source code")
 
 Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.passmanager.BasePassManager
 
 <span id="qiskit.passmanager.BasePassManager" />
 
-`qiskit.passmanager.BasePassManager(tasks=(), max_iteration=1000)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/passmanager/passmanager.py "view source code")
+`qiskit.passmanager.BasePassManager(tasks=(), max_iteration=1000)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/passmanager/passmanager.py "view source code")
 
 Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 
@@ -79,7 +79,7 @@ Replace a particular pass in the scheduler.
 
 <span id="qiskit.passmanager.BasePassManager.run" />
 
-`run(in_programs, callback=None, **kwargs)`
+`run(in_programs, callback=None, num_processes=None, **kwargs)`
 
 Run all the passes on the specified `in_programs`.
 
@@ -112,6 +112,8 @@ Run all the passes on the specified `in_programs`.
         count = kwargs['count']
         ...
     ```
+
+*   **num\_processes** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The maximum number of parallel processes to launch if parallel execution is enabled. This argument overrides `num_processes` in the user configuration file, and the `QISKIT_NUM_PROCS` environment variable. If set to `None` the system default or local user configuration will be used.
 
 *   **kwargs** – Arbitrary arguments passed to the compiler frontend and backend.
 

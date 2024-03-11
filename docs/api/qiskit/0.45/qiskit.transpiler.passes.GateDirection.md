@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.GateDirection
 
 <span id="qiskit.transpiler.passes.GateDirection" />
 
-`qiskit.transpiler.passes.GateDirection(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/utils/gate_direction.py "view source code")
+`qiskit.transpiler.passes.GateDirection(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/utils/gate_direction.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 

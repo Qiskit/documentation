@@ -1,8 +1,20 @@
+---
+title: primitive_ops
+description: API reference for qiskit.opflow.primitive_ops
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.opflow.primitive_ops
+---
+
 <span id="qiskit-opflow-primitive-ops" />
 
 # qiskit.opflow\.primitive\_ops
 
-## Primitive Operators ([`qiskit.opflow.primitive_ops`](#module-qiskit.opflow.primitive_ops "qiskit.opflow.primitive_ops"))
+## Primitive Operators
+
+<span id="module-qiskit.opflow.primitive_ops" />
+
+`qiskit.opflow.primitive_ops`
 
 Operators are defined to be functions which take State functions to State functions.
 
@@ -28,3 +40,4 @@ PrimitiveOps are the classes for representing basic Operators, backed by computa
 |                                                                                                                                         |               |
 | --------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
 | [`Z2Symmetries`](qiskit.opflow.primitive_ops.Z2Symmetries "qiskit.opflow.primitive_ops.Z2Symmetries")(symmetries, sq\_paulis, sq\_list) | Z2 Symmetries |
+

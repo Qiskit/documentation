@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.Clifford
 
 <span id="qiskit.quantum_info.Clifford" />
 
-`Clifford(data, validate=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/quantum_info/operators/symplectic/clifford.py "view source code")
+`Clifford(data, validate=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/quantum_info/operators/symplectic/clifford.py "view source code")
 
 An N-qubit unitary operator from the Clifford group.
 

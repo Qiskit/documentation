@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.NoiseAdaptiveLayout
 
 <span id="qiskit.transpiler.passes.NoiseAdaptiveLayout" />
 
-`qiskit.transpiler.passes.NoiseAdaptiveLayout(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/layout/noise_adaptive_layout.py "view source code")
+`qiskit.transpiler.passes.NoiseAdaptiveLayout(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/layout/noise_adaptive_layout.py "view source code")
 
 Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 

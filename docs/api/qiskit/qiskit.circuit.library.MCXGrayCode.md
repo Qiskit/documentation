@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.MCXGrayCode
 
 <span id="qiskit.circuit.library.MCXGrayCode" />
 
-`qiskit.circuit.library.MCXGrayCode(num_ctrl_qubits=None, label=None, ctrl_state=None, *, duration=None, unit='dt', _base_label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/standard_gates/x.py "view source code")
+`qiskit.circuit.library.MCXGrayCode(num_ctrl_qubits=None, label=None, ctrl_state=None, *, duration=None, unit='dt', _base_label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 Bases: [`MCXGate`](qiskit.circuit.library.MCXGate "qiskit.circuit.library.standard_gates.x.MCXGate")
 
@@ -165,7 +165,19 @@ Get the time unit of duration.
 
 <span id="qiskit.circuit.library.MCXGrayCode.inverse" />
 
-`inverse()`
+`inverse(annotated=False)`
 
 Invert this gate. The MCX is its own inverse.
+
+**Parameters**
+
+**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as this gate is self-inverse.
+
+**Returns**
+
+inverse gate (self-inverse).
+
+**Return type**
+
+[MCXGrayCode](#qiskit.circuit.library.MCXGrayCode "qiskit.circuit.library.MCXGrayCode")
 

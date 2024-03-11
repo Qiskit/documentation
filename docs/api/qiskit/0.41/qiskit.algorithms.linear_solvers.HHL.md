@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.linear_solvers.HHL
 
 <span id="qiskit.algorithms.linear_solvers.HHL" />
 
-`HHL(epsilon=0.01, expectation=None, quantum_instance=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/linear_solvers/hhl.py "view source code")
+`HHL(epsilon=0.01, expectation=None, quantum_instance=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/linear_solvers/hhl.py "view source code")
 
 Bases: [`qiskit.algorithms.linear_solvers.linear_solver.LinearSolver`](qiskit.algorithms.linear_solvers.LinearSolver "qiskit.algorithms.linear_solvers.linear_solver.LinearSolver")
 
@@ -63,7 +63,7 @@ Enhancing the Quantum Linear Systems Algorithm Using Richardson Extrapolation. [
 
 **Parameters**
 
-*   **epsilon** (`float`) – Error tolerance of the approximation to the solution, i.e. if $x$ is the exact solution and $\tilde{x}$ the one calculated by the algorithm, then $\vert \vert x - \tilde{x}\vert \vert  \le epsilon$.
+*   **epsilon** (`float`) – Error tolerance of the approximation to the solution, i.e. if $x$ is the exact solution and $\tilde{x}$ the one calculated by the algorithm, then $||x - \tilde{x}|| \le epsilon$.
 *   **expectation** (`Optional`\[[`ExpectationBase`](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.expectation_base.ExpectationBase")]) – The expectation converter applied to the expectation values before evaluation. If None then PauliExpectation is used.
 *   **quantum\_instance** (`Union`\[[`Backend`](qiskit.providers.Backend "qiskit.providers.backend.Backend"), [`QuantumInstance`](qiskit.utils.QuantumInstance "qiskit.utils.quantum_instance.QuantumInstance"), `None`]) – Quantum Instance or Backend. If None, a Statevector calculation is done.
 
@@ -73,7 +73,7 @@ Enhancing the Quantum Linear Systems Algorithm Using Richardson Extrapolation. [
 
 <span id="qiskit.algorithms.linear_solvers.HHL.construct_circuit" />
 
-`HHL.construct_circuit(matrix, vector, neg_vals=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/linear_solvers/hhl.py "view source code")
+`HHL.construct_circuit(matrix, vector, neg_vals=True)`
 
 Construct the HHL circuit.
 
@@ -101,7 +101,7 @@ The HHL circuit.
 
 <span id="qiskit.algorithms.linear_solvers.HHL.solve" />
 
-`HHL.solve(matrix, vector, observable=None, observable_circuit=None, post_processing=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/linear_solvers/hhl.py "view source code")
+`HHL.solve(matrix, vector, observable=None, observable_circuit=None, post_processing=None)`
 
 Tries to solve the given linear system of equations.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.primitives.Sampler
 
 <span id="qiskit.primitives.Sampler" />
 
-`Sampler(circuits, parameters=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/primitives/sampler.py "view source code")
+`Sampler(circuits, parameters=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/primitives/sampler.py "view source code")
 
 Bases: `qiskit.primitives.base_sampler.BaseSampler`
 
@@ -30,7 +30,7 @@ Sampler class
 
 <span id="qiskit.primitives.Sampler.close" />
 
-`Sampler.close()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/primitives/sampler.py "view source code")
+`Sampler.close()`
 
 Close the session and free resources
 

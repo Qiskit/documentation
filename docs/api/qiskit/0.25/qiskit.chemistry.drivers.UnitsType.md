@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.drivers.UnitsType
 
 <span id="qiskit.chemistry.drivers.UnitsType" />
 
-`UnitsType(value)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/units_type.py "view source code")
+`UnitsType(value)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/units_type.py "view source code")
 
 Units Type Enum
 

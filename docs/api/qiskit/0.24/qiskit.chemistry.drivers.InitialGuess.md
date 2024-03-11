@@ -12,7 +12,7 @@ python_api_name: qiskit.chemistry.drivers.InitialGuess
 
 <span id="qiskit.chemistry.drivers.InitialGuess" />
 
-`InitialGuess(value)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/drivers/pyscfd/pyscfdriver.py "view source code")
+`InitialGuess(value)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/drivers/pyscfd/pyscfdriver.py "view source code")
 
 Initial Guess Enum
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.algorithms.Simon
 
 <span id="qiskit.aqua.algorithms.Simon" />
 
-`Simon(oracle, quantum_instance=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/education/simon.py "view source code")
+`Simon(oracle, quantum_instance=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/education/simon.py "view source code")
 
 The Simon algorithm.
 

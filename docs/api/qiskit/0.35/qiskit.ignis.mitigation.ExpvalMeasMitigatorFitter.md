@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter
 
 <span id="qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter" />
 
-`ExpvalMeasMitigatorFitter(result, metadata)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/mitigation/expval/fitter.py "view source code")
+`ExpvalMeasMitigatorFitter(result, metadata)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/mitigation/expval/fitter.py "view source code")
 
 Bases: `object`
 
@@ -31,7 +31,7 @@ Fit a measurement error mitigator object from experiment data.
 
 <span id="qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter.fit" />
 
-`ExpvalMeasMitigatorFitter.fit(method=None, generators=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/mitigation/expval/fitter.py "view source code")
+`ExpvalMeasMitigatorFitter.fit(method=None, generators=None)`
 
 Fit and return the Mitigator object from the calibration data.
 

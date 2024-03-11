@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.GroverOperator
 
 <span id="qiskit.circuit.library.GroverOperator" />
 
-`qiskit.circuit.library.GroverOperator(oracle, state_preparation=None, zero_reflection=None, reflection_qubits=None, insert_barriers=False, mcx_mode='noancilla', name='Q')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/grover_operator.py "view source code")
+`qiskit.circuit.library.GroverOperator(oracle, state_preparation=None, zero_reflection=None, reflection_qubits=None, insert_barriers=False, mcx_mode='noancilla', name='Q')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/grover_operator.py "view source code")
 
 Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
@@ -40,7 +40,7 @@ This class allows setting a different state preparation, as in quantum amplitude
 The action of the phase oracle $\mathcal{S}_f$ is defined as
 
 $$
-\mathcal{S}_f: \vert x\rangle \mapsto (-1)^{f(x)}\vert x\rangle
+\mathcal{S}_f: |x\rangle \mapsto (-1)^{f(x)}|x\rangle
 
 
 $$
@@ -62,12 +62,12 @@ There is some flexibility in defining the oracle and $\mathcal{A}$ operator. Bef
 The zero reflection $\mathcal{S}_0$ is usually defined as
 
 $$
-\mathcal{S}_0 = 2 \vert 0\rangle^{\otimes n} \langle 0\vert ^{\otimes n} - \mathbb{I}_n
+\mathcal{S}_0 = 2 |0\rangle^{\otimes n} \langle 0|^{\otimes n} - \mathbb{I}_n
 
 
 $$
 
-where $\mathbb{I}_n$ is the identity on $n$ qubits. By default, this class implements the negative version $2 \vert 0\rangle^{\otimes n} \langle 0\vert ^{\otimes n} - \mathbb{I}_n$, since this can simply be implemented with a multi-controlled Z sandwiched by X gates on the target qubit and the introduced global phase does not matter for Grover’s algorithm.
+where $\mathbb{I}_n$ is the identity on $n$ qubits. By default, this class implements the negative version $2 |0\rangle^{\otimes n} \langle 0|^{\otimes n} - \mathbb{I}_n$, since this can simply be implemented with a multi-controlled Z sandwiched by X gates on the target qubit and the introduced global phase does not matter for Grover’s algorithm.
 
 **Examples**
 

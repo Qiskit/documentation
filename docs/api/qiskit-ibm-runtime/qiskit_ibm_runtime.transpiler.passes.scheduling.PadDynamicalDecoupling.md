@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDec
 
 <span id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling" />
 
-`PadDynamicalDecoupling(durations, dd_sequences, qubits=None, spacings=None, skip_reset_qubits=True, pulse_alignment=16, extra_slack_distribution='middle', sequence_min_length_ratios=None, insert_multiple_cycles=False, coupling_map=None, alt_spacings=None, schedule_idle_qubits=False)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.18/qiskit_ibm_runtime/transpiler/passes/scheduling/dynamical_decoupling.py "view source code")
+`PadDynamicalDecoupling(durations, dd_sequences, qubits=None, spacings=None, skip_reset_qubits=True, pulse_alignment=16, extra_slack_distribution='middle', sequence_min_length_ratios=None, insert_multiple_cycles=False, coupling_map=None, alt_spacings=None, schedule_idle_qubits=False, dd_barrier=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/transpiler/passes/scheduling/dynamical_decoupling.py#L39-L567 "view source code")
 
 Dynamical decoupling insertion pass for IBM dynamic circuit backends.
 
@@ -23,8 +23,8 @@ from qiskit.circuit.library import XGate
 from qiskit.transpiler import PassManager, InstructionDurations
 from qiskit.visualization import timeline_drawer
 
-from qiskit_ibm_provider.transpiler.passes.scheduling import ALAPScheduleAnalysis
-from qiskit_ibm_provider.transpiler.passes.scheduling import PadDynamicalDecoupling
+from qiskit_ibm_runtime.transpiler.passes.scheduling import ALAPScheduleAnalysis
+from qiskit_ibm_runtime.transpiler.passes.scheduling import PadDynamicalDecoupling
 
 circ = QuantumCircuit(4)
 circ.h(0)
@@ -130,7 +130,7 @@ meas: 4/════════════════════════
 ```
 
 <Admonition title="Note" type="note">
-  You need to call `ALAPScheduleAnalysis` before running dynamical decoupling to guarantee your circuit satisfies acquisition alignment constraints for dynamic circuit backends.
+  You need to call [`ALAPScheduleAnalysis`](qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAnalysis "qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAnalysis") before running dynamical decoupling to guarantee your circuit satisfies acquisition alignment constraints for dynamic circuit backends.
 </Admonition>
 
 Dynamical decoupling initializer.
@@ -165,6 +165,8 @@ Dynamical decoupling initializer.
 *   **alt\_spacings** (`Union`\[`List`\[`List`\[`float`]], `List`\[`float`], `None`]) – A list of lists of spacings between the DD gates, for the second subcircuit, as determined by the coupling map. If None, a balanced spacing that is staggered with respect to the first subcircuit will be used \[d, d, d, …, d, d, 0].
 
 *   **schedule\_idle\_qubits** (`bool`) – Set to true if you’d like a delay inserted on idle qubits. This is useful for timeline visualizations, but may cause issues for execution on large backends.
+
+*   **dd\_barrier** (`Optional`\[`str`]) – only apply DD to delays terminating with a barrier whose label contains the specified string
 
 **Raises**
 
@@ -251,7 +253,7 @@ Name of the pass.
 
 <span id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling.run" />
 
-`run(dag)`
+`run(dag)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/transpiler/passes/scheduling/block_base_padder.py#L91-L115 "view source code")
 
 Run the padding pass on `dag`.
 

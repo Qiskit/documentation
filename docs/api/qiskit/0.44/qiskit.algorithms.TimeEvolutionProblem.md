@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.TimeEvolutionProblem
 
 <span id="qiskit.algorithms.TimeEvolutionProblem" />
 
-`qiskit.algorithms.TimeEvolutionProblem(hamiltonian, time, initial_state=None, aux_operators=None, truncation_threshold=1e-12, t_param=None, param_value_map=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/time_evolvers/time_evolution_problem.py "view source code")
+`qiskit.algorithms.TimeEvolutionProblem(hamiltonian, time, initial_state=None, aux_operators=None, truncation_threshold=1e-12, t_param=None, param_value_map=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/time_evolvers/time_evolution_problem.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 

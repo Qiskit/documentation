@@ -1,3 +1,11 @@
+---
+title: common
+description: API reference for qiskit.optimization.applications.ising.common
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.optimization.applications.ising.common
+---
+
 <span id="qiskit-optimization-applications-ising-common" />
 
 # qiskit.optimization.applications.ising.common
@@ -14,3 +22,4 @@ common module
 | `random_number_list`(n\[, weight\_range, …])       | Generate a set of positive integers within the given range. |
 | `read_numbers_from_file`(filename)                 | Read numbers from a file                                    |
 | `sample_most_likely`(state\_vector)                | Compute the most likely binary string from state vector.    |
+

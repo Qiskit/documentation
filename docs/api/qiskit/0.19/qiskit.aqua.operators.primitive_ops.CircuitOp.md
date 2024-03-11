@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.operators.primitive_ops.CircuitOp
 
 <span id="qiskit.aqua.operators.primitive_ops.CircuitOp" />
 
-`CircuitOp(primitive=None, coeff=1.0)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/primitive_ops/circuit_op.py "view source code")
+`CircuitOp(primitive=None, coeff=1.0)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/primitive_ops/circuit_op.py "view source code")
 
 Class for Operators backed by Terra’s `QuantumCircuit` module.
 
@@ -100,7 +100,7 @@ An `OperatorBase` equivalent to product of self and scalar.
 
 <span id="qiskit.aqua.operators.primitive_ops.CircuitOp.add" />
 
-`CircuitOp.add(other)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/primitive_ops/circuit_op.py "view source code")
+`CircuitOp.add(other)`
 
 Return Operator addition of self and other, overloaded by `+`.
 
@@ -120,7 +120,7 @@ An `OperatorBase` equivalent to the sum of self and other.
 
 <span id="qiskit.aqua.operators.primitive_ops.CircuitOp.adjoint" />
 
-`CircuitOp.adjoint()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/primitive_ops/circuit_op.py "view source code")
+`CircuitOp.adjoint()`
 
 Return a new Operator equal to the Operator’s adjoint (conjugate transpose), overloaded by `~`. For StateFns, this also turns the StateFn into a measurement.
 
@@ -136,7 +136,7 @@ An `OperatorBase` equivalent to the adjoint of self.
 
 <span id="qiskit.aqua.operators.primitive_ops.CircuitOp.assign_parameters" />
 
-`CircuitOp.assign_parameters(param_dict)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/primitive_ops/circuit_op.py "view source code")
+`CircuitOp.assign_parameters(param_dict)`
 
 Binds scalar values to any Terra `Parameters` in the coefficients or primitives of the Operator, or substitutes one `Parameter` for another. This method differs from Terra’s `assign_parameters` in that it also supports lists of values to assign for a give `Parameter`, in which case self will be copied for each parameterization in the binding list(s), and all the copies will be returned in an `OpList`. If lists of parameterizations are used, every `Parameter` in the param\_dict must have the same length list of parameterizations.
 
@@ -168,7 +168,7 @@ Same as assign\_parameters, but maintained for consistency with QuantumCircuit i
 
 <span id="qiskit.aqua.operators.primitive_ops.CircuitOp.compose" />
 
-`CircuitOp.compose(other)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/primitive_ops/circuit_op.py "view source code")
+`CircuitOp.compose(other)`
 
 Return Operator Composition between self and other (linear algebra-style: A\@B(x) = A(B(x))), overloaded by `@`.
 
@@ -194,7 +194,7 @@ An `OperatorBase` equivalent to the function composition of self and other.
 
 <span id="qiskit.aqua.operators.primitive_ops.CircuitOp.equals" />
 
-`CircuitOp.equals(other)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/primitive_ops/circuit_op.py "view source code")
+`CircuitOp.equals(other)`
 
 Evaluate Equality between Operators, overloaded by `==`. Only returns True if self and other are of the same representation (e.g. a DictStateFn and CircuitStateFn will never be equal, even if their vector representations are equal), their underlying primitives are equal (this means for ListOps, OperatorStateFns, or EvolvedOps the equality is evaluated recursively downwards), and their coefficients are equal.
 
@@ -214,7 +214,7 @@ A bool equal to the equality of self and other.
 
 <span id="qiskit.aqua.operators.primitive_ops.CircuitOp.eval" />
 
-`CircuitOp.eval(front=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/primitive_ops/circuit_op.py "view source code")
+`CircuitOp.eval(front=None)`
 
 Evaluate the Operator’s underlying function, either on a binary string or another Operator. A square binary Operator can be defined as a function taking a binary function to another binary function. This method returns the value of that function for a given StateFn or binary string. For example, `op.eval('0110').eval('1110')` can be seen as querying the Operator’s matrix representation by row 6 and column 14, and will return the complex value at those “indices.” Similarly for a StateFn, `op.eval('1011')` will return the complex value at row 11 of the vector representation of the StateFn, as all StateFns are defined to be evaluated from Zero implicitly (i.e. it is as if `.eval('0000')` is already called implicitly to always “indexing” from column 0).
 
@@ -294,7 +294,7 @@ An `OperatorBase` equivalent to the negation of self.
 
 <span id="qiskit.aqua.operators.primitive_ops.CircuitOp.permute" />
 
-`CircuitOp.permute(permutation)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/primitive_ops/circuit_op.py "view source code")
+`CircuitOp.permute(permutation)`
 
 Permute the qubits of the circuit.
 
@@ -334,7 +334,7 @@ An `OperatorBase` equivalent to self composed with itself exponent times.
 
 <span id="qiskit.aqua.operators.primitive_ops.CircuitOp.primitive_strings" />
 
-`CircuitOp.primitive_strings()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/primitive_ops/circuit_op.py "view source code")
+`CircuitOp.primitive_strings()`
 
 Return a set of strings describing the primitives contained in the Operator. For example, `{'QuantumCircuit', 'Pauli'}`. For hierarchical Operators, such as `ListOps`, this can help illuminate the primitives represented in the various recursive levels, and therefore which conversions can be applied.
 
@@ -350,7 +350,7 @@ A set of strings describing the primitives contained within the Operator.
 
 <span id="qiskit.aqua.operators.primitive_ops.CircuitOp.reduce" />
 
-`CircuitOp.reduce()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/primitive_ops/circuit_op.py "view source code")
+`CircuitOp.reduce()`
 
 Try collapsing the Operator structure, usually after some type of conversion, e.g. trying to add Operators in a SummedOp or delete needless IGates in a CircuitOp. If no reduction is available, just returns self.
 
@@ -366,7 +366,7 @@ The reduced `OperatorBase`.
 
 <span id="qiskit.aqua.operators.primitive_ops.CircuitOp.tensor" />
 
-`CircuitOp.tensor(other)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/primitive_ops/circuit_op.py "view source code")
+`CircuitOp.tensor(other)`
 
 Return tensor product between self and other, overloaded by `^`. Note: You must be conscious of Qiskit’s big-endian bit printing convention. Meaning, X.tensor(Y) produces an X on qubit 0 and an Y on qubit 1, or X⨂Y, but would produce a QuantumCircuit which looks like
 
@@ -410,7 +410,7 @@ An `OperatorBase` equivalent to the tensorpower of self by other.
 
 <span id="qiskit.aqua.operators.primitive_ops.CircuitOp.to_circuit" />
 
-`CircuitOp.to_circuit()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/primitive_ops/circuit_op.py "view source code")
+`CircuitOp.to_circuit()`
 
 Returns a `QuantumCircuit` equivalent to this Operator.
 
@@ -422,7 +422,7 @@ Returns a `QuantumCircuit` equivalent to this Operator.
 
 <span id="qiskit.aqua.operators.primitive_ops.CircuitOp.to_circuit_op" />
 
-`CircuitOp.to_circuit_op()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/primitive_ops/circuit_op.py "view source code")
+`CircuitOp.to_circuit_op()`
 
 Returns a `CircuitOp` equivalent to this Operator.
 
@@ -434,7 +434,7 @@ Returns a `CircuitOp` equivalent to this Operator.
 
 <span id="qiskit.aqua.operators.primitive_ops.CircuitOp.to_instruction" />
 
-`CircuitOp.to_instruction()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/primitive_ops/circuit_op.py "view source code")
+`CircuitOp.to_instruction()`
 
 Returns an `Instruction` equivalent to this Operator.
 
@@ -468,7 +468,7 @@ The `LegacyBaseOperator` representing this Operator.
 
 <span id="qiskit.aqua.operators.primitive_ops.CircuitOp.to_matrix" />
 
-`CircuitOp.to_matrix(massive=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/primitive_ops/circuit_op.py "view source code")
+`CircuitOp.to_matrix(massive=False)`
 
 Return NumPy representation of the Operator. Represents the evaluation of the Operator’s underlying function on every combination of basis binary strings. Warn if more than 16 qubits to force having to set `massive=True` if such a large vector is desired.
 

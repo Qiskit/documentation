@@ -12,7 +12,7 @@ python_api_name: qiskit.providers.basic_provider.BasicProviderError
 
 <span id="qiskit.providers.basic_provider.BasicProviderError" />
 
-`qiskit.providers.basic_provider.BasicProviderError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/providers/basic_provider/exceptions.py "view source code")
+`qiskit.providers.basic_provider.BasicProviderError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/providers/basic_provider/exceptions.py "view source code")
 
 Base class for errors raised by the Basic Provider.
 

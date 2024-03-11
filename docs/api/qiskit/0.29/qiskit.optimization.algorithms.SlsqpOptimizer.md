@@ -10,7 +10,7 @@ python_api_name: qiskit.optimization.algorithms.SlsqpOptimizer
 
 <span id="qiskit.optimization.algorithms.SlsqpOptimizer" />
 
-`SlsqpOptimizer(iter=100, acc=1e-06, iprint=0, trials=1, clip=100.0, full_output=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/slsqp_optimizer.py "view source code")
+`SlsqpOptimizer(iter=100, acc=1e-06, iprint=0, trials=1, clip=100.0, full_output=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/slsqp_optimizer.py "view source code")
 
 Bases: `qiskit.optimization.algorithms.multistart_optimizer.MultiStartOptimizer`
 
@@ -62,7 +62,7 @@ This initializer takes the algorithmic parameters of SLSQP and stores them for l
 
 <span id="qiskit.optimization.algorithms.SlsqpOptimizer.get_compatibility_msg" />
 
-`SlsqpOptimizer.get_compatibility_msg(problem)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/slsqp_optimizer.py "view source code")
+`SlsqpOptimizer.get_compatibility_msg(problem)`
 
 Checks whether a given problem can be solved with this optimizer.
 
@@ -125,7 +125,7 @@ The result of the multi start algorithm applied to the problem.
 
 <span id="qiskit.optimization.algorithms.SlsqpOptimizer.solve" />
 
-`SlsqpOptimizer.solve(problem)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/slsqp_optimizer.py "view source code")
+`SlsqpOptimizer.solve(problem)`
 
 Tries to solves the given problem using the optimizer.
 

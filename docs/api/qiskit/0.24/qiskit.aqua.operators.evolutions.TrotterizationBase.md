@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.operators.evolutions.TrotterizationBase
 
 <span id="qiskit.aqua.operators.evolutions.TrotterizationBase" />
 
-`TrotterizationBase(reps=1)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/evolutions/trotterizations/trotterization_base.py "view source code")
+`TrotterizationBase(reps=1)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/evolutions/trotterizations/trotterization_base.py "view source code")
 
 A base for Trotterization methods, algorithms for approximating exponentiations of operator sums by compositions of exponentiations.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.extensions.Snapshot
 
 <span id="qiskit.providers.aer.extensions.Snapshot" />
 
-`Snapshot(label, snapshot_type='statevector', num_qubits=0, num_clbits=0, params=None)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/extensions/snapshot.py "view source code")
+`Snapshot(label, snapshot_type='statevector', num_qubits=0, num_clbits=0, params=None)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/extensions/snapshot.py "view source code")
 
 Simulator snapshot instruction.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.library.Gaussian
 
 <span id="qiskit.pulse.library.Gaussian" />
 
-`qiskit.pulse.library.Gaussian(duration, amp, sigma, angle=None, name=None, limit_amplitude=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/pulse/library/symbolic_pulses.py "view source code")
+`qiskit.pulse.library.Gaussian(duration, amp, sigma, angle=0.0, name=None, limit_amplitude=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/pulse/library/symbolic_pulses.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
@@ -30,7 +30,7 @@ Create new pulse instance.
 **Parameters**
 
 *   **duration** – Pulse length in terms of the sampling period dt.
-*   **amp** – The magnitude of the amplitude of the Gaussian envelope. Complex amp support is deprecated.
+*   **amp** – The magnitude of the amplitude of the Gaussian envelope.
 *   **sigma** – A measure of how wide or narrow the Gaussian peak is; described mathematically in the class docstring.
 *   **angle** – The angle of the complex amplitude of the Gaussian envelope. Default value 0.
 *   **name** – Display name for this pulse envelope.

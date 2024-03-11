@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.operators.state_fns.VectorStateFn
 
 <span id="qiskit.aqua.operators.state_fns.VectorStateFn" />
 
-`VectorStateFn(primitive=None, coeff=1.0, is_measurement=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/state_fns/vector_state_fn.py "view source code")
+`VectorStateFn(primitive=None, coeff=1.0, is_measurement=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/state_fns/vector_state_fn.py "view source code")
 
 Bases: `qiskit.aqua.operators.state_fns.state_fn.StateFn`
 
@@ -28,7 +28,7 @@ A class for state functions and measurements which are defined in vector represe
 
 <span id="qiskit.aqua.operators.state_fns.VectorStateFn.add" />
 
-`VectorStateFn.add(other)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/state_fns/vector_state_fn.py "view source code")
+`VectorStateFn.add(other)`
 
 Return Operator addition of self and other, overloaded by `+`.
 
@@ -48,7 +48,7 @@ An `OperatorBase` equivalent to the sum of self and other.
 
 <span id="qiskit.aqua.operators.state_fns.VectorStateFn.adjoint" />
 
-`VectorStateFn.adjoint()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/state_fns/vector_state_fn.py "view source code")
+`VectorStateFn.adjoint()`
 
 Return a new Operator equal to the Operator’s adjoint (conjugate transpose), overloaded by `~`. For StateFns, this also turns the StateFn into a measurement.
 
@@ -142,7 +142,7 @@ A bool equal to the equality of self and other.
 
 <span id="qiskit.aqua.operators.state_fns.VectorStateFn.eval" />
 
-`VectorStateFn.eval(front=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/state_fns/vector_state_fn.py "view source code")
+`VectorStateFn.eval(front=None)`
 
 Evaluate the Operator’s underlying function, either on a binary string or another Operator. A square binary Operator can be defined as a function taking a binary function to another binary function. This method returns the value of that function for a given StateFn or binary string. For example, `op.eval('0110').eval('1110')` can be seen as querying the Operator’s matrix representation by row 6 and column 14, and will return the complex value at those “indices.” Similarly for a StateFn, `op.eval('1011')` will return the complex value at row 11 of the vector representation of the StateFn, as all StateFns are defined to be evaluated from Zero implicitly (i.e. it is as if `.eval('0000')` is already called implicitly to always “indexing” from column 0).
 
@@ -200,7 +200,7 @@ An `OperatorBase` equivalent to the negation of self.
 
 <span id="qiskit.aqua.operators.state_fns.VectorStateFn.permute" />
 
-`VectorStateFn.permute(permutation)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/state_fns/vector_state_fn.py "view source code")
+`VectorStateFn.permute(permutation)`
 
 Permute the qubits of the state function.
 
@@ -240,7 +240,7 @@ Compose with Self Multiple Times, undefined for StateFns.
 
 <span id="qiskit.aqua.operators.state_fns.VectorStateFn.primitive_strings" />
 
-`VectorStateFn.primitive_strings()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/state_fns/vector_state_fn.py "view source code")
+`VectorStateFn.primitive_strings()`
 
 Return a set of strings describing the primitives contained in the Operator. For example, `{'QuantumCircuit', 'Pauli'}`. For hierarchical Operators, such as `ListOps`, this can help illuminate the primitives represented in the various recursive levels, and therefore which conversions can be applied.
 
@@ -272,7 +272,7 @@ The reduced `OperatorBase`.
 
 <span id="qiskit.aqua.operators.state_fns.VectorStateFn.sample" />
 
-`VectorStateFn.sample(shots=1024, massive=False, reverse_endianness=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/state_fns/vector_state_fn.py "view source code")
+`VectorStateFn.sample(shots=1024, massive=False, reverse_endianness=False)`
 
 Sample the state function as a normalized probability distribution. Returns dict of bitstrings in order of probability, with values being probability.
 
@@ -294,7 +294,7 @@ A dict containing pairs sampled strings from the State function and sampling fre
 
 <span id="qiskit.aqua.operators.state_fns.VectorStateFn.tensor" />
 
-`VectorStateFn.tensor(other)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/state_fns/vector_state_fn.py "view source code")
+`VectorStateFn.tensor(other)`
 
 Return tensor product between self and other, overloaded by `^`. Note: You must be conscious of Qiskit’s big-endian bit printing convention. Meaning, Plus.tensor(Zero) produces a |+⟩ on qubit 0 and a |0⟩ on qubit 1, or |+⟩⨂|0⟩, but would produce a QuantumCircuit like
 
@@ -338,7 +338,7 @@ An `OperatorBase` equivalent to the tensorpower of self by other.
 
 <span id="qiskit.aqua.operators.state_fns.VectorStateFn.to_circuit_op" />
 
-`VectorStateFn.to_circuit_op()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/state_fns/vector_state_fn.py "view source code")
+`VectorStateFn.to_circuit_op()`
 
 Return `StateFnCircuit` corresponding to this StateFn.
 
@@ -350,7 +350,7 @@ Return `StateFnCircuit` corresponding to this StateFn.
 
 <span id="qiskit.aqua.operators.state_fns.VectorStateFn.to_density_matrix" />
 
-`VectorStateFn.to_density_matrix(massive=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/state_fns/vector_state_fn.py "view source code")
+`VectorStateFn.to_density_matrix(massive=False)`
 
 Return matrix representing product of StateFn evaluated on pairs of basis states. Overridden by child classes.
 
@@ -374,7 +374,7 @@ The NumPy array representing the density matrix of the State function.
 
 <span id="qiskit.aqua.operators.state_fns.VectorStateFn.to_dict_fn" />
 
-`VectorStateFn.to_dict_fn()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/state_fns/vector_state_fn.py "view source code")
+`VectorStateFn.to_dict_fn()`
 
 Creates the equivalent state function of type DictStateFn.
 
@@ -412,7 +412,7 @@ The `LegacyBaseOperator` representing this Operator.
 
 <span id="qiskit.aqua.operators.state_fns.VectorStateFn.to_matrix" />
 
-`VectorStateFn.to_matrix(massive=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/state_fns/vector_state_fn.py "view source code")
+`VectorStateFn.to_matrix(massive=False)`
 
 Return NumPy representation of the Operator. Represents the evaluation of the Operator’s underlying function on every combination of basis binary strings. Warn if more than 16 qubits to force having to set `massive=True` if such a large vector is desired.
 
@@ -428,7 +428,7 @@ The NumPy `ndarray` equivalent to this Operator.
 
 <span id="qiskit.aqua.operators.state_fns.VectorStateFn.to_matrix_op" />
 
-`VectorStateFn.to_matrix_op(massive=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/state_fns/vector_state_fn.py "view source code")
+`VectorStateFn.to_matrix_op(massive=False)`
 
 Return a `VectorStateFn` for this `StateFn`.
 

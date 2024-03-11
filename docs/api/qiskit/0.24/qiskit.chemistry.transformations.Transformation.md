@@ -12,7 +12,7 @@ python_api_name: qiskit.chemistry.transformations.Transformation
 
 <span id="qiskit.chemistry.transformations.Transformation" />
 
-`Transformation`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/transformations/transformation.py "view source code")
+`Transformation` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/transformations/transformation.py "view source code")
 
 Base class for transformation to qubit operators for chemistry problems
 

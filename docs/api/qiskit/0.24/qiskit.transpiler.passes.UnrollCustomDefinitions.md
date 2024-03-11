@@ -12,7 +12,7 @@ python_api_name: qiskit.transpiler.passes.UnrollCustomDefinitions
 
 <span id="qiskit.transpiler.passes.UnrollCustomDefinitions" />
 
-`UnrollCustomDefinitions(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/transpiler/passes/basis/unroll_custom_definitions.py "view source code")
+`UnrollCustomDefinitions(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/transpiler/passes/basis/unroll_custom_definitions.py "view source code")
 
 Unrolls instructions with custom definitions.
 

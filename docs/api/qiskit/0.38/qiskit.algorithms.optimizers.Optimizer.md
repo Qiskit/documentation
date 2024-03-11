@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.Optimizer
 
 <span id="qiskit.algorithms.optimizers.Optimizer" />
 
-`Optimizer`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/optimizers/optimizer.py "view source code")
+`Optimizer` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/optimizers/optimizer.py "view source code")
 
 Bases: `abc.ABC`
 
@@ -24,7 +24,7 @@ Initialize the optimization algorithm, setting the support level for \_gradient\
 
 <span id="qiskit.algorithms.optimizers.Optimizer.get_support_level" />
 
-`abstract Optimizer.get_support_level()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/optimizers/optimizer.py "view source code")
+`abstract Optimizer.get_support_level()`
 
 Return support level dictionary
 
@@ -32,7 +32,7 @@ Return support level dictionary
 
 <span id="qiskit.algorithms.optimizers.Optimizer.gradient_num_diff" />
 
-`static Optimizer.gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/optimizers/optimizer.py "view source code")
+`static Optimizer.gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)`
 
 We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
 
@@ -55,7 +55,7 @@ grad
 
 <span id="qiskit.algorithms.optimizers.Optimizer.minimize" />
 
-`abstract Optimizer.minimize(fun, x0, jac=None, bounds=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/optimizers/optimizer.py "view source code")
+`abstract Optimizer.minimize(fun, x0, jac=None, bounds=None)`
 
 Minimize the scalar function.
 
@@ -78,7 +78,7 @@ The result of the optimization, containing e.g. the result as attribute `x`.
 
 <span id="qiskit.algorithms.optimizers.Optimizer.print_options" />
 
-`Optimizer.print_options()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/optimizers/optimizer.py "view source code")
+`Optimizer.print_options()`
 
 Print algorithm-specific options.
 
@@ -86,7 +86,7 @@ Print algorithm-specific options.
 
 <span id="qiskit.algorithms.optimizers.Optimizer.set_max_evals_grouped" />
 
-`Optimizer.set_max_evals_grouped(limit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/optimizers/optimizer.py "view source code")
+`Optimizer.set_max_evals_grouped(limit)`
 
 Set max evals grouped
 
@@ -94,7 +94,7 @@ Set max evals grouped
 
 <span id="qiskit.algorithms.optimizers.Optimizer.set_options" />
 
-`Optimizer.set_options(**kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/optimizers/optimizer.py "view source code")
+`Optimizer.set_options(**kwargs)`
 
 Sets or updates values in the options dictionary.
 
@@ -108,7 +108,7 @@ The options dictionary may be used internally by a given optimizer to pass addit
 
 <span id="qiskit.algorithms.optimizers.Optimizer.wrap_function" />
 
-`static Optimizer.wrap_function(function, args)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/optimizers/optimizer.py "view source code")
+`static Optimizer.wrap_function(function, args)`
 
 Wrap the function to implicitly inject the args at the call of the function.
 

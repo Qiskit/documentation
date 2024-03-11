@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.InstructionScheduleMap
 
 <span id="qiskit.pulse.InstructionScheduleMap" />
 
-`qiskit.pulse.InstructionScheduleMap`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/pulse/instruction_schedule_map.py "view source code")
+`qiskit.pulse.InstructionScheduleMap` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/pulse/instruction_schedule_map.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 

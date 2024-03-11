@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.operators.state_fns.CVaRMeasurement
 
 <span id="qiskit.aqua.operators.state_fns.CVaRMeasurement" />
 
-`CVaRMeasurement(primitive=None, alpha=1.0, coeff=1.0)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/state_fns/cvar_measurement.py "view source code")
+`CVaRMeasurement(primitive=None, alpha=1.0, coeff=1.0)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/state_fns/cvar_measurement.py "view source code")
 
 **A specialized measurement class to compute CVaR expectation values.**
 

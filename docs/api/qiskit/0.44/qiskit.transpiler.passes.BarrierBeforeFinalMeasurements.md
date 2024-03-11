@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.BarrierBeforeFinalMeasurements
 
 <span id="qiskit.transpiler.passes.BarrierBeforeFinalMeasurements" />
 
-`qiskit.transpiler.passes.BarrierBeforeFinalMeasurements(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/utils/barrier_before_final_measurements.py "view source code")
+`qiskit.transpiler.passes.BarrierBeforeFinalMeasurements(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/utils/barrier_before_final_measurements.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 

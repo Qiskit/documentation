@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.CG
 
 <span id="qiskit.algorithms.optimizers.CG" />
 
-`CG(maxiter=20, disp=False, gtol=1e-05, tol=None, eps=1.4901161193847656e-08)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/optimizers/cg.py "view source code")
+`CG(maxiter=20, disp=False, gtol=1e-05, tol=None, eps=1.4901161193847656e-08)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/optimizers/cg.py "view source code")
 
 Conjugate Gradient optimizer.
 

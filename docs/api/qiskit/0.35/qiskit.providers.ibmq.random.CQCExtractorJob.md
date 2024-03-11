@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.random.CQCExtractorJob
 
 <span id="qiskit.providers.ibmq.random.CQCExtractorJob" />
 
-`CQCExtractorJob(job_id, client, parameters=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.18/qiskit/providers/ibmq/random/cqcextractorjob.py "view source code")
+`CQCExtractorJob(job_id, client, parameters=None)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.18/qiskit/providers/ibmq/random/cqcextractorjob.py "view source code")
 
 Bases: `object`
 
@@ -45,7 +45,7 @@ CQCExtractorJob constructor.
 
 <span id="qiskit.providers.ibmq.random.CQCExtractorJob.block_until_ready" />
 
-`CQCExtractorJob.block_until_ready(timeout=None, wait=10)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.18/qiskit/providers/ibmq/random/cqcextractorjob.py "view source code")
+`CQCExtractorJob.block_until_ready(timeout=None, wait=10)`
 
 Wait for the job to finish and return the result.
 
@@ -70,7 +70,7 @@ Extractor output.
 
 <span id="qiskit.providers.ibmq.random.CQCExtractorJob.status" />
 
-`CQCExtractorJob.status()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.18/qiskit/providers/ibmq/random/cqcextractorjob.py "view source code")
+`CQCExtractorJob.status()`
 
 Query the server for the latest job status.
 

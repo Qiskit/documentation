@@ -12,7 +12,7 @@ python_api_name: qiskit.visualization.pulse_drawer
 
 <span id="qiskit.visualization.pulse_drawer" />
 
-`pulse_drawer(data, dt=1, style=None, filename=None, interp_method=None, scale=None, channel_scales=None, plot_all=False, plot_range=None, interactive=False, table=False, label=False, framechange=True, channels=None, show_framechange_channels=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/visualization/pulse_visualization.py "view source code")
+`pulse_drawer(data, dt=1, style=None, filename=None, interp_method=None, scale=None, channel_scales=None, plot_all=False, plot_range=None, interactive=False, table=False, label=False, framechange=True, channels=None, show_framechange_channels=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/visualization/pulse_visualization.py "view source code")
 
 Plot the interpolated envelope of pulse and schedule.
 

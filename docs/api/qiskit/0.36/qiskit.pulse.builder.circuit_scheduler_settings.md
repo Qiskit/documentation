@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.builder.circuit_scheduler_settings
 
 <span id="qiskit.pulse.builder.circuit_scheduler_settings" />
 
-`circuit_scheduler_settings(**settings)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/builder.py "view source code")
+`circuit_scheduler_settings(**settings)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/builder.py "view source code")
 
 Set the currently active circuit scheduler settings for this context.
 

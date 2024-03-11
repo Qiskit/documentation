@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeRueschlikon
 
 <span id="qiskit.providers.fake_provider.FakeRueschlikon" />
 
-`FakeRueschlikon`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/fake_provider/backends/rueschlikon/fake_rueschlikon.py "view source code")
+`FakeRueschlikon` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/fake_provider/backends/rueschlikon/fake_rueschlikon.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_backend.FakeBackend`
 

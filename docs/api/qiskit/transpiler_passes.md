@@ -1,7 +1,7 @@
 ---
 title: passes
 description: API reference for qiskit.transpiler.passes
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.transpiler.passes
 ---
@@ -25,7 +25,6 @@ python_api_name: qiskit.transpiler.passes
 | [`SetLayout`](qiskit.transpiler.passes.SetLayout "qiskit.transpiler.passes.SetLayout")(\*args, \*\*kwargs)                                     | Set the `layout` property to the given layout.                                                                       |
 | [`TrivialLayout`](qiskit.transpiler.passes.TrivialLayout "qiskit.transpiler.passes.TrivialLayout")(\*args, \*\*kwargs)                         | Choose a Layout by assigning `n` circuit qubits to device qubits `0, .., n-1`.                                       |
 | [`DenseLayout`](qiskit.transpiler.passes.DenseLayout "qiskit.transpiler.passes.DenseLayout")(\*args, \*\*kwargs)                               | Choose a Layout by finding the most connected subset of qubits.                                                      |
-| [`NoiseAdaptiveLayout`](qiskit.transpiler.passes.NoiseAdaptiveLayout "qiskit.transpiler.passes.NoiseAdaptiveLayout")(\*args, \*\*kwargs)       | Choose a noise-adaptive Layout based on current calibration data for the backend.                                    |
 | [`SabreLayout`](qiskit.transpiler.passes.SabreLayout "qiskit.transpiler.passes.SabreLayout")(\*args, \*\*kwargs)                               | Choose a Layout via iterative bidirectional routing of the input circuit.                                            |
 | [`CSPLayout`](qiskit.transpiler.passes.CSPLayout "qiskit.transpiler.passes.CSPLayout")(\*args, \*\*kwargs)                                     | If possible, chooses a Layout as a CSP, using backtracking.                                                          |
 | [`VF2Layout`](qiskit.transpiler.passes.VF2Layout "qiskit.transpiler.passes.VF2Layout")(\*args, \*\*kwargs)                                     | A pass for choosing a Layout of a circuit onto a Coupling graph, as a subgraph isomorphism problem, solved by VF2++. |
@@ -54,7 +53,6 @@ python_api_name: qiskit.transpiler.passes
 | [`TranslateParameterizedGates`](qiskit.transpiler.passes.TranslateParameterizedGates "qiskit.transpiler.passes.TranslateParameterizedGates")(\*args, \*\*kwargs) | Translate parameterized gates to a supported basis set.                                                    |
 | [`Unroll3qOrMore`](qiskit.transpiler.passes.Unroll3qOrMore "qiskit.transpiler.passes.Unroll3qOrMore")(\*args, \*\*kwargs)                                        | Recursively expands 3q+ gates until the circuit only contains 2q or 1q gates.                              |
 | [`UnrollCustomDefinitions`](qiskit.transpiler.passes.UnrollCustomDefinitions "qiskit.transpiler.passes.UnrollCustomDefinitions")(\*args, \*\*kwargs)             | Unrolls instructions with custom definitions.                                                              |
-| [`Unroller`](qiskit.transpiler.passes.Unroller "qiskit.transpiler.passes.Unroller")(\*args, \*\*kwargs)                                                          | Unroll a circuit to a given basis.                                                                         |
 
 ## Optimizations
 
@@ -76,13 +74,13 @@ python_api_name: qiskit.transpiler.passes
 | [`Optimize1qGatesSimpleCommutation`](qiskit.transpiler.passes.Optimize1qGatesSimpleCommutation "qiskit.transpiler.passes.Optimize1qGatesSimpleCommutation")(\*args, \*\*kwargs) | Optimizes 1Q gate strings interrupted by 2Q gates by commuting the components and resynthesizing the results.                                                                                                                                                                                                                                   |
 | [`RemoveDiagonalGatesBeforeMeasure`](qiskit.transpiler.passes.RemoveDiagonalGatesBeforeMeasure "qiskit.transpiler.passes.RemoveDiagonalGatesBeforeMeasure")(\*args, \*\*kwargs) | Remove diagonal gates (including diagonal 2Q gates) before a measurement.                                                                                                                                                                                                                                                                       |
 | [`RemoveResetInZeroState`](qiskit.transpiler.passes.RemoveResetInZeroState "qiskit.transpiler.passes.RemoveResetInZeroState")(\*args, \*\*kwargs)                               | Remove reset gate when the qubit is in zero state.                                                                                                                                                                                                                                                                                              |
-| [`CrosstalkAdaptiveSchedule`](qiskit.transpiler.passes.CrosstalkAdaptiveSchedule "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule")(\*args, \*\*kwargs)                      | Crosstalk mitigation through adaptive instruction scheduling.                                                                                                                                                                                                                                                                                   |
 | [`HoareOptimizer`](qiskit.transpiler.passes.HoareOptimizer "qiskit.transpiler.passes.HoareOptimizer")(\*args, \*\*kwargs)                                                       | This is a transpiler pass using Hoare logic circuit optimization.                                                                                                                                                                                                                                                                               |
 | [`TemplateOptimization`](qiskit.transpiler.passes.TemplateOptimization "qiskit.transpiler.passes.TemplateOptimization")(\*args, \*\*kwargs)                                     | Class for the template optimization pass.                                                                                                                                                                                                                                                                                                       |
 | [`EchoRZXWeylDecomposition`](qiskit.transpiler.passes.EchoRZXWeylDecomposition "qiskit.transpiler.passes.EchoRZXWeylDecomposition")(\*args, \*\*kwargs)                         | Rewrite two-qubit gates using the Weyl decomposition.                                                                                                                                                                                                                                                                                           |
 | [`ResetAfterMeasureSimplification`](qiskit.transpiler.passes.ResetAfterMeasureSimplification "qiskit.transpiler.passes.ResetAfterMeasureSimplification")(\*args, \*\*kwargs)    | This pass replaces reset after measure with a conditional X gate.                                                                                                                                                                                                                                                                               |
 | [`OptimizeCliffords`](qiskit.transpiler.passes.OptimizeCliffords "qiskit.transpiler.passes.OptimizeCliffords")(\*args, \*\*kwargs)                                              | Combine consecutive Cliffords over the same qubits.                                                                                                                                                                                                                                                                                             |
 | [`NormalizeRXAngle`](qiskit.transpiler.passes.NormalizeRXAngle "qiskit.transpiler.passes.NormalizeRXAngle")(\*args, \*\*kwargs)                                                 | Normalize theta parameter of RXGate instruction.                                                                                                                                                                                                                                                                                                |
+| [`OptimizeAnnotated`](qiskit.transpiler.passes.OptimizeAnnotated "qiskit.transpiler.passes.OptimizeAnnotated")(\*args, \*\*kwargs)                                              | Optimization pass on circuits with annotated operations.                                                                                                                                                                                                                                                                                        |
 
 ## Calibration
 
@@ -92,6 +90,26 @@ python_api_name: qiskit.transpiler.passes
 | [`RZXCalibrationBuilder`](qiskit.transpiler.passes.RZXCalibrationBuilder "qiskit.transpiler.passes.RZXCalibrationBuilder")(\*args, \*\*kwargs)                   | Creates calibrations for RZXGate(theta) by stretching and compressing Gaussian square pulses in the CX gate. |
 | [`RZXCalibrationBuilderNoEcho`](qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho "qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho")(\*args, \*\*kwargs) | Creates calibrations for RZXGate(theta) by stretching and compressing Gaussian square pulses in the CX gate. |
 | [`RXCalibrationBuilder`](qiskit.transpiler.passes.RXCalibrationBuilder "qiskit.transpiler.passes.RXCalibrationBuilder")(\*args, \*\*kwargs)                      | Add single-pulse RX calibrations that are bootstrapped from the SX calibration.                              |
+
+### rzx\_templates
+
+<span id="qiskit.transpiler.passes.rzx_templates" />
+
+`qiskit.transpiler.passes.rzx_templates(template_list=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/calibration/rzx_templates.py "view source code")
+
+Convenience function to get the cost\_dict and templates for template matching.
+
+**Parameters**
+
+**template\_list** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*] | None*) – List of instruction names.
+
+**Returns**
+
+Decomposition templates and cost values.
+
+**Return type**
+
+[*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.12)")
 
 ## Scheduling
 
@@ -125,21 +143,21 @@ python_api_name: qiskit.transpiler.passes
 
 ## Synthesis
 
-|                                                                                                                                                                        |                                                                                          |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| [`UnitarySynthesis`](qiskit.transpiler.passes.UnitarySynthesis "qiskit.transpiler.passes.UnitarySynthesis")(\*args, \*\*kwargs)                                        | Synthesize gates according to their basis gates.                                         |
-| [`LinearFunctionsSynthesis`](qiskit.transpiler.passes.LinearFunctionsSynthesis "qiskit.transpiler.passes.LinearFunctionsSynthesis")(\*args, \*\*kwargs)                | DEPRECATED: Synthesize linear functions.                                                 |
-| [`LinearFunctionsToPermutations`](qiskit.transpiler.passes.LinearFunctionsToPermutations "qiskit.transpiler.passes.LinearFunctionsToPermutations")(\*args, \*\*kwargs) | Promotes linear functions to permutations when possible.                                 |
-| [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis")(\*args, \*\*kwargs)                                  | Synthesize higher-level objects and unroll custom definitions.                           |
-| [`SolovayKitaev`](qiskit.transpiler.passes.SolovayKitaev "qiskit.transpiler.passes.SolovayKitaev")(\*args, \*\*kwargs)                                                 | Approximately decompose 1q gates to a discrete basis using the Solovay-Kitaev algorithm. |
-| [`SolovayKitaevSynthesis`](qiskit.transpiler.passes.SolovayKitaevSynthesis "qiskit.transpiler.passes.SolovayKitaevSynthesis")()                                        | A Solovay-Kitaev Qiskit unitary synthesis plugin.                                        |
-| [`AQCSynthesisPlugin`](qiskit.transpiler.passes.AQCSynthesisPlugin "qiskit.transpiler.passes.AQCSynthesisPlugin")()                                                    | An AQC-based Qiskit unitary synthesis plugin.                                            |
+The synthesis transpiler plugin documentation can be found in the [`qiskit.transpiler.passes.synthesis.plugin`](transpiler_synthesis_plugins#module-qiskit.transpiler.passes.synthesis.plugin "qiskit.transpiler.passes.synthesis.plugin") page.
+
+|                                                                                                                                                                        |                                                                                                                                                                                                                                                                            |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`UnitarySynthesis`](qiskit.transpiler.passes.UnitarySynthesis "qiskit.transpiler.passes.UnitarySynthesis")(\*args, \*\*kwargs)                                        | Synthesize gates according to their basis gates.                                                                                                                                                                                                                           |
+| [`LinearFunctionsToPermutations`](qiskit.transpiler.passes.LinearFunctionsToPermutations "qiskit.transpiler.passes.LinearFunctionsToPermutations")(\*args, \*\*kwargs) | Promotes linear functions to permutations when possible.                                                                                                                                                                                                                   |
+| [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis")(\*args, \*\*kwargs)                                  | Synthesize higher-level objects and unroll custom definitions.                                                                                                                                                                                                             |
+| [`HLSConfig`](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.HLSConfig")(\[use\_default\_on\_unspecified])                                               | The high-level-synthesis config allows to specify a list of "methods" used by [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis") transformation pass to synthesize different types of higher-level objects. |
+| [`SolovayKitaev`](qiskit.transpiler.passes.SolovayKitaev "qiskit.transpiler.passes.SolovayKitaev")(\*args, \*\*kwargs)                                                 | Approximately decompose 1q gates to a discrete basis using the Solovay-Kitaev algorithm.                                                                                                                                                                                   |
 
 ## Post Layout (Post transpile qubit selection)
 
-|                                                                                                                        |                                                                                                                                          |
-| ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| [`VF2PostLayout`](qiskit.transpiler.passes.VF2PostLayout "qiskit.transpiler.passes.VF2PostLayout")(\*args, \*\*kwargs) | A pass for choosing a Layout after transpilation of a circuit onto a Coupling graph, as a subgraph isomorphism problem, solved by VF2++. |
+|                                                                                                                        |                                                                                                                                                     |
+| ---------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`VF2PostLayout`](qiskit.transpiler.passes.VF2PostLayout "qiskit.transpiler.passes.VF2PostLayout")(\*args, \*\*kwargs) | A pass for improving an existing Layout after transpilation of a circuit onto a Coupling graph, as a subgraph isomorphism problem, solved by VF2++. |
 
 ## Additional Passes
 
@@ -159,4 +177,5 @@ python_api_name: qiskit.transpiler.passes
 | [`GatesInBasis`](qiskit.transpiler.passes.GatesInBasis "qiskit.transpiler.passes.GatesInBasis")(\*args, \*\*kwargs)                                                       | Check if all gates in a DAG are in a given set of gates                                                                           |
 | [`ConvertConditionsToIfOps`](qiskit.transpiler.passes.ConvertConditionsToIfOps "qiskit.transpiler.passes.ConvertConditionsToIfOps")(\*args, \*\*kwargs)                   | Convert instructions whose `condition` attribute is set to a non-`None` value into the equivalent single-statement `IfElseBlock`. |
 | [`UnrollForLoops`](qiskit.transpiler.passes.UnrollForLoops "qiskit.transpiler.passes.UnrollForLoops")(\*args, \*\*kwargs)                                                 | `UnrollForLoops` transpilation pass unrolls for-loops when possible.                                                              |
+| [`FilterOpNodes`](qiskit.transpiler.passes.FilterOpNodes "qiskit.transpiler.passes.FilterOpNodes")(\*args, \*\*kwargs)                                                    | Remove all operations that match a filter function                                                                                |
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.optimization.algorithms.ADMMOptimizationResult
 
 <span id="qiskit.optimization.algorithms.ADMMOptimizationResult" />
 
-`ADMMOptimizationResult(x, fval, variables, state, status)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/admm_optimizer.py "view source code")
+`ADMMOptimizationResult(x, fval, variables, state, status)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/admm_optimizer.py "view source code")
 
 Bases: `qiskit.optimization.algorithms.optimization_algorithm.OptimizationResult`
 

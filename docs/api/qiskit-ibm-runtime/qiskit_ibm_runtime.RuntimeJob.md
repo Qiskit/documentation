@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.RuntimeJob
 
 <span id="qiskit_ibm_runtime.RuntimeJob" />
 
-`RuntimeJob(backend, api_client, client_params, job_id, program_id, service, params=None, creation_date=None, user_callback=None, result_decoder=None, image='', session_id=None, tags=None)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.18/qiskit_ibm_runtime/runtime_job.py "view source code")
+`RuntimeJob(backend, api_client, client_params, job_id, program_id, service, params=None, creation_date=None, user_callback=None, result_decoder=None, image='', session_id=None, tags=None, version=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/runtime_job.py#L45-L416 "view source code")
 
 Representation of a runtime program execution.
 
@@ -49,6 +49,7 @@ RuntimeJob constructor.
 *   **service** ([`QiskitRuntimeService`](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.qiskit_runtime_service.QiskitRuntimeService")) – Runtime service.
 *   **session\_id** (`Optional`\[`str`]) – Job ID of the first job in a runtime session.
 *   **tags** (`Optional`\[`List`]) – Tags assigned to the job.
+*   **version** (`Optional`\[`int`]) – Primitive version.
 
 ## Attributes
 
@@ -120,7 +121,7 @@ Session ID.
 
 **Returns**
 
-Job ID of the first job in a runtime session.
+Session ID. None if the backend is a simulator.
 
 <span id="qiskit_ibm_runtime.RuntimeJob.tags" />
 
@@ -162,7 +163,7 @@ Return the usage estimation infromation for this job.
 
 <span id="qiskit_ibm_runtime.RuntimeJob.backend" />
 
-`backend(timeout=None)`
+`backend(timeout=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/runtime_job.py#L352-L366 "view source code")
 
 Return the backend where this job was executed. Retrieve data again if backend is None.
 
@@ -178,7 +179,7 @@ Return the backend where this job was executed. Retrieve data again if backend i
 
 <span id="qiskit_ibm_runtime.RuntimeJob.cancel" />
 
-`cancel()`
+`cancel()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/runtime_job.py#L172-L186 "view source code")
 
 Cancel the job.
 
@@ -195,7 +196,7 @@ Cancel the job.
 
 <span id="qiskit_ibm_runtime.RuntimeJob.cancel_result_streaming" />
 
-`cancel_result_streaming()`
+`cancel_result_streaming()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/base_runtime_job.py#L149-L153 "view source code")
 
 Cancel result streaming.
 
@@ -231,7 +232,7 @@ Return whether the job has successfully run.
 
 <span id="qiskit_ibm_runtime.RuntimeJob.error_message" />
 
-`error_message()`
+`error_message()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/base_runtime_job.py#L212-L219 "view source code")
 
 Returns the reason if the job failed.
 
@@ -243,11 +244,23 @@ Returns the reason if the job failed.
 
 Error message string or `None`.
 
+### errored
+
+<span id="qiskit_ibm_runtime.RuntimeJob.errored" />
+
+`errored()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/runtime_job.py#L201-L203 "view source code")
+
+Return whether the job has failed.
+
+**Return type**
+
+`bool`
+
 ### in\_final\_state
 
 <span id="qiskit_ibm_runtime.RuntimeJob.in_final_state" />
 
-`in_final_state()`
+`in_final_state()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/runtime_job.py#L197-L199 "view source code")
 
 Return whether the job is in a final job state such as `DONE` or `ERROR`.
 
@@ -259,7 +272,7 @@ Return whether the job is in a final job state such as `DONE` or `ERROR`.
 
 <span id="qiskit_ibm_runtime.RuntimeJob.interim_results" />
 
-`interim_results(decoder=None)`
+`interim_results(decoder=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/runtime_job.py#L398-L416 "view source code")
 
 Return the interim results of the job.
 
@@ -295,7 +308,7 @@ Return a unique id identifying the job.
 
 <span id="qiskit_ibm_runtime.RuntimeJob.logs" />
 
-`logs()`
+`logs()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/runtime_job.py#L294-L313 "view source code")
 
 Return job logs.
 
@@ -319,7 +332,7 @@ Job logs, including standard output and error.
 
 <span id="qiskit_ibm_runtime.RuntimeJob.metrics" />
 
-`metrics()`
+`metrics()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/base_runtime_job.py#L155-L167 "view source code")
 
 Return job metrics.
 
@@ -339,7 +352,7 @@ Job metrics, which includes timestamp information.
 
 <span id="qiskit_ibm_runtime.RuntimeJob.properties" />
 
-`properties(refresh=False)`
+`properties(refresh=False)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/base_runtime_job.py#L198-L210 "view source code")
 
 Return the backend properties for this job.
 
@@ -359,7 +372,7 @@ The backend properties used for this job, at the time the job was run, or `None`
 
 <span id="qiskit_ibm_runtime.RuntimeJob.queue_info" />
 
-`queue_info()`
+`queue_info()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/runtime_job.py#L260-L292 "view source code")
 
 Return queue information for this job.
 
@@ -381,7 +394,7 @@ A `QueueInfo` instance that contains queue information for this job, or `None` i
 
 <span id="qiskit_ibm_runtime.RuntimeJob.queue_position" />
 
-`queue_position(refresh=False)`
+`queue_position(refresh=False)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/runtime_job.py#L233-L258 "view source code")
 
 Return the position of the job in the server queue.
 
@@ -405,7 +418,7 @@ Position in the queue or `None` if position is unknown or not applicable.
 
 <span id="qiskit_ibm_runtime.RuntimeJob.result" />
 
-`result(timeout=None, decoder=None)`
+`result(timeout=None, decoder=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/runtime_job.py#L135-L170 "view source code")
 
 Return the results of the job.
 
@@ -444,7 +457,7 @@ Return whether the job is actively running.
 
 <span id="qiskit_ibm_runtime.RuntimeJob.status" />
 
-`status()`
+`status()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/runtime_job.py#L188-L195 "view source code")
 
 Return the status of the job.
 
@@ -460,7 +473,7 @@ Status of this job.
 
 <span id="qiskit_ibm_runtime.RuntimeJob.stream_results" />
 
-`stream_results(callback, decoder=None)`
+`stream_results(callback, decoder=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/runtime_job.py#L368-L396 "view source code")
 
 Start streaming job results.
 
@@ -487,7 +500,7 @@ Start streaming job results.
 
 <span id="qiskit_ibm_runtime.RuntimeJob.submit" />
 
-`submit()`
+`submit()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/runtime_job.py#L219-L231 "view source code")
 
 Unsupported method. .. note:
 
@@ -509,7 +522,7 @@ to submit a job.
 
 <span id="qiskit_ibm_runtime.RuntimeJob.update_tags" />
 
-`update_tags(new_tags)`
+`update_tags(new_tags)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/base_runtime_job.py#L169-L196 "view source code")
 
 Update the tags associated with this job.
 
@@ -533,7 +546,7 @@ The new tags associated with this job.
 
 <span id="qiskit_ibm_runtime.RuntimeJob.wait_for_final_state" />
 
-`wait_for_final_state(timeout=None)`
+`wait_for_final_state(timeout=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.21/qiskit_ibm_runtime/runtime_job.py#L315-L350 "view source code")
 
 Use the websocket server to wait for the final the state of a job.
 

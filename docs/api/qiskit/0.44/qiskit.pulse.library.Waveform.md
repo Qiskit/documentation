@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.library.Waveform
 
 <span id="qiskit.pulse.library.Waveform" />
 
-`qiskit.pulse.library.Waveform(samples, name=None, epsilon=1e-07, limit_amplitude=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/pulse/library/waveform.py "view source code")
+`qiskit.pulse.library.Waveform(samples, name=None, epsilon=1e-07, limit_amplitude=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/pulse/library/waveform.py "view source code")
 
 Bases: `Pulse`
 

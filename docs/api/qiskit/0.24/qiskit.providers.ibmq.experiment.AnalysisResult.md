@@ -12,7 +12,7 @@ python_api_name: qiskit.providers.ibmq.experiment.AnalysisResult
 
 <span id="qiskit.providers.ibmq.experiment.AnalysisResult" />
 
-`AnalysisResult(experiment_uuid, device_components, fit, result_type, chisq=None, quality=<ResultQuality.NO_INFORMATION: 'No Information'>, tags=None, result_uuid=None, backend_name=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.12/qiskit/providers/ibmq/experiment/analysis_result.py "view source code")
+`AnalysisResult(experiment_uuid, device_components, fit, result_type, chisq=None, quality=<ResultQuality.NO_INFORMATION: 'No Information'>, tags=None, result_uuid=None, backend_name=None)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.12/qiskit/providers/ibmq/experiment/analysis_result.py "view source code")
 
 Class representing an analysis result for an experiment.
 

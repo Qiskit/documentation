@@ -12,7 +12,7 @@ python_api_name: qiskit.finance.data_providers.RandomDataProvider
 
 <span id="qiskit.finance.data_providers.RandomDataProvider" />
 
-`RandomDataProvider(tickers=None, start=datetime.datetime(2016, 1, 1, 0, 0), end=datetime.datetime(2016, 1, 30, 0, 0), seed=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/finance/data_providers/random_data_provider.py "view source code")
+`RandomDataProvider(tickers=None, start=datetime.datetime(2016, 1, 1, 0, 0), end=datetime.datetime(2016, 1, 30, 0, 0), seed=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/finance/data_providers/random_data_provider.py "view source code")
 
 Pseudo-randomly generated mock stock-market data provider.
 

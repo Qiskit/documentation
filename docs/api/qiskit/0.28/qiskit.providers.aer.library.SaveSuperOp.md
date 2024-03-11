@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.library.SaveSuperOp
 
 <span id="qiskit.providers.aer.library.SaveSuperOp" />
 
-`SaveSuperOp(num_qubits, label='superop', pershot=False)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/library/save_instructions/save_superop.py "view source code")
+`SaveSuperOp(num_qubits, label='superop', pershot=False)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/library/save_instructions/save_superop.py "view source code")
 
 Save a SuperOp matrix.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.characterization.ampcal_1Q_circuits
 
 <span id="qiskit.ignis.characterization.ampcal_1Q_circuits" />
 
-`ampcal_1Q_circuits(max_reps, qubits)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/characterization/gates/circuits.py "view source code")
+`ampcal_1Q_circuits(max_reps, qubits)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/characterization/gates/circuits.py "view source code")
 
 Generates circuit for measuring the amplitude error of the single qubit gates
 

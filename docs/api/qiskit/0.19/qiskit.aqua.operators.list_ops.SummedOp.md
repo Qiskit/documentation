@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.operators.list_ops.SummedOp
 
 <span id="qiskit.aqua.operators.list_ops.SummedOp" />
 
-`SummedOp(oplist, coeff=1.0, abelian=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/list_ops/summed_op.py "view source code")
+`SummedOp(oplist, coeff=1.0, abelian=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/list_ops/summed_op.py "view source code")
 
 A class for lazily representing sums of Operators. Often Operators cannot be efficiently added to one another, but may be manipulated further so that they can be later. This class holds logic to indicate that the Operators in `oplist` are meant to be added together, and therefore if they reach a point in which they can be, such as after evaluation or conversion to matrices, they can be reduced by addition.
 
@@ -180,7 +180,7 @@ An `OperatorBase` equivalent to product of self and scalar.
 
 <span id="qiskit.aqua.operators.list_ops.SummedOp.add" />
 
-`SummedOp.add(other)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/list_ops/summed_op.py "view source code")
+`SummedOp.add(other)`
 
 Return Operator addition of self and other, overloaded by `+`.
 
@@ -418,7 +418,7 @@ A set of strings describing the primitives contained within the Operator.
 
 <span id="qiskit.aqua.operators.list_ops.SummedOp.reduce" />
 
-`SummedOp.reduce()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/list_ops/summed_op.py "view source code")
+`SummedOp.reduce()`
 
 Try collapsing the Operator structure, usually after some type of conversion, e.g. trying to add Operators in a SummedOp or delete needless IGates in a CircuitOp. If no reduction is available, just returns self.
 
@@ -490,7 +490,7 @@ Returns an equivalent Operator composed of only QuantumCircuit-based primitives,
 
 <span id="qiskit.aqua.operators.list_ops.SummedOp.to_legacy_op" />
 
-`SummedOp.to_legacy_op(massive=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/list_ops/summed_op.py "view source code")
+`SummedOp.to_legacy_op(massive=False)`
 
 Attempt to return the Legacy Operator representation of the Operator. If self is a `SummedOp` of `PauliOps`, will attempt to convert to `WeightedPauliOperator`, and otherwise will simply convert to `MatrixOp` and then to `MatrixOperator`. The Legacy Operators cannot represent `StateFns` or proper `ListOps` (meaning not one of the `ListOp` subclasses), so an error will be thrown if this method is called on such an Operator. Also, Legacy Operators cannot represent unbound Parameter coeffs, so an error will be thrown if any are present in self.
 

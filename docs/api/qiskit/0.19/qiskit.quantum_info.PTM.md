@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.PTM
 
 <span id="qiskit.quantum_info.PTM" />
 
-`PTM(data, input_dims=None, output_dims=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/channel/ptm.py "view source code")
+`PTM(data, input_dims=None, output_dims=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/channel/ptm.py "view source code")
 
 Pauli Transfer Matrix (PTM) representation of a Quantum Channel.
 
@@ -25,10 +25,10 @@ where $[P_0, P_1, ..., P_{4^{n}-1}]$ is the $n$-qubit Pauli basis in lexicograph
 Evolution of a [`DensityMatrix`](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") $\rho$ with respect to the PTM is given by
 
 $$
-\vert \mathcal{E}(\rho)\rangle\!\rangle_P = S_P \vert \rho\rangle\!\rangle_P
+|\mathcal{E}(\rho)\rangle\!\rangle_P = S_P |\rho\rangle\!\rangle_P
 $$
 
-where $\vert A\rangle\!\rangle_P$ denotes vectorization in the Pauli basis $\langle i \vert  A\rangle\!\rangle_P = \mbox{Tr}[P_i A]$.
+where $|A\rangle\!\rangle_P$ denotes vectorization in the Pauli basis $\langle i | A\rangle\!\rangle_P = \mbox{Tr}[P_i A]$.
 
 See reference \[1] for further details.
 
@@ -128,7 +128,7 @@ Return the adjoint of the operator.
 
 <span id="qiskit.quantum_info.PTM.compose" />
 
-`PTM.compose(other, qargs=None, front=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/channel/ptm.py "view source code")
+`PTM.compose(other, qargs=None, front=False)`
 
 Return the composed quantum channel self @ other.
 
@@ -158,7 +158,7 @@ Composition (`@`) is defined as left matrix multiplication for [`SuperOp`](qiski
 
 <span id="qiskit.quantum_info.PTM.conjugate" />
 
-`PTM.conjugate()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/channel/ptm.py "view source code")
+`PTM.conjugate()`
 
 Return the conjugate of the QuantumChannel.
 
@@ -199,7 +199,7 @@ BaseOperator
 
 <span id="qiskit.quantum_info.PTM.expand" />
 
-`PTM.expand(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/channel/ptm.py "view source code")
+`PTM.expand(other)`
 
 Return the tensor product channel other ⊗ self.
 
@@ -297,7 +297,7 @@ Return tuple of output dimension for specified subsystems.
 
 <span id="qiskit.quantum_info.PTM.power" />
 
-`PTM.power(n)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/channel/ptm.py "view source code")
+`PTM.power(n)`
 
 The matrix power of the channel.
 
@@ -389,7 +389,7 @@ BaseOperator
 
 <span id="qiskit.quantum_info.PTM.tensor" />
 
-`PTM.tensor(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/channel/ptm.py "view source code")
+`PTM.tensor(other)`
 
 Return the tensor product channel self ⊗ other.
 
@@ -443,7 +443,7 @@ Try to convert channel to a unitary representation Operator.
 
 <span id="qiskit.quantum_info.PTM.transpose" />
 
-`PTM.transpose()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/channel/ptm.py "view source code")
+`PTM.transpose()`
 
 Return the transpose of the QuantumChannel.
 

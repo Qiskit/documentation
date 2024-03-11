@@ -10,7 +10,7 @@ python_api_name: qiskit.scheduler.ScheduleConfig
 
 <span id="qiskit.scheduler.ScheduleConfig" />
 
-`ScheduleConfig(inst_map, meas_map)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/scheduler/config.py "view source code")
+`ScheduleConfig(inst_map, meas_map)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/scheduler/config.py "view source code")
 
 Configuration for pulse scheduling.
 

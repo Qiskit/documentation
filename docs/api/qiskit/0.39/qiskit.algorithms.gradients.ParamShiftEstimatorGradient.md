@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.gradients.ParamShiftEstimatorGradient
 
 <span id="qiskit.algorithms.gradients.ParamShiftEstimatorGradient" />
 
-`ParamShiftEstimatorGradient(estimator, **options)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/gradients/param_shift_estimator_gradient.py "view source code")
+`ParamShiftEstimatorGradient(estimator, **options)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/gradients/param_shift_estimator_gradient.py "view source code")
 
 Bases: [`qiskit.algorithms.gradients.base_estimator_gradient.BaseEstimatorGradient`](qiskit.algorithms.gradients.BaseEstimatorGradient "qiskit.algorithms.gradients.base_estimator_gradient.BaseEstimatorGradient")
 

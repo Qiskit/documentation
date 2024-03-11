@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.utils.get_feature_dimension
 
 <span id="qiskit.aqua.utils.get_feature_dimension" />
 
-`get_feature_dimension(dataset)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/utils/dataset_helper.py "view source code")
+`get_feature_dimension(dataset)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/utils/dataset_helper.py "view source code")
 
 Check feature dimension of a given dataset
 

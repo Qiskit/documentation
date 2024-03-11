@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.measurement.IQDiscriminationFitter
 
 <span id="qiskit.ignis.measurement.IQDiscriminationFitter" />
 
-`IQDiscriminationFitter(cal_results, qubit_mask, expected_states=None, standardize=False, schedules=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/measurement/discriminator/iq_discriminators.py "view source code")
+`IQDiscriminationFitter(cal_results, qubit_mask, expected_states=None, standardize=False, schedules=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/measurement/discriminator/iq_discriminators.py "view source code")
 
 Abstract discriminator that implements the data formatting for IQ level 1 data.
 
@@ -55,7 +55,7 @@ Returns the schedules with which the discriminator was fitted.
 
 <span id="qiskit.ignis.measurement.IQDiscriminationFitter.discriminate" />
 
-`abstract IQDiscriminationFitter.discriminate(x_data)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/measurement/discriminator/iq_discriminators.py "view source code")
+`abstract IQDiscriminationFitter.discriminate(x_data)`
 
 Applies the discriminator to x\_data.
 
@@ -75,7 +75,7 @@ The discriminated x\_data as a list of labels.
 
 <span id="qiskit.ignis.measurement.IQDiscriminationFitter.fit" />
 
-`abstract IQDiscriminationFitter.fit()`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/measurement/discriminator/iq_discriminators.py "view source code")
+`abstract IQDiscriminationFitter.fit()`
 
 Fits the discriminator using self.\_xdata and self.\_ydata.
 
@@ -83,7 +83,7 @@ Fits the discriminator using self.\_xdata and self.\_ydata.
 
 <span id="qiskit.ignis.measurement.IQDiscriminationFitter.format_iq_data" />
 
-`IQDiscriminationFitter.format_iq_data(iq_data)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/measurement/discriminator/iq_discriminators.py "view source code")
+`IQDiscriminationFitter.format_iq_data(iq_data)`
 
 Takes IQ data obtained from get\_memory(), applies the qubit mask and formats the data as a list of lists. Each sub list is IQ data where the first half of the list is the I data and the second half of the list is the Q data.
 
@@ -107,7 +107,7 @@ A list of shots where each entry is a list of IQ points.
 
 <span id="qiskit.ignis.measurement.IQDiscriminationFitter.get_xdata" />
 
-`IQDiscriminationFitter.get_xdata(results, schedule_type_to_get, schedules=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/measurement/discriminator/iq_discriminators.py "view source code")
+`IQDiscriminationFitter.get_xdata(results, schedule_type_to_get, schedules=None)`
 
 Retrieves feature data (xdata) for the discriminator.
 
@@ -133,7 +133,7 @@ data as a list of features. Each feature is a list.
 
 <span id="qiskit.ignis.measurement.IQDiscriminationFitter.get_ydata" />
 
-`IQDiscriminationFitter.get_ydata(results, schedule_type_to_get, schedules=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/measurement/discriminator/iq_discriminators.py "view source code")
+`IQDiscriminationFitter.get_ydata(results, schedule_type_to_get, schedules=None)`
 
 Retrieves the expected states (ydata) for the discriminator.
 
@@ -179,7 +179,7 @@ bool
 
 <span id="qiskit.ignis.measurement.IQDiscriminationFitter.plot" />
 
-`IQDiscriminationFitter.plot(axs=None, show_boundary=False, show_fitting_data=True, flag_misclassified=False, qubits_to_plot=None, title=True)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/measurement/discriminator/iq_discriminators.py "view source code")
+`IQDiscriminationFitter.plot(axs=None, show_boundary=False, show_fitting_data=True, flag_misclassified=False, qubits_to_plot=None, title=True)`
 
 Creates a plot of the data used to fit the discriminator.
 
@@ -210,7 +210,7 @@ tuple
 
 <span id="qiskit.ignis.measurement.IQDiscriminationFitter.plot_xdata" />
 
-`IQDiscriminationFitter.plot_xdata(axs, results, color=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/measurement/discriminator/iq_discriminators.py "view source code")
+`IQDiscriminationFitter.plot_xdata(axs, results, color=None)`
 
 Add the relevant IQ data from the Qiskit Result, or list thereof, to the given axes as a scatter plot.
 

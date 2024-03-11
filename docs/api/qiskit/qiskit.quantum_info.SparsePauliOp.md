@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.SparsePauliOp
 
 <span id="qiskit.quantum_info.SparsePauliOp" />
 
-`qiskit.quantum_info.SparsePauliOp(data, coeffs=None, *, ignore_pauli_phase=False, copy=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py "view source code")
+`qiskit.quantum_info.SparsePauliOp(data, coeffs=None, *, ignore_pauli_phase=False, copy=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py "view source code")
 
 Bases: `LinearOp`
 
@@ -150,8 +150,8 @@ Apply a transpiler layout to this [`SparsePauliOp`](#qiskit.quantum_info.SparseP
 
 **Parameters**
 
-*   **layout** ([*TranspileLayout*](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") *| List\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – Either a [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") or a list of integers.
-*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The number of qubits to expand the operator to. If not provided then if `layout` is a [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") the number of the transpiler output circuit qubits will be used by default. If `layout` is a list of integers the permutation specified will be applied without any expansion.
+*   **layout** ([*TranspileLayout*](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") *| List\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – Either a [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout"), a list of integers or None. If both layout and num\_qubits are none, a copy of the operator is returned.
+*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The number of qubits to expand the operator to. If not provided then if `layout` is a [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") the number of the transpiler output circuit qubits will be used by default. If `layout` is a list of integers the permutation specified will be applied without any expansion. If layout is None, the operator will be expanded to the given number of qubits.
 
 **Returns**
 
@@ -440,13 +440,15 @@ The SparsePauliOp representation of the Pauli terms.
 
 Construct from an Operator objector.
 
-Note that the cost of this construction is exponential as it involves taking inner products with every element of the N-qubit Pauli basis.
+Note that the cost of this construction is exponential in general because the number of possible Pauli terms in the decomposition is exponential in the number of qubits.
+
+Internally this uses an implementation of the “tensorized Pauli decomposition” presented in [Hantzko, Binkowski and Gupta (2023)](https://arxiv.org/abs/2310.13421).
 
 **Parameters**
 
 *   **obj** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – an N-qubit operator.
-*   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Optional. Absolute tolerance for checking if coefficients are zero (Default: 1e-8).
-*   **rtol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Optional. relative tolerance for checking if coefficients are zero (Default: 1e-5).
+*   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Optional. Absolute tolerance for checking if coefficients are zero (Default: 1e-8). Since the comparison is to zero, in effect the tolerance used is the maximum of `atol` and `rtol`.
+*   **rtol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Optional. relative tolerance for checking if coefficients are zero (Default: 1e-5). Since the comparison is to zero, in effect the tolerance used is the maximum of `atol` and `rtol`.
 
 **Returns**
 

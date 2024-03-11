@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.algorithms.QSVM
 
 <span id="qiskit.aqua.algorithms.QSVM" />
 
-`QSVM(feature_map, training_dataset=None, test_dataset=None, datapoints=None, multiclass_extension=None, quantum_instance=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/classifiers/qsvm/qsvm.py "view source code")
+`QSVM(feature_map, training_dataset=None, test_dataset=None, datapoints=None, multiclass_extension=None, quantum_instance=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/classifiers/qsvm/qsvm.py "view source code")
 
 Quantum SVM algorithm.
 
@@ -81,7 +81,7 @@ returns result
 
 <span id="qiskit.aqua.algorithms.QSVM.construct_circuit" />
 
-`QSVM.construct_circuit(x1, x2, measurement=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/classifiers/qsvm/qsvm.py "view source code")
+`QSVM.construct_circuit(x1, x2, measurement=False)`
 
 Generate inner product of x1 and x2 with the given feature map.
 
@@ -105,7 +105,7 @@ constructed circuit
 
 <span id="qiskit.aqua.algorithms.QSVM.construct_kernel_matrix" />
 
-`QSVM.construct_kernel_matrix(x1_vec, x2_vec=None, quantum_instance=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/classifiers/qsvm/qsvm.py "view source code")
+`QSVM.construct_kernel_matrix(x1_vec, x2_vec=None, quantum_instance=None)`
 
 Construct kernel matrix, if x2\_vec is None, self-innerproduct is conducted.
 
@@ -135,7 +135,7 @@ numpy.ndarray
 
 <span id="qiskit.aqua.algorithms.QSVM.get_kernel_matrix" />
 
-`static QSVM.get_kernel_matrix(quantum_instance, feature_map, x1_vec, x2_vec=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/classifiers/qsvm/qsvm.py "view source code")
+`static QSVM.get_kernel_matrix(quantum_instance, feature_map, x1_vec, x2_vec=None)`
 
 Construct kernel matrix, if x2\_vec is None, self-innerproduct is conducted.
 
@@ -162,7 +162,7 @@ numpy.ndarray
 
 <span id="qiskit.aqua.algorithms.QSVM.load_model" />
 
-`QSVM.load_model(file_path)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/classifiers/qsvm/qsvm.py "view source code")
+`QSVM.load_model(file_path)`
 
 Load a model from a file path.
 
@@ -174,7 +174,7 @@ Load a model from a file path.
 
 <span id="qiskit.aqua.algorithms.QSVM.predict" />
 
-`QSVM.predict(data, quantum_instance=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/classifiers/qsvm/qsvm.py "view source code")
+`QSVM.predict(data, quantum_instance=None)`
 
 Predict using the svm.
 
@@ -224,7 +224,7 @@ dict
 
 <span id="qiskit.aqua.algorithms.QSVM.save_model" />
 
-`QSVM.save_model(file_path)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/classifiers/qsvm/qsvm.py "view source code")
+`QSVM.save_model(file_path)`
 
 Save the model to a file path.
 
@@ -248,7 +248,7 @@ Sets backend with configuration.
 
 <span id="qiskit.aqua.algorithms.QSVM.setup_datapoint" />
 
-`QSVM.setup_datapoint(datapoints)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/classifiers/qsvm/qsvm.py "view source code")
+`QSVM.setup_datapoint(datapoints)`
 
 Setup data points, if the data were there, they would be overwritten.
 
@@ -260,7 +260,7 @@ Setup data points, if the data were there, they would be overwritten.
 
 <span id="qiskit.aqua.algorithms.QSVM.setup_test_data" />
 
-`QSVM.setup_test_data(test_dataset)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/classifiers/qsvm/qsvm.py "view source code")
+`QSVM.setup_test_data(test_dataset)`
 
 Setup test data, if the data were there, they would be overwritten.
 
@@ -272,7 +272,7 @@ Setup test data, if the data were there, they would be overwritten.
 
 <span id="qiskit.aqua.algorithms.QSVM.setup_training_data" />
 
-`QSVM.setup_training_data(training_dataset)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/classifiers/qsvm/qsvm.py "view source code")
+`QSVM.setup_training_data(training_dataset)`
 
 Setup training data, if the data were there, they would be overwritten.
 
@@ -284,7 +284,7 @@ Setup training data, if the data were there, they would be overwritten.
 
 <span id="qiskit.aqua.algorithms.QSVM.test" />
 
-`QSVM.test(data, labels, quantum_instance=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/classifiers/qsvm/qsvm.py "view source code")
+`QSVM.test(data, labels, quantum_instance=None)`
 
 Test the svm.
 
@@ -310,7 +310,7 @@ float
 
 <span id="qiskit.aqua.algorithms.QSVM.train" />
 
-`QSVM.train(data, labels, quantum_instance=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/classifiers/qsvm/qsvm.py "view source code")
+`QSVM.train(data, labels, quantum_instance=None)`
 
 Train the svm.
 

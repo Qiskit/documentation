@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.WhileLoopOp
 
 <span id="qiskit.circuit.WhileLoopOp" />
 
-`qiskit.circuit.WhileLoopOp(condition, body, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/controlflow/while_loop.py "view source code")
+`qiskit.circuit.WhileLoopOp(condition, body, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/controlflow/while_loop.py "view source code")
 
 Bases: [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.controlflow.control_flow.ControlFlowOp")
 

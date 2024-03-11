@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.ZGate
 
 <span id="qiskit.circuit.library.ZGate" />
 
-`ZGate(label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/z.py "view source code")
+`ZGate(label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/z.py "view source code")
 
 The single-qubit Pauli-Z gate ($\sigma_z$).
 
@@ -48,8 +48,8 @@ Equivalent to a $\pi$ radian rotation about the Z axis.
 The gate is equivalent to a phase flip.
 
 $$
-\begin{split}\vert 0\rangle \rightarrow \vert 0\rangle \\
-\vert 1\rangle \rightarrow -\vert 1\rangle\end{split}
+\begin{split}|0\rangle \rightarrow |0\rangle \\
+|1\rangle \rightarrow -|1\rangle\end{split}
 $$
 
 Create new Z gate.
@@ -169,7 +169,7 @@ Add classical condition on register classical and value val.
 
 <span id="qiskit.circuit.library.ZGate.control" />
 
-`ZGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/z.py "view source code")
+`ZGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
 Return a (mutli-)controlled-Z gate.
 
@@ -215,7 +215,7 @@ updated if it was provided
 
 <span id="qiskit.circuit.library.ZGate.inverse" />
 
-`ZGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/z.py "view source code")
+`ZGate.inverse()`
 
 Return inverted Z gate (itself).
 
@@ -307,7 +307,7 @@ Containing the definition.
 
 <span id="qiskit.circuit.library.ZGate.to_matrix" />
 
-`ZGate.to_matrix()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/z.py "view source code")
+`ZGate.to_matrix()`
 
 Return a numpy.array for the Z gate.
 

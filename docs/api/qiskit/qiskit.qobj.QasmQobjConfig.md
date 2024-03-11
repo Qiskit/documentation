@@ -10,7 +10,7 @@ python_api_name: qiskit.qobj.QasmQobjConfig
 
 <span id="qiskit.qobj.QasmQobjConfig" />
 
-`qiskit.qobj.QasmQobjConfig(shots=None, seed_simulator=None, memory=None, parameter_binds=None, meas_level=None, meas_return=None, memory_slots=None, n_qubits=None, pulse_library=None, calibrations=None, rep_delay=None, qubit_lo_freq=None, meas_lo_freq=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/qobj/qasm_qobj.py "view source code")
+`qiskit.qobj.QasmQobjConfig(shots=None, seed_simulator=None, memory=None, parameter_binds=None, meas_level=None, meas_return=None, memory_slots=None, n_qubits=None, pulse_library=None, calibrations=None, rep_delay=None, qubit_lo_freq=None, meas_lo_freq=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/qobj/qasm_qobj.py "view source code")
 
 Bases: [`SimpleNamespace`](https://docs.python.org/3/library/types.html#types.SimpleNamespace "(in Python v3.12)")
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.TwoQubitBasisDecomposer
 
 <span id="qiskit.quantum_info.TwoQubitBasisDecomposer" />
 
-`qiskit.quantum_info.TwoQubitBasisDecomposer(gate, basis_fidelity=1.0, euler_basis='U', pulse_optimize=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/quantum_info/synthesis/two_qubit_decompose.py "view source code")
+`qiskit.quantum_info.TwoQubitBasisDecomposer(gate, basis_fidelity=1.0, euler_basis='U', pulse_optimize=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/quantum_info/synthesis/two_qubit_decompose.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
@@ -31,7 +31,7 @@ A class for decomposing 2-qubit unitaries into minimal number of uses of a 2-qub
 
 `static decomp0(target)`
 
-Decompose target \~Ud(x, y, z) with 0 uses of the basis gate. Result Ur has trace: $\vert Tr(Ur.Utarget^dag)\vert  = 4\vert (cos(x)cos(y)cos(z)+ j sin(x)sin(y)sin(z)\vert $, which is optimal for all targets and bases
+Decompose target \~Ud(x, y, z) with 0 uses of the basis gate. Result Ur has trace: $|Tr(Ur.Utarget^dag)| = 4|(cos(x)cos(y)cos(z)+ j sin(x)sin(y)sin(z)|$, which is optimal for all targets and bases
 
 ### decomp1
 
@@ -85,5 +85,5 @@ Computes the number of basis gates needed in a decomposition of input unitary
 
 `traces(target)`
 
-Give the expected traces $\vert Tr(U \cdot Utarget^dag)\vert $ for different number of basis gates.
+Give the expected traces $|Tr(U \cdot Utarget^dag)|$ for different number of basis gates.
 

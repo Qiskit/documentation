@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.optimizers.Optimizer
 
 <span id="qiskit.aqua.components.optimizers.Optimizer" />
 
-`Optimizer`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/optimizers/optimizer.py "view source code")
+`Optimizer` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/optimizers/optimizer.py "view source code")
 
 Base class for optimization algorithm.
 

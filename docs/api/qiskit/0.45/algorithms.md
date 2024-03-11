@@ -1,7 +1,7 @@
 ---
 title: algorithms
 description: API reference for qiskit.algorithms
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.algorithms
 ---
@@ -197,7 +197,7 @@ Algorithms that compute the fidelity of pairs of quantum states.
 
 <span id="qiskit.algorithms.AlgorithmError" />
 
-`qiskit.algorithms.AlgorithmError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/exceptions.py "view source code")
+`qiskit.algorithms.AlgorithmError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/exceptions.py "view source code")
 
 For Algorithm specific errors.
 
@@ -219,7 +219,7 @@ Utility functions used by algorithms.
 
 <span id="qiskit.algorithms.eval_observables" />
 
-`qiskit.algorithms.eval_observables(quantum_instance, quantum_state, observables, expectation, threshold=1e-12)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/aux_ops_evaluator.py "view source code")
+`qiskit.algorithms.eval_observables(quantum_instance, quantum_state, observables, expectation, threshold=1e-12)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/aux_ops_evaluator.py "view source code")
 
 Deprecated: Accepts a list or a dictionary of operators and calculates their expectation values - means and standard deviations. They are calculated with respect to a quantum state provided. A user can optionally provide a threshold value which filters mean values falling below the threshold.
 
@@ -253,7 +253,7 @@ ListOrDict\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in P
 
 <span id="qiskit.algorithms.estimate_observables" />
 
-`qiskit.algorithms.estimate_observables(estimator, quantum_state, observables, parameter_values=None, threshold=1e-12)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/observables_evaluator.py "view source code")
+`qiskit.algorithms.estimate_observables(estimator, quantum_state, observables, parameter_values=None, threshold=1e-12)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/observables_evaluator.py "view source code")
 
 Accepts a sequence of operators and calculates their expectation values - means and metadata. They are calculated with respect to a quantum state provided. A user can optionally provide a threshold value which filters mean values falling below the threshold.
 

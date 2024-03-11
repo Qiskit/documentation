@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.operators.gradients.CircuitQFI
 
 <span id="qiskit.aqua.operators.gradients.CircuitQFI" />
 
-`CircuitQFI`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/gradients/circuit_qfis/circuit_qfi.py "view source code")
+`CircuitQFI` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/gradients/circuit_qfis/circuit_qfi.py "view source code")
 
 Circuit to Quantum Fisher Information operator converter.
 
@@ -45,7 +45,7 @@ Initialize self. See help(type(self)) for accurate signature.
 
 **Parameters**
 
-*   **operator** (`OperatorBase`) – The operator corresponding to the quantum state $\vert \psi(\omega)\rangle$ for which we compute the QFI.
+*   **operator** (`OperatorBase`) – The operator corresponding to the quantum state $|\psi(\omega)\rangle$ for which we compute the QFI.
 *   **params** (`Union`\[`ParameterVector`, `ParameterExpression`, `List`\[`ParameterExpression`], `None`]) – The parameters $\omega$ with respect to which we are computing the QFI.
 
 **Return type**

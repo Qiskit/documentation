@@ -12,7 +12,7 @@ python_api_name: qiskit.providers.ibmq.random.CQCExtractor
 
 <span id="qiskit.providers.ibmq.random.CQCExtractor" />
 
-`CQCExtractor(name, provider, client, methods)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.12/qiskit/providers/ibmq/random/cqcextractor.py "view source code")
+`CQCExtractor(name, provider, client, methods)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.12/qiskit/providers/ibmq/random/cqcextractor.py "view source code")
 
 Class for interfacing with a CQC remote extractor.
 

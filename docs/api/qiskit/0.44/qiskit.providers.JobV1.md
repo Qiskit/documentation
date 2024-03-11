@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.JobV1
 
 <span id="qiskit.providers.JobV1" />
 
-`qiskit.providers.JobV1(backend, job_id, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/providers/job.py "view source code")
+`qiskit.providers.JobV1(backend, job_id, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/providers/job.py "view source code")
 
 Bases: [`Job`](qiskit.providers.Job "qiskit.providers.job.Job"), [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 

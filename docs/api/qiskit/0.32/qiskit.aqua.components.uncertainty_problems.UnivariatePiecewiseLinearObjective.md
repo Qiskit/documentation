@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.uncertainty_problems.UnivariatePiecewise
 
 <span id="qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective" />
 
-`UnivariatePiecewiseLinearObjective(num_state_qubits, min_state_value, max_state_value, breakpoints, slopes, offsets, f_min, f_max, c_approx, i_state=None, i_objective=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_problems/univariate_piecewise_linear_objective.py "view source code")
+`UnivariatePiecewiseLinearObjective(num_state_qubits, min_state_value, max_state_value, breakpoints, slopes, offsets, f_min, f_max, c_approx, i_state=None, i_objective=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_problems/univariate_piecewise_linear_objective.py "view source code")
 
 Bases: `qiskit.aqua.utils.circuit_factory.CircuitFactory`
 
@@ -19,7 +19,7 @@ Univariate Piecewise Linear Objective Function.
 This objective function applies controlled Y-rotation to the target qubit, where the control qubits represent integer value, and rotation approximates a piecewise linear function of the amplitude f:
 
 $$
-\vert x\rangle \vert 0\rangle \mapsto \vert x\rangle (\sqrt(1 - f(x))\vert 0\rangle + sqrt(f(x))\vert 1\rangle )
+|x\rangle |0\rangle \mapsto |x\rangle (\sqrt(1 - f(x))|0\rangle + sqrt(f(x))|1\rangle )
 $$
 
 **Parameters**
@@ -42,7 +42,7 @@ $$
 
 <span id="qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective.build" />
 
-`UnivariatePiecewiseLinearObjective.build(qc, q, q_ancillas=None, params=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_problems/univariate_piecewise_linear_objective.py "view source code")
+`UnivariatePiecewiseLinearObjective.build(qc, q, q_ancillas=None, params=None)`
 
 ### build\_controlled
 
@@ -142,7 +142,7 @@ returns number of qubits controlled
 
 <span id="qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective.required_ancillas" />
 
-`UnivariatePiecewiseLinearObjective.required_ancillas()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_problems/univariate_piecewise_linear_objective.py "view source code")
+`UnivariatePiecewiseLinearObjective.required_ancillas()`
 
 requires ancillas
 
@@ -158,7 +158,7 @@ returns required ancillas controlled
 
 <span id="qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective.value_to_estimation" />
 
-`UnivariatePiecewiseLinearObjective.value_to_estimation(value)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_problems/univariate_piecewise_linear_objective.py "view source code")
+`UnivariatePiecewiseLinearObjective.value_to_estimation(value)`
 
 value to estimation
 

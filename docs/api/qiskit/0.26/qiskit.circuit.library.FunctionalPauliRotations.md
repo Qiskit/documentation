@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.FunctionalPauliRotations
 
 <span id="qiskit.circuit.library.FunctionalPauliRotations" />
 
-`FunctionalPauliRotations(num_state_qubits=None, basis='Y', name='F')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/library/arithmetic/functional_pauli_rotations.py "view source code")
+`FunctionalPauliRotations(num_state_qubits=None, basis='Y', name='F')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/library/arithmetic/functional_pauli_rotations.py "view source code")
 
 Base class for functional Pauli rotations.
 
@@ -18,7 +18,7 @@ Create a new functional Pauli rotation circuit.
 
 **Parameters**
 
-*   **num\_state\_qubits** (`Optional`\[`int`]) – The number of qubits representing the state $\vert x\rangle$.
+*   **num\_state\_qubits** (`Optional`\[`int`]) – The number of qubits representing the state $|x\rangle$.
 *   **basis** (`str`) – The kind of Pauli rotation to use. Must be ‘X’, ‘Y’ or ‘Z’.
 *   **name** (`str`) – The name of the circuit object.
 
@@ -32,7 +32,7 @@ Create a new functional Pauli rotation circuit.
 
 **Parameters**
 
-*   **num\_state\_qubits** (`Optional`\[`int`]) – The number of qubits representing the state $\vert x\rangle$.
+*   **num\_state\_qubits** (`Optional`\[`int`]) – The number of qubits representing the state $|x\rangle$.
 *   **basis** (`str`) – The kind of Pauli rotation to use. Must be ‘X’, ‘Y’ or ‘Z’.
 *   **name** (`str`) – The name of the circuit object.
 
@@ -187,28 +187,28 @@ Create a new functional Pauli rotation circuit.
 
 ## Attributes
 
-|                                                                                                                                                                  |                                                                              |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| [`ancillas`](#qiskit.circuit.library.FunctionalPauliRotations.ancillas "qiskit.circuit.library.FunctionalPauliRotations.ancillas")                               | Returns a list of ancilla bits in the order that the registers were added.   |
-| [`basis`](#qiskit.circuit.library.FunctionalPauliRotations.basis "qiskit.circuit.library.FunctionalPauliRotations.basis")                                        | The kind of Pauli rotation to be used.                                       |
-| [`calibrations`](#qiskit.circuit.library.FunctionalPauliRotations.calibrations "qiskit.circuit.library.FunctionalPauliRotations.calibrations")                   | Return calibration dictionary.                                               |
-| [`clbits`](#qiskit.circuit.library.FunctionalPauliRotations.clbits "qiskit.circuit.library.FunctionalPauliRotations.clbits")                                     | Returns a list of classical bits in the order that the registers were added. |
-| [`data`](#qiskit.circuit.library.FunctionalPauliRotations.data "qiskit.circuit.library.FunctionalPauliRotations.data")                                           | Return the circuit data (instructions and context).                          |
-| `extension_lib`                                                                                                                                                  |                                                                              |
-| [`global_phase`](#qiskit.circuit.library.FunctionalPauliRotations.global_phase "qiskit.circuit.library.FunctionalPauliRotations.global_phase")                   | Return the global phase of the circuit in radians.                           |
-| `header`                                                                                                                                                         |                                                                              |
-| `instances`                                                                                                                                                      |                                                                              |
-| [`metadata`](#qiskit.circuit.library.FunctionalPauliRotations.metadata "qiskit.circuit.library.FunctionalPauliRotations.metadata")                               | The user provided metadata associated with the circuit                       |
-| [`num_ancilla_qubits`](#qiskit.circuit.library.FunctionalPauliRotations.num_ancilla_qubits "qiskit.circuit.library.FunctionalPauliRotations.num_ancilla_qubits") | The minimum number of ancilla qubits in the circuit.                         |
-| [`num_ancillas`](#qiskit.circuit.library.FunctionalPauliRotations.num_ancillas "qiskit.circuit.library.FunctionalPauliRotations.num_ancillas")                   | Return the number of ancilla qubits.                                         |
-| [`num_clbits`](#qiskit.circuit.library.FunctionalPauliRotations.num_clbits "qiskit.circuit.library.FunctionalPauliRotations.num_clbits")                         | Return number of classical bits.                                             |
-| [`num_parameters`](#qiskit.circuit.library.FunctionalPauliRotations.num_parameters "qiskit.circuit.library.FunctionalPauliRotations.num_parameters")             | Convenience function to get the number of parameter objects in the circuit.  |
-| [`num_qubits`](#qiskit.circuit.library.FunctionalPauliRotations.num_qubits "qiskit.circuit.library.FunctionalPauliRotations.num_qubits")                         | Return number of qubits.                                                     |
-| [`num_state_qubits`](#qiskit.circuit.library.FunctionalPauliRotations.num_state_qubits "qiskit.circuit.library.FunctionalPauliRotations.num_state_qubits")       | The number of state qubits representing the state $\vert x\rangle$.          |
-| [`parameters`](#qiskit.circuit.library.FunctionalPauliRotations.parameters "qiskit.circuit.library.FunctionalPauliRotations.parameters")                         | Convenience function to get the parameters defined in the parameter table.   |
-| `prefix`                                                                                                                                                         |                                                                              |
-| [`qregs`](#qiskit.circuit.library.FunctionalPauliRotations.qregs "qiskit.circuit.library.FunctionalPauliRotations.qregs")                                        | A list of the quantum registers associated with the circuit.                 |
-| [`qubits`](#qiskit.circuit.library.FunctionalPauliRotations.qubits "qiskit.circuit.library.FunctionalPauliRotations.qubits")                                     | Returns a list of quantum bits in the order that the registers were added.   |
+|                                                                                                                                                                  |                                                                              |             |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ----------- |
+| [`ancillas`](#qiskit.circuit.library.FunctionalPauliRotations.ancillas "qiskit.circuit.library.FunctionalPauliRotations.ancillas")                               | Returns a list of ancilla bits in the order that the registers were added.   |             |
+| [`basis`](#qiskit.circuit.library.FunctionalPauliRotations.basis "qiskit.circuit.library.FunctionalPauliRotations.basis")                                        | The kind of Pauli rotation to be used.                                       |             |
+| [`calibrations`](#qiskit.circuit.library.FunctionalPauliRotations.calibrations "qiskit.circuit.library.FunctionalPauliRotations.calibrations")                   | Return calibration dictionary.                                               |             |
+| [`clbits`](#qiskit.circuit.library.FunctionalPauliRotations.clbits "qiskit.circuit.library.FunctionalPauliRotations.clbits")                                     | Returns a list of classical bits in the order that the registers were added. |             |
+| [`data`](#qiskit.circuit.library.FunctionalPauliRotations.data "qiskit.circuit.library.FunctionalPauliRotations.data")                                           | Return the circuit data (instructions and context).                          |             |
+| `extension_lib`                                                                                                                                                  |                                                                              |             |
+| [`global_phase`](#qiskit.circuit.library.FunctionalPauliRotations.global_phase "qiskit.circuit.library.FunctionalPauliRotations.global_phase")                   | Return the global phase of the circuit in radians.                           |             |
+| `header`                                                                                                                                                         |                                                                              |             |
+| `instances`                                                                                                                                                      |                                                                              |             |
+| [`metadata`](#qiskit.circuit.library.FunctionalPauliRotations.metadata "qiskit.circuit.library.FunctionalPauliRotations.metadata")                               | The user provided metadata associated with the circuit                       |             |
+| [`num_ancilla_qubits`](#qiskit.circuit.library.FunctionalPauliRotations.num_ancilla_qubits "qiskit.circuit.library.FunctionalPauliRotations.num_ancilla_qubits") | The minimum number of ancilla qubits in the circuit.                         |             |
+| [`num_ancillas`](#qiskit.circuit.library.FunctionalPauliRotations.num_ancillas "qiskit.circuit.library.FunctionalPauliRotations.num_ancillas")                   | Return the number of ancilla qubits.                                         |             |
+| [`num_clbits`](#qiskit.circuit.library.FunctionalPauliRotations.num_clbits "qiskit.circuit.library.FunctionalPauliRotations.num_clbits")                         | Return number of classical bits.                                             |             |
+| [`num_parameters`](#qiskit.circuit.library.FunctionalPauliRotations.num_parameters "qiskit.circuit.library.FunctionalPauliRotations.num_parameters")             | Convenience function to get the number of parameter objects in the circuit.  |             |
+| [`num_qubits`](#qiskit.circuit.library.FunctionalPauliRotations.num_qubits "qiskit.circuit.library.FunctionalPauliRotations.num_qubits")                         | Return number of qubits.                                                     |             |
+| [`num_state_qubits`](#qiskit.circuit.library.FunctionalPauliRotations.num_state_qubits "qiskit.circuit.library.FunctionalPauliRotations.num_state_qubits")       | The number of state qubits representing the state \$                         | x\rangle\$. |
+| [`parameters`](#qiskit.circuit.library.FunctionalPauliRotations.parameters "qiskit.circuit.library.FunctionalPauliRotations.parameters")                         | Convenience function to get the parameters defined in the parameter table.   |             |
+| `prefix`                                                                                                                                                         |                                                                              |             |
+| [`qregs`](#qiskit.circuit.library.FunctionalPauliRotations.qregs "qiskit.circuit.library.FunctionalPauliRotations.qregs")                                        | A list of the quantum registers associated with the circuit.                 |             |
+| [`qubits`](#qiskit.circuit.library.FunctionalPauliRotations.qubits "qiskit.circuit.library.FunctionalPauliRotations.qubits")                                     | Returns a list of quantum bits in the order that the registers were added.   |             |
 
 ### add\_bits
 
@@ -1101,7 +1101,7 @@ Apply [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate").
 
 Initialize qubits in a specific state.
 
-Qubit initialization is done by first resetting the qubits to $\vert 0\rangle$ followed by an state preparing unitary. Both these steps are included in the Initialize instruction.
+Qubit initialization is done by first resetting the qubits to $|0\rangle$ followed by an state preparing unitary. Both these steps are included in the Initialize instruction.
 
 **Parameters**
 
@@ -1132,7 +1132,7 @@ a handle to the instruction that was just initialized
 
 **Examples**
 
-Prepare a qubit in the state $(\vert 0\rangle - \vert 1\rangle) / \sqrt{2}$.
+Prepare a qubit in the state $(|0\rangle - |1\rangle) / \sqrt{2}$.
 
 ```python
 import numpy as np
@@ -1594,7 +1594,7 @@ Return number of qubits.
 
 `property num_state_qubits`
 
-The number of state qubits representing the state $\vert x\rangle$.
+The number of state qubits representing the state $|x\rangle$.
 
 **Return type**
 

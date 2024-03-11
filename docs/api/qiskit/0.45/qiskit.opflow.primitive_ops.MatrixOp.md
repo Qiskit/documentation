@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.primitive_ops.MatrixOp
 
 <span id="qiskit.opflow.primitive_ops.MatrixOp" />
 
-`qiskit.opflow.primitive_ops.MatrixOp(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/primitive_ops/matrix_op.py "view source code")
+`qiskit.opflow.primitive_ops.MatrixOp(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/primitive_ops/matrix_op.py "view source code")
 
 Bases: [`PrimitiveOp`](qiskit.opflow.primitive_ops.PrimitiveOp "qiskit.opflow.primitive_ops.primitive_op.PrimitiveOp")
 

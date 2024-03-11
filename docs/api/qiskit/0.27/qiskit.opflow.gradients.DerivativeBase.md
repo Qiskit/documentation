@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.gradients.DerivativeBase
 
 <span id="qiskit.opflow.gradients.DerivativeBase" />
 
-`DerivativeBase`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/gradients/derivative_base.py "view source code")
+`DerivativeBase` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/gradients/derivative_base.py "view source code")
 
 Base class for differentiating opflow objects.
 

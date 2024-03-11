@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.AlignMeasures
 
 <span id="qiskit.transpiler.passes.AlignMeasures" />
 
-`qiskit.transpiler.passes.AlignMeasures(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/scheduling/alignments/align_measures.py "view source code")
+`qiskit.transpiler.passes.AlignMeasures(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/scheduling/alignments/align_measures.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 

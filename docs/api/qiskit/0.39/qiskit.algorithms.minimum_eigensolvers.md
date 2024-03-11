@@ -1,8 +1,20 @@
+---
+title: minimum_eigensolvers
+description: API reference for qiskit.algorithms.minimum_eigensolvers
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.algorithms.minimum_eigensolvers
+---
+
 <span id="qiskit-algorithms-minimum-eigensolvers" />
 
 # qiskit.algorithms.minimum\_eigensolvers
 
-## Minimum Eigensolvers Package ([`qiskit.algorithms.minimum_eigensolvers`](#module-qiskit.algorithms.minimum_eigensolvers "qiskit.algorithms.minimum_eigensolvers"))
+## Minimum Eigensolvers Package
+
+<span id="module-qiskit.algorithms.minimum_eigensolvers" />
+
+`qiskit.algorithms.minimum_eigensolvers`
 
 ### Minimum Eigensolvers
 
@@ -24,3 +36,4 @@
 | [`AdaptVQEResult`](qiskit.algorithms.minimum_eigensolvers.AdaptVQEResult "qiskit.algorithms.minimum_eigensolvers.AdaptVQEResult")()                                                       | AdaptVQE Result.                        |
 | [`SamplingMinimumEigensolverResult`](qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult "qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolverResult")() | Sampling Minimum Eigensolver Result.    |
 | [`SamplingVQEResult`](qiskit.algorithms.minimum_eigensolvers.SamplingVQEResult "qiskit.algorithms.minimum_eigensolvers.SamplingVQEResult")()                                              | VQE Result.                             |
+

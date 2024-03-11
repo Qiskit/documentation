@@ -1,7 +1,7 @@
 ---
 title: extensions
 description: API reference for qiskit.extensions
-in_page_toc_min_heading_level: 1
+in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.extensions
 ---
@@ -38,7 +38,7 @@ The additional gates in this module will tend to raise a custom exception when t
 
 <span id="qiskit.extensions.ExtensionError" />
 
-`qiskit.extensions.ExtensionError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/extensions/exceptions.py "view source code")
+`qiskit.extensions.ExtensionError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/extensions/exceptions.py "view source code")
 
 Base class for errors raised by extensions module.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.PVQD
 
 <span id="qiskit.algorithms.PVQD" />
 
-`PVQD(fidelity, ansatz, initial_parameters, estimator=None, optimizer=None, num_timesteps=None, evolution=None, use_parameter_shift=True, initial_guess=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/time_evolvers/pvqd/pvqd.py "view source code")
+`PVQD(fidelity, ansatz, initial_parameters, estimator=None, optimizer=None, num_timesteps=None, evolution=None, use_parameter_shift=True, initial_guess=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/time_evolvers/pvqd/pvqd.py "view source code")
 
 Bases: [`RealTimeEvolver`](qiskit.algorithms.RealTimeEvolver "qiskit.algorithms.time_evolvers.real_time_evolver.RealTimeEvolver")
 
@@ -160,11 +160,11 @@ quantum algorithm for the time evolution of parameterized circuits, [Quantum 5, 
 
 <span id="qiskit.algorithms.PVQD.evolve" />
 
-`PVQD.evolve(evolution_problem)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/time_evolvers/pvqd/pvqd.py "view source code")
+`PVQD.evolve(evolution_problem)`
 
-Perform real time evolution $\exp(-i t H)\vert \Psi\rangle$.
+Perform real time evolution $\exp(-i t H)|\Psi\rangle$.
 
-Evolves an initial state $\vert \Psi\rangle$ for a time $t$ under a Hamiltonian $H$, as provided in the `evolution_problem`.
+Evolves an initial state $|\Psi\rangle$ for a time $t$ under a Hamiltonian $H$, as provided in the `evolution_problem`.
 
 **Parameters**
 
@@ -189,7 +189,7 @@ A result object containing the evolution information and evaluated observables.
 
 <span id="qiskit.algorithms.PVQD.get_loss" />
 
-`PVQD.get_loss(hamiltonian, ansatz, dt, current_parameters)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/time_evolvers/pvqd/pvqd.py "view source code")
+`PVQD.get_loss(hamiltonian, ansatz, dt, current_parameters)`
 
 Get a function to evaluate the infidelity between Trotter step and ansatz.
 
@@ -216,7 +216,7 @@ tuple\[Callable\[\[np.ndarray], float], Callable\[\[np.ndarray], np.ndarray]] | 
 
 <span id="qiskit.algorithms.PVQD.step" />
 
-`PVQD.step(hamiltonian, ansatz, theta, dt, initial_guess)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/time_evolvers/pvqd/pvqd.py "view source code")
+`PVQD.step(hamiltonian, ansatz, theta, dt, initial_guess)`
 
 Perform a single time step.
 

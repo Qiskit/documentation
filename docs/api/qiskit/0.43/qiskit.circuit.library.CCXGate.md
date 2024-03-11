@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CCXGate
 
 <span id="qiskit.circuit.library.CCXGate" />
 
-`CCXGate(label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/x.py "view source code")
+`CCXGate(label=None, ctrl_state=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 
@@ -33,7 +33,7 @@ q_2: ┤ X ├
 
 $$
 \begin{split}CCX q_0, q_1, q_2 =
-    I \otimes I \otimes \vert 0 \rangle \langle 0\vert  + CX \otimes \vert 1 \rangle \langle 1\vert  =
+    I \otimes I \otimes |0 \rangle \langle 0| + CX \otimes |1 \rangle \langle 1| =
    \begin{pmatrix}
         1 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
         0 & 1 & 0 & 0 & 0 & 0 & 0 & 0\\
@@ -60,7 +60,7 @@ $$
 
   $$
   \begin{split}CCX\ q_2, q_1, q_0 =
-      \vert 0 \rangle \langle 0\vert  \otimes I \otimes I + \vert 1 \rangle \langle 1\vert  \otimes CX =
+      |0 \rangle \langle 0| \otimes I \otimes I + |1 \rangle \langle 1| \otimes CX =
       \begin{pmatrix}
           1 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
           0 & 1 & 0 & 0 & 0 & 0 & 0 & 0\\
@@ -84,7 +84,7 @@ Create new CCX gate.
 
 <span id="qiskit.circuit.library.CCXGate.control" />
 
-`CCXGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/x.py "view source code")
+`CCXGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
 Controlled version of this gate.
 
@@ -108,7 +108,7 @@ controlled version of this gate.
 
 <span id="qiskit.circuit.library.CCXGate.inverse" />
 
-`CCXGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/x.py "view source code")
+`CCXGate.inverse()`
 
 Return an inverted CCX gate (also a CCX).
 

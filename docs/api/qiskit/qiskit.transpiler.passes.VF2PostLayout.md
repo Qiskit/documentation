@@ -10,19 +10,20 @@ python_api_name: qiskit.transpiler.passes.VF2PostLayout
 
 <span id="qiskit.transpiler.passes.VF2PostLayout" />
 
-`qiskit.transpiler.passes.VF2PostLayout(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/transpiler/passes/layout/vf2_post_layout.py "view source code")
+`qiskit.transpiler.passes.VF2PostLayout(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/passes/layout/vf2_post_layout.py "view source code")
 
 Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
-A pass for choosing a Layout after transpilation of a circuit onto a Coupling graph, as a subgraph isomorphism problem, solved by VF2++.
+A pass for improving an existing Layout after transpilation of a circuit onto a Coupling graph, as a subgraph isomorphism problem, solved by VF2++.
 
 Unlike the [`VF2Layout`](qiskit.transpiler.passes.VF2Layout "qiskit.transpiler.passes.VF2Layout") transpiler pass which is designed to find an initial layout for a circuit early in the transpilation pipeline this transpiler pass is designed to try and find a better layout after transpilation is complete. The initial layout phase of the transpiler doesn’t have as much information available as we do after transpilation. This pass is designed to be paired in a similar pipeline as the layout passes. This pass will strip any idle wires from the circuit, use VF2 to find a subgraph in the coupling graph for the circuit to run on with better fidelity and then update the circuit layout to use the new qubits. The algorithm used in this pass is described in [arXiv:2209.15512](https://arxiv.org/abs/2209.15512).
 
-If a solution is found that means there is a lower error layout available for the circuit. If a solution is found the layout will be set in the property set as `property_set['post_layout']`. However, if no solution is found, no `property_set['post_layout']` is set. The stopping reason is set in `property_set['VF2PostLayout_stop_reason']` in all the cases and will be one of the values enumerated in `VF2PostLayoutStopReason` which has the following values:
+If a solution is found that means there is a lower error layout available for the circuit. If a solution is found the layout will be set in the property set as `property_set['post_layout']`. However, if no solution or no better solution is found, no `property_set['post_layout']` is set. The stopping reason is set in `property_set['VF2PostLayout_stop_reason']` in all the cases and will be one of the values enumerated in `VF2PostLayoutStopReason` which has the following values:
 
 > *   `"solution found"`: If a solution was found.
+> *   `"no better solution found"`: If the initial layout of the circuit is the best solution.
 > *   `"nonexistent solution"`: If no solution was found.
-> *   `">2q gates in basis"`: If VF2PostLayout can’t work with basis
+> *   `">2q gates in basis"`: If VF2PostLayout can’t work with the basis of the circuit.
 
 By default, this pass will construct a heuristic scoring map based on the error rates in the provided `target` (or `properties` if `target` is not provided). However, analysis passes can be run prior to this pass and set `vf2_avg_error_map` in the property set with a `ErrorMap` instance. If a value is `NaN` that is treated as an ideal edge For example if an error map is created as:
 

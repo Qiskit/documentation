@@ -10,7 +10,7 @@ python_api_name: qiskit.synthesis.synth_cnotdihedral_full
 
 <span id="qiskit.synthesis.synth_cnotdihedral_full" />
 
-`synth_cnotdihedral_full(elem)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/synthesis/cnotdihedral/cnotdihedral_decompose_full.py "view source code")
+`synth_cnotdihedral_full(elem)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/synthesis/cnotdihedral/cnotdihedral_decompose_full.py "view source code")
 
 Decompose a CNOTDihedral element into a QuantumCircuit. For N \<= 2 qubits this is based on optimal CX cost decomposition from reference \[1]. For N > 2 qubits this is done using the general non-optimal compilation routine from reference \[2].
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.gradients.GradientBase
 
 <span id="qiskit.opflow.gradients.GradientBase" />
 
-`GradientBase(grad_method='param_shift', **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/gradients/gradient_base.py "view source code")
+`GradientBase(grad_method='param_shift', **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/gradients/gradient_base.py "view source code")
 
 Base class for first-order operator gradient.
 

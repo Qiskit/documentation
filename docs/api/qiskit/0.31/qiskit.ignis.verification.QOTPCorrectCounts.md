@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.verification.QOTPCorrectCounts
 
 <span id="qiskit.ignis.verification.QOTPCorrectCounts" />
 
-`QOTPCorrectCounts(qotp_counts, qotp_postp)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/accreditation/qotp.py "view source code")
+`QOTPCorrectCounts(qotp_counts, qotp_postp)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/accreditation/qotp.py "view source code")
 
 Corrects a dictionary of results, shifting the qotp
 

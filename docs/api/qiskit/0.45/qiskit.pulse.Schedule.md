@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.Schedule
 
 <span id="qiskit.pulse.Schedule" />
 
-`qiskit.pulse.Schedule(*schedules, name=None, metadata=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/pulse/schedule.py "view source code")
+`qiskit.pulse.Schedule(*schedules, name=None, metadata=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/pulse/schedule.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
@@ -162,7 +162,7 @@ Time keeping attribute.
 Return a new schedule with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`.
 
 $$
-t = \textrm{max}(\texttt{x.stop_time} \vert \texttt{x} \in
+t = \textrm{max}(\texttt{x.stop_time} |\texttt{x} \in
     \texttt{self.channels} \cap \texttt{schedule.channels})
 $$
 

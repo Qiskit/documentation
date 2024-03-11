@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.OperatorBase
 
 <span id="qiskit.opflow.OperatorBase" />
 
-`qiskit.opflow.OperatorBase`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/opflow/operator_base.py "view source code")
+`qiskit.opflow.OperatorBase` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/opflow/operator_base.py "view source code")
 
 Bases: `StarAlgebraMixin`, `TensorMixin`, [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 

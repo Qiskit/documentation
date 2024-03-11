@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.results.BOPESSamplerResult
 
 <span id="qiskit.chemistry.results.BOPESSamplerResult" />
 
-`BOPESSamplerResult(points, energies, raw_results)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/results/bopes_sampler_result.py "view source code")
+`BOPESSamplerResult(points, energies, raw_results)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/results/bopes_sampler_result.py "view source code")
 
 Bases: `object`
 
@@ -24,7 +24,7 @@ Creates an new instance of the result. :type points: `List`\[`float`] :param poi
 
 <span id="qiskit.chemistry.results.BOPESSamplerResult.point_results" />
 
-`BOPESSamplerResult.point_results(point)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/results/bopes_sampler_result.py "view source code")
+`BOPESSamplerResult.point_results(point)`
 
 returns all results for a specific point.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.tools.chop
 
 <span id="qiskit.tools.chop" />
 
-`chop(array, epsilon=1e-10)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/tools/qi/qi.py "view source code")
+`chop(array, epsilon=1e-10)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/tools/qi/qi.py "view source code")
 
 Truncate small values of a complex array.
 

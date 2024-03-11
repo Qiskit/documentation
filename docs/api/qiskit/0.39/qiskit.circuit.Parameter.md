@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.Parameter
 
 <span id="qiskit.circuit.Parameter" />
 
-`Parameter(name)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/parameter.py "view source code")
+`Parameter(name)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/parameter.py "view source code")
 
 Bases: [`qiskit.circuit.parameterexpression.ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")
 
@@ -206,7 +206,7 @@ Sine of a ParameterExpression
 
 <span id="qiskit.circuit.Parameter.subs" />
 
-`Parameter.subs(parameter_map)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/parameter.py "view source code")
+`Parameter.subs(parameter_map)`
 
 Substitute self with the corresponding parameter in `parameter_map`.
 

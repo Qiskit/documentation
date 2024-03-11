@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.basicaer.UnitarySimulatorPy
 
 <span id="qiskit.providers.basicaer.UnitarySimulatorPy" />
 
-`UnitarySimulatorPy(configuration=None, provider=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/basicaer/unitary_simulator.py "view source code")
+`UnitarySimulatorPy(configuration=None, provider=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/basicaer/unitary_simulator.py "view source code")
 
 Python implementation of a unitary simulator.
 
@@ -117,7 +117,7 @@ the Provider responsible for the backend.
 
 <span id="qiskit.providers.basicaer.UnitarySimulatorPy.run" />
 
-`UnitarySimulatorPy.run(qobj, backend_options=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/basicaer/unitary_simulator.py "view source code")
+`UnitarySimulatorPy.run(qobj, backend_options=None)`
 
 Run qobj asynchronously.
 
@@ -165,7 +165,7 @@ Example::
 
 <span id="qiskit.providers.basicaer.UnitarySimulatorPy.run_experiment" />
 
-`UnitarySimulatorPy.run_experiment(experiment)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/basicaer/unitary_simulator.py "view source code")
+`UnitarySimulatorPy.run_experiment(experiment)`
 
 Run an experiment (circuit) and return a single experiment result.
 

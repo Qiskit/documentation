@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.AnnotatedOperation
 
 <span id="qiskit.circuit.AnnotatedOperation" />
 
-`qiskit.circuit.AnnotatedOperation(base_op, modifiers)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/annotated_operation.py "view source code")
+`qiskit.circuit.AnnotatedOperation(base_op, modifiers)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/annotated_operation.py "view source code")
 
 Bases: [`Operation`](qiskit.circuit.Operation "qiskit.circuit.operation.Operation")
 
@@ -26,8 +26,8 @@ An annotated operation can be also viewed as a “higher-level” or “more abs
 
 **Parameters**
 
-*   **base\_op** ([*Operation*](qiskit.circuit.Operation "qiskit.circuit.operation.Operation")) – base operation being modified
-*   **modifiers** (*Modifier |* [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[Modifier]*) – ordered list of modifiers. Supported modifiers include `InverseModifier`, `ControlModifier` and `PowerModifier`.
+*   **base\_op** ([*Operation*](qiskit.circuit.Operation "qiskit.circuit.Operation")) – base operation being modified
+*   **modifiers** (*Union\[Modifier, List\[Modifier]]*) – ordered list of modifiers. Supported modifiers include `InverseModifier`, `ControlModifier` and `PowerModifier`.
 
 Examples:
 
@@ -62,6 +62,31 @@ Number of qubits.
 
 ## Methods
 
+### control
+
+<span id="qiskit.circuit.AnnotatedOperation.control" />
+
+`control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=True)`
+
+Return the controlled version of itself.
+
+Implemented as an annotated operation, see [`AnnotatedOperation`](#qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation").
+
+**Parameters**
+
+*   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of controls to add to gate (default: `1`)
+*   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – ignored (used for consistency with other control methods)
+*   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – The control state in decimal or as a bitstring (e.g. `'111'`). If `None`, use `2**num_ctrl_qubits-1`.
+*   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – ignored (used for consistency with other control methods)
+
+**Returns**
+
+Controlled version of the given operation.
+
+**Return type**
+
+[AnnotatedOperation](#qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")
+
 ### copy
 
 <span id="qiskit.circuit.AnnotatedOperation.copy" />
@@ -73,6 +98,24 @@ Return a copy of the [`AnnotatedOperation`](#qiskit.circuit.AnnotatedOperation "
 **Return type**
 
 [*AnnotatedOperation*](#qiskit.circuit.AnnotatedOperation "qiskit.circuit.annotated_operation.AnnotatedOperation")
+
+### inverse
+
+<span id="qiskit.circuit.AnnotatedOperation.inverse" />
+
+`inverse(annotated=True)`
+
+Return the inverse version of itself.
+
+Implemented as an annotated operation, see [`AnnotatedOperation`](#qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation").
+
+**Parameters**
+
+**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – ignored (used for consistency with other inverse methods)
+
+**Returns**
+
+Inverse version of the given operation.
 
 ### to\_matrix
 

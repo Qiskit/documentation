@@ -12,7 +12,7 @@ python_api_name: qiskit.transpiler.passes.SabreLayout
 
 <span id="qiskit.transpiler.passes.SabreLayout" />
 
-`SabreLayout(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/transpiler/passes/layout/sabre_layout.py "view source code")
+`SabreLayout(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/transpiler/passes/layout/sabre_layout.py "view source code")
 
 Choose a Layout via iterative bidirectional routing of the input circuit.
 

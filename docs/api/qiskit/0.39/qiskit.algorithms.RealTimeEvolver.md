@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.RealTimeEvolver
 
 <span id="qiskit.algorithms.RealTimeEvolver" />
 
-`RealTimeEvolver`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/time_evolvers/real_time_evolver.py "view source code")
+`RealTimeEvolver` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/time_evolvers/real_time_evolver.py "view source code")
 
 Bases: `abc.ABC`
 
@@ -22,11 +22,11 @@ Interface for Quantum Real Time Evolution.
 
 <span id="qiskit.algorithms.RealTimeEvolver.evolve" />
 
-`abstract RealTimeEvolver.evolve(evolution_problem)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/time_evolvers/real_time_evolver.py "view source code")
+`abstract RealTimeEvolver.evolve(evolution_problem)`
 
-Perform real time evolution $\exp(-i t H)\vert \Psi\rangle$.
+Perform real time evolution $\exp(-i t H)|\Psi\rangle$.
 
-Evolves an initial state $\vert \Psi\rangle$ for a time $t$ under a Hamiltonian $H$, as provided in the `evolution_problem`.
+Evolves an initial state $|\Psi\rangle$ for a time $t$ under a Hamiltonian $H$, as provided in the `evolution_problem`.
 
 **Parameters**
 

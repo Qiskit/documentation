@@ -12,7 +12,7 @@ python_api_name: qiskit.ignis.verification.QVFitter
 
 <span id="qiskit.ignis.verification.QVFitter" />
 
-`QVFitter(backend_result=None, statevector_result=None, qubit_lists=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/quantum_volume/fitters.py "view source code")
+`QVFitter(backend_result=None, statevector_result=None, qubit_lists=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/quantum_volume/fitters.py "view source code")
 
 Class for fitters for quantum volume.
 

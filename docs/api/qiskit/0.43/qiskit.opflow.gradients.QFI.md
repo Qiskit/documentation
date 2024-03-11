@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.gradients.QFI
 
 <span id="qiskit.opflow.gradients.QFI" />
 
-`QFI(qfi_method='lin_comb_full')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/gradients/qfi.py "view source code")
+`QFI(qfi_method='lin_comb_full')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/gradients/qfi.py "view source code")
 
 Bases: [`QFIBase`](qiskit.opflow.gradients.QFIBase "qiskit.opflow.gradients.qfi_base.QFIBase")
 
@@ -19,8 +19,8 @@ Deprecated: Compute the Quantum Fisher Information (QFI).
 Computes the QFI given a pure, parameterized quantum state, where QFI is:
 
 $$
-\mathrm{QFI}_{kl}= 4 \mathrm{Re}[\langle \partial_k \psi \vert  \partial_l \psi \rangle
-    − \langle\partial_k \psi \vert  \psi \rangle \langle\psi \vert  \partial_l \psi \rangle].
+\mathrm{QFI}_{kl}= 4 \mathrm{Re}[\langle \partial_k \psi | \partial_l \psi \rangle
+    − \langle\partial_k \psi | \psi \rangle \langle\psi | \partial_l \psi \rangle].
 $$
 
 <Admonition title="Deprecated since version 0.24.0" type="danger">
@@ -35,7 +35,7 @@ $$
 
 <span id="qiskit.opflow.gradients.QFI.convert" />
 
-`QFI.convert(operator, params=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/gradients/qfi.py "view source code")
+`QFI.convert(operator, params=None)`
 
 **Parameters**
 

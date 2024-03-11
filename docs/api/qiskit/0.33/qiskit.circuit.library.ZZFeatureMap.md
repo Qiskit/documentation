@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.ZZFeatureMap
 
 <span id="qiskit.circuit.library.ZZFeatureMap" />
 
-`ZZFeatureMap(feature_dimension, reps=2, entanglement='full', data_map_func=None, insert_barriers=False, name='ZZFeatureMap')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/library/data_preparation/zz_feature_map.py "view source code")
+`ZZFeatureMap(feature_dimension, reps=2, entanglement='full', data_map_func=None, insert_barriers=False, name='ZZFeatureMap')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/library/data_preparation/zz_feature_map.py "view source code")
 
 Bases: `qiskit.circuit.library.data_preparation.pauli_feature_map.PauliFeatureMap`
 

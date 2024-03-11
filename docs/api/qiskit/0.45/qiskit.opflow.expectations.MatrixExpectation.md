@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.expectations.MatrixExpectation
 
 <span id="qiskit.opflow.expectations.MatrixExpectation" />
 
-`qiskit.opflow.expectations.MatrixExpectation`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/expectations/matrix_expectation.py "view source code")
+`qiskit.opflow.expectations.MatrixExpectation` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/expectations/matrix_expectation.py "view source code")
 
 Bases: [`ExpectationBase`](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.expectation_base.ExpectationBase")
 

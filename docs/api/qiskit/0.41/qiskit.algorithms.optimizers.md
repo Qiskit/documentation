@@ -1,16 +1,28 @@
+---
+title: optimizers
+description: API reference for qiskit.algorithms.optimizers
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.algorithms.optimizers
+---
+
 <span id="qiskit-algorithms-optimizers" />
 
 # qiskit.algorithms.optimizers
 
-## Optimizers ([`qiskit.algorithms.optimizers`](#module-qiskit.algorithms.optimizers "qiskit.algorithms.optimizers"))
+## Optimizers
+
+<span id="module-qiskit.algorithms.optimizers" />
+
+`qiskit.algorithms.optimizers`
 
 It contains a variety of classical optimizers for use by quantum variational algorithms, such as [`VQE`](qiskit.algorithms.VQE "qiskit.algorithms.VQE"). Logically, these optimizers can be divided into two categories:
 
-## [Local Optimizers](#local-optimizers)
+**[Local Optimizers](#local-optimizers)**
 
 Given an optimization problem, a **local optimizer** is a function that attempts to find an optimal value within the neighboring set of a candidate solution.
 
-## [Global Optimizers](#global-optimizers)
+**[Global Optimizers](#global-optimizers)**
 
 Given an optimization problem, a **global optimizer** is a function that attempts to find an optimal value among all possible solutions.
 
@@ -78,3 +90,4 @@ The global optimizers here all use NLopt for their core function and can only be
 | [`DIRECT_L_RAND`](qiskit.algorithms.optimizers.DIRECT_L_RAND "qiskit.algorithms.optimizers.DIRECT_L_RAND") | DIviding RECTangles Locally-biased Randomized optimizer.      |
 | [`ESCH`](qiskit.algorithms.optimizers.ESCH "qiskit.algorithms.optimizers.ESCH")                            | ESCH evolutionary optimizer.                                  |
 | [`ISRES`](qiskit.algorithms.optimizers.ISRES "qiskit.algorithms.optimizers.ISRES")                         | Improved Stochastic Ranking Evolution Strategy optimizer.     |
+

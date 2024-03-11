@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.Eigensolver
 
 <span id="qiskit.algorithms.Eigensolver" />
 
-`Eigensolver`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/eigen_solvers/eigen_solver.py "view source code")
+`Eigensolver` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/eigen_solvers/eigen_solver.py "view source code")
 
 The Eigensolver Interface.
 

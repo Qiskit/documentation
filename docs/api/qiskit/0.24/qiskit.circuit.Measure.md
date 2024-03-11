@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.Measure
 
 <span id="qiskit.circuit.Measure" />
 
-`Measure`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/measure.py "view source code")
+`Measure` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/measure.py "view source code")
 
 Quantum measurement in the computational basis.
 

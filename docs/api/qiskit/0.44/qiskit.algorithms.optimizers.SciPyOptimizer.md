@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.SciPyOptimizer
 
 <span id="qiskit.algorithms.optimizers.SciPyOptimizer" />
 
-`qiskit.algorithms.optimizers.SciPyOptimizer(method, options=None, max_evals_grouped=1, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/optimizers/scipy_optimizer.py "view source code")
+`qiskit.algorithms.optimizers.SciPyOptimizer(method, options=None, max_evals_grouped=1, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/optimizers/scipy_optimizer.py "view source code")
 
 Bases: [`Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.optimizer.Optimizer")
 

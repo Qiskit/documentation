@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho
 
 <span id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho" />
 
-`RZXCalibrationBuilderNoEcho(backend)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/scheduling/calibration_creators.py "view source code")
+`RZXCalibrationBuilderNoEcho(backend)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/scheduling/calibration_creators.py "view source code")
 
 Bases: `qiskit.transpiler.passes.scheduling.calibration_creators.RZXCalibrationBuilder`
 
@@ -34,7 +34,7 @@ Initializes a RZXGate calibration builder.
 
 <span id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.get_calibration" />
 
-`RZXCalibrationBuilderNoEcho.get_calibration(params, qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/scheduling/calibration_creators.py "view source code")
+`RZXCalibrationBuilderNoEcho.get_calibration(params, qubits)`
 
 Builds the calibration schedule for the RZXGate(theta) without echos.
 

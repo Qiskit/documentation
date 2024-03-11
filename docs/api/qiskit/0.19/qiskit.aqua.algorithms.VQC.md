@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.algorithms.VQC
 
 <span id="qiskit.aqua.algorithms.VQC" />
 
-`VQC(optimizer, feature_map, var_form, training_dataset, test_dataset=None, datapoints=None, max_evals_grouped=1, minibatch_size=- 1, callback=None, quantum_instance=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/classifiers/vqc.py "view source code")
+`VQC(optimizer, feature_map, var_form, training_dataset, test_dataset=None, datapoints=None, max_evals_grouped=1, minibatch_size=- 1, callback=None, quantum_instance=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/classifiers/vqc.py "view source code")
 
 The Variational Quantum Classifier algorithm.
 
@@ -153,7 +153,7 @@ Returns variational form
 
 <span id="qiskit.aqua.algorithms.VQC.batch_data" />
 
-`VQC.batch_data(data, labels=None, minibatch_size=- 1)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/classifiers/vqc.py "view source code")
+`VQC.batch_data(data, labels=None, minibatch_size=- 1)`
 
 batch data
 
@@ -169,7 +169,7 @@ set parameterized circuits to None
 
 <span id="qiskit.aqua.algorithms.VQC.construct_circuit" />
 
-`VQC.construct_circuit(x, theta, measurement=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/classifiers/vqc.py "view source code")
+`VQC.construct_circuit(x, theta, measurement=False)`
 
 Construct circuit based on data and parameters in variational form.
 
@@ -223,7 +223,7 @@ dict
 
 <span id="qiskit.aqua.algorithms.VQC.get_optimal_circuit" />
 
-`VQC.get_optimal_circuit()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/classifiers/vqc.py "view source code")
+`VQC.get_optimal_circuit()`
 
 get optimal circuit
 
@@ -231,7 +231,7 @@ get optimal circuit
 
 <span id="qiskit.aqua.algorithms.VQC.get_optimal_cost" />
 
-`VQC.get_optimal_cost()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/classifiers/vqc.py "view source code")
+`VQC.get_optimal_cost()`
 
 get optimal cost
 
@@ -239,7 +239,7 @@ get optimal cost
 
 <span id="qiskit.aqua.algorithms.VQC.get_optimal_vector" />
 
-`VQC.get_optimal_vector()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/classifiers/vqc.py "view source code")
+`VQC.get_optimal_vector()`
 
 get optimal vector
 
@@ -263,7 +263,7 @@ get probabilities for counts
 
 <span id="qiskit.aqua.algorithms.VQC.is_gradient_really_supported" />
 
-`VQC.is_gradient_really_supported()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/classifiers/vqc.py "view source code")
+`VQC.is_gradient_really_supported()`
 
 returns is gradient really supported
 
@@ -271,7 +271,7 @@ returns is gradient really supported
 
 <span id="qiskit.aqua.algorithms.VQC.load_model" />
 
-`VQC.load_model(file_path)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/classifiers/vqc.py "view source code")
+`VQC.load_model(file_path)`
 
 load model
 
@@ -279,7 +279,7 @@ load model
 
 <span id="qiskit.aqua.algorithms.VQC.predict" />
 
-`VQC.predict(data, quantum_instance=None, minibatch_size=- 1, params=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/classifiers/vqc.py "view source code")
+`VQC.predict(data, quantum_instance=None, minibatch_size=- 1, params=None)`
 
 Predict the labels for the data.
 
@@ -327,7 +327,7 @@ dict
 
 <span id="qiskit.aqua.algorithms.VQC.save_model" />
 
-`VQC.save_model(file_path)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/classifiers/vqc.py "view source code")
+`VQC.save_model(file_path)`
 
 save model
 
@@ -347,7 +347,7 @@ Sets backend with configuration.
 
 <span id="qiskit.aqua.algorithms.VQC.test" />
 
-`VQC.test(data, labels, quantum_instance=None, minibatch_size=- 1, params=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/classifiers/vqc.py "view source code")
+`VQC.test(data, labels, quantum_instance=None, minibatch_size=- 1, params=None)`
 
 Predict the labels for the data, and test against with ground truth labels.
 
@@ -371,7 +371,7 @@ float
 
 <span id="qiskit.aqua.algorithms.VQC.train" />
 
-`VQC.train(data, labels, quantum_instance=None, minibatch_size=- 1)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/classifiers/vqc.py "view source code")
+`VQC.train(data, labels, quantum_instance=None, minibatch_size=- 1)`
 
 Train the models, and save results.
 

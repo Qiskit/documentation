@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.gate_error
 
 <span id="qiskit.quantum_info.gate_error" />
 
-`gate_error(channel, target=None, require_cp=True, require_tp=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/measures.py "view source code")
+`gate_error(channel, target=None, require_cp=True, require_tp=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/measures.py "view source code")
 
 Return the gate error of a noisy quantum channel.
 

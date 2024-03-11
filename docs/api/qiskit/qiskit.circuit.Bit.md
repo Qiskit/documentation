@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.Bit
 
 <span id="qiskit.circuit.Bit" />
 
-`qiskit.circuit.Bit(register=None, index=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/bit.py "view source code")
+`qiskit.circuit.Bit(register=None, index=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/bit.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
@@ -21,30 +21,4 @@ Implement a generic bit.
 </Admonition>
 
 Create a new generic bit.
-
-## Attributes
-
-<span id="qiskit.circuit.Bit.index" />
-
-### index
-
-Get the index of an old-style bit in the register that owns it.
-
-In modern Qiskit Terra (version 0.17+), bits are the fundamental object and registers are aliases to collections of bits. A bit can be in many registers depending on the circuit, so a single containing register is no longer a property of a bit. It is an error to access this attribute on bits that were not constructed as “owned” by a register.
-
-<Admonition title="Deprecated since version 0.17" type="danger">
-  The property `qiskit.circuit.bit.Bit.index` is deprecated as of qiskit-terra 0.17. It will be removed in the Qiskit 1.0 release. Instead, use `find_bit()` to find all the containing registers within a circuit and the index of the bit within the circuit.
-</Admonition>
-
-<span id="qiskit.circuit.Bit.register" />
-
-### register
-
-Get the register of an old-style bit.
-
-In modern Qiskit Terra (version 0.17+), bits are the fundamental object and registers are aliases to collections of bits. A bit can be in many registers depending on the circuit, so a single containing register is no longer a property of a bit. It is an error to access this attribute on bits that were not constructed as “owned” by a register.
-
-<Admonition title="Deprecated since version 0.17" type="danger">
-  The property `qiskit.circuit.bit.Bit.register` is deprecated as of qiskit-terra 0.17. It will be removed in the Qiskit 1.0 release. Instead, use `find_bit()` to find all the containing registers within a circuit and the index of the bit within the circuit.
-</Admonition>
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.DAGFixedPoint
 
 <span id="qiskit.transpiler.passes.DAGFixedPoint" />
 
-`qiskit.transpiler.passes.DAGFixedPoint(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/utils/dag_fixed_point.py "view source code")
+`qiskit.transpiler.passes.DAGFixedPoint(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/utils/dag_fixed_point.py "view source code")
 
 Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 

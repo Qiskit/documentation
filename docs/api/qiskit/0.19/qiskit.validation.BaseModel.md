@@ -10,7 +10,7 @@ python_api_name: qiskit.validation.BaseModel
 
 <span id="qiskit.validation.BaseModel" />
 
-`BaseModel(validate=True, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/validation/base.py "view source code")
+`BaseModel(validate=True, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/validation/base.py "view source code")
 
 Base class for Models for validated Qiskit classes.
 
@@ -26,7 +26,7 @@ BaseModel initializer.
 
 <span id="qiskit.validation.BaseModel.from_dict" />
 
-`classmethod BaseModel.from_dict(dict_)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/validation/base.py "view source code")
+`classmethod BaseModel.from_dict(dict_)`
 
 Deserialize a dict of simple types into an instance of this class.
 
@@ -36,7 +36,7 @@ Note that this method requires that the model is bound with `@bind_schema`.
 
 <span id="qiskit.validation.BaseModel.to_dict" />
 
-`BaseModel.to_dict()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/validation/base.py "view source code")
+`BaseModel.to_dict()`
 
 Serialize the model into a Python dict of simple types.
 

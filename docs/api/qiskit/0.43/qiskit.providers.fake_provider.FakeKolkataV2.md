@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeKolkataV2
 
 <span id="qiskit.providers.fake_provider.FakeKolkataV2" />
 
-`FakeKolkataV2`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/backends/kolkata/fake_kolkata.py "view source code")
+`FakeKolkataV2` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/backends/kolkata/fake_kolkata.py "view source code")
 
 Bases: `FakeBackendV2`
 

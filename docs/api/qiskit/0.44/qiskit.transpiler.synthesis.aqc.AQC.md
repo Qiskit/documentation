@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.synthesis.aqc.AQC
 
 <span id="qiskit.transpiler.synthesis.aqc.AQC" />
 
-`qiskit.transpiler.synthesis.aqc.AQC(optimizer=None, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/synthesis/aqc/aqc.py "view source code")
+`qiskit.transpiler.synthesis.aqc.AQC(optimizer=None, seed=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/synthesis/aqc/aqc.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 

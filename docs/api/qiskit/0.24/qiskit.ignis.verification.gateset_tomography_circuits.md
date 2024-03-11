@@ -12,7 +12,7 @@ python_api_name: qiskit.ignis.verification.gateset_tomography_circuits
 
 <span id="qiskit.ignis.verification.gateset_tomography_circuits" />
 
-`gateset_tomography_circuits(measured_qubits=None, gateset_basis='default')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/tomography/basis/circuits.py "view source code")
+`gateset_tomography_circuits(measured_qubits=None, gateset_basis='default')` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/tomography/basis/circuits.py "view source code")
 
 Return a list of quantum gate set tomography (GST) circuits.
 
@@ -43,15 +43,15 @@ In gate set tomography, we assume a single initial state rho and a single POVM m
 
 We perform three types of experiments:
 
-1.  ## $\langle E \vert  F_i G_k F_j \vert \rho \rangle$ for 1 \<= i,j \<= n
+1.  ## $\langle E | F_i G_k F_j |\rho \rangle$ for 1 \<= i,j \<= n
 
     and 1 \<= k \<= m: This experiment enables us to obtain data on the gate G\_k
 
-2.  ## $\langle E \vert  F_i F_j \vert \rho \rangle$ for 1 \<= i,j \<= n:
+2.  ## $\langle E | F_i F_j |\rho \rangle$ for 1 \<= i,j \<= n:
 
     This experiment enables us to obtain the Gram matrix required to “invert” the results of experiments of type 1 in order to reconstruct (a matrix similar to) the gate G\_k
 
-3.  ## $\langle E \vert  F_j \vert \rho \rangle$ for 1 \<= j \<= n:
+3.  ## $\langle E | F_j |\rho \rangle$ for 1 \<= j \<= n:
 
     This experiment enables us to reconstruct \<E| and rho
 

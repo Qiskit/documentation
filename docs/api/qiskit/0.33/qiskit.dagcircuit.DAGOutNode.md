@@ -10,7 +10,7 @@ python_api_name: qiskit.dagcircuit.DAGOutNode
 
 <span id="qiskit.dagcircuit.DAGOutNode" />
 
-`DAGOutNode(wire)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/dagcircuit/dagnode.py "view source code")
+`DAGOutNode(wire)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/dagcircuit/dagnode.py "view source code")
 
 Bases: `qiskit.dagcircuit.dagnode.DAGNode`
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.providers.aer.extensions.SnapshotDensityMatrix
 
 <span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix" />
 
-`SnapshotDensityMatrix(label, num_qubits)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.7/qiskit/providers/aer/extensions/snapshot_density_matrix.py "view source code")
+`SnapshotDensityMatrix(label, num_qubits)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.7/qiskit/providers/aer/extensions/snapshot_density_matrix.py "view source code")
 
 Snapshot instruction for density matrix method of Qasm simulator.
 

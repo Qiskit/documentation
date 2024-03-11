@@ -10,7 +10,7 @@ python_api_name: qiskit.synthesis.unitary.aqc.FastCNOTUnitObjective
 
 <span id="qiskit.synthesis.unitary.aqc.FastCNOTUnitObjective" />
 
-`qiskit.synthesis.unitary.aqc.FastCNOTUnitObjective(num_qubits, cnots)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/synthesis/unitary/aqc/fast_gradient/fast_gradient.py "view source code")
+`qiskit.synthesis.unitary.aqc.FastCNOTUnitObjective(num_qubits, cnots)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/synthesis/unitary/aqc/fast_gradient/fast_gradient.py "view source code")
 
 Bases: [`CNOTUnitObjective`](qiskit.synthesis.unitary.aqc.CNOTUnitObjective "qiskit.synthesis.unitary.aqc.cnot_unit_objective.CNOTUnitObjective")
 

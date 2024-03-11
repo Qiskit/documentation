@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.AquaError
 
 <span id="qiskit.aqua.AquaError" />
 
-`AquaError(*message)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/aqua_error.py "view source code")
+`AquaError(*message)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/aqua_error.py "view source code")
 
 Base class for errors raised by Aqua.
 

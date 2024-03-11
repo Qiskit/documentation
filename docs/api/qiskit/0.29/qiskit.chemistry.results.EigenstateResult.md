@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.results.EigenstateResult
 
 <span id="qiskit.chemistry.results.EigenstateResult" />
 
-`EigenstateResult(a_dict=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/results/eigenstate_result.py "view source code")
+`EigenstateResult(a_dict=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/results/eigenstate_result.py "view source code")
 
 Bases: `qiskit.aqua.algorithms.algorithm_result.AlgorithmResult`
 

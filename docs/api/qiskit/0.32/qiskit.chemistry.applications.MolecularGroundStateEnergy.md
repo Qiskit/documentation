@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.applications.MolecularGroundStateEnergy
 
 <span id="qiskit.chemistry.applications.MolecularGroundStateEnergy" />
 
-`MolecularGroundStateEnergy(driver, solver=None, transformation=<TransformationType.FULL: 'full'>, qubit_mapping=<QubitMappingType.PARITY: 'parity'>, two_qubit_reduction=True, freeze_core=False, orbital_reduction=None, z2symmetry_reduction=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/applications/molecular_ground_state_energy.py "view source code")
+`MolecularGroundStateEnergy(driver, solver=None, transformation=<TransformationType.FULL: 'full'>, qubit_mapping=<QubitMappingType.PARITY: 'parity'>, two_qubit_reduction=True, freeze_core=False, orbital_reduction=None, z2symmetry_reduction=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/applications/molecular_ground_state_energy.py "view source code")
 
 Bases: `object`
 
@@ -33,7 +33,7 @@ Molecular ground state energy chemistry application
 
 <span id="qiskit.chemistry.applications.MolecularGroundStateEnergy.compute_energy" />
 
-`MolecularGroundStateEnergy.compute_energy(callback=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/applications/molecular_ground_state_energy.py "view source code")
+`MolecularGroundStateEnergy.compute_energy(callback=None)`
 
 Compute the ground state energy of the molecule that was supplied via the driver
 
@@ -57,7 +57,7 @@ A molecular ground state result
 
 <span id="qiskit.chemistry.applications.MolecularGroundStateEnergy.get_default_solver" />
 
-`static MolecularGroundStateEnergy.get_default_solver(quantum_instance)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/applications/molecular_ground_state_energy.py "view source code")
+`static MolecularGroundStateEnergy.get_default_solver(quantum_instance)`
 
 Get the default solver callback that can be used with [`compute_energy()`](qiskit.chemistry.applications.MolecularGroundStateEnergy#compute_energy "qiskit.chemistry.applications.MolecularGroundStateEnergy.compute_energy") :type quantum\_instance: `Union`\[`QuantumInstance`, `Backend`, `BaseBackend`] :param quantum\_instance: A Backend/Quantum Instance for the solver to run on
 

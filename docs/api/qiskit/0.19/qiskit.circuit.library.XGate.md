@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.XGate
 
 <span id="qiskit.circuit.library.XGate" />
 
-`XGate(label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/x.py "view source code")
+`XGate(label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 The single-qubit Pauli-X gate ($\sigma_x$).
 
@@ -48,8 +48,8 @@ Equivalent to a $\pi$ radian rotation about the X axis.
 The gate is equivalent to a classical bit flip.
 
 $$
-\begin{split}\vert 0\rangle \rightarrow \vert 1\rangle \\
-\vert 1\rangle \rightarrow \vert 0\rangle\end{split}
+\begin{split}|0\rangle \rightarrow |1\rangle \\
+|1\rangle \rightarrow |0\rangle\end{split}
 $$
 
 Create new X gate.
@@ -169,7 +169,7 @@ Add classical condition on register classical and value val.
 
 <span id="qiskit.circuit.library.XGate.control" />
 
-`XGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/x.py "view source code")
+`XGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
 Return a (mutli-)controlled-X gate.
 
@@ -215,7 +215,7 @@ updated if it was provided
 
 <span id="qiskit.circuit.library.XGate.inverse" />
 
-`XGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/x.py "view source code")
+`XGate.inverse()`
 
 Return inverted X gate (itself).
 
@@ -307,7 +307,7 @@ Containing the definition.
 
 <span id="qiskit.circuit.library.XGate.to_matrix" />
 
-`XGate.to_matrix()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/x.py "view source code")
+`XGate.to_matrix()`
 
 Return a numpy.array for the X gate.
 

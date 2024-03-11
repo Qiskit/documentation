@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.VarQRTE
 
 <span id="qiskit.algorithms.VarQRTE" />
 
-`qiskit.algorithms.VarQRTE(ansatz, initial_parameters, variational_principle=None, estimator=None, ode_solver=<class 'qiskit.algorithms.time_evolvers.variational.solvers.ode.forward_euler_solver.ForwardEulerSolver'>, lse_solver=None, num_timesteps=None, imag_part_tol=1e-07, num_instability_tol=1e-07)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/time_evolvers/variational/var_qrte.py "view source code")
+`qiskit.algorithms.VarQRTE(ansatz, initial_parameters, variational_principle=None, estimator=None, ode_solver=<class 'qiskit.algorithms.time_evolvers.variational.solvers.ode.forward_euler_solver.ForwardEulerSolver'>, lse_solver=None, num_timesteps=None, imag_part_tol=1e-07, num_instability_tol=1e-07)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/time_evolvers/variational/var_qrte.py "view source code")
 
 Bases: `VarQTE`, [`RealTimeEvolver`](qiskit.algorithms.RealTimeEvolver "qiskit.algorithms.time_evolvers.real_time_evolver.RealTimeEvolver")
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.U3Gate
 
 <span id="qiskit.circuit.library.U3Gate" />
 
-`U3Gate(theta, phi, lam, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/library/standard_gates/u3.py "view source code")
+`U3Gate(theta, phi, lam, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/library/standard_gates/u3.py "view source code")
 
 Generic single-qubit rotation gate with 3 Euler angles.
 

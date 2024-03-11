@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.neural_networks.NumPyDiscriminator
 
 <span id="qiskit.aqua.components.neural_networks.NumPyDiscriminator" />
 
-`NumPyDiscriminator(n_features=1, n_out=1)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/neural_networks/numpy_discriminator.py "view source code")
+`NumPyDiscriminator(n_features=1, n_out=1)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/neural_networks/numpy_discriminator.py "view source code")
 
 Bases: `qiskit.aqua.components.neural_networks.discriminative_network.DiscriminativeNetwork`
 
@@ -27,7 +27,7 @@ Discriminator based on NumPy
 
 <span id="qiskit.aqua.components.neural_networks.NumPyDiscriminator.get_label" />
 
-`NumPyDiscriminator.get_label(x, detach=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/neural_networks/numpy_discriminator.py "view source code")
+`NumPyDiscriminator.get_label(x, detach=False)`
 
 Get data sample labels, i.e. true or fake.
 
@@ -48,7 +48,7 @@ numpy.ndarray
 
 <span id="qiskit.aqua.components.neural_networks.NumPyDiscriminator.load_model" />
 
-`NumPyDiscriminator.load_model(load_dir)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/neural_networks/numpy_discriminator.py "view source code")
+`NumPyDiscriminator.load_model(load_dir)`
 
 Load discriminator model
 
@@ -60,7 +60,7 @@ Load discriminator model
 
 <span id="qiskit.aqua.components.neural_networks.NumPyDiscriminator.loss" />
 
-`NumPyDiscriminator.loss(x, y, weights=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/neural_networks/numpy_discriminator.py "view source code")
+`NumPyDiscriminator.loss(x, y, weights=None)`
 
 Loss function :param x: sample label (equivalent to discriminator output) :type x: numpy.ndarray :param y: target label :type y: numpy.ndarray :param weights: customized scaling for each sample (optional) :type weights: numpy.ndarray
 
@@ -76,7 +76,7 @@ float
 
 <span id="qiskit.aqua.components.neural_networks.NumPyDiscriminator.save_model" />
 
-`NumPyDiscriminator.save_model(snapshot_dir)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/neural_networks/numpy_discriminator.py "view source code")
+`NumPyDiscriminator.save_model(snapshot_dir)`
 
 Save discriminator model
 
@@ -88,7 +88,7 @@ Save discriminator model
 
 <span id="qiskit.aqua.components.neural_networks.NumPyDiscriminator.set_seed" />
 
-`NumPyDiscriminator.set_seed(seed)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/neural_networks/numpy_discriminator.py "view source code")
+`NumPyDiscriminator.set_seed(seed)`
 
 Set seed. :param seed: seed :type seed: int
 
@@ -96,7 +96,7 @@ Set seed. :param seed: seed :type seed: int
 
 <span id="qiskit.aqua.components.neural_networks.NumPyDiscriminator.train" />
 
-`NumPyDiscriminator.train(data, weights, penalty=False, quantum_instance=None, shots=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/neural_networks/numpy_discriminator.py "view source code")
+`NumPyDiscriminator.train(data, weights, penalty=False, quantum_instance=None, shots=None)`
 
 Perform one training step w\.r.t to the discriminator’s parameters
 

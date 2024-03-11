@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.Constant
 
 <span id="qiskit.pulse.Constant" />
 
-`Constant(duration, amp, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/library/parametric_pulses.py "view source code")
+`Constant(duration, amp, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/library/parametric_pulses.py "view source code")
 
 Bases: `qiskit.pulse.library.parametric_pulses.ParametricPulse`
 
@@ -117,7 +117,7 @@ Visualization output data. The returned data type depends on the `plotter`. If m
 
 <span id="qiskit.pulse.Constant.get_waveform" />
 
-`Constant.get_waveform()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/library/parametric_pulses.py "view source code")
+`Constant.get_waveform()`
 
 Return a Waveform with samples filled according to the formula that the pulse represents and the parameter values it contains.
 
@@ -141,7 +141,7 @@ Return True iff the instruction is parameterized.
 
 <span id="qiskit.pulse.Constant.validate_parameters" />
 
-`Constant.validate_parameters()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/library/parametric_pulses.py "view source code")
+`Constant.validate_parameters()`
 
 Validate parameters.
 

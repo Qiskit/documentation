@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.Width
 
 <span id="qiskit.transpiler.passes.Width" />
 
-`qiskit.transpiler.passes.Width(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/analysis/width.py "view source code")
+`qiskit.transpiler.passes.Width(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/analysis/width.py "view source code")
 
 Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 

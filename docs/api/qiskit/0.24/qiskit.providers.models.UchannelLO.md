@@ -12,7 +12,7 @@ python_api_name: qiskit.providers.models.UchannelLO
 
 <span id="qiskit.providers.models.UchannelLO" />
 
-`UchannelLO(q, scale)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/providers/models/backendconfiguration.py "view source code")
+`UchannelLO(q, scale)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/providers/models/backendconfiguration.py "view source code")
 
 Class representing a U Channel LO
 

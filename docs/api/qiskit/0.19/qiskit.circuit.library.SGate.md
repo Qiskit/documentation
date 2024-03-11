@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.SGate
 
 <span id="qiskit.circuit.library.SGate" />
 
-`SGate(label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/s.py "view source code")
+`SGate(label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/s.py "view source code")
 
 Single qubit S gate (Z\*\*0.5).
 
@@ -202,7 +202,7 @@ updated if it was provided
 
 <span id="qiskit.circuit.library.SGate.inverse" />
 
-`SGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/s.py "view source code")
+`SGate.inverse()`
 
 Return inverse of S (SdgGate).
 
@@ -294,7 +294,7 @@ Containing the definition.
 
 <span id="qiskit.circuit.library.SGate.to_matrix" />
 
-`SGate.to_matrix()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/s.py "view source code")
+`SGate.to_matrix()`
 
 Return a numpy.array for the S gate.
 

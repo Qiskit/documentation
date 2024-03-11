@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.library.SaveDensityMatrix
 
 <span id="qiskit.providers.aer.library.SaveDensityMatrix" />
 
-`SaveDensityMatrix(num_qubits, label='density_matrix', unnormalized=False, pershot=False, conditional=False)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/providers/aer/library/save_instructions/save_density_matrix.py "view source code")
+`SaveDensityMatrix(num_qubits, label='density_matrix', unnormalized=False, pershot=False, conditional=False)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/providers/aer/library/save_instructions/save_density_matrix.py "view source code")
 
 Bases: `qiskit.providers.aer.library.save_instructions.save_data.SaveAverageData`
 

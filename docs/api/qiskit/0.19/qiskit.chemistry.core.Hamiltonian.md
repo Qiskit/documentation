@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.core.Hamiltonian
 
 <span id="qiskit.chemistry.core.Hamiltonian" />
 
-`Hamiltonian(transformation=TransformationType.FULL, qubit_mapping=QubitMappingType.PARITY, two_qubit_reduction=True, freeze_core=False, orbital_reduction=None, z2symmetry_reduction=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/chemistry/core/hamiltonian.py "view source code")
+`Hamiltonian(transformation=TransformationType.FULL, qubit_mapping=QubitMappingType.PARITY, two_qubit_reduction=True, freeze_core=False, orbital_reduction=None, z2symmetry_reduction=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/chemistry/core/hamiltonian.py "view source code")
 
 A molecular Hamiltonian operator, representing the energy of the electrons and nuclei in a molecule.
 
@@ -83,7 +83,7 @@ Final chemistry result computed from the algorithm result
 
 <span id="qiskit.chemistry.core.Hamiltonian.run" />
 
-`Hamiltonian.run(qmolecule)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/chemistry/core/hamiltonian.py "view source code")
+`Hamiltonian.run(qmolecule)`
 
 Convert the qmolecule, according to the ChemistryOperator, into an Operator that can be given to a QuantumAlgorithm
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.BackendV2Converter
 
 <span id="qiskit.providers.BackendV2Converter" />
 
-`qiskit.providers.BackendV2Converter(backend, name_mapping=None, add_delay=False, filter_faulty=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/backend_compat.py "view source code")
+`qiskit.providers.BackendV2Converter(backend, name_mapping=None, add_delay=False, filter_faulty=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/backend_compat.py "view source code")
 
 Bases: [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.backend.BackendV2")
 

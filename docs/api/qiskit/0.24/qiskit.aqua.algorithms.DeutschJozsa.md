@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.algorithms.DeutschJozsa
 
 <span id="qiskit.aqua.algorithms.DeutschJozsa" />
 
-`DeutschJozsa(oracle, quantum_instance=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/education/deutsch_jozsa.py "view source code")
+`DeutschJozsa(oracle, quantum_instance=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/education/deutsch_jozsa.py "view source code")
 
 The Deutsch-Jozsa algorithm.
 

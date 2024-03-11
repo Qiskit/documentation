@@ -10,7 +10,7 @@ python_api_name: qiskit.synthesis.synth_clifford_greedy
 
 <span id="qiskit.synthesis.synth_clifford_greedy" />
 
-`synth_clifford_greedy(clifford)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/synthesis/clifford/clifford_decompose_greedy.py "view source code")
+`synth_clifford_greedy(clifford)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/synthesis/clifford/clifford_decompose_greedy.py "view source code")
 
 Decompose a Clifford operator into a QuantumCircuit based on the greedy Clifford compiler that is described in Appendix A of Bravyi, Hu, Maslov and Shaydulin.
 

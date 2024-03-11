@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.ConvertConditionsToIfOps
 
 <span id="qiskit.transpiler.passes.ConvertConditionsToIfOps" />
 
-`qiskit.transpiler.passes.ConvertConditionsToIfOps(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/utils/convert_conditions_to_if_ops.py "view source code")
+`qiskit.transpiler.passes.ConvertConditionsToIfOps(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/utils/convert_conditions_to_if_ops.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.instructions.Instruction
 
 <span id="qiskit.pulse.instructions.Instruction" />
 
-`Instruction(operands, duration=None, channels=None, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/instructions/instruction.py "view source code")
+`Instruction(operands, duration=None, channels=None, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/instructions/instruction.py "view source code")
 
 Bases: `abc.ABC`
 
@@ -36,7 +36,7 @@ Instruction initializer.
 
 <span id="qiskit.pulse.instructions.Instruction.append" />
 
-`Instruction.append(schedule, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/instructions/instruction.py "view source code")
+`Instruction.append(schedule, name=None)`
 
 Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`.
 
@@ -57,7 +57,7 @@ A new schedule with `schedule` a this instruction at t=0.
 
 <span id="qiskit.pulse.instructions.Instruction.assign_parameters" />
 
-`Instruction.assign_parameters(value_dict)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/instructions/instruction.py "view source code")
+`Instruction.assign_parameters(value_dict)`
 
 Modify and return self with parameters assigned according to the input.
 
@@ -77,7 +77,7 @@ Self with updated parameters.
 
 <span id="qiskit.pulse.instructions.Instruction.ch_duration" />
 
-`Instruction.ch_duration(*channels)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/instructions/instruction.py "view source code")
+`Instruction.ch_duration(*channels)`
 
 Return duration of the supplied channels in this Instruction.
 
@@ -93,7 +93,7 @@ Return duration of the supplied channels in this Instruction.
 
 <span id="qiskit.pulse.instructions.Instruction.ch_start_time" />
 
-`Instruction.ch_start_time(*channels)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/instructions/instruction.py "view source code")
+`Instruction.ch_start_time(*channels)`
 
 Return minimum start time for supplied channels.
 
@@ -109,7 +109,7 @@ Return minimum start time for supplied channels.
 
 <span id="qiskit.pulse.instructions.Instruction.ch_stop_time" />
 
-`Instruction.ch_stop_time(*channels)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/instructions/instruction.py "view source code")
+`Instruction.ch_stop_time(*channels)`
 
 Return maximum start time for supplied channels.
 
@@ -125,7 +125,7 @@ Return maximum start time for supplied channels.
 
 <span id="qiskit.pulse.instructions.Instruction.draw" />
 
-`Instruction.draw(dt=1, style=None, filename=None, interp_method=None, scale=1, plot_all=False, plot_range=None, interactive=False, table=True, label=False, framechange=True, channels=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/instructions/instruction.py "view source code")
+`Instruction.draw(dt=1, style=None, filename=None, interp_method=None, scale=1, plot_all=False, plot_range=None, interactive=False, table=True, label=False, framechange=True, channels=None)`
 
 Plot the instruction.
 
@@ -156,7 +156,7 @@ matplotlib.figure
 
 <span id="qiskit.pulse.instructions.Instruction.flatten" />
 
-`Instruction.flatten()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/instructions/instruction.py "view source code")
+`Instruction.flatten()`
 
 Return itself as already single instruction.
 
@@ -168,7 +168,7 @@ Return itself as already single instruction.
 
 <span id="qiskit.pulse.instructions.Instruction.insert" />
 
-`Instruction.insert(start_time, schedule, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/instructions/instruction.py "view source code")
+`Instruction.insert(start_time, schedule, name=None)`
 
 Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted within `self` at `start_time`.
 
@@ -190,7 +190,7 @@ A new schedule with `schedule` inserted with this instruction at t=0.
 
 <span id="qiskit.pulse.instructions.Instruction.is_parameterized" />
 
-`Instruction.is_parameterized()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/instructions/instruction.py "view source code")
+`Instruction.is_parameterized()`
 
 Return True iff the instruction is parameterized.
 
@@ -202,7 +202,7 @@ Return True iff the instruction is parameterized.
 
 <span id="qiskit.pulse.instructions.Instruction.shift" />
 
-`Instruction.shift(time, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/instructions/instruction.py "view source code")
+`Instruction.shift(time, name=None)`
 
 Return a new schedule shifted forward by time.
 

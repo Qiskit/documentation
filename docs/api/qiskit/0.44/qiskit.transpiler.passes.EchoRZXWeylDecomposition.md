@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.EchoRZXWeylDecomposition
 
 <span id="qiskit.transpiler.passes.EchoRZXWeylDecomposition" />
 
-`qiskit.transpiler.passes.EchoRZXWeylDecomposition(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/optimization/echo_rzx_weyl_decomposition.py "view source code")
+`qiskit.transpiler.passes.EchoRZXWeylDecomposition(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/optimization/echo_rzx_weyl_decomposition.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 

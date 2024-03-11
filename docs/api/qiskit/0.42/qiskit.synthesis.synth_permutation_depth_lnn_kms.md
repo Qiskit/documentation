@@ -10,7 +10,7 @@ python_api_name: qiskit.synthesis.synth_permutation_depth_lnn_kms
 
 <span id="qiskit.synthesis.synth_permutation_depth_lnn_kms" />
 
-`synth_permutation_depth_lnn_kms(pattern)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/synthesis/permutation/permutation_lnn.py "view source code")
+`synth_permutation_depth_lnn_kms(pattern)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/synthesis/permutation/permutation_lnn.py "view source code")
 
 Synthesize a permutation circuit for a linear nearest-neighbor architecture using the Kutin, Moulton, Smithline method.
 

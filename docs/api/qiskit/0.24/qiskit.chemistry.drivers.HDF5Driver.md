@@ -12,7 +12,7 @@ python_api_name: qiskit.chemistry.drivers.HDF5Driver
 
 <span id="qiskit.chemistry.drivers.HDF5Driver" />
 
-`HDF5Driver(hdf5_input='molecule.hdf5')`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/drivers/hdf5d/hdf5driver.py "view source code")
+`HDF5Driver(hdf5_input='molecule.hdf5')` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/drivers/hdf5d/hdf5driver.py "view source code")
 
 Qiskit chemistry driver reading an HDF5 file.
 

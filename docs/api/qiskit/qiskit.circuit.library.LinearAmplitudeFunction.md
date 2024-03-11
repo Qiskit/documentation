@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.LinearAmplitudeFunction
 
 <span id="qiskit.circuit.library.LinearAmplitudeFunction" />
 
-`qiskit.circuit.library.LinearAmplitudeFunction(num_state_qubits, slope, offset, domain, image, rescaling_factor=1, breakpoints=None, name='F')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/arithmetic/linear_amplitude_function.py "view source code")
+`qiskit.circuit.library.LinearAmplitudeFunction(num_state_qubits, slope, offset, domain, image, rescaling_factor=1, breakpoints=None, name='F')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/arithmetic/linear_amplitude_function.py "view source code")
 
 Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
@@ -19,11 +19,11 @@ A circuit implementing a (piecewise) linear function on qubit amplitudes.
 An amplitude function $F$ of a function $f$ is a mapping
 
 $$
-F\vert x\rangle\vert 0\rangle = \sqrt{1 - \hat{f}(x)} \vert x\rangle\vert 0\rangle + \sqrt{\hat{f}(x)}
-    \vert x\rangle\vert 1\rangle.
+F|x\rangle|0\rangle = \sqrt{1 - \hat{f}(x)} |x\rangle|0\rangle + \sqrt{\hat{f}(x)}
+    |x\rangle|1\rangle.
 $$
 
-for a function $\hat{f}: \{ 0, ..., 2^n - 1 \} \rightarrow [0, 1]$, where $\vert x\rangle$ is a $n$ qubit state.
+for a function $\hat{f}: \{ 0, ..., 2^n - 1 \} \rightarrow [0, 1]$, where $|x\rangle$ is a $n$ qubit state.
 
 This circuit implements $F$ for piecewise linear functions $\hat{f}$. In this case, the mapping $F$ can be approximately implemented using a Taylor expansion and linearly controlled Pauli-Y rotations, see \[1, 2] for more detail. This approximation uses a `rescaling_factor` to determine the accuracy of the Taylor expansion.
 
@@ -104,29 +104,17 @@ a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitI
 
 QuantumCircuitData
 
-<span id="qiskit.circuit.library.LinearAmplitudeFunction.extension_lib" />
-
-### extension\_lib
-
-`= 'include "qelib1.inc";'`
-
 <span id="qiskit.circuit.library.LinearAmplitudeFunction.global_phase" />
 
 ### global\_phase
 
 Return the global phase of the current circuit scope in radians.
 
-<span id="qiskit.circuit.library.LinearAmplitudeFunction.header" />
-
-### header
-
-`= 'OPENQASM 2.0;'`
-
 <span id="qiskit.circuit.library.LinearAmplitudeFunction.instances" />
 
 ### instances
 
-`= 163`
+`= 196`
 
 <span id="qiskit.circuit.library.LinearAmplitudeFunction.layout" />
 
@@ -225,9 +213,6 @@ ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
 ```
 
 To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
-
-```python
-```
 
 ```python
 >>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector

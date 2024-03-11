@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.algorithms.VQE
 
 <span id="qiskit.aqua.algorithms.VQE" />
 
-`VQE(operator=None, var_form=None, optimizer=None, initial_point=None, gradient=None, expectation=None, include_custom=False, max_evals_grouped=1, aux_operators=None, callback=None, quantum_instance=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/minimum_eigen_solvers/vqe.py "view source code")
+`VQE(operator=None, var_form=None, optimizer=None, initial_point=None, gradient=None, expectation=None, include_custom=False, max_evals_grouped=1, aux_operators=None, callback=None, quantum_instance=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/minimum_eigen_solvers/vqe.py "view source code")
 
 The Variational Quantum Eigensolver algorithm.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.TimeUnitConversion
 
 <span id="qiskit.transpiler.passes.TimeUnitConversion" />
 
-`qiskit.transpiler.passes.TimeUnitConversion(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/scheduling/time_unit_conversion.py "view source code")
+`qiskit.transpiler.passes.TimeUnitConversion(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/scheduling/time_unit_conversion.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 

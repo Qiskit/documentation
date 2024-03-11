@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.algorithms.NumPyLSsolver
 
 <span id="qiskit.aqua.algorithms.NumPyLSsolver" />
 
-`NumPyLSsolver(matrix, vector)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/linear_solvers/numpy_ls_solver.py "view source code")
+`NumPyLSsolver(matrix, vector)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/linear_solvers/numpy_ls_solver.py "view source code")
 
 The Numpy LinearSystem algorithm (classical).
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.library.SwapGate
 
 <span id="qiskit.circuit.library.SwapGate" />
 
-`SwapGate(label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/standard_gates/swap.py "view source code")
+`SwapGate(label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/standard_gates/swap.py "view source code")
 
 The SWAP gate.
 
@@ -41,7 +41,7 @@ $$
 The gate is equivalent to a state swap and is a classical logic gate.
 
 $$
-\vert a, b\rangle \rightarrow \vert b, a\rangle
+|a, b\rangle \rightarrow |b, a\rangle
 $$
 
 Create new SWAP gate.

@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeSherbrooke
 
 <span id="qiskit.providers.fake_provider.FakeSherbrooke" />
 
-`FakeSherbrooke`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/backends/sherbrooke/fake_sherbrooke.py "view source code")
+`FakeSherbrooke` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/providers/fake_provider/backends/sherbrooke/fake_sherbrooke.py "view source code")
 
 Bases: `FakeBackendV2`
 

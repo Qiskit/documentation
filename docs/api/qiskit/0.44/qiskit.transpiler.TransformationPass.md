@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.TransformationPass
 
 <span id="qiskit.transpiler.TransformationPass" />
 
-`qiskit.transpiler.TransformationPass(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/basepasses.py "view source code")
+`qiskit.transpiler.TransformationPass(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/basepasses.py "view source code")
 
 Bases: `BasePass`
 

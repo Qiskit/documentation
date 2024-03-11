@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.PowerModifier
 
 <span id="qiskit.circuit.PowerModifier" />
 
-`qiskit.circuit.PowerModifier(power)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/annotated_operation.py "view source code")
+`qiskit.circuit.PowerModifier(power)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/annotated_operation.py "view source code")
 
 Bases: `Modifier`
 

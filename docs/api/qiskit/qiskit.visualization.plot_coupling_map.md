@@ -12,7 +12,7 @@ python_api_name: qiskit.visualization.plot_coupling_map
 
 <span id="qiskit.visualization.plot_coupling_map" />
 
-`qiskit.visualization.plot_coupling_map(num_qubits, qubit_coordinates, coupling_map, figsize=None, plot_directed=False, label_qubits=True, qubit_size=None, line_width=4, font_size=None, qubit_color=None, qubit_labels=None, line_color=None, font_color='white', ax=None, filename=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/visualization/gate_map.py "view source code")
+`qiskit.visualization.plot_coupling_map(num_qubits, qubit_coordinates, coupling_map, figsize=None, plot_directed=False, label_qubits=True, qubit_size=None, line_width=4, font_size=None, qubit_color=None, qubit_labels=None, line_color=None, font_color='white', ax=None, filename=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/visualization/gate_map.py "view source code")
 
 Plots an arbitrary coupling map of qubits (embedded in a plane).
 

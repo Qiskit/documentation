@@ -10,7 +10,7 @@ python_api_name: qiskit_aer.quantum_info.AerStatevector
 
 <span id="qiskit_aer.quantum_info.AerStatevector" />
 
-`AerStatevector(data, dims=None, **configs)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/quantum_info/states/aer_statevector.py "view source code")
+`AerStatevector(data, dims=None, **configs)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/quantum_info/states/aer_statevector.py "view source code")
 
 Bases: [`qiskit.quantum_info.states.statevector.Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.states.statevector.Statevector")
 
@@ -38,7 +38,7 @@ The `dims` kwarg is used to `Statevector` constructor.
 
 <span id="qiskit_aer.quantum_info.AerStatevector.conjugate" />
 
-`AerStatevector.conjugate()`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/quantum_info/states/aer_statevector.py "view source code")
+`AerStatevector.conjugate()`
 
 Return the conjugate of the operator.
 
@@ -109,7 +109,7 @@ sv.draw(output='latex')
 ```
 
 $$
-\frac{\sqrt{2}}{2} \vert 00\rangle- \frac{\sqrt{2}}{2} \vert 11\rangle
+\frac{\sqrt{2}}{2} |00\rangle- \frac{\sqrt{2}}{2} |11\rangle
 $$
 
 ### equiv
@@ -212,11 +212,11 @@ complex
 
 <span id="qiskit_aer.quantum_info.AerStatevector.from_instruction" />
 
-`classmethod AerStatevector.from_instruction(instruction)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/quantum_info/states/aer_statevector.py "view source code")
+`classmethod AerStatevector.from_instruction(instruction)`
 
 Return the output statevector of an instruction.
 
-The statevector is initialized in the state $\vert {0,\ldots,0}\rangle$ of the same number of qubits as the input instruction or circuit, evolved by the input instruction, and the output statevector returned.
+The statevector is initialized in the state $|{0,\ldots,0}\rangle$ of the same number of qubits as the input instruction or circuit, evolved by the input instruction, and the output statevector returned.
 
 **Parameters**
 
@@ -238,7 +238,7 @@ The final statevector.
 
 <span id="qiskit_aer.quantum_info.AerStatevector.from_int" />
 
-`static AerStatevector.from_int(i, dims)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/quantum_info/states/aer_statevector.py "view source code")
+`static AerStatevector.from_int(i, dims)`
 
 Return a computational basis statevector.
 
@@ -249,7 +249,7 @@ Return a computational basis statevector.
 
 **Returns**
 
-The computational basis state $\vert i\rangle$.
+The computational basis state $|i\rangle$.
 
 **Return type**
 
@@ -266,7 +266,7 @@ The `dims` kwarg can be an integer or an iterable of integers.
 
 <span id="qiskit_aer.quantum_info.AerStatevector.from_label" />
 
-`classmethod AerStatevector.from_label(label)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/quantum_info/states/aer_statevector.py "view source code")
+`classmethod AerStatevector.from_label(label)`
 
 Return a tensor product of Pauli X,Y,Z eigenstates.
 
@@ -301,7 +301,7 @@ The N-qubit basis state density matrix.
 
 `AerStatevector.inner(other)`
 
-Return the inner product of self and other as $\langle self\vert  other \rangle$.
+Return the inner product of self and other as $\langle self| other \rangle$.
 
 **Parameters**
 
@@ -309,7 +309,7 @@ Return the inner product of self and other as $\langle self\vert  other \rangle$
 
 **Returns**
 
-the inner product of self and other, $\langle self\vert  other \rangle$.
+the inner product of self and other, $\langle self| other \rangle$.
 
 **Return type**
 
@@ -355,7 +355,7 @@ tuple
 
 <span id="qiskit_aer.quantum_info.AerStatevector.metadata" />
 
-`AerStatevector.metadata()`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/quantum_info/states/aer_statevector.py "view source code")
+`AerStatevector.metadata()`
 
 Return result metadata of an operation that executed lastly.
 
@@ -384,7 +384,7 @@ np.array
 
 **Examples**
 
-Consider a 2-qubit product state $\vert \psi\rangle=\vert +\rangle\otimes\vert 0\rangle$.
+Consider a 2-qubit product state $|\psi\rangle=|+\rangle\otimes|0\rangle$.
 
 ```python
 from qiskit.quantum_info import Statevector
@@ -497,7 +497,7 @@ If all subsystems are reset this will return the ground state on all subsystems.
 
 Return a Statevector with reversed subsystem ordering.
 
-For a tensor product state this is equivalent to reversing the order of tensor product subsystems. For a statevector $\vert \psi \rangle = \vert \psi_{n-1} \rangle \otimes ... \otimes \vert \psi_0 \rangle$ the returned statevector will be $\vert \psi_{0} \rangle \otimes ... \otimes \vert \psi_{n-1} \rangle$.
+For a tensor product state this is equivalent to reversing the order of tensor product subsystems. For a statevector $|\psi \rangle = |\psi_{n-1} \rangle \otimes ... \otimes |\psi_0 \rangle$ the returned statevector will be $|\psi_{0} \rangle \otimes ... \otimes |\psi_{n-1} \rangle$.
 
 **Returns**
 
@@ -538,7 +538,7 @@ Additional Information:
 
 <span id="qiskit_aer.quantum_info.AerStatevector.sample_memory" />
 
-`AerStatevector.sample_memory(shots, qargs=None)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/quantum_info/states/aer_statevector.py "view source code")
+`AerStatevector.sample_memory(shots, qargs=None)`
 
 Sample a list of qubit measurement outcomes in the computational basis.
 
@@ -617,7 +617,7 @@ dict
 
 **Example**
 
-The ket-form of a 2-qubit statevector $\vert \psi\rangle = \vert -\rangle\otimes \vert 0\rangle$
+The ket-form of a 2-qubit statevector $|\psi\rangle = |-\rangle\otimes |0\rangle$
 
 ```python
 from qiskit.quantum_info import Statevector

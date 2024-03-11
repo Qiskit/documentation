@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.builder.set_frequency
 
 <span id="qiskit.pulse.builder.set_frequency" />
 
-`set_frequency(frequency, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/pulse/builder.py "view source code")
+`set_frequency(frequency, channel, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/pulse/builder.py "view source code")
 
 Set the `frequency` of a pulse `channel`.
 

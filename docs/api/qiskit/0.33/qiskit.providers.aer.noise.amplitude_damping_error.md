@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.noise.amplitude_damping_error
 
 <span id="qiskit.providers.aer.noise.amplitude_damping_error" />
 
-`amplitude_damping_error(param_amp, excited_state_population=0, canonical_kraus=True)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/providers/aer/noise/errors/standard_errors.py "view source code")
+`amplitude_damping_error(param_amp, excited_state_population=0, canonical_kraus=True)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/providers/aer/noise/errors/standard_errors.py "view source code")
 
 Return a single-qubit generalized amplitude damping quantum error channel.
 
@@ -32,7 +32,7 @@ rho_eq = [[1 - p1, 0]], [0, p1]]
 **Parameters**
 
 *   **param\_amp** (*double*) – the amplitude damping parameter.
-*   **excited\_state\_population** (*double*) – the population of $\vert 0\rangle$ state at equilibrium (default: 0).
+*   **excited\_state\_population** (*double*) – the population of $|0\rangle$ state at equilibrium (default: 0).
 *   **canonical\_kraus** (*bool*) – Convert input Kraus matrices into the canonical Kraus representation (default: True)
 
 **Returns**

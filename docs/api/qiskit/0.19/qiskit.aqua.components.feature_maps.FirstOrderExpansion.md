@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.feature_maps.FirstOrderExpansion
 
 <span id="qiskit.aqua.components.feature_maps.FirstOrderExpansion" />
 
-`FirstOrderExpansion(feature_dimension, depth=2, data_map_func=<function self_product>)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/feature_maps/first_order_expansion.py "view source code")
+`FirstOrderExpansion(feature_dimension, depth=2, data_map_func=<function self_product>)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/feature_maps/first_order_expansion.py "view source code")
 
 DEPRECATED. First Order Expansion feature map.
 

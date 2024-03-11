@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.SwitchCaseOp
 
 <span id="qiskit.circuit.SwitchCaseOp" />
 
-`qiskit.circuit.SwitchCaseOp(target, cases, *, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/controlflow/switch_case.py "view source code")
+`qiskit.circuit.SwitchCaseOp(target, cases, *, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/circuit/controlflow/switch_case.py "view source code")
 
 Bases: [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.controlflow.control_flow.ControlFlowOp")
 

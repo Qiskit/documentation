@@ -10,7 +10,7 @@ python_api_name: qiskit.ignis.mitigation.CompleteMeasFitter
 
 <span id="qiskit.ignis.mitigation.CompleteMeasFitter" />
 
-`CompleteMeasFitter(results, state_labels, qubit_list=None, circlabel='')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/mitigation/measurement/fitters.py "view source code")
+`CompleteMeasFitter(results, state_labels, qubit_list=None, circlabel='')` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/mitigation/measurement/fitters.py "view source code")
 
 Measurement correction fitter for a full calibration
 

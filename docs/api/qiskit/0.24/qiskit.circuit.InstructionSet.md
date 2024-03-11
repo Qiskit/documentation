@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.InstructionSet
 
 <span id="qiskit.circuit.InstructionSet" />
 
-`InstructionSet`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/instructionset.py "view source code")
+`InstructionSet` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/instructionset.py "view source code")
 
 Instruction collection, and their contexts.
 

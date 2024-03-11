@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.RZXGate
 
 <span id="qiskit.circuit.library.RZXGate" />
 
-`RZXGate(theta, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/standard_gates/rzx.py "view source code")
+`RZXGate(theta, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/standard_gates/rzx.py "view source code")
 
 Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -108,7 +108,7 @@ Create new RZX gate.
 
 <span id="qiskit.circuit.library.RZXGate.inverse" />
 
-`RZXGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/standard_gates/rzx.py "view source code")
+`RZXGate.inverse()`
 
 Return inverse RZX gate (i.e. with the negative rotation angle).
 

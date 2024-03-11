@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.eigs.Eigenvalues
 
 <span id="qiskit.aqua.components.eigs.Eigenvalues" />
 
-`Eigenvalues`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/eigs/eigs.py "view source code")
+`Eigenvalues` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/eigs/eigs.py "view source code")
 
 Base class for eigenvalue estimation.
 

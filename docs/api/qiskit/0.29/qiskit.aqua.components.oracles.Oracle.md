@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.oracles.Oracle
 
 <span id="qiskit.aqua.components.oracles.Oracle" />
 
-`Oracle(*args, **kwargs)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/oracles/oracle.py "view source code")
+`Oracle(*args, **kwargs)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/oracles/oracle.py "view source code")
 
 Bases: `abc.ABC`
 
@@ -29,7 +29,7 @@ This method should initialize the module and use an exception if a component of 
 
 <span id="qiskit.aqua.components.oracles.Oracle.construct_circuit" />
 
-`abstract Oracle.construct_circuit()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/oracles/oracle.py "view source code")
+`abstract Oracle.construct_circuit()`
 
 Construct the oracle circuit.
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.transpiler.FencedDAGCircuit
 
 <span id="qiskit.transpiler.FencedDAGCircuit" />
 
-`FencedDAGCircuit(dag_circuit_instance)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/transpiler/fencedobjs.py "view source code")
+`FencedDAGCircuit(dag_circuit_instance)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/transpiler/fencedobjs.py "view source code")
 
 A dag circuit that cannot be modified (via remove\_op\_node)
 

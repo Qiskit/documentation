@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.operators.gradients.Hessian
 
 <span id="qiskit.aqua.operators.gradients.Hessian" />
 
-`Hessian(hess_method='param_shift', **kwargs)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/gradients/hessian.py "view source code")
+`Hessian(hess_method='param_shift', **kwargs)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/gradients/hessian.py "view source code")
 
 Compute the Hessian of an expected value.
 

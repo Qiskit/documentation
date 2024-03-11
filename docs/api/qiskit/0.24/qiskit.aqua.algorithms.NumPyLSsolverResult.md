@@ -12,7 +12,7 @@ python_api_name: qiskit.aqua.algorithms.NumPyLSsolverResult
 
 <span id="qiskit.aqua.algorithms.NumPyLSsolverResult" />
 
-`NumPyLSsolverResult(a_dict=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/linear_solvers/numpy_ls_solver.py "view source code")
+`NumPyLSsolverResult(a_dict=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/linear_solvers/numpy_ls_solver.py "view source code")
 
 Numpy LinearSystem Result.
 

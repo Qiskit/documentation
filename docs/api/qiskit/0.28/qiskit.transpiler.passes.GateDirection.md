@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.GateDirection
 
 <span id="qiskit.transpiler.passes.GateDirection" />
 
-`GateDirection(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/utils/gate_direction.py "view source code")
+`GateDirection(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/utils/gate_direction.py "view source code")
 
 Modify asymmetric gates to match the hardware coupling direction.
 
