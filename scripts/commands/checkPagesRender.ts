@@ -161,30 +161,30 @@ async function determineFilePaths(args: Arguments): Promise<string[]> {
   if (args.nonApi) {
     globs.push(
       "docs/support.mdx",
-      "docs/{build,run,start,transpile,verify}/*.{ipynb,md,mdx}",
-      "docs/api/migration-guides/**/*.{ipynb,md,mdx}",
+      "docs/{build,run,start,transpile,verify}/*.{ipynb,mdx}",
+      "docs/api/migration-guides/**/*.{ipynb,mdx}",
     );
   }
   if (args.currentApis) {
     globs.push(
-      "docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/*.{ipynb,md,mdx}",
+      "docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/*.{ipynb,mdx}",
     );
   }
   if (args.historicalApis) {
     globs.push(
-      "docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/[0-9]*/*.{ipynb,md,mdx}",
+      "docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/[0-9]*/*.{ipynb,mdx}",
     );
   }
   if (args.devApis) {
     globs.push(
-      "docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/dev/*.{ipynb,md,mdx}",
+      "docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/dev/*.{ipynb,mdx}",
     );
   }
   if (args.qiskitReleaseNotes) {
-    globs.push("docs/api/qiskit/release-notes/*.{ipynb,md,mdx}");
+    globs.push("docs/api/qiskit/release-notes/*.{ipynb,mdx}");
   }
   if (args.translations) {
-    globs.push("translations/**/*.{ipynb,md,mdx}");
+    globs.push("translations/**/*.{ipynb,mdx}");
   }
   return globby(globs);
 }

@@ -179,10 +179,8 @@ describe("Generate the possible paths of a given link", () => {
       "docs/test/test2/testorigin.mdx",
     );
     let expectedPaths = [
-      "docs/test/testFile.md",
       "docs/test/testFile.mdx",
       "docs/test/testFile.ipynb",
-      "docs/test/testFile/index.md",
       "docs/test/testFile/index.mdx",
       "docs/test/testFile/index.ipynb",
     ];
@@ -197,10 +195,8 @@ describe("Generate the possible paths of a given link", () => {
       "docs/test/test2/testorigin.mdx",
     );
     let expectedPaths = [
-      "docs/testFile.md",
       "docs/testFile.mdx",
       "docs/testFile.ipynb",
-      "docs/testFile/index.md",
       "docs/testFile/index.mdx",
       "docs/testFile/index.ipynb",
     ];
