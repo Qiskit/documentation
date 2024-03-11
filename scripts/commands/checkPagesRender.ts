@@ -159,32 +159,27 @@ async function determineFilePaths(args: Arguments): Promise<string[]> {
   }
 
   if (args.nonApi) {
-    globs.push(
-      "docs/support.mdx",
-      "docs/{build,run,start,transpile,verify}/*.{ipynb,mdx}",
-      "docs/api/migration-guides/**/*.{ipynb,mdx}",
-    );
+    globs.push("docs/**/*.{ipynb,mdx}");
   }
-  if (args.currentApis) {
-    globs.push(
-      "docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/*.{ipynb,mdx}",
-    );
-  }
-  if (args.historicalApis) {
-    globs.push(
-      "docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/[0-9]*/*.{ipynb,mdx}",
-    );
-  }
-  if (args.devApis) {
-    globs.push(
-      "docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/dev/*.{ipynb,mdx}",
-    );
-  }
-  if (args.qiskitReleaseNotes) {
-    globs.push("docs/api/qiskit/release-notes/*.{ipynb,mdx}");
-  }
-  if (args.translations) {
-    globs.push("translations/**/*.{ipynb,mdx}");
+
+  for (const [isIncluded, glob] of [
+    [
+      args.currentApis,
+      "docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/*.mdx",
+    ],
+    [
+      args.historicalApis,
+      "docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/[0-9]*/*.mdx",
+    ],
+    [
+      args.devApis,
+      "docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/dev/*.mdx",
+    ],
+    [args.qiskitReleaseNotes, "docs/api/qiskit/release-notes/*.mdx"],
+    [args.translations, "translations/**/*.{ipynb,mdx}"],
+  ]) {
+    const prefix = isIncluded ? "" : "!";
+    globs.push(`${prefix}${glob}`);
   }
   return globby(globs);
 }
