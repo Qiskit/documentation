@@ -80,8 +80,8 @@ estimator.run([circuit1, circuit2, ...],[observable1, observable2, ...],[param_v
 
 #### Estimator V2
 
-* Takes one parameter: PUBs in the format (`<circuit>`, `<observables>`, `<parameter values>`, `<precision>`) (Note that there is only one circuit and optional `precision` value per PUB, but `parameter values` and `observables` can be lists or a single value.)
-* Combines elements from multiple arrays by following NumPy broadcasting rules as described below. 
+* The `run()` method takes an array of PUBs. Each PUB is in the format (`<single circuit>`, `<one or more observables>`, `<optional one or more parameter values>`, `<optional precision>`)
+* Combines elements from observables and parameter values by following NumPy broadcasting rules as described below. 
 * Each input PUB has a corresponding PubResult that contains both data and metadata.
 
 Example: 
