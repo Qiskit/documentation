@@ -10,6 +10,13 @@ The steps in this topic describes how to set up primitives, explore the options 
 
 <Admonition type="caution" title="Important">
 To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](../transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations; consequently, transpilation options referring to those tasks will no longer have any effect. Users can still request that the primitives do no optimization of input circuits by specifying `options.transpilation.skip_transpilation`.
+
+*Exception*: When you initialize the Qiskit Runtime Service with the Q-CTRL channel strategy (example below), abstract circuits are still supported.
+
+``` python
+service = QiskitRuntimeService(channel="ibm_cloud", channel_strategy="q-ctrl")
+```
+
 </Admonition>
 
 <Admonition type="note">
@@ -61,7 +68,7 @@ isa_observable = observable.apply_layout(isa_circuit.layout)
 
 ### 3. Initialize Qiskit Runtime Estimator
 
-When you initialize the Estimator, pass it the system or simulator you previously selected as the target.
+When you initialize the Estimator, pass in the system or simulator you previously selected as the target.
 
 To use the V2 Estimator, import the **EstimatorV2** class. The **Estimator** class still refers to the version 1 Estimator, for backwards compatibility.
 
@@ -165,7 +172,7 @@ isa_circuit = pm.run(circuit)
 
 ### 3. Initialize the Qiskit Runtime Sampler
 
-When you initialize the `Sampler`, pass it the simulator or system you previously selected as the target.
+When you initialize the `Sampler`, pass in the simulator or system you previously selected as the target.
 
 To use the V2 Sampler, import the **SamplerV2** class. The **Sampler** class still refers to the version 1 Sampler, for backwards compatibility.
 
