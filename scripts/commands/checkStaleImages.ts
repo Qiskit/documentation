@@ -12,10 +12,10 @@
 
 // To run:
 //   node -r esbuild-register scripts/commands/find-stale-images.ts
-import { zxMain } from '../lib/zx';
-import { $ } from 'zx';
-import { globby } from 'globby';
-import { zip } from 'lodash';
+import { zxMain } from "../lib/zx";
+import { $ } from "zx";
+import { globby } from "globby";
+import { zip } from "lodash";
 
 zxMain(async () => {
   const paths = await getStrippedImagePaths();
@@ -24,29 +24,31 @@ zxMain(async () => {
     .filter(([_fp, result]) => result)
     .map(([fp]) => `public/${fp}`);
   if (unused.length === 0) {
-    console.log('✅ all images used');
+    console.log("✅ all images used");
   } else {
     console.error(
       `🙅 ${
         unused.length
-      } stale images found. These images should usually be deleted:\n\n${unused.join('\n')}`
+      } stale images found. These images should usually be deleted:\n\n${unused.join(
+        "\n",
+      )}`,
     );
     process.exit(1);
   }
 });
 
 async function getStrippedImagePaths(): Promise<string[]> {
-  const fullPaths = await globby('public/images/**');
+  const fullPaths = await globby("public/images/**");
   return fullPaths.map((fp) =>
     fp
-      .split('public/')[1]
+      .split("public/")[1]
       // Dark mode variants won't show up in search. But as long
       // as the path with `@dark` removed is found, it's a valid file.
-      .replace(/@dark/g, '')
+      .replace(/@dark/g, ""),
   );
 }
 
 async function isImageUnused(fp: string): Promise<boolean> {
   const grep = await $`git grep ${fp}`.quiet().catch((result) => result);
-  return grep.stdout === '';
+  return grep.stdout === "";
 }
