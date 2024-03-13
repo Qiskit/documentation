@@ -34,6 +34,10 @@ service = QiskitRuntimeService()
 backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
 ```
 
+<Admonition type="note">
+To try out your program locally before of running on real hardware, see [Test locally.](#test-locally) 
+</Admonition>
+
 ### 2. Create a circuit and an observable
 
 You need at least one circuit and one observable as inputs to the `Estimator` primitive.
@@ -226,6 +230,51 @@ print(f"  > Metadata: {result.metadata[0]}")
 ```
   </TabItem>
 </Tabs>
+
+<span id="test-locally"></span>
+## Test locally
+
+Quantum simulators should be used to help develop and test programs before fine-tuning them and sending them to real quantum hardware. This can be done with good performance and efficiency on local simulators. 
+
+To use local testing mode with Qiskit Runtime, specify one of the fake backends in ``qiskit_ibm_runtime.fake_provider`` or specify a Qiskit Aer backend when instantiating a primitive or a session.  For details, see the [fake_provider API reference.](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.fake_provider)
+
+If you currently use Qiskit (and not Qiskit Runtime), you can use the existing Qiskit Aer primitives for local testing.  See [exact and noisy simulation with Qiskit Aer primitives](../verify/simulate-with-qiskit-aer) for details. 
+
+Example:
+
+```python
+from qiskit_aer import AerSimulator
+from qiskit.circuit.library import RealAmplitudes
+from qiskit.circuit import QuantumCircuit, QuantumRegister, ClassicalRegister
+from qiskit.quantum_info import SparsePauliOp
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+from qiskit_ibm_runtime import Session, SamplerV2 as Sampler
+from qiskit_ibm_runtime.fake_provider import FakeManilaV2
+
+# Bell Circuit
+qc = QuantumCircuit(2)
+qc.h(0)
+qc.cx(0, 1)
+qc.measure_all()
+
+# Run the sampler job locally using FakeManilaV2
+fake_manila = FakeManilaV2()
+pm = generate_preset_pass_manager(backend=fake_manila, optimization_level=1)
+isa_qc = pm.run(qc)
+sampler = Sampler(backend=fake_manila)
+result = sampler.run([(isa_qc)]).result()
+
+# Run the sampler job locally using AerSimulator.
+# Session syntax is supported but ignored because simulators don't support sessions.
+aer_sim = AerSimulator()
+pm = generate_preset_pass_manager(backend=aer_sim, optimization_level=1)
+isa_qc = pm.run(qc)
+service = QiskitRuntimeService()
+with Session(service=service, backend=aer_sim) as session:
+    sampler = Sampler(session=session)
+    result = sampler.run([(isa_qc)]).result()
+```        
+
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
