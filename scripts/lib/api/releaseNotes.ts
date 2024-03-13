@@ -93,7 +93,7 @@ New features, bug fixes, and other changes in previous versions of ${pkg.title}.
 export function currentReleaseNotesPath(pkg: Pkg): string {
   return `${getRoot()}/docs/api/${pkg.name}/release-notes/${
     pkg.versionWithoutPatch
-  }.md`;
+  }.mdx`;
 }
 
 /**
@@ -159,7 +159,7 @@ export async function writeReleaseNoteForVersion(
   }
 
   const basePath = `${getRoot()}/docs/api/${pkg.name}/release-notes`;
-  const versionPath = `${basePath}/${pkg.versionWithoutPatch}.md`;
+  const versionPath = `${basePath}/${pkg.versionWithoutPatch}.mdx`;
 
   const versionsMarkdown = releaseNoteMarkdown
     .split(/\n## (?=[0-9])/)

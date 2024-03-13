@@ -97,13 +97,9 @@ async function getTocUrls(filePath: string): Promise<Set<string>> {
 }
 
 async function collectExistingUrls(directory: string): Promise<string[]> {
-  const fileList = await globby([`${directory}/*.{md,mdx,ipynb}`]);
+  const fileList = await globby([`${directory}/*.{mdx,ipynb}`]);
   return fileList.map((fileName) =>
-    fileName
-      .replace("docs", "")
-      .replace(".mdx", "")
-      .replace(".ipynb", "")
-      .replace(".md", ""),
+    fileName.replace("docs", "").replace(".mdx", "").replace(".ipynb", ""),
   );
 }
 
