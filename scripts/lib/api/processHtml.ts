@@ -334,8 +334,12 @@ function processMember(
     return processAttribute($child, $dl, priorApiType, id, githubSourceLink);
   }
 
-  if (apiType === "function" || apiType === "exception") {
-    return processFunctionOrException($child, id, githubSourceLink);
+  if (apiType === "function") {
+    return processFunction($child, id, githubSourceLink);
+  }
+
+  if (apiType === "exception") {
+    return processException($child, $dl, id, githubSourceLink);
   }
 
   throw new Error(`Unhandled Python type: ${apiType}`);
@@ -430,13 +434,32 @@ function processAttribute(
   return output.join("\n");
 }
 
-function processFunctionOrException(
+function processFunction(
   $child: Cheerio<any>,
   id: string,
   githubSourceLink: string,
 ) {
   const descriptionHtml = `<p><code>${$child.html()}</code>${githubSourceLink}</p>`;
-  return `<Function id=${id}>${descriptionHtml}</Function>`;
+  const apiName = id.split(".").slice(-1)[0];
+  return `<Function id=${id} apiName=${apiName}>${descriptionHtml}</Function>`;
+}
+
+function processException(
+  $child: Cheerio<any>,
+  $dl: Cheerio<any>,
+  id: string,
+  githubSourceLink: string,
+) {
+  const descriptionHtml = `<span class="target" id="${id}"/><p><code>${$child.html()}</code>${githubSourceLink}</p>`;
+
+  const pageHeading = $dl.siblings("h1").text();
+  if (id.endsWith(pageHeading) && pageHeading != "") {
+    // Page is already dedicated to apiType; no heading needed
+    return descriptionHtml;
+  }
+
+  const apiName = id.split(".").slice(-1)[0];
+  return `<h3>${apiName}</h3>${descriptionHtml}`;
 }
 
 /**

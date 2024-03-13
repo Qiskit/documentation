@@ -306,7 +306,7 @@ function buildMathExpression(node: any, type: "math" | "inlineMath"): any {
 }
 
 function buildFunction(h: H, node: any): any {
-  if (node.properties.id) {
+  if (node.properties.id && node.properties.apiname) {
     return {
       type: "mdxJsxFlowElement",
       name: "Function",
@@ -315,6 +315,11 @@ function buildFunction(h: H, node: any): any {
           type: "mdxJsxAttribute",
           name: "id",
           value: node.properties.id,
+        },
+        {
+          type: "mdxJsxAttribute",
+          name: "apiName",
+          value: node.properties.apiname,
         },
       ],
       children: all(h, node),
