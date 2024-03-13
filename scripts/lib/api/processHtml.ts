@@ -335,7 +335,7 @@ function processMember(
   }
 
   if (apiType === "function" || apiType === "exception") {
-    return processFunctionOrException($child, $dl, id, githubSourceLink);
+    return processFunctionOrException($child, id, githubSourceLink);
   }
 
   throw new Error(`Unhandled Python type: ${apiType}`);
@@ -432,20 +432,11 @@ function processAttribute(
 
 function processFunctionOrException(
   $child: Cheerio<any>,
-  $dl: Cheerio<any>,
   id: string,
   githubSourceLink: string,
 ) {
-  const descriptionHtml = `<span class="target" id="${id}"/><p><code>${$child.html()}</code>${githubSourceLink}</p>`;
-
-  const pageHeading = $dl.siblings("h1").text();
-  if (id.endsWith(pageHeading) && pageHeading != "") {
-    // Page is already dedicated to apiType; no heading needed
-    return descriptionHtml;
-  }
-
-  const apiName = id.split(".").slice(-1)[0];
-  return `<h3>${apiName}</h3>${descriptionHtml}`;
+  const descriptionHtml = `<p><code>${$child.html()}</code>${githubSourceLink}</p>`;
+  return `<Function id=${id}>${descriptionHtml}</Function>`;
 }
 
 /**

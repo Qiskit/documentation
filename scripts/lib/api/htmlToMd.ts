@@ -123,6 +123,9 @@ function prepareHandlers(meta: Metadata): Record<string, Handle> {
 
       return defaultHandlers.div(h, node);
     },
+    function(h, node: any): any {
+      return buildFunction(h, node);
+    },
   };
 
   return handlers;
@@ -300,4 +303,22 @@ function buildMathExpression(node: any, type: "math" | "inlineMath"): any {
     value = value.substring(prefix.length, value.length - sufix.length);
   }
   return { type: type, value };
+}
+
+function buildFunction(h: H, node: any): any {
+  if (node.properties.id) {
+    return {
+      type: "mdxJsxFlowElement",
+      name: "Function",
+      attributes: [
+        {
+          type: "mdxJsxAttribute",
+          name: "id",
+          value: node.properties.id,
+        },
+      ],
+      children: all(h, node),
+    };
+  }
+  return all(h, node);
 }
