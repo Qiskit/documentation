@@ -75,7 +75,6 @@ async function main() {
       ),
     );
   }
-  console.log("\n Allowed Orphans are: \n", ALLOWED_ORPHAN_URLS);
   if (orphanPages.length > 0) {
     console.error(
       "\n There are some orphaned pages!  These files need a home: \n",
@@ -123,7 +122,6 @@ async function determineTocFiles(args: Arguments): Promise<string[]> {
     globs.push(
       "docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/[0-9]*/_toc.json",
     );
-    ``;
   }
   return await globby(globs);
 }
@@ -180,27 +178,24 @@ function apiDocsIgnores(): string[] {
     "0.46/",
   ];
 
-  return flattenDeep([
-    versions.map((vers) => [
-      `/api/qiskit-ibm-runtime/${vers}index`,
-      `/api/qiskit-ibm-provider/${vers}index`,
-      `/api/qiskit-ibm-runtime/${vers}qiskit_ibm_runtime.Estimator`,
-      `/api/qiskit-ibm-runtime/${vers}qiskit_ibm_runtime.Sampler`,
-      `/api/qiskit/${vers}aer`,
-      `/api/qiskit/${vers}aqua`,
-      `/api/qiskit/${vers}ibmq-provider`,
-      `/api/qiskit/${vers}ibmq_jupyter`,
-      `/api/qiskit/${vers}ibmq_visualization`,
-      `/api/qiskit/${vers}qiskit.aqua.aqua_globals`,
-      `/api/qiskit/${vers}qiskit.optimization.INFINITY`,
-      `/api/qiskit/${vers}qiskit.quantum_info.two_qubit_cnot_decompose`,
-      `/api/qiskit/${vers}qiskit.utils.algorithm_globals`,
-      `/api/qiskit/${vers}parallel`,
-      `/api/qiskit/${vers}transpiler_builtin_plugins`,
-    ]),
+  return versions.flatMap((vers) => [
+    `/api/qiskit-ibm-runtime/${vers}index`,
+    `/api/qiskit-ibm-provider/${vers}index`,
+    `/api/qiskit-ibm-runtime/${vers}qiskit_ibm_runtime.Estimator`,
+    `/api/qiskit-ibm-runtime/${vers}qiskit_ibm_runtime.Sampler`,
+    `/api/qiskit/${vers}aer`,
+    `/api/qiskit/${vers}aqua`,
+    `/api/qiskit/${vers}ibmq-provider`,
+    `/api/qiskit/${vers}ibmq_jupyter`,
+    `/api/qiskit/${vers}ibmq_visualization`,
+    `/api/qiskit/${vers}qiskit.aqua.aqua_globals`,
+    `/api/qiskit/${vers}qiskit.optimization.INFINITY`,
+    `/api/qiskit/${vers}qiskit.quantum_info.two_qubit_cnot_decompose`,
+    `/api/qiskit/${vers}qiskit.utils.algorithm_globals`,
+    `/api/qiskit/${vers}parallel`,
+    `/api/qiskit/${vers}transpiler_builtin_plugins`,
     `/api/qiskit/0.19/index`,
     `/api/qiskit/dev/qiskit.primitives.BaseEstimator`,
-    `/api/qiskit/dev/qiskit.primitives.BaseSampler`,
     `/api/qiskit/dev/qiskit.primitives.BaseSampler`,
   ]);
 }
