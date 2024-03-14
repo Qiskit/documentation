@@ -70,7 +70,7 @@ Gates defined in the program by manual OpenQASM 2 `gate` statements will, by def
 
 You can tell the importer to use specific [`Gate`](../api/qiskit/qiskit.circuit.Gate) classes for the given `gate` statements it encounters.
 You can also use this mechanism to treat additional gate names as "built-in", that is, not requiring an explicit definition.
-Qiskit will typically be more efficient if you can tell it which gate classes it should use for `gate` statements outside of `"qelib1.inc"`.
+If you specify which gate classes to use for `gate` statements outside of `"qelib1.inc"`, the resulting circuit will typically be more efficient to work with.
 
 <Admonition type="warning">
 As of Qiskit SDK 1.0, Qiskit's OpenQASM 2 *exporter* (see [Export a Qiskit circuit to OpenQASM 2](#export)) still behaves as if `"qelib1.inc"` has more gates than it really does.
