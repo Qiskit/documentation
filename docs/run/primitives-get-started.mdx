@@ -70,10 +70,10 @@ isa_observable = observable.apply_layout(isa_circuit.layout)
 
 When you initialize the Estimator, pass in the system or simulator you previously selected as the target.
 
-To use the V2 Estimator, import the **EstimatorV2** class. The **Estimator** class still refers to the version 1 Estimator, for backwards compatibility.
+To use the Estimator V2, import the **EstimatorV2** class. The **Estimator** class still refers to the version 1 Estimator, for backwards compatibility.
 
 <Tabs>
-  <TabItem value="EstimatorV2" label="V2 Estimator">
+  <TabItem value="EstimatorV2" label="Estimator V2">
 
 ```python
 from qiskit_ibm_runtime import EstimatorV2 as Estimator
@@ -96,10 +96,10 @@ estimator = Estimator(backend=backend)
 
 Next, invoke the `run()` method to calculate expectation values for the input circuits and observables.
 
-For V2 Estimator, the circuit, observable, and optional parameter value sets are input as *primitive unified bloc* (PUB) tuples. 
+For Estimator V2, the circuit, observable, and optional parameter value sets are input as *primitive unified bloc* (PUB) tuples. 
 
 <Tabs>
-  <TabItem value="EstimatorV2" label="V2 Estimator">
+  <TabItem value="EstimatorV2" label="Estimator V2">
 ```python
 job = estimator.run([(isa_circuit, isa_observable)])
 print(f">>> Job ID: {job.job_id()}")
@@ -174,10 +174,10 @@ isa_circuit = pm.run(circuit)
 
 When you initialize the `Sampler`, pass in the simulator or system you previously selected as the target.
 
-To use the V2 Sampler, import the **SamplerV2** class. The **Sampler** class still refers to the version 1 Sampler, for backwards compatibility.
+To use the Sampler V2, import the **SamplerV2** class. The **Sampler** class still refers to the version 1 Sampler, for backwards compatibility.
 
 <Tabs>
-  <TabItem value="SamplerV2" label="V2 Sampler">
+  <TabItem value="SamplerV2" label="Sampler V2">
     ```python
 from qiskit_ibm_runtime import SamplerV2 as Sampler
 
@@ -199,10 +199,10 @@ sampler = Sampler(backend=backend)
 
 Next, invoke the `run()` method to generate the output.
 
-For V2 Sampler, the circuit and optional parameter value sets are input as *primitive unified bloc* (PUB) tuples.
+For Sampler V2, the circuit and optional parameter value sets are input as *primitive unified bloc* (PUB) tuples.
 
 <Tabs>
-  <TabItem value="SamplerV2" label="V2 Sampler">
+  <TabItem value="SamplerV2" label="Sampler V2">
 
 ```python
 job = sampler.run([(isa_circuit)])
