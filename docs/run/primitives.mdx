@@ -63,8 +63,8 @@ Version 2 (available with qiskit-ibm-runtime 0.21.0) is the first major interfac
 
 * The **new interface** lets you specify a single circuit and multiple observables (if using Estimator) and parameter value sets for that circuit. 
 * You can **turn on or off individual error mitigation and suppression methods**.
-* You can choose to **get counts or per-shot measurements** instead of quasi-probabilities from V2 Sampler.
-* Due to scaling issues, V2 Sampler does not support specifying a resilience level, and V2 Estimator supports only levels 0 - 2. 
+* You can choose to **get counts or per-shot measurements** instead of quasi-probabilities from Sampler V2.
+* Due to scaling issues, Sampler V2 does not support specifying a resilience level, and Estimator V2 supports only levels 0 - 2. 
 * To reduce the total execution time, v2 primitives only support ISA circuits. You can use the [Qiskit transpiler](advanced-runtime-options#runtime-compilation) (manually) or the [AI-driven transpilation service (premium users)](../transpile/qiskit-transpiler-service) to transform the circuits before making the queries to the primitives.
 
 See the [EstimatorV2 API reference](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.EstimatorV2) and [SamplerV2 API reference](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.SamplerV2) for full details.
@@ -217,8 +217,8 @@ sampler.run([(circuit1, param_values1, shots1),(circuit2, param_values2, shots_2
 The Estimator behaves differently, depending on what version you are using. 
 
 <Tabs>
-  <TabItem value="EstimatorV2" label="V2 Estimator">
-    V2 Estimator computes expectation values of observables with respect to states prepared by quantum circuits.
+  <TabItem value="EstimatorV2" label="Estimator V2">
+    Estimator V2 computes expectation values of observables with respect to states prepared by quantum circuits.
 It receives one or more PUBs as the inputs and returns the computed expectation values per pair, along with their
 standard error, in `PubResult` form. Different Estimator implementations support various configuration options. The circuits
 can be parametrized, as long as the parameter values are also provided as input to the primitive.
@@ -238,8 +238,8 @@ can be parametrized, as long as the parameter values are also provided as input 
 The Sampler behaves differently, depending on what version you are using. 
 
 <Tabs>
-  <TabItem value="SamplerV2" label="V2 Sampler">
-    V2 Sampler is simplified to focus on its core task of sampling the output register from execution of quantum circuits. It returns the samples, whose type is defined by the program, without weights and therefore does not support resilience levels. The result class, however, has methods to return weighted samples, such as counts. 
+  <TabItem value="SamplerV2" label="Sampler V2">
+    Sampler V2 is simplified to focus on its core task of sampling the output register from execution of quantum circuits. It returns the samples, whose type is defined by the program, without weights and therefore does not support resilience levels. The result class, however, has methods to return weighted samples, such as counts. 
     
     It receives one or more PUBs as the inputs and returns counts or per-shot measurements, as `PubResult`s.  The circuits
 can be parametrized, as long as the parameter values are also provided as input to the primitive.
