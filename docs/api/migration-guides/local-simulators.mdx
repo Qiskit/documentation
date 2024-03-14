@@ -7,7 +7,7 @@ description: Migrate from using the IBM Quantum cloud simulators (such as ibmq_q
 <span id="local-simulators"></span>
 # Migrate to local simulators
 
-In quantum computing, the choice between using simulators and quantum hardware is crucial for making progress in the field. While simulators are useful for testing and debugging, in this era of quantum utility, quantum development and industry advancement requires actual hardware. As part of the move to quantum utility, IBM Quantum&trade; will retire its cloud simulators on 15 May 2024. This guide explains in more detail why this is happening, and how (and when) to change from cloud to local simulators. 
+In quantum computing, the choice between using simulators and quantum hardware is crucial for making progress in the field. While simulators are useful for testing and debugging, in this era of quantum utility, quantum development and industry advancement requires actual hardware. As part of the move to quantum utility, IBM Quantum&trade; will retire its cloud simulators on 15 May 2024. This guide explains in more detail why this is happening, and how to change from cloud to local simulators. 
 
 ## Why are the cloud simulators being retired?
 
@@ -15,9 +15,9 @@ The cloud simulators are being retired for several reasons:
 
 ### Simulators have limitations
 
-Simulators have their uses, but they are too limited to use for research or experimentation:
+Simulators can be useful, but they are too limited to use for research or experimentation:
 
-- Simulators are valuable for understanding small-scale quantum systems, but their usefulness maxes out at around 50 qubits, even with access to high-performance supercomputers. This ceiling is a result of the exponential growth in computational resources required to simulate larger quantum systems (review [Massively parallel quantum computer simulator, eleven years later](https://arxiv.org/abs/1805.04708) for the full explanation).  Exploring quantum systems of 100 qubits and more requires hardware.
+- Simulators are valuable for understanding small-scale quantum systems, but their usefulness maxes out at around 50 qubits, even with access to high-performance supercomputers. This ceiling comes from the exponential growth in computational resources required to simulate larger quantum systems (review [Massively parallel quantum computer simulator, eleven years later](https://arxiv.org/abs/1805.04708) for the full explanation).  Exploring quantum systems of 100 qubits and more requires hardware.
 
 - While some simulators offer noise models, it is a very hard problem to capture the entire dynamics of a real QPU. Quantum hardware offers the potential for researchers to confront the challenges inherent in quantum systems, such as noise, errors, and decoherence in a realistic testing environment.
 
@@ -27,7 +27,7 @@ Interacting with quantum hardware grows skills and experience unattainable by on
 
 - Direct interaction with quantum hardware builds skills because you must implement or use error mitigation techniques, such as error correction and suppression, for reliable computation.
 
-- Hands-on experience with quantum hardware develops a deeper understanding of quantum phenomena and tailor algorithms to the characteristics of quantum processors.
+- Hands-on experience with quantum hardware develops a deeper understanding of quantum phenomena and how to tailor algorithms to the characteristics of quantum processors.
 
 - Engaging with quantum hardware results in practical insights into the challenges and opportunities of quantum computing, enhancing developers' ability to drive innovation in the field.
 
@@ -50,7 +50,7 @@ Depending on your needs, there are several replacements for cloud simulators.
 
 ### Qiskit Runtime
  
-If you currently use cloud simulators in Qiskit Runtime, for example, by specifying `ibmq_qasm_simulator` as the backend, you can migrate to using "local testing mode" instead. 
+If you currently use cloud simulators in Qiskit Runtime, for example, by specifying `ibmq_qasm_simulator` as the backend, you can use "local testing mode" instead. 
 
 To use local testing mode, specify one of the fake backends in ``qiskit_ibm_runtime.fake_provider`` or specify a Qiskit Aer backend when instantiating a primitive or a session.  For details, see the [fake_provider API reference.](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.fake_provider)
 
@@ -92,3 +92,6 @@ with Session(service=service, backend=aer_sim) as session:
 ### Qiskit Aer
 
 If you currently use Qiskit (and not Qiskit Runtime), you can use the existing Qiskit Aer primitives.  See [exact and noisy simulation with Qiskit Aer primitives](../../verify/simulate-with-qiskit-aer) for details. 
+
+<Admonition>
+Qiskit Aer primitives do not support the V2 interface.  To use V2 primitives with Aer simulators, use local testing mode in Qiskit Runtime to specify `AerSimulator()`.
