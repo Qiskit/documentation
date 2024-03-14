@@ -28,7 +28,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set PREVIEW_TAG
-        run: echo "PREVIEW_TAG=pr-${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+        run: |
+          if "${{ inputs.env_name == 'Preview' }}" ; then
+            echo "PREVIEW_TAG=pr-${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+          else
+            echo "PREVIEW_TAG=`node -p "'${{ inputs.env_name }}'.toLowerCase()"`" >> $GITHUB_ENV
+          fi
       - name: Set APP_NAME and DOCKER_IMAGE_TAG
         run: |
           echo "APP_NAME=qiskit-docs-preview-${{ env.PREVIEW_TAG }}" >> $GITHUB_ENV
