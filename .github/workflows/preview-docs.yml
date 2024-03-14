@@ -47,7 +47,7 @@ jobs:
         run: |
           echo "PREVIEW_TAG=pr-${{ github.event.pull_request.number }}" >> $GITHUB_ENV
           echo "APP_NAME=qiskit-docs-preview-${{ env.PREVIEW_TAG }}" >> $GITHUB_ENV
-          echo "DOCKER_IMAGE_TAG=icr.io/community-digital/$qiskit-docs-preview:${{ env.PREVIEW_TAG }}" >> $GITHUB_ENV
+          echo "DOCKER_IMAGE_TAG=icr.io/community-digital/qiskit-docs-preview:${{ env.PREVIEW_TAG }}" >> $GITHUB_ENV
       - name: Install IBM Cloud CLI
         run: |
           curl -o IBM_Cloud_CLI_2.20.0_amd64.tar.gz -L https://download.clis.cloud.ibm.com/ibm-cloud-cli/2.20.0/IBM_Cloud_CLI_2.20.0_amd64.tar.gz
