@@ -83,10 +83,10 @@ This discrepancy is legacy behavior of Qiskit, and [it will be resolved in a lat
 To pass information about a custom instruction to the OpenQASM 2 importer, use [the `qasm2.CustomInstruction` class](../api/qiskit/qasm2#qiskit.qasm2.CustomInstruction).
 This has four required pieces of information, in order:
 
-* the **name** of the gate, used in the OpenQASM 2 program
-* the **number of angle parameters** that the gate takes
-* the **number of qubits** that the gate acts on
-* the Python **constructor** class or function for the gate, which should take the gate parameters (but not qubits) as individual arguments
+* The **name** of the gate, used in the OpenQASM 2 program
+* The **number of angle parameters** that the gate takes
+* The **number of qubits** that the gate acts on
+* The Python **constructor** class or function for the gate, which takes the gate parameters (but not qubits) as individual arguments
 
 If the importer encounters a `gate` definition that matches a given custom instruction, it will use that custom information to reconstruct the gate object.
 If a `gate` statement is encountered that matches the `name` of a custom instruction, but does not match both the number of parameters and the number of qubits, the importer will raise a [`QASM2ParseError`](../api/qiskit/qasm2#qasm2parseerror), to indicate the mismatch between the supplied information and program.
