@@ -91,7 +91,7 @@ jobs:
           ibmcloud ce app ${{ steps.ce_command_choice.outputs.command }} \
             --name "${{ env.APP_NAME }}" \
             --image "${{ env.DOCKER_IMAGE_TAG }}" \
-            --registry-secret code_engine_registry_secret \
+            --registry-secret "ibm-container-registry" \
             --port 3000 \
             --cpu 0.25 \
             --memory 0.5G \
