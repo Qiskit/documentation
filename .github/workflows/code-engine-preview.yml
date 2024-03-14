@@ -19,7 +19,11 @@ on:
         default: "Preview"
         required: true
         type: string
-
+    secrets:
+      ibmcloud_account:
+        required: true
+      ibmcloud_api_key:
+        required: true
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -49,7 +53,7 @@ jobs:
           ibmcloud plugin install -f container-registry
       - name: Authenticate with IBM Cloud CLI
         run: |
-          ibmcloud login -g "Quantum Community" -r "us-south" -c "${{ secrets.IBMCLOUD_ACCOUNT }}" --apikey "${{ secrets.IBMCLOUD_API_KEY }}"
+          ibmcloud login -g "Quantum Community" -r "us-south" -c "${{ secrets.ibmcloud_account }}" --apikey "${{ secrets.ibmcloud_api_key }}"
       - name: Remove previous Docker image (if exists)
         run: |
           ibmcloud cr region-set global
@@ -63,7 +67,7 @@ jobs:
         with:
           registry: icr.io
           username: iamapikey
-          password: ${{ secrets.IBMCLOUD_API_KEY }}
+          password: ${{ secrets.ibmcloud_api_key }}
       - name: Build and push to IBM registry
         uses: docker/build-push-action@v3
         with:
