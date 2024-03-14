@@ -73,7 +73,7 @@ You can also use this mechanism to treat additional gate names as "built-in", th
 If you specify which gate classes to use for `gate` statements outside of `"qelib1.inc"`, the resulting circuit will typically be more efficient to work with.
 
 <Admonition type="warning">
-As of Qiskit SDK 1.0, Qiskit's OpenQASM 2 *exporter* (see [Export a Qiskit circuit to OpenQASM 2](#export)) still behaves as if `"qelib1.inc"` has more gates than it really does.
+As of Qiskit SDK 1.0, Qiskit's OpenQASM 2 *exporter* (see [Export a Qiskit circuit to OpenQASM 2](#qasm2-export)) still behaves as if `"qelib1.inc"` has more gates than it really does.
 This means that the default settings of the importer might not be able to import a program exported by our importer.
 See [the specific example on working with the legacy exporter](#qasm2-import-legacy) to resolve this problem.
 
@@ -96,7 +96,7 @@ If the importer does encounter an explicit `gate` definition for a built-in cust
 As before, if an explicit definition of the same name is not compatible with the provided custom instruction, a [`QASM2ParseError`](../api/qiskit/qasm2#qasm2parseerror) will be raised.
 This is useful for compatibility with older OpenQASM 2 exporters, and with certain other quantum platforms that treat the "basis gates" of their hardware as built-in instructions.
 
-Qiskit provides a data attribute for working with OpenQASM 2 programs produced by legacy versions of [Qiskit's OpenQASM 2 exporting capabilities](#export).
+Qiskit provides a data attribute for working with OpenQASM 2 programs produced by legacy versions of [Qiskit's OpenQASM 2 exporting capabilities](#qasm2-export).
 This is [`qasm2.LEGACY_CUSTOM_INSTRUCTIONS`](../api/qiskit/qasm2#legacy-compatibility), which can be given as the `custom_instructions` argument to [`qasm2.load()`](../api/qiskit/qasm2#load) and [`qasm2.loads()`](../api/qiskit/qasm2#loads).
 
 
@@ -264,7 +264,7 @@ It allows trailing commas in parameter lists; unnecessary (empty-statement) semi
 However, you can use the "letter-of-the-spec" mode with `strict=True`.
 
 
-<span id="export"></span>
+<span id="qasm2-export"></span>
 ## Export a Qiskit circuit to OpenQASM 2
 
 Qiskit can also export a [`QuantumCircuit`](../api/qiskit/qiskit.circuit.QuantumCircuit) to OpenQASM 2.
