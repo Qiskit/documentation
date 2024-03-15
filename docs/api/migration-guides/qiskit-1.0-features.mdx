@@ -447,15 +447,15 @@ sampler_v2 = StatevectorSampler()
     result = sampler_v2.run([circuit]).result()
     # Access result data for pub 0
     data_pub = result[0].data
-    # Access bitstring for the classical register "meas"
-    bitstring = data_pub.meas.get_bitstring()
-    print(f"The bitstring shape is: {bitstring.shape}")
+    # Access bitstrings for the classical register "meas"
+    bitstrings = data_pub.meas.get_bitstrings()
+    print(f"The number of bitstrings is: len(bitstrings)")
     # Get counts for the classical register "meas"
     counts = data_pub.meas.get_counts()
     print(f"The counts are: {counts}")
     ```
     ```text
-    The bitstring shape is: (1024, 1)
+    The number of bitstrings is: 1024
     The counts are: {'00': 523, '11': 501}
     ```
 
