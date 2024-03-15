@@ -26,16 +26,45 @@ service = QiskitRuntimeService(channel="ibm_cloud", channel_strategy="q-ctrl")
 
 The `optimization_level` setting specifies how much optimization to perform on the circuits. Higher levels generate more optimized circuits, at the expense of longer compile times.
 
-<Admonition>
-  In primitive version 1, optimization levels 2 and 3 behave identically to level 1.  Estimator V2 does not accept levels higher than 1.
-</Admonition>
+### V2 primitives optmization level behavior
 
+Estimator V2 does not accept levels higher than 1 and Sampler V2 does not accept `optimization_level`.
 
 <Table>
   <thead>
     <Tr>
       <Th>Optimization Level</Th>
-      <Th>Estimator & Sampler (V1)</Th>
+      <Th>Estimator V2</Th>
+    </Tr>
+  </thead>
+  <tbody>
+    <Tr>
+      <Td>0</Td>
+      <Td>
+        No optimization: typically used for hardware characterization or debugging
+      </Td>
+    </Tr>
+    <Tr>
+      <Td>1</Td>
+      <Td>
+        Light optimization:
+
+        -   Single-qubit gate optimization
+        -   Two-qubit gate optimization
+      </Td>
+    </Tr>
+  </tbody>
+</Table>
+
+### V1 primitives optimization level behavior
+
+Optimization levels 2 and 3 behave identically to level 1.
+
+<Table>
+  <thead>
+    <Tr>
+      <Th>Optimization Level</Th>
+      <Th>Estimator & Sampler</Th>
     </Tr>
   </thead>
   <tbody>
