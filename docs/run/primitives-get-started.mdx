@@ -262,7 +262,7 @@ fake_manila = FakeManilaV2()
 pm = generate_preset_pass_manager(backend=fake_manila, optimization_level=1)
 isa_qc = pm.run(qc)
 sampler = Sampler(backend=fake_manila)
-result = sampler.run([(isa_qc)]).result()
+result = sampler.run(isa_qc).result()
 
 # Run the sampler job locally using AerSimulator.
 # Session syntax is supported but ignored because simulators don't support sessions.

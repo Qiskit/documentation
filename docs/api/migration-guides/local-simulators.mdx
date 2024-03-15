@@ -25,7 +25,7 @@ Simulators can be useful, but they are too limited to use for research or experi
 
 Interacting with quantum hardware grows skills and experience unattainable by only using simulators: 
 
-- Direct interaction with quantum hardware builds skills because you must implement or use error mitigation techniques, such as error correction and suppression, for reliable computation.
+- Direct interaction with quantum hardware builds skills because you must implement or use error mitigation or suppression techniques, for reliable computation.
 
 - Hands-on experience with quantum hardware develops a deeper understanding of quantum phenomena and how to tailor algorithms to the characteristics of quantum processors.
 
@@ -52,7 +52,7 @@ Depending on your needs, there are several replacements for cloud simulators.
  
 If you currently use cloud simulators in Qiskit Runtime, for example, by specifying `ibmq_qasm_simulator` as the backend, you can use "local testing mode" instead. 
 
-To use local testing mode, specify one of the fake backends in ``qiskit_ibm_runtime.fake_provider`` or specify a Qiskit Aer backend when instantiating a primitive or a session.  For details, see the [fake_provider API reference.](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.fake_provider)
+To use local testing mode, specify one of the fake backends in ``qiskit_ibm_runtime.fake_provider`` or specify a Qiskit Aer backend when instantiating a primitive or a session.  For details on fake backends, see the [fake_provider API reference.](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.fake_provider)
 
 Example:
 
@@ -83,10 +83,9 @@ result = sampler.run([(isa_qc)]).result()
 aer_sim = AerSimulator()
 pm = generate_preset_pass_manager(backend=aer_sim, optimization_level=1)
 isa_qc = pm.run(qc)
-service = QiskitRuntimeService()
-with Session(service=service, backend=aer_sim) as session:
+with Session(backend=aer_sim) as session:
     sampler = Sampler(session=session)
-    result = sampler.run([(isa_qc)]).result()
+    result = sampler.run(isa_qc).result()
 ```        
 
 ### Qiskit Aer
