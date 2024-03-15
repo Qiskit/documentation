@@ -26,25 +26,15 @@ service = QiskitRuntimeService(channel="ibm_cloud", channel_strategy="q-ctrl")
 
 The `optimization_level` setting specifies how much optimization to perform on the circuits. Higher levels generate more optimized circuits, at the expense of longer compile times.
 
-<Admonition type="note">
-  If using an IBM Cloud&reg; Qiskit Runtime service instance with Q-CTRL performance management enabled, there is no need to specify runtime optimization or resilience levels, as the strategy includes an automatic preset.
-  
-  Q-CTRL defaults to `optimization_level=3` and `resilience_level=1`.
-  Setting `optimization_level` or `resilience_level` equal to 0 will result in an
-  execution error. Levels 1, 2, and 3 are permitted but will not impact performance.
-  Setting other options will likewise not impact performance, and it may result in a
-  runtime warning. For more information visit the [Q-CTRL documentation](https://docs.q-ctrl.com/q-ctrl-embedded).
+<Admonition>
+  In primitive version 1, optimization levels 2 and 3 behave identically to level 1.  Estimator V2 does not accept levels higher than 1.
 </Admonition>
 
-### V2 primitives optmization level behavior
-
-Estimator V2 does not accept levels higher than 1 and Sampler V2 does not accept `optimization_level`.
-
 <Table>
   <thead>
     <Tr>
       <Th>Optimization Level</Th>
-      <Th>Estimator V2</Th>
+      <Th>Estimator & Sampler (V1)</Th>
     </Tr>
   </thead>
   <tbody>
@@ -52,40 +42,6 @@ Estimator V2 does not accept levels higher than 1 and Sampler V2 does not accept
       <Td>0</Td>
       <Td>
         No optimization: typically used for hardware characterization or debugging
-      </Td>
-    </Tr>
-    <Tr>
-      <Td>1</Td>
-      <Td>
-        Light optimization:
-
-        -   Single-qubit gate optimization
-        -   Two-qubit gate optimization
-      </Td>
-    </Tr>
-  </tbody>
-</Table>
-
-### V1 primitives optimization level behavior
-
-Optimization levels 2 and 3 behave identically to level 1.
-
-<Table>
-  <thead>
-    <Tr>
-      <Th>Optimization Level</Th>
-      <Th>Estimator & Sampler</Th>
-    </Tr>
-  </thead>
-  <tbody>
-    <Tr>
-      <Td>0</Td>
-      <Td>
-        No optimization: typically used for hardware characterization or debugging
-
-        - Basis translation
-        - Layout (as specified)
-        - Routing (stochastic swaps)
       </Td>
     </Tr>
     <Tr>
@@ -95,12 +51,21 @@ Optimization levels 2 and 3 behave identically to level 1.
 
         -   Single-qubit gate optimization
         -   Two-qubit gate optimization
-        -   Error suppression: dynamical decoupling
+        -   Error suppression: dynamical decoupling (V1 primitives only.  For V2 primitives, you can enable it by using the `dynamical_decoupling` option.)
       </Td>
     </Tr>
   </tbody>
 </Table>
 
+<Admonition type="note">
+  If using an IBM Cloud&reg; Qiskit Runtime service instance with Q-CTRL performance management enabled, there is no need to specify runtime optimization or resilience levels, as the strategy includes an automatic preset.
+  
+  Q-CTRL defaults to `optimization_level=3` and `resilience_level=1`.
+  Setting `optimization_level` or `resilience_level` equal to 0 will result in an
+  execution error. Levels 1, 2, and 3 are permitted but will not impact performance.
+  Setting other options will likewise not impact performance, and it may result in a
+  runtime warning. For more information visit the [Q-CTRL documentation](https://docs.q-ctrl.com/q-ctrl-embedded).
+</Admonition>
 
 ### Example: configure Estimator with optimization levels
 
