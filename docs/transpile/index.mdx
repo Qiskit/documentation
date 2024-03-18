@@ -15,7 +15,7 @@ Find more information about the pass manager stages in the [Transpiler stages](t
 
 
 ### Instruction Set Architecture
-In addition to reducing the depth and complexity of quantum circuits, the transpiler is designed to transform the instructions contained in a given `QuantumCircuit` to obey the **Instruction Set Architecture** (**ISA**) of a particular backend.  Circuits obeying the ISA will consist only of gates which can be executed on the target hardware (i.e. the target's basis gates) and will only contain two-qubit gates according to the constraints specified by the connectivity of the hardware (i.e. the target's coupling map).  Circuits which follow the ISA of a particular backend is also a requirement when submitting jobs to one of IBM Quantum's backends through Qiskit IBM Runtime.
+In addition to reducing the depth and complexity of quantum circuits, the transpiler is designed to transform the instructions contained in a given `QuantumCircuit` to obey the **Instruction Set Architecture** (**ISA**) of a particular backend.  Circuits obeying the ISA consist only of gates that can be run on the target hardware (the target's basis gates) and contain only two-qubit gates, according to the constraints specified by the connectivity of the hardware (the target's coupling map).  When using Qiskit Runtime to submit a job to an IBM Quantum backend, the circuits must adhere to the backend's ISA. 
 
 
 <Admonition type="caution">
