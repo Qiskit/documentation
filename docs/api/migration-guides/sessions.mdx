@@ -8,11 +8,15 @@ description: Learn about the changes to execution modes (sessions, batch, and si
 
 # Execution mode changes
 
-Jobs can be run as single jobs, sessions, or in a batch.
+Jobs can be run as single jobs, sessions, or in a batch: 
+
+- Use **sessions** for iterative workloads.
+- Use **batch mode** to submit multiple primitive jobs simultaneously.
+ 
 
 ## Sessions
 
-Sessions are designed for iterative workloads to avoid queueing delays between each iteration. When running a session, you have near exclusive access to the backend.  With this release, sessions are now thread safe. That is, you can run multiple workloads within a session. By default, all sessions run in this dedicated mode. 
+Sessions are designed for iterative workloads to avoid queueing delays between each iteration. By default, all sessions now run in *dedicated* mode, so that when running a session, you have near exclusive access to the backend.  Additionaly, sessions are now thread safe. That is, you can run multiple workloads within a session. 
 
 ### Example: Run two VQE algorithms in a session by using threading
 
@@ -32,7 +36,7 @@ with Session(backend=backend), ThreadPoolExecutor() as executor:
 
 ### Extended sessions 
 
-Prior to this release, sessions were terminated after the active window, as shown in the following image.
+Before this release, sessions were terminated after the active window, as shown in the following image.
 
 ![This image shows four jobs.  Between each is the interactive TTL (time to live).  The active window starts when the first job starts and ends after the last job is completed. After the final job completes, the active window ends and the session terminates.](/images/api/qiskit-ibm-runtime/SessionTTL.png 'Figure 1: Session behavior prior to extended sessions')
 
