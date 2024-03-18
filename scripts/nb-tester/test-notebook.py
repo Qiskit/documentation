@@ -40,10 +40,12 @@ NOTEBOOKS_THAT_SUBMIT_JOBS = [
 def matches(path: Path, glob_list: list[str]) -> bool:
     return any(path.match(glob) for glob in glob_list)
 
-def filter_paths(paths: list[Path], submit_jobs: bool) -> Iterator[Path]:
+def filter_paths(paths: list[Path], submit_jobs: bool, only_submit_jobs: bool) -> Iterator[Path]:
     """
     Filter out any paths we don't want to run, printing messages.
     """
+    if only_submit_jobs:
+        submit_jobs = True
     for path in paths:
         if path.suffix != ".ipynb":
             print(f"ℹ️ Skipping {path}; file is not `.ipynb` format.")
@@ -59,6 +61,12 @@ def filter_paths(paths: list[Path], submit_jobs: bool) -> Iterator[Path]:
         if not submit_jobs and matches(path, NOTEBOOKS_THAT_SUBMIT_JOBS):
             print(
                 f"ℹ️ Skipping {path} as it submits jobs; use the --submit-jobs flag to run it."
+            )
+            continue
+
+        if only_submit_jobs and not matches(path, NOTEBOOKS_THAT_SUBMIT_JOBS):
+            print(
+                f"ℹ️ Skipping {path} as it does not submit jobs and the --only-submit-jobs flag is set."
             )
             continue
 
@@ -236,14 +244,18 @@ def create_argument_parser() -> argparse.ArgumentParser:
             "quantum resources! Only use this argument occasionally and intentionally." 
         ),
     )
+    parser.add_argument(
+        "--only-submit-jobs",
+        action="store_true",
+        help="Same as --submit-jobs, but also skips notebooks that do not submit jobs to IBM Quantum",
+    )
     return parser
 
 
 if __name__ == "__main__":
     args = create_argument_parser().parse_args()
-
     paths = map(Path, args.filenames or find_notebooks())
-    filtered_paths = filter_paths(paths, submit_jobs=args.submit_jobs)
+    filtered_paths = filter_paths(paths, submit_jobs=args.submit_jobs, only_submit_jobs=args.only_submit_jobs)
 
     # Execute notebooks
     start_time = datetime.now()
