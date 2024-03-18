@@ -165,15 +165,13 @@ def _execute_notebook(filepath: Path, options: ExecuteOptions) -> nbformat.Noteb
     return nb
 
 
-def find_notebooks(*, submit_jobs: bool = False) -> list[Path]:
+def find_notebooks() -> list[Path]:
     """
     Get paths to all notebooks in NOTEBOOKS_GLOB that are not excluded by
     NOTEBOOKS_EXCLUDE
     """
     all_notebooks = Path(".").rglob(NOTEBOOKS_GLOB)
     excluded_notebooks = NOTEBOOKS_EXCLUDE
-    if not submit_jobs:
-        excluded_notebooks += NOTEBOOKS_THAT_SUBMIT_JOBS
     return [
         path
         for path in all_notebooks
@@ -244,7 +242,7 @@ def create_argument_parser() -> argparse.ArgumentParser:
 if __name__ == "__main__":
     args = create_argument_parser().parse_args()
 
-    paths = map(Path, args.filenames or find_notebooks(submit_jobs=args.submit_jobs))
+    paths = map(Path, args.filenames or find_notebooks())
     filtered_paths = filter_paths(paths, submit_jobs=args.submit_jobs)
 
     # Execute notebooks
