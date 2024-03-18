@@ -9,7 +9,7 @@ description: Practical examples of using primitives in Qiskit Runtime.
 The examples in this section illustrate some common ways to use primitives. Before running these examples, follow the instructions in [Install and set up.](../start/install)
 
 <Admonition type="caution" title="Important">
-To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](../transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. Users can still request that the primitives do no optimization of input circuits by specifying `optimization_level=0`.
+To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](../transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all primitives except Sampler V2 still optimize the input circuits. To bypass all optimization, set `optimization_level=0`.
 
 *Exception*: When you initialize the Qiskit Runtime Service with the Q-CTRL channel strategy (example below), abstract circuits are still supported.
 
@@ -33,7 +33,7 @@ Use Estimator to determine the expectation value of a single circuit-observable 
 
 
 <Tabs>
-  <TabItem value="EstimatorV2" label="V2 Estimator">
+  <TabItem value="EstimatorV2" label="Estimator V2">
 ```python 
 import numpy as np
 from qiskit.circuit.library import IQP
@@ -101,7 +101,7 @@ print(f" > Metadata: {result.metadata}")
 Use Estimator to determine the expectation values of multiple circuit-observable pairs.
 
 <Tabs>
-  <TabItem value="EstimatorV2" label="V2 Estimator">
+  <TabItem value="EstimatorV2" label="Estimator V2">
 ```python
 import numpy as np
 
@@ -187,7 +187,7 @@ print(f" > Expectation values: {result.values}")
 Use Estimator to run three experiments in a single job, leveraging parameter values to increase circuit reusability.
 
 <Tabs>
-  <TabItem value="EstimatorV2" label="V2 Estimator">
+  <TabItem value="EstimatorV2" label="Estimator V2">
 ```python 
 import numpy as np
 
@@ -280,7 +280,7 @@ print(f" > Expectation values: {result.values}")
 Explore sessions and advanced options to optimize circuit performance on quantum systems.
 
 <Tabs>
-  <TabItem value="EstimatorV2" label="V2 Estimator">
+  <TabItem value="EstimatorV2" label="Estimator V2">
 ```python
 import numpy as np
 from qiskit.circuit.library import IQP
@@ -387,7 +387,7 @@ Use Sampler to return the measurement outcome as a quasi-probability distributio
    **counts** (V2) of a single circuit.  
 
 <Tabs>
-  <TabItem value="SamplerV2" label="V2 Sampler">
+  <TabItem value="SamplerV2" label="Sampler V2">
 ```python
 import numpy as np
 from qiskit.circuit.library import IQP
@@ -450,7 +450,7 @@ Use Sampler to return the measurement outcome as a quasi-probability distributio
    **counts** (V2) of multiple circuits in one job.
 
 <Tabs>
-  <TabItem value="SamplerV2" label="V2 Sampler">
+  <TabItem value="SamplerV2" label="Sampler V2">
 ```python
 import numpy as np
 from qiskit.circuit.library import IQP
@@ -521,7 +521,7 @@ Run several experiments in a single job, leveraging parameter values to increase
 
 
 <Tabs>
-  <TabItem value="SamplerV2" label="V2 Sampler">
+  <TabItem value="SamplerV2" label="Sampler V2">
 ```python 
 import numpy as np
 from qiskit.circuit.library import RealAmplitudes
@@ -599,7 +599,7 @@ print(f" > Quasi-probability distribution: {result.quasi_dists}")
 Explore sessions and advanced options to optimize circuit performance on quantum systems.
 
 <Tabs>
-  <TabItem value="SamplerV2" label="V2 Sampler">
+  <TabItem value="SamplerV2" label="Sampler V2">
 ```python
 import numpy as np
 from qiskit.circuit.library import IQP

@@ -9,7 +9,7 @@ description: Specify options when building with Qiskit runtime primitives
 When calling the primitives, you can pass in options by using an options class or a dictionary. In the options classes, commonly used options, such as `resilience_level`, are at the first level. Other options are grouped into different categories, such as `execution`. See all the available options in the [API reference](../api/qiskit-ibm-runtime/options).
 
 <Admonition type="caution" title="Important">
-To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](../transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. Users can still request that the primitives do no optimization of input circuits by specifying `optimization_level=0`.
+To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](../transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all primitives except Sampler V2 still optimize the input circuits. To bypass all optimization, set `optimization_level=0`.
 
 *Exception*: When you initialize the Qiskit Runtime Service with the Q-CTRL channel strategy (example below), abstract circuits are still supported.
 
@@ -212,7 +212,7 @@ See the Optimization level table in the
 [Runtime compilation topic](configure-runtime-compilation#set-the-optimization-level) for further details.
 
 <Tabs>
-  <TabItem value="PrimV2" label="V2 Estimator">
+  <TabItem value="PrimV2" label="Estimator V2">
    The optimization level option is a "first-level option".  Sampler V2 does not currently support `optimization_level`.
 
 ```python
@@ -270,8 +270,8 @@ algorithm.  These methods can be set through the `resilience_level` option.  For
 [Configure error mitigation topic](configure-error-mitigation).
 
 <Tabs>
-  <TabItem value="PrimV2" label="V2 Estimator">
-With V2 Estimator, you can set resilience levels 0-2 and you can also turn on and off various error mitigation settings for fine tuning. 
+  <TabItem value="PrimV2" label="Estimator V2">
+With Estimator V2, you can set resilience levels 0-2 and you can also turn on and off various error mitigation settings for fine tuning. 
 
 ```python
 estimator = Estimator(backend=backend)
