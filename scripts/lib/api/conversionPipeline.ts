@@ -163,8 +163,8 @@ async function writeMarkdownResults(
   results: HtmlToMdResultWithUrl[],
 ): Promise<void> {
   for (const result of results) {
-    let path = `${docsBaseFolder}${result.url}.md`;
-    if (path.endsWith("release-notes.md")) {
+    let path = `${docsBaseFolder}${result.url}.mdx`;
+    if (path.endsWith("release-notes.mdx")) {
       const shouldWriteResult = await handleReleaseNotesFile(result, pkg);
       if (!shouldWriteResult) continue;
     }
@@ -174,7 +174,7 @@ async function writeMarkdownResults(
 }
 
 /**
- * Determine what to do with release-notes.md, such as simply ignoring it.
+ * Determine what to do with release-notes.mdx, such as simply ignoring it.
  *
  * @returns true if the release notes file should be written.
  */
@@ -229,7 +229,7 @@ async function maybeUpdateReleaseNotesFolder(
   await updateHistoricalTocFiles(pkg);
   console.log("Generating release-notes/index");
   const indexMarkdown = generateReleaseNotesIndex(pkg);
-  await writeFile(`${markdownPath}/release-notes/index.md`, indexMarkdown);
+  await writeFile(`${markdownPath}/release-notes/index.mdx`, indexMarkdown);
 }
 
 async function writeTocFile(

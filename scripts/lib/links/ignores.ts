@@ -78,13 +78,13 @@ const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = {};
 
 const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {
   // Qiskit
-  "docs/api/qiskit/release-notes/1.0.md": [
+  "docs/api/qiskit/release-notes/1.0.mdx": [
     "/api/qiskit/utils#qiskit.utils.optionals.HAS_SYMENGINE",
   ],
-  "docs/api/qiskit/qpy.md": _QPY_IGNORES,
-  "docs/api/qiskit/dev/qpy.md": _QPY_IGNORES,
+  "docs/api/qiskit/qpy.mdx": _QPY_IGNORES,
+  "docs/api/qiskit/dev/qpy.mdx": _QPY_IGNORES,
   // Runtime
-  "docs/api/qiskit-ibm-runtime/release-notes.md": [
+  "docs/api/qiskit-ibm-runtime/release-notes.mdx": [
     "qiskit_ibm_runtime.Sampler#run",
   ],
   // objects.inv
