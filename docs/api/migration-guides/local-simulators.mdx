@@ -46,18 +46,13 @@ Quantum simulators should be used to help develop and test programs before fine-
 
 ## Migrate to local simulators
 
-Depending on your needs, there are several replacements for cloud simulators. 
+To replace cloud simulators, you can now use local testing mode instead. Depending on your needs, there are several ways to use local testing mode. 
 
-### Qiskit Runtime
+### Fake backends
  
-If you currently use cloud simulators in Qiskit Runtime, for example, by specifying `ibmq_qasm_simulator` as the backend, you can use "local testing mode" instead. 
-
 To use local testing mode, specify one of the fake backends in ``qiskit_ibm_runtime.fake_provider`` or specify a Qiskit Aer backend when instantiating a primitive or a session.  For details on fake backends, see the [fake_provider API reference.](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.fake_provider)
 
-Example:
-
 ```python
-from qiskit_aer import AerSimulator
 from qiskit.circuit.library import RealAmplitudes
 from qiskit.circuit import QuantumCircuit, QuantumRegister, ClassicalRegister
 from qiskit.quantum_info import SparsePauliOp
@@ -77,6 +72,27 @@ pm = generate_preset_pass_manager(backend=fake_manila, optimization_level=1)
 isa_qc = pm.run(qc)
 sampler = Sampler(backend=fake_manila)
 result = sampler.run([(isa_qc)]).result()
+```        
+
+### AerSimulator
+
+You can use local testing mode to use simulators from [Qiskit Aer](../verify/simulate-with-qiskit-aer), which allow you to model noise.
+
+Example without noise:
+
+```python
+from qiskit_aer import AerSimulator
+from qiskit.circuit.library import RealAmplitudes
+from qiskit.circuit import QuantumCircuit, QuantumRegister, ClassicalRegister
+from qiskit.quantum_info import SparsePauliOp
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+from qiskit_ibm_runtime import Session, SamplerV2 as Sampler
+
+# Bell Circuit
+qc = QuantumCircuit(2)
+qc.h(0)
+qc.cx(0, 1)
+qc.measure_all()
 
 # Run the sampler job locally using AerSimulator.
 # Session syntax is supported but ignored because simulators don't support sessions.
@@ -86,12 +102,65 @@ isa_qc = pm.run(qc)
 with Session(backend=aer_sim) as session:
     sampler = Sampler(session=session)
     result = sampler.run(isa_qc).result()
-```        
+```
 
-### Qiskit Aer
+To simulate with noise, you specify a system (quantum hardware), Aer builds a noise model based on the calibration data from that system, then instantiates an Aer backend with that model.  If you prefer, you can [build a noise model](../verify/build-noise-models).
 
-If you currently use Qiskit (and not Qiskit Runtime), you can use the existing Qiskit Aer primitives.  See [exact and noisy simulation with Qiskit Aer primitives](../../verify/simulate-with-qiskit-aer) for details. 
+Example with noise: 
 
-<Admonition>
-Qiskit Aer primitives do not support the V2 primitive interface.  To use V2 primitives with Aer simulators, use local testing mode in Qiskit Runtime to specify `AerSimulator()`.
-</Admonition>
+```python
+from qiskit_aer import AerSimulator
+from qiskit.circuit.library import RealAmplitudes
+from qiskit.circuit import QuantumCircuit, QuantumRegister, ClassicalRegister
+from qiskit.quantum_info import SparsePauliOp
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+from qiskit_ibm_runtime import Session, SamplerV2 as Sampler
+
+# Bell Circuit
+qc = QuantumCircuit(2)
+qc.h(0)
+qc.cx(0, 1)
+qc.measure_all()
+
+service = QiskitRuntimeService()
+
+# Specify a system to use for the noise model
+real_backend = service.backend("ibm_brisbane")
+aer = AerSimulator.from_backend(real_backend)
+
+# Run the sampler job locally using AerSimulator.
+pm = generate_preset_pass_manager(backend=aer, optimization_level=1)
+isa_qc = pm.run(qc)
+sampler = Sampler(backend=aer)
+result = sampler.run([isa_qc]).result()
+```
+
+<Span id="clifford-sim"></Span>
+### Clifford simulation
+
+Because Clifford circuits can be simulated efficiently with verifiable results, Clifford simulation is a very useful tool. 
+
+Example:
+
+```python
+import numpy as np
+from qiskit.circuit.library import EfficientSU2
+
+n_qubits = 500  # <---- note this uses 500 qubits! 
+circuit = EfficientSU2(n_qubits)
+circuit.measure_all()
+ 
+rng = np.random.default_rng(1234)
+params = rng.choice(
+    [0, np.pi / 2, np.pi, 3 * np.pi / 2],
+    size=circuit.num_parameters,
+)
+
+# Tell Aer to use the stabilizer (clifford) simulation method
+aer_sim = AerSimulator(method="stabilizer")
+
+pm = generate_preset_pass_manager(backend=aer_sim, optimization_level=1)
+isa_qc = pm.run(qc)
+sampler = Sampler(backend=aer_sim)
+result = sampler.run([isa_qc]).result()
+```
