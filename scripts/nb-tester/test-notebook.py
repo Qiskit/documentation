@@ -37,6 +37,9 @@ NOTEBOOKS_THAT_SUBMIT_JOBS = [
 ]
 
 
+def matches(path: Path, glob_list: list[str]) -> bool:
+    return any(path.match(glob) for glob in glob_list)
+
 def filter_paths(paths: list[Path], submit_jobs: bool) -> Iterator[Path]:
     """
     Filter out any paths we don't want to run, printing messages.
@@ -46,17 +49,14 @@ def filter_paths(paths: list[Path], submit_jobs: bool) -> Iterator[Path]:
             print(f"ℹ️ Skipping {path}; file is not `.ipynb` format.")
             continue
 
-        if any(path.match(glob) for glob in NOTEBOOKS_EXCLUDE):
+        if matches(path, NOTEBOOKS_EXCLUDE):
             this_file = Path(__file__).resolve()
             print(
                 f"ℹ️ Skipping {path}; to run it, edit `NOTEBOOKS_EXCLUDE` in {this_file}."
             )
             continue
 
-        if (
-            not submit_jobs
-            and any(path.match(glob) for glob in NOTEBOOKS_THAT_SUBMIT_JOBS)
-        ):
+        if not submit_jobs and matches(path, NOTEBOOKS_THAT_SUBMIT_JOBS):
             print(
                 f"ℹ️ Skipping {path} as it submits jobs; use the --submit-jobs flag to run it."
             )
@@ -175,7 +175,7 @@ def find_notebooks() -> list[Path]:
     return [
         path
         for path in all_notebooks
-        if not any(path.match(glob) for glob in excluded_notebooks)
+        if not matches(path, excluded_notebooks)
     ]
 
 
