@@ -202,7 +202,7 @@ export class Pkg {
     }
 
     // Otherwise, we have to deal with Qiskit <0.45, when we had the qiskit-metapackage comprised of
-    // multiple packages. Refer to the version table in api/qiskit/release-notes/0.44.md.
+    // multiple packages. Refer to the version table in api/qiskit/release-notes/0.44.mdx.
     return (fileName) =>
       determineHistoricalQiskitGithubUrl(
         this.versionWithoutPatch,

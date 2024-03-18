@@ -87,9 +87,9 @@ async function copyApiDocsAndUpdateLinks(
   versionWithoutPatch: string,
 ) {
   console.log("Generating API docs");
-  const filePaths = await globby(`docs/api/${pkgName}/*.md`);
+  const filePaths = await globby(`docs/api/${pkgName}/*.mdx`);
   for (let filePath of filePaths) {
-    if (filePath.endsWith("release-notes.md")) {
+    if (filePath.endsWith("release-notes.mdx")) {
       continue;
     }
     updateLinksFile(
@@ -103,7 +103,7 @@ async function copyApiDocsAndUpdateLinks(
     );
   }
 
-  const releaseNotePath = `${getRoot()}/docs/api/${pkgName}/release-notes/${versionWithoutPatch}.md`;
+  const releaseNotePath = `${getRoot()}/docs/api/${pkgName}/release-notes/${versionWithoutPatch}.mdx`;
   if (await pathExists(releaseNotePath)) {
     updateLinksFile(
       pkgName,

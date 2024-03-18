@@ -62,7 +62,7 @@ export async function mergeClassMembers(
           .use(remarkGfm)
           .use(remarkMath)
           .use(() => {
-            return async (tree) => {
+            return async (tree: Root) => {
               for (const node of tree.children) {
                 await replaceMembersAfterTitle(
                   tree,
@@ -127,21 +127,18 @@ async function parseMarkdownIncreasingHeading(
   md: string,
   depthIncrease: number,
 ): Promise<Root> {
-  const root = await unified()
+  const pipeline = unified()
     .use(remarkParse)
     .use(remarkGfm)
     .use(remarkMath)
-    .use(remarkMdx)
-    .parse(md);
-  const changedTree = await unified()
-    .use(remarkMath)
-    .use(remarkGfm)
     .use(remarkMdx)
     .use(() => (root) => {
       visit(root, "heading", (node: any) => {
         node.depth = node.depth + depthIncrease;
       });
-    })
-    .run(root);
-  return changedTree as Root;
+    });
+
+  const root = pipeline.parse(md);
+  const changedTree = pipeline.run(root);
+  return changedTree;
 }
