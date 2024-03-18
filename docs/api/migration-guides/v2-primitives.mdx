@@ -1,6 +1,6 @@
 ---
 title: Migrate to the V2 primitives
-description: Migrate from using the original primitives (Estimator and Sampler) to using the updated V2 primitives (V2 Estimator and V2 Sampler)
+description: Migrate from using the original primitives (Estimator and Sampler) to using the updated V2 primitives (Estimator V2 and Sampler V2)
 
 ---
 
@@ -19,7 +19,7 @@ The new interface lets you specify a single circuit and multiple observables (if
 
 To reduce the total job execution time, V2 primitives only accept circuits and observables that use instructions supported by the target system (referred to as instruction set architecture (ISA) circuits and observables). V2 primitives do not perform layout, routing, and translation operations but continue to optimize the circuits if you specify `optimization_level>0`.  See the [transpilation documentation](../../transpile) for instructions to transform circuits.
 
-V2 Sampler is simplified to focus on its core task of sampling the output register from execution of quantum circuits. It returns the samples, whose type is defined by the program, without weights. The output data is also separated by the output register names defined by the program. This change enables future support for circuits with classical control flow.
+Sampler V2 is simplified to focus on its core task of sampling the output register from execution of quantum circuits. It returns the samples, whose type is defined by the program, without weights. The output data is also separated by the output register names defined by the program. This change enables future support for circuits with classical control flow.
 
 See the [EstimatorV2 API reference](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.EstimatorV2) and [SamplerV2 API reference](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.SamplerV2) for full details.
 
@@ -34,7 +34,7 @@ After the V1 primitives are no longer supported, `import <primitive>` will impo
 </Admonition>
 
 <Tabs>
-  <TabItem value="EstimatorV2" label="V2 Estimator">
+  <TabItem value="EstimatorV2" label="Estimator V2">
     ```python 
 from qiskit_ibm_runtime import EstimatorV2 as Estimator
 ```
@@ -48,7 +48,7 @@ from qiskit_ibm_runtime import Estimator
 </Tabs>
 
 <Tabs>
-  <TabItem value="SamplerV2" label="V2 Sampler">
+  <TabItem value="SamplerV2" label="Sampler V2">
     ```python 
 from qiskit_ibm_runtime import SamplerV2 as Sampler
 ```
@@ -68,25 +68,25 @@ from qiskit_ibm_runtime import Sampler
 
 Both `SamplerV2` and `EstimatorV2` take one or more *primitive unified blocs* (PUBs) as the input. Each PUB is a tuple that contains **one** circuit and the data broadcasted to that circuit, which can be multiple observables and parameters.  Each PUB returns a result.
 
-* V2 Sampler PUB format: (`<circuit>`, `<parameter values>`, `<shots>`), where `<parameter values>`and `<shots>` are optional.
-* V2 Estimator PUB format: (`<circuit>`, `<observables>`, `<parameter values>`, `<precision>`), where `<parameter values>`and `<precision>` are optional.
+* Sampler V2 PUB format: (`<circuit>`, `<parameter values>`, `<shots>`), where `<parameter values>`and `<shots>` are optional.
+* Estimator V2 PUB format: (`<circuit>`, `<observables>`, `<parameter values>`, `<precision>`), where `<parameter values>`and `<precision>` are optional.
     Numpy [broadcasting rules](https://numpy.org/doc/stable/user/basics.broadcasting.html) are used when combining observables and parameter values.
     
 Additionally, the following changes have been made:
 
-* V2 Estimator has gained a `precision` argument in the `run()` method that specifies the targeted precision of the expectation value estimates. 
-* V2 Sampler has the `shots` argument in its `run()` method. 
+* Estimator V2 has gained a `precision` argument in the `run()` method that specifies the targeted precision of the expectation value estimates. 
+* Sampler V2 has the `shots` argument in its `run()` method. 
 
 ##### Examples
 
-V2 Estimator example that uses precision in `run()`:
+Estimator V2 example that uses precision in `run()`:
 
 ```python
 # Estimate expectation values for two PUBs, both with 0.05 precision.
 estimator.run([(circuit1, obs_array1), (circuit2, obs_array_2)], precision=0.05)
 ```
 
-V2 Sampler example that uses shots in `run()`:
+Sampler V2 example that uses shots in `run()`:
 
 ```python
 # Sample two circuits at 128 shots each.
@@ -102,14 +102,14 @@ sampler.run([(circuit1, None, 123), (circuit2, None, 456)])
 
 The output is now in the [`PubResult`](/api/qiskit/qiskit.primitives.PubResult) format. A `PubResult` is the data and metadata resulting from a single PUB’s execution.
 
-* V2 Estimator continues to return expectation values.
-* The `data` portion of a V2 Estimator PubResult contains both expectation values and standard errors (`stds`). V1 returned variance in metadata.
-* V2 Sampler returns per-shot measurements in the form of **bitstrings**,
+* Estimator V2 continues to return expectation values.
+* The `data` portion of a Estimator V2 PubResult contains both expectation values and standard errors (`stds`). V1 returned variance in metadata.
+* Sampler V2 returns per-shot measurements in the form of **bitstrings**,
    instead of the quasi-probability distributions from the V1
    interface. The bitstrings show the measurement outcomes, preserving the shot
    order in which they were measured.  
-* V2 Sampler has convenience methods like `get_counts()` to help with migration.    
-* The V2 Sampler result objects organize data in terms of their **input circuits' classical register names**, for
+* Sampler V2 has convenience methods like `get_counts()` to help with migration.    
+* The Sampler V2 result objects organize data in terms of their **input circuits' classical register names**, for
    compatibility with dynamic circuits.  By default, the classical register name is `meas`, as shown in the following example.  When defining your circuit, if you create one or more classical registers with a non-default name, you would use that name to get those results. 
 
        ```python
@@ -248,7 +248,7 @@ See the [API reference](/api/qiskit-ibm-runtime/options) for the list of availab
 {/*Verified EstimatorV2. 2/23 */}
 
 <Tabs>
-  <TabItem value="EstimatorV2" label="V2 Estimator">
+  <TabItem value="EstimatorV2" label="Estimator V2">
     ```python
 from dataclasses import asdict
 from qiskit_ibm_runtime import QiskitRuntimeService
@@ -294,7 +294,7 @@ estimator.set_options(shots=4000, optimization_level=1)
 </Tabs>
 
 <Tabs>
-  <TabItem value="SamplerV2" label="V2 Sampler">
+  <TabItem value="SamplerV2" label="Sampler V2">
     ```python 
 from dataclasses import asdict
 from qiskit_ibm_runtime import QiskitRuntimeService
@@ -341,10 +341,10 @@ sampler.set_options(shots=2000, optimization_level=0)
 <span id="error-mit"></span>
 ### Error mitigation and suppression
 
-* Because V2 Sampler returns samples without postprocessing, it does not support resilience levels. 
-* V2 Sampler does not currently support `optimization_level`.
-* V2 Estimator does not support resilience level 3.  This is because resilience level 3 in V1 Estimator uses Probabilistic Error Cancellation (PEC), which is proven to give unbiased results at the cost of exponential processing time. Level 3 was removed to draw attention to that tradeoff. You can, however, still use PEC as the error mitigation method by specifying the `pec_mitigation` option.
-* V2 Estimator supports `resilience_level` 0-2, as described in the following table.  These options are more advanced than their V1 counterparts. You can also explicitly turn on / off individual error mitigation / suppression methods.
+* Because Sampler V2 returns samples without postprocessing, it does not support resilience levels. 
+* Sampler V2 does not currently support `optimization_level`.
+* Estimator V2 does not support resilience level 3.  This is because resilience level 3 in V1 Estimator uses Probabilistic Error Cancellation (PEC), which is proven to give unbiased results at the cost of exponential processing time. Level 3 was removed to draw attention to that tradeoff. You can, however, still use PEC as the error mitigation method by specifying the `pec_mitigation` option.
+* Estimator V2 supports `resilience_level` 0-2, as described in the following table.  These options are more advanced than their V1 counterparts. You can also explicitly turn on / off individual error mitigation / suppression methods.
 
     | Level 1                   | Level 2                   |
     |---------------------------|---------------------------|
@@ -390,14 +390,10 @@ options.resilience_level = 2
 
 
 <Tabs>
-  <TabItem value="SamplerV2" label="V2 Sampler">
+  <TabItem value="SamplerV2" label="Sampler V2">
 
     ```python
-from qiskit_ibm_runtime import QiskitRuntimeService
 from qiskit_ibm_runtime import SamplerV2 as Sampler
-
-service = QiskitRuntimeService()
-backend = service.least_busy(operational=True, simulator=False)
 
 sampler = Sampler(backend)
 # Turn on dynamical decoupling with sequence XpXm.
@@ -408,24 +404,6 @@ print(f">> dynamical decoupling sequence to use: {sampler.options.dynamical_deco
 ```    
   </TabItem>
 
-  <TabItem value="SamplerV1" label="Sampler (V1)">
-    ```python
-from qiskit_ibm_runtime import QiskitRuntimeService, Sampler, Options
-
-service = QiskitRuntimeService()
-backend = service.least_busy(operational=True, simulator=False)
-
-# Setting options during primitive initialization
-options = Options()
-# This uses auto complete.
-options.resilience_level = 2 
-sampler = Sampler(backend=backend, options=options)
-
-# Setting options after primitive initialization.
-# This does bulk update.
-sampler.set_options(shots=2000, optimization_level=0)
-  ```  
-  </TabItem>
 
   <TabItem value="SamplerV1" label="Sampler (V1)">
     ```python 
@@ -474,7 +452,7 @@ print(f"Job {job.job_id()} is still running: {job.status() is JobStatus.RUNNING}
   </TabItem>
 </Tabs>
 
-## Steps to migrate to V2 Estimator
+## Steps to migrate to Estimator V2
 
 1. Replace `from qiskit_ibm_runtime import Estimator` with `from qiskit_ibm_runtime import EstimatorV2 as Estimator`.
 2. Remove any `from qiskit_ibm_runtime import Options` statements, since the `Options` class is not used by V2 primitives. You can instead pass options as a dictionary when initializing the `Estimator` class (for example `estimator = Estimator(backend, options={“dynamical_decoupling”: {“enable”: True}})`), or set them after initialization:
@@ -490,7 +468,7 @@ print(f"Job {job.job_id()} is still running: {job.status() is JobStatus.RUNNING}
   2. You can optionally specify the precision you want for that specific PUB. 
 5. Update the estimator `run()` method to pass in the list of PUBs. For example, `run([(circuit1, observable1, parameter_set1)])`.
   You can optionally specify a `precision` here, which would apply to all PUBs.
-6. V2 Estimator job results are grouped by PUBs. You can see the expectation value and standard error for each PUB by indexing to it. For example:
+6. Estimator V2 job results are grouped by PUBs. You can see the expectation value and standard error for each PUB by indexing to it. For example:
   ```python
   pub_result = job.result()[0]
   print(f">>> Expectation values: {pub_result.data.evs}")
@@ -506,7 +484,7 @@ Use Estimator to determine the expectation value of a single circuit-observable 
 {/*Verified EstimatorV2. 2/23 */}
 
 <Tabs>
-  <TabItem value="EstimatorV2" label="V2 Estimator">
+  <TabItem value="EstimatorV2" label="Estimator V2">
     ```python 
 import numpy as np
 from qiskit.circuit.library import IQP
@@ -574,7 +552,7 @@ Use Estimator to determine the expectation values of multiple circuit-observable
 {/*Verified EstimatorV2. 2/23 */}
 
 <Tabs>
-  <TabItem value="EstimatorV2" label="V2 Estimator">
+  <TabItem value="EstimatorV2" label="Estimator V2">
 ```python
 service = QiskitRuntimeService()
 backend = service.least_busy(operational=True, simulator=False)
@@ -647,7 +625,7 @@ print(f" > Expectation values: {result.values}")
 Use Estimator to run multiple experiments in a single job, leveraging parameter values to increase circuit reusability. In the following example, notice that steps 1 and 2 are the same for V1 and V2. 
 
 <Tabs>
-  <TabItem value="EstimatorV2" label="V2 Estimator">
+  <TabItem value="EstimatorV2" label="Estimator V2">
     ```python 
 import numpy as np
 
@@ -762,7 +740,7 @@ Explore sessions and advanced options to optimize circuit performance on quantum
 {/*Verified EstimatorV2. 2/23 */}
 
 <Tabs>
-  <TabItem value="EstimatorV2" label="V2 Estimator">
+  <TabItem value="EstimatorV2" label="Estimator V2">
 ```python
 import numpy as np
 from qiskit.circuit.library import IQP
@@ -859,7 +837,7 @@ print(f" > Expectation values job 2: {another_result.values}")
   </TabItem>
 </Tabs>
 
-## Steps to migrate to V2 Sampler
+## Steps to migrate to Sampler V2
 
 1. Replace `from qiskit_ibm_runtime import Sampler` with `from qiskit_ibm_runtime import SamplerV2 as Sampler`.
 2. Remove any `from qiskit_ibm_runtime import Options` statements, since the `Options` class is not used by V2 primitives. You can instead pass options as a dictionary when initializing the `Sampler` class (for example `sampler = Sampler(backend, options={“default_shots”: 1024})`), or set them after initialization:
@@ -872,7 +850,7 @@ print(f" > Expectation values job 2: {another_result.values}")
    You can optionally specify the shots you want for that specific PUB. 
 5. Update the sampler `run()` method to pass in the list of PUBs. For example, `run([(circuit1, parameter_set1)])`.
   You can optionally specify `shots` here, which would apply to all PUBs.
-6. V2 Sampler job results are grouped by PUBs. You can see the output data for each PUB by indexing to it. While V2 Sampler returns unweighted samples, the result class has a convenience method to get counts instead. For example:
+6. Sampler V2 job results are grouped by PUBs. You can see the output data for each PUB by indexing to it. While Sampler V2 returns unweighted samples, the result class has a convenience method to get counts instead. For example:
   ```python
   pub_result = job.result()[0]
   print(f">>> Counts: {pub_result.data.meas.get_counts()}")
@@ -887,7 +865,7 @@ Use Sampler to determine the counts or quasi-probability distribution of a singl
 
 {/*Verified 2/28 */}
 <Tabs>
-  <TabItem value="SamplerV2" label="V2 Sampler">
+  <TabItem value="SamplerV2" label="Sampler V2">
 ```python
 import numpy as np
 from qiskit.circuit.library import IQP
@@ -947,7 +925,7 @@ Use Sampler to determine the counts or quasi-probability distributions of multip
 {/*Verified 2/28 */}
 
 <Tabs>
-  <TabItem value="SamplerV2" label="V2 Sampler">
+  <TabItem value="SamplerV2" label="Sampler V2">
 ```python
 import numpy as np
 from qiskit.circuit.library import IQP
@@ -967,11 +945,10 @@ for circuit in circuits:
     circuit.measure_all()
 
 pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
-isa_circuits = pm.run(circuits)    
-pubs = [(qc,) for qc in isa_circuits]
+isa_circuits = pm.run(circuits)
  
 sampler = Sampler(backend) 
-job = sampler.run(pubs)
+job = sampler.run(isa_circuits)
 result = job.result() 
 
 for idx, pub_result in enumerate(result):
@@ -1014,7 +991,7 @@ Run several experiments in a single job, leveraging parameter values to increase
 {/*Verified 2/28 */}
 
 <Tabs>
-  <TabItem value="SamplerV2" label="V2 Sampler">
+  <TabItem value="SamplerV2" label="Sampler V2">
 ```python 
 import numpy as np
 from qiskit.circuit.library import RealAmplitudes
@@ -1101,7 +1078,7 @@ Explore sessions and advanced options to optimize circuit performance on quantum
 {/*Verified 2/28 */}
 
 <Tabs>
-  <TabItem value="SamplerV2" label="V2 Sampler">
+  <TabItem value="SamplerV2" label="Sampler V2">
 ```python
 import numpy as np
 from qiskit.circuit.library import IQP

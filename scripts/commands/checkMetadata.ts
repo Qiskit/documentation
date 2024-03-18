@@ -88,7 +88,7 @@ const main = async (): Promise<void> => {
 };
 
 async function determineFiles(args: Arguments): Promise<[string[], string[]]> {
-  const mdGlobs = ["docs/**/*.{md,mdx}"];
+  const mdGlobs = ["docs/**/*.mdx"];
   const notebookGlobs = ["docs/**/*.ipynb"];
   if (!args.apis) {
     const apiIgnore =
@@ -114,7 +114,7 @@ function isApi(filePath: string): boolean {
 function handleErrors(mdErrors: string[], notebookErrors: string[]): void {
   if (mdErrors.length > 0) {
     console.error(`
-      Invalid markdown file metadata. Every .md and .mdx file should start with a metadata block like this:
+      Invalid markdown file metadata. Every .mdx file should start with a metadata block like this:
 
       ---
       title: Representing quantum computers
