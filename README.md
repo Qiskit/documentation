@@ -100,15 +100,15 @@ Contributors with write access to this repository can use live previews of the d
 
 To use live previews, push your branch to `upstream` rather than your fork. GitHub will leave a comment with the link to the site. Please prefix your branch name with your initials, e.g. `EA/fix-build-typo`, for good Git hygiene.
 
-The preview application's UI is currently out-of-date so it does not properly show certain navigation like historical API versions. Refer to [Preview the docs locally](#preview-the-docs-locally) for instructions on how to explicitly visit pages.
+The preview application does not have the top nav bar. Refer to [Preview the docs locally](#preview-the-docs-locally) for instructions on how to explicitly visit pages.
 
 ## Staging
 
-We also re-deploy the docs every time we merge into `main` at the site https://qiskit-docs-preview-staging.1799mxdls7qz.us-south.codeengine.appdomain.cloud.
+We re-deploy the docs every time we merge into `main` at the site https://qiskit-docs-preview-staging.1799mxdls7qz.us-south.codeengine.appdomain.cloud.
 
 This staging environment can be useful to see how the docs are rendering before we push it live to production.
 
-The staging application's UI is currently out-of-date so it does not properly show certain navigation like historical API versions. Refer to [Preview the docs locally](#preview-the-docs-locally) for instructions on how to explicitly visit pages.
+The staging application does not have the top nav bar. Refer to [Preview the docs locally](#preview-the-docs-locally) for instructions on how to explicitly visit pages.
 
 ## Execute notebooks
 

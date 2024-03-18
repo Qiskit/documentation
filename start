@@ -26,8 +26,10 @@ def translation_volume_mounts() -> Iterator[str]:
     Docker complains that the volume is already mounted when we mount the `/docs` folder. So, instead
     we need to be more specific to mount each language's folder.
     """
-    for folder in PWD.glob("translations/*"):
-        yield from ["-v", f"{folder}:/home/node/app/docs/{folder.name}"]
+    for path in PWD.glob("translations/*"):
+        if not path.is_dir():
+            continue
+        yield from ["-v", f"{path}:/home/node/app/docs/{path.name}"]
 
 
 def main() -> None:
