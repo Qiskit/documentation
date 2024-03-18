@@ -13,7 +13,7 @@
 name: Test notebooks that submit jobs
 on:
   schedule:
-    - cron: '0 0 * * 1' # At 00:00 on Monday
+    - cron: "0 0 * * 1" # At 00:00 on Monday
   workflow_dispatch:
 jobs:
   execute:
@@ -55,8 +55,7 @@ jobs:
           key: ${{ hashFiles('scripts/nb-tester/requirements.txt') }}
 
       - name: Execute notebooks
-        run:
-          tox -- --only-submit-jobs
+        run: tox -- --only-submit-jobs
 
   make_issue:
     name: Make issue on failure
