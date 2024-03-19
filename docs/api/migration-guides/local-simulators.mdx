@@ -57,7 +57,7 @@ from qiskit.circuit.library import RealAmplitudes
 from qiskit.circuit import QuantumCircuit, QuantumRegister, ClassicalRegister
 from qiskit.quantum_info import SparsePauliOp
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
-from qiskit_ibm_runtime import Session, SamplerV2 as Sampler
+from qiskit_ibm_runtime import SamplerV2 as Sampler
 from qiskit_ibm_runtime.fake_provider import FakeManilaV2
 
 # Bell Circuit
@@ -101,10 +101,10 @@ pm = generate_preset_pass_manager(backend=aer_sim, optimization_level=1)
 isa_qc = pm.run(qc)
 with Session(backend=aer_sim) as session:
     sampler = Sampler(session=session)
-    result = sampler.run(isa_qc).result()
+    result = sampler.run([(isa_qc)]).result()
 ```
 
-To simulate with noise, you specify a system (quantum hardware), Aer builds a noise model based on the calibration data from that system, then instantiates an Aer backend with that model.  If you prefer, you can [build a noise model](../verify/build-noise-models).
+To simulate with noise, specify a system (quantum hardware), then Aer builds a noise model based on the calibration data from that system, and instantiates an Aer backend with that model.  If you prefer, you can [build a noise model](../verify/build-noise-models).
 
 Example with noise: 
 
@@ -114,7 +114,7 @@ from qiskit.circuit.library import RealAmplitudes
 from qiskit.circuit import QuantumCircuit, QuantumRegister, ClassicalRegister
 from qiskit.quantum_info import SparsePauliOp
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
-from qiskit_ibm_runtime import Session, SamplerV2 as Sampler
+from qiskit_ibm_runtime import SamplerV2 as Sampler
 
 # Bell Circuit
 qc = QuantumCircuit(2)
@@ -145,6 +145,7 @@ Example:
 ```python
 import numpy as np
 from qiskit.circuit.library import EfficientSU2
+from qiskit_ibm_runtime import SamplerV2 as Sampler
 
 n_qubits = 500  # <---- note this uses 500 qubits! 
 circuit = EfficientSU2(n_qubits)
