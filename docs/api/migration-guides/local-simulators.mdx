@@ -1,6 +1,6 @@
 ---
 title: Migrate to local simulators
-description: Migrate from using the IBM Quantum cloud simulators (such as ibmq_qasm_simulator) to using local simulators
+description: Migrate from using the IBM Quantum cloud simulators (such as ibmq_qasm_simulator) to using local simulators.
 ---
 
 <span id="local-simulators"></span>
@@ -49,7 +49,7 @@ To replace cloud simulators, you can now use local testing mode instead. Dependi
 
 ### Fake backends
  
-To use local testing mode, specify one of the fake backends in ``qiskit_ibm_runtime.fake_provider`` or specify a Qiskit Aer backend when instantiating a primitive or a session.  For details on fake backends, see the [fake_provider API reference.](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.fake_provider)
+To use local testing mode, specify one of the fake backends in ``qiskit_ibm_runtime.fake_provider`` or specify a Qiskit Aer backend when instantiating a primitive or a session.  For details on fake backends, see the [fake_provider API reference.](/api/qiskit-ibm-runtime/fake_provider)
 
 ```python
 from qiskit.circuit.library import RealAmplitudes
@@ -75,7 +75,7 @@ result = sampler.run([(isa_qc)]).result()
 
 ### AerSimulator
 
-You can use local testing mode to use simulators from [Qiskit Aer](../verify/simulate-with-qiskit-aer), which allow you to model noise.
+You can use local testing mode to use simulators from [Qiskit Aer](/verify/simulate-with-qiskit-aer), which allow you to model noise.
 
 Example without noise:
 
@@ -103,7 +103,7 @@ with Session(backend=aer_sim) as session:
     result = sampler.run([(isa_qc)]).result()
 ```
 
-To simulate with noise, specify a system (quantum hardware) and submit it to Aer.  Aer builds a noise model based on the calibration data from that system, and instantiates an Aer backend with that model.  If you prefer, you can [build a noise model](../verify/build-noise-models).
+To simulate with noise, specify a system (quantum hardware) and submit it to Aer.  Aer builds a noise model based on the calibration data from that system, and instantiates an Aer backend with that model.  If you prefer, you can [build a noise model](/verify/build-noise-models).
 
 Example with noise: 
 
