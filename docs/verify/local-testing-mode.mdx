@@ -37,7 +37,11 @@ qc.measure_all()
 fake_manila = FakeManilaV2()
 pm = generate_preset_pass_manager(backend=fake_manila, optimization_level=1)
 isa_qc = pm.run(qc)
-sampler = Sampler(backend=fake_manila)
+
+# You can use a fixed seed to get fixed results. 
+options = {"simulator": {"seed_simulator": 42}}
+sampler = Sampler(backend=fake_manila, options=options)
+
 result = sampler.run([(isa_qc)]).result()
 ```        
 
@@ -60,7 +64,7 @@ qc.cx(0, 1)
 qc.measure_all()
 
 # Run the sampler job locally using AerSimulator.
-# Session syntax is supported but ignored because simulators don't support sessions.
+# Session syntax is supported but ignored because local mode doesn't support sessions.
 aer_sim = AerSimulator()
 pm = generate_preset_pass_manager(backend=aer_sim, optimization_level=1)
 isa_qc = pm.run(qc)
