@@ -8,19 +8,23 @@ description: Use local testing mode to simulate quantum hardware in Qiskit Runti
 
 Quantum simulators should be used to help develop and test programs before fine-tuning them and sending them to real quantum hardware. Local simulators can do this with good performance and efficiency.  Clifford circuits can be simulated very efficiently, and results can be verified. This is useful to give confidence in an experiment.
 
-To use local testing mode with Qiskit Runtime, specify one of the fake backends in ``qiskit_ibm_runtime.fake_provider`` or specify a Qiskit Aer backend when instantiating a primitive or a session.  For details, see the [fake_provider API reference.](/api/qiskit-ibm-runtime/fake_provider)
+Local testing mode is available with Qiskit Runtime 0.22.0 or later. To use local testing mode, specify one of the fake backends in ``qiskit_ibm_runtime.fake_provider`` or specify a Qiskit Aer backend when instantiating a primitive or a session.  For details, see the [fake_provider API reference.](/api/qiskit-ibm-runtime/fake_provider)
 
-If you currently use Qiskit (and not Qiskit Runtime), you can use the existing Qiskit Aer primitives for local testing.  See [exact and noisy simulation with Qiskit Aer primitives](../verify/simulate-with-qiskit-aer) for details. 
+- **Fake backends**: The [fake backends](/api/qiskit-ibm-runtime/fake_provider)  in ``qiskit_ibm_runtime.fake_provider`` mimic the behaviors of IBM Quantum&trade; systems by using system snapshots. The system snapshots contain important information about the quantum system, such as the coupling map, basis gates, and qubit properties, which are useful for testing the transpiler and performing noisy simulations of the system.
+- **Aer simulator**: Simulators from [Qiskit Aer](simulate-with-qiskit-aer) provide higher-performance simulation that can handle larger circuits and [custom noise models](building_noise_models.ipynb). It also supports Clifford simulation mode, which can efficiently simulate Clifford circuits with a large number of qubits.
 
-Example:
 
+
+{/* If you currently use Qiskit (and not Qiskit Runtime), you can use the existing Qiskit Aer primitives for local testing.  See [exact and noisy simulation with Qiskit Aer primitives](../verify/simulate-with-qiskit-aer) for details. */}
+
+## Fake backends example
+ 
 ```python
-from qiskit_aer import AerSimulator
 from qiskit.circuit.library import RealAmplitudes
 from qiskit.circuit import QuantumCircuit, QuantumRegister, ClassicalRegister
 from qiskit.quantum_info import SparsePauliOp
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
-from qiskit_ibm_runtime import Session, SamplerV2 as Sampler
+from qiskit_ibm_runtime import SamplerV2 as Sampler
 from qiskit_ibm_runtime.fake_provider import FakeManilaV2
 
 # Bell Circuit
@@ -34,18 +38,98 @@ fake_manila = FakeManilaV2()
 pm = generate_preset_pass_manager(backend=fake_manila, optimization_level=1)
 isa_qc = pm.run(qc)
 sampler = Sampler(backend=fake_manila)
-result = sampler.run(isa_qc).result()
+result = sampler.run([(isa_qc)]).result()
+```        
+
+## AerSimulator examples
+
+Example without noise and with sessions:
+
+```python
+from qiskit_aer import AerSimulator
+from qiskit.circuit.library import RealAmplitudes
+from qiskit.circuit import QuantumCircuit, QuantumRegister, ClassicalRegister
+from qiskit.quantum_info import SparsePauliOp
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+from qiskit_ibm_runtime import Session, SamplerV2 as Sampler
+
+# Bell Circuit
+qc = QuantumCircuit(2)
+qc.h(0)
+qc.cx(0, 1)
+qc.measure_all()
 
 # Run the sampler job locally using AerSimulator.
 # Session syntax is supported but ignored because simulators don't support sessions.
 aer_sim = AerSimulator()
 pm = generate_preset_pass_manager(backend=aer_sim, optimization_level=1)
 isa_qc = pm.run(qc)
-service = QiskitRuntimeService()
-with Session(service=service, backend=aer_sim) as session:
+with Session(backend=aer_sim) as session:
     sampler = Sampler(session=session)
     result = sampler.run([(isa_qc)]).result()
-```        
+```
+
+To simulate with noise, specify a system (quantum hardware) and submit it to Aer.  Aer builds a noise model based on the calibration data from that system, and instantiates an Aer backend with that model.  If you prefer, you can [build a noise model](/verify/building_noise_models).
+
+Example with noise: 
+
+```python
+from qiskit_aer import AerSimulator
+from qiskit.circuit.library import RealAmplitudes
+from qiskit.circuit import QuantumCircuit, QuantumRegister, ClassicalRegister
+from qiskit.quantum_info import SparsePauliOp
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+from qiskit_ibm_runtime import SamplerV2 as Sampler
+
+# Bell Circuit
+qc = QuantumCircuit(2)
+qc.h(0)
+qc.cx(0, 1)
+qc.measure_all()
+
+service = QiskitRuntimeService()
+
+# Specify a system to use for the noise model
+real_backend = service.backend("ibm_brisbane")
+aer = AerSimulator.from_backend(real_backend)
+
+# Run the sampler job locally using AerSimulator.
+pm = generate_preset_pass_manager(backend=aer, optimization_level=1)
+isa_qc = pm.run(qc)
+sampler = Sampler(backend=aer)
+result = sampler.run([isa_qc]).result()
+```
+
+<span id="clifford-sim"></span>
+### Clifford simulation
+
+Because Clifford circuits can be simulated efficiently with verifiable results, Clifford simulation is a very useful tool. 
+
+Example:
+
+```python
+import numpy as np
+from qiskit.circuit.library import EfficientSU2
+from qiskit_ibm_runtime import SamplerV2 as Sampler
+
+n_qubits = 500  # <---- note this uses 500 qubits! 
+circuit = EfficientSU2(n_qubits)
+circuit.measure_all()
+ 
+rng = np.random.default_rng(1234)
+params = rng.choice(
+    [0, np.pi / 2, np.pi, 3 * np.pi / 2],
+    size=circuit.num_parameters,
+)
+
+# Tell Aer to use the stabilizer (clifford) simulation method
+aer_sim = AerSimulator(method="stabilizer")
+
+pm = generate_preset_pass_manager(backend=aer_sim, optimization_level=1)
+isa_qc = pm.run(qc)
+sampler = Sampler(backend=aer_sim)
+result = sampler.run([isa_qc]).result()
+```
 
 ## Next steps
 
