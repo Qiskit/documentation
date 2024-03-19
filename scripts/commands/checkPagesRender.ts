@@ -159,24 +159,24 @@ async function determineFilePaths(args: Arguments): Promise<string[]> {
   }
 
   if (args.nonApi) {
-    globs.push("docs/**/*.{ipynb,md,mdx}");
+    globs.push("docs/**/*.{ipynb,mdx}");
   }
 
   for (const [isIncluded, glob] of [
     [
       args.currentApis,
-      "docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/*.{md,mdx}",
+      "docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/*.mdx",
     ],
     [
       args.historicalApis,
-      "docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/[0-9]*/*.{md,mdx}",
+      "docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/[0-9]*/*.mdx",
     ],
     [
       args.devApis,
-      "docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/dev/*.{md,mdx}",
+      "docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/dev/*.mdx",
     ],
-    [args.qiskitReleaseNotes, "docs/api/qiskit/release-notes/*.{md,mdx}"],
-    [args.translations, "translations/**/*.{ipynb,md,mdx}"],
+    [args.qiskitReleaseNotes, "docs/api/qiskit/release-notes/*.mdx"],
+    [args.translations, "translations/**/*.{ipynb,mdx}"],
   ]) {
     const prefix = isIncluded ? "" : "!";
     globs.push(`${prefix}${glob}`);

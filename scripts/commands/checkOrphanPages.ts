@@ -28,9 +28,10 @@ interface Arguments {
 }
 
 const ALLOWED_ORPHAN_URLS = new Set([
+  ...apiDocsIgnores(),
+  "/run/circuit-execution",
   "/api/qiskit/qiskit.primitives.BaseEstimator",
   "/api/qiskit/qiskit.primitives.BaseSampler",
-  "/run/circuit-execution",
 ]);
 
 const readArgs = (): Arguments => {
@@ -97,13 +98,9 @@ async function getTocUrls(filePath: string): Promise<Set<string>> {
 }
 
 async function collectExistingUrls(directory: string): Promise<string[]> {
-  const fileList = await globby([`${directory}/*.{md,mdx,ipynb}`]);
+  const fileList = await globby([`${directory}/*.{mdx,ipynb}`]);
   return fileList.map((fileName) =>
-    fileName
-      .replace("docs", "")
-      .replace(".mdx", "")
-      .replace(".ipynb", "")
-      .replace(".md", ""),
+    fileName.replace("docs", "").replace(".mdx", "").replace(".ipynb", ""),
   );
 }
 
@@ -137,6 +134,68 @@ function collectTocFileContents(children: TocEntry[]): string[] {
     }
   }
   return urls;
+}
+
+function apiDocsIgnores(): string[] {
+  const versions = [
+    "",
+    "dev/",
+    "0.7/",
+    "0.8/",
+    "0.9/",
+    "0.14/",
+    "0.15/",
+    "0.16/",
+    "0.17/",
+    "0.18/",
+    "0.19/",
+    "0.20/",
+    "0.24/",
+    "0.25/",
+    "0.26/",
+    "0.27/",
+    "0.28/",
+    "0.29/",
+    "0.30/",
+    "0.31/",
+    "0.32/",
+    "0.33/",
+    "0.35/",
+    "0.36/",
+    "0.37/",
+    "0.38/",
+    "0.39/",
+    "0.40/",
+    "0.41/",
+    "0.42/",
+    "0.43/",
+    "0.44/",
+    "0.45/",
+    "0.46/",
+  ];
+
+  return [
+    ...versions.flatMap((vers) => [
+      `/api/qiskit-ibm-runtime/${vers}index`,
+      `/api/qiskit-ibm-provider/${vers}index`,
+      `/api/qiskit-ibm-runtime/${vers}qiskit_ibm_runtime.Estimator`,
+      `/api/qiskit-ibm-runtime/${vers}qiskit_ibm_runtime.Sampler`,
+      `/api/qiskit/${vers}aer`,
+      `/api/qiskit/${vers}aqua`,
+      `/api/qiskit/${vers}ibmq-provider`,
+      `/api/qiskit/${vers}ibmq_jupyter`,
+      `/api/qiskit/${vers}ibmq_visualization`,
+      `/api/qiskit/${vers}qiskit.aqua.aqua_globals`,
+      `/api/qiskit/${vers}qiskit.optimization.INFINITY`,
+      `/api/qiskit/${vers}qiskit.quantum_info.two_qubit_cnot_decompose`,
+      `/api/qiskit/${vers}qiskit.utils.algorithm_globals`,
+      `/api/qiskit/${vers}parallel`,
+      `/api/qiskit/${vers}transpiler_builtin_plugins`,
+    ]),
+    `/api/qiskit/0.19/index`,
+    `/api/qiskit/dev/qiskit.primitives.BaseEstimator`,
+    `/api/qiskit/dev/qiskit.primitives.BaseSampler`,
+  ];
 }
 
 main().then(() => process.exit());
