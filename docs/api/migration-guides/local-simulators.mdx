@@ -104,7 +104,7 @@ with Session(backend=aer_sim) as session:
     result = sampler.run([(isa_qc)]).result()
 ```
 
-To simulate with noise, specify a system (quantum hardware), then Aer builds a noise model based on the calibration data from that system, and instantiates an Aer backend with that model.  If you prefer, you can [build a noise model](../verify/build-noise-models).
+To simulate with noise, specify a system (quantum hardware) and submit it to Aer.  Aer builds a noise model based on the calibration data from that system, and instantiates an Aer backend with that model.  If you prefer, you can [build a noise model](../verify/build-noise-models).
 
 Example with noise: 
 
