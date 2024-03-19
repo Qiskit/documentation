@@ -145,13 +145,8 @@ function prepareMethodProps(
   githubSourceLink: string,
   id: string,
 ): componentProps {
-  if (id) {
-    if (!priorApiType) {
-      $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
-    } else {
-      // Inline methods
-      $(`<h3>${getLastPartFromFullIdentifier(id)}</h3>`).insertBefore($dl);
-    }
+  if (id && !priorApiType) {
+    $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
   }
 
   return {
@@ -324,7 +319,12 @@ export function mergeProps(
 /**
  * Converts a given HTML into markdown
  */
-async function htmlSignatureToMd(html: string): Promise<string> {
+async function htmlSignatureToMd(signatureHtml: string): Promise<string> {
+  if (!signatureHtml) {
+    return "";
+  }
+
+  const html = `<span class="target" id=''/><p><code>${signatureHtml}</code></p>`;
   const file = await unified()
     .use(rehypeParse)
     .use(rehypeRemark)
