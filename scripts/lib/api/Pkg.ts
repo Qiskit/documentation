@@ -75,7 +75,7 @@ export class Pkg {
       const releaseNoteEntries = await findLegacyReleaseNotes(name);
       return new Pkg({
         ...args,
-        title: "Qiskit",
+        title: "Qiskit SDK",
         name: "qiskit",
         githubSlug: "qiskit/qiskit",
         hasSeparateReleaseNotes: true,
@@ -202,7 +202,7 @@ export class Pkg {
     }
 
     // Otherwise, we have to deal with Qiskit <0.45, when we had the qiskit-metapackage comprised of
-    // multiple packages. Refer to the version table in api/qiskit/release-notes/0.44.md.
+    // multiple packages. Refer to the version table in api/qiskit/release-notes/0.44.mdx.
     return (fileName) =>
       determineHistoricalQiskitGithubUrl(
         this.versionWithoutPatch,

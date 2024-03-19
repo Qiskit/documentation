@@ -14,7 +14,7 @@ import path from "node:path";
 import levenshtein from "fast-levenshtein";
 
 const DOCS_ROOT = "./docs";
-const CONTENT_FILE_EXTENSIONS = [".md", ".mdx", ".ipynb"];
+const CONTENT_FILE_EXTENSIONS = [".mdx", ".ipynb"];
 
 export class File {
   readonly path: string;
@@ -73,7 +73,7 @@ export class InternalLink {
       .join(relativeToFolder, this.value)
       .replace(/\/$/gm, "");
 
-    // File may have one of many extensions (.md, .ipynb etc.), and/or be
+    // File may have different extensions (.mdx or .ipynb), and/or be
     // directory with an index file (e.g. `docs/build` should resolve to
     // `docs/build/index.mdx`). We return a list of possible filenames.
     let possibleFilePaths = [];

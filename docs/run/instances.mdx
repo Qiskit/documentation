@@ -54,7 +54,28 @@ You can specify an instance when initializing the service or provider, or when c
 
 ### qiskit-ibm-runtime
 
-```python
+<Tabs>
+  <TabItem value="SamplerV2" label="Sampler V2">
+    ```python
+
+# Optional: List all the instances you can access.
+service = QiskitRuntimeService(channel='ibm_quantum')
+print(service.instances())
+
+# Optional: Specify it at service level. This becomes the default unless overwritten.
+service = QiskitRuntimeService(channel='ibm_quantum', instance="hub1/group1/project1")
+backend1 = service.backend("ibmq_manila")
+
+# Optional: Specify it at the backend level, which overwrites the service-level specification when this backend is used. 
+backend2 = service.backend("ibmq_manila", instance="hub2/group2/project2")
+
+sampler1 = SamplerV2(backend=backend1)    # this will use hub1/group1/project1
+sampler2 = SamplerV2(backend=backend2)    # this will use hub2/group2/project2
+```
+  </TabItem>
+
+  <TabItem value="SamplerV1" label="Sampler (V1)">
+    ```python
 
 # Optional: List all the instances you can access.
 service = QiskitRuntimeService(channel='ibm_quantum')
@@ -70,6 +91,8 @@ backend2 = service.backend("ibmq_manila", instance="hub2/group2/project2")
 sampler1 = Sampler(backend=backend1)    # this will use hub1/group1/project1
 sampler2 = Sampler(backend=backend2)    # this will use hub2/group2/project2
 ```
+  </TabItem>
+</Tabs>
 
 ### qiskit-ibm-provider
 

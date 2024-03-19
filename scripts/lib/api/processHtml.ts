@@ -281,36 +281,23 @@ export function processMembersAndSetMeta(
     const $dl = $(dl);
     const id = $dl.find("dt").attr("id") || "";
     const apiType = getApiType($dl);
-    const priorApiType = meta.apiType;
-
-    if (!priorApiType) {
-      meta.apiType = apiType;
-      meta.apiName = id;
-    }
 
     const replacement = $dl
       .children()
       .toArray()
       .map((child) => {
         const $child = $(child);
-        const githubSourceLink = prepareGitHubLink(
-          $child,
-          apiType === "method",
-        );
-
         if (child.name !== "dt" || !apiType) {
           return `<div>${$child.html()}</div>`;
         }
-        return processMember(
-          $,
-          $main,
-          $child,
-          $dl,
-          priorApiType,
-          apiType,
-          id,
-          githubSourceLink,
-        );
+
+        const priorApiType = meta.apiType;
+        if (!priorApiType) {
+          meta.apiType = apiType;
+          meta.apiName = id;
+        }
+
+        return processMember($, $main, $child, $dl, priorApiType, apiType, id);
       })
       .join("\n");
 
@@ -326,8 +313,9 @@ function processMember(
   priorApiType: string | undefined,
   apiType: string,
   id: string,
-  githubSourceLink: string,
 ) {
+  const githubSourceLink = prepareGitHubLink($child, apiType === "method");
+
   findByText($, $main, "em.property", apiType).remove();
 
   if (apiType == "class") {

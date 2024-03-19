@@ -1,0 +1,57 @@
+---
+title: EnvironmentOptions
+description: API reference for qiskit_ibm_runtime.options.EnvironmentOptions
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_ibm_runtime.options.EnvironmentOptions
+---
+
+# EnvironmentOptions
+
+<span id="qiskit_ibm_runtime.options.EnvironmentOptions" />
+
+`EnvironmentOptions(*args, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options/environment_options.py#L28-L50 "view source code")
+
+Options related to the execution environment.
+
+**Parameters**
+
+*   **log\_level** – logging level to set in the execution environment. The valid log levels are: `DEBUG`, `INFO`, `WARNING`, `ERROR`, and `CRITICAL`. Default: `WARNING`.
+
+*   **callback** –
+
+    Callback function to be invoked for any interim results and final result. The callback function will receive 2 positional parameters:
+
+    > 1.  Job ID
+    > 2.  Job result.
+
+*   **job\_tags** – Tags to be assigned to the job. The tags can subsequently be used as a filter in the `qiskit_ibm_runtime.qiskit_runtime_service.jobs()` function call.
+
+## Attributes
+
+<span id="qiskit_ibm_runtime.options.EnvironmentOptions.callback" />
+
+### callback
+
+`Callable | None`
+
+`= None`
+
+<span id="qiskit_ibm_runtime.options.EnvironmentOptions.job_tags" />
+
+### job\_tags
+
+`List | None`
+
+`= None`
+
+<span id="qiskit_ibm_runtime.options.EnvironmentOptions.log_level" />
+
+### log\_level
+
+`Literal['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL']`
+
+`= 'WARNING'`
+
+## Methods
+
