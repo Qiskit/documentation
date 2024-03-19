@@ -1,17 +1,18 @@
 ---
 title: Migrate to local simulators
-description: Migrate from using the IBM Quantum cloud simulators (such as ibmq_qasm_simulator) to using local simulators.
+description: Migrate from using the IBM Quantum cloud simulators to using Qiskit Runtime local testing mode.
 ---
 
-# Migrate to local simulators
+# Migrate from cloud simulators to Qiskit Runtime local testing mode
 
-In quantum computing, the choice between using simulators and quantum hardware is crucial for making progress in the field. While simulators are useful for testing and debugging, in this era of quantum utility, quantum development and industry advancement requires actual hardware. As part of the move to quantum utility, IBM Quantum&trade; will retire its cloud simulators on 15 May 2024. This guide explains in more detail why this is happening, and how to change from cloud to local simulators. 
+In quantum computing, the choice between using simulators and quantum hardware is crucial for making progress in the field. While simulators are useful for testing and debugging, in this era of quantum utility, quantum development and industry advancement requires actual hardware. As part of the move to quantum utility, IBM Quantum&trade; will retire its cloud simulators on 15 May 2024. This guide explains in more detail why this is happening, and how to migrate from [cloud based simulators](/verify/cloud-based-simulators), such as `ibmq_qasm_simulator`, to local simulators. 
 
 ## Why are the cloud simulators being retired?
 
 The cloud simulators are being retired for several reasons:
 
-### Simulators have limitations
+<details>
+<summary><a>Simulators have limitations</a></summary>
 
 Simulators can be useful, but they are too limited to use for research or experimentation:
 
@@ -19,7 +20,10 @@ Simulators can be useful, but they are too limited to use for research or experi
 
 - While some simulators offer noise models, it is a very hard problem to capture the entire dynamics of a real QPU. Quantum hardware offers the potential for researchers to confront the challenges inherent in quantum systems, such as noise, errors, and decoherence in a realistic testing environment.
 
-### Using quantum hardware builds unique skills
+</details>
+
+<details>
+<summary><a>Using quantum hardware builds unique skills</a></summary>
 
 Interacting with quantum hardware grows skills and experience unattainable by only using simulators: 
 
@@ -29,14 +33,18 @@ Interacting with quantum hardware grows skills and experience unattainable by on
 
 - Engaging with quantum hardware results in practical insights into the challenges and opportunities of quantum computing, enhancing developers' ability to drive innovation in the field.
 
-## Algorithms should be adapted for quantum hardware
+</details>
+
+<details>
+<summary><a>Algorithms should be adapted for quantum hardware</a></summary>
 
 Successful quantum algorithms must be adapted to exploit the capabilities of quantum hardware, optimizing performance and efficiency.
 
 - Quantum hardware provides a more accurate representation of real-world quantum systems than simulators.
 
 - Fine-tuning algorithms for quantum hardware involves adjusting ansatz, circuit implementations, parameters, and configuration to maximize performance.  This process is best achieved through direct experimentation with quantum hardware.
- 
+
+</details>
 
 ## When should simulators be used?
 
@@ -74,14 +82,14 @@ isa_qc = pm.run(qc)
 options = {"simulator": {"seed_simulator": 42}}
 sampler = Sampler(backend=fake_manila, options=options)
 
-result = sampler.run([isa_qc]).result()
+result = sampler.run([(isa_qc)]).result()
 ```        
 
 ### AerSimulator
 
 You can use local testing mode with simulators from [Qiskit Aer](/verify/simulate-with-qiskit-aer), which provides higher-performance simulation that can handle larger circuits and [custom noise models](/verify/building_noise_models.ipynb). It also supports Clifford simulation mode, which can efficiently simulate Clifford circuits with a large number of qubits. 
 
-Example without noise and with sessions:
+Example with sessions, without noise:
 
 ```python
 from qiskit_aer import AerSimulator
@@ -107,7 +115,7 @@ with Session(backend=aer_sim) as session:
     result = sampler.run([(isa_qc)]).result()
 ```
 
-To simulate with noise, specify a system (quantum hardware) and submit it to Aer.  Aer builds a noise model based on the calibration data from that system, and instantiates an Aer backend with that model.  If you prefer, you can also [build a custom noise model](/verify/building_noise_models).
+To simulate with noise, specify a system (quantum hardware) and submit it to Aer.  Aer builds a noise model based on the calibration data from that system, and instantiates an Aer backend with that model.  If you prefer, you can [build a noise model](/verify/building_noise_models).
 
 Example with noise: 
 
@@ -141,7 +149,7 @@ result = sampler.run([isa_qc]).result()
 <span id="clifford-sim"></span>
 ### Clifford simulation
 
-Because Clifford circuits can be simulated efficiently with verifiable results, Clifford simulation is a very useful tool. 
+Because Clifford circuits can be simulated efficiently with verifiable results, Clifford simulation is a very useful tool. For an in-depth example, see [Efficient simulation of stabilizer circuits with Qiskit Aer primitives](/verify/stabilizer-circuit-simulation).
 
 Example:
 
