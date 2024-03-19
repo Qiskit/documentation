@@ -26,10 +26,25 @@ Whether you will work locally or in a cloud environment, the first step for all 
 
     We recommend that you use [Python virtual environments](https://docs.python.org/3.10/tutorial/venv.html) to separate Qiskit from other applications.
 
-NOTE -- put John's comments in "more info on venv" twistie, with bullets
+    <details>
+    <summary>
+    If you're new to virtual environments, click here for more information.
+    </summary>
+    A virtual Python environment is an isolated space to work with Python for a specific purpose — so you can install whatever packages you wish, and set up libraries, dependencies, and so on, without affecting the "base" Python environment on your machine.
 
+    One important advantage of a virtual environment is that if your Python environment becomes corrupted somewhere along the way, you can easily delete the virtual environment and start over!
+    
+    Choose a preferred location in which to store information about your virtual environments. Commonly they're stored in a directory named `.venv` in a user's local directory. To create a virtual environment named `qiskit-stable` in this location, run this command:
+    ```shell
+      python3 -m venv ~/.venv/qiskit-stable
+    ```
+    To activate this environment within a terminal window, run this command:
+    ```shell
+      source ~/.venv/qiskit-stable/bin/activate
+    ```
+    </details>
 
-    1. Create a minimal environment with only Python installed in it.
+    First, create a minimal environment with only Python installed in it.
 
         <OperatingSystemTabs>
           <TabItem value="mac" label="macOS">
@@ -51,7 +66,7 @@ NOTE -- put John's comments in "more info on venv" twistie, with bullets
           </TabItem>
          </OperatingSystemTabs>
 
-    1. Activate your new environment.
+    Then, activate your new environment.
 
          <OperatingSystemTabs>
            <TabItem value="mac" label="macOS">
@@ -73,9 +88,9 @@ NOTE -- put John's comments in "more info on venv" twistie, with bullets
            </TabItem>
          </OperatingSystemTabs>
 
-1. [Install pip](https://pip.pypa.io/en/stable/installation/). Pip is a Python packaging management "thing" that you use to install Qiskit and other Python packages. Use `pip list` to see what is in your venv.
+1. [Install pip](https://pip.pypa.io/en/stable/installation/). Pip is a Python package manager that you use to install Qiskit and other Python packages. Use `pip list` to see what is in your virtual environment.
 
-1. Install the Qiskit SDK and Runtime for running on IBM Quantum hardware...
+1. Install the Qiskit SDK. If you plan to run jobs on quantum hardware, also install Qiskit Runtime.
 
       ```shell
       pip install qiskit
@@ -99,11 +114,12 @@ NOTE -- put John's comments in "more info on venv" twistie, with bullets
       pip install 'qiskit[visualization]'
       ```
 
-1. If you want to run a Jupyter notebook with the Qiskit packages you just installed, you will need to install jupyter in your environment, and run `command` to open your notebook 
+1. If you want to run a Jupyter notebook with the Qiskit packages you just installed, you will need to install Jupyter in your environment.
 
       ```shell
       pip install jupyter
       ```
+    Open your notebook as follows:
 
       ```shell
       jupyter notebook path/to/notebook.ipynb
