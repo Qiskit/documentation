@@ -134,7 +134,7 @@ function pathToUrl(path: string): string {
 async function validateDockerRunning(): Promise<void> {
   try {
     const response = await fetch(`http://localhost:${PORT}`);
-    if (response.status !== 404) {
+    if (response.status !== 200) {
       console.error(
         "Failed to access http://localhost:3000. Have you started the Docker server with `./start`? " +
           "Refer to the README for instructions.",
