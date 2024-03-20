@@ -1,6 +1,6 @@
 ---
 title: Introduction
-description: Introduction to the transpiler
+description: Introduction to transpiling quantum circuits in the Qiskit SDK.
 
 ---
 
@@ -9,12 +9,17 @@ description: Introduction to the transpiler
 
 Transpilation is the process of rewriting a given input circuit to match the topology of a specific quantum device, and optimize the circuit instructions for execution on noisy quantum systems.  This documentation covers the tooling and workflows for local transpilation available to all Qiskit users, as well as for the cloud-based [Qiskit transpiler service](qiskit-transpiler-service) available to Premium Plan users.  If you're using primitives and are only interested in the default transpilation options provided by the Qiskit Runtime service, read the [Configure runtime compilation for Qiskit Runtime](../run/configure-runtime-compilation) topic.
 
-A central component of Qiskit, the transpiler is designed for modularity and extensibility. Its central goal is to write new circuit transformations (known as transpiler **passes**), and combine them with other existing passes, greatly reducing the depth and complexity of quantum circuits.  Which passes are chained together and in which order has a major effect on the final outcome. This pipeline is determined by the [`PassManager`](/api/qiskit/qiskit.transpiler.PassManager) and [`StagedPassManager`](/api/qiskit/qiskit.transpiler.StagedPassManager) objects.  The `StagedPassManager` orchestrates the execution of one or more `PassManagers` and determines the order in which they are executed, while the `PassManager` object is merely a collection of one or more passes.  Think of the `StagedPassManager` as the conductor in an orchestra, the `PassManagers` as the different instrument sections, and the `Pass`es as the individual musicians.  In this way, you can compose hardware-efficient quantum circuits that let you execute utility-scale work while keeping noise manageable.
+A central component of the Qiskit SDK, the transpiler is designed for modularity and extensibility. Its main goal is to write new circuit transformations (known as transpiler **passes**), and combine them with other existing passes, greatly reducing the depth and complexity of quantum circuits.  Which passes are chained together and in which order has a major effect on the final outcome. This pipeline is determined by the [`PassManager`](/api/qiskit/qiskit.transpiler.PassManager) and [`StagedPassManager`](/api/qiskit/qiskit.transpiler.StagedPassManager) objects.  The `StagedPassManager` orchestrates the execution of one or more `PassManagers` and determines the order in which they are executed, while the `PassManager` object is merely a collection of one or more passes.  Think of the `StagedPassManager` as the conductor in an orchestra, the `PassManagers` as the different instrument sections, and the `Pass` objects as the individual musicians.  In this way, you can compose hardware-efficient quantum circuits that let you execute utility-scale work while keeping noise manageable.
 
 Find more information about the pass manager stages in the [Transpiler stages](transpiler-stages) topic.
 
+
+### Instruction set architecture
+In addition to reducing the depth and complexity of quantum circuits, the transpiler is designed to transform the instructions contained in a given `QuantumCircuit` to obey the **Instruction Set Architecture** (**ISA**) of a particular backend.  Circuits obeying the ISA consist only of instructions which are supported by the backend's [`Target`](../api/qiskit/qiskit.transpiler.Target) (e.g. the hardware's available basis gates, measurements, resets, control flow operations, etc.) and comply with the constraints specified by the connectivity of the hardware (i.e. the target's [`CouplingMap`](../api/qiskit/qiskit.transpiler.CouplingMap)).  When using Qiskit Runtime to submit a job to an IBM Quantum&trade; backend, the circuits must adhere to the backend's ISA. 
+
+
 <Admonition type="caution">
-  If you perform transpilation locally and submit the transpiled circuits to the Qiskit Runtime service, set the `skip_transpilation` option to `True` so that the service does not try to apply further transformations to your circuit. See [Advanced runtime compilation options](/run/configure-runtime-compilation#advanced-runtime-compilation-options).
+  If you perform transpilation locally and submit the transpiled circuits to the Qiskit Runtime service, the service will attempt to apply additional optimizations by default, corresponding to `optimization_level=1` described [here](/run/configure-runtime-compilation#set-the-optimization-level). If you do not wish to have your circuits further transformed, set the `skip_transpilation` option to `True` to indicate to the service not to apply these optimizations (see [Advanced runtime compilation options](/run/configure-runtime-compilation#advanced-runtime-compilation-options)). However, note that all circuits submitted to the Qiskit Runtime service must be composed of instructions supported by the system's Instruction Set Architecture (ISA); otherwise, the jobs will fail.
 </Admonition>
 
 

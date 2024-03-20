@@ -6,7 +6,7 @@ description: Set up ibmq_qasm_simulator and map a basic noise model for an IBM Q
 
 # Using IBM Quantum cloud-based simulators
 
-Set up ``ibmq_qasm_simulator`` and map a basic noise model for an IBM Quantum hardware device in Qiskit Runtime, then use this noise model to perform noisy simulations of ``QuantumCircuits`` by using ``Sampler`` and ``Estimator`` to study the effects of errors that occur on real devices.
+Set up ``ibmq_qasm_simulator`` and map a basic noise model for an IBM Quantum&trade; hardware device in Qiskit Runtime, then use this noise model to perform noisy simulations of ``QuantumCircuits`` by using ``Sampler`` and ``Estimator`` to study the effects of errors that occur on real devices.
 
 ## Set up your local development environment
 
@@ -36,7 +36,7 @@ qc.cp(theta,0,1)
 qc.h(0)
 qc.measure(0,0)
 
-qc.draw('mpl')
+qc.draw('mpl', style="iqp")
 ```
 
 ![](/images/qiskit-ibm-runtime/noisy-sim-circuit.png)
@@ -109,7 +109,7 @@ The Estimator binds single-qubit rotations to get Hamiltonians before it returns
 
 ``` python
 qc_no_meas = qc.remove_final_measurements(inplace=False)
-qc_no_meas.draw('mpl')
+qc_no_meas.draw('mpl', style="iqp")
 ```
 
 ![](/images/qiskit-ibm-runtime/noisy-sim-estimator-circuit.png)

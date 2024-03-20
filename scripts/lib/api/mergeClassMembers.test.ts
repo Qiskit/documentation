@@ -13,10 +13,11 @@
 import { describe, expect, test } from "@jest/globals";
 
 import { mergeClassMembers } from "./mergeClassMembers";
+import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
 
 describe("mergeClassMembers", () => {
   test("merge class members", async () => {
-    const results: Parameters<typeof mergeClassMembers>[0] = [
+    const results: HtmlToMdResultWithUrl[] = [
       {
         markdown: `## Attributes
 
@@ -130,7 +131,7 @@ Validate options.
   });
 
   test("merge class with methods already inlined", async () => {
-    const results: Parameters<typeof mergeClassMembers>[0] = [
+    const results: HtmlToMdResultWithUrl[] = [
       {
         markdown: `## Attributes
 
@@ -184,5 +185,24 @@ Inlined attribute
 Inlined method
 `);
     expect(merged.length).toEqual(1);
+  });
+
+  test("keep members without an owning class", async () => {
+    // Regression test for https://github.com/Qiskit/documentation/issues/814.
+    const results: HtmlToMdResultWithUrl[] = [
+      {
+        markdown:
+          '<span id="baseestimator" />\n\n# BaseEstimator\n\nalias of `BaseEstimatorV1`\n',
+        meta: {
+          apiType: "attribute",
+          apiName: "qiskit.primitives.BaseEstimator",
+        },
+        images: [],
+        isReleaseNotes: false,
+        url: "/docs/api/qiskit/qiskit.primitives.BaseEstimator",
+      },
+    ];
+    const merged = await mergeClassMembers(results);
+    expect(merged).toEqual(results);
   });
 });

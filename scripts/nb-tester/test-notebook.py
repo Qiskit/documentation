@@ -23,13 +23,12 @@ import nbclient
 import nbconvert
 import nbformat
 from qiskit_ibm_runtime import QiskitRuntimeService
+from squeaky import clean_notebook
 
 NOTEBOOKS_GLOB = "docs/**/*.ipynb"
 NOTEBOOKS_EXCLUDE = [
     "docs/api/**",
     "**/.ipynb_checkpoints/**",
-    # Following notebooks are broken
-    "docs/transpile/transpiler-stages.ipynb",
 ]
 NOTEBOOKS_THAT_SUBMIT_JOBS = [
     "docs/start/hello-world.ipynb",
@@ -159,6 +158,7 @@ def _execute_notebook(filepath: Path, options: ExecuteOptions) -> nbformat.Noteb
     for cell in nb.cells:
         # Remove execution metadata to avoid noisy diffs.
         cell.metadata.pop("execution", None)
+    nb, _ = clean_notebook(nb)
     nbformat.write(nb, filepath)
     return nb
 

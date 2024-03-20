@@ -12,7 +12,7 @@ Read on for more information about how to support this project:
 
 ### 1. Report bugs, inaccuracies or general content issues
 
-This is the quickest, easiest, and most helpful way to contribute to this project and improve the quality of Qiskit and IBM Quantum documentation. There are a few different ways to report issues, depending on where it was found:
+This is the quickest, easiest, and most helpful way to contribute to this project and improve the quality of Qiskit&reg; and IBM Quantum&trade; documentation. There are a few different ways to report issues, depending on where it was found:
 
 - For problems you've found in the [Qiskit API Reference](https://docs.quantum.ibm.com/api/qiskit) section, open an issue in the Qiskit repo [here](https://github.com/Qiskit/qiskit/issues/new/choose).
 - For problems you've found in the [Qiskit Runtime IBM Client](https://docs.quantum.ibm.com/api/qiskit-ibm-runtime) section, open an issue in the Qiskit IBM Runtime repo [here](https://github.com/Qiskit/qiskit-ibm-runtime/issues/new/choose).
@@ -73,24 +73,11 @@ npm install
 
 ## Preview the docs locally
 
-Run `./start` in your terminal, then open http://localhost:3000/start in your browser.
+Run `./start` in your terminal, then open http://localhost:3000 in your browser.
 
-The local preview does not include the initial index page and the top nav bar from docs.quantum.ibm.com. Therefore, you must directly navigate in the URL to the folder that you want:
+The preview application does not include the top nav bar. Instead, navigate to the folder you want with the links in the home page. You can return to the home page at any time by clicking "IBM Quantum Documentation Preview" in the top-left of the header.
 
-- http://localhost:3000/build
-- http://localhost:3000/start
-- http://localhost:3000/run
-- http://localhost:3000/transpile
-- http://localhost:3000/verify
-- http://localhost:3000/api/qiskit
-- http://localhost:3000/api/qiskit-ibm-runtime
-- http://localhost:3000/api/qiskit-ibm-provider
-- http://localhost:3000/api/migration-guides
-
-For historical API versions, use URLs like http://localhost:3000/api/qiskit/0.44, i.e. put the desired version after the
-API name.
-
-For translations, put the language code in front of the URL, like http://localhost:3000/es/start or http://localhost:3000/fr/start. You can find the language codes by looking in the `translations/` folder.
+Warning: `./start` does not check if there is a new version of the docs application available. Run `docker pull qiskit/documentation` to update to the latest version of the app.
 
 ## Preview the docs in PRs
 
@@ -145,26 +132,82 @@ click "Show all checks" in the info box at the bottom of the pull request page
 on GitHub, then choose "Details" for the "Test notebooks" job. From the job
 page, click "Summary", then download "Executed notebooks".
 
+## Lint notebooks
+
+We use [`squeaky`](https://github.com/frankharkins/squeaky) to lint our
+notebooks. First install `tox` using [pipx](https://pipx.pypa.io/stable/).
+
+```sh
+pipx install tox
+```
+
+To check if a notebook needs linting:
+
+```sh
+# Check all notebooks in ./docs
+tox -e lint -- docs/**/*.ipynb
+```
+
+To fix problems in a notebooks, run:
+
+```sh
+tox -e fix -- path/to/notebook
+```
+
+Or, you can retrieve an executed and linted version of your notebook from CI
+following the steps at the end of the [Execute notebook](#execute-notebooks)
+section.
+
+If you use the Jupyter notebook editor, consider adding squeaky as a [pre-save
+hook](https://github.com/frankharkins/squeaky?tab=readme-ov-file#jupyter-pre-save-hook).
+This will lint your notebooks as you save them, so you never need to worry
+about it.
+
 ## Check for broken links
 
-CI will check for broken links. You can also check locally:
+We have two broken link checkers: for internal links and for external links.
+
+To check internal links:
 
 ```bash
-# Only check for internal broken links
-npm run check:links
+# Only check non-API docs
+npm run check:internal-links
 
-# Enable the validation of external links
-npm run check:links -- --external
-
-# By default, only the non-API docs are checked. You can add any of the
-# below arguments to also check API docs and/or Qiskit release notes.
-npm run check:links -- --current-apis --historical-apis --qiskit-release-notes
+# You can add any of the below arguments to also check API docs.
+npm run check:internal-links -- --current-apis --dev-apis --historical-apis --qiskit-release-notes
 
 # However, `--historical-apis` currently has failing versions, so you may
 # want to add `--skip-broken-historical`.
-npm run check:links -- --historical-apis --skip-broken-historical
+npm run check:internal-links -- --historical-apis --skip-broken-historical
 
-# Or, run all the checks
+# Or, run all the checks. Although this only checks non-API docs.
+npm run check
+```
+
+To check external links:
+
+```bash
+# Specify the files you want after `--`
+npm run check:external-links -- docs/run/index.md docs/run/circuit-execution.mdx
+
+# You can also use globs
+npm run check:external-links -- 'docs/run/*' '!docs/run/index.mdx'
+```
+
+## Check for orphan pages
+
+Every file should have a home in one of the `_toc.json` files. If for some reason a page should _not_ have a home, add it to the `ALLOWED_ORPHANS` list in `scripts/checkOrphanPages.ts`.
+
+To check for orphaned pages, run:
+
+```bash
+# Only check non-API docs
+npm run check:orphan-pages
+
+# You can also add any of the below arguments to check API docs
+npm run check:orphan-pages -- --current-apis --dev-apis --historical-apis
+
+# Or, run all the checks.  However this will skip the API docs
 npm run check
 ```
 
@@ -178,7 +221,11 @@ You can also check for valid metadata locally:
 # Only check file metadata
 npm run check:metadata
 
-# Or, run all the checks
+# By default, only the non-API docs are checked. You can add any of the
+# below arguments to also check API docs and/or translations.
+npm run check:metadata -- --translations --apis
+
+# Or, run all the checks. Although this only checks non-API docs.
 npm run check
 ```
 
@@ -214,9 +261,9 @@ There are two ways to deal with cSpell incorrectly complaining about a word, suc
 Ayyyyy, this is a fake description.
 ```
 
-2. Add the word to the file `cSpell.json` in the `words` section. The word is not case-sensitive.
+2. If the word is a name, add it to the `cspell/dictionaries/people.txt` file. If it is a scientific or quantum specific word, add it to the `cspell/dictionaries/qiskit.txt` file. If it doesn't fit in either category, add it to the `words` section in `cspell/cSpell.json`. The word is not case-sensitive.
 
-If the word appears in multiple files, prefer the second approach to add it to `cSpell.json`.
+If the word appears in multiple files, prefer the second approach to add it to one of the dictionaries or `cSpell.json`.
 
 ## Check that pages render
 
@@ -225,12 +272,11 @@ It's possible to write broken pages that crash when loaded. This is usually due 
 To check that all the non-API docs render:
 
 1. Start up the local preview with `./start` by following the instructions at [Preview the docs locally](#preview-the-docs-locally)
-2. In a new tab, `npm run check-pages-render`
+2. In a new tab, `npm run check:pages-render -- --non-api`
 
-You can also check that API docs and translations render by using any of these arguments: `npm run check-pages-render -- --qiskit-release-notes --current-apis --historical-apis --translations`. Warning that this is exponentially slower.
+You can also check that API docs and translations render by using any of these arguments: `npm run check:pages-render -- --non-api --qiskit-release-notes --current-apis --dev-apis --historical-apis --translations`. Warning that this is exponentially slower.
 
-CI will check on every PR that non-API docs correctly render. We also run a nightly cron job to check the API docs and
-translations.
+CI will check on every PR that any changed files render correctly. We also run a weekly cron job to check that every page renders correctly.
 
 ## Format TypeScript files
 
@@ -260,6 +306,8 @@ Alternatively, you can also regenerate one specific version:
 
 If the version is not for the latest stable minor release series, then add `--historical` to the arguments. For example, use `--historical` if the latest stable release is 0.45.\* but you're generating docs for the patch release 0.44.3.
 
+Additionally, If you are regenerating a dev version, then you can add `--dev` as an argument and the documentation will be built at `/docs/api/<pkg-name>/dev`. For dev versions, end the `--version` in `-dev`, e.g. `-v 1.0.0-dev`. If a release candidate has already been released, use `-v 1.0.0rc1`, for example.
+
 In this case, no commit will be automatically created.
 
 ## Generate new API docs
@@ -287,6 +335,8 @@ This is useful when new docs content is published, usually corresponding to new 
 11. Run `npm run gen-api -- -p <pkg-name> -v <version>`,
     e.g. `npm run gen-api -- -p qiskit -v 0.45.0`
 
+If you are regenerating a dev version, then you can add `--dev` as an argument and the documentation will be built at `/docs/api/<pkg-name>/dev`. For dev versions, end the `--version` in `-dev`, e.g. `-v 1.0.0-dev`. If a release candidate has already been released, use `-v 1.0.0rc1`, for example.
+
 In case you want to save the current version and convert it into a historical one, you can run `npm run make-historical -- -p <pkg-name>` beforehand.
 
 ### Generate patch releases
@@ -298,6 +348,22 @@ Follow the same process above for new API docs, other than:
 - When uploading the artifact, overwrite the existing file with the new one. Be careful to follow the above steps to change "Link Expiration"!
 
 If the version is not for the latest stable minor release series, then add `--historical` to the arguments. For example, use `--historical` if the latest stable release is 0.45.\* but you're generating docs for the patch release 0.44.3.
+
+### View diff for `objects.inv`
+
+Since `objects.inv` is compressed, we can't review changes through `git diff`. Git _does_ tell you if the file has changed, but this isn't that helpful as the compressed file can be different even if the uncompressed contents are the same.
+If you want to see the diff for the uncompressed contents, first install [`sphobjinv`](https://github.com/bskinn/sphobjinv).
+
+```sh
+pipx install sphobjinv
+```
+
+The add the following to your `.gitconfig` (usually found at `~/.gitconfig`).
+
+```
+[diff "objects_inv"]
+  textconv = sh -c 'sphobjinv convert plain "$0" -'
+```
 
 # How to write the documentation
 
@@ -408,7 +474,9 @@ To use an `Admonition`, use the following syntax
 <Admonition type="note">This is a __note__ example</Admonition>
 ```
 
-Available types are `note, tip, info, caution, danger`
+Available types are `note, tip, info, caution, danger`. This is what they look like:
+
+![types](https://github.com/Qiskit/documentation/assets/66339736/9911d171-2dbb-45a2-af84-6502d5fc0ae0)
 
 By default, the title is the `type` capitalized. You can customize it by setting `title`:
 
@@ -537,3 +605,31 @@ To display a qasm operation (like a not gate), you can use the `Operation` compo
 ```mdx
 <Operation name="x" />
 ```
+
+## Proper marking and attribution
+
+**All information needs to identify, mark, and attribute IBM and applicable third-party trademarks.** We do this the first time an IBM trademark appears on each page. See the [Copyright and trademark information](https://www.ibm.com/legal/copyright-trademark) page for more details.
+
+Some companies require a special attribution notice. View a list of the companies to include in a special attribution notice at the [Special attributions](https://www.ibm.com/legal/copyright-trademark#special) section of the IBM Legal site.
+
+<details>
+<summary>A (non-exhaustive) list of trademarked names found in our docs:</summary>
+
+- IBM&reg;
+- IBM Cloud&reg;
+- IBM Quantum&trade;
+</details>
+
+**Note**: Although Qiskit is a registered trademark of IBM, we do not mark it as such.
+
+See the Usage section of the IBM Quantum Experience Guide for guidance on when to use IBM and when to use IBM Quantum.
+
+### Trademark symbols
+
+To create the symbols in markdown:
+
+Use `&reg;` to get &reg; for registered trademarks.
+
+use `&trade;` to get &trade; for nonregistered trademarks.
+
+⚠️ **Note**: Do not include trademarks in headings. The code will display rather than the symbol.

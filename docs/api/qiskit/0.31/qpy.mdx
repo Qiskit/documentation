@@ -1,0 +1,264 @@
+---
+title: qpy_serialization
+description: API reference for qiskit.circuit.qpy_serialization
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.circuit.qpy_serialization
+---
+
+<span id="module-qiskit.circuit.qpy_serialization" />
+
+<span id="qiskit-circuit-qpy-serialization" />
+
+# QPY serialization
+
+<span id="module-qiskit.circuit.qpy_serialization" />
+
+`qiskit.circuit.qpy_serialization`
+
+## Using QPY
+
+Using QPY is defined to be straightforward and mirror the user API of the serializers in Python’s standard library, `pickle` and `json`. There are 2 user facing functions: [`qiskit.circuit.qpy_serialization.dump()`](qiskit.circuit.qpy_serialization.dump "qiskit.circuit.qpy_serialization.dump") and [`qiskit.circuit.qpy_serialization.load()`](qiskit.circuit.qpy_serialization.load "qiskit.circuit.qpy_serialization.load") which are used to dump QPY data to a file object and load circuits from QPY data in a file object respectively. For example:
+
+```python
+from qiskit.circuit import QuantumCircuit
+from qiskit.circuit import qpy_serialization
+
+qc = QuantumCircuit(2, name='Bell', metadata={'test': True})
+qc.h(0)
+qc.cx(0, 1)
+qc.measure_all()
+
+with open('bell.qpy', 'wb') as fd:
+    qpy_serialization.dump(qc, fd)
+
+with open('bell.qpy', 'rb') as fd:
+    new_qc = qpy_serialization.load(fd)[0]
+```
+
+### API documentation
+
+|                                                                                                              |                                 |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------- |
+| [`load`](qiskit.circuit.qpy_serialization.load "qiskit.circuit.qpy_serialization.load")(file\_obj)           | Load a QPY binary file          |
+| [`dump`](qiskit.circuit.qpy_serialization.dump "qiskit.circuit.qpy_serialization.dump")(circuits, file\_obj) | Write QPY binary data to a file |
+
+### QPY Compatibility
+
+The QPY format is designed to be backwards compatible moving forward. This means you should be able to load a QPY with any newer Qiskit version than the one that generated it. However, loading a QPY file with an older Qiskit version is not supported and may not work.
+
+For example, if you generated a QPY file using qiskit-terra 0.18.1 you could load that QPY file with qiskit-terra 0.19.0 and a hypothetical qiskit-terra 0.29.0. However, loading that QPY file with 0.18.0 is not supported and may not work.
+
+## QPY Format
+
+The QPY serialization format is a portable cross-platform binary serialization format for [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects in Qiskit. The basic file format is as follows:
+
+A QPY file (or memory object) always starts with the following 7 byte UTF8 string: `QISKIT` which is immediately followed by the overall file header. The contents of the file header as defined as a C struct are:
+
+```python
+struct {
+    uint8_t qpy_version;
+    uint8_t qiskit_major_version;
+    uint8_t qiskit_minor_version;
+    uint8_t qiskit_patch_version;
+    uint64_t num_circuits;
+}
+```
+
+All values use network byte order [1](#f1) (big endian) for cross platform compatibility.
+
+The file header is immediately followed by the circuit payloads. Each individual circuit is composed of the following parts:
+
+`HEADER | METADATA | REGISTERS | CUSTOM_DEFINITIONS | INSTRUCTIONS`
+
+There is a circuit payload for each circuit (where the total number is dictated by `num_circuits` in the file header). There is no padding between the circuits in the data.
+
+### HEADER
+
+The contents of HEADER as defined as a C struct are:
+
+```python
+struct {
+    uint16_t name_size;
+    double global_phase;
+    uint32_t num_qubits;
+    uint32_t num_clbits;
+    uint64_t metadata_size;
+    uint32_t num_registers;
+    uint64_t num_instructions;
+    uint64_t num_custom_gates;
+}
+```
+
+This is immediately followed by `name_size` bytes of utf8 data for the name of the circuit.
+
+### METADATA
+
+The METADATA field is a UTF8 encoded JSON string. After reading the HEADER (which is a fixed size at the start of the QPY file) and the `name` string you then read the\`metadata\_size\`\` number of bytes and parse the JSON to get the metadata for the circuit.
+
+### REGISTERS
+
+The contents of REGISTERS is a number of REGISTER object. If num\_registers is > 0 then after reading METADATA you read that number of REGISTER structs defined as:
+
+```python
+struct {
+    char type;
+    _Bool standalone;
+    uint32_t size;
+    uint16_t name_size;
+}
+```
+
+`type` can be `'q'` or `'c'`.
+
+Immediately following the REGISTER struct is the utf8 encoded register name of size `name_size`. After the `name` utf8 bytes there is then an array of uint32\_t values of size `size` that contains a map of the register’s index to the circuit’s qubit index. For example, array element 0’s value is the index of the `register[0]`’s position in the containing circuit’s qubits list.
+
+The standalone boolean determines whether the register is constructed as a standalone register that was added to the circuit or was created from existing bits. A register is considered standalone if it has bits constructed solely as part of it, for example:
+
+```python
+qr = QuantumRegister(2)
+qc = QuantumCircuit(qr)
+```
+
+the register `qr` would be a standalone register. While something like:
+
+```python
+bits = [Qubit(), Qubit()]
+qr = QuantumRegister(bits=bits)
+qc = QuantumCircuit(bits=bits)
+```
+
+`qr` would have `standalone` set to `False`.
+
+### CUSTOM\_DEFINITIONS
+
+This section specifies custom definitions for any of the instructions in the circuit.
+
+CUSTOM\_DEFINITION\_HEADER contents are defined as:
+
+```python
+struct {
+    uint64_t size;
+}
+```
+
+If size is greater than 0 that means the circuit contains custom instruction(s). Each custom instruction is defined with a CUSTOM\_INSTRUCTION block defined as:
+
+```python
+struct {
+    uint16_t name_size;
+    char type;
+    _Bool custom_definition;
+    uint64_t size;
+}
+```
+
+Immediately following the CUSTOM\_INSTRUCTION struct is the utf8 encoded name of size `name_size`.
+
+If `custom_definition` is `True` that means that the immediately following `size` bytes contains a QPY circuit data which can be used for the custom definition of that gate. If `custom_definition` is `False` then the instruction can be considered opaque (ie no definition).
+
+### INSTRUCTIONS
+
+The contents of INSTRUCTIONS is a list of INSTRUCTION metadata objects
+
+```python
+struct {
+    uint16_t name_size;
+    uint16_t label_size;
+    uint16_t num_parameters;
+    uint32_t num_qargs;
+    uint32_t num_cargs;
+    _Bool has_conditional;
+    uint16_t conditional_reg_name_size;
+    int64_t conditional_value;
+}
+```
+
+This metadata object is immediately followed by `name_size` bytes of utf8 bytes for the `name`. `name` here is the Qiskit class name for the Instruction class if it’s defined in Qiskit. Otherwise it falls back to the custom instruction name. Following the `name` bytes there are `label_size` bytes of utf8 data for the label if one was set on the instruction. Following the label bytes if `has_conditional` is `True` then there are `conditional_reg_name_size` bytes of utf8 data for the name of the conditional register name. In case of single classical bit conditions the register name utf8 data will be prefixed with a null character “x00” and then a utf8 string integer representing the classical bit index in the circuit that the condition is on.
+
+This is immediately followed by the INSTRUCTION\_ARG structs for the list of arguments of that instruction. These are in the order of all quantum arguments (there are num\_qargs of these) followed by all classical arguments (num\_cargs of these).
+
+The contents of each INSTRUCTION\_ARG is:
+
+```python
+struct {
+    char type;
+    uint32_t index;
+}
+```
+
+`type` can be `'q'` or `'c'`.
+
+After all arguments for an instruction the parameters are specified with `num_parameters` INSTRUCTION\_PARAM structs.
+
+The contents of each INSTRUCTION\_PARAM is:
+
+```python
+struct {
+    char type;
+    uint64_t size;
+}
+```
+
+After each INSTRUCTION\_PARAM the next `size` bytes are the parameter’s data. The `type` field can be `'i'`, `'f'`, `'p'`, `'e'`, `'s'`, `'c'` or `'n'` which dictate the format. For `'i'` it’s an integer, `'f'` it’s a double, `'s'` if it’s a string (encoded as utf8), `'c'` is a complex and the data is represented by the struct format in the [PARAMETER\_EXPR](#param-expr) section. `'p'` defines a [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") object which is represented by a PARAM struct (see below), `e` defines a [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") object (that’s not a [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter")) which is represented by a PARAM\_EXPR struct (see below), and `'n'` represents an object from numpy (either an `ndarray` or a numpy type) which means the data is .npy format [2](#f2) data.
+
+### PARAMETER
+
+A PARAMETER represents a [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") object the data for a INSTRUCTION\_PARAM. The contents of the PARAMETER are defined as:
+
+```python
+struct {
+    uint16_t name_size;
+    char uuid[16];
+}
+```
+
+which is immediately followed by `name_size` utf8 bytes representing the parameter name.
+
+<span id="param-expr" />
+
+### PARAMETER\_EXPR
+
+A PARAMETER\_EXPR represents a [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") object that the data for an INSTRUCTION\_PARAM. The contents of a PARAMETER\_EXPR are defined as:
+
+The PARAMETER\_EXPR data starts with a header:
+
+```python
+struct {
+    uint64_t map_elements;
+    uint64_t expr_size;
+}
+```
+
+Immediately following the header is `expr_size` bytes of utf8 data containing the expression string, which is the sympy srepr of the expression for the parameter expression. Follwing that is a symbol map which contains `map_elements` elements with the format
+
+```python
+struct {
+    char type;
+    uint64_t size;
+}
+```
+
+Which is followed immediately by `PARAMETER` object (both the struct and utf8 name bytes) for the symbol map key. That is followed by `size` bytes for the data of the symbol. The data format is dependent on the value of `type`. If `type` is `p` then it represents a [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") and size will be 0, the value will just be the same as the key. If `type` is `f` then it represents a double precision float. If `type` is `c` it represents a double precision complex, which is represented by:
+
+```python
+struct {
+    double real;
+    double imag;
+}
+```
+
+this matches the internal C representation of Python’s complex type. [3](#f3) Finally, if type is `i` it represents an integer which is an `int64_t`.
+
+**[1](#id1)**
+
+[https://tools.ietf.org/html/rfc1700](https://tools.ietf.org/html/rfc1700)
+
+**[2](#id2)**
+
+[https://numpy.org/doc/stable/reference/generated/numpy.lib.format.html](https://numpy.org/doc/stable/reference/generated/numpy.lib.format.html)
+
+**[3](#id3)**
+
+[https://docs.python.org/3/c-api/complex.html#c.Py\_complex](https://docs.python.org/3/c-api/complex.html#c.Py_complex)
+

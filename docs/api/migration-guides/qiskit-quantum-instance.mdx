@@ -5,26 +5,26 @@ description: Stop using the deprecated Qiskit `QuantumInstance` class
 
 # QuantumInstance migration guide
 
-The [`qiskit.utils.QuantumInstance`](../qiskit/0.44/qiskit.utils.QuantumInstance) is a utility class that allows the joint
+The [`qiskit.utils.QuantumInstance`](../qiskit/0.46/qiskit.utils.QuantumInstance) is a utility class that allows the joint
 configuration of the circuit transpilation and execution steps, and provides functions
 at a higher level of abstraction for a more convenient integration with algorithms.
 These include measurement error mitigation, splitting and combining execution to
 conform to job limits,
 and ensuring reliable circuit execution with additional job management tools.
 
-The [`qiskit.utils.QuantumInstance`](../qiskit/0.44/qiskit.utils.QuantumInstance) class is being deprecated for several reasons:
-* The functionality of [`qiskit.utils.QuantumInstance.execute`](../qiskit/0.44/qiskit.utils.QuantumInstance#execute) has been delegated to the different implementations of the [`qiskit.primitives`](../qiskit/primitives) base classes.
-* With the direct implementation of transpilation at the primitives level, the algorithms no longer need to manage that aspect of execution, and thus [`qiskit.utils.QuantumInstance.transpile`](../qiskit/0.44/qiskit.utils.QuantumInstance#transpile) is no longer required by the workflow. If desired, custom transpilation routines can still be performed at the user level through the [`qiskit.transpiler`](../qiskit/transpiler) module (see the table below).
+The [`qiskit.utils.QuantumInstance`](../qiskit/0.46/qiskit.utils.QuantumInstance) class is being deprecated for several reasons:
+* The functionality of [`qiskit.utils.QuantumInstance.execute`](../qiskit/0.46/qiskit.utils.QuantumInstance#execute) has been delegated to the different implementations of the [`qiskit.primitives`](../qiskit/primitives) base classes.
+* With the direct implementation of transpilation at the primitives level, the algorithms no longer need to manage that aspect of execution, and thus [`qiskit.utils.QuantumInstance.transpile`](../qiskit/0.46/qiskit.utils.QuantumInstance#transpile) is no longer required by the workflow. If desired, custom transpilation routines can still be performed at the user level through the [`qiskit.transpiler`](../qiskit/transpiler) module (see the table below).
 
-The following table summarizes the migration alternatives for the [`qiskit.utils.QuantumInstance`](../qiskit/0.44/qiskit.utils.QuantumInstance) class:
+The following table summarizes the migration alternatives for the [`qiskit.utils.QuantumInstance`](../qiskit/0.46/qiskit.utils.QuantumInstance) class:
 
 | QuantumInstance method | Alternative |
 | --- | --- |
-| [`qiskit.utils.QuantumInstance.execute`](../qiskit/0.44/qiskit.utils.QuantumInstance#execute) | [`qiskit.primitives.Sampler.run`](../qiskit/qiskit.primitives.Sampler#run) or [`qiskit.primitives.Estimator.run`](../qiskit/qiskit.primitives.Estimator#run) |
-| [`qiskit.utils.QuantumInstance.transpile`](../qiskit/0.44/qiskit.utils.QuantumInstance#transpile) | [`qiskit.compiler.transpile`](../qiskit/compiler#qiskit.compiler.transpile) |
-| [`qiskit.utils.QuantumInstance.assemble`](../qiskit/0.44/qiskit.utils.QuantumInstance#assemble) | [`qiskit.compiler.assemble`](../qiskit/compiler#qiskit.compiler.assemble) |
+| [`qiskit.utils.QuantumInstance.execute`](../qiskit/0.46/qiskit.utils.QuantumInstance#execute) | [`qiskit.primitives.Sampler.run`](../qiskit/qiskit.primitives.Sampler#run) or [`qiskit.primitives.Estimator.run`](../qiskit/qiskit.primitives.Estimator#run) |
+| [`qiskit.utils.QuantumInstance.transpile`](../qiskit/0.46/qiskit.utils.QuantumInstance#transpile) | [`qiskit.compiler.transpile`](../qiskit/compiler#qiskit.compiler.transpile) |
+| [`qiskit.utils.QuantumInstance.assemble`](../qiskit/0.46/qiskit.utils.QuantumInstance#assemble) | [`qiskit.compiler.assemble`](../qiskit/compiler#qiskit.compiler.assemble) |
 
-The remainder of this guide focused on the [`qiskit.utils.QuantumInstance.execute`](../qiskit/0.44/qiskit.utils.QuantumInstance#execute) to
+The remainder of this guide focused on the [`qiskit.utils.QuantumInstance.execute`](../qiskit/0.46/qiskit.utils.QuantumInstance#execute) to
 [`qiskit.primitives`](../qiskit/primitives) migration path.
 
 <Admonition type="caution">
@@ -38,26 +38,26 @@ The remainder of this guide focused on the [`qiskit.utils.QuantumInstance.execut
   [`qiskit.primitives.BackendSampler`](../qiskit/qiskit.primitives.BackendSampler) and [`qiskit.primitives.BackendEstimator`](../qiskit/qiskit.primitives.BackendEstimator) are
   wrappers for `backend.run()` that follow the primitives interface.
 
-  Providers can implement these primitives as subclasses of [`qiskit.primitives.BaseSampler`](../qiskit/qiskit.primitives.BaseSampler) and [`qiskit.primitives.BaseEstimator`](../qiskit/qiskit.primitives.BaseEstimator), respectively.
-  IBM Qiskit Runtime ([`qiskit_ibm_runtime`](../qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService)) and Aer ([`qiskit_aer.primitives`](https://qiskit.org/ecosystem/aer/apidocs/aer_primitives.html)) are examples of native implementations of primitives.
+  Providers can implement these primitives as subclasses of [`qiskit.primitives.BaseSampler`](../qiskit/0.46/qiskit.primitives.BaseSampler) and [`qiskit.primitives.BaseEstimator`](../qiskit/0.46/qiskit.primitives.BaseEstimator), respectively.
+  Qiskit Runtime ([`qiskit_ibm_runtime`](../qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService)) and Aer ([`qiskit_aer.primitives`](https://qiskit.org/ecosystem/aer/apidocs/aer_primitives.html)) are examples of native implementations of primitives.
 
   This guide uses the following naming convention:
 
   - *Primitives* - Any Sampler or Estimator implementation using base classes [`qiskit.primitives.BackendSampler`](../qiskit/qiskit.primitives.BackendSampler) and a [`qiskit.primitives.BackendEstimator`](../qiskit/qiskit.primitives.BackendEstimator).
   - *Reference primitives* -  [`qiskit.primitives.Sampler`](../qiskit/qiskit.primitives.Sampler) and [`qiskit.primitives.Estimator`](../qiskit/qiskit.primitives.Estimator) are reference implementations that come with Qiskit.
   - *Aer primitives* - The [Aer](https://qiskit.org/ecosystem/aer) primitive implementations [`qiskit_aer.primitives.Sampler`](https://qiskit.org/ecosystem/aer/stubs/qiskit_aer.primitives.Sampler.html) and [`qiskit_aer.primitives.Estimator`](https://qiskit.org/ecosystem/aer/stubs/qiskit_aer.primitives.Estimator.html).
-  - *Qiskit Runtime primitives* - The IBM Qiskit Runtime primitive implementations [`qiskit_ibm_runtime.Sampler`](../qiskit-ibm-runtime/qiskit_ibm_runtime.Sampler) and [`qiskit_ibm_runtime.Estimator`](../qiskit-ibm-runtime/qiskit_ibm_runtime.Estimator).
+  - *Qiskit Runtime primitives* - The Qiskit Runtime primitive implementations [`qiskit_ibm_runtime.Sampler`](../qiskit-ibm-runtime/qiskit_ibm_runtime.Sampler) and [`qiskit_ibm_runtime.Estimator`](../qiskit-ibm-runtime/qiskit_ibm_runtime.Estimator).
   - *`Backend` primitives* - Instances of [`qiskit.primitives.BackendSampler`](../qiskit/qiskit.primitives.BackendSampler) and [`qiskit.primitives.BackendEstimator`](../qiskit/qiskit.primitives.BackendEstimator). These allow any system to implement primitive interfaces.
 
 </Admonition>
 
 ## Choose the right primitive for your task
 
-The [`qiskit.utils.QuantumInstance`](../qiskit/0.44/qiskit.utils.QuantumInstance) was designed to be an abstraction of transpile and run.
-It took inspiration from [`qiskit.execute_function.execute`](../qiskit/execute#qiskit.execute_function.execute) but retained configuration information that could be set
+The [`qiskit.utils.QuantumInstance`](../qiskit/0.46/qiskit.utils.QuantumInstance) was designed to be an abstraction of transpile and run.
+It took inspiration from [`qiskit.execute_function.execute`](../qiskit/0.46/execute#qiskit.execute_function.execute) but retained configuration information that could be set
 at the algorithm level to save the user from defining the same parameters for every transpile or execute call.
 
-The [`qiskit.primitives`](../qiskit/primitives) classes share some of these features, but unlike the [`qiskit.utils.QuantumInstance`](../qiskit/0.44/qiskit.utils.QuantumInstance),
+The [`qiskit.primitives`](../qiskit/primitives) classes share some of these features, but unlike the [`qiskit.utils.QuantumInstance`](../qiskit/0.46/qiskit.utils.QuantumInstance),
 there are multiple primitive classes, and each is optimized for a specific
 purpose. Selecting the right primitive (`Sampler` or `Estimator`) requires some knowledge about
 **what** it is expected to do and **where** or **how** it is expected to run.
@@ -69,17 +69,17 @@ purpose. Selecting the right primitive (`Sampler` or `Estimator`) requires some 
   - The `Sampler` takes in circuits, measures them, and returns their  **quasi-probability distributions**.
 </Admonition>
 
-To determine which primitive to use instead of [`qiskit.utils.QuantumInstance`](../qiskit/0.44/qiskit.utils.QuantumInstance), you should ask
+To determine which primitive to use instead of [`qiskit.utils.QuantumInstance`](../qiskit/0.46/qiskit.utils.QuantumInstance), you should ask
 yourself two questions:
 
 1. What is the minimal unit of information used by your algorithm?
     * If it uses an expectation value, you need an `Estimator`.
-    * If it uses a probability distribution (from sampleing the devicd), you need a `Sampler`
+    * If it uses a probability distribution (from sampling the device), you need a `Sampler`
 
 2. How do you want to run your circuits?
 
    This question is not new. In the legacy algorithm workflow, you would set up a
-   [`qiskit.utils.QuantumInstance`](../qiskit/0.44/qiskit.utils.QuantumInstance) with either a real system from a provider, or a simulator.
+   [`qiskit.utils.QuantumInstance`](../qiskit/0.46/qiskit.utils.QuantumInstance) with either a real system from a provider, or a simulator.
    For this migration, this "system selection" process is translated to **where** do you import your primitives from:
    
    * Using **local** statevector simulators for quick prototyping: **Reference primitives**
@@ -87,20 +87,20 @@ yourself two questions:
    * Accessing **runtime-enabled systems** (or cloud simulators): **Qiskit Runtime primitives**
    * Accessing **non runtime-enabled systems** : **`Backend` primitives**
 
-Arguably, the `Sampler` is the closest primitive to [`qiskit.utils.QuantumInstance`](../qiskit/0.44/qiskit.utils.QuantumInstance), as they
-both execute circuits and provide a result. However, with the [`qiskit.utils.QuantumInstance`](../qiskit/0.44/qiskit.utils.QuantumInstance),
+Arguably, the `Sampler` is the closest primitive to [`qiskit.utils.QuantumInstance`](../qiskit/0.46/qiskit.utils.QuantumInstance), as they
+both execute circuits and provide a result. However, with the [`qiskit.utils.QuantumInstance`](../qiskit/0.46/qiskit.utils.QuantumInstance),
 the result data was system-dependent (it could be a counts `dict`, a `numpy.array` for
 statevector simulations, and so on), while `Sampler` normalizes its `SamplerResult` to 
 return a [`qiskit.result.QuasiDistribution`](../qiskit/qiskit.result.QuasiDistribution) object with the resulting quasi-probability distribution.
 
 The `Estimator` provides a specific abstraction for the expectation value calculation that can replace
- [`qiskit.utils.QuantumInstance`](../qiskit/0.44/qiskit.utils.QuantumInstance) as well as the associated pre- and post-processing steps, usually performed
-with an additional library such as [`qiskit.opflow`](../qiskit/0.44/opflow).
+ [`qiskit.utils.QuantumInstance`](../qiskit/0.46/qiskit.utils.QuantumInstance) as well as the associated pre- and post-processing steps, usually performed
+with an additional library such as [`qiskit.opflow`](../qiskit/0.46/opflow).
 
 ## Choose the right primitive for your settings
 
-Certain [`qiskit.utils.QuantumInstance`](../qiskit/0.44/qiskit.utils.QuantumInstance) features are only available in certain primitive implementations.
-The following table summarizes the most common [`qiskit.utils.QuantumInstance`](../qiskit/0.44/qiskit.utils.QuantumInstance) settings and which
+Certain [`qiskit.utils.QuantumInstance`](../qiskit/0.46/qiskit.utils.QuantumInstance) features are only available in certain primitive implementations.
+The following table summarizes the most common [`qiskit.utils.QuantumInstance`](../qiskit/0.46/qiskit.utils.QuantumInstance) settings and which
 primitives expose a similar setting through their interface:
 
 <Admonition type="caution">
@@ -202,7 +202,7 @@ Result: SamplerResult(quasi_dists=[{3: 1.0}], metadata=[{'shots': 200}])
 **b. Aer primitives**
 
 This method uses Aer simulation following the statevector method. This is a closer replacement of the
-[`qiskit.utils.QuantumInstance`](../qiskit/0.44/qiskit.utils.QuantumInstance)
+[`qiskit.utils.QuantumInstance`](../qiskit/0.46/qiskit.utils.QuantumInstance)
 example, as they are access the same simulator. Note that
 the resulting quasi-probability distribution does not use bitstrings but integers to identify the states.
 
@@ -245,13 +245,13 @@ Binary quasi-dist:  {'11': 1.0}
 ### Example 2: Expectation value calculation with local noisy simulation
 
 While this example does not include a direct call to `QuantumInstance.execute()`, it shows
-how to migrate from a [`qiskit.utils.QuantumInstance`](../qiskit/0.44/qiskit.utils.QuantumInstance)-based to a [`qiskit.primitives`](../qiskit/primitives)-based
+how to migrate from a [`qiskit.utils.QuantumInstance`](../qiskit/0.46/qiskit.utils.QuantumInstance)-based to a [`qiskit.primitives`](../qiskit/primitives)-based
 workflow.
 
 **QuantumInstance**
 
 The most common use case for computing expectation values with the Quantum Instance was as in combination with the
-[`qiskit.opflow`](../qiskit/0.44/opflow) library. You can see more information in the [opflow migration guide](./qiskit-opflow-module).
+[`qiskit.opflow`](../qiskit/0.46/opflow) library. You can see more information in the [opflow migration guide](./qiskit-opflow-module).
 
 ```python
 from qiskit import QuantumCircuit
@@ -440,8 +440,8 @@ When using the primitives:
 Note that the primitives do handle parameter bindings, so that even if a `bound_pass_manager` is defined in a
 [`qiskit.primitives.BackendSampler`](../qiskit/qiskit.primitives.BackendSampler) or [`qiskit.primitives.BackendEstimator`](../qiskit/qiskit.primitives.BackendEstimator), you do not have to manually assign parameters as expected in the QuantumInstance workflow.
 
-The two-stage transpilation was added to the `QuantumInstance` to allow running pulse-efficient transpilation passes with the [`qiskit.opflow.converters.CircuitSampler`](../qiskit/0.44/qiskit.opflow.converters.CircuitSampler) class. The following
-example shows how to migrate this use case, where the `QuantumInstance.execute()` method is called by the [`qiskit.opflow.converters.CircuitSampler`](../qiskit/0.44/qiskit.opflow.converters.CircuitSampler) code.
+The two-stage transpilation was added to the `QuantumInstance` to allow running pulse-efficient transpilation passes with the [`qiskit.opflow.converters.CircuitSampler`](../qiskit/0.46/qiskit.opflow.converters.CircuitSampler) class. The following
+example shows how to migrate this use case, where the `QuantumInstance.execute()` method is called by the [`qiskit.opflow.converters.CircuitSampler`](../qiskit/0.46/qiskit.opflow.converters.CircuitSampler) code.
 
 **QuantumInstance**
 

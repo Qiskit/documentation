@@ -13,23 +13,15 @@
 import { join } from "path/posix";
 
 import { findLegacyReleaseNotes } from "./releaseNotes";
-import { removePrefix, removeSuffix } from "../stringUtils";
 import { getRoot } from "../fs";
-
-/**
- * Simple interface for scripts/command/updateApiDocs.ts
- */
-export interface Link {
-  url: string; // Where the link goes
-  text?: string; // What the user sees
-}
+import { determineHistoricalQiskitGithubUrl } from "../qiskitMetapackage";
 
 export interface ReleaseNoteEntry {
   title: string;
   url: string;
 }
 
-type PackageType = "latest" | "historical";
+type PackageType = "latest" | "historical" | "dev";
 
 /**
  * Information about the specific package and version we're dealing with, e.g. qiskit 0.45.
@@ -39,7 +31,6 @@ export class Pkg {
   readonly title: string;
   readonly githubSlug: string;
   readonly hasSeparateReleaseNotes: boolean;
-  readonly transformLink?: (link: Link) => Link | undefined;
   readonly version: string;
   readonly versionWithoutPatch: string;
   readonly type: PackageType;
@@ -52,7 +43,6 @@ export class Pkg {
     title: string;
     githubSlug: string;
     hasSeparateReleaseNotes: boolean;
-    transformLink?: (link: Link) => Link | undefined;
     version: string;
     versionWithoutPatch: string;
     type: PackageType;
@@ -62,7 +52,6 @@ export class Pkg {
     this.title = kwargs.title;
     this.githubSlug = kwargs.githubSlug;
     this.hasSeparateReleaseNotes = kwargs.hasSeparateReleaseNotes;
-    this.transformLink = kwargs.transformLink;
     this.version = kwargs.version;
     this.versionWithoutPatch = kwargs.versionWithoutPatch;
     this.type = kwargs.type;
@@ -86,7 +75,7 @@ export class Pkg {
       const releaseNoteEntries = await findLegacyReleaseNotes(name);
       return new Pkg({
         ...args,
-        title: "Qiskit",
+        title: "Qiskit SDK",
         name: "qiskit",
         githubSlug: "qiskit/qiskit",
         hasSeparateReleaseNotes: true,
@@ -100,7 +89,6 @@ export class Pkg {
         title: "Qiskit Runtime IBM Client",
         name: "qiskit-ibm-runtime",
         githubSlug: "qiskit/qiskit-ibm-runtime",
-        transformLink,
         hasSeparateReleaseNotes: false,
         releaseNoteEntries: [],
       });
@@ -112,7 +100,6 @@ export class Pkg {
         title: "Qiskit IBM Provider",
         name: "qiskit-ibm-provider",
         githubSlug: "qiskit/qiskit-ibm-provider",
-        transformLink,
         hasSeparateReleaseNotes: false,
         releaseNoteEntries: [],
       });
@@ -126,7 +113,6 @@ export class Pkg {
     title?: string;
     githubSlug?: string;
     hasSeparateReleaseNotes?: boolean;
-    transformLink?: (link: Link) => Link | undefined;
     version?: string;
     versionWithoutPatch?: string;
     type?: PackageType;
@@ -137,7 +123,6 @@ export class Pkg {
       title: kwargs.title ?? "My Quantum Project",
       githubSlug: kwargs.githubSlug ?? "qiskit/my-quantum-project",
       hasSeparateReleaseNotes: kwargs.hasSeparateReleaseNotes ?? false,
-      transformLink: kwargs.transformLink,
       version: kwargs.version ?? "0.1.0",
       versionWithoutPatch: kwargs.versionWithoutPatch ?? "0.1",
       type: kwargs.type ?? "latest",
@@ -149,28 +134,32 @@ export class Pkg {
     let path = join(parentDir, "api", this.name);
     if (this.isHistorical()) {
       path = join(path, this.versionWithoutPatch);
+    } else if (this.isDev()) {
+      path = join(path, "dev");
     }
     return path;
   }
 
-  ciArtifactFolder(): string {
-    return `${getRoot()}/.out/python/sources/${this.name}/${this.version}`;
+  sphinxArtifactFolder(): string {
+    return `${getRoot()}/.sphinx-artifacts/${this.name}/${
+      this.versionWithoutPatch
+    }`;
   }
 
   isHistorical(): boolean {
     return this.type == "historical";
   }
 
+  isDev(): boolean {
+    return this.type == "dev";
+  }
+
+  isLatest(): boolean {
+    return this.type == "latest";
+  }
+
   hasObjectsInv(): boolean {
-    // We don't currently worry about objects.inv for historical API docs because we don't
-    // expect users to care about it, so we can keep things simple. For example, our copy
-    // of the historical Qiskit API docs <0.32 did not include `objects.inv`, so we could
-    // never get the mechanism working for those.
-    //
-    // Feel free to enable this mechanism for historical API docs if users find it useful!
-    // When adding, be sure that we correctly point to the correct subfolder, e.g.
-    // api/qiskit/0.44 rather than api/qiskit.
-    return !this.isHistorical();
+    return this.name !== "qiskit" || +this.versionWithoutPatch >= 0.45;
   }
 
   /**
@@ -197,198 +186,27 @@ export class Pkg {
 
     // Provider, Runtime, and Qiskit 0.45+ are simple: there is a branch called `stable/<version>`
     // like `stable/0.45` in each GitHub project.
-    if (this.name !== "qiskit" || +this.versionWithoutPatch >= 0.45) {
-      const baseUrl = `https://github.com/${this.githubSlug}/tree/stable/${this.versionWithoutPatch}`;
+    if (
+      this.name !== "qiskit" ||
+      this.type === "dev" ||
+      +this.versionWithoutPatch >= 0.45
+    ) {
+      const branchName =
+        this.type === "dev" && this.version.endsWith("-dev")
+          ? "main"
+          : `stable/${this.versionWithoutPatch}`;
+      const baseUrl = `https://github.com/${this.githubSlug}/tree/${branchName}`;
       return (fileName) => {
         return `${baseUrl}/${normalizeFile(fileName)}.py`;
       };
     }
 
     // Otherwise, we have to deal with Qiskit <0.45, when we had the qiskit-metapackage comprised of
-    // multiple packages. Refer to the version table in api/qiskit/release-notes/0.44.md.
+    // multiple packages. Refer to the version table in api/qiskit/release-notes/0.44.mdx.
     return (fileName) =>
       determineHistoricalQiskitGithubUrl(
         this.versionWithoutPatch,
         normalizeFile(fileName),
       );
   }
-}
-
-const QISKIT_METAPACKAGE_TO_TERRA = new Map([
-  ["0.44", "0.25"],
-  ["0.43", "0.24"],
-  ["0.42", "0.23"],
-  ["0.41", "0.23"],
-  ["0.40", "0.23"],
-  ["0.39", "0.22"],
-  ["0.38", "0.21"],
-  ["0.37", "0.21"],
-  ["0.36", "0.20"],
-  ["0.35", "0.20"],
-  ["0.34", "0.19"],
-  ["0.33", "0.19"],
-  ["0.32", "0.18"],
-  ["0.31", "0.18"],
-  ["0.30", "0.18"],
-  ["0.29", "0.18"],
-  ["0.28", "0.18"],
-  ["0.27", "0.17"],
-  ["0.26", "0.17"],
-  ["0.25", "0.17"],
-  ["0.24", "0.16"],
-  ["0.19", "0.14"],
-]);
-const QISKIT_METAPACKAGE_TO_AER = new Map([
-  ["0.43", "0.12"],
-  ["0.42", "0.12"],
-  ["0.41", "0.11"],
-  ["0.40", "0.11"],
-  ["0.39", "0.11"],
-  ["0.38", "0.11"],
-  ["0.37", "0.10"],
-  ["0.36", "0.10"],
-  ["0.35", "0.10"],
-  ["0.34", "0.10"],
-  ["0.33", "0.9"],
-  ["0.32", "0.9"],
-  ["0.31", "0.9"],
-  ["0.30", "0.9"],
-  ["0.29", "0.8"],
-  ["0.28", "0.8"],
-  ["0.27", "0.8"],
-  ["0.26", "0.8"],
-  ["0.25", "0.8"],
-  ["0.24", "0.7"],
-  ["0.19", "0.5"],
-]);
-const QISKIT_METAPACKAGE_TO_IGNIS = new Map([
-  ["0.36", "0.7"],
-  ["0.35", "0.7"],
-  ["0.34", "0.7"],
-  ["0.33", "0.7"],
-  ["0.32", "0.6"],
-  ["0.31", "0.6"],
-  ["0.30", "0.6"],
-  ["0.29", "0.6"],
-  ["0.28", "0.6"],
-  ["0.27", "0.6"],
-  ["0.26", "0.6"],
-  ["0.25", "0.6"],
-  ["0.24", "0.5"],
-  ["0.19", "0.3"],
-]);
-const QISKIT_METAPACKAGE_TO_AQUA = new Map([
-  ["0.32", "0.9"],
-  ["0.31", "0.9"],
-  ["0.30", "0.9"],
-  ["0.29", "0.9"],
-  ["0.28", "0.9"],
-  ["0.27", "0.9"],
-  ["0.26", "0.9"],
-  ["0.25", "0.9"],
-  ["0.24", "0.8"],
-  ["0.19", "0.7"],
-]);
-const QISKIT_METAPACKAGE_TO_IBMQ_PROVIDER = new Map([
-  ["0.43", "0.20"],
-  ["0.42", "0.20"],
-  ["0.41", "0.20"],
-  ["0.40", "0.19"],
-  ["0.39", "0.19"],
-  ["0.38", "0.19"],
-  ["0.37", "0.19"],
-  ["0.36", "0.19"],
-  ["0.35", "0.18"],
-  ["0.34", "0.18"],
-  ["0.33", "0.18"],
-  ["0.32", "0.18"],
-  ["0.31", "0.17"],
-  ["0.30", "0.16"],
-  ["0.29", "0.16"],
-  ["0.28", "0.15"],
-  ["0.27", "0.14"],
-  ["0.26", "0.13"],
-  ["0.25", "0.12"],
-  ["0.24", "0.12"],
-  ["0.19", "0.7"],
-]);
-
-function determineHistoricalQiskitGithubUrl(
-  metapackageVersion: string,
-  fileName: string,
-): string {
-  const getOrThrow = (mapping: Map<string, string>): string => {
-    const result = mapping.get(metapackageVersion);
-    if (result === undefined) {
-      throw new Error(
-        `No compatible version found for the file ${fileName} with qiskit-metapackage ${metapackageVersion}}`,
-      );
-    }
-    return result;
-  };
-
-  /**
-   * Special case:
-   * The file `qiskit/optimization/converters/quadratic_program_to_negative_value_oracle` existed in qiskit-aqua
-   * patch 0.7.3, but was removed in patch 0.7.4. Thus, the branch stable/0.7 doesn't contain the file, and
-   * we can only access it through the tag 0.7.3
-   */
-  if (
-    metapackageVersion == "0.19" &&
-    fileName ==
-      "qiskit/optimization/converters/quadratic_program_to_negative_value_oracle"
-  ) {
-    return `https://github.com/qiskit-community/qiskit-aqua/tree/0.7.3/${fileName}.py`;
-  }
-
-  let slug: string;
-  let version: string;
-  if (
-    fileName.includes("qiskit_aer") ||
-    fileName.includes("qiskit/aer") ||
-    fileName.includes("qiskit/providers/aer")
-  ) {
-    slug = "qiskit/qiskit-aer";
-    version = getOrThrow(QISKIT_METAPACKAGE_TO_AER);
-  } else if (fileName.includes("qiskit/ignis")) {
-    slug = "qiskit-community/qiskit-ignis";
-    version = getOrThrow(QISKIT_METAPACKAGE_TO_IGNIS);
-  } else if (
-    fileName.includes("qiskit/aqua") ||
-    fileName.includes("qiskit/chemistry") ||
-    fileName.includes("qiskit/finance") ||
-    fileName.includes("qiskit/ml") ||
-    fileName.includes("qiskit/optimization")
-  ) {
-    slug = "qiskit-community/qiskit-aqua";
-    version = getOrThrow(QISKIT_METAPACKAGE_TO_AQUA);
-  } else if (fileName.includes("qiskit/providers/ibmq")) {
-    slug = "qiskit/qiskit-ibmq-provider";
-    version = getOrThrow(QISKIT_METAPACKAGE_TO_IBMQ_PROVIDER);
-  } else {
-    slug = "qiskit/qiskit";
-    version = getOrThrow(QISKIT_METAPACKAGE_TO_TERRA);
-  }
-
-  return `https://github.com/${slug}/tree/stable/${version}/${fileName}.py`;
-}
-
-function transformLink(link: Link): Link | undefined {
-  const updateText = link.url === link.text;
-  const prefixes = [
-    "https://qiskit.org/documentation/apidoc/",
-    "https://qiskit.org/documentation/stubs/",
-  ];
-  const prefix = prefixes.find((prefix) => link.url.startsWith(prefix));
-  if (!prefix) {
-    return;
-  }
-  let [url, anchor] = link.url.split("#");
-  url = removePrefix(url, prefix);
-  url = removeSuffix(url, ".html");
-  if (anchor && anchor !== url) {
-    url = `${url}#${anchor}`;
-  }
-  const newText = updateText ? url : undefined;
-  return { url: `/api/qiskit/${url}`, text: newText };
 }

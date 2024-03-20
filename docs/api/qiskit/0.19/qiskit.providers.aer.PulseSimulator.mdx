@@ -1,0 +1,209 @@
+---
+title: PulseSimulator
+description: API reference for qiskit.providers.aer.PulseSimulator
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.aer.PulseSimulator
+---
+
+# PulseSimulator
+
+<span id="qiskit.providers.aer.PulseSimulator" />
+
+`PulseSimulator(configuration=None, provider=None)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.5/qiskit/providers/aer/backends/pulse_simulator.py "view source code")
+
+Pulse schedule simulator backend.
+
+The `PulseSimulator` simulates continuous time Hamiltonian dynamics of a quantum system, with controls specified by pulse `Schedule` objects, and the model of the physical system specified by [`PulseSystemModel`](qiskit.providers.aer.pulse.PulseSystemModel "qiskit.providers.aer.pulse.PulseSystemModel") objects. Results are returned in the same format as when jobs are submitted to actual devices.
+
+**Example**
+
+To use the simulator, first `assemble()` a `PulseQobj` object from a list of pulse `Schedule` objects, using `backend=PulseSimulator()`. Call the simulator with the `PulseQobj` and a [`PulseSystemModel`](qiskit.providers.aer.pulse.PulseSystemModel "qiskit.providers.aer.pulse.PulseSystemModel") object representing the physical system.
+
+```python
+backend_sim = qiskit.providers.aer.PulseSimulator()
+
+# Assemble schedules using PulseSimulator as the backend
+pulse_qobj = assemble(schedules, backend=backend_sim)
+
+# Run simulation on a PulseSystemModel object
+results = backend_sim.run(pulse_qobj, system_model)
+```
+
+**Supported PulseQobj parameters**
+
+*   `qubit_lo_freq`: Local oscillator frequencies for each `DriveChannel`. Defaults to either the value given in the [`PulseSystemModel`](qiskit.providers.aer.pulse.PulseSystemModel "qiskit.providers.aer.pulse.PulseSystemModel"), or is calculated directly from the Hamiltonian.
+*   `meas_level`: Type of desired measurement output, in `[1, 2]`. `1` gives complex numbers (IQ values), and `2` gives discriminated states `|0>` and `|1>`. Defaults to `2`.
+*   `meas_return`: Measurement type, `'single'` or `'avg'`. Defaults to `'avg'`.
+*   `shots`: Number of shots per experiment. Defaults to `1024`.
+
+**Simulation details**
+
+The simulator uses the `zvode` differential equation solver method through `scipy`. Simulation is performed in the rotating frame of the diagonal of the drift Hamiltonian contained in the [`PulseSystemModel`](qiskit.providers.aer.pulse.PulseSystemModel "qiskit.providers.aer.pulse.PulseSystemModel"). Measurements are performed in the dressed basis of the drift Hamiltonian.
+
+**Other options**
+
+[`PulseSimulator.run()`](qiskit.providers.aer.PulseSimulator#run "qiskit.providers.aer.PulseSimulator.run") takes an additional `dict` argument `backend_options` for customization. Accepted keys:
+
+*   `'ode_options'`: A `dict` for `zvode` solver options. Accepted keys are `'atol'`, `'rtol'`, `'nsteps'`, `'max_step'`, `'num_cpus'`, `'norm_tol'`, and `'norm_steps'`.
+
+Aer class for backends.
+
+This method should initialize the module and its configuration, and raise an exception if a component of the module is not available.
+
+**Parameters**
+
+*   **controller** (*function*) – Aer controller to be executed
+*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
+*   **provider** ([*BaseProvider*](qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")) – provider responsible for this backend
+
+**Raises**
+
+*   **FileNotFoundError if backend executable is not available.** –
+*   [**AerError**](qiskit.providers.aer.AerError "qiskit.providers.aer.AerError") – if there is no name in the configuration
+
+## Attributes
+
+### DEFAULT\_CONFIGURATION
+
+<span id="qiskit.providers.aer.PulseSimulator.DEFAULT_CONFIGURATION" />
+
+`= {'backend_name': 'pulse_simulator', 'backend_version': '0.5.2', 'basis_gates': [], 'conditional': True, 'coupling_map': None, 'description': 'A pulse-based Hamiltonian simulator for Pulse Qobj files', 'gates': [], 'local': True, 'max_shots': 1000000, 'meas_levels': [0, 1, 2], 'memory': False, 'n_qubits': 20, 'open_pulse': True, 'simulator': True, 'url': 'https://github.com/Qiskit/qiskit-aer'}`
+
+## Methods
+
+### configuration
+
+<span id="qiskit.providers.aer.PulseSimulator.configuration" />
+
+`PulseSimulator.configuration()`
+
+Return the backend configuration.
+
+**Returns**
+
+the configuration for the backend.
+
+**Return type**
+
+[BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+
+### defaults
+
+<span id="qiskit.providers.aer.PulseSimulator.defaults" />
+
+`PulseSimulator.defaults()`
+
+Return defaults.
+
+**Returns**
+
+object for passing assemble.
+
+**Return type**
+
+[PulseDefaults](qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults")
+
+### name
+
+<span id="qiskit.providers.aer.PulseSimulator.name" />
+
+`PulseSimulator.name()`
+
+Return the backend name.
+
+**Returns**
+
+the name of the backend.
+
+**Return type**
+
+str
+
+### properties
+
+<span id="qiskit.providers.aer.PulseSimulator.properties" />
+
+`PulseSimulator.properties()`
+
+Return the backend properties.
+
+**Returns**
+
+the configuration for the backend. If the backend does not support properties, it returns `None`.
+
+**Return type**
+
+[BackendProperties](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
+
+### provider
+
+<span id="qiskit.providers.aer.PulseSimulator.provider" />
+
+`PulseSimulator.provider()`
+
+Return the backend Provider.
+
+**Returns**
+
+the Provider responsible for the backend.
+
+**Return type**
+
+[BaseProvider](qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")
+
+### run
+
+<span id="qiskit.providers.aer.PulseSimulator.run" />
+
+`PulseSimulator.run(qobj, system_model, backend_options=None, validate=False)`
+
+Run a qobj on system\_model.
+
+**Parameters**
+
+*   **qobj** ([*PulseQobj*](qiskit.qobj.PulseQobj "qiskit.qobj.PulseQobj")) – Qobj for pulse Schedules to run
+*   **system\_model** ([*PulseSystemModel*](qiskit.providers.aer.pulse.PulseSystemModel "qiskit.providers.aer.pulse.PulseSystemModel")) – Physical model to run simulation on
+*   **backend\_options** (*dict*) – Other options
+*   **validate** (*bool*) – Flag for validation checks
+
+**Returns**
+
+results of simulation
+
+**Return type**
+
+[Result](qiskit.result.Result "qiskit.result.Result")
+
+### status
+
+<span id="qiskit.providers.aer.PulseSimulator.status" />
+
+`PulseSimulator.status()`
+
+Return backend status.
+
+**Returns**
+
+the status of the backend.
+
+**Return type**
+
+[BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+
+### version
+
+<span id="qiskit.providers.aer.PulseSimulator.version" />
+
+`PulseSimulator.version()`
+
+Return the backend version.
+
+**Returns**
+
+the X.X.X version of the backend.
+
+**Return type**
+
+str
+

@@ -10,6 +10,8 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
+import fs from "fs/promises";
+
 import { globby } from "globby";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
@@ -20,7 +22,10 @@ const PORT = 3000;
 
 interface Arguments {
   [x: string]: unknown;
+  fromFile?: string;
+  nonApi: boolean;
   currentApis: boolean;
+  devApis: boolean;
   historicalApis: boolean;
   qiskitReleaseNotes: boolean;
   translations: boolean;
@@ -29,10 +34,26 @@ interface Arguments {
 const readArgs = (): Arguments => {
   return yargs(hideBin(process.argv))
     .version(false)
+    .option("from-file", {
+      type: "string",
+      normalize: true,
+      description:
+        "Read the file path for file paths and globs to check, like `docs/start/index.md`. Entries should be separated by a newline and should be valid file types (.md, .mdx, .ipynb).",
+    })
+    .option("non-api", {
+      type: "boolean",
+      default: false,
+      description: "Check all the non-API docs, like start/.",
+    })
     .option("current-apis", {
       type: "boolean",
       default: false,
       description: "Check the pages in the current API docs.",
+    })
+    .option("dev-apis", {
+      type: "boolean",
+      default: false,
+      description: "Check the /dev API docs.",
     })
     .option("historical-apis", {
       type: "boolean",
@@ -113,7 +134,7 @@ function pathToUrl(path: string): string {
 async function validateDockerRunning(): Promise<void> {
   try {
     const response = await fetch(`http://localhost:${PORT}`);
-    if (response.status !== 404) {
+    if (response.status !== 200) {
       console.error(
         "Failed to access http://localhost:3000. Have you started the Docker server with `./start`? " +
           "Refer to the README for instructions.",
@@ -131,20 +152,34 @@ async function validateDockerRunning(): Promise<void> {
 }
 
 async function determineFilePaths(args: Arguments): Promise<string[]> {
-  const globs = ["docs/**/*.{ipynb,md,mdx}"];
-  if (!args.currentApis) {
-    globs.push("!docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/*");
+  const globs = [];
+  if (args.fromFile) {
+    const content = await fs.readFile(args.fromFile, "utf-8");
+    globs.push(...content.split("\n").filter((entry) => entry));
   }
-  if (!args.historicalApis) {
-    globs.push(
-      "!docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/[0-9]*/*",
-    );
+
+  if (args.nonApi) {
+    globs.push("docs/**/*.{ipynb,mdx}");
   }
-  if (!args.qiskitReleaseNotes) {
-    globs.push("!docs/api/qiskit/release-notes/*");
-  }
-  if (args.translations) {
-    globs.push("translations/**/*.{ipynb,md,mdx}");
+
+  for (const [isIncluded, glob] of [
+    [
+      args.currentApis,
+      "docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/*.mdx",
+    ],
+    [
+      args.historicalApis,
+      "docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/[0-9]*/*.mdx",
+    ],
+    [
+      args.devApis,
+      "docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/dev/*.mdx",
+    ],
+    [args.qiskitReleaseNotes, "docs/api/qiskit/release-notes/*.mdx"],
+    [args.translations, "translations/**/*.{ipynb,mdx}"],
+  ]) {
+    const prefix = isIncluded ? "" : "!";
+    globs.push(`${prefix}${glob}`);
   }
   return globby(globs);
 }

@@ -1,0 +1,52 @@
+---
+title: SciPyRealEvolver
+description: API reference for qiskit.algorithms.SciPyRealEvolver
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.algorithms.SciPyRealEvolver
+---
+
+# SciPyRealEvolver
+
+<span id="qiskit.algorithms.SciPyRealEvolver" />
+
+`qiskit.algorithms.SciPyRealEvolver(num_timesteps)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/time_evolvers/classical_methods/scipy_real_evolver.py "view source code")
+
+Bases: [`RealTimeEvolver`](qiskit.algorithms.RealTimeEvolver "qiskit.algorithms.time_evolvers.real_time_evolver.RealTimeEvolver")
+
+Classical Evolver for real time evolution.
+
+Evolves an initial state $|\Psi\rangle$ for a time $t$ under a Hamiltonian $H$, as provided in the `evolution_problem`. Note that the precision of the evolver does not depend on the number of timesteps taken.
+
+**Parameters**
+
+**num\_timesteps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of timesteps in the simulation.
+
+**Raises**
+
+[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If steps is not a positive integer.
+
+## Methods
+
+### evolve
+
+<span id="qiskit.algorithms.SciPyRealEvolver.evolve" />
+
+`evolve(evolution_problem)`
+
+Perform real time evolution $\exp(-i t H)|\Psi\rangle$.
+
+Evolves an initial state $|\Psi\rangle$ for a time $t$ under a Hamiltonian $H$, as provided in the `evolution_problem`.
+
+**Parameters**
+
+**evolution\_problem** ([*TimeEvolutionProblem*](qiskit.algorithms.TimeEvolutionProblem "qiskit.algorithms.time_evolvers.time_evolution_problem.TimeEvolutionProblem")) – The definition of the evolution problem.
+
+**Returns**
+
+Evolution result which includes an evolved quantum state.
+
+**Return type**
+
+[*TimeEvolutionResult*](qiskit.algorithms.TimeEvolutionResult "qiskit.algorithms.time_evolvers.time_evolution_result.TimeEvolutionResult")
+

@@ -42,6 +42,8 @@ jobs:
           # Add your notebook to this list if it needs latex or graphviz to run
           files: |
             docs/build/circuit-visualization.ipynb
+            docs/transpile/common-parameters.ipynb
+            docs/transpile/representing_quantum_computers.ipynb
             docs/transpile/transpiler-stages.ipynb
 
       - name: Install Linux dependencies
@@ -74,7 +76,26 @@ jobs:
           path: ".tox"
           key: ${{ hashFiles('scripts/nb-tester/requirements.txt') }}
 
-      - name: Run tox
+      - name: Check lint
+        shell: python
+        run: |
+          import subprocess, sys
+          files = """${{ steps.all-changed-files.outputs.all_changed_files }}"""
+          args = ["tox", "-e", "lint", "--"] + files.split("\n")
+          try:
+            subprocess.run(args, check=True)
+          except:
+            print(
+              "To fix, install `tox` and run `tox -e fix` or download the fixed "
+              "notebook from this run by clicking \"Summary\" on the upper-left "
+              "of this page, and downloading the \"Executed notebooks\" artifact."
+              "\n\n"
+              "For more information, see https://github.com/Qiskit/documentation/blob/main/README.md#lint-notebooks"
+            )
+            sys.exit(1)
+
+      - name: Execute notebooks
+        if: "!cancelled()"
         shell: python
         run: |
           import subprocess
@@ -83,6 +104,7 @@ jobs:
           subprocess.run(args, check=True)
 
       - name: Upload executed notebooks
+        if: "!cancelled()"
         uses: actions/upload-artifact@v4
         with:
           name: Executed notebooks

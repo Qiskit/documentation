@@ -1,11 +1,11 @@
 ---
 title: Select and set up an IBM Quantum channel
-description: Installation and setup instructions for IBM Quantum Platform or IBM Quantum on IBM Cloud to submit Qiskit and Qiskit Runtime jobs
+description: Installation and setup instructions for IBM Quantum Platform or IBM Quantum on IBM Cloud to submit Qiskit SDK and Qiskit Runtime jobs
 
 ---
 # Select and set up an IBM Quantum channel
 
-You can access IBM Quantum systems by using the IBM Quantum Platform or IBM Cloud _channel_.  _Channel_ is the term used to describe the method you use to access IBM Quantum services. 
+You can access IBM Quantum&trade; systems by using the IBM Quantum Platform or IBM Cloud&reg; _channel_.  _Channel_ is the term used to describe the method you use to access IBM Quantum services. 
 
 ### IBM Quantum Platform
 
@@ -55,7 +55,7 @@ You need access credentials to use cloud-based IBM Quantum systems.
     python3
     ```
 
-1. Authenticate to the service by calling `QiskitRuntimeService` with your IBM Cloud API key and CRN:
+1. Authenticate to the service by calling `QiskitRuntimeService` with your IBM Quantum API key and CRN:
 
    ```python
    from qiskit_ibm_runtime import QiskitRuntimeService
@@ -92,24 +92,26 @@ You need access credentials to use cloud-based IBM Quantum systems.
 
 1. Test your setup.  Run a simple circuit using Sampler to ensure that your environment is set up properly:
 
-   ```python
-    from qiskit import QuantumCircuit
-    from qiskit_ibm_runtime import QiskitRuntimeService, Sampler
+  ```python
+from qiskit import QuantumCircuit
+from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
 
-    # Create empty circuit
-    example_circuit = QuantumCircuit(2)
-    example_circuit.measure_all()
+# Create empty circuit
+example_circuit = QuantumCircuit(2)
+example_circuit.measure_all()
 
-    # You'll need to specify the credentials when initializing QiskitRuntimeService, if they were not previously saved.
-    service = QiskitRuntimeService()
-    backend = service.backend("ibmq_qasm_simulator")
-    job = Sampler(backend).run(example_circuit)
-    print(f"job id: {job.job_id()}")
-    result = job.result()
-    print(result)
-    ```
+# You'll need to specify the credentials when initializing QiskitRuntimeService, if they were not previously saved.
+service = QiskitRuntimeService()
+backend = service.backend("ibmq_qasm_simulator")
 
- <span id="cloud"></span>
+sampler = Sampler(backend)
+job = sampler.run([(example_circuit,)])
+print(f"job id: {job.job_id()}")
+result = job.result()
+print(result)
+  ```
+
+<span id="cloud"></span>
 ## Set up to use IBM Cloud
 
 1. Start Python. For example:
@@ -169,7 +171,7 @@ You need access credentials to use cloud-based IBM Quantum systems.
 
    ```python
     from qiskit import QuantumCircuit
-    from qiskit_ibm_runtime import QiskitRuntimeService, Sampler
+    from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
 
     # Create empty circuit
     example_circuit = QuantumCircuit(2)
@@ -178,7 +180,8 @@ You need access credentials to use cloud-based IBM Quantum systems.
     # You'll need to specify the credentials when initializing QiskitRuntimeService, if they were not previously saved.
     service = QiskitRuntimeService()
     backend = service.backend("ibmq_qasm_simulator")
-    job = Sampler(backend).run(example_circuit)
+    sampler = Sampler(backend)
+    job = sampler.run([(example_circuit,)])
     print(f"job id: {job.job_id()}")
     result = job.result()
     print(result)
@@ -187,7 +190,7 @@ You need access credentials to use cloud-based IBM Quantum systems.
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-  -  [Configure Qiskit locally.](configure-qiskit-local)
+  -  [Configure the Qiskit SDK locally.](configure-qiskit-local)
   -  Follow the steps in [Hello world](hello-world) to write and run a quantum program.
   -  [Get started with IBM Quantum on Cloud.](https://cloud.ibm.com/docs/quantum-computing?topic=quantum-computing-get-started)
   -  Try one of the [workflow example tutorials.](https://learning.quantum.ibm.com/catalog/tutorials?category=workflow-example)

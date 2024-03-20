@@ -1,0 +1,195 @@
+---
+title: BackendV1
+description: API reference for qiskit.providers.BackendV1
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.BackendV1
+---
+
+# BackendV1
+
+<span id="qiskit.providers.BackendV1" />
+
+`BackendV1(configuration, provider=None, **fields)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/backend.py "view source code")
+
+Bases: `qiskit.providers.backend.Backend`, `abc.ABC`
+
+Abstract class for Backends
+
+This abstract class is to be used for all Backend objects created by a provider. There are several classes of information contained in a Backend. The first are the attributes of the class itself. These should be used to defined the immutable characteristics of the backend. The `options` attribute of the backend is used to contain the dynamic user configurable options of the backend. It should be used more for runtime options that configure how the backend is used. For example, something like a `shots` field for a backend that runs experiments which would contain an int for how many shots to execute. The `properties` attribute is optionally defined [`BackendProperties`](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") object and is used to return measured properties, or properties of a backend that may change over time. The simplest example of this would be a version string, which will change as a backend is updated, but also could be something like noise parameters for backends that run experiments.
+
+This first version of the Backend abstract class is written to be mostly backwards compatible with the legacy providers interface. This includes reusing the model objects [`BackendProperties`](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") and [`BackendConfiguration`](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration"). This was done to ease the transition for users and provider maintainers to the new versioned providers. Expect, future versions of this abstract class to change the data model and interface.
+
+Initialize a backend class
+
+**Parameters**
+
+*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – A backend configuration object for the backend object.
+*   **provider** ([*qiskit.providers.Provider*](qiskit.providers.Provider "qiskit.providers.Provider")) – Optionally, the provider object that this Backend comes from.
+*   **fields** – kwargs for the values to use to override the default options.
+
+**Raises**
+
+**AttributeError** – if input field not a valid options
+
+In addition to the public abstract methods, subclasses should also implement the following private methods:
+
+### \_default\_options
+
+<span id="qiskit.providers.BackendV1._default_options" />
+
+`abstract classmethod _default_options()`
+
+Return the default options
+
+This method will return a [`qiskit.providers.Options`](qiskit.providers.Options "qiskit.providers.Options") subclass object that will be used for the default options. These should be the default parameters to use for the options of the backend.
+
+**Returns**
+
+**A options object with**
+
+default values set
+
+**Return type**
+
+[qiskit.providers.Options](qiskit.providers.Options "qiskit.providers.Options")
+
+## Methods
+
+### configuration
+
+<span id="qiskit.providers.BackendV1.configuration" />
+
+`BackendV1.configuration()`
+
+Return the backend configuration.
+
+**Returns**
+
+the configuration for the backend.
+
+**Return type**
+
+[BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+
+### name
+
+<span id="qiskit.providers.BackendV1.name" />
+
+`BackendV1.name()`
+
+Return the backend name.
+
+**Returns**
+
+the name of the backend.
+
+**Return type**
+
+str
+
+### properties
+
+<span id="qiskit.providers.BackendV1.properties" />
+
+`BackendV1.properties()`
+
+Return the backend properties.
+
+**Returns**
+
+the configuration for the backend. If the backend does not support properties, it returns `None`.
+
+**Return type**
+
+[BackendProperties](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
+
+### provider
+
+<span id="qiskit.providers.BackendV1.provider" />
+
+`BackendV1.provider()`
+
+Return the backend Provider.
+
+**Returns**
+
+the Provider responsible for the backend.
+
+**Return type**
+
+[Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+
+### run
+
+<span id="qiskit.providers.BackendV1.run" />
+
+`abstract BackendV1.run(run_input, **options)`
+
+Run on the backend.
+
+This method that will return a [`Job`](qiskit.providers.Job "qiskit.providers.Job") object that run circuits. Depending on the backend this may be either an async or sync call. It is the discretion of the provider to decide whether running should block until the execution is finished or not. The Job class can handle either situation.
+
+**Parameters**
+
+*   **run\_input** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule") *or list*) – An individual or a list of `QuantumCircuit` or [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") objects to run on the backend. For legacy providers migrating to the new versioned providers, provider interface a [`QasmQobj`](qiskit.qobj.QasmQobj "qiskit.qobj.QasmQobj") or [`PulseQobj`](qiskit.qobj.PulseQobj "qiskit.qobj.PulseQobj") objects should probably be supported too (but deprecated) for backwards compatibility. Be sure to update the docstrings of subclasses implementing this method to document that. New provider implementations should not do this though as [`qiskit.qobj`](qobj#module-qiskit.qobj "qiskit.qobj") will be deprecated and removed along with the legacy providers interface.
+*   **options** – Any kwarg options to pass to the backend for running the config. If a key is also present in the options attribute/object then the expectation is that the value specified will be used instead of what’s set in the options object.
+
+**Returns**
+
+The job object for the run
+
+**Return type**
+
+[Job](qiskit.providers.Job "qiskit.providers.Job")
+
+### set\_options
+
+<span id="qiskit.providers.BackendV1.set_options" />
+
+`BackendV1.set_options(**fields)`
+
+Set the options fields for the backend
+
+This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
+
+**Parameters**
+
+**fields** – The fields to update the options
+
+**Raises**
+
+**AttributeError** – If the field passed in is not part of the options
+
+### status
+
+<span id="qiskit.providers.BackendV1.status" />
+
+`BackendV1.status()`
+
+Return the backend status.
+
+**Returns**
+
+the status of the backend.
+
+**Return type**
+
+[BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+
+## Attributes
+
+<span id="qiskit.providers.BackendV1.options" />
+
+### options
+
+Return the options for the backend
+
+The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit.providers.BackendV1#run "qiskit.providers.BackendV1.run") method.
+
+<span id="qiskit.providers.BackendV1.version" />
+
+### version
+
+`= 1`
+
