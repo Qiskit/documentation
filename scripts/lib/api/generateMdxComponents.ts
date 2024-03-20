@@ -145,15 +145,19 @@ function prepareMethodProps(
   githubSourceLink: string,
   id: string,
 ): componentProps {
+  const props = {
+    id,
+    signature: $child.html()!,
+    githubSourceLink,
+  };
   if (id && !priorApiType) {
     $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
+    return props;
   }
 
   return {
-    id,
+    ...props,
     name: getLastPartFromFullIdentifier(id),
-    signature: $child.html()!,
-    githubSourceLink,
   };
 }
 
