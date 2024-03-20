@@ -12,23 +12,33 @@ Jobs can be run as single jobs, sessions, or in a batch:
 
 - Use **sessions** for iterative workloads.
 - Use **batch mode** to submit multiple primitive jobs simultaneously.
+
+## Best practices
+
+To ensure the most efficient use of the execution modes, the following practices are recommended:  
+
+- Always close your session, either by using a context manager or by specifying `session.close()`.
+- You can run multiple jobs in parallel in both batch and session module, which gives you up to 5x speed up. To differentiate jobs from different workloads, you can use job tags.  For a code example, see [Run two VQE algorithms in a session by using threading.](#two-vqe)
+- If your job contains more than _X number of_ circuits but uses fewer than _Y number of_ shots, consider dividing them into multiple jobs to take advantage of the parallelism. For a code example, see [Divide a 500-circuit job into 5 100-circuit jobs and run them in batch.](#divide)
  
 
 ## Sessions
 
 Sessions are designed for iterative workloads to avoid queueing delays between each iteration. By default, all sessions now run in *dedicated* mode, so that when running a session, you have near exclusive access to the backend.  Additionaly, sessions are now thread safe. That is, you can run multiple workloads within a session. 
 
+<span id="two-vqe"></span>
 ### Example: Run two VQE algorithms in a session by using threading
 
 ```python
 from concurrent.futures import ThreadPoolExecutor
+from qiskit_ibm_runtime import  Session, EstimatorV2 as Estimator
 
 def minimize_thread(estimator, method):
     minimize(cost_func, x0, args=(ansatz, hamiltonian, estimator), method=method)
 
 with Session(backend=backend), ThreadPoolExecutor() as executor:
-    estimator1 = Estimator(options={"job_tags": ["cobyla"]})
-    estimator2 = Estimator(options={"job_tags": ["nelder-mead"]})
+    estimator1.options.environment.job_tags = "cobyla"
+    estimator1.options.environment.job_tags = "nelder-mead"
 
     cobyla_result = executor.submit(minimize_thread, estimator1, "cobyla").result()
     nelder_mead_result = executor.submit(minimize_thread, estimator2, "nelder-mead").result()
@@ -38,7 +48,7 @@ with Session(backend=backend), ThreadPoolExecutor() as executor:
 
 Before this release, sessions were terminated after the active window, as shown in the following image.
 
-![This image shows four jobs.  Between each is the interactive TTL (time to live).  The active window starts when the first job starts and ends after the last job is completed. After the final job completes, the active window ends and the session terminates.](/images/api/qiskit-ibm-runtime/SessionTTL.png 'Figure 1: Session behavior prior to extended sessions')
+![This image shows four jobs.  Between each is the interactive TTL (time to live).  The active window starts when the first job starts and ends after the last job is completed. After the final job completes, the active window ends and the session terminates.](/images/api/qiskit-ibm-runtime/SessionTTL.png 'Figure 1: Session behavior prior to extended sessions') 
 
 With extended sessions, the session pauses after the active window ends. The session is resumed if more session jobs exit the queue. 
 
@@ -48,10 +58,10 @@ With extended sessions, the session pauses after the active window ends. The ses
 
 Submit multiple primitive jobs simultaneously. When batching, classical processing is done in parallel. No session jobs can start when batch jobs are being processed. 
 
+<span id="divide"></span>
+### Example: Divide a 500-circuit job into 5 100-circuit jobs and run them in batch
 ```python
-# Example: dividing a 500-circuit job into 5 100-circuit jobs and run them in batch
-
-from qiskit_ibm_runtime import Batch
+from qiskit_ibm_runtime import Batch, SamplerV2 as Sampler
 
 max_circuits = 100
 jobs = []
@@ -61,7 +71,7 @@ with Batch(backend):
     sampler = Sampler()    
     while start_idx < len(circuits):
         end_idx = start_idx + max_circuits  
-        jobs.append(sampler.run(circuits[start_ids:end_idx]))
+        jobs.append(sampler.run([(circuits[start_ids:end_idx],)]))
         start_idx = end_idx
 ```
 
