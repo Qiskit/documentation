@@ -50,6 +50,10 @@ Successful quantum algorithms must be adapted to exploit the capabilities of qua
 
 Quantum simulators should be used to help develop and test programs before fine-tuning them and sending them to quantum hardware. Local simulators can do this with good performance and efficiency.  Clifford circuits can be simulated very efficiently, and results can be verified, which is a useful way to gain confidence in an experiment. 
 
+<Admonition type="note">
+Local testing mode does not have built-in error suppression or mitigation.  Instead, you must specify those options explictly. See [Configure error mitigation for Qiskit Runtime](/run/configure-error-mitigation) for details. 
+</Admonition>
+
 ## Migrate to local simulators
 
 With `qiskit-ibm-runtime` 0.22.0 or later, you can use local testing mode to replace cloud simulators. Depending on your needs, there are several ways to use local testing mode.  To use local testing mode, specify one of the fake backends in ``qiskit_ibm_runtime.fake_provider`` or specify a Qiskit Aer backend when instantiating a primitive or a session. 
@@ -57,7 +61,7 @@ With `qiskit-ibm-runtime` 0.22.0 or later, you can use local testing mode to rep
 
 ### Fake backends
  
-The [fake backends](/api/qiskit-ibm-runtime/fake_provider) mimic the behaviors of IBM Quantum systems by using system snapshots. The system snapshots contain important information about the quantum system, such as the coupling map, basis gates, and qubit properties, which are useful for testing the transpiler and performing noisy simulations of the system.
+The [fake backends](/api/qiskit-ibm-runtime/fake_provider) mimic the behaviors of IBM Quantum systems by using system snapshots. The system snapshots contain important information about the quantum system, such as the coupling map, basis gates, and qubit properties, which are useful for testing the transpiler and performing noisy simulations of the system.  The noise model from the snapshot is automatically applied during simulation. 
 
 ```python
 from qiskit.circuit.library import RealAmplitudes
