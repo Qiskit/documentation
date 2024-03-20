@@ -103,11 +103,11 @@ function prepareProps(
     method: () =>
       prepareMethodProps($, $child, $dl, priorApiType, githubSourceLink, id),
     attribute: () =>
-      prepareAttributeProps($child, $dl, priorApiType, githubSourceLink, id),
+      prepareAttributeProps($, $child, $dl, priorApiType, githubSourceLink, id),
     function: () =>
-      prepareFunctionOrExceptionProps($child, $dl, id, githubSourceLink),
+      prepareFunctionOrExceptionProps($, $child, $dl, id, githubSourceLink),
     exception: () =>
-      prepareFunctionOrExceptionProps($child, $dl, id, githubSourceLink),
+      prepareFunctionOrExceptionProps($, $child, $dl, id, githubSourceLink),
   };
 
   if (!(apiType in preparePropsPerApiType)) {
@@ -165,6 +165,8 @@ function prepareMethodProps(
   if (id && !priorApiType) {
     $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
     return props;
+  } else if (!$child.attr("id")) {
+    $(`<h3>${getLastPartFromFullIdentifier(id)}</h3>`).insertBefore($dl);
   }
 
   return {
@@ -174,6 +176,7 @@ function prepareMethodProps(
 }
 
 function prepareAttributeProps(
+  $: CheerioAPI,
   $child: Cheerio<any>,
   $dl: Cheerio<any>,
   priorApiType: string | undefined,
@@ -209,6 +212,7 @@ function prepareAttributeProps(
     colonIndex = text.length;
   }
 
+  $(`<h3>${getLastPartFromFullIdentifier(id)}</h3>`).insertBefore($dl);
   // The attributes have the following shape: name [: type] [= value]
   const name = text.slice(0, Math.min(colonIndex, equalIndex)).trim();
   const attributeType = text
@@ -225,6 +229,7 @@ function prepareAttributeProps(
 }
 
 function prepareFunctionOrExceptionProps(
+  $: CheerioAPI,
   $child: Cheerio<any>,
   $dl: Cheerio<any>,
   id: string,
@@ -241,6 +246,7 @@ function prepareFunctionOrExceptionProps(
     // Page is already dedicated to apiType; no heading needed
     return props;
   }
+  $(`<h3>${getLastPartFromFullIdentifier(id)}</h3>`).insertBefore($dl);
 
   return {
     ...props,
