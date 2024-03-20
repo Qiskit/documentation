@@ -165,7 +165,7 @@ function prepareMethodProps(
   if (id && !priorApiType) {
     $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
     return props;
-  } else if (!$child.attr("id")) {
+  } else if ($child.attr("id")) {
     $(`<h3>${getLastPartFromFullIdentifier(id)}</h3>`).insertBefore($dl);
   }
 
