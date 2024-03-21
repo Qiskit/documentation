@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.EstimatorV2
 
 <span id="qiskit_ibm_runtime.EstimatorV2" />
 
-`EstimatorV2(backend=None, session=None, options=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/estimator.py#L48-L177 "view source code")
+`EstimatorV2(backend=None, session=None, options=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/estimator.py#L48-L176 "view source code")
 
 Class for interacting with Qiskit Runtime Estimator primitive service.
 
@@ -58,13 +58,13 @@ Initializes the Estimator primitive.
 
 *   **backend** (`Union`\[`str`, [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend"), `None`]) – Backend to run the primitive. This can be a backend name or an [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.IBMBackend") instance. If a name is specified, the default account (e.g. `QiskitRuntimeService()`) is used.
 
-*   **session** (`Union`\[[`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.session.Session"), `str`, [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend"), `None`]) –
+*   **session** (`Optional`\[[`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.session.Session")]) –
 
     Session in which to call the primitive.
 
     If both `session` and `backend` are specified, `session` takes precedence. If neither is specified, and the primitive is created inside a [`qiskit_ibm_runtime.Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.Session") context manager, then the session is used. Otherwise if IBM Cloud channel is used, a default backend is selected.
 
-*   **options** (`Union`\[`Dict`, [`EstimatorOptions`](qiskit_ibm_runtime.options.EstimatorOptions "qiskit_ibm_runtime.options.estimator_options.EstimatorOptions"), `None`]) – Primitive options, see `Options` for detailed description. The `backend` keyword is still supported but is deprecated.
+*   **options** (`Union`\[`Dict`, [`EstimatorOptions`](qiskit_ibm_runtime.options.EstimatorOptions "qiskit_ibm_runtime.options.estimator_options.EstimatorOptions"), `None`]) – Estimator options, see `EstimatorOptions` for detailed description.
 
 **Raises**
 
@@ -108,7 +108,7 @@ Session used by this primitive, or `None` if session is not used.
 
 <span id="qiskit_ibm_runtime.EstimatorV2.run" />
 
-`run(pubs, *, precision=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/estimator.py#L137-L154 "view source code")
+`run(pubs, *, precision=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/estimator.py#L136-L153 "view source code")
 
 Submit a request to the estimator primitive.
 
@@ -119,7 +119,7 @@ Submit a request to the estimator primitive.
 
 **Return type**
 
-RuntimeJobV2
+[RuntimeJobV2](qiskit_ibm_runtime.RuntimeJobV2 "qiskit_ibm_runtime.RuntimeJobV2")
 
 **Returns**
 
