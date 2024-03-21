@@ -256,8 +256,12 @@ if __name__ == "__main__":
 
     # Execute notebooks
     start_time = datetime.now()
+    execute_options = ExecuteOptions(
+        write=args.write,
+        submit_jobs=args.submit_jobs or args.only_submit_jobs
+    )
     print("Executing notebooks:")
-    results = [execute_notebook(path, args) for path in filtered_paths]
+    results = [execute_notebook(path, execute_options) for path in filtered_paths]
     print("Checking for trailing jobs...")
     results.append(cancel_trailing_jobs(start_time))
     if not all(results):
