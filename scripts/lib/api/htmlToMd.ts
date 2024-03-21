@@ -27,7 +27,7 @@ import { Emphasis, Root, Content } from "mdast";
 import { processHtml } from "./processHtml";
 import { HtmlToMdResult } from "./HtmlToMdResult";
 import { Metadata } from "./Metadata";
-import { removePrefix, removeSuffix } from "../stringUtils";
+import { removePrefix, removeSuffix, capitalize } from "../stringUtils";
 import { remarkStringifyOptions } from "./commonParserConfig";
 
 export async function sphinxHtmlToMarkdown(options: {
@@ -124,22 +124,13 @@ function prepareHandlers(meta: Metadata): Record<string, Handle> {
       return defaultHandlers.div(h, node);
     },
     class(h, node: any): any {
-      return buildMdxComponent(h, node);
-    },
-    property(h, node: any): any {
-      return buildMdxComponent(h, node);
-    },
-    method(h, node: any): any {
-      return buildMdxComponent(h, node);
-    },
-    attribute(h, node: any): any {
-      return buildMdxComponent(h, node);
+      return buildApiComponent(h, node);
     },
     function(h, node: any): any {
-      return buildMdxComponent(h, node);
+      return buildApiComponent(h, node);
     },
-    exception(h, node: any): any {
-      return buildMdxComponent(h, node);
+    attribute(h, node: any): any {
+      return buildApiComponent(h, node);
     },
   };
 
@@ -320,12 +311,12 @@ function buildMathExpression(node: any, type: "math" | "inlineMath"): any {
   return { type: type, value };
 }
 
-function buildMdxComponent(h: H, node: any): any {
-  const apiType = node.tagName.charAt(0).toUpperCase() + node.tagName.slice(1);
+function buildApiComponent(h: H, node: any): any {
+  const componentName = capitalize(node.tagName);
 
   const hastTree = {
     type: "mdxJsxFlowElement",
-    name: apiType,
+    name: componentName,
     attributes: [
       {
         type: "mdxJsxAttribute",
@@ -336,24 +327,12 @@ function buildMdxComponent(h: H, node: any): any {
     children: all(h, node),
   };
 
-  addSimpleAttributeToHastTree(hastTree, "name", node.properties.name);
-  addSimpleAttributeToHastTree(
-    hastTree,
-    "attributeType",
-    node.properties.attributetype,
-  );
-  addSimpleAttributeToHastTree(
-    hastTree,
-    "attributeValue",
-    node.properties.attributevalue,
-  );
-  addSimpleAttributeToHastTree(hastTree, "github", node.properties.github);
-  addSimpleAttributeToHastTree(
-    hastTree,
-    "signature",
-    node.properties.signature,
-  );
-  addExpressionAttributeToHastTree(
+  maybeAddAttribute(hastTree, "name", node.properties.name);
+  maybeAddAttribute(hastTree, "attributeType", node.properties.attributetype);
+  maybeAddAttribute(hastTree, "attributeValue", node.properties.attributevalue);
+  maybeAddAttribute(hastTree, "github", node.properties.github);
+  maybeAddAttribute(hastTree, "signature", node.properties.signature);
+  maybeAddExpressionAttribute(
     hastTree,
     "extraSignatures",
     node.properties.extrasignatures,
@@ -362,11 +341,7 @@ function buildMdxComponent(h: H, node: any): any {
   return hastTree;
 }
 
-function addSimpleAttributeToHastTree(
-  hastTree: any,
-  name: string,
-  value: string,
-): void {
+function maybeAddAttribute(hastTree: any, name: string, value: string): void {
   if (value && value != "undefined") {
     hastTree.attributes.push({
       type: "mdxJsxAttribute",
@@ -376,7 +351,7 @@ function addSimpleAttributeToHastTree(
   }
 }
 
-function addExpressionAttributeToHastTree(
+function maybeAddExpressionAttribute(
   hastTree: any,
   name: string,
   value: string,

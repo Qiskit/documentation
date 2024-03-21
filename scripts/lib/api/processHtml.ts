@@ -14,7 +14,7 @@ import { CheerioAPI, Cheerio, load, Element } from "cheerio";
 
 import { Image } from "./HtmlToMdResult";
 import { Metadata, ApiType } from "./Metadata";
-import { processMdxComponent } from "./generateMdxComponents";
+import { processMdxComponent } from "./generateApiComponents";
 
 export type ProcessedHtml = {
   html: string;

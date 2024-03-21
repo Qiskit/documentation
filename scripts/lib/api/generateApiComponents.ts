@@ -17,16 +17,28 @@ import rehypeRemark from "rehype-remark";
 import remarkStringify from "remark-stringify";
 
 import { ApiType } from "./Metadata";
-import { getLastPartFromFullIdentifier } from "../stringUtils";
+import {
+  getLastPartFromFullIdentifier,
+  APOSTROPHE_HEX_CODE,
+} from "../stringUtils";
 
-export type componentProps = {
+export type COMPONENT_PROPS = {
   id: string;
   name?: string;
   attributeType?: string;
   attributeValue?: string;
   githubSourceLink?: string;
-  signature?: string;
-  extraSignatures?: string[];
+  rawSignature?: string;
+  extraRawSignatures?: string[];
+};
+
+const APITYPE_TO_TAG: Record<string, string> = {
+  class: "class",
+  exception: "class",
+  attribute: "attribute",
+  property: "attribute",
+  function: "function",
+  method: "function",
 };
 
 export async function processMdxComponent(
@@ -56,8 +68,8 @@ export async function processMdxComponent(
     id,
   );
 
-  const extraProps = signatures
-    .map(($overloadedSignature) =>
+  const extraProps = signatures.flatMap(
+    ($overloadedSignature) =>
       prepareProps(
         $,
         $overloadedSignature,
@@ -66,16 +78,13 @@ export async function processMdxComponent(
         apiType,
         prepareGitHubLink($overloadedSignature, apiType === "method"),
         id,
-      ),
-    )
-    .flatMap((prop) => (prop ? prop : []));
+      ) ?? [],
+  );
 
+  const tagName = APITYPE_TO_TAG[apiType];
   if (componentProps) {
-    mergeProps(componentProps, extraProps);
-    return [
-      await generateMdxComponent(apiType, componentProps),
-      `</${apiType}>`,
-    ];
+    addExtraSignatures(componentProps, extraProps);
+    return [await createOpeningTag(tagName, componentProps), `</${tagName}>`];
   }
   return ["", ""];
 }
@@ -90,12 +99,12 @@ function prepareProps(
   $dl: Cheerio<any>,
   priorApiType: ApiType | undefined,
   apiType: ApiType,
-  githubSourceLink: string,
+  githubSourceLink: string | undefined,
   id: string,
-): componentProps | undefined {
+): COMPONENT_PROPS | undefined {
   const preparePropsPerApiType: Record<
     string,
-    () => componentProps | undefined
+    () => COMPONENT_PROPS | undefined
   > = {
     class: () => prepareClassProps($child, githubSourceLink, id),
     property: () =>
@@ -119,12 +128,12 @@ function prepareProps(
 
 function prepareClassProps(
   $child: Cheerio<any>,
-  githubSourceLink: string,
+  githubSourceLink: string | undefined,
   id: string,
-): componentProps {
+): COMPONENT_PROPS {
   return {
     id,
-    signature: $child.html()!,
+    rawSignature: $child.html()!,
     githubSourceLink,
   };
 }
@@ -133,18 +142,22 @@ function preparePropertyProps(
   $child: Cheerio<any>,
   $dl: Cheerio<any>,
   priorApiType: string | undefined,
-  githubSourceLink: string,
+  githubSourceLink: string | undefined,
   id: string,
-): componentProps | undefined {
+): COMPONENT_PROPS | undefined {
   if (!priorApiType && id) {
     $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
   }
 
-  const signature = $child.find("em").text()?.replace(/^:\s+/, "");
-  if (signature.trim().length === 0) return;
+  const rawSignature = $child.find("em").text()?.replace(/^:\s+/, "");
+  if (rawSignature.trim().length === 0) {
+    if (id) return { id };
+    return undefined;
+  }
+
   return {
     id,
-    signature,
+    rawSignature,
     githubSourceLink,
   };
 }
@@ -154,12 +167,12 @@ function prepareMethodProps(
   $child: Cheerio<any>,
   $dl: Cheerio<any>,
   priorApiType: string | undefined,
-  githubSourceLink: string,
+  githubSourceLink: string | undefined,
   id: string,
-): componentProps {
+): COMPONENT_PROPS {
   const props = {
     id,
-    signature: $child.html()!,
+    rawSignature: $child.html()!,
     githubSourceLink,
   };
   if (id && !priorApiType) {
@@ -180,19 +193,22 @@ function prepareAttributeProps(
   $child: Cheerio<any>,
   $dl: Cheerio<any>,
   priorApiType: string | undefined,
-  githubSourceLink: string,
+  githubSourceLink: string | undefined,
   id: string,
-): componentProps | undefined {
+): COMPONENT_PROPS | undefined {
   if (!priorApiType) {
     if (id) {
       $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
     }
 
-    const signature = $child.find("em").text()?.replace(/^:\s+/, "");
-    if (signature.trim().length === 0) return;
+    const rawSignature = $child.find("em").text()?.replace(/^:\s+/, "");
+    if (rawSignature.trim().length === 0) {
+      if (id) return { id };
+      return undefined;
+    }
     return {
       id,
-      signature,
+      rawSignature,
       githubSourceLink,
     };
   }
@@ -233,8 +249,8 @@ function prepareFunctionOrExceptionProps(
   $child: Cheerio<any>,
   $dl: Cheerio<any>,
   id: string,
-  githubSourceLink: string,
-): componentProps {
+  githubSourceLink: string | undefined,
+): COMPONENT_PROPS {
   const props = {
     id,
     signature: $child.html()!,
@@ -258,23 +274,28 @@ function prepareFunctionOrExceptionProps(
 // Generate MDX components
 // ------------------------------------------------------------------
 
-export async function generateMdxComponent(
-  apiType: ApiType,
-  props: componentProps,
+/**
+ * Creates the opening tag of the API components. The function sets all possible
+ * props values even if they are empty or undefined. All the props without value
+ * will be removed when generating the markdown file in `htmlToMd.ts`.
+ */
+export async function createOpeningTag(
+  tagName: string,
+  props: COMPONENT_PROPS,
 ): Promise<string> {
-  const type = props.attributeType
-    ? props.attributeType.replaceAll("'", "&#x27;")
-    : undefined;
-  const value = props.attributeValue
-    ? props.attributeValue.replaceAll("'", "&#x27;")
-    : undefined;
-  const signature = await htmlSignatureToMd(props.signature!);
+  const type = props.attributeType?.replaceAll("'", APOSTROPHE_HEX_CODE);
+  const value = props.attributeValue?.replaceAll("'", APOSTROPHE_HEX_CODE);
+  const signature = await htmlSignatureToMd(props.rawSignature!);
   const extraSignatures: string[] = [];
-  for (const sig of props.extraSignatures ?? []) {
-    extraSignatures.push(`&#x27;${await htmlSignatureToMd(sig!)}&#x27;`);
+  for (const sig of props.extraRawSignatures ?? []) {
+    extraSignatures.push(
+      `${APOSTROPHE_HEX_CODE}${await htmlSignatureToMd(
+        sig!,
+      )}${APOSTROPHE_HEX_CODE}`,
+    );
   }
 
-  return `<${apiType} 
+  return `<${tagName} 
     id='${props.id}'
     name='${props.name}'
     attributeType='${type}'
@@ -303,10 +324,10 @@ export async function generateMdxComponent(
 export function prepareGitHubLink(
   $child: Cheerio<any>,
   isMethod: boolean,
-): string {
+): string | undefined {
   const originalLink = $child.find(".viewcode-link").closest("a");
   if (originalLink.length === 0) {
-    return "";
+    return undefined;
   }
   const href = originalLink.attr("href")!;
   originalLink.first().remove();
@@ -325,17 +346,13 @@ function findByText(
   return $main.find(selector).filter((i, el) => $(el).text().trim() === text);
 }
 
-export function mergeProps(
-  componentProps: componentProps,
-  props: componentProps[],
+export function addExtraSignatures(
+  componentProps: COMPONENT_PROPS,
+  extraRawSignatures: COMPONENT_PROPS[],
 ): void {
-  componentProps.extraSignatures = [];
-  for (const prop of props) {
-    if (props.length == 0 || !prop.signature) {
-      continue;
-    }
-    componentProps.extraSignatures.push(prop.signature);
-  }
+  componentProps.extraRawSignatures = [
+    ...extraRawSignatures.flatMap((sigProps) => sigProps.rawSignature ?? []),
+  ];
 }
 
 /**
@@ -355,7 +372,7 @@ async function htmlSignatureToMd(signatureHtml: string): Promise<string> {
 
   return String(file)
     .replaceAll("\n", "")
-    .replaceAll("'", "&#x27;")
+    .replaceAll("'", APOSTROPHE_HEX_CODE)
     .replace(/^`/, "")
     .replace(/`$/, "");
 }
