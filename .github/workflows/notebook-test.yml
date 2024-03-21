@@ -43,7 +43,7 @@ jobs:
             docs/transpile/transpiler-stages.ipynb
 
       - name: Setup environment
-        uses: ./.github/workflows/reusable/setup-notebook-testing
+        uses: ./.github/actions/set-up-notebook-testing
         with:
           install-linux-deps: ${{ steps.linux-changed-files.outputs.any_changed }}
           ibm-quantum-token: ${{ secrets.IBM_QUANTUM_TEST_TOKEN }}
