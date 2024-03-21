@@ -179,11 +179,10 @@ def find_notebooks() -> list[Path]:
     NOTEBOOKS_EXCLUDE
     """
     all_notebooks = Path(".").rglob(NOTEBOOKS_GLOB)
-    excluded_notebooks = NOTEBOOKS_EXCLUDE
     return [
         path
         for path in all_notebooks
-        if not matches(path, excluded_notebooks)
+        if not matches(path, NOTEBOOKS_EXCLUDE)
     ]
 
 
