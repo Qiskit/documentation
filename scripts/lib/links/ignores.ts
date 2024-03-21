@@ -85,7 +85,8 @@ const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {
   "docs/api/qiskit/dev/qpy.mdx": _QPY_IGNORES,
   // Runtime
   "docs/api/qiskit-ibm-runtime/release-notes.mdx": [
-    "qiskit_ibm_runtime.Sampler#run",
+    "/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#runtime",
+    "/api/qiskit-ibm-runtime/qiskit_ibm_runtime.Sampler#run",
   ],
   // objects.inv
   ..._RUNTIME_OBJECT_INV,
