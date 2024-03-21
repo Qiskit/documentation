@@ -75,10 +75,7 @@ npm install
 
 Run `./start` in your terminal, then open http://localhost:3000 in your browser.
 
-The preview application does not include the top nav bar. Instead, navigate to
-the folder you want with the links in the home page. You can
-return to the home page at any time by clicking "IBM Quantum Documentation
-Preview" in the top-left of the header.
+The preview application does not include the top nav bar. Instead, navigate to the folder you want with the links in the home page. You can return to the home page at any time by clicking "IBM Quantum Documentation Preview" in the top-left of the header.
 
 Warning: `./start` does not check if there is a new version of the docs application available. Run `docker pull qiskit/documentation` to update to the latest version of the app.
 
