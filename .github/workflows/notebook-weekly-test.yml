@@ -21,38 +21,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v4
-        with:
-          python-version: "3.11"
-          cache: "pip"
 
-      - name: Install Linux dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install texlive-pictures texlive-latex-extra poppler-utils graphviz
-
-      - name: Install Python packages
-        # This is to save our account in the next step. Note that the
-        # package will be re-installed during the "Run tox" step.
-        run: pip install qiskit-ibm-runtime tox
-
-      - name: Save IBM Quantum account
-        shell: python
-        run: |
-          # This saves the result for qiskit-ibm-provider too
-          from qiskit_ibm_runtime import QiskitRuntimeService
-          QiskitRuntimeService.save_account(
-              channel="ibm_quantum",
-              instance="ibm-q/open/main",
-              token="${{ secrets.IBM_QUANTUM_TEST_TOKEN }}",
-              set_as_default=True
-          )
-
-      - name: Cache tox environment
-        uses: actions/cache@v3
-        with:
-          path: ".tox"
-          key: ${{ hashFiles('scripts/nb-tester/requirements.txt') }}
+      - name: Setup environment
+        uses: ./.github/workflows/reusable/setup-notebook-testing.yml
 
       - name: Execute notebooks
         run: tox -- --only-submit-jobs
