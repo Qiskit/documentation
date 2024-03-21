@@ -253,7 +253,7 @@ function prepareFunctionOrExceptionProps(
 ): COMPONENT_PROPS {
   const props = {
     id,
-    signature: $child.html()!,
+    rawSignature: $child.html()!,
     githubSourceLink,
   };
 
