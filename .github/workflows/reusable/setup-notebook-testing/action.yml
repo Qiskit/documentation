@@ -1,0 +1,56 @@
+# This code is a Qiskit project.
+#
+# (C) Copyright IBM 2024.
+#
+# This code is licensed under the Apache License, Version 2.0. You may
+# obtain a copy of this license in the LICENSE file in the root directory
+# of this source tree or at http://www.apache.org/licenses/LICENSE-2.0.
+#
+# Any modifications or derivative works of this code must retain this
+# copyright notice, and modified files need to carry a notice indicating
+# that they have been altered from the originals.
+
+name: Notebook testing setup
+description: Set up Python, tox, and IBM Quantum account
+inputs:
+  install-linux-deps:
+    description: Whether to install extra dependencies
+    default: 'false'
+  ibm-quantum-token:
+    required: true
+runs:
+  using: "composite"
+  steps:
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install Python packages
+        shell: bash
+        run: pip install tox qiskit-ibm-runtime
+
+      - name: Cache tox environment
+        uses: actions/cache@v3
+        with:
+          path: ".tox"
+          key: ${{ hashFiles('scripts/nb-tester/requirements.txt') }}
+
+      - name: Save IBM Quantum account
+        shell: python
+        run: |
+          from qiskit_ibm_runtime import QiskitRuntimeService
+          QiskitRuntimeService.save_account(
+              channel="ibm_quantum",
+              instance="ibm-q/open/main",
+              token="${{ inputs.ibm-quantum-token }}",
+              set_as_default=True
+          )
+
+      - name: Install Linux dependencies
+        if: ${{ inputs.install-linux-deps == 'true' }}
+        shell: bash
+        run: |
+          sudo apt-get update
+          sudo apt-get install texlive-pictures texlive-latex-extra poppler-utils graphviz
+
