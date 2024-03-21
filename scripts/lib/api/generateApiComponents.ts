@@ -22,7 +22,7 @@ import {
   APOSTROPHE_HEX_CODE,
 } from "../stringUtils";
 
-export type COMPONENT_PROPS = {
+export type ComponentProps = {
   id: string;
   name?: string;
   attributeType?: string;
@@ -101,10 +101,10 @@ function prepareProps(
   apiType: ApiType,
   githubSourceLink: string | undefined,
   id: string,
-): COMPONENT_PROPS | undefined {
+): ComponentProps | undefined {
   const preparePropsPerApiType: Record<
     string,
-    () => COMPONENT_PROPS | undefined
+    () => ComponentProps | undefined
   > = {
     class: () => prepareClassProps($child, githubSourceLink, id),
     property: () =>
@@ -130,7 +130,7 @@ function prepareClassProps(
   $child: Cheerio<any>,
   githubSourceLink: string | undefined,
   id: string,
-): COMPONENT_PROPS {
+): ComponentProps {
   return {
     id,
     rawSignature: $child.html()!,
@@ -144,7 +144,7 @@ function preparePropertyProps(
   priorApiType: string | undefined,
   githubSourceLink: string | undefined,
   id: string,
-): COMPONENT_PROPS | undefined {
+): ComponentProps | undefined {
   if (!priorApiType && id) {
     $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
   }
@@ -169,7 +169,7 @@ function prepareMethodProps(
   priorApiType: string | undefined,
   githubSourceLink: string | undefined,
   id: string,
-): COMPONENT_PROPS {
+): ComponentProps {
   const props = {
     id,
     rawSignature: $child.html()!,
@@ -195,7 +195,7 @@ function prepareAttributeProps(
   priorApiType: string | undefined,
   githubSourceLink: string | undefined,
   id: string,
-): COMPONENT_PROPS | undefined {
+): ComponentProps | undefined {
   if (!priorApiType) {
     if (id) {
       $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
@@ -250,7 +250,7 @@ function prepareFunctionOrExceptionProps(
   $dl: Cheerio<any>,
   id: string,
   githubSourceLink: string | undefined,
-): COMPONENT_PROPS {
+): ComponentProps {
   const props = {
     id,
     rawSignature: $child.html()!,
@@ -281,7 +281,7 @@ function prepareFunctionOrExceptionProps(
  */
 export async function createOpeningTag(
   tagName: string,
-  props: COMPONENT_PROPS,
+  props: ComponentProps,
 ): Promise<string> {
   const type = props.attributeType?.replaceAll("'", APOSTROPHE_HEX_CODE);
   const value = props.attributeValue?.replaceAll("'", APOSTROPHE_HEX_CODE);
@@ -347,8 +347,8 @@ function findByText(
 }
 
 export function addExtraSignatures(
-  componentProps: COMPONENT_PROPS,
-  extraRawSignatures: COMPONENT_PROPS[],
+  componentProps: ComponentProps,
+  extraRawSignatures: ComponentProps[],
 ): void {
   componentProps.extraRawSignatures = [
     ...extraRawSignatures.flatMap((sigProps) => sigProps.rawSignature ?? []),
