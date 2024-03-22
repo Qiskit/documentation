@@ -27,6 +27,7 @@ jobs:
         uses: ./.github/actions/set-up-notebook-testing
         with:
           ibm-quantum-token: ${{ secrets.IBM_QUANTUM_TEST_TOKEN }}
+          instance: "ibm-q-internal/deployed/default"
 
       - name: Execute notebooks
         run: tox -- --only-submit-jobs

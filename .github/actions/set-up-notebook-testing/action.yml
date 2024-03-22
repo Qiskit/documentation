@@ -18,6 +18,11 @@ inputs:
     default: "false"
   ibm-quantum-token:
     required: true
+  instance:
+    # We usually only want the same access as an open user, but occasionally we
+    # need higher priority to test notebooks that submit jobs in reasonable
+    # time
+    default: "ibm-q/open/main"
 runs:
   using: "composite"
   steps:
@@ -42,7 +47,7 @@ runs:
         from qiskit_ibm_runtime import QiskitRuntimeService
         QiskitRuntimeService.save_account(
             channel="ibm_quantum",
-            instance="ibm-q/open/main",
+            instance="${{ inputs.instance }}",
             token="${{ inputs.ibm-quantum-token }}",
             set_as_default=True
         )
