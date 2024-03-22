@@ -604,10 +604,11 @@ Explore sessions and advanced options to optimize circuit performance on quantum
 import numpy as np
 from qiskit.circuit.library import IQP
 from qiskit.quantum_info import random_hermitian
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler, Session
- 
+
 n_qubits = 127
- 
+  
 rng = np.random.default_rng(1234)
 mat = np.real(random_hermitian(n_qubits, seed=rng))
 circuit = IQP(mat)
@@ -616,13 +617,13 @@ mat = np.real(random_hermitian(n_qubits, seed=rng))
 another_circuit = IQP(mat)
 another_circuit.measure_all()
 
+service = QiskitRuntimeService()
+ 
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=n_qubits)
+
 pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
 another_isa_circuit = pm.run(another_circuit)
- 
-service = QiskitRuntimeService()
- 
-backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
  
 with Session(service=service, backend=backend) as session: 
     sampler = Sampler(session=session) 
@@ -645,6 +646,7 @@ import numpy as np
 from qiskit.circuit.library import IQP
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit.quantum_info import random_hermitian
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit_ibm_runtime import QiskitRuntimeService, Sampler, Session, Options
 
 n_qubits = 127
@@ -657,6 +659,10 @@ mat = np.real(random_hermitian(n_qubits, seed=rng))
 another_circuit = IQP(mat)
 another_circuit.measure_all()
 
+service = QiskitRuntimeService()
+
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=n_qubits)
+
 pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
 another_isa_circuit = pm.run(another_circuit)
@@ -664,10 +670,6 @@ another_isa_circuit = pm.run(another_circuit)
 options = Options() 
 options.optimization_level = 2 
 options.resilience_level = 0 
-
-service = QiskitRuntimeService()
-
-backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
 
 with Session(service=service, backend=backend) as session: 
     sampler = Sampler(session=session, options=options) 
