@@ -38,12 +38,11 @@ NOTEBOOKS_THAT_SUBMIT_JOBS = [
 def matches(path: Path, glob_list: list[str]) -> bool:
     return any(path.match(glob) for glob in glob_list)
 
-def filter_paths(paths: list[Path], submit_jobs: bool, only_submit_jobs: bool) -> Iterator[Path]:
+def filter_paths(paths: list[Path], args: argparse.Namespace) -> Iterator[Path]:
     """
     Filter out any paths we don't want to run, printing messages.
     """
-    if only_submit_jobs:
-        submit_jobs = True
+    submit_jobs = args.submit_jobs or args.only_submit_jobs
     for path in paths:
         if path.suffix != ".ipynb":
             print(f"ℹ️ Skipping {path}; file is not `.ipynb` format.")
@@ -62,19 +61,13 @@ def filter_paths(paths: list[Path], submit_jobs: bool, only_submit_jobs: bool) -
             )
             continue
 
-        if only_submit_jobs and not matches(path, NOTEBOOKS_THAT_SUBMIT_JOBS):
+        if args.only_submit_jobs and not matches(path, NOTEBOOKS_THAT_SUBMIT_JOBS):
             print(
                 f"ℹ️ Skipping {path} as it does not submit jobs and the --only-submit-jobs flag is set."
             )
             continue
 
         yield path
-
-
-@dataclass(frozen=True)
-class ExecuteOptions:
-    write: bool
-    submit_jobs: bool
 
 
 @dataclass(frozen=True)
@@ -120,7 +113,7 @@ def extract_warnings(notebook: nbformat.NotebookNode) -> list[NotebookWarning]:
     return notebook_warnings
 
 
-def execute_notebook(path: Path, options: ExecuteOptions) -> bool:
+def execute_notebook(path: Path, args: argparse.Namespace) -> bool:
     """
     Wrapper function for `_execute_notebook` to print status
     """
@@ -130,7 +123,7 @@ def execute_notebook(path: Path, options: ExecuteOptions) -> bool:
         nbclient.exceptions.CellTimeoutError,
     )
     try:
-        nb = _execute_notebook(path, options)
+        nb = _execute_notebook(path, args)
     except possible_exceptions as err:
         print("\r❌\n")
         print(err)
@@ -146,21 +139,22 @@ def execute_notebook(path: Path, options: ExecuteOptions) -> bool:
     return True
 
 
-def _execute_notebook(filepath: Path, options: ExecuteOptions) -> nbformat.NotebookNode:
+def _execute_notebook(filepath: Path, args: argparse.Namespace) -> nbformat.NotebookNode:
     """
     Use nbconvert to execute notebook
     """
+    submit_jobs = args.submit_jobs or args.only_submit_jobs
     nb = nbformat.read(filepath, as_version=4)
 
     processor = nbconvert.preprocessors.ExecutePreprocessor(
         # If submitting jobs, we want to wait forever (-1 means no timeout)
-        timeout=-1 if options.submit_jobs else 100,
+        timeout=-1 if submit_jobs else 100,
         kernel_name="python3",
     )
 
     processor.preprocess(nb)
 
-    if not options.write:
+    if not args.write:
         return nb
 
     for cell in nb.cells:
@@ -252,16 +246,12 @@ def create_argument_parser() -> argparse.ArgumentParser:
 if __name__ == "__main__":
     args = create_argument_parser().parse_args()
     paths = map(Path, args.filenames or find_notebooks())
-    filtered_paths = filter_paths(paths, submit_jobs=args.submit_jobs, only_submit_jobs=args.only_submit_jobs)
+    filtered_paths = filter_paths(paths, args)
 
     # Execute notebooks
     start_time = datetime.now()
-    execute_options = ExecuteOptions(
-        write=args.write,
-        submit_jobs=args.submit_jobs or args.only_submit_jobs
-    )
     print("Executing notebooks:")
-    results = [execute_notebook(path, execute_options) for path in filtered_paths]
+    results = [execute_notebook(path, args) for path in filtered_paths]
     print("Checking for trailing jobs...")
     results.append(cancel_trailing_jobs(start_time))
     if not all(results):
