@@ -12,6 +12,8 @@
 
 import { last, split } from "lodash";
 
+export const APOSTROPHE_HEX_CODE = "&#x27;";
+
 export function removePart(text: string, separator: string, matcher: string[]) {
   return text
     .split(separator)
