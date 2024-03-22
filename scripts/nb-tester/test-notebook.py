@@ -192,7 +192,13 @@ def cancel_trailing_jobs(start_time: datetime) -> bool:
     """
     # QiskitRuntimeService().jobs() includes qiskit-ibm-provider jobs too
     service = QiskitRuntimeService()
-    jobs = [j for j in service.jobs(created_after=start_time) if not j.in_final_state()]
+
+    def _is_not_finished(job):
+        # Force runtime to update job status
+        job.status()
+        return not job.in_final_state()
+
+    jobs = list(filter(_is_not_finished, service.jobs(created_after=start_time)))
     if not jobs:
         return True
 
