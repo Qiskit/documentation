@@ -25,7 +25,7 @@ import {
 export type ComponentProps = {
   id: string;
   name?: string;
-  attributeType?: string;
+  attributeTypeHint?: string;
   attributeValue?: string;
   githubSourceLink?: string;
   rawSignature?: string;
@@ -222,7 +222,7 @@ function prepareAttributeProps(
   $(`<h3>${getLastPartFromFullIdentifier(id)}</h3>`).insertBefore($dl);
   // The attributes have the following shape: name [: type] [= value]
   const name = text.slice(0, Math.min(colonIndex, equalIndex)).trim();
-  const attributeType = text
+  const attributeTypeHint = text
     .slice(Math.min(colonIndex + 1, equalIndex), equalIndex)
     .trim();
   const attributeValue = text.slice(equalIndex, text.length).trim();
@@ -230,7 +230,7 @@ function prepareAttributeProps(
   return {
     id,
     name,
-    attributeType,
+    attributeTypeHint,
     attributeValue,
   };
 }
@@ -274,7 +274,7 @@ export async function createOpeningTag(
   tagName: string,
   props: ComponentProps,
 ): Promise<string> {
-  const type = props.attributeType?.replaceAll("'", APOSTROPHE_HEX_CODE);
+  const type = props.attributeTypeHint?.replaceAll("'", APOSTROPHE_HEX_CODE);
   const value = props.attributeValue?.replaceAll("'", APOSTROPHE_HEX_CODE);
   const signature = await htmlSignatureToMd(props.rawSignature!);
   const extraSignatures: string[] = [];
@@ -289,7 +289,7 @@ export async function createOpeningTag(
   return `<${tagName} 
     id='${props.id}'
     name='${props.name}'
-    attributeType='${type}'
+    attributeTypeHint='${type}'
     attributeValue='${value}'
     github='${props.githubSourceLink}'
     signature='${signature}'

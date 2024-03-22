@@ -328,7 +328,11 @@ function buildApiComponent(h: H, node: any): any {
   };
 
   maybeAddAttribute(hastTree, "name", node.properties.name);
-  maybeAddAttribute(hastTree, "attributeType", node.properties.attributetype);
+  maybeAddAttribute(
+    hastTree,
+    "attributeTypeHint",
+    node.properties.attributetypehint,
+  );
   maybeAddAttribute(hastTree, "attributeValue", node.properties.attributevalue);
   maybeAddAttribute(hastTree, "github", node.properties.github);
   maybeAddAttribute(hastTree, "signature", node.properties.signature);
