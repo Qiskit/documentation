@@ -26,6 +26,6 @@ FROM qiskit/documentation:no-remote-refresh
 
 COPY docs/ /home/node/app/docs
 COPY translations/ /home/node/app/docs
-COPY public /home/node/app/public
+COPY public/ /home/node/app/packages/preview/public
 
 EXPOSE 3000
