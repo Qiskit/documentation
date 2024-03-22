@@ -44,9 +44,10 @@ class Doc {
   }
 }
 
+const RAW_SIGNATURE_EXAMPLE = `<span class='sig-prename descclassname'><span class='pre'>Estimator.</span></span><span class='sig-name descname'><span class='pre'>run</span></span><span class='sig-paren'>(</span><em class='sig-param'><span class='n'><span class='pre'>circuits</span></span></em>, <em class='sig-param'><span class='n'><span class='pre'>observables</span></span></em>, <em class='sig-param'><span class='n'><span class='pre'>parameter_values</span></span><span class='o'><span class='pre'>=</span></span><span class='default_value'><span class='pre'>None</span></span></em>, <em class='sig-param'><span class='o'><span class='pre'>**</span></span><span class='n'><span class='pre'>kwargs</span></span></em><span class='sig-paren'>)</span></dt>`;
+
 test("htmlSignatureToMd", async () => {
-  const html = `<span class='sig-prename descclassname'><span class='pre'>Estimator.</span></span><span class='sig-name descname'><span class='pre'>run</span></span><span class='sig-paren'>(</span><em class='sig-param'><span class='n'><span class='pre'>circuits</span></span></em>, <em class='sig-param'><span class='n'><span class='pre'>observables</span></span></em>, <em class='sig-param'><span class='n'><span class='pre'>parameter_values</span></span><span class='o'><span class='pre'>=</span></span><span class='default_value'><span class='pre'>None</span></span></em>, <em class='sig-param'><span class='o'><span class='pre'>**</span></span><span class='n'><span class='pre'>kwargs</span></span></em><span class='sig-paren'>)</span></dt>`;
-  const result = await htmlSignatureToMd(html);
+  const result = await htmlSignatureToMd(RAW_SIGNATURE_EXAMPLE);
   expect(result).toEqual(
     `Estimator.run(circuits, observables, parameter_values=None, **kwargs)`,
   );
@@ -88,11 +89,10 @@ describe("addExtraSignatures()", () => {
 
 describe("createOpeningTag()", () => {
   test("Create Function tag with some props", async () => {
-    const rawSignature = `<span class='sig-prename descclassname'><span class='pre'>Estimator.</span></span><span class='sig-name descname'><span class='pre'>run</span></span><span class='sig-paren'>(</span><em class='sig-param'><span class='n'><span class='pre'>circuits</span></span></em>, <em class='sig-param'><span class='n'><span class='pre'>observables</span></span></em>, <em class='sig-param'><span class='n'><span class='pre'>parameter_values</span></span><span class='o'><span class='pre'>=</span></span><span class='default_value'><span class='pre'>None</span></span></em>, <em class='sig-param'><span class='o'><span class='pre'>**</span></span><span class='n'><span class='pre'>kwargs</span></span></em><span class='sig-paren'>)</span></dt>`;
     const componentProps = {
       id: "qiskit_ibm_runtime.Estimator.run",
       name: "run",
-      rawSignature,
+      rawSignature: RAW_SIGNATURE_EXAMPLE,
     };
 
     const tag = await createOpeningTag("Function", componentProps);
@@ -104,6 +104,27 @@ describe("createOpeningTag()", () => {
     github='undefined'
     signature='Estimator.run(circuits, observables, parameter_values=None, **kwargs)'
     extraSignatures='[]'
+    >
+  `);
+  });
+
+  test("Create Function tag with overloaded signatures", async () => {
+    const componentProps = {
+      id: "qiskit_ibm_runtime.Estimator.run",
+      name: "run",
+      rawSignature: RAW_SIGNATURE_EXAMPLE,
+      extraRawSignatures: [RAW_SIGNATURE_EXAMPLE, RAW_SIGNATURE_EXAMPLE],
+    };
+
+    const tag = await createOpeningTag("Function", componentProps);
+    expect(tag).toEqual(`<Function 
+    id='qiskit_ibm_runtime.Estimator.run'
+    name='run'
+    attributeTypeHint='undefined'
+    attributeValue='undefined'
+    github='undefined'
+    signature='Estimator.run(circuits, observables, parameter_values=None, **kwargs)'
+    extraSignatures='[&#x27;Estimator.run(circuits, observables, parameter_values=None, **kwargs)&#x27;, &#x27;Estimator.run(circuits, observables, parameter_values=None, **kwargs)&#x27;]'
     >
   `);
   });
