@@ -82,11 +82,8 @@ export async function processMdxComponent(
   );
 
   const tagName = APITYPE_TO_TAG[apiType];
-  if (componentProps) {
-    addExtraSignatures(componentProps, extraProps);
-    return [await createOpeningTag(tagName, componentProps), `</${tagName}>`];
-  }
-  return ["", ""];
+  addExtraSignatures(componentProps, extraProps);
+  return [await createOpeningTag(tagName, componentProps), `</${tagName}>`];
 }
 
 // ------------------------------------------------------------------
@@ -101,11 +98,8 @@ function prepareProps(
   apiType: ApiType,
   githubSourceLink: string | undefined,
   id: string,
-): ComponentProps | undefined {
-  const preparePropsPerApiType: Record<
-    string,
-    () => ComponentProps | undefined
-  > = {
+): ComponentProps {
+  const preparePropsPerApiType: Record<string, () => ComponentProps> = {
     class: () => prepareClassProps($child, githubSourceLink, id),
     property: () =>
       preparePropertyProps($child, $dl, priorApiType, githubSourceLink, id),
@@ -144,15 +138,14 @@ function preparePropertyProps(
   priorApiType: string | undefined,
   githubSourceLink: string | undefined,
   id: string,
-): ComponentProps | undefined {
-  if (!priorApiType && id) {
+): ComponentProps {
+  if (!priorApiType) {
     $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
   }
 
   const rawSignature = $child.find("em").text()?.replace(/^:\s+/, "");
   if (rawSignature.trim().length === 0) {
-    if (id) return { id };
-    return undefined;
+    return { id };
   }
 
   return {
@@ -195,17 +188,15 @@ function prepareAttributeProps(
   priorApiType: string | undefined,
   githubSourceLink: string | undefined,
   id: string,
-): ComponentProps | undefined {
+): ComponentProps {
   if (!priorApiType) {
-    if (id) {
-      $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
-    }
+    $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
 
     const rawSignature = $child.find("em").text()?.replace(/^:\s+/, "");
     if (rawSignature.trim().length === 0) {
-      if (id) return { id };
-      return undefined;
+      return { id };
     }
+
     return {
       id,
       rawSignature,

@@ -342,7 +342,7 @@ function buildApiComponent(h: H, node: any): any {
 }
 
 function maybeAddAttribute(hastTree: any, name: string, value: string): void {
-  if (value && value != "undefined") {
+  if (value.trim() && value != "undefined") {
     hastTree.attributes.push({
       type: "mdxJsxAttribute",
       name,
