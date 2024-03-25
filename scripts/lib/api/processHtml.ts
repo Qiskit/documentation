@@ -15,6 +15,7 @@ import { CheerioAPI, Cheerio, load } from "cheerio";
 import { Image } from "./HtmlToMdResult";
 import { Metadata, ApiType } from "./Metadata";
 import { getLastPartFromFullIdentifier } from "../stringUtils";
+import { findByText, prepareGitHubLink } from "./generateApiComponents";
 
 export type ProcessedHtml = {
   html: string;
@@ -314,7 +315,10 @@ function processMember(
   apiType: string,
   id: string,
 ) {
-  const githubSourceLink = prepareGitHubLink($child, apiType === "method");
+  const githubUrl = prepareGitHubLink($child, apiType === "method");
+  const githubSourceLink = githubUrl
+    ? ` <a href="${githubUrl}" title="view source code">GitHub</a>`
+    : "";
 
   findByText($, $main, "em.property", apiType).remove();
 
@@ -448,35 +452,6 @@ function processFunctionOrException(
   return `<h3>${apiName}</h3>${descriptionHtml}`;
 }
 
-/**
- * Removes the original link from sphinx.ext.viewcode and returns the HTML string for our own link.
- *
- * This returns the HTML string, rather than directly inserting into the HTML, because the insertion
- * logic is most easily handled by the calling code.
- *
- * This function works the same regardless of whether the Sphinx build used `sphinx.ext.viewcode`
- * or `sphinx.ext.linkcode` because they have the same HTML structure.
- *
- * If the link corresponds to a method, we only return a link if it has line numbers included,
- * which implies that the link came from `sphinx.ext.linkcode` rather than `sphinx.ext.viewcode`.
- * That's because the owning class will already have a link to the relevant file; it's
- * noisy and not helpful to repeat the same link without line numbers for the individual methods.
- */
-export function prepareGitHubLink(
-  $child: Cheerio<any>,
-  isMethod: boolean,
-): string {
-  const originalLink = $child.find(".viewcode-link").closest("a");
-  if (originalLink.length === 0) {
-    return "";
-  }
-  const href = originalLink.attr("href")!;
-  originalLink.first().remove();
-  return !isMethod || href.includes(".py#")
-    ? ` <a href="${href}" title="view source code">GitHub</a>`
-    : "";
-}
-
 export function maybeSetModuleMetadata(
   $: CheerioAPI,
   $main: Cheerio<any>,
@@ -529,18 +504,6 @@ export function updateModuleHeadings(
       }
       $el.replaceWith(replacement);
     });
-}
-
-/**
- * Find the element that both matches the `selector` and whose content is the same as `text`
- */
-function findByText(
-  $: CheerioAPI,
-  $main: Cheerio<any>,
-  selector: string,
-  text: string,
-): Cheerio<any> {
-  return $main.find(selector).filter((i, el) => $(el).text().trim() === text);
 }
 
 function getApiType($dl: Cheerio<any>): ApiType | undefined {
