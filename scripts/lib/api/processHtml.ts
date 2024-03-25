@@ -316,30 +316,30 @@ function processMember(
   id: string,
 ) {
   const githubUrl = prepareGitHubLink($child, apiType === "method");
-  const gitHubSourceLink = githubUrl
+  const githubSourceLink = githubUrl
     ? ` <a href="${githubUrl}" title="view source code">GitHub</a>`
     : "";
 
   findByText($, $main, "em.property", apiType).remove();
 
   if (apiType == "class") {
-    return `<span class="target" id="${id}"/><p><code>${$child.html()}</code>${gitHubSourceLink}</p>`;
+    return `<span class="target" id="${id}"/><p><code>${$child.html()}</code>${githubSourceLink}</p>`;
   }
 
   if (apiType == "property") {
-    return processProperty($child, $dl, priorApiType, id, gitHubSourceLink);
+    return processProperty($child, $dl, priorApiType, id, githubSourceLink);
   }
 
   if (apiType == "method") {
-    return processMethod($, $child, $dl, priorApiType, id, gitHubSourceLink);
+    return processMethod($, $child, $dl, priorApiType, id, githubSourceLink);
   }
 
   if (apiType == "attribute") {
-    return processAttribute($child, $dl, priorApiType, id, gitHubSourceLink);
+    return processAttribute($child, $dl, priorApiType, id, githubSourceLink);
   }
 
   if (apiType === "function" || apiType === "exception") {
-    return processFunctionOrException($child, $dl, id, gitHubSourceLink);
+    return processFunctionOrException($child, $dl, id, githubSourceLink);
   }
 
   throw new Error(`Unhandled Python type: ${apiType}`);
