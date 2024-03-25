@@ -10,7 +10,6 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { CheerioAPI, Cheerio, load as cheerioLoad } from "cheerio";
 import { describe, expect, test } from "@jest/globals";
 
 import {
@@ -30,33 +29,11 @@ import {
   processMembersAndSetMeta,
 } from "./processHtml";
 import { Metadata } from "./Metadata";
-
-class Doc {
-  readonly $: CheerioAPI;
-  readonly $main: Cheerio<any>;
-
-  constructor($: CheerioAPI, $main: Cheerio<any>) {
-    this.$ = $;
-    this.$main = $main;
-  }
-
-  static load(html: string): Doc {
-    const $ = cheerioLoad(`<div role="main">${html}</div>`);
-    return new Doc($, $("[role='main']"));
-  }
-
-  html(): string {
-    return this.$main.html()!.trim();
-  }
-
-  expectHtml(expected: string): void {
-    expect(this.html()).toEqual(expected.trim());
-  }
-}
+import { CheerioDoc } from "../testUtils";
 
 describe("loadImages()", () => {
   test("normal file", () => {
-    const doc = Doc.load(
+    const doc = CheerioDoc.load(
       `<img src="../_static/logo.png" alt="Logo"><img src="../_static/images/view-page-source-icon.svg">`,
     );
     const images = loadImages(doc.$, doc.$main, "/my-images", false);
@@ -76,7 +53,7 @@ describe("loadImages()", () => {
   });
 
   test("release note", () => {
-    const doc = Doc.load(
+    const doc = CheerioDoc.load(
       `<img src="../_static/images/view-page-source-icon.svg">`,
     );
     const images = loadImages(doc.$, doc.$main, "/my-images/0.45", true);
@@ -91,7 +68,7 @@ describe("loadImages()", () => {
 });
 
 test("handleSphinxDesignCards()", () => {
-  const doc = Doc.load(`
+  const doc = CheerioDoc.load(`
     <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3 sd-fade-in-slide-down">
     <summary class="sd-summary-title sd-card-header">
         Account initialization
@@ -143,13 +120,13 @@ test("handleSphinxDesignCards()", () => {
 });
 
 test("renameAllH1s()", () => {
-  const doc = Doc.load(`<h1>Release Notes!!!</h1><h2>0.45.0</h2>`);
+  const doc = CheerioDoc.load(`<h1>Release Notes!!!</h1><h2>0.45.0</h2>`);
   renameAllH1s(doc.$, "New Title");
   doc.expectHtml(`<h1>New Title</h1><h2>0.45.0</h2>`);
 });
 
 test("removeHtmlExtensionsInRelativeLinks()", () => {
-  const doc = Doc.load(
+  const doc = CheerioDoc.load(
     `<a href="https://ibm.com"></a><a href="../foo.html"></a><a href="../img.svg"></a>`,
   );
   removeHtmlExtensionsInRelativeLinks(doc.$, doc.$main);
@@ -159,7 +136,7 @@ test("removeHtmlExtensionsInRelativeLinks()", () => {
 });
 
 test("removeDownloadSourceCode()", () => {
-  const doc = Doc.load(
+  const doc = CheerioDoc.load(
     `<p>(<a class="reference download internal" download="" href="../_downloads/878087bb6064f5d5f4c00d6f8a12319d/converters-1.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
       <figure class="align-default">
       <img alt="../_images/converters-1.png" class="plot-directive" src="../_images/converters-1.png" />
@@ -174,7 +151,7 @@ test("removeDownloadSourceCode()", () => {
 });
 
 test("removePermalinks()", () => {
-  const doc = Doc.load(`<a title="okay">Link</a>
+  const doc = CheerioDoc.load(`<a title="okay">Link</a>
     <a title="Permalink to this headline">Link</a>
     <a title="Permalink to this heading">Link</a>
     <a title="Permalink to this definition">Link</a>
@@ -185,7 +162,7 @@ test("removePermalinks()", () => {
 });
 
 test("removeColonSpans()", () => {
-  const doc = Doc.load(
+  const doc = CheerioDoc.load(
     `<dt class="field-odd">Parameters<span class="colon">:</span></dt>`,
   );
   removeColonSpans(doc.$main);
@@ -194,7 +171,7 @@ test("removeColonSpans()", () => {
 
 describe("removeMatplotlibFigCaptions()", () => {
   test("removes <figcaption>", () => {
-    const doc = Doc.load(`
+    const doc = CheerioDoc.load(`
     <figure class="align-default" id="id1">
       <img alt="../_images/fake_provider-1_00.png" class="plot-directive" src="../_images/fake_provider-1_00.png" />
       <figcaption>
@@ -230,7 +207,7 @@ describe("removeMatplotlibFigCaptions()", () => {
   });
 
   test("removes <div>", () => {
-    const doc = Doc.load(`
+    const doc = CheerioDoc.load(`
     <div class="figure align-default" id="id1">
       <img alt="../_images/qiskit-transpiler-passes-DynamicalDecoupling-1_00.png" class="plot-directive" src="../_images/qiskit-transpiler-passes-DynamicalDecoupling-1_00.png" />
       <p class="caption">
@@ -276,14 +253,14 @@ describe("removeMatplotlibFigCaptions()", () => {
       <p>My caption</p>
     </div>
   `;
-    const doc = Doc.load(html);
+    const doc = CheerioDoc.load(html);
     removeMatplotlibFigCaptions(doc.$main);
     doc.expectHtml(html);
   });
 });
 
 test("addLanguageClassToCodeBlocks()", () => {
-  const doc1 = Doc.load(`<p><strong>Circuit symbol:</strong></p>
+  const doc1 = CheerioDoc.load(`<p><strong>Circuit symbol:</strong></p>
     <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>     ┌──────────┐
     q_0: ┤ U(ϴ,φ,λ) ├
         └──────────┘
@@ -301,7 +278,7 @@ test("addLanguageClassToCodeBlocks()", () => {
     </code></pre></div>
     </div>`);
 
-  const doc2 = Doc.load(`<div class="highlight-default notranslate">
+  const doc2 = CheerioDoc.load(`<div class="highlight-default notranslate">
       <div class="highlight">
       <pre><span></span><span class="kn">from</span> <span class="nn">qiskit_ibm_runtime.options</span> <span class="kn">import</span> <span class="n">Options</span>
 
@@ -324,7 +301,7 @@ test("addLanguageClassToCodeBlocks()", () => {
 
 test("replaceSourceLinksWithGitHub()", () => {
   // Assumes that removeHtmlExtensionsInRelativeLinks() has already removed .html from the URL.
-  const doc = Doc.load(
+  const doc = CheerioDoc.load(
     `<a href="../_modules/my_quantum_project/my_file#IBMBackend"></a>
     <a class="reference external" href="https://github.com/Qiskit/qiskit/blob/stable/1.0/qiskit/utils/deprecation.py#L24-L101"></a>
     <a href="#my_quantum_project.IBMBackend"></a>`,
@@ -343,7 +320,7 @@ test("replaceSourceLinksWithGitHub()", () => {
 });
 
 test("convertRubricsToHeaders()", () => {
-  const doc = Doc.load(`<p class="rubric">Example</p>
+  const doc = CheerioDoc.load(`<p class="rubric">Example</p>
     <p class="rubric">Examples</p>
     <p class="rubric">References</p>
     <p class="rubric">Reference</p>
@@ -366,7 +343,7 @@ describe("maybeSetModuleMetadata()", () => {
   test("not a module", () => {
     const html = `<h1>Hello</h1>`;
     const meta: Metadata = {};
-    const doc = Doc.load(html);
+    const doc = CheerioDoc.load(html);
     maybeSetModuleMetadata(doc.$, doc.$main, meta);
     doc.expectHtml(html);
     expect(meta).toEqual({});
@@ -374,7 +351,7 @@ describe("maybeSetModuleMetadata()", () => {
 
   const checkModuleFound = (html: string, name: string): void => {
     const meta: Metadata = {};
-    const doc = Doc.load(html);
+    const doc = CheerioDoc.load(html);
     maybeSetModuleMetadata(doc.$, doc.$main, meta);
     doc.expectHtml(html);
     expect(meta).toEqual({
@@ -409,14 +386,14 @@ describe("maybeSetModuleMetadata()", () => {
 describe("prepareGitHubLink()", () => {
   test("no link", () => {
     const html = `<span class="pre">None</span><span class="sig-paren">)</span><a class="headerlink" href="#qiskit_ibm_runtime.IBMBackend" title="Link to this definition">#</a>`;
-    const doc = Doc.load(html);
+    const doc = CheerioDoc.load(html);
     const result = prepareGitHubLink(doc.$main, false);
     expect(result).toEqual("");
     doc.expectHtml(html);
   });
 
   test("link from sphinx.ext.viewcode", () => {
-    const doc = Doc.load(
+    const doc = CheerioDoc.load(
       `<span class="pre">None</span><span class="sig-paren">)</span><a class="reference internal" href="https://ibm.com/my_link"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qiskit_ibm_runtime.IBMBackend" title="Link to this definition">#</a>`,
     );
     const result = prepareGitHubLink(doc.$main, false);
@@ -429,7 +406,7 @@ describe("prepareGitHubLink()", () => {
   });
 
   test("link from sphinx.ext.linkcode", () => {
-    const doc = Doc.load(
+    const doc = CheerioDoc.load(
       `<span class="pre">None</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Qiskit/qiskit/blob/stable/1.0/qiskit/utils/deprecation.py#L24-L101"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qiskit_ibm_runtime.IBMBackend" title="Link to this definition">#</a>`,
     );
     const result = prepareGitHubLink(doc.$main, false);
@@ -442,10 +419,10 @@ describe("prepareGitHubLink()", () => {
   });
 
   test("method link only used when it has line numbers", () => {
-    const withLinesDoc = Doc.load(
+    const withLinesDoc = CheerioDoc.load(
       `<span class="sig-paren">)</span><a class="reference external" href="https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/transpiler/passes/scheduling/block_base_padder.py#L91-L117"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qiskit_ibm_provider.transpiler.passes.scheduling.PadDelay.run" title="Link to this definition">¶</a>`,
     );
-    const withoutLinesDoc = Doc.load(
+    const withoutLinesDoc = CheerioDoc.load(
       `<span class="sig-paren">)</span><a class="reference external" href="https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/transpiler/passes/scheduling/block_base_padder.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qiskit_ibm_provider.transpiler.passes.scheduling.PadDelay.run" title="Link to this definition">¶</a>`,
     );
     const withLinesResult = prepareGitHubLink(withLinesDoc.$main, true);
@@ -476,7 +453,7 @@ describe("processMembersAndSetMeta()", () => {
 <li><p><strong>copy_operations</strong> – Deep copy the operation objects in the QuantumCircuit for the output DAGCircuit.</p></li>
 </ul>
 </dd>`;
-    const doc = Doc.load(html);
+    const doc = CheerioDoc.load(html);
     const meta: Metadata = {};
     processMembersAndSetMeta(doc.$, doc.$main, meta);
     doc.expectHtml(`      <h1>Circuit Converters</h1>
@@ -523,7 +500,7 @@ backends may not have this attribute.</p>
 </dl>
 </dd></dl>
 `;
-    const doc = Doc.load(html);
+    const doc = CheerioDoc.load(html);
     const meta: Metadata = {};
     processMembersAndSetMeta(doc.$, doc.$main, meta);
     doc.expectHtml(`<h1>least_busy</h1>
@@ -583,7 +560,7 @@ minimal install.  You can read more about those, and ways to check for their pre
 particular error, which subclasses both <a class="reference internal" href="#qiskit.exceptions.QiskitError" title="qiskit.exceptions.QiskitError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">QiskitError</span></code></a> and the Python built-in <code class="docutils literal notranslate"><span class="pre">ImportError</span></code>.</p>
 </section>
 `;
-    const doc = Doc.load(html);
+    const doc = CheerioDoc.load(html);
     const meta: Metadata = {};
     processMembersAndSetMeta(doc.$, doc.$main, meta);
     doc.expectHtml(`<span class="target" id="module-qiskit.exceptions"><span id="qiskit-exceptions"></span></span><section id="top-level-exceptions-qiskit-exceptions">

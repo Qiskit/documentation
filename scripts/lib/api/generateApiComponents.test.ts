@@ -11,7 +11,6 @@
 // that they have been altered from the originals.
 
 import { expect, test } from "@jest/globals";
-import { CheerioAPI, Cheerio, load as cheerioLoad } from "cheerio";
 
 import {
   ComponentProps,
@@ -21,29 +20,7 @@ import {
   createOpeningTag,
 } from "./generateApiComponents";
 import { APOSTROPHE_HEX_CODE } from "../stringUtils";
-
-class Doc {
-  readonly $: CheerioAPI;
-  readonly $main: Cheerio<any>;
-
-  constructor($: CheerioAPI, $main: Cheerio<any>) {
-    this.$ = $;
-    this.$main = $main;
-  }
-
-  static load(html: string): Doc {
-    const $ = cheerioLoad(`<div role="main">${html}</div>`);
-    return new Doc($, $("[role='main']"));
-  }
-
-  html(): string {
-    return this.$main.html()!.trim();
-  }
-
-  expectHtml(expected: string): void {
-    expect(this.html()).toEqual(expected.trim());
-  }
-}
+import { CheerioDoc } from "../testUtils";
 
 const RAW_SIGNATURE_EXAMPLE = `<span class='sig-prename descclassname'><span class='pre'>Estimator.</span></span><span class='sig-name descname'><span class='pre'>run</span></span><span class='sig-paren'>(</span><em class='sig-param'><span class='n'><span class='pre'>circuits</span></span></em>, <em class='sig-param'><span class='n'><span class='pre'>observables</span></span></em>, <em class='sig-param'><span class='n'><span class='pre'>parameter_values</span></span><span class='o'><span class='pre'>=</span></span><span class='default_value'><span class='pre'>None</span></span></em>, <em class='sig-param'><span class='o'><span class='pre'>**</span></span><span class='n'><span class='pre'>kwargs</span></span></em><span class='sig-paren'>)</span></dt>`;
 
@@ -173,14 +150,14 @@ describe("createOpeningTag()", () => {
 describe("prepareGitHubLink()", () => {
   test("no link", () => {
     const html = `<span class="pre">None</span><span class="sig-paren">)</span><a class="headerlink" href="#qiskit_ibm_runtime.IBMBackend" title="Link to this definition">#</a>`;
-    const doc = Doc.load(html);
+    const doc = CheerioDoc.load(html);
     const result = prepareGitHubLink(doc.$main, false);
     expect(result).toEqual(undefined);
     doc.expectHtml(html);
   });
 
   test("link from sphinx.ext.viewcode", () => {
-    const doc = Doc.load(
+    const doc = CheerioDoc.load(
       `<span class="pre">None</span><span class="sig-paren">)</span><a class="reference internal" href="https://ibm.com/my_link"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qiskit_ibm_runtime.IBMBackend" title="Link to this definition">#</a>`,
     );
     const result = prepareGitHubLink(doc.$main, false);
@@ -191,7 +168,7 @@ describe("prepareGitHubLink()", () => {
   });
 
   test("link from sphinx.ext.linkcode", () => {
-    const doc = Doc.load(
+    const doc = CheerioDoc.load(
       `<span class="pre">None</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Qiskit/qiskit/blob/stable/1.0/qiskit/utils/deprecation.py#L24-L101"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qiskit_ibm_runtime.IBMBackend" title="Link to this definition">#</a>`,
     );
     const result = prepareGitHubLink(doc.$main, false);
@@ -204,10 +181,10 @@ describe("prepareGitHubLink()", () => {
   });
 
   test("method link only used when it has line numbers", () => {
-    const withLinesDoc = Doc.load(
+    const withLinesDoc = CheerioDoc.load(
       `<span class="sig-paren">)</span><a class="reference external" href="https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/transpiler/passes/scheduling/block_base_padder.py#L91-L117"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qiskit_ibm_provider.transpiler.passes.scheduling.PadDelay.run" title="Link to this definition">¶</a>`,
     );
-    const withoutLinesDoc = Doc.load(
+    const withoutLinesDoc = CheerioDoc.load(
       `<span class="sig-paren">)</span><a class="reference external" href="https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/transpiler/passes/scheduling/block_base_padder.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qiskit_ibm_provider.transpiler.passes.scheduling.PadDelay.run" title="Link to this definition">¶</a>`,
     );
     const withLinesResult = prepareGitHubLink(withLinesDoc.$main, true);
