@@ -38,3 +38,7 @@ export function removeSuffix(text: string, suffix: string) {
 export function getLastPartFromFullIdentifier(fullIdentifierName: string) {
   return last(split(fullIdentifierName, "."))!;
 }
+
+export function capitalize(text: string) {
+  return text.charAt(0).toUpperCase() + text.slice(1);
+}

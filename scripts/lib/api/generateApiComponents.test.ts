@@ -20,6 +20,7 @@ import {
   addExtraSignatures,
   createOpeningTag,
 } from "./generateApiComponents";
+import { APOSTROPHE_HEX_CODE } from "../stringUtils";
 
 class Doc {
   readonly $: CheerioAPI;
@@ -124,7 +125,7 @@ describe("createOpeningTag()", () => {
     attributeValue='undefined'
     github='undefined'
     signature='Estimator.run(circuits, observables, parameter_values=None, **kwargs)'
-    extraSignatures='[&#x27;Estimator.run(circuits, observables, parameter_values=None, **kwargs)&#x27;, &#x27;Estimator.run(circuits, observables, parameter_values=None, **kwargs)&#x27;]'
+    extraSignatures='[${APOSTROPHE_HEX_CODE}Estimator.run(circuits, observables, parameter_values=None, **kwargs)${APOSTROPHE_HEX_CODE}, ${APOSTROPHE_HEX_CODE}Estimator.run(circuits, observables, parameter_values=None, **kwargs)${APOSTROPHE_HEX_CODE}]'
     >
   `);
   });

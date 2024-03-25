@@ -41,8 +41,14 @@ export async function createOpeningTag(
   tagName: string,
   props: ComponentProps,
 ): Promise<string> {
-  const type = props.attributeTypeHint?.replaceAll("'", APOSTROPHE_HEX_CODE);
-  const value = props.attributeValue?.replaceAll("'", APOSTROPHE_HEX_CODE);
+  const attributeTypeHint = props.attributeTypeHint?.replaceAll(
+    "'",
+    APOSTROPHE_HEX_CODE,
+  );
+  const attributeValue = props.attributeValue?.replaceAll(
+    "'",
+    APOSTROPHE_HEX_CODE,
+  );
   const signature = await htmlSignatureToMd(props.rawSignature!);
   const extraSignatures: string[] = [];
   for (const sig of props.extraRawSignatures ?? []) {
@@ -56,8 +62,8 @@ export async function createOpeningTag(
   return `<${tagName} 
     id='${props.id}'
     name='${props.name}'
-    attributeTypeHint='${type}'
-    attributeValue='${value}'
+    attributeTypeHint='${attributeTypeHint}'
+    attributeValue='${attributeValue}'
     github='${props.githubSourceLink}'
     signature='${signature}'
     extraSignatures='[${extraSignatures.join(", ")}]'
@@ -123,7 +129,7 @@ export async function htmlSignatureToMd(
     return "";
   }
 
-  const html = `<span class="target" id=''/><p><code>${signatureHtml}</code></p>`;
+  const html = `<code>${signatureHtml}</code>`;
   const file = await unified()
     .use(rehypeParse)
     .use(rehypeRemark)
