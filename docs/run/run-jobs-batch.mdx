@@ -28,7 +28,24 @@ with Batch(backend) as batch:
         jobs.append(estimator.run(circuits, observables=obs_set))
 ```
 
-For a full example, see the following tutorials:
+<span id="divide"></span>
+### Example: divide a 500-circuit job into five 100-circuit jobs and run them in batch
+```python
+from qiskit_ibm_runtime import Batch, SamplerV2 as Sampler
+
+max_circuits = 100
+jobs = []
+start_idx = 0
+
+with Batch(backend):
+    sampler = Sampler()    
+    while start_idx < len(circuits):
+        end_idx = start_idx + max_circuits  
+        jobs.append(sampler.run([(circuits[start_ids:end_idx],)]))
+        start_idx = end_idx
+```
+
+For an end-to-end example, see the following tutorials:
 
 ## Next steps
 
