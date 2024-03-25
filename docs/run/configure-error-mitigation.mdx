@@ -378,13 +378,13 @@ sampler = Sampler(backend, options=options)
 ```
 
 <span id="advanced-error"></span>
-## Custom error settings
-
-With Estimator V2, you can turn on and off individual error mitigation and suppression methods, including dynamical decoupling, gate and measurement twirling, measurement error mitigation, and ZNE.
-
-<span id="advanced-options"></span>
 ## Custom error settings (V2 primitives)
-With the V2 primitives, you can turn on and off individual error mitigation and suppression methods. See the [API reference](/api/qiskit-ibm-runtime/options) for the list of available options.
+
+With the V2 primitives, you can turn on and off individual error mitigation and suppression methods, including dynamical decoupling, gate and measurement twirling, measurement error mitigation, and ZNE.
+
+<Admonition>
+Not all options are available for both primitives.   See the [API reference](/api/qiskit-ibm-runtime/options) for the list of available options.
+</Admonition>
 
 <Tabs>
   <TabItem value="EstimatorV2" label="Estimator V2">
@@ -415,8 +415,12 @@ from qiskit_ibm_runtime import SamplerV2 as Sampler, Options
 options = sampler.options
 
 options.dynamical_decoupling.enable = True
+# Turn on gate twirling. Requires qiskit_ibm_runtime 0.23.0 or later.
+options.twirling.enable_gates = True
 
 print(f">>> dynamical decoupling is turned on: {sampler.options.dynamical_decoupling.enable}")
+print(f">>> gate twirling is turned on: {sampler.options.twirling.enable_gates}")
+
 ```
   </TabItem>
 </Tabs>

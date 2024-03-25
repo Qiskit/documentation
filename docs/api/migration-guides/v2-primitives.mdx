@@ -309,6 +309,9 @@ sampler = Sampler(backend, options={"default_shots": 4096})
 # Setting options after primitive initialization
 # This uses auto complete.
 sampler.options.dynamical_decoupling.enable = True
+# Turn on gate twirling. Requires qiskit_ibm_runtime 0.23.0 or later.
+options.twirling.enable_gates = True
+
 # This does bulk update.  The value for default_shots is overridden if you specify shots with run() or in the PUB.
 sampler.options.update(default_shots=1024, dynamical_decoupling={"sequence_type": "XpXm"})
 
