@@ -31,7 +31,7 @@
 #   2. ❯ docker run --rm -p 3000:3000 -t qiskit-docs-preview
 #   3. Open up http://localhost:3000
 
-FROM icr.io/quantum-computing/iqp-channel-docs-dev:post-monorepo
+FROM icr.io/quantum-computing/iqp-channel-docs-dev:1b50b6b6e
 
 COPY docs/ /home/node/app/docs
 COPY translations/ /home/node/app/docs
