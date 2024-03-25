@@ -101,7 +101,7 @@ export function prepareGitHubLink(
 /**
  * Find the element that both matches the `selector` and whose content is the same as `text`
  */
-function findByText(
+export function findByText(
   $: CheerioAPI,
   $main: Cheerio<any>,
   selector: string,

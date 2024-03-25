@@ -25,7 +25,6 @@ import {
   removeMatplotlibFigCaptions,
   replaceViewcodeLinksWithGitHub,
   convertRubricsToHeaders,
-  prepareGitHubLink,
   processMembersAndSetMeta,
 } from "./processHtml";
 import { Metadata } from "./Metadata";
@@ -380,62 +379,6 @@ describe("maybeSetModuleMetadata()", () => {
       `<section id="module-qiskit_ibm_provider.transpiler.passes.basis"><h1>Hello</h1></section>`,
       "qiskit_ibm_provider.transpiler.passes.basis",
     );
-  });
-});
-
-describe("prepareGitHubLink()", () => {
-  test("no link", () => {
-    const html = `<span class="pre">None</span><span class="sig-paren">)</span><a class="headerlink" href="#qiskit_ibm_runtime.IBMBackend" title="Link to this definition">#</a>`;
-    const doc = CheerioDoc.load(html);
-    const result = prepareGitHubLink(doc.$main, false);
-    expect(result).toEqual("");
-    doc.expectHtml(html);
-  });
-
-  test("link from sphinx.ext.viewcode", () => {
-    const doc = CheerioDoc.load(
-      `<span class="pre">None</span><span class="sig-paren">)</span><a class="reference internal" href="https://ibm.com/my_link"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qiskit_ibm_runtime.IBMBackend" title="Link to this definition">#</a>`,
-    );
-    const result = prepareGitHubLink(doc.$main, false);
-    expect(result).toEqual(
-      ` <a href="https://ibm.com/my_link" title="view source code">GitHub</a>`,
-    );
-    doc.expectHtml(
-      `<span class="pre">None</span><span class="sig-paren">)</span><a class="headerlink" href="#qiskit_ibm_runtime.IBMBackend" title="Link to this definition">#</a>`,
-    );
-  });
-
-  test("link from sphinx.ext.linkcode", () => {
-    const doc = CheerioDoc.load(
-      `<span class="pre">None</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/Qiskit/qiskit/blob/stable/1.0/qiskit/utils/deprecation.py#L24-L101"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qiskit_ibm_runtime.IBMBackend" title="Link to this definition">#</a>`,
-    );
-    const result = prepareGitHubLink(doc.$main, false);
-    expect(result).toEqual(
-      ` <a href="https://github.com/Qiskit/qiskit/blob/stable/1.0/qiskit/utils/deprecation.py#L24-L101" title="view source code">GitHub</a>`,
-    );
-    doc.expectHtml(
-      `<span class="pre">None</span><span class="sig-paren">)</span><a class="headerlink" href="#qiskit_ibm_runtime.IBMBackend" title="Link to this definition">#</a>`,
-    );
-  });
-
-  test("method link only used when it has line numbers", () => {
-    const withLinesDoc = CheerioDoc.load(
-      `<span class="sig-paren">)</span><a class="reference external" href="https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/transpiler/passes/scheduling/block_base_padder.py#L91-L117"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qiskit_ibm_provider.transpiler.passes.scheduling.PadDelay.run" title="Link to this definition">¶</a>`,
-    );
-    const withoutLinesDoc = CheerioDoc.load(
-      `<span class="sig-paren">)</span><a class="reference external" href="https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/transpiler/passes/scheduling/block_base_padder.py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qiskit_ibm_provider.transpiler.passes.scheduling.PadDelay.run" title="Link to this definition">¶</a>`,
-    );
-    const withLinesResult = prepareGitHubLink(withLinesDoc.$main, true);
-    const withoutLinesResult = prepareGitHubLink(withoutLinesDoc.$main, true);
-
-    expect(withLinesResult).toEqual(
-      ` <a href="https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/transpiler/passes/scheduling/block_base_padder.py#L91-L117" title="view source code">GitHub</a>`,
-    );
-    expect(withoutLinesResult).toEqual("");
-
-    const strippedHtml = `<span class="sig-paren">)</span><a class="headerlink" href="#qiskit_ibm_provider.transpiler.passes.scheduling.PadDelay.run" title="Link to this definition">¶</a>`;
-    withLinesDoc.expectHtml(strippedHtml);
-    withoutLinesDoc.expectHtml(strippedHtml);
   });
 });
 
