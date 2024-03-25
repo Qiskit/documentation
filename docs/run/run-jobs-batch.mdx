@@ -17,6 +17,10 @@ Batch mode can shorten processing time if all jobs can be provided at the outset
 
 ![This diagram illustrates jobs submitted in a batch.  It shows five jobs, numbered 0 through 4, in a queue. The jobs are a mix of Estimator and Sampler.](/images/run/batch.png 'Figure 1: Batch execution')
 
+There are multiple ways you can reconfigure your jobs to take advantage of the parallel processing provided by batching.
+
+## Example: Divide a list of circuits into multiple jobs and run them in batch
+
 The following example shows how you can divide up a long list of circuits into multiple jobs and run them as a batch to take advantage of the parallel processing.
 
 ```python
@@ -29,7 +33,10 @@ with Batch(backend) as batch:
 ```
 
 <span id="divide"></span>
-### Example: divide a 500-circuit job into five 100-circuit jobs and run them in batch
+## Example: Divide a 500-circuit job into five 100-circuit jobs and run them in batch
+
+You can run multiple jobs in parallel by submitting multiple jobs in batch execution mode. 
+
 ```python
 from qiskit_ibm_runtime import Batch, SamplerV2 as Sampler
 
@@ -45,11 +52,3 @@ with Batch(backend):
         start_idx = end_idx
 ```
 
-For an end-to-end example, see the following tutorials:
-
-## Next steps
-
-<Admonition type="tip" title="Recommendations">
-    - Try the [CHSH inequality](https://learning.quantum.ibm.com/tutorial/chsh-inequality) tutorial.
-    - Try the [Grover's algorithm](https://learning.quantum.ibm.com/tutorial/grovers-algorithm) tutorial.
-</Admonition>

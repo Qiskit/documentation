@@ -9,9 +9,7 @@ There are several ways to run jobs, depending on your needs.
 
 **Job mode**: A single primitive request of the estimator or the sampler made without a context manager. Circuits and inputs are packaged as primitive unified blocs (PUBs) and submitted as an execution task on the quantum computer.
 
-
 [**Sessions mode**](sessions): A dedicated window for running multi-job workload. This allows users to experiment with variational algorithms in a more predictable way and even run multiple experiments simultaneously taking advantage of parallelism in the stack. Use sessions for iterative workloads. See [Run jobs in a session](run-jobs-in-session) for examples. 
-
 
 [**Batch mode**](run-jobs-in-batch): A multi-job manager for efficiently running an experiment that is comprised of bundle of independent jobs. Use batch mode to submit multiple primitive jobs simultaneously.
 
@@ -36,4 +34,5 @@ The above are general guidelines, and you should tune your workload to find the 
 
 * Single jobs are billed for the quantum time they use in processing. 
 * Sessions are billed for the entire active session time. 
+* For batched jobs, you are billed for the time the QPU complex is processing your job. 
 
