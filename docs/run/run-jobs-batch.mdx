@@ -9,6 +9,9 @@ description: How to run quantum computing jobs in batch mode using Qiskit Runtim
 Batch mode can shorten processing time if all jobs can be provided at the outset. If you want to submit iterative jobs, use [sessions](sessions) instead.  Using batch mode has these benefits:
 
 -  The jobs' classical computation, such as compilation, is run in parallel. Thus, running multiple jobs in a batch is significantly faster than running them serially. 
+    <Admonition>
+    At most five jobs can be processed in parallel, which might include other users' jobs.
+    </Admonition>
 -  There is minimal delay between jobs, which can help avoid drift.
 -  You don't get exclusive access to the quantum system.  Therefore, if another user's job is already running on the system, your jobs have to wait.  Additionally, system calibration jobs could run between the batched jobs. 
 
