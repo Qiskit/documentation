@@ -36,7 +36,7 @@ Providers like Qiskit Runtime enable access to appropriate systems through nativ
 their own primitives.
 
 <Admonition type="caution" title="Important">
-To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](../transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. Users can still request that the primitives do no optimization of input circuits by specifying `optimization_level=0`.
+To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](../transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all primitives except Sampler V2 still optimize the input circuits. To bypass all optimization, set `optimization_level=0`.
 
 *Exception*: When you initialize the Qiskit Runtime Service with the Q-CTRL channel strategy (example below), abstract circuits are still supported.
 
@@ -63,8 +63,8 @@ Version 2 (available with qiskit-ibm-runtime 0.21.0) is the first major interfac
 
 * The **new interface** lets you specify a single circuit and multiple observables (if using Estimator) and parameter value sets for that circuit. 
 * You can **turn on or off individual error mitigation and suppression methods**.
-* You can choose to **get counts or per-shot measurements** instead of quasi-probabilities from V2 Sampler.
-* Due to scaling issues, V2 Sampler does not support specifying a resilience level, and V2 Estimator supports only levels 0 - 2. 
+* You can choose to **get counts or per-shot measurements** instead of quasi-probabilities from Sampler V2.
+* Due to scaling issues, Sampler V2 does not support specifying a resilience level, and Estimator V2 supports only levels 0 - 2. 
 * To reduce the total execution time, v2 primitives only support ISA circuits. You can use the [Qiskit transpiler](advanced-runtime-options#runtime-compilation) (manually) or the [AI-driven transpilation service (premium users)](../transpile/qiskit-transpiler-service) to transform the circuits before making the queries to the primitives.
 
 See the [EstimatorV2 API reference](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.EstimatorV2) and [SamplerV2 API reference](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.SamplerV2) for full details.
@@ -83,20 +83,107 @@ The updated interface uses a *primitive unified bloc* (PUB) for input.  Each PUB
 Example: 
 
 ```python
-estimator.run([circuit1, circuit2, ...],[observable1, observable2, ...],[param_values1, param_values2, ...] )
+estimator.run([circuit1, circuit2, ...],[observable1, observable2, ...],
+  [param_values1, param_values2, ...] )
 ```
 
 #### Estimator V2
 
-* Takes one parameter: PUBs in the format (`<circuit>`, `<observables>`, `<parameter values>`, `<precision>`)
-* Numpy [broadcasting rules](https://numpy.org/doc/stable/user/basics.broadcasting.html) are used when combining observables and parameter values.
+* The `run()` method takes an array of PUBs. Each PUB is in the format (`<single circuit>`, `<one or more observables>`, `<optional one or more parameter values>`, `<optional precision>`), where the optional `parameter values` can be a list or a single parameter.
+* Combines elements from observables and parameter values by following NumPy broadcasting rules as described below. 
 * Each input PUB has a corresponding PubResult that contains both data and metadata.
 
 Example: 
 
 ```python
-estimator.run([(circuit1, observable1, param_values1),(circuit2, observable2, param_values2) ])
+estimator.run([(circuit1, observable1, param_values1),(circuit2, observable2, param_values2)])
 ```
+
+<span id="broadcast-rules"></span>
+##### Broadcasting rules
+
+Estimator V2 aggregates elements from multiple arrays (observables and parameter values) by following the same broadcasting rules as NumPy. This section summarizes those rules.  For a detailed explanation, see the [NumPy broadcasting rules documentation.](https://numpy.org/doc/stable/user/basics.broadcasting.html)
+
+Rules:
+
+* Input arrays do not need to have the same number of dimensions. 
+  * The resulting array will have the same number of dimensions as the input array with the largest dimension. 
+  * The size of each dimension is the largest size of the corresponding dimension.
+  * Missing dimensions are assumed to have size one.
+* Shape comparisons start with the rightmost dimension and continue to the left.
+* Two dimensions are compatible if their sizes are equal or if one of them is 1.
+
+Examples of array pairs that broadcast:
+
+```text
+A1     (1d array):      1
+A2     (2d array):  3 x 5
+Result (2d array):  3 x 5
+
+
+A1     (3d array):  11 x 2 x 7
+A2     (3d array):  11 x 1 x 7
+Result (3d array):  11 x 2 x 7
+```
+
+Examples of array pairs that do not broadcast:
+
+```text
+A1     (1d array):  5
+A2     (1d array):  3 
+
+A1     (2d array):      2 x 1
+A2     (3d array):  6 x 5 x 4 # This would work if the middle dimension were 2, but it is 5.
+```
+
+`EstimatorV2` returns one expectation value estimate for each element of the broadcasted shape.  
+
+Here are some examples of common patterns expressed in terms of array broadcasting.  Their accompanying visual representation is shown in the figure that follows:
+
+```python
+# Broadcast single observable
+
+parameter_values = np.random.uniform(size=(5,))  # shape (5,)
+observables = SparsePauliOp("ZZZ")  # shape ()
+>> pub result has shape (5,)
+
+# Zip
+parameter_values = np.random.uniform(size=(5,))  # shape (5,)
+observables = [SparsePauliOp(pauli) for pauli in ["III", "XXX", "YYY", "ZZZ", "XYZ"]]  # shape (5,)
+>> pub result has shape (5,)
+
+# Outer/Product
+parameter_values = np.random.uniform(size=(1, 6))  # shape (1, 6)
+observables = [[SparsePauliOp(pauli)] for pauli in ["III", "XXX", "YYY", "ZZZ"]]  # shape (4, 1)
+>> pub result has shape (4, 6)
+
+# Standard nd generalization
+parameter_values = np.random.uniform(size=(3, 6))  # shape (3, 6)
+observables = [
+    [[SparsePauliOp(['XII'])], [SparsePauliOp(['IXI'])], [SparsePauliOp(['IIX'])]],
+    [[SparsePauliOp(['ZII'])], [SparsePauliOp(['IZI'])], [SparsePauliOp(['IIZ'])]]
+]  # shape (2, 3, 1)
+>> pub result has shape (2, 3, 6)
+```
+
+![Parameter value sets are represented by n x m arrays, and observable arrays are represented by one or more single-column arrays. For each example in the previous code, the parameter value sets are combined with their observable array to create the resulting EV estimates.  Example 1 (broadcast single observable) has a parameter value set that is a 5x1 array and a 1x1 observables array.  The one item in the observables array is combined with each item in the parameter value set to create a single 5x1 array where each item is a combination of the original item in the parameter value set with the item in the observables array.  Example 2 (zip) has a 5x1 parameter value set and a 5x1 observables array.  The output is a 5x1 array where each item is a combination of the nth item in the parameter value set with the nth item in the observables array.  Example 3 (outer/product) has a 1x6 parameter value set and a 4x1 observables array.  Their combination results in a 4x6 array that is created by combining each item in the parameter value set with *every* item in the observables array.  Thus, each parameter value becomes an entire column in the output.  Example 4 (Standard nd generalization) has a 3x6 parameter value set array and two 3x1 observables array.  They combine to create two 3x6 output arrays in a similar manner to the previous example.](/images/run/broadcasting.svg "Visual representation of broadcasting")
+
+<Admonition type="tip" title="SparsePauliOp">
+Each `SparsePauliOp` counts as a single element in this context, regardless of the number of Paulis contained in the `SparsePauliOp`. Thus, for the purpose of these broadcasting rules, all of the following elements have the same shape:
+
+```text
+a = SparsePauliOp("Z") # shape ()
+b = SparsePauliOp("IIIIZXYIZ") # shape ()
+c = SparsePauliOp.from_list(["XX", "XY", "IZ"]) # shape ()
+```
+
+The following lists of operators, while equivalent in terms of information contained, have different shapes:
+
+```text
+list1 = SparsePauliOp.from_list(["XX", "XY", "IZ"]) # shape ()
+list2 = [SparsePauliOp("XX"), SparsePauliOp("XY"), SparsePauliOp("IZ")] # shape (3, )
+```
+</Admonition>
 
 #### Sampler V1
 
@@ -113,8 +200,8 @@ sampler.run([circuit1, circuit2, ...],[observable1, observable2, ...],[param_val
 
 #### Sampler V2
 
-* Takes one parameter: PUBs in the format  (`<circuit>`, `<parameter values>`, `<shots>`)
-* Elements from each are aggregated.
+* Takes one parameter: PUBs in the format  (`<single circuit>`, `<optional one or more parameter values>`, `<optional shots>`), where there can be multiple `parameter values` items, and each item can be either an array or a single parameter, depending on the chosen circuit.
+* Elements from each are aggregated. For example, each array of parameter values in the PUB is applied to the PUB's circuit.
 * Obeys program outputs. Typically this is a bit array but can also be an array of complex numbers (measurement level 1). 
 * Returns raw data type. Data from each shot is returned (analogous to `memory=True` in the `backend.run` interface), and post-processing is done by using convenience methods.
 * Output data is grouped by output registers.
@@ -130,8 +217,8 @@ sampler.run([(circuit1, param_values1, shots1),(circuit2, param_values2, shots_2
 The Estimator behaves differently, depending on what version you are using. 
 
 <Tabs>
-  <TabItem value="EstimatorV2" label="V2 Estimator">
-    V2 Estimator computes expectation values of observables with respect to states prepared by quantum circuits.
+  <TabItem value="EstimatorV2" label="Estimator V2">
+    Estimator V2 computes expectation values of observables with respect to states prepared by quantum circuits.
 It receives one or more PUBs as the inputs and returns the computed expectation values per pair, along with their
 standard error, in `PubResult` form. Different Estimator implementations support various configuration options. The circuits
 can be parametrized, as long as the parameter values are also provided as input to the primitive.
@@ -151,8 +238,8 @@ can be parametrized, as long as the parameter values are also provided as input 
 The Sampler behaves differently, depending on what version you are using. 
 
 <Tabs>
-  <TabItem value="SamplerV2" label="V2 Sampler">
-    V2 Sampler is simplified to focus on its core task of sampling the output register from execution of quantum circuits. It returns the samples, whose type is defined by the program, without weights and therefore does not support resilience levels. The result class, however, has methods to return weighted samples, such as counts. 
+  <TabItem value="SamplerV2" label="Sampler V2">
+    Sampler V2 is simplified to focus on its core task of sampling the output register from execution of quantum circuits. It returns the samples, whose type is defined by the program, without weights and therefore does not support resilience levels. The result class, however, has methods to return weighted samples, such as counts. 
     
     It receives one or more PUBs as the inputs and returns counts or per-shot measurements, as `PubResult`s.  The circuits
 can be parametrized, as long as the parameter values are also provided as input to the primitive.
@@ -195,3 +282,4 @@ The Qiskit Runtime primitives provide a more sophisticated implementation (for e
     - Read [Migrate to V2 primitives](/api/migration-guides/v2-primitives).
     - Practice with primitives by working through the [Cost function lesson](https://learning.quantum.ibm.com/course/variational-algorithm-design/cost-functions#primitives) in IBM Quantum&trade; Learning.
 </Admonition>
+

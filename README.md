@@ -73,24 +73,9 @@ npm install
 
 ## Preview the docs locally
 
-Run `./start` in your terminal, then open http://localhost:3000/start in your browser.
+Run `./start` in your terminal, then open http://localhost:3000 in your browser.
 
-The local preview does not include the initial index page and the top nav bar from docs.quantum.ibm.com. Therefore, you must directly navigate in the URL to the folder that you want:
-
-- http://localhost:3000/build
-- http://localhost:3000/start
-- http://localhost:3000/run
-- http://localhost:3000/transpile
-- http://localhost:3000/verify
-- http://localhost:3000/api/qiskit
-- http://localhost:3000/api/qiskit-ibm-runtime
-- http://localhost:3000/api/qiskit-ibm-provider
-- http://localhost:3000/api/migration-guides
-
-For historical API versions, use URLs like http://localhost:3000/api/qiskit/0.44, i.e. put the desired version after the
-API name.
-
-For translations, put the language code in front of the URL, like http://localhost:3000/es/start or http://localhost:3000/fr/start. You can find the language codes by looking in the `translations/` folder.
+The preview application does not include the top nav bar. Instead, navigate to the folder you want with the links in the home page. You can return to the home page at any time by clicking "IBM Quantum Documentation Preview" in the top-left of the header.
 
 Warning: `./start` does not check if there is a new version of the docs application available. Run `docker pull qiskit/documentation` to update to the latest version of the app.
 

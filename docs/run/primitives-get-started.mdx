@@ -9,7 +9,7 @@ description: How to use the Estimator and Sampler primitives in Qiskit Runtime.
 The steps in this topic describes how to set up primitives, explore the options you can use to configure them, and invoke them in a program.
 
 <Admonition type="caution" title="Important">
-To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](../transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations; consequently, transpilation options referring to those tasks will no longer have any effect. Users can still request that the primitives do no optimization of input circuits by specifying `options.transpilation.skip_transpilation`.
+To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](../transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all primitives except Sampler V2 still optimize the input circuits. To bypass all optimization, set `optimization_level=0`.
 
 *Exception*: When you initialize the Qiskit Runtime Service with the Q-CTRL channel strategy (example below), abstract circuits are still supported.
 
@@ -70,10 +70,10 @@ isa_observable = observable.apply_layout(isa_circuit.layout)
 
 When you initialize the Estimator, pass in the system or simulator you previously selected as the target.
 
-To use the V2 Estimator, import the **EstimatorV2** class. The **Estimator** class still refers to the version 1 Estimator, for backwards compatibility.
+To use the Estimator V2, import the **EstimatorV2** class. The **Estimator** class still refers to the version 1 Estimator, for backwards compatibility.
 
 <Tabs>
-  <TabItem value="EstimatorV2" label="V2 Estimator">
+  <TabItem value="EstimatorV2" label="Estimator V2">
 
 ```python
 from qiskit_ibm_runtime import EstimatorV2 as Estimator
@@ -96,10 +96,10 @@ estimator = Estimator(backend=backend)
 
 Next, invoke the `run()` method to calculate expectation values for the input circuits and observables.
 
-For V2 Estimator, the circuit, observable, and optional parameter value sets are input as *primitive unified bloc* (PUB) tuples. 
+For Estimator V2, the circuit, observable, and optional parameter value sets are input as *primitive unified bloc* (PUB) tuples. 
 
 <Tabs>
-  <TabItem value="EstimatorV2" label="V2 Estimator">
+  <TabItem value="EstimatorV2" label="Estimator V2">
 ```python
 job = estimator.run([(isa_circuit, isa_observable)])
 print(f">>> Job ID: {job.job_id()}")
@@ -174,10 +174,10 @@ isa_circuit = pm.run(circuit)
 
 When you initialize the `Sampler`, pass in the simulator or system you previously selected as the target.
 
-To use the V2 Sampler, import the **SamplerV2** class. The **Sampler** class still refers to the version 1 Sampler, for backwards compatibility.
+To use the Sampler V2, import the **SamplerV2** class. The **Sampler** class still refers to the version 1 Sampler, for backwards compatibility.
 
 <Tabs>
-  <TabItem value="SamplerV2" label="V2 Sampler">
+  <TabItem value="SamplerV2" label="Sampler V2">
     ```python
 from qiskit_ibm_runtime import SamplerV2 as Sampler
 
@@ -199,10 +199,10 @@ sampler = Sampler(backend=backend)
 
 Next, invoke the `run()` method to generate the output.
 
-For V2 Sampler, the circuit and optional parameter value sets are input as *primitive unified bloc* (PUB) tuples.
+For Sampler V2, the circuit and optional parameter value sets are input as *primitive unified bloc* (PUB) tuples.
 
 <Tabs>
-  <TabItem value="SamplerV2" label="V2 Sampler">
+  <TabItem value="SamplerV2" label="Sampler V2">
 
 ```python
 job = sampler.run([(isa_circuit)])
@@ -233,9 +233,11 @@ print(f"  > Metadata: {result.metadata[0]}")
 ```
   </TabItem>
 </Tabs>
+
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
+    - Learn how to [test locally](../verify/local-testing-mode) before running on quantum computers.
     - Review detailed [primitives examples.](primitives-examples)
     - Read [Migrate to V2 primitives](/api/migration-guides/v2-primitives).
     - Practice with primitives by working through the [Cost function lesson](https://learning.quantum.ibm.com/course/variational-algorithm-design/cost-functions#primitives) in IBM Quantum Learning.

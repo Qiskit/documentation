@@ -30,11 +30,9 @@ jobs:
     if: |
       (github.event.action == 'opened' || github.event.action == 'reopened' || github.event.action == 'synchronize') &&
       github.event.pull_request.head.repo.full_name == github.repository
-    uses: Qiskit/gh-actions/.github/workflows/code-engine-preview.yml@main
+    uses: ./.github/workflows/code-engine-preview.yml
     with:
-      code_engine_project: qiskit-docs-preview
-      docker_image_name: qiskit-docs-preview
-      docker_image_port: "3000"
+      env_name: Preview
     secrets:
       ibmcloud_account: ${{ secrets.IBMCLOUD_ACCOUNT }}
       ibmcloud_api_key: ${{ secrets.IBMCLOUD_API_KEY }}
@@ -43,10 +41,35 @@ jobs:
     if: |
       github.event.action == 'closed' &&
       github.event.pull_request.head.repo.full_name == github.repository
-    uses: Qiskit/gh-actions/.github/workflows/code-engine-cleanup.yml@main
-    with:
-      code_engine_project: qiskit-docs-preview
-      docker_image_name: qiskit-docs-preview
-    secrets:
-      ibmcloud_account: ${{ secrets.IBMCLOUD_ACCOUNT }}
-      ibmcloud_api_key: ${{ secrets.IBMCLOUD_API_KEY }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set PREVIEW_TAG
+        run: echo "PREVIEW_TAG=pr-${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+      - name: Set APP_NAME and DOCKER_IMAGE_TAG
+        run: |
+          echo "APP_NAME=qiskit-docs-preview-${{ env.PREVIEW_TAG }}" >> $GITHUB_ENV
+          echo "DOCKER_IMAGE_TAG=icr.io/community-digital/qiskit-docs-preview:${{ env.PREVIEW_TAG }}" >> $GITHUB_ENV
+      - name: Install IBM Cloud CLI
+        run: |
+          curl -o IBM_Cloud_CLI_2.20.0_amd64.tar.gz -L https://download.clis.cloud.ibm.com/ibm-cloud-cli/2.20.0/IBM_Cloud_CLI_2.20.0_amd64.tar.gz
+          tar xvf IBM_Cloud_CLI_2.20.0_amd64.tar.gz
+          sh Bluemix_CLI/install
+          ibmcloud --version
+          ibmcloud config --check-version=false
+          ibmcloud plugin install -f code-engine
+          ibmcloud plugin install -f container-registry
+      - name: Authenticate with IBM Cloud CLI
+        run: |
+          ibmcloud login -g "Quantum Community" -r "us-south" -c "${{ secrets.ibmcloud_account }}" --apikey "${{ secrets.ibmcloud_api_key }}"
+      - name: Remove Code Engine preview application
+        run: |
+          ibmcloud ce project select -n qiskit-docs-preview
+          ibmcloud ce application delete \
+            --name "${{ env.APP_NAME }}" \
+            --wait \
+            --ignore-not-found \
+            --force
+      - name: Remove Docker image
+        run: |
+          ibmcloud cr region-set global
+          ibmcloud cr image-rm "${{ env.DOCKER_IMAGE_TAG }}"
