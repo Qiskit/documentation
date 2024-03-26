@@ -31,10 +31,10 @@
 #   2. ❯ docker run --rm -p 3000:3000 -t qiskit-docs-preview
 #   3. Open up http://localhost:3000
 
-FROM icr.io/quantum-computing/iqp-channel-docs-dev:next13-no-refresh
+FROM icr.io/quantum-computing/iqp-channel-docs-dev:next13.4
 
 COPY docs/ /home/node/app/docs
 COPY translations/ /home/node/app/docs
 COPY public/ /home/node/app/packages/web/public/
 
-EXPOSE 3000
+EXPOSE 3000 5001
