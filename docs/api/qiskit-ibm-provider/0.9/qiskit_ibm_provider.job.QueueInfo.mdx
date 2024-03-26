@@ -8,63 +8,59 @@ python_api_name: qiskit_ibm_provider.job.QueueInfo
 
 # QueueInfo
 
-<span id="qiskit_ibm_provider.job.QueueInfo" />
+<Class id="qiskit_ibm_provider.job.QueueInfo" github="https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.9/qiskit_ibm_provider/job/queueinfo.py" signature="QueueInfo(position_in_queue=None, status=None, estimated_start_time=None, estimated_completion_time=None, hub_priority=None, group_priority=None, project_priority=None, job_id=None, **kwargs)">
+  Queue information for a job.
 
-`QueueInfo(position_in_queue=None, status=None, estimated_start_time=None, estimated_completion_time=None, hub_priority=None, group_priority=None, project_priority=None, job_id=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.9/qiskit_ibm_provider/job/queueinfo.py "view source code")
+  QueueInfo constructor.
 
-Queue information for a job.
+  **Parameters**
 
-QueueInfo constructor.
+  *   **position** – Position in the queue.
+  *   **status** (`Optional`\[`str`]) – Job status.
+  *   **estimated\_start\_time** (`Union`\[`str`, `datetime`, `None`]) – Estimated start time for the job, in UTC.
+  *   **estimated\_complete\_time** – Estimated complete time for the job, in UTC.
+  *   **hub\_priority** (`Optional`\[`float`]) – Dynamic priority for the hub.
+  *   **group\_priority** (`Optional`\[`float`]) – Dynamic priority for the group.
+  *   **project\_priority** (`Optional`\[`float`]) – Dynamic priority for the project.
+  *   **job\_id** (`Optional`\[`str`]) – Job ID.
+  *   **kwargs** (`Any`) – Additional attributes.
 
-**Parameters**
+  ## Attributes
 
-*   **position** – Position in the queue.
-*   **status** (`Optional`\[`str`]) – Job status.
-*   **estimated\_start\_time** (`Union`\[`str`, `datetime`, `None`]) – Estimated start time for the job, in UTC.
-*   **estimated\_complete\_time** – Estimated complete time for the job, in UTC.
-*   **hub\_priority** (`Optional`\[`float`]) – Dynamic priority for the hub.
-*   **group\_priority** (`Optional`\[`float`]) – Dynamic priority for the group.
-*   **project\_priority** (`Optional`\[`float`]) – Dynamic priority for the project.
-*   **job\_id** (`Optional`\[`str`]) – Job ID.
-*   **kwargs** (`Any`) – Additional attributes.
+  ### estimated\_complete\_time
 
-## Attributes
+  <Attribute id="qiskit_ibm_provider.job.QueueInfo.estimated_complete_time" name="estimated_complete_time">
+    Return estimated complete time in local time.
 
-<span id="qiskit_ibm_provider.job.QueueInfo.estimated_complete_time" />
+    **Return type**
 
-### estimated\_complete\_time
+    `Optional`\[`datetime`]
+  </Attribute>
 
-Return estimated complete time in local time.
+  ### estimated\_start\_time
 
-**Return type**
+  <Attribute id="qiskit_ibm_provider.job.QueueInfo.estimated_start_time" name="estimated_start_time">
+    Return estimated start time in local time.
 
-`Optional`\[`datetime`]
+    **Return type**
 
-<span id="qiskit_ibm_provider.job.QueueInfo.estimated_start_time" />
+    `Optional`\[`datetime`]
+  </Attribute>
 
-### estimated\_start\_time
+  ## Methods
 
-Return estimated start time in local time.
+  ### format
 
-**Return type**
+  <Function id="qiskit_ibm_provider.job.QueueInfo.format" name="format" signature="format()">
+    Build a user-friendly report for the job queue information.
 
-`Optional`\[`datetime`]
+    **Return type**
 
-## Methods
+    `str`
 
-### format
+    **Returns**
 
-<span id="qiskit_ibm_provider.job.QueueInfo.format" />
-
-`format()`
-
-Build a user-friendly report for the job queue information.
-
-**Return type**
-
-`str`
-
-**Returns**
-
-The job queue information report.
+    The job queue information report.
+  </Function>
+</Class>
 
