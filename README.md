@@ -148,13 +148,15 @@ embarassing if this was not true. We can assert this in CI by adding the
 following code cell, and hide it from users with a `remove-cell` tag.
 
 ```python
-#| content: The output is `0011`.
+# Confirm output is what we expect.
 assert _ == '0011'
 ```
 
 In Jupyter notebooks, the underscore `_` variable stores the value of the
-previous cell output. You should also add a comment referencing the markdown
-you're asserting (like in the example). If something ever causes this value to
+previous cell output. You should also add a comment like
+`# Confirm output is what we expect` so that authors know this
+block is only for testing. Make sure you add the tag `remove-cell`.
+If something ever causes this value to
 change, CI will alert us.
 
 ## Lint notebooks
