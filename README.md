@@ -128,6 +128,35 @@ click "Show all checks" in the info box at the bottom of the pull request page
 on GitHub, then choose "Details" for the "Test notebooks" job. From the job
 page, click "Summary", then download "Executed notebooks".
 
+### Ignoring warnings
+
+We don't want users to see warnings that can be avoided, so it's best to fix
+the code to avoid them. However, if a warning is unavoidable, you can stop it
+blocking CI by adding an `ignore-warning` tag to the cell. In VSCode,
+right-click the cell, choose "Add cell tag", type `ignore-warning`, then press
+"Enter". In Jupyter notebook (depending on version), choose View > Right
+Sidebar > Show Notebook Tools, then under "Common Tools" add a tag with text
+`ignore-warning`.
+
+### Extra code checks
+
+Our CI checks notebooks run from start to finish without errors or warnings.
+You can add extra checks in notebooks to catch other unexpected behavior.
+
+For example, say we claim a cell always returns the string `0011`. It would be
+embarassing if this was not true. We can assert this in CI by adding the
+following code cell, and hide it from users with a `remove-cell` tag.
+
+```python
+#| content: The output is `0011`.
+assert _ == '0011'
+```
+
+In Jupyter notebooks, the underscore `_` variable stores the value of the
+previous cell output. You should also add a comment referencing the markdown
+you're asserting (like in the example). If something ever causes this value to
+change, CI will alert us.
+
 ## Lint notebooks
 
 We use [`squeaky`](https://github.com/frankharkins/squeaky) to lint our
