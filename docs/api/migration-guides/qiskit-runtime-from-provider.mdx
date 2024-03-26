@@ -30,20 +30,8 @@ circuit.cx(0, 1)
 circuit.measure_all()
 ```
 
-In Provider, the code is:
-
-```python
-from qiskit_ibm_provider import IBMProvider
-
-provider = IBMProvider()
-backend = provider.get_backend("ibmq_qasm_simulator")
-transpiled_circuit = transpile(circuit, backend=backend)
-job = backend.run(transpiled_circuit)
-print(job.result())
-```
-
-In Runtime, the code is:
-
+<Tabs>
+  <TabItem value="updated" label="Qiskit Runtime">
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService
 
@@ -53,6 +41,21 @@ transpiled_circuit = transpile(circuit, backend=backend)
 job = backend.run(transpiled_circuit)
 print(job.result())
 ```
+  </TabItem>
+
+  <TabItem value="legacy" label="Provider">
+```python
+from qiskit_ibm_provider import IBMProvider
+
+provider = IBMProvider()
+backend = provider.get_backend("ibmq_qasm_simulator")
+transpiled_circuit = transpile(circuit, backend=backend)
+job = backend.run(transpiled_circuit)
+print(job.result())
+```
+  </TabItem>
+</Tabs>
+
 
 **Example 2: Execution of backend.run() within a session:**
 
