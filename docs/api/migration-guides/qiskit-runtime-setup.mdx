@@ -1,0 +1,301 @@
+---
+title: Migrate setup to qiskit-ibm-runtime
+description: Migrate setup from using backend.run to using Qiskit Runtime primitives
+
+
+in_page_toc_max_heading_level: 2
+---
+
+# Migrate setup to qiskit-ibm-runtime
+
+This guide describes how to migrate code from the legacy IBMQ provider
+`qiskit-ibmq-provider` package to use Qiskit Runtime
+`qiskit-ibm-runtime`. 
+
+## Changes in Class name and location
+
+The classes related to Qiskit Runtime that used to be included in
+`qiskit-ibmq-provider` are now part of `qiskit-ibm-runtime`. Before, the
+provider used to populate the `qiskit.providers.ibmq.runtime` namespace
+with objects for Qiskit Runtime. These now live in the
+`qiskit_ibm_runtime` module.
+
+The module from which the classes are imported has changed. The
+following table contains example access patterns in
+`qiskit.providers.ibmq.runtime` and their new form in
+`qiskit_ibm_runtime`:
+
+| class in qiskit-ibmq-provider                    | class in qiskit-ibm-runtime               | Notes                                                                                                                |
+|--------------------------------------------------|-------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
+| qiskit.providers.ibmq.runtime.IBMRuntimeService  | qiskit_ibm_runtime.QiskitRuntimeService   | IBMRuntimeService class was removed from qiskit-ibm-runtime 0.6 and replaced by the new class in qiskit-ibm-runtime. |
+| qiskit.providers.ibmq.runtime.RuntimeJob         | qiskit_ibm_runtime.RuntimeJob             | 
+| qiskit.providers.ibmq.runtime.RuntimeProgram     |                                           | This class was used for custom programs, which are no longer supported.
+| qiskit.providers.ibmq.runtime.UserMessenger      |                                           | This class was used for custom programs, which are no longer supported.                                |
+| qiskit.providers.ibmq.runtime.ProgramBackend     |                                           | This class was used for custom programs, which are no longer supported.                                |
+| qiskit.providers.ibmq.runtime.ResultDecoder      |                                           | This class was used for custom programs, which are no longer supported.                                |
+| qiskit.providers.ibmq.runtime.RuntimeEncoder     | qiskit_ibm_runtime.RuntimeEncoder         |
+| qiskit.providers.ibmq.runtime.RuntimeDecoder     | qiskit_ibm_runtime.RuntimeDecoder         |
+| qiskit.providers.ibmq.runtime.ParameterNamespace |                                           | This class was used for custom programs, which are no longer supported.
+| qiskit.providers.ibmq.runtime.RuntimeOptions     | qiskit_ibm_runtime.RuntimeOptions         |
+
+
+## Import path
+
+The import path has changed as follows:
+
+<Tabs>
+  <TabItem value="updated" label="Updated">
+``` python
+from qiskit_ibm_runtime import QiskitRuntimeService
+```
+  </TabItem>
+
+  <TabItem value="legacy" label="Legacy">
+``` python
+from qiskit import IBMQ
+```
+  </TabItem>
+</Tabs>
+
+## Save accounts
+
+Use the updated code to work save accounts.
+
+<Tabs>
+  <TabItem value="updated" label="Updated">
+The new syntax accepts credentials for
+Qiskit Runtime on IBM Cloud or IBM Quantum Platform. For more
+information on retrieving account credentials, see [Install and set up](../../start/install).
+
+``` python
+# IBM Cloud channel
+
+QiskitRuntimeService.save_account(channel="ibm_cloud", token="<IBM Cloud API key>", instance="<IBM Cloud CRN>", overwrite=True)
+
+# IBM Quantum channel; set to default 
+
+QiskitRuntimeService.save_account(channel="ibm_quantum", token="<IQP_TOKEN>", overwrite=True, default=true)
+```
+
+Additionally, you can now name your saved credentials and load the credentials by name.
+
+
+``` python
+# Save different accounts for open and premium access
+
+QiskitRuntimeService.save_account(channel="ibm_quantum", token="<IQX_TOKEN>", instance="h1/g1/p1", name="premium")
+QiskitRuntimeService.save_account(channel="ibm_quantum", token="<IQX_TOKEN>", instance="h2/g2/p2", name="open")
+
+# Load the "open" credentials
+
+service = QiskitRuntimeService(name="open")
+```
+  </TabItem>
+
+  <TabItem value="legacy" label="Legacy">
+``` python
+IBMQ.save_account("<IQX_TOKEN>", overwrite=True)
+```
+  </TabItem>
+</Tabs>
+
+
+## Load accounts
+
+Use the updated code to load accounts.
+
+<Tabs>
+  <TabItem value="updated" label="Updated">
+The new syntax combines the functionality from `load_account()` and
+`get_provider()` in one statement. The `channel` input parameter is
+optional. If multiple accounts have been saved in one device and no
+`channel` is provided, the default is `"ibm_cloud"`.
+
+``` python
+# To access saved credentials for the IBM cloud channel
+service = QiskitRuntimeService(channel="ibm_cloud")
+
+# To access saved credentials for the IBM quantum channel
+service = QiskitRuntimeService(channel="ibm_quantum")
+```
+  </TabItem>
+
+  <TabItem value="legacy" label="Legacy">
+``` python
+IBMQ.load_account()
+```
+  </TabItem>
+</Tabs>
+
+
+## Channel selection (get a provider)
+
+Use the updated code to select a channel.
+
+<Tabs>
+  <TabItem value="updated" label="Updated">
+The new syntax combines the functionality from `load_account()` and
+`get_provider()` in one statement. When using the `ibm_quantum` channel,
+the `hub`, `group`, and `project` are specified through the new
+`instance` keyword.
+
+``` python
+# To access saved credentials for the IBM quantum channel and select an instance
+service = QiskitRuntimeService(channel="ibm_quantum", instance="my_hub/my_group/my_project")
+```
+  </TabItem>
+
+  <TabItem value="legacy" label="Legacy">
+``` python
+provider = IBMQ.get_provider(project="my_project", group="my_group", hub="my_hub")
+```
+  </TabItem>
+</Tabs>
+
+## Get the system 
+
+Use the updated code to view systems and simulators.
+
+<Tabs>
+  <TabItem value="updated" label="Updated">
+``` python
+# You can specify the instance in service.backend() instead of initializing a new service
+backend = service.backend("ibm_backend", instance="h1/g1/p1")
+```
+If you don't know what backend you want to use, you can instead use code such as the following:
+
+```python
+from qiskit_ibm_runtime import QiskitRuntimeService
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=num_qubits)
+```
+  </TabItem>
+
+  <TabItem value="legacy" label="Legacy">
+``` python
+provider = IBMQ.get_provider(hub="h1", group="g1", project="p1")
+backend = provider.get_backend("ibm_backend")
+```
+  </TabItem>
+</Tabs>
+
+## Upload, view, or delete custom prototype programs
+
+This function has been replaced with Quantum Serverless patterns.  For instructions to migrate, see [Converting from Qiskit Runtime Programs.](https://qiskit-extensions.github.io/quantum-serverless/migration/migration_from_qiskit_runtime_programs.html)
+
+<span id="parm-circ"></span>
+# Parametrized circuits with primitives
+
+Parametrized circuits are a commonly used tool for quantum algorithm
+design. Because `backend.run()` did not accept parametrized
+circuits, the parameter binding step had to be integrated in the
+algorithm workflow. The primitives can perform the parameter binding
+step internally, which results in a simplification of the algorithm-side
+logic.
+
+The following example summarizes the new workflow for managing
+parametrized circuits.
+
+## Example
+
+Define a parametrized circuit:
+
+``` python
+from qiskit.circuit import QuantumCircuit, ParameterVector
+
+n = 3
+thetas = ParameterVector('θ',n)
+
+qc = QuantumCircuit(n, 1)
+qc.h(0)
+
+for i in range(n-1):
+    qc.cx(i, i+1)
+
+for i,t in enumerate(thetas):
+    qc.rz(t, i)
+
+for i in reversed(range(n-1)):
+    qc.cx(i, i+1)
+
+qc.h(0)
+qc.measure(0, 0)
+
+qc.draw()
+```
+
+V2 primitives support only circuits that adhere to the Instruction Set Architecture (ISA) of a particular backend, so we must transform our circuits. 
+
+```python
+from qiskit_ibm_runtime import QiskitRuntimeService
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False)
+
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+isa_circuit = pm.run(qc)
+```
+
+We want to assign the following parameter values to the circuit:
+
+``` python
+import numpy as np
+theta_values = [np.pi/2, np.pi/2, np.pi/2]
+```
+
+<Tabs>
+  <TabItem value="updated" label="Updated">
+The primitives take in parametrized circuits directly, together
+with the parameter values, and the parameter assignment operation can be
+performed more efficiently on the server side of the primitive.  The input is in the form of primitive unified blocs (PUBs).  Each PUB is a tuple that contains a circuit and the data broadcasted to it.  For further details, see [Introduction to primitives.](../../run/primitives#interface-changes)
+
+This feature is particularly interesting when working with iterative
+algorithms because the parametrized circuit remains unchanged between
+calls while the parameter values change. The primitives can transpile
+once and then cache the unbound circuit, using classical resources more
+efficiently. Moreover, only the updated parameters are transferred to
+the cloud, saving additional bandwidth.
+
+<Admonition type="note">
+As shown in the previous image, the classical register name is `c`.  Alternatively, you can find the classical register name by running `<circuit_name>.cregs`. For example: `qc.cregs`.
+</Admonition>
+
+``` python
+from qiskit_ibm_runtime import SamplerV2 as Sampler
+
+sampler = Sampler(backend)
+job = sampler.run([(isa_circuit, theta_values)])
+result = job.result()
+# Get results for the first (and only) PUB
+pub_result = result[0]
+# Get counts from the classical register "c". 
+print(f" >> Counts for the c output register: {pub_result.data.c.get_counts()}")
+```
+  </TabItem>
+
+  <TabItem value="legacy" label="Legacy">
+The parameter values had to be bound to their respective
+circuit parameters prior to calling `backend.run()`.
+
+``` python
+from qiskit import Aer
+
+bound_circuit = qc.bind_parameters(theta_values)
+bound_circuit.draw()
+
+backend = Aer.get_backend('aer_simulator')
+job = backend.run(bound_circuit)
+counts = job.result().get_counts()
+print(counts)
+```
+  </TabItem>
+</Tabs>
+
+# Algorithm tuning
+
+One of the advantages of the primitives is that they abstract away the
+circuit execution setup so that algorithm developers can focus on the
+pure algorithmic components. However, sometimes, to get the most out of
+an algorithm, you might want to tune certain primitive options. For details, see [Advanced runtime options](../../run/advanced-runtime-options).
