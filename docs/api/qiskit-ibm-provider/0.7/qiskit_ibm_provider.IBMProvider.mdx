@@ -108,23 +108,255 @@ python_api_name: qiskit_ibm_provider.IBMProvider
 
   ## Attributes
 
-  |                                                                                                            |                             |
-  | ---------------------------------------------------------------------------------------------------------- | --------------------------- |
-  | [`IBMProvider.backend`](qiskit_ibm_provider.IBMProvider#backend "qiskit_ibm_provider.IBMProvider.backend") | Return the backend service. |
-  | [`IBMProvider.version`](qiskit_ibm_provider.IBMProvider#version "qiskit_ibm_provider.IBMProvider.version") |                             |
+  <span id="ibmprovider-backend" />
+
+  ### backend
+
+  <Attribute id="qiskit_ibm_provider.IBMProvider.backend" signature="IBMBackendService">
+    Return the backend service.
+
+    **Return type**
+
+    [`IBMBackendService`](qiskit_ibm_provider.IBMBackendService "qiskit_ibm_provider.ibm_backend_service.IBMBackendService")
+
+    **Returns**
+
+    The backend service instance.
+  </Attribute>
+
+  <span id="ibmprovider-version" />
+
+  ### version
+
+  <Attribute id="qiskit_ibm_provider.IBMProvider.version" signature="= 1" />
 
   ## Methods
 
-  |                                                                                                                                                   |                                                                                 |
-  | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-  | [`IBMProvider.active_account`](qiskit_ibm_provider.IBMProvider#active_account "qiskit_ibm_provider.IBMProvider.active_account")()                 | Return the IBM Quantum account currently in use for the session.                |
-  | [`IBMProvider.backends`](qiskit_ibm_provider.IBMProvider#backends "qiskit_ibm_provider.IBMProvider.backends")(\[name, filters, ...])              | Return all backends accessible via this account, subject to optional filtering. |
-  | [`IBMProvider.delete_account`](qiskit_ibm_provider.IBMProvider#delete_account "qiskit_ibm_provider.IBMProvider.delete_account")(\[name])          | Delete a saved account from disk.                                               |
-  | [`IBMProvider.get_backend`](qiskit_ibm_provider.IBMProvider#get_backend "qiskit_ibm_provider.IBMProvider.get_backend")(\[name, instance])         | Return a single backend matching the specified filtering.                       |
-  | [`IBMProvider.instances`](qiskit_ibm_provider.IBMProvider#instances "qiskit_ibm_provider.IBMProvider.instances")()                                | Return the IBM Quantum instances list currently in use for the session.         |
-  | [`IBMProvider.jobs`](qiskit_ibm_provider.IBMProvider#jobs "qiskit_ibm_provider.IBMProvider.jobs")(\[limit, skip, ...])                            | Return a list of jobs, subject to optional filtering.                           |
-  | [`IBMProvider.retrieve_job`](qiskit_ibm_provider.IBMProvider#retrieve_job "qiskit_ibm_provider.IBMProvider.retrieve_job")(job\_id)                | Return a single job.                                                            |
-  | [`IBMProvider.save_account`](qiskit_ibm_provider.IBMProvider#save_account "qiskit_ibm_provider.IBMProvider.save_account")(\[token, url, ...])     | Save the account to disk for future use.                                        |
-  | [`IBMProvider.saved_accounts`](qiskit_ibm_provider.IBMProvider#saved_accounts "qiskit_ibm_provider.IBMProvider.saved_accounts")(\[default, name]) | List the accounts saved on disk.                                                |
+  <span id="ibmprovider-active-account" />
+
+  ### active\_account
+
+  <Function id="qiskit_ibm_provider.IBMProvider.active_account" signature="IBMProvider.active_account()">
+    Return the IBM Quantum account currently in use for the session.
+
+    **Return type**
+
+    `Optional`\[`Dict`\[`str`, `str`]]
+
+    **Returns**
+
+    A dictionary with information about the account currently in the session.
+  </Function>
+
+  <span id="ibmprovider-backends" />
+
+  ### backends
+
+  <Function id="qiskit_ibm_provider.IBMProvider.backends" signature="IBMProvider.backends(name=None, filters=None, min_num_qubits=None, instance=None, **kwargs)">
+    Return all backends accessible via this account, subject to optional filtering.
+
+    **Parameters**
+
+    *   **name** (`Optional`\[`str`]) – Backend name to filter by.
+
+    *   **min\_num\_qubits** (`Optional`\[`int`]) – Minimum number of qubits the backend must have.
+
+    *   **instance** (`Optional`\[`str`]) – The provider in the hub/group/project format.
+
+    *   **filters** (`Optional`\[`Callable`\[\[`List`\[[`IBMBackend`](qiskit_ibm_provider.IBMBackend "qiskit_ibm_provider.ibm_backend.IBMBackend")]], `bool`]]) –
+
+        More complex filters, such as lambda functions. For example:
+
+        ```python
+        IBMProvider.backends(filters=lambda b: b.max_shots > 50000)
+        IBMProvider.backends(filters=lambda x: ("rz" in x.basis_gates )
+        ```
+
+    *   **\*\*kwargs** –
+
+        Simple filters that require a specific value for an attribute in backend configuration, backend status, or provider credentials. Examples:
+
+        ```python
+        # Get the operational real backends
+        IBMProvider.backends(simulator=False, operational=True)
+        # Get the backends with at least 127 qubits
+        IBMProvider.backends(min_num_qubits=127)
+        # Get the backends that support OpenPulse
+        IBMProvider.backends(open_pulse=True)
+        ```
+
+        For the full list of backend attributes, see the IBMBackend class documentation \<[providers\_models](/api/qiskit/providers_models)>
+
+    **Return type**
+
+    `List`\[[`IBMBackend`](qiskit_ibm_provider.IBMBackend "qiskit_ibm_provider.ibm_backend.IBMBackend")]
+
+    **Returns**
+
+    The list of available backends that match the filter.
+  </Function>
+
+  <span id="ibmprovider-delete-account" />
+
+  ### delete\_account
+
+  <Function id="qiskit_ibm_provider.IBMProvider.delete_account" signature="static IBMProvider.delete_account(name=None)">
+    Delete a saved account from disk.
+
+    **Parameters**
+
+    **name** (`Optional`\[`str`]) – Name of the saved account to delete.
+
+    **Return type**
+
+    `bool`
+
+    **Returns**
+
+    True if the account was deleted. False if no account was found.
+  </Function>
+
+  <span id="ibmprovider-get-backend" />
+
+  ### get\_backend
+
+  <Function id="qiskit_ibm_provider.IBMProvider.get_backend" signature="IBMProvider.get_backend(name=None, instance=None, **kwargs)">
+    Return a single backend matching the specified filtering.
+
+    **Parameters**
+
+    *   **name** (*str*) – Name of the backend.
+    *   **instance** (`Optional`\[`str`]) – The provider in the hub/group/project format.
+    *   **\*\*kwargs** – Dict used for filtering.
+
+    **Returns**
+
+    a backend matching the filtering.
+
+    **Return type**
+
+    Backend
+
+    **Raises**
+
+    *   **QiskitBackendNotFoundError** – if no backend could be found or more than one backend matches the filtering criteria.
+    *   [**IBMProviderValueError**](qiskit_ibm_provider.IBMProviderValueError "qiskit_ibm_provider.IBMProviderValueError") – If only one or two parameters from hub, group, project are specified.
+  </Function>
+
+  <span id="ibmprovider-instances" />
+
+  ### instances
+
+  <Function id="qiskit_ibm_provider.IBMProvider.instances" signature="IBMProvider.instances()">
+    Return the IBM Quantum instances list currently in use for the session.
+
+    **Return type**
+
+    `List`\[`str`]
+
+    **Returns**
+
+    A list with instances currently in the session.
+  </Function>
+
+  <span id="ibmprovider-jobs" />
+
+  ### jobs
+
+  <Function id="qiskit_ibm_provider.IBMProvider.jobs" signature="IBMProvider.jobs(limit=10, skip=0, backend_name=None, status=None, start_datetime=None, end_datetime=None, job_tags=None, descending=True, instance=None, legacy=False)">
+    Return a list of jobs, subject to optional filtering.
+
+    Retrieve jobs that match the given filters and paginate the results if desired. Note that the server has a limit for the number of jobs returned in a single call. As a result, this function might involve making several calls to the server.
+
+    **Parameters**
+
+    *   **limit** (`Optional`\[`int`]) – Number of jobs to retrieve. `None` means no limit. Note that the number of sub-jobs within a composite job count towards the limit.
+    *   **skip** (`int`) – Starting index for the job retrieval.
+    *   **backend\_name** (`Optional`\[`str`]) – Name of the backend to retrieve jobs from.
+    *   **status** (`Optional`\[`Literal`\[‘pending’, ‘completed’]]) – Filter jobs with either “pending” or “completed” status.
+    *   **start\_datetime** (`Optional`\[`datetime`]) – Filter by the given start date, in local time. This is used to find jobs whose creation dates are after (greater than or equal to) this local date/time.
+    *   **end\_datetime** (`Optional`\[`datetime`]) – Filter by the given end date, in local time. This is used to find jobs whose creation dates are before (less than or equal to) this local date/time.
+    *   **job\_tags** (`Optional`\[`List`\[`str`]]) – Filter by tags assigned to jobs. Matched jobs are associated with all tags.
+    *   **descending** (`bool`) – If `True`, return the jobs in descending order of the job creation date (i.e. newest first) until the limit is reached.
+    *   **instance** (`Optional`\[`str`]) – The provider in the hub/group/project format.
+    *   **legacy** (`bool`) – If `True`, only retrieve jobs run from the deprecated `qiskit-ibmq-provider`.
+    *   **Otherwise** –
+    *   **qiskit-ibm-provider.** (*only retrieve jobs run from*) –
+
+    **Return type**
+
+    `List`\[`IBMJob`]
+
+    **Returns**
+
+    A list of `IBMJob` instances.
+  </Function>
+
+  <span id="ibmprovider-retrieve-job" />
+
+  ### retrieve\_job
+
+  <Function id="qiskit_ibm_provider.IBMProvider.retrieve_job" signature="IBMProvider.retrieve_job(job_id)">
+    Return a single job.
+
+    **Parameters**
+
+    **job\_id** (`str`) – The ID of the job to retrieve.
+
+    **Return type**
+
+    `IBMJob`
+
+    **Returns**
+
+    The job with the given id.
+  </Function>
+
+  <span id="ibmprovider-save-account" />
+
+  ### save\_account
+
+  <Function id="qiskit_ibm_provider.IBMProvider.save_account" signature="static IBMProvider.save_account(token=None, url=None, instance=None, name=None, proxies=None, verify=None, overwrite=False)">
+    Save the account to disk for future use.
+
+    **Parameters**
+
+    *   **token** (`Optional`\[`str`]) – IBM Quantum API token.
+    *   **url** (`Optional`\[`str`]) – The API URL. Defaults to [https://auth.quantum-computing.ibm.com/api](https://auth.quantum-computing.ibm.com/api)
+    *   **instance** (`Optional`\[`str`]) – The hub/group/project.
+    *   **name** (`Optional`\[`str`]) – Name of the account to save.
+    *   **proxies** (`Optional`\[`dict`]) – Proxy configuration. Supported optional keys are `urls` (a dictionary mapping protocol or protocol and host to the URL of the proxy, documented at [https://docs.python-requests.org/en/latest/api/#requests.Session.proxies](https://docs.python-requests.org/en/latest/api/#requests.Session.proxies)), `username_ntlm`, `password_ntlm` (username and password to enable NTLM user authentication)
+    *   **verify** (`Optional`\[`bool`]) – Verify the server’s TLS certificate.
+    *   **overwrite** (`Optional`\[`bool`]) – `True` if the existing account is to be overwritten.
+
+    **Return type**
+
+    `None`
+  </Function>
+
+  <span id="ibmprovider-saved-accounts" />
+
+  ### saved\_accounts
+
+  <Function id="qiskit_ibm_provider.IBMProvider.saved_accounts" signature="static IBMProvider.saved_accounts(default=None, name=None)">
+    List the accounts saved on disk.
+
+    **Parameters**
+
+    *   **default** (`Optional`\[`bool`]) – If set to True, only default accounts are returned.
+    *   **name** (`Optional`\[`str`]) – If set, only accounts with the given name are returned.
+
+    **Return type**
+
+    `dict`
+
+    **Returns**
+
+    A dictionary with information about the accounts saved on disk.
+
+    **Raises**
+
+    **ValueError** – If an invalid account is found on disk.
+  </Function>
 </Class>
 
