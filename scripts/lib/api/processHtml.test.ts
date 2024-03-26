@@ -400,16 +400,17 @@ describe("processMembersAndSetMeta()", () => {
     const meta: Metadata = {};
     processMembersAndSetMeta(doc.$, doc.$main, meta);
     doc.expectHtml(`      <h1>Circuit Converters</h1>
-<div><h3>circuit_to_dag</h3><span class="target" id="qiskit.converters.circuit_to_dag"><p><code>
-<span class="sig-prename descclassname"><span class="pre">qiskit.converters.</span></span><span class="sig-name descname"><span class="pre">circuit_to_dag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">circuit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy_operations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qubit_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clbit_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#qiskit.converters.circuit_to_dag" title="Permalink to this definition">¶</a></code> <a href="../_modules/qiskit/converters/circuit_to_dag.html#circuit_to_dag" title="view source code">GitHub</a></p>
-<div><p>Build a <a class="reference internal" href="../stubs/qiskit.dagcircuit.DAGCircuit.html#qiskit.dagcircuit.DAGCircuit" title="qiskit.dagcircuit.DAGCircuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">DAGCircuit</span></code></a> object from a <a class="reference internal" href="../stubs/qiskit.circuit.QuantumCircuit.html#qiskit.circuit.QuantumCircuit" title="qiskit.circuit.QuantumCircuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">QuantumCircuit</span></code></a>.</p>
+<h3>circuit_to_dag</h3><dl class="py function">
+<dt class="sig sig-object py" id="qiskit.converters.circuit_to_dag">
+<span class="sig-prename descclassname"><span class="pre">qiskit.converters.</span></span><span class="sig-name descname"><span class="pre">circuit_to_dag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">circuit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy_operations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qubit_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clbit_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#qiskit.converters.circuit_to_dag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build a <a class="reference internal" href="../stubs/qiskit.dagcircuit.DAGCircuit.html#qiskit.dagcircuit.DAGCircuit" title="qiskit.dagcircuit.DAGCircuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">DAGCircuit</span></code></a> object from a <a class="reference internal" href="../stubs/qiskit.circuit.QuantumCircuit.html#qiskit.circuit.QuantumCircuit" title="qiskit.circuit.QuantumCircuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">QuantumCircuit</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>circuit</strong> – the input circuit.</p></li>
 <li><p><strong>copy_operations</strong> – Deep copy the operation objects in the QuantumCircuit for the output DAGCircuit.</p></li>
 </ul>
-</dd></dl></div></span></div>`);
+</dd></dl></dd></dl>`);
     expect(meta).toEqual({
       apiType: "function",
       apiName: "qiskit.converters.circuit_to_dag",
@@ -447,9 +448,10 @@ backends may not have this attribute.</p>
     const meta: Metadata = {};
     processMembersAndSetMeta(doc.$, doc.$main, meta);
     doc.expectHtml(`<h1>least_busy</h1>
-<div><span class=\"target\" id=\"qiskit_ibm_provider.least_busy\"><p><code>
-<span class=\"sig-name descname\"><span class=\"pre\">least_busy</span></span><span class=\"sig-paren\">(</span><em class=\"sig-param\"><span class=\"n\"><span class=\"pre\">backends</span></span></em><span class=\"sig-paren\">)</span><a class=\"headerlink\" href=\"#qiskit_ibm_provider.least_busy\" title=\"Link to this definition\">¶</a></code> <a href=\"../_modules/qiskit_ibm_provider.html#least_busy\" title=\"view source code\">GitHub</a></p>
-<div><p>Return the least busy backend from a list.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id=\"qiskit_ibm_provider.least_busy\">
+<span class=\"sig-name descname\"><span class=\"pre\">least_busy</span></span><span class=\"sig-paren\">(</span><em class=\"sig-param\"><span class=\"n\"><span class=\"pre\">backends</span></span></em><span class=\"sig-paren\">)</span><a class=\"headerlink\" href=\"#qiskit_ibm_provider.least_busy\" title=\"Link to this definition\">¶</a></dt>
+<dd><p>Return the least busy backend from a list.</p>
 <p>Return the least busy available backend for those that
 have a <code class=\"docutils literal notranslate\"><span class=\"pre\">pending_jobs</span></code> in their <code class=\"docutils literal notranslate\"><span class=\"pre\">status</span></code>. Note that local
 backends may not have this attribute.</p>
@@ -469,7 +471,7 @@ backends may not have this attribute.</p>
     does not have the <code class=\"docutils literal notranslate\"><span class=\"pre\">pending_jobs</span></code> attribute in its status.</p>
 </dd>
 </dl>
-</div></span></div>`);
+</dd></dl>`);
     expect(meta).toEqual({
       apiType: "function",
       apiName: "qiskit_ibm_provider.least_busy",
@@ -486,7 +488,6 @@ backends may not have this attribute.</p>
 <dd><p>Base class for errors raised by Qiskit.</p>
 <p>Set the error message.</p>
 </dd></dl>
-
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Errors that are just general programming errors, such as incorrect typing, may still raise
@@ -509,12 +510,12 @@ particular error, which subclasses both <a class="reference internal" href="#qis
     doc.expectHtml(`<span class="target" id="module-qiskit.exceptions"><span id="qiskit-exceptions"></span></span><section id="top-level-exceptions-qiskit-exceptions">
 <h1>Top-level exceptions (<a class="reference internal" href="#module-qiskit.exceptions" title="qiskit.exceptions"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qiskit.exceptions</span></code></a>)<a class="headerlink" href="#top-level-exceptions-qiskit-exceptions" title="Permalink to this heading">¶</a></h1>
 <p>All Qiskit-related errors raised by Qiskit are subclasses of the base:</p>
-<div><h3>QiskitError</h3><span class="target" id="qiskit.exceptions.QiskitError"><p><code>
-<span class="sig-prename descclassname"><span class="pre">qiskit.exceptions.</span></span><span class="sig-name descname"><span class="pre">QiskitError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#qiskit.exceptions.QiskitError" title="Permalink to this definition">¶</a></code> <a href="../_modules/qiskit/exceptions.html#QiskitError" title="view source code">GitHub</a></p>
-<div><p>Base class for errors raised by Qiskit.</p>
+<h3>QiskitError</h3><dl class="py exception">
+<dt class="sig sig-object py" id="qiskit.exceptions.QiskitError">
+<span class="sig-prename descclassname"><span class="pre">qiskit.exceptions.</span></span><span class="sig-name descname"><span class="pre">QiskitError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#qiskit.exceptions.QiskitError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for errors raised by Qiskit.</p>
 <p>Set the error message.</p>
-</div></span></div>
-
+</dd></dl>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Errors that are just general programming errors, such as incorrect typing, may still raise

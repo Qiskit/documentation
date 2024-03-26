@@ -50,35 +50,22 @@ export async function processMdxComponent(
   apiType: ApiType,
   id: string,
 ): Promise<[string, string]> {
-  findByText($, $main, "em.property", apiType).remove();
-
   const $firstSignature = signatures.shift()!;
-  const githubSourceLink = prepareGitHubLink(
-    $firstSignature,
-    apiType === "method",
-  );
 
   const componentProps = prepareProps(
     $,
+    $main,
     $firstSignature,
     $dl,
     priorApiType,
     apiType,
-    githubSourceLink,
     id,
   );
 
   const extraProps = signatures.flatMap(
     ($overloadedSignature) =>
-      prepareProps(
-        $,
-        $overloadedSignature,
-        $dl,
-        apiType,
-        apiType,
-        prepareGitHubLink($overloadedSignature, apiType === "method"),
-        id,
-      ) ?? [],
+      prepareProps($, $main, $overloadedSignature, $dl, apiType, apiType, id) ??
+      [],
   );
 
   const tagName = APITYPE_TO_TAG[apiType];
@@ -92,11 +79,11 @@ export async function processMdxComponent(
 
 function prepareProps(
   $: CheerioAPI,
+  $main: Cheerio<any>,
   $child: Cheerio<Element>,
   $dl: Cheerio<any>,
   priorApiType: ApiType | undefined,
   apiType: ApiType,
-  githubSourceLink: string | undefined,
   id: string,
 ): ComponentProps {
   const preparePropsPerApiType: Record<string, () => ComponentProps> = {
@@ -112,6 +99,9 @@ function prepareProps(
     exception: () =>
       prepareFunctionOrExceptionProps($, $child, $dl, id, githubSourceLink),
   };
+
+  const githubSourceLink = prepareGitHubLink($child, apiType === "method");
+  findByText($, $main, "em.property", apiType).remove();
 
   if (!(apiType in preparePropsPerApiType)) {
     throw new Error(`Unhandled Python type: ${apiType}`);
