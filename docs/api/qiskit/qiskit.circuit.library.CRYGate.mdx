@@ -8,220 +8,216 @@ python_api_name: qiskit.circuit.library.CRYGate
 
 # CRYGate
 
-<span id="qiskit.circuit.library.CRYGate" />
+<Class id="qiskit.circuit.library.CRYGate" github="https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/ry.py" signature="qiskit.circuit.library.CRYGate(theta, label=None, ctrl_state=None, *, duration=None, unit='dt', _base_label=None)">
+  Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 
-`qiskit.circuit.library.CRYGate(theta, label=None, ctrl_state=None, *, duration=None, unit='dt', _base_label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/ry.py "view source code")
+  Controlled-RY gate.
 
-Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
+  Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`cry()`](qiskit.circuit.QuantumCircuit#cry "qiskit.circuit.QuantumCircuit.cry") method.
 
-Controlled-RY gate.
-
-Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`cry()`](qiskit.circuit.QuantumCircuit#cry "qiskit.circuit.QuantumCircuit.cry") method.
-
-**Circuit symbol:**
-
-```python
-q_0: ────■────
-     ┌───┴───┐
-q_1: ┤ Ry(ϴ) ├
-     └───────┘
-```
-
-**Matrix representation:**
-
-$$
-\newcommand{\rotationangle}{\frac{\theta}{2}}
-
-CRY(\theta)\ q_0, q_1 =
-    I \otimes |0\rangle\langle 0| + RY(\theta) \otimes |1\rangle\langle 1| =
-    \begin{pmatrix}
-        1 & 0         & 0 & 0 \\
-        0 & \cos\left(\rotationangle\right) & 0 & -\sin\left(\rotationangle\right) \\
-        0 & 0         & 1 & 0 \\
-        0 & \sin\left(\rotationangle\right) & 0 & \cos\left(\rotationangle\right)
-    \end{pmatrix}
-$$
-
-<Admonition title="Note" type="note">
-  In Qiskit’s convention, higher qubit indices are more significant (little endian convention). In many textbooks, controlled gates are presented with the assumption of more significant qubits as control, which in our case would be q\_1. Thus a textbook matrix for this gate will be:
+  **Circuit symbol:**
 
   ```python
-       ┌───────┐
-  q_0: ┤ Ry(ϴ) ├
-       └───┬───┘
-  q_1: ────■────
+  q_0: ────■────
+       ┌───┴───┐
+  q_1: ┤ Ry(ϴ) ├
+       └───────┘
   ```
+
+  **Matrix representation:**
 
   $$
   \newcommand{\rotationangle}{\frac{\theta}{2}}
 
-  CRY(\theta)\ q_1, q_0 =
-  |0\rangle\langle 0| \otimes I + |1\rangle\langle 1| \otimes RY(\theta) =
+  CRY(\theta)\ q_0, q_1 =
+      I \otimes |0\rangle\langle 0| + RY(\theta) \otimes |1\rangle\langle 1| =
       \begin{pmatrix}
-          1 & 0 & 0 & 0 \\
-          0 & 1 & 0 & 0 \\
-          0 & 0 & \cos\left(\rotationangle\right) & -\sin\left(\rotationangle\right) \\
-          0 & 0 & \sin\left(\rotationangle\right) & \cos\left(\rotationangle\right)
+          1 & 0         & 0 & 0 \\
+          0 & \cos\left(\rotationangle\right) & 0 & -\sin\left(\rotationangle\right) \\
+          0 & 0         & 1 & 0 \\
+          0 & \sin\left(\rotationangle\right) & 0 & \cos\left(\rotationangle\right)
       \end{pmatrix}
   $$
-</Admonition>
 
-Create new CRY gate.
+  <Admonition title="Note" type="note">
+    In Qiskit’s convention, higher qubit indices are more significant (little endian convention). In many textbooks, controlled gates are presented with the assumption of more significant qubits as control, which in our case would be q\_1. Thus a textbook matrix for this gate will be:
 
-## Attributes
+    ```python
+         ┌───────┐
+    q_0: ┤ Ry(ϴ) ├
+         └───┬───┘
+    q_1: ────■────
+    ```
 
-<span id="qiskit.circuit.library.CRYGate.base_class" />
+    $$
+    \newcommand{\rotationangle}{\frac{\theta}{2}}
 
-### base\_class
+    CRY(\theta)\ q_1, q_0 =
+    |0\rangle\langle 0| \otimes I + |1\rangle\langle 1| \otimes RY(\theta) =
+        \begin{pmatrix}
+            1 & 0 & 0 & 0 \\
+            0 & 1 & 0 & 0 \\
+            0 & 0 & \cos\left(\rotationangle\right) & -\sin\left(\rotationangle\right) \\
+            0 & 0 & \sin\left(\rotationangle\right) & \cos\left(\rotationangle\right)
+        \end{pmatrix}
+    $$
+  </Admonition>
 
-Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+  Create new CRY gate.
 
-The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.CRYGate.base_class "qiskit.circuit.library.CRYGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
+  ## Attributes
 
-This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+  ### base\_class
 
-```python
->>> isinstance(XGate(), XGate)
-True
->>> type(XGate()) is XGate
-False
->>> XGate().base_class is XGate
-True
-```
+  <Attribute id="qiskit.circuit.library.CRYGate.base_class" name="base_class">
+    Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
 
-In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.CRYGate.base_class "qiskit.circuit.library.CRYGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
 
-<span id="qiskit.circuit.library.CRYGate.condition" />
+    This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
 
-### condition
+    ```python
+    >>> isinstance(XGate(), XGate)
+    True
+    >>> type(XGate()) is XGate
+    False
+    >>> XGate().base_class is XGate
+    True
+    ```
 
-The classical condition on the instruction.
+    In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  </Attribute>
 
-<span id="qiskit.circuit.library.CRYGate.condition_bits" />
+  ### condition
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.library.CRYGate.condition" name="condition">
+    The classical condition on the instruction.
+  </Attribute>
 
-Get Clbits in condition.
+  ### condition\_bits
 
-<span id="qiskit.circuit.library.CRYGate.ctrl_state" />
+  <Attribute id="qiskit.circuit.library.CRYGate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-### ctrl\_state
+  ### ctrl\_state
 
-Return the control state of the gate as a decimal integer.
+  <Attribute id="qiskit.circuit.library.CRYGate.ctrl_state" name="ctrl_state">
+    Return the control state of the gate as a decimal integer.
+  </Attribute>
 
-<span id="qiskit.circuit.library.CRYGate.decompositions" />
+  ### decompositions
 
-### decompositions
+  <Attribute id="qiskit.circuit.library.CRYGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  ### definition
 
-<span id="qiskit.circuit.library.CRYGate.definition" />
+  <Attribute id="qiskit.circuit.library.CRYGate.definition" name="definition">
+    Return definition in terms of other basic gates. If the gate has open controls, as determined from self.ctrl\_state, the returned definition is conjugated with X without changing the internal \_definition.
+  </Attribute>
 
-### definition
+  ### duration
 
-Return definition in terms of other basic gates. If the gate has open controls, as determined from self.ctrl\_state, the returned definition is conjugated with X without changing the internal \_definition.
+  <Attribute id="qiskit.circuit.library.CRYGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-<span id="qiskit.circuit.library.CRYGate.duration" />
+  ### label
 
-### duration
+  <Attribute id="qiskit.circuit.library.CRYGate.label" name="label">
+    Return instruction label
+  </Attribute>
 
-Get the duration.
+  ### mutable
 
-<span id="qiskit.circuit.library.CRYGate.label" />
+  <Attribute id="qiskit.circuit.library.CRYGate.mutable" name="mutable">
+    Is this instance is a mutable unique instance or not.
 
-### label
+    If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  </Attribute>
 
-Return instruction label
+  ### name
 
-<span id="qiskit.circuit.library.CRYGate.mutable" />
+  <Attribute id="qiskit.circuit.library.CRYGate.name" name="name">
+    Get name of gate. If the gate has open controls the gate name will become:
 
-### mutable
+    > \<original\_name\_o\<ctrl\_state>
 
-Is this instance is a mutable unique instance or not.
+    where \<original\_name> is the gate name for the default case of closed control qubits and \<ctrl\_state> is the integer value of the control state for the gate.
+  </Attribute>
 
-If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  ### num\_clbits
 
-<span id="qiskit.circuit.library.CRYGate.name" />
+  <Attribute id="qiskit.circuit.library.CRYGate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-### name
+  ### num\_ctrl\_qubits
 
-Get name of gate. If the gate has open controls the gate name will become:
+  <Attribute id="qiskit.circuit.library.CRYGate.num_ctrl_qubits" name="num_ctrl_qubits">
+    Get number of control qubits.
 
-> \<original\_name\_o\<ctrl\_state>
+    **Returns**
 
-where \<original\_name> is the gate name for the default case of closed control qubits and \<ctrl\_state> is the integer value of the control state for the gate.
+    The number of control qubits for the gate.
 
-<span id="qiskit.circuit.library.CRYGate.num_clbits" />
+    **Return type**
 
-### num\_clbits
+    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+  </Attribute>
 
-Return the number of clbits.
+  ### num\_qubits
 
-<span id="qiskit.circuit.library.CRYGate.num_ctrl_qubits" />
+  <Attribute id="qiskit.circuit.library.CRYGate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-### num\_ctrl\_qubits
+  ### params
 
-Get number of control qubits.
+  <Attribute id="qiskit.circuit.library.CRYGate.params" name="params">
+    Get parameters from base\_gate.
 
-**Returns**
+    **Returns**
 
-The number of control qubits for the gate.
+    List of gate parameters.
 
-**Return type**
+    **Return type**
 
-[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")
 
-<span id="qiskit.circuit.library.CRYGate.num_qubits" />
+    **Raises**
 
-### num\_qubits
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – Controlled gate does not define a base gate
+  </Attribute>
 
-Return the number of qubits.
+  ### unit
 
-<span id="qiskit.circuit.library.CRYGate.params" />
+  <Attribute id="qiskit.circuit.library.CRYGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
 
-### params
+  ## Methods
 
-Get parameters from base\_gate.
+  ### inverse
 
-**Returns**
+  <Function id="qiskit.circuit.library.CRYGate.inverse" name="inverse" signature="inverse(annotated=False)">
+    Return inverse CRY gate (i.e. with the negative rotation angle)
 
-List of gate parameters.
+    **Parameters**
 
-**Return type**
+    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always a [`CRYGate`](#qiskit.circuit.library.CRYGate "qiskit.circuit.library.CRYGate") with an inverted parameter value.
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")
+    **Returns**
 
-**Raises**
+    inverse gate.
 
-[**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – Controlled gate does not define a base gate
+    **Return type**
 
-<span id="qiskit.circuit.library.CRYGate.unit" />
+    [CRYGate](#qiskit.circuit.library.CRYGate "qiskit.circuit.library.CRYGate")
 
-### unit
-
-Get the time unit of duration.
-
-## Methods
-
-### inverse
-
-<span id="qiskit.circuit.library.CRYGate.inverse" />
-
-`inverse(annotated=False)`
-
-Return inverse CRY gate (i.e. with the negative rotation angle)
-
-**Parameters**
-
-**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always a [`CRYGate`](#qiskit.circuit.library.CRYGate "qiskit.circuit.library.CRYGate") with an inverted parameter value.
-
-**Returns**
-
-inverse gate.
-
-**Return type**
-
-[CRYGate](#qiskit.circuit.library.CRYGate "qiskit.circuit.library.CRYGate")
-
-.
+    .
+  </Function>
+</Class>
 

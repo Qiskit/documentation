@@ -8,62 +8,56 @@ python_api_name: qiskit.synthesis.unitary.aqc.FastCNOTUnitObjective
 
 # FastCNOTUnitObjective
 
-<span id="qiskit.synthesis.unitary.aqc.FastCNOTUnitObjective" />
+<Class id="qiskit.synthesis.unitary.aqc.FastCNOTUnitObjective" github="https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/synthesis/unitary/aqc/fast_gradient/fast_gradient.py" signature="qiskit.synthesis.unitary.aqc.FastCNOTUnitObjective(num_qubits, cnots)">
+  Bases: [`CNOTUnitObjective`](qiskit.synthesis.unitary.aqc.CNOTUnitObjective "qiskit.synthesis.unitary.aqc.cnot_unit_objective.CNOTUnitObjective")
 
-`qiskit.synthesis.unitary.aqc.FastCNOTUnitObjective(num_qubits, cnots)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/synthesis/unitary/aqc/fast_gradient/fast_gradient.py "view source code")
+  Implementation of objective function and gradient calculator, which is similar to `DefaultCNOTUnitObjective` but several times faster.
 
-Bases: [`CNOTUnitObjective`](qiskit.synthesis.unitary.aqc.CNOTUnitObjective "qiskit.synthesis.unitary.aqc.cnot_unit_objective.CNOTUnitObjective")
+  **Parameters**
 
-Implementation of objective function and gradient calculator, which is similar to `DefaultCNOTUnitObjective` but several times faster.
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of qubits.
+  *   **cnots** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – a CNOT structure to be used in the optimization procedure.
 
-**Parameters**
+  ## Attributes
 
-*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of qubits.
-*   **cnots** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – a CNOT structure to be used in the optimization procedure.
+  ### num\_cnots
 
-## Attributes
+  <Attribute id="qiskit.synthesis.unitary.aqc.FastCNOTUnitObjective.num_cnots" name="num_cnots">
+    Returns: A number of CNOT units to be used by the approximate circuit.
+  </Attribute>
 
-<span id="qiskit.synthesis.unitary.aqc.FastCNOTUnitObjective.num_cnots" />
+  ### num\_thetas
 
-### num\_cnots
+  <Attribute id="qiskit.synthesis.unitary.aqc.FastCNOTUnitObjective.num_thetas" name="num_thetas">
+    Returns: Number of parameters (angles) of rotation gates in this circuit.
+  </Attribute>
 
-Returns: A number of CNOT units to be used by the approximate circuit.
+  ### target\_matrix
 
-<span id="qiskit.synthesis.unitary.aqc.FastCNOTUnitObjective.num_thetas" />
+  <Attribute id="qiskit.synthesis.unitary.aqc.FastCNOTUnitObjective.target_matrix" name="target_matrix">
+    Returns: a matrix being approximated
+  </Attribute>
 
-### num\_thetas
+  ## Methods
 
-Returns: Number of parameters (angles) of rotation gates in this circuit.
+  ### gradient
 
-<span id="qiskit.synthesis.unitary.aqc.FastCNOTUnitObjective.target_matrix" />
+  <Function id="qiskit.synthesis.unitary.aqc.FastCNOTUnitObjective.gradient" name="gradient" signature="gradient(param_values)">
+    Computes the gradient of objective function. See description of the base class method.
 
-### target\_matrix
+    **Return type**
 
-Returns: a matrix being approximated
+    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")
+  </Function>
 
-## Methods
+  ### objective
 
-### gradient
+  <Function id="qiskit.synthesis.unitary.aqc.FastCNOTUnitObjective.objective" name="objective" signature="objective(param_values)">
+    Computes the objective function and some intermediate data for the subsequent gradient computation. See description of the base class method.
 
-<span id="qiskit.synthesis.unitary.aqc.FastCNOTUnitObjective.gradient" />
+    **Return type**
 
-`gradient(param_values)`
-
-Computes the gradient of objective function. See description of the base class method.
-
-**Return type**
-
-[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")
-
-### objective
-
-<span id="qiskit.synthesis.unitary.aqc.FastCNOTUnitObjective.objective" />
-
-`objective(param_values)`
-
-Computes the objective function and some intermediate data for the subsequent gradient computation. See description of the base class method.
-
-**Return type**
-
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
+    [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
+  </Function>
+</Class>
 
