@@ -104,6 +104,8 @@ def extract_warnings(notebook: nbformat.NotebookNode) -> list[NotebookWarning]:
     for cell_index, cell in enumerate(notebook.cells):
         if not hasattr(cell, "outputs"):
             continue
+        if "ignore-warnings" in cell.metadata.get("tags", []):
+            continue
         for output in cell.outputs:
             if hasattr(output, "name") and output.name == "stderr":
                 notebook_warnings.append(
