@@ -132,11 +132,11 @@ page, click "Summary", then download "Executed notebooks".
 
 We don't want users to see warnings that can be avoided, so it's best to fix
 the code to avoid them. However, if a warning is unavoidable, you can stop it
-blocking CI by adding an `ignore-warning` tag to the cell. In VSCode,
-right-click the cell, choose "Add cell tag", type `ignore-warning`, then press
+blocking CI by adding an `ignore-warnings` tag to the cell. In VSCode,
+right-click the cell, choose "Add cell tag", type `ignore-warnings`, then press
 "Enter". In Jupyter notebook (depending on version), choose View > Right
 Sidebar > Show Notebook Tools, then under "Common Tools" add a tag with text
-`ignore-warning`.
+`ignore-warnings`.
 
 ### Extra code checks
 
