@@ -63,9 +63,9 @@ export async function mergeClassMembers(
           .use(remarkGfm)
           .use(remarkMath)
           .use(() => {
-            return async (tree: Root) => {
+            return async (root: Root) => {
               // The attribute and method's section can be found under the class component
-              const mdxClassElements = tree.children.filter(
+              const mdxClassElements = root.children.filter(
                 (node): node is MdxJsxFlowElement =>
                   node.type == "mdxJsxFlowElement" && node.name == "Class",
               );
