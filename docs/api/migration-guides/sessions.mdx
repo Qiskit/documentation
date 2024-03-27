@@ -1,0 +1,91 @@
+---
+title: Execution mode changes
+description: Learn about the changes to execution modes (sessions, batch, and single jobs)
+
+---
+
+<span id="execution-modes"></span>
+
+# Execution mode changes
+
+Jobs can be run as single jobs, sessions, or in a batch: 
+
+- Use **sessions** for iterative workloads.
+- Use **batch mode** to submit multiple primitive jobs simultaneously.
+
+## Best practices
+
+To ensure the most efficient use of the execution modes, the following practices are recommended:  
+
+- Always close your session, either by using a context manager or by specifying `session.close()`.
+- There is a fixed overhead associated with running a job. In general, if your each of your job uses less than one minute of QPU time, consider combining several into one larger job (this applies to all execution modes). "QPU time" refers to time spent by the QPU complex to process your job. 
+    
+    A job's QPU time is listed in the **Usage** column on the IQP [Jobs](https://quantum.ibm.com/jobs) page, or you can  query it by using  `qiskit-ibm-runtime` with this command `job.metrics()["usage"]["quantum_seconds"]`
+
+- If each of your jobs consume more than one minute of QPU time, or if combining jobs is not practical, you can still run multiple jobs in parallel. Every job goes through both classical and quantum processing. While a QPU can process only one job at a time, up to five classical jobs can be processed in parallel. You can take advantage of this by submitting multiple jobs in [batch](#divide) or [session](#two-vqe) execution mode. 
+
+The above are general guidelines, and you should tune your workload to find the optimal ratio, especially when using sessions. For example, running smaller jobs in parallel might be more cost effective because of reduced wall clock time.
+ 
+
+## Sessions
+
+Sessions are designed for iterative workloads to avoid queueing delays between each iteration. By default, all sessions now run in *dedicated* mode, so that when running a session, you have near exclusive access to the backend.  Additionally, sessions are now thread safe. That is, you can run multiple workloads within a session. 
+
+<span id="two-vqe"></span>
+### Example: Run two VQE algorithms in a session by using threading
+
+```python
+from concurrent.futures import ThreadPoolExecutor
+from qiskit_ibm_runtime import  Session, EstimatorV2 as Estimator
+
+def minimize_thread(estimator, method):
+    minimize(cost_func, x0, args=(ansatz, hamiltonian, estimator), method=method)
+
+with Session(backend=backend), ThreadPoolExecutor() as executor:
+    # Add tags to differentiate jobs from different workloads.
+    estimator1.options.environment.job_tags = "cobyla"
+    estimator1.options.environment.job_tags = "nelder-mead"
+
+    cobyla_result = executor.submit(minimize_thread, estimator1, "cobyla").result()
+    nelder_mead_result = executor.submit(minimize_thread, estimator2, "nelder-mead").result()
+```
+
+### Extended sessions 
+
+Before this release, sessions were terminated after the active window, as shown in the following image.
+
+![This image shows four jobs.  Between each is the interactive TTL (time to live).  The active window starts when the first job starts and ends after the last job is completed. After the final job completes, the active window ends and the session terminates.](/images/api/qiskit-ibm-runtime/SessionTTL.png 'Figure 1: Session behavior prior to extended sessions') 
+
+With extended sessions, the session pauses after the active window ends. The session is resumed if more session jobs exit the queue. 
+
+[This image shows multiple sets of jobs.  Within each set, and between each job, is the interactive TTL (time to live).  The active window starts when the first job starts and ends after the last job is completed. After the final job of the first set of jobs completes, the active window ends and the session is paused.  Another set of jobs then starts and jobs continue in a similar manner.](/images/api/qiskit-ibm-runtime/ExtendedSession.png 'Figure 2: Extended sessions')
+
+## Batch
+
+Submit multiple primitive jobs simultaneously. When batching, classical processing is done in parallel. No session jobs can start when batch jobs are being processed. 
+
+<span id="divide"></span>
+### Example: divide a 500-circuit job into five 100-circuit jobs and run them in batch
+```python
+from qiskit_ibm_runtime import Batch, SamplerV2 as Sampler
+
+max_circuits = 100
+jobs = []
+start_idx = 0
+
+with Batch(backend):
+    sampler = Sampler()    
+    while start_idx < len(circuits):
+        end_idx = start_idx + max_circuits  
+        jobs.append(sampler.run([(circuits[start_ids:end_idx],)]))
+        start_idx = end_idx
+```
+
+## Sessions versus batch 
+
+[This image shows multiple sets of jobs.  Within each set, and between each job, is the interactive TTL (time to live).  The active window starts when the first job starts and ends after the last job is completed. After the final job of the first set of jobs completes, the active window ends and the session is paused.  Another set of jobs then starts and jobs continue in a similar manner.](/images/api/qiskit-ibm-runtime/SessionVsBatch.png 'Figure 3: Sessions compared to batch')
+
+## Billing
+
+* Single jobs are billed for the quantum time they use in processing. 
+* Sessions are billed for the entire active session time. 

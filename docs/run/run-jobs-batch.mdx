@@ -9,13 +9,17 @@ description: How to run quantum computing jobs in batch mode using Qiskit Runtim
 Batch mode can shorten processing time if all jobs can be provided at the outset. If you want to submit iterative jobs, use [sessions](sessions) instead.  Using batch mode has these benefits:
 
 -  The jobs' classical computation, such as compilation, is run in parallel. Thus, running multiple jobs in a batch is significantly faster than running them serially. 
--  There is no delay between jobs, which can help avoid drift.
+-  There is minimal delay between jobs, which can help avoid drift. 
 
 <Admonition type="note">
     When batching, jobs are not guaranteed to run in the order they are submitted.
 </Admonition>
 
 ![This diagram illustrates jobs submitted in a batch.  It shows five jobs, numbered 0 through 4, in a queue. The jobs are a mix of Estimator and Sampler.](/images/run/batch.png 'Figure 1: Batch execution')
+
+There are multiple ways you can reconfigure your jobs to take advantage of the parallel processing provided by batching.
+
+## Example: Divide a list of circuits into multiple jobs and run them in batch
 
 The following example shows how you can divide up a long list of circuits into multiple jobs and run them as a batch to take advantage of the parallel processing.
 
@@ -28,11 +32,23 @@ with Batch(backend) as batch:
         jobs.append(estimator.run(circuits, observables=obs_set))
 ```
 
-For a full example, see the following tutorials:
+<span id="divide"></span>
+## Example: Divide a 500-circuit job into five 100-circuit jobs and run them in batch
 
-## Next steps
+You can run multiple jobs in parallel by submitting multiple jobs in batch execution mode. 
 
-<Admonition type="tip" title="Recommendations">
-    - Try the [CHSH inequality](https://learning.quantum.ibm.com/tutorial/chsh-inequality) tutorial.
-    - Try the [Grover's algorithm](https://learning.quantum.ibm.com/tutorial/grovers-algorithm) tutorial.
-</Admonition>
+```python
+from qiskit_ibm_runtime import Batch, SamplerV2 as Sampler
+
+max_circuits = 100
+jobs = []
+start_idx = 0
+
+with Batch(backend):
+    sampler = Sampler()    
+    while start_idx < len(circuits):
+        end_idx = start_idx + max_circuits  
+        jobs.append(sampler.run([(circuits[start_ids:end_idx],)]))
+        start_idx = end_idx
+```
+

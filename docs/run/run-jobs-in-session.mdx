@@ -142,10 +142,6 @@ print(f"Result2: {job2.result()}")
 session.close()
 ```
 
-<Admonition type="caution" title="When the root job is canceled">
-Note that when you cancel the root job in the session (the job which has the same ID as the session), the session closes and fails any remaining queued jobs in the session.
-</Admonition>
-
 <span id="cancel"></span>
 ## Cancel a session 
 
@@ -202,6 +198,25 @@ with Session(backend=backend):
 ```
   </TabItem>
 </Tabs>
+
+<span id="two-vqe"></span>
+## Run two VQE algorithms in a session by using threading
+
+```python
+from concurrent.futures import ThreadPoolExecutor
+from qiskit_ibm_runtime import  Session, EstimatorV2 as Estimator
+
+def minimize_thread(estimator, method):
+    minimize(cost_func, x0, args=(ansatz, hamiltonian, estimator), method=method)
+
+with Session(backend=backend), ThreadPoolExecutor() as executor:
+    # Add tags to differentiate jobs from different workloads.
+    estimator1.options.environment.job_tags = "cobyla"
+    estimator1.options.environment.job_tags = "nelder-mead"
+
+    cobyla_result = executor.submit(minimize_thread, estimator1, "cobyla").result()
+    nelder_mead_result = executor.submit(minimize_thread, estimator2, "nelder-mead").result()
+```
 
 <span id="session-status"></span>
 ## Check session status
