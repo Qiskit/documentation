@@ -65,32 +65,32 @@ export async function mergeClassMembers(
           .use(() => {
             return async (root: Root) => {
               // The attribute and method's section can be found under the class component
-              const mdxClassElements = root.children.filter(
-                (node): node is MdxJsxFlowElement =>
-                  node.type == "mdxJsxFlowElement" && node.name == "Class",
-              );
+              const mdxClassElement = root.children
+                .filter(
+                  (node): node is MdxJsxFlowElement =>
+                    node.type == "mdxJsxFlowElement" && node.name == "Class",
+                )
+                .shift();
 
-              for (const tree of mdxClassElements) {
-                for (const node of tree.children) {
-                  await replaceMembersAfterTitle(
-                    tree,
-                    node,
-                    "Attributes",
-                    attributesAndProps,
-                  );
-                  await replaceMembersAfterTitle(
-                    tree,
-                    node,
-                    "Methods",
-                    methods,
-                  );
-                  await replaceMembersAfterTitle(
-                    tree,
-                    node,
-                    "Methods Defined Here",
-                    methods,
-                  );
-                }
+              for (const node of mdxClassElement?.children ?? []) {
+                await replaceMembersAfterTitle(
+                  mdxClassElement!,
+                  node,
+                  "Attributes",
+                  attributesAndProps,
+                );
+                await replaceMembersAfterTitle(
+                  mdxClassElement!,
+                  node,
+                  "Methods",
+                  methods,
+                );
+                await replaceMembersAfterTitle(
+                  mdxClassElement!,
+                  node,
+                  "Methods Defined Here",
+                  methods,
+                );
               }
             };
           })

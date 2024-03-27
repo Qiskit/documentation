@@ -275,11 +275,7 @@ export async function createOpeningTag(
   const signature = await htmlSignatureToMd(props.rawSignature!);
   const extraSignatures: string[] = [];
   for (const sig of props.extraRawSignatures ?? []) {
-    extraSignatures.push(
-      `${APOSTROPHE_HEX_CODE}${await htmlSignatureToMd(
-        sig!,
-      )}${APOSTROPHE_HEX_CODE}`,
-    );
+    extraSignatures.push(`"${await htmlSignatureToMd(sig!)}"`);
   }
 
   return `<${tagName} 
@@ -362,6 +358,7 @@ export async function htmlSignatureToMd(
   return String(file)
     .replaceAll("\n", "")
     .replaceAll("'", APOSTROPHE_HEX_CODE)
+    .replaceAll('"', '\\"')
     .replace(/^`/, "")
     .replace(/`$/, "");
 }
