@@ -27,6 +27,7 @@ jobs:
     if: github.repository_owner == 'Qiskit'
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - uses: ./.github/actions/deploy-code-engine
         with:
           env_name: Preview
