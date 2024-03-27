@@ -1,0 +1,120 @@
+---
+title: Common use cases
+description: Common use cases when migrating from backend.run to Qiskit Runtime primitives
+---
+
+# Common use cases
+
+
+## Basic circuits
+
+## Dynamic circuits
+
+<span id="parm-circ"></span>
+## Parameterized circuits with primitives
+
+Parametrized circuits are a commonly used tool for quantum algorithm
+design. Because `backend.run()` did not accept parametrized
+circuits, the parameter binding step had to be integrated in the
+algorithm workflow. The primitives can perform the parameter binding
+step internally, which results in a simplification of the algorithm-side
+logic.
+
+The following example summarizes the new workflow for managing
+parametrized circuits.
+
+### Example
+
+Define a parametrized circuit:
+
+``` python
+from qiskit.circuit import QuantumCircuit, ParameterVector
+
+n = 3
+thetas = ParameterVector('θ',n)
+
+qc = QuantumCircuit(n, 1)
+qc.h(0)
+
+for i in range(n-1):
+    qc.cx(i, i+1)
+
+for i,t in enumerate(thetas):
+    qc.rz(t, i)
+
+for i in reversed(range(n-1)):
+    qc.cx(i, i+1)
+
+qc.h(0)
+qc.measure(0, 0)
+
+qc.draw()
+```
+
+V2 primitives support only circuits that adhere to the Instruction Set Architecture (ISA) of a particular backend, so we must transform our circuits. 
+
+```python
+from qiskit_ibm_runtime import QiskitRuntimeService
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False)
+
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+isa_circuit = pm.run(qc)
+```
+
+We want to assign the following parameter values to the circuit:
+
+``` python
+import numpy as np
+theta_values = [np.pi/2, np.pi/2, np.pi/2]
+```
+
+<Tabs>
+  <TabItem value="updated" label="Updated">
+The primitives take in parametrized circuits directly, together
+with the parameter values, and the parameter assignment operation can be
+performed more efficiently on the server side of the primitive.  The input is in the form of primitive unified blocs (PUBs).  Each PUB is a tuple that contains a circuit and the data broadcasted to it.  For further details, see [Introduction to primitives.](../../run/primitives#interface-changes)
+
+This feature is particularly interesting when working with iterative
+algorithms because the parametrized circuit remains unchanged between
+calls while the parameter values change. The primitives can transpile
+once and then cache the unbound circuit, using classical resources more
+efficiently. Moreover, only the updated parameters are transferred to
+the cloud, saving additional bandwidth.
+
+<Admonition type="note">
+As shown in the previous image, the classical register name is `c`.  Alternatively, you can find the classical register name by running `<circuit_name>.cregs`. For example: `qc.cregs`.
+</Admonition>
+
+``` python
+from qiskit_ibm_runtime import SamplerV2 as Sampler
+
+sampler = Sampler(backend)
+job = sampler.run([(isa_circuit, theta_values)])
+result = job.result()
+# Get results for the first (and only) PUB
+pub_result = result[0]
+# Get counts from the classical register "c". 
+print(f" >> Counts for the c output register: {pub_result.data.c.get_counts()}")
+```
+  </TabItem>
+
+  <TabItem value="legacy" label="Legacy">
+The parameter values had to be bound to their respective
+circuit parameters prior to calling `backend.run()`.
+
+``` python
+from qiskit import Aer
+
+bound_circuit = qc.bind_parameters(theta_values)
+bound_circuit.draw()
+
+backend = Aer.get_backend('aer_simulator')
+job = backend.run(bound_circuit)
+counts = job.result().get_counts()
+print(counts)
+```
+  </TabItem>
+</Tabs>
