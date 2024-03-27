@@ -49,9 +49,7 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
       - name: Setup IBM Cloud CLI
         run: |
-          curl -o IBM_Cloud_CLI_2.20.0_amd64.tar.gz -L https://download.clis.cloud.ibm.com/ibm-cloud-cli/2.20.0/IBM_Cloud_CLI_2.20.0_amd64.tar.gz
-          tar xvf IBM_Cloud_CLI_2.20.0_amd64.tar.gz
-          sh Bluemix_CLI/install
+          curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
           ibmcloud --version
           ibmcloud config --check-version=false
           ibmcloud plugin install -f code-engine
