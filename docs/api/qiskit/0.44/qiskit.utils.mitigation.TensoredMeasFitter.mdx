@@ -8,132 +8,124 @@ python_api_name: qiskit.utils.mitigation.TensoredMeasFitter
 
 # TensoredMeasFitter
 
-<span id="qiskit.utils.mitigation.TensoredMeasFitter" />
+<Class id="qiskit.utils.mitigation.TensoredMeasFitter" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/utils/mitigation/fitters.py" signature="qiskit.utils.mitigation.TensoredMeasFitter(results, mit_pattern, substate_labels_list=None, circlabel='')">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
-`qiskit.utils.mitigation.TensoredMeasFitter(results, mit_pattern, substate_labels_list=None, circlabel='')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/utils/mitigation/fitters.py "view source code")
+  Deprecated: Measurement correction fitter for a tensored calibration.
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
+  Initialize a measurement calibration matrix from the results of running the circuits returned by measurement\_calibration\_circuits.
 
-Deprecated: Measurement correction fitter for a tensored calibration.
+  <Admonition title="Warning" type="caution">
+    This class is not a public API. The internals are not stable and will likely change. It is used solely for the `measurement_error_mitigation_cls` kwarg of the [`QuantumInstance`](qiskit.utils.QuantumInstance "qiskit.utils.QuantumInstance") class’s constructor (as a class not an instance). Anything outside of that usage does not have the normal user-facing API stability.
+  </Admonition>
 
-Initialize a measurement calibration matrix from the results of running the circuits returned by measurement\_calibration\_circuits.
+  <Admonition title="Deprecated since version 0.24.0" type="danger">
+    The class `qiskit.utils.mitigation.fitters.TensoredMeasFitter` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/qi\_migration](https://qisk.it/qi_migration).
+  </Admonition>
 
-<Admonition title="Warning" type="caution">
-  This class is not a public API. The internals are not stable and will likely change. It is used solely for the `measurement_error_mitigation_cls` kwarg of the [`QuantumInstance`](qiskit.utils.QuantumInstance "qiskit.utils.QuantumInstance") class’s constructor (as a class not an instance). Anything outside of that usage does not have the normal user-facing API stability.
-</Admonition>
+  **Parameters**
 
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.utils.mitigation.fitters.TensoredMeasFitter` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/qi\_migration](https://qisk.it/qi_migration).
-</Admonition>
+  *   **results** – the results of running the measurement calibration circuits. If this is None, the user will set calibration matrices later.
+  *   **mit\_pattern** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]]*) – qubits to perform the measurement correction on, divided to groups according to tensors
+  *   **substate\_labels\_list** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]]*) – for each calibration matrix, the labels of its rows and columns. If None, the labels are ordered lexicographically
+  *   **circlabel** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – if the qubits were labeled
 
-**Parameters**
+  **Raises**
 
-*   **results** – the results of running the measurement calibration circuits. If this is None, the user will set calibration matrices later.
-*   **mit\_pattern** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]]*) – qubits to perform the measurement correction on, divided to groups according to tensors
-*   **substate\_labels\_list** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]]*) – for each calibration matrix, the labels of its rows and columns. If None, the labels are ordered lexicographically
-*   **circlabel** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – if the qubits were labeled
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – if the mit\_pattern doesn’t match the substate\_labels\_list
 
-**Raises**
+  ## Attributes
 
-[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – if the mit\_pattern doesn’t match the substate\_labels\_list
+  ### cal\_matrices
 
-## Attributes
+  <Attribute id="qiskit.utils.mitigation.TensoredMeasFitter.cal_matrices" name="cal_matrices">
+    Return cal\_matrices.
+  </Attribute>
 
-<span id="qiskit.utils.mitigation.TensoredMeasFitter.cal_matrices" />
+  ### filter
 
-### cal\_matrices
+  <Attribute id="qiskit.utils.mitigation.TensoredMeasFitter.filter" name="filter">
+    Return a measurement filter using the cal matrices.
+  </Attribute>
 
-Return cal\_matrices.
+  ### nqubits
 
-<span id="qiskit.utils.mitigation.TensoredMeasFitter.filter" />
+  <Attribute id="qiskit.utils.mitigation.TensoredMeasFitter.nqubits" name="nqubits">
+    Return \_qubit\_list\_sizes.
+  </Attribute>
 
-### filter
+  ### substate\_labels\_list
 
-Return a measurement filter using the cal matrices.
+  <Attribute id="qiskit.utils.mitigation.TensoredMeasFitter.substate_labels_list" name="substate_labels_list">
+    Return \_substate\_labels\_list.
+  </Attribute>
 
-<span id="qiskit.utils.mitigation.TensoredMeasFitter.nqubits" />
+  ## Methods
 
-### nqubits
+  ### add\_data
 
-Return \_qubit\_list\_sizes.
+  <Function id="qiskit.utils.mitigation.TensoredMeasFitter.add_data" name="add_data" signature="add_data(new_results, rebuild_cal_matrix=True)">
+    Add measurement calibration data
 
-<span id="qiskit.utils.mitigation.TensoredMeasFitter.substate_labels_list" />
+    **Parameters**
 
-### substate\_labels\_list
+    *   **new\_results** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")  *or*[*qiskit.result.Result*](qiskit.result.Result "qiskit.result.Result")) – a single result or list of Result objects.
+    *   **rebuild\_cal\_matrix** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – rebuild the calibration matrix
+  </Function>
 
-Return \_substate\_labels\_list.
+  ### readout\_fidelity
 
-## Methods
+  <Function id="qiskit.utils.mitigation.TensoredMeasFitter.readout_fidelity" name="readout_fidelity" signature="readout_fidelity(cal_index=0, label_list=None)">
+    Based on the results, output the readout fidelity, which is the average of the diagonal entries in the calibration matrices.
 
-### add\_data
+    **Parameters**
 
-<span id="qiskit.utils.mitigation.TensoredMeasFitter.add_data" />
+    *   **cal\_index** (*integer*) – readout fidelity for this index in \_cal\_matrices
+    *   **label\_list** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – Returns the average fidelity over of the groups f states. In the form of a list of lists of states. If None, then each state used in the construction of the calibration matrices forms a group of size 1
 
-`add_data(new_results, rebuild_cal_matrix=True)`
+    **Returns**
 
-Add measurement calibration data
+    The readout fidelity (assignment fidelity)
 
-**Parameters**
+    **Return type**
 
-*   **new\_results** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")  *or*[*qiskit.result.Result*](qiskit.result.Result "qiskit.result.Result")) – a single result or list of Result objects.
-*   **rebuild\_cal\_matrix** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – rebuild the calibration matrix
+    numpy.array
 
-### readout\_fidelity
+    **Raises**
 
-<span id="qiskit.utils.mitigation.TensoredMeasFitter.readout_fidelity" />
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – If the calibration matrix has not been set for the object.
 
-`readout_fidelity(cal_index=0, label_list=None)`
+    **Additional Information:**
 
-Based on the results, output the readout fidelity, which is the average of the diagonal entries in the calibration matrices.
+    The on-diagonal elements of the calibration matrices are the probabilities of measuring state ‘x’ given preparation of state ‘x’.
+  </Function>
 
-**Parameters**
+  ### subset\_fitter
 
-*   **cal\_index** (*integer*) – readout fidelity for this index in \_cal\_matrices
-*   **label\_list** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – Returns the average fidelity over of the groups f states. In the form of a list of lists of states. If None, then each state used in the construction of the calibration matrices forms a group of size 1
+  <Function id="qiskit.utils.mitigation.TensoredMeasFitter.subset_fitter" name="subset_fitter" signature="subset_fitter(qubit_sublist)">
+    Return a fitter object that is a subset of the qubits in the original list.
 
-**Returns**
+    This is only a partial implementation of the `subset_fitter` method since only mitigation patterns of length 1 are supported. This corresponds to patterns of the form `[[0], [1], [2], ...]`. Note however, that such patterns are a good first approximation to mitigate readout errors on large quantum circuits.
 
-The readout fidelity (assignment fidelity)
+    **Parameters**
 
-**Return type**
+    **qubit\_sublist** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – must be a subset of qubit\_list
 
-numpy.array
+    **Returns**
 
-**Raises**
+    **A new fitter that has the calibration for a**
 
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – If the calibration matrix has not been set for the object.
+    subset of qubits
 
-**Additional Information:**
+    **Return type**
 
-The on-diagonal elements of the calibration matrices are the probabilities of measuring state ‘x’ given preparation of state ‘x’.
+    [TensoredMeasFitter](#qiskit.utils.mitigation.TensoredMeasFitter "qiskit.utils.mitigation.TensoredMeasFitter")
 
-### subset\_fitter
+    **Raises**
 
-<span id="qiskit.utils.mitigation.TensoredMeasFitter.subset_fitter" />
-
-`subset_fitter(qubit_sublist)`
-
-Return a fitter object that is a subset of the qubits in the original list.
-
-This is only a partial implementation of the `subset_fitter` method since only mitigation patterns of length 1 are supported. This corresponds to patterns of the form `[[0], [1], [2], ...]`. Note however, that such patterns are a good first approximation to mitigate readout errors on large quantum circuits.
-
-**Parameters**
-
-**qubit\_sublist** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – must be a subset of qubit\_list
-
-**Returns**
-
-**A new fitter that has the calibration for a**
-
-subset of qubits
-
-**Return type**
-
-[TensoredMeasFitter](#qiskit.utils.mitigation.TensoredMeasFitter "qiskit.utils.mitigation.TensoredMeasFitter")
-
-**Raises**
-
-*   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – If the calibration matrix is not initialized
-*   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – If the mit pattern is not a tensor of single-qubit measurement error mitigation.
-*   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – If a qubit in the given `qubit_sublist` is not in the list of qubits in the mit. pattern.
+    *   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – If the calibration matrix is not initialized
+    *   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – If the mit pattern is not a tensor of single-qubit measurement error mitigation.
+    *   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – If a qubit in the given `qubit_sublist` is not in the list of qubits in the mit. pattern.
+  </Function>
+</Class>
 

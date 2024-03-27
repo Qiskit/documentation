@@ -8,389 +8,359 @@ python_api_name: qiskit.algorithms.optimizers.SteppableOptimizer
 
 # SteppableOptimizer
 
-<span id="qiskit.algorithms.optimizers.SteppableOptimizer" />
+<Class id="qiskit.algorithms.optimizers.SteppableOptimizer" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/optimizers/steppable_optimizer.py" signature="qiskit.algorithms.optimizers.SteppableOptimizer(maxiter=100)">
+  Bases: [`Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.optimizer.Optimizer")
 
-`qiskit.algorithms.optimizers.SteppableOptimizer(maxiter=100)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/optimizers/steppable_optimizer.py "view source code")
+  Base class for a steppable optimizer.
 
-Bases: [`Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.optimizer.Optimizer")
+  This family of optimizers uses the [ask and tell interface](https://optuna.readthedocs.io/en/stable/tutorial/20_recipes/009_ask_and_tell.html). When using this interface the user has to call [`ask()`](#qiskit.algorithms.optimizers.SteppableOptimizer.ask "qiskit.algorithms.optimizers.SteppableOptimizer.ask") to get information about how to evaluate the fucntion (we are asking the optimizer about how to do the evaluation). This information is typically the next points at which the function is evaluated, but depending on the optimizer it can also determine whether to evaluate the function or its gradient. Once the function has been evaluated, the user calls the method `tell()` to tell the optimizer what the result of the function evaluation(s) is. The optimizer then updates its state accordingly and the user can decide whether to stop the optimization process or to repeat a step.
 
-Base class for a steppable optimizer.
+  This interface is more customizable, and allows the user to have full control over the evaluation of the function.
 
-This family of optimizers uses the [ask and tell interface](https://optuna.readthedocs.io/en/stable/tutorial/20_recipes/009_ask_and_tell.html). When using this interface the user has to call [`ask()`](#qiskit.algorithms.optimizers.SteppableOptimizer.ask "qiskit.algorithms.optimizers.SteppableOptimizer.ask") to get information about how to evaluate the fucntion (we are asking the optimizer about how to do the evaluation). This information is typically the next points at which the function is evaluated, but depending on the optimizer it can also determine whether to evaluate the function or its gradient. Once the function has been evaluated, the user calls the method `tell()` to tell the optimizer what the result of the function evaluation(s) is. The optimizer then updates its state accordingly and the user can decide whether to stop the optimization process or to repeat a step.
+  **Examples**
 
-This interface is more customizable, and allows the user to have full control over the evaluation of the function.
+  An example where the evaluation of the function has a chance of failing. The user, with specific knowledge about his function can catch this errors and handle them before passing the result to the optimizer.
 
-**Examples**
+  ```python
+  import random
+  import numpy as np
+  from qiskit.algorithms.optimizers import GradientDescent
 
-An example where the evaluation of the function has a chance of failing. The user, with specific knowledge about his function can catch this errors and handle them before passing the result to the optimizer.
+  def objective(x):
+      if random.choice([True, False]):
+          return None
+      else:
+          return (np.linalg.norm(x) - 1) ** 2
 
-```python
-import random
-import numpy as np
-from qiskit.algorithms.optimizers import GradientDescent
+  def grad(x):
+      if random.choice([True, False]):
+          return None
+      else:
+          return 2 * (np.linalg.norm(x) - 1) * x / np.linalg.norm(x)
 
-def objective(x):
-    if random.choice([True, False]):
-        return None
-    else:
-        return (np.linalg.norm(x) - 1) ** 2
 
-def grad(x):
-    if random.choice([True, False]):
-        return None
-    else:
-        return 2 * (np.linalg.norm(x) - 1) * x / np.linalg.norm(x)
+  initial_point = np.random.normal(0, 1, size=(100,))
 
+  optimizer = GradientDescent(maxiter=20)
+  optimizer.start(x0=initial_point, fun=objective, jac=grad)
 
-initial_point = np.random.normal(0, 1, size=(100,))
+  while optimizer.continue_condition():
+      ask_data = optimizer.ask()
+      evaluated_gradient = None
 
-optimizer = GradientDescent(maxiter=20)
-optimizer.start(x0=initial_point, fun=objective, jac=grad)
+      while evaluated_gradient is None:
+          evaluated_gradient = grad(ask_data.x_center)
+          optimizer.state.njev += 1
 
-while optimizer.continue_condition():
-    ask_data = optimizer.ask()
-    evaluated_gradient = None
+      optmizer.state.nit += 1
 
-    while evaluated_gradient is None:
-        evaluated_gradient = grad(ask_data.x_center)
-        optimizer.state.njev += 1
+       cf  = TellData(eval_jac=evaluated_gradient)
+      optimizer.tell(ask_data=ask_data, tell_data=tell_data)
 
-    optmizer.state.nit += 1
+  result = optimizer.create_result()
+  ```
 
-     cf  = TellData(eval_jac=evaluated_gradient)
-    optimizer.tell(ask_data=ask_data, tell_data=tell_data)
+  Users that aren’t dealing with complicated functions and who are more familiar with step by step optimization algorithms can use the [`step()`](#qiskit.algorithms.optimizers.SteppableOptimizer.step "qiskit.algorithms.optimizers.SteppableOptimizer.step") method which wraps the [`ask()`](#qiskit.algorithms.optimizers.SteppableOptimizer.ask "qiskit.algorithms.optimizers.SteppableOptimizer.ask") and [`tell()`](#qiskit.algorithms.optimizers.SteppableOptimizer.tell "qiskit.algorithms.optimizers.SteppableOptimizer.tell") methods. In the same spirit the method [`minimize()`](#qiskit.algorithms.optimizers.SteppableOptimizer.minimize "qiskit.algorithms.optimizers.SteppableOptimizer.minimize") will optimize the function and return the result.
 
-result = optimizer.create_result()
-```
+  To see other libraries that use this interface one can visit: [https://optuna.readthedocs.io/en/stable/tutorial/20\_recipes/009\_ask\_and\_tell.html](https://optuna.readthedocs.io/en/stable/tutorial/20_recipes/009_ask_and_tell.html)
 
-Users that aren’t dealing with complicated functions and who are more familiar with step by step optimization algorithms can use the [`step()`](#qiskit.algorithms.optimizers.SteppableOptimizer.step "qiskit.algorithms.optimizers.SteppableOptimizer.step") method which wraps the [`ask()`](#qiskit.algorithms.optimizers.SteppableOptimizer.ask "qiskit.algorithms.optimizers.SteppableOptimizer.ask") and [`tell()`](#qiskit.algorithms.optimizers.SteppableOptimizer.tell "qiskit.algorithms.optimizers.SteppableOptimizer.tell") methods. In the same spirit the method [`minimize()`](#qiskit.algorithms.optimizers.SteppableOptimizer.minimize "qiskit.algorithms.optimizers.SteppableOptimizer.minimize") will optimize the function and return the result.
+  **Parameters**
 
-To see other libraries that use this interface one can visit: [https://optuna.readthedocs.io/en/stable/tutorial/20\_recipes/009\_ask\_and\_tell.html](https://optuna.readthedocs.io/en/stable/tutorial/20_recipes/009_ask_and_tell.html)
+  **maxiter** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of steps in the optimization process before ending the loop.
 
-**Parameters**
+  ## Attributes
 
-**maxiter** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of steps in the optimization process before ending the loop.
+  ### bounds\_support\_level
 
-## Attributes
+  <Attribute id="qiskit.algorithms.optimizers.SteppableOptimizer.bounds_support_level" name="bounds_support_level">
+    Returns bounds support level
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.SteppableOptimizer.bounds_support_level" />
+  ### gradient\_support\_level
 
-### bounds\_support\_level
+  <Attribute id="qiskit.algorithms.optimizers.SteppableOptimizer.gradient_support_level" name="gradient_support_level">
+    Returns gradient support level
+  </Attribute>
 
-Returns bounds support level
+  ### initial\_point\_support\_level
 
-<span id="qiskit.algorithms.optimizers.SteppableOptimizer.gradient_support_level" />
+  <Attribute id="qiskit.algorithms.optimizers.SteppableOptimizer.initial_point_support_level" name="initial_point_support_level">
+    Returns initial point support level
+  </Attribute>
 
-### gradient\_support\_level
+  ### is\_bounds\_ignored
 
-Returns gradient support level
+  <Attribute id="qiskit.algorithms.optimizers.SteppableOptimizer.is_bounds_ignored" name="is_bounds_ignored">
+    Returns is bounds ignored
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.SteppableOptimizer.initial_point_support_level" />
+  ### is\_bounds\_required
 
-### initial\_point\_support\_level
+  <Attribute id="qiskit.algorithms.optimizers.SteppableOptimizer.is_bounds_required" name="is_bounds_required">
+    Returns is bounds required
+  </Attribute>
 
-Returns initial point support level
+  ### is\_bounds\_supported
 
-<span id="qiskit.algorithms.optimizers.SteppableOptimizer.is_bounds_ignored" />
+  <Attribute id="qiskit.algorithms.optimizers.SteppableOptimizer.is_bounds_supported" name="is_bounds_supported">
+    Returns is bounds supported
+  </Attribute>
 
-### is\_bounds\_ignored
+  ### is\_gradient\_ignored
 
-Returns is bounds ignored
+  <Attribute id="qiskit.algorithms.optimizers.SteppableOptimizer.is_gradient_ignored" name="is_gradient_ignored">
+    Returns is gradient ignored
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.SteppableOptimizer.is_bounds_required" />
+  ### is\_gradient\_required
 
-### is\_bounds\_required
+  <Attribute id="qiskit.algorithms.optimizers.SteppableOptimizer.is_gradient_required" name="is_gradient_required">
+    Returns is gradient required
+  </Attribute>
 
-Returns is bounds required
+  ### is\_gradient\_supported
 
-<span id="qiskit.algorithms.optimizers.SteppableOptimizer.is_bounds_supported" />
+  <Attribute id="qiskit.algorithms.optimizers.SteppableOptimizer.is_gradient_supported" name="is_gradient_supported">
+    Returns is gradient supported
+  </Attribute>
 
-### is\_bounds\_supported
+  ### is\_initial\_point\_ignored
 
-Returns is bounds supported
+  <Attribute id="qiskit.algorithms.optimizers.SteppableOptimizer.is_initial_point_ignored" name="is_initial_point_ignored">
+    Returns is initial point ignored
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.SteppableOptimizer.is_gradient_ignored" />
+  ### is\_initial\_point\_required
 
-### is\_gradient\_ignored
+  <Attribute id="qiskit.algorithms.optimizers.SteppableOptimizer.is_initial_point_required" name="is_initial_point_required">
+    Returns is initial point required
+  </Attribute>
 
-Returns is gradient ignored
+  ### is\_initial\_point\_supported
 
-<span id="qiskit.algorithms.optimizers.SteppableOptimizer.is_gradient_required" />
+  <Attribute id="qiskit.algorithms.optimizers.SteppableOptimizer.is_initial_point_supported" name="is_initial_point_supported">
+    Returns is initial point supported
+  </Attribute>
 
-### is\_gradient\_required
+  ### setting
 
-Returns is gradient required
+  <Attribute id="qiskit.algorithms.optimizers.SteppableOptimizer.setting" name="setting">
+    Return setting
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.SteppableOptimizer.is_gradient_supported" />
+  ### settings
 
-### is\_gradient\_supported
+  <Attribute id="qiskit.algorithms.optimizers.SteppableOptimizer.settings" name="settings">
+    The optimizer settings in a dictionary format.
 
-Returns is gradient supported
+    The settings can for instance be used for JSON-serialization (if all settings are serializable, which e.g. doesn’t hold per default for callables), such that the optimizer object can be reconstructed as
 
-<span id="qiskit.algorithms.optimizers.SteppableOptimizer.is_initial_point_ignored" />
+    ```python
+    settings = optimizer.settings
+    # JSON serialize and send to another server
+    optimizer = OptimizerClass(**settings)
+    ```
+  </Attribute>
 
-### is\_initial\_point\_ignored
+  ### state
 
-Returns is initial point ignored
+  <Attribute id="qiskit.algorithms.optimizers.SteppableOptimizer.state" name="state">
+    Return the current state of the optimizer.
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.SteppableOptimizer.is_initial_point_required" />
+  ## Methods
 
-### is\_initial\_point\_required
+  ### ask
 
-Returns is initial point required
+  <Function id="qiskit.algorithms.optimizers.SteppableOptimizer.ask" name="ask" signature="ask()">
+    Ask the optimizer for a set of points to evaluate.
 
-<span id="qiskit.algorithms.optimizers.SteppableOptimizer.is_initial_point_supported" />
+    This method asks the optimizer which are the next points to evaluate. These points can, e.g., correspond to function values and/or its derivative. It may also correspond to variables that let the user infer which points to evaluate. It is the first method inside of a [`step()`](#qiskit.algorithms.optimizers.SteppableOptimizer.step "qiskit.algorithms.optimizers.SteppableOptimizer.step") in the optimization process.
 
-### is\_initial\_point\_supported
+    **Returns**
 
-Returns is initial point supported
+    An object containing the data needed to make the funciton evaluation to advance the optimization process.
 
-<span id="qiskit.algorithms.optimizers.SteppableOptimizer.setting" />
+    **Return type**
 
-### setting
+    [*AskData*](qiskit.algorithms.optimizers.AskData "qiskit.algorithms.optimizers.steppable_optimizer.AskData")
+  </Function>
 
-Return setting
+  ### continue\_condition
 
-<span id="qiskit.algorithms.optimizers.SteppableOptimizer.settings" />
+  <Function id="qiskit.algorithms.optimizers.SteppableOptimizer.continue_condition" name="continue_condition" signature="continue_condition()">
+    Condition that indicates the optimization process should continue.
 
-### settings
+    **Returns**
 
-The optimizer settings in a dictionary format.
+    `True` if the optimization process should continue, `False` otherwise.
 
-The settings can for instance be used for JSON-serialization (if all settings are serializable, which e.g. doesn’t hold per default for callables), such that the optimizer object can be reconstructed as
+    **Return type**
 
-```python
-settings = optimizer.settings
-# JSON serialize and send to another server
-optimizer = OptimizerClass(**settings)
-```
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  </Function>
 
-<span id="qiskit.algorithms.optimizers.SteppableOptimizer.state" />
+  ### create\_result
 
-### state
+  <Function id="qiskit.algorithms.optimizers.SteppableOptimizer.create_result" name="create_result" signature="abstract create_result()">
+    Returns the result of the optimization.
 
-Return the current state of the optimizer.
+    All the information needed to create such a result should be stored in the optimizer state and will typically contain the best point found, the function value and gradient at that point, the number of function and gradient evaluation and the number of iterations in the optimization.
 
-## Methods
+    **Returns**
 
-### ask
+    The result of the optimization process.
 
-<span id="qiskit.algorithms.optimizers.SteppableOptimizer.ask" />
+    **Return type**
 
-`ask()`
+    [*OptimizerResult*](qiskit.algorithms.optimizers.OptimizerResult "qiskit.algorithms.optimizers.optimizer.OptimizerResult")
+  </Function>
 
-Ask the optimizer for a set of points to evaluate.
+  ### evaluate
 
-This method asks the optimizer which are the next points to evaluate. These points can, e.g., correspond to function values and/or its derivative. It may also correspond to variables that let the user infer which points to evaluate. It is the first method inside of a [`step()`](#qiskit.algorithms.optimizers.SteppableOptimizer.step "qiskit.algorithms.optimizers.SteppableOptimizer.step") in the optimization process.
+  <Function id="qiskit.algorithms.optimizers.SteppableOptimizer.evaluate" name="evaluate" signature="abstract evaluate(ask_data)">
+    Evaluates the function according to the instructions contained in `ask_data`.
 
-**Returns**
+    If the user decides to use [`step()`](#qiskit.algorithms.optimizers.SteppableOptimizer.step "qiskit.algorithms.optimizers.SteppableOptimizer.step") instead of [`ask()`](#qiskit.algorithms.optimizers.SteppableOptimizer.ask "qiskit.algorithms.optimizers.SteppableOptimizer.ask") and [`tell()`](#qiskit.algorithms.optimizers.SteppableOptimizer.tell "qiskit.algorithms.optimizers.SteppableOptimizer.tell") this function will contain the logic on how to evaluate the function.
 
-An object containing the data needed to make the funciton evaluation to advance the optimization process.
+    **Parameters**
 
-**Return type**
+    **ask\_data** ([*AskData*](qiskit.algorithms.optimizers.AskData "qiskit.algorithms.optimizers.steppable_optimizer.AskData")) – Contains the information on how to do the evaluation.
 
-[*AskData*](qiskit.algorithms.optimizers.AskData "qiskit.algorithms.optimizers.steppable_optimizer.AskData")
+    **Returns**
 
-### continue\_condition
+    Data of all relevant information about the function evaluation.
 
-<span id="qiskit.algorithms.optimizers.SteppableOptimizer.continue_condition" />
+    **Return type**
 
-`continue_condition()`
+    [*TellData*](qiskit.algorithms.optimizers.TellData "qiskit.algorithms.optimizers.steppable_optimizer.TellData")
+  </Function>
 
-Condition that indicates the optimization process should continue.
+  ### get\_support\_level
 
-**Returns**
+  <Function id="qiskit.algorithms.optimizers.SteppableOptimizer.get_support_level" name="get_support_level" signature="abstract get_support_level()">
+    Return support level dictionary
+  </Function>
 
-`True` if the optimization process should continue, `False` otherwise.
+  ### gradient\_num\_diff
 
-**Return type**
+  <Function id="qiskit.algorithms.optimizers.SteppableOptimizer.gradient_num_diff" name="gradient_num_diff" signature="static gradient_num_diff(x_center, f, epsilon, max_evals_grouped=None)">
+    We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+    **Parameters**
 
-### create\_result
+    *   **x\_center** (*ndarray*) – point around which we compute the gradient
+    *   **f** (*func*) – the function of which the gradient is to be computed.
+    *   **epsilon** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – the epsilon used in the numeric differentiation.
+    *   **max\_evals\_grouped** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – max evals grouped, defaults to 1 (i.e. no batching).
 
-<span id="qiskit.algorithms.optimizers.SteppableOptimizer.create_result" />
+    **Returns**
 
-`abstract create_result()`
+    the gradient computed
 
-Returns the result of the optimization.
+    **Return type**
 
-All the information needed to create such a result should be stored in the optimizer state and will typically contain the best point found, the function value and gradient at that point, the number of function and gradient evaluation and the number of iterations in the optimization.
+    grad
+  </Function>
 
-**Returns**
+  ### minimize
 
-The result of the optimization process.
+  <Function id="qiskit.algorithms.optimizers.SteppableOptimizer.minimize" name="minimize" signature="minimize(fun, x0, jac=None, bounds=None)">
+    Minimizes the function.
 
-**Return type**
+    For well behaved functions the user can call this method to minimize a function. If the user wants more control on how to evaluate the function a custom loop can be created using [`ask()`](#qiskit.algorithms.optimizers.SteppableOptimizer.ask "qiskit.algorithms.optimizers.SteppableOptimizer.ask") and [`tell()`](#qiskit.algorithms.optimizers.SteppableOptimizer.tell "qiskit.algorithms.optimizers.SteppableOptimizer.tell") and evaluating the function manually.
 
-[*OptimizerResult*](qiskit.algorithms.optimizers.OptimizerResult "qiskit.algorithms.optimizers.optimizer.OptimizerResult")
+    **Parameters**
 
-### evaluate
+    *   **fun** (*Callable\[\[POINT],* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – Function to minimize.
+    *   **x0** (*POINT*) – Initial point.
+    *   **jac** (*Callable\[\[POINT], POINT] | None*) – Function to compute the gradient.
+    *   **bounds** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]] | None*) – Bounds of the search space.
 
-<span id="qiskit.algorithms.optimizers.SteppableOptimizer.evaluate" />
+    **Returns**
 
-`abstract evaluate(ask_data)`
+    Object containing the result of the optimization.
 
-Evaluates the function according to the instructions contained in `ask_data`.
+    **Return type**
 
-If the user decides to use [`step()`](#qiskit.algorithms.optimizers.SteppableOptimizer.step "qiskit.algorithms.optimizers.SteppableOptimizer.step") instead of [`ask()`](#qiskit.algorithms.optimizers.SteppableOptimizer.ask "qiskit.algorithms.optimizers.SteppableOptimizer.ask") and [`tell()`](#qiskit.algorithms.optimizers.SteppableOptimizer.tell "qiskit.algorithms.optimizers.SteppableOptimizer.tell") this function will contain the logic on how to evaluate the function.
+    [OptimizerResult](qiskit.algorithms.optimizers.OptimizerResult "qiskit.algorithms.optimizers.OptimizerResult")
+  </Function>
 
-**Parameters**
+  ### print\_options
 
-**ask\_data** ([*AskData*](qiskit.algorithms.optimizers.AskData "qiskit.algorithms.optimizers.steppable_optimizer.AskData")) – Contains the information on how to do the evaluation.
+  <Function id="qiskit.algorithms.optimizers.SteppableOptimizer.print_options" name="print_options" signature="print_options()">
+    Print algorithm-specific options.
+  </Function>
 
-**Returns**
+  ### set\_max\_evals\_grouped
 
-Data of all relevant information about the function evaluation.
+  <Function id="qiskit.algorithms.optimizers.SteppableOptimizer.set_max_evals_grouped" name="set_max_evals_grouped" signature="set_max_evals_grouped(limit)">
+    Set max evals grouped
+  </Function>
 
-**Return type**
+  ### set\_options
 
-[*TellData*](qiskit.algorithms.optimizers.TellData "qiskit.algorithms.optimizers.steppable_optimizer.TellData")
+  <Function id="qiskit.algorithms.optimizers.SteppableOptimizer.set_options" name="set_options" signature="set_options(**kwargs)">
+    Sets or updates values in the options dictionary.
 
-### get\_support\_level
+    The options dictionary may be used internally by a given optimizer to pass additional optional values for the underlying optimizer/optimization function used. The options dictionary may be initially populated with a set of key/values when the given optimizer is constructed.
 
-<span id="qiskit.algorithms.optimizers.SteppableOptimizer.get_support_level" />
+    **Parameters**
 
-`abstract get_support_level()`
+    **kwargs** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – options, given as name=value.
+  </Function>
 
-Return support level dictionary
+  ### start
 
-### gradient\_num\_diff
+  <Function id="qiskit.algorithms.optimizers.SteppableOptimizer.start" name="start" signature="abstract start(fun, x0, jac=None, bounds=None)">
+    Populates the state of the optimizer with the data provided and sets all the counters to 0.
 
-<span id="qiskit.algorithms.optimizers.SteppableOptimizer.gradient_num_diff" />
+    **Parameters**
 
-`static gradient_num_diff(x_center, f, epsilon, max_evals_grouped=None)`
+    *   **fun** (*Callable\[\[POINT],* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – Function to minimize.
+    *   **x0** (*POINT*) – Initial point.
+    *   **jac** (*Callable\[\[POINT], POINT] | None*) – Function to compute the gradient.
+    *   **bounds** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]] | None*) – Bounds of the search space.
+  </Function>
 
-We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
+  ### step
 
-**Parameters**
+  <Function id="qiskit.algorithms.optimizers.SteppableOptimizer.step" name="step" signature="step()">
+    Performs one step in the optimization process.
 
-*   **x\_center** (*ndarray*) – point around which we compute the gradient
-*   **f** (*func*) – the function of which the gradient is to be computed.
-*   **epsilon** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – the epsilon used in the numeric differentiation.
-*   **max\_evals\_grouped** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – max evals grouped, defaults to 1 (i.e. no batching).
+    This method composes [`ask()`](#qiskit.algorithms.optimizers.SteppableOptimizer.ask "qiskit.algorithms.optimizers.SteppableOptimizer.ask"), [`evaluate()`](#qiskit.algorithms.optimizers.SteppableOptimizer.evaluate "qiskit.algorithms.optimizers.SteppableOptimizer.evaluate"), and [`tell()`](#qiskit.algorithms.optimizers.SteppableOptimizer.tell "qiskit.algorithms.optimizers.SteppableOptimizer.tell") to make a “step” in the optimization process.
+  </Function>
 
-**Returns**
+  ### tell
 
-the gradient computed
+  <Function id="qiskit.algorithms.optimizers.SteppableOptimizer.tell" name="tell" signature="tell(ask_data, tell_data)">
+    Updates the optimization state using the results of the function evaluation.
 
-**Return type**
+    A canonical optimization example using [`ask()`](#qiskit.algorithms.optimizers.SteppableOptimizer.ask "qiskit.algorithms.optimizers.SteppableOptimizer.ask") and [`tell()`](#qiskit.algorithms.optimizers.SteppableOptimizer.tell "qiskit.algorithms.optimizers.SteppableOptimizer.tell") can be seen in [`step()`](#qiskit.algorithms.optimizers.SteppableOptimizer.step "qiskit.algorithms.optimizers.SteppableOptimizer.step").
 
-grad
+    **Parameters**
 
-### minimize
+    *   **ask\_data** ([*AskData*](qiskit.algorithms.optimizers.AskData "qiskit.algorithms.optimizers.steppable_optimizer.AskData")) – Contains the information on how the evaluation was done.
+    *   **tell\_data** ([*TellData*](qiskit.algorithms.optimizers.TellData "qiskit.algorithms.optimizers.steppable_optimizer.TellData")) – Contains all relevant information about the evaluation of the objective function.
+  </Function>
 
-<span id="qiskit.algorithms.optimizers.SteppableOptimizer.minimize" />
+  ### wrap\_function
 
-`minimize(fun, x0, jac=None, bounds=None)`
+  <Function id="qiskit.algorithms.optimizers.SteppableOptimizer.wrap_function" name="wrap_function" signature="static wrap_function(function, args)">
+    Wrap the function to implicitly inject the args at the call of the function.
 
-Minimizes the function.
+    **Parameters**
 
-For well behaved functions the user can call this method to minimize a function. If the user wants more control on how to evaluate the function a custom loop can be created using [`ask()`](#qiskit.algorithms.optimizers.SteppableOptimizer.ask "qiskit.algorithms.optimizers.SteppableOptimizer.ask") and [`tell()`](#qiskit.algorithms.optimizers.SteppableOptimizer.tell "qiskit.algorithms.optimizers.SteppableOptimizer.tell") and evaluating the function manually.
+    *   **function** (*func*) – the target function
+    *   **args** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – the args to be injected
 
-**Parameters**
+    **Returns**
 
-*   **fun** (*Callable\[\[POINT],* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – Function to minimize.
-*   **x0** (*POINT*) – Initial point.
-*   **jac** (*Callable\[\[POINT], POINT] | None*) – Function to compute the gradient.
-*   **bounds** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]] | None*) – Bounds of the search space.
+    wrapper
 
-**Returns**
+    **Return type**
 
-Object containing the result of the optimization.
-
-**Return type**
-
-[OptimizerResult](qiskit.algorithms.optimizers.OptimizerResult "qiskit.algorithms.optimizers.OptimizerResult")
-
-### print\_options
-
-<span id="qiskit.algorithms.optimizers.SteppableOptimizer.print_options" />
-
-`print_options()`
-
-Print algorithm-specific options.
-
-### set\_max\_evals\_grouped
-
-<span id="qiskit.algorithms.optimizers.SteppableOptimizer.set_max_evals_grouped" />
-
-`set_max_evals_grouped(limit)`
-
-Set max evals grouped
-
-### set\_options
-
-<span id="qiskit.algorithms.optimizers.SteppableOptimizer.set_options" />
-
-`set_options(**kwargs)`
-
-Sets or updates values in the options dictionary.
-
-The options dictionary may be used internally by a given optimizer to pass additional optional values for the underlying optimizer/optimization function used. The options dictionary may be initially populated with a set of key/values when the given optimizer is constructed.
-
-**Parameters**
-
-**kwargs** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – options, given as name=value.
-
-### start
-
-<span id="qiskit.algorithms.optimizers.SteppableOptimizer.start" />
-
-`abstract start(fun, x0, jac=None, bounds=None)`
-
-Populates the state of the optimizer with the data provided and sets all the counters to 0.
-
-**Parameters**
-
-*   **fun** (*Callable\[\[POINT],* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – Function to minimize.
-*   **x0** (*POINT*) – Initial point.
-*   **jac** (*Callable\[\[POINT], POINT] | None*) – Function to compute the gradient.
-*   **bounds** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]] | None*) – Bounds of the search space.
-
-### step
-
-<span id="qiskit.algorithms.optimizers.SteppableOptimizer.step" />
-
-`step()`
-
-Performs one step in the optimization process.
-
-This method composes [`ask()`](#qiskit.algorithms.optimizers.SteppableOptimizer.ask "qiskit.algorithms.optimizers.SteppableOptimizer.ask"), [`evaluate()`](#qiskit.algorithms.optimizers.SteppableOptimizer.evaluate "qiskit.algorithms.optimizers.SteppableOptimizer.evaluate"), and [`tell()`](#qiskit.algorithms.optimizers.SteppableOptimizer.tell "qiskit.algorithms.optimizers.SteppableOptimizer.tell") to make a “step” in the optimization process.
-
-### tell
-
-<span id="qiskit.algorithms.optimizers.SteppableOptimizer.tell" />
-
-`tell(ask_data, tell_data)`
-
-Updates the optimization state using the results of the function evaluation.
-
-A canonical optimization example using [`ask()`](#qiskit.algorithms.optimizers.SteppableOptimizer.ask "qiskit.algorithms.optimizers.SteppableOptimizer.ask") and [`tell()`](#qiskit.algorithms.optimizers.SteppableOptimizer.tell "qiskit.algorithms.optimizers.SteppableOptimizer.tell") can be seen in [`step()`](#qiskit.algorithms.optimizers.SteppableOptimizer.step "qiskit.algorithms.optimizers.SteppableOptimizer.step").
-
-**Parameters**
-
-*   **ask\_data** ([*AskData*](qiskit.algorithms.optimizers.AskData "qiskit.algorithms.optimizers.steppable_optimizer.AskData")) – Contains the information on how the evaluation was done.
-*   **tell\_data** ([*TellData*](qiskit.algorithms.optimizers.TellData "qiskit.algorithms.optimizers.steppable_optimizer.TellData")) – Contains all relevant information about the evaluation of the objective function.
-
-### wrap\_function
-
-<span id="qiskit.algorithms.optimizers.SteppableOptimizer.wrap_function" />
-
-`static wrap_function(function, args)`
-
-Wrap the function to implicitly inject the args at the call of the function.
-
-**Parameters**
-
-*   **function** (*func*) – the target function
-*   **args** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – the args to be injected
-
-**Returns**
-
-wrapper
-
-**Return type**
-
-function\_wrapper
+    function\_wrapper
+  </Function>
+</Class>
 
