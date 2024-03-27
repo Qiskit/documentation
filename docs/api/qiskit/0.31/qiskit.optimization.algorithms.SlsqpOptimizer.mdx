@@ -1,0 +1,179 @@
+---
+title: SlsqpOptimizer
+description: API reference for qiskit.optimization.algorithms.SlsqpOptimizer
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.optimization.algorithms.SlsqpOptimizer
+---
+
+# SlsqpOptimizer
+
+<span id="qiskit.optimization.algorithms.SlsqpOptimizer" />
+
+`SlsqpOptimizer(iter=100, acc=1e-06, iprint=0, trials=1, clip=100.0, full_output=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/slsqp_optimizer.py "view source code")
+
+Bases: `qiskit.optimization.algorithms.multistart_optimizer.MultiStartOptimizer`
+
+The SciPy SLSQP optimizer wrapped as an Qiskit [`OptimizationAlgorithm`](qiskit.optimization.algorithms.OptimizationAlgorithm "qiskit.optimization.algorithms.OptimizationAlgorithm").
+
+This class provides a wrapper for `scipy.optimize.fmin_slsqp` ([https://docs.scipy.org/doc/scipy-0.13.0/reference/generated/scipy.optimize.fmin\_slsqp.html](https://docs.scipy.org/doc/scipy-0.13.0/reference/generated/scipy.optimize.fmin_slsqp.html)) to be used within the optimization module. The arguments for `fmin_slsqp` are passed via the constructor.
+
+**Examples**
+
+```python
+>>> from qiskit.optimization.problems import QuadraticProgram
+>>> from qiskit.optimization.algorithms import SlsqpOptimizer
+>>> problem = QuadraticProgram()
+>>> # specify problem here
+>>> x = problem.continuous_var(name="x")
+>>> y = problem.continuous_var(name="y")
+>>> problem.maximize(linear=[2, 0], quadratic=[[-1, 2], [0, -2]])
+>>> optimizer = SlsqpOptimizer()
+>>> result = optimizer.solve(problem)
+```
+
+Initializes the SlsqpOptimizer.
+
+This initializer takes the algorithmic parameters of SLSQP and stores them for later use of `fmin_slsqp` when [`solve()`](qiskit.optimization.algorithms.SlsqpOptimizer#solve "qiskit.optimization.algorithms.SlsqpOptimizer.solve") is invoked. This optimizer can be applied to find a (local) optimum for problems consisting of only continuous variables.
+
+**Parameters**
+
+*   **iter** (`int`) – The maximum number of iterations.
+
+*   **acc** (`float`) – Requested accuracy.
+
+*   **iprint** (`int`) –
+
+    The verbosity of fmin\_slsqp :
+
+    *   iprint \<= 0 : Silent operation
+    *   iprint == 1 : Print summary upon completion (default)
+    *   iprint >= 2 : Print status of each iterate and summary
+
+*   **trials** (`int`) – The number of trials for multi-start method. The first trial is solved with the initial guess of zero. If more than one trial is specified then initial guesses are uniformly drawn from `[lowerbound, upperbound]` with potential clipping.
+
+*   **clip** (`float`) – Clipping parameter for the initial guesses in the multi-start method. If a variable is unbounded then the lower bound and/or upper bound are replaced with the `-clip` or `clip` values correspondingly for the initial guesses.
+
+*   **full\_output** (`bool`) – If `False`, return only the minimizer of func (default). Otherwise, output final objective function and summary information.
+
+## Methods
+
+### get\_compatibility\_msg
+
+<span id="qiskit.optimization.algorithms.SlsqpOptimizer.get_compatibility_msg" />
+
+`SlsqpOptimizer.get_compatibility_msg(problem)`
+
+Checks whether a given problem can be solved with this optimizer.
+
+Checks whether the given problem is compatible, i.e., whether the problem contains only continuous variables, and otherwise, returns a message explaining the incompatibility.
+
+**Parameters**
+
+**problem** (`QuadraticProgram`) – The optimization problem to check compatibility.
+
+**Return type**
+
+`str`
+
+**Returns**
+
+Returns a string describing the incompatibility.
+
+### is\_compatible
+
+<span id="qiskit.optimization.algorithms.SlsqpOptimizer.is_compatible" />
+
+`SlsqpOptimizer.is_compatible(problem)`
+
+Checks whether a given problem can be solved with the optimizer implementing this method.
+
+**Parameters**
+
+**problem** (`QuadraticProgram`) – The optimization problem to check compatibility.
+
+**Return type**
+
+`bool`
+
+**Returns**
+
+Returns True if the problem is compatible, False otherwise.
+
+### multi\_start\_solve
+
+<span id="qiskit.optimization.algorithms.SlsqpOptimizer.multi_start_solve" />
+
+`SlsqpOptimizer.multi_start_solve(minimize, problem)`
+
+Applies a multi start method given a local optimizer.
+
+**Parameters**
+
+*   **minimize** (`Callable`\[\[`ndarray`], `Tuple`\[`ndarray`, `Any`]]) – A callable object that minimizes the problem specified
+*   **problem** (`QuadraticProgram`) – A problem to solve
+
+**Return type**
+
+`OptimizationResult`
+
+**Returns**
+
+The result of the multi start algorithm applied to the problem.
+
+### solve
+
+<span id="qiskit.optimization.algorithms.SlsqpOptimizer.solve" />
+
+`SlsqpOptimizer.solve(problem)`
+
+Tries to solves the given problem using the optimizer.
+
+Runs the optimizer to try to solve the optimization problem.
+
+**Parameters**
+
+**problem** (`QuadraticProgram`) – The problem to be solved.
+
+**Return type**
+
+`OptimizationResult`
+
+**Returns**
+
+The result of the optimizer applied to the problem.
+
+**Raises**
+
+[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If the problem is incompatible with the optimizer.
+
+## Attributes
+
+<span id="qiskit.optimization.algorithms.SlsqpOptimizer.clip" />
+
+### clip
+
+Returns the clip value for this optimizer.
+
+**Return type**
+
+`float`
+
+**Returns**
+
+The clip value.
+
+<span id="qiskit.optimization.algorithms.SlsqpOptimizer.trials" />
+
+### trials
+
+Returns the number of trials for this optimizer.
+
+**Return type**
+
+`int`
+
+**Returns**
+
+The number of trials.
+

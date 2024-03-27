@@ -1,0 +1,63 @@
+---
+title: ContainsInstruction
+description: API reference for qiskit.transpiler.passes.ContainsInstruction
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.ContainsInstruction
+---
+
+# ContainsInstruction
+
+<span id="qiskit.transpiler.passes.ContainsInstruction" />
+
+`qiskit.transpiler.passes.ContainsInstruction(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/passes/utils/contains_instruction.py "view source code")
+
+Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
+
+An analysis pass to detect if the DAG contains a specific instruction.
+
+This pass takes in a single instruction name for example `'delay'` and will set the property set `contains_delay` to `True` if the DAG contains that instruction and `False` if it does not.
+
+ContainsInstruction initializer.
+
+**Parameters**
+
+*   **instruction\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| Iterable\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – The instruction or instructions to check are in the DAG. The output in the property set is set to `contains_` prefixed on each value for this parameter.
+*   **recurse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if `True` (default), then recurse into control-flow operations.
+
+## Attributes
+
+<span id="qiskit.transpiler.passes.ContainsInstruction.is_analysis_pass" />
+
+### is\_analysis\_pass
+
+Check if the pass is an analysis pass.
+
+If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+
+<span id="qiskit.transpiler.passes.ContainsInstruction.is_transformation_pass" />
+
+### is\_transformation\_pass
+
+Check if the pass is a transformation pass.
+
+If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+
+## Methods
+
+### name
+
+<span id="qiskit.transpiler.passes.ContainsInstruction.name" />
+
+`name()`
+
+Return the name of the pass.
+
+### run
+
+<span id="qiskit.transpiler.passes.ContainsInstruction.run" />
+
+`run(dag)`
+
+Run the ContainsInstruction pass on dag.
+

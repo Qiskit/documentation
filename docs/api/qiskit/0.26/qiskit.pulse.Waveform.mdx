@@ -1,0 +1,173 @@
+---
+title: Waveform
+description: API reference for qiskit.pulse.Waveform
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.pulse.Waveform
+---
+
+# qiskit.pulse.Waveform
+
+<span id="qiskit.pulse.Waveform" />
+
+`Waveform(samples, name=None, epsilon=1e-07)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/library/waveform.py "view source code")
+
+A pulse specified completely by complex-valued samples; each sample is played for the duration of the backend cycle-time, dt.
+
+Create new sample pulse command.
+
+**Parameters**
+
+*   **samples** (`Union`\[`ndarray`, `List`\[`complex`]]) – Complex array of the samples in the pulse envelope.
+*   **name** (`Optional`\[`str`]) – Unique name to identify the pulse.
+*   **epsilon** (`float`) – Pulse sample norm tolerance for clipping. If any sample’s norm exceeds unity by less than or equal to epsilon it will be clipped to unit norm. If the sample norm is greater than 1+epsilon an error will be raised.
+
+### \_\_init\_\_
+
+<span id="qiskit.pulse.Waveform.__init__" />
+
+`__init__(samples, name=None, epsilon=1e-07)`
+
+Create new sample pulse command.
+
+**Parameters**
+
+*   **samples** (`Union`\[`ndarray`, `List`\[`complex`]]) – Complex array of the samples in the pulse envelope.
+*   **name** (`Optional`\[`str`]) – Unique name to identify the pulse.
+*   **epsilon** (`float`) – Pulse sample norm tolerance for clipping. If any sample’s norm exceeds unity by less than or equal to epsilon it will be clipped to unit norm. If the sample norm is greater than 1+epsilon an error will be raised.
+
+## Methods
+
+|                                                                                                                        |                                                   |
+| ---------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
+| [`__init__`](#qiskit.pulse.Waveform.__init__ "qiskit.pulse.Waveform.__init__")(samples\[, name, epsilon])              | Create new sample pulse command.                  |
+| [`assign_parameters`](#qiskit.pulse.Waveform.assign_parameters "qiskit.pulse.Waveform.assign_parameters")(value\_dict) | Return a new pulse with parameters assigned.      |
+| [`draw`](#qiskit.pulse.Waveform.draw "qiskit.pulse.Waveform.draw")(\[dt, style, filename, interp\_method, …])          | Plot the interpolated envelope of pulse.          |
+| [`is_parameterized`](#qiskit.pulse.Waveform.is_parameterized "qiskit.pulse.Waveform.is_parameterized")()               | Return True iff the instruction is parameterized. |
+
+## Attributes
+
+|                                                                                      |                                                        |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------ |
+| [`id`](#qiskit.pulse.Waveform.id "qiskit.pulse.Waveform.id")                         | Unique identifier for this pulse.                      |
+| [`parameters`](#qiskit.pulse.Waveform.parameters "qiskit.pulse.Waveform.parameters") | Return a dictionary containing the pulse’s parameters. |
+| [`samples`](#qiskit.pulse.Waveform.samples "qiskit.pulse.Waveform.samples")          | Return sample values.                                  |
+
+### assign\_parameters
+
+<span id="qiskit.pulse.Waveform.assign_parameters" />
+
+`assign_parameters(value_dict)`
+
+Return a new pulse with parameters assigned.
+
+**Parameters**
+
+**value\_dict** (`Dict`\[`ParameterExpression`, `Union`\[`ParameterExpression`, `float`, `int`]]) – A mapping from Parameters to either numeric values or another Parameter expression.
+
+**Return type**
+
+`Waveform`
+
+**Returns**
+
+New pulse with updated parameters.
+
+### draw
+
+<span id="qiskit.pulse.Waveform.draw" />
+
+`draw(dt=None, style=None, filename=None, interp_method=None, scale=None, interactive=None, draw_title=None, backend=None, time_range=None, time_unit='dt', show_waveform_info=True, plotter='mpl2d', axis=None)`
+
+Plot the interpolated envelope of pulse.
+
+**Parameters**
+
+*   **style** (`Optional`\[`Dict`\[`str`, `Any`]]) – Stylesheet options. This can be dictionary or preset stylesheet classes. See :py:class:\~\`qiskit.visualization.pulse\_v2.stylesheets.IQXStandard\`, :py:class:\~\`qiskit.visualization.pulse\_v2.stylesheets.IQXSimple\`, and :py:class:\~\`qiskit.visualization.pulse\_v2.stylesheets.IQXDebugging\` for details of preset stylesheets.
+
+*   **backend** (*Optional\[*[*BaseBackend*](qiskit.providers.BaseBackend "qiskit.providers.BaseBackend")*]*) – Backend object to play the input pulse program. If provided, the plotter may use to make the visualization hardware aware.
+
+*   **time\_range** (`Optional`\[`Tuple`\[`int`, `int`]]) – Set horizontal axis limit. Tuple `(tmin, tmax)`.
+
+*   **time\_unit** (`str`) – The unit of specified time range either `dt` or `ns`. The unit of `ns` is available only when `backend` object is provided.
+
+*   **show\_waveform\_info** (`bool`) – Show waveform annotations, i.e. name, of waveforms. Set `True` to show additional information about waveforms.
+
+*   **plotter** (`str`) –
+
+    Name of plotter API to generate an output image. One of following APIs should be specified:
+
+    ```python
+    mpl2d: Matplotlib API for 2D image generation.
+        Matplotlib API to generate 2D image. Charts are placed along y axis with
+        vertical offset. This API takes matplotlib.axes.Axes as `axis` input.
+    ```
+
+    axis and style kwargs may depend on the plotter.
+
+*   **axis** (`Optional`\[`Any`]) – Arbitrary object passed to the plotter. If this object is provided, the plotters use a given `axis` instead of internally initializing a figure object. This object format depends on the plotter. See plotter argument for details.
+
+*   **dt** (`Optional`\[`Any`]) – Deprecated. This argument is used by the legacy pulse drawer.
+
+*   **filename** (`Optional`\[`Any`]) – Deprecated. This argument is used by the legacy pulse drawer. To save output image, you can call .savefig method with returned Matplotlib Figure object.
+
+*   **interp\_method** (`Optional`\[`Any`]) – Deprecated. This argument is used by the legacy pulse drawer.
+
+*   **scale** (`Optional`\[`Any`]) – Deprecated. This argument is used by the legacy pulse drawer.
+
+*   **interactive** (`Optional`\[`Any`]) – Deprecated. This argument is used by the legacy pulse drawer.
+
+*   **draw\_title** (`Optional`\[`Any`]) – Deprecated. This argument is used by the legacy pulse drawer.
+
+**Returns**
+
+Visualization output data. The returned data type depends on the `plotter`. If matplotlib family is specified, this will be a `matplotlib.pyplot.Figure` data.
+
+### id
+
+<span id="qiskit.pulse.Waveform.id" />
+
+`property id`
+
+Unique identifier for this pulse.
+
+**Return type**
+
+`int`
+
+### is\_parameterized
+
+<span id="qiskit.pulse.Waveform.is_parameterized" />
+
+`is_parameterized()`
+
+Return True iff the instruction is parameterized.
+
+**Return type**
+
+`bool`
+
+### parameters
+
+<span id="qiskit.pulse.Waveform.parameters" />
+
+`property parameters`
+
+Return a dictionary containing the pulse’s parameters.
+
+**Return type**
+
+`Dict`\[`str`, `Any`]
+
+### samples
+
+<span id="qiskit.pulse.Waveform.samples" />
+
+`property samples`
+
+Return sample values.
+
+**Return type**
+
+`ndarray`
+

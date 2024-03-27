@@ -1,0 +1,44 @@
+---
+title: Triangle
+description: API reference for qiskit.pulse.library.Triangle
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.library.Triangle
+---
+
+<span id="qiskit-pulse-library-triangle" />
+
+# qiskit.pulse.library.Triangle
+
+<span id="qiskit.pulse.library.Triangle" />
+
+`Triangle(duration, amp, phase, freq=None, angle=0.0, name=None, limit_amplitude=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/library/symbolic_pulses.py "view source code")
+
+A triangle pulse.
+
+The envelope of the pulse is given by:
+
+$$
+f(x) = \text{A}\left[\text{sawtooth}\left(x\right)\right]  ,  0 <= x < duration
+$$
+
+where $\text{A} = \text{amp} \times\exp\left(i\times\text{angle}\right)$, and $\text{sawtooth}\left(x\right)$ is a sawtooth wave with the same frequency as the triangle wave, but a phase shifted by $\frac{\pi}{2}$.
+
+**Parameters**
+
+*   **duration** (*int |* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – Pulse length in terms of the sampling period dt.
+*   **amp** (*float |* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – The magnitude of the amplitude of the triangle wave. Wave range is \[-amp,\`amp\`].
+*   **phase** (*float |* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – The phase of the triangle wave (note that this is not equivalent to the angle of the complex amplitude)
+*   **freq** (*float |* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression") *| None*) – The frequency of the triangle wave, in terms of 1 over sampling period. If not provided defaults to a single cycle (i.e :math:’frac\{1}\{text\{duration}}’). The frequency is limited to the range $\left(0,0.5\right]$ (the Nyquist frequency).
+*   **angle** (*float |* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression") *| None*) – The angle in radians of the complex phase factor uniformly scaling the pulse. Default value 0.
+*   **name** (*str | None*) – Display name for this pulse envelope.
+*   **limit\_amplitude** (*bool | None*) – If `True`, then limit the amplitude of the waveform to 1. The default is `True` and the amplitude is constrained to 1.
+
+**Returns**
+
+ScalableSymbolicPulse instance.
+
+**Return type**
+
+*ScalableSymbolicPulse*
+

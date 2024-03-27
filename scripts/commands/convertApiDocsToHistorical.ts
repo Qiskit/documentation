@@ -79,6 +79,7 @@ zxMain(async () => {
     projectNewHistoricalFolder,
   );
   await copyImages(pkgName, versionWithoutPatch);
+  await copyObjectsInv(pkgName, versionWithoutPatch);
 });
 
 async function copyApiDocsAndUpdateLinks(
@@ -86,9 +87,9 @@ async function copyApiDocsAndUpdateLinks(
   versionWithoutPatch: string,
 ) {
   console.log("Generating API docs");
-  const filePaths = await globby(`docs/api/${pkgName}/*.md`);
+  const filePaths = await globby(`docs/api/${pkgName}/*.mdx`);
   for (let filePath of filePaths) {
-    if (filePath.endsWith("release-notes.md")) {
+    if (filePath.endsWith("release-notes.mdx")) {
       continue;
     }
     updateLinksFile(
@@ -99,6 +100,16 @@ async function copyApiDocsAndUpdateLinks(
         `/api/${pkgName}/`,
         `/api/${pkgName}/${versionWithoutPatch}/`,
       ),
+    );
+  }
+
+  const releaseNotePath = `${getRoot()}/docs/api/${pkgName}/release-notes/${versionWithoutPatch}.mdx`;
+  if (await pathExists(releaseNotePath)) {
+    updateLinksFile(
+      pkgName,
+      versionWithoutPatch,
+      releaseNotePath,
+      releaseNotePath,
     );
   }
 }
@@ -141,6 +152,14 @@ async function copyImages(pkgName: string, versionWithoutPatch: string) {
   const imageDirDest = `${getRoot()}/public/images/api/${pkgName}/${versionWithoutPatch}`;
   await mkdirp(imageDirDest);
   await $`find ${imageDirSource}/* -maxdepth 0 -type f | grep -v "release_notes" | xargs -I {} cp -a {} ${imageDirDest}`;
+}
+
+async function copyObjectsInv(pkgName: string, versionWithoutPatch: string) {
+  console.log("Copying objects.inv");
+  const sourceDir = `${getRoot()}/public/api/${pkgName}`;
+  const destDir = `${getRoot()}/public/api/${pkgName}/${versionWithoutPatch}`;
+  await mkdirp(destDir);
+  await $`cp -a ${sourceDir}/objects.inv ${destDir}`;
 }
 
 async function updateLinksFile(

@@ -1,0 +1,209 @@
+---
+title: AmplitudeEstimation
+description: API reference for qiskit.algorithms.AmplitudeEstimation
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.algorithms.AmplitudeEstimation
+---
+
+# AmplitudeEstimation
+
+<span id="qiskit.algorithms.AmplitudeEstimation" />
+
+`qiskit.algorithms.AmplitudeEstimation(num_eval_qubits, phase_estimation_circuit=None, iqft=None, quantum_instance=None, sampler=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/amplitude_estimators/ae.py "view source code")
+
+Bases: [`AmplitudeEstimator`](qiskit.algorithms.AmplitudeEstimator "qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimator")
+
+The Quantum Phase Estimation-based Amplitude Estimation algorithm.
+
+This class implements the original Quantum Amplitude Estimation (QAE) algorithm, introduced by \[1]. This canonical version uses quantum phase estimation along with a set of $m$ additional evaluation qubits to find an estimate $\tilde{a}$, that is restricted to the grid
+
+$$
+\tilde{a} \in \{\sin^2(\pi  y / 2^m) : y = 0, ..., 2^{m-1}\}
+$$
+
+More evaluation qubits produce a finer sampling grid, therefore the accuracy of the algorithm increases with $m$.
+
+Using a maximum likelihood post processing, this grid constraint can be circumvented. This improved estimator is implemented as well, see \[2] Appendix A for more detail.
+
+<Admonition title="Note" type="note">
+  This class does not support the [`EstimationProblem.is_good_state`](qiskit.algorithms.EstimationProblem#is_good_state "qiskit.algorithms.EstimationProblem.is_good_state") property, as for phase estimation-based QAE, the oracle that identifes the good states must be encoded in the Grover operator. To set custom oracles, the [`EstimationProblem.grover_operator`](qiskit.algorithms.EstimationProblem#grover_operator "qiskit.algorithms.EstimationProblem.grover_operator") attribute can be set directly.
+</Admonition>
+
+**References**
+
+**\[1]: Brassard, G., Hoyer, P., Mosca, M., & Tapp, A. (2000).**
+
+Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://arxiv.org/abs/quant-ph/0005055).
+
+**\[2]: Grinko, D., Gacon, J., Zoufal, C., & Woerner, S. (2019).**
+
+Iterative Quantum Amplitude Estimation. [arXiv:1912.05559](https://arxiv.org/abs/1912.05559).
+
+<Admonition title="Deprecated since version 0.24.0" type="danger">
+  `qiskit.algorithms.amplitude_estimators.ae.AmplitudeEstimation.__init__()`’s argument `quantum_instance` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. Instead, use the `sampler` argument. See [https://qisk.it/algo\_migration](https://qisk.it/algo_migration) for a migration guide.
+</Admonition>
+
+**Parameters**
+
+*   **num\_eval\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of evaluation qubits.
+*   **phase\_estimation\_circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| None*) – The phase estimation circuit used to run the algorithm. Defaults to the standard phase estimation circuit from the circuit library, qiskit.circuit.library.PhaseEstimation when None.
+*   **iqft** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| None*) – The inverse quantum Fourier transform component, defaults to using a standard implementation from qiskit.circuit.library.QFT when None.
+*   **quantum\_instance** ([*QuantumInstance*](qiskit.utils.QuantumInstance "qiskit.utils.QuantumInstance")  *|*[*Backend*](qiskit.providers.Backend "qiskit.providers.Backend") *| None*) – Deprecated: The backend (or QuantumInstance) to execute the circuits on.
+*   **sampler** ([*BaseSampler*](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler") *| None*) – A sampler primitive to evaluate the circuits.
+
+**Raises**
+
+[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If the number of evaluation qubits is smaller than 1.
+
+## Attributes
+
+<span id="qiskit.algorithms.AmplitudeEstimation.quantum_instance" />
+
+### quantum\_instance
+
+Get the quantum instance.
+
+<Admonition title="Deprecated since version 0.24.0" type="danger">
+  The property `qiskit.algorithms.amplitude_estimators.ae.AmplitudeEstimation.quantum_instance` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. See [https://qisk.it/algo\_migration](https://qisk.it/algo_migration) for a migration guide.
+</Admonition>
+
+**Returns**
+
+The quantum instance used to run this algorithm.
+
+**Type**
+
+Deprecated
+
+<span id="qiskit.algorithms.AmplitudeEstimation.sampler" />
+
+### sampler
+
+Get the sampler primitive.
+
+**Returns**
+
+The sampler primitive to evaluate the circuits.
+
+## Methods
+
+### compute\_confidence\_interval
+
+<span id="qiskit.algorithms.AmplitudeEstimation.compute_confidence_interval" />
+
+`static compute_confidence_interval(result, alpha=0.05, kind='likelihood_ratio')`
+
+Compute the (1 - alpha) confidence interval.
+
+**Parameters**
+
+*   **result** ([*AmplitudeEstimationResult*](qiskit.algorithms.AmplitudeEstimationResult "qiskit.algorithms.amplitude_estimators.ae.AmplitudeEstimationResult")) – An amplitude estimation result for which to compute the confidence interval.
+*   **alpha** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Confidence level: compute the (1 - alpha) confidence interval.
+*   **kind** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The method to compute the confidence interval, can be ‘fisher’, ‘observed\_fisher’ or ‘likelihood\_ratio’ (default)
+
+**Returns**
+
+The (1 - alpha) confidence interval of the specified kind.
+
+**Raises**
+
+[**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.12)") – If the confidence interval method kind is not implemented.
+
+**Return type**
+
+[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)"), [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")]
+
+### compute\_mle
+
+<span id="qiskit.algorithms.AmplitudeEstimation.compute_mle" />
+
+`static compute_mle(result, apply_post_processing=False)`
+
+Compute the Maximum Likelihood Estimator (MLE).
+
+**Parameters**
+
+*   **result** ([*AmplitudeEstimationResult*](qiskit.algorithms.AmplitudeEstimationResult "qiskit.algorithms.amplitude_estimators.ae.AmplitudeEstimationResult")) – An amplitude estimation result object.
+*   **apply\_post\_processing** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, apply the post processing to the MLE before returning it.
+
+**Returns**
+
+The MLE for the provided result object.
+
+**Return type**
+
+[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
+
+### construct\_circuit
+
+<span id="qiskit.algorithms.AmplitudeEstimation.construct_circuit" />
+
+`construct_circuit(estimation_problem, measurement=False)`
+
+Construct the Amplitude Estimation quantum circuit.
+
+**Parameters**
+
+*   **estimation\_problem** ([*EstimationProblem*](qiskit.algorithms.EstimationProblem "qiskit.algorithms.amplitude_estimators.estimation_problem.EstimationProblem")) – The estimation problem for which to construct the QAE circuit.
+*   **measurement** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Boolean flag to indicate if measurements should be included in the circuit.
+
+**Returns**
+
+The QuantumCircuit object for the constructed circuit.
+
+**Return type**
+
+[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+
+### estimate
+
+<span id="qiskit.algorithms.AmplitudeEstimation.estimate" />
+
+`estimate(estimation_problem)`
+
+Run the amplitude estimation algorithm on provided estimation problem.
+
+**Parameters**
+
+**estimation\_problem** ([*EstimationProblem*](qiskit.algorithms.EstimationProblem "qiskit.algorithms.amplitude_estimators.estimation_problem.EstimationProblem")) – The estimation problem.
+
+**Returns**
+
+An amplitude estimation results object.
+
+**Raises**
+
+*   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If state\_preparation or objective\_qubits are not set in the estimation\_problem.
+*   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – A quantum instance or sampler must be provided.
+*   [**AlgorithmError**](algorithms#qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – Sampler job run error.
+
+**Return type**
+
+[*AmplitudeEstimationResult*](qiskit.algorithms.AmplitudeEstimationResult "qiskit.algorithms.amplitude_estimators.ae.AmplitudeEstimationResult")
+
+### evaluate\_measurements
+
+<span id="qiskit.algorithms.AmplitudeEstimation.evaluate_measurements" />
+
+`evaluate_measurements(circuit_results, threshold=1e-06)`
+
+Evaluate the results from the circuit simulation.
+
+Given the probabilities from statevector simulation of the QAE circuit, compute the probabilities that the measurements y/gridpoints a are the best estimate.
+
+**Parameters**
+
+*   **circuit\_results** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | np.ndarray*) – The circuit result from the QAE circuit. Can be either a counts dict or a statevector or a quasi-probabilities dict.
+*   **threshold** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Measurements with probabilities below the threshold are discarded.
+
+**Returns**
+
+**Dictionaries containing the a gridpoints with respective probabilities and**
+
+y measurements with respective probabilities, in this order.
+
+**Return type**
+
+[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)"), [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")], [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)"), [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")]]
+

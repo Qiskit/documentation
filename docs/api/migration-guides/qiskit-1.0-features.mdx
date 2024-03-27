@@ -1,12 +1,64 @@
 ---
 title: Qiskit 1.0 feature migration guide
-description: Adapt to feature changes with Qiskit 1.0
+description: Description of feature changes introduced in Qiskit 1.0 and how to update your code to work with them.
 ---
 
 # Qiskit 1.0 feature changes
 
-This guide describes migration paths for the most important feature changes in Qiskit&reg;  1.0, organized by module.
+This guide describes migration paths for the most important feature changes in Qiskit 1.0, organized by module.
 Use the table of contents on the right side to navigate to the module you are interested in.
+
+## Qiskit 1.0 migration tool
+
+To ease the migration process, you can use the
+[`flake8-qiskit-migration`](https://github.com/qiskit-community/flake8-qiskit-migration)
+tool to detect removed import paths in your code and suggest alternatives.
+
+<Tabs>
+  <TabItem value="flake8-pipx" label="Run with pipx" default>
+      If you have [`pipx`](https://github.com/pypa/pipx) installed, simply run
+      the following command.
+      ```sh
+      pipx run flake8-qiskit-migration <path-to-source-directory> 
+      ```
+      This will install the package to a temporary virtual environment and run
+      it on your code.
+  </TabItem>
+  <TabItem value="flake8-venv" label="Run with venv" default>
+      If you don't want to use `pipx`, you can manually create a new
+      environment for the tool. This approach also lets you use
+      [`nbqa`](https://github.com/nbQA-dev/nbQA) to check code examples in
+      Jupyter notebooks. Delete the environment when you're finished.
+      ```sh
+      # Make new environment and install
+      python -m venv .flake8-qiskit-migration-venv
+      source .flake8-qiskit-migration-venv/bin/activate
+      pip install flake8-qiskit-migration
+
+      # Run plugin on Python code
+      flake8 --select QKT100 <path-to-source-directory>  # e.g. `src/`
+
+      # (Optional) run plugin on notebooks
+      pip install nbqa
+      nbqa flake8 ./**/*.ipynb --select QKT100
+
+      # Deactivate and delete environment
+      deactivate
+      rm -r .flake8-qiskit-migration-venv
+      ```
+  </TabItem>
+</Tabs>
+
+<Admonition type="note" title="Limitations">
+This tool only detects removed import paths. It does not detect the use of removed
+methods (such as `QuantumCircuit.qasm`) or arguments. It also can't keep track
+of assignments such as `qk = qiskit`, although it can handle aliases such as
+`import qiskit as qk`.
+</Admonition>
+
+For more information, see the [project's
+repository](https://github.com/qiskit-community/flake8-qiskit-migration).
+
 
 <span id="qiskit.global"></span>
 ## Global instances and functions
@@ -261,7 +313,7 @@ These differences are dictated by the base class, but are shown in the following
 implementations found in `qiskit.primitives`:
 
 <Admonition type="note">
-For the following examples, assume the following imports and primitive intializations:
+For the following examples, assume the following imports and primitive initializations:
 
 ```python
 from qiskit.primitives import (
@@ -339,8 +391,9 @@ sampler_v2 = StatevectorSampler()
   </TabItem>
   <TabItem value="e-2-2" label="Estimator, 2 circuits, 2 different observables" default>
       ```python
-      # executing 2 circuits with different observables
-      # is not possible using Estimator V1
+      # executing 2 circuits with 2 different observables using Estimator V1
+      job = estimator_v1.run([circuit1, circuit2] , [obs1, obs2])
+      evs = job.result().values
 
       # executing 2 circuits with 2 different observables using Estimator V2
       job = estimator_v2.run([(circuit1, obs1), (circuit2, obs2)])
@@ -394,15 +447,15 @@ sampler_v2 = StatevectorSampler()
     result = sampler_v2.run([circuit]).result()
     # Access result data for pub 0
     data_pub = result[0].data
-    # Access bitstring for the classical register "meas"
-    bitstring = data_pub.meas.get_bitstring()
-    print(f"The bitstring shape is: {bitstring.shape}")
+    # Access bitstrings for the classical register "meas"
+    bitstrings = data_pub.meas.get_bitstrings()
+    print(f"The number of bitstrings is: {len(bitstrings)}")
     # Get counts for the classical register "meas"
     counts = data_pub.meas.get_counts()
     print(f"The counts are: {counts}")
     ```
     ```text
-    The bitstring shape is: (1024, 1)
+    The number of bitstrings is: 1024
     The counts are: {'00': 523, '11': 501}
     ```
 

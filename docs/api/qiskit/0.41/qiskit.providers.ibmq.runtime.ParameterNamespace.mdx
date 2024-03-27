@@ -1,0 +1,68 @@
+---
+title: ParameterNamespace
+description: API reference for qiskit.providers.ibmq.runtime.ParameterNamespace
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.ibmq.runtime.ParameterNamespace
+---
+
+<Admonition title="Warning" type="caution">
+  The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
+</Admonition>
+
+# ParameterNamespace
+
+<span id="qiskit.providers.ibmq.runtime.ParameterNamespace" />
+
+`ParameterNamespace(parameters)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/runtime/runtime_program.py "view source code")
+
+Bases: `types.SimpleNamespace`
+
+A namespace for program parameters with validation.
+
+This class provides a namespace for program parameters with auto-completion and validation support.
+
+ParameterNamespace constructor.
+
+**Parameters**
+
+**parameters** (`Dict`) – The program’s input parameters.
+
+## Methods
+
+<Admonition title="Warning" type="caution">
+  The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
+</Admonition>
+
+### validate
+
+<span id="qiskit.providers.ibmq.runtime.ParameterNamespace.validate" />
+
+`ParameterNamespace.validate()`
+
+Validate program input values.
+
+<Admonition title="Note" type="note">
+  This method only verifies that required parameters have values. It does not fail the validation if the namespace has extraneous parameters.
+</Admonition>
+
+**Raises**
+
+**IBMQInputValueError** – if validation fails
+
+**Return type**
+
+`None`
+
+## Attributes
+
+<span id="qiskit.providers.ibmq.runtime.ParameterNamespace.metadata" />
+
+### metadata
+
+Returns the parameter metadata
+
+**Return type**
+
+`Dict`
+

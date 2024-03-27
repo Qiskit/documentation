@@ -1,0 +1,223 @@
+---
+title: Qiskit 0.30 release notes
+description: Changes made in Qiskit 0.30
+in_page_toc_max_heading_level: 4
+---
+
+# Qiskit 0.30 release notes
+
+## 0.30.1
+
+<span id="release-notes-0-18-3" />
+
+<span id="id211" />
+
+### Terra 0.18.3
+
+<span id="id212" />
+
+#### Prelude
+
+This bugfix release fixes a few minor issues in 0.18, including a performance regression in [`assemble`](/api/qiskit/0.45/compiler#qiskit.compiler.assemble "qiskit.compiler.assemble") when dealing with executing [`QuantumCircuit`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects on pulse-enabled backends.
+
+<span id="release-notes-0-18-3-bug-fixes" />
+
+<span id="id213" />
+
+#### Bug Fixes
+
+*   Fixed [#7004](https://github.com/Qiskit/qiskit-terra/issues/7004) where `AttributeError` was raised when executing [`ScheduleBlock`](/api/qiskit/0.45/qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") on a pulse backend. These blocks are now correctly treated as pulse jobs, like [`Schedule`](/api/qiskit/0.45/qiskit.pulse.Schedule "qiskit.pulse.Schedule").
+*   Fixed an issue causing an error when binding a complex parameter value to an operator’s coefficient. Casts to `float` in [`PrimitiveOp`](/api/qiskit/0.45/qiskit.opflow.primitive_ops.PrimitiveOp "qiskit.opflow.primitive_ops.PrimitiveOp") were generalized to casts to `complex` if necessary, but will remain `float` if there is no imaginary component. Fixes [#6976](https://github.com/Qiskit/qiskit-terra/issues/6976).
+*   Update the 1-qubit gate errors in [`plot_error_map`](/api/qiskit/0.45/qiskit.visualization.plot_error_map "qiskit.visualization.plot_error_map") to use the sx gate instead of the u2 gate, consistent with IBMQ backends.
+
+<span id="aer-0-9-0" />
+
+### Aer 0.9.0
+
+No change
+
+<span id="id214" />
+
+### Ignis 0.6.0
+
+No change
+
+<span id="id215" />
+
+### Aqua 0.9.5
+
+No change
+
+<span id="ibm-q-provider-0-16-0" />
+
+### IBM Q Provider 0.16.0
+
+No change
+
+<span id="qiskit-0-30-0" />
+
+## 0.30.0
+
+<span id="terra-0-18-2" />
+
+### Terra 0.18.2
+
+No change
+
+<span id="release-notes-aer-0-9-0" />
+
+<span id="id216" />
+
+### Aer 0.9.0
+
+<span id="release-notes-aer-0-9-0-prelude" />
+
+<span id="id217" />
+
+#### Prelude
+
+The 0.9 release includes new backend options for parallel exeuction of large numbers of circuits on a HPC cluster using a Dask distributed, along with other general performance improvements and bug fixes.
+
+<span id="release-notes-0-9-0-aer-new-features" />
+
+<span id="id218" />
+
+#### New Features
+
+*   Added support for set\_matrix\_product\_state.
+
+*   Add qiskit library [`SXdgGate`](/api/qiskit/0.45/qiskit.circuit.library.SXdgGate "qiskit.circuit.library.SXdgGate") and [`CUGate`](/api/qiskit/0.45/qiskit.circuit.library.CUGate "qiskit.circuit.library.CUGate") to the supported basis gates for the Aer simulator backends. Note that the [`CUGate`](/api/qiskit/0.45/qiskit.circuit.library.CUGate "qiskit.circuit.library.CUGate") gate is only natively supported for the `statevector` and `unitary` methods. For other simulation methods it must be transpiled to the supported basis gates for that method.
+
+*   Adds support for N-qubit Pauli gate ( `qiskit.circuit.library.generalized_gates.PauliGate`) to all simulation methods of the `AerSimulator` and `QasmSimulator`.
+
+*   Adds the ability to set a custom executor and configure job splitting for executing multiple circuits in parallel on a HPC clustor. A custom executor can be set using the `executor` option, and job splitting is configured by using the `max_job_size` option.
+
+    For example configuring a backend and executing using
+
+    ```python
+    backend = AerSimulator(max_job_size=1, executor=custom_executor)
+    job = backend.run(circuits)
+    ```
+
+    will split the exection into multiple jobs each containing a single circuit. If job splitting is enabled the `run` method will return a `AerJobSet` object containing all the individual `AerJob` classes. After all individual jobs finish running the job results are automatically combined into a single Result object that is returned by `job.result()`.
+
+    Supported executors include those in the Python `concurrent.futures` [module](https://docs.python.org/3/library/concurrent.futures.html) (eg. `ThreadPoolExecutor`, `ProcessPoolExecutor`), and [Dask](http://dask.org) distributed Client executors if the optional dask library is installed. Using a Dask executor allows configuring parallel execution of multiple circuits on HPC clusters.
+
+*   Adds ability to record logging data for the `matrix_product_state` simulation method to the experiment result metadata by setting the backend option `mps_log_data=True`. The saved data includes the bond dimensions and the discarded value (the sum of the squares of the Schmidt coeffients that were discarded by approximation) after every relevant circuit instruction.
+
+*   The `run()` method for the `AerSimulator`, `QasmSimulator`, `StatevectorSimulator`, and `UnitarySimulator` has a new kwarg, `parameter_binds` which is used to provide a list of values to use for any unbound parameters in the inbound circuit. For example:
+
+    ```python
+    from qiskit.circuit import QuantumCircuit, Parameter
+    from qiskit.providers.aer import AerSimulator
+
+    shots = 1000
+    backend = AerSimulator()
+    circuit = QuantumCircuit(2)
+    theta = Parameter('theta')
+    circuit.rx(theta, 0)
+    circuit.cx(0, 1)
+    circuit.measure_all()
+    parameter_binds = [{theta: [0, 3.14, 6.28]}]
+    backend.run(circuit, shots=shots, parameter_binds=parameter_binds).result()
+    ```
+
+    will run the input circuit 3 times with the values 0, 3.14, and 6.28 for theta. When running with multiple parameters the length of the value lists must all be the same. When running with multiple circuits, the length of `parameter_binds` must match the number of input circuits (you can use an empty dict, `{}`, if there are no binds for a circuit).
+
+*   The `PulseSimulator` can now take [`QuantumCircuit`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects on the `run()`. Previously, it only would except [`Schedule`](/api/qiskit/0.45/qiskit.pulse.Schedule "qiskit.pulse.Schedule") objects as input to `run()`. When a circuit or list of circuits is passed to the simulator it will call [`schedule()`](/api/qiskit/0.45/compiler#qiskit.compiler.schedule "qiskit.compiler.schedule") to convert the circuits to a schedule before executing the circuit. For example:
+
+    ```python
+    from qiskit.circuit import QuantumCircuit
+    from qiskit.compiler import transpile
+    from qiskit.test.mock import FakeVigo
+    from qiskit.providers.aer.backends import PulseSimulator
+
+    backend = PulseSimulator.from_backend(FakeVigo())
+
+    circuit = QuantumCircuit(2)
+    circuit.h(0)
+    circuit.cx(0, 1)
+    circuit.measure_all()
+
+    transpiled_circuit = transpile(circuit, backend)
+    backend.run(circuit)
+    ```
+
+<span id="release-notes-aer-0-9-0-known-issues" />
+
+<span id="id219" />
+
+#### Known Issues
+
+*   The `SaveExpectationValue` and `SaveExpectationValueVariance` have been disabled for the extended\_stabilizer method of the `QasmSimulator` and `AerSimulator` due to returning the incorrect value for certain Pauli operator components. Refer to #1227 \<[https://github.com/Qiskit/qiskit-aer/issues/1227](https://github.com/Qiskit/qiskit-aer/issues/1227)> for more information and examples.
+
+<span id="release-notes-aer-0-9-0-upgrade-notes" />
+
+<span id="id220" />
+
+#### Upgrade Notes
+
+*   The default basis for the `NoiseModel` class has been changed from `["id", "u3", "cx"]` to `["id", "rz", "sx", "cx"]` due to the deprecation of the `u3` circuit method in qiskit-terra and change of qiskit-ibmq-provider backend basis gates. To use the old basis gates you can initialize a noise model with custom basis gates as `NoiseModel(basis_gates=["id", "u3", "cx"])`.
+*   Removed the `backend_options` kwarg from the `run` methnod of Aer backends that was deprecated in qiskit-aer 0.7. All run options must now be passed as separate kwargs.
+*   Removed passing `system_model` as a positional arg for the `run` method of the `PulseSimulator`.
+
+<span id="release-notes-aer-0-9-0-deprecation-notes" />
+
+<span id="id221" />
+
+#### Deprecation Notes
+
+*   Passing an assembled qobj directly to the `run()` method of the Aer simulator backends has been deprecated in favor of passing transpiled circuits directly as `backend.run(circuits, **run_options)`.
+*   All snapshot instructions in `qiskit.providers.aer.extensions` have been deprecated. For replacement use the save instructions from the `qiskit.providers.aer.library` module.
+*   Adding non-local quantum errors to a `NoiseModel` has been deprecated due to inconsistencies in how this noise is applied to the optimized circuit. Non-local noise should be manually added to a scheduled circuit in Qiskit using a custom transpiler pass before being run on the simulator.
+*   Use of the `method` option of the `StatevectorSimulator`, and `UnitarySimulator` to run a GPU simulation has been deprecated. To run a GPU simulation on a compatible system use the option `device='GPU'` instead.
+
+<span id="release-notes-aer-0-9-0-bug-fixes" />
+
+<span id="id222" />
+
+#### Bug Fixes
+
+*   Fixes performance issue with how the `basis_gates` configuration attribute was set. Previously there were unintended side-effects to the backend class which could cause repeated simulation runtime to incrementally increase. Refer to #1229 \<[https://github.com/Qiskit/qiskit-aer/issues/1229](https://github.com/Qiskit/qiskit-aer/issues/1229)> for more information and examples.
+*   Fixed bug in MPS::apply\_kraus. After applying the kraus matrix to the relevant qubits, we should propagate the changes to the neighboring qubits.
+*   Fixes a bug where qiskit-terra assumes that qubits in a multiplexer gate are first the targets and then the controls of the gate while qiskit-aer assumes the opposite order.
+*   Fixes a bug introduced in 0.8.0 where GPU simulations would allocate unneeded host memory in addition to the GPU memory.
+*   Fixes bug where the initialize instruction would disable measurement sampling optimization for the statevector and matrix product state simulation methods even when it was the first circuit instruction or applied to all qubits and hence deterministic.
+*   Fix issue #1196 by using the inner products with the computational basis states to calculate the norm rather than the norm estimation algorithm.
+*   Fixes a bug in the `stabilizer` simulator method of the `QasmSimulator` and `AerSimulator` where the expectation value for the `save_expectation_value` and `snapshot_expectation_value` could have the wrong sign for certain `Y` Pauli’s.
+*   Fixes bug where the if the required memory is smaller than the system memory the multi-chunk simulation method was enabled and simulation was still started. This case will now throw an insufficient memory exception.
+*   Fixes issue where setting the `shots` option for a backend with `set_options(shots=k)` was always running the default number of shots (1024) rather than the specified value.
+*   Fixes a bug in how the `AerSimulator` handled the option value for `max_parallel_experiments=1`. Previously this was treated the same as `max_parallel_experiments=0`.
+*   Fixes bug in the `extended_stabilizer` simulation method where it incorrectly treated qelay gate and multi-qubit Pauli instructions as unsupported.
+*   Fixes typo in the `AerSimulator` and `QasmSimulator` options for the `extended_stabilizer_norm_estimation_repetitions` option.
+*   Fixes bug with applying the `unitary` gate in using the `matrix_product_state` simulation method which did not correctly support permutations in the ordering of the qubits on which the gate is applied.
+*   Fixes an issue where gate fusion could still be enabled for the `matrix_product_state` simulation method even though it is not supported. Now fusion is always disabled for this method.
+*   Fixed bug in the `matrix_product_state` simulation method in computing the normalization following truncation of the Schmidt coefficients after performing the SVD.
+
+<span id="release-notes-aer-0-9-0-other-notes" />
+
+<span id="id223" />
+
+#### Other Notes
+
+*   Improves the performance of the measurement sampling algorithm for the `matrix_product_state` simulation method. The new default behaviour is to always sample using the improved `mps_apply_measure` method. The `mps_probabilities` sampling method be still used by setting the custom option value `mps_sample_measure_algorithm="mps_probabilities"`.
+
+<span id="id224" />
+
+### Ignis 0.6.0
+
+No change
+
+<span id="id225" />
+
+### Aqua 0.9.5
+
+No change
+
+<span id="id226" />
+
+### IBM Q Provider 0.16.0
+
+No change
+
+<span id="qiskit-0-29-1" />

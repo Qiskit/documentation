@@ -1,0 +1,320 @@
+---
+title: PhaseOracle
+description: API reference for qiskit.circuit.library.PhaseOracle
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.PhaseOracle
+---
+
+# PhaseOracle
+
+<span id="qiskit.circuit.library.PhaseOracle" />
+
+`PhaseOracle(expression, synthesizer=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/phase_oracle.py "view source code")
+
+Bases: [`qiskit.circuit.quantumcircuit.QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+
+Phase Oracle.
+
+The Phase Oracle object constructs circuits for any arbitrary input logical expressions. A logical expression is composed of logical operators & (AND), | (OR), \~ (NOT), and ^ (XOR). as well as symbols for literals (variables). For example, ‘a & b’, and (v0 | \~v1) & (\~v2 & v3) are both valid string representation of boolean logical expressions.
+
+For convenience, this oracle, in addition to parsing arbitrary logical expressions, also supports input strings in the [DIMACS CNF format](http://www.satcompetition.org/2009/format-benchmarks2009.html), which is the standard format for specifying SATisfiability (SAT) problem instances in [Conjunctive Normal Form (CNF)](https://en.wikipedia.org/wiki/Conjunctive_normal_form), which is a conjunction of one or more clauses, where a clause is a disjunction of one or more literals. See `qiskit.circuit.library.phase_oracle.PhaseOracle.from_dimacs_file()`.
+
+From 16 variables on, possible performance issues should be expected when using the default synthesizer.
+
+Creates a PhaseOracle object
+
+**Parameters**
+
+*   **expression** (`Union`\[`str`, `ClassicalElement`]) – A Python-like boolean expression.
+*   **synthesizer** (`Optional`\[`Callable`\[\[[`BooleanExpression`](qiskit.circuit.classicalfunction.BooleanExpression "qiskit.circuit.classicalfunction.boolean_expression.BooleanExpression")], [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]]) – Optional. A function to convert a BooleanExpression into a QuantumCircuit If None is provided, Tweedledum’s pkrm\_synth with phase\_esop will be used.
+
+## Methods Defined Here
+
+### evaluate\_bitstring
+
+<span id="qiskit.circuit.library.PhaseOracle.evaluate_bitstring" />
+
+`PhaseOracle.evaluate_bitstring(bitstring)`
+
+Evaluate the oracle on a bitstring. This evaluation is done classically without any quantum circuit.
+
+**Parameters**
+
+**bitstring** (`str`) – The bitstring for which to evaluate. The input bitstring is expected to be in little-endian order.
+
+**Return type**
+
+`bool`
+
+**Returns**
+
+True if the bitstring is a good state, False otherwise.
+
+### from\_dimacs\_file
+
+<span id="qiskit.circuit.library.PhaseOracle.from_dimacs_file" />
+
+`classmethod PhaseOracle.from_dimacs_file(filename)`
+
+Create a PhaseOracle from the string in the DIMACS format.
+
+It is possible to build a PhaseOracle from a file in [DIMACS CNF format](http://www.satcompetition.org/2009/format-benchmarks2009.html), which is the standard format for specifying SATisfiability (SAT) problem instances in [Conjunctive Normal Form (CNF)](https://en.wikipedia.org/wiki/Conjunctive_normal_form), which is a conjunction of one or more clauses, where a clause is a disjunction of one or more literals.
+
+The following is an example of a CNF expressed in the DIMACS format:
+
+```python
+c DIMACS CNF file with 3 satisfying assignments: 1 -2 3, -1 -2 -3, 1 2 -3.
+p cnf 3 5
+-1 -2 -3 0
+1 -2 3 0
+1 2 -3 0
+1 -2 -3 0
+-1 2 3 0
+```
+
+The first line, following the c character, is a comment. The second line specifies that the CNF is over three boolean variables — let us call them $x_1, x_2, x_3$, and contains five clauses. The five clauses, listed afterwards, are implicitly joined by the logical AND operator, $\land$, while the variables in each clause, represented by their indices, are implicitly disjoined by the logical OR operator, $lor$. The $-$ symbol preceding a boolean variable index corresponds to the logical NOT operator, $lnot$. Character 0 (zero) marks the end of each clause. Essentially, the code above corresponds to the following CNF:
+
+$(\lnot x_1 \lor \lnot x_2 \lor \lnot x_3) \land (x_1 \lor \lnot x_2 \lor x_3) \land (x_1 \lor x_2 \lor \lnot x_3) \land (x_1 \lor \lnot x_2 \lor \lnot x_3) \land (\lnot x_1 \lor x_2 \lor x_3)$.
+
+**Parameters**
+
+**filename** (`str`) – A file in DIMACS format.
+
+**Returns**
+
+A quantum circuit with a phase oracle.
+
+**Return type**
+
+[PhaseOracle](qiskit.circuit.library.PhaseOracle "qiskit.circuit.library.PhaseOracle")
+
+## Attributes
+
+<span id="qiskit.circuit.library.PhaseOracle.ancillas" />
+
+### ancillas
+
+Returns a list of ancilla bits in the order that the registers were added.
+
+**Return type**
+
+`List`\[[`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.quantumregister.AncillaQubit")]
+
+<span id="qiskit.circuit.library.PhaseOracle.calibrations" />
+
+### calibrations
+
+Return calibration dictionary.
+
+The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+
+**Return type**
+
+`dict`
+
+<span id="qiskit.circuit.library.PhaseOracle.clbits" />
+
+### clbits
+
+Returns a list of classical bits in the order that the registers were added.
+
+**Return type**
+
+`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+
+<span id="qiskit.circuit.library.PhaseOracle.data" />
+
+### data
+
+Return the circuit data (instructions and context).
+
+**Returns**
+
+a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
+
+**Return type**
+
+QuantumCircuitData
+
+<span id="qiskit.circuit.library.PhaseOracle.extension_lib" />
+
+### extension\_lib
+
+`= 'include "qelib1.inc";'`
+
+<span id="qiskit.circuit.library.PhaseOracle.global_phase" />
+
+### global\_phase
+
+Return the global phase of the circuit in radians.
+
+**Return type**
+
+`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]
+
+<span id="qiskit.circuit.library.PhaseOracle.header" />
+
+### header
+
+`= 'OPENQASM 2.0;'`
+
+<span id="qiskit.circuit.library.PhaseOracle.instances" />
+
+### instances
+
+`= 2243`
+
+<span id="qiskit.circuit.library.PhaseOracle.metadata" />
+
+### metadata
+
+The user provided metadata associated with the circuit
+
+The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+
+**Return type**
+
+`dict`
+
+<span id="qiskit.circuit.library.PhaseOracle.num_ancillas" />
+
+### num\_ancillas
+
+Return the number of ancilla qubits.
+
+**Return type**
+
+`int`
+
+<span id="qiskit.circuit.library.PhaseOracle.num_clbits" />
+
+### num\_clbits
+
+Return number of classical bits.
+
+**Return type**
+
+`int`
+
+<span id="qiskit.circuit.library.PhaseOracle.num_parameters" />
+
+### num\_parameters
+
+The number of parameter objects in the circuit.
+
+**Return type**
+
+`int`
+
+<span id="qiskit.circuit.library.PhaseOracle.num_qubits" />
+
+### num\_qubits
+
+Return number of qubits.
+
+**Return type**
+
+`int`
+
+<span id="qiskit.circuit.library.PhaseOracle.op_start_times" />
+
+### op\_start\_times
+
+Return a list of operation start times.
+
+This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
+
+**Return type**
+
+`List`\[`int`]
+
+**Returns**
+
+List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
+
+**Raises**
+
+**AttributeError** – When circuit is not scheduled.
+
+<span id="qiskit.circuit.library.PhaseOracle.parameters" />
+
+### parameters
+
+The parameters defined in the circuit.
+
+This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
+
+**Examples**
+
+The snippet below shows that insertion order of parameters does not matter.
+
+```python
+>>> from qiskit.circuit import QuantumCircuit, Parameter
+>>> a, b, elephant = Parameter("a"), Parameter("b"), Parameter("elephant")
+>>> circuit = QuantumCircuit(1)
+>>> circuit.rx(b, 0)
+>>> circuit.rz(elephant, 0)
+>>> circuit.ry(a, 0)
+>>> circuit.parameters  # sorted alphabetically!
+ParameterView([Parameter(a), Parameter(b), Parameter(elephant)])
+```
+
+Bear in mind that alphabetical sorting might be unituitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
+
+```python
+>>> from qiskit.circuit import QuantumCircuit, Parameter
+>>> angles = [Parameter("angle_1"), Parameter("angle_2"), Parameter("angle_10")]
+>>> circuit = QuantumCircuit(1)
+>>> circuit.u(*angles, 0)
+>>> circuit.draw()
+   ┌─────────────────────────────┐
+q: ┤ U(angle_1,angle_2,angle_10) ├
+   └─────────────────────────────┘
+>>> circuit.parameters
+ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
+```
+
+To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
+
+```python
+```
+
+```python
+>>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector
+>>> x = ParameterVector("x", 12)
+>>> circuit = QuantumCircuit(1)
+>>> for x_i in x:
+...     circuit.rx(x_i, 0)
+>>> circuit.parameters
+ParameterView([
+    ParameterVectorElement(x[0]), ParameterVectorElement(x[1]),
+    ParameterVectorElement(x[2]), ParameterVectorElement(x[3]),
+    ..., ParameterVectorElement(x[11])
+])
+```
+
+**Return type**
+
+`ParameterView`
+
+**Returns**
+
+The sorted [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit.
+
+<span id="qiskit.circuit.library.PhaseOracle.prefix" />
+
+### prefix
+
+`= 'circuit'`
+
+<span id="qiskit.circuit.library.PhaseOracle.qubits" />
+
+### qubits
+
+Returns a list of quantum bits in the order that the registers were added.
+
+**Return type**
+
+`List`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")]
+

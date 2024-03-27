@@ -1,0 +1,49 @@
+---
+title: TrotterizationFactory
+description: API reference for qiskit.opflow.evolutions.TrotterizationFactory
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.opflow.evolutions.TrotterizationFactory
+---
+
+# TrotterizationFactory
+
+<span id="qiskit.opflow.evolutions.TrotterizationFactory" />
+
+`qiskit.opflow.evolutions.TrotterizationFactory` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/opflow/evolutions/trotterizations/trotterization_factory.py "view source code")
+
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
+
+Deprecated: A factory for conveniently creating TrotterizationBase instances.
+
+## Methods
+
+### build
+
+<span id="qiskit.opflow.evolutions.TrotterizationFactory.build" />
+
+`static build(mode='trotter', reps=1)`
+
+A factory for conveniently creating TrotterizationBase instances.
+
+<Admonition title="Deprecated since version 0.24.0" type="danger">
+  The method `qiskit.opflow.evolutions.trotterizations.trotterization_factory.TrotterizationFactory.build()` is deprecated as of qiskit-terra 0.24.0. It will be removed in the Qiskit 1.0 release. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+</Admonition>
+
+**Parameters**
+
+*   **mode** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – One of ‘trotter’, ‘suzuki’, ‘qdrift’
+*   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of times to repeat the Trotterization circuit.
+
+**Returns**
+
+The desired TrotterizationBase instance.
+
+**Raises**
+
+[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – A string not in \[‘trotter’, ‘suzuki’, ‘qdrift’] is given for mode.
+
+**Return type**
+
+[*TrotterizationBase*](qiskit.opflow.evolutions.TrotterizationBase "qiskit.opflow.evolutions.trotterizations.trotterization_base.TrotterizationBase")
+

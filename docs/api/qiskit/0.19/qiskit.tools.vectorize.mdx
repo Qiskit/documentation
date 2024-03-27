@@ -1,0 +1,46 @@
+---
+title: vectorize
+description: API reference for qiskit.tools.vectorize
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.tools.vectorize
+---
+
+# vectorize
+
+<span id="qiskit.tools.vectorize" />
+
+`vectorize(density_matrix, method='col')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/tools/qi/qi.py "view source code")
+
+Flatten an operator to a vector in a specified basis.
+
+**Parameters**
+
+*   **density\_matrix** (*ndarray*) – a density matrix.
+
+*   **method** (*str*) –
+
+    the method of vectorization. Allowed values are:
+
+    *   ’col’ (default) flattens to column-major vector.
+
+    *   ’row’ flattens to row-major vector.
+
+    *   ’pauli’ flattens in the n-qubit Pauli basis.
+
+    *   **’pauli-weights’: flattens in the n-qubit Pauli basis ordered by**
+
+        weight.
+
+**Returns**
+
+the resulting vector.
+
+**Return type**
+
+ndarray
+
+**Raises**
+
+**Exception** – if input state is not a n-qubit state
+

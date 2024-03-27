@@ -1,0 +1,18 @@
+---
+title: AquaError
+description: API reference for qiskit.aqua.AquaError
+in_page_toc_min_heading_level: 1
+python_api_type: exception
+python_api_name: qiskit.aqua.AquaError
+---
+
+# qiskit.aqua.AquaError
+
+<span id="qiskit.aqua.AquaError" />
+
+`AquaError(*message)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/aqua_error.py "view source code")
+
+Base class for errors raised by Aqua.
+
+Set the error message.
+

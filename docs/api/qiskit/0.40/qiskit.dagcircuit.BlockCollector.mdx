@@ -1,0 +1,60 @@
+---
+title: BlockCollector
+description: API reference for qiskit.dagcircuit.BlockCollector
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.dagcircuit.BlockCollector
+---
+
+# BlockCollector
+
+<span id="qiskit.dagcircuit.BlockCollector" />
+
+`BlockCollector(dag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/dagcircuit/collect_blocks.py "view source code")
+
+Bases: `object`
+
+Class for implementing block collection on a DAG.
+
+This class implements various strategies of dividing a DAG (direct acyclic graph) into blocks of nodes that satisfy certain criteria. It works both with the [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") and [`DAGDependency`](qiskit.dagcircuit.DAGDependency "qiskit.dagcircuit.DAGDependency") representations of a DAG, where DagDependency takes into account commutativity between nodes.
+
+Collecting nodes from DAGDependency generally leads to more optimal results, but is slower, as it requires to construct a DAGDependency beforehand. Thus, DAGCircuit should be used with lower transpiler settings, and DAGDependency should be used with higher transpiler settings.
+
+In general, there are multiple ways to collect maximal blocks. The approaches used here are of the form ‘starting from the input nodes of a DAG, greedily collect the largest block of nodes that match certain criteria’. For additional details, see [https://github.com/Qiskit/qiskit-terra/issues/5775](https://github.com/Qiskit/qiskit-terra/issues/5775).
+
+**Parameters**
+
+**dag** (*Union\[*[*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")*,* [*DAGDependency*](qiskit.dagcircuit.DAGDependency "qiskit.dagcircuit.DAGDependency")*]*) – The input DAG.
+
+**Raises**
+
+[**DAGCircuitError**](qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – the input object is not a DAG.
+
+## Methods
+
+### collect\_all\_matching\_blocks
+
+<span id="qiskit.dagcircuit.BlockCollector.collect_all_matching_blocks" />
+
+`BlockCollector.collect_all_matching_blocks(filter_fn, split_blocks=True, min_block_size=2)`
+
+Collects all blocks that match a given filtering function filter\_fn.
+
+This iteratively finds the largest block that does not match filter\_fn, then the largest block that matches filter\_fn, and so on, until no more uncollected nodes remain. Intuitively, finding larger blocks of non-matching nodes helps to find larger blocks of matching nodes later on.
+
+The option `split_blocks` allows to collected blocks into sub-blocks over disjoint qubit subsets. The option `min_block_size` specifies the minimum number of gates in the block for the block to be collected.
+
+Returns the list of matching blocks only.
+
+### collect\_matching\_block
+
+<span id="qiskit.dagcircuit.BlockCollector.collect_matching_block" />
+
+`BlockCollector.collect_matching_block(filter_fn)`
+
+Iteratively collects the largest block of input nodes
+
+The largest block is the block that contains nodes with `_in_degree` equal to 0) that match a given filtering function.
+
+Examples of this include collecting blocks of swap gates, blocks of linear gates (CXs and SWAPs), blocks of Clifford gates, blocks of single-qubit gates, blocks of two-qubit gates, etc. Here ‘iteratively’ means that once a node is collected, the `_in_degree` of each of its immediate successor is decreased by 1, allowing more nodes to become input and to be eligible for collecting into the current block. Returns the block of collected nodes.
+
