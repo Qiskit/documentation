@@ -50,8 +50,9 @@ export async function processMdxComponent(
   apiType: ApiType,
   id: string,
 ): Promise<[string, string]> {
-  const $firstSignature = signatures.shift()!;
+  const tagName = APITYPE_TO_TAG[apiType];
 
+  const $firstSignature = signatures.shift()!;
   const componentProps = prepareProps(
     $,
     $main,
@@ -67,9 +68,8 @@ export async function processMdxComponent(
       prepareProps($, $main, $overloadedSignature, $dl, apiType, apiType, id) ??
       [],
   );
-
-  const tagName = APITYPE_TO_TAG[apiType];
   addExtraSignatures(componentProps, extraProps);
+
   return [await createOpeningTag(tagName, componentProps), `</${tagName}>`];
 }
 
