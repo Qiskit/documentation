@@ -8,178 +8,148 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeLagos
 
 # FakeLagos
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeLagos" />
+<Class id="qiskit_ibm_runtime.fake_provider.FakeLagos" github="https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.19/qiskit_ibm_runtime/fake_provider/backends/lagos/fake_lagos.py" signature="FakeLagos">
+  A fake 7 qubit backend.
 
-`FakeLagos` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.19/qiskit_ibm_runtime/fake_provider/backends/lagos/fake_lagos.py "view source code")
+  FakeBackend initializer.
 
-A fake 7 qubit backend.
+  **Parameters**
 
-FakeBackend initializer.
+  *   **configuration** (*BackendConfiguration*) – backend configuration
+  *   **time\_alive** (*int*) – time to wait before returning result
 
-**Parameters**
+  ## Attributes
 
-*   **configuration** (*BackendConfiguration*) – backend configuration
-*   **time\_alive** (*int*) – time to wait before returning result
+  ### backend\_name
 
-## Attributes
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeLagos.backend_name" name="backend_name" attributeValue="= 'fake_lagos'" />
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeLagos.backend_name" />
+  ### conf\_filename
 
-### backend\_name
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeLagos.conf_filename" name="conf_filename" attributeValue="= 'conf_lagos.json'" />
 
-`= 'fake_lagos'`
+  ### defs\_filename
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeLagos.conf_filename" />
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeLagos.defs_filename" name="defs_filename" attributeValue="= 'defs_lagos.json'" />
 
-### conf\_filename
+  ### dirname
 
-`= 'conf_lagos.json'`
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeLagos.dirname" name="dirname" attributeValue="= '/home/runner/work/qiskit-ibm-runtime/qiskit-ibm-runtime/qiskit_ibm_runtime/fake_provider/backends/lagos'" />
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeLagos.defs_filename" />
+  ### options
 
-### defs\_filename
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeLagos.options" name="options">
+    Return the options for the backend
 
-`= 'defs_lagos.json'`
+    The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit_ibm_runtime.fake_provider.FakeLagos.run "qiskit_ibm_runtime.fake_provider.FakeLagos.run") method.
+  </Attribute>
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeLagos.dirname" />
+  ### props\_filename
 
-### dirname
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeLagos.props_filename" name="props_filename" attributeValue="= 'props_lagos.json'" />
 
-`= '/home/runner/work/qiskit-ibm-runtime/qiskit-ibm-runtime/qiskit_ibm_runtime/fake_provider/backends/lagos'`
+  ### version
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeLagos.options" />
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeLagos.version" name="version" attributeValue="= 1" />
 
-### options
+  ## Methods
 
-Return the options for the backend
+  ### configuration
 
-The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit_ibm_runtime.fake_provider.FakeLagos.run "qiskit_ibm_runtime.fake_provider.FakeLagos.run") method.
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeLagos.configuration" name="configuration" signature="configuration()">
+    Return the backend configuration.
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeLagos.props_filename" />
+    **Returns**
 
-### props\_filename
+    the configuration for the backend.
 
-`= 'props_lagos.json'`
+    **Return type**
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeLagos.version" />
+    BackendConfiguration
+  </Function>
 
-### version
+  ### defaults
 
-`= 1`
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeLagos.defaults" name="defaults" signature="defaults()">
+    Returns a snapshot of device defaults
 
-## Methods
+    **Return type**
 
-### configuration
+    `PulseDefaults`
+  </Function>
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeLagos.configuration" />
+  ### name
 
-`configuration()`
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeLagos.name" name="name" signature="name()">
+    Return the backend name.
 
-Return the backend configuration.
+    **Returns**
 
-**Returns**
+    the name of the backend.
 
-the configuration for the backend.
+    **Return type**
 
-**Return type**
+    str
+  </Function>
 
-BackendConfiguration
+  ### properties
 
-### defaults
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeLagos.properties" name="properties" signature="properties()">
+    Returns a snapshot of device properties
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeLagos.defaults" />
+    **Return type**
 
-`defaults()`
+    `BackendProperties`
+  </Function>
 
-Returns a snapshot of device defaults
+  ### provider
 
-**Return type**
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeLagos.provider" name="provider" signature="provider()">
+    Return the backend Provider.
 
-`PulseDefaults`
+    **Returns**
 
-### name
+    the Provider responsible for the backend.
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeLagos.name" />
+    **Return type**
 
-`name()`
+    Provider
+  </Function>
 
-Return the backend name.
+  ### run
 
-**Returns**
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeLagos.run" name="run" signature="run(run_input, **kwargs)">
+    Main job in simulator
+  </Function>
 
-the name of the backend.
+  ### set\_options
 
-**Return type**
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeLagos.set_options" name="set_options" signature="set_options(**fields)">
+    Set the options fields for the backend
 
-str
+    This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
 
-### properties
+    **Parameters**
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeLagos.properties" />
+    **fields** – The fields to update the options
 
-`properties()`
+    **Raises**
 
-Returns a snapshot of device properties
+    **AttributeError** – If the field passed in is not part of the options
+  </Function>
 
-**Return type**
+  ### status
 
-`BackendProperties`
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeLagos.status" name="status" signature="status()">
+    Return the backend status.
 
-### provider
+    **Returns**
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeLagos.provider" />
+    the status of the backend.
 
-`provider()`
+    **Return type**
 
-Return the backend Provider.
-
-**Returns**
-
-the Provider responsible for the backend.
-
-**Return type**
-
-Provider
-
-### run
-
-<span id="qiskit_ibm_runtime.fake_provider.FakeLagos.run" />
-
-`run(run_input, **kwargs)`
-
-Main job in simulator
-
-### set\_options
-
-<span id="qiskit_ibm_runtime.fake_provider.FakeLagos.set_options" />
-
-`set_options(**fields)`
-
-Set the options fields for the backend
-
-This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
-
-**Parameters**
-
-**fields** – The fields to update the options
-
-**Raises**
-
-**AttributeError** – If the field passed in is not part of the options
-
-### status
-
-<span id="qiskit_ibm_runtime.fake_provider.FakeLagos.status" />
-
-`status()`
-
-Return the backend status.
-
-**Returns**
-
-the status of the backend.
-
-**Return type**
-
-BackendStatus
+    BackendStatus
+  </Function>
+</Class>
 

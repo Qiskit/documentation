@@ -8,63 +8,57 @@ python_api_name: qiskit_ibm_runtime.ParameterNamespace
 
 # ParameterNamespace
 
-<span id="qiskit_ibm_runtime.ParameterNamespace" />
+<Class id="qiskit_ibm_runtime.ParameterNamespace" github="https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.15/qiskit_ibm_runtime/runtime_program.py" signature="ParameterNamespace(parameters)">
+  A namespace for program parameters with validation.
 
-`ParameterNamespace(parameters)` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.15/qiskit_ibm_runtime/runtime_program.py "view source code")
+  This class provides a namespace for program parameters with auto-completion and validation support.
 
-A namespace for program parameters with validation.
+  ParameterNamespace constructor.
 
-This class provides a namespace for program parameters with auto-completion and validation support.
+  **Parameters**
 
-ParameterNamespace constructor.
+  **parameters** (`Dict`) – The program’s input parameters.
 
-**Parameters**
+  ## Attributes
 
-**parameters** (`Dict`) – The program’s input parameters.
+  ### metadata
 
-## Attributes
+  <Attribute id="qiskit_ibm_runtime.ParameterNamespace.metadata" name="metadata">
+    Returns the parameter metadata
 
-<span id="qiskit_ibm_runtime.ParameterNamespace.metadata" />
+    **Return type**
 
-### metadata
+    `Dict`
+  </Attribute>
 
-Returns the parameter metadata
+  ## Methods
 
-**Return type**
+  ### to\_dict
 
-`Dict`
+  <Function id="qiskit_ibm_runtime.ParameterNamespace.to_dict" name="to_dict" signature="to_dict()">
+    Convert to dictionary.
 
-## Methods
+    **Return type**
 
-### to\_dict
+    `Dict`
+  </Function>
 
-<span id="qiskit_ibm_runtime.ParameterNamespace.to_dict" />
+  ### validate
 
-`to_dict()`
+  <Function id="qiskit_ibm_runtime.ParameterNamespace.validate" name="validate" signature="validate()">
+    Validate program input values.
 
-Convert to dictionary.
+    <Admonition title="Note" type="note">
+      This method only verifies that required parameters have values. It does not fail the validation if the namespace has extraneous parameters.
+    </Admonition>
 
-**Return type**
+    **Raises**
 
-`Dict`
+    **IBMInputValueError** – if validation fails
 
-### validate
+    **Return type**
 
-<span id="qiskit_ibm_runtime.ParameterNamespace.validate" />
-
-`validate()`
-
-Validate program input values.
-
-<Admonition title="Note" type="note">
-  This method only verifies that required parameters have values. It does not fail the validation if the namespace has extraneous parameters.
-</Admonition>
-
-**Raises**
-
-**IBMInputValueError** – if validation fails
-
-**Return type**
-
-`None`
+    `None`
+  </Function>
+</Class>
 

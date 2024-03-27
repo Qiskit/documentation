@@ -8,69 +8,61 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeProvider
 
 # FakeProvider
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeProvider" />
+<Class id="qiskit_ibm_runtime.fake_provider.FakeProvider" github="https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.19/qiskit_ibm_runtime/fake_provider/fake_provider.py" signature="FakeProvider">
+  Fake provider containing fake V1 backends.
 
-`FakeProvider` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.19/qiskit_ibm_runtime/fake_provider/fake_provider.py "view source code")
+  Only filtering backends by name is implemented. This class contains all fake V1 backends available in the [`qiskit_ibm_runtime.fake_provider`](fake_provider#module-qiskit_ibm_runtime.fake_provider "qiskit_ibm_runtime.fake_provider").
 
-Fake provider containing fake V1 backends.
+  ## Attributes
 
-Only filtering backends by name is implemented. This class contains all fake V1 backends available in the [`qiskit_ibm_runtime.fake_provider`](fake_provider#module-qiskit_ibm_runtime.fake_provider "qiskit_ibm_runtime.fake_provider").
+  ### version
 
-## Attributes
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeProvider.version" name="version" attributeValue="= 1" />
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeProvider.version" />
+  ## Methods
 
-### version
+  ### backends
 
-`= 1`
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeProvider.backends" name="backends" signature="backends(name=None, **kwargs)">
+    Return a list of backends matching the specified filtering.
 
-## Methods
+    **Parameters**
 
-### backends
+    *   **name** (*str*) – name of the backend.
+    *   **\*\*kwargs** – dict used for filtering.
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeProvider.backends" />
+    **Returns**
 
-`backends(name=None, **kwargs)`
+    **a list of Backends that match the filtering**
 
-Return a list of backends matching the specified filtering.
+    criteria.
 
-**Parameters**
+    **Return type**
 
-*   **name** (*str*) – name of the backend.
-*   **\*\*kwargs** – dict used for filtering.
+    list\[Backend]
+  </Function>
 
-**Returns**
+  ### get\_backend
 
-**a list of Backends that match the filtering**
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeProvider.get_backend" name="get_backend" signature="get_backend(name=None, **kwargs)">
+    Return a single backend matching the specified filtering.
 
-criteria.
+    **Parameters**
 
-**Return type**
+    *   **name** (*str*) – name of the backend.
+    *   **\*\*kwargs** – dict used for filtering.
 
-list\[Backend]
+    **Returns**
 
-### get\_backend
+    a backend matching the filtering.
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeProvider.get_backend" />
+    **Return type**
 
-`get_backend(name=None, **kwargs)`
+    Backend
 
-Return a single backend matching the specified filtering.
+    **Raises**
 
-**Parameters**
-
-*   **name** (*str*) – name of the backend.
-*   **\*\*kwargs** – dict used for filtering.
-
-**Returns**
-
-a backend matching the filtering.
-
-**Return type**
-
-Backend
-
-**Raises**
-
-**QiskitBackendNotFoundError** – if no backend could be found or more than one backend matches the filtering criteria.
+    **QiskitBackendNotFoundError** – if no backend could be found or more than one backend matches the filtering criteria.
+  </Function>
+</Class>
 

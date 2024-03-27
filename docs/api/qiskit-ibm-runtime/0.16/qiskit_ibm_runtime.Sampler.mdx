@@ -8,150 +8,144 @@ python_api_name: qiskit_ibm_runtime.Sampler
 
 # Sampler
 
-<span id="qiskit_ibm_runtime.Sampler" />
+<Class id="qiskit_ibm_runtime.Sampler" github="https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.16/qiskit_ibm_runtime/sampler.py" signature="Sampler(backend=None, session=None, options=None)">
+  Class for interacting with Qiskit Runtime Sampler primitive service.
 
-`Sampler(backend=None, session=None, options=None)` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.16/qiskit_ibm_runtime/sampler.py "view source code")
+  Qiskit Runtime Sampler primitive service calculates quasi-probability distribution of bitstrings from quantum circuits.
 
-Class for interacting with Qiskit Runtime Sampler primitive service.
+  The [`run()`](#qiskit_ibm_runtime.Sampler.run "qiskit_ibm_runtime.Sampler.run") method can be used to submit circuits and parameters to the Sampler primitive.
 
-Qiskit Runtime Sampler primitive service calculates quasi-probability distribution of bitstrings from quantum circuits.
+  You are encouraged to use [`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.Session") to open a session, during which you can invoke one or more primitives. Jobs submitted within a session are prioritized by the scheduler, and data is cached for efficiency.
 
-The [`run()`](#qiskit_ibm_runtime.Sampler.run "qiskit_ibm_runtime.Sampler.run") method can be used to submit circuits and parameters to the Sampler primitive.
+  Example:
 
-You are encouraged to use [`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.Session") to open a session, during which you can invoke one or more primitives. Jobs submitted within a session are prioritized by the scheduler, and data is cached for efficiency.
+  ```python
+  from qiskit.test.reference_circuits import ReferenceCircuits
+  from qiskit_ibm_runtime import QiskitRuntimeService, Session, Sampler
 
-Example:
+  service = QiskitRuntimeService(channel="ibm_cloud")
+  bell = ReferenceCircuits.bell()
 
-```python
-from qiskit.test.reference_circuits import ReferenceCircuits
-from qiskit_ibm_runtime import QiskitRuntimeService, Session, Sampler
+  with Session(service, backend="ibmq_qasm_simulator") as session:
+      sampler = Sampler(session=session)
 
-service = QiskitRuntimeService(channel="ibm_cloud")
-bell = ReferenceCircuits.bell()
+      job = sampler.run(bell, shots=1024)
+      print(f"Job ID: {job.job_id()}")
+      print(f"Job result: {job.result()}")
 
-with Session(service, backend="ibmq_qasm_simulator") as session:
-    sampler = Sampler(session=session)
+      # You can run more jobs inside the session
+  ```
 
-    job = sampler.run(bell, shots=1024)
-    print(f"Job ID: {job.job_id()}")
-    print(f"Job result: {job.result()}")
+  Initializes the Sampler primitive.
 
-    # You can run more jobs inside the session
-```
+  **Parameters**
 
-Initializes the Sampler primitive.
+  *   **backend** (`Union`\[`str`, [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend"), `None`]) – Backend to run the primitive. This can be a backend name or an [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.IBMBackend") instance. If a name is specified, the default account (e.g. `QiskitRuntimeService()`) is used.
 
-**Parameters**
+  *   **session** (`Union`\[[`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.session.Session"), `str`, [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend"), `None`]) –
 
-*   **backend** (`Union`\[`str`, [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend"), `None`]) – Backend to run the primitive. This can be a backend name or an [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.IBMBackend") instance. If a name is specified, the default account (e.g. `QiskitRuntimeService()`) is used.
+      Session in which to call the primitive.
 
-*   **session** (`Union`\[[`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.session.Session"), `str`, [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend"), `None`]) –
+      If both `session` and `backend` are specified, `session` takes precedence. If neither is specified, and the primitive is created inside a [`qiskit_ibm_runtime.Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.Session") context manager, then the session is used. Otherwise if IBM Cloud channel is used, a default backend is selected.
 
-    Session in which to call the primitive.
+  *   **options** (`Union`\[`Dict`, [`Options`](qiskit_ibm_runtime.options.Options "qiskit_ibm_runtime.options.options.Options"), `None`]) – Primitive options, see `Options` for detailed description. The `backend` keyword is still supported but is deprecated.
 
-    If both `session` and `backend` are specified, `session` takes precedence. If neither is specified, and the primitive is created inside a [`qiskit_ibm_runtime.Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.Session") context manager, then the session is used. Otherwise if IBM Cloud channel is used, a default backend is selected.
+  ## Attributes
 
-*   **options** (`Union`\[`Dict`, [`Options`](qiskit_ibm_runtime.options.Options "qiskit_ibm_runtime.options.options.Options"), `None`]) – Primitive options, see `Options` for detailed description. The `backend` keyword is still supported but is deprecated.
+  ### circuits
 
-## Attributes
+  <Attribute id="qiskit_ibm_runtime.Sampler.circuits" name="circuits">
+    Quantum circuits to be sampled.
 
-<span id="qiskit_ibm_runtime.Sampler.circuits" />
+    **Return type**
 
-### circuits
+    `tuple`\[`QuantumCircuit`, `...`]
 
-Quantum circuits to be sampled.
+    **Returns**
 
-**Return type**
+    The quantum circuits to be sampled.
+  </Attribute>
 
-`tuple`\[`QuantumCircuit`, `...`]
+  ### options
 
-**Returns**
+  <Attribute id="qiskit_ibm_runtime.Sampler.options" name="options">
+    Return options values for the sampler.
 
-The quantum circuits to be sampled.
+    **Return type**
 
-<span id="qiskit_ibm_runtime.Sampler.options" />
+    `Options`
 
-### options
+    **Returns**
 
-Return options values for the sampler.
+    options
+  </Attribute>
 
-**Return type**
+  ### parameters
 
-`Options`
+  <Attribute id="qiskit_ibm_runtime.Sampler.parameters" name="parameters">
+    Parameters of quantum circuits.
 
-**Returns**
+    **Return type**
 
-options
+    `tuple`\[`ParameterView`, `...`]
 
-<span id="qiskit_ibm_runtime.Sampler.parameters" />
+    **Returns**
 
-### parameters
+    List of the parameters in each quantum circuit.
+  </Attribute>
 
-Parameters of quantum circuits.
+  ### session
 
-**Return type**
+  <Attribute id="qiskit_ibm_runtime.Sampler.session" name="session">
+    Return session used by this primitive.
 
-`tuple`\[`ParameterView`, `...`]
+    **Return type**
 
-**Returns**
+    `Optional`\[[`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.session.Session")]
 
-List of the parameters in each quantum circuit.
+    **Returns**
 
-<span id="qiskit_ibm_runtime.Sampler.session" />
+    Session used by this primitive, or `None` if session is not used.
+  </Attribute>
 
-### session
+  ## Methods
 
-Return session used by this primitive.
+  ### run
 
-**Return type**
+  <Function id="qiskit_ibm_runtime.Sampler.run" name="run" signature="run(circuits, parameter_values=None, **kwargs)">
+    Submit a request to the sampler primitive.
 
-`Optional`\[[`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.session.Session")]
+    **Parameters**
 
-**Returns**
+    *   **circuits** (*QuantumCircuit | Sequence\[QuantumCircuit]*) – A (parameterized) `QuantumCircuit` or a list of (parameterized) `QuantumCircuit`.
+    *   **parameter\_values** (*Sequence\[float] | Sequence\[Sequence\[float]] | None*) – Concrete parameters to be bound.
+    *   **\*\*kwargs** – Individual options to overwrite the default primitive options. These include the runtime options in [`qiskit_ibm_runtime.RuntimeOptions`](qiskit_ibm_runtime.RuntimeOptions "qiskit_ibm_runtime.RuntimeOptions").
 
-Session used by this primitive, or `None` if session is not used.
+    **Return type**
 
-## Methods
+    [RuntimeJob](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.RuntimeJob")
 
-### run
+    **Returns**
 
-<span id="qiskit_ibm_runtime.Sampler.run" />
+    Submitted job. The result of the job is an instance of `qiskit.primitives.SamplerResult`.
 
-`run(circuits, parameter_values=None, **kwargs)`
+    **Raises**
 
-Submit a request to the sampler primitive.
+    **ValueError** – Invalid arguments are given.
+  </Function>
 
-**Parameters**
+  ### set\_options
 
-*   **circuits** (*QuantumCircuit | Sequence\[QuantumCircuit]*) – A (parameterized) `QuantumCircuit` or a list of (parameterized) `QuantumCircuit`.
-*   **parameter\_values** (*Sequence\[float] | Sequence\[Sequence\[float]] | None*) – Concrete parameters to be bound.
-*   **\*\*kwargs** – Individual options to overwrite the default primitive options. These include the runtime options in [`qiskit_ibm_runtime.RuntimeOptions`](qiskit_ibm_runtime.RuntimeOptions "qiskit_ibm_runtime.RuntimeOptions").
+  <Function id="qiskit_ibm_runtime.Sampler.set_options" name="set_options" signature="set_options(**fields)">
+    Set options values for the sampler.
 
-**Return type**
+    **Parameters**
 
-[RuntimeJob](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.RuntimeJob")
+    **\*\*fields** – The fields to update the options
 
-**Returns**
+    **Return type**
 
-Submitted job. The result of the job is an instance of `qiskit.primitives.SamplerResult`.
-
-**Raises**
-
-**ValueError** – Invalid arguments are given.
-
-### set\_options
-
-<span id="qiskit_ibm_runtime.Sampler.set_options" />
-
-`set_options(**fields)`
-
-Set options values for the sampler.
-
-**Parameters**
-
-**\*\*fields** – The fields to update the options
-
-**Return type**
-
-`None`
+    `None`
+  </Function>
+</Class>
 

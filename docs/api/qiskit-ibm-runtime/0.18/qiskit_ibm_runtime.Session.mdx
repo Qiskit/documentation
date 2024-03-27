@@ -8,189 +8,173 @@ python_api_name: qiskit_ibm_runtime.Session
 
 # Session
 
-<span id="qiskit_ibm_runtime.Session" />
+<Class id="qiskit_ibm_runtime.Session" github="https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.18/qiskit_ibm_runtime/session.py" signature="Session(service=None, backend=None, max_time=None)">
+  Class for creating a flexible Qiskit Runtime session.
 
-`Session(service=None, backend=None, max_time=None)` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.18/qiskit_ibm_runtime/session.py "view source code")
+  A Qiskit Runtime `session` allows you to group a collection of iterative calls to the quantum computer. A session is started when the first job within the session is started. Subsequent jobs within the session are prioritized by the scheduler. Data used within a session, such as transpiled circuits, is also cached to avoid unnecessary overhead.
 
-Class for creating a flexible Qiskit Runtime session.
+  You can open a Qiskit Runtime session using this `Session` class and submit jobs to one or more primitives.
 
-A Qiskit Runtime `session` allows you to group a collection of iterative calls to the quantum computer. A session is started when the first job within the session is started. Subsequent jobs within the session are prioritized by the scheduler. Data used within a session, such as transpiled circuits, is also cached to avoid unnecessary overhead.
+  For example:
 
-You can open a Qiskit Runtime session using this `Session` class and submit jobs to one or more primitives.
+  ```python
+  from qiskit.test.reference_circuits import ReferenceCircuits
+  from qiskit_ibm_runtime import Sampler, Session, Options
 
-For example:
+  options = Options(optimization_level=3)
 
-```python
-from qiskit.test.reference_circuits import ReferenceCircuits
-from qiskit_ibm_runtime import Sampler, Session, Options
+  with Session(backend="ibmq_qasm_simulator") as session:
+      sampler = Sampler(session=session, options=options)
+      job = sampler.run(ReferenceCircuits.bell())
+      print(f"Sampler job ID: {job.job_id()}")
+      print(f"Sampler job result: {job.result()}")
+  ```
 
-options = Options(optimization_level=3)
+  Session constructor.
 
-with Session(backend="ibmq_qasm_simulator") as session:
-    sampler = Sampler(session=session, options=options)
-    job = sampler.run(ReferenceCircuits.bell())
-    print(f"Sampler job ID: {job.job_id()}")
-    print(f"Sampler job result: {job.result()}")
-```
+  **Parameters**
 
-Session constructor.
+  *   **service** (`Optional`\[[`QiskitRuntimeService`](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.qiskit_runtime_service.QiskitRuntimeService")]) – Optional instance of the `QiskitRuntimeService` class. If `None`, the service associated with the backend, if known, is used. Otherwise `QiskitRuntimeService()` is used to initialize your default saved account.
+  *   **backend** (`Union`\[`str`, [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend"), `None`]) – Optional instance of [`qiskit_ibm_runtime.IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.IBMBackend") class or string name of backend. An instance of `qiskit_ibm_provider.IBMBackend` will not work. If not specified, a backend will be selected automatically (IBM Cloud channel only).
+  *   **max\_time** (`Union`\[`int`, `str`, `None`]) – (EXPERIMENTAL setting, can break between releases without warning) Maximum amount of time, a runtime session can be open before being forcibly closed. Can be specified as seconds (int) or a string like “2h 30m 40s”. This value must be less than the [system imposed maximum](/run/max-execution-time).
 
-**Parameters**
+  **Raises**
 
-*   **service** (`Optional`\[[`QiskitRuntimeService`](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.qiskit_runtime_service.QiskitRuntimeService")]) – Optional instance of the `QiskitRuntimeService` class. If `None`, the service associated with the backend, if known, is used. Otherwise `QiskitRuntimeService()` is used to initialize your default saved account.
-*   **backend** (`Union`\[`str`, [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend"), `None`]) – Optional instance of [`qiskit_ibm_runtime.IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.IBMBackend") class or string name of backend. An instance of `qiskit_ibm_provider.IBMBackend` will not work. If not specified, a backend will be selected automatically (IBM Cloud channel only).
-*   **max\_time** (`Union`\[`int`, `str`, `None`]) – (EXPERIMENTAL setting, can break between releases without warning) Maximum amount of time, a runtime session can be open before being forcibly closed. Can be specified as seconds (int) or a string like “2h 30m 40s”. This value must be less than the [system imposed maximum](/run/max-execution-time).
+  **ValueError** – If an input value is invalid.
 
-**Raises**
+  ## Attributes
 
-**ValueError** – If an input value is invalid.
+  ### service
 
-## Attributes
+  <Attribute id="qiskit_ibm_runtime.Session.service" name="service">
+    Return service associated with this session.
 
-<span id="qiskit_ibm_runtime.Session.service" />
+    **Return type**
 
-### service
+    [`QiskitRuntimeService`](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.qiskit_runtime_service.QiskitRuntimeService")
 
-Return service associated with this session.
+    **Returns**
 
-**Return type**
+    [`qiskit_ibm_runtime.QiskitRuntimeService`](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.QiskitRuntimeService") associated with this session.
+  </Attribute>
 
-[`QiskitRuntimeService`](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.qiskit_runtime_service.QiskitRuntimeService")
+  ### session\_id
 
-**Returns**
+  <Attribute id="qiskit_ibm_runtime.Session.session_id" name="session_id">
+    Return the session ID.
 
-[`qiskit_ibm_runtime.QiskitRuntimeService`](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.QiskitRuntimeService") associated with this session.
+    **Return type**
 
-<span id="qiskit_ibm_runtime.Session.session_id" />
+    `str`
 
-### session\_id
+    **Returns**
 
-Return the session ID.
+    Session ID. None until a job is submitted.
+  </Attribute>
 
-**Return type**
+  ## Methods
 
-`str`
+  ### backend
 
-**Returns**
+  <Function id="qiskit_ibm_runtime.Session.backend" name="backend" signature="backend()">
+    Return backend for this session.
 
-Session ID. None until a job is submitted.
+    **Return type**
 
-## Methods
+    `Optional`\[`str`]
 
-### backend
+    **Returns**
 
-<span id="qiskit_ibm_runtime.Session.backend" />
+    Backend for this session. None if unknown.
+  </Function>
 
-`backend()`
+  ### cancel
 
-Return backend for this session.
+  <Function id="qiskit_ibm_runtime.Session.cancel" name="cancel" signature="cancel()">
+    Cancel all pending jobs in a session.
 
-**Return type**
+    **Return type**
 
-`Optional`\[`str`]
+    `None`
+  </Function>
 
-**Returns**
+  ### close
 
-Backend for this session. None if unknown.
+  <Function id="qiskit_ibm_runtime.Session.close" name="close" signature="close()">
+    Close the session so new jobs will no longer be accepted, but existing queued or running jobs will run to completion. The session will be terminated once there are no more pending jobs.
 
-### cancel
+    **Return type**
 
-<span id="qiskit_ibm_runtime.Session.cancel" />
+    `None`
+  </Function>
 
-`cancel()`
+  ### details
 
-Cancel all pending jobs in a session.
+  <Function id="qiskit_ibm_runtime.Session.details" name="details" signature="details()">
+    Return session details.
 
-**Return type**
+    **Returns**
 
-`None`
+    id: id of the session. backend\_name: backend used for the session. interactive\_timeout: The maximum idle time (in seconds) between jobs that is allowed to occur before the session is deactivated. max\_time: Maximum allowed time (in seconds) for the session, subject to plan limits. active\_timeout: The maximum time (in seconds) a session can stay active. state: State of the session - open, active, inactive, or closed. accepting\_jobs: Whether or not the session is accepting jobs. last\_job\_started: Timestamp of when the last job in the session started. last\_job\_completed: Timestamp of when the last job in the session completed. started\_at: Timestamp of when the session was started. closed\_at: Timestamp of when the session was closed. activated\_at: Timestamp of when the session state was changed to active.
 
-### close
+    **Return type**
 
-<span id="qiskit_ibm_runtime.Session.close" />
+    A dictionary with the sessions details, including
+  </Function>
 
-`close()`
+  ### from\_id
 
-Close the session so new jobs will no longer be accepted, but existing queued or running jobs will run to completion. The session will be terminated once there are no more pending jobs.
+  <Function id="qiskit_ibm_runtime.Session.from_id" name="from_id" signature="classmethod from_id(session_id, service=None, backend=None)">
+    Construct a Session object with a given session\_id
 
-**Return type**
+    **Parameters**
 
-`None`
+    *   **session\_id** (`str`) – the id of the session to be created. This must be an already existing session id.
+    *   **service** (`Optional`\[[`QiskitRuntimeService`](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.qiskit_runtime_service.QiskitRuntimeService")]) – instance of the `QiskitRuntimeService` class.
+    *   **backend** (`Union`\[`str`, [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend"), `None`]) – instance of [`qiskit_ibm_runtime.IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.IBMBackend") class or string name of backend.
 
-### details
+    **Return type**
 
-<span id="qiskit_ibm_runtime.Session.details" />
+    [`Session`](#qiskit_ibm_runtime.Session "qiskit_ibm_runtime.session.Session")
 
-`details()`
+    **Returns**
 
-Return session details.
+    A new Session with the given `session_id`
+  </Function>
 
-**Returns**
+  ### run
 
-id: id of the session. backend\_name: backend used for the session. interactive\_timeout: The maximum idle time (in seconds) between jobs that is allowed to occur before the session is deactivated. max\_time: Maximum allowed time (in seconds) for the session, subject to plan limits. active\_timeout: The maximum time (in seconds) a session can stay active. state: State of the session - open, active, inactive, or closed. accepting\_jobs: Whether or not the session is accepting jobs. last\_job\_started: Timestamp of when the last job in the session started. last\_job\_completed: Timestamp of when the last job in the session completed. started\_at: Timestamp of when the session was started. closed\_at: Timestamp of when the session was closed. activated\_at: Timestamp of when the session state was changed to active.
+  <Function id="qiskit_ibm_runtime.Session.run" name="run" signature="run(program_id, inputs, options=None, callback=None, result_decoder=None)">
+    Run a program in the session.
 
-**Return type**
+    **Parameters**
 
-A dictionary with the sessions details, including
+    *   **program\_id** (`str`) – Program ID.
+    *   **inputs** (`Dict`) – Program input parameters. These input values are passed to the runtime program.
+    *   **options** (`Optional`\[`Dict`]) – Runtime options that control the execution environment. See [`qiskit_ibm_runtime.RuntimeOptions`](qiskit_ibm_runtime.RuntimeOptions "qiskit_ibm_runtime.RuntimeOptions") for all available options.
+    *   **callback** (`Optional`\[`Callable`]) – Callback function to be invoked for any interim results and final result.
 
-### from\_id
+    **Return type**
 
-<span id="qiskit_ibm_runtime.Session.from_id" />
+    [`RuntimeJob`](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.runtime_job.RuntimeJob")
 
-`classmethod from_id(session_id, service=None, backend=None)`
+    **Returns**
 
-Construct a Session object with a given session\_id
+    Submitted job.
+  </Function>
 
-**Parameters**
+  ### status
 
-*   **session\_id** (`str`) – the id of the session to be created. This must be an already existing session id.
-*   **service** (`Optional`\[[`QiskitRuntimeService`](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.qiskit_runtime_service.QiskitRuntimeService")]) – instance of the `QiskitRuntimeService` class.
-*   **backend** (`Union`\[`str`, [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend"), `None`]) – instance of [`qiskit_ibm_runtime.IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.IBMBackend") class or string name of backend.
+  <Function id="qiskit_ibm_runtime.Session.status" name="status" signature="status()">
+    Return current session status.
 
-**Return type**
+    **Returns**
 
-[`Session`](#qiskit_ibm_runtime.Session "qiskit_ibm_runtime.session.Session")
+    Pending: Session is created but not active. It will become active when the next job of this session is dequeued. In progress, accepting new jobs: session is active and accepting new jobs. In progress, not accepting new jobs: session is active and not accepting new jobs. Closed: max\_time expired or session was explicitly closed. None: status details are not available.
 
-**Returns**
+    **Return type**
 
-A new Session with the given `session_id`
-
-### run
-
-<span id="qiskit_ibm_runtime.Session.run" />
-
-`run(program_id, inputs, options=None, callback=None, result_decoder=None)`
-
-Run a program in the session.
-
-**Parameters**
-
-*   **program\_id** (`str`) – Program ID.
-*   **inputs** (`Dict`) – Program input parameters. These input values are passed to the runtime program.
-*   **options** (`Optional`\[`Dict`]) – Runtime options that control the execution environment. See [`qiskit_ibm_runtime.RuntimeOptions`](qiskit_ibm_runtime.RuntimeOptions "qiskit_ibm_runtime.RuntimeOptions") for all available options.
-*   **callback** (`Optional`\[`Callable`]) – Callback function to be invoked for any interim results and final result.
-
-**Return type**
-
-[`RuntimeJob`](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.runtime_job.RuntimeJob")
-
-**Returns**
-
-Submitted job.
-
-### status
-
-<span id="qiskit_ibm_runtime.Session.status" />
-
-`status()`
-
-Return current session status.
-
-**Returns**
-
-Pending: Session is created but not active. It will become active when the next job of this session is dequeued. In progress, accepting new jobs: session is active and accepting new jobs. In progress, not accepting new jobs: session is active and not accepting new jobs. Closed: max\_time expired or session was explicitly closed. None: status details are not available.
-
-**Return type**
-
-The current status of the session, including
+    The current status of the session, including
+  </Function>
+</Class>
 

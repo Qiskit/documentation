@@ -8,370 +8,342 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeSherbrooke
 
 # FakeSherbrooke
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke" />
+<Class id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/sherbrooke/fake_sherbrooke.py#L21-L28" signature="FakeSherbrooke">
+  A fake 127 qubit backend.
 
-`FakeSherbrooke` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/backends/sherbrooke/fake_sherbrooke.py#L21-L28 "view source code")
+  FakeBackendV2 initializer.
 
-A fake 127 qubit backend.
+  ## Attributes
 
-FakeBackendV2 initializer.
+  ### backend\_name
 
-## Attributes
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.backend_name" name="backend_name" attributeValue="= 'fake_sherbrooke'" />
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.backend_name" />
+  ### conf\_filename
 
-### backend\_name
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.conf_filename" name="conf_filename" attributeValue="= 'conf_sherbrooke.json'" />
 
-`= 'fake_sherbrooke'`
+  ### coupling\_map
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.conf_filename" />
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.coupling_map" name="coupling_map">
+    Return the `CouplingMap` object
+  </Attribute>
 
-### conf\_filename
+  ### defs\_filename
 
-`= 'conf_sherbrooke.json'`
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.defs_filename" name="defs_filename" attributeValue="= 'defs_sherbrooke.json'" />
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.coupling_map" />
+  ### dirname
 
-### coupling\_map
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.dirname" name="dirname" attributeValue="= '/home/runner/work/qiskit-ibm-runtime/qiskit-ibm-runtime/qiskit_ibm_runtime/fake_provider/backends/sherbrooke'" />
 
-Return the `CouplingMap` object
+  ### dt
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.defs_filename" />
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.dt" name="dt">
+    Return the system time resolution of input signals
 
-### defs\_filename
+    This is required to be implemented if the backend supports Pulse scheduling.
 
-`= 'defs_sherbrooke.json'`
+    **Return type**
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.dirname" />
+    `Optional`\[`float`]
 
-### dirname
+    **Returns**
 
-`= '/home/runner/work/qiskit-ibm-runtime/qiskit-ibm-runtime/qiskit_ibm_runtime/fake_provider/backends/sherbrooke'`
+    The input signal timestep in seconds. If the backend doesn’t define `dt`, `None` will be returned.
+  </Attribute>
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.dt" />
+  ### dtm
 
-### dt
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.dtm" name="dtm">
+    Return the system time resolution of output signals
 
-Return the system time resolution of input signals
+    **Return type**
 
-This is required to be implemented if the backend supports Pulse scheduling.
+    `float`
 
-**Return type**
+    **Returns**
 
-`Optional`\[`float`]
+    The output signal timestep in seconds.
+  </Attribute>
 
-**Returns**
+  ### instruction\_durations
 
-The input signal timestep in seconds. If the backend doesn’t define `dt`, `None` will be returned.
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.instruction_durations" name="instruction_durations">
+    Return the `InstructionDurations` object.
+  </Attribute>
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.dtm" />
+  ### instruction\_schedule\_map
 
-### dtm
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.instruction_schedule_map" name="instruction_schedule_map">
+    Return the `InstructionScheduleMap` for the instructions defined in this backend’s target.
+  </Attribute>
 
-Return the system time resolution of output signals
+  ### instructions
 
-**Return type**
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.instructions" name="instructions">
+    A list of Instruction tuples on the backend of the form `(instruction, (qubits)`
 
-`float`
+    **Return type**
 
-**Returns**
+    `List`\[`Tuple`\[`Instruction`, `Tuple`\[`int`]]]
+  </Attribute>
 
-The output signal timestep in seconds.
+  ### max\_circuits
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.instruction_durations" />
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.max_circuits" name="max_circuits">
+    **Return type**
 
-### instruction\_durations
+    `None`
+  </Attribute>
 
-Return the `InstructionDurations` object.
+  ### meas\_map
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.instruction_schedule_map" />
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.meas_map" name="meas_map">
+    Return the grouping of measurements which are multiplexed This is required to be implemented if the backend supports Pulse scheduling.
 
-### instruction\_schedule\_map
+    **Return type**
 
-Return the `InstructionScheduleMap` for the instructions defined in this backend’s target.
+    `List`\[`List`\[`int`]]
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.instructions" />
+    **Returns**
 
-### instructions
+    The grouping of measurements which are multiplexed
+  </Attribute>
 
-A list of Instruction tuples on the backend of the form `(instruction, (qubits)`
+  ### num\_qubits
 
-**Return type**
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.num_qubits" name="num_qubits">
+    Return the number of qubits the backend has.
 
-`List`\[`Tuple`\[`Instruction`, `Tuple`\[`int`]]]
+    **Return type**
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.max_circuits" />
+    `int`
+  </Attribute>
 
-### max\_circuits
+  ### operation\_names
 
-**Return type**
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.operation_names" name="operation_names">
+    A list of instruction names that the backend supports.
 
-`None`
+    **Return type**
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.meas_map" />
+    `List`\[`str`]
+  </Attribute>
 
-### meas\_map
+  ### operations
 
-Return the grouping of measurements which are multiplexed This is required to be implemented if the backend supports Pulse scheduling.
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.operations" name="operations">
+    A list of `Instruction` instances that the backend supports.
 
-**Return type**
+    **Return type**
 
-`List`\[`List`\[`int`]]
+    `List`\[`Instruction`]
+  </Attribute>
 
-**Returns**
+  ### options
 
-The grouping of measurements which are multiplexed
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.options" name="options">
+    Return the options for the backend
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.num_qubits" />
+    The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit_ibm_runtime.fake_provider.FakeSherbrooke.run "qiskit_ibm_runtime.fake_provider.FakeSherbrooke.run") method.
+  </Attribute>
 
-### num\_qubits
+  ### props\_filename
 
-Return the number of qubits the backend has.
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.props_filename" name="props_filename" attributeValue="= 'props_sherbrooke.json'" />
 
-**Return type**
+  ### provider
 
-`int`
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.provider" name="provider">
+    Return the backend Provider.
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.operation_names" />
+    **Returns**
 
-### operation\_names
+    the Provider responsible for the backend.
 
-A list of instruction names that the backend supports.
+    **Return type**
 
-**Return type**
+    Provider
+  </Attribute>
 
-`List`\[`str`]
+  ### target
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.operations" />
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.target" name="target">
+    A `qiskit.transpiler.Target` object for the backend.
 
-### operations
+    **Return type**
 
-A list of `Instruction` instances that the backend supports.
+    Target
+  </Attribute>
 
-**Return type**
+  ### version
 
-`List`\[`Instruction`]
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.version" name="version" attributeValue="= 2" />
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.options" />
+  ### name
 
-### options
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.name" name="name">
+    Name of the backend.
+  </Attribute>
 
-Return the options for the backend
+  ### description
 
-The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit_ibm_runtime.fake_provider.FakeSherbrooke.run "qiskit_ibm_runtime.fake_provider.FakeSherbrooke.run") method.
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.description" name="description">
+    Optional human-readable description.
+  </Attribute>
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.props_filename" />
+  ### online\_date
 
-### props\_filename
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.online_date" name="online_date">
+    Date that the backend came online.
+  </Attribute>
 
-`= 'props_sherbrooke.json'`
+  ### backend\_version
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.provider" />
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.backend_version" name="backend_version">
+    Version of the backend being provided. This is not the same as `BackendV2.version`, which is the version of the `Backend` abstract interface.
+  </Attribute>
 
-### provider
+  ## Methods
 
-Return the backend Provider.
+  ### acquire\_channel
 
-**Returns**
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.acquire_channel" name="acquire_channel" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/fake_backend.py#L269-L282" signature="acquire_channel(qubit)">
+    Return the acquisition channel for the given qubit.
 
-the Provider responsible for the backend.
+    This is required to be implemented if the backend supports Pulse scheduling.
 
-**Return type**
+    **Returns**
 
-Provider
+    The Qubit measurement acquisition line.
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.target" />
+    **Return type**
 
-### target
+    AcquireChannel
+  </Function>
 
-A `qiskit.transpiler.Target` object for the backend.
+  ### control\_channel
 
-**Return type**
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.control_channel" name="control_channel" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/fake_backend.py#L284-L304" signature="control_channel(qubits)">
+    Return the secondary drive channel for the given qubit
 
-Target
+    This is typically utilized for controlling multiqubit interactions. This channel is derived from other channels.
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.version" />
+    This is required to be implemented if the backend supports Pulse scheduling.
 
-### version
+    **Parameters**
 
-`= 2`
+    **qubits** (`Iterable`\[`int`]) – Tuple or list of qubits of the form `(control_qubit, target_qubit)`.
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.name" />
+    **Returns**
 
-### name
+    The multi qubit control line.
 
-Name of the backend.
+    **Return type**
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.description" />
+    List\[ControlChannel]
+  </Function>
 
-### description
+  ### drive\_channel
 
-Optional human-readable description.
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.drive_channel" name="drive_channel" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/fake_backend.py#L239-L252" signature="drive_channel(qubit)">
+    Return the drive channel for the given qubit.
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.online_date" />
+    This is required to be implemented if the backend supports Pulse scheduling.
 
-### online\_date
+    **Returns**
 
-Date that the backend came online.
+    The Qubit drive channel
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.backend_version" />
+    **Return type**
 
-### backend\_version
+    DriveChannel
+  </Function>
 
-Version of the backend being provided. This is not the same as `BackendV2.version`, which is the version of the `Backend` abstract interface.
+  ### measure\_channel
 
-## Methods
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.measure_channel" name="measure_channel" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/fake_backend.py#L254-L267" signature="measure_channel(qubit)">
+    Return the measure stimulus channel for the given qubit.
 
-### acquire\_channel
+    This is required to be implemented if the backend supports Pulse scheduling.
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.acquire_channel" />
+    **Returns**
 
-`acquire_channel(qubit)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/fake_backend.py#L269-L282 "view source code")
+    The Qubit measurement stimulus line
 
-Return the acquisition channel for the given qubit.
+    **Return type**
 
-This is required to be implemented if the backend supports Pulse scheduling.
+    MeasureChannel
+  </Function>
 
-**Returns**
+  ### qubit\_properties
 
-The Qubit measurement acquisition line.
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.qubit_properties" name="qubit_properties" signature="qubit_properties(qubit)">
+    Return QubitProperties for a given qubit.
 
-**Return type**
+    If there are no defined or the backend doesn’t support querying these details this method does not need to be implemented.
 
-AcquireChannel
+    **Parameters**
 
-### control\_channel
+    **qubit** (`Union`\[`int`, `List`\[`int`]]) – The qubit to get the `QubitProperties` object for. This can be a single integer for 1 qubit or a list of qubits and a list of `QubitProperties` objects will be returned in the same order
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.control_channel" />
+    **Return type**
 
-`control_channel(qubits)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/fake_backend.py#L284-L304 "view source code")
+    `Union`\[`QubitProperties`, `List`\[`QubitProperties`]]
 
-Return the secondary drive channel for the given qubit
+    **Returns**
 
-This is typically utilized for controlling multiqubit interactions. This channel is derived from other channels.
+    The `QubitProperties` object for the specified qubit. If a list of qubits is provided a list will be returned. If properties are missing for a qubit this can be `None`.
 
-This is required to be implemented if the backend supports Pulse scheduling.
+    **Raises**
 
-**Parameters**
+    **NotImplementedError** – if the backend doesn’t support querying the qubit properties
+  </Function>
 
-**qubits** (`Iterable`\[`int`]) – Tuple or list of qubits of the form `(control_qubit, target_qubit)`.
+  ### run
 
-**Returns**
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.run" name="run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/fake_backend.py#L306-L365" signature="run(run_input, **options)">
+    Run on the fake backend using a simulator.
 
-The multi qubit control line.
+    This method runs circuit jobs (an individual or a list of QuantumCircuit ) and pulse jobs (an individual or a list of Schedule or ScheduleBlock) using BasicAer simulator/ BasicSimulator or Aer simulator and returns a `Job` object.
 
-**Return type**
+    If qiskit-aer is installed, jobs will be run using AerSimulator with noise model of the fake backend. Otherwise, jobs will be run using BasicAer simulator/ BasicSimulator simulator without noise.
 
-List\[ControlChannel]
+    Currently noisy simulation of a pulse job is not supported yet in FakeBackendV2.
 
-### drive\_channel
+    **Parameters**
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.drive_channel" />
+    *   **run\_input** (*QuantumCircuit or Schedule or ScheduleBlock or list*) – An individual or a list of `QuantumCircuit`, `ScheduleBlock`, or `Schedule` objects to run on the backend.
+    *   **options** – Any kwarg options to pass to the backend for running the config. If a key is also present in the options attribute/object then the expectation is that the value specified will be used instead of what’s set in the options object.
 
-`drive_channel(qubit)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/fake_backend.py#L239-L252 "view source code")
+    **Returns**
 
-Return the drive channel for the given qubit.
+    The job object for the run
 
-This is required to be implemented if the backend supports Pulse scheduling.
+    **Return type**
 
-**Returns**
+    Job
 
-The Qubit drive channel
+    **Raises**
 
-**Return type**
+    **QiskitError** – If a pulse job is supplied and qiskit-aer is not installed.
+  </Function>
 
-DriveChannel
+  ### set\_options
 
-### measure\_channel
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.set_options" name="set_options" signature="set_options(**fields)">
+    Set the options fields for the backend
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.measure_channel" />
+    This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
 
-`measure_channel(qubit)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/fake_backend.py#L254-L267 "view source code")
+    **Parameters**
 
-Return the measure stimulus channel for the given qubit.
+    **fields** – The fields to update the options
 
-This is required to be implemented if the backend supports Pulse scheduling.
+    **Raises**
 
-**Returns**
-
-The Qubit measurement stimulus line
-
-**Return type**
-
-MeasureChannel
-
-### qubit\_properties
-
-<span id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.qubit_properties" />
-
-`qubit_properties(qubit)`
-
-Return QubitProperties for a given qubit.
-
-If there are no defined or the backend doesn’t support querying these details this method does not need to be implemented.
-
-**Parameters**
-
-**qubit** (`Union`\[`int`, `List`\[`int`]]) – The qubit to get the `QubitProperties` object for. This can be a single integer for 1 qubit or a list of qubits and a list of `QubitProperties` objects will be returned in the same order
-
-**Return type**
-
-`Union`\[`QubitProperties`, `List`\[`QubitProperties`]]
-
-**Returns**
-
-The `QubitProperties` object for the specified qubit. If a list of qubits is provided a list will be returned. If properties are missing for a qubit this can be `None`.
-
-**Raises**
-
-**NotImplementedError** – if the backend doesn’t support querying the qubit properties
-
-### run
-
-<span id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.run" />
-
-`run(run_input, **options)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/fake_provider/fake_backend.py#L306-L365 "view source code")
-
-Run on the fake backend using a simulator.
-
-This method runs circuit jobs (an individual or a list of QuantumCircuit ) and pulse jobs (an individual or a list of Schedule or ScheduleBlock) using BasicAer simulator/ BasicSimulator or Aer simulator and returns a `Job` object.
-
-If qiskit-aer is installed, jobs will be run using AerSimulator with noise model of the fake backend. Otherwise, jobs will be run using BasicAer simulator/ BasicSimulator simulator without noise.
-
-Currently noisy simulation of a pulse job is not supported yet in FakeBackendV2.
-
-**Parameters**
-
-*   **run\_input** (*QuantumCircuit or Schedule or ScheduleBlock or list*) – An individual or a list of `QuantumCircuit`, `ScheduleBlock`, or `Schedule` objects to run on the backend.
-*   **options** – Any kwarg options to pass to the backend for running the config. If a key is also present in the options attribute/object then the expectation is that the value specified will be used instead of what’s set in the options object.
-
-**Returns**
-
-The job object for the run
-
-**Return type**
-
-Job
-
-**Raises**
-
-**QiskitError** – If a pulse job is supplied and qiskit-aer is not installed.
-
-### set\_options
-
-<span id="qiskit_ibm_runtime.fake_provider.FakeSherbrooke.set_options" />
-
-`set_options(**fields)`
-
-Set the options fields for the backend
-
-This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
-
-**Parameters**
-
-**fields** – The fields to update the options
-
-**Raises**
-
-**AttributeError** – If the field passed in is not part of the options
+    **AttributeError** – If the field passed in is not part of the options
+  </Function>
+</Class>
 

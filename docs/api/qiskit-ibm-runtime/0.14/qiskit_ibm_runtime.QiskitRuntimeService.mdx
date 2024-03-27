@@ -8,704 +8,658 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
 # QiskitRuntimeService
 
-<span id="qiskit_ibm_runtime.QiskitRuntimeService" />
+<Class id="qiskit_ibm_runtime.QiskitRuntimeService" github="https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.14/qiskit_ibm_runtime/qiskit_runtime_service.py" signature="QiskitRuntimeService(channel=None, token=None, url=None, filename=None, name=None, instance=None, proxies=None, verify=None, channel_strategy=None)">
+  Class for interacting with the Qiskit Runtime service.
 
-`QiskitRuntimeService(channel=None, token=None, url=None, filename=None, name=None, instance=None, proxies=None, verify=None, channel_strategy=None)` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.14/qiskit_ibm_runtime/qiskit_runtime_service.py "view source code")
+  Qiskit Runtime is a new architecture offered by IBM Quantum that streamlines computations requiring many iterations. These experiments will execute significantly faster within its improved hybrid quantum/classical process.
 
-Class for interacting with the Qiskit Runtime service.
+  A sample workflow of using the runtime service:
 
-Qiskit Runtime is a new architecture offered by IBM Quantum that streamlines computations requiring many iterations. These experiments will execute significantly faster within its improved hybrid quantum/classical process.
+  ```python
+  from qiskit_ibm_runtime import QiskitRuntimeService, Session, Sampler, Estimator, Options
+  from qiskit.test.reference_circuits import ReferenceCircuits
+  from qiskit.circuit.library import RealAmplitudes
+  from qiskit.quantum_info import SparsePauliOp
 
-A sample workflow of using the runtime service:
+  # Initialize account.
+  service = QiskitRuntimeService()
 
-```python
-from qiskit_ibm_runtime import QiskitRuntimeService, Session, Sampler, Estimator, Options
-from qiskit.test.reference_circuits import ReferenceCircuits
-from qiskit.circuit.library import RealAmplitudes
-from qiskit.quantum_info import SparsePauliOp
+  # Set options, which can be overwritten at job level.
+  options = Options(optimization_level=1)
 
-# Initialize account.
-service = QiskitRuntimeService()
+  # Prepare inputs.
+  bell = ReferenceCircuits.bell()
+  psi = RealAmplitudes(num_qubits=2, reps=2)
+  H1 = SparsePauliOp.from_list([("II", 1), ("IZ", 2), ("XI", 3)])
+  theta = [0, 1, 1, 2, 3, 5]
 
-# Set options, which can be overwritten at job level.
-options = Options(optimization_level=1)
+  with Session(service=service, backend="ibmq_qasm_simulator") as session:
+      # Submit a request to the Sampler primitive within the session.
+      sampler = Sampler(session=session, options=options)
+      job = sampler.run(circuits=bell)
+      print(f"Sampler results: {job.result()}")
 
-# Prepare inputs.
-bell = ReferenceCircuits.bell()
-psi = RealAmplitudes(num_qubits=2, reps=2)
-H1 = SparsePauliOp.from_list([("II", 1), ("IZ", 2), ("XI", 3)])
-theta = [0, 1, 1, 2, 3, 5]
+      # Submit a request to the Estimator primitive within the session.
+      estimator = Estimator(session=session, options=options)
+      job = estimator.run(
+          circuits=[psi], observables=[H1], parameter_values=[theta]
+      )
+      print(f"Estimator results: {job.result()}")
+  ```
 
-with Session(service=service, backend="ibmq_qasm_simulator") as session:
-    # Submit a request to the Sampler primitive within the session.
-    sampler = Sampler(session=session, options=options)
-    job = sampler.run(circuits=bell)
-    print(f"Sampler results: {job.result()}")
+  The example above uses the dedicated [`Sampler`](qiskit_ibm_runtime.Sampler "qiskit_ibm_runtime.Sampler") and [`Estimator`](qiskit_ibm_runtime.Estimator "qiskit_ibm_runtime.Estimator") classes. You can also use the [`run()`](#qiskit_ibm_runtime.QiskitRuntimeService.run "qiskit_ibm_runtime.QiskitRuntimeService.run") method directly to invoke a Qiskit Runtime program.
 
-    # Submit a request to the Estimator primitive within the session.
-    estimator = Estimator(session=session, options=options)
-    job = estimator.run(
-        circuits=[psi], observables=[H1], parameter_values=[theta]
-    )
-    print(f"Estimator results: {job.result()}")
-```
+  If the program has any interim results, you can use the `callback` parameter of the [`run()`](#qiskit_ibm_runtime.QiskitRuntimeService.run "qiskit_ibm_runtime.QiskitRuntimeService.run") method to stream the interim results. Alternatively, you can use the [`RuntimeJob.stream_results()`](qiskit_ibm_runtime.RuntimeJob#stream_results "qiskit_ibm_runtime.RuntimeJob.stream_results") method to stream the results at a later time, but before the job finishes.
 
-The example above uses the dedicated [`Sampler`](qiskit_ibm_runtime.Sampler "qiskit_ibm_runtime.Sampler") and [`Estimator`](qiskit_ibm_runtime.Estimator "qiskit_ibm_runtime.Estimator") classes. You can also use the [`run()`](#qiskit_ibm_runtime.QiskitRuntimeService.run "qiskit_ibm_runtime.QiskitRuntimeService.run") method directly to invoke a Qiskit Runtime program.
+  The [`run()`](#qiskit_ibm_runtime.QiskitRuntimeService.run "qiskit_ibm_runtime.QiskitRuntimeService.run") method returns a [`RuntimeJob`](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.RuntimeJob") object. You can use its methods to perform tasks like checking job status, getting job result, and canceling job.
 
-If the program has any interim results, you can use the `callback` parameter of the [`run()`](#qiskit_ibm_runtime.QiskitRuntimeService.run "qiskit_ibm_runtime.QiskitRuntimeService.run") method to stream the interim results. Alternatively, you can use the [`RuntimeJob.stream_results()`](qiskit_ibm_runtime.RuntimeJob#stream_results "qiskit_ibm_runtime.RuntimeJob.stream_results") method to stream the results at a later time, but before the job finishes.
+  QiskitRuntimeService constructor
 
-The [`run()`](#qiskit_ibm_runtime.QiskitRuntimeService.run "qiskit_ibm_runtime.QiskitRuntimeService.run") method returns a [`RuntimeJob`](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.RuntimeJob") object. You can use its methods to perform tasks like checking job status, getting job result, and canceling job.
+  An account is selected in the following order:
 
-QiskitRuntimeService constructor
+  > *   Account with the input name, if specified.
+  > *   Default account for the channel type, if channel is specified but token is not.
+  > *   Account defined by the input channel and token, if specified.
+  > *   Account defined by the default\_channel if defined in filename
+  > *   Account defined by the environment variables, if defined.
+  > *   Default account for the `ibm_cloud` account, if one is available.
+  > *   Default account for the `ibm_quantum` account, if one is available.
 
-An account is selected in the following order:
+  instance, proxies, and verify can be used to overwrite corresponding values in the loaded account.
 
-> *   Account with the input name, if specified.
-> *   Default account for the channel type, if channel is specified but token is not.
-> *   Account defined by the input channel and token, if specified.
-> *   Account defined by the default\_channel if defined in filename
-> *   Account defined by the environment variables, if defined.
-> *   Default account for the `ibm_cloud` account, if one is available.
-> *   Default account for the `ibm_quantum` account, if one is available.
+  **Parameters**
 
-instance, proxies, and verify can be used to overwrite corresponding values in the loaded account.
+  *   **channel** (`Optional`\[`Literal`\[‘ibm\_cloud’, ‘ibm\_quantum’]]) – Channel type. `ibm_cloud` or `ibm_quantum`.
+  *   **token** (`Optional`\[`str`]) – IBM Cloud API key or IBM Quantum API token.
+  *   **url** (`Optional`\[`str`]) – The API URL. Defaults to [https://cloud.ibm.com](https://cloud.ibm.com) (ibm\_cloud) or [https://auth.quantum-computing.ibm.com/api](https://auth.quantum-computing.ibm.com/api) (ibm\_quantum).
+  *   **filename** (`Optional`\[`str`]) – Full path of the file where the account is created. Default: \_DEFAULT\_ACCOUNT\_CONFIG\_JSON\_FILE
+  *   **name** (`Optional`\[`str`]) – Name of the account to load.
+  *   **instance** (`Optional`\[`str`]) – The service instance to use. For `ibm_cloud` runtime, this is the Cloud Resource Name (CRN) or the service name. For `ibm_quantum` runtime, this is the hub/group/project in that format.
+  *   **proxies** (`Optional`\[`dict`]) – Proxy configuration. Supported optional keys are `urls` (a dictionary mapping protocol or protocol and host to the URL of the proxy, documented at [https://docs.python-requests.org/en/latest/api/#requests.Session.proxies](https://docs.python-requests.org/en/latest/api/#requests.Session.proxies)), `username_ntlm`, `password_ntlm` (username and password to enable NTLM user authentication)
+  *   **verify** (`Optional`\[`bool`]) – Whether to verify the server’s TLS certificate.
+  *   **channel\_strategy** (`Optional`\[`str`]) – Error mitigation strategy.
 
-**Parameters**
+  **Returns**
 
-*   **channel** (`Optional`\[`Literal`\[‘ibm\_cloud’, ‘ibm\_quantum’]]) – Channel type. `ibm_cloud` or `ibm_quantum`.
-*   **token** (`Optional`\[`str`]) – IBM Cloud API key or IBM Quantum API token.
-*   **url** (`Optional`\[`str`]) – The API URL. Defaults to [https://cloud.ibm.com](https://cloud.ibm.com) (ibm\_cloud) or [https://auth.quantum-computing.ibm.com/api](https://auth.quantum-computing.ibm.com/api) (ibm\_quantum).
-*   **filename** (`Optional`\[`str`]) – Full path of the file where the account is created. Default: \_DEFAULT\_ACCOUNT\_CONFIG\_JSON\_FILE
-*   **name** (`Optional`\[`str`]) – Name of the account to load.
-*   **instance** (`Optional`\[`str`]) – The service instance to use. For `ibm_cloud` runtime, this is the Cloud Resource Name (CRN) or the service name. For `ibm_quantum` runtime, this is the hub/group/project in that format.
-*   **proxies** (`Optional`\[`dict`]) – Proxy configuration. Supported optional keys are `urls` (a dictionary mapping protocol or protocol and host to the URL of the proxy, documented at [https://docs.python-requests.org/en/latest/api/#requests.Session.proxies](https://docs.python-requests.org/en/latest/api/#requests.Session.proxies)), `username_ntlm`, `password_ntlm` (username and password to enable NTLM user authentication)
-*   **verify** (`Optional`\[`bool`]) – Whether to verify the server’s TLS certificate.
-*   **channel\_strategy** (`Optional`\[`str`]) – Error mitigation strategy.
+  An instance of QiskitRuntimeService.
 
-**Returns**
+  **Raises**
 
-An instance of QiskitRuntimeService.
+  **IBMInputValueError** – If an input is invalid.
 
-**Raises**
+  ## Attributes
 
-**IBMInputValueError** – If an input is invalid.
+  ### channel
 
-## Attributes
+  <Attribute id="qiskit_ibm_runtime.QiskitRuntimeService.channel" name="channel">
+    Return the channel type used.
 
-<span id="qiskit_ibm_runtime.QiskitRuntimeService.channel" />
+    **Return type**
 
-### channel
+    `str`
 
-Return the channel type used.
+    **Returns**
 
-**Return type**
+    The channel type used.
+  </Attribute>
 
-`str`
+  ### global\_service
 
-**Returns**
+  <Attribute id="qiskit_ibm_runtime.QiskitRuntimeService.global_service" name="global_service" attributeValue="= None" />
 
-The channel type used.
+  ### runtime
 
-<span id="qiskit_ibm_runtime.QiskitRuntimeService.global_service" />
+  <Attribute id="qiskit_ibm_runtime.QiskitRuntimeService.runtime" name="runtime">
+    Return self for compatibility with IBMQ provider.
 
-### global\_service
+    **Returns**
 
-`= None`
+    self
+  </Attribute>
 
-<span id="qiskit_ibm_runtime.QiskitRuntimeService.runtime" />
+  ### version
 
-### runtime
+  <Attribute id="qiskit_ibm_runtime.QiskitRuntimeService.version" name="version" attributeValue="= 1" />
 
-Return self for compatibility with IBMQ provider.
+  ## Methods
 
-**Returns**
+  ### active\_account
 
-self
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.active_account" name="active_account" signature="active_account()">
+    Return the IBM Quantum account currently in use for the session.
 
-<span id="qiskit_ibm_runtime.QiskitRuntimeService.version" />
+    **Return type**
 
-### version
+    `Optional`\[`Dict`\[`str`, `str`]]
 
-`= 1`
+    **Returns**
 
-## Methods
+    A dictionary with information about the account currently in the session.
+  </Function>
 
-### active\_account
+  ### backend
 
-<span id="qiskit_ibm_runtime.QiskitRuntimeService.active_account" />
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.backend" name="backend" signature="backend(name=None, instance=None)">
+    Return a single backend matching the specified filtering.
 
-`active_account()`
+    **Parameters**
 
-Return the IBM Quantum account currently in use for the session.
+    *   **name** (`Optional`\[`str`]) – Name of the backend.
+    *   **instance** (`Optional`\[`str`]) – This is only supported for `ibm_quantum` runtime and is in the hub/group/project format. If an instance is not given, among the providers with access to the backend, a premium provider will be prioritized. For users without access to a premium provider, the default open provider will be used.
 
-**Return type**
+    **Returns**
 
-`Optional`\[`Dict`\[`str`, `str`]]
+    A backend matching the filtering.
 
-**Returns**
+    **Return type**
 
-A dictionary with information about the account currently in the session.
+    Backend
 
-### backend
+    **Raises**
 
-<span id="qiskit_ibm_runtime.QiskitRuntimeService.backend" />
+    **QiskitBackendNotFoundError** – if no backend could be found.
+  </Function>
 
-`backend(name=None, instance=None)`
+  ### backends
 
-Return a single backend matching the specified filtering.
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.backends" name="backends" signature="backends(name=None, min_num_qubits=None, instance=None, filters=None, **kwargs)">
+    Return all backends accessible via this account, subject to optional filtering.
 
-**Parameters**
+    **Parameters**
 
-*   **name** (`Optional`\[`str`]) – Name of the backend.
-*   **instance** (`Optional`\[`str`]) – This is only supported for `ibm_quantum` runtime and is in the hub/group/project format. If an instance is not given, among the providers with access to the backend, a premium provider will be prioritized. For users without access to a premium provider, the default open provider will be used.
+    *   **name** (`Optional`\[`str`]) – Backend name to filter by.
 
-**Returns**
+    *   **min\_num\_qubits** (`Optional`\[`int`]) – Minimum number of qubits the backend has to have.
 
-A backend matching the filtering.
+    *   **instance** (`Optional`\[`str`]) – This is only supported for `ibm_quantum` runtime and is in the hub/group/project format.
 
-**Return type**
+    *   **filters** (`Optional`\[`Callable`\[\[`List`\[[`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend")]], `bool`]]) –
 
-Backend
+        More complex filters, such as lambda functions. For example:
 
-**Raises**
+        ```python
+        QiskitRuntimeService.backends(
+            filters=lambda b: b.max_shots > 50000)
+        QiskitRuntimeService.backends(
+            filters=lambda x: ("rz" in x.basis_gates )
+        ```
 
-**QiskitBackendNotFoundError** – if no backend could be found.
+    *   **\*\*kwargs** –
 
-### backends
+        Simple filters that require a specific value for an attribute in backend configuration or status. Examples:
 
-<span id="qiskit_ibm_runtime.QiskitRuntimeService.backends" />
+        ```python
+        # Get the operational real backends
+        QiskitRuntimeService.backends(simulator=False, operational=True)
 
-`backends(name=None, min_num_qubits=None, instance=None, filters=None, **kwargs)`
+        # Get the backends with at least 127 qubits
+        QiskitRuntimeService.backends(min_num_qubits=127)
 
-Return all backends accessible via this account, subject to optional filtering.
+        # Get the backends that support OpenPulse
+        QiskitRuntimeService.backends(open_pulse=True)
+        ```
 
-**Parameters**
+        For the full list of backend attributes, see the IBMBackend class documentation \<[providers\_models](/api/qiskit/providers_models)>
 
-*   **name** (`Optional`\[`str`]) – Backend name to filter by.
+    **Return type**
 
-*   **min\_num\_qubits** (`Optional`\[`int`]) – Minimum number of qubits the backend has to have.
+    `List`\[[`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend")]
 
-*   **instance** (`Optional`\[`str`]) – This is only supported for `ibm_quantum` runtime and is in the hub/group/project format.
+    **Returns**
 
-*   **filters** (`Optional`\[`Callable`\[\[`List`\[[`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend")]], `bool`]]) –
+    The list of available backends that match the filter.
 
-    More complex filters, such as lambda functions. For example:
+    **Raises**
+
+    *   **IBMInputValueError** – If an input is invalid.
+    *   **QiskitBackendNotFoundError** – If the backend is not in any instance.
+  </Function>
+
+  ### delete\_account
+
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.delete_account" name="delete_account" signature="static delete_account(filename=None, name=None, channel=None)">
+    Delete a saved account from disk.
+
+    **Parameters**
+
+    *   **filename** (`Optional`\[`str`]) – Name of file from which to delete the account.
+    *   **name** (`Optional`\[`str`]) – Name of the saved account to delete.
+    *   **channel** (`Optional`\[`Literal`\[‘ibm\_cloud’, ‘ibm\_quantum’]]) – Channel type of the default account to delete. Ignored if account name is provided.
+
+    **Return type**
+
+    `bool`
+
+    **Returns**
+
+    True if the account was deleted. False if no account was found.
+  </Function>
+
+  ### delete\_job
+
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.delete_job" name="delete_job" signature="delete_job(job_id)">
+    Delete a runtime job.
+
+    Note that this operation cannot be reversed.
+
+    **Parameters**
+
+    **job\_id** (`str`) – ID of the job to delete.
+
+    **Raises**
+
+    *   **RuntimeJobNotFound** – If the job doesn’t exist.
+    *   **IBMRuntimeError** – If the request failed.
+
+    **Return type**
+
+    `None`
+  </Function>
+
+  ### delete\_program
+
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.delete_program" name="delete_program" signature="delete_program(program_id)">
+    Delete a runtime program.
+
+    **Parameters**
+
+    **program\_id** (`str`) – Program ID.
+
+    **Raises**
+
+    *   **RuntimeProgramNotFound** – If the program doesn’t exist.
+    *   **IBMRuntimeError** – If the request failed.
+
+    **Return type**
+
+    `None`
+  </Function>
+
+  ### get\_backend
+
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.get_backend" name="get_backend" signature="get_backend(name=None, **kwargs)">
+    Return a single backend matching the specified filtering.
+
+    **Parameters**
+
+    *   **name** (*str*) – name of the backend.
+    *   **\*\*kwargs** – dict used for filtering.
+
+    **Returns**
+
+    a backend matching the filtering.
+
+    **Return type**
+
+    Backend
+
+    **Raises**
+
+    **QiskitBackendNotFoundError** – if no backend could be found or more than one backend matches the filtering criteria.
+  </Function>
+
+  ### instances
+
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.instances" name="instances" signature="instances()">
+    Return the IBM Quantum instances list currently in use for the session.
+
+    **Return type**
+
+    `List`\[`str`]
+
+    **Returns**
+
+    A list with instances currently in the session.
+  </Function>
+
+  ### job
+
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.job" name="job" signature="job(job_id)">
+    Retrieve a runtime job.
+
+    **Parameters**
+
+    **job\_id** (`str`) – Job ID.
+
+    **Return type**
+
+    [`RuntimeJob`](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.runtime_job.RuntimeJob")
+
+    **Returns**
+
+    Runtime job retrieved.
+
+    **Raises**
+
+    *   **RuntimeJobNotFound** – If the job doesn’t exist.
+    *   **IBMRuntimeError** – If the request failed.
+  </Function>
+
+  ### jobs
+
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.jobs" name="jobs" signature="jobs(limit=10, skip=0, backend_name=None, pending=None, program_id=None, instance=None, job_tags=None, session_id=None, created_after=None, created_before=None, descending=True)">
+    Retrieve all runtime jobs, subject to optional filtering.
+
+    **Parameters**
+
+    *   **limit** (`Optional`\[`int`]) – Number of jobs to retrieve. `None` means no limit.
+    *   **skip** (`int`) – Starting index for the job retrieval.
+    *   **backend\_name** (`Optional`\[`str`]) – Name of the backend to retrieve jobs from.
+    *   **pending** (`Optional`\[`bool`]) – Filter by job pending state. If `True`, ‘QUEUED’ and ‘RUNNING’ jobs are included. If `False`, ‘DONE’, ‘CANCELLED’ and ‘ERROR’ jobs are included.
+    *   **program\_id** (`Optional`\[`str`]) – Filter by Program ID.
+    *   **instance** (`Optional`\[`str`]) – This is only supported for `ibm_quantum` runtime and is in the hub/group/project format.
+    *   **job\_tags** (`Optional`\[`List`\[`str`]]) – Filter by tags assigned to jobs. Matched jobs are associated with all tags.
+    *   **session\_id** (`Optional`\[`str`]) – Job ID of the first job in a runtime session.
+    *   **created\_after** (`Optional`\[`datetime`]) – Filter by the given start date, in local time. This is used to find jobs whose creation dates are after (greater than or equal to) this local date/time.
+    *   **created\_before** (`Optional`\[`datetime`]) – Filter by the given end date, in local time. This is used to find jobs whose creation dates are before (less than or equal to) this local date/time.
+    *   **descending** (`bool`) – If `True`, return the jobs in descending order of the job creation date (i.e. newest first) until the limit is reached.
+
+    **Return type**
+
+    `List`\[[`RuntimeJob`](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.runtime_job.RuntimeJob")]
+
+    **Returns**
+
+    A list of runtime jobs.
+
+    **Raises**
+
+    **IBMInputValueError** – If an input value is invalid.
+  </Function>
+
+  ### least\_busy
+
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.least_busy" name="least_busy" signature="least_busy(min_num_qubits=None, instance=None, filters=None, **kwargs)">
+    Return the least busy available backend.
+
+    **Parameters**
+
+    *   **min\_num\_qubits** (`Optional`\[`int`]) – Minimum number of qubits the backend has to have.
+
+    *   **instance** (`Optional`\[`str`]) – This is only supported for `ibm_quantum` runtime and is in the hub/group/project format.
+
+    *   **filters** (`Optional`\[`Callable`\[\[`List`\[[`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend")]], `bool`]]) –
+
+        Filters can be defined as for the [`backends()`](#qiskit_ibm_runtime.QiskitRuntimeService.backends "qiskit_ibm_runtime.QiskitRuntimeService.backends") method. An example to get the operational backends with 5 qubits:
+
+        ```python
+        QiskitRuntimeService.least_busy(n_qubits=5, operational=True)
+        ```
+
+    **Return type**
+
+    [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend")
+
+    **Returns**
+
+    The backend with the fewest number of pending jobs.
+
+    **Raises**
+
+    **QiskitBackendNotFoundError** – If no backend matches the criteria.
+  </Function>
+
+  ### pprint\_programs
+
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.pprint_programs" name="pprint_programs" signature="pprint_programs(refresh=False, detailed=False, limit=20, skip=0)">
+    Pretty print information about available runtime programs.
+
+    **Parameters**
+
+    *   **refresh** (`bool`) – If `True`, re-query the server for the programs. Otherwise return the cached value.
+    *   **detailed** (`bool`) – If `True` print all details about available runtime programs.
+    *   **limit** (`int`) – The number of programs returned at a time. Default and maximum value of 20.
+    *   **skip** (`int`) – The number of programs to skip.
+
+    **Return type**
+
+    `None`
+  </Function>
+
+  ### program
+
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.program" name="program" signature="program(program_id, refresh=False)">
+    Retrieve a runtime program.
+
+    Currently only program metadata is returned.
+
+    **Parameters**
+
+    *   **program\_id** (`str`) – Program ID.
+    *   **refresh** (`bool`) – If `True`, re-query the server for the program. Otherwise return the cached value.
+
+    **Return type**
+
+    [`RuntimeProgram`](qiskit_ibm_runtime.RuntimeProgram "qiskit_ibm_runtime.runtime_program.RuntimeProgram")
+
+    **Returns**
+
+    Runtime program.
+
+    **Raises**
+
+    *   **RuntimeProgramNotFound** – If the program does not exist.
+    *   **IBMRuntimeError** – If the request failed.
+  </Function>
+
+  ### programs
+
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.programs" name="programs" signature="programs(refresh=False, limit=20, skip=0)">
+    Return available runtime programs.
+
+    Currently only program metadata is returned.
+
+    **Parameters**
+
+    *   **refresh** (`bool`) – If `True`, re-query the server for the programs. Otherwise return the cached value.
+    *   **limit** (`int`) – The number of programs returned at a time. `None` means no limit.
+    *   **skip** (`int`) – The number of programs to skip.
+
+    **Return type**
+
+    `List`\[[`RuntimeProgram`](qiskit_ibm_runtime.RuntimeProgram "qiskit_ibm_runtime.runtime_program.RuntimeProgram")]
+
+    **Returns**
+
+    A list of runtime programs.
+  </Function>
+
+  ### run
+
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.run" name="run" signature="run(program_id, inputs, options=None, callback=None, result_decoder=None, session_id=None, start_session=False)">
+    Execute the runtime program.
+
+    **Parameters**
+
+    *   **program\_id** (`str`) – Program ID.
+
+    *   **inputs** (`Union`\[`Dict`, [`ParameterNamespace`](qiskit_ibm_runtime.ParameterNamespace "qiskit_ibm_runtime.runtime_program.ParameterNamespace")]) – Program input parameters. These input values are passed to the runtime program.
+
+    *   **options** (`Union`\[[`RuntimeOptions`](qiskit_ibm_runtime.RuntimeOptions "qiskit_ibm_runtime.runtime_options.RuntimeOptions"), `Dict`, `None`]) – Runtime options that control the execution environment. See [`RuntimeOptions`](qiskit_ibm_runtime.RuntimeOptions "qiskit_ibm_runtime.RuntimeOptions") for all available options.
+
+    *   **callback** (`Optional`\[`Callable`]) –
+
+        Callback function to be invoked for any interim results and final result. The callback function will receive 2 positional parameters:
+
+        > 1.  Job ID
+        > 2.  Job result.
+
+    *   **result\_decoder** (`Union`\[`Type`\[`ResultDecoder`], `Sequence`\[`Type`\[`ResultDecoder`]], `None`]) – A `ResultDecoder` subclass used to decode job results. If more than one decoder is specified, the first is used for interim results and the second final results. If not specified, a program-specific decoder or the default `ResultDecoder` is used.
+
+    *   **session\_id** (`Optional`\[`str`]) – Job ID of the first job in a runtime session.
+
+    *   **start\_session** (`Optional`\[`bool`]) – Set to True to explicitly start a runtime session. Defaults to False.
+
+    **Return type**
+
+    [`RuntimeJob`](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.runtime_job.RuntimeJob")
+
+    **Returns**
+
+    A `RuntimeJob` instance representing the execution.
+
+    **Raises**
+
+    *   **IBMInputValueError** – If input is invalid.
+    *   **RuntimeProgramNotFound** – If the program cannot be found.
+    *   **IBMRuntimeError** – An error occurred running the program.
+  </Function>
+
+  ### save\_account
+
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.save_account" name="save_account" signature="static save_account(token=None, url=None, instance=None, channel=None, filename=None, name=None, proxies=None, verify=None, overwrite=False, channel_strategy=None, set_as_default=None)">
+    Save the account to disk for future use.
+
+    **Parameters**
+
+    *   **token** (`Optional`\[`str`]) – IBM Cloud API key or IBM Quantum API token.
+    *   **url** (`Optional`\[`str`]) – The API URL. Defaults to [https://cloud.ibm.com](https://cloud.ibm.com) (ibm\_cloud) or [https://auth.quantum-computing.ibm.com/api](https://auth.quantum-computing.ibm.com/api) (ibm\_quantum).
+    *   **instance** (`Optional`\[`str`]) – The CRN (ibm\_cloud) or hub/group/project (ibm\_quantum).
+    *   **channel** (`Optional`\[`Literal`\[‘ibm\_cloud’, ‘ibm\_quantum’]]) – Channel type. ibm\_cloud or ibm\_quantum.
+    *   **filename** (`Optional`\[`str`]) – Full path of the file where the account is saved.
+    *   **name** (`Optional`\[`str`]) – Name of the account to save.
+    *   **proxies** (`Optional`\[`dict`]) – Proxy configuration. Supported optional keys are `urls` (a dictionary mapping protocol or protocol and host to the URL of the proxy, documented at [https://docs.python-requests.org/en/latest/api/#requests.Session.proxies](https://docs.python-requests.org/en/latest/api/#requests.Session.proxies)), `username_ntlm`, `password_ntlm` (username and password to enable NTLM user authentication)
+    *   **verify** (`Optional`\[`bool`]) – Verify the server’s TLS certificate.
+    *   **overwrite** (`Optional`\[`bool`]) – `True` if the existing account is to be overwritten.
+    *   **channel\_strategy** (`Optional`\[`str`]) – Error mitigation strategy.
+    *   **set\_as\_default** (`Optional`\[`bool`]) – If `True`, the account is saved in filename, as the default account.
+
+    **Return type**
+
+    `None`
+  </Function>
+
+  ### saved\_accounts
+
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.saved_accounts" name="saved_accounts" signature="static saved_accounts(default=None, channel=None, filename=None, name=None)">
+    List the accounts saved on disk.
+
+    **Parameters**
+
+    *   **default** (`Optional`\[`bool`]) – If set to True, only default accounts are returned.
+    *   **channel** (`Optional`\[`Literal`\[‘ibm\_cloud’, ‘ibm\_quantum’]]) – Channel type. ibm\_cloud or ibm\_quantum.
+    *   **filename** (`Optional`\[`str`]) – Name of file whose accounts are returned.
+    *   **name** (`Optional`\[`str`]) – If set, only accounts with the given name are returned.
+
+    **Return type**
+
+    `dict`
+
+    **Returns**
+
+    A dictionary with information about the accounts saved on disk.
+
+    **Raises**
+
+    **ValueError** – If an invalid account is found on disk.
+  </Function>
+
+  ### set\_program\_visibility
+
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.set_program_visibility" name="set_program_visibility" signature="set_program_visibility(program_id, public)">
+    Sets a program’s visibility.
+
+    **Parameters**
+
+    *   **program\_id** (`str`) – Program ID.
+    *   **public** (`bool`) – If `True`, make the program visible to all. If `False`, make the program visible to just your account.
+
+    **Raises**
+
+    *   **RuntimeProgramNotFound** – if program not found (404)
+    *   **IBMRuntimeError** – if update failed (401, 403)
+
+    **Return type**
+
+    `None`
+  </Function>
+
+  ### update\_program
+
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.update_program" name="update_program" signature="update_program(program_id, data=None, metadata=None, name=None, description=None, max_execution_time=None, spec=None)">
+    Update a runtime program.
+
+    Program metadata can be specified using the metadata parameter or individual parameters, such as name and description. If the same metadata field is specified in both places, the individual parameter takes precedence.
+
+    **Parameters**
+
+    *   **program\_id** (`str`) – Program ID.
+    *   **data** (`Optional`\[`str`]) – Program data or path of the file containing program data to upload.
+    *   **metadata** (`Union`\[`Dict`, `str`, `None`]) – Name of the program metadata file or metadata dictionary.
+    *   **name** (`Optional`\[`str`]) – New program name.
+    *   **description** (`Optional`\[`str`]) – New program description.
+    *   **max\_execution\_time** (`Optional`\[`int`]) – New maximum execution time.
+    *   **spec** (`Optional`\[`Dict`]) – New specifications for backend characteristics, input parameters, interim results and final result.
+
+    **Raises**
+
+    *   **RuntimeProgramNotFound** – If the program doesn’t exist.
+    *   **IBMRuntimeError** – If the request failed.
+
+    **Return type**
+
+    `None`
+  </Function>
+
+  ### upload\_program
+
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.upload_program" name="upload_program" signature="upload_program(data, metadata=None)">
+    Upload a runtime program.
+
+    In addition to program data, the following program metadata is also required:
+
+    > *   name
+    > *   max\_execution\_time
+
+    Program metadata can be specified using the metadata parameter or individual parameter (for example, name and description). If the same metadata field is specified in both places, the individual parameter takes precedence. For example, if you specify:
 
     ```python
-    QiskitRuntimeService.backends(
-        filters=lambda b: b.max_shots > 50000)
-    QiskitRuntimeService.backends(
-        filters=lambda x: ("rz" in x.basis_gates )
+    upload_program(metadata={"name": "name1"}, name="name2")
     ```
 
-*   **\*\*kwargs** –
+    `name2` will be used as the program name.
 
-    Simple filters that require a specific value for an attribute in backend configuration or status. Examples:
+    **Parameters**
 
-    ```python
-    # Get the operational real backends
-    QiskitRuntimeService.backends(simulator=False, operational=True)
+    *   **data** (`str`) – Program data or path of the file containing program data to upload.
 
-    # Get the backends with at least 127 qubits
-    QiskitRuntimeService.backends(min_num_qubits=127)
+    *   **metadata** (`Union`\[`Dict`, `str`, `None`]) –
 
-    # Get the backends that support OpenPulse
-    QiskitRuntimeService.backends(open_pulse=True)
-    ```
+        Name of the program metadata file or metadata dictionary. A metadata file needs to be in the JSON format. The `parameters`, `return_values`, and `interim_results` should be defined as JSON Schema. See `program/program_metadata_sample.json` for an example. The fields in metadata are explained below.
 
-    For the full list of backend attributes, see the IBMBackend class documentation \<[providers\_models](/api/qiskit/providers_models)>
+        *   name: Name of the program. Required.
 
-**Return type**
+        *   max\_execution\_time: Maximum execution time in seconds. Required.
 
-`List`\[[`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend")]
+        *   description: Program description.
 
-**Returns**
+        *   **is\_public: Whether the runtime program should be visible to the public.**
 
-The list of available backends that match the filter.
+            The default is `False`.
 
-**Raises**
+        *   **spec: Specifications for backend characteristics and input parameters**
 
-*   **IBMInputValueError** – If an input is invalid.
-*   **QiskitBackendNotFoundError** – If the backend is not in any instance.
+            required to run the program, interim results and final result.
 
-### delete\_account
+            *   backend\_requirements: Backend requirements.
+            *   parameters: Program input parameters in JSON schema format.
+            *   return\_values: Program return values in JSON schema format.
+            *   interim\_results: Program interim results in JSON schema format.
 
-<span id="qiskit_ibm_runtime.QiskitRuntimeService.delete_account" />
+    **Return type**
 
-`static delete_account(filename=None, name=None, channel=None)`
+    `str`
 
-Delete a saved account from disk.
+    **Returns**
 
-**Parameters**
+    Program ID.
 
-*   **filename** (`Optional`\[`str`]) – Name of file from which to delete the account.
-*   **name** (`Optional`\[`str`]) – Name of the saved account to delete.
-*   **channel** (`Optional`\[`Literal`\[‘ibm\_cloud’, ‘ibm\_quantum’]]) – Channel type of the default account to delete. Ignored if account name is provided.
+    **Raises**
 
-**Return type**
-
-`bool`
-
-**Returns**
-
-True if the account was deleted. False if no account was found.
-
-### delete\_job
-
-<span id="qiskit_ibm_runtime.QiskitRuntimeService.delete_job" />
-
-`delete_job(job_id)`
-
-Delete a runtime job.
-
-Note that this operation cannot be reversed.
-
-**Parameters**
-
-**job\_id** (`str`) – ID of the job to delete.
-
-**Raises**
-
-*   **RuntimeJobNotFound** – If the job doesn’t exist.
-*   **IBMRuntimeError** – If the request failed.
-
-**Return type**
-
-`None`
-
-### delete\_program
-
-<span id="qiskit_ibm_runtime.QiskitRuntimeService.delete_program" />
-
-`delete_program(program_id)`
-
-Delete a runtime program.
-
-**Parameters**
-
-**program\_id** (`str`) – Program ID.
-
-**Raises**
-
-*   **RuntimeProgramNotFound** – If the program doesn’t exist.
-*   **IBMRuntimeError** – If the request failed.
-
-**Return type**
-
-`None`
-
-### get\_backend
-
-<span id="qiskit_ibm_runtime.QiskitRuntimeService.get_backend" />
-
-`get_backend(name=None, **kwargs)`
-
-Return a single backend matching the specified filtering.
-
-**Parameters**
-
-*   **name** (*str*) – name of the backend.
-*   **\*\*kwargs** – dict used for filtering.
-
-**Returns**
-
-a backend matching the filtering.
-
-**Return type**
-
-Backend
-
-**Raises**
-
-**QiskitBackendNotFoundError** – if no backend could be found or more than one backend matches the filtering criteria.
-
-### instances
-
-<span id="qiskit_ibm_runtime.QiskitRuntimeService.instances" />
-
-`instances()`
-
-Return the IBM Quantum instances list currently in use for the session.
-
-**Return type**
-
-`List`\[`str`]
-
-**Returns**
-
-A list with instances currently in the session.
-
-### job
-
-<span id="qiskit_ibm_runtime.QiskitRuntimeService.job" />
-
-`job(job_id)`
-
-Retrieve a runtime job.
-
-**Parameters**
-
-**job\_id** (`str`) – Job ID.
-
-**Return type**
-
-[`RuntimeJob`](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.runtime_job.RuntimeJob")
-
-**Returns**
-
-Runtime job retrieved.
-
-**Raises**
-
-*   **RuntimeJobNotFound** – If the job doesn’t exist.
-*   **IBMRuntimeError** – If the request failed.
-
-### jobs
-
-<span id="qiskit_ibm_runtime.QiskitRuntimeService.jobs" />
-
-`jobs(limit=10, skip=0, backend_name=None, pending=None, program_id=None, instance=None, job_tags=None, session_id=None, created_after=None, created_before=None, descending=True)`
-
-Retrieve all runtime jobs, subject to optional filtering.
-
-**Parameters**
-
-*   **limit** (`Optional`\[`int`]) – Number of jobs to retrieve. `None` means no limit.
-*   **skip** (`int`) – Starting index for the job retrieval.
-*   **backend\_name** (`Optional`\[`str`]) – Name of the backend to retrieve jobs from.
-*   **pending** (`Optional`\[`bool`]) – Filter by job pending state. If `True`, ‘QUEUED’ and ‘RUNNING’ jobs are included. If `False`, ‘DONE’, ‘CANCELLED’ and ‘ERROR’ jobs are included.
-*   **program\_id** (`Optional`\[`str`]) – Filter by Program ID.
-*   **instance** (`Optional`\[`str`]) – This is only supported for `ibm_quantum` runtime and is in the hub/group/project format.
-*   **job\_tags** (`Optional`\[`List`\[`str`]]) – Filter by tags assigned to jobs. Matched jobs are associated with all tags.
-*   **session\_id** (`Optional`\[`str`]) – Job ID of the first job in a runtime session.
-*   **created\_after** (`Optional`\[`datetime`]) – Filter by the given start date, in local time. This is used to find jobs whose creation dates are after (greater than or equal to) this local date/time.
-*   **created\_before** (`Optional`\[`datetime`]) – Filter by the given end date, in local time. This is used to find jobs whose creation dates are before (less than or equal to) this local date/time.
-*   **descending** (`bool`) – If `True`, return the jobs in descending order of the job creation date (i.e. newest first) until the limit is reached.
-
-**Return type**
-
-`List`\[[`RuntimeJob`](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.runtime_job.RuntimeJob")]
-
-**Returns**
-
-A list of runtime jobs.
-
-**Raises**
-
-**IBMInputValueError** – If an input value is invalid.
-
-### least\_busy
-
-<span id="qiskit_ibm_runtime.QiskitRuntimeService.least_busy" />
-
-`least_busy(min_num_qubits=None, instance=None, filters=None, **kwargs)`
-
-Return the least busy available backend.
-
-**Parameters**
-
-*   **min\_num\_qubits** (`Optional`\[`int`]) – Minimum number of qubits the backend has to have.
-
-*   **instance** (`Optional`\[`str`]) – This is only supported for `ibm_quantum` runtime and is in the hub/group/project format.
-
-*   **filters** (`Optional`\[`Callable`\[\[`List`\[[`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend")]], `bool`]]) –
-
-    Filters can be defined as for the [`backends()`](#qiskit_ibm_runtime.QiskitRuntimeService.backends "qiskit_ibm_runtime.QiskitRuntimeService.backends") method. An example to get the operational backends with 5 qubits:
-
-    ```python
-    QiskitRuntimeService.least_busy(n_qubits=5, operational=True)
-    ```
-
-**Return type**
-
-[`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend")
-
-**Returns**
-
-The backend with the fewest number of pending jobs.
-
-**Raises**
-
-**QiskitBackendNotFoundError** – If no backend matches the criteria.
-
-### pprint\_programs
-
-<span id="qiskit_ibm_runtime.QiskitRuntimeService.pprint_programs" />
-
-`pprint_programs(refresh=False, detailed=False, limit=20, skip=0)`
-
-Pretty print information about available runtime programs.
-
-**Parameters**
-
-*   **refresh** (`bool`) – If `True`, re-query the server for the programs. Otherwise return the cached value.
-*   **detailed** (`bool`) – If `True` print all details about available runtime programs.
-*   **limit** (`int`) – The number of programs returned at a time. Default and maximum value of 20.
-*   **skip** (`int`) – The number of programs to skip.
-
-**Return type**
-
-`None`
-
-### program
-
-<span id="qiskit_ibm_runtime.QiskitRuntimeService.program" />
-
-`program(program_id, refresh=False)`
-
-Retrieve a runtime program.
-
-Currently only program metadata is returned.
-
-**Parameters**
-
-*   **program\_id** (`str`) – Program ID.
-*   **refresh** (`bool`) – If `True`, re-query the server for the program. Otherwise return the cached value.
-
-**Return type**
-
-[`RuntimeProgram`](qiskit_ibm_runtime.RuntimeProgram "qiskit_ibm_runtime.runtime_program.RuntimeProgram")
-
-**Returns**
-
-Runtime program.
-
-**Raises**
-
-*   **RuntimeProgramNotFound** – If the program does not exist.
-*   **IBMRuntimeError** – If the request failed.
-
-### programs
-
-<span id="qiskit_ibm_runtime.QiskitRuntimeService.programs" />
-
-`programs(refresh=False, limit=20, skip=0)`
-
-Return available runtime programs.
-
-Currently only program metadata is returned.
-
-**Parameters**
-
-*   **refresh** (`bool`) – If `True`, re-query the server for the programs. Otherwise return the cached value.
-*   **limit** (`int`) – The number of programs returned at a time. `None` means no limit.
-*   **skip** (`int`) – The number of programs to skip.
-
-**Return type**
-
-`List`\[[`RuntimeProgram`](qiskit_ibm_runtime.RuntimeProgram "qiskit_ibm_runtime.runtime_program.RuntimeProgram")]
-
-**Returns**
-
-A list of runtime programs.
-
-### run
-
-<span id="qiskit_ibm_runtime.QiskitRuntimeService.run" />
-
-`run(program_id, inputs, options=None, callback=None, result_decoder=None, session_id=None, start_session=False)`
-
-Execute the runtime program.
-
-**Parameters**
-
-*   **program\_id** (`str`) – Program ID.
-
-*   **inputs** (`Union`\[`Dict`, [`ParameterNamespace`](qiskit_ibm_runtime.ParameterNamespace "qiskit_ibm_runtime.runtime_program.ParameterNamespace")]) – Program input parameters. These input values are passed to the runtime program.
-
-*   **options** (`Union`\[[`RuntimeOptions`](qiskit_ibm_runtime.RuntimeOptions "qiskit_ibm_runtime.runtime_options.RuntimeOptions"), `Dict`, `None`]) – Runtime options that control the execution environment. See [`RuntimeOptions`](qiskit_ibm_runtime.RuntimeOptions "qiskit_ibm_runtime.RuntimeOptions") for all available options.
-
-*   **callback** (`Optional`\[`Callable`]) –
-
-    Callback function to be invoked for any interim results and final result. The callback function will receive 2 positional parameters:
-
-    > 1.  Job ID
-    > 2.  Job result.
-
-*   **result\_decoder** (`Union`\[`Type`\[`ResultDecoder`], `Sequence`\[`Type`\[`ResultDecoder`]], `None`]) – A `ResultDecoder` subclass used to decode job results. If more than one decoder is specified, the first is used for interim results and the second final results. If not specified, a program-specific decoder or the default `ResultDecoder` is used.
-
-*   **session\_id** (`Optional`\[`str`]) – Job ID of the first job in a runtime session.
-
-*   **start\_session** (`Optional`\[`bool`]) – Set to True to explicitly start a runtime session. Defaults to False.
-
-**Return type**
-
-[`RuntimeJob`](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.runtime_job.RuntimeJob")
-
-**Returns**
-
-A `RuntimeJob` instance representing the execution.
-
-**Raises**
-
-*   **IBMInputValueError** – If input is invalid.
-*   **RuntimeProgramNotFound** – If the program cannot be found.
-*   **IBMRuntimeError** – An error occurred running the program.
-
-### save\_account
-
-<span id="qiskit_ibm_runtime.QiskitRuntimeService.save_account" />
-
-`static save_account(token=None, url=None, instance=None, channel=None, filename=None, name=None, proxies=None, verify=None, overwrite=False, channel_strategy=None, set_as_default=None)`
-
-Save the account to disk for future use.
-
-**Parameters**
-
-*   **token** (`Optional`\[`str`]) – IBM Cloud API key or IBM Quantum API token.
-*   **url** (`Optional`\[`str`]) – The API URL. Defaults to [https://cloud.ibm.com](https://cloud.ibm.com) (ibm\_cloud) or [https://auth.quantum-computing.ibm.com/api](https://auth.quantum-computing.ibm.com/api) (ibm\_quantum).
-*   **instance** (`Optional`\[`str`]) – The CRN (ibm\_cloud) or hub/group/project (ibm\_quantum).
-*   **channel** (`Optional`\[`Literal`\[‘ibm\_cloud’, ‘ibm\_quantum’]]) – Channel type. ibm\_cloud or ibm\_quantum.
-*   **filename** (`Optional`\[`str`]) – Full path of the file where the account is saved.
-*   **name** (`Optional`\[`str`]) – Name of the account to save.
-*   **proxies** (`Optional`\[`dict`]) – Proxy configuration. Supported optional keys are `urls` (a dictionary mapping protocol or protocol and host to the URL of the proxy, documented at [https://docs.python-requests.org/en/latest/api/#requests.Session.proxies](https://docs.python-requests.org/en/latest/api/#requests.Session.proxies)), `username_ntlm`, `password_ntlm` (username and password to enable NTLM user authentication)
-*   **verify** (`Optional`\[`bool`]) – Verify the server’s TLS certificate.
-*   **overwrite** (`Optional`\[`bool`]) – `True` if the existing account is to be overwritten.
-*   **channel\_strategy** (`Optional`\[`str`]) – Error mitigation strategy.
-*   **set\_as\_default** (`Optional`\[`bool`]) – If `True`, the account is saved in filename, as the default account.
-
-**Return type**
-
-`None`
-
-### saved\_accounts
-
-<span id="qiskit_ibm_runtime.QiskitRuntimeService.saved_accounts" />
-
-`static saved_accounts(default=None, channel=None, filename=None, name=None)`
-
-List the accounts saved on disk.
-
-**Parameters**
-
-*   **default** (`Optional`\[`bool`]) – If set to True, only default accounts are returned.
-*   **channel** (`Optional`\[`Literal`\[‘ibm\_cloud’, ‘ibm\_quantum’]]) – Channel type. ibm\_cloud or ibm\_quantum.
-*   **filename** (`Optional`\[`str`]) – Name of file whose accounts are returned.
-*   **name** (`Optional`\[`str`]) – If set, only accounts with the given name are returned.
-
-**Return type**
-
-`dict`
-
-**Returns**
-
-A dictionary with information about the accounts saved on disk.
-
-**Raises**
-
-**ValueError** – If an invalid account is found on disk.
-
-### set\_program\_visibility
-
-<span id="qiskit_ibm_runtime.QiskitRuntimeService.set_program_visibility" />
-
-`set_program_visibility(program_id, public)`
-
-Sets a program’s visibility.
-
-**Parameters**
-
-*   **program\_id** (`str`) – Program ID.
-*   **public** (`bool`) – If `True`, make the program visible to all. If `False`, make the program visible to just your account.
-
-**Raises**
-
-*   **RuntimeProgramNotFound** – if program not found (404)
-*   **IBMRuntimeError** – if update failed (401, 403)
-
-**Return type**
-
-`None`
-
-### update\_program
-
-<span id="qiskit_ibm_runtime.QiskitRuntimeService.update_program" />
-
-`update_program(program_id, data=None, metadata=None, name=None, description=None, max_execution_time=None, spec=None)`
-
-Update a runtime program.
-
-Program metadata can be specified using the metadata parameter or individual parameters, such as name and description. If the same metadata field is specified in both places, the individual parameter takes precedence.
-
-**Parameters**
-
-*   **program\_id** (`str`) – Program ID.
-*   **data** (`Optional`\[`str`]) – Program data or path of the file containing program data to upload.
-*   **metadata** (`Union`\[`Dict`, `str`, `None`]) – Name of the program metadata file or metadata dictionary.
-*   **name** (`Optional`\[`str`]) – New program name.
-*   **description** (`Optional`\[`str`]) – New program description.
-*   **max\_execution\_time** (`Optional`\[`int`]) – New maximum execution time.
-*   **spec** (`Optional`\[`Dict`]) – New specifications for backend characteristics, input parameters, interim results and final result.
-
-**Raises**
-
-*   **RuntimeProgramNotFound** – If the program doesn’t exist.
-*   **IBMRuntimeError** – If the request failed.
-
-**Return type**
-
-`None`
-
-### upload\_program
-
-<span id="qiskit_ibm_runtime.QiskitRuntimeService.upload_program" />
-
-`upload_program(data, metadata=None)`
-
-Upload a runtime program.
-
-In addition to program data, the following program metadata is also required:
-
-> *   name
-> *   max\_execution\_time
-
-Program metadata can be specified using the metadata parameter or individual parameter (for example, name and description). If the same metadata field is specified in both places, the individual parameter takes precedence. For example, if you specify:
-
-```python
-upload_program(metadata={"name": "name1"}, name="name2")
-```
-
-`name2` will be used as the program name.
-
-**Parameters**
-
-*   **data** (`str`) – Program data or path of the file containing program data to upload.
-
-*   **metadata** (`Union`\[`Dict`, `str`, `None`]) –
-
-    Name of the program metadata file or metadata dictionary. A metadata file needs to be in the JSON format. The `parameters`, `return_values`, and `interim_results` should be defined as JSON Schema. See `program/program_metadata_sample.json` for an example. The fields in metadata are explained below.
-
-    *   name: Name of the program. Required.
-
-    *   max\_execution\_time: Maximum execution time in seconds. Required.
-
-    *   description: Program description.
-
-    *   **is\_public: Whether the runtime program should be visible to the public.**
-
-        The default is `False`.
-
-    *   **spec: Specifications for backend characteristics and input parameters**
-
-        required to run the program, interim results and final result.
-
-        *   backend\_requirements: Backend requirements.
-        *   parameters: Program input parameters in JSON schema format.
-        *   return\_values: Program return values in JSON schema format.
-        *   interim\_results: Program interim results in JSON schema format.
-
-**Return type**
-
-`str`
-
-**Returns**
-
-Program ID.
-
-**Raises**
-
-*   **IBMInputValueError** – If required metadata is missing.
-*   **RuntimeDuplicateProgramError** – If a program with the same name already exists.
-*   **IBMNotAuthorizedError** – If you are not authorized to upload programs.
-*   **IBMRuntimeError** – If the upload failed.
+    *   **IBMInputValueError** – If required metadata is missing.
+    *   **RuntimeDuplicateProgramError** – If a program with the same name already exists.
+    *   **IBMNotAuthorizedError** – If you are not authorized to upload programs.
+    *   **IBMRuntimeError** – If the upload failed.
+  </Function>
+</Class>
 
