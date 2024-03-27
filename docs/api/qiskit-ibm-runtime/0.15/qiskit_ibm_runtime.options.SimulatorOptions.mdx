@@ -8,86 +8,64 @@ python_api_name: qiskit_ibm_runtime.options.SimulatorOptions
 
 # SimulatorOptions
 
-<span id="qiskit_ibm_runtime.options.SimulatorOptions" />
+<Class id="qiskit_ibm_runtime.options.SimulatorOptions" github="https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.15/qiskit_ibm_runtime/options/simulator_options.py" signature="SimulatorOptions(noise_model=None, seed_simulator=None, coupling_map=None, basis_gates=None)">
+  Simulator options.
 
-`SimulatorOptions(noise_model=None, seed_simulator=None, coupling_map=None, basis_gates=None)` [GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.15/qiskit_ibm_runtime/options/simulator_options.py "view source code")
+  For best practice in simulating a backend make sure to pass the basis gates and coupling map of that backend.
 
-Simulator options.
+  **Parameters**
 
-For best practice in simulating a backend make sure to pass the basis gates and coupling map of that backend.
+  *   **noise\_model** (`Union`\[`dict`, `NoiseModel`, `None`]) – Noise model for the simulator.
+  *   **seed\_simulator** (`Optional`\[`int`]) – Random seed to control sampling.
+  *   **coupling\_map** (`Union`\[`List`\[`List`\[`int`]], `CouplingMap`, `None`]) – Directed coupling map to target in mapping. If the coupling map is symmetric, both directions need to be specified. Each entry in the list specifies a directed two-qubit interactions, e.g: `[[0, 1], [0, 3], [1, 2], [1, 5], [2, 5], [4, 1], [5, 3]]`
+  *   **basis\_gates** (`Optional`\[`List`\[`str`]]) – List of basis gate names to unroll to. For example, `['u1', 'u2', 'u3', 'cx']`. If `None`, do not unroll.
 
-**Parameters**
+  ## Attributes
 
-*   **noise\_model** (`Union`\[`dict`, `NoiseModel`, `None`]) – Noise model for the simulator.
-*   **seed\_simulator** (`Optional`\[`int`]) – Random seed to control sampling.
-*   **coupling\_map** (`Union`\[`List`\[`List`\[`int`]], `CouplingMap`, `None`]) – Directed coupling map to target in mapping. If the coupling map is symmetric, both directions need to be specified. Each entry in the list specifies a directed two-qubit interactions, e.g: `[[0, 1], [0, 3], [1, 2], [1, 5], [2, 5], [4, 1], [5, 3]]`
-*   **basis\_gates** (`Optional`\[`List`\[`str`]]) – List of basis gate names to unroll to. For example, `['u1', 'u2', 'u3', 'cx']`. If `None`, do not unroll.
+  ### basis\_gates
 
-## Attributes
+  <Attribute id="qiskit_ibm_runtime.options.SimulatorOptions.basis_gates" name="basis_gates" attributeTypeHint="List[str] | None" attributeValue="= None" />
 
-<span id="qiskit_ibm_runtime.options.SimulatorOptions.basis_gates" />
+  ### coupling\_map
 
-### basis\_gates
+  <Attribute id="qiskit_ibm_runtime.options.SimulatorOptions.coupling_map" name="coupling_map" attributeTypeHint="List[List[int]] | CouplingMap | None" attributeValue="= None" />
 
-`List[str] | None`
+  ### noise\_model
 
-`= None`
+  <Attribute id="qiskit_ibm_runtime.options.SimulatorOptions.noise_model" name="noise_model" attributeTypeHint="dict | NoiseModel | None" attributeValue="= None" />
 
-<span id="qiskit_ibm_runtime.options.SimulatorOptions.coupling_map" />
+  ### seed\_simulator
 
-### coupling\_map
+  <Attribute id="qiskit_ibm_runtime.options.SimulatorOptions.seed_simulator" name="seed_simulator" attributeTypeHint="int | None" attributeValue="= None" />
 
-`List[List[int]] | CouplingMap | None`
+  ## Methods
 
-`= None`
+  ### set\_backend
 
-<span id="qiskit_ibm_runtime.options.SimulatorOptions.noise_model" />
+  <Function id="qiskit_ibm_runtime.options.SimulatorOptions.set_backend" name="set_backend" signature="set_backend(backend)">
+    Set backend for simulation. This method changes noise\_model, coupling\_map, basis\_gates according to given backend.
 
-### noise\_model
+    **Parameters**
 
-`dict | NoiseModel | None`
+    **backend** (`Union`\[`BackendV1`, `BackendV2`]) – backend to be set.
 
-`= None`
+    **Raises**
 
-<span id="qiskit_ibm_runtime.options.SimulatorOptions.seed_simulator" />
+    **MissingOptionalLibraryError if qiskit-aer is not found.** –
 
-### seed\_simulator
+    **Return type**
 
-`int | None`
+    `None`
+  </Function>
 
-`= None`
+  ### validate\_simulator\_options
 
-## Methods
+  <Function id="qiskit_ibm_runtime.options.SimulatorOptions.validate_simulator_options" name="validate_simulator_options" signature="static validate_simulator_options(simulator_options)">
+    Validate that simulator options are legal. :raises ValueError: if any simulator option is not supported
 
-### set\_backend
+    **Return type**
 
-<span id="qiskit_ibm_runtime.options.SimulatorOptions.set_backend" />
-
-`set_backend(backend)`
-
-Set backend for simulation. This method changes noise\_model, coupling\_map, basis\_gates according to given backend.
-
-**Parameters**
-
-**backend** (`Union`\[`BackendV1`, `BackendV2`]) – backend to be set.
-
-**Raises**
-
-**MissingOptionalLibraryError if qiskit-aer is not found.** –
-
-**Return type**
-
-`None`
-
-### validate\_simulator\_options
-
-<span id="qiskit_ibm_runtime.options.SimulatorOptions.validate_simulator_options" />
-
-`static validate_simulator_options(simulator_options)`
-
-Validate that simulator options are legal. :raises ValueError: if any simulator option is not supported
-
-**Return type**
-
-`None`
+    `None`
+  </Function>
+</Class>
 
