@@ -1,34 +1,15 @@
 ---
-title: Migrate from qiskit_ibm_provider to qiskit_ibm_runtime
-description: How to migrate `backend.run()` from Qiskit IBM Provider to Qiskit IBM Runtime
+title: Migrate from qiskit-ibm-provider
+description: Migrate from backend.run in qiskit-ibm-provider to using Qiskit Runtime primitives
+
 ---
 
-# Migrate `backend.run()` from `qiskit_ibm_provider` to `qiskit_ibm_runtime`
+# Migrate from `qiskit_ibm_provider` to `qiskit_ibm_runtime`
 
-The Qiskit Runtime interface includes two packages:
-Qiskit IBM Provider (the [`qiskit_ibm_provider`](../qiskit-ibm-provider) package) and
-Qiskit IBM Runtime (the [`qiskit_ibm_runtime`](../qiskit-ibm-runtime) package). Until now,
-primitives (`Sampler` and `Estimator`)
-were run in Runtime. Custom circuits that were manually transpiled and used `IBMBackend.run()`
-were run in Provider.
+The [`qiskit_ibm_provider`](../qiskit-ibm-provider) package from Qiskit Runtime is being deprecated. This guide describes how to migrate code that implemented `IBMBackend.run()`
+using `qiskit_ibm_provider` to use `qiskit_ibm_runtime` instead.
 
-In the `qiskit-ibm-runtime` 0.15 release, we added support for running custom circuits using `IBMBackend.run()` in Runtime,
-so users can run all programs through Runtime.
-
-This guide describes how to migrate code that implemented `IBMBackend.run()`
-using qiskit_ibm_provider to use qiskit_ibm_runtime instead.
-
-**Example 1: Straightforward execution of IBMBackend.run()**
-
-```python
-from qiskit import *
-from qiskit.compiler import transpile, assemble
-
-circuit = QuantumCircuit(2, 2)
-circuit.h(0)
-circuit.cx(0, 1)
-circuit.measure_all()
-```
+## Example: Straightforward execution of IBMBackend.run()
 
 <Tabs>
   <TabItem value="updated" label="Qiskit Runtime">
@@ -54,10 +35,23 @@ job = backend.run(transpiled_circuit)
 print(job.result())
 ```
   </TabItem>
+
+    <TabItem value="backend.run" label="backend.run">
+```python
+from qiskit import *
+from qiskit.compiler import transpile, assemble
+
+circuit = QuantumCircuit(2, 2)
+circuit.h(0)
+circuit.cx(0, 1)
+circuit.measure_all()
+```
+  </TabItem>
+
 </Tabs>
 
 
-**Example 2: Execution of backend.run() within a session:**
+## Example: Execution of backend.run() within a session
 
 This section of code is identical in Provider and in Runtime.
 
@@ -73,7 +67,7 @@ backend.cancel_session()
 Sessions are implemented differently in `IBMBackend` than when using primitives.
 Therefore, we cannot run a primitive and use backend.run() within a single session. If you specify both, one will be run outside of the session.
 
-**Example 3: Primitive session containing backend.run:**
+## Example: Primitive session containing backend.run
 
 In this example, `sampler` is run within session, but `backend` is run independently
 of the session.
@@ -89,7 +83,7 @@ with Session(backend=backend) as session:
     print(job2.session_id)  # is None
 ```
 
-**Example 4: `Backend` session containing Sampler:**
+## Example 4: `Backend` session containing Sampler
 
 In this example, `backend` is run within a session, but `sampler` is run independently
 of the session.

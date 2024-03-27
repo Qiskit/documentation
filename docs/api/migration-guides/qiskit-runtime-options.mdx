@@ -1,0 +1,46 @@
+---
+title: Migrate backend.run options to primitive options
+description: Migrate backend.run options to Qiskit Runtime primitive options
+
+
+in_page_toc_max_heading_level: 2
+---
+
+# Migrate backend.run options to primitive options
+
+All `backend.run` options are now available through the Qiskit Runtime primitives.
+
+| backend.run options | SamplerV2 options                                                                                                     | notes                                                                                                                                |
+|---------------------|-----------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------|
+| job_name            | n/a, use job_tags instead                                                                                             | ibmq-provider only                                                                                                                   |
+| job_share_level     | n/a, this was deprecated long ago                                                                                     | ibmq-provider only                                                                                                                   |
+| job_tags            | options.environment.job_tags                                                                                          |                                                                                                                                      |
+| experiment_id       | n/a, use job_tags instead                                                                                             | ibmq-provider only                                                                                                                   |
+| header              | You can attach metadata to circuits. The same metadata is returned in the result metadata, under “circuit_metadata”.  |                                                                                                                                      |
+| shots               | run([(…, shots)]) or run(…, shots=) or options.default_shots                                                          |                                                                                                                                      |
+| memory              | Use result.data.meas.get_counts() to get counts and result.data.meas.get_bitstrings() to get per-shot measurements    | SamplerV2 is essentially always memory=True                                                                                          |
+| qubit_lo_freq       | n/a, this option only applies to `Schedule` inputs, which was deprecated in 2022                                      |                                                                                                                                      |
+| meas_lo_freq        | n/a, this option only applies to `Schedule` inputs, which was deprecated in 2022                                      |                                                                                                                                      |
+| schedule_los        | n/a, this option only applies to `Schedule` inputs, which was deprecated in 2022                                      |                                                                                                                                      |
+| meas_level          | options.execution.meas_type                                                                                           | (meas_level, meas_return) → meas_type 0, * → not implemented 1, “avg” → “avg_kerneled” 1, “single” → “kerneled” 2, * → “classified”  |
+| meas_return         | options.execution.meas_type                                                                                           |                                                                                                                                      |
+| memory_slots        | n/a, this is automatically determined by the system                                                                   | ibmq-provider only                                                                                                                   |
+| memory_slot_size    | n/a, this is automatically determined by the system                                                                   | ibmq-provider only                                                                                                                   |
+| rep_time            | n/a, use rep_delay instead                                                                                            |                                                                                                                                      |
+| rep_delay           | options.execution.rep_delay                                                                                           |                                                                                                                                      |
+| init_qubits         | options.execution.init_qubits                                                                                         |                                                                                                                                      |
+| parameter_binds     | specify parameters in PUBs                                                                                            | ibmq-provider only                                                                                                                   |
+| use_measure_esp     | n/a, this is no longer supported by IBM backends                                                                      |                                                                                                                                      |
+| live_data_enabled   | n/a, this feature was removed in 2022                                                                                 | ibmq-provider only                                                                                                                   |
+| dynamic             | n/a, no longer needed. SamplerV2 knows if it’s dynamic                                                                | ibm-provider only                                                                                                                    |
+| init_circuit        | n/a, use init_qubits instead                                                                                          |                                                                                                                                      |
+| init_num_resets     | n/a, use init_qubits instead                                                                                          |                                                                                                                                      |
+| noise_model         | options.simulator.noise_model                                                                                         |                                                                                                                                      |
+| seed_simulator      | options.simulator.seed_simulator                                                                                      |                                                                                                                                      |
+
+## Algorithm tuning
+
+One of the advantages of the primitives is that they abstract away the
+circuit execution setup so that algorithm developers can focus on the
+pure algorithmic components. However, sometimes, to get the most out of
+an algorithm, you might want to tune certain primitive options. For details, see [Advanced runtime options](../../run/advanced-runtime-options).
