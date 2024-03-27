@@ -51,7 +51,7 @@ export function parseAnchors(markdown: string): Set<string> {
   // Anchors generated from markdown titles.
   const mdAnchors = markdownLinkExtractor(markdown).anchors;
   // Anchors from HTML id tags.
-  const idAnchors = markdown.match(/(?<=id=")(.*)(?=")/gm) || [];
+  const idAnchors = markdown.match(/(?<=id=")(.+?)(?=")/gm) || [];
   return new Set([...mdAnchors, ...idAnchors.map((id) => `#${id}`)]);
 }
 
