@@ -151,6 +151,7 @@ def _execute_notebook(filepath: Path, options: ExecuteOptions) -> nbformat.Noteb
         # If submitting jobs, we want to wait forever (-1 means no timeout)
         timeout=-1 if options.submit_jobs else 100,
         kernel_name="python3",
+        extra_arguments=["--InlineBackend.figure_format='svg'"]
     )
 
     processor.preprocess(nb)
