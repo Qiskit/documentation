@@ -8,208 +8,196 @@ python_api_name: qiskit.pulse.library.Drag
 
 # Drag
 
-<span id="qiskit.pulse.library.Drag" />
+<Class id="qiskit.pulse.library.Drag" github="https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/pulse/library/symbolic_pulses.py" signature="Drag(duration, amp, sigma, beta, name=None, limit_amplitude=None)">
+  Bases: [`qiskit.pulse.library.symbolic_pulses.SymbolicPulse`](qiskit.pulse.library.SymbolicPulse "qiskit.pulse.library.symbolic_pulses.SymbolicPulse")
 
-`Drag(duration, amp, sigma, beta, name=None, limit_amplitude=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/pulse/library/symbolic_pulses.py "view source code")
+  The Derivative Removal by Adiabatic Gate (DRAG) pulse is a standard Gaussian pulse with an additional Gaussian derivative component and lifting applied.
 
-Bases: [`qiskit.pulse.library.symbolic_pulses.SymbolicPulse`](qiskit.pulse.library.SymbolicPulse "qiskit.pulse.library.symbolic_pulses.SymbolicPulse")
+  It can be calibrated either to reduce the phase error due to virtual population of the $|2\rangle$ state during the pulse or to reduce the frequency spectrum of a standard Gaussian pulse near the $|1\rangle\leftrightarrow|2\rangle$ transition, reducing the chance of leakage to the $|2\rangle$ state.
 
-The Derivative Removal by Adiabatic Gate (DRAG) pulse is a standard Gaussian pulse with an additional Gaussian derivative component and lifting applied.
+  $$
+  \begin{split}g(x) &= \exp\Bigl(-\frac12 \frac{(x - \text{duration}/2)^2}{\text{sigma}^2}\Bigr)\\
+  g'(x) &= \text{amp}\times\frac{g(x)-g(-1)}{1-g(-1)}\\
+  f(x) &=  g'(x) \times \Bigl(1 + 1j \times \text{beta} \times            \Bigl(-\frac{x - \text{duration}/2}{\text{sigma}^2}\Bigr)  \Bigr),
+      \quad 0 \le x < \text{duration}\end{split}
+  $$
 
-It can be calibrated either to reduce the phase error due to virtual population of the $|2\rangle$ state during the pulse or to reduce the frequency spectrum of a standard Gaussian pulse near the $|1\rangle\leftrightarrow|2\rangle$ transition, reducing the chance of leakage to the $|2\rangle$ state.
+  where $g(x)$ is a standard unlifted Gaussian waveform and $g'(x)$ is the lifted [`Gaussian`](qiskit.pulse.library.Gaussian "qiskit.pulse.library.Gaussian") waveform.
 
-$$
-\begin{split}g(x) &= \exp\Bigl(-\frac12 \frac{(x - \text{duration}/2)^2}{\text{sigma}^2}\Bigr)\\
-g'(x) &= \text{amp}\times\frac{g(x)-g(-1)}{1-g(-1)}\\
-f(x) &=  g'(x) \times \Bigl(1 + 1j \times \text{beta} \times            \Bigl(-\frac{x - \text{duration}/2}{\text{sigma}^2}\Bigr)  \Bigr),
-    \quad 0 \le x < \text{duration}\end{split}
-$$
+  **References**
 
-where $g(x)$ is a standard unlifted Gaussian waveform and $g'(x)$ is the lifted [`Gaussian`](qiskit.pulse.library.Gaussian "qiskit.pulse.library.Gaussian") waveform.
+  1.  [*Gambetta, J. M., Motzoi, F., Merkel, S. T. & Wilhelm, F. K. Analytic control methods for high-fidelity unitary operations in a weakly nonlinear oscillator. Phys. Rev. A 83, 012308 (2011).*](https://link.aps.org/doi/10.1103/PhysRevA.83.012308)
 
-**References**
+  2.  [*F. Motzoi, J. M. Gambetta, P. Rebentrost, and F. K. Wilhelm Phys. Rev. Lett. 103, 110501 – Published 8 September 2009.*](https://link.aps.org/doi/10.1103/PhysRevLett.103.110501)
 
-1.  [*Gambetta, J. M., Motzoi, F., Merkel, S. T. & Wilhelm, F. K. Analytic control methods for high-fidelity unitary operations in a weakly nonlinear oscillator. Phys. Rev. A 83, 012308 (2011).*](https://link.aps.org/doi/10.1103/PhysRevA.83.012308)
+  Create new pulse instance.
 
-2.  [*F. Motzoi, J. M. Gambetta, P. Rebentrost, and F. K. Wilhelm Phys. Rev. Lett. 103, 110501 – Published 8 September 2009.*](https://link.aps.org/doi/10.1103/PhysRevLett.103.110501)
+  **Parameters**
 
-Create new pulse instance.
+  *   **duration** (`Union`\[`int`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]) – Pulse length in terms of the sampling period dt.
+  *   **amp** (`Union`\[`complex`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]) – The amplitude of the Drag envelope.
+  *   **sigma** (`Union`\[`float`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]) – A measure of how wide or narrow the Gaussian peak is; described mathematically in the class docstring.
+  *   **beta** (`Union`\[`float`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]) – The correction amplitude.
+  *   **name** (`Optional`\[`str`]) – Display name for this pulse envelope.
+  *   **limit\_amplitude** (`Optional`\[`bool`]) – If `True`, then limit the amplitude of the waveform to 1. The default is `True` and the amplitude is constrained to 1.
 
-**Parameters**
+  ## Methods
 
-*   **duration** (`Union`\[`int`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]) – Pulse length in terms of the sampling period dt.
-*   **amp** (`Union`\[`complex`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]) – The amplitude of the Drag envelope.
-*   **sigma** (`Union`\[`float`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]) – A measure of how wide or narrow the Gaussian peak is; described mathematically in the class docstring.
-*   **beta** (`Union`\[`float`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]) – The correction amplitude.
-*   **name** (`Optional`\[`str`]) – Display name for this pulse envelope.
-*   **limit\_amplitude** (`Optional`\[`bool`]) – If `True`, then limit the amplitude of the waveform to 1. The default is `True` and the amplitude is constrained to 1.
+  ### draw
 
-## Methods
+  <Function id="qiskit.pulse.library.Drag.draw" signature="Drag.draw(style=None, backend=None, time_range=None, time_unit='dt', show_waveform_info=True, plotter='mpl2d', axis=None)">
+    Plot the interpolated envelope of pulse.
 
-### draw
+    **Parameters**
 
-<span id="qiskit.pulse.library.Drag.draw" />
+    *   **style** (`Optional`\[`Dict`\[`str`, `Any`]]) – Stylesheet options. This can be dictionary or preset stylesheet classes. See `IQXStandard`, `IQXSimple`, and `IQXDebugging` for details of preset stylesheets.
 
-`Drag.draw(style=None, backend=None, time_range=None, time_unit='dt', show_waveform_info=True, plotter='mpl2d', axis=None)`
+    *   **backend** (*Optional\[BaseBackend]*) – Backend object to play the input pulse program. If provided, the plotter may use to make the visualization hardware aware.
 
-Plot the interpolated envelope of pulse.
+    *   **time\_range** (`Optional`\[`Tuple`\[`int`, `int`]]) – Set horizontal axis limit. Tuple `(tmin, tmax)`.
 
-**Parameters**
+    *   **time\_unit** (`str`) – The unit of specified time range either `dt` or `ns`. The unit of `ns` is available only when `backend` object is provided.
 
-*   **style** (`Optional`\[`Dict`\[`str`, `Any`]]) – Stylesheet options. This can be dictionary or preset stylesheet classes. See `IQXStandard`, `IQXSimple`, and `IQXDebugging` for details of preset stylesheets.
+    *   **show\_waveform\_info** (`bool`) – Show waveform annotations, i.e. name, of waveforms. Set `True` to show additional information about waveforms.
 
-*   **backend** (*Optional\[BaseBackend]*) – Backend object to play the input pulse program. If provided, the plotter may use to make the visualization hardware aware.
+    *   **plotter** (`str`) –
 
-*   **time\_range** (`Optional`\[`Tuple`\[`int`, `int`]]) – Set horizontal axis limit. Tuple `(tmin, tmax)`.
+        Name of plotter API to generate an output image. One of following APIs should be specified:
 
-*   **time\_unit** (`str`) – The unit of specified time range either `dt` or `ns`. The unit of `ns` is available only when `backend` object is provided.
+        ```python
+        mpl2d: Matplotlib API for 2D image generation.
+            Matplotlib API to generate 2D image. Charts are placed along y axis with
+            vertical offset. This API takes matplotlib.axes.Axes as `axis` input.
+        ```
 
-*   **show\_waveform\_info** (`bool`) – Show waveform annotations, i.e. name, of waveforms. Set `True` to show additional information about waveforms.
+        axis and style kwargs may depend on the plotter.
 
-*   **plotter** (`str`) –
+    *   **axis** (`Optional`\[`Any`]) – Arbitrary object passed to the plotter. If this object is provided, the plotters use a given `axis` instead of internally initializing a figure object. This object format depends on the plotter. See plotter argument for details.
 
-    Name of plotter API to generate an output image. One of following APIs should be specified:
+    **Returns**
 
-    ```python
-    mpl2d: Matplotlib API for 2D image generation.
-        Matplotlib API to generate 2D image. Charts are placed along y axis with
-        vertical offset. This API takes matplotlib.axes.Axes as `axis` input.
-    ```
+    Visualization output data. The returned data type depends on the `plotter`. If matplotlib family is specified, this will be a `matplotlib.pyplot.Figure` data.
+  </Function>
 
-    axis and style kwargs may depend on the plotter.
+  ### get\_waveform
 
-*   **axis** (`Optional`\[`Any`]) – Arbitrary object passed to the plotter. If this object is provided, the plotters use a given `axis` instead of internally initializing a figure object. This object format depends on the plotter. See plotter argument for details.
+  <Function id="qiskit.pulse.library.Drag.get_waveform" signature="Drag.get_waveform()">
+    Return a Waveform with samples filled according to the formula that the pulse represents and the parameter values it contains.
 
-**Returns**
+    Since the returned array is a discretized time series of the continuous function, this method uses a midpoint sampler. For `duration`, return:
 
-Visualization output data. The returned data type depends on the `plotter`. If matplotlib family is specified, this will be a `matplotlib.pyplot.Figure` data.
+    $$
+    \{f(t+0.5) \in \mathbb{C} | t \in \mathbb{Z} \wedge  0<=t<\texttt{duration}\}
+    $$
 
-### get\_waveform
+    **Return type**
 
-<span id="qiskit.pulse.library.Drag.get_waveform" />
+    [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.waveform.Waveform")
 
-`Drag.get_waveform()`
+    **Returns**
 
-Return a Waveform with samples filled according to the formula that the pulse represents and the parameter values it contains.
+    A waveform representation of this pulse.
 
-Since the returned array is a discretized time series of the continuous function, this method uses a midpoint sampler. For `duration`, return:
+    **Raises**
 
-$$
-\{f(t+0.5) \in \mathbb{C} | t \in \mathbb{Z} \wedge  0<=t<\texttt{duration}\}
-$$
+    *   [**PulseError**](pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When parameters are not assigned.
+    *   [**PulseError**](pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When expression for pulse envelope is not assigned.
+  </Function>
 
-**Return type**
+  ### is\_parameterized
 
-[`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.waveform.Waveform")
+  <Function id="qiskit.pulse.library.Drag.is_parameterized" signature="Drag.is_parameterized()">
+    Return True iff the instruction is parameterized.
 
-**Returns**
+    **Return type**
 
-A waveform representation of this pulse.
+    `bool`
+  </Function>
 
-**Raises**
+  ### validate\_parameters
 
-*   [**PulseError**](pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When parameters are not assigned.
-*   [**PulseError**](pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When expression for pulse envelope is not assigned.
+  <Function id="qiskit.pulse.library.Drag.validate_parameters" signature="Drag.validate_parameters()">
+    Validate parameters.
 
-### is\_parameterized
+    **Raises**
 
-<span id="qiskit.pulse.library.Drag.is_parameterized" />
+    [**PulseError**](pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameters passed are not valid.
 
-`Drag.is_parameterized()`
+    **Return type**
 
-Return True iff the instruction is parameterized.
+    `None`
+  </Function>
 
-**Return type**
+  ## Attributes
 
-`bool`
+  ### constraints
 
-### validate\_parameters
+  <Attribute id="qiskit.pulse.library.Drag.constraints" name="constraints">
+    Return symbolic expression for the pulse parameter constraints.
 
-<span id="qiskit.pulse.library.Drag.validate_parameters" />
+    **Return type**
 
-`Drag.validate_parameters()`
+    `Expr`
+  </Attribute>
 
-Validate parameters.
+  ### duration
 
-**Raises**
+  <Attribute id="qiskit.pulse.library.Drag.duration" name="duration" />
 
-[**PulseError**](pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameters passed are not valid.
+  ### envelope
 
-**Return type**
+  <Attribute id="qiskit.pulse.library.Drag.envelope" name="envelope">
+    Return symbolic expression for the pulse envelope.
 
-`None`
+    **Return type**
 
-## Attributes
+    `Expr`
+  </Attribute>
 
-<span id="qiskit.pulse.library.Drag.constraints" />
+  ### id
 
-### constraints
+  <Attribute id="qiskit.pulse.library.Drag.id" name="id">
+    Unique identifier for this pulse.
 
-Return symbolic expression for the pulse parameter constraints.
+    **Return type**
 
-**Return type**
+    `int`
+  </Attribute>
 
-`Expr`
+  ### limit\_amplitude
 
-<span id="qiskit.pulse.library.Drag.duration" />
+  <Attribute id="qiskit.pulse.library.Drag.limit_amplitude" name="limit_amplitude" attributeValue="= True" />
 
-### duration
+  ### name
 
-<span id="qiskit.pulse.library.Drag.envelope" />
+  <Attribute id="qiskit.pulse.library.Drag.name" name="name" />
 
-### envelope
+  ### parameters
 
-Return symbolic expression for the pulse envelope.
+  <Attribute id="qiskit.pulse.library.Drag.parameters" name="parameters">
+    **Return type**
 
-**Return type**
+    `Dict`\[`str`, `Any`]
+  </Attribute>
 
-`Expr`
+  ### pulse\_type
 
-<span id="qiskit.pulse.library.Drag.id" />
+  <Attribute id="qiskit.pulse.library.Drag.pulse_type" name="pulse_type">
+    Return display name of the pulse shape.
 
-### id
+    **Return type**
 
-Unique identifier for this pulse.
+    `str`
+  </Attribute>
 
-**Return type**
+  ### valid\_amp\_conditions
 
-`int`
+  <Attribute id="qiskit.pulse.library.Drag.valid_amp_conditions" name="valid_amp_conditions">
+    Return symbolic expression for the pulse amplitude constraints.
 
-<span id="qiskit.pulse.library.Drag.limit_amplitude" />
+    **Return type**
 
-### limit\_amplitude
-
-`= True`
-
-<span id="qiskit.pulse.library.Drag.name" />
-
-### name
-
-<span id="qiskit.pulse.library.Drag.parameters" />
-
-### parameters
-
-**Return type**
-
-`Dict`\[`str`, `Any`]
-
-<span id="qiskit.pulse.library.Drag.pulse_type" />
-
-### pulse\_type
-
-Return display name of the pulse shape.
-
-**Return type**
-
-`str`
-
-<span id="qiskit.pulse.library.Drag.valid_amp_conditions" />
-
-### valid\_amp\_conditions
-
-Return symbolic expression for the pulse amplitude constraints.
-
-**Return type**
-
-`Expr`
+    `Expr`
+  </Attribute>
+</Class>
 
