@@ -24,6 +24,7 @@ runs:
   using: "composite"
   steps:
     - uses: ./github/actions/set-up-ibm-cloud
+      id: set-up-cloud
       with:
         env_name: ${{ inputs.env_name }}
         ibmcloud_account: ${{ inputs.ibmcloud_account }}
@@ -46,14 +47,14 @@ runs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: ${{ env.DOCKER_IMAGE_TAG }}
-        cache-from: type=registry,ref=${{ env.DOCKER_IMAGE_TAG }}
+        tags: ${{ steps.set-up-cloud.outputs.docker_image_tag }}
+        cache-from: type=registry,ref=${{ steps.set-up-cloud.outputs.docker_image_tag }}
         cache-to: type=inline
     - name: Determine Code Engine app status
       id: ce_command_choice
       shell: bash
       run: |
-        if ibmcloud ce app list -q | grep "${{ env.APP_NAME }}" ; then
+        if ibmcloud ce app list -q | grep "${{ steps.set-up-cloud.outputs.app_name }}" ; then
           echo "command=update" >> $GITHUB_OUTPUT
         else
           echo "command=create" >> $GITHUB_OUTPUT
@@ -63,8 +64,8 @@ runs:
       shell: bash
       run: |
         ibmcloud ce app ${{ steps.ce_command_choice.outputs.command }} \
-          --name "${{ env.APP_NAME }}" \
-          --image "${{ env.DOCKER_IMAGE_TAG }}" \
+          --name "${{ steps.set-up-cloud.outputs.app_name }}" \
+          --image "${{ steps.set-up-cloud.outputs.docker_image_tag }}" \
           --registry-secret "ibm-container-registry" \
           --port 3000 \
           --cpu 0.5 \
@@ -72,7 +73,7 @@ runs:
           --min 1 \
           --max 2
         echo "preview_url=$(\
-          ibmcloud ce app get --name "${{ env.APP_NAME }}" --output url
+          ibmcloud ce app get --name "${{ steps.set-up-cloud.outputs.app_name }}" --output url
         )" >> $GITHUB_OUTPUT
     - name: GH deployment status (finish)
       uses: bobheadxi/deployments@v1
