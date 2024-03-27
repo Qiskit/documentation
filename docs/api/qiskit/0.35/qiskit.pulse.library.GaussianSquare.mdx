@@ -8,197 +8,185 @@ python_api_name: qiskit.pulse.library.GaussianSquare
 
 # GaussianSquare
 
-<span id="qiskit.pulse.library.GaussianSquare" />
+<Class id="qiskit.pulse.library.GaussianSquare" github="https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/library/parametric_pulses.py" signature="GaussianSquare(duration, amp, sigma, width=None, risefall_sigma_ratio=None, name=None, limit_amplitude=None)">
+  Bases: `qiskit.pulse.library.parametric_pulses.ParametricPulse`
 
-`GaussianSquare(duration, amp, sigma, width=None, risefall_sigma_ratio=None, name=None, limit_amplitude=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/library/parametric_pulses.py "view source code")
+  A square pulse with a Gaussian shaped risefall on both sides lifted such that its first sample is zero.
 
-Bases: `qiskit.pulse.library.parametric_pulses.ParametricPulse`
+  Either the `risefall_sigma_ratio` or `width` parameter has to be specified.
 
-A square pulse with a Gaussian shaped risefall on both sides lifted such that its first sample is zero.
+  If `risefall_sigma_ratio` is not None and `width` is None:
 
-Either the `risefall_sigma_ratio` or `width` parameter has to be specified.
+  $$
+  \begin{split}\text{risefall} &= \text{risefall_sigma_ratio} \times \text{sigma}\\
+  \text{width} &= \text{duration} - 2 \times \text{risefall}\end{split}
+  $$
 
-If `risefall_sigma_ratio` is not None and `width` is None:
+  If `width` is not None and `risefall_sigma_ratio` is None:
 
-$$
-\begin{split}\text{risefall} &= \text{risefall_sigma_ratio} \times \text{sigma}\\
-\text{width} &= \text{duration} - 2 \times \text{risefall}\end{split}
-$$
+  $$
+  \text{risefall} = \frac{\text{duration} - \text{width}}{2}
+  $$
 
-If `width` is not None and `risefall_sigma_ratio` is None:
+  In both cases, the lifted gaussian square pulse $f'(x)$ is defined as:
 
-$$
-\text{risefall} = \frac{\text{duration} - \text{width}}{2}
-$$
+  $$
+  \begin{split}f'(x) &= \begin{cases}            \exp\biggl(-\frac12 \frac{(x - \text{risefall})^2}{\text{sigma}^2}\biggr)                & x < \text{risefall}\\
+      1                & \text{risefall} \le x < \text{risefall} + \text{width}\\
+      \exp\biggl(-\frac12                    \frac{{\bigl(x - (\text{risefall} + \text{width})\bigr)}^2}                          {\text{sigma}^2}                    \biggr)                & \text{risefall} + \text{width} \le x        \end{cases}\\
+  f(x) &= \text{amp} \times \frac{f'(x) - f'(-1)}{1-f'(-1)},            \quad 0 \le x < \text{duration}\end{split}
+  $$
 
-In both cases, the lifted gaussian square pulse $f'(x)$ is defined as:
+  where $f'(x)$ is the gaussian square waveform without lifting or amplitude scaling.
 
-$$
-\begin{split}f'(x) &= \begin{cases}            \exp\biggl(-\frac12 \frac{(x - \text{risefall})^2}{\text{sigma}^2}\biggr)                & x < \text{risefall}\\
-    1                & \text{risefall} \le x < \text{risefall} + \text{width}\\
-    \exp\biggl(-\frac12                    \frac{{\bigl(x - (\text{risefall} + \text{width})\bigr)}^2}                          {\text{sigma}^2}                    \biggr)                & \text{risefall} + \text{width} \le x        \end{cases}\\
-f(x) &= \text{amp} \times \frac{f'(x) - f'(-1)}{1-f'(-1)},            \quad 0 \le x < \text{duration}\end{split}
-$$
+  This pulse would be more accurately named as `LiftedGaussianSquare`, however, for historical and practical DSP reasons it has the name `GaussianSquare`.
 
-where $f'(x)$ is the gaussian square waveform without lifting or amplitude scaling.
+  Initialize the gaussian square pulse.
 
-This pulse would be more accurately named as `LiftedGaussianSquare`, however, for historical and practical DSP reasons it has the name `GaussianSquare`.
+  **Parameters**
 
-Initialize the gaussian square pulse.
+  *   **duration** (`Union`\[`int`, `ParameterExpression`]) – Pulse length in terms of the the sampling period dt.
+  *   **amp** (`Union`\[`complex`, `ParameterExpression`]) – The amplitude of the Gaussian and of the square pulse.
+  *   **sigma** (`Union`\[`float`, `ParameterExpression`]) – A measure of how wide or narrow the Gaussian risefall is; see the class docstring for more details.
+  *   **width** (`Union`\[`float`, `ParameterExpression`, `None`]) – The duration of the embedded square pulse.
+  *   **risefall\_sigma\_ratio** (`Union`\[`float`, `ParameterExpression`, `None`]) – The ratio of each risefall duration to sigma.
+  *   **name** (`Optional`\[`str`]) – Display name for this pulse envelope.
+  *   **limit\_amplitude** (`Optional`\[`bool`]) – If `True`, then limit the amplitude of the waveform to 1. The default is `True` and the amplitude is constrained to 1.
 
-**Parameters**
+  ## Methods
 
-*   **duration** (`Union`\[`int`, `ParameterExpression`]) – Pulse length in terms of the the sampling period dt.
-*   **amp** (`Union`\[`complex`, `ParameterExpression`]) – The amplitude of the Gaussian and of the square pulse.
-*   **sigma** (`Union`\[`float`, `ParameterExpression`]) – A measure of how wide or narrow the Gaussian risefall is; see the class docstring for more details.
-*   **width** (`Union`\[`float`, `ParameterExpression`, `None`]) – The duration of the embedded square pulse.
-*   **risefall\_sigma\_ratio** (`Union`\[`float`, `ParameterExpression`, `None`]) – The ratio of each risefall duration to sigma.
-*   **name** (`Optional`\[`str`]) – Display name for this pulse envelope.
-*   **limit\_amplitude** (`Optional`\[`bool`]) – If `True`, then limit the amplitude of the waveform to 1. The default is `True` and the amplitude is constrained to 1.
+  ### draw
 
-## Methods
+  <Function id="qiskit.pulse.library.GaussianSquare.draw" signature="GaussianSquare.draw(style=None, backend=None, time_range=None, time_unit='dt', show_waveform_info=True, plotter='mpl2d', axis=None)">
+    Plot the interpolated envelope of pulse.
 
-### draw
+    **Parameters**
 
-<span id="qiskit.pulse.library.GaussianSquare.draw" />
+    *   **style** (`Optional`\[`Dict`\[`str`, `Any`]]) – Stylesheet options. This can be dictionary or preset stylesheet classes. See `IQXStandard`, `IQXSimple`, and `IQXDebugging` for details of preset stylesheets.
 
-`GaussianSquare.draw(style=None, backend=None, time_range=None, time_unit='dt', show_waveform_info=True, plotter='mpl2d', axis=None)`
+    *   **backend** (*Optional\[*[*BaseBackend*](qiskit.providers.BaseBackend "qiskit.providers.BaseBackend")*]*) – Backend object to play the input pulse program. If provided, the plotter may use to make the visualization hardware aware.
 
-Plot the interpolated envelope of pulse.
+    *   **time\_range** (`Optional`\[`Tuple`\[`int`, `int`]]) – Set horizontal axis limit. Tuple `(tmin, tmax)`.
 
-**Parameters**
+    *   **time\_unit** (`str`) – The unit of specified time range either `dt` or `ns`. The unit of `ns` is available only when `backend` object is provided.
 
-*   **style** (`Optional`\[`Dict`\[`str`, `Any`]]) – Stylesheet options. This can be dictionary or preset stylesheet classes. See `IQXStandard`, `IQXSimple`, and `IQXDebugging` for details of preset stylesheets.
+    *   **show\_waveform\_info** (`bool`) – Show waveform annotations, i.e. name, of waveforms. Set `True` to show additional information about waveforms.
 
-*   **backend** (*Optional\[*[*BaseBackend*](qiskit.providers.BaseBackend "qiskit.providers.BaseBackend")*]*) – Backend object to play the input pulse program. If provided, the plotter may use to make the visualization hardware aware.
+    *   **plotter** (`str`) –
 
-*   **time\_range** (`Optional`\[`Tuple`\[`int`, `int`]]) – Set horizontal axis limit. Tuple `(tmin, tmax)`.
+        Name of plotter API to generate an output image. One of following APIs should be specified:
 
-*   **time\_unit** (`str`) – The unit of specified time range either `dt` or `ns`. The unit of `ns` is available only when `backend` object is provided.
+        ```python
+        mpl2d: Matplotlib API for 2D image generation.
+            Matplotlib API to generate 2D image. Charts are placed along y axis with
+            vertical offset. This API takes matplotlib.axes.Axes as `axis` input.
+        ```
 
-*   **show\_waveform\_info** (`bool`) – Show waveform annotations, i.e. name, of waveforms. Set `True` to show additional information about waveforms.
+        axis and style kwargs may depend on the plotter.
 
-*   **plotter** (`str`) –
+    *   **axis** (`Optional`\[`Any`]) – Arbitrary object passed to the plotter. If this object is provided, the plotters use a given `axis` instead of internally initializing a figure object. This object format depends on the plotter. See plotter argument for details.
 
-    Name of plotter API to generate an output image. One of following APIs should be specified:
+    **Returns**
 
-    ```python
-    mpl2d: Matplotlib API for 2D image generation.
-        Matplotlib API to generate 2D image. Charts are placed along y axis with
-        vertical offset. This API takes matplotlib.axes.Axes as `axis` input.
-    ```
+    Visualization output data. The returned data type depends on the `plotter`. If matplotlib family is specified, this will be a `matplotlib.pyplot.Figure` data.
+  </Function>
 
-    axis and style kwargs may depend on the plotter.
+  ### get\_waveform
 
-*   **axis** (`Optional`\[`Any`]) – Arbitrary object passed to the plotter. If this object is provided, the plotters use a given `axis` instead of internally initializing a figure object. This object format depends on the plotter. See plotter argument for details.
+  <Function id="qiskit.pulse.library.GaussianSquare.get_waveform" signature="GaussianSquare.get_waveform()">
+    Return a Waveform with samples filled according to the formula that the pulse represents and the parameter values it contains.
 
-**Returns**
+    **Return type**
 
-Visualization output data. The returned data type depends on the `plotter`. If matplotlib family is specified, this will be a `matplotlib.pyplot.Figure` data.
+    `Waveform`
+  </Function>
 
-### get\_waveform
+  ### is\_parameterized
 
-<span id="qiskit.pulse.library.GaussianSquare.get_waveform" />
+  <Function id="qiskit.pulse.library.GaussianSquare.is_parameterized" signature="GaussianSquare.is_parameterized()">
+    Return True iff the instruction is parameterized.
 
-`GaussianSquare.get_waveform()`
+    **Return type**
 
-Return a Waveform with samples filled according to the formula that the pulse represents and the parameter values it contains.
+    `bool`
+  </Function>
 
-**Return type**
+  ### validate\_parameters
 
-`Waveform`
+  <Function id="qiskit.pulse.library.GaussianSquare.validate_parameters" signature="GaussianSquare.validate_parameters()">
+    Validate parameters.
 
-### is\_parameterized
+    **Raises**
 
-<span id="qiskit.pulse.library.GaussianSquare.is_parameterized" />
+    [**PulseError**](pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameters passed are not valid.
 
-`GaussianSquare.is_parameterized()`
+    **Return type**
 
-Return True iff the instruction is parameterized.
+    `None`
+  </Function>
 
-**Return type**
+  ## Attributes
 
-`bool`
+  ### amp
 
-### validate\_parameters
+  <Attribute id="qiskit.pulse.library.GaussianSquare.amp" name="amp">
+    The Gaussian amplitude.
 
-<span id="qiskit.pulse.library.GaussianSquare.validate_parameters" />
+    **Return type**
 
-`GaussianSquare.validate_parameters()`
+    `Union`\[`complex`, `ParameterExpression`]
+  </Attribute>
 
-Validate parameters.
+  ### id
 
-**Raises**
+  <Attribute id="qiskit.pulse.library.GaussianSquare.id" name="id">
+    Unique identifier for this pulse.
 
-[**PulseError**](pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameters passed are not valid.
+    **Return type**
 
-**Return type**
+    `int`
+  </Attribute>
 
-`None`
+  ### limit\_amplitude
 
-## Attributes
+  <Attribute id="qiskit.pulse.library.GaussianSquare.limit_amplitude" name="limit_amplitude" attributeValue="= True" />
 
-<span id="qiskit.pulse.library.GaussianSquare.amp" />
+  ### parameters
 
-### amp
+  <Attribute id="qiskit.pulse.library.GaussianSquare.parameters" name="parameters">
+    **Return type**
 
-The Gaussian amplitude.
+    `Dict`\[`str`, `Any`]
+  </Attribute>
 
-**Return type**
+  ### risefall\_sigma\_ratio
 
-`Union`\[`complex`, `ParameterExpression`]
+  <Attribute id="qiskit.pulse.library.GaussianSquare.risefall_sigma_ratio" name="risefall_sigma_ratio">
+    The duration of each risefall in terms of sigma.
 
-<span id="qiskit.pulse.library.GaussianSquare.id" />
+    **Return type**
 
-### id
+    `Union`\[`float`, `ParameterExpression`]
+  </Attribute>
 
-Unique identifier for this pulse.
+  ### sigma
 
-**Return type**
+  <Attribute id="qiskit.pulse.library.GaussianSquare.sigma" name="sigma">
+    The Gaussian standard deviation of the pulse width.
 
-`int`
+    **Return type**
 
-<span id="qiskit.pulse.library.GaussianSquare.limit_amplitude" />
+    `Union`\[`float`, `ParameterExpression`]
+  </Attribute>
 
-### limit\_amplitude
+  ### width
 
-`= True`
+  <Attribute id="qiskit.pulse.library.GaussianSquare.width" name="width">
+    The width of the square portion of the pulse.
 
-<span id="qiskit.pulse.library.GaussianSquare.parameters" />
+    **Return type**
 
-### parameters
-
-**Return type**
-
-`Dict`\[`str`, `Any`]
-
-<span id="qiskit.pulse.library.GaussianSquare.risefall_sigma_ratio" />
-
-### risefall\_sigma\_ratio
-
-The duration of each risefall in terms of sigma.
-
-**Return type**
-
-`Union`\[`float`, `ParameterExpression`]
-
-<span id="qiskit.pulse.library.GaussianSquare.sigma" />
-
-### sigma
-
-The Gaussian standard deviation of the pulse width.
-
-**Return type**
-
-`Union`\[`float`, `ParameterExpression`]
-
-<span id="qiskit.pulse.library.GaussianSquare.width" />
-
-### width
-
-The width of the square portion of the pulse.
-
-**Return type**
-
-`Union`\[`float`, `ParameterExpression`]
+    `Union`\[`float`, `ParameterExpression`]
+  </Attribute>
+</Class>
 

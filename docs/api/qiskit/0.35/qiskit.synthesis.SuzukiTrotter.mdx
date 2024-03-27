@@ -8,79 +8,75 @@ python_api_name: qiskit.synthesis.SuzukiTrotter
 
 # SuzukiTrotter
 
-<span id="qiskit.synthesis.SuzukiTrotter" />
+<Class id="qiskit.synthesis.SuzukiTrotter" github="https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/synthesis/evolution/suzuki_trotter.py" signature="SuzukiTrotter(order=2, reps=1, insert_barriers=False, cx_structure='chain', atomic_evolution=None)">
+  Bases: `qiskit.synthesis.evolution.product_formula.ProductFormula`
 
-`SuzukiTrotter(order=2, reps=1, insert_barriers=False, cx_structure='chain', atomic_evolution=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/synthesis/evolution/suzuki_trotter.py "view source code")
+  The (higher order) Suzuki-Trotter product formula.
 
-Bases: `qiskit.synthesis.evolution.product_formula.ProductFormula`
+  The Suzuki-Trotter formulas improve the error of the Lie-Trotter approximation. For example, the second order decomposition is
 
-The (higher order) Suzuki-Trotter product formula.
+  $$
+  e^{A + B} \approx e^{B/2} e^{A} e^{B/2}.
+  $$
 
-The Suzuki-Trotter formulas improve the error of the Lie-Trotter approximation. For example, the second order decomposition is
+  Higher order decompositions are based on recursions, see Ref. \[1] for more details.
 
-$$
-e^{A + B} \approx e^{B/2} e^{A} e^{B/2}.
-$$
+  In this implementation, the operators are provided as sum terms of a Pauli operator. For example, in the second order Suzuki-Trotter decomposition we approximate
 
-Higher order decompositions are based on recursions, see Ref. \[1] for more details.
+  $$
+  e^{-it(XX + ZZ)} = e^{-it/2 ZZ}e^{-it XX}e^{-it/2 ZZ} + \mathcal{O}(t^2).
+  $$
 
-In this implementation, the operators are provided as sum terms of a Pauli operator. For example, in the second order Suzuki-Trotter decomposition we approximate
+  **References**
 
-$$
-e^{-it(XX + ZZ)} = e^{-it/2 ZZ}e^{-it XX}e^{-it/2 ZZ} + \mathcal{O}(t^2).
-$$
+  \[1]: D. Berry, G. Ahokas, R. Cleve and B. Sanders, “Efficient quantum algorithms for simulating sparse Hamiltonians” (2006). [arXiv:quant-ph/0508139](https://arxiv.org/abs/quant-ph/0508139)
 
-**References**
+  **Parameters**
 
-\[1]: D. Berry, G. Ahokas, R. Cleve and B. Sanders, “Efficient quantum algorithms for simulating sparse Hamiltonians” (2006). [arXiv:quant-ph/0508139](https://arxiv.org/abs/quant-ph/0508139)
+  *   **order** (`int`) – The order of the product formula.
+  *   **reps** (`int`) – The number of time steps.
+  *   **insert\_barriers** (`bool`) – Whether to insert barriers between the atomic evolutions.
+  *   **cx\_structure** (`str`) – How to arrange the CX gates for the Pauli evolutions, can be “chain”, where next neighbor connections are used, or “fountain”, where all qubits are connected to one.
+  *   **atomic\_evolution** (`Optional`\[`Callable`\[\[`Union`\[`Pauli`, `SparsePauliOp`], `float`], `QuantumCircuit`]]) – A function to construct the circuit for the evolution of single Pauli string. Per default, a single Pauli evolution is decomopsed in a CX chain and a single qubit Z rotation.
 
-**Parameters**
+  ## Methods
 
-*   **order** (`int`) – The order of the product formula.
-*   **reps** (`int`) – The number of time steps.
-*   **insert\_barriers** (`bool`) – Whether to insert barriers between the atomic evolutions.
-*   **cx\_structure** (`str`) – How to arrange the CX gates for the Pauli evolutions, can be “chain”, where next neighbor connections are used, or “fountain”, where all qubits are connected to one.
-*   **atomic\_evolution** (`Optional`\[`Callable`\[\[`Union`\[`Pauli`, `SparsePauliOp`], `float`], `QuantumCircuit`]]) – A function to construct the circuit for the evolution of single Pauli string. Per default, a single Pauli evolution is decomopsed in a CX chain and a single qubit Z rotation.
+  ### synthesize
 
-## Methods
+  <Function id="qiskit.synthesis.SuzukiTrotter.synthesize" signature="SuzukiTrotter.synthesize(evolution)">
+    Synthesize an `qiskit.circuit.library.PauliEvolutionGate`.
 
-### synthesize
+    **Parameters**
 
-<span id="qiskit.synthesis.SuzukiTrotter.synthesize" />
+    **evolution** ([*PauliEvolutionGate*](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate")) – The evolution gate to synthesize.
 
-`SuzukiTrotter.synthesize(evolution)`
+    **Returns**
 
-Synthesize an `qiskit.circuit.library.PauliEvolutionGate`.
+    A circuit implementing the evolution.
 
-**Parameters**
+    **Return type**
 
-**evolution** ([*PauliEvolutionGate*](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate")) – The evolution gate to synthesize.
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
 
-**Returns**
+  ## Attributes
 
-A circuit implementing the evolution.
+  ### settings
 
-**Return type**
+  <Attribute id="qiskit.synthesis.SuzukiTrotter.settings" name="settings">
+    Return the settings in a dictionary, which can be used to reconstruct the object.
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    **Return type**
 
-## Attributes
+    `Dict`\[`str`, `Any`]
 
-<span id="qiskit.synthesis.SuzukiTrotter.settings" />
+    **Returns**
 
-### settings
+    A dictionary containing the settings of this product formula.
 
-Return the settings in a dictionary, which can be used to reconstruct the object.
+    **Raises**
 
-**Return type**
-
-`Dict`\[`str`, `Any`]
-
-**Returns**
-
-A dictionary containing the settings of this product formula.
-
-**Raises**
-
-**NotImplementedError** – If a custom atomic evolution is set, which cannot be serialized.
+    **NotImplementedError** – If a custom atomic evolution is set, which cannot be serialized.
+  </Attribute>
+</Class>
 
