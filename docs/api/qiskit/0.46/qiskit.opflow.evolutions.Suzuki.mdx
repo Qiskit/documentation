@@ -8,62 +8,58 @@ python_api_name: qiskit.opflow.evolutions.Suzuki
 
 # Suzuki
 
-<span id="qiskit.opflow.evolutions.Suzuki" />
+<Class id="qiskit.opflow.evolutions.Suzuki" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/opflow/evolutions/trotterizations/suzuki.py" signature="qiskit.opflow.evolutions.Suzuki(reps=1, order=2)">
+  Bases: [`TrotterizationBase`](qiskit.opflow.evolutions.TrotterizationBase "qiskit.opflow.evolutions.trotterizations.trotterization_base.TrotterizationBase")
 
-`qiskit.opflow.evolutions.Suzuki(reps=1, order=2)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/opflow/evolutions/trotterizations/suzuki.py "view source code")
+  Deprecated: Suzuki Trotter expansion, composing the evolution circuits of each Operator in the sum together by a recursive “bookends” strategy, repeating the whole composed circuit `reps` times.
 
-Bases: [`TrotterizationBase`](qiskit.opflow.evolutions.TrotterizationBase "qiskit.opflow.evolutions.trotterizations.trotterization_base.TrotterizationBase")
+  Detailed in [https://arxiv.org/pdf/quant-ph/0508139.pdf](https://arxiv.org/pdf/quant-ph/0508139.pdf).
 
-Deprecated: Suzuki Trotter expansion, composing the evolution circuits of each Operator in the sum together by a recursive “bookends” strategy, repeating the whole composed circuit `reps` times.
+  <Admonition title="Deprecated since version 0.24.0" type="danger">
+    The class `qiskit.opflow.evolutions.trotterizations.suzuki.Suzuki` is deprecated as of qiskit-terra 0.24.0. It will be removed in the Qiskit 1.0 release. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  </Admonition>
 
-Detailed in [https://arxiv.org/pdf/quant-ph/0508139.pdf](https://arxiv.org/pdf/quant-ph/0508139.pdf).
+  **Parameters**
 
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.opflow.evolutions.trotterizations.suzuki.Suzuki` is deprecated as of qiskit-terra 0.24.0. It will be removed in the Qiskit 1.0 release. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
-</Admonition>
+  *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of times to repeat the expansion circuit.
+  *   **order** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The order of the expansion to perform.
 
-**Parameters**
+  ## Attributes
 
-*   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of times to repeat the expansion circuit.
-*   **order** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The order of the expansion to perform.
+  ### order
 
-## Attributes
+  <Attribute id="qiskit.opflow.evolutions.Suzuki.order" name="order">
+    returns order
+  </Attribute>
 
-<span id="qiskit.opflow.evolutions.Suzuki.order" />
+  ### reps
 
-### order
+  <Attribute id="qiskit.opflow.evolutions.Suzuki.reps" name="reps">
+    The number of repetitions to use in the Trotterization, improving the approximation accuracy.
+  </Attribute>
 
-returns order
+  ## Methods
 
-<span id="qiskit.opflow.evolutions.Suzuki.reps" />
+  ### convert
 
-### reps
+  <Function id="qiskit.opflow.evolutions.Suzuki.convert" name="convert" signature="convert(operator)">
+    Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`.
 
-The number of repetitions to use in the Trotterization, improving the approximation accuracy.
+    **Parameters**
 
-## Methods
+    **operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The `SummedOp` to evolve.
 
-### convert
+    **Returns**
 
-<span id="qiskit.opflow.evolutions.Suzuki.convert" />
+    The Operator approximating op\_sum’s evolution.
 
-`convert(operator)`
+    **Raises**
 
-Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`.
+    [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – A non-SummedOps Operator is passed into `convert`.
 
-**Parameters**
+    **Return type**
 
-**operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The `SummedOp` to evolve.
-
-**Returns**
-
-The Operator approximating op\_sum’s evolution.
-
-**Raises**
-
-[**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – A non-SummedOps Operator is passed into `convert`.
-
-**Return type**
-
-[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+    [*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  </Function>
+</Class>
 

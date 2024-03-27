@@ -8,49 +8,45 @@ python_api_name: qiskit.algorithms.time_evolvers.variational.RealMcLachlanPrinci
 
 # RealMcLachlanPrinciple
 
-<span id="qiskit.algorithms.time_evolvers.variational.RealMcLachlanPrinciple" />
+<Class id="qiskit.algorithms.time_evolvers.variational.RealMcLachlanPrinciple" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/time_evolvers/variational/variational_principles/real_mc_lachlan_principle.py" signature="qiskit.algorithms.time_evolvers.variational.RealMcLachlanPrinciple(qgt=None, gradient=None)">
+  Bases: [`RealVariationalPrinciple`](qiskit.algorithms.time_evolvers.variational.RealVariationalPrinciple "qiskit.algorithms.time_evolvers.variational.variational_principles.real_variational_principle.RealVariationalPrinciple")
 
-`qiskit.algorithms.time_evolvers.variational.RealMcLachlanPrinciple(qgt=None, gradient=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/time_evolvers/variational/variational_principles/real_mc_lachlan_principle.py "view source code")
+  Class for a Real McLachlan’s Variational Principle. It aims to minimize the distance between both sides of the Schrödinger equation with a quantum state given as a parametrized trial state. The principle leads to a system of linear equations handled by a linear solver. The real variant means that we consider real time dynamics.
 
-Bases: [`RealVariationalPrinciple`](qiskit.algorithms.time_evolvers.variational.RealVariationalPrinciple "qiskit.algorithms.time_evolvers.variational.variational_principles.real_variational_principle.RealVariationalPrinciple")
+  **Parameters**
 
-Class for a Real McLachlan’s Variational Principle. It aims to minimize the distance between both sides of the Schrödinger equation with a quantum state given as a parametrized trial state. The principle leads to a system of linear equations handled by a linear solver. The real variant means that we consider real time dynamics.
+  *   **qgt** ([*BaseQGT*](qiskit.algorithms.gradients.BaseQGT "qiskit.algorithms.gradients.BaseQGT") *| None*) – Instance of a the GQT class used to compute the QFI. If `None` provided, `LinCombQGT` is used.
+  *   **gradient** ([*BaseEstimatorGradient*](qiskit.algorithms.gradients.BaseEstimatorGradient "qiskit.algorithms.gradients.BaseEstimatorGradient") *| None*) – Instance of a class used to compute the state gradient. If `None` provided, `LinCombEstimatorGradient` is used.
 
-**Parameters**
+  **Raises**
 
-*   **qgt** ([*BaseQGT*](qiskit.algorithms.gradients.BaseQGT "qiskit.algorithms.gradients.BaseQGT") *| None*) – Instance of a the GQT class used to compute the QFI. If `None` provided, `LinCombQGT` is used.
-*   **gradient** ([*BaseEstimatorGradient*](qiskit.algorithms.gradients.BaseEstimatorGradient "qiskit.algorithms.gradients.BaseEstimatorGradient") *| None*) – Instance of a class used to compute the state gradient. If `None` provided, `LinCombEstimatorGradient` is used.
+  [**AlgorithmError**](algorithms#qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If the gradient instance does not contain an estimator.
 
-**Raises**
+  ## Methods
 
-[**AlgorithmError**](algorithms#qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If the gradient instance does not contain an estimator.
+  ### evolution\_gradient
 
-## Methods
+  <Function id="qiskit.algorithms.time_evolvers.variational.RealMcLachlanPrinciple.evolution_gradient" name="evolution_gradient" signature="evolution_gradient(hamiltonian, ansatz, param_values, gradient_params=None)">
+    Calculates an evolution gradient according to the rules of this variational principle.
 
-### evolution\_gradient
+    **Parameters**
 
-<span id="qiskit.algorithms.time_evolvers.variational.RealMcLachlanPrinciple.evolution_gradient" />
+    *   **hamiltonian** (*BaseOperator*) – Operator used for Variational Quantum Time Evolution.
+    *   **ansatz** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – Quantum state in the form of a parametrized quantum circuit.
+    *   **param\_values** (*Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – Values of parameters to be bound.
+    *   **gradient\_params** (*Sequence\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*] | None*) – List of parameters with respect to which gradients should be computed. If `None` given, gradients w\.r.t. all parameters will be computed.
 
-`evolution_gradient(hamiltonian, ansatz, param_values, gradient_params=None)`
+    **Returns**
 
-Calculates an evolution gradient according to the rules of this variational principle.
+    An evolution gradient.
 
-**Parameters**
+    **Raises**
 
-*   **hamiltonian** (*BaseOperator*) – Operator used for Variational Quantum Time Evolution.
-*   **ansatz** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – Quantum state in the form of a parametrized quantum circuit.
-*   **param\_values** (*Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – Values of parameters to be bound.
-*   **gradient\_params** (*Sequence\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*] | None*) – List of parameters with respect to which gradients should be computed. If `None` given, gradients w\.r.t. all parameters will be computed.
+    [**AlgorithmError**](algorithms#qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If a gradient job fails.
 
-**Returns**
+    **Return type**
 
-An evolution gradient.
-
-**Raises**
-
-[**AlgorithmError**](algorithms#qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If a gradient job fails.
-
-**Return type**
-
-np.ndarray
+    np.ndarray
+  </Function>
+</Class>
 
