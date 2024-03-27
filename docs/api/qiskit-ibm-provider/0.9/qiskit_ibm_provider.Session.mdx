@@ -8,85 +8,81 @@ python_api_name: qiskit_ibm_provider.Session
 
 # Session
 
-<span id="qiskit_ibm_provider.Session" />
+<Class id="qiskit_ibm_provider.Session" github="https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.9/qiskit_ibm_provider/session.py" signature="Session(max_time=None)">
+  Class for creating a flexible Qiskit Runtime session.
 
-`Session(max_time=None)` [GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.9/qiskit_ibm_provider/session.py "view source code")
+  A Qiskit Runtime `session` allows you to group a collection of iterative calls to the quantum computer. A session is started when the first job within the session is started. Subsequent jobs within the session are prioritized by the scheduler. Data used within a session, such as transpiled circuits, is also cached to avoid unnecessary overhead.
 
-Class for creating a flexible Qiskit Runtime session.
+  You can open a Qiskit Runtime session using this `Session` class and submit one or more jobs.
 
-A Qiskit Runtime `session` allows you to group a collection of iterative calls to the quantum computer. A session is started when the first job within the session is started. Subsequent jobs within the session are prioritized by the scheduler. Data used within a session, such as transpiled circuits, is also cached to avoid unnecessary overhead.
+  **For example::**
 
-You can open a Qiskit Runtime session using this `Session` class and submit one or more jobs.
+  from qiskit\_ibm\_provider import IBMProvider
 
-**For example::**
+  \# Bell Circuit qr = QuantumRegister(2, name=”qr”) cr = ClassicalRegister(2, name=”cr”) qc = QuantumCircuit(qr, cr, name=”bell”) qc.h(qr\[0]) qc.cx(qr\[0], qr\[1]) qc.measure(qr, cr)
 
-from qiskit\_ibm\_provider import IBMProvider
+  backend = IBMProvider().get\_backend(“ibmq\_qasm\_simulator”) backend.open\_session()
 
-\# Bell Circuit qr = QuantumRegister(2, name=”qr”) cr = ClassicalRegister(2, name=”cr”) qc = QuantumCircuit(qr, cr, name=”bell”) qc.h(qr\[0]) qc.cx(qr\[0], qr\[1]) qc.measure(qr, cr)
+  job = backend.run(qc) print(f”Job ID: \{job.job\_id()}”) print(f”Result: \{job.result()}”) # Close the session only if all jobs are finished and # you don’t need to run more in the session. backend.cancel\_session()
 
-backend = IBMProvider().get\_backend(“ibmq\_qasm\_simulator”) backend.open\_session()
+  Session can also be used as a context manager:
 
-job = backend.run(qc) print(f”Job ID: \{job.job\_id()}”) print(f”Result: \{job.result()}”) # Close the session only if all jobs are finished and # you don’t need to run more in the session. backend.cancel\_session()
+  ```python
+  with backend.open_session() as session:
+      job = backend.run(qc)
+      assert job.job_id() == session.session_id
+  ```
 
-Session can also be used as a context manager:
+  Session constructor.
 
-```python
-with backend.open_session() as session:
-    job = backend.run(qc)
-    assert job.job_id() == session.session_id
-```
+  **Parameters**
 
-Session constructor.
+  **max\_time** (`Union`\[`int`, `str`, `None`]) – (EXPERIMENTAL setting, can break between releases without warning) Maximum amount of time, a runtime session can be open before being forcibly closed. Can be specified as seconds (int) or a string like “2h 30m 40s”. This value must be in between 300 seconds and the [system imposed maximum](https://qiskit.org/documentation/partners/qiskit_ibm_runtime/faqs/max_execution_time.html).
 
-**Parameters**
+  **Raises**
 
-**max\_time** (`Union`\[`int`, `str`, `None`]) – (EXPERIMENTAL setting, can break between releases without warning) Maximum amount of time, a runtime session can be open before being forcibly closed. Can be specified as seconds (int) or a string like “2h 30m 40s”. This value must be in between 300 seconds and the [system imposed maximum](https://qiskit.org/documentation/partners/qiskit_ibm_runtime/faqs/max_execution_time.html).
+  **ValueError** – If an input value is invalid.
 
-**Raises**
+  ## Attributes
 
-**ValueError** – If an input value is invalid.
+  ### active
 
-## Attributes
+  <Attribute id="qiskit_ibm_provider.Session.active" name="active">
+    Return the status of the session.
 
-<span id="qiskit_ibm_provider.Session.active" />
+    **Return type**
 
-### active
+    `bool`
 
-Return the status of the session.
+    **Returns**
 
-**Return type**
+    True if the session is active, False otherwise.
+  </Attribute>
 
-`bool`
+  ### session\_id
 
-**Returns**
+  <Attribute id="qiskit_ibm_provider.Session.session_id" name="session_id">
+    Return the session ID.
 
-True if the session is active, False otherwise.
+    **Return type**
 
-<span id="qiskit_ibm_provider.Session.session_id" />
+    `str`
 
-### session\_id
+    **Returns**
 
-Return the session ID.
+    Session ID. None until a job runs in the session.
+  </Attribute>
 
-**Return type**
+  ## Methods
 
-`str`
+  ### cancel
 
-**Returns**
+  <Function id="qiskit_ibm_provider.Session.cancel" name="cancel" signature="cancel()">
+    Set the session.\_active status to False
 
-Session ID. None until a job runs in the session.
+    **Return type**
 
-## Methods
-
-### cancel
-
-<span id="qiskit_ibm_provider.Session.cancel" />
-
-`cancel()`
-
-Set the session.\_active status to False
-
-**Return type**
-
-`None`
+    `None`
+  </Function>
+</Class>
 

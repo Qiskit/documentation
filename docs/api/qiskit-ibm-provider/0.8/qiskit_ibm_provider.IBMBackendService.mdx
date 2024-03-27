@@ -8,161 +8,153 @@ python_api_name: qiskit_ibm_provider.IBMBackendService
 
 # IBMBackendService
 
-<span id="qiskit_ibm_provider.IBMBackendService" />
+<Class id="qiskit_ibm_provider.IBMBackendService" github="https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.8/qiskit_ibm_provider/ibm_backend_service.py" signature="IBMBackendService(provider, hgp)">
+  Backend namespace for an IBM Quantum account.
 
-`IBMBackendService(provider, hgp)` [GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.8/qiskit_ibm_provider/ibm_backend_service.py "view source code")
+  Represent a namespace that provides backend related services for the IBM Quantum backends available to this account. An instance of this class is used as a callable attribute to the [`IBMProvider`](qiskit_ibm_provider.IBMProvider "qiskit_ibm_provider.IBMProvider") class. This allows a convenient way to query for all backends or to access a specific backend:
 
-Backend namespace for an IBM Quantum account.
+  ```python
+  backends = provider.backends()  # Invoke backends() to get the backends.
+  sim_backend = provider.backend.ibmq_qasm_simulator  # Get a specific backend instance.
+  ```
 
-Represent a namespace that provides backend related services for the IBM Quantum backends available to this account. An instance of this class is used as a callable attribute to the [`IBMProvider`](qiskit_ibm_provider.IBMProvider "qiskit_ibm_provider.IBMProvider") class. This allows a convenient way to query for all backends or to access a specific backend:
+  Also, you are able to retrieve jobs from an account without specifying the backend name. For example, to retrieve the ten most recent jobs you have submitted, regardless of the backend they were submitted to, you could do:
 
-```python
-backends = provider.backends()  # Invoke backends() to get the backends.
-sim_backend = provider.backend.ibmq_qasm_simulator  # Get a specific backend instance.
-```
+  ```python
+  most_recent_jobs = provider.backend.jobs(limit=10)
+  ```
 
-Also, you are able to retrieve jobs from an account without specifying the backend name. For example, to retrieve the ten most recent jobs you have submitted, regardless of the backend they were submitted to, you could do:
+  It is also possible to retrieve a single job without specifying the backend name:
 
-```python
-most_recent_jobs = provider.backend.jobs(limit=10)
-```
+  ```python
+  job = provider.backend.retrieve_job(<JOB_ID>)
+  ```
 
-It is also possible to retrieve a single job without specifying the backend name:
+  IBMBackendService constructor.
 
-```python
-job = provider.backend.retrieve_job(<JOB_ID>)
-```
+  **Parameters**
 
-IBMBackendService constructor.
+  *   **provider** ([`IBMProvider`](qiskit_ibm_provider.IBMProvider "qiskit_ibm_provider.ibm_provider.IBMProvider")) – IBM Quantum account provider.
+  *   **hgp** (`HubGroupProject`) – default hub/group/project to use for the service.
 
-**Parameters**
+  ## Methods
 
-*   **provider** ([`IBMProvider`](qiskit_ibm_provider.IBMProvider "qiskit_ibm_provider.ibm_provider.IBMProvider")) – IBM Quantum account provider.
-*   **hgp** (`HubGroupProject`) – default hub/group/project to use for the service.
+  ### backends
 
-## Methods
+  <Function id="qiskit_ibm_provider.IBMBackendService.backends" name="backends" signature="backends(name=None, filters=None, min_num_qubits=None, instance=None, dynamic_circuits=None, **kwargs)">
+    Return all backends accessible via this account, subject to optional filtering.
 
-### backends
+    **Parameters**
 
-<span id="qiskit_ibm_provider.IBMBackendService.backends" />
+    *   **name** (`Optional`\[`str`]) – Backend name to filter by.
 
-`backends(name=None, filters=None, min_num_qubits=None, instance=None, dynamic_circuits=None, **kwargs)`
+    *   **min\_num\_qubits** (`Optional`\[`int`]) – Minimum number of qubits the backend must have.
 
-Return all backends accessible via this account, subject to optional filtering.
+    *   **instance** (`Optional`\[`str`]) – The provider in the hub/group/project format.
 
-**Parameters**
+    *   **dynamic\_circuits** (`Optional`\[`bool`]) – Filter by whether the backend supports dynamic circuits.
 
-*   **name** (`Optional`\[`str`]) – Backend name to filter by.
+    *   **filters** (`Optional`\[`Callable`\[\[`List`\[[`IBMBackend`](qiskit_ibm_provider.IBMBackend "qiskit_ibm_provider.ibm_backend.IBMBackend")]], `bool`]]) –
 
-*   **min\_num\_qubits** (`Optional`\[`int`]) – Minimum number of qubits the backend must have.
+        More complex filters, such as lambda functions. For example:
 
-*   **instance** (`Optional`\[`str`]) – The provider in the hub/group/project format.
+        ```python
+        IBMProvider.backends(filters=lambda b: b.max_shots > 50000)
+        IBMProvider.backends(filters=lambda x: ("rz" in x.basis_gates )
+        ```
 
-*   **dynamic\_circuits** (`Optional`\[`bool`]) – Filter by whether the backend supports dynamic circuits.
+    *   **\*\*kwargs** –
 
-*   **filters** (`Optional`\[`Callable`\[\[`List`\[[`IBMBackend`](qiskit_ibm_provider.IBMBackend "qiskit_ibm_provider.ibm_backend.IBMBackend")]], `bool`]]) –
+        Simple filters that require a specific value for an attribute in backend configuration, backend status, or provider credentials.
 
-    More complex filters, such as lambda functions. For example:
+        Examples:
 
-    ```python
-    IBMProvider.backends(filters=lambda b: b.max_shots > 50000)
-    IBMProvider.backends(filters=lambda x: ("rz" in x.basis_gates )
-    ```
+        ```python
+        # Get the operational real backends
+        IBMProvider.backends(simulator=False, operational=True)
+        # Get the backends with at least 127 qubits
+        IBMProvider.backends(min_num_qubits=127)
+        # Get the backends that support OpenPulse
+        IBMProvider.backends(open_pulse=True)
+        ```
 
-*   **\*\*kwargs** –
+        For the full list of backend attributes, see the IBMBackend class documentation \<[providers\_models](/api/qiskit/providers_models)>
 
-    Simple filters that require a specific value for an attribute in backend configuration, backend status, or provider credentials.
+    **Return type**
 
-    Examples:
+    `List`\[[`IBMBackend`](qiskit_ibm_provider.IBMBackend "qiskit_ibm_provider.ibm_backend.IBMBackend")]
 
-    ```python
-    # Get the operational real backends
-    IBMProvider.backends(simulator=False, operational=True)
-    # Get the backends with at least 127 qubits
-    IBMProvider.backends(min_num_qubits=127)
-    # Get the backends that support OpenPulse
-    IBMProvider.backends(open_pulse=True)
-    ```
+    **Returns**
 
-    For the full list of backend attributes, see the IBMBackend class documentation \<[providers\_models](/api/qiskit/providers_models)>
+    The list of available backends that match the filter.
 
-**Return type**
+    **Raises**
 
-`List`\[[`IBMBackend`](qiskit_ibm_provider.IBMBackend "qiskit_ibm_provider.ibm_backend.IBMBackend")]
+    *   [**IBMBackendValueError**](qiskit_ibm_provider.IBMBackendValueError "qiskit_ibm_provider.IBMBackendValueError") – If only one or two parameters from hub, group, project are specified.
+    *   **QiskitBackendNotFoundError** – If the backend is not found in any instance.
+  </Function>
 
-**Returns**
+  ### jobs
 
-The list of available backends that match the filter.
+  <Function id="qiskit_ibm_provider.IBMBackendService.jobs" name="jobs" signature="jobs(limit=10, skip=0, backend_name=None, status=None, start_datetime=None, end_datetime=None, job_tags=None, descending=True, instance=None, legacy=False)">
+    Return a list of jobs, subject to optional filtering.
 
-**Raises**
+    Retrieve jobs that match the given filters and paginate the results if desired. Note that the server has a limit for the number of jobs returned in a single call. As a result, this function might involve making several calls to the server.
 
-*   [**IBMBackendValueError**](qiskit_ibm_provider.IBMBackendValueError "qiskit_ibm_provider.IBMBackendValueError") – If only one or two parameters from hub, group, project are specified.
-*   **QiskitBackendNotFoundError** – If the backend is not found in any instance.
+    **Parameters**
 
-### jobs
+    *   **limit** (`Optional`\[`int`]) – Number of jobs to retrieve. `None` means no limit. Note that the number of sub-jobs within a composite job count towards the limit.
+    *   **skip** (`int`) – Starting index for the job retrieval.
+    *   **backend\_name** (`Optional`\[`str`]) – Name of the backend to retrieve jobs from.
+    *   **status** (`Union`\[`Literal`\[‘pending’, ‘completed’], `List`\[`Union`\[[`JobStatus`](/api/qiskit/qiskit.providers.JobStatus "(in Qiskit v0.45)"), `str`]], [`JobStatus`](/api/qiskit/qiskit.providers.JobStatus "(in Qiskit v0.45)"), `str`, `None`]) – Filter jobs with either “pending” or “completed” status. You can also specify by
+    *   **example** (*exact status. For*) – or status=\[“RUNNING”, “ERROR”].
+    *   **status="RUNNING"** (*status=JobStatus.RUNNING or*) – or status=\[“RUNNING”, “ERROR”].
+    *   **start\_datetime** (`Optional`\[`datetime`]) – Filter by the given start date, in local time. This is used to find jobs whose creation dates are after (greater than or equal to) this local date/time.
+    *   **end\_datetime** (`Optional`\[`datetime`]) – Filter by the given end date, in local time. This is used to find jobs whose creation dates are before (less than or equal to) this local date/time.
+    *   **job\_tags** (`Optional`\[`List`\[`str`]]) – Filter by tags assigned to jobs. Matched jobs are associated with all tags.
+    *   **descending** (`bool`) – If `True`, return the jobs in descending order of the job creation date (i.e. newest first) until the limit is reached.
+    *   **instance** (`Optional`\[`str`]) – The provider in the hub/group/project format.
+    *   **legacy** (`bool`) – If `True`, only retrieve jobs run from the archived `qiskit-ibmq-provider`.
+    *   **Otherwise** –
+    *   **qiskit-ibm-provider.** (*only retrieve jobs run from*) –
 
-<span id="qiskit_ibm_provider.IBMBackendService.jobs" />
+    **Return type**
 
-`jobs(limit=10, skip=0, backend_name=None, status=None, start_datetime=None, end_datetime=None, job_tags=None, descending=True, instance=None, legacy=False)`
+    `List`\[`IBMJob`]
 
-Return a list of jobs, subject to optional filtering.
+    **Returns**
 
-Retrieve jobs that match the given filters and paginate the results if desired. Note that the server has a limit for the number of jobs returned in a single call. As a result, this function might involve making several calls to the server.
+    A list of `IBMJob` instances.
 
-**Parameters**
+    **Raises**
 
-*   **limit** (`Optional`\[`int`]) – Number of jobs to retrieve. `None` means no limit. Note that the number of sub-jobs within a composite job count towards the limit.
-*   **skip** (`int`) – Starting index for the job retrieval.
-*   **backend\_name** (`Optional`\[`str`]) – Name of the backend to retrieve jobs from.
-*   **status** (`Union`\[`Literal`\[‘pending’, ‘completed’], `List`\[`Union`\[[`JobStatus`](/api/qiskit/qiskit.providers.JobStatus "(in Qiskit v0.45)"), `str`]], [`JobStatus`](/api/qiskit/qiskit.providers.JobStatus "(in Qiskit v0.45)"), `str`, `None`]) – Filter jobs with either “pending” or “completed” status. You can also specify by
-*   **example** (*exact status. For*) – or status=\[“RUNNING”, “ERROR”].
-*   **status="RUNNING"** (*status=JobStatus.RUNNING or*) – or status=\[“RUNNING”, “ERROR”].
-*   **start\_datetime** (`Optional`\[`datetime`]) – Filter by the given start date, in local time. This is used to find jobs whose creation dates are after (greater than or equal to) this local date/time.
-*   **end\_datetime** (`Optional`\[`datetime`]) – Filter by the given end date, in local time. This is used to find jobs whose creation dates are before (less than or equal to) this local date/time.
-*   **job\_tags** (`Optional`\[`List`\[`str`]]) – Filter by tags assigned to jobs. Matched jobs are associated with all tags.
-*   **descending** (`bool`) – If `True`, return the jobs in descending order of the job creation date (i.e. newest first) until the limit is reached.
-*   **instance** (`Optional`\[`str`]) – The provider in the hub/group/project format.
-*   **legacy** (`bool`) – If `True`, only retrieve jobs run from the archived `qiskit-ibmq-provider`.
-*   **Otherwise** –
-*   **qiskit-ibm-provider.** (*only retrieve jobs run from*) –
+    *   [**IBMBackendValueError**](qiskit_ibm_provider.IBMBackendValueError "qiskit_ibm_provider.IBMBackendValueError") – If a keyword value is not recognized.
+    *   **TypeError** – If the input start\_datetime or end\_datetime parameter value is not valid.
+  </Function>
 
-**Return type**
+  ### retrieve\_job
 
-`List`\[`IBMJob`]
+  <Function id="qiskit_ibm_provider.IBMBackendService.retrieve_job" name="retrieve_job" signature="retrieve_job(job_id)">
+    Return a single job.
 
-**Returns**
+    **Parameters**
 
-A list of `IBMJob` instances.
+    **job\_id** (`str`) – The ID of the job to retrieve.
 
-**Raises**
+    **Return type**
 
-*   [**IBMBackendValueError**](qiskit_ibm_provider.IBMBackendValueError "qiskit_ibm_provider.IBMBackendValueError") – If a keyword value is not recognized.
-*   **TypeError** – If the input start\_datetime or end\_datetime parameter value is not valid.
+    `IBMJob`
 
-### retrieve\_job
+    **Returns**
 
-<span id="qiskit_ibm_provider.IBMBackendService.retrieve_job" />
+    The job with the given id.
 
-`retrieve_job(job_id)`
+    **Raises**
 
-Return a single job.
-
-**Parameters**
-
-**job\_id** (`str`) – The ID of the job to retrieve.
-
-**Return type**
-
-`IBMJob`
-
-**Returns**
-
-The job with the given id.
-
-**Raises**
-
-*   [**IBMBackendApiError**](qiskit_ibm_provider.IBMBackendApiError "qiskit_ibm_provider.IBMBackendApiError") – If an unexpected error occurred when retrieving the job.
-*   [**IBMBackendApiProtocolError**](qiskit_ibm_provider.IBMBackendApiProtocolError "qiskit_ibm_provider.IBMBackendApiProtocolError") – If unexpected return value received from the server.
-*   **IBMJobNotFoundError** – If job cannot be found.
-*   **IBMInputValueError** – If job exists but was run from a different service.
+    *   [**IBMBackendApiError**](qiskit_ibm_provider.IBMBackendApiError "qiskit_ibm_provider.IBMBackendApiError") – If an unexpected error occurred when retrieving the job.
+    *   [**IBMBackendApiProtocolError**](qiskit_ibm_provider.IBMBackendApiProtocolError "qiskit_ibm_provider.IBMBackendApiProtocolError") – If unexpected return value received from the server.
+    *   **IBMJobNotFoundError** – If job cannot be found.
+    *   **IBMInputValueError** – If job exists but was run from a different service.
+  </Function>
+</Class>
 

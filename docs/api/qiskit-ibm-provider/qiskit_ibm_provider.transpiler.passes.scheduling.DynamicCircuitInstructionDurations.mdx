@@ -8,137 +8,121 @@ python_api_name: qiskit_ibm_provider.transpiler.passes.scheduling.DynamicCircuit
 
 # DynamicCircuitInstructionDurations
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.DynamicCircuitInstructionDurations" />
+<Class id="qiskit_ibm_provider.transpiler.passes.scheduling.DynamicCircuitInstructionDurations" github="https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/transpiler/passes/scheduling/utils.py#L133-L367" signature="DynamicCircuitInstructionDurations(instruction_durations=None, dt=None, enable_patching=True)">
+  For dynamic circuits the IBM Qiskit backend currently reports instruction durations that differ compared with those required for the legacy Qobj-based path. For now we use this class to report updated InstructionDurations. TODO: This would be mitigated by a specialized Backend/Target for dynamic circuit backends.
 
-`DynamicCircuitInstructionDurations(instruction_durations=None, dt=None, enable_patching=True)` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/transpiler/passes/scheduling/utils.py#L133-L367 "view source code")
+  Dynamic circuit instruction durations.
 
-For dynamic circuits the IBM Qiskit backend currently reports instruction durations that differ compared with those required for the legacy Qobj-based path. For now we use this class to report updated InstructionDurations. TODO: This would be mitigated by a specialized Backend/Target for dynamic circuit backends.
+  ## Attributes
 
-Dynamic circuit instruction durations.
+  ### MEASURE\_PATCH\_CYCLES
 
-## Attributes
+  <Attribute id="qiskit_ibm_provider.transpiler.passes.scheduling.DynamicCircuitInstructionDurations.MEASURE_PATCH_CYCLES" name="MEASURE_PATCH_CYCLES" attributeValue="= 160" />
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.DynamicCircuitInstructionDurations.MEASURE_PATCH_CYCLES" />
+  ### MEASURE\_PATCH\_ODD\_OFFSET
 
-### MEASURE\_PATCH\_CYCLES
+  <Attribute id="qiskit_ibm_provider.transpiler.passes.scheduling.DynamicCircuitInstructionDurations.MEASURE_PATCH_ODD_OFFSET" name="MEASURE_PATCH_ODD_OFFSET" attributeValue="= 64" />
 
-`= 160`
+  ## Methods
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.DynamicCircuitInstructionDurations.MEASURE_PATCH_ODD_OFFSET" />
+  ### from\_backend
 
-### MEASURE\_PATCH\_ODD\_OFFSET
+  <Function id="qiskit_ibm_provider.transpiler.passes.scheduling.DynamicCircuitInstructionDurations.from_backend" name="from_backend" github="https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/transpiler/passes/scheduling/utils.py#L155-L209" signature="classmethod from_backend(backend)">
+    Construct a `DynamicInstructionDurations` object from the backend.
 
-`= 64`
+    **Parameters**
 
-## Methods
+    **backend** ([`Backend`](/api/qiskit/qiskit.providers.Backend "(in Qiskit v1.0)")) – backend from which durations (gate lengths) and dt are extracted.
 
-### from\_backend
+    **Returns**
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.DynamicCircuitInstructionDurations.from_backend" />
+    The InstructionDurations constructed from backend.
 
-`classmethod from_backend(backend)` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/transpiler/passes/scheduling/utils.py#L155-L209 "view source code")
+    **Return type**
 
-Construct a `DynamicInstructionDurations` object from the backend.
+    DynamicInstructionDurations
+  </Function>
 
-**Parameters**
+  ### from\_target
 
-**backend** ([`Backend`](/api/qiskit/qiskit.providers.Backend "(in Qiskit v1.0)")) – backend from which durations (gate lengths) and dt are extracted.
+  <Function id="qiskit_ibm_provider.transpiler.passes.scheduling.DynamicCircuitInstructionDurations.from_target" name="from_target" github="https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/transpiler/passes/scheduling/utils.py#L211-L230" signature="classmethod from_target(target)">
+    Construct a `DynamicInstructionDurations` object from the target.
 
-**Returns**
+    **Parameters**
 
-The InstructionDurations constructed from backend.
+    **target** ([`Target`](/api/qiskit/qiskit.transpiler.Target "(in Qiskit v1.0)")) – target from which durations (gate lengths) and dt are extracted.
 
-**Return type**
+    **Returns**
 
-DynamicInstructionDurations
+    The InstructionDurations constructed from backend.
 
-### from\_target
+    **Return type**
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.DynamicCircuitInstructionDurations.from_target" />
+    DynamicInstructionDurations
+  </Function>
 
-`classmethod from_target(target)` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/transpiler/passes/scheduling/utils.py#L211-L230 "view source code")
+  ### get
 
-Construct a `DynamicInstructionDurations` object from the target.
+  <Function id="qiskit_ibm_provider.transpiler.passes.scheduling.DynamicCircuitInstructionDurations.get" name="get" signature="get(inst, qubits, unit='dt', parameters=None)">
+    Get the duration of the instruction with the name, qubits, and parameters.
 
-**Parameters**
+    Some instructions may have a parameter dependent duration.
 
-**target** ([`Target`](/api/qiskit/qiskit.transpiler.Target "(in Qiskit v1.0)")) – target from which durations (gate lengths) and dt are extracted.
+    **Parameters**
 
-**Returns**
+    *   **inst** (*str |* [*qiskit.circuit.Instruction*](/api/qiskit/qiskit.circuit.Instruction "(in Qiskit v1.0)")) – An instruction or its name to be queried.
+    *   **qubits** (*int | list\[int]*) – Qubit indices that the instruction acts on.
+    *   **unit** (*str*) – The unit of duration to be returned. It must be ‘s’ or ‘dt’.
+    *   **parameters** (*list\[float] | None*) – The value of the parameters of the desired instruction.
 
-The InstructionDurations constructed from backend.
+    **Returns**
 
-**Return type**
+    The duration of the instruction on the qubits.
 
-DynamicInstructionDurations
+    **Return type**
 
-### get
+    float|int
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.DynamicCircuitInstructionDurations.get" />
+    **Raises**
 
-`get(inst, qubits, unit='dt', parameters=None)`
+    **TranspilerError** – No duration is defined for the instruction.
+  </Function>
 
-Get the duration of the instruction with the name, qubits, and parameters.
+  ### units\_used
 
-Some instructions may have a parameter dependent duration.
+  <Function id="qiskit_ibm_provider.transpiler.passes.scheduling.DynamicCircuitInstructionDurations.units_used" name="units_used" signature="units_used()">
+    Get the set of all units used in this instruction durations.
 
-**Parameters**
+    **Return type**
 
-*   **inst** (*str |* [*qiskit.circuit.Instruction*](/api/qiskit/qiskit.circuit.Instruction "(in Qiskit v1.0)")) – An instruction or its name to be queried.
-*   **qubits** (*int | list\[int]*) – Qubit indices that the instruction acts on.
-*   **unit** (*str*) – The unit of duration to be returned. It must be ‘s’ or ‘dt’.
-*   **parameters** (*list\[float] | None*) – The value of the parameters of the desired instruction.
+    `set`\[`str`]
 
-**Returns**
+    **Returns**
 
-The duration of the instruction on the qubits.
+    Set of units used in this instruction durations.
+  </Function>
 
-**Return type**
+  ### update
 
-float|int
+  <Function id="qiskit_ibm_provider.transpiler.passes.scheduling.DynamicCircuitInstructionDurations.update" name="update" github="https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/transpiler/passes/scheduling/utils.py#L232-L278" signature="update(inst_durations, dt=None)">
+    Update self with inst\_durations (inst\_durations overwrite self). Overrides the default durations for certain hardcoded instructions.
 
-**Raises**
+    **Parameters**
 
-**TranspilerError** – No duration is defined for the instruction.
+    *   **inst\_durations** (`Union`\[`List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `float`, `Optional`\[`Iterable`\[`float`]], `str`]], `List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `float`, `Optional`\[`Iterable`\[`float`]]]], `List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `float`, `str`]], `List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `float`]], [`InstructionDurations`](/api/qiskit/qiskit.transpiler.InstructionDurations "(in Qiskit v1.0)"), `None`]) – Instruction durations to be merged into self (overwriting self).
+    *   **dt** (`Optional`\[`float`]) – Sampling duration in seconds of the target backend.
 
-### units\_used
+    **Returns**
 
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.DynamicCircuitInstructionDurations.units_used" />
+    The updated InstructionDurations.
 
-`units_used()`
+    **Return type**
 
-Get the set of all units used in this instruction durations.
+    InstructionDurations
 
-**Return type**
+    **Raises**
 
-`set`\[`str`]
-
-**Returns**
-
-Set of units used in this instruction durations.
-
-### update
-
-<span id="qiskit_ibm_provider.transpiler.passes.scheduling.DynamicCircuitInstructionDurations.update" />
-
-`update(inst_durations, dt=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/transpiler/passes/scheduling/utils.py#L232-L278 "view source code")
-
-Update self with inst\_durations (inst\_durations overwrite self). Overrides the default durations for certain hardcoded instructions.
-
-**Parameters**
-
-*   **inst\_durations** (`Union`\[`List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `float`, `Optional`\[`Iterable`\[`float`]], `str`]], `List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `float`, `Optional`\[`Iterable`\[`float`]]]], `List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `float`, `str`]], `List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `float`]], [`InstructionDurations`](/api/qiskit/qiskit.transpiler.InstructionDurations "(in Qiskit v1.0)"), `None`]) – Instruction durations to be merged into self (overwriting self).
-*   **dt** (`Optional`\[`float`]) – Sampling duration in seconds of the target backend.
-
-**Returns**
-
-The updated InstructionDurations.
-
-**Return type**
-
-InstructionDurations
-
-**Raises**
-
-**TranspilerError** – If the format of instruction\_durations is invalid.
+    **TranspilerError** – If the format of instruction\_durations is invalid.
+  </Function>
+</Class>
 
