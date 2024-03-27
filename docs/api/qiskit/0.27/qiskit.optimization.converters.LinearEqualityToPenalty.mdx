@@ -8,101 +8,91 @@ python_api_name: qiskit.optimization.converters.LinearEqualityToPenalty
 
 # qiskit.optimization.converters.LinearEqualityToPenalty
 
-<span id="qiskit.optimization.converters.LinearEqualityToPenalty" />
+<Class id="qiskit.optimization.converters.LinearEqualityToPenalty" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/converters/linear_equality_to_penalty.py" signature="LinearEqualityToPenalty(penalty=None)">
+  Convert a problem with only equality constraints to unconstrained with penalty terms.
 
-`LinearEqualityToPenalty(penalty=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/converters/linear_equality_to_penalty.py "view source code")
+  **Parameters**
 
-Convert a problem with only equality constraints to unconstrained with penalty terms.
+  **penalty** (`Optional`\[`float`]) – Penalty factor to scale equality constraints that are added to objective. If None is passed, penalty factor will be automatically calculated.
 
-**Parameters**
+  ### \_\_init\_\_
 
-**penalty** (`Optional`\[`float`]) – Penalty factor to scale equality constraints that are added to objective. If None is passed, penalty factor will be automatically calculated.
+  <Function id="qiskit.optimization.converters.LinearEqualityToPenalty.__init__" name="__init__" signature="__init__(penalty=None)">
+    **Parameters**
 
-### \_\_init\_\_
+    **penalty** (`Optional`\[`float`]) – Penalty factor to scale equality constraints that are added to objective. If None is passed, penalty factor will be automatically calculated.
+  </Function>
 
-<span id="qiskit.optimization.converters.LinearEqualityToPenalty.__init__" />
+  ## Methods
 
-`__init__(penalty=None)`
+  |                                                                                                                                                              |                                                                                  |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.optimization.converters.LinearEqualityToPenalty.__init__ "qiskit.optimization.converters.LinearEqualityToPenalty.__init__")(\[penalty]) | **type penalty**`Optional`\[`float`]                                             |
+  | [`convert`](#qiskit.optimization.converters.LinearEqualityToPenalty.convert "qiskit.optimization.converters.LinearEqualityToPenalty.convert")(problem)       | Convert a problem with equality constraints into an unconstrained problem.       |
+  | [`interpret`](#qiskit.optimization.converters.LinearEqualityToPenalty.interpret "qiskit.optimization.converters.LinearEqualityToPenalty.interpret")(x)       | Convert the result of the converted problem back to that of the original problem |
 
-**Parameters**
+  ## Attributes
 
-**penalty** (`Optional`\[`float`]) – Penalty factor to scale equality constraints that are added to objective. If None is passed, penalty factor will be automatically calculated.
+  |                                                                                                                                               |                                                |
+  | --------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+  | [`penalty`](#qiskit.optimization.converters.LinearEqualityToPenalty.penalty "qiskit.optimization.converters.LinearEqualityToPenalty.penalty") | Returns the penalty factor used in conversion. |
 
-## Methods
+  ### convert
 
-|                                                                                                                                                              |                                                                                  |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.optimization.converters.LinearEqualityToPenalty.__init__ "qiskit.optimization.converters.LinearEqualityToPenalty.__init__")(\[penalty]) | **type penalty**`Optional`\[`float`]                                             |
-| [`convert`](#qiskit.optimization.converters.LinearEqualityToPenalty.convert "qiskit.optimization.converters.LinearEqualityToPenalty.convert")(problem)       | Convert a problem with equality constraints into an unconstrained problem.       |
-| [`interpret`](#qiskit.optimization.converters.LinearEqualityToPenalty.interpret "qiskit.optimization.converters.LinearEqualityToPenalty.interpret")(x)       | Convert the result of the converted problem back to that of the original problem |
+  <Function id="qiskit.optimization.converters.LinearEqualityToPenalty.convert" name="convert" signature="convert(problem)">
+    Convert a problem with equality constraints into an unconstrained problem.
 
-## Attributes
+    **Parameters**
 
-|                                                                                                                                               |                                                |
-| --------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| [`penalty`](#qiskit.optimization.converters.LinearEqualityToPenalty.penalty "qiskit.optimization.converters.LinearEqualityToPenalty.penalty") | Returns the penalty factor used in conversion. |
+    **problem** (`QuadraticProgram`) – The problem to be solved, that does not contain inequality constraints.
 
-### convert
+    **Return type**
 
-<span id="qiskit.optimization.converters.LinearEqualityToPenalty.convert" />
+    `QuadraticProgram`
 
-`convert(problem)`
+    **Returns**
 
-Convert a problem with equality constraints into an unconstrained problem.
+    The converted problem, that is an unconstrained problem.
 
-**Parameters**
+    **Raises**
 
-**problem** (`QuadraticProgram`) – The problem to be solved, that does not contain inequality constraints.
+    [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If an inequality constraint exists.
+  </Function>
 
-**Return type**
+  ### interpret
 
-`QuadraticProgram`
+  <Function id="qiskit.optimization.converters.LinearEqualityToPenalty.interpret" name="interpret" signature="interpret(x)">
+    Convert the result of the converted problem back to that of the original problem
 
-**Returns**
+    **Parameters**
 
-The converted problem, that is an unconstrained problem.
+    **x** (`Union`\[`ndarray`, `List`\[`float`]]) – The result of the converted problem or the given result in case of FAILURE.
 
-**Raises**
+    **Return type**
 
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If an inequality constraint exists.
+    `ndarray`
 
-### interpret
+    **Returns**
 
-<span id="qiskit.optimization.converters.LinearEqualityToPenalty.interpret" />
+    The result of the original problem.
 
-`interpret(x)`
+    **Raises**
 
-Convert the result of the converted problem back to that of the original problem
+    [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the number of variables in the result differs from that of the original problem.
+  </Function>
 
-**Parameters**
+  ### penalty
 
-**x** (`Union`\[`ndarray`, `List`\[`float`]]) – The result of the converted problem or the given result in case of FAILURE.
+  <Function id="qiskit.optimization.converters.LinearEqualityToPenalty.penalty" name="penalty" signature="property penalty">
+    Returns the penalty factor used in conversion.
 
-**Return type**
+    **Return type**
 
-`ndarray`
+    `Optional`\[`float`]
 
-**Returns**
+    **Returns**
 
-The result of the original problem.
-
-**Raises**
-
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the number of variables in the result differs from that of the original problem.
-
-### penalty
-
-<span id="qiskit.optimization.converters.LinearEqualityToPenalty.penalty" />
-
-`property penalty`
-
-Returns the penalty factor used in conversion.
-
-**Return type**
-
-`Optional`\[`float`]
-
-**Returns**
-
-The penalty factor used in conversion.
+    The penalty factor used in conversion.
+  </Function>
+</Class>
 
