@@ -8,188 +8,182 @@ python_api_name: qiskit.circuit.library.SXGate
 
 # SXGate
 
-<span id="qiskit.circuit.library.SXGate" />
+<Class id="qiskit.circuit.library.SXGate" github="https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/sx.py" signature="qiskit.circuit.library.SXGate(*args, _force_mutable=False, **kwargs)">
+  Bases: [`SingletonGate`](circuit_singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate")
 
-`qiskit.circuit.library.SXGate(*args, _force_mutable=False, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/sx.py "view source code")
+  The single-qubit Sqrt(X) gate ($\sqrt{X}$).
 
-Bases: [`SingletonGate`](circuit_singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate")
+  Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`sx()`](qiskit.circuit.QuantumCircuit#sx "qiskit.circuit.QuantumCircuit.sx") method.
 
-The single-qubit Sqrt(X) gate ($\sqrt{X}$).
-
-Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`sx()`](qiskit.circuit.QuantumCircuit#sx "qiskit.circuit.QuantumCircuit.sx") method.
-
-**Matrix Representation:**
-
-$$
-\sqrt{X} = \frac{1}{2} \begin{pmatrix}
-        1 + i & 1 - i \\
-        1 - i & 1 + i
-    \end{pmatrix}
-$$
-
-**Circuit symbol:**
-
-```python
-     ┌────┐
-q_0: ┤ √X ├
-     └────┘
-```
-
-<Admonition title="Note" type="note">
-  A global phase difference exists between the definitions of $RX(\pi/2)$ and $\sqrt{X}$.
+  **Matrix Representation:**
 
   $$
-  RX(\pi/2) = \frac{1}{\sqrt{2}} \begin{pmatrix}
-              1 & -i \\
-              -i & 1
-            \end{pmatrix}
-          = e^{-i \pi/4} \sqrt{X}
+  \sqrt{X} = \frac{1}{2} \begin{pmatrix}
+          1 + i & 1 - i \\
+          1 - i & 1 + i
+      \end{pmatrix}
   $$
-</Admonition>
 
-Create new SX gate.
+  **Circuit symbol:**
 
-## Attributes
+  ```python
+       ┌────┐
+  q_0: ┤ √X ├
+       └────┘
+  ```
 
-<span id="qiskit.circuit.library.SXGate.base_class" />
+  <Admonition title="Note" type="note">
+    A global phase difference exists between the definitions of $RX(\pi/2)$ and $\sqrt{X}$.
 
-### base\_class
+    $$
+    RX(\pi/2) = \frac{1}{\sqrt{2}} \begin{pmatrix}
+                1 & -i \\
+                -i & 1
+              \end{pmatrix}
+            = e^{-i \pi/4} \sqrt{X}
+    $$
+  </Admonition>
 
-Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+  Create new SX gate.
 
-The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.SXGate.base_class "qiskit.circuit.library.SXGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
+  ## Attributes
 
-This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+  ### base\_class
 
-```python
->>> isinstance(XGate(), XGate)
-True
->>> type(XGate()) is XGate
-False
->>> XGate().base_class is XGate
-True
-```
+  <Attribute id="qiskit.circuit.library.SXGate.base_class" name="base_class">
+    Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
 
-In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.SXGate.base_class "qiskit.circuit.library.SXGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
 
-<span id="qiskit.circuit.library.SXGate.condition" />
+    This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
 
-### condition
+    ```python
+    >>> isinstance(XGate(), XGate)
+    True
+    >>> type(XGate()) is XGate
+    False
+    >>> XGate().base_class is XGate
+    True
+    ```
 
-The classical condition on the instruction.
+    In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  </Attribute>
 
-<span id="qiskit.circuit.library.SXGate.condition_bits" />
+  ### condition
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.library.SXGate.condition" name="condition">
+    The classical condition on the instruction.
+  </Attribute>
 
-Get Clbits in condition.
+  ### condition\_bits
 
-<span id="qiskit.circuit.library.SXGate.decompositions" />
+  <Attribute id="qiskit.circuit.library.SXGate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-### decompositions
+  ### decompositions
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.circuit.library.SXGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-<span id="qiskit.circuit.library.SXGate.definition" />
+  ### definition
 
-### definition
+  <Attribute id="qiskit.circuit.library.SXGate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-Return definition in terms of other basic gates.
+  ### duration
 
-<span id="qiskit.circuit.library.SXGate.duration" />
+  <Attribute id="qiskit.circuit.library.SXGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-### duration
+  ### label
 
-Get the duration.
+  <Attribute id="qiskit.circuit.library.SXGate.label" name="label">
+    Return instruction label
+  </Attribute>
 
-<span id="qiskit.circuit.library.SXGate.label" />
+  ### mutable
 
-### label
+  <Attribute id="qiskit.circuit.library.SXGate.mutable" name="mutable">
+    Is this instance is a mutable unique instance or not.
 
-Return instruction label
+    If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  </Attribute>
 
-<span id="qiskit.circuit.library.SXGate.mutable" />
+  ### name
 
-### mutable
+  <Attribute id="qiskit.circuit.library.SXGate.name" name="name">
+    Return the name.
+  </Attribute>
 
-Is this instance is a mutable unique instance or not.
+  ### num\_clbits
 
-If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  <Attribute id="qiskit.circuit.library.SXGate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.SXGate.name" />
+  ### num\_qubits
 
-### name
+  <Attribute id="qiskit.circuit.library.SXGate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-Return the name.
+  ### params
 
-<span id="qiskit.circuit.library.SXGate.num_clbits" />
+  <Attribute id="qiskit.circuit.library.SXGate.params" name="params">
+    return instruction params.
+  </Attribute>
 
-### num\_clbits
+  ### unit
 
-Return the number of clbits.
+  <Attribute id="qiskit.circuit.library.SXGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
 
-<span id="qiskit.circuit.library.SXGate.num_qubits" />
+  ## Methods
 
-### num\_qubits
+  ### control
 
-Return the number of qubits.
+  <Function id="qiskit.circuit.library.SXGate.control" name="control" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=False)">
+    Return a (multi-)controlled-SX gate.
 
-<span id="qiskit.circuit.library.SXGate.params" />
+    One control returns a CSX gate.
 
-### params
+    **Parameters**
 
-return instruction params.
+    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of control qubits.
+    *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – An optional label for the gate \[Default: `None`]
+    *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – control state expressed as integer, string (e.g.\`\`’110’`), or ``None`. If `None`, use all 1s.
+    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – indicates whether the controlled gate can be implemented as an annotated gate.
 
-<span id="qiskit.circuit.library.SXGate.unit" />
+    **Returns**
 
-### unit
+    controlled version of this gate.
 
-Get the time unit of duration.
+    **Return type**
 
-## Methods
+    [SingletonControlledGate](circuit_singleton#qiskit.circuit.singleton.SingletonControlledGate "qiskit.circuit.singleton.SingletonControlledGate")
+  </Function>
 
-### control
+  ### inverse
 
-<span id="qiskit.circuit.library.SXGate.control" />
+  <Function id="qiskit.circuit.library.SXGate.inverse" name="inverse" signature="inverse(annotated=False)">
+    Return inverse SX gate (i.e. SXdg).
 
-`control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=False)`
+    **Parameters**
 
-Return a (multi-)controlled-SX gate.
+    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always a [`SXdgGate`](qiskit.circuit.library.SXdgGate "qiskit.circuit.library.SXdgGate").
 
-One control returns a CSX gate.
+    **Returns**
 
-**Parameters**
+    inverse of [`SXGate`](#qiskit.circuit.library.SXGate "qiskit.circuit.library.SXGate").
 
-*   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of control qubits.
-*   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – An optional label for the gate \[Default: `None`]
-*   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – control state expressed as integer, string (e.g.\`\`’110’`), or ``None`. If `None`, use all 1s.
-*   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – indicates whether the controlled gate can be implemented as an annotated gate.
+    **Return type**
 
-**Returns**
-
-controlled version of this gate.
-
-**Return type**
-
-[SingletonControlledGate](circuit_singleton#qiskit.circuit.singleton.SingletonControlledGate "qiskit.circuit.singleton.SingletonControlledGate")
-
-### inverse
-
-<span id="qiskit.circuit.library.SXGate.inverse" />
-
-`inverse(annotated=False)`
-
-Return inverse SX gate (i.e. SXdg).
-
-**Parameters**
-
-**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always a [`SXdgGate`](qiskit.circuit.library.SXdgGate "qiskit.circuit.library.SXdgGate").
-
-**Returns**
-
-inverse of [`SXGate`](#qiskit.circuit.library.SXGate "qiskit.circuit.library.SXGate").
-
-**Return type**
-
-[SXdgGate](qiskit.circuit.library.SXdgGate "qiskit.circuit.library.SXdgGate")
+    [SXdgGate](qiskit.circuit.library.SXdgGate "qiskit.circuit.library.SXdgGate")
+  </Function>
+</Class>
 
