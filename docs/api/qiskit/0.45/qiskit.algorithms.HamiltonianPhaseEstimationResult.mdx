@@ -8,85 +8,79 @@ python_api_name: qiskit.algorithms.HamiltonianPhaseEstimationResult
 
 # HamiltonianPhaseEstimationResult
 
-<span id="qiskit.algorithms.HamiltonianPhaseEstimationResult" />
+<Class id="qiskit.algorithms.HamiltonianPhaseEstimationResult" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/phase_estimators/hamiltonian_phase_estimation_result.py" signature="qiskit.algorithms.HamiltonianPhaseEstimationResult(phase_estimation_result, phase_estimation_scale, id_coefficient)">
+  Bases: `AlgorithmResult`
 
-`qiskit.algorithms.HamiltonianPhaseEstimationResult(phase_estimation_result, phase_estimation_scale, id_coefficient)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/phase_estimators/hamiltonian_phase_estimation_result.py "view source code")
+  Store and manipulate results from running HamiltonianPhaseEstimation.
 
-Bases: `AlgorithmResult`
+  This API of this class is nearly the same as PhaseEstimatorResult, differing only in the presence of an additional keyword argument in the methods. If scaled is False, then the phases are not translated and scaled to recover the eigenvalues of the Hamiltonian. Instead phi in $[0, 1)$ is returned, as is the case when then unitary is not derived from a Hamiltonian.
 
-Store and manipulate results from running HamiltonianPhaseEstimation.
+  This class is meant to be instantiated via HamiltonianPhaseEstimation.estimate.
 
-This API of this class is nearly the same as PhaseEstimatorResult, differing only in the presence of an additional keyword argument in the methods. If scaled is False, then the phases are not translated and scaled to recover the eigenvalues of the Hamiltonian. Instead phi in $[0, 1)$ is returned, as is the case when then unitary is not derived from a Hamiltonian.
+  **Parameters**
 
-This class is meant to be instantiated via HamiltonianPhaseEstimation.estimate.
+  *   **phase\_estimation\_result** ([*PhaseEstimationResult*](qiskit.algorithms.PhaseEstimationResult "qiskit.algorithms.PhaseEstimationResult")) – The result object returned by PhaseEstimation.estimate.
+  *   **phase\_estimation\_scale** ([*PhaseEstimationScale*](qiskit.algorithms.PhaseEstimationScale "qiskit.algorithms.PhaseEstimationScale")) – object used to scale phases to obtain eigenvalues.
+  *   **id\_coefficient** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The coefficient of the identity term in the Hamiltonian. Eigenvalues are computed without this term so that the coefficient must added to give correct eigenvalues. This is done automatically when retrieving eigenvalues.
 
-**Parameters**
+  ## Attributes
 
-*   **phase\_estimation\_result** ([*PhaseEstimationResult*](qiskit.algorithms.PhaseEstimationResult "qiskit.algorithms.PhaseEstimationResult")) – The result object returned by PhaseEstimation.estimate.
-*   **phase\_estimation\_scale** ([*PhaseEstimationScale*](qiskit.algorithms.PhaseEstimationScale "qiskit.algorithms.PhaseEstimationScale")) – object used to scale phases to obtain eigenvalues.
-*   **id\_coefficient** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The coefficient of the identity term in the Hamiltonian. Eigenvalues are computed without this term so that the coefficient must added to give correct eigenvalues. This is done automatically when retrieving eigenvalues.
+  ### most\_likely\_eigenvalue
 
-## Attributes
+  <Attribute id="qiskit.algorithms.HamiltonianPhaseEstimationResult.most_likely_eigenvalue" name="most_likely_eigenvalue">
+    The most likely eigenvalue of the Hamiltonian.
 
-<span id="qiskit.algorithms.HamiltonianPhaseEstimationResult.most_likely_eigenvalue" />
+    This method calls most\_likely\_phase and scales the result to obtain an eigenvalue.
 
-### most\_likely\_eigenvalue
+    **Returns**
 
-The most likely eigenvalue of the Hamiltonian.
+    The most likely eigenvalue of the Hamiltonian.
+  </Attribute>
 
-This method calls most\_likely\_phase and scales the result to obtain an eigenvalue.
+  ### phase
 
-**Returns**
+  <Attribute id="qiskit.algorithms.HamiltonianPhaseEstimationResult.phase" name="phase">
+    The most likely phase of the unitary corresponding to the Hamiltonian.
 
-The most likely eigenvalue of the Hamiltonian.
+    **Returns**
 
-<span id="qiskit.algorithms.HamiltonianPhaseEstimationResult.phase" />
+    The most likely phase.
+  </Attribute>
 
-### phase
+  ## Methods
 
-The most likely phase of the unitary corresponding to the Hamiltonian.
+  ### combine
 
-**Returns**
+  <Function id="qiskit.algorithms.HamiltonianPhaseEstimationResult.combine" name="combine" signature="combine(result)">
+    Any property from the argument that exists in the receiver is updated. :param result: Argument result with properties to be set.
 
-The most likely phase.
+    **Raises**
 
-## Methods
+    [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – Argument is None
+  </Function>
 
-### combine
+  ### filter\_phases
 
-<span id="qiskit.algorithms.HamiltonianPhaseEstimationResult.combine" />
+  <Function id="qiskit.algorithms.HamiltonianPhaseEstimationResult.filter_phases" name="filter_phases" signature="filter_phases(cutoff=0.0, scaled=True, as_float=True)">
+    Filter phases as does PhaseEstimatorResult.filter\_phases, with the addition that phi is shifted and translated to return eigenvalues of the Hamiltonian.
 
-`combine(result)`
+    **Parameters**
 
-Any property from the argument that exists in the receiver is updated. :param result: Argument result with properties to be set.
+    *   **cutoff** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Minimum weight of number of counts required to keep a bit string. The default value is 0.0.
+    *   **scaled** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If False, return phi in $[0, 1)$ rather than the eigenvalues of the Hamiltonian.
+    *   **as\_float** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, returned keys are floats in $[0.0, 1.0)$. If False returned keys are bit strings.
 
-**Raises**
+    **Raises**
 
-[**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – Argument is None
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – if as\_float is False and scaled is True.
 
-### filter\_phases
+    **Returns**
 
-<span id="qiskit.algorithms.HamiltonianPhaseEstimationResult.filter_phases" />
+    A dict of filtered phases.
 
-`filter_phases(cutoff=0.0, scaled=True, as_float=True)`
+    **Return type**
 
-Filter phases as does PhaseEstimatorResult.filter\_phases, with the addition that phi is shifted and translated to return eigenvalues of the Hamiltonian.
-
-**Parameters**
-
-*   **cutoff** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Minimum weight of number of counts required to keep a bit string. The default value is 0.0.
-*   **scaled** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If False, return phi in $[0, 1)$ rather than the eigenvalues of the Hamiltonian.
-*   **as\_float** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, returned keys are floats in $[0.0, 1.0)$. If False returned keys are bit strings.
-
-**Raises**
-
-[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – if as\_float is False and scaled is True.
-
-**Returns**
-
-A dict of filtered phases.
-
-**Return type**
-
-Mapping\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") | [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)"), [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")]
+    Mapping\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") | [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)"), [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")]
+  </Function>
+</Class>
 

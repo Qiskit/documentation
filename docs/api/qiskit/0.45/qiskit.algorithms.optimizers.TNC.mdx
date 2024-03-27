@@ -8,220 +8,204 @@ python_api_name: qiskit.algorithms.optimizers.TNC
 
 # TNC
 
-<span id="qiskit.algorithms.optimizers.TNC" />
+<Class id="qiskit.algorithms.optimizers.TNC" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/optimizers/tnc.py" signature="qiskit.algorithms.optimizers.TNC(maxiter=100, disp=False, accuracy=0, ftol=-1, xtol=-1, gtol=-1, tol=None, eps=1e-08, options=None, max_evals_grouped=1, **kwargs)">
+  Bases: [`SciPyOptimizer`](qiskit.algorithms.optimizers.SciPyOptimizer "qiskit.algorithms.optimizers.scipy_optimizer.SciPyOptimizer")
 
-`qiskit.algorithms.optimizers.TNC(maxiter=100, disp=False, accuracy=0, ftol=-1, xtol=-1, gtol=-1, tol=None, eps=1e-08, options=None, max_evals_grouped=1, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/optimizers/tnc.py "view source code")
+  Truncated Newton (TNC) optimizer.
 
-Bases: [`SciPyOptimizer`](qiskit.algorithms.optimizers.SciPyOptimizer "qiskit.algorithms.optimizers.scipy_optimizer.SciPyOptimizer")
+  TNC uses a truncated Newton algorithm to minimize a function with variables subject to bounds. This algorithm uses gradient information; it is also called Newton Conjugate-Gradient. It differs from the [`CG`](qiskit.algorithms.optimizers.CG "qiskit.algorithms.optimizers.CG") method as it wraps a C implementation and allows each variable to be given upper and lower bounds.
 
-Truncated Newton (TNC) optimizer.
+  Uses scipy.optimize.minimize TNC For further detail, please refer to See [https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html)
 
-TNC uses a truncated Newton algorithm to minimize a function with variables subject to bounds. This algorithm uses gradient information; it is also called Newton Conjugate-Gradient. It differs from the [`CG`](qiskit.algorithms.optimizers.CG "qiskit.algorithms.optimizers.CG") method as it wraps a C implementation and allows each variable to be given upper and lower bounds.
+  **Parameters**
 
-Uses scipy.optimize.minimize TNC For further detail, please refer to See [https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html)
+  *   **maxiter** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Maximum number of function evaluation.
+  *   **disp** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Set to True to print convergence messages.
+  *   **accuracy** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Relative precision for finite difference calculations. If \<= machine\_precision, set to sqrt(machine\_precision). Defaults to 0.
+  *   **ftol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Precision goal for the value of f in the stopping criterion. If ftol \< 0.0, ftol is set to 0.0 defaults to -1.
+  *   **xtol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Precision goal for the value of x in the stopping criterion (after applying x scaling factors). If xtol \< 0.0, xtol is set to sqrt(machine\_precision). Defaults to -1.
+  *   **gtol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Precision goal for the value of the projected gradient in the stopping criterion (after applying x scaling factors). If gtol \< 0.0, gtol is set to 1e-2 \* sqrt(accuracy). Setting it to 0.0 is not recommended. Defaults to -1.
+  *   **tol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – Tolerance for termination.
+  *   **eps** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Step size used for numerical approximation of the Jacobian.
+  *   **options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)") *| None*) – A dictionary of solver options.
+  *   **max\_evals\_grouped** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Max number of default gradient evaluations performed simultaneously.
+  *   **kwargs** – additional kwargs for scipy.optimize.minimize.
 
-**Parameters**
+  ## Attributes
 
-*   **maxiter** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Maximum number of function evaluation.
-*   **disp** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Set to True to print convergence messages.
-*   **accuracy** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Relative precision for finite difference calculations. If \<= machine\_precision, set to sqrt(machine\_precision). Defaults to 0.
-*   **ftol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Precision goal for the value of f in the stopping criterion. If ftol \< 0.0, ftol is set to 0.0 defaults to -1.
-*   **xtol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Precision goal for the value of x in the stopping criterion (after applying x scaling factors). If xtol \< 0.0, xtol is set to sqrt(machine\_precision). Defaults to -1.
-*   **gtol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Precision goal for the value of the projected gradient in the stopping criterion (after applying x scaling factors). If gtol \< 0.0, gtol is set to 1e-2 \* sqrt(accuracy). Setting it to 0.0 is not recommended. Defaults to -1.
-*   **tol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – Tolerance for termination.
-*   **eps** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Step size used for numerical approximation of the Jacobian.
-*   **options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)") *| None*) – A dictionary of solver options.
-*   **max\_evals\_grouped** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Max number of default gradient evaluations performed simultaneously.
-*   **kwargs** – additional kwargs for scipy.optimize.minimize.
+  ### bounds\_support\_level
 
-## Attributes
+  <Attribute id="qiskit.algorithms.optimizers.TNC.bounds_support_level" name="bounds_support_level">
+    Returns bounds support level
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.TNC.bounds_support_level" />
+  ### gradient\_support\_level
 
-### bounds\_support\_level
+  <Attribute id="qiskit.algorithms.optimizers.TNC.gradient_support_level" name="gradient_support_level">
+    Returns gradient support level
+  </Attribute>
 
-Returns bounds support level
+  ### initial\_point\_support\_level
 
-<span id="qiskit.algorithms.optimizers.TNC.gradient_support_level" />
+  <Attribute id="qiskit.algorithms.optimizers.TNC.initial_point_support_level" name="initial_point_support_level">
+    Returns initial point support level
+  </Attribute>
 
-### gradient\_support\_level
+  ### is\_bounds\_ignored
 
-Returns gradient support level
+  <Attribute id="qiskit.algorithms.optimizers.TNC.is_bounds_ignored" name="is_bounds_ignored">
+    Returns is bounds ignored
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.TNC.initial_point_support_level" />
+  ### is\_bounds\_required
 
-### initial\_point\_support\_level
+  <Attribute id="qiskit.algorithms.optimizers.TNC.is_bounds_required" name="is_bounds_required">
+    Returns is bounds required
+  </Attribute>
 
-Returns initial point support level
+  ### is\_bounds\_supported
 
-<span id="qiskit.algorithms.optimizers.TNC.is_bounds_ignored" />
+  <Attribute id="qiskit.algorithms.optimizers.TNC.is_bounds_supported" name="is_bounds_supported">
+    Returns is bounds supported
+  </Attribute>
 
-### is\_bounds\_ignored
+  ### is\_gradient\_ignored
 
-Returns is bounds ignored
+  <Attribute id="qiskit.algorithms.optimizers.TNC.is_gradient_ignored" name="is_gradient_ignored">
+    Returns is gradient ignored
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.TNC.is_bounds_required" />
+  ### is\_gradient\_required
 
-### is\_bounds\_required
+  <Attribute id="qiskit.algorithms.optimizers.TNC.is_gradient_required" name="is_gradient_required">
+    Returns is gradient required
+  </Attribute>
 
-Returns is bounds required
+  ### is\_gradient\_supported
 
-<span id="qiskit.algorithms.optimizers.TNC.is_bounds_supported" />
+  <Attribute id="qiskit.algorithms.optimizers.TNC.is_gradient_supported" name="is_gradient_supported">
+    Returns is gradient supported
+  </Attribute>
 
-### is\_bounds\_supported
+  ### is\_initial\_point\_ignored
 
-Returns is bounds supported
+  <Attribute id="qiskit.algorithms.optimizers.TNC.is_initial_point_ignored" name="is_initial_point_ignored">
+    Returns is initial point ignored
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.TNC.is_gradient_ignored" />
+  ### is\_initial\_point\_required
 
-### is\_gradient\_ignored
+  <Attribute id="qiskit.algorithms.optimizers.TNC.is_initial_point_required" name="is_initial_point_required">
+    Returns is initial point required
+  </Attribute>
 
-Returns is gradient ignored
+  ### is\_initial\_point\_supported
 
-<span id="qiskit.algorithms.optimizers.TNC.is_gradient_required" />
+  <Attribute id="qiskit.algorithms.optimizers.TNC.is_initial_point_supported" name="is_initial_point_supported">
+    Returns is initial point supported
+  </Attribute>
 
-### is\_gradient\_required
+  ### setting
 
-Returns is gradient required
+  <Attribute id="qiskit.algorithms.optimizers.TNC.setting" name="setting">
+    Return setting
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.TNC.is_gradient_supported" />
+  ### settings
 
-### is\_gradient\_supported
+  <Attribute id="qiskit.algorithms.optimizers.TNC.settings" name="settings" />
 
-Returns is gradient supported
+  ## Methods
 
-<span id="qiskit.algorithms.optimizers.TNC.is_initial_point_ignored" />
+  ### get\_support\_level
 
-### is\_initial\_point\_ignored
+  <Function id="qiskit.algorithms.optimizers.TNC.get_support_level" name="get_support_level" signature="get_support_level()">
+    Return support level dictionary
+  </Function>
 
-Returns is initial point ignored
+  ### gradient\_num\_diff
 
-<span id="qiskit.algorithms.optimizers.TNC.is_initial_point_required" />
+  <Function id="qiskit.algorithms.optimizers.TNC.gradient_num_diff" name="gradient_num_diff" signature="static gradient_num_diff(x_center, f, epsilon, max_evals_grouped=None)">
+    We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
 
-### is\_initial\_point\_required
+    **Parameters**
 
-Returns is initial point required
+    *   **x\_center** (*ndarray*) – point around which we compute the gradient
+    *   **f** (*func*) – the function of which the gradient is to be computed.
+    *   **epsilon** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – the epsilon used in the numeric differentiation.
+    *   **max\_evals\_grouped** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – max evals grouped, defaults to 1 (i.e. no batching).
 
-<span id="qiskit.algorithms.optimizers.TNC.is_initial_point_supported" />
+    **Returns**
 
-### is\_initial\_point\_supported
+    the gradient computed
 
-Returns is initial point supported
+    **Return type**
 
-<span id="qiskit.algorithms.optimizers.TNC.setting" />
+    grad
+  </Function>
 
-### setting
+  ### minimize
 
-Return setting
+  <Function id="qiskit.algorithms.optimizers.TNC.minimize" name="minimize" signature="minimize(fun, x0, jac=None, bounds=None)">
+    Minimize the scalar function.
 
-<span id="qiskit.algorithms.optimizers.TNC.settings" />
+    **Parameters**
 
-### settings
+    *   **fun** (*Callable\[\[POINT],* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – The scalar function to minimize.
+    *   **x0** (*POINT*) – The initial point for the minimization.
+    *   **jac** (*Callable\[\[POINT], POINT] | None*) – The gradient of the scalar function `fun`.
+    *   **bounds** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]] | None*) – Bounds for the variables of `fun`. This argument might be ignored if the optimizer does not support bounds.
 
-## Methods
+    **Returns**
 
-### get\_support\_level
+    The result of the optimization, containing e.g. the result as attribute `x`.
 
-<span id="qiskit.algorithms.optimizers.TNC.get_support_level" />
+    **Return type**
 
-`get_support_level()`
+    [OptimizerResult](qiskit.algorithms.optimizers.OptimizerResult "qiskit.algorithms.optimizers.OptimizerResult")
+  </Function>
 
-Return support level dictionary
+  ### print\_options
 
-### gradient\_num\_diff
+  <Function id="qiskit.algorithms.optimizers.TNC.print_options" name="print_options" signature="print_options()">
+    Print algorithm-specific options.
+  </Function>
 
-<span id="qiskit.algorithms.optimizers.TNC.gradient_num_diff" />
+  ### set\_max\_evals\_grouped
 
-`static gradient_num_diff(x_center, f, epsilon, max_evals_grouped=None)`
+  <Function id="qiskit.algorithms.optimizers.TNC.set_max_evals_grouped" name="set_max_evals_grouped" signature="set_max_evals_grouped(limit)">
+    Set max evals grouped
+  </Function>
 
-We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
+  ### set\_options
 
-**Parameters**
+  <Function id="qiskit.algorithms.optimizers.TNC.set_options" name="set_options" signature="set_options(**kwargs)">
+    Sets or updates values in the options dictionary.
 
-*   **x\_center** (*ndarray*) – point around which we compute the gradient
-*   **f** (*func*) – the function of which the gradient is to be computed.
-*   **epsilon** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – the epsilon used in the numeric differentiation.
-*   **max\_evals\_grouped** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – max evals grouped, defaults to 1 (i.e. no batching).
+    The options dictionary may be used internally by a given optimizer to pass additional optional values for the underlying optimizer/optimization function used. The options dictionary may be initially populated with a set of key/values when the given optimizer is constructed.
 
-**Returns**
+    **Parameters**
 
-the gradient computed
+    **kwargs** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – options, given as name=value.
+  </Function>
 
-**Return type**
+  ### wrap\_function
 
-grad
+  <Function id="qiskit.algorithms.optimizers.TNC.wrap_function" name="wrap_function" signature="static wrap_function(function, args)">
+    Wrap the function to implicitly inject the args at the call of the function.
 
-### minimize
+    **Parameters**
 
-<span id="qiskit.algorithms.optimizers.TNC.minimize" />
+    *   **function** (*func*) – the target function
+    *   **args** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – the args to be injected
 
-`minimize(fun, x0, jac=None, bounds=None)`
+    **Returns**
 
-Minimize the scalar function.
+    wrapper
 
-**Parameters**
+    **Return type**
 
-*   **fun** (*Callable\[\[POINT],* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – The scalar function to minimize.
-*   **x0** (*POINT*) – The initial point for the minimization.
-*   **jac** (*Callable\[\[POINT], POINT] | None*) – The gradient of the scalar function `fun`.
-*   **bounds** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]] | None*) – Bounds for the variables of `fun`. This argument might be ignored if the optimizer does not support bounds.
-
-**Returns**
-
-The result of the optimization, containing e.g. the result as attribute `x`.
-
-**Return type**
-
-[OptimizerResult](qiskit.algorithms.optimizers.OptimizerResult "qiskit.algorithms.optimizers.OptimizerResult")
-
-### print\_options
-
-<span id="qiskit.algorithms.optimizers.TNC.print_options" />
-
-`print_options()`
-
-Print algorithm-specific options.
-
-### set\_max\_evals\_grouped
-
-<span id="qiskit.algorithms.optimizers.TNC.set_max_evals_grouped" />
-
-`set_max_evals_grouped(limit)`
-
-Set max evals grouped
-
-### set\_options
-
-<span id="qiskit.algorithms.optimizers.TNC.set_options" />
-
-`set_options(**kwargs)`
-
-Sets or updates values in the options dictionary.
-
-The options dictionary may be used internally by a given optimizer to pass additional optional values for the underlying optimizer/optimization function used. The options dictionary may be initially populated with a set of key/values when the given optimizer is constructed.
-
-**Parameters**
-
-**kwargs** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – options, given as name=value.
-
-### wrap\_function
-
-<span id="qiskit.algorithms.optimizers.TNC.wrap_function" />
-
-`static wrap_function(function, args)`
-
-Wrap the function to implicitly inject the args at the call of the function.
-
-**Parameters**
-
-*   **function** (*func*) – the target function
-*   **args** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – the args to be injected
-
-**Returns**
-
-wrapper
-
-**Return type**
-
-function\_wrapper
+    function\_wrapper
+  </Function>
+</Class>
 

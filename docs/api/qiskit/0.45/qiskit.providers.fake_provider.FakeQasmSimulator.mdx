@@ -8,134 +8,116 @@ python_api_name: qiskit.providers.fake_provider.FakeQasmSimulator
 
 # FakeQasmSimulator
 
-<span id="qiskit.providers.fake_provider.FakeQasmSimulator" />
+<Class id="qiskit.providers.fake_provider.FakeQasmSimulator" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/fake_provider/fake_qasm_simulator.py" signature="qiskit.providers.fake_provider.FakeQasmSimulator">
+  Bases: [`FakeBackend`](providers_fake_provider#qiskit.providers.fake_provider.FakeBackend "qiskit.providers.fake_provider.fake_backend.FakeBackend")
 
-`qiskit.providers.fake_provider.FakeQasmSimulator` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/fake_provider/fake_qasm_simulator.py "view source code")
+  A fake simulator backend.
 
-Bases: [`FakeBackend`](providers_fake_provider#qiskit.providers.fake_provider.FakeBackend "qiskit.providers.fake_provider.fake_backend.FakeBackend")
+  FakeBackend initializer.
 
-A fake simulator backend.
+  **Parameters**
 
-FakeBackend initializer.
+  *   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
+  *   **time\_alive** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – time to wait before returning result
 
-**Parameters**
+  ## Attributes
 
-*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
-*   **time\_alive** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – time to wait before returning result
+  ### options
 
-## Attributes
+  <Attribute id="qiskit.providers.fake_provider.FakeQasmSimulator.options" name="options">
+    Return the options for the backend
 
-<span id="qiskit.providers.fake_provider.FakeQasmSimulator.options" />
+    The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit.providers.fake_provider.FakeQasmSimulator.run "qiskit.providers.fake_provider.FakeQasmSimulator.run") method.
+  </Attribute>
 
-### options
+  ### version
 
-Return the options for the backend
+  <Attribute id="qiskit.providers.fake_provider.FakeQasmSimulator.version" name="version" attributeValue="= 1" />
 
-The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit.providers.fake_provider.FakeQasmSimulator.run "qiskit.providers.fake_provider.FakeQasmSimulator.run") method.
+  ## Methods
 
-<span id="qiskit.providers.fake_provider.FakeQasmSimulator.version" />
+  ### configuration
 
-### version
+  <Function id="qiskit.providers.fake_provider.FakeQasmSimulator.configuration" name="configuration" signature="configuration()">
+    Return the backend configuration.
 
-`= 1`
+    **Returns**
 
-## Methods
+    the configuration for the backend.
 
-### configuration
+    **Return type**
 
-<span id="qiskit.providers.fake_provider.FakeQasmSimulator.configuration" />
+    [BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+  </Function>
 
-`configuration()`
+  ### name
 
-Return the backend configuration.
+  <Function id="qiskit.providers.fake_provider.FakeQasmSimulator.name" name="name" signature="name()">
+    Return the backend name.
 
-**Returns**
+    **Returns**
 
-the configuration for the backend.
+    the name of the backend.
 
-**Return type**
+    **Return type**
 
-[BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+  </Function>
 
-### name
+  ### properties
 
-<span id="qiskit.providers.fake_provider.FakeQasmSimulator.name" />
+  <Function id="qiskit.providers.fake_provider.FakeQasmSimulator.properties" name="properties" signature="properties()">
+    Return backend properties
+  </Function>
 
-`name()`
+  ### provider
 
-Return the backend name.
+  <Function id="qiskit.providers.fake_provider.FakeQasmSimulator.provider" name="provider" signature="provider()">
+    Return the backend Provider.
 
-**Returns**
+    **Returns**
 
-the name of the backend.
+    the Provider responsible for the backend.
 
-**Return type**
+    **Return type**
 
-[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+    [Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+  </Function>
 
-### properties
+  ### run
 
-<span id="qiskit.providers.fake_provider.FakeQasmSimulator.properties" />
+  <Function id="qiskit.providers.fake_provider.FakeQasmSimulator.run" name="run" signature="run(run_input, **kwargs)">
+    Main job in simulator
+  </Function>
 
-`properties()`
+  ### set\_options
 
-Return backend properties
+  <Function id="qiskit.providers.fake_provider.FakeQasmSimulator.set_options" name="set_options" signature="set_options(**fields)">
+    Set the options fields for the backend
 
-### provider
+    This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
 
-<span id="qiskit.providers.fake_provider.FakeQasmSimulator.provider" />
+    **Parameters**
 
-`provider()`
+    **fields** – The fields to update the options
 
-Return the backend Provider.
+    **Raises**
 
-**Returns**
+    [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – If the field passed in is not part of the options
+  </Function>
 
-the Provider responsible for the backend.
+  ### status
 
-**Return type**
+  <Function id="qiskit.providers.fake_provider.FakeQasmSimulator.status" name="status" signature="status()">
+    Return the backend status.
 
-[Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+    **Returns**
 
-### run
+    the status of the backend.
 
-<span id="qiskit.providers.fake_provider.FakeQasmSimulator.run" />
+    **Return type**
 
-`run(run_input, **kwargs)`
-
-Main job in simulator
-
-### set\_options
-
-<span id="qiskit.providers.fake_provider.FakeQasmSimulator.set_options" />
-
-`set_options(**fields)`
-
-Set the options fields for the backend
-
-This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
-
-**Parameters**
-
-**fields** – The fields to update the options
-
-**Raises**
-
-[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – If the field passed in is not part of the options
-
-### status
-
-<span id="qiskit.providers.fake_provider.FakeQasmSimulator.status" />
-
-`status()`
-
-Return the backend status.
-
-**Returns**
-
-the status of the backend.
-
-**Return type**
-
-[BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+    [BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+  </Function>
+</Class>
 

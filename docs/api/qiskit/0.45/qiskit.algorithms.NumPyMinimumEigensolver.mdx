@@ -8,70 +8,64 @@ python_api_name: qiskit.algorithms.NumPyMinimumEigensolver
 
 # NumPyMinimumEigensolver
 
-<span id="qiskit.algorithms.NumPyMinimumEigensolver" />
+<Class id="qiskit.algorithms.NumPyMinimumEigensolver" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/minimum_eigen_solvers/numpy_minimum_eigen_solver.py" signature="qiskit.algorithms.NumPyMinimumEigensolver(filter_criterion=None)">
+  Bases: [`MinimumEigensolver`](qiskit.algorithms.MinimumEigensolver "qiskit.algorithms.minimum_eigen_solvers.minimum_eigen_solver.MinimumEigensolver")
 
-`qiskit.algorithms.NumPyMinimumEigensolver(filter_criterion=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/minimum_eigen_solvers/numpy_minimum_eigen_solver.py "view source code")
+  Deprecated: Numpy Minimum Eigensolver algorithm.
 
-Bases: [`MinimumEigensolver`](qiskit.algorithms.MinimumEigensolver "qiskit.algorithms.minimum_eigen_solvers.minimum_eigen_solver.MinimumEigensolver")
+  The NumPyMinimumEigensolver class has been superseded by the [`qiskit.algorithms.minimum_eigensolvers.NumPyMinimumEigensolver`](qiskit.algorithms.minimum_eigensolvers.NumPyMinimumEigensolver "qiskit.algorithms.minimum_eigensolvers.NumPyMinimumEigensolver") class. This class will be deprecated in a future release and subsequently removed after that.
 
-Deprecated: Numpy Minimum Eigensolver algorithm.
+  <Admonition title="Deprecated since version 0.24.0" type="danger">
+    The class `qiskit.algorithms.minimum_eigen_solvers.numpy_minimum_eigen_solver.NumPyMinimumEigensolver` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. Instead, use the class `qiskit.algorithms.minimum_eigensolvers.NumPyMinimumEigensolver`. See [https://qisk.it/algo\_migration](https://qisk.it/algo_migration) for a migration guide.
+  </Admonition>
 
-The NumPyMinimumEigensolver class has been superseded by the [`qiskit.algorithms.minimum_eigensolvers.NumPyMinimumEigensolver`](qiskit.algorithms.minimum_eigensolvers.NumPyMinimumEigensolver "qiskit.algorithms.minimum_eigensolvers.NumPyMinimumEigensolver") class. This class will be deprecated in a future release and subsequently removed after that.
+  **Parameters**
 
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.algorithms.minimum_eigen_solvers.numpy_minimum_eigen_solver.NumPyMinimumEigensolver` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. Instead, use the class `qiskit.algorithms.minimum_eigensolvers.NumPyMinimumEigensolver`. See [https://qisk.it/algo\_migration](https://qisk.it/algo_migration) for a migration guide.
-</Admonition>
+  **filter\_criterion** (*Callable\[\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")  *| np.ndarray,*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*, ListOrDict\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | None],* [*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")*]*) – callable that allows to filter eigenvalues/eigenstates. The minimum eigensolver is only searching over feasible states and returns an eigenstate that has the smallest eigenvalue among feasible states. The callable has the signature filter(eigenstate, eigenvalue, aux\_values) and must return a boolean to indicate whether to consider this value or not. If there is no feasible element, the result can even be empty.
 
-**Parameters**
+  ## Attributes
 
-**filter\_criterion** (*Callable\[\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")  *| np.ndarray,*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*, ListOrDict\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | None],* [*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")*]*) – callable that allows to filter eigenvalues/eigenstates. The minimum eigensolver is only searching over feasible states and returns an eigenstate that has the smallest eigenvalue among feasible states. The callable has the signature filter(eigenstate, eigenvalue, aux\_values) and must return a boolean to indicate whether to consider this value or not. If there is no feasible element, the result can even be empty.
+  ### filter\_criterion
 
-## Attributes
+  <Attribute id="qiskit.algorithms.NumPyMinimumEigensolver.filter_criterion" name="filter_criterion">
+    returns the filter criterion if set
+  </Attribute>
 
-<span id="qiskit.algorithms.NumPyMinimumEigensolver.filter_criterion" />
+  ## Methods
 
-### filter\_criterion
+  ### compute\_minimum\_eigenvalue
 
-returns the filter criterion if set
+  <Function id="qiskit.algorithms.NumPyMinimumEigensolver.compute_minimum_eigenvalue" name="compute_minimum_eigenvalue" signature="compute_minimum_eigenvalue(operator, aux_operators=None)">
+    Computes minimum eigenvalue. Operator and aux\_operators can be supplied here and if not None will override any already set into algorithm so it can be reused with different operators. While an operator is required by algorithms, aux\_operators are optional. To ‘remove’ a previous aux\_operators array use an empty list here.
 
-## Methods
+    **Parameters**
 
-### compute\_minimum\_eigenvalue
+    *   **operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")) – Qubit operator of the Observable
+    *   **aux\_operators** (*ListOrDict\[*[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")*] | None*) – Optional list of auxiliary operators to be evaluated with the eigenstate of the minimum eigenvalue main result and their expectation values returned. For instance in chemistry these can be dipole operators, total particle count operators so we can get values for these at the ground state.
 
-<span id="qiskit.algorithms.NumPyMinimumEigensolver.compute_minimum_eigenvalue" />
+    **Returns**
 
-`compute_minimum_eigenvalue(operator, aux_operators=None)`
+    MinimumEigensolverResult
 
-Computes minimum eigenvalue. Operator and aux\_operators can be supplied here and if not None will override any already set into algorithm so it can be reused with different operators. While an operator is required by algorithms, aux\_operators are optional. To ‘remove’ a previous aux\_operators array use an empty list here.
+    **Return type**
 
-**Parameters**
+    [MinimumEigensolverResult](qiskit.algorithms.MinimumEigensolverResult "qiskit.algorithms.MinimumEigensolverResult")
+  </Function>
 
-*   **operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")) – Qubit operator of the Observable
-*   **aux\_operators** (*ListOrDict\[*[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")*] | None*) – Optional list of auxiliary operators to be evaluated with the eigenstate of the minimum eigenvalue main result and their expectation values returned. For instance in chemistry these can be dipole operators, total particle count operators so we can get values for these at the ground state.
+  ### supports\_aux\_operators
 
-**Returns**
+  <Function id="qiskit.algorithms.NumPyMinimumEigensolver.supports_aux_operators" name="supports_aux_operators" signature="classmethod supports_aux_operators()">
+    Whether computing the expectation value of auxiliary operators is supported.
 
-MinimumEigensolverResult
+    If the minimum eigensolver computes an eigenstate of the main operator then it can compute the expectation value of the aux\_operators for that state. Otherwise they will be ignored.
 
-**Return type**
+    **Returns**
 
-[MinimumEigensolverResult](qiskit.algorithms.MinimumEigensolverResult "qiskit.algorithms.MinimumEigensolverResult")
+    True if aux\_operator expectations can be evaluated, False otherwise
 
-### supports\_aux\_operators
+    **Return type**
 
-<span id="qiskit.algorithms.NumPyMinimumEigensolver.supports_aux_operators" />
-
-`classmethod supports_aux_operators()`
-
-Whether computing the expectation value of auxiliary operators is supported.
-
-If the minimum eigensolver computes an eigenstate of the main operator then it can compute the expectation value of the aux\_operators for that state. Otherwise they will be ignored.
-
-**Returns**
-
-True if aux\_operator expectations can be evaluated, False otherwise
-
-**Return type**
-
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  </Function>
+</Class>
 
