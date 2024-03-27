@@ -8,117 +8,107 @@ python_api_name: qiskit.transpiler.passes.Unroll3qOrMore
 
 # Unroll3qOrMore
 
-<span id="qiskit.transpiler.passes.Unroll3qOrMore" />
+<Class id="qiskit.transpiler.passes.Unroll3qOrMore" github="https://github.com/qiskit/qiskit/tree/main/qiskit/transpiler/passes/basis/unroll_3q_or_more.py" signature="qiskit.transpiler.passes.Unroll3qOrMore(*args, **kwargs)">
+  Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
-`qiskit.transpiler.passes.Unroll3qOrMore(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/transpiler/passes/basis/unroll_3q_or_more.py "view source code")
+  Recursively expands 3q+ gates until the circuit only contains 2q or 1q gates.
 
-Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
+  Initialize the Unroll3qOrMore pass
 
-Recursively expands 3q+ gates until the circuit only contains 2q or 1q gates.
+  **Parameters**
 
-Initialize the Unroll3qOrMore pass
+  *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – The target object representing the compilation target. If specified any multi-qubit instructions in the circuit when the pass is run that are supported by the target device will be left in place. If both this and `basis_gates` are specified only the target will be checked.
+  *   **basis\_gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – A list of basis gate names that the target device supports. If specified any gate names in the circuit which are present in this list will not be unrolled. If both this and `target` are specified only the target will be used for checking which gates are supported.
 
-**Parameters**
+  ## Attributes
 
-*   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – The target object representing the compilation target. If specified any multi-qubit instructions in the circuit when the pass is run that are supported by the target device will be left in place. If both this and `basis_gates` are specified only the target will be checked.
-*   **basis\_gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – A list of basis gate names that the target device supports. If specified any gate names in the circuit which are present in this list will not be unrolled. If both this and `target` are specified only the target will be used for checking which gates are supported.
+  ### is\_analysis\_pass
 
-## Attributes
+  <Attribute id="qiskit.transpiler.passes.Unroll3qOrMore.is_analysis_pass" name="is_analysis_pass">
+    Check if the pass is an analysis pass.
 
-<span id="qiskit.transpiler.passes.Unroll3qOrMore.is_analysis_pass" />
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
 
-### is\_analysis\_pass
+  ### is\_transformation\_pass
 
-Check if the pass is an analysis pass.
+  <Attribute id="qiskit.transpiler.passes.Unroll3qOrMore.is_transformation_pass" name="is_transformation_pass">
+    Check if the pass is a transformation pass.
 
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
 
-<span id="qiskit.transpiler.passes.Unroll3qOrMore.is_transformation_pass" />
+  ## Methods
 
-### is\_transformation\_pass
+  ### execute
 
-Check if the pass is a transformation pass.
+  <Function id="qiskit.transpiler.passes.Unroll3qOrMore.execute" name="execute" signature="execute(passmanager_ir, state, callback=None)">
+    Execute optimization task for input Qiskit IR.
 
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+    **Parameters**
 
-## Methods
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
 
-### execute
+    **Returns**
 
-<span id="qiskit.transpiler.passes.Unroll3qOrMore.execute" />
+    Optimized Qiskit IR and state of the workflow.
 
-`execute(passmanager_ir, state, callback=None)`
+    **Return type**
 
-Execute optimization task for input Qiskit IR.
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+  </Function>
 
-**Parameters**
+  ### name
 
-*   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
-*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-*   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+  <Function id="qiskit.transpiler.passes.Unroll3qOrMore.name" name="name" signature="name()">
+    Name of the pass.
 
-**Returns**
+    **Return type**
 
-Optimized Qiskit IR and state of the workflow.
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+  </Function>
 
-**Return type**
+  ### run
 
-[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+  <Function id="qiskit.transpiler.passes.Unroll3qOrMore.run" name="run" signature="run(dag)">
+    Run the Unroll3qOrMore pass on dag.
 
-### name
+    **Parameters**
 
-<span id="qiskit.transpiler.passes.Unroll3qOrMore.name" />
+    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – input dag
 
-`name()`
+    **Returns**
 
-Name of the pass.
+    output dag with maximum node degrees of 2
 
-**Return type**
+    **Return type**
 
-[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+    [DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
 
-### run
+    **Raises**
 
-<span id="qiskit.transpiler.passes.Unroll3qOrMore.run" />
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if a 3q+ gate is not decomposable
+  </Function>
 
-`run(dag)`
+  ### update\_status
 
-Run the Unroll3qOrMore pass on dag.
+  <Function id="qiskit.transpiler.passes.Unroll3qOrMore.update_status" name="update_status" signature="update_status(state, run_state)">
+    Update workflow status.
 
-**Parameters**
+    **Parameters**
 
-**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – input dag
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – Pass manager state to update.
+    *   **run\_state** (*RunState*) – Completion status of current task.
 
-**Returns**
+    **Returns**
 
-output dag with maximum node degrees of 2
+    Updated pass manager state.
 
-**Return type**
+    **Return type**
 
-[DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
-
-**Raises**
-
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if a 3q+ gate is not decomposable
-
-### update\_status
-
-<span id="qiskit.transpiler.passes.Unroll3qOrMore.update_status" />
-
-`update_status(state, run_state)`
-
-Update workflow status.
-
-**Parameters**
-
-*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – Pass manager state to update.
-*   **run\_state** (*RunState*) – Completion status of current task.
-
-**Returns**
-
-Updated pass manager state.
-
-**Return type**
-
-[*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")
+    [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")
+  </Function>
+</Class>
 
