@@ -8,201 +8,171 @@ python_api_name: qiskit.algorithms.FasterAmplitudeEstimationResult
 
 # qiskit.algorithms.FasterAmplitudeEstimationResult
 
-<span id="qiskit.algorithms.FasterAmplitudeEstimationResult" />
+<Class id="qiskit.algorithms.FasterAmplitudeEstimationResult" github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/amplitude_estimators/fae.py" signature="FasterAmplitudeEstimationResult">
+  The result object for the Faster Amplitude Estimation algorithm.
 
-`FasterAmplitudeEstimationResult` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/amplitude_estimators/fae.py "view source code")
+  ### \_\_init\_\_
 
-The result object for the Faster Amplitude Estimation algorithm.
+  <Function id="qiskit.algorithms.FasterAmplitudeEstimationResult.__init__" name="__init__" signature="__init__()">
+    Initialize self. See help(type(self)) for accurate signature.
+  </Function>
 
-### \_\_init\_\_
+  ## Methods
 
-<span id="qiskit.algorithms.FasterAmplitudeEstimationResult.__init__" />
+  |                                                                                                                                             |                                                                        |
+  | ------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.algorithms.FasterAmplitudeEstimationResult.__init__ "qiskit.algorithms.FasterAmplitudeEstimationResult.__init__")()    | Initialize self.                                                       |
+  | [`combine`](#qiskit.algorithms.FasterAmplitudeEstimationResult.combine "qiskit.algorithms.FasterAmplitudeEstimationResult.combine")(result) | Any property from the argument that exists in the receiver is updated. |
 
-`__init__()`
+  ## Attributes
 
-Initialize self. See help(type(self)) for accurate signature.
+  |                                                                                                                                                                                                       |                                                                                     |
+  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+  | [`circuit_results`](#qiskit.algorithms.FasterAmplitudeEstimationResult.circuit_results "qiskit.algorithms.FasterAmplitudeEstimationResult.circuit_results")                                           | Return the circuit results.                                                         |
+  | [`confidence_interval`](#qiskit.algorithms.FasterAmplitudeEstimationResult.confidence_interval "qiskit.algorithms.FasterAmplitudeEstimationResult.confidence_interval")                               | Return the confidence interval for the amplitude (95% interval by default).         |
+  | [`confidence_interval_processed`](#qiskit.algorithms.FasterAmplitudeEstimationResult.confidence_interval_processed "qiskit.algorithms.FasterAmplitudeEstimationResult.confidence_interval_processed") | Return the post-processed confidence interval (95% interval by default).            |
+  | [`estimation`](#qiskit.algorithms.FasterAmplitudeEstimationResult.estimation "qiskit.algorithms.FasterAmplitudeEstimationResult.estimation")                                                          | Return the estimation for the amplitude in $[0, 1]$.                                |
+  | [`estimation_processed`](#qiskit.algorithms.FasterAmplitudeEstimationResult.estimation_processed "qiskit.algorithms.FasterAmplitudeEstimationResult.estimation_processed")                            | Return the estimation for the amplitude after the post-processing has been applied. |
+  | [`num_first_state_steps`](#qiskit.algorithms.FasterAmplitudeEstimationResult.num_first_state_steps "qiskit.algorithms.FasterAmplitudeEstimationResult.num_first_state_steps")                         | Return the number of steps taken in the first step of algorithm.                    |
+  | [`num_oracle_queries`](#qiskit.algorithms.FasterAmplitudeEstimationResult.num_oracle_queries "qiskit.algorithms.FasterAmplitudeEstimationResult.num_oracle_queries")                                  | Return the number of Grover oracle queries.                                         |
+  | [`num_steps`](#qiskit.algorithms.FasterAmplitudeEstimationResult.num_steps "qiskit.algorithms.FasterAmplitudeEstimationResult.num_steps")                                                             | Return the total number of steps taken in the algorithm.                            |
+  | [`post_processing`](#qiskit.algorithms.FasterAmplitudeEstimationResult.post_processing "qiskit.algorithms.FasterAmplitudeEstimationResult.post_processing")                                           | Return a handle to the post processing function.                                    |
+  | [`shots`](#qiskit.algorithms.FasterAmplitudeEstimationResult.shots "qiskit.algorithms.FasterAmplitudeEstimationResult.shots")                                                                         | Return the number of shots used.                                                    |
+  | [`success_probability`](#qiskit.algorithms.FasterAmplitudeEstimationResult.success_probability "qiskit.algorithms.FasterAmplitudeEstimationResult.success_probability")                               | Return the success probability of the algorithm.                                    |
+  | [`theta_intervals`](#qiskit.algorithms.FasterAmplitudeEstimationResult.theta_intervals "qiskit.algorithms.FasterAmplitudeEstimationResult.theta_intervals")                                           | Return the confidence intervals for the angles in each iteration.                   |
 
-## Methods
+  ### circuit\_results
 
-|                                                                                                                                             |                                                                        |
-| ------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| [`__init__`](#qiskit.algorithms.FasterAmplitudeEstimationResult.__init__ "qiskit.algorithms.FasterAmplitudeEstimationResult.__init__")()    | Initialize self.                                                       |
-| [`combine`](#qiskit.algorithms.FasterAmplitudeEstimationResult.combine "qiskit.algorithms.FasterAmplitudeEstimationResult.combine")(result) | Any property from the argument that exists in the receiver is updated. |
+  <Function id="qiskit.algorithms.FasterAmplitudeEstimationResult.circuit_results" name="circuit_results" signature="property circuit_results">
+    Return the circuit results. Can be a statevector or counts dictionary.
 
-## Attributes
+    **Return type**
 
-|                                                                                                                                                                                                       |                                                                                     |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| [`circuit_results`](#qiskit.algorithms.FasterAmplitudeEstimationResult.circuit_results "qiskit.algorithms.FasterAmplitudeEstimationResult.circuit_results")                                           | Return the circuit results.                                                         |
-| [`confidence_interval`](#qiskit.algorithms.FasterAmplitudeEstimationResult.confidence_interval "qiskit.algorithms.FasterAmplitudeEstimationResult.confidence_interval")                               | Return the confidence interval for the amplitude (95% interval by default).         |
-| [`confidence_interval_processed`](#qiskit.algorithms.FasterAmplitudeEstimationResult.confidence_interval_processed "qiskit.algorithms.FasterAmplitudeEstimationResult.confidence_interval_processed") | Return the post-processed confidence interval (95% interval by default).            |
-| [`estimation`](#qiskit.algorithms.FasterAmplitudeEstimationResult.estimation "qiskit.algorithms.FasterAmplitudeEstimationResult.estimation")                                                          | Return the estimation for the amplitude in $[0, 1]$.                                |
-| [`estimation_processed`](#qiskit.algorithms.FasterAmplitudeEstimationResult.estimation_processed "qiskit.algorithms.FasterAmplitudeEstimationResult.estimation_processed")                            | Return the estimation for the amplitude after the post-processing has been applied. |
-| [`num_first_state_steps`](#qiskit.algorithms.FasterAmplitudeEstimationResult.num_first_state_steps "qiskit.algorithms.FasterAmplitudeEstimationResult.num_first_state_steps")                         | Return the number of steps taken in the first step of algorithm.                    |
-| [`num_oracle_queries`](#qiskit.algorithms.FasterAmplitudeEstimationResult.num_oracle_queries "qiskit.algorithms.FasterAmplitudeEstimationResult.num_oracle_queries")                                  | Return the number of Grover oracle queries.                                         |
-| [`num_steps`](#qiskit.algorithms.FasterAmplitudeEstimationResult.num_steps "qiskit.algorithms.FasterAmplitudeEstimationResult.num_steps")                                                             | Return the total number of steps taken in the algorithm.                            |
-| [`post_processing`](#qiskit.algorithms.FasterAmplitudeEstimationResult.post_processing "qiskit.algorithms.FasterAmplitudeEstimationResult.post_processing")                                           | Return a handle to the post processing function.                                    |
-| [`shots`](#qiskit.algorithms.FasterAmplitudeEstimationResult.shots "qiskit.algorithms.FasterAmplitudeEstimationResult.shots")                                                                         | Return the number of shots used.                                                    |
-| [`success_probability`](#qiskit.algorithms.FasterAmplitudeEstimationResult.success_probability "qiskit.algorithms.FasterAmplitudeEstimationResult.success_probability")                               | Return the success probability of the algorithm.                                    |
-| [`theta_intervals`](#qiskit.algorithms.FasterAmplitudeEstimationResult.theta_intervals "qiskit.algorithms.FasterAmplitudeEstimationResult.theta_intervals")                                           | Return the confidence intervals for the angles in each iteration.                   |
+    `Union`\[`ndarray`, `Dict`\[`str`, `int`], `None`]
+  </Function>
 
-### circuit\_results
+  ### combine
 
-<span id="qiskit.algorithms.FasterAmplitudeEstimationResult.circuit_results" />
+  <Function id="qiskit.algorithms.FasterAmplitudeEstimationResult.combine" name="combine" signature="combine(result)">
+    Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
 
-`property circuit_results`
+    **Raises**
 
-Return the circuit results. Can be a statevector or counts dictionary.
+    **TypeError** – Argument is None
 
-**Return type**
+    **Return type**
 
-`Union`\[`ndarray`, `Dict`\[`str`, `int`], `None`]
+    `None`
+  </Function>
 
-### combine
+  ### confidence\_interval
 
-<span id="qiskit.algorithms.FasterAmplitudeEstimationResult.combine" />
+  <Function id="qiskit.algorithms.FasterAmplitudeEstimationResult.confidence_interval" name="confidence_interval" signature="property confidence_interval">
+    Return the confidence interval for the amplitude (95% interval by default).
 
-`combine(result)`
+    **Return type**
 
-Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
+    `Tuple`\[`float`, `float`]
+  </Function>
 
-**Raises**
+  ### confidence\_interval\_processed
 
-**TypeError** – Argument is None
+  <Function id="qiskit.algorithms.FasterAmplitudeEstimationResult.confidence_interval_processed" name="confidence_interval_processed" signature="property confidence_interval_processed">
+    Return the post-processed confidence interval (95% interval by default).
 
-**Return type**
+    **Return type**
 
-`None`
+    `Tuple`\[`float`, `float`]
+  </Function>
 
-### confidence\_interval
+  ### estimation
 
-<span id="qiskit.algorithms.FasterAmplitudeEstimationResult.confidence_interval" />
+  <Function id="qiskit.algorithms.FasterAmplitudeEstimationResult.estimation" name="estimation" signature="property estimation">
+    Return the estimation for the amplitude in $[0, 1]$.
 
-`property confidence_interval`
+    **Return type**
 
-Return the confidence interval for the amplitude (95% interval by default).
+    `float`
+  </Function>
 
-**Return type**
+  ### estimation\_processed
 
-`Tuple`\[`float`, `float`]
+  <Function id="qiskit.algorithms.FasterAmplitudeEstimationResult.estimation_processed" name="estimation_processed" signature="property estimation_processed">
+    Return the estimation for the amplitude after the post-processing has been applied.
 
-### confidence\_interval\_processed
+    **Return type**
 
-<span id="qiskit.algorithms.FasterAmplitudeEstimationResult.confidence_interval_processed" />
+    `float`
+  </Function>
 
-`property confidence_interval_processed`
+  ### num\_first\_state\_steps
 
-Return the post-processed confidence interval (95% interval by default).
+  <Function id="qiskit.algorithms.FasterAmplitudeEstimationResult.num_first_state_steps" name="num_first_state_steps" signature="property num_first_state_steps">
+    Return the number of steps taken in the first step of algorithm.
 
-**Return type**
+    **Return type**
 
-`Tuple`\[`float`, `float`]
+    `int`
+  </Function>
 
-### estimation
+  ### num\_oracle\_queries
 
-<span id="qiskit.algorithms.FasterAmplitudeEstimationResult.estimation" />
+  <Function id="qiskit.algorithms.FasterAmplitudeEstimationResult.num_oracle_queries" name="num_oracle_queries" signature="property num_oracle_queries">
+    Return the number of Grover oracle queries.
 
-`property estimation`
+    **Return type**
 
-Return the estimation for the amplitude in $[0, 1]$.
+    `int`
+  </Function>
 
-**Return type**
+  ### num\_steps
 
-`float`
+  <Function id="qiskit.algorithms.FasterAmplitudeEstimationResult.num_steps" name="num_steps" signature="property num_steps">
+    Return the total number of steps taken in the algorithm.
 
-### estimation\_processed
+    **Return type**
 
-<span id="qiskit.algorithms.FasterAmplitudeEstimationResult.estimation_processed" />
+    `int`
+  </Function>
 
-`property estimation_processed`
+  ### post\_processing
 
-Return the estimation for the amplitude after the post-processing has been applied.
+  <Function id="qiskit.algorithms.FasterAmplitudeEstimationResult.post_processing" name="post_processing" signature="property post_processing">
+    Return a handle to the post processing function.
 
-**Return type**
+    **Return type**
 
-`float`
+    `Callable`\[\[`float`], `float`]
+  </Function>
 
-### num\_first\_state\_steps
+  ### shots
 
-<span id="qiskit.algorithms.FasterAmplitudeEstimationResult.num_first_state_steps" />
+  <Function id="qiskit.algorithms.FasterAmplitudeEstimationResult.shots" name="shots" signature="property shots">
+    Return the number of shots used. Is 1 for statevector-based simulations.
 
-`property num_first_state_steps`
+    **Return type**
 
-Return the number of steps taken in the first step of algorithm.
+    `int`
+  </Function>
 
-**Return type**
+  ### success\_probability
 
-`int`
+  <Function id="qiskit.algorithms.FasterAmplitudeEstimationResult.success_probability" name="success_probability" signature="property success_probability">
+    Return the success probability of the algorithm.
 
-### num\_oracle\_queries
+    **Return type**
 
-<span id="qiskit.algorithms.FasterAmplitudeEstimationResult.num_oracle_queries" />
+    `int`
+  </Function>
 
-`property num_oracle_queries`
+  ### theta\_intervals
 
-Return the number of Grover oracle queries.
+  <Function id="qiskit.algorithms.FasterAmplitudeEstimationResult.theta_intervals" name="theta_intervals" signature="property theta_intervals">
+    Return the confidence intervals for the angles in each iteration.
 
-**Return type**
+    **Return type**
 
-`int`
-
-### num\_steps
-
-<span id="qiskit.algorithms.FasterAmplitudeEstimationResult.num_steps" />
-
-`property num_steps`
-
-Return the total number of steps taken in the algorithm.
-
-**Return type**
-
-`int`
-
-### post\_processing
-
-<span id="qiskit.algorithms.FasterAmplitudeEstimationResult.post_processing" />
-
-`property post_processing`
-
-Return a handle to the post processing function.
-
-**Return type**
-
-`Callable`\[\[`float`], `float`]
-
-### shots
-
-<span id="qiskit.algorithms.FasterAmplitudeEstimationResult.shots" />
-
-`property shots`
-
-Return the number of shots used. Is 1 for statevector-based simulations.
-
-**Return type**
-
-`int`
-
-### success\_probability
-
-<span id="qiskit.algorithms.FasterAmplitudeEstimationResult.success_probability" />
-
-`property success_probability`
-
-Return the success probability of the algorithm.
-
-**Return type**
-
-`int`
-
-### theta\_intervals
-
-<span id="qiskit.algorithms.FasterAmplitudeEstimationResult.theta_intervals" />
-
-`property theta_intervals`
-
-Return the confidence intervals for the angles in each iteration.
-
-**Return type**
-
-`List`\[`List`\[`float`]]
+    `List`\[`List`\[`float`]]
+  </Function>
+</Class>
 

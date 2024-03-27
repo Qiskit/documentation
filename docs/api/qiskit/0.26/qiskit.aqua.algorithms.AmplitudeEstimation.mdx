@@ -8,364 +8,330 @@ python_api_name: qiskit.aqua.algorithms.AmplitudeEstimation
 
 # qiskit.aqua.algorithms.AmplitudeEstimation
 
-<span id="qiskit.aqua.algorithms.AmplitudeEstimation" />
+<Class id="qiskit.aqua.algorithms.AmplitudeEstimation" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_estimators/ae.py" signature="AmplitudeEstimation(num_eval_qubits, state_preparation=None, grover_operator=None, objective_qubits=None, post_processing=None, phase_estimation_circuit=None, iqft=None, quantum_instance=None, a_factory=None, q_factory=None, i_objective=None)">
+  The Quantum Phase Estimation-based Amplitude Estimation algorithm.
 
-`AmplitudeEstimation(num_eval_qubits, state_preparation=None, grover_operator=None, objective_qubits=None, post_processing=None, phase_estimation_circuit=None, iqft=None, quantum_instance=None, a_factory=None, q_factory=None, i_objective=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_estimators/ae.py "view source code")
+  This class implements the original Quantum Amplitude Estimation (QAE) algorithm, introduced by \[1]. This canonical version uses quantum phase estimation along with a set of $m$ additional evaluation qubits to find an estimate $\tilde{a}$, that is restricted to the grid
 
-The Quantum Phase Estimation-based Amplitude Estimation algorithm.
+  $$
+  \tilde{a} \in \{\sin^2(\pi  y / 2^m) : y = 0, ..., 2^{m-1}\}
+  $$
 
-This class implements the original Quantum Amplitude Estimation (QAE) algorithm, introduced by \[1]. This canonical version uses quantum phase estimation along with a set of $m$ additional evaluation qubits to find an estimate $\tilde{a}$, that is restricted to the grid
+  More evaluation qubits produce a finer sampling grid, therefore the accuracy of the algorithm increases with $m$.
 
-$$
-\tilde{a} \in \{\sin^2(\pi  y / 2^m) : y = 0, ..., 2^{m-1}\}
-$$
+  Using a maximum likelihood post processing, this grid constraint can be circumvented. This improved estimator is implemented as well, see \[2] Appendix A for more detail.
 
-More evaluation qubits produce a finer sampling grid, therefore the accuracy of the algorithm increases with $m$.
+  **References**
 
-Using a maximum likelihood post processing, this grid constraint can be circumvented. This improved estimator is implemented as well, see \[2] Appendix A for more detail.
+  **\[1]: Brassard, G., Hoyer, P., Mosca, M., & Tapp, A. (2000).**
 
-**References**
+  Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://arxiv.org/abs/quant-ph/0005055).
 
-**\[1]: Brassard, G., Hoyer, P., Mosca, M., & Tapp, A. (2000).**
+  **\[2]: Grinko, D., Gacon, J., Zoufal, C., & Woerner, S. (2019).**
 
-Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://arxiv.org/abs/quant-ph/0005055).
+  Iterative Quantum Amplitude Estimation. [arXiv:1912.05559](https://arxiv.org/abs/1912.05559).
 
-**\[2]: Grinko, D., Gacon, J., Zoufal, C., & Woerner, S. (2019).**
+  **Parameters**
 
-Iterative Quantum Amplitude Estimation. [arXiv:1912.05559](https://arxiv.org/abs/1912.05559).
+  *   **num\_eval\_qubits** (`int`) – The number of evaluation qubits.
+  *   **state\_preparation** (`Union`\[`QuantumCircuit`, `CircuitFactory`, `None`]) – A circuit preparing the input state, referred to as $\mathcal{A}$.
+  *   **grover\_operator** (`Union`\[`QuantumCircuit`, `CircuitFactory`, `None`]) – The Grover operator $\mathcal{Q}$ used as unitary in the phase estimation circuit.
+  *   **objective\_qubits** (`Optional`\[`List`\[`int`]]) – A list of qubit indices to specify the oracle in the Grover operator, if the Grover operator is not supplied. A measurement outcome is classified as ‘good’ state if all objective qubits are in state $|1\rangle$, otherwise it is classified as ‘bad’.
+  *   **post\_processing** (`Optional`\[`Callable`\[\[`float`], `float`]]) – A mapping applied to the result of the algorithm $0 \leq a \leq 1$, usually used to map the estimate to a target interval.
+  *   **phase\_estimation\_circuit** (`Optional`\[`QuantumCircuit`]) – The phase estimation circuit used to run the algorithm. Defaults to the standard phase estimation circuit from the circuit library, qiskit.circuit.library.PhaseEstimation.
+  *   **iqft** (`Optional`\[`QuantumCircuit`]) – The inverse quantum Fourier transform component, defaults to using a standard implementation from qiskit.circuit.library.QFT when None.
+  *   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – The backend (or QuantumInstance) to execute the circuits on.
+  *   **a\_factory** (`Optional`\[`CircuitFactory`]) – Deprecated, use `state_preparation`. The CircuitFactory subclass object representing the problem unitary.
+  *   **q\_factory** (`Optional`\[`CircuitFactory`]) – Deprecated, use `grover_operator`. The CircuitFactory subclass object representing an amplitude estimation sample (based on a\_factory).
+  *   **i\_objective** (`Optional`\[`int`]) – Deprecated, use `objective_qubits`. The index of the objective qubit, i.e. the qubit marking ‘good’ solutions with the state $|1\rangle$ and ‘bad’ solutions with the state $0\rangle$.
 
-**Parameters**
+  ### \_\_init\_\_
 
-*   **num\_eval\_qubits** (`int`) – The number of evaluation qubits.
-*   **state\_preparation** (`Union`\[`QuantumCircuit`, `CircuitFactory`, `None`]) – A circuit preparing the input state, referred to as $\mathcal{A}$.
-*   **grover\_operator** (`Union`\[`QuantumCircuit`, `CircuitFactory`, `None`]) – The Grover operator $\mathcal{Q}$ used as unitary in the phase estimation circuit.
-*   **objective\_qubits** (`Optional`\[`List`\[`int`]]) – A list of qubit indices to specify the oracle in the Grover operator, if the Grover operator is not supplied. A measurement outcome is classified as ‘good’ state if all objective qubits are in state $|1\rangle$, otherwise it is classified as ‘bad’.
-*   **post\_processing** (`Optional`\[`Callable`\[\[`float`], `float`]]) – A mapping applied to the result of the algorithm $0 \leq a \leq 1$, usually used to map the estimate to a target interval.
-*   **phase\_estimation\_circuit** (`Optional`\[`QuantumCircuit`]) – The phase estimation circuit used to run the algorithm. Defaults to the standard phase estimation circuit from the circuit library, qiskit.circuit.library.PhaseEstimation.
-*   **iqft** (`Optional`\[`QuantumCircuit`]) – The inverse quantum Fourier transform component, defaults to using a standard implementation from qiskit.circuit.library.QFT when None.
-*   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – The backend (or QuantumInstance) to execute the circuits on.
-*   **a\_factory** (`Optional`\[`CircuitFactory`]) – Deprecated, use `state_preparation`. The CircuitFactory subclass object representing the problem unitary.
-*   **q\_factory** (`Optional`\[`CircuitFactory`]) – Deprecated, use `grover_operator`. The CircuitFactory subclass object representing an amplitude estimation sample (based on a\_factory).
-*   **i\_objective** (`Optional`\[`int`]) – Deprecated, use `objective_qubits`. The index of the objective qubit, i.e. the qubit marking ‘good’ solutions with the state $|1\rangle$ and ‘bad’ solutions with the state $0\rangle$.
+  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.__init__" name="__init__" signature="__init__(num_eval_qubits, state_preparation=None, grover_operator=None, objective_qubits=None, post_processing=None, phase_estimation_circuit=None, iqft=None, quantum_instance=None, a_factory=None, q_factory=None, i_objective=None)">
+    **Parameters**
 
-### \_\_init\_\_
+    *   **num\_eval\_qubits** (`int`) – The number of evaluation qubits.
+    *   **state\_preparation** (`Union`\[`QuantumCircuit`, `CircuitFactory`, `None`]) – A circuit preparing the input state, referred to as $\mathcal{A}$.
+    *   **grover\_operator** (`Union`\[`QuantumCircuit`, `CircuitFactory`, `None`]) – The Grover operator $\mathcal{Q}$ used as unitary in the phase estimation circuit.
+    *   **objective\_qubits** (`Optional`\[`List`\[`int`]]) – A list of qubit indices to specify the oracle in the Grover operator, if the Grover operator is not supplied. A measurement outcome is classified as ‘good’ state if all objective qubits are in state $|1\rangle$, otherwise it is classified as ‘bad’.
+    *   **post\_processing** (`Optional`\[`Callable`\[\[`float`], `float`]]) – A mapping applied to the result of the algorithm $0 \leq a \leq 1$, usually used to map the estimate to a target interval.
+    *   **phase\_estimation\_circuit** (`Optional`\[`QuantumCircuit`]) – The phase estimation circuit used to run the algorithm. Defaults to the standard phase estimation circuit from the circuit library, qiskit.circuit.library.PhaseEstimation.
+    *   **iqft** (`Optional`\[`QuantumCircuit`]) – The inverse quantum Fourier transform component, defaults to using a standard implementation from qiskit.circuit.library.QFT when None.
+    *   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – The backend (or QuantumInstance) to execute the circuits on.
+    *   **a\_factory** (`Optional`\[`CircuitFactory`]) – Deprecated, use `state_preparation`. The CircuitFactory subclass object representing the problem unitary.
+    *   **q\_factory** (`Optional`\[`CircuitFactory`]) – Deprecated, use `grover_operator`. The CircuitFactory subclass object representing an amplitude estimation sample (based on a\_factory).
+    *   **i\_objective** (`Optional`\[`int`]) – Deprecated, use `objective_qubits`. The index of the objective qubit, i.e. the qubit marking ‘good’ solutions with the state $|1\rangle$ and ‘bad’ solutions with the state $0\rangle$.
+  </Function>
 
-<span id="qiskit.aqua.algorithms.AmplitudeEstimation.__init__" />
+  ## Methods
 
-`__init__(num_eval_qubits, state_preparation=None, grover_operator=None, objective_qubits=None, post_processing=None, phase_estimation_circuit=None, iqft=None, quantum_instance=None, a_factory=None, q_factory=None, i_objective=None)`
+  |                                                                                                                                                                           |                                                                           |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.aqua.algorithms.AmplitudeEstimation.__init__ "qiskit.aqua.algorithms.AmplitudeEstimation.__init__")(num\_eval\_qubits\[, …])                         | **type num\_eval\_qubits**`int`                                           |
+  | [`confidence_interval`](#qiskit.aqua.algorithms.AmplitudeEstimation.confidence_interval "qiskit.aqua.algorithms.AmplitudeEstimation.confidence_interval")(alpha\[, kind]) | Compute the (1 - alpha) confidence interval.                              |
+  | [`construct_circuit`](#qiskit.aqua.algorithms.AmplitudeEstimation.construct_circuit "qiskit.aqua.algorithms.AmplitudeEstimation.construct_circuit")(\[measurement])       | Construct the Amplitude Estimation quantum circuit.                       |
+  | [`is_good_state`](#qiskit.aqua.algorithms.AmplitudeEstimation.is_good_state "qiskit.aqua.algorithms.AmplitudeEstimation.is_good_state")(measurement)                      | Determine whether a given state is a good state.                          |
+  | [`post_processing`](#qiskit.aqua.algorithms.AmplitudeEstimation.post_processing "qiskit.aqua.algorithms.AmplitudeEstimation.post_processing")(value)                      | Post processing of the raw amplitude estimation output $0 \leq a \leq 1$. |
+  | [`run`](#qiskit.aqua.algorithms.AmplitudeEstimation.run "qiskit.aqua.algorithms.AmplitudeEstimation.run")(\[quantum\_instance])                                           | Execute the algorithm with selected backend.                              |
+  | [`set_backend`](#qiskit.aqua.algorithms.AmplitudeEstimation.set_backend "qiskit.aqua.algorithms.AmplitudeEstimation.set_backend")(backend, \*\*kwargs)                    | Sets backend with configuration.                                          |
 
-**Parameters**
+  ## Attributes
 
-*   **num\_eval\_qubits** (`int`) – The number of evaluation qubits.
-*   **state\_preparation** (`Union`\[`QuantumCircuit`, `CircuitFactory`, `None`]) – A circuit preparing the input state, referred to as $\mathcal{A}$.
-*   **grover\_operator** (`Union`\[`QuantumCircuit`, `CircuitFactory`, `None`]) – The Grover operator $\mathcal{Q}$ used as unitary in the phase estimation circuit.
-*   **objective\_qubits** (`Optional`\[`List`\[`int`]]) – A list of qubit indices to specify the oracle in the Grover operator, if the Grover operator is not supplied. A measurement outcome is classified as ‘good’ state if all objective qubits are in state $|1\rangle$, otherwise it is classified as ‘bad’.
-*   **post\_processing** (`Optional`\[`Callable`\[\[`float`], `float`]]) – A mapping applied to the result of the algorithm $0 \leq a \leq 1$, usually used to map the estimate to a target interval.
-*   **phase\_estimation\_circuit** (`Optional`\[`QuantumCircuit`]) – The phase estimation circuit used to run the algorithm. Defaults to the standard phase estimation circuit from the circuit library, qiskit.circuit.library.PhaseEstimation.
-*   **iqft** (`Optional`\[`QuantumCircuit`]) – The inverse quantum Fourier transform component, defaults to using a standard implementation from qiskit.circuit.library.QFT when None.
-*   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – The backend (or QuantumInstance) to execute the circuits on.
-*   **a\_factory** (`Optional`\[`CircuitFactory`]) – Deprecated, use `state_preparation`. The CircuitFactory subclass object representing the problem unitary.
-*   **q\_factory** (`Optional`\[`CircuitFactory`]) – Deprecated, use `grover_operator`. The CircuitFactory subclass object representing an amplitude estimation sample (based on a\_factory).
-*   **i\_objective** (`Optional`\[`int`]) – Deprecated, use `objective_qubits`. The index of the objective qubit, i.e. the qubit marking ‘good’ solutions with the state $|1\rangle$ and ‘bad’ solutions with the state $0\rangle$.
+  |                                                                                                                                                     |                                                                                     |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+  | [`a_factory`](#qiskit.aqua.algorithms.AmplitudeEstimation.a_factory "qiskit.aqua.algorithms.AmplitudeEstimation.a_factory")                         | Get the A operator encoding the amplitude a that’s approximated, i.e.               |
+  | [`backend`](#qiskit.aqua.algorithms.AmplitudeEstimation.backend "qiskit.aqua.algorithms.AmplitudeEstimation.backend")                               | Returns backend.                                                                    |
+  | [`grover_operator`](#qiskit.aqua.algorithms.AmplitudeEstimation.grover_operator "qiskit.aqua.algorithms.AmplitudeEstimation.grover_operator")       | Get the $\mathcal{Q}$ operator, or Grover operator.                                 |
+  | [`i_objective`](#qiskit.aqua.algorithms.AmplitudeEstimation.i_objective "qiskit.aqua.algorithms.AmplitudeEstimation.i_objective")                   | Get the index of the objective qubit.                                               |
+  | [`objective_qubits`](#qiskit.aqua.algorithms.AmplitudeEstimation.objective_qubits "qiskit.aqua.algorithms.AmplitudeEstimation.objective_qubits")    | Get the criterion for a measurement outcome to be in a ‘good’ state.                |
+  | [`q_factory`](#qiskit.aqua.algorithms.AmplitudeEstimation.q_factory "qiskit.aqua.algorithms.AmplitudeEstimation.q_factory")                         | Get the Q operator, or Grover-operator for the Amplitude Estimation algorithm, i.e. |
+  | [`quantum_instance`](#qiskit.aqua.algorithms.AmplitudeEstimation.quantum_instance "qiskit.aqua.algorithms.AmplitudeEstimation.quantum_instance")    | Returns quantum instance.                                                           |
+  | [`random`](#qiskit.aqua.algorithms.AmplitudeEstimation.random "qiskit.aqua.algorithms.AmplitudeEstimation.random")                                  | Return a numpy random.                                                              |
+  | [`state_preparation`](#qiskit.aqua.algorithms.AmplitudeEstimation.state_preparation "qiskit.aqua.algorithms.AmplitudeEstimation.state_preparation") | Get the $\mathcal{A}$ operator encoding the amplitude $a$.                          |
 
-## Methods
+  ### a\_factory
 
-|                                                                                                                                                                           |                                                                           |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.aqua.algorithms.AmplitudeEstimation.__init__ "qiskit.aqua.algorithms.AmplitudeEstimation.__init__")(num\_eval\_qubits\[, …])                         | **type num\_eval\_qubits**`int`                                           |
-| [`confidence_interval`](#qiskit.aqua.algorithms.AmplitudeEstimation.confidence_interval "qiskit.aqua.algorithms.AmplitudeEstimation.confidence_interval")(alpha\[, kind]) | Compute the (1 - alpha) confidence interval.                              |
-| [`construct_circuit`](#qiskit.aqua.algorithms.AmplitudeEstimation.construct_circuit "qiskit.aqua.algorithms.AmplitudeEstimation.construct_circuit")(\[measurement])       | Construct the Amplitude Estimation quantum circuit.                       |
-| [`is_good_state`](#qiskit.aqua.algorithms.AmplitudeEstimation.is_good_state "qiskit.aqua.algorithms.AmplitudeEstimation.is_good_state")(measurement)                      | Determine whether a given state is a good state.                          |
-| [`post_processing`](#qiskit.aqua.algorithms.AmplitudeEstimation.post_processing "qiskit.aqua.algorithms.AmplitudeEstimation.post_processing")(value)                      | Post processing of the raw amplitude estimation output $0 \leq a \leq 1$. |
-| [`run`](#qiskit.aqua.algorithms.AmplitudeEstimation.run "qiskit.aqua.algorithms.AmplitudeEstimation.run")(\[quantum\_instance])                                           | Execute the algorithm with selected backend.                              |
-| [`set_backend`](#qiskit.aqua.algorithms.AmplitudeEstimation.set_backend "qiskit.aqua.algorithms.AmplitudeEstimation.set_backend")(backend, \*\*kwargs)                    | Sets backend with configuration.                                          |
+  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.a_factory" name="a_factory" signature="property a_factory">
+    Get the A operator encoding the amplitude a that’s approximated, i.e.
 
-## Attributes
+    > A |0>\_n |0> = sqrt\{1 - a} |psi\_0>\_n |0> + sqrt\{a} |psi\_1>\_n |1>
 
-|                                                                                                                                                     |                                                                                     |
-| --------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| [`a_factory`](#qiskit.aqua.algorithms.AmplitudeEstimation.a_factory "qiskit.aqua.algorithms.AmplitudeEstimation.a_factory")                         | Get the A operator encoding the amplitude a that’s approximated, i.e.               |
-| [`backend`](#qiskit.aqua.algorithms.AmplitudeEstimation.backend "qiskit.aqua.algorithms.AmplitudeEstimation.backend")                               | Returns backend.                                                                    |
-| [`grover_operator`](#qiskit.aqua.algorithms.AmplitudeEstimation.grover_operator "qiskit.aqua.algorithms.AmplitudeEstimation.grover_operator")       | Get the $\mathcal{Q}$ operator, or Grover operator.                                 |
-| [`i_objective`](#qiskit.aqua.algorithms.AmplitudeEstimation.i_objective "qiskit.aqua.algorithms.AmplitudeEstimation.i_objective")                   | Get the index of the objective qubit.                                               |
-| [`objective_qubits`](#qiskit.aqua.algorithms.AmplitudeEstimation.objective_qubits "qiskit.aqua.algorithms.AmplitudeEstimation.objective_qubits")    | Get the criterion for a measurement outcome to be in a ‘good’ state.                |
-| [`q_factory`](#qiskit.aqua.algorithms.AmplitudeEstimation.q_factory "qiskit.aqua.algorithms.AmplitudeEstimation.q_factory")                         | Get the Q operator, or Grover-operator for the Amplitude Estimation algorithm, i.e. |
-| [`quantum_instance`](#qiskit.aqua.algorithms.AmplitudeEstimation.quantum_instance "qiskit.aqua.algorithms.AmplitudeEstimation.quantum_instance")    | Returns quantum instance.                                                           |
-| [`random`](#qiskit.aqua.algorithms.AmplitudeEstimation.random "qiskit.aqua.algorithms.AmplitudeEstimation.random")                                  | Return a numpy random.                                                              |
-| [`state_preparation`](#qiskit.aqua.algorithms.AmplitudeEstimation.state_preparation "qiskit.aqua.algorithms.AmplitudeEstimation.state_preparation") | Get the $\mathcal{A}$ operator encoding the amplitude $a$.                          |
+    see the original Brassard paper ([https://arxiv.org/abs/quant-ph/0005055](https://arxiv.org/abs/quant-ph/0005055)) for more detail.
 
-### a\_factory
+    **Returns**
 
-<span id="qiskit.aqua.algorithms.AmplitudeEstimation.a_factory" />
+    the A operator as CircuitFactory
 
-`property a_factory`
+    **Return type**
 
-Get the A operator encoding the amplitude a that’s approximated, i.e.
+    [CircuitFactory](qiskit.aqua.utils.CircuitFactory "qiskit.aqua.utils.CircuitFactory")
+  </Function>
 
-> A |0>\_n |0> = sqrt\{1 - a} |psi\_0>\_n |0> + sqrt\{a} |psi\_1>\_n |1>
+  ### backend
 
-see the original Brassard paper ([https://arxiv.org/abs/quant-ph/0005055](https://arxiv.org/abs/quant-ph/0005055)) for more detail.
+  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.backend" name="backend" signature="property backend">
+    Returns backend.
 
-**Returns**
+    **Return type**
 
-the A operator as CircuitFactory
+    `Union`\[`Backend`, `BaseBackend`]
+  </Function>
 
-**Return type**
+  ### confidence\_interval
 
-[CircuitFactory](qiskit.aqua.utils.CircuitFactory "qiskit.aqua.utils.CircuitFactory")
+  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.confidence_interval" name="confidence_interval" signature="confidence_interval(alpha, kind='likelihood_ratio')">
+    Compute the (1 - alpha) confidence interval.
 
-### backend
+    **Parameters**
 
-<span id="qiskit.aqua.algorithms.AmplitudeEstimation.backend" />
+    *   **alpha** (`float`) – Confidence level: compute the (1 - alpha) confidence interval.
+    *   **kind** (`str`) – The method to compute the confidence interval, can be ‘fisher’, ‘observed\_fisher’ or ‘likelihood\_ratio’ (default)
 
-`property backend`
+    **Return type**
 
-Returns backend.
+    `List`\[`float`]
 
-**Return type**
+    **Returns**
 
-`Union`\[`Backend`, `BaseBackend`]
+    The (1 - alpha) confidence interval of the specified kind.
 
-### confidence\_interval
+    **Raises**
 
-<span id="qiskit.aqua.algorithms.AmplitudeEstimation.confidence_interval" />
+    *   [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If ‘mle’ is not in self.\_ret.keys() (i.e. run was not called yet).
+    *   **NotImplementedError** – If the confidence interval method kind is not implemented.
+  </Function>
 
-`confidence_interval(alpha, kind='likelihood_ratio')`
+  ### construct\_circuit
 
-Compute the (1 - alpha) confidence interval.
+  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.construct_circuit" name="construct_circuit" signature="construct_circuit(measurement=False)">
+    Construct the Amplitude Estimation quantum circuit.
 
-**Parameters**
+    **Parameters**
 
-*   **alpha** (`float`) – Confidence level: compute the (1 - alpha) confidence interval.
-*   **kind** (`str`) – The method to compute the confidence interval, can be ‘fisher’, ‘observed\_fisher’ or ‘likelihood\_ratio’ (default)
+    **measurement** (`bool`) – Boolean flag to indicate if measurements should be included in the circuit.
 
-**Return type**
+    **Return type**
 
-`List`\[`float`]
+    `QuantumCircuit`
 
-**Returns**
+    **Returns**
 
-The (1 - alpha) confidence interval of the specified kind.
+    The QuantumCircuit object for the constructed circuit.
+  </Function>
 
-**Raises**
+  ### grover\_operator
 
-*   [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If ‘mle’ is not in self.\_ret.keys() (i.e. run was not called yet).
-*   **NotImplementedError** – If the confidence interval method kind is not implemented.
+  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.grover_operator" name="grover_operator" signature="property grover_operator">
+    Get the $\mathcal{Q}$ operator, or Grover operator.
 
-### construct\_circuit
+    If the Grover operator is not set, we try to build it from the $\mathcal{A}$ operator and objective\_qubits. This only works if objective\_qubits is a list of integers.
 
-<span id="qiskit.aqua.algorithms.AmplitudeEstimation.construct_circuit" />
+    **Return type**
 
-`construct_circuit(measurement=False)`
+    `Optional`\[`QuantumCircuit`]
 
-Construct the Amplitude Estimation quantum circuit.
+    **Returns**
 
-**Parameters**
+    The Grover operator, or None if neither the Grover operator nor the $\mathcal{A}$ operator is set.
+  </Function>
 
-**measurement** (`bool`) – Boolean flag to indicate if measurements should be included in the circuit.
+  ### i\_objective
 
-**Return type**
+  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.i_objective" name="i_objective" signature="property i_objective">
+    Get the index of the objective qubit. The objective qubit marks the |psi\_0> state (called ‘bad states’ in [https://arxiv.org/abs/quant-ph/0005055](https://arxiv.org/abs/quant-ph/0005055)) with |0> and |psi\_1> (‘good’ states) with |1>. If the A operator performs the mapping
 
-`QuantumCircuit`
+    > A |0>\_n |0> = sqrt\{1 - a} |psi\_0>\_n |0> + sqrt\{a} |psi\_1>\_n |1>
 
-**Returns**
+    then, the objective qubit is the last one (which is either |0> or |1>).
 
-The QuantumCircuit object for the constructed circuit.
+    If the objective qubit (i\_objective) is not set, we check if the Q operator (q\_factory) is set and return the index specified there. If the q\_factory is not defined, the index equals the number of qubits of the A operator (a\_factory) minus one. If also the a\_factory is not set, return None.
 
-### grover\_operator
+    **Returns**
 
-<span id="qiskit.aqua.algorithms.AmplitudeEstimation.grover_operator" />
+    the index of the objective qubit
 
-`property grover_operator`
+    **Return type**
 
-Get the $\mathcal{Q}$ operator, or Grover operator.
+    int
+  </Function>
 
-If the Grover operator is not set, we try to build it from the $\mathcal{A}$ operator and objective\_qubits. This only works if objective\_qubits is a list of integers.
+  ### is\_good\_state
 
-**Return type**
+  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.is_good_state" name="is_good_state" signature="is_good_state(measurement)">
+    Determine whether a given state is a good state.
 
-`Optional`\[`QuantumCircuit`]
+    **Parameters**
 
-**Returns**
+    **measurement** (`str`) – A measurement as bitstring, e.g. ‘01100’.
 
-The Grover operator, or None if neither the Grover operator nor the $\mathcal{A}$ operator is set.
+    **Return type**
 
-### i\_objective
+    `bool`
 
-<span id="qiskit.aqua.algorithms.AmplitudeEstimation.i_objective" />
+    **Returns**
 
-`property i_objective`
+    True if the measurement corresponds to a good state, False otherwise.
 
-Get the index of the objective qubit. The objective qubit marks the |psi\_0> state (called ‘bad states’ in [https://arxiv.org/abs/quant-ph/0005055](https://arxiv.org/abs/quant-ph/0005055)) with |0> and |psi\_1> (‘good’ states) with |1>. If the A operator performs the mapping
+    **Raises**
 
-> A |0>\_n |0> = sqrt\{1 - a} |psi\_0>\_n |0> + sqrt\{a} |psi\_1>\_n |1>
+    **ValueError** – If `self.objective_qubits` is not set.
+  </Function>
 
-then, the objective qubit is the last one (which is either |0> or |1>).
+  ### objective\_qubits
 
-If the objective qubit (i\_objective) is not set, we check if the Q operator (q\_factory) is set and return the index specified there. If the q\_factory is not defined, the index equals the number of qubits of the A operator (a\_factory) minus one. If also the a\_factory is not set, return None.
+  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.objective_qubits" name="objective_qubits" signature="property objective_qubits">
+    Get the criterion for a measurement outcome to be in a ‘good’ state.
 
-**Returns**
+    **Return type**
 
-the index of the objective qubit
+    `Optional`\[`List`\[`int`]]
 
-**Return type**
+    **Returns**
 
-int
+    The criterion as list of qubit indices.
+  </Function>
 
-### is\_good\_state
+  ### post\_processing
 
-<span id="qiskit.aqua.algorithms.AmplitudeEstimation.is_good_state" />
+  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.post_processing" name="post_processing" signature="post_processing(value)">
+    Post processing of the raw amplitude estimation output $0 \leq a \leq 1$.
 
-`is_good_state(measurement)`
+    **Parameters**
 
-Determine whether a given state is a good state.
+    **value** (`float`) – The estimation value $a$.
 
-**Parameters**
+    **Return type**
 
-**measurement** (`str`) – A measurement as bitstring, e.g. ‘01100’.
+    `float`
 
-**Return type**
+    **Returns**
 
-`bool`
+    The value after post processing, usually mapping the interval $[0, 1]$ to the target interval.
+  </Function>
 
-**Returns**
+  ### q\_factory
 
-True if the measurement corresponds to a good state, False otherwise.
+  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.q_factory" name="q_factory" signature="property q_factory">
+    Get the Q operator, or Grover-operator for the Amplitude Estimation algorithm, i.e.
 
-**Raises**
+    $$
+    \mathcal{Q} = \mathcal{A} \mathcal{S}_0 \mathcal{A}^\dagger \mathcal{S}_f,
+    $$
 
-**ValueError** – If `self.objective_qubits` is not set.
+    where $\mathcal{S}_0$ reflects about the |0>\_n state and S\_psi0 reflects about $|\Psi_0\rangle_n$. See [https://arxiv.org/abs/quant-ph/0005055](https://arxiv.org/abs/quant-ph/0005055) for more detail.
 
-### objective\_qubits
+    If the Q operator is not set, we try to build it from the A operator. If neither the A operator is set, None is returned.
 
-<span id="qiskit.aqua.algorithms.AmplitudeEstimation.objective_qubits" />
+    **Returns**
 
-`property objective_qubits`
+    returns the current Q factory of the algorithm
 
-Get the criterion for a measurement outcome to be in a ‘good’ state.
+    **Return type**
 
-**Return type**
+    QFactory
+  </Function>
 
-`Optional`\[`List`\[`int`]]
+  ### quantum\_instance
 
-**Returns**
+  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.quantum_instance" name="quantum_instance" signature="property quantum_instance">
+    Returns quantum instance.
 
-The criterion as list of qubit indices.
+    **Return type**
 
-### post\_processing
+    `Optional`\[`QuantumInstance`]
+  </Function>
 
-<span id="qiskit.aqua.algorithms.AmplitudeEstimation.post_processing" />
+  ### random
 
-`post_processing(value)`
+  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.random" name="random" signature="property random">
+    Return a numpy random.
+  </Function>
 
-Post processing of the raw amplitude estimation output $0 \leq a \leq 1$.
+  ### run
 
-**Parameters**
+  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.run" name="run" signature="run(quantum_instance=None, **kwargs)">
+    Execute the algorithm with selected backend.
 
-**value** (`float`) – The estimation value $a$.
+    **Parameters**
 
-**Return type**
+    *   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – the experimental setting.
+    *   **kwargs** (*dict*) – kwargs
 
-`float`
+    **Returns**
 
-**Returns**
+    results of an algorithm.
 
-The value after post processing, usually mapping the interval $[0, 1]$ to the target interval.
+    **Return type**
 
-### q\_factory
+    dict
 
-<span id="qiskit.aqua.algorithms.AmplitudeEstimation.q_factory" />
+    **Raises**
 
-`property q_factory`
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
+  </Function>
 
-Get the Q operator, or Grover-operator for the Amplitude Estimation algorithm, i.e.
+  ### set\_backend
 
-$$
-\mathcal{Q} = \mathcal{A} \mathcal{S}_0 \mathcal{A}^\dagger \mathcal{S}_f,
-$$
+  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.set_backend" name="set_backend" signature="set_backend(backend, **kwargs)">
+    Sets backend with configuration.
 
-where $\mathcal{S}_0$ reflects about the |0>\_n state and S\_psi0 reflects about $|\Psi_0\rangle_n$. See [https://arxiv.org/abs/quant-ph/0005055](https://arxiv.org/abs/quant-ph/0005055) for more detail.
+    **Return type**
 
-If the Q operator is not set, we try to build it from the A operator. If neither the A operator is set, None is returned.
+    `None`
+  </Function>
 
-**Returns**
+  ### state\_preparation
 
-returns the current Q factory of the algorithm
+  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.state_preparation" name="state_preparation" signature="property state_preparation">
+    Get the $\mathcal{A}$ operator encoding the amplitude $a$.
 
-**Return type**
+    **Return type**
 
-QFactory
+    `QuantumCircuit`
 
-### quantum\_instance
+    **Returns**
 
-<span id="qiskit.aqua.algorithms.AmplitudeEstimation.quantum_instance" />
-
-`property quantum_instance`
-
-Returns quantum instance.
-
-**Return type**
-
-`Optional`\[`QuantumInstance`]
-
-### random
-
-<span id="qiskit.aqua.algorithms.AmplitudeEstimation.random" />
-
-`property random`
-
-Return a numpy random.
-
-### run
-
-<span id="qiskit.aqua.algorithms.AmplitudeEstimation.run" />
-
-`run(quantum_instance=None, **kwargs)`
-
-Execute the algorithm with selected backend.
-
-**Parameters**
-
-*   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – the experimental setting.
-*   **kwargs** (*dict*) – kwargs
-
-**Returns**
-
-results of an algorithm.
-
-**Return type**
-
-dict
-
-**Raises**
-
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
-
-### set\_backend
-
-<span id="qiskit.aqua.algorithms.AmplitudeEstimation.set_backend" />
-
-`set_backend(backend, **kwargs)`
-
-Sets backend with configuration.
-
-**Return type**
-
-`None`
-
-### state\_preparation
-
-<span id="qiskit.aqua.algorithms.AmplitudeEstimation.state_preparation" />
-
-`property state_preparation`
-
-Get the $\mathcal{A}$ operator encoding the amplitude $a$.
-
-**Return type**
-
-`QuantumCircuit`
-
-**Returns**
-
-The $\mathcal{A}$ operator as QuantumCircuit.
+    The $\mathcal{A}$ operator as QuantumCircuit.
+  </Function>
+</Class>
 
