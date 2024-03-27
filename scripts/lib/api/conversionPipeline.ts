@@ -13,9 +13,9 @@
 import { join, parse, relative } from "path";
 import { readFile, writeFile } from "fs/promises";
 
-import { globby } from "globby";
-import { uniq, uniqBy } from "lodash";
 import { mkdirp } from "mkdirp";
+import { globby } from "globby";
+import { uniqBy } from "lodash";
 import transformLinks from "transform-markdown-links";
 
 import { ObjectsInv } from "./objectsInv";
@@ -30,7 +30,7 @@ import { specialCaseResults } from "./specialCaseResults";
 import addFrontMatter from "./addFrontMatter";
 import { dedupeHtmlIdsFromResults } from "./dedupeHtmlIds";
 import { Pkg } from "./Pkg";
-import { pathExists, getRoot } from "../fs";
+import { pathExists } from "../fs";
 import {
   addNewReleaseNotes,
   generateReleaseNotesIndex,
@@ -40,9 +40,43 @@ import {
 
 export async function runConversionPipeline(
   htmlPath: string,
-  markdownPath: string,
+  docsBaseFolder: string,
+  publicBaseFolder: string,
   pkg: Pkg,
 ) {
+  const [files, markdownPath, maybeObjectsInv] = await determineFilePaths(
+    htmlPath,
+    docsBaseFolder,
+    pkg,
+  );
+  let initialResults = await convertFilesToMarkdown(
+    pkg,
+    htmlPath,
+    docsBaseFolder,
+    markdownPath,
+    files,
+  );
+
+  const results = await postProcessResults(
+    pkg,
+    maybeObjectsInv,
+    initialResults,
+  );
+
+  // Warning: the sequence of operations often matters.
+  await writeMarkdownResults(pkg, docsBaseFolder, results);
+  await copyImages(pkg, htmlPath, publicBaseFolder, results);
+  await maybeObjectsInv?.write(pkg.outputDir(publicBaseFolder));
+  await maybeUpdateReleaseNotesFolder(pkg, markdownPath);
+  await writeTocFile(pkg, markdownPath, results);
+  await writeVersionFile(pkg, markdownPath);
+}
+
+async function determineFilePaths(
+  htmlPath: string,
+  docsBaseFolder: string,
+  pkg: Pkg,
+): Promise<[string[], string, ObjectsInv | undefined]> {
   const maybeObjectsInv = await (pkg.hasObjectsInv()
     ? ObjectsInv.fromFile(htmlPath)
     : undefined);
@@ -57,9 +91,20 @@ export async function runConversionPipeline(
       cwd: htmlPath,
     },
   );
+  const markdownPath = pkg.outputDir(docsBaseFolder);
+  await mkdirp(markdownPath);
+  return [files, markdownPath, maybeObjectsInv];
+}
 
-  let results: Array<HtmlToMdResultWithUrl> = [];
-  for (const file of files) {
+async function convertFilesToMarkdown(
+  pkg: Pkg,
+  htmlPath: string,
+  docsBaseFolder: string,
+  markdownPath: string,
+  filePaths: string[],
+): Promise<HtmlToMdResultWithUrl[]> {
+  const results = [];
+  for (const file of filePaths) {
     const html = await readFile(join(htmlPath, file), "utf-8");
     const result = await sphinxHtmlToMarkdown({
       html,
@@ -76,66 +121,60 @@ export async function runConversionPipeline(
     }
 
     const { dir, name } = parse(`${markdownPath}/${file}`);
-    let url = `/${relative(`${getRoot()}/docs`, dir)}/${name}`;
+    let url = `/${relative(docsBaseFolder, dir)}/${name}`;
     results.push({ ...result, url });
   }
+  return results;
+}
 
+async function copyImages(
+  pkg: Pkg,
+  htmlPath: string,
+  publicBaseFolder: string,
+  results: HtmlToMdResultWithUrl[],
+): Promise<void> {
+  // Some historical versions don't have the `_images` folder in the artifact store in Box (https://ibm.ent.box.com/folder/246867452622)
+  if (pkg.isHistorical() && !(await pathExists(`${htmlPath}/_images`))) return;
+  console.log("Saving images");
   const allImages = uniqBy(
     results.flatMap((result) => result.images),
     (image) => image.fileName,
   );
+  await saveImages(allImages, `${htmlPath}/_images`, publicBaseFolder, pkg);
+}
 
-  const dirsNeeded = uniq(
-    results.map((result) => parse(urlToPath(result.url)).dir),
-  );
-  for (const dir of dirsNeeded) {
-    await mkdirp(dir);
-  }
-
-  results = await mergeClassMembers(results);
+async function postProcessResults(
+  pkg: Pkg,
+  maybeObjectsInv: ObjectsInv | undefined,
+  initialResults: HtmlToMdResultWithUrl[],
+): Promise<HtmlToMdResultWithUrl[]> {
+  const results = await mergeClassMembers(initialResults);
   flattenFolders(results);
   specialCaseResults(results);
   await updateLinks(results, maybeObjectsInv);
   await dedupeHtmlIdsFromResults(results);
   addFrontMatter(results, pkg);
+  return results;
+}
 
-  await maybeObjectsInv?.write(pkg.outputDir("public"));
+async function writeMarkdownResults(
+  pkg: Pkg,
+  docsBaseFolder: string,
+  results: HtmlToMdResultWithUrl[],
+): Promise<void> {
   for (const result of results) {
-    let path = urlToPath(result.url);
-
-    if (path.endsWith("release-notes.md")) {
+    let path = `${docsBaseFolder}${result.url}.mdx`;
+    if (path.endsWith("release-notes.mdx")) {
       const shouldWriteResult = await handleReleaseNotesFile(result, pkg);
       if (!shouldWriteResult) continue;
     }
 
     await writeFile(path, result.markdown);
   }
-
-  console.log("Generating toc");
-  const toc = generateToc(pkg, results);
-  await writeFile(
-    `${markdownPath}/_toc.json`,
-    JSON.stringify(toc, null, 2) + "\n",
-  );
-
-  await maybeUpdateReleaseNotesFolder(pkg, markdownPath);
-
-  console.log("Generating version file");
-  const pkg_json = { name: pkg.name, version: pkg.version };
-  await writeFile(
-    `${markdownPath}/_package.json`,
-    JSON.stringify(pkg_json, null, 2) + "\n",
-  );
-
-  if (!pkg.isHistorical() || (await pathExists(`${htmlPath}/_images`))) {
-    // Some historical versions don't have the `_images` folder in the artifact store in Box (https://ibm.ent.box.com/folder/246867452622)
-    console.log("Saving images");
-    await saveImages(allImages, `${htmlPath}/_images`, pkg);
-  }
 }
 
 /**
- * Determine what to do with release-notes.md, such as simply ignoring it.
+ * Determine what to do with release-notes.mdx, such as simply ignoring it.
  *
  * @returns true if the release notes file should be written.
  */
@@ -152,6 +191,10 @@ async function handleReleaseNotesFile(
   // When the release notes are a single file, only use them if this is the latest version rather
   // than a historical release.
   if (!pkg.hasSeparateReleaseNotes) {
+    // Deal with Reno issue: https://github.com/Qiskit/documentation/issues/978
+    if (pkg.name === "qiskit-ibm-runtime") {
+      result.markdown = result.markdown.replace("# HACK FOR RENO ISSUE", "");
+    }
     return pkg.isLatest();
   }
 
@@ -186,9 +229,27 @@ async function maybeUpdateReleaseNotesFolder(
   await updateHistoricalTocFiles(pkg);
   console.log("Generating release-notes/index");
   const indexMarkdown = generateReleaseNotesIndex(pkg);
-  await writeFile(`${markdownPath}/release-notes/index.md`, indexMarkdown);
+  await writeFile(`${markdownPath}/release-notes/index.mdx`, indexMarkdown);
 }
 
-function urlToPath(url: string) {
-  return `${getRoot()}/docs${url}.md`;
+async function writeTocFile(
+  pkg: Pkg,
+  markdownPath: string,
+  results: HtmlToMdResultWithUrl[],
+): Promise<void> {
+  console.log("Generating toc");
+  const toc = generateToc(pkg, results);
+  await writeFile(
+    `${markdownPath}/_toc.json`,
+    JSON.stringify(toc, null, 2) + "\n",
+  );
+}
+
+async function writeVersionFile(pkg: Pkg, markdownPath: string): Promise<void> {
+  console.log("Generating version file");
+  const pkg_json = { name: pkg.name, version: pkg.version };
+  await writeFile(
+    `${markdownPath}/_package.json`,
+    JSON.stringify(pkg_json, null, 2) + "\n",
+  );
 }

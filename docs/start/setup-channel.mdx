@@ -1,21 +1,21 @@
 ---
 title: Select and set up an IBM Quantum channel
-description: Installation and setup instructions for IBM Quantum Platform or IBM Quantum on IBM Cloud to submit Qiskit and Qiskit Runtime jobs
+description: Installation and setup instructions for IBM Quantum Platform or IBM Quantum on IBM Cloud to submit Qiskit SDK and Qiskit Runtime jobs
 
 ---
 # Select and set up an IBM Quantum channel
 
 You can access IBM Quantum&trade; systems by using the IBM Quantum Platform or IBM Cloud&reg; _channel_.  _Channel_ is the term used to describe the method you use to access IBM Quantum services. 
 
+## Select an IBM Quantum channel
+
+You have the option to access IBM Quantum hardware through either [IBM Quantum Platform](#ibm-quantum-platform) or [IBM Cloud](#ibm-cloud).
+
 ### IBM Quantum Platform
 
 IBM Quantum Platform has Open (free access) and Premium (enterprise subscription) plans. See [IBM Quantum access plans](https://www.ibm.com/quantum/access-plans) for details.
 
-You can make requests locally (on your laptop or other device) using the `qiskit-ibm-runtime` client or use a cloud-based environment, such as [IBM Quantum Lab](https://lab.quantum.ibm.com) (a Jupyter Notebook environment) or [IBM Quantum Composer](https://quantum.ibm.com/composer/files/new) (a virtual circuit composer). To make requests from a local environment, you need to [install and set up Qiskit with the Qiskit Runtime Client](install#local) and [set up to use IBM Quantum Platform.](#iqp)
-
-<Admonition type="note">
-    [IBM Quantum Lab](https://lab.quantum.ibm.com) and [IBM Quantum Composer](https://quantum.ibm.com/composer/files/new) are self-contained tools and require no setup.
-</Admonition>
+Before setting up with IBM Quantum Platform, make sure you have the [Qiskit SDK and Qiskit Runtime installed](install#local). 
 
 Available plans: 
 
@@ -41,7 +41,7 @@ Available plans:
 <span id="iqp"></span>
 ## Set up to use IBM Quantum Platform
 
-You need access credentials to use cloud-based IBM Quantum systems. 
+1. Before setting up with IBM Quantum Platform, ensure you are working in an active Python environment with the [Qiskit SDK and Qiskit Runtime installed](install#local).
 
 1. If you do not already have a user account, get one at the [IBM Quantum login page.](https://quantum.ibm.com/login)  Your user account is associated with one or more [instances](../run/instances) (in the form hub / group / project) that give access to IBM Quantum services. Additionally, a unique token is assigned to each account, allowing for IBM Quantum access from Qiskit. The instructions in this section use our default instance.  For instructions to choose a specific instance, see [Connect to an instance](../run/instances#connect-instance). 
 
@@ -49,13 +49,9 @@ You need access credentials to use cloud-based IBM Quantum systems.
       The Instances section in your [IBM Quantum account page](https://quantum.ibm.com/account) lists the instances that you can access.
     </Admonition>
 
-1. Retrieve your IBM Quantum token from the [IBM Quantum account page,](https://quantum.ibm.com/account) then start Python. For example:
+1. Retrieve your IBM Quantum token from the [IBM Quantum account page](https://quantum.ibm.com/account).
 
-    ```shell
-    python3
-    ```
-
-1. Authenticate to the service by calling `QiskitRuntimeService` with your IBM Cloud API key and CRN:
+1. Authenticate to the service by calling `QiskitRuntimeService` with your IBM Quantum API key and CRN:
 
    ```python
    from qiskit_ibm_runtime import QiskitRuntimeService
@@ -92,31 +88,29 @@ You need access credentials to use cloud-based IBM Quantum systems.
 
 1. Test your setup.  Run a simple circuit using Sampler to ensure that your environment is set up properly:
 
-   ```python
-    from qiskit import QuantumCircuit
-    from qiskit_ibm_runtime import QiskitRuntimeService, Sampler
+  ```python
+from qiskit import QuantumCircuit
+from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
 
-    # Create empty circuit
-    example_circuit = QuantumCircuit(2)
-    example_circuit.measure_all()
+# Create empty circuit
+example_circuit = QuantumCircuit(2)
+example_circuit.measure_all()
 
-    # You'll need to specify the credentials when initializing QiskitRuntimeService, if they were not previously saved.
-    service = QiskitRuntimeService()
-    backend = service.backend("ibmq_qasm_simulator")
-    job = Sampler(backend).run(example_circuit)
-    print(f"job id: {job.job_id()}")
-    result = job.result()
-    print(result)
-    ```
+# You'll need to specify the credentials when initializing QiskitRuntimeService, if they were not previously saved.
+service = QiskitRuntimeService()
+backend = service.backend("ibmq_qasm_simulator")
 
- <span id="cloud"></span>
+sampler = Sampler(backend)
+job = sampler.run([(example_circuit,)])
+print(f"job id: {job.job_id()}")
+result = job.result()
+print(result)
+  ```
+
+<span id="cloud"></span>
 ## Set up to use IBM Cloud
 
-1. Start Python. For example:
-
-    ```shell
-    python3
-    ```
+1. Before setting up with IBM Cloud, ensure you are working in an active Python environment with the [Qiskit SDK and Qiskit Runtime installed](install#local).
 1. If you do not already have one, set up an IBM Cloud account from the [IBM Cloud Registration page](https://cloud.ibm.com/registration).
 1. Create a service instance, if necessary. Open your [IBM Cloud Instances page](https://cloud.ibm.com/quantum/instances). If you have one or more instances shown, continue to the next step. Otherwise, click **Create instance**. When creating your instance you can name it, tag it, select a resource group for it, and select a performance strategy. Next, agree to the license agreements by checking the box in the bottom right corner of the page, and click **Create**.
 
@@ -169,7 +163,7 @@ You need access credentials to use cloud-based IBM Quantum systems.
 
    ```python
     from qiskit import QuantumCircuit
-    from qiskit_ibm_runtime import QiskitRuntimeService, Sampler
+    from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
 
     # Create empty circuit
     example_circuit = QuantumCircuit(2)
@@ -178,7 +172,8 @@ You need access credentials to use cloud-based IBM Quantum systems.
     # You'll need to specify the credentials when initializing QiskitRuntimeService, if they were not previously saved.
     service = QiskitRuntimeService()
     backend = service.backend("ibmq_qasm_simulator")
-    job = Sampler(backend).run(example_circuit)
+    sampler = Sampler(backend)
+    job = sampler.run([(example_circuit,)])
     print(f"job id: {job.job_id()}")
     result = job.result()
     print(result)
@@ -187,7 +182,7 @@ You need access credentials to use cloud-based IBM Quantum systems.
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-  -  [Configure Qiskit locally.](configure-qiskit-local)
+  -  [Configure the Qiskit SDK locally.](configure-qiskit-local)
   -  Follow the steps in [Hello world](hello-world) to write and run a quantum program.
   -  [Get started with IBM Quantum on Cloud.](https://cloud.ibm.com/docs/quantum-computing?topic=quantum-computing-get-started)
   -  Try one of the [workflow example tutorials.](https://learning.quantum.ibm.com/catalog/tutorials?category=workflow-example)
