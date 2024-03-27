@@ -8,35 +8,33 @@ python_api_name: qiskit.quantum_info.state_fidelity
 
 # qiskit.quantum\_info.state\_fidelity
 
-<span id="qiskit.quantum_info.state_fidelity" />
+<Function id="qiskit.quantum_info.state_fidelity" github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/quantum_info/states/measures.py" signature="state_fidelity(state1, state2, validate=True)">
+  Return the state fidelity between two quantum states.
 
-`state_fidelity(state1, state2, validate=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/quantum_info/states/measures.py "view source code")
+  The state fidelity $F$ for density matrix input states $\rho_1, \rho_2$ is given by
 
-Return the state fidelity between two quantum states.
+  $$
+  F(\rho_1, \rho_2) = Tr[\sqrt{\sqrt{\rho_1}\rho_2\sqrt{\rho_1}}]^2.
+  $$
 
-The state fidelity $F$ for density matrix input states $\rho_1, \rho_2$ is given by
+  If one of the states is a pure state this simplifies to $F(\rho_1, \rho_2) = \langle\psi_1|\rho_2|\psi_1\rangle$, where $\rho_1 = |\psi_1\rangle\!\langle\psi_1|$.
 
-$$
-F(\rho_1, \rho_2) = Tr[\sqrt{\sqrt{\rho_1}\rho_2\sqrt{\rho_1}}]^2.
-$$
+  **Parameters**
 
-If one of the states is a pure state this simplifies to $F(\rho_1, \rho_2) = \langle\psi_1|\rho_2|\psi_1\rangle$, where $\rho_1 = |\psi_1\rangle\!\langle\psi_1|$.
+  *   **state1** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")) – the first quantum state.
+  *   **state2** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")) – the second quantum state.
+  *   **validate** (*bool*) – check if the inputs are valid quantum states \[Default: True]
 
-**Parameters**
+  **Returns**
 
-*   **state1** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")) – the first quantum state.
-*   **state2** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")) – the second quantum state.
-*   **validate** (*bool*) – check if the inputs are valid quantum states \[Default: True]
+  The state fidelity $F(\rho_1, \rho_2)$.
 
-**Returns**
+  **Return type**
 
-The state fidelity $F(\rho_1, \rho_2)$.
+  float
 
-**Return type**
+  **Raises**
 
-float
-
-**Raises**
-
-**QiskitError** – if `validate=True` and the inputs are invalid quantum states.
+  **QiskitError** – if `validate=True` and the inputs are invalid quantum states.
+</Function>
 
