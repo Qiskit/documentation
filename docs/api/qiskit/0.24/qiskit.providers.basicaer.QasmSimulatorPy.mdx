@@ -10,237 +10,217 @@ python_api_name: qiskit.providers.basicaer.QasmSimulatorPy
 
 # qiskit.providers.basicaer.QasmSimulatorPy
 
-<span id="qiskit.providers.basicaer.QasmSimulatorPy" />
+<Class id="qiskit.providers.basicaer.QasmSimulatorPy" github="https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/providers/basicaer/qasm_simulator.py" signature="QasmSimulatorPy(configuration=None, provider=None)">
+  Python implementation of a qasm simulator.
 
-`QasmSimulatorPy(configuration=None, provider=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/providers/basicaer/qasm_simulator.py "view source code")
+  Base class for backends.
 
-Python implementation of a qasm simulator.
+  This method should initialize the module and its configuration, and raise an exception if a component of the module is not available.
 
-Base class for backends.
+  **Parameters**
 
-This method should initialize the module and its configuration, and raise an exception if a component of the module is not available.
+  *   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
+  *   **provider** ([*BaseProvider*](qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")) – provider responsible for this backend
 
-**Parameters**
+  **Raises**
 
-*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
-*   **provider** ([*BaseProvider*](qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")) – provider responsible for this backend
+  **QiskitError** – if an error occurred when instantiating the backend.
 
-**Raises**
+  ### \_\_init\_\_
 
-**QiskitError** – if an error occurred when instantiating the backend.
+  <Function id="qiskit.providers.basicaer.QasmSimulatorPy.__init__" name="__init__" signature="__init__(configuration=None, provider=None)">
+    Base class for backends.
 
-### \_\_init\_\_
+    This method should initialize the module and its configuration, and raise an exception if a component of the module is not available.
 
-<span id="qiskit.providers.basicaer.QasmSimulatorPy.__init__" />
+    **Parameters**
 
-`__init__(configuration=None, provider=None)`
+    *   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
+    *   **provider** ([*BaseProvider*](qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")) – provider responsible for this backend
 
-Base class for backends.
+    **Raises**
 
-This method should initialize the module and its configuration, and raise an exception if a component of the module is not available.
+    **QiskitError** – if an error occurred when instantiating the backend.
+  </Function>
 
-**Parameters**
+  ## Methods
 
-*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
-*   **provider** ([*BaseProvider*](qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")) – provider responsible for this backend
+  |                                                                                                                                                      |                                                                    |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+  | [`__init__`](#qiskit.providers.basicaer.QasmSimulatorPy.__init__ "qiskit.providers.basicaer.QasmSimulatorPy.__init__")(\[configuration, provider])   | Base class for backends.                                           |
+  | [`configuration`](#qiskit.providers.basicaer.QasmSimulatorPy.configuration "qiskit.providers.basicaer.QasmSimulatorPy.configuration")()              | Return the backend configuration.                                  |
+  | [`name`](#qiskit.providers.basicaer.QasmSimulatorPy.name "qiskit.providers.basicaer.QasmSimulatorPy.name")()                                         | Return the backend name.                                           |
+  | [`properties`](#qiskit.providers.basicaer.QasmSimulatorPy.properties "qiskit.providers.basicaer.QasmSimulatorPy.properties")()                       | Return the backend properties.                                     |
+  | [`provider`](#qiskit.providers.basicaer.QasmSimulatorPy.provider "qiskit.providers.basicaer.QasmSimulatorPy.provider")()                             | Return the backend Provider.                                       |
+  | [`run`](#qiskit.providers.basicaer.QasmSimulatorPy.run "qiskit.providers.basicaer.QasmSimulatorPy.run")(qobj\[, backend\_options])                   | Run qobj asynchronously.                                           |
+  | [`run_experiment`](#qiskit.providers.basicaer.QasmSimulatorPy.run_experiment "qiskit.providers.basicaer.QasmSimulatorPy.run_experiment")(experiment) | Run an experiment (circuit) and return a single experiment result. |
+  | [`status`](#qiskit.providers.basicaer.QasmSimulatorPy.status "qiskit.providers.basicaer.QasmSimulatorPy.status")()                                   | Return the backend status.                                         |
+  | [`version`](#qiskit.providers.basicaer.QasmSimulatorPy.version "qiskit.providers.basicaer.QasmSimulatorPy.version")()                                | Return the backend version.                                        |
 
-**Raises**
+  ## Attributes
 
-**QiskitError** – if an error occurred when instantiating the backend.
+  |                         |   |
+  | ----------------------- | - |
+  | `DEFAULT_CONFIGURATION` |   |
+  | `DEFAULT_OPTIONS`       |   |
+  | `MAX_QUBITS_MEMORY`     |   |
+  | `SHOW_FINAL_STATE`      |   |
 
-## Methods
+  ### configuration
 
-|                                                                                                                                                      |                                                                    |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
-| [`__init__`](#qiskit.providers.basicaer.QasmSimulatorPy.__init__ "qiskit.providers.basicaer.QasmSimulatorPy.__init__")(\[configuration, provider])   | Base class for backends.                                           |
-| [`configuration`](#qiskit.providers.basicaer.QasmSimulatorPy.configuration "qiskit.providers.basicaer.QasmSimulatorPy.configuration")()              | Return the backend configuration.                                  |
-| [`name`](#qiskit.providers.basicaer.QasmSimulatorPy.name "qiskit.providers.basicaer.QasmSimulatorPy.name")()                                         | Return the backend name.                                           |
-| [`properties`](#qiskit.providers.basicaer.QasmSimulatorPy.properties "qiskit.providers.basicaer.QasmSimulatorPy.properties")()                       | Return the backend properties.                                     |
-| [`provider`](#qiskit.providers.basicaer.QasmSimulatorPy.provider "qiskit.providers.basicaer.QasmSimulatorPy.provider")()                             | Return the backend Provider.                                       |
-| [`run`](#qiskit.providers.basicaer.QasmSimulatorPy.run "qiskit.providers.basicaer.QasmSimulatorPy.run")(qobj\[, backend\_options])                   | Run qobj asynchronously.                                           |
-| [`run_experiment`](#qiskit.providers.basicaer.QasmSimulatorPy.run_experiment "qiskit.providers.basicaer.QasmSimulatorPy.run_experiment")(experiment) | Run an experiment (circuit) and return a single experiment result. |
-| [`status`](#qiskit.providers.basicaer.QasmSimulatorPy.status "qiskit.providers.basicaer.QasmSimulatorPy.status")()                                   | Return the backend status.                                         |
-| [`version`](#qiskit.providers.basicaer.QasmSimulatorPy.version "qiskit.providers.basicaer.QasmSimulatorPy.version")()                                | Return the backend version.                                        |
+  <Function id="qiskit.providers.basicaer.QasmSimulatorPy.configuration" name="configuration" signature="configuration()">
+    Return the backend configuration.
 
-## Attributes
+    **Returns**
 
-|                         |   |
-| ----------------------- | - |
-| `DEFAULT_CONFIGURATION` |   |
-| `DEFAULT_OPTIONS`       |   |
-| `MAX_QUBITS_MEMORY`     |   |
-| `SHOW_FINAL_STATE`      |   |
+    the configuration for the backend.
 
-### configuration
+    **Return type**
 
-<span id="qiskit.providers.basicaer.QasmSimulatorPy.configuration" />
+    [BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+  </Function>
 
-`configuration()`
+  ### name
 
-Return the backend configuration.
+  <Function id="qiskit.providers.basicaer.QasmSimulatorPy.name" name="name" signature="name()">
+    Return the backend name.
 
-**Returns**
+    **Returns**
 
-the configuration for the backend.
+    the name of the backend.
 
-**Return type**
+    **Return type**
 
-[BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+    str
+  </Function>
 
-### name
+  ### properties
 
-<span id="qiskit.providers.basicaer.QasmSimulatorPy.name" />
+  <Function id="qiskit.providers.basicaer.QasmSimulatorPy.properties" name="properties" signature="properties()">
+    Return the backend properties.
 
-`name()`
+    **Returns**
 
-Return the backend name.
+    the configuration for the backend. If the backend does not support properties, it returns `None`.
 
-**Returns**
+    **Return type**
 
-the name of the backend.
+    [BackendProperties](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
+  </Function>
 
-**Return type**
+  ### provider
 
-str
+  <Function id="qiskit.providers.basicaer.QasmSimulatorPy.provider" name="provider" signature="provider()">
+    Return the backend Provider.
 
-### properties
+    **Returns**
 
-<span id="qiskit.providers.basicaer.QasmSimulatorPy.properties" />
+    the Provider responsible for the backend.
 
-`properties()`
+    **Return type**
 
-Return the backend properties.
+    [BaseProvider](qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")
+  </Function>
 
-**Returns**
+  ### run
 
-the configuration for the backend. If the backend does not support properties, it returns `None`.
+  <Function id="qiskit.providers.basicaer.QasmSimulatorPy.run" name="run" signature="run(qobj, backend_options=None)">
+    Run qobj asynchronously.
 
-**Return type**
+    **Parameters**
 
-[BackendProperties](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
+    *   **qobj** ([*Qobj*](qiskit.qobj.Qobj "qiskit.qobj.Qobj")) – payload of the experiment
+    *   **backend\_options** (*dict*) – backend options
 
-### provider
+    **Returns**
 
-<span id="qiskit.providers.basicaer.QasmSimulatorPy.provider" />
+    derived from BaseJob
 
-`provider()`
+    **Return type**
 
-Return the backend Provider.
+    [BasicAerJob](qiskit.providers.basicaer.BasicAerJob "qiskit.providers.basicaer.BasicAerJob")
 
-**Returns**
+    **Additional Information:**
 
-the Provider responsible for the backend.
+    **backend\_options: Is a dict of options for the backend. It may contain**
 
-**Return type**
+    *   “initial\_statevector”: vector\_like
 
-[BaseProvider](qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")
+    The “initial\_statevector” option specifies a custom initial initial statevector for the simulator to be used instead of the all zero state. This size of this vector must be correct for the number of qubits in all experiments in the qobj.
 
-### run
+    Example:
 
-<span id="qiskit.providers.basicaer.QasmSimulatorPy.run" />
+    ```python
+    backend_options = {
+        "initial_statevector": np.array([1, 0, 0, 1j]) / np.sqrt(2),
+    }
+    ```
+  </Function>
 
-`run(qobj, backend_options=None)`
+  ### run\_experiment
 
-Run qobj asynchronously.
+  <Function id="qiskit.providers.basicaer.QasmSimulatorPy.run_experiment" name="run_experiment" signature="run_experiment(experiment)">
+    Run an experiment (circuit) and return a single experiment result.
 
-**Parameters**
+    **Parameters**
 
-*   **qobj** ([*Qobj*](qiskit.qobj.Qobj "qiskit.qobj.Qobj")) – payload of the experiment
-*   **backend\_options** (*dict*) – backend options
+    **experiment** (*QobjExperiment*) – experiment from qobj experiments list
 
-**Returns**
+    **Returns**
 
-derived from BaseJob
+    A result dictionary which looks something like:
 
-**Return type**
-
-[BasicAerJob](qiskit.providers.basicaer.BasicAerJob "qiskit.providers.basicaer.BasicAerJob")
-
-**Additional Information:**
-
-**backend\_options: Is a dict of options for the backend. It may contain**
-
-*   “initial\_statevector”: vector\_like
-
-The “initial\_statevector” option specifies a custom initial initial statevector for the simulator to be used instead of the all zero state. This size of this vector must be correct for the number of qubits in all experiments in the qobj.
-
-Example:
-
-```python
-backend_options = {
-    "initial_statevector": np.array([1, 0, 0, 1j]) / np.sqrt(2),
-}
-```
-
-### run\_experiment
-
-<span id="qiskit.providers.basicaer.QasmSimulatorPy.run_experiment" />
-
-`run_experiment(experiment)`
-
-Run an experiment (circuit) and return a single experiment result.
-
-**Parameters**
-
-**experiment** (*QobjExperiment*) – experiment from qobj experiments list
-
-**Returns**
-
-A result dictionary which looks something like:
-
-```python
-{
-"name": name of this experiment (obtained from qobj.experiment header)
-"seed": random seed used for simulation
-"shots": number of shots used in the simulation
-"data":
+    ```python
     {
-    "counts": {'0x9: 5, ...},
-    "memory": ['0x9', '0xF', '0x1D', ..., '0x9']
-    },
-"status": status string for the simulation
-"success": boolean
-"time_taken": simulation time of this single experiment
-}
-```
+    "name": name of this experiment (obtained from qobj.experiment header)
+    "seed": random seed used for simulation
+    "shots": number of shots used in the simulation
+    "data":
+        {
+        "counts": {'0x9: 5, ...},
+        "memory": ['0x9', '0xF', '0x1D', ..., '0x9']
+        },
+    "status": status string for the simulation
+    "success": boolean
+    "time_taken": simulation time of this single experiment
+    }
+    ```
 
-**Return type**
+    **Return type**
 
-dict
+    dict
 
-**Raises**
+    **Raises**
 
-[**BasicAerError**](qiskit.providers.basicaer.BasicAerError "qiskit.providers.basicaer.BasicAerError") – if an error occurred.
+    [**BasicAerError**](qiskit.providers.basicaer.BasicAerError "qiskit.providers.basicaer.BasicAerError") – if an error occurred.
+  </Function>
 
-### status
+  ### status
 
-<span id="qiskit.providers.basicaer.QasmSimulatorPy.status" />
+  <Function id="qiskit.providers.basicaer.QasmSimulatorPy.status" name="status" signature="status()">
+    Return the backend status.
 
-`status()`
+    **Returns**
 
-Return the backend status.
+    the status of the backend.
 
-**Returns**
+    **Return type**
 
-the status of the backend.
+    [BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+  </Function>
 
-**Return type**
+  ### version
 
-[BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+  <Function id="qiskit.providers.basicaer.QasmSimulatorPy.version" name="version" signature="version()">
+    Return the backend version.
 
-### version
+    **Returns**
 
-<span id="qiskit.providers.basicaer.QasmSimulatorPy.version" />
+    the X.X.X version of the backend.
 
-`version()`
+    **Return type**
 
-Return the backend version.
-
-**Returns**
-
-the X.X.X version of the backend.
-
-**Return type**
-
-str
+    str
+  </Function>
+</Class>
 

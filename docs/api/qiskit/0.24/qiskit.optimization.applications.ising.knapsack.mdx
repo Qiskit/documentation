@@ -28,85 +28,79 @@ If we have the weights w\[i], the values v\[i] and the maximum weight W\_max. We
 
 ### get\_operator
 
-<span id="qiskit.optimization.applications.ising.knapsack.get_operator" />
+<Function id="qiskit.optimization.applications.ising.knapsack.get_operator" name="get_operator" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/knapsack.py" signature="get_operator(values, weights, max_weight)">
+  Generate Hamiltonian for the knapsack problem.
 
-`get_operator(values, weights, max_weight)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/knapsack.py "view source code")
+  **Notes**
 
-Generate Hamiltonian for the knapsack problem.
+  To build the cost function for the Hamiltonian we add a term S that will vary with our solution. In order to make it change wit the solution we enhance X with a number of additional bits X’ = \[x\_0,..x\_\{n-1},y\_\{n}..y\_\{n+m-1}]. The bytes y\[i] will be the binary representation of S. In this way the optimizer will be able to optimize S as well as X.
 
-**Notes**
+  The cost function is \$\$C(X’) = M(W\_\{max} - sum\_\{i=0}^\{n-1} x\_\{i}w\_\{i} - S)^2 - sum\_\{i}^\{n-1} x\_\{i}v\_\{i}\$\$ where S = sum(2\*\*j \* y\[j]), j goes from n to n+log(W\_max). M is a number large enough to dominate the sum of values.
 
-To build the cost function for the Hamiltonian we add a term S that will vary with our solution. In order to make it change wit the solution we enhance X with a number of additional bits X’ = \[x\_0,..x\_\{n-1},y\_\{n}..y\_\{n+m-1}]. The bytes y\[i] will be the binary representation of S. In this way the optimizer will be able to optimize S as well as X.
+  Because S can only be positive, when W\_max >= sum(x\[i]\*w\[i]) the optimizer can find an S (or better the y\[j] that compose S) so that it will take the first term to 0. This way the function is dominated by the sum of values. If W\_max \< sum(x\[i]\*w\[i]) then the first term can never be 0 and, multiplied by a large M, will always dominate the function.
 
-The cost function is \$\$C(X’) = M(W\_\{max} - sum\_\{i=0}^\{n-1} x\_\{i}w\_\{i} - S)^2 - sum\_\{i}^\{n-1} x\_\{i}v\_\{i}\$\$ where S = sum(2\*\*j \* y\[j]), j goes from n to n+log(W\_max). M is a number large enough to dominate the sum of values.
+  The minimum value of the function will be that where the constraint is respected and the sum of values is maximized.
 
-Because S can only be positive, when W\_max >= sum(x\[i]\*w\[i]) the optimizer can find an S (or better the y\[j] that compose S) so that it will take the first term to 0. This way the function is dominated by the sum of values. If W\_max \< sum(x\[i]\*w\[i]) then the first term can never be 0 and, multiplied by a large M, will always dominate the function.
+  **Parameters**
 
-The minimum value of the function will be that where the constraint is respected and the sum of values is maximized.
+  *   **values** (*list of non-negative integers*) – a list of values
+  *   **weights** (*list of non-negative integers*) – a list of weights
+  *   **max\_weight** (*non negative integer*) – the maximum weight the knapsack can carry
 
-**Parameters**
+  **Returns**
 
-*   **values** (*list of non-negative integers*) – a list of values
-*   **weights** (*list of non-negative integers*) – a list of weights
-*   **max\_weight** (*non negative integer*) – the maximum weight the knapsack can carry
+  operator for the Hamiltonian float: a constant shift for the obj function.
 
-**Returns**
+  **Return type**
 
-operator for the Hamiltonian float: a constant shift for the obj function.
+  [WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
 
-**Return type**
+  **Raises**
 
-[WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
-
-**Raises**
-
-*   **ValueError** – values and weights have different lengths
-*   **ValueError** – A value or a weight is negative
-*   **ValueError** – All values are zero
-*   **ValueError** – max\_weight is negative
+  *   **ValueError** – values and weights have different lengths
+  *   **ValueError** – A value or a weight is negative
+  *   **ValueError** – All values are zero
+  *   **ValueError** – max\_weight is negative
+</Function>
 
 ### get\_solution
 
-<span id="qiskit.optimization.applications.ising.knapsack.get_solution" />
+<Function id="qiskit.optimization.applications.ising.knapsack.get_solution" name="get_solution" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/knapsack.py" signature="get_solution(x, values)">
+  Get the solution to the knapsack problem from the bitstring that represents to the ground state of the Hamiltonian
 
-`get_solution(x, values)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/knapsack.py "view source code")
+  **Parameters**
 
-Get the solution to the knapsack problem from the bitstring that represents to the ground state of the Hamiltonian
+  *   **x** (*numpy.ndarray*) – the ground state of the Hamiltonian.
+  *   **values** (*numpy.ndarray*) – the list of values
 
-**Parameters**
+  **Returns**
 
-*   **x** (*numpy.ndarray*) – the ground state of the Hamiltonian.
-*   **values** (*numpy.ndarray*) – the list of values
+  **a bit string that has a ‘1’ at the indexes**
 
-**Returns**
+  corresponding to values that have been taken in the knapsack. i.e. if the solution has a ‘1’ at index i then the value values\[i] has been taken in the knapsack
 
-**a bit string that has a ‘1’ at the indexes**
+  **Return type**
 
-corresponding to values that have been taken in the knapsack. i.e. if the solution has a ‘1’ at index i then the value values\[i] has been taken in the knapsack
-
-**Return type**
-
-numpy.ndarray
+  numpy.ndarray
+</Function>
 
 ### knapsack\_value\_weight
 
-<span id="qiskit.optimization.applications.ising.knapsack.knapsack_value_weight" />
+<Function id="qiskit.optimization.applications.ising.knapsack.knapsack_value_weight" name="knapsack_value_weight" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/knapsack.py" signature="knapsack_value_weight(solution, values, weights)">
+  Get the total wight and value of the items taken in the knapsack.
 
-`knapsack_value_weight(solution, values, weights)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/knapsack.py "view source code")
+  **Parameters**
 
-Get the total wight and value of the items taken in the knapsack.
+  *   **solution** (*numpy.ndarray*) – binary string that represents the solution to the problem.
+  *   **values** (*numpy.ndarray*) – the list of values
+  *   **weights** (*numpy.ndarray*) – the list of weights
 
-**Parameters**
+  **Returns**
 
-*   **solution** (*numpy.ndarray*) – binary string that represents the solution to the problem.
-*   **values** (*numpy.ndarray*) – the list of values
-*   **weights** (*numpy.ndarray*) – the list of weights
+  the total value and weight of the items in the knapsack
 
-**Returns**
+  **Return type**
 
-the total value and weight of the items in the knapsack
-
-**Return type**
-
-tuple
+  tuple
+</Function>
 

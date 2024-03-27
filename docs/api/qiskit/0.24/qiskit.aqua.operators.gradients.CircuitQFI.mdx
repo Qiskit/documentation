@@ -10,53 +10,47 @@ python_api_name: qiskit.aqua.operators.gradients.CircuitQFI
 
 # qiskit.aqua.operators.gradients.CircuitQFI
 
-<span id="qiskit.aqua.operators.gradients.CircuitQFI" />
+<Class id="qiskit.aqua.operators.gradients.CircuitQFI" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/gradients/circuit_qfis/circuit_qfi.py" signature="CircuitQFI">
+  Circuit to Quantum Fisher Information operator converter.
 
-`CircuitQFI` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/gradients/circuit_qfis/circuit_qfi.py "view source code")
+  Converter for changing parameterized circuits into operators whose evaluation yields Quantum Fisher Information metric tensor with respect to the given circuit parameters
 
-Circuit to Quantum Fisher Information operator converter.
+  This is distinct from DerivativeBase converters which take gradients of composite operators and handle things like differentiating combo\_fn’s and enforcing product rules when operator coefficients are parameterized.
 
-Converter for changing parameterized circuits into operators whose evaluation yields Quantum Fisher Information metric tensor with respect to the given circuit parameters
+  CircuitQFI - uses quantum techniques to get the QFI of circuits DerivativeBase - uses classical techniques to differentiate opflow data structures
 
-This is distinct from DerivativeBase converters which take gradients of composite operators and handle things like differentiating combo\_fn’s and enforcing product rules when operator coefficients are parameterized.
+  ### \_\_init\_\_
 
-CircuitQFI - uses quantum techniques to get the QFI of circuits DerivativeBase - uses classical techniques to differentiate opflow data structures
+  <Function id="qiskit.aqua.operators.gradients.CircuitQFI.__init__" name="__init__" signature="__init__()">
+    Initialize self. See help(type(self)) for accurate signature.
+  </Function>
 
-### \_\_init\_\_
+  ## Methods
 
-<span id="qiskit.aqua.operators.gradients.CircuitQFI.__init__" />
+  |                                                                                                                                            |                                 |
+  | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------- |
+  | [`__init__`](#qiskit.aqua.operators.gradients.CircuitQFI.__init__ "qiskit.aqua.operators.gradients.CircuitQFI.__init__")()                 | Initialize self.                |
+  | [`convert`](#qiskit.aqua.operators.gradients.CircuitQFI.convert "qiskit.aqua.operators.gradients.CircuitQFI.convert")(operator\[, params]) | **type operator**`OperatorBase` |
 
-`__init__()`
+  ### convert
 
-Initialize self. See help(type(self)) for accurate signature.
+  <Function id="qiskit.aqua.operators.gradients.CircuitQFI.convert" name="convert" signature="abstract convert(operator, params=None)">
+    **Parameters**
 
-## Methods
+    *   **operator** (`OperatorBase`) – The operator corresponding to the quantum state $|\psi(\omega)\rangle$ for which we compute the QFI.
+    *   **params** (`Union`\[`ParameterVector`, `ParameterExpression`, `List`\[`ParameterExpression`], `None`]) – The parameters $\omega$ with respect to which we are computing the QFI.
 
-|                                                                                                                                            |                                 |
-| ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------- |
-| [`__init__`](#qiskit.aqua.operators.gradients.CircuitQFI.__init__ "qiskit.aqua.operators.gradients.CircuitQFI.__init__")()                 | Initialize self.                |
-| [`convert`](#qiskit.aqua.operators.gradients.CircuitQFI.convert "qiskit.aqua.operators.gradients.CircuitQFI.convert")(operator\[, params]) | **type operator**`OperatorBase` |
+    **Return type**
 
-### convert
+    `OperatorBase`
 
-<span id="qiskit.aqua.operators.gradients.CircuitQFI.convert" />
+    **Returns**
 
-`abstract convert(operator, params=None)`
+    An operator whose evaluation yields the QFI metric tensor.
 
-**Parameters**
+    **Raises**
 
-*   **operator** (`OperatorBase`) – The operator corresponding to the quantum state $|\psi(\omega)\rangle$ for which we compute the QFI.
-*   **params** (`Union`\[`ParameterVector`, `ParameterExpression`, `List`\[`ParameterExpression`], `None`]) – The parameters $\omega$ with respect to which we are computing the QFI.
-
-**Return type**
-
-`OperatorBase`
-
-**Returns**
-
-An operator whose evaluation yields the QFI metric tensor.
-
-**Raises**
-
-**ValueError** – If `params` contains a parameter not present in `operator`.
+    **ValueError** – If `params` contains a parameter not present in `operator`.
+  </Function>
+</Class>
 
