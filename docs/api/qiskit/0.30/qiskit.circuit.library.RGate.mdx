@@ -8,85 +8,81 @@ python_api_name: qiskit.circuit.library.RGate
 
 # RGate
 
-<span id="qiskit.circuit.library.RGate" />
+<Class id="qiskit.circuit.library.RGate" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/r.py" signature="RGate(theta, phi)">
+  Bases: `qiskit.circuit.gate.Gate`
 
-`RGate(theta, phi)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/r.py "view source code")
+  Rotation θ around the cos(φ)x + sin(φ)y axis.
 
-Bases: `qiskit.circuit.gate.Gate`
+  **Circuit symbol:**
 
-Rotation θ around the cos(φ)x + sin(φ)y axis.
+  ```python
+       ┌──────┐
+  q_0: ┤ R(ϴ) ├
+       └──────┘
+  ```
 
-**Circuit symbol:**
+  **Matrix Representation:**
 
-```python
-     ┌──────┐
-q_0: ┤ R(ϴ) ├
-     └──────┘
-```
+  $$
+   \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}R(\theta, \phi) = e^{-i \th (\cos{\phi} x + \sin{\phi} y)} =
+      \begin{pmatrix}
+          \cos{\th} & -i e^{-i \phi} \sin{\th} \\
+          -i e^{i \phi} \sin{\th} & \cos{\th}
+      \end{pmatrix}\end{split}\end{aligned}\end{align} 
+  $$
 
-**Matrix Representation:**
+  Create new r single-qubit gate.
 
-$$
- \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}R(\theta, \phi) = e^{-i \th (\cos{\phi} x + \sin{\phi} y)} =
-    \begin{pmatrix}
-        \cos{\th} & -i e^{-i \phi} \sin{\th} \\
-        -i e^{i \phi} \sin{\th} & \cos{\th}
-    \end{pmatrix}\end{split}\end{aligned}\end{align} 
-$$
+  ## Methods Defined Here
 
-Create new r single-qubit gate.
+  ### inverse
 
-## Methods Defined Here
+  <Function id="qiskit.circuit.library.RGate.inverse" signature="RGate.inverse()">
+    Invert this gate.
 
-### inverse
+    r(θ, φ)^dagger = r(-θ, φ)
+  </Function>
 
-<span id="qiskit.circuit.library.RGate.inverse" />
+  ## Attributes
 
-`RGate.inverse()`
+  ### decompositions
 
-Invert this gate.
+  <Attribute id="qiskit.circuit.library.RGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-r(θ, φ)^dagger = r(-θ, φ)
+  ### definition
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.RGate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-<span id="qiskit.circuit.library.RGate.decompositions" />
+  ### duration
 
-### decompositions
+  <Attribute id="qiskit.circuit.library.RGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  ### label
 
-<span id="qiskit.circuit.library.RGate.definition" />
+  <Attribute id="qiskit.circuit.library.RGate.label" name="label">
+    Return instruction label
 
-### definition
+    **Return type**
 
-Return definition in terms of other basic gates.
+    `str`
+  </Attribute>
 
-<span id="qiskit.circuit.library.RGate.duration" />
+  ### params
 
-### duration
+  <Attribute id="qiskit.circuit.library.RGate.params" name="params">
+    return instruction params.
+  </Attribute>
 
-Get the duration.
+  ### unit
 
-<span id="qiskit.circuit.library.RGate.label" />
-
-### label
-
-Return instruction label
-
-**Return type**
-
-`str`
-
-<span id="qiskit.circuit.library.RGate.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit.circuit.library.RGate.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.circuit.library.RGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 
